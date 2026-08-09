@@ -1,5 +1,5 @@
 const APP_NAME = 'Shift Core';
-const API_VERSION = '3.2B';
+const API_VERSION = '3.2C-registration-hotfix';
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://shiftsometimber.co.uk',
   'https://www.shiftsometimber.co.uk',
@@ -92,34 +92,69 @@ async function register(request, env) {
   const body = await readJson(request);
   const email = normalizeEmail(body.email);
   const password = String(body.password || '');
+
   if (!isEmail(email) || password.length < 10) {
     return json({ ok: false, error: 'invalid_registration', message: 'Use a valid email and a password of at least 10 characters.' }, 400);
   }
 
-  const existing = await env.DB.prepare('SELECT id FROM users WHERE lower(email)=?').bind(email).first();
-  if (existing) return json({ ok: false, error: 'email_in_use' }, 409);
-
-  const passwordHash = await hashPassword(password);
-  const autoVerify = String(env.AUTO_VERIFY_EMAIL || 'true').toLowerCase() === 'true';
-
   try {
-    await env.DB.prepare(`INSERT INTO users(email,first_name,last_name,phone,date_of_birth,postcode) VALUES(?,?,?,?,?,?)`)
-      .bind(email, clean(body.firstName, 100), clean(body.lastName, 100), clean(body.phone, 50), clean(body.dateOfBirth, 20), clean(body.postcode, 20))
+    // Recover cleanly from an earlier interrupted registration. A previous V3.2B
+    // request could create the users row before a later step failed, leaving an
+    // account that could neither register again nor log in.
+    let existing = await env.DB.prepare(`
+      SELECT u.*, a.user_id AS auth_user_id
+      FROM users u
+      LEFT JOIN user_auth a ON a.user_id = u.id
+      WHERE lower(u.email)=?
+    `).bind(email).first();
+
+    if (existing?.auth_user_id) {
+      return json({ ok: false, error: 'email_in_use', message: 'An account already exists for that email. Please sign in.' }, 409);
+    }
+
+    const passwordHash = await hashPassword(password);
+    const autoVerify = String(env.AUTO_VERIFY_EMAIL || 'true').toLowerCase() === 'true';
+    let user = existing;
+
+    if (!user) {
+      await env.DB.prepare(`INSERT INTO users(email,first_name,last_name,phone,date_of_birth,postcode) VALUES(?,?,?,?,?,?)`)
+        .bind(email, clean(body.firstName, 100), clean(body.lastName, 100), clean(body.phone, 50), clean(body.dateOfBirth, 20), clean(body.postcode, 20))
+        .run();
+      user = await env.DB.prepare('SELECT * FROM users WHERE lower(email)=?').bind(email).first();
+    } else {
+      // Complete the orphaned account and keep any new profile details supplied.
+      await env.DB.prepare(`UPDATE users SET first_name=COALESCE(?,first_name),last_name=COALESCE(?,last_name),phone=COALESCE(?,phone),date_of_birth=COALESCE(?,date_of_birth),postcode=COALESCE(?,postcode),updated_at=? WHERE id=?`)
+        .bind(clean(body.firstName, 100), clean(body.lastName, 100), clean(body.phone, 50), clean(body.dateOfBirth, 20), clean(body.postcode, 20), isoNow(), user.id)
+        .run();
+      user = await env.DB.prepare('SELECT * FROM users WHERE id=?').bind(user.id).first();
+    }
+
+    if (!user?.id) throw new Error('user_row_missing_after_insert');
+
+    // The auth record is the critical registration step. Do this separately so
+    // optional CRM/member-state setup cannot invalidate a usable account.
+    await env.DB.prepare(`INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) VALUES(?,?,?,?)`)
+      .bind(user.id, passwordHash, autoVerify ? 1 : 0, autoVerify ? isoNow() : null)
       .run();
-    const user = await env.DB.prepare('SELECT * FROM users WHERE lower(email)=?').bind(email).first();
-    await env.DB.batch([
-      env.DB.prepare(`INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) VALUES(?,?,?,?)`)
-        .bind(user.id, passwordHash, autoVerify ? 1 : 0, autoVerify ? isoNow() : null),
-      env.DB.prepare(`INSERT OR IGNORE INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) VALUES(?,?,?,?,?)`)
-        .bind(user.id, 'registered', 'none', clean(body.source, 100) || 'website', isoNow()),
-      env.DB.prepare(`INSERT OR IGNORE INTO member_state(user_id) VALUES(?)`).bind(user.id)
-    ]);
+
+    // Non-critical account scaffolding. Each statement is idempotent.
+    try {
+      await env.DB.prepare(`INSERT OR IGNORE INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) VALUES(?,?,?,?,?)`)
+        .bind(user.id, 'registered', 'none', clean(body.source, 100) || 'website', isoNow())
+        .run();
+    } catch (e) { console.error('register_member_status_warning', e?.message); }
+
+    try {
+      await env.DB.prepare(`INSERT OR IGNORE INTO member_state(user_id) VALUES(?)`).bind(user.id).run();
+    } catch (e) { console.error('register_member_state_warning', e?.message); }
 
     if (Array.isArray(body.consents)) {
       for (const c of body.consents.slice(0, 20)) {
-        await env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at) VALUES(?,?,?,?,?)`)
-          .bind(user.id, clean(c.type, 80) || 'unspecified', clean(c.version, 50), c.granted ? 1 : 0, c.granted ? isoNow() : null)
-          .run();
+        try {
+          await env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at) VALUES(?,?,?,?,?)`)
+            .bind(user.id, clean(c.type, 80) || 'unspecified', clean(c.version, 50), c.granted ? 1 : 0, c.granted ? isoNow() : null)
+            .run();
+        } catch (e) { console.error('register_consent_warning', e?.message); }
       }
     }
 
@@ -127,8 +162,8 @@ async function register(request, env) {
     const session = await createSession(env, user.id, request);
     return json({ ok: true, user: publicUser(user), emailVerified: autoVerify }, 201, { 'Set-Cookie': session.cookie });
   } catch (e) {
-    console.error('register_error', e);
-    return json({ ok: false, error: 'registration_failed' }, 500);
+    console.error('register_error', e?.message, e?.stack);
+    return json({ ok: false, error: 'registration_failed', message: 'We could not create your account. Please try again.' }, 500);
   }
 }
 
