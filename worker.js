@@ -1,5 +1,5 @@
 const APP_NAME = 'Shift Core';
-const API_VERSION = '4.0-hq-v1-section12';
+const API_VERSION = '4.0-hq-v1-section13-deploy';
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://shiftsometimber.co.uk',
   'https://www.shiftsometimber.co.uk',
@@ -793,11 +793,51 @@ async function buildMember360(env,uid){
     events,conversations,notes,orders,cases,weights:weightRows,targets,programmes:programmeRows
   };
 }
+
+async function githubAtomicCommit(env, repo, branch, files, message) {
+  const headers={'Authorization':`Bearer ${env.GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json','User-Agent':'Shift-HQ-Deployment-Manager'};
+  const gh=async(path,opts={})=>{const r=await fetch(`https://api.github.com/repos/${repo}${path}`,{...opts,headers:{...headers,...(opts.headers||{})}});let j={};try{j=await r.json()}catch{}if(!r.ok)throw new Error(j?.message||`GitHub ${r.status}`);return j};
+  const ref=await gh(`/git/ref/heads/${encodeURIComponent(branch)}`), parentSha=ref.object.sha;
+  const parent=await gh(`/git/commits/${parentSha}`), tree=[];
+  for(const f of files){const blob=await gh('/git/blobs',{method:'POST',body:JSON.stringify({content:f.content,encoding:'utf-8'})});tree.push({path:f.path,mode:'100644',type:'blob',sha:blob.sha})}
+  const newTree=await gh('/git/trees',{method:'POST',body:JSON.stringify({base_tree:parent.tree.sha,tree})});
+  const commit=await gh('/git/commits',{method:'POST',body:JSON.stringify({message,tree:newTree.sha,parents:[parentSha]})});
+  await gh(`/git/refs/heads/${encodeURIComponent(branch)}`,{method:'PATCH',body:JSON.stringify({sha:commit.sha,force:false})});
+  return {commitSha:commit.sha};
+}
+
 async function adminRoutes(request, env, path, method) {
   const permission = permissionForRoute(path, method);
   const access = await requireHqAccess(request, env, permission);
   if (access.response) return access.response;
   const hqActor = access.actor;
+
+  if (method === 'GET' && path === '/v1/hq/deploy/status') {
+    if (hqActor.role !== 'owner') return json({ok:false,error:'hq_forbidden'},403);
+    return json({ok:true,ready:Boolean(env.GITHUB_TOKEN),repository:env.GITHUB_REPO||'shiftsometimber/shift-core',branch:env.GITHUB_BRANCH||'main',version:API_VERSION});
+  }
+
+  if (method === 'POST' && path === '/v1/hq/deploy') {
+    if (hqActor.role !== 'owner') return json({ok:false,error:'hq_forbidden'},403);
+    if (!env.GITHUB_TOKEN) return json({ok:false,error:'github_token_missing',message:'Deployment Manager needs the GITHUB_TOKEN Worker secret once before it can deploy updates.'},503);
+    const body = await readJson(request);
+    const files = Array.isArray(body.files) ? body.files : [];
+    if (!files.length || files.length > 25) return json({ok:false,error:'invalid_update_package',message:'Update package must contain 1–25 files.'},400);
+    let total=0;
+    const cleanFiles=[];
+    for (const f of files) {
+      const filePath=String(f?.path||'').replace(/^\/+/, '');
+      const content=String(f?.content||'');
+      if (!filePath || filePath.includes('..') || !/^[A-Za-z0-9._\/-]+$/.test(filePath)) return json({ok:false,error:'invalid_update_path'},400);
+      total += new TextEncoder().encode(content).length;
+      if (total > 2_000_000) return json({ok:false,error:'update_too_large',message:'Update package exceeds 2 MB.'},413);
+      cleanFiles.push({path:filePath,content});
+    }
+    const repo=String(env.GITHUB_REPO||'shiftsometimber/shift-core'), branch=String(env.GITHUB_BRANCH||'main');
+    const result=await githubAtomicCommit(env,repo,branch,cleanFiles,String(body.message||`Shift HQ deployment ${isoNow()}`).slice(0,180));
+    await hqAudit(env,hqActor,'hq.deployment','repository',repo,{branch,commit:result.commitSha,files:cleanFiles.map(x=>x.path)});
+    return json({ok:true,repository:repo,branch,commit:result.commitSha,files:cleanFiles.length,message:'Update committed. Cloudflare deployment will start automatically.'});
+  }
 
   if (method === 'GET' && path === '/v1/crm/stats') {
     const totals = await env.DB.prepare(`SELECT COUNT(*) total FROM users`).first();
