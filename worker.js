@@ -1,12 +1,11 @@
 const APP_NAME = 'Shift Core';
-const API_VERSION = '4.0-hq-v1-section11';
+const API_VERSION = '4.0-hq-v1-section12';
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://shiftsometimber.co.uk',
   'https://www.shiftsometimber.co.uk',
   'https://shiftsometimber.com',
   'https://www.shiftsometimber.com',
-  'https://hq.shiftsometimber.co.uk',
-  'https://shift-hq.matobrien.workers.dev'
+  'https://hq.shiftsometimber.co.uk'
 ];
 
 let schemaReady = false;
@@ -760,6 +759,40 @@ async function firstRunSetupChecks(env){
     {name:'Outbound mail',status:env.SHIFT_MAIL_API_URL?'ready':'optional',detail:env.SHIFT_MAIL_API_URL?'Configured':'Can use Gmail/provider adapter later'}
   ];
 }
+
+async function safeAll(DB,sql,binds=[]){try{const s=DB.prepare(sql);const r=binds.length?await s.bind(...binds).all():await s.all();return r.results||[]}catch{return[]}}
+async function safeFirst(DB,sql,binds=[]){try{const s=DB.prepare(sql);return binds.length?await s.bind(...binds).first():await s.first()}catch{return null}}
+async function buildMember360(env,uid){
+  const member=await safeFirst(env.DB,`SELECT id,email,first_name,last_name,created_at FROM users WHERE id=?`,[uid]);
+  if(!member)return{member:null};
+
+  const [events,conversations,notes,orders,cases,weightRows,targets,programmeRows]=await Promise.all([
+    safeAll(env.DB,`SELECT id,event_type,source,summary,payload_json,created_at FROM hq_member_events WHERE user_id=? ORDER BY id DESC LIMIT 200`,[uid]),
+    safeAll(env.DB,`SELECT id,channel,direction,address,subject,body,created_at FROM conversation_messages WHERE user_id=? ORDER BY id DESC LIMIT 200`,[uid]),
+    safeAll(env.DB,`SELECT id,note,created_by,created_at FROM hq_member_notes WHERE user_id=? ORDER BY id DESC LIMIT 100`,[uid]),
+    safeAll(env.DB,`SELECT * FROM orders WHERE user_id=? ORDER BY id DESC LIMIT 100`,[uid]),
+    safeAll(env.DB,`SELECT * FROM support_cases WHERE user_id=? ORDER BY id DESC LIMIT 100`,[uid]),
+    safeAll(env.DB,`SELECT * FROM weight_entries WHERE user_id=? ORDER BY created_at ASC,id ASC LIMIT 500`,[uid]),
+    safeAll(env.DB,`SELECT * FROM member_targets WHERE user_id=? ORDER BY id DESC LIMIT 20`,[uid]),
+    safeAll(env.DB,`SELECT * FROM member_programmes WHERE user_id=? ORDER BY id DESC LIMIT 20`,[uid])
+  ]);
+
+  const start=weightRows.length?Number(weightRows[0].weight_kg||weightRows[0].weight||0):null;
+  const latest=weightRows.length?Number(weightRows[weightRows.length-1].weight_kg||weightRows[weightRows.length-1].weight||0):null;
+  const weightChange=(start&&latest)?Number((latest-start).toFixed(1)):null;
+  const lastActivity=events[0]?.created_at||conversations[0]?.created_at||member.created_at||null;
+
+  return{
+    member,
+    summary:{
+      status:'active',
+      programme:programmeRows[0]?.programme_name||programmeRows[0]?.name||programmeRows[0]?.status||'Not set',
+      weightChangeKg:weightChange,
+      lastActivity
+    },
+    events,conversations,notes,orders,cases,weights:weightRows,targets,programmes:programmeRows
+  };
+}
 async function adminRoutes(request, env, path, method) {
   const permission = permissionForRoute(path, method);
   const access = await requireHqAccess(request, env, permission);
@@ -1149,6 +1182,30 @@ async function adminRoutes(request, env, path, method) {
   if(method==='GET'&&path==='/v1/hq/setup/status')return json({checks:await firstRunSetupChecks(env)});
   if(method==='POST'&&path==='/v1/hq/setup/seed'){await Promise.all([ensureDefaultJobs(env),ensureIndexTargets(env),seedShiftAcademy(env),seedSyntheticShifters(env)]);return json({ok:true})}
 
+
+  if(method==='GET'&&path==='/v1/hq/people/search'){
+    const u=new URL(request.url),q=clean(u.searchParams.get('q'),300);
+    if(!q)return json({people:[]});
+    const like=`%${q.toLowerCase()}%`;
+    const rows=(await env.DB.prepare(`SELECT id,email,first_name,last_name,created_at FROM users WHERE CAST(id AS TEXT)=? OR lower(email) LIKE ? OR lower(COALESCE(first_name,'')||' '||COALESCE(last_name,'')) LIKE ? ORDER BY id DESC LIMIT 40`).bind(q,like,like).all()).results||[];
+    return json({people:rows});
+  }
+
+  const member360Match=path.match(/^\/v1\/hq\/people\/(\d+)\/360$/);
+  if(method==='GET'&&member360Match){
+    const uid=Number(member360Match[1]),bundle=await buildMember360(env,uid);
+    if(!bundle.member)return json({ok:false,error:'member_not_found'},404);
+    return json(bundle);
+  }
+
+  const memberNoteMatch=path.match(/^\/v1\/hq\/people\/(\d+)\/notes$/);
+  if(method==='POST'&&memberNoteMatch){
+    const uid=Number(memberNoteMatch[1]),b=await readJson(request),note=clean(b.note,10000);
+    if(!note)return json({ok:false,error:'note_required'},400);
+    await env.DB.prepare(`INSERT INTO hq_member_notes(user_id,note,created_by,created_at) VALUES(?,?,?,?)`).bind(uid,note,hqActor?.email||'hq',isoNow()).run();
+    await recordMemberEvent(env,{userId:uid,type:'hq.note_added',source:'hq',summary:note.slice(0,220),payload:{}});
+    return json({ok:true});
+  }
   if (method === 'GET' && path === '/v1/hq/products') {
     const { results } = await env.DB.prepare('SELECT * FROM products ORDER BY CASE WHEN status="active" THEN 0 ELSE 1 END, name').all();
     return json({products:results||[]});
@@ -1326,7 +1383,7 @@ async function ensureSchema(DB) {
     `CREATE INDEX IF NOT EXISTS idx_ai_memory_user ON ai_memory(user_id,memory_type)`,
     `CREATE INDEX IF NOT EXISTS idx_shoulder_log_time ON shoulder_lab_log(created_at)`,
     `CREATE TABLE IF NOT EXISTS ai_knowledge_documents (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL,source_uri TEXT NOT NULL,category TEXT NOT NULL,trust_tier INTEGER NOT NULL DEFAULT 3,status TEXT NOT NULL DEFAULT 'approved',checksum TEXT NOT NULL UNIQUE,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
-    `CREATE TABLE IF NOT EXISTS ai_knowledge_chunks (id INTEGER PRIMARY KEY AUTOINCREMENT,document_id INTEGER NOT NULL,chunk_index INTEGER NOT NULL,content TEXT NOT NULL,search_text TEXT NOT NULL,embedding_json TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(document_id) REFERENCES ai_knowledge_documents(id))`,
+    `CREATE TABLE IF NOT EXISTS ai_knowledge_chunks (id INTEGER PRIMARY KEY AUTOINCREMENT,document_id INTEGER NOT NULL,chunk_index INTEGER NOT NULL,content TEXT NOT NULL,search_text TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(document_id) REFERENCES ai_knowledge_documents(id))`,
     `CREATE TABLE IF NOT EXISTS synthetic_personas (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE,occupation TEXT,profile TEXT NOT NULL,communication_style TEXT,status TEXT NOT NULL DEFAULT 'active',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
     `CREATE TABLE IF NOT EXISTS synthetic_scenarios (id INTEGER PRIMARY KEY AUTOINCREMENT,scenario_key TEXT NOT NULL UNIQUE,prompt TEXT NOT NULL,mode TEXT NOT NULL,expected_behavior TEXT,status TEXT NOT NULL DEFAULT 'active',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
     `CREATE TABLE IF NOT EXISTS synthetic_runs (id INTEGER PRIMARY KEY AUTOINCREMENT,persona_id INTEGER NOT NULL,scenario_id INTEGER NOT NULL,status TEXT NOT NULL,score INTEGER NOT NULL,answer TEXT,model TEXT,score_json TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
@@ -1360,6 +1417,12 @@ async function ensureSchema(DB) {
     `CREATE INDEX IF NOT EXISTS idx_intelligence_questions_count ON intelligence_questions(occurrence_count,updated_at)`,
     `CREATE INDEX IF NOT EXISTS idx_dictionary_count ON shift_dictionary(occurrence_count,updated_at)`,
     `CREATE INDEX IF NOT EXISTS idx_knowledge_proposals_status ON knowledge_proposals(status,updated_at)`,
+    `CREATE TABLE IF NOT EXISTS hq_member_notes (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,note TEXT NOT NULL,created_by TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    `CREATE TABLE IF NOT EXISTS member_targets (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,target_type TEXT NOT NULL DEFAULT 'weight',target_value REAL,target_unit TEXT,notes TEXT,status TEXT NOT NULL DEFAULT 'active',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    `CREATE TABLE IF NOT EXISTS member_programmes (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,programme_name TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'active',started_at TEXT,ended_at TEXT,notes TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    `CREATE INDEX IF NOT EXISTS idx_member_notes_user ON hq_member_notes(user_id,created_at)`,
+    `CREATE INDEX IF NOT EXISTS idx_member_targets_user ON member_targets(user_id,status,id)`,
+    `CREATE INDEX IF NOT EXISTS idx_member_programmes_user ON member_programmes(user_id,status,id)`,
     `CREATE UNIQUE INDEX IF NOT EXISTS idx_assessment_answers_unique ON assessment_answers(assessment_id,question_id)`,
     `CREATE INDEX IF NOT EXISTS idx_sessions_token ON user_sessions(token_hash)`,
     `CREATE INDEX IF NOT EXISTS idx_progress_user ON progress_entries(user_id,recorded_on)`,
@@ -1367,11 +1430,6 @@ async function ensureSchema(DB) {
     `CREATE INDEX IF NOT EXISTS idx_orders_user ON pharmacy_orders(user_id)`
   ];
   for (const sql of statements) await DB.prepare(sql).run();
-  // Section 9 compatibility: existing databases may pre-date embedding_json.
-  // Run this harmlessly and ignore the duplicate-column error if it already exists.
-  try { await DB.prepare('ALTER TABLE ai_knowledge_chunks ADD COLUMN embedding_json TEXT').run(); } catch (e) {
-    if (!String(e?.message || '').toLowerCase().includes('duplicate column')) console.warn('schema_embedding_column', e?.message);
-  }
   schemaReady = true;
 }
 
