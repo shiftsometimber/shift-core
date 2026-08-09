@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shift-core",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-09",
+  "workers_dev": true,
+  "vars": {
+    "AUTO_VERIFY_EMAIL": "true",
+    "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shift-core-db",
+      "database_id": "PUT_YOUR_D1_DATABASE_ID_HERE"
+    }
+  ]
+}
