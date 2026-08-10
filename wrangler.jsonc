@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "shift-core",
-  "main": "hq-ai-grounded.js",
+  "main": "hq-ai.js",
   "compatibility_date": "2026-08-09",
 
   "workers_dev": true,
@@ -16,8 +16,8 @@
 
   "vars": {
     "AUTO_VERIFY_EMAIL": "true",
-    "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com",
-    "SHIFT_AI_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast"
+    "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com,https://hq.shiftsometimber.co.uk",
+    "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
   },
 
   "ai": {
