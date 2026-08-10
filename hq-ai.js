@@ -6,10 +6,32 @@ export default {
   async fetch(request,env,ctx){
     const url=new URL(request.url);
     const path=url.pathname.replace(/\/+$/,'')||'/';
-    if(request.method==='POST'&&path==='/v1/hq/copilot') return hqCopilot(request,env,ctx);
+    if(request.method==='POST'&&path==='/v1/hq/copilot') {
+      const response=await hqCopilot(request,env,ctx);
+      return withCors(response,request,env);
+    }
     return shiftAi.fetch(request,env,ctx);
   }
 };
+
+function withCors(response,request,env){
+  const headers=new Headers(response.headers);
+  const origin=request.headers.get('Origin');
+  const allowed=new Set([
+    'https://shiftsometimber.co.uk',
+    'https://www.shiftsometimber.co.uk',
+    'https://shiftsometimber.com',
+    'https://www.shiftsometimber.com',
+    'https://hq.shiftsometimber.co.uk',
+    ...String(env.ALLOWED_ORIGINS||'').split(',').map(x=>x.trim()).filter(Boolean)
+  ]);
+  if(origin&&allowed.has(origin))headers.set('Access-Control-Allow-Origin',origin);
+  headers.set('Access-Control-Allow-Credentials','true');
+  headers.set('Access-Control-Allow-Methods','GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  headers.set('Access-Control-Allow-Headers','Content-Type,X-Shift-Admin-Key,X-Shift-Webhook-Secret');
+  headers.set('Vary','Origin');
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+}
 
 async function hqCopilot(request,env,ctx){
   const authProbe=new Request(new URL('/v1/hq/me',request.url),{method:'GET',headers:request.headers});
