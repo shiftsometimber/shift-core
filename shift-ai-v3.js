@@ -1,7 +1,9 @@
 import core from './worker.js';
 import {ensureIntelligentMemorySchema,listIntelligentMemories,clearIntelligentMemories,learnFromMessage} from './intelligent-memory.js';
+import {selectShoulderGear,shoulderInstruction} from './shoulder-v2.js';
+import {getMemoryPrivacy} from './memory-privacy.js';
 
-const SHIFT_AI_VERSION='3.0-intelligent-memory';
+const SHIFT_AI_VERSION='3.1-relationship-gears';
 const DEFAULT_MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 
 export default{async fetch(request,env,ctx){
@@ -19,28 +21,29 @@ export default{async fetch(request,env,ctx){
 }};
 
 async function authUser(request,env,ctx){const probe=new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),response=await core.fetch(probe,env,ctx);if(!response.ok)return{response};return{user:(await response.json()).user}}
-async function status(request,env,ctx){const a=await authUser(request,env,ctx);if(a.response)return a.response;return json({ok:true,service:'Shift AI',version:SHIFT_AI_VERSION,engine:env.AI?'cloudflare-workers-ai':'fallback',model:'Shift AI',shiftBrain:true,memory:true,intelligentMemory:true,shoulder:true,continuity:true,initiative:true,stayInMoment:true})}
+async function status(request,env,ctx){const a=await authUser(request,env,ctx);if(a.response)return a.response;return json({ok:true,service:'Shift AI',version:SHIFT_AI_VERSION,engine:env.AI?'cloudflare-workers-ai':'fallback',model:'Shift AI',shiftBrain:true,memory:true,intelligentMemory:true,shoulder:true,shoulderIntegrated:true,continuity:true,initiative:true,stayInMoment:true})}
 
 async function chat(request,env,ctx){
   const a=await authUser(request,env,ctx);if(a.response)return a.response;
   const body=await readJson(request),message=String(body.message||'').trim().slice(0,7000);if(!message)return json({ok:false,error:'message_required'},400);
   await ensureSchema(env.DB);await ensureIntelligentMemorySchema(env.DB);
-  const userId=Number(a.user.id),mode=classifyMode(message),explicitNoAdvice=/don't want advice|dont want advice|no advice|no plan|just listen|just need to vent|just want to vent/.test(message.toLowerCase());
-  const[context,history]=await Promise.all([buildMemberContext(env,userId,message),recentHistory(env.DB,userId,24)]),system=systemPrompt(mode,context,explicitNoAdvice);
+  const userId=Number(a.user.id),mode=classifyMode(message),gear=selectShoulderGear(message),explicitNoAdvice=/don't want advice|dont want advice|no advice|no plan|just listen|just need to vent|just want to vent/.test(message.toLowerCase());
+  const[context,history,privacy]=await Promise.all([buildMemberContext(env,userId,message),recentHistory(env.DB,userId,24),getMemoryPrivacy(env.DB,userId)]),system=systemPrompt(mode,context,explicitNoAdvice,gear);
   let answer='',model='shift-ai-fallback';
-  if(env.AI){try{const selected=env.SHIFT_AI_MODEL||DEFAULT_MODEL,result=await env.AI.run(selected,{messages:[{role:'system',content:system},...history.map(x=>({role:x.direction==='user'?'user':'assistant',content:x.body})),{role:'user',content:message}],max_tokens:1400,temperature:mode==='safety'?.15:mode==='shoulder'?.60:.65});answer=String(result?.response||result?.result?.response||'').trim();model=selected}catch(e){console.warn('shift_ai_workers_ai_failed',e?.message)}}
+  if(env.AI){try{const selected=env.SHIFT_AI_MODEL||DEFAULT_MODEL,result=await env.AI.run(selected,{messages:[{role:'system',content:system},...history.map(x=>({role:x.direction==='user'?'user':'assistant',content:x.body})),{role:'user',content:message}],max_tokens:1400,temperature:gear.gear==='safety'?.12:gear.gear==='listen'?.52:gear.gear==='challenge'?.58:.65});answer=String(result?.response||result?.result?.response||'').trim();model=selected}catch(e){console.warn('shift_ai_workers_ai_failed',e?.message)}}
   if(!answer)answer=fallback(mode,context,explicitNoAdvice);answer=answer.slice(0,14000);
-  await env.DB.batch([env.DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at) VALUES(?,?,?,?,?,?)`).bind(userId,'user',mode,message,null,now()),env.DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at) VALUES(?,?,?,?,?,?)`).bind(userId,'assistant',mode,answer,model,now())]);
+  await env.DB.batch([env.DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at) VALUES(?,?,?,?,?,?)`).bind(userId,'user',gear.gear,message,null,now()),env.DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at) VALUES(?,?,?,?,?,?)`).bind(userId,'assistant',gear.gear,answer,model,now())]);
   const explicitRemember=body.remember===true||/\bremember (that|this)|don't forget|dont forget\b/i.test(message);
-  const memoryJob=learnFromMessage(env,userId,message,{explicit:explicitRemember});
-  if(ctx?.waitUntil)ctx.waitUntil(memoryJob);else await memoryJob;
+  if(Number(privacy.auto_memory)||explicitRemember){const memoryJob=learnFromMessage(env,userId,message,{explicit:explicitRemember});if(ctx?.waitUntil)ctx.waitUntil(memoryJob);else await memoryJob;}
   if(explicitRemember)await rememberLegacyNote(env.DB,userId,message);
-  return json({ok:true,answer,mode,model:'Shift AI',version:SHIFT_AI_VERSION,sources:context.sources,memoryUsed:context.memories.length>0,intelligentMemoryUsed:context.intelligentMemories.length>0,historyTurns:history.length});
+  return json({ok:true,answer,mode,model:'Shift AI',version:SHIFT_AI_VERSION,sources:context.sources,memoryUsed:context.memories.length>0,intelligentMemoryUsed:context.intelligentMemories.length>0,historyTurns:history.length,shoulderGear:gear.gear,shoulderInitiative:gear.initiative,shoulderHumour:gear.humour});
 }
 
-function systemPrompt(mode,c,explicitNoAdvice){return`You are Shift — the personal intelligence inside Shift Some Timber. You are built for ordinary men across the UK who want useful help with weight, health, confidence and everyday life without being spoken to like a patient, project or motivational poster.
+function systemPrompt(mode,c,explicitNoAdvice,gear){return`You are Shift — the personal intelligence inside Shift Some Timber. You are built for ordinary men across the UK who want useful help with weight, health, confidence and everyday life without being spoken to like a patient, project or motivational poster.
 
 RELATIONSHIP: This is ongoing. Use recent conversation and member context quietly. The INTELLIGENT MEMORIES below are durable things Shift has learned about this member: goals, preferences, routines, motivators, blockers, patterns and wins. Use them only when relevant. Never recite a memory list or mention that a database told you something. A good use of memory feels like being known, not being surveilled. If an old memory conflicts with what the member says now, trust the member's current statement.
+
+SHIFT SHOULDER GEAR: ${gear.gear}. ${shoulderInstruction(gear)} Initiative level: ${gear.initiative}. Humour allowance: ${String(gear.humour)}. This is not metadata for later — it controls THIS reply. Listen means do not smuggle in advice. Shoulder means compassion plus one proportionate useful move. Challenge means be direct about the idea/behaviour without attacking the bloke. Coach means practical specific help. Mate means natural conversation without turning everything into a health intervention. Safety overrides everything: no banter, no challenge theatre, prioritise immediate real-world safety.
 
 OPERATING LOOP — NOTICE → UNDERSTAND → DECIDE → HELP. Notice the literal message, emotion, subtext and immediate practical need. Understand it in context. Decide what would genuinely make the next few minutes/day better. HELP by doing the first useful bit now. The member should not need to prompt 'can you actually help me?'.
 
@@ -72,7 +75,7 @@ EXPLICIT MEMBER NOTES:${JSON.stringify(c.memories)}
 APPROVED SHIFT BRAIN:${c.knowledge.join('\n')}
 CURRENT MODE:${mode}
 
-FINAL SILENT CHECK: Am I answering the latest moment? Did I use memory only where it genuinely improves the reply? Did I actually help? Is any humour subtle and earned? Did I reduce effort for the member? Does this feel like Shift rather than a free chatbot plugin? Did I invent anything? Rewrite if needed.`}
+FINAL SILENT CHECK: Did I obey the selected Shoulder gear in the actual reply? Am I answering the latest moment? Did I use memory only where it genuinely improves the reply? Did I actually help? Is any humour subtle and earned? Did I reduce effort for the member? Does this feel like Shift rather than a free chatbot plugin? Did I invent anything? Rewrite if needed.`}
 
 function classifyMode(message){const s=message.toLowerCase();if(/suicide|kill myself|end my life|want to die|self harm/.test(s))return'safety';if(/don't want advice|dont want advice|no advice|no plan|just listen|just need to vent|just want to vent|gutted|ashamed|embarrass|fed up|struggling|crap day|shit day|can't be arsed|cant be arsed|rough day/.test(s))return'shoulder';if(/calorie|protein|weight|steps|meal|food|hungry|starving|lunch|dinner|breakfast|tummy|stomach|caffeine|coffee|exercise|training|gym|walk|mounjaro|wegovy|medication|blood pressure|waist|sleep/.test(s))return'coach';return'assistant'}
 
