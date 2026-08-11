@@ -1,6 +1,7 @@
 import hq from './hq-ai.js';
 import {runScheduledIntelligence} from './scheduled-intelligence.js';
 import {memberCommissioningRoute} from './member-commissioning-v1.js';
+import {shiftVisualiseRoutes} from './shift-visualise-v1.js';
 import {personalRoutes} from './personal-platform-v1.js';
 import {knowledgeRoutes} from './knowledge-graph-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
@@ -9,6 +10,7 @@ import {radarRoutes,runRadarFreshness} from './radar-integration-v1.js';
 export default {
   async fetch(request,env,ctx){
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return commissioning;
+    const visualise=await shiftVisualiseRoutes(request,env,ctx); if(visualise)return visualise;
     const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return knowledge;
     const personal=await personalRoutes(request,env,ctx); if(personal)return personal;
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
