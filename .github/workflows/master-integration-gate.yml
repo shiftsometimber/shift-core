@@ -5,6 +5,7 @@ on:
       - 'personal-platform-v1.js'
       - 'knowledge-graph-v1.js'
       - 'radar-integration-v1.js'
+      - 'radar-public-v1.js'
       - 'radar-medicine-seed-v1.js'
       - 'integration-source-gate.mjs'
       - 'shift-ai-v3.js'
@@ -25,6 +26,7 @@ jobs:
           node --check personal-platform-v1.js
           node --check knowledge-graph-v1.js
           node --check radar-integration-v1.js
+          node --check radar-public-v1.js
           node --check shift-ai-v3.js
           node --check worker-entry-v6.js
           node --check integration-source-gate.mjs
