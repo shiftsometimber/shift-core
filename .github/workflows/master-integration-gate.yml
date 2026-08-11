@@ -10,6 +10,9 @@ on:
       - 'radar-e2e-staging.mjs'
       - 'radar-medicine-seed-v1.js'
       - 'integration-source-gate.mjs'
+      - 'toolchain-source-gate.mjs'
+      - 'package.json'
+      - '.nvmrc'
       - 'shift-ai-v3.js'
       - 'worker-entry-v6.js'
       - 'academy-source-gate.mjs'
@@ -22,7 +25,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version-file: '.nvmrc'
+      - name: Toolchain source gate
+        run: node toolchain-source-gate.mjs
       - name: Syntax checks
         run: |
           node --check personal-platform-v1.js
@@ -34,6 +39,7 @@ jobs:
           node --check shift-ai-v3.js
           node --check worker-entry-v6.js
           node --check integration-source-gate.mjs
+          node --check toolchain-source-gate.mjs
       - name: Existing Shift Academy source gate
         run: node academy-source-gate.mjs
       - name: Master integration source gate
