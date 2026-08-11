@@ -6,6 +6,7 @@ on:
       - 'radar-integration-v1.js'
       - 'radar-medicine-seed-v1.js'
       - 'integration-source-gate.mjs'
+      - 'shift-ai-v3.js'
       - 'worker-entry-v6.js'
       - 'academy-source-gate.mjs'
       - 'migrations/002_personal_knowledge_radar.sql'
@@ -22,6 +23,7 @@ jobs:
         run: |
           node --check personal-platform-v1.js
           node --check radar-integration-v1.js
+          node --check shift-ai-v3.js
           node --check worker-entry-v6.js
           node --check integration-source-gate.mjs
       - name: Existing Shift Academy source gate
