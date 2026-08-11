@@ -2,7 +2,7 @@ import hq from './hq-ai.js';
 import {runScheduledIntelligence} from './scheduled-intelligence.js';
 import {memberCommissioningRoute} from './member-commissioning-v1.js';
 import {shiftVisualiseRoutes} from './shift-visualise-v1.js';
-import {memberProductV3Routes} from './member-product-v3.js';
+import {memberProductV4Routes} from './member-product-v4.js';
 import {personalRoutes} from './personal-platform-v1.js';
 import {knowledgeRoutes} from './knowledge-graph-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
@@ -29,7 +29,7 @@ export default {
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
     const visualise=await shiftVisualiseRoutes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
     const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return isMemberProductPath(path)?withMemberCors(knowledge,request):knowledge;
-    const memberV3=await memberProductV3Routes(request,env,ctx); if(memberV3)return withMemberCors(memberV3,request);
+    const memberV4=await memberProductV4Routes(request,env,ctx); if(memberV4)return withMemberCors(memberV4,request);
     const personal=await personalRoutes(request,env,ctx); if(personal)return withMemberCors(personal,request);
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
     const radar=await radarRoutes(request,env,ctx); if(radar)return radar;
