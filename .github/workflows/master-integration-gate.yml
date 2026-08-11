@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'personal-platform-v1.js'
+      - 'knowledge-graph-v1.js'
       - 'radar-integration-v1.js'
       - 'radar-medicine-seed-v1.js'
       - 'integration-source-gate.mjs'
@@ -22,6 +23,7 @@ jobs:
       - name: Syntax checks
         run: |
           node --check personal-platform-v1.js
+          node --check knowledge-graph-v1.js
           node --check radar-integration-v1.js
           node --check shift-ai-v3.js
           node --check worker-entry-v6.js
