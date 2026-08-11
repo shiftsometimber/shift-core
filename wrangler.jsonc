@@ -21,12 +21,20 @@
   "vars": {
     "AUTO_VERIFY_EMAIL": "true",
     "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com,https://hq.shiftsometimber.co.uk",
-    "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "PUBLIC_SITE_URL": "https://shiftsometimber.co.uk",
+    "AUTH_EMAIL_FROM": "welcome@shiftsometimber.co.uk"
   },
 
   "ai": {
     "binding": "AI"
   },
+
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
 
   "d1_databases": [
     {
