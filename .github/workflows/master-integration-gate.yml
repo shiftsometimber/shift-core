@@ -6,8 +6,10 @@ on:
       - 'member-commissioning-v1.js'
       - 'member-product-v4.js'
       - 'member-product-v5.js'
+      - 'member-daily-v2.js'
       - 'gate2-product-source-gate.mjs'
       - 'gate2-learning-source-gate.mjs'
+      - 'gate2-daily-source-gate.mjs'
       - 'knowledge-graph-v1.js'
       - 'radar-integration-v1.js'
       - 'radar-public-v1.js'
@@ -45,10 +47,12 @@ jobs:
         run: node gate2-product-source-gate.mjs
       - name: Gate 2 durable learning contract
         run: node gate2-learning-source-gate.mjs
+      - name: Gate 2 Today/Progress/Plans contract
+        run: node gate2-daily-source-gate.mjs
       - name: Syntax checks
         run: |
           set -e
-          for f in personal-platform-v1.js member-commissioning-v1.js member-product-v4.js member-product-v5.js gate2-product-source-gate.mjs gate2-learning-source-gate.mjs knowledge-graph-v1.js radar-integration-v1.js radar-public-v1.js radar-e2e-staging.mjs shift-ai-v3.js worker-entry-v6.js integration-source-gate.mjs toolchain-source-gate.mjs gate1-persistence-source-gate.mjs gate1-auth-security-source-gate.mjs gate1-production-journey-probe.mjs; do
+          for f in personal-platform-v1.js member-commissioning-v1.js member-product-v4.js member-product-v5.js member-daily-v2.js gate2-product-source-gate.mjs gate2-learning-source-gate.mjs gate2-daily-source-gate.mjs knowledge-graph-v1.js radar-integration-v1.js radar-public-v1.js radar-e2e-staging.mjs shift-ai-v3.js worker-entry-v6.js integration-source-gate.mjs toolchain-source-gate.mjs gate1-persistence-source-gate.mjs gate1-auth-security-source-gate.mjs gate1-production-journey-probe.mjs; do
             echo "Syntax: $f"
             node --check "$f"
           done
