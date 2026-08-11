@@ -30,12 +30,6 @@
     "binding": "AI"
   },
 
-  "send_email": [
-    {
-      "name": "EMAIL"
-    }
-  ],
-
   "d1_databases": [
     {
       "binding": "DB",
