@@ -7,12 +7,19 @@ import {knowledgeRoutes} from './knowledge-graph-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
 import {radarRoutes,runRadarFreshness} from './radar-integration-v1.js';
 
+const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
+function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/');}
+function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
+function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v] of Object.entries(memberCorsHeaders(request)))headers.set(k,v);return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
+
 export default {
   async fetch(request,env,ctx){
-    const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return commissioning;
-    const visualise=await shiftVisualiseRoutes(request,env,ctx); if(visualise)return visualise;
-    const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return knowledge;
-    const personal=await personalRoutes(request,env,ctx); if(personal)return personal;
+    const path=new URL(request.url).pathname;
+    if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
+    const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
+    const visualise=await shiftVisualiseRoutes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
+    const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return isMemberProductPath(path)?withMemberCors(knowledge,request):knowledge;
+    const personal=await personalRoutes(request,env,ctx); if(personal)return withMemberCors(personal,request);
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
     const radar=await radarRoutes(request,env,ctx); if(radar)return radar;
     return hq.fetch(request,env,ctx);
