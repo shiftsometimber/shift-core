@@ -3,12 +3,17 @@
   "version": "3.2.0-beta.2",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": ">=22.16.0 <25"
+  },
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "check": "node --check worker.js"
+    "check": "node --check worker.js",
+    "check:toolchain": "node toolchain-source-gate.mjs"
   },
   "devDependencies": {
-    "wrangler": "^4.0.0"
+    "wrangler": "4.112.0"
   }
 }
