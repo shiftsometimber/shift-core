@@ -1,0 +1,32 @@
+name: Shift Master Integration Gate
+on:
+  pull_request:
+    paths:
+      - 'personal-platform-v1.js'
+      - 'radar-integration-v1.js'
+      - 'radar-medicine-seed-v1.js'
+      - 'integration-source-gate.mjs'
+      - 'worker-entry-v6.js'
+      - 'academy-source-gate.mjs'
+      - 'migrations/002_personal_knowledge_radar.sql'
+      - '.github/workflows/master-integration-gate.yml'
+jobs:
+  integration-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check personal-platform-v1.js
+          node --check radar-integration-v1.js
+          node --check worker-entry-v6.js
+          node --check integration-source-gate.mjs
+      - name: Existing Shift Academy source gate
+        run: node academy-source-gate.mjs
+      - name: Master integration source gate
+        run: node integration-source-gate.mjs
+      - name: Existing core check
+        run: npm run check
