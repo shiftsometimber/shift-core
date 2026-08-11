@@ -11,8 +11,11 @@ on:
       - 'radar-medicine-seed-v1.js'
       - 'integration-source-gate.mjs'
       - 'toolchain-source-gate.mjs'
+      - 'gate1-persistence-source-gate.mjs'
+      - 'gate1-production-journey-probe.mjs'
       - 'package.json'
       - '.nvmrc'
+      - 'worker.js'
       - 'shift-ai-v3.js'
       - 'worker-entry-v6.js'
       - 'academy-source-gate.mjs'
@@ -28,6 +31,8 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Toolchain source gate
         run: node toolchain-source-gate.mjs
+      - name: Gate 1 persistence/source contract
+        run: node gate1-persistence-source-gate.mjs
       - name: Syntax checks
         run: |
           node --check personal-platform-v1.js
@@ -40,6 +45,8 @@ jobs:
           node --check worker-entry-v6.js
           node --check integration-source-gate.mjs
           node --check toolchain-source-gate.mjs
+          node --check gate1-persistence-source-gate.mjs
+          node --check gate1-production-journey-probe.mjs
       - name: Existing Shift Academy source gate
         run: node academy-source-gate.mjs
       - name: Master integration source gate
@@ -48,3 +55,5 @@ jobs:
         run: npm run check
       - name: Staged Radar end-to-end commissioning
         run: node radar-e2e-staging.mjs
+      - name: Gate 1 public production probe
+        run: node gate1-production-journey-probe.mjs
