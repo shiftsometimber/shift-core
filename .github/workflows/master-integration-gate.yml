@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'personal-platform-v1.js'
+      - 'member-commissioning-v1.js'
       - 'knowledge-graph-v1.js'
       - 'radar-integration-v1.js'
       - 'radar-public-v1.js'
@@ -25,6 +26,7 @@ jobs:
       - name: Syntax checks
         run: |
           node --check personal-platform-v1.js
+          node --check member-commissioning-v1.js
           node --check knowledge-graph-v1.js
           node --check radar-integration-v1.js
           node --check radar-public-v1.js
