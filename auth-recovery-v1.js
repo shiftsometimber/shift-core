@@ -1,42 +1,72 @@
+const RESET_TTL_MS=30*60*1000;
+const DEFAULT_FROM='hello@shiftsometimber.co.uk';
+const DEFAULT_SITE='https://shiftsometimber.co.uk';
+
 export async function handleAuthRecovery(request,env,ctx,next){
-  const u=new URL(request.url), p=u.pathname.replace(/\/+$/,'')||'/';
+  const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
+  if(request.method==='POST'&&p==='/v1/auth/request-password-reset') return requestPasswordReset(request,env);
   if(request.method==='POST'&&p==='/v1/auth/reset-password') return resetPassword(request,env);
   if(request.method==='POST'&&p==='/v1/auth/change-password') return changePassword(request,env,next,ctx);
+  if(request.method==='POST'&&p==='/v1/auth/register'){
+    const clone=request.clone();let supplied={};try{supplied=await clone.json()}catch{}
+    const response=await next(request,env,ctx);
+    if(response.ok&&env.EMAIL){try{const data=await response.clone().json();await sendWelcomeEmail(env,data.user||{email:supplied.email,firstName:supplied.firstName})}catch(e){console.warn('welcome_email_warning',e?.message)}}
+    return response;
+  }
   return null;
 }
 
+async function requestPasswordReset(request,env){
+  const b=await readJson(request),email=String(b.email||'').trim().toLowerCase();
+  const generic={ok:true,message:'If that account exists, reset instructions will be sent shortly.',emailDeliveryConfigured:Boolean(env.EMAIL)};
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return cors(json(generic),request,env);
+  const user=await env.DB.prepare('SELECT id,email,first_name FROM users WHERE lower(email)=?').bind(email).first();
+  if(user){
+    const token=randomToken(32),tokenHash=await sha256Hex(token),expiresAt=new Date(Date.now()+RESET_TTL_MS).toISOString(),stamp=new Date().toISOString();
+    await env.DB.prepare("UPDATE auth_tokens SET used_at=? WHERE user_id=? AND token_type='password_reset' AND used_at IS NULL").bind(stamp,user.id).run();
+    await env.DB.prepare('INSERT INTO auth_tokens(user_id,token_hash,token_type,expires_at) VALUES(?,?,?,?)').bind(user.id,tokenHash,'password_reset',expiresAt).run();
+    if(env.EMAIL){
+      const resetUrl=`${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/reset-password.html?token=${encodeURIComponent(token)}`;
+      try{await env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Reset your My Shift password',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Reset your My Shift password</h1><p>Hi ${escapeHtml(user.first_name||'there')},</p><p>We received a request to reset your My Shift password.</p><p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Choose a new password</a></p><p>This link expires in 30 minutes. If you did not request this, ignore this email.</p><p>Shift Some Timber</p></div>`,text:`Reset your My Shift password: ${resetUrl}\n\nThis link expires in 30 minutes. If you did not request this, ignore this email.`})}catch(e){console.error('auth_reset_email_failed',e?.message)}
+    }else console.warn('auth_reset_email_binding_missing');
+  }
+  return cors(json(generic),request,env);
+}
+
 async function resetPassword(request,env){
-  const b=await readJson(request), token=String(b.token||'').trim(), password=String(b.password||'');
-  if(!token||password.length<12) return json({ok:false,error:'invalid_reset',message:'Use the reset link and choose a password of at least 12 characters.'},400);
+  const b=await readJson(request),token=String(b.token||'').trim(),password=String(b.password||'');
+  if(!token||password.length<12)return cors(json({ok:false,error:'invalid_reset',message:'Use the reset link and choose a password of at least 12 characters.'},400),request,env);
   const tokenHash=await sha256Hex(token);
   const row=await env.DB.prepare(`SELECT id,user_id,expires_at,used_at FROM auth_tokens WHERE token_hash=? AND token_type='password_reset' ORDER BY id DESC LIMIT 1`).bind(tokenHash).first();
-  if(!row||row.used_at||new Date(row.expires_at).getTime()<=Date.now()) return json({ok:false,error:'reset_expired',message:'That reset link has expired or has already been used.'},400);
-  const hash=await hashPassword(password), now=new Date().toISOString();
+  if(!row||row.used_at||new Date(row.expires_at).getTime()<=Date.now())return cors(json({ok:false,error:'reset_expired',message:'That reset link has expired or has already been used.'},400),request,env);
+  const hash=await hashPassword(password),stamp=new Date().toISOString();
   await env.DB.batch([
-    env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(hash,now,row.user_id),
-    env.DB.prepare('UPDATE auth_tokens SET used_at=? WHERE id=?').bind(now,row.id),
-    env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL').bind(now,row.user_id)
+    env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(hash,stamp,row.user_id),
+    env.DB.prepare('UPDATE auth_tokens SET used_at=? WHERE id=?').bind(stamp,row.id),
+    env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL').bind(stamp,row.user_id)
   ]);
-  return json({ok:true,message:'Password changed. You can sign in now.'});
+  return cors(json({ok:true,message:'Password changed. You can sign in now.'}),request,env);
 }
 
 async function changePassword(request,env,next,ctx){
-  const probe=await next(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);
-  if(!probe.ok) return probe;
-  const me=(await probe.json()).user, b=await readJson(request), current=String(b.currentPassword||''), password=String(b.password||'');
-  if(password.length<12) return json({ok:false,error:'weak_password',message:'Please use at least 12 characters.'},400);
+  const probe=await next(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!probe.ok)return probe;
+  const me=(await probe.json()).user,b=await readJson(request),current=String(b.currentPassword||''),password=String(b.password||'');
+  if(password.length<12)return cors(json({ok:false,error:'weak_password',message:'Please use at least 12 characters.'},400),request,env);
   const auth=await env.DB.prepare('SELECT password_hash FROM user_auth WHERE user_id=?').bind(me.id).first();
-  if(!auth||!(await verifyPassword(current,auth.password_hash))) return json({ok:false,error:'invalid_current_password',message:'Your current password is not correct.'},401);
-  const hash=await hashPassword(password), now=new Date().toISOString();
-  await env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(hash,now,me.id).run();
-  return json({ok:true,message:'Password changed.'});
+  if(!auth||!(await verifyPassword(current,auth.password_hash)))return cors(json({ok:false,error:'invalid_current_password',message:'Your current password is not correct.'},401),request,env);
+  const hash=await hashPassword(password),stamp=new Date().toISOString();await env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(hash,stamp,me.id).run();
+  return cors(json({ok:true,message:'Password changed.'}),request,env);
 }
 
+async function sendWelcomeEmail(env,user){if(!user?.email)return;await env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Welcome to My Shift',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Welcome to My Shift</h1><p>Hi ${escapeHtml(user.firstName||user.first_name||'there')},</p><p>Your Shift account is ready.</p><p><a href="${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Open My Shift</a></p><p>Helping ordinary blokes feel like themselves again.</p></div>`,text:`Welcome to My Shift. Your account is ready: ${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html`})}
 async function readJson(r){try{return await r.json()}catch{return{}}}
 function json(d,s=200){return new Response(JSON.stringify(d),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}})}
+function cors(r,request,env){const h=new Headers(r.headers),o=request.headers.get('Origin'),allowed=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com',...String(env.ALLOWED_ORIGINS||'').split(',').map(x=>x.trim()).filter(Boolean)]);if(o&&allowed.has(o))h.set('Access-Control-Allow-Origin',o);h.set('Access-Control-Allow-Credentials','true');h.set('Access-Control-Allow-Methods','POST,OPTIONS');h.set('Access-Control-Allow-Headers','Content-Type');h.set('Vary','Origin');return new Response(r.body,{status:r.status,headers:h})}
 async function hashPassword(password){const iterations=100000,salt=crypto.getRandomValues(new Uint8Array(16)),key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']),bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations},key,256);return `pbkdf2$${iterations}$${base64url(salt)}$${base64url(new Uint8Array(bits))}`}
 async function verifyPassword(password,stored){try{const[scheme,iter,saltB64,hashB64]=String(stored).split('$');if(scheme!=='pbkdf2')return false;const salt=fromBase64url(saltB64),expected=fromBase64url(hashB64),key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']),bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations:Number(iter)},key,256);return constantTimeBytesEqual(new Uint8Array(bits),expected)}catch{return false}}
 async function sha256Hex(value){const data=new TextEncoder().encode(String(value)),digest=new Uint8Array(await crypto.subtle.digest('SHA-256',data));return[...digest].map(b=>b.toString(16).padStart(2,'0')).join('')}
+function randomToken(bytes=32){return base64url(crypto.getRandomValues(new Uint8Array(bytes)))}
 function base64url(bytes){let binary='';for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
 function fromBase64url(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const bin=atob(s);return Uint8Array.from(bin,c=>c.charCodeAt(0))}
 function constantTimeBytesEqual(a,b){if(a.length!==b.length)return false;let d=0;for(let i=0;i<a.length;i++)d|=a[i]^b[i];return d===0}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
