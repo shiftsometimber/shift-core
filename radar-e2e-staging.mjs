@@ -22,6 +22,14 @@ const body=async r=>{const t=await r.text();try{return JSON.parse(t)}catch{retur
 const request=(path,options={})=>new Request(`https://api.shiftsometimber.co.uk${path}`,options);
 
 const DB=new D1Database();
+// The live Worker is additive over Shift's original production D1 schema. Seed only
+// those foundational tables a blank in-memory database lacks before ensureSchema runs.
+DB.exec(`
+CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT UNIQUE,first_name TEXT,last_name TEXT,phone TEXT,date_of_birth TEXT,postcode TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE user_sessions (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,token_hash TEXT NOT NULL UNIQUE,expires_at TEXT NOT NULL,revoked_at TEXT,last_used_at TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE cases (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,reference TEXT,status TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE pharmacy_orders (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,case_id INTEGER,status TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT DEFAULT CURRENT_TIMESTAMP);
+`);
 const calls=[];
 const sitePublishes=[];
 const searchRefreshes=[];
@@ -52,7 +60,7 @@ globalThis.fetch=async (url,opts={})=>{
 };
 
 try {
-  // Build the real live Core/HQ schema first.
+  // Build the real live additive Core/HQ schema over the known production baseline.
   const health=await worker.fetch(request('/health'),env,{}); assert.equal(health.status,200);
   const hqToken='radar-stage-hq-session',hqHash=await sha256(hqToken),future=new Date(Date.now()+3600_000).toISOString();
   await DB.prepare(`INSERT INTO hq_users(email,name,password_hash,role,status) VALUES(?,?,?,?,?)`).bind('radar-stage@shift.test','Radar Stage Reviewer','unused-test-hash','owner','active').run();
@@ -92,7 +100,7 @@ try {
 
   // 6) Audit the staging-only adapter commissioning boundary.
   assert.deepEqual(calls.map(x=>x.url),['https://staging.test/site-publish','https://staging.test/brain-ingest','https://staging.test/search-refresh']);
-  console.log(JSON.stringify({ok:true,eventId,aiCalls,adapters:calls.map(x=>x.url),medicine:'stage-medicine',publicProducts:['cards','dossier','ticker'],freshness:'registered',knowledgeGraph:'updated',shiftBrain:'staging-ingested',searchSitemap:'staging-refreshed'},null,2));
+  console.log(JSON.stringify({ok:true,eventId,aiCalls,adapters:calls.map(x=>x.url),medicine:'stage-medicine',publicProducts:['cards','dossier','ticker'],relatedContent:'site-payload-verified',freshness:'registered',knowledgeGraph:'updated',shiftBrain:'staging-ingested',searchSitemap:'staging-refreshed'},null,2));
 } finally {
   globalThis.fetch=nativeFetch;
 }
