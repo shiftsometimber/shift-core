@@ -1,7 +1,8 @@
 import hq from './hq-ai.js';
 import {runScheduledIntelligence} from './scheduled-intelligence.js';
 import {memberCommissioningRoute} from './member-commissioning-v1.js';
-import {shiftVisualiseRoutes} from './shift-visualise-v1.js';
+import {shiftVisualiseV2Routes} from './shift-visualise-v2.js';
+import {memberPracticalRoutes} from './member-practical-v1.js';
 import {memberProductV5Routes} from './member-product-v5.js';
 import {memberDailyV2Routes} from './member-daily-v2.js';
 import {personalRoutes} from './personal-platform-v1.js';
@@ -24,9 +25,10 @@ export default {
     if(authRecovery)return withMemberCors(authRecovery,request);
 
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
-    const visualise=await shiftVisualiseRoutes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
+    const visualise=await shiftVisualiseV2Routes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
     const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return isMemberProductPath(path)?withMemberCors(knowledge,request):knowledge;
     const daily=await memberDailyV2Routes(request,env,ctx); if(daily)return withMemberCors(daily,request);
+    const practical=await memberPracticalRoutes(request,env,ctx); if(practical)return withMemberCors(practical,request);
     const memberV5=await memberProductV5Routes(request,env,ctx); if(memberV5)return withMemberCors(memberV5,request);
     const personal=await personalRoutes(request,env,ctx); if(personal)return withMemberCors(personal,request);
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
