@@ -4,6 +4,8 @@ on:
     paths:
       - 'personal-platform-v1.js'
       - 'member-commissioning-v1.js'
+      - 'member-product-v4.js'
+      - 'gate2-product-source-gate.mjs'
       - 'knowledge-graph-v1.js'
       - 'radar-integration-v1.js'
       - 'radar-public-v1.js'
@@ -37,10 +39,14 @@ jobs:
         run: node gate1-persistence-source-gate.mjs
       - name: Gate 1 auth security source contract
         run: node gate1-auth-security-source-gate.mjs
+      - name: Gate 2 Grub/Fit source contract
+        run: node gate2-product-source-gate.mjs
       - name: Syntax checks
         run: |
           node --check personal-platform-v1.js
           node --check member-commissioning-v1.js
+          node --check member-product-v4.js
+          node --check gate2-product-source-gate.mjs
           node --check knowledge-graph-v1.js
           node --check radar-integration-v1.js
           node --check radar-public-v1.js
