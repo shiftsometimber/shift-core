@@ -41,23 +41,36 @@ jobs:
         run: node gate1-auth-security-source-gate.mjs
       - name: Gate 2 Grub/Fit source contract
         run: node gate2-product-source-gate.mjs
-      - name: Syntax checks
-        run: |
-          node --check personal-platform-v1.js
-          node --check member-commissioning-v1.js
-          node --check member-product-v4.js
-          node --check gate2-product-source-gate.mjs
-          node --check knowledge-graph-v1.js
-          node --check radar-integration-v1.js
-          node --check radar-public-v1.js
-          node --check radar-e2e-staging.mjs
-          node --check shift-ai-v3.js
-          node --check worker-entry-v6.js
-          node --check integration-source-gate.mjs
-          node --check toolchain-source-gate.mjs
-          node --check gate1-persistence-source-gate.mjs
-          node --check gate1-auth-security-source-gate.mjs
-          node --check gate1-production-journey-probe.mjs
+      - name: Syntax — personal platform
+        run: node --check personal-platform-v1.js
+      - name: Syntax — member commissioning
+        run: node --check member-commissioning-v1.js
+      - name: Syntax — member product V4
+        run: node --check member-product-v4.js
+      - name: Syntax — Gate 2 source gate
+        run: node --check gate2-product-source-gate.mjs
+      - name: Syntax — knowledge graph
+        run: node --check knowledge-graph-v1.js
+      - name: Syntax — Radar integration
+        run: node --check radar-integration-v1.js
+      - name: Syntax — Radar public
+        run: node --check radar-public-v1.js
+      - name: Syntax — Radar staging
+        run: node --check radar-e2e-staging.mjs
+      - name: Syntax — Shift AI
+        run: node --check shift-ai-v3.js
+      - name: Syntax — production entry
+        run: node --check worker-entry-v6.js
+      - name: Syntax — integration source gate
+        run: node --check integration-source-gate.mjs
+      - name: Syntax — toolchain source gate
+        run: node --check toolchain-source-gate.mjs
+      - name: Syntax — Gate 1 persistence gate
+        run: node --check gate1-persistence-source-gate.mjs
+      - name: Syntax — Gate 1 auth gate
+        run: node --check gate1-auth-security-source-gate.mjs
+      - name: Syntax — Gate 1 production probe
+        run: node --check gate1-production-journey-probe.mjs
       - name: Existing Shift Academy source gate
         run: node academy-source-gate.mjs
       - name: Master integration source gate
