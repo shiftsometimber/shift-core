@@ -9,8 +9,8 @@ let photoSchemaReady=false;
 
 export async function shiftVisualiseRoutes(request,env,ctx){
   const url=new URL(request.url),path=url.pathname;
-  if(!path.startsWith('/v1/shift/visualise')&&!path.startsWith('/v1/shift/progress-photo')) return null;
-  if(request.method==='OPTIONS') return new Response(null,{status:204,headers:corsHeaders(request)});
+  if(!path.startsWith('/v1/shift/visualise')&&!path.startsWith('/v1/shift/progress-photo'))return null;
+  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:corsHeaders(request)});
   const a=await auth(request,env,ctx);if(a.response)return withCors(a.response,request);
   try{
     if(path==='/v1/shift/visualise'){
@@ -29,7 +29,7 @@ export async function shiftVisualiseRoutes(request,env,ctx){
     return json({ok:false,error:'not_found'},404,request);
   }catch(e){
     console.error('shift_visualise_route_failed',path,e?.message,e?.stack);
-    return json({ok:false,error:'progress_photo_service_error',message:'Shift could not complete that photo request. Please try again.'},500,request);
+    return json({ok:false,error:'progress_photo_service_error',message:e?.message||'Shift could not complete that photo request.'},500,request);
   }
 }
 
@@ -59,24 +59,27 @@ async function saveProgressPhoto(request,env,user){
   if(!consent)return json({ok:false,error:'consent_required'},400,request);
   const checked=validateImage(image);if(checked)return json(checked.body,checked.status,request);
   const weightKg=numberOrNull(form.get('weightKg')),waistCm=numberOrNull(form.get('waistCm')),capturedAt=String(form.get('capturedAt')||'').trim()||new Date().toISOString(),source=String(form.get('source')||'upload').trim().slice(0,30)||'upload';
-  const bytes=new Uint8Array(await image.arrayBuffer());
+  const bytes=new Uint8Array(await image.arrayBuffer()),imageBase64=bytesToBase64(bytes);
   try{
-    await env.DB.prepare(`INSERT INTO shift_progress_photos(user_id,mime_type,image_data,weight_kg,waist_cm,captured_at,source,is_original,created_at) VALUES(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(user.id,image.type,bytes,weightKg,waistCm,capturedAt,source,1).run();
+    await env.DB.prepare(`INSERT INTO shift_progress_photos_v2(user_id,mime_type,image_base64,weight_kg,waist_cm,captured_at,source,is_original,created_at) VALUES(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(user.id,image.type,imageBase64,weightKg,waistCm,capturedAt,source,1).run();
   }catch(e){
     console.error('shift_progress_photo_insert_failed',e?.message);
-    return json({ok:false,error:'photo_store_failed',message:'Your photo could not be saved just then. Nothing has been lost — please try again.'},500,request);
+    return json({ok:false,error:'photo_store_failed',message:`Photo storage failed: ${String(e?.message||'unknown D1 error').slice(0,180)}`},500,request);
   }
-  const row=await env.DB.prepare(`SELECT id,captured_at,weight_kg,waist_cm,source,created_at FROM shift_progress_photos WHERE user_id=? ORDER BY id DESC LIMIT 1`).bind(user.id).first();
-  try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_progress_photo_saved',?,?)`).bind(`user:${user.id}`,JSON.stringify({photoId:row?.id||null,mime:image.type,size:image.size})).run();}catch{}
+  const row=await env.DB.prepare(`SELECT id,captured_at,weight_kg,waist_cm,source,created_at FROM shift_progress_photos_v2 WHERE user_id=? ORDER BY id DESC LIMIT 1`).bind(user.id).first();
+  try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_progress_photo_saved',?,?)`).bind(`user:${user.id}`,JSON.stringify({photoId:row?.id||null,mime:image.type,size:image.size,storage:'d1-text-v2'})).run();}catch{}
   return json({ok:true,photo:row,stored:true,generated:false},201,request);
 }
 
-async function listProgressPhotos(request,env,user){await ensurePhotoSchema(env.DB);const{results=[]}=await env.DB.prepare(`SELECT id,captured_at,weight_kg,waist_cm,source,created_at FROM shift_progress_photos WHERE user_id=? AND deleted_at IS NULL ORDER BY captured_at DESC,id DESC LIMIT 24`).bind(user.id).all();return json({ok:true,photos:results.map(r=>({...r,imageUrl:`/v1/shift/progress-photo/${r.id}/image`}))},200,request);}
-async function getProgressPhotoImage(request,env,user,id){await ensurePhotoSchema(env.DB);const row=await env.DB.prepare(`SELECT mime_type,image_data FROM shift_progress_photos WHERE id=? AND user_id=? AND deleted_at IS NULL`).bind(id,user.id).first();if(!row)return json({ok:false,error:'not_found'},404,request);return new Response(row.image_data,{status:200,headers:{'Content-Type':row.mime_type||'image/jpeg','Cache-Control':'private, no-store',...corsHeaders(request)}});}
-async function deleteProgressPhoto(request,env,user,id){await ensurePhotoSchema(env.DB);await env.DB.prepare(`UPDATE shift_progress_photos SET deleted_at=CURRENT_TIMESTAMP WHERE id=? AND user_id=? AND deleted_at IS NULL`).bind(id,user.id).run();return json({ok:true,deleted:true,id},200,request);}
+async function listProgressPhotos(request,env,user){await ensurePhotoSchema(env.DB);const{results=[]}=await env.DB.prepare(`SELECT id,captured_at,weight_kg,waist_cm,source,created_at FROM shift_progress_photos_v2 WHERE user_id=? AND deleted_at IS NULL ORDER BY captured_at DESC,id DESC LIMIT 24`).bind(user.id).all();return json({ok:true,photos:results.map(r=>({...r,imageUrl:`/v1/shift/progress-photo/${r.id}/image`}))},200,request);}
+async function getProgressPhotoImage(request,env,user,id){await ensurePhotoSchema(env.DB);const row=await env.DB.prepare(`SELECT mime_type,image_base64 FROM shift_progress_photos_v2 WHERE id=? AND user_id=? AND deleted_at IS NULL`).bind(id,user.id).first();if(!row)return json({ok:false,error:'not_found'},404,request);const bytes=base64ToBytes(row.image_base64);return new Response(bytes,{status:200,headers:{'Content-Type':row.mime_type||'image/jpeg','Cache-Control':'private, no-store',...corsHeaders(request)}});}
+async function deleteProgressPhoto(request,env,user,id){await ensurePhotoSchema(env.DB);await env.DB.prepare(`UPDATE shift_progress_photos_v2 SET deleted_at=CURRENT_TIMESTAMP WHERE id=? AND user_id=? AND deleted_at IS NULL`).bind(id,user.id).run();return json({ok:true,deleted:true,id},200,request);}
+
+function bytesToBase64(bytes){let out='';const chunk=0x8000;for(let i=0;i<bytes.length;i+=chunk)out+=String.fromCharCode(...bytes.subarray(i,i+chunk));return btoa(out);}
+function base64ToBytes(s){const bin=atob(String(s||'')),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out;}
 function validateImage(image){if(!(image instanceof File))return{status:400,body:{ok:false,error:'image_required'}};if(!ALLOWED.has(image.type))return{status:415,body:{ok:false,error:'unsupported_image_type'}};if(image.size<=0||image.size>MAX_BYTES)return{status:413,body:{ok:false,error:'image_too_large',maxBytes:MAX_BYTES}};return null;}
 function numberOrNull(value){const n=Number(value);return Number.isFinite(n)&&n>0?n:null;}
-async function ensurePhotoSchema(db){if(photoSchemaReady)return;await db.exec(`CREATE TABLE IF NOT EXISTS shift_progress_photos (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,mime_type TEXT NOT NULL,image_data BLOB NOT NULL,weight_kg REAL,waist_cm REAL,captured_at TEXT NOT NULL,source TEXT NOT NULL DEFAULT 'upload',is_original INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,deleted_at TEXT);CREATE INDEX IF NOT EXISTS idx_shift_progress_photos_user ON shift_progress_photos(user_id,captured_at,id);`);photoSchemaReady=true;}
+async function ensurePhotoSchema(db){if(photoSchemaReady)return;await db.exec(`CREATE TABLE IF NOT EXISTS shift_progress_photos_v2 (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,mime_type TEXT NOT NULL,image_base64 TEXT NOT NULL,weight_kg REAL,waist_cm REAL,captured_at TEXT NOT NULL,source TEXT NOT NULL DEFAULT 'upload',is_original INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,deleted_at TEXT);CREATE INDEX IF NOT EXISTS idx_shift_progress_photos_v2_user ON shift_progress_photos_v2(user_id,captured_at,id);`);photoSchemaReady=true;}
 async function auth(request,env,ctx){const r=await core.fetch(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!r.ok)return{response:r};return{user:(await r.json()).user};}
 function corsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'};if(ALLOWED_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withCors(response,request){const headers=new Headers(response.headers);for(const[k,v]of Object.entries(corsHeaders(request)))headers.set(k,v);return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
