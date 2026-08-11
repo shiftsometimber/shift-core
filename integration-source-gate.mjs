@@ -13,7 +13,7 @@ const requiredPersonal=['/v1/shift/context','/v1/shift/today','/v1/shift/recomme
 for(const x of requiredPersonal)if(!personal.includes(x)){console.error('Missing personal route:',x);failed=true}
 for(const x of ['/v1/shift/knowledge/related','/v1/shift/knowledge/search','/v1/hq/knowledge-graph/ingest','health_knowledge_requires_verified_provenance'])if(!graph.includes(x)){console.error('Missing Knowledge Graph contract:',x);failed=true}
 for(const x of ['/v1/radar/ingest','/v1/hq/radar/queue','/v1/hq/radar/medicines','/v1/hq/radar/forward','/v1/hq/radar/publication-jobs','verifyEvidence','package_ready','radar_publication_jobs'])if(!radar.includes(x)){console.error('Missing Radar contract:',x);failed=true}
-for(const x of ['/v1/radar/ticker','/v1/radar/cards','/v1/radar/medicines/'])if(!radarPublic.includes(x)){console.error('Missing public Radar contract:',x);failed=true}
+for(const x of ['/v1/radar/ticker','/v1/radar/cards','medicine_not_found'])if(!radarPublic.includes(x)){console.error('Missing public Radar contract:',x);failed=true}
 if(!entry.includes('personalRoutes')||!entry.includes('knowledgeRoutes')||!entry.includes('radarPublicRoutes')||!entry.includes('radarRoutes')||!entry.includes('runRadarFreshness')){console.error('Production entry point is not fully wired');failed=true}
 if(!ai.includes('ACTIVE SHIFT PLANS')||!ai.includes("FROM shift_plans WHERE user_id=? AND status='active'")){console.error('Shift AI is not connected to active plans');failed=true}
 if(/CREATE TABLE IF NOT EXISTS shift_members\b/.test(migration)){console.error('Prototype shift_members identity table must not be introduced');failed=true}
