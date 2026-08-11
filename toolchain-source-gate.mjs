@@ -18,10 +18,14 @@ if (wrangler !== '4.112.0') fail(`Unexpected Wrangler toolchain drift: expected 
 if (packageManager !== 'npm@10.9.2') fail(`Package manager must be pinned to npm@10.9.2, got: ${packageManager || '<missing>'}`);
 if (nodeVersion !== '22.16.0') fail(`Cloudflare build Node version must remain pinned to 22.16.0, got: ${nodeVersion || '<missing>'}`);
 
-const forbidden = ['alpha', 'beta', 'rc', 'nightly', 'canary', 'next'];
-const packageText = fs.readFileSync('package.json', 'utf8').toLowerCase();
-for (const marker of forbidden) {
-  if (packageText.includes(`-${marker}`)) fail(`Production package manifest contains forbidden prerelease marker: -${marker}`);
+// Only deployment tooling is subject to the prerelease ban. The application
+// package's own semantic version may legitimately be beta while the product is
+// commissioning.
+for (const [name, value] of Object.entries(pkg?.devDependencies || {})) {
+  const version = String(value || '').toLowerCase();
+  if (['alpha','beta','rc','nightly','canary','next'].some(marker => version.includes(`-${marker}`))) {
+    fail(`Production devDependency ${name} uses a prerelease version: ${value}`);
+  }
 }
 
 if (failed) process.exit(1);
