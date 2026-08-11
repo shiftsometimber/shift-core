@@ -10,8 +10,12 @@ CREATE TABLE IF NOT EXISTS radar_events (id INTEGER PRIMARY KEY AUTOINCREMENT,ev
 CREATE TABLE IF NOT EXISTS radar_audit (id INTEGER PRIMARY KEY AUTOINCREMENT,event_id INTEGER,action TEXT NOT NULL,actor TEXT NOT NULL,detail_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS radar_medicines (id TEXT PRIMARY KEY,brand TEXT,generic_name TEXT,developer TEXT,mechanism_json TEXT NOT NULL DEFAULT '[]',formulation TEXT,global_stage TEXT,uk_regulatory_status TEXT,uk_commercial_status TEXT,nice_status TEXT,nhs_status TEXT,latest_update_text TEXT,radar_score INTEGER DEFAULT 50,regions_json TEXT NOT NULL DEFAULT '[]',last_verified_at TEXT,provenance_json TEXT NOT NULL DEFAULT '{}',updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS radar_freshness_claims (id INTEGER PRIMARY KEY AUTOINCREMENT,claim_key TEXT NOT NULL UNIQUE,event_id INTEGER,claim_text TEXT NOT NULL,source_url TEXT,status TEXT NOT NULL DEFAULT 'active',next_check_at TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS radar_publication_jobs (id INTEGER PRIMARY KEY AUTOINCREMENT,event_id INTEGER NOT NULL,site_payload_json TEXT NOT NULL DEFAULT '{}',brain_payload_json TEXT NOT NULL DEFAULT '{}',search_payload_json TEXT NOT NULL DEFAULT '{}',status TEXT NOT NULL DEFAULT 'queued',error_text TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,started_at TEXT,completed_at TEXT);
+CREATE TABLE IF NOT EXISTS radar_forward_milestones (id INTEGER PRIMARY KEY AUTOINCREMENT,subject TEXT NOT NULL,event TEXT NOT NULL,milestone_date TEXT NOT NULL,region TEXT DEFAULT 'GLOBAL',authority TEXT,source_url TEXT,relevance INTEGER DEFAULT 85,prepare_days_json TEXT NOT NULL DEFAULT '[30,14,7,2,1,0]',status TEXT NOT NULL DEFAULT 'active',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
 CREATE INDEX IF NOT EXISTS idx_shift_plans_user ON shift_plans(user_id,status,created_at);
 CREATE INDEX IF NOT EXISTS idx_kg_type ON shift_knowledge_nodes(node_type,domain);
 CREATE INDEX IF NOT EXISTS idx_rec_user ON shift_recommendation_log(user_id,created_at);
 CREATE INDEX IF NOT EXISTS idx_radar_queue ON radar_events(status,urgency_score,relevance_score);
 CREATE INDEX IF NOT EXISTS idx_radar_freshness ON radar_freshness_claims(status,next_check_at);
+CREATE INDEX IF NOT EXISTS idx_radar_pub_jobs ON radar_publication_jobs(event_id,status);
+CREATE INDEX IF NOT EXISTS idx_radar_forward ON radar_forward_milestones(status,milestone_date);
