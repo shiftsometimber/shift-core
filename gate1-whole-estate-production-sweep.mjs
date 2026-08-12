@@ -61,3 +61,4 @@ if(critical.length){
 }
 if(!visited.has(START+'/'))throw new Error('Homepage was not swept');
 if(checked.length<2)throw new Error('Sweep discovered too little estate surface to be meaningful');
+console.log(`::notice title=M10 production sweep GREEN::${checked.length} same-origin URLs checked · ${report.htmlPages} HTML pages · 0 critical route/asset/blank-page failures${report.truncated?' · discovery hit configured limit':''}`);
