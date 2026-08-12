@@ -5,6 +5,7 @@ on:
       - '**.js'
       - '**.mjs'
       - 'content/**'
+      - 'assets/fit/**'
       - 'docs/COMMISSIONING-EVIDENCE.md'
       - 'docs/FINISH-LINE.md'
       - 'docs/LAUNCH-FINISH-LINE.md'
@@ -32,6 +33,12 @@ jobs:
         run: node gate2-product-source-gate.mjs
       - name: M11/M12 content-factory authoring quality contract
         run: node content-factory-gate.mjs
+      - name: M11 CoFID ingredient-level nutrition validation
+        run: node grub-nutrition-gate.mjs
+      - name: M12 Fit authored-vs-member-QA visual reconciliation
+        run: node fit-visual-reconciliation-gate.mjs
+      - name: M07 structured publication barrier
+        run: node structured-content-publication-gate.mjs
       - name: M11/M12 longitudinal catalogue capacity simulator
         run: node content-factory-simulator.mjs
       - name: Gate 2 durable learning contract
@@ -90,7 +97,7 @@ jobs:
         run: npm run check
       - name: Staged Radar end-to-end commissioning
         run: node radar-e2e-staging.mjs
-      - name: M03 scheduled Radar scan heartbeat
+      - name: M03 scheduled authoritative Radar scan
         run: node radar-scheduled-scan-staging.mjs
       - name: Gate 1 public production probe
         run: node gate1-production-journey-probe.mjs
