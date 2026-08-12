@@ -36,28 +36,16 @@ async function chat(request,env,ctx){
   const eventJob=recordProductEvent(env,{userId:uid,eventName:'shift_ai_message',surface:'shift_ai',source:'server',properties:{gear:gear.gear,oneShiftBrain:true,memoryUsed:brain.memory.intelligent.length>0,feedbackUsed:(brain.behaviour.feedback.yay.length+brain.behaviour.feedback.nay.length)>0,knowledgeSources:brain.knowledge.items.length}}).catch(e=>console.warn('analytics_shift_ai_failed',e?.message));
   if(ctx?.waitUntil)ctx.waitUntil(eventJob);else await eventJob;
   const privacy=await getMemoryPrivacy(env.DB,uid).catch(()=>({auto_memory:1})),explicit=body.remember===true||/\bremember (that|this)|don't forget|dont forget\b/i.test(message);
-  if(Number(privacy.auto_memory)||explicit){const job=learnFromMessage(env,uid,message,{explicit});if(ctx?.waitUntil)ctx.waitUntil(job);else await job;}
+  if(Number(privacy.auto_memory)||explicit){
+    const job=learnFromMessage(env,uid,message,{explicit});
+    // Explicit "remember this" is part of the member contract: persist it before
+    // acknowledging the request so an immediate logout/return cannot lose it.
+    if(explicit)await job;else if(ctx?.waitUntil)ctx.waitUntil(job);else await job;
+  }
   return cors(json({ok:true,answer,mode:gear.gear,model:'Shift AI',version:VERSION,oneShiftBrain:true,contextContract:brain.contract,memoryUsed:brain.memory.intelligent.length>0,feedbackUsed:(brain.behaviour.feedback.yay.length+brain.behaviour.feedback.nay.length)>0,activePlansUsed:Object.keys(brain.plans.active).length>0,sources:brain.knowledge.items.map(k=>({title:k.title,citation:k.citation,reviewState:k.reviewState,provenance:k.provenance}))}),request,env);
 }
 
-function systemPrompt(brain,gear,noAdvice){return `You are Shift, the personal intelligence inside Shift Some Timber. You are for ordinary UK men who want useful help without being turned into a health hobbyist.
-
-ONE SHIFT BRAIN is authoritative. Use it quietly and only when relevant. Current member statements override older memories. Never invent personal or clinical facts. Health knowledge must come from reviewed/provenanced Shift knowledge supplied below. You are not the prescriber or clinician.
-
-SHOULDER GEAR: ${gear.gear}. ${shoulderInstruction(gear)} Initiative: ${gear.initiative}. Humour: ${String(gear.humour)}.
-${noAdvice?'The member explicitly does not want advice. Do not sneak a plan in.':'When a useful next move is obvious, give it without forcing another question.'}
-
-STYLE: natural UK-wide bloke-to-bloke tone; calm, intelligent, plain-speaking, occasionally dry when earned. No therapy wallpaper, no service-desk filler, no generic motivational slogans. Answer the latest moment first.
-
-MEMBER PROFILE/STATE: ${JSON.stringify(brain.member)}
-LATEST/RECENT PROGRESS: ${JSON.stringify(brain.progress)}
-ACTIVE PLANS: ${JSON.stringify(brain.plans.active)}
-YAY/NAY BEHAVIOUR: ${JSON.stringify(brain.behaviour.feedback)}
-INTELLIGENT MEMORY: ${JSON.stringify(brain.memory.intelligent)}
-EXPLICIT NOTES: ${JSON.stringify(brain.memory.explicitNotes)}
-REVIEWED KNOWLEDGE: ${brain.knowledge.items.map(k=>`[${k.citation}] ${k.title}: ${k.content}`).join('\n')}
-
-FINAL CHECK: did I use the same trusted context Shift Today/Grub/Fit can use, respect current preferences and Nays, avoid inventing facts, keep clinical boundaries clear, and actually make the member's next few minutes easier?`}
+function systemPrompt(brain,gear,noAdvice){return `You are Shift, the personal intelligence inside Shift Some Timber. You are for ordinary UK men who want useful help without being turned into a health hobbyist.\n\nONE SHIFT BRAIN is authoritative. Use it quietly and only when relevant. Current member statements override older memories. Never invent personal or clinical facts. Health knowledge must come from reviewed/provenanced Shift knowledge supplied below. You are not the prescriber or clinician.\n\nSHOULDER GEAR: ${gear.gear}. ${shoulderInstruction(gear)} Initiative: ${gear.initiative}. Humour: ${String(gear.humour)}.\n${noAdvice?'The member explicitly does not want advice. Do not sneak a plan in.':'When a useful next move is obvious, give it without forcing another question.'}\n\nSTYLE: natural UK-wide bloke-to-bloke tone; calm, intelligent, plain-speaking, occasionally dry when earned. No therapy wallpaper, no service-desk filler, no generic motivational slogans. Answer the latest moment first.\n\nMEMBER PROFILE/STATE: ${JSON.stringify(brain.member)}\nLATEST/RECENT PROGRESS: ${JSON.stringify(brain.progress)}\nACTIVE PLANS: ${JSON.stringify(brain.plans.active)}\nYAY/NAY BEHAVIOUR: ${JSON.stringify(brain.behaviour.feedback)}\nINTELLIGENT MEMORY: ${JSON.stringify(brain.memory.intelligent)}\nEXPLICIT NOTES: ${JSON.stringify(brain.memory.explicitNotes)}\nREVIEWED KNOWLEDGE: ${brain.knowledge.items.map(k=>`[${k.citation}] ${k.title}: ${k.content}`).join('\n')}\n\nFINAL CHECK: did I use the same trusted context Shift Today/Grub/Fit can use, respect current preferences and Nays, avoid inventing facts, keep clinical boundaries clear, and actually make the member's next few minutes easier?`}
 
 async function recentHistory(DB,uid,limit){try{const {results=[]}=await DB.prepare(`SELECT direction,body,created_at FROM shift_ai_conversations WHERE user_id=? ORDER BY id DESC LIMIT ?`).bind(uid,limit).all();return results.reverse()}catch{return[]}}
 async function saveConversation(DB,uid,mode,user,assistant,model){try{await DB.exec(`CREATE TABLE IF NOT EXISTS shift_ai_conversations (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,direction TEXT NOT NULL,mode TEXT NOT NULL DEFAULT 'coach',body TEXT NOT NULL,model TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`);await DB.batch([DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(uid,'user',mode,user,null),DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(uid,'assistant',mode,assistant,model)])}catch(e){console.warn('shift_ai_history_save_failed',e?.message)}}
