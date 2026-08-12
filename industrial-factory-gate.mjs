@@ -1,4 +1,4 @@
-import {buildIndustrialCatalogue} from './industrial-catalogue-v1.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v2.js';
 const fail=m=>{throw new Error(m)};
 const c=buildIndustrialCatalogue();
 const recipes=c.recipes||[],exercises=c.exercises||[];
