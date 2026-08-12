@@ -1,1 +1,1 @@
-export { default } from './shift-ai-v6.js';
+export { default } from './shift-ai-v7.js';
