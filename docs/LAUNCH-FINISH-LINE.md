@@ -1,88 +1,61 @@
-# Shift V1 Launch Finish Line
+# Shift V1 Launch Finish Line — authoritative
 
-This is the authoritative scope boundary for finishing Shift. No fourth category exists. New work may be added only if it closes one of these requirements or fixes a defect discovered while proving one.
+No requirement may disappear through abstraction. `docs/ORIGINAL-AUDIT-CROSSWALK.md` maps all 57 original remediation rows to this board. PASS requires demonstrated behaviour, not code existence.
 
-## DONE definition
-Shift V1 is production-ready when every BLOCKER is closed, every MUST FINISH item is closed or demonstrably included in the release candidate, Dave completes the agreed end-to-end journey without assisted workarounds, critical production monitoring is active, and any externally dependent clinical capability is either formally commissioned or clearly unavailable/not sold to members.
-
-## BLOCKER — cannot launch without it
-
-| ID | Requirement | Current evidence | Closure test |
+## BLOCKERS
+| ID | Requirement | State | Exact closure |
 |---|---|---|---|
-| B01 | Production authentication + transactional email recovery | Register/login and real Welcome/reset email receipt proven. Reset/change implementation exists. AMBER only on secure real-token completion. | real inbox link -> reset -> login with new password -> authenticated change-password -> logout -> login again |
-| B02 | Authenticated member isolation + durable longitudinal state | **PASS** — PR #47 real-session A/B isolation, separate Brain/Progress/preferences/plans and leave/return state | CLOSED |
-| B03 | Core member V1 journeys are complete and safe | PR #48/#49 close major production behavioural evidence; route-level sub-board below is authoritative | every V1 product completes primary member journey with persistence, graceful errors, acceptable semantic quality and premium/mobile presentation |
-| B04 | One Shift Brain behaviour works longitudinally | **PASS** — #42 current-intent precedence; #48 authenticated dislike/Nay -> leave/return -> changed Grub recommendation with Fit unaffected | CLOSED |
-| B05 | Public/member trust boundary is accurate | Legal/trust architecture exists; full production trust audit incomplete | visitor can identify operator, AI limits, data handling, support route and current clinical/provider status without invented claims |
-| B06 | HQ can operate production | Watchtower/attention/journey APIs exist; operator workflow evidence incomplete | authorised HQ user can see actionable platform/member failures, distinguish RED/AMBER, and inspect recovery without raw telemetry interpretation |
-| B07 | Critical monitoring detects real production degradation | probes/history/SLO architecture green | controlled safe degradation is detected, retained, surfaced to HQ with next action, then recorded recovered |
-| B08 | Dave release-candidate journey | public/auth/isolation/longitudinal Grub-Fit and several member products now automated; full journey incomplete | fresh Dave completes discover -> trust -> register -> verify -> onboard -> Today -> Grub -> Fit -> hydration -> Progress -> Picture -> Ask Shift -> learning -> leave/return -> changed recommendation -> account recovery; clinical/treatment leg only if formally commissioned |
+| B01 | Production auth + transactional recovery | AMBER | real inbox reset token -> reset -> login new password -> authenticated change-password -> logout -> login again |
+| B02 | Authenticated isolation + durable state | PASS | PR #47 production A/B isolation and leave/return retained state |
+| B03 | Core member V1 behavioural journeys | PASS | production commissioning on `e46aa035` passed unchanged final B03 hostile suite; 9/9 behavioural products green |
+| B04 | One Shift Brain longitudinal behaviour | PASS | current intent precedence + durable Grub/Fit learning + retained Progress/AI context |
+| B05 | Public/member trust boundary | AMBER | operator/AI/data/support/clinical-status trust audit on exposed production surfaces |
+| B06 | HQ production operation | AMBER | authorised operator sees actionable AMBER/RED state, next action and recovery |
+| B07 | Critical monitoring detects real degradation | AMBER | safe healthy -> degraded -> AMBER/RED -> HQ action -> recovered proof |
+| B08 | Dave release-candidate journey | AMBER | fresh unassisted end-to-end Dave including recovery and premium/mobile acceptance |
 
-### B03 route-level closure board
+## B03 behavioural closure — 9/9
+Grub PASS; Fit PASS; Today PASS; Hydration PASS; Conundrum PASS; My Plans PASS; Progress PASS; Progress Picture PASS; Shift AI PASS. Rendered/premium/mobile acceptance remains owned by M01/M06/M10/B08 and must not reopen these behavioural PASS results without regression evidence.
 
-| Product | Production behaviour | Exact remaining evidence before product PASS |
+## MUST FINISH
+| ID | Requirement | State | Exact closure |
+|---|---|---|---|
+| M01 | One Shift premium visual system across public + My Shift | AMBER | representative desktop/mobile member surfaces meet homepage design constitution |
+| M02 | Reviewed Knowledge publication lifecycle | PASS | publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding |
+| M03 | Radar production freshness | AMBER | scan/publication/ticker freshness and stale-state production proof |
+| M04 | Product analytics funnel | AMBER | real-flow QA for acquisition/register/onboard/Today/core products/Progress/return/errors |
+| M05 | Security/privacy release review | AMBER | authz/rate/session/secrets/uploads/export-delete/audit/analytics boundaries evidenced |
+| M06 | Accessibility + performance release check | AMBER | critical journeys interaction audit + measured production performance budgets |
+| M07 | Structured content production path | AMBER | Grub/Fit production reads canonical structured content; hard-coded catalogue removed; scaling benchmark retained |
+| M08 | Release evidence + recovery checkpoint | AMBER | board/evidence/recovery reconciled to release candidate and rollback state |
+| M09 | Proper email verification lifecycle | AMBER | explicit verify state + delivery + token lifecycle + verified login/policy behaviour; no AUTO_VERIFY ambiguity |
+| M10 | Whole-estate routes/links/errors release sweep | AMBER | automated route/link/form/error/empty/loading sweep across public + My Shift + mobile-critical paths |
+| M11 | Grub catalogue depth, validated nutrition and variety | AMBER | structured catalogue reaches experience floor; ingredient-level nutrition methodology validated; allergens/substitutions/storage/reheat/safety; 7/14/30/60-day simulator acceptable |
+| M12 | Fit catalogue/session breadth and visual guidance | AMBER | structured exercise floor across equipment/location/limitations; every prescribed exercise has approved guidance; 12-week 3x/week simulator acceptable |
+| M13 | Whole-person Progress and proper units | AMBER | weight/waist/BP/movement/etc coherent story + stone/lb/kg and metric controls without free-text weight UX |
+| M14 | Member memory inspect/edit/delete controls | AMBER | member can inspect appropriate learned memory, correct it and delete it with durable effect |
+| M15 | Health MOT mocked partner-ready integration | AMBER | provider-neutral mocked payload safely flows into Progress/Today without pretending live partner status |
+| M16 | Outcomes launch architecture proof | AMBER | member-one outcome/event/cohort model and governed analysis path evidenced without causal overclaiming |
+| M17 | Sceptical-customer/Numan competitive acceptance | AMBER | explicit evidence-based review answers why ordinary bloke should trust/time/money Shift vs incumbent |
+
+## EXTERNAL BLOCKED REQUIREMENTS
+| ID | Requirement | State |
 |---|---|---|
-| Shift Grub | **PASS** — #48 authenticated generation, stored dislike, durable Nay across logout/login, changed later recommendation, semantic quality floor | premium/mobile rendered journey + graceful member-facing failure state |
-| Shift Fit | **PASS** — #48 authenticated generation, running dislike respected, Grub signal isolation, semantic quality floor | premium/mobile rendered journey + graceful member-facing failure state |
-| Shift Today | **PASS** — #49 authenticated Today consumes active hydration plan and remains correct after logout/login | premium/mobile rendered journey + graceful empty/error state |
-| Hydration | **PASS** — #49 coffee/beer rules, plan, persistence and aggregate correctness across logout/login | premium/mobile logging journey + graceful validation/error state |
-| Conundrum | **PASS** — #49 authenticated obvious chicken+cheese+wrap relationship proven | premium/mobile journey + broader member-facing error/empty state |
-| My Plans | **PASS** — #49 active hydration plan appears and survives logout/login | premium/mobile rendered journey + plan interaction/error state |
-| Progress | AMBER — #49 proves production summary is safe in empty/ready state | authenticated create/log -> persist -> refresh -> leave/return + rendered journey |
-| Progress Picture | AMBER | authenticated upload/save/history/comparison/delete/privacy + rendered/mobile journey |
-| Shift AI | AMBER | authenticated ask -> grounded/provenance-aware answer -> retained context/no cross-member leakage + rendered journey |
+| X01 | Signed clinical operating model/provider/pharmacy governance | BLOCKED |
+| X02 | Medication Companion clinically governed prescribing/escalation pathway | BLOCKED |
+| X03 | Provider-approved identity/weight/evidence verification | BLOCKED |
 
-Behaviour PASS above means the production behaviour is closed and must not be reopened without a regression. A product becomes fully B03 PASS only when its single remaining rendered/member-facing evidence item is closed.
+Non-clinical V1 must not imply or sell these unavailable clinical capabilities.
 
-## MUST FINISH — agreed V1 requirement
+## CONTENT FACTORY CURRENT FLOOR
+Grub live legacy catalogue: 16. Provisional V1 floor: 64 fully commissioned, adjusted upward by simulation. Production expansion must use structured content, not Worker arrays.
 
-| ID | Requirement | Closure |
-|---|---|---|
-| M01 | One Shift visual system across public + My Shift | representative desktop/mobile screens meet homepage-level component language; no prototype/browser-default member UI |
-| M02 | Knowledge reviewed publication lifecycle | **PASS** — reviewed publish -> canonical retrieval -> Shift grounding/provenance; withdrawn content stops grounding |
-| M03 | Radar production freshness | live scan/publication/ticker timestamps and stale state are visible/monitored; do not claim LIVE without evidence |
-| M04 | Product analytics funnel | registration/onboarding/Today/core feature/Progress/return/error events observable with privacy filtering |
-| M05 | Security/privacy release review | session/authz/rate limits/secrets/uploads/member export-delete/audit/analytics boundaries evidenced for launch paths |
-| M06 | Accessibility + performance release check | critical journeys keyboard/focus/forms/errors/navigation/reduced-motion structure pass; production performance budgets measured and material slow paths fixed |
-| M07 | Structured content production path | recipes/exercises/Knowledge use scalable structured path where required for V1; load benchmark demonstrates no obvious V1 scaling trap |
-| M08 | Release evidence + recovery checkpoint | remediation/evidence ledger reconciled to current main with exact release status, known external blockers and rollback/recovery state |
+Fit live legacy catalogue: 12. Provisional V1 floor: 48 fully commissioned with approved visual guidance for every prescribable exercise, adjusted upward by 12-week simulation.
 
-## POST-LAUNCH — does not delay V1
+## ORIGINAL-AUDIT RECONCILIATION
+57 total / 9 PASS / 45 AMBER / 3 BLOCKED / 0 unmapped. Crosswalk protection is a CI requirement; M09-M17 are permanent first-class rows and may not be compressed away again.
 
-| ID | Item |
-|---|---|
-| P01 | Advanced outcome/correlation reporting beyond launch analytics |
-| P02 | Broader Watchtower probes/SLOs beyond critical V1 journeys |
-| P03 | Large-scale content expansion beyond sufficient high-quality V1 catalogue |
-| P04 | Non-critical HQ workflow/marketing/CRM sophistication |
-| P05 | Advanced animation/polish that does not affect usability, trust or consistency |
-| P06 | Health MOT live partner integration until a provider is formally selected/commissioned |
-| P07 | Paid clinical prescribing/dispensing/identity-evidence workflow until provider, pharmacy and governance responsibilities are formally commissioned; Shift may launch only without selling/implying unavailable clinical service |
+## ACTIVE PARALLEL LANES
+B01 auth recovery; M01/M06/M10 rendered/mobile release sweep; B05 trust; B06/B07 operations; M03 Radar; M04 analytics; M05 security/privacy; M07 structured migration; M09 verification; M11 Grub factory; M12 Fit + visuals factory; M13 Progress; M14 memory controls; M15 MOT mock; M16 outcomes; M17 competitive acceptance; B08 Dave.
 
-## Critical path
-B01 real-token recovery completion -> B03 remaining Progress/Picture/AI behaviour + rendered member evidence -> B06/B07 operations -> B08 fresh Dave -> M01/M05/M06 release sweep -> final evidence reconciliation.
-
-Parallel lanes: B05 trust; B03 rendered/member journeys; B06/B07 Watchtower/HQ; M03 Radar; M04 analytics; M05 security/privacy; M06 accessibility/performance; M07 structured content; B08 Dave expansion.
-
-## External blockers
-Clinical provider/pharmacy/clinical governance and any provider-specific identity/evidence/Health-MOT integration cannot be truthfully commissioned without formal external arrangements. They are POST-LAUNCH for a non-clinical V1; they become BLOCKER the moment V1 is defined as selling/providing clinical treatment.
-
-B01 currently has one execution dependency: the real reset token arrives only in the connected inbox and must be submitted to the production reset POST without exposing that single-use secret in repository source/logs. If the active execution environment cannot securely perform that token-bearing POST, the remaining B01 proof is a human/secure-runtime dependency, not an engineering gap.
-
-## Burn-down — reconciled through PR #49, 2026-08-12
-Launch blockers: **8 -> 6** (B02, B04 CLOSED)
-Must-finish items: **8 -> 7** (M02 CLOSED)
-B03 production behavioural subrows closed: **6/9** (Grub, Fit, Today, Hydration, Conundrum, My Plans)
-B03 full product rows closed: **0/9** until rendered/mobile member evidence is attached to the six behavioural PASS rows
-Dave journey genuinely GREEN: **~60% engineering/behavioural coverage**, final human/rendered and recovery legs incomplete
-Regressions introduced by #48 commissioning: **1** (durable Grub Nay could reappear)
-Regressions fixed: **1**
-Regressions unresolved: **0 known**
-
-## Exact next actions
-1. Kill B01 using a secure real-token reset execution path; otherwise mark the exact secure-runtime/human dependency and do not burn engineering time re-proving email delivery.
-2. Close B03 Progress, Progress Picture and Shift AI authenticated behavioural journeys in one production suite.
-3. In parallel close the single rendered/mobile evidence item for Grub/Fit/Today/Hydration/Conundrum/My Plans rather than reopening their green production behaviour.
-4. Close B06/B07 with controlled production-safe degradation -> AMBER/RED -> HQ action -> recovery proof.
-5. Continue B05/M03/M04/M05/M06/M07 in parallel only against their explicit closure conditions.
-6. Extend Dave from the now-green production behaviours; final fresh human/device Dave remains the release acceptance run.
+Operating rule: SWARM -> BUILD CONTENT -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.
