@@ -1,0 +1,27 @@
+name: Industrial Conversion V4 Gate
+on:
+  push:
+    branches: ['industrial/conversion-swarm-v4']
+  pull_request:
+    paths:
+      - 'industrial-catalogue-v4.js'
+      - 'industrial-grub-systemic-v2.mjs'
+      - '.github/workflows/industrial-conversion-v4-gate.yml'
+jobs:
+  systemic-grub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prepare CoFID 2021
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Full-catalogue canonical propagation
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-grub-systemic-v2.mjs
+      - name: Existing master content regression
+        run: node industrial-scale-gate.mjs
