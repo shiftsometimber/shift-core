@@ -57,10 +57,10 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G4-001 | No single formal Shift Brain member model | **PASS** | One Shift Brain is canonical across Shift AI, Today, Grub/Fit and proactive consumers; integration gate green. |
 | G4-002 | Memory provenance/confidence/edit/delete controls incomplete | **PASS** | PR #61 proof: inspect/correct/delete learned memory, source/confidence visible, correction provenance explicit, privacy controls durable, cross-member isolation enforced. |
 | G4-003 | AI recommendation outcomes are not consistently learned | **PASS** | Durable Yay/Nay and current intent measurably alter later recommendations across leave/return without cross-domain contamination. |
-| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | **PASS** | Reviewed Knowledge publish -> canonical retrieval -> Brain grounding/provenance -> withdrawal -> no grounding is regression-protected. |
+| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | AMBER | Reviewed Knowledge publish -> canonical retrieval -> Brain grounding/provenance -> withdrawal is proven, but the original row also requires the automatic CMS ingestion/flywheel path; that automatic ingestion proof remains outstanding. |
 | G4-005 | Grounding provenance is not consistently visible/inspectable | **PASS** | Shift AI production contract returns provenance-aware sources and reviewed state; hard production proof green. |
 | G4-006 | Radar is built but end-to-end live status is unproven | AMBER | Staged Radar e2e passes; live production scan/publication/ticker freshness remains M03. |
-| G4-007 | GLP ticker freshness can silently degrade | AMBER | Stale thresholds/Watchtower contract exist; production freshness/stale-state proof remains M03/B07. |
+| G4-007 | GLP ticker freshness can silently degrade | AMBER | Stale thresholds/Watchtower contract exists; production freshness/stale-state proof remains M03/B07. |
 | G4-008 | Proactive insights are not yet a coherent daily orchestration system | AMBER | Canonical Brain/proactive plumbing exists; premium Today orchestration acceptance remains. |
 
 ## Gate 5 — Trust & Scale
