@@ -2,7 +2,7 @@ const START=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').repla
 const MAX_PAGES=Number(process.env.SHIFT_SWEEP_MAX||1000);
 const USER_AGENT='ShiftCommissioning/1.0 (+release-route-sweep)';
 const queue=[START+'/',START+'/member-login.html'];
-const queued=new Set(queue),visited=new Map(),failures=[],externalHosts=new Map();
+const queued=new Set(queue),visited=new Map(),failures=[],externalHosts=new Map(),discoveredFrom=new Map([[START+'/',null],[START+'/member-login.html',null]]);
 const assetExt=/\.(?:css|js|mjs|png|jpe?g|webp|svg|gif|ico|woff2?|ttf|pdf)(?:\?|$)/i;
 
 function normalise(raw,base){
@@ -31,21 +31,21 @@ async function fetchWithRedirectAudit(url){
 }
 
 while(queue.length&&visited.size<MAX_PAGES){
-  const url=queue.shift();if(visited.has(url))continue;
-  let result;try{result=await fetchWithRedirectAudit(url)}catch(e){failures.push({url,error:`network:${e?.message||e}`});visited.set(url,{error:true});continue}
+  const url=queue.shift();if(visited.has(url))continue;const parent=discoveredFrom.get(url)||null;
+  let result;try{result=await fetchWithRedirectAudit(url)}catch(e){failures.push({url,discoveredFrom:parent,error:`network:${e?.message||e}`});visited.set(url,{error:true});continue}
   const {r,chain,error}=result;
-  if(error||!r){failures.push({url,error:error||'no_response',chain});visited.set(url,{error:true});continue}
+  if(error||!r){failures.push({url,discoveredFrom:parent,error:error||'no_response',chain});visited.set(url,{error:true});continue}
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase();
-  const record={status,type,final,chain};visited.set(url,record);
-  if(status>=400){failures.push({url,status,final});continue}
+  const record={status,type,final,chain,discoveredFrom:parent};visited.set(url,record);
+  if(status>=400){failures.push({url,discoveredFrom:parent,status,final});continue}
   let body='';if(!assetExt.test(final)){try{body=await r.text()}catch{}}
   if(type.includes('text/html')){
     const visible=body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
-    if(visible.length<40)failures.push({url,status,error:'blank_or_near_blank_html',visibleChars:visible.length});
-    if(/(?:internal server error|application error|something went wrong\s*$)/i.test(visible)&&visible.length<800)failures.push({url,status,error:'generic_error_page_detected'});
+    if(visible.length<40)failures.push({url,discoveredFrom:parent,status,error:'blank_or_near_blank_html',visibleChars:visible.length});
+    if(/(?:internal server error|application error|something went wrong\s*$)/i.test(visible)&&visible.length<800)failures.push({url,discoveredFrom:parent,status,error:'generic_error_page_detected'});
     for(const child of extract(body,final)){
       const root=new URL(START);
-      if(child.host===root.host){const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);queue.push(href)}}
+      if(child.host===root.host){const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
       else externalHosts.set(child.host,(externalHosts.get(child.host)||0)+1);
     }
   }
@@ -56,7 +56,7 @@ const critical=failures.filter(x=>x.status>=400||x.error);
 const report={proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES};
 console.log(JSON.stringify(report,null,2));
 if(critical.length){
-  for(const f of critical.slice(0,20)){const detail=[f.status&&`HTTP ${f.status}`,f.error,f.final&&f.final!==f.url&&`final=${f.final}`].filter(Boolean).join(' · ');console.error(`::error title=M10 route sweep::${String(f.url).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')} — ${String(detail).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')}`)}
+  for(const f of critical.slice(0,20)){const detail=[f.status&&`HTTP ${f.status}`,f.error,f.discoveredFrom&&`from=${f.discoveredFrom}`,f.final&&f.final!==f.url&&`final=${f.final}`].filter(Boolean).join(' · ');console.error(`::error title=M10 route sweep::${String(f.url).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')} — ${String(detail).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')}`)}
   process.exit(1);
 }
 if(!visited.has(START+'/'))throw new Error('Homepage was not swept');
