@@ -18,11 +18,12 @@ jobs:
         run: sleep 20
       - name: Core production health and route contract
         run: node gate1-production-journey-probe.mjs
-      - name: Authenticated isolation and retained state in production
-        run: node finish-authenticated-production.mjs
-      - name: Longitudinal Grub/Fit learning in production
-        run: node finish-longitudinal-products-production.mjs
-      - name: Final B03 Progress Picture and Shift AI production closure
-        run: node finish-b03-final3-production.mjs
+      - name: M09 production unverified-session boundary
+        run: node email-verification-production-boundary.mjs
+      # Fresh-account authenticated product probes previously depended on registration
+      # returning an authenticated cookie. Explicit email verification intentionally
+      # removes that behaviour. Historical B02/B03 production evidence stays locked;
+      # those scripts remain in-repo until a secret-safe verified synthetic account
+      # harness replaces their obsolete registration bootstrap.
       - name: M03 production Radar freshness
         run: node radar-production-freshness.mjs
