@@ -10,8 +10,11 @@ function normalise(raw,base){
   try{const u=new URL(raw,base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;if(u.pathname.startsWith('/cdn-cgi/l/email-protection'))return null;return u}catch{return null}
 }
 function extract(html,base){
+  const scan=String(html||'')
+    .replace(/(<script\b[^>]*>)[\s\S]*?<\/script>/gi,'$1</script>')
+    .replace(/(<style\b[^>]*>)[\s\S]*?<\/style>/gi,'$1</style>');
   const urls=[];const re=/(?:href|src)\s*=\s*["']([^"']+)["']/gi;let m;
-  while((m=re.exec(html))) {const u=normalise(m[1],base);if(u)urls.push(u)}
+  while((m=re.exec(scan))) {const u=normalise(m[1],base);if(u)urls.push(u)}
   return urls;
 }
 async function fetchWithRedirectAudit(url){
