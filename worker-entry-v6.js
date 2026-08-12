@@ -12,6 +12,7 @@ import {analyticsRoutes} from './product-analytics-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
 import {radarRoutes} from './radar-integration-v1.js';
 import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
+import {commissioningOpsRoutes} from './commissioning-ops-v1.js';
 import {handleCommissioningIdentity} from './commissioning-identity-v1.js';
 import {handleEmailVerification} from './auth-email-verification-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
@@ -26,6 +27,7 @@ export default {
     const path=new URL(request.url).pathname;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
+    const commissioningOps=await commissioningOpsRoutes(request,env);if(commissioningOps)return commissioningOps;
     const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
 
