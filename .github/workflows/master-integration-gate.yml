@@ -37,6 +37,10 @@ jobs:
         run: node gate2-product-source-gate.mjs
       - name: M11/M12 content-factory authoring quality contract
         run: node content-factory-gate.mjs
+      - name: Industrial 224+224 authored-universe quality gate
+        run: node industrial-factory-gate.mjs
+      - name: Industrial 448-object structured staging ingest
+        run: node industrial-factory-staging.mjs
       - name: M11 CoFID ingredient-level nutrition validation
         run: node grub-nutrition-gate.mjs
       - name: M12 Fit authored-vs-member-QA visual reconciliation
