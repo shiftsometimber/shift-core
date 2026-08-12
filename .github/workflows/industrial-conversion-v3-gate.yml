@@ -1,0 +1,39 @@
+name: Industrial Conversion V3 Gate
+on:
+  push:
+    branches: ['industrial/conversion-swarm-v3']
+  pull_request:
+    paths:
+      - 'industrial-catalogue-v4.js'
+      - 'industrial-catalogue-v5.js'
+      - 'industrial-ingredient-unlock-ranking.mjs'
+      - 'industrial-ingredient-knowledge-v2.js'
+      - 'industrial-grub-nutrition-v2.js'
+      - 'industrial-grub-risk-review-v1.js'
+      - 'fit-canonical-family-qa-v1.js'
+      - 'fit-industrial-review-v1.js'
+      - 'industrial-conversion-v3-staging.mjs'
+      - '.github/workflows/industrial-conversion-v3-gate.yml'
+jobs:
+  conversion-v3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Ingredient unlock ranking and placeholder eradication
+        run: node industrial-ingredient-unlock-ranking.mjs
+      - name: Prepare CoFID 2021
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Existing industrial conversion regression
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-conversion-gate.mjs
+      - name: Systemic v3 conversion staging
+        if: ${{ hashFiles('industrial-conversion-v3-staging.mjs') != '' }}
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-conversion-v3-staging.mjs
