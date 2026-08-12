@@ -1,0 +1,15 @@
+name: Shift Whole-Estate Route Sweep
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  route-sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Whole-estate production routes, links and blank-page sweep
+        run: node gate1-whole-estate-production-sweep.mjs
