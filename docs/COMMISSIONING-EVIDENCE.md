@@ -1,56 +1,81 @@
 # Shift Commissioning Evidence Ledger
 
-This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves the original 57 requirements. Code existence is not PASS.
+This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence and candidate volume are not PASS.
 
-## Locked behavioural PASS
+## Locked behavioural foundations
 - **B02 PASS:** authenticated A/B member isolation + durable leave/return state.
-- **B03 behavioural PASS — 9/9:** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI. PR #54 fixed the prescription-boundary defect without weakening hostile proof; merged production commissioning on `e46aa035` passed unchanged. Do not reopen without regression evidence.
+- **B03 behavioural PASS — 9/9:** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI. Do not reopen without genuine behavioural regression evidence.
 - **B04 PASS:** One Shift Brain current-intent precedence, durable Grub/Fit learning, cross-domain isolation and retained Progress/AI context.
 - **M02 PASS:** reviewed Knowledge publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no grounding.
+- **M14 / G4-002 PASS:** memory inspect/correct/delete, provenance/confidence, privacy controls and isolation.
+- **M15 / G5-004 PASS:** mocked partner MOT -> sourced Progress -> One Shift Brain -> Today with member isolation and non-diagnostic boundary.
+- **M16 / G5-006 PASS:** member-one Progress + engagement outcome architecture with separated cohorts and internal-only/non-causal guardrails.
 
-## Closures added in the current swarm
-### M14 / original G4-002 — PASS
-PR #61 Master Integration run `31624564126` passed the M14 commissioning step unchanged. Evidence proves a member can inspect learned memory with provenance/confidence, correct it (correction is explicitly sourced `member_correction`), durably delete it, change memory/proactive privacy controls, and cannot alter another member's memory. The product routes now expose authenticated GET `/v1/shift-ai/memory`, PATCH `/v1/shift-ai/memory/:key` and the existing user-scoped DELETE route.
+## M03 production Radar — PASS
+Production commissioning on 2026-08-12 invoked the genuine scheduled regulator scanner through restricted GitHub Actions OIDC. The deployed scanner successfully retrieved:
+- MHRA drug safety: 40 items.
+- MHRA alerts: 40 items.
+- EMA news: 5 items.
 
-### M15 / original G5-004 — PASS
-Merged PR #59 plus PR #61 regression proof demonstrates mocked partner Health MOT payload -> normalized/idempotent MOT persistence -> clearly sourced Progress -> One Shift Brain -> authenticated Today. Recognised measurements import safely; unrelated lab values do not leak into Progress fields; another member cannot inherit the result; Shift may summarise but may not diagnose/change treatment. This closes the agreed mocked partner-ready V1 requirement. A real provider mapping/sign-off remains external/post-launch until a provider is formalised.
+The scan completed successfully and production freshness immediately returned `GREEN`, `current:true`, scan age inside the 24h SLO, event age inside the 48h SLO and no stale reasons. Existing adversarial commissioning proves stale -> AMBER, publication failure -> RED and recovery -> GREEN. Original G4-006 and G4-007 are therefore PASS.
 
-### M16 / original G5-006 — PASS
-PR #61 Master Integration run `31624564126` passed the M16 commissioning step after one staging-fixture defect was fixed. The first attempt failed because the test fixture used an obsolete `product_events` shape lacking production `occurred_at`; the production module was not weakened. The fixture was corrected to the real analytics schema and rerun unchanged. Evidence now proves member-one Progress and product engagement can be joined into separated member cohorts, including opposite weight directions and different engagement bands, while output remains `internalOnly` with explicit warning that correlation is not causation and is not a publishable clinical outcome claim.
+## M10 exhaustive production route detection — original G1-006 PASS
+The exhaustive whole-estate release sweep checked **418 same-origin URLs / 370 HTML pages** with **0 critical route, asset or blank-page failures** and `truncated:false` against a 1,000-URL ceiling. Discovery was exhausted. An earlier malformed `${m.url}` defect was found by this mechanism, fixed, and the unchanged exhaustive sweep reran green. This closes original G1-006. M10 itself remains AMBER for rendered loading/empty/error states and mobile/cross-browser acceptance.
 
-## PR #61 CI state
-- Shift AI Academy Gate: GREEN.
-- Shift Master Integration Gate run `31624564126`: GREEN after the exact M16 fixture repair. M14 PASS, M15 PASS, M16 PASS; all prior source/security/Brain/content/Watchtower/adversarial/10k/runtime-auth/Dave/Radar/production-isolation gates also passed.
-- No B03/#55 proof was weakened or reopened.
+## M07 structured member runtime — original G5-009 PASS
+PR #68 introduced V7 structured-preferred Grub/Fit composition with controlled V4 migration fallback. Production commissioning then exposed two real Fit cutover defects rather than allowing a shallow structured floor to degrade the member experience:
+1. Three published structured movements were initially cycled repeatedly through a multi-day plan. The semantic quality floor correctly rejected the repetition. PR #77 changed structured cutover to use each eligible published movement at most once across the plan and preserve quality-aware legacy fallback for unfilled slots.
+2. V6 could still enforce the semantic quality floor against the interim legacy composition before V7 had the chance to enrich it. PR #80 moved authoritative quality enforcement to the final V7 composition for V7-owned routes while leaving ordinary V6 callers fail-closed.
 
-## Content conversion evidence
-Current structured factory on main/PR #61:
-- **Grub:** 32 structured authored across four batches. Meal distribution: 8 breakfast / 8 lunch / 10 dinner / 6 snack. Deterministic/schema gate passes all authored items. Nutrition-validated 0; second-person reviewed/approved 0; published 0; structured production-served 0; launch-ready 0. Legacy V4 still serves 16.
-- **Fit:** 32 structured authored across four batches, 12 movement groups in the structured set. Deterministic/schema gate passes. Approved member visual guidance 0; reviewed/approved 0; published 0; structured production-served 0; launch-ready 0. Legacy V4 still serves 12.
+PR #80 Master Integration and whole-estate gates were GREEN. It merged as `d28d0fde59b1146506c98d8f16f4ff5c88e82138`. The unchanged post-merge production commissioning run `31638147840` is fully GREEN, including Radar, authenticated isolation, longitudinal Grub/Fit, locked B03 and M07.
 
-Capacity simulator (drafts are used for capacity testing only, never counted launch-ready):
-- Grub prospective pools with legacy + drafts: breakfast 12 / lunch 12 / dinner 14 / snack 10. First exact repeats move from day 5 live to day 13 / 13 / 15 / 11. Over 30 days, 72 exact repeats remain across 120 slots (60.0%); over 60 days, 192 repeats across 240 slots (80.0%). Therefore the 64 floor remains a hypothesis and more breadth/constraint-aware simulation is required.
-- Fit prospective pool: 44 exercises / 13 movement groups; worst exercise appearance falls from 15 live to 5 across 180 slots (36 sessions × 5). Progression, limitation compliance, session similarity and visual acceptance remain unproven, so M12 stays AMBER.
+M07 production evidence:
+- Grub V7: `publishedAvailable:1`, `served:1`, example `lighter-beef-cottage-pie`, validated nutrition retained, durable Nay respected.
+- Fit V7: `publishedAvailable:3`, `served:3`, example `dumbbell-goblet-squat`, member visual `assets/fit/shift-fit-batch2.svg#goblet-squat`, durable Nay respected.
+- Production proof states that the authenticated member consumed reviewed/published structured Grub/Fit content with validated nutrition, approved visual guidance and durable Nay behaviour; legacy remains controlled migration fallback only.
 
-## Auth transient evidence
-PR #55 is closed as superseded. Its unchanged rerun was 29/29 GREEN. The earlier generic `register DaveA` 500 did not reproduce. Treat it as a non-reproduced transient; if registration 500 recurs, preserve/request sufficient request-level telemetry to identify the failing registration stage. Do not reopen #55 without genuine regression evidence.
+This closes original G5-009. M11/M12 remain AMBER because production scale and breadth are separate requirements.
 
-## B01
-Welcome/reset email receipt and reset/change implementation are proven. Remaining B01 proof is the secret-bearing real inbox token -> reset -> login new password -> authenticated change-password -> logout -> login. The token must never be committed or logged.
+## Industrial content factory
+The old 64 Grub / 48 Fit numbers are retired as product targets. Current objectives are **2,500 commissioned Grub + 2,500 commissioned Fit** in the current build and **10,000+ quality objects in each universe** long-term.
 
-## Current original-audit scoreboard
-**57 total / 12 PASS / 42 AMBER / 3 BLOCKED / 0 abstraction orphans.**
-Newly evidenced original-row closures this swarm: **G4-002, G5-004, G5-006**.
+### Grub funnel
+- Structured authored/schema-valid universe: **256** = 32 original + 224 industrial.
+- Industrial batch distribution: 56 breakfast / 56 lunch / 56 dinner / 56 snack.
+- Nutrition-valid: **1**.
+- Reviewed: **1**.
+- Published: **1**.
+- Production-served: **1**.
+- Object-level commissioning floor ready: **1**; catalogue-scale M11 remains AMBER.
+- New 224 industrial objects remain quarantined drafts pending ingredient-level nutrition validation/review.
 
-External BLOCKED originals remain exactly:
-- G5-001 signed clinical operating model/provider/pharmacy governance.
-- G5-002 clinically governed Medication Companion prescribing/escalation.
-- G5-003 provider-approved identity/weight/evidence verification.
+The first industrial generator produced exact duplicate snack fingerprints. CI rejected the batch. The content was changed to materially distinct variants; the duplicate gate was not weakened. Industrial gate requires unique IDs/titles/fingerprints and complete structural/safety metadata.
 
-## Remaining independent swarm
-B01; B03 rendered/premium/mobile only; B05; B06/B07; B08/Dave; M01; M03–M13; M17. Content conversion is important but does not queue the others.
+Historical variety evidence remains: live 16-recipe pool produced ~86.7% exact repeats over 30 days and ~93.3% over 60 days; the earlier 32-candidate capacity pool was still ~60% / 80%. Industrial 90/180/365-day commissioned-catalogue simulation remains required and candidate capacity must not masquerade as production variety.
 
-## Recovery point
-PR #61 is the current active closure PR. Once the documentation reconciliation rerun is GREEN, merge #61. Then next prey is conversion of structured Grub/Fit into domain-validated/reviewed/published/production-served content while B06/B07 and other independent AMBER rows continue in parallel.
+### Fit funnel
+- Structured authored/schema-valid universe: **256** = 32 original + 224 industrial.
+- Industrial objects cover **28 canonical movements × 8 meaningful variation identities**.
+- Existing visual assets authored: 8; member-QA approved: **3**.
+- Reviewed: **3**.
+- Published: **3**.
+- Production-served: **3**.
+- Object-level commissioning floor ready: **3**; catalogue-scale M12 remains AMBER.
+- New 224 industrial objects remain visual/review quarantined.
 
-Operating rule: **CONVERT -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+Historical simulation: live 12-movement pool could repeat one movement 15 times over 180 slots; the earlier candidate pool reduced worst repetition to 5. Industrial 4/8/12/26/52-week multi-context simulation remains required.
+
+## B01 / M09 human-only boundary
+Deterministic email verification, welcome/reset delivery implementation and reset/change-password logic are proven. Remaining release evidence requires a real inbox token/click chain. Secret-bearing reset/verification tokens must never be committed or logged.
+
+## Current authoritative scoreboard
+**57 total / 16 PASS / 38 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+
+Rows newly closed in this industrial execution wave: **G4-006, G4-007, G1-006, G5-009**.
+
+External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
+
+## Active closure swarm
+B01; B03 rendered/premium/mobile only; B05; B06/B07; B08/Dave; M01; M04–M06; M08–M13; M17. Industrial Grub/Fit conversion must run continuously but must not queue unrelated closures.
+
+Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> BREAK -> FIX -> PROVE -> CLOSE.**
