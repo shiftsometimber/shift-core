@@ -12,7 +12,7 @@ export async function runRadarScheduledScan(env){
   const startedAt=iso();
   const result=await runRadarFreshness(env);
   const completedAt=iso();
-  await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json,created_at) VALUES(NULL,'scan','scheduler',?,?,?)`)
+  await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json,created_at) VALUES(NULL,'scan','scheduler',?,?)`)
     .bind(JSON.stringify({kind:'scheduled_freshness_scan',started_at:startedAt,completed_at:completedAt,freshness_due:Number(result?.freshnessDue||0)}),completedAt)
     .run();
   return {...result,scanRecordedAt:completedAt};
