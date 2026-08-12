@@ -1,41 +1,44 @@
 # Shift Commissioning Evidence Ledger
 
-This ledger records demonstrated evidence. Source/merge alone is not PASS. AMBER means substantial engineering exists but required behavioural/production/device evidence remains. BLOCKED means a genuine external dependency is required.
+This ledger records demonstrated evidence. Source/merge alone is not PASS. AMBER means required evidence remains. BLOCKED means a genuine external dependency is required. `docs/LAUNCH-FINISH-LINE.md` is the authoritative closure board.
 
-## Current closure evidence — 2026-08-12
+## Current closure evidence — reconciled through PR #49, 2026-08-12
 
-PRs #40–#47 have materially advanced the programme beyond the older Gate 5 checkpoint. The authoritative launch burn-down is `docs/LAUNCH-FINISH-LINE.md`; this ledger records demonstrated evidence without promoting unproven rows.
+### PASS CLOSED
+**B02 authenticated member isolation + durable longitudinal state: PASS.** PR #47 created two fresh authenticated production members and proved separate sessions, member-state preferences, Progress, Brain context, Today context and logout/login retained state with no A/B contamination.
 
-### Authentication and member isolation
-Production transactional Welcome and account-recovery messages were observed in the connected Shift inbox. Full account-recovery completion remains incomplete.
+**B04 One Shift Brain longitudinal behaviour: PASS.** PR #42 proves current intent overrides stale stored preference and unrelated domains remain isolated. PR #48 adds authenticated production stored food dislike -> Grub -> Nay -> logout -> login -> regenerated plan excluding the Nayed meal, while Fit remains unaffected by the Grub signal and respects its own running dislike. The commissioning run exposed a real defect where a Nayed meal could reappear; the product path was fixed and the hard proof rerun green.
 
-**B02 authenticated member isolation + durable longitudinal state: PASS.** PR #47 production commissioning created two fresh authenticated members and demonstrated separate sessions, separate member-state preferences, separate Progress, separate Brain context, Today consuming each member's Brain, logout/login retained state, and no A/B contamination.
+**M02 reviewed Knowledge publication lifecycle: PASS.** Reviewed Knowledge publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no longer grounding is regression-protected.
 
-### Gate 4 — Shift Becomes Intelligent
-G4-001 AMBER: One Shift Brain is integrated across shared AI/Today/Grub/Fit context; #47 adds authenticated separate Brain contexts and Today consumption. Changed recommendation behaviour remains required.
-G4-002 AMBER: memory provenance/privacy exists; member inspect/change/delete and governance proof remains.
-G4-003 AMBER: durable Yay/Nay and preference signals feed later decisions; authenticated retained-state proof is now green, but a later recommendation must demonstrably change after leave/return before closure.
-G4-004 PASS for reviewed Knowledge lifecycle evidence: adversarial commissioning proves reviewed publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no longer grounding. This does not imply any external clinical source is commissioned.
-G4-005 AMBER: grounding provenance is returned by Shift AI; production/HQ trace presentation proof remains.
-G4-006 AMBER: Radar staged E2E/publication architecture pass; live source->review->publish->ticker evidence remains required.
-G4-007 AMBER: freshness states and regression transitions exist; controlled production-safe stale/current operational proof remains.
-G4-008 AMBER: proactive consumers share Brain; authenticated explainable next-action behaviour remains.
+### B03 product evidence
+PR #48 production behaviour PASS: Grub and Fit. Grub proves authenticated generation, stored dislike application, durable Nay across return, changed later recommendation and semantic quality floor. Fit proves authenticated generation, exercise dislike, cross-product isolation and semantic quality floor. Their only remaining B03 closure item is rendered premium/mobile member journey plus graceful member-facing failure state.
 
-### Gate 5 — Trust & Scale
-G5-001/G5-002/G5-003 BLOCKED on genuine clinical/provider/verification governance; no partner facts are invented.
-G5-004 AMBER / ENGINEERING COMMISSIONED: provider-neutral Health MOT ingestion/storage exists; real provider payload/verification remains externally blocked.
-G5-005 AMBER: public/legal architecture exists; full production trust audit remains.
-G5-006 AMBER: privacy-filtered product events, Progress cohorts and aggregate journey conversion exist; governed definitions and real-flow QA remain.
-G5-007 AMBER / ENGINEERING COMMISSIONED: Watchtower now has public/Core/Radar probes, timeout/latency evidence, dependency health, SLO evaluation, durable history, 24h availability/latency trends, retention/pruning and trend-driven AMBER/RED conditions. Controlled production-safe degradation -> detection -> HQ action -> recovery evidence remains required.
-G5-008 AMBER: HQ attention/journey endpoints expose actionable summaries; operator workflow evidence remains.
-G5-009 AMBER / ENGINEERING COMMISSIONED: versioned/statused/paginated structured-content path exists and a measured 10,000-object commissioning benchmark is regression protected. Production migration/path completeness remains to be reconciled before closure.
-G5-010 AMBER: canonical privacy-filtered taxonomy and aggregate registration->onboarding->Today->feature->Progress->return funnel exist; remaining surfaces and real-flow QA remain.
-G5-011 AMBER: adversarial analytics privacy stripping/rejection, anonymous route abuse and authenticated A/B isolation evidence are green. Full release review of export/delete/uploads/audit and remaining privilege boundaries remains.
-G5-012 AMBER: latency budgets, probe latency and structured-content benchmark exist; production Web Vitals/API percentile and material slow-path evidence remains.
-G5-013 Dave AMBER/IN PROGRESS: live public discover/trust/Core health/anonymous boundary plus authenticated A/B retained-state commissioning are evidenced. Full product, changed-recommendation and account-recovery journey remains incomplete.
+PR #49 production behaviour PASS: Today, Hydration, Conundrum and My Plans. The production suite proves Conundrum recognises chicken+cheese+wrap, coffee contributes to hydration while beer does not, hydration plan/log state survives logout/login, My Plans retains the active hydration plan, and Today consumes that plan before and after return. Their only remaining B03 closure item is rendered premium/mobile member journey plus appropriate empty/error/validation state.
 
-## Gate 1–3 residuals
-Gate 1 engineering/security regressions remain protected; production inbox receipt and authenticated A/B retained-state evidence are now demonstrated, while the remaining account-recovery lifecycle is incomplete. Gate 2 remains AMBER pending closure of the full premium member journeys and semantic/persistence evidence across all V1 products. Gate 3 remains AMBER until genuine Safari/Chrome/device evidence exists.
+Progress remains AMBER: #49 proves its production summary safely returns `empty` or `ready`, but authenticated create/log -> persist -> refresh -> leave/return and rendered journey remain.
+Progress Picture remains AMBER: authenticated upload/save/history/comparison/delete/privacy plus rendered/mobile journey remain.
+Shift AI remains AMBER: authenticated ask -> grounded/provenance-aware answer -> retained context/no cross-member leakage plus rendered journey remain.
 
-## Authoritative recovery point
-Merged through PR #47. B02 is evidenced PASS. The next critical path is B04 authenticated changed-recommendation proof and B03 primary member journey closure, with B01 account-recovery completion pursued only through a secure execution path. In parallel continue B06/B07 controlled Watchtower/HQ degradation-recovery proof and the remaining public trust, security/privacy, performance/accessibility, analytics and structured-content closure work. Genuine physical-device and external clinical/provider evidence must remain AMBER/BLOCKED until demonstrated.
+### B01 authentication recovery
+Production Welcome and password-reset messages are proven received in the connected Shift inbox. The production recovery implementation includes single-use hashed reset tokens, 30-minute expiry, password reset, session revocation and authenticated change-password. Remaining evidence is the actual real inbox token -> reset POST -> login with new password -> authenticated change-password -> logout -> login again. The token must not be committed/logged. If the active execution environment cannot securely submit the inbox token to the production POST, this is a secure-runtime/human interaction dependency rather than missing product code.
+
+### Remaining launch blockers
+B01 AMBER — real-token recovery completion only.
+B03 AMBER — six products behaviour-green/rendered-proof remaining; Progress/Picture/AI behavioural + rendered proof remaining.
+B05 AMBER — production public trust audit.
+B06 AMBER — authorised HQ operator workflow under controlled failure/recovery.
+B07 AMBER — controlled production-safe degradation -> detect/history/HQ next action -> recovered.
+B08 AMBER — fresh Dave end-to-end release candidate.
+
+### Remaining MUST FINISH
+M01 AMBER — One Shift rendered representative public/member evidence.
+M03 AMBER — Radar live scan/publication/ticker freshness evidence.
+M04 AMBER — full real-flow launch analytics QA.
+M05 AMBER — release security/privacy review including export/delete/uploads/audit/privilege boundaries.
+M06 AMBER — interaction accessibility + production performance evidence.
+M07 AMBER — production structured-content path/migration reconciliation; 10k benchmark already green.
+M08 AMBER — final release evidence/recovery checkpoint, continuously maintained.
+
+## Current recovery point
+`main` is reconciled through merged PR #49 plus this ledger update. No known unresolved regression from #48/#49. Critical path: B01 secure token completion; B03 Progress/Picture/AI behavioural closure and rendered evidence; B06/B07 controlled operations proof; B08 Dave. Parallel closure lanes: B05, M03, M04, M05, M06, M07. Do not reopen the green production behaviours for Grub/Fit/Today/Hydration/Conundrum/My Plans unless a regression is discovered.
