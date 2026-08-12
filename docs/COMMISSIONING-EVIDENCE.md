@@ -11,6 +11,9 @@ This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the l
 - **M07 / G5-009 PASS:** authenticated production V7 structured Grub/Fit serving with validated nutrition, approved Fit visual and durable Nays; V4 remains controlled migration fallback.
 - **M14/G4-002, M15/G5-004 and M16/G5-006 PASS** remain locked.
 
+## B06 / original G5-008 — PASS
+PR #93 passed the unchanged Master Integration gate and merged. The authorised HQ operator fire drill uses a genuine HQ session through the real `/v1/hq/attention` and `/v1/hq/watchtower` routes; denies anonymous operational attention; proves GREEN baseline, actionable AMBER/RED degradation, operator next actions, retained incident history, persisted acknowledgement/resolution and recovery back to GREEN without deliberately breaking production dependencies. This closes B06/G5-008.
+
 ## G1-010 + M05 / original G5-011 — PASS
 Merged PR #86 added source and deployed release security/privacy commissioning. The unchanged production run `31640854509` completed GREEN. Its dedicated production step proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions. Original G1-010 and G5-011 are PASS; M05 is PASS.
 
@@ -69,13 +72,13 @@ M12 remains AMBER because visual production/member-QA/review/publication/product
 Automated progressive journey still reports public discovery/trust/Core and anonymous-boundary legs green, while registration/verification/recovery and authenticated rendered legs remain explicitly AMBER and treatment support remains partner-dependent. The separate authenticated production suites are green but have not been used to vanity-promote B08.
 
 ## Current authoritative scoreboard
-**57 total / 19 PASS / 35 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
 Rows closed by the latest swarmed evidence: **G1-010, G5-007, G5-011**. Content authoring crossed the short-term 2,500 target in both Grub and Fit but M11/M12 correctly remain AMBER for conversion quality and breadth.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
 ## Active swarm
-B01; B03 rendered only; B05; B06; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub nutrition/review/publication conversion and Fit visual/review/publication conversion.
+B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub nutrition/review/publication conversion and Fit visual/review/publication conversion.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**

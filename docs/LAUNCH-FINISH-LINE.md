@@ -10,7 +10,7 @@ This is the authoritative launch closure board. `docs/SHIFT-COMMISSIONING-REMEDI
 | B03 | Core member V1 journeys | Behaviour **9/9 PASS and locked**; full row remains AMBER only for rendered/premium/mobile/error-state evidence |
 | B04 | One Shift Brain longitudinal behaviour | **PASS** — current intent precedence, durable Grub/Fit learning, cross-domain isolation, retained Progress/AI context |
 | B05 | Public/member trust boundary | AMBER — operator/AI/data/support/current clinical-provider status trust audit |
-| B06 | HQ production operation | AMBER — authorised operator must see actionable AMBER/RED, next action and recovery |
+| B06 | HQ production operation | **PASS** — authorised real HQ-session fire drill proves anonymous denial, actionable AMBER/RED, operator next action, persisted operator acknowledgement/resolution, retained incident history and reflected recovery |
 | B07 | Critical monitoring degradation/recovery | **PASS** — dedicated fire drill proves GREEN -> latency AMBER -> outage RED -> operator next actions + retained history -> recovery -> GREEN without deliberately breaking production dependencies |
 | B08 | Dave release-candidate journey | AMBER — fresh unassisted end-to-end Dave incl recovery, rendered/mobile and content-depth acceptance |
 
@@ -40,7 +40,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification: **19 PASS / 35 AMBER / 3 BLOCKED / 0 abstraction orphans** after production release-security/privacy proof and the controlled Watchtower degradation/recovery fire drill.
+Exactly **57** original rows remain mandatory. Current evidenced classification: **20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans** after production release-security/privacy proof and the controlled Watchtower degradation/recovery fire drill.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908**. Industrial factory holds **2,876** quarantined/schema-gated objects plus the existing 32 structured objects. This execution added **2,652** authored objects beyond the prior 256 total. Distribution inside the industrial catalogue is 464 breakfast / 668 lunch / 1,280 dinner / 464 snack objects; 26 real-life food families are represented and the catalogue contains 612 fakeaway/treat-tagged objects. The exact-duplicate gate initially caught structurally duplicate snack-family output; those families were made materially distinct and the unchanged gate then passed. Downstream remains **1 nutrition-valid / 1 reviewed / 1 published / 1 production-served**. Authored-capacity simulation shows **0 exact repeats** at 30, 60, 90 and 365 days, but this is explicitly not commissioned/published diversity.
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-B01; B03 rendered only; B05; B06; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 35 remaining AMBERs are classified in the remediation matrix as QUICK KILL / FINITE / LARGE / HUMAN-DEVICE.
+B01; B03 rendered only; B05; B06; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 34 remaining AMBERs are classified in the remediation matrix as QUICK KILL / FINITE / LARGE / HUMAN-DEVICE.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening the acceptance test.

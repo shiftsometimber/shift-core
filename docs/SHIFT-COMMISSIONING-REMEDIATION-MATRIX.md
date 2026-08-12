@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence.
 
-**Current reconciled scoreboard: 57 total / 19 PASS / 35 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -73,7 +73,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-005 | Public trust architecture is incomplete | AMBER | Production operator/AI/privacy/support/current-provider trust audit remains B05. |
 | G5-006 | Outcome measurement not embedded from member one | **PASS** | Member-one Progress + engagement cohort analysis is proven with separated members and explicit internal-only/non-causal guardrails. |
 | G5-007 | Watchtower observability is incomplete | **PASS** | Dedicated fire-drill gate proves GREEN baseline -> latency AMBER -> outage RED, operator next actions, retained probe history after endpoint restoration, and recovery back to GREEN without deliberately breaking production dependencies. |
-| G5-008 | HQ is admin UI rather than operating nerve centre | AMBER | Attention endpoint exists; authorised operator fire-drill evidence remains B06. |
+| G5-008 | HQ is admin UI rather than operating nerve centre | **PASS** | Authorised HQ-session fire drill proves anonymous denial, GREEN baseline, actionable AMBER/RED state, operator next action, retained history, persisted acknowledgement/resolution and recovery reflected through the real HQ routes. |
 | G5-009 | Recipes/exercises are hard-coded scaling traps | **PASS** | Authenticated production commissioning proves V7 consumes reviewed/published structured Grub and Fit objects, preserves validated nutrition/approved visuals and durable Nay behaviour, and uses V4 only as controlled quality-preserving migration fallback. |
 | G5-010 | Analytics lacks coherent product-event taxonomy | **PASS** | Canonical product-event taxonomy/instrumentation, privacy filtering and Watchtower analytics gates are regression-protected. |
 | G5-011 | Security/privacy audit not yet complete | **PASS** | Unchanged deployed production security/privacy proof passed: restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS, per-member export isolation, deletion-session revocation, safe response envelopes, and source gates covering secrets/analytics/recovery/auth controls. |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Progressive automated Dave coverage plus authenticated production suites exist; fresh unassisted rendered/recovery/content-depth release candidate remains B08. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 35-AMBER burn-down classification
+## 34-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -117,13 +117,12 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G4-004 | FINITE | automatic CMS -> Knowledge Graph flywheel proof |
 | G4-008 | LARGE | premium proactive Today orchestration |
 | G5-005 | FINITE | B05 public trust audit |
-| G5-008 | QUICK KILL | B06 authorised HQ operator fire drill |
 | G5-012 | FINITE | M06 critical-path performance evidence |
 | G5-013 | HUMAN/DEVICE | B08 fresh unassisted rendered Dave journey |
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
-PASS rows: 19. AMBER rows: 35. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+PASS rows: 20. AMBER rows: 34. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
 ## Commissioning rule
 A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.
