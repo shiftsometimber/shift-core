@@ -6,6 +6,7 @@ on:
       - '**.mjs'
       - 'docs/COMMISSIONING-EVIDENCE.md'
       - 'docs/FINISH-LINE.md'
+      - 'docs/LAUNCH-FINISH-LINE.md'
       - '.github/workflows/master-integration-gate.yml'
 jobs:
   integration-gate:
@@ -67,3 +68,5 @@ jobs:
         run: node radar-e2e-staging.mjs
       - name: Gate 1 public production probe
         run: node gate1-production-journey-probe.mjs
+      - name: Finish-line authenticated production isolation and retained state
+        run: node finish-authenticated-production.mjs
