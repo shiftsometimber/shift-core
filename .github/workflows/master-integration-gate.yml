@@ -60,6 +60,8 @@ jobs:
             echo "::error file=health-mot-e2e-staging.mjs::$msg"
             exit "$rc"
           fi
+      - name: M16 governed outcomes member-one/cohort proof
+        run: node outcomes-e2e-staging.mjs
       - name: Gate 5 full assault contract
         run: node gate5-full-assault-gate.mjs
       - name: Gate 5 persisted probe history contract
