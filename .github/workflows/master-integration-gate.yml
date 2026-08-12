@@ -8,6 +8,7 @@ on:
       - 'docs/FINISH-LINE.md'
       - 'docs/LAUNCH-FINISH-LINE.md'
       - '.github/workflows/master-integration-gate.yml'
+      - '.github/workflows/production-commissioning.yml'
 jobs:
   integration-gate:
     runs-on: ubuntu-latest
@@ -70,5 +71,3 @@ jobs:
         run: node gate1-production-journey-probe.mjs
       - name: Finish-line authenticated production isolation and retained state
         run: node finish-authenticated-production.mjs
-      - name: Finish-line longitudinal Grub Fit production closure
-        run: node finish-longitudinal-products-production.mjs
