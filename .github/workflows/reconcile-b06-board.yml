@@ -1,0 +1,31 @@
+name: Reconcile B06 Board
+on:
+  push:
+    branches: ['reconcile/b06-20pass']
+    paths:
+      - 'reconcile-b06-board.mjs'
+      - '.github/workflows/reconcile-b06-board.yml'
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: reconcile/b06-20pass
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Reconcile authoritative board
+        run: node reconcile-b06-board.mjs
+      - name: Verify finish-line invariants
+        run: node finish-line-gate.mjs
+      - name: Commit reconciled evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md docs/LAUNCH-FINISH-LINE.md docs/COMMISSIONING-EVIDENCE.md finish-line-gate.mjs
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Reconcile B06 to 20 PASS / 34 AMBER'
+          git push origin HEAD:reconcile/b06-20pass
