@@ -22,3 +22,5 @@ jobs:
         run: node finish-authenticated-production.mjs
       - name: Longitudinal Grub/Fit learning in production
         run: node finish-longitudinal-products-production.mjs
+      - name: Final B03 Progress Picture and Shift AI production closure
+        run: node finish-b03-final3-production.mjs
