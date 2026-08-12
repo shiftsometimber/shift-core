@@ -4,53 +4,118 @@ This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the l
 
 ## Locked behavioural PASS
 - **B02 PASS:** authenticated A/B member isolation + durable leave/return state.
-- **B03 behavioural PASS — 9/9:** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI. PR #54 fixed the prescription-boundary defect without weakening hostile proof; merged production commissioning on `e46aa035` passed unchanged. Do not reopen without regression evidence.
+- **B03 behavioural PASS — 9/9:** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI. Do not reopen without genuine regression evidence.
 - **B04 PASS:** One Shift Brain current-intent precedence, durable Grub/Fit learning, cross-domain isolation and retained Progress/AI context.
 - **M02 PASS:** reviewed Knowledge publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no grounding.
+- **M03 / G4-006/G4-007 PASS:** genuine production MHRA/EMA scan + freshness inside declared SLOs; adversarial stale/failure/recovery transitions remain locked.
+- **M14 / G4-002 PASS:** member memory inspect/correct/delete, provenance/confidence, privacy controls and cross-member isolation.
+- **M15 / G5-004 PASS:** mocked partner MOT -> idempotent persistence -> sourced Progress -> Brain -> authenticated Today, member-isolated and non-diagnostic.
+- **M16 / G5-006 PASS:** member-one Progress + engagement cohort proof with internal-only/non-causal guardrails.
 
-## Closures added in the current swarm
-### M14 / original G4-002 — PASS
-PR #61 Master Integration run `31624564126` passed the M14 commissioning step unchanged. Evidence proves a member can inspect learned memory with provenance/confidence, correct it (correction is explicitly sourced `member_correction`), durably delete it, change memory/proactive privacy controls, and cannot alter another member's memory. The product routes now expose authenticated GET `/v1/shift-ai/memory`, PATCH `/v1/shift-ai/memory/:key` and the existing user-scoped DELETE route.
+## Current production proof — `main` d28d0fde59b1146506c98d8f16f4ff5c88e82138
+Production commissioning run `31638147840`, job `94253583485`, completed GREEN unchanged.
 
-### M15 / original G5-004 — PASS
-Merged PR #59 plus PR #61 regression proof demonstrates mocked partner Health MOT payload -> normalized/idempotent MOT persistence -> clearly sourced Progress -> One Shift Brain -> authenticated Today. Recognised measurements import safely; unrelated lab values do not leak into Progress fields; another member cannot inherit the result; Shift may summarise but may not diagnose/change treatment. This closes the agreed mocked partner-ready V1 requirement. A real provider mapping/sign-off remains external/post-launch until a provider is formalised.
+### M03 genuine regulator scan / freshness
+The restricted GitHub Actions OIDC commissioning identity invoked the real deployed regulator scanner. Source results:
+- `mhra-drug-safety`: OK, 40 items.
+- `mhra-alerts`: OK, 40 items.
+- `ema-news`: OK, 5 items.
+- Production freshness immediately returned `GREEN`, `current:true`, no freshness reasons, scan/event inside declared SLOs.
 
-### M16 / original G5-006 — PASS
-PR #61 Master Integration run `31624564126` passed the M16 commissioning step after one staging-fixture defect was fixed. The first attempt failed because the test fixture used an obsolete `product_events` shape lacking production `occurred_at`; the production module was not weakened. The fixture was corrected to the real analytics schema and rerun unchanged. Evidence now proves member-one Progress and product engagement can be joined into separated member cohorts, including opposite weight directions and different engagement bands, while output remains `internalOnly` with explicit warning that correlation is not causation and is not a publishable clinical outcome claim.
+### Authenticated isolation / retained state
+The same production run proved two real commissioning sessions remained isolated across member state, One Shift Brain, Today and Progress; logout/login retained each member's own state.
 
-## PR #61 CI state
-- Shift AI Academy Gate: GREEN.
-- Shift Master Integration Gate run `31624564126`: GREEN after the exact M16 fixture repair. M14 PASS, M15 PASS, M16 PASS; all prior source/security/Brain/content/Watchtower/adversarial/10k/runtime-auth/Dave/Radar/production-isolation gates also passed.
-- No B03/#55 proof was weakened or reopened.
+### Longitudinal Grub/Fit learning
+The run proved registration, initial Grub recommendation, Nay persistence across return, exclusion of the Nayed Grub item, Fit isolation from Grub feedback, and Fit semantic quality.
 
-## Content conversion evidence
-Current structured factory on main/PR #61:
-- **Grub:** 32 structured authored across four batches. Meal distribution: 8 breakfast / 8 lunch / 10 dinner / 6 snack. Deterministic/schema gate passes all authored items. Nutrition-validated 0; second-person reviewed/approved 0; published 0; structured production-served 0; launch-ready 0. Legacy V4 still serves 16.
-- **Fit:** 32 structured authored across four batches, 12 movement groups in the structured set. Deterministic/schema gate passes. Approved member visual guidance 0; reviewed/approved 0; published 0; structured production-served 0; launch-ready 0. Legacy V4 still serves 12.
+### Progress Picture / Shift AI
+The run proved Progress create/persist/return, “since you started” context, Progress Picture save/history/private ownership/delete, Shift AI Brain context, provenance contract, return behaviour and clinical boundary.
 
-Capacity simulator (drafts are used for capacity testing only, never counted launch-ready):
-- Grub prospective pools with legacy + drafts: breakfast 12 / lunch 12 / dinner 14 / snack 10. First exact repeats move from day 5 live to day 13 / 13 / 15 / 11. Over 30 days, 72 exact repeats remain across 120 slots (60.0%); over 60 days, 192 repeats across 240 slots (80.0%). Therefore the 64 floor remains a hypothesis and more breadth/constraint-aware simulation is required.
-- Fit prospective pool: 44 exercises / 13 movement groups; worst exercise appearance falls from 15 live to 5 across 180 slots (36 sessions × 5). Progression, limitation compliance, session similarity and visual acceptance remain unproven, so M12 stays AMBER.
+## M07 / G5-009 — production structured serving PASS
+The final production stage in run `31638147840` proved reviewed/published structured catalogue objects genuinely supply authenticated members.
 
-## Auth transient evidence
-PR #55 is closed as superseded. Its unchanged rerun was 29/29 GREEN. The earlier generic `register DaveA` 500 did not reproduce. Treat it as a non-reproduced transient; if registration 500 recurs, preserve/request sufficient request-level telemetry to identify the failing registration stage. Do not reopen #55 without genuine regression evidence.
+**Grub:**
+- runtime `shift_grub_plan_v7`
+- published available: 1
+- served: 1
+- example: `lighter-beef-cottage-pie`
+- validated nutrition retained
+- durable Nay respected: true
 
-## B01
-Welcome/reset email receipt and reset/change implementation are proven. Remaining B01 proof is the secret-bearing real inbox token -> reset -> login new password -> authenticated change-password -> logout -> login. The token must never be committed or logged.
+**Fit:**
+- runtime `shift_fit_plan_v7`
+- published available: 3
+- served: 3
+- example: `dumbbell-goblet-squat`
+- approved visual returned: `assets/fit/shift-fit-batch2.svg#goblet-squat`
+- durable Nay respected: true
 
-## Current original-audit scoreboard
-**57 total / 12 PASS / 42 AMBER / 3 BLOCKED / 0 abstraction orphans.**
-Newly evidenced original-row closures this swarm: **G4-002, G5-004, G5-006**.
+The unchanged production gate emitted: `PASS M07 authenticated production member consumes reviewed/published structured Grub/Fit content with validated nutrition, approved visual guidance and durable Nay behaviour; legacy remains controlled migration fallback only.`
 
-External BLOCKED originals remain exactly:
+This closes **G5-009 runtime authority**, not catalogue depth. M11/M12 and G2 catalogue-depth rows remain AMBER.
+
+Two real production defects were fixed before the unchanged proof passed:
+1. PR #77 stopped V7 cycling only three commissioned Fit movements through a plan; each eligible structured movement is used at most once, with Brain/Nay-aware legacy selection only as migration fallback.
+2. PR #80 moved final V7 semantic-quality enforcement after structured enrichment while preserving V6 fail-closed behaviour for ordinary V6 callers.
+
+Evidence file: `docs/evidence/2026-08-12-m07-production-structured-serving.md`.
+
+## M10 / G1-006 — exhaustive route detection PASS
+Merged PR #73 production route run `31637899433`, job `94252761447`, proved:
+- 418 same-origin URLs checked.
+- 370 HTML pages checked.
+- 0 critical route/asset/blank-page failures.
+- Redirect chains audited.
+- same-origin discovery exhausted with `truncated:false` under a 1,000-URL fail-closed safety ceiling.
+- failure diagnostics retain discovery parent.
+
+This closes **G1-006 central broken/dead-route detection**. G1-007 error-state quality, G1-008 rendered states and G1-009 mobile/cross-browser remain separate.
+
+Evidence file: `docs/evidence/2026-08-12-m10-exhaustive-production-sweep.md`.
+
+## Gate 1 error-contract adversarial evidence — active PR #82
+A new production failure-contract sweep intentionally exercises unknown route, unauthenticated member, unauthenticated HQ, malformed JSON, invalid registration, invalid login, password-reset account non-enumeration and wrong-method handling.
+
+Initial run `31638458536` passed the first six cases then failed on a real defect: password-reset responses intercepted by `worker-entry-v6.js` lacked `X-Shift-Request-Id`. The gate was not weakened. `worker-entry-v6.js` was fixed to attach correlation plus `Cache-Control:no-store` and `X-Content-Type-Options:nosniff` to intercepted member responses. Latest repair commit on #82: `f6bafa3b4e1bff9949bc902029615e2fa7784bc8`; unchanged rerun remains the truth boundary.
+
+## Industrial content evidence
+Current authored structured universe:
+
+### Grub
+- 32 original structured authored objects.
+- 224 additional industrial authored/schema-valid objects.
+- Total authored universe: **256**.
+- Current commissioned floor: **1 CoFID ingredient-level nutrition validated / 1 reviewed / 1 published / 1 production-served**.
+- 224 industrial additions remain quarantined pending ingredient-level validation/review.
+- Short-term objective: **2,500 commissioned**.
+- Long-term minimum: **10,000+**.
+
+### Fit
+- 32 original structured authored objects.
+- 224 additional industrial authored/schema-valid movement/variant objects across 28 canonical movements × 8 meaningful variation identities.
+- Total authored universe: **256**.
+- Current commissioned floor: **3 member-QA illustrated / 3 reviewed / 3 published / 3 production-served**.
+- 224 industrial additions remain visual/review quarantined.
+- Short-term objective: **2,500 commissioned**.
+- Long-term minimum: **10,000+**.
+
+The 10k structured-content load benchmark proves architecture/load capacity only. It is never counted as 10,000 commissioned Grub/Fit objects.
+
+## B01 / M09 human inbox boundary
+Implementation and deterministic gates prove explicit verification, unverified-login blocking, resend invalidation/replay rejection, recovery/change-password and transactional delivery telemetry. Remaining launch proof is secret-bearing real inbox interaction: verification click/login and reset token -> reset -> login new password -> authenticated change-password -> logout/login. Tokens must never be committed or logged.
+
+## Current evidence-led original-audit scoreboard
+Evidence now earns **57 total / 16 PASS / 38 AMBER / 3 BLOCKED / 0 abstraction orphans**, pending merge of the reconciliation PR that writes these earned closures into the authoritative matrix.
+
+The three external BLOCKED originals remain exactly:
 - G5-001 signed clinical operating model/provider/pharmacy governance.
 - G5-002 clinically governed Medication Companion prescribing/escalation.
 - G5-003 provider-approved identity/weight/evidence verification.
 
-## Remaining independent swarm
-B01; B03 rendered/premium/mobile only; B05; B06/B07; B08/Dave; M01; M03–M13; M17. Content conversion is important but does not queue the others.
+## Active recovery
+- PR #81 reconciles G1-006 and G5-009 evidence into the matrix/launch board/ledger and must merge only after the 57-row finish gate is GREEN.
+- PR #82 owns the next Gate 1 failure-contract defect and must rerun unchanged after the correlation-header repair.
+- Catalogue scale conversion continues independently; authored count alone is not launch readiness.
+- B06/B07, Dave, premium/mobile, security/privacy, accessibility/performance and other non-blocked closure lanes remain active while CI/content work waits.
 
-## Recovery point
-PR #61 is the current active closure PR. Once the documentation reconciliation rerun is GREEN, merge #61. Then next prey is conversion of structured Grub/Fit into domain-validated/reviewed/published/production-served content while B06/B07 and other independent AMBER rows continue in parallel.
-
-Operating rule: **CONVERT -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
