@@ -9,7 +9,7 @@ import {memberDailyV2Routes} from './member-daily-v2.js';
 class D1Statement{
   constructor(db,sql,params=[]){this.db=db;this.sql=sql;this.params=params}
   bind(...params){return new D1Statement(this.db,this.sql,params.map(v=>v===undefined?null:v))}
-  async run(){const r=this.db.prepare(this.sql).run(...this.params);return{success:true,meta:{last_row_id:Number(r.lastInsertRowid||0),changes:Number(r.changes||0)}}
+  async run(){const r=this.db.prepare(this.sql).run(...this.params);return{success:true,meta:{last_row_id:Number(r.lastInsertRowid||0),changes:Number(r.changes||0)}}}
   async first(){return this.db.prepare(this.sql).get(...this.params)||null}
   async all(){return{results:this.db.prepare(this.sql).all(...this.params)}}
   catch(fn){return this.run().catch(fn)}
