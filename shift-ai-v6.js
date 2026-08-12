@@ -4,6 +4,7 @@ import {buildShiftBrainContext} from './shift-brain-v1.js';
 import {learnFromMessage} from './intelligent-memory.js';
 import {getMemoryPrivacy} from './memory-privacy.js';
 import {selectShoulderGear,shoulderInstruction} from './shoulder-v2.js';
+import {recordProductEvent} from './product-analytics-v1.js';
 
 const MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 const VERSION='4.0-one-shift-brain';
@@ -32,6 +33,8 @@ async function chat(request,env,ctx){
   }
   if(!answer)answer=brain.knowledge.items.length?'I have the relevant Shift-reviewed context, but the conversational engine is temporarily unavailable.':'Shift AI is temporarily unavailable. Your Shift data remains saved.';
   await saveConversation(env.DB,uid,gear.gear,message,answer,model);
+  const eventJob=recordProductEvent(env,{userId:uid,eventName:'shift_ai_message',surface:'shift_ai',source:'server',properties:{gear:gear.gear,oneShiftBrain:true,memoryUsed:brain.memory.intelligent.length>0,feedbackUsed:(brain.behaviour.feedback.yay.length+brain.behaviour.feedback.nay.length)>0,knowledgeSources:brain.knowledge.items.length}}).catch(e=>console.warn('analytics_shift_ai_failed',e?.message));
+  if(ctx?.waitUntil)ctx.waitUntil(eventJob);else await eventJob;
   const privacy=await getMemoryPrivacy(env.DB,uid).catch(()=>({auto_memory:1})),explicit=body.remember===true||/\bremember (that|this)|don't forget|dont forget\b/i.test(message);
   if(Number(privacy.auto_memory)||explicit){const job=learnFromMessage(env,uid,message,{explicit});if(ctx?.waitUntil)ctx.waitUntil(job);else await job;}
   return cors(json({ok:true,answer,mode:gear.gear,model:'Shift AI',version:VERSION,oneShiftBrain:true,contextContract:brain.contract,memoryUsed:brain.memory.intelligent.length>0,feedbackUsed:(brain.behaviour.feedback.yay.length+brain.behaviour.feedback.nay.length)>0,activePlansUsed:Object.keys(brain.plans.active).length>0,sources:brain.knowledge.items.map(k=>({title:k.title,citation:k.citation,reviewState:k.reviewState,provenance:k.provenance}))}),request,env);
