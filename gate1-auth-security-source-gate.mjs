@@ -15,5 +15,18 @@ if(!recovery.includes("token_type='password_reset'")) fail('Password reset token
 if(!recovery.includes("UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL")) fail('Reset must revoke active sessions');
 if(!recovery.includes('constantTimeBytesEqual')) fail('Password verification must use constant-time byte comparison');
 
+for(const marker of [
+  'VERIFY_TTL_MS=24*60*60*1000',
+  "/v1/auth/request-email-verification",
+  "/v1/auth/verify-email",
+  "token_type='email_verification'",
+  "email_verified=1,email_verified_at=?",
+  "eventType:'email_verification'",
+  'Verify your My Shift email',
+  'verification_expired'
+]) if(!recovery.includes(marker)) fail(`Email verification lifecycle missing ${marker}`);
+if(!recovery.includes("UPDATE auth_tokens SET used_at=? WHERE user_id=? AND token_type='email_verification' AND used_at IS NULL")) fail('Verification tokens must be single-use and superseded');
+if(recovery.includes('return token')||recovery.includes('verificationToken:token')) fail('Verification token must never be returned by the API');
+
 if(failed)process.exit(1);
-console.log('Gate 1 auth security source contract passed.');
+console.log('Gate 1 auth security source contract passed, including explicit email-verification token lifecycle.');
