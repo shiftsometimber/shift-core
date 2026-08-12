@@ -5,6 +5,7 @@ on:
       - '**.js'
       - '**.mjs'
       - 'docs/COMMISSIONING-EVIDENCE.md'
+      - 'docs/LAUNCH-FINISH-LINE.md'
       - '.github/workflows/master-integration-gate.yml'
 jobs:
   integration-gate:
@@ -50,6 +51,8 @@ jobs:
         run: node runtime-auth-abuse-v1.mjs
       - name: Dave progressive journey
         run: node dave-journey-v1.mjs
+      - name: One-shot production auth inbox trigger
+        run: node finish-auth-inbox-trigger-v1.mjs
       - name: Syntax checks
         run: |
           set -e
