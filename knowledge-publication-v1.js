@@ -13,6 +13,11 @@ export async function publishReviewedKnowledge(env,article,review={}){
   return upsertKnowledge(env,{id:`cms:${article.id}`,type:'reviewed_content',domain:health?'health':String(article.domain||'general'),label:article.title,data,provenance:{verified:health?true:!!review.verified,reviewState:state},sources:[{type:'cms',ref:sourceRef,authority:health?95:80,verified_at:data.reviewedAt,provenance:{reviewState:state,reviewedBy:data.reviewedBy,version:data.version}}]});
 }
 
+export async function withdrawReviewedKnowledge(env,articleId,{reason='withdrawn',actor=null}={}){
+  if(!articleId)return{ok:false,reason:'article_identity_required'};const id=`cms:${articleId}`;
+  try{const row=await env.DB.prepare(`SELECT id,status,data_json FROM shift_knowledge_nodes WHERE id=?`).bind(id).first();if(!row)return{ok:false,reason:'knowledge_not_found'};const data=safe(row.data_json,{});data.reviewState='withdrawn';data.withdrawnAt=new Date().toISOString();data.withdrawnReason=String(reason).slice(0,500);data.withdrawnBy=actor||null;await env.DB.prepare(`UPDATE shift_knowledge_nodes SET status='withdrawn',data_json=?,updated_at=CURRENT_TIMESTAMP WHERE id=?`).bind(JSON.stringify(data),id).run();return{ok:true,id,status:'withdrawn'};}catch{return{ok:false,reason:'withdrawal_failed'}}
+}
+
 export async function syncApprovedKnowledgeDocuments(env,{limit=250}={}){
   let rows=[];try{({results:rows=[]}=await env.DB.prepare(`SELECT d.id,d.title,d.source_uri,d.trust_tier,d.status,c.id chunk_id,c.content FROM ai_knowledge_documents d JOIN ai_knowledge_chunks c ON c.document_id=d.id WHERE d.status='approved' ORDER BY d.id,c.id LIMIT ?`).bind(Math.max(1,Math.min(2000,limit))).all())}catch{return{ok:false,reason:'legacy_knowledge_unavailable',synced:0}}
   let synced=0;for(const r of rows){const x=await upsertKnowledge(env,{id:`approved:${r.id}:${r.chunk_id}`,type:'reviewed_content',domain:'general',label:r.title,data:{title:r.title,content:r.content,reviewState:'approved',legacyDocumentId:r.id,legacyChunkId:r.chunk_id},provenance:{verified:true,reviewState:'approved'},sources:[{type:'approved_document',ref:r.source_uri||`document:${r.id}`,authority:100-Math.min(90,Number(r.trust_tier||5)*10),verified_at:new Date().toISOString()}]});if(x.accepted)synced++}
