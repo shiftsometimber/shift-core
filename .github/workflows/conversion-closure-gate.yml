@@ -4,6 +4,7 @@ on:
     paths:
       - 'industrial-conversion-gate.mjs'
       - 'industrial-grub-nutrition-v1.js'
+      - 'industrial-grub-targeted-diagnostics.mjs'
       - 'hq-ai-v2.js'
       - 'hq-operator-fire-drill-staging.mjs'
       - 'dave-evidence-reconciliation.mjs'
@@ -25,6 +26,8 @@ jobs:
         env:
           COFID_INDEX: /tmp/cofid-index.json
         run: node industrial-conversion-gate.mjs
+      - name: Targeted industrial nutrition blockers
+        run: node industrial-grub-targeted-diagnostics.mjs
       - name: B06 authorised HQ operator proof
         run: node hq-operator-fire-drill-staging.mjs
       - name: Dave evidence reconciliation
