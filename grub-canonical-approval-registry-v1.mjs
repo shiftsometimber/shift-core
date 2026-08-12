@@ -4,6 +4,8 @@
 // extract used by the industrial nutrition gate.
 export const CANONICAL_APPROVALS={
  'mixed peppers':{code:'13-524',basis:'red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion',confidence:'high',limitation:'pepper colour mix can shift micronutrients'},
+ 'mixed berries':{code:'14-324',basis:'raw strawberry is used as a conservative single-food proximates proxy for an unsweetened fresh mixed-berry portion',confidence:'medium',limitation:'berry mix changes fibre and micronutrients; use is limited to recipe-level energy/protein/carbohydrate/fat/fibre estimation and remains labelled as a proxy'},
+ 'tomato passata':{code:'13-530',basis:'canned tomatoes, whole contents, are a suitable unsweetened tomato-only macro proxy for plain passata',confidence:'high',limitation:'passata water concentration varies by brand'},
  'spinach':{code:'13-521',basis:'raw baby spinach is the suitable canonical source for generic raw spinach',confidence:'high'},
  'wholemeal wrap':{code:'11-925',basis:'wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap',confidence:'medium',limitation:'brand fibre content varies'},
  'wholemeal bap':{code:'11-986',basis:'wholemeal bread roll is the direct generic analogue',confidence:'high'},
