@@ -1,12 +1,20 @@
 import fs from 'node:fs';
+import path from 'node:path';
 
-const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const fail = (message) => { throw new Error(message); };
 const nonEmpty = (value) => typeof value === 'string' && value.trim().length > 0;
 const arrayOfText = (value, min = 1) => Array.isArray(value) && value.length >= min && value.every(nonEmpty);
+const batchFiles = (dir) => fs.readdirSync(dir).filter((name) => /^batch-\d+\.json$/.test(name)).sort().map((name) => path.join(dir, name));
 
-const recipes = readJson('content/grub/batch-01.json');
-const exercises = readJson('content/fit/batch-01.json');
+const grubFiles = batchFiles('content/grub');
+const fitFiles = batchFiles('content/fit');
+if (!grubFiles.length || !fitFiles.length) fail('Structured Grub and Fit content batches are required');
+
+const grubBatches = grubFiles.map((file) => ({file, items: readJson(file)}));
+const fitBatches = fitFiles.map((file) => ({file, items: readJson(file)}));
+const recipes = grubBatches.flatMap((batch) => batch.items);
+const exercises = fitBatches.flatMap((batch) => batch.items);
 const live = fs.readFileSync('member-product-v4.js', 'utf8');
 
 function uniqueIds(items, label) {
@@ -66,44 +74,64 @@ function exerciseLaunchReady(exercise) {
   return exercise.visual?.status === 'approved' && exercise.review?.status === 'approved';
 }
 
-if (!Array.isArray(recipes) || recipes.length < 8) fail('Grub batch 01 must contain a coherent authoring batch of at least 8 recipes');
-if (!Array.isArray(exercises) || exercises.length < 8) fail('Fit batch 01 must contain a coherent authoring batch of at least 8 exercises');
-uniqueIds(recipes, 'Grub batch 01');
-uniqueIds(exercises, 'Fit batch 01');
-recipes.forEach(validateRecipe);
-exercises.forEach(validateExercise);
+for (const batch of grubBatches) {
+  if (!Array.isArray(batch.items) || batch.items.length < 8) fail(`${batch.file} must contain a coherent authoring batch of at least 8 recipes`);
+  batch.items.forEach(validateRecipe);
+}
+for (const batch of fitBatches) {
+  if (!Array.isArray(batch.items) || batch.items.length < 8) fail(`${batch.file} must contain a coherent authoring batch of at least 8 exercises`);
+  batch.items.forEach(validateExercise);
+}
 
-const mealDistribution = Object.fromEntries(['breakfast', 'lunch', 'dinner', 'snack'].map((type) => [type, recipes.filter((recipe) => recipe.meal_type === type).length]));
-for (const type of ['breakfast', 'lunch', 'dinner', 'snack']) if (!mealDistribution[type]) fail(`Grub batch 01 has no ${type}`);
+uniqueIds(recipes, 'Structured Grub catalogue');
+uniqueIds(exercises, 'Structured Fit catalogue');
+
+const mealTypes = ['breakfast', 'lunch', 'dinner', 'snack'];
+const mealDistribution = Object.fromEntries(mealTypes.map((type) => [type, recipes.filter((recipe) => recipe.meal_type === type).length]));
+for (const type of mealTypes) if (!mealDistribution[type]) fail(`Structured Grub catalogue has no ${type}`);
 
 const equipment = new Set(exercises.flatMap((exercise) => exercise.equipment));
 for (const required of ['dumbbell', 'dumbbells', 'band', 'full-gym']) {
-  if (!equipment.has(required)) fail(`Fit batch 01 missing ${required} coverage`);
+  if (!equipment.has(required)) fail(`Structured Fit catalogue missing ${required} coverage`);
 }
 
 const liveRecipes = (live.match(/R\('/g) || []).length;
 const liveExercises = (live.match(/X\('/g) || []).length;
 const launchReadyRecipes = recipes.filter(recipeLaunchReady).length;
 const launchReadyExercises = exercises.filter(exerciseLaunchReady).length;
+const approvedVisuals = exercises.filter((exercise) => exercise.visual?.status === 'approved').length;
 
-// Critical evidence discipline: drafted content cannot silently masquerade as commissioned content.
-if (launchReadyRecipes !== 0) fail('Batch 01 must not self-promote recipes before independent nutrition validation/review');
-if (launchReadyExercises !== 0) fail('Batch 01 must not self-promote exercises before visual guidance/review');
+// Evidence discipline: anything counted launch-ready must satisfy every hard commissioning dependency.
+for (const recipe of recipes.filter((item) => item.review?.status === 'approved' && !recipeLaunchReady(item))) {
+  fail(`${recipe.id}: review approved before nutrition validation`);
+}
+for (const exercise of exercises.filter((item) => item.review?.status === 'approved' && !exerciseLaunchReady(item))) {
+  fail(`${exercise.id}: review approved before visual approval`);
+}
 
+const GRUB_FLOOR = 64;
+const FIT_FLOOR = 48;
 console.log(JSON.stringify({
   liveBaseline: {recipes: liveRecipes, exercises: liveExercises},
-  authoringBatch: {
+  structuredAuthoring: {
+    grubBatches: grubFiles.length,
     recipes: recipes.length,
     mealDistribution,
+    launchReadyRecipes,
+    authoredGapToFloor: Math.max(0, GRUB_FLOOR - recipes.length),
+    launchReadyGapToFloor: Math.max(0, GRUB_FLOOR - launchReadyRecipes),
+    fitBatches: fitFiles.length,
     exercises: exercises.length,
     movementGroups: [...new Set(exercises.map((exercise) => exercise.movement_group))],
-    launchReadyRecipes,
     launchReadyExercises,
-    approvedVisuals: exercises.filter((exercise) => exercise.visual?.status === 'approved').length
+    approvedVisuals,
+    authoredExerciseGapToFloor: Math.max(0, FIT_FLOOR - exercises.length),
+    launchReadyExerciseGapToFloor: Math.max(0, FIT_FLOOR - launchReadyExercises),
+    visualGapToFloor: Math.max(0, FIT_FLOOR - approvedVisuals)
   },
   blockers: {
-    grub: ['ingredient-level nutrition validation', 'second-person content review', 'D1 publication/runtime cutover', 'longitudinal variety simulation'],
-    fit: ['visual guidance', 'second-person content review', 'D1 publication/runtime cutover', '12-week repetition/progression simulation']
+    grub: ['ingredient-level nutrition validation', 'second-person content review', 'publication/runtime cutover', 'longitudinal variety simulation'],
+    fit: ['visual guidance', 'second-person content review', 'publication/runtime cutover', '12-week repetition/progression simulation']
   }
 }, null, 2));
-console.log('PASS M11/M12 content-factory batch 01 authoring schema; no false launch-ready promotion');
+console.log(`PASS M11/M12 content-factory schema across ${grubFiles.length} Grub and ${fitFiles.length} Fit batches; no false launch-ready promotion`);
