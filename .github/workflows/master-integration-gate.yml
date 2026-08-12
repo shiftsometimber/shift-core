@@ -49,7 +49,17 @@ jobs:
       - name: Gate 5 parallel trust scale contract
         run: node gate5-trust-scale-gate.mjs
       - name: M15 mocked partner Health MOT -> Progress -> Today commissioning
-        run: node health-mot-e2e-staging.mjs
+        shell: bash
+        run: |
+          set +e
+          node health-mot-e2e-staging.mjs > /tmp/m15.log 2>&1
+          rc=$?
+          cat /tmp/m15.log
+          if [ "$rc" -ne 0 ]; then
+            msg=$(tail -n 12 /tmp/m15.log | tr '\n' ' ')
+            echo "::error file=health-mot-e2e-staging.mjs::$msg"
+            exit "$rc"
+          fi
       - name: Gate 5 full assault contract
         run: node gate5-full-assault-gate.mjs
       - name: Gate 5 persisted probe history contract
