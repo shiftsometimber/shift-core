@@ -37,10 +37,12 @@ jobs:
         run: node gate2-product-source-gate.mjs
       - name: M11/M12 content-factory authoring quality contract
         run: node content-factory-gate.mjs
-      - name: Industrial 224+224 authored-universe quality gate
+      - name: Industrial 2,908 Grub + 2,500 Fit authored-universe quality gate
         run: node industrial-factory-gate.mjs
-      - name: Industrial 448-object structured staging ingest
+      - name: Industrial 5,344-object structured staging ingest
         run: node industrial-factory-staging.mjs
+      - name: Industrial Grub 365-day + Fit 52-week authored-capacity simulation
+        run: node industrial-long-horizon-simulator-v2.mjs
       - name: M11 CoFID ingredient-level nutrition validation
         run: node grub-nutrition-gate.mjs
       - name: M12 Fit authored-vs-member-QA visual reconciliation
@@ -49,7 +51,7 @@ jobs:
         run: node structured-content-publication-gate.mjs
       - name: M07 structured commissioning-floor runtime contract
         run: node structured-runtime-staging.mjs
-      - name: M11/M12 longitudinal catalogue capacity simulator
+      - name: M11/M12 legacy/current catalogue capacity simulator
         run: node content-factory-simulator.mjs
       - name: Gate 2 durable learning contract
         run: node gate2-learning-source-gate.mjs
