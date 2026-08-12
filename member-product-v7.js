@@ -53,19 +53,20 @@ async function structuredGrubReplace(request,env,body,payload,nays){
 }
 
 async function structuredFitPlan(request,env,userId,body,payload,nays){
-  const published=await listPublishedContent(env.DB,'exercise',{limit:500}),blocked=new Set(nays),context=fitContext(body);let structuredServed=0;
+  const published=await listPublishedContent(env.DB,'exercise',{limit:500}),blocked=new Set(nays),context=fitContext(body),structuredUsedAcrossPlan=new Set();let structuredServed=0;
   for(const session of payload.plan?.sessions||[]){
-    const used=new Set((session.exercises||[]).map(x=>x.id));
+    const usedInSession=new Set((session.exercises||[]).map(x=>x.id));
     for(let i=0;i<(session.exercises||[]).length;i++){
       const current=session.exercises[i],group=String(current.group||current.movement_group||'');
-      const options=published.filter(x=>x.data?.movement_group===group&&!blocked.has(x.id)&&!used.has(x.id)&&exerciseAllowed(x,context));
+      const options=published.filter(x=>x.data?.movement_group===group&&!blocked.has(x.id)&&!usedInSession.has(x.id)&&!structuredUsedAcrossPlan.has(x.id)&&exerciseAllowed(x,context));
       if(!options.length)continue;
-      const chosen=toExercise(options[(Number(session.day||1)+i-1)%options.length]);session.exercises[i]=chosen;used.add(chosen.id);structuredServed++;
+      const chosen=toExercise(options[(Number(session.day||1)+i-1)%options.length]);session.exercises[i]=chosen;usedInSession.add(chosen.id);structuredUsedAcrossPlan.add(chosen.id);structuredServed++;
     }
     session.estimated_minutes=(session.exercises||[]).reduce((a,x)=>a+Number(x.minutes||0),0);
   }
+  const totalItems=(payload.plan?.sessions||[]).reduce((a,s)=>a+(s.exercises||[]).length,0);
   payload.plan.kind='shift_fit_plan_v7';
-  payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,structured_items_served:structuredServed,legacy_fallback_used:structuredServed<(payload.plan?.sessions||[]).reduce((a,s)=>a+(s.exercises||[]).length,0),provenance_visible:true};
+  payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,structured_items_served:structuredServed,structured_unique_items_served:structuredUsedAcrossPlan.size,legacy_fallback_used:structuredServed<totalItems,progressive_cutover:true,quality_preserving_fallback:true,provenance_visible:true};
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'fit',payload.plan);
   return json(payload,200,request);
 }
