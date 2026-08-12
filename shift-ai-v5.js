@@ -1,5 +1,5 @@
 import v4 from './shift-ai-v4.js';
-import {memberBootstrap,proactiveFeed} from './member-experience-v1.js';
+import {memberBootstrap,proactiveFeed} from './member-experience-v2.js';
 import {runAcademyRegression} from './academy-regression-runner-v2.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
 
