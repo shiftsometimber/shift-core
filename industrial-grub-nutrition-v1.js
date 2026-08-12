@@ -1,6 +1,7 @@
 const DATASET={name:"McCance and Widdowson's Composition of Foods Integrated Dataset",version:'CoFID 2021',publisher:'Public Health England',source_url:'https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid'};
 const METHOD='CoFID 2021 ingredient-level weighted calculation';
 const PRECISION='Calculated nutrition is an ingredient-level estimate, not laboratory analysis. Ingredient brands, cooking yield and drained weights can vary.';
+const BBQ=m('17-705','Barbecue sauce',140,1,36.1,0.1,1.2,'Generic barbecue sauce is the closest CoFID category; reduced-sugar branded sauce/glaze products may be lower in carbohydrate/energy.');
 const MAP={
   'chicken breast':m('18-488','Chicken, meat, average, raw',108,22.3,0,2.1,0,'Closest raw uncoated chicken-meat category in CoFID; branded/trim differences may vary.'),
   '5% beef mince':m('18-508','Beef, mince, raw, extra lean',130,21.9,0,4.2,0,'Closest CoFID raw extra-lean mince category; authored 5% product may vary slightly by brand.'),
@@ -21,7 +22,8 @@ const MAP={
   'peas':m('13-527','Peas, frozen, raw',68,5.3,10.7,0.7,5.3,'Frozen raw peas used for the generic authored pea ingredient.'),
   'broccoli':m('13-502','Broccoli, green, raw',34,4.3,3.2,0.6,4),
   'tikka masala sauce':m('17-626','Sauce, Indian cook in, korma/tikka masala',133,1.7,10.9,9.5,2.5),
-  'reduced-sugar BBQ sauce':m('17-705','Barbecue sauce',140,1,36.1,0.1,1.2,'Generic barbecue sauce is the closest CoFID category; reduced-sugar branded products may be lower in carbohydrate/energy.'),
+  'reduced-sugar BBQ sauce':BBQ,
+  'reduced-sugar BBQ glaze':BBQ,
   'olive oil':m('17-038','Oil, olive',899,0,0,99.9,0,'5ml authored measures are converted with a documented 0.92g/ml culinary-oil density assumption.')
 };
 const NUTRIENTS=['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];
