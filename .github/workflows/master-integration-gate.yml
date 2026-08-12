@@ -8,6 +8,7 @@ on:
       - 'docs/FINISH-LINE.md'
       - 'docs/LAUNCH-FINISH-LINE.md'
       - '.github/workflows/master-integration-gate.yml'
+      - '.github/workflows/production-commissioning.yml'
 jobs:
   integration-gate:
     runs-on: ubuntu-latest
