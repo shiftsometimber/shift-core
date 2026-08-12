@@ -1,4 +1,4 @@
-import {buildIndustrialCatalogue} from './industrial-catalogue-v4.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
 import {ensureStructuredContent,upsertStructuredContent} from './structured-content-v1.js';
 const GRUB_INDUSTRIAL_TARGET=2876,FIT_INDUSTRIAL_TARGET=2468;
 export async function seedIndustrialFactory(DB,{recipeLimit=GRUB_INDUSTRIAL_TARGET,exerciseLimit=FIT_INDUSTRIAL_TARGET}={}){
