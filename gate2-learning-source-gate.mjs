@@ -1,11 +1,14 @@
 import fs from 'node:fs';
 let failed=false;const fail=m=>{console.error(m);failed=true};
 const src=fs.readFileSync('member-product-v5.js','utf8');
+const brain=fs.readFileSync('member-product-v6.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
-if(!entry.includes("memberProductV5Routes"))fail('Production entrypoint is not wired to V5 learning layer');
+if(!entry.includes("memberProductV6Routes"))fail('Production entrypoint is not wired to V6 Brain layer');
+if(!brain.includes("memberProductV5Routes"))fail('V6 Brain layer is not delegating to V5 learning layer');
 for(const s of ["/v1/grub/feedback","/v1/fit/feedback","product_feedback","sentiment IN ('yay','nay')","historical_nays_applied","durable_feedback:true"])if(!src.includes(s))fail(`Missing learning contract: ${s}`);
 if(!src.includes("ON CONFLICT(user_id,product,entity_id) DO UPDATE"))fail('Feedback must be durable and updateable');
 if(!src.includes("saveFeedback(env,userId,product,current,'nay'"))fail('Replacement must persist the rejected item as a Nay signal');
 if(!src.includes("negativeIds(env,userId,product)"))fail('Future plans/replacements must consult historical negative feedback');
+if(!brain.includes('historicalNaysApplied'))fail('Canonical Brain wrapper must surface applied historical Nays');
 if(failed)process.exit(1);
-console.log('Gate 2 learning source gate passed: durable Yay/Nay persistence and historical exclusion are wired.');
+console.log('Gate 2 learning source gate passed: durable Yay/Nay persists through V6 Brain -> V5 learning chain.');
