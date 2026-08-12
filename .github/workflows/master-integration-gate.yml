@@ -40,6 +40,12 @@ jobs:
         run: node gate5-full-assault-gate.mjs
       - name: Gate 5 persisted probe history contract
         run: node gate5-probe-history-gate.mjs
+      - name: Adversarial break/security state transitions
+        run: node adversarial-commissioning-v1.mjs
+      - name: Structured content 10k load benchmark
+        run: node structured-content-load-v1.mjs
+      - name: Dave progressive journey
+        run: node dave-journey-v1.mjs
       - name: Syntax checks
         run: |
           set -e
