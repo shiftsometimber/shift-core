@@ -7,7 +7,7 @@ const assetExt=/\.(?:css|js|mjs|png|jpe?g|webp|svg|gif|ico|woff2?|ttf|pdf)(?:\?|
 
 function normalise(raw,base){
   if(!raw||/^(?:mailto:|tel:|sms:|javascript:|data:|blob:|#)/i.test(raw))return null;
-  try{const u=new URL(raw,base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;return u}catch{return null}
+  try{const u=new URL(raw,base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;if(u.pathname.startsWith('/cdn-cgi/l/email-protection'))return null;return u}catch{return null}
 }
 function extract(html,base){
   const urls=[];const re=/(?:href|src)\s*=\s*["']([^"']+)["']/gi;let m;
