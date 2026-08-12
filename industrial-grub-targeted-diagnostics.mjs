@@ -1,0 +1,2 @@
+import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';import {validateIndustrialRecipes} from './industrial-grub-nutrition-v1.js';
+const c=buildIndustrialCatalogue(),r=validateIndustrialRecipes(c.recipes);const counts=new Map();for(const x of r.failures)counts.set(x.reason,(counts.get(x.reason)||0)+1);console.log(JSON.stringify({metrics:r.metrics,topBlockers:[...counts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,80).map(([reason,count])=>({reason,count}))},null,2));
