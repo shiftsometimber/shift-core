@@ -4,6 +4,7 @@ on:
     paths:
       - '**.js'
       - '**.mjs'
+      - '**.py'
       - 'content/**'
       - 'assets/fit/**'
       - 'docs/COMMISSIONING-EVIDENCE.md'
@@ -45,6 +46,14 @@ jobs:
         run: node industrial-factory-staging.mjs
       - name: Industrial Grub 365-day + Fit 52-week authored-capacity simulation
         run: node industrial-long-horizon-simulator-v2.mjs
+      - name: Prepare authoritative CoFID 2021 conversion index
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Industrial Grub ingredient/nutrition + Fit canonical-visual conversion
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-conversion-gate.mjs
       - name: M11 CoFID ingredient-level nutrition validation
         run: node grub-nutrition-gate.mjs
       - name: M12 Fit authored-vs-member-QA visual reconciliation
