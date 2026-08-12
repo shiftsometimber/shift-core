@@ -29,6 +29,11 @@ jobs:
         run: sleep 20
       - name: Core production health and route contract
         run: node gate1-production-journey-probe.mjs
+      - name: G1-010 / M05 deployed release security and privacy
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node gate1-release-security-privacy-production.mjs
       - name: Trigger genuine production regulator scan
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
