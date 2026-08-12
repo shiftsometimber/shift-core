@@ -12,6 +12,7 @@ import {analyticsRoutes} from './product-analytics-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
 import {radarRoutes} from './radar-integration-v1.js';
 import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
+import {handleEmailVerification} from './auth-email-verification-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -23,6 +24,9 @@ export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
+
+    const emailVerification=await handleEmailVerification(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
+    if(emailVerification)return withMemberCors(emailVerification,request);
 
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
