@@ -85,6 +85,8 @@ jobs:
         run: node gate5-full-assault-gate.mjs
       - name: Gate 5 persisted probe history contract
         run: node gate5-probe-history-gate.mjs
+      - name: B07 controlled Watchtower degradation and recovery fire drill
+        run: node watchtower-fire-drill-staging.mjs
       - name: Adversarial break/security state transitions
         run: node adversarial-commissioning-v1.mjs
       - name: Longitudinal cross-system adversarial commissioning
