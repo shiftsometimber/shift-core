@@ -6,6 +6,7 @@ on:
     paths:
       - 'industrial-catalogue-v4.js'
       - 'industrial-grub-systemic-v2.mjs'
+      - 'industrial-grub-batch-calculation-v2.mjs'
       - 'cofid-v4-blocker-diagnostics.py'
       - '.github/workflows/industrial-conversion-v4-gate.yml'
 jobs:
@@ -31,3 +32,7 @@ jobs:
         env:
           COFID_INDEX: /tmp/cofid-index.json
         run: node industrial-grub-systemic-v2.mjs
+      - name: Batch calculate + risk-tier pre-review
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-grub-batch-calculation-v2.mjs
