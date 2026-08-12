@@ -11,6 +11,7 @@ on:
       - 'docs/LAUNCH-FINISH-LINE.md'
       - 'docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md'
       - 'docs/ACTIVE-RECOVERY.md'
+      - 'docs/INDUSTRIAL-CONTENT-OBJECTIVES.md'
       - '.github/workflows/master-integration-gate.yml'
       - '.github/workflows/production-commissioning.yml'
 jobs:
@@ -43,6 +44,10 @@ jobs:
         run: node industrial-factory-gate.mjs
       - name: Industrial 448-object structured staging ingest
         run: node industrial-factory-staging.mjs
+      - name: Scale-2500 authored-universe quality gate
+        run: node industrial-2500-gate.mjs
+      - name: Scale-2500 structured staging ingest
+        run: node industrial-2500-staging.mjs
       - name: M11 CoFID ingredient-level nutrition validation
         run: node grub-nutrition-gate.mjs
       - name: M12 Fit authored-vs-member-QA visual reconciliation
