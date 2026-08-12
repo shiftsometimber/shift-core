@@ -24,16 +24,16 @@ CREATE TABLE progress_entries (
   protein_g REAL,sleep_hours REAL,mood_score INTEGER,notes TEXT,source TEXT NOT NULL DEFAULT 'member',
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE product_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,event_name TEXT NOT NULL,surface TEXT NOT NULL,
+  session_id TEXT,source TEXT NOT NULL DEFAULT 'server',properties_json TEXT NOT NULL DEFAULT '{}',
+  occurred_at TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 `);
 
-// Schema is additive and owned by the production analytics module.
-await DB.prepare(`CREATE TABLE IF NOT EXISTS product_events (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,event_id TEXT NOT NULL UNIQUE,user_id INTEGER,event_name TEXT NOT NULL,
-  surface TEXT,source TEXT,session_id TEXT,properties_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-)`).run();
-
 const addProgress=async(user,date,weight)=>DB.prepare(`INSERT INTO progress_entries(user_id,recorded_on,weight_kg,source) VALUES(?,?,?,'member')`).bind(user,date,weight).run();
-const addEvent=async(user,name)=>DB.prepare(`INSERT INTO product_events(event_id,user_id,event_name,surface,source,properties_json) VALUES(?,?,?,?,?,?)`).bind(`${user}-${name}-${Math.random()}`,user,name,'commissioning','server','{}').run();
+let eventSeq=0;
+const addEvent=async(user,name)=>DB.prepare(`INSERT INTO product_events(user_id,event_name,surface,source,properties_json,occurred_at) VALUES(?,?,?,?,?,?)`).bind(user,name,'commissioning','server','{}',new Date(Date.UTC(2026,7,12,12,0,eventSeq++)).toISOString()).run();
 
 // Member one: meaningful engagement and measurable change.
 await addProgress(101,'2026-07-01',114.3);await addProgress(101,'2026-08-12',109.8);
