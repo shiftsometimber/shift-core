@@ -13,3 +13,14 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Whole-estate production routes, links and blank-page sweep
         run: node gate1-whole-estate-production-sweep.mjs
+      - name: Pre-merge member failure-envelope source contract
+        if: github.event_name == 'pull_request'
+        env:
+          SHIFT_ERROR_CONTRACT_SOURCE_ONLY: '1'
+        run: node gate1-production-error-contract.mjs
+      - name: Wait for production Worker deployment propagation
+        if: github.event_name == 'push'
+        run: sleep 25
+      - name: Deployed production member/HQ failure-contract sweep
+        if: github.event_name == 'push'
+        run: node gate1-production-error-contract.mjs
