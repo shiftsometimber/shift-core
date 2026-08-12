@@ -1,12 +1,12 @@
 import core from './worker.js';
-import {memberProductV4Routes} from './member-product-v4.js';
+import {memberProductStructuredRoutes} from './member-product-structured-v1.js';
 
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/grub/feedback','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback']);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 
 export async function memberProductV5Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
-  if(!OWNED.has(path))return memberProductV4Routes(request,env,ctx);
+  if(!OWNED.has(path))return memberProductStructuredRoutes(request,env,ctx);
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   if(request.method!=='POST')return json({ok:false,error:'method_not_allowed'},405,request);
   const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
@@ -33,14 +33,14 @@ async function replaceWithLearning(request,env,ctx,userId,product,body){
   if(current)await saveFeedback(env,userId,product,current,'nay',body.reason,{source:'replacement'});
   const exclude=[...new Set([...(Array.isArray(body.exclude)?body.exclude:[]),...historical,current].filter(Boolean).map(String))];
   const forwarded=cloneJsonRequest(request,{...body,exclude});
-  const response=await memberProductV4Routes(forwarded,env,ctx);
+  const response=await memberProductStructuredRoutes(forwarded,env,ctx);
   return withCors(response,request);
 }
 
 async function planWithLearning(request,env,ctx,userId,product,body){
   const historical=await negativeIds(env,userId,product);
   const forwarded=cloneJsonRequest(request,body);
-  const base=await memberProductV4Routes(forwarded,env,ctx);
+  const base=await memberProductStructuredRoutes(forwarded,env,ctx);
   if(!base?.ok||!historical.length)return withCors(base,request);
   const payload=await base.clone().json().catch(()=>null);if(!payload?.plan)return withCors(base,request);
   let changed=false;
@@ -49,7 +49,7 @@ async function planWithLearning(request,env,ctx,userId,product,body){
     for(const day of payload.plan.days){
       for(let i=0;i<(day.meals||[]).length;i++){
         const meal=day.meals[i];if(!historical.includes(meal.id))continue;
-        const r=await memberProductV4Routes(cloneJsonRequest(request,{type:meal.type,exclude:[...historical,...allUsed],preferences:body.preferences,dislikes:body.dislikes,dietaryRequirements:body.dietaryRequirements}),env,ctx);
+        const r=await memberProductStructuredRoutes(cloneJsonRequest(request,{type:meal.type,exclude:[...historical,...allUsed],preferences:body.preferences,dislikes:body.dislikes,dietaryRequirements:body.dietaryRequirements}),env,ctx);
         const j=await r.json().catch(()=>null);if(j?.meal){day.meals[i]=j.meal;allUsed.add(j.meal.id);changed=true;}
       }
       day.totals={kcal:(day.meals||[]).reduce((a,m)=>a+Number(m.kcal||m.nutrition?.kcal||0),0),protein_g:(day.meals||[]).reduce((a,m)=>a+Number(m.protein||m.nutrition?.protein_g||0),0)};
@@ -58,7 +58,7 @@ async function planWithLearning(request,env,ctx,userId,product,body){
     for(const session of payload.plan.sessions||[]){
       for(let i=0;i<(session.exercises||[]).length;i++){
         const ex=session.exercises[i];if(!historical.includes(ex.id))continue;
-        const r=await memberProductV4Routes(cloneJsonRequest(request,{group:ex.group,exclude:historical,location:body.location,equipment:body.equipment,limitations:body.limitations,preferences:body.preferences}),env,ctx);
+        const r=await memberProductStructuredRoutes(cloneJsonRequest(request,{group:ex.group,exclude:historical,location:body.location,equipment:body.equipment,limitations:body.limitations,preferences:body.preferences}),env,ctx);
         const j=await r.json().catch(()=>null);if(j?.exercise){session.exercises[i]=j.exercise;changed=true;}
       }
       session.estimated_minutes=(session.exercises||[]).reduce((a,x)=>a+Number(x.minutes||0),0);
