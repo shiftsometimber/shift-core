@@ -2,43 +2,37 @@
 
 This ledger records demonstrated evidence. Source/merge alone is not PASS. AMBER means required evidence remains. BLOCKED means a genuine external dependency is required. `docs/LAUNCH-FINISH-LINE.md` is the authoritative closure board.
 
-## Current closure evidence — reconciled through PR #49, 2026-08-12
+## Current closure evidence — recovery checkpoint 2026-08-12
 
-### PASS CLOSED
-**B02 authenticated member isolation + durable longitudinal state: PASS.** PR #47 created two fresh authenticated production members and proved separate sessions, member-state preferences, Progress, Brain context, Today context and logout/login retained state with no A/B contamination.
+### LOCKED PASS
+**B02 authenticated member isolation + durable longitudinal state: PASS.** Production A/B sessions prove separate member state, Brain context, Today context, Progress and leave/return persistence without cross-member contamination.
 
-**B04 One Shift Brain longitudinal behaviour: PASS.** PR #42 proves current intent overrides stale stored preference and unrelated domains remain isolated. PR #48 adds authenticated production stored food dislike -> Grub -> Nay -> logout -> login -> regenerated plan excluding the Nayed meal, while Fit remains unaffected by the Grub signal and respects its own running dislike. The commissioning run exposed a real defect where a Nayed meal could reappear; the product path was fixed and the hard proof rerun green.
+**B03 core member behavioural journeys: PASS — 9/9.** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI all cleared hard production behavioural commissioning. PR #54 fixed the prescription-boundary defect without weakening the hostile proof; post-merge production commissioning on `e46aa035` passed unchanged. Do not reopen B03 without genuine regression evidence.
 
-**M02 reviewed Knowledge publication lifecycle: PASS.** Reviewed Knowledge publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no longer grounding is regression-protected.
+**B04 One Shift Brain longitudinal behaviour: PASS.** Current intent precedence, durable Grub/Fit learning, cross-domain isolation and retained Progress/Shift AI context are production-proven.
 
-### B03 product evidence
-PR #48 production behaviour PASS: Grub and Fit. Grub proves authenticated generation, stored dislike application, durable Nay across return, changed later recommendation and semantic quality floor. Fit proves authenticated generation, exercise dislike, cross-product isolation and semantic quality floor. Their only remaining B03 closure item is rendered premium/mobile member journey plus graceful member-facing failure state.
+**M02 reviewed Knowledge publication lifecycle: PASS.** Reviewed publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no grounding is regression-protected.
 
-PR #49 production behaviour PASS: Today, Hydration, Conundrum and My Plans. The production suite proves Conundrum recognises chicken+cheese+wrap, coffee contributes to hydration while beer does not, hydration plan/log state survives logout/login, My Plans retains the active hydration plan, and Today consumes that plan before and after return. Their only remaining B03 closure item is rendered premium/mobile member journey plus appropriate empty/error/validation state.
+### PR #55 recovery state
+PR #55 content-factory/reconciliation branch is CLEAN at the latest evidenced integration rerun: all 29 Master Integration steps passed, including the unchanged final authenticated production isolation/retained-state proof. The earlier `register DaveA` generic 500 did not reproduce. It remains an observed transient failure only; if registration failure recurs, retain/request sufficient telemetry to identify the failing registration dependency rather than treating recurrence as unexplained noise. No #55 reopening is justified without new regression evidence.
 
-Progress remains AMBER: #49 proves its production summary safely returns `empty` or `ready`, but authenticated create/log -> persist -> refresh -> leave/return and rendered journey remain.
-Progress Picture remains AMBER: authenticated upload/save/history/comparison/delete/privacy plus rendered/mobile journey remain.
-Shift AI remains AMBER: authenticated ask -> grounded/provenance-aware answer -> retained context/no cross-member leakage plus rendered journey remain.
+PR #55 establishes the structured Grub/Fit factory, deterministic publication barriers, simulator lane, first authored content/visual batches, 57/57 original-audit crosswalk and CI anti-orphan protection. Content is measured by funnel stage, not raw inventory: authored -> validated -> reviewed -> published -> production-served -> launch-ready.
+
+### Content factory checkpoint
+Live legacy member source remains 16 Grub recipes and 12 Fit exercises until M07 migration makes canonical structured content authoritative. Structured authoring has moved beyond that legacy inventory, but authored objects are not launch-ready merely because they exist. Nutrition validation, review/publication, member-path serving, visual QA and experience simulation remain explicit commissioning gates.
+
+The original live Grub simulator exposed first exact meal repeats on day 5 and a 30-day repeat rate of 104/120 slots (86.7%). The first structured batch materially improved short-horizon variety but did not make 30/60-day experience acceptable. Fit likewise exposed excessive 12-week repetition; catalogue floors remain hypotheses to be increased automatically if experience tests fail.
 
 ### B01 authentication recovery
-Production Welcome and password-reset messages are proven received in the connected Shift inbox. The production recovery implementation includes single-use hashed reset tokens, 30-minute expiry, password reset, session revocation and authenticated change-password. Remaining evidence is the actual real inbox token -> reset POST -> login with new password -> authenticated change-password -> logout -> login again. The token must not be committed/logged. If the active execution environment cannot securely submit the inbox token to the production POST, this is a secure-runtime/human interaction dependency rather than missing product code.
+Production Welcome and password-reset messages are proven received. The implementation includes single-use hashed reset tokens, expiry, password reset, session revocation and authenticated change-password. Remaining proof is the real inbox token -> reset -> login new password -> authenticated change-password -> logout -> login again. Secret-bearing execution must not leak the token to repository source/logs.
 
-### Remaining launch blockers
-B01 AMBER — real-token recovery completion only.
-B03 AMBER — six products behaviour-green/rendered-proof remaining; Progress/Picture/AI behavioural + rendered proof remaining.
-B05 AMBER — production public trust audit.
-B06 AMBER — authorised HQ operator workflow under controlled failure/recovery.
-B07 AMBER — controlled production-safe degradation -> detect/history/HQ next action -> recovered.
-B08 AMBER — fresh Dave end-to-end release candidate.
+### Current authoritative scoreboard
+Original audit: **57 total / 9 PASS / 45 AMBER / 3 BLOCKED / 0 unmapped**.
+B03 behavioural: **9/9 PASS — locked unless regression**.
+External blockers: signed clinical operating model/provider/pharmacy governance; clinically governed Medication Companion prescribing/escalation; provider-approved identity/weight/evidence verification.
 
-### Remaining MUST FINISH
-M01 AMBER — One Shift rendered representative public/member evidence.
-M03 AMBER — Radar live scan/publication/ticker freshness evidence.
-M04 AMBER — full real-flow launch analytics QA.
-M05 AMBER — release security/privacy review including export/delete/uploads/audit/privilege boundaries.
-M06 AMBER — interaction accessibility + production performance evidence.
-M07 AMBER — production structured-content path/migration reconciliation; 10k benchmark already green.
-M08 AMBER — final release evidence/recovery checkpoint, continuously maintained.
+### Active non-external closure swarm
+B01 recovery; B05 trust; B06/B07 HQ/Watchtower controlled degradation and recovery; B08 Dave; M01 premium/mobile; M03 Radar freshness; M04 analytics; M05 security/privacy; M06 accessibility/performance; M07 structured production migration; M08 evidence/recovery; M09 email verification; M10 route/link/error sweep; M11 Grub funnel + simulator; M12 Fit/visual funnel + simulator; M13 Progress/units; M14 memory controls; M15 mocked partner-ready MOT; M16 outcomes; M17 sceptical-customer/Numan acceptance.
 
-## Current recovery point
-`main` is reconciled through merged PR #49 plus this ledger update. No known unresolved regression from #48/#49. Critical path: B01 secure token completion; B03 Progress/Picture/AI behavioural closure and rendered evidence; B06/B07 controlled operations proof; B08 Dave. Parallel closure lanes: B05, M03, M04, M05, M06, M07. Do not reopen the green production behaviours for Grub/Fit/Today/Hydration/Conundrum/My Plans unless a regression is discovered.
+## Recovery rule
+#55 is behind us as a cleanliness question. Do not spend execution cycles trying to make it clean again. Continue from the content conversion funnel and independent AMBER closure swarm. If a locked PASS genuinely regresses, fix the exact product defect and rerun the unchanged proof.
