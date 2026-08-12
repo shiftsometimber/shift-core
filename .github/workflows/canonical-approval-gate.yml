@@ -1,0 +1,24 @@
+name: Canonical Approval Gate
+on:
+  pull_request:
+    paths:
+      - 'grub-canonical-approval-*.mjs'
+      - '.github/workflows/canonical-approval-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'grub-canonical-approval-*.mjs'
+      - '.github/workflows/canonical-approval-gate.yml'
+jobs:
+  grub-canonical-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: python3 -m pip install --quiet openpyxl
+      - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node grub-canonical-approval-gate-v1.mjs
