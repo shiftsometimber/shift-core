@@ -90,6 +90,8 @@ jobs:
         run: npm run check
       - name: Staged Radar end-to-end commissioning
         run: node radar-e2e-staging.mjs
+      - name: M03 scheduled Radar scan heartbeat
+        run: node radar-scheduled-scan-staging.mjs
       - name: M03 production Radar freshness
         run: node radar-production-freshness.mjs
       - name: Gate 1 public production probe
