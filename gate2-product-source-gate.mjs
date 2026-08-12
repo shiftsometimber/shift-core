@@ -4,9 +4,13 @@ const src=fs.readFileSync('member-product-v4.js','utf8');
 const learning=fs.readFileSync('member-product-v5.js','utf8');
 const brain=fs.readFileSync('member-product-v6.js','utf8');
 const structured=fs.readFileSync('member-product-v7.js','utf8');
+const duration=fs.readFileSync('member-product-v8.js','utf8');
+const durationHelper=fs.readFileSync('fit-duration-v1.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
 
-if(!entry.includes("memberProductV7Routes"))fail('Production entrypoint is not wired to member product V7 structured runtime');
+if(!entry.includes("memberProductV8Routes"))fail('Production entrypoint is not wired to member product V8 duration-aware runtime');
+if(!duration.includes("memberProductV7Routes")||!duration.includes('ensureFitDurationUtilisation'))fail('V8 duration layer must preserve V7 structured runtime and enforce useful requested-duration utilisation');
+if(!durationHelper.includes('continuous_block_extension')||!durationHelper.includes('no_safe_continuous_block'))fail('V8 duration helper must extend only legitimate continuous movement and fail closed when none exists');
 if(!structured.includes("memberProductV6Routes")||!structured.includes('listPublishedContent'))fail('V7 structured runtime must preserve V6 and prefer canonical published structured content');
 if(!brain.includes("memberProductV5Routes"))fail('V6 Brain wrapper is not delegating to V5 learning layer');
 if(!learning.includes("memberProductV4Routes"))fail('V5 learning layer is not delegating to V4 composer');
@@ -24,4 +28,4 @@ if(recipes<16)fail(`Legacy fallback recipe catalogue unexpectedly shrank: ${reci
 if(exercises<12)fail(`Legacy fallback exercise catalogue unexpectedly shrank: ${exercises}`);
 
 if(failed)process.exit(1);
-console.log(`Gate 2 product source gate passed: V7 published structured authority -> V6 Brain -> V5 learning -> V4 controlled fallback; legacy ${recipes} recipes/${exercises} exercises retained only for migration fallback.`);
+console.log(`Gate 2 product source gate passed: V8 duration-aware composition -> V7 published structured authority -> V6 Brain -> V5 learning -> V4 controlled fallback; legacy ${recipes} recipes/${exercises} exercises retained only for migration fallback.`);
