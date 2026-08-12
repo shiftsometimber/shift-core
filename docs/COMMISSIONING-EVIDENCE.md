@@ -1,81 +1,81 @@
 # Shift Commissioning Evidence Ledger
 
-This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence and candidate volume are not PASS.
+This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume and candidate-capacity simulation are not PASS by themselves.
 
-## Locked behavioural foundations
+## Locked foundations
 - **B02 PASS:** authenticated A/B member isolation + durable leave/return state.
-- **B03 behavioural PASS — 9/9:** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI. Do not reopen without genuine behavioural regression evidence.
+- **B03 behavioural PASS — 9/9:** Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI.
 - **B04 PASS:** One Shift Brain current-intent precedence, durable Grub/Fit learning, cross-domain isolation and retained Progress/AI context.
-- **M02 PASS:** reviewed Knowledge publish -> canonical retrieval -> provenance/grounding -> withdrawal -> no grounding.
-- **M14 / G4-002 PASS:** memory inspect/correct/delete, provenance/confidence, privacy controls and isolation.
-- **M15 / G5-004 PASS:** mocked partner MOT -> sourced Progress -> One Shift Brain -> Today with member isolation and non-diagnostic boundary.
-- **M16 / G5-006 PASS:** member-one Progress + engagement outcome architecture with separated cohorts and internal-only/non-causal guardrails.
+- **M02 PASS:** reviewed Knowledge publish -> retrieval -> provenance/grounding -> withdrawal -> no grounding.
+- **M03 PASS:** genuine production MHRA/EMA scan via restricted OIDC plus GREEN freshness and adversarial stale/failure/recovery transitions.
+- **M07 / G5-009 PASS:** authenticated production V7 structured Grub/Fit serving with validated nutrition, approved Fit visual and durable Nays; V4 remains controlled migration fallback.
+- **M14/G4-002, M15/G5-004 and M16/G5-006 PASS** remain locked.
 
-## M03 production Radar — PASS
-Production commissioning on 2026-08-12 invoked the genuine scheduled regulator scanner through restricted GitHub Actions OIDC. The deployed scanner successfully retrieved:
-- MHRA drug safety: 40 items.
-- MHRA alerts: 40 items.
-- EMA news: 5 items.
+## G1-010 + M05 / original G5-011 — PASS
+Merged PR #86 added source and deployed release security/privacy commissioning. The unchanged production run `31640854509` completed GREEN. Its dedicated production step proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions. Original G1-010 and G5-011 are PASS; M05 is PASS.
 
-The scan completed successfully and production freshness immediately returned `GREEN`, `current:true`, scan age inside the 24h SLO, event age inside the 48h SLO and no stale reasons. Existing adversarial commissioning proves stale -> AMBER, publication failure -> RED and recovery -> GREEN. Original G4-006 and G4-007 are therefore PASS.
+## B07 / original G5-007 — PASS
+PR #88 rebuilt the Watchtower fire drill on current main and passed Master Integration, whole-estate and the dedicated Watchtower gate. The drill proves GREEN baseline -> core latency AMBER -> core outage RED -> actionable operator next actions -> retained core outage history after endpoint restoration -> recovery to GREEN. Production dependencies are not deliberately broken. This closes G5-007/B07; G5-008/B06 remains separate because authorised HQ operator interaction is still outstanding.
 
-## M10 exhaustive production route detection — original G1-006 PASS
-The exhaustive whole-estate release sweep checked **418 same-origin URLs / 370 HTML pages** with **0 critical route, asset or blank-page failures** and `truncated:false` against a 1,000-URL ceiling. Discovery was exhausted. An earlier malformed `${m.url}` defect was found by this mechanism, fixed, and the unchanged exhaustive sweep reran green. This closes original G1-006. M10 itself remains AMBER for rendered loading/empty/error states and mobile/cross-browser acceptance.
+## G1-006 production route detection — PASS; G1-007 still AMBER
+The exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, zero critical failures, `truncated:false`. The deployed safe-error release lane now also proves representative API failures are correlated, no-store and non-leaking. G1-007 remains AMBER only for rendered/member-facing failure-state acceptance.
 
-## M07 structured member runtime — original G5-009 PASS
-PR #68 introduced V7 structured-preferred Grub/Fit composition with controlled V4 migration fallback. Production commissioning then exposed two real Fit cutover defects rather than allowing a shallow structured floor to degrade the member experience:
-1. Three published structured movements were initially cycled repeatedly through a multi-day plan. The semantic quality floor correctly rejected the repetition. PR #77 changed structured cutover to use each eligible published movement at most once across the plan and preserve quality-aware legacy fallback for unfilled slots.
-2. V6 could still enforce the semantic quality floor against the interim legacy composition before V7 had the chance to enrich it. PR #80 moved authoritative quality enforcement to the final V7 composition for V7-owned routes while leaving ordinary V6 callers fail-closed.
+## Industrial Grub factory
+Current short-term authored target: **2,500**. Long-term minimum: **10,000+**.
 
-PR #80 Master Integration and whole-estate gates were GREEN. It merged as `d28d0fde59b1146506c98d8f16f4ff5c88e82138`. The unchanged post-merge production commissioning run `31638147840` is fully GREEN, including Radar, authenticated isolation, longitudinal Grub/Fit, locked B03 and M07.
+PR #87 passed full Master Integration and whole-estate gates and merged. Current authored structured Grub universe: **2,908** = 2,876 industrial + 32 existing structured objects. This wave added **2,652 authored objects** beyond the prior 256 total.
 
-M07 production evidence:
-- Grub V7: `publishedAvailable:1`, `served:1`, example `lighter-beef-cottage-pie`, validated nutrition retained, durable Nay respected.
-- Fit V7: `publishedAvailable:3`, `served:3`, example `dumbbell-goblet-squat`, member visual `assets/fit/shift-fit-batch2.svg#goblet-squat`, durable Nay respected.
-- Production proof states that the authenticated member consumed reviewed/published structured Grub/Fit content with validated nutrition, approved visual guidance and durable Nay behaviour; legacy remains controlled migration fallback only.
+Industrial Grub evidence:
+- Schema/structural gate: **2,876 / 2,876 industrial objects pass**.
+- Quarantined D1 staging: **2,876 drafts**, zero volume-driven publication.
+- Meal distribution: **464 breakfast / 668 lunch / 1,280 dinner / 464 snack**.
+- Real-life food families: **26**.
+- Fakeaway/treat-tagged objects: **612**.
+- Downstream: **1 nutrition-valid / 1 reviewed / 1 published / 1 production-served**.
+- Nutrition precision is not fabricated: unvalidated industrial recipes remain `pending_validation` and blocked from publication.
 
-This closes original G5-009. M11/M12 remain AMBER because production scale and breadth are separate requirements.
+The first 2,500-scale gate found exact duplicate Grub fingerprints in the new snack/treat family layer. The gate was not weakened. Four snack/treat families were made materially different in ingredients and method, then the unchanged exact-duplicate gate passed.
 
-## Industrial content factory
-The old 64 Grub / 48 Fit numbers are retired as product targets. Current objectives are **2,500 commissioned Grub + 2,500 commissioned Fit** in the current build and **10,000+ quality objects in each universe** long-term.
+Authored-capacity simulation — explicitly not commissioned/published diversity:
+- 30 days: 120 slots / **0 exact repeats / 120 unique**.
+- 60 days: 240 slots / **0 exact repeats / 240 unique**.
+- 90 days: 360 slots / **0 exact repeats / 360 unique**.
+- 365 days: 1,460 slots / **0 exact repeats / 1,460 unique**.
 
-### Grub funnel
-- Structured authored/schema-valid universe: **256** = 32 original + 224 industrial.
-- Industrial batch distribution: 56 breakfast / 56 lunch / 56 dinner / 56 snack.
-- Nutrition-valid: **1**.
-- Reviewed: **1**.
-- Published: **1**.
-- Production-served: **1**.
-- Object-level commissioning floor ready: **1**; catalogue-scale M11 remains AMBER.
-- New 224 industrial objects remain quarantined drafts pending ingredient-level nutrition validation/review.
+M11 remains AMBER because downstream ingredient-level nutrition validation, second-person review, publication and production-serving breadth are still prototype-scale.
 
-The first industrial generator produced exact duplicate snack fingerprints. CI rejected the batch. The content was changed to materially distinct variants; the duplicate gate was not weakened. Industrial gate requires unique IDs/titles/fingerprints and complete structural/safety metadata.
+## Industrial Fit factory
+Current short-term authored target: **2,500**. Long-term minimum: **10,000+**.
 
-Historical variety evidence remains: live 16-recipe pool produced ~86.7% exact repeats over 30 days and ~93.3% over 60 days; the earlier 32-candidate capacity pool was still ~60% / 80%. Industrial 90/180/365-day commissioned-catalogue simulation remains required and candidate capacity must not masquerade as production variety.
+Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured objects. This wave added **2,244 authored objects** beyond the prior 256 total.
 
-### Fit funnel
-- Structured authored/schema-valid universe: **256** = 32 original + 224 industrial.
-- Industrial objects cover **28 canonical movements × 8 meaningful variation identities**.
-- Existing visual assets authored: 8; member-QA approved: **3**.
-- Reviewed: **3**.
-- Published: **3**.
-- Production-served: **3**.
-- Object-level commissioning floor ready: **3**; catalogue-scale M12 remains AMBER.
-- New 224 industrial objects remain visual/review quarantined.
+Industrial Fit evidence:
+- Schema/structural gate: **2,468 / 2,468 industrial objects pass**.
+- Quarantined D1 staging: **2,468 drafts**, zero volume-driven publication.
+- New canonical universe: **44 canonical movements × 51 protocol/ability identities**, spanning strength, cardio, mobility, stretching and balance.
+- Existing authored visual concepts: **8**.
+- New canonical visual specifications: **44**.
+- Member-QA visual: **3**.
+- Reviewed/published/production-served: **3 / 3 / 3**.
 
-Historical simulation: live 12-movement pool could repeat one movement 15 times over 180 slots; the earlier candidate pool reduced worst repetition to 5. Industrial 4/8/12/26/52-week multi-context simulation remains required.
+Authored-capacity simulation — explicitly not commissioned/published diversity:
+- 12 weeks / 180 slots: **0 exact repeats / 180 unique / 51 canonical movements used**.
+- 26 weeks / 390 slots: **0 exact repeats / 390 unique / 52 canonical movements used**.
+- 52 weeks / 780 slots: **0 exact repeats / 780 unique / 54 canonical movements used**.
 
-## B01 / M09 human-only boundary
-Deterministic email verification, welcome/reset delivery implementation and reset/change-password logic are proven. Remaining release evidence requires a real inbox token/click chain. Secret-bearing reset/verification tokens must never be committed or logged.
+M12 remains AMBER because visual production/member-QA/review/publication/production-serving conversion has not scaled with authoring yet.
+
+## Dave
+Automated progressive journey still reports public discovery/trust/Core and anonymous-boundary legs green, while registration/verification/recovery and authenticated rendered legs remain explicitly AMBER and treatment support remains partner-dependent. The separate authenticated production suites are green but have not been used to vanity-promote B08.
 
 ## Current authoritative scoreboard
-**57 total / 16 PASS / 38 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 19 PASS / 35 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Rows newly closed in this industrial execution wave: **G4-006, G4-007, G1-006, G5-009**.
+Rows closed by the latest swarmed evidence: **G1-010, G5-007, G5-011**. Content authoring crossed the short-term 2,500 target in both Grub and Fit but M11/M12 correctly remain AMBER for conversion quality and breadth.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
-## Active closure swarm
-B01; B03 rendered/premium/mobile only; B05; B06/B07; B08/Dave; M01; M04–M06; M08–M13; M17. Industrial Grub/Fit conversion must run continuously but must not queue unrelated closures.
+## Active swarm
+B01; B03 rendered only; B05; B06; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub nutrition/review/publication conversion and Fit visual/review/publication conversion.
 
-Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> BREAK -> FIX -> PROVE -> CLOSE.**
+Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**
