@@ -46,6 +46,8 @@ jobs:
         run: node adversarial-longitudinal-v2.mjs
       - name: Structured content 10k load benchmark
         run: node structured-content-load-v1.mjs
+      - name: Live runtime auth abuse probe
+        run: node runtime-auth-abuse-v1.mjs
       - name: Dave progressive journey
         run: node dave-journey-v1.mjs
       - name: Syntax checks
