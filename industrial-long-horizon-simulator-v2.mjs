@@ -1,4 +1,4 @@
-import {buildIndustrialCatalogue} from './industrial-catalogue-v4.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
 const c=buildIndustrialCatalogue();
 const fail=m=>{throw new Error(m)};
 function rotate(pool,n,offset=0,stride=1){const out=[];for(let i=0;i<n;i++)out.push(pool[(offset+i*stride)%pool.length]);return out}
