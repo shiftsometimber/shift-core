@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
 const foods=new Map((index.foods||[]).map(f=>[String(f.code),f]));
-const APPROVED={
+export const APPROVED={
  'olive oil':['17-038','exact'], 'tomato':['13-517','exact'], 'mixed peppers':['13-524','reviewed_proxy'], 'red pepper':['13-524','exact'],
  'rolled oats':['11-788','exact'], 'pumpkin seeds':['14-842','exact'], 'spinach':['13-521','reviewed_proxy'], 'lettuce':['13-520','exact'], 'rocket':['13-522','exact'],
  'baby potatoes':['13-618','exact'], 'wholemeal bread':['11-981','exact'], 'wholemeal wrap':['11-925','reviewed_proxy'], 'wholemeal bap':['11-986','reviewed_proxy'], 'wholemeal burger bun':['11-986','reviewed_proxy'], 'wholemeal bagel':['11-970','reviewed_proxy'], 'wholemeal flatbread':['11-974','reviewed_proxy'],
@@ -18,7 +18,7 @@ const APPROVED={
 const PORTION_G={'wholemeal bread':80,'wholemeal wrap':65,'brown rice, dry':75,'basmati rice, dry':75,'wholewheat noodles':70,'baking potato':250,'wholemeal bap':80,'wholemeal burger bun':80,'wholemeal bagel':90,'wholemeal flatbread':70,'oven chips':250,'individual pizza base':150,'roast potatoes':220};
 const EACH_G={'boiled eggs':50,'large eggs':60,'egg':60};
 const norm=s=>String(s||'').trim();
-function grams(amount,item){const s=norm(amount).toLowerCase();const g=s.match(/(\d+(?:\.\d+)?)\s*g\b/);if(g)return Number(g[1]);const ml=s.match(/(\d+(?:\.\d+)?)\s*ml\b/);if(ml)return Number(ml[1])*(item==='olive oil'?0.92:1);if(/portion/.test(s)&&PORTION_G[item])return PORTION_G[item];if(/^\d+(?:\.\d+)?$/.test(s)&&EACH_G[item])return Number(s)*EACH_G[item];return null}
+export function grams(amount,item){const s=norm(amount).toLowerCase();const g=s.match(/(\d+(?:\.\d+)?)\s*g\b/);if(g)return Number(g[1]);const ml=s.match(/(\d+(?:\.\d+)?)\s*ml\b/);if(ml)return Number(ml[1])*(item==='olive oil'?0.92:1);if(/portion/.test(s)&&PORTION_G[item])return PORTION_G[item];if(/^\d+(?:\.\d+)?$/.test(s)&&EACH_G[item])return Number(s)*EACH_G[item];return null}
 function foodFor(item){const x=APPROVED[item];if(!x)return null;const f=foods.get(x[0]);return f?{food:f,state:x[1]}:null}
 const recipes=buildIndustrialCatalogue().recipes;let valid=0,exactOnly=0,proxyUsed=0;const blocked=new Map(),mappedItems=new Set();
 for(const r of recipes){let ok=true,hasProxy=false;for(const ing of r.ingredients||[]){const item=norm(ing.item),hit=foodFor(item),g=grams(ing.amount,item);if(!hit){ok=false;blocked.set(`unmapped:${item}`,(blocked.get(`unmapped:${item}`)||0)+1);continue}mappedItems.add(item);if(hit.state!=='exact')hasProxy=true;if(!(g>0)){ok=false;blocked.set(`amount:${item}:${ing.amount}`,(blocked.get(`amount:${item}:${ing.amount}`)||0)+1)}}if(ok){valid++;if(hasProxy)proxyUsed++;else exactOnly++}}
