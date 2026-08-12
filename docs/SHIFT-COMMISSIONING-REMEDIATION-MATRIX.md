@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence.
 
-**Current reconciled scoreboard: 57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -57,7 +57,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G4-001 | No single formal Shift Brain member model | **PASS** | One Shift Brain is canonical across Shift AI, Today, Grub/Fit and proactive consumers; integration gate green. |
 | G4-002 | Memory provenance/confidence/edit/delete controls incomplete | **PASS** | Inspect/correct/delete learned memory, source/confidence visibility, correction provenance, privacy controls and cross-member isolation are commissioned. |
 | G4-003 | AI recommendation outcomes are not consistently learned | **PASS** | Durable Yay/Nay and current intent measurably alter later recommendations across leave/return without cross-domain contamination. |
-| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | AMBER | Reviewed Knowledge publish -> canonical retrieval -> Brain grounding/provenance -> withdrawal is proven, but automatic CMS ingestion/flywheel proof remains outstanding. |
+| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | **PASS** | Scheduled CMS/approved-document sync now proves reviewed source -> canonical Knowledge graph node + provenance, draft exclusion, withdrawal reconciliation, and stable canonical reactivation after re-review without manual HQ ingest. |
 | G4-005 | Grounding provenance is not consistently visible/inspectable | **PASS** | Shift AI production contract returns provenance-aware sources and reviewed state; hard production proof green. |
 | G4-006 | Radar is built but end-to-end live status is unproven | **PASS** | Production commissioning invoked the genuine regulator scanner through restricted GitHub OIDC; live MHRA drug-safety, MHRA alerts and EMA sources all returned successfully and the scan completed. |
 | G4-007 | GLP ticker freshness can silently degrade | **PASS** | Production Radar freshness returned GREEN inside declared SLOs immediately after the genuine scan; adversarial gates prove stale -> AMBER, publication failure -> RED and recovery -> GREEN rather than silent degradation. |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence proves 15/20 non-duplicated journey legs (75%); real-inbox registration/verification/recovery, rendered/mobile authenticated release acceptance and partner-dependent treatment support remain. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 34-AMBER burn-down classification
+## 33-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -114,7 +114,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G3-006 | FINITE | M01 Knowledge editorial/reviewer presentation |
 | G3-007 | HUMAN/DEVICE | B08/M01 member IA acceptance |
 | G3-008 | FINITE | M06 accessibility gate |
-| G4-004 | FINITE | automatic CMS -> Knowledge Graph flywheel proof |
 | G4-008 | LARGE | premium proactive Today orchestration |
 | G5-005 | FINITE | B05 public trust audit |
 | G5-012 | FINITE | M06 critical-path performance evidence |
@@ -122,7 +121,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
-PASS rows: 20. AMBER rows: 34. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+PASS rows: 21. AMBER rows: 33. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
 ## Commissioning rule
 A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.

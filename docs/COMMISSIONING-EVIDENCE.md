@@ -72,8 +72,11 @@ The dedicated reconciliation maps **15/20 non-duplicated journey legs** to retai
 
 Unresolved legs remain explicit rather than cosmetically promoted: real-inbox registration, real-inbox verification, rendered/mobile authenticated release acceptance, real-inbox account recovery, and partner-dependent treatment support. B08 remains AMBER.
 
+## G4-004 — PASS
+Merged PR #98 passed the dedicated Knowledge Flywheel gate, Master Integration, whole-estate route sweep and Academy gate. The scheduled Worker path now proves approved CMS content is ingested into the canonical Knowledge graph with provenance, draft content is excluded, withdrawn source content is removed from active graph use, and re-review reactivates the same canonical identity without a manual HQ ingest call.
+
 ## Current authoritative scoreboard
-**57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
 Latest original row closure: **G5-008 / B06**. Earlier locked closures include G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
 
