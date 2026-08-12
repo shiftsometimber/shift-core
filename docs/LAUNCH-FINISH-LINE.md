@@ -11,7 +11,7 @@ This is the authoritative launch closure board. `docs/SHIFT-COMMISSIONING-REMEDI
 | B04 | One Shift Brain longitudinal behaviour | **PASS** — current intent precedence, durable Grub/Fit learning, cross-domain isolation, retained Progress/AI context |
 | B05 | Public/member trust boundary | AMBER — operator/AI/data/support/current clinical-provider status trust audit |
 | B06 | HQ production operation | AMBER — authorised operator must see actionable AMBER/RED, next action and recovery |
-| B07 | Critical monitoring degradation/recovery | AMBER — safe healthy -> degraded -> detected/history/HQ action -> recovered proof |
+| B07 | Critical monitoring degradation/recovery | **PASS** — dedicated fire drill proves GREEN -> latency AMBER -> outage RED -> operator next actions + retained history -> recovery -> GREEN without deliberately breaking production dependencies |
 | B08 | Dave release-candidate journey | AMBER — fresh unassisted end-to-end Dave incl recovery, rendered/mobile and content-depth acceptance |
 
 B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI are behaviour-green. Do not reopen without genuine regression evidence. Catalogue depth remains M11/M12; rendered quality remains B03/M01/M06/M10/B08.
@@ -23,14 +23,14 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 | M02 | Reviewed Knowledge publication lifecycle | **PASS** — publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding |
 | M03 | Radar production freshness | **PASS** — genuine production MHRA/EMA scan completed through restricted OIDC and production freshness returned GREEN inside declared SLOs; adversarial stale/failure/recovery transitions are locked |
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors |
-| M05 | Security/privacy release review | AMBER — authz/rate/session/secrets/uploads/export-delete/audit/analytics boundaries |
+| M05 | Security/privacy release review | **PASS** — deployed production proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS denial, per-member export isolation, deletion-session revocation and hardened response envelopes; source gate covers auth/rate/session/recovery/secrets/analytics controls |
 | M06 | Accessibility + performance release check | AMBER — critical interaction audit + measured production budgets |
 | M07 | Structured content production path | **PASS** — authenticated production member consumed reviewed/published structured Grub and Fit through V7, with validated nutrition, approved visual guidance, provenance and durable Nay behaviour; V4 is controlled quality-preserving migration fallback, not future authority |
 | M08 | Release evidence + recovery checkpoint | AMBER — continuously reconcile matrix/ledger/recovery through release candidate |
 | M09 | Proper email verification lifecycle | AMBER — deterministic lifecycle green; real production inbox verification/login evidence remains |
-| M10 | Whole-estate routes/links/errors release sweep | AMBER — route/link/asset detection sub-requirement is closed by exhaustive 418-URL / 370-HTML production crawl with zero critical failures and no truncation; rendered loading/empty/error/mobile acceptance remains |
-| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — 256 authored universe (32 original + 224 industrial), 1 nutrition-validated/reviewed/published/production-served commissioning-floor recipe; 224 new industrial objects remain quarantined pending validation/review; target 2,500 commissioned / 10,000+ long-term |
-| M12 | Fit catalogue/session breadth and visual guidance | AMBER — 256 authored universe (32 original + 224 industrial across 28 canonical movements × 8 variants), 3 member-QA/reviewed/published/production-served commissioning-floor movements; 224 new industrial objects remain visual/review quarantined; target 2,500 commissioned / 10,000+ long-term |
+| M10 | Whole-estate routes/links/errors release sweep | AMBER — route/link/asset detection is closed and deployed safe-error contracts are green; rendered loading/empty/error/mobile acceptance remains |
+| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — **2,908 authored structured objects** (2,876 industrial + existing 32), 2,876 industrial objects pass the current schema/structure gate and stage quarantined; 1 nutrition-validated/reviewed/published/production-served recipe. Short-term authored target 2,500 exceeded; industrial nutrition/review/publication conversion remains the bottleneck. Long-term minimum 10,000+ |
+| M12 | Fit catalogue/session breadth and visual guidance | AMBER — **2,500 authored structured objects** (2,468 industrial + existing 32), with 2,244 new objects across 44 new canonical movements × 51 protocol/ability identities; 8 existing authored visual concepts, 44 canonical visual specifications, 3 member-QA/reviewed/published/production-served movements. Short-term authored target 2,500 reached; visual/review/publication conversion remains the bottleneck. Long-term minimum 10,000+ |
 | M13 | Whole-person Progress + proper units | AMBER — coherent story + controlled stone/lb/kg and metric experience |
 | M14 | Member memory inspect/edit/delete controls | **PASS** — inspect/correct/delete, provenance/confidence, durable deletion, privacy controls and cross-member isolation proven |
 | M15 | Health MOT mocked partner-ready integration | **PASS** — mocked payload -> idempotent MOT -> sourced Progress -> One Shift Brain -> authenticated Today, member-isolated and non-diagnostic; live provider remains external/post-launch |
@@ -40,18 +40,14 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification: **16 PASS / 38 AMBER / 3 BLOCKED / 0 abstraction orphans** after production Radar, exhaustive route detection and structured-runtime proof.
+Exactly **57** original rows remain mandatory. Current evidenced classification: **19 PASS / 35 AMBER / 3 BLOCKED / 0 abstraction orphans** after production release-security/privacy proof and the controlled Watchtower degradation/recovery fire drill.
 
 ## Content conversion funnel
-**Grub:** legacy migration fallback 16. Structured authored universe **256**: 32 original structured objects + 224 new industrial authored/schema-valid objects. Current commissioning floor is **1 nutrition-validated / 1 reviewed / 1 published / 1 production-served**. Production proof served `lighter-beef-cottage-pie`, retained CoFID validation and respected durable Nay exclusion. The 224 industrial objects are deliberately **quarantined drafts** until ingredient-level validation and review succeed. Short-term objective **2,500 commissioned**; long-term minimum **10,000+**.
+**Grub:** structured authored universe **2,908**. Industrial factory holds **2,876** quarantined/schema-gated objects plus the existing 32 structured objects. This execution added **2,652** authored objects beyond the prior 256 total. Distribution inside the industrial catalogue is 464 breakfast / 668 lunch / 1,280 dinner / 464 snack objects; 26 real-life food families are represented and the catalogue contains 612 fakeaway/treat-tagged objects. The exact-duplicate gate initially caught structurally duplicate snack-family output; those families were made materially distinct and the unchanged gate then passed. Downstream remains **1 nutrition-valid / 1 reviewed / 1 published / 1 production-served**. Authored-capacity simulation shows **0 exact repeats** at 30, 60, 90 and 365 days, but this is explicitly not commissioned/published diversity.
 
-The industrial Grub batch adds a balanced 56 breakfast / 56 lunch / 56 dinner / 56 snack objects in one execution window. Exact-duplicate fingerprinting caught a generated snack-variation padding defect; the content was corrected to make each variation materially distinct rather than weakening the gate. Existing long-horizon simulator must now expand to 7/14/30/60/90/180/365-day commissioned-catalogue simulations and feed catalogue holes back into authoring.
+**Fit:** structured authored universe **2,500**. Industrial factory holds **2,468** quarantined/schema-gated objects plus the existing 32 structured objects. This execution added **2,244** objects and broadens the universe through strength, cardio, mobility, stretching and balance, with 44 new canonical movements × 51 meaningful protocol/ability identities. Downstream remains **8 authored visual concepts / 44 canonical visual specifications / 3 member-QA visual / 3 reviewed / 3 published / 3 production-served**. Authored-capacity simulations show **0 exact repeats** over 12, 26 and 52 weeks, while commissioned visual/review/publication breadth remains M12 work.
 
-**Fit:** legacy migration fallback 12. Structured authored universe **256**: 32 original structured objects + 224 new industrial objects covering **28 canonical movements × 8 meaningful variation identities**. Current commissioning floor is **3 member-QA illustrated / 3 reviewed / 3 published / 3 production-served**. Production proof served all three published structured movements, included approved visual guidance and respected durable Nay exclusion. The 224 industrial objects remain visual/review-quarantined. Short-term objective **2,500 commissioned**; long-term minimum **10,000+**.
-
-Fit simulation must expand to 4/8/12/26/52-week horizons across frequency, location, equipment and limitation profiles. Visual guidance must convert alongside prescription eligibility; authored movement count alone is not launch-ready inventory.
-
-The conversion metric is authored -> domain validated -> reviewed -> published -> production-served -> launch-ready. Raw candidate count is not a closure.
+The conversion metric remains authored -> domain/nutrition/visual validated -> reviewed -> published -> production-served -> launch-ready. Raw candidate count is never a closure by itself.
 
 ## External blocked requirements
 | ID | Requirement | State |
@@ -63,9 +59,9 @@ The conversion metric is authored -> domain validated -> reviewed -> published -
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-B01; B03 rendered only; B05; B06/B07; B08; M01; M04–M06; M08–M13; M17. M11/M12 conversion must not queue the other rows. The 38 remaining AMBERs are classified in the remediation matrix as QUICK KILL / FINITE / LARGE / HUMAN-DEVICE.
+B01; B03 rendered only; B05; B06; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 35 remaining AMBERs are classified in the remediation matrix as QUICK KILL / FINITE / LARGE / HUMAN-DEVICE.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening the acceptance test.
 
-**INDUSTRIALISE -> VALIDATE -> SERVE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+**INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
