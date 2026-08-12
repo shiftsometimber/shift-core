@@ -7,6 +7,7 @@ import {assessMemberOutput} from './member-quality-v1.js';
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/fit/plan','/v1/fit/replace']);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const json=(data,status=200,request)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store',...cors(request)}});
+const pct=(n,d)=>d?Math.round((Number(n)*1000)/Number(d))/10:0;
 
 export async function memberProductV7Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
@@ -40,8 +41,9 @@ async function structuredGrubPlan(request,env,userId,body,payload,nays){
     }
     day.totals={kcal:(day.meals||[]).reduce((a,m)=>a+Number(m.kcal||m.nutrition?.kcal||0),0),protein_g:(day.meals||[]).reduce((a,m)=>a+Number(m.protein||m.nutrition?.protein_g||0),0)};
   }
+  const totalItems=(payload.plan?.days||[]).reduce((a,d)=>a+(d.meals||[]).length,0),legacyItems=Math.max(0,totalItems-structuredServed);
   payload.plan.kind='shift_grub_plan_v7';
-  payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,structured_items_served:structuredServed,legacy_fallback_used:structuredServed<(payload.plan?.days||[]).reduce((a,d)=>a+(d.meals||[]).length,0),provenance_visible:true};
+  payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,total_items:totalItems,structured_items_served:structuredServed,legacy_fallback_items:legacyItems,structured_serving_pct:pct(structuredServed,totalItems),legacy_fallback_pct:pct(legacyItems,totalItems),legacy_fallback_used:legacyItems>0,progressive_cutover:true,quality_preserving_fallback:true,provenance_visible:true};
   const quality=assessMemberOutput('grub',payload,body);payload.qualityCommissioning=quality;
   if(!quality.ok)return qualityFailure(quality,request);
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'grub',payload.plan);
@@ -52,7 +54,7 @@ async function structuredGrubReplace(request,env,body,payload,nays){
   const published=await listPublishedContent(env.DB,'recipe',{limit:500}),type=String(body.type||payload?.meal?.type||''),prefs=preferenceText(body),exclude=new Set([...(body.exclude||[]).map(String),...nays]);
   const options=published.filter(x=>x.data?.meal_type===type&&!exclude.has(x.id)&&recipeAllowed(x,prefs));
   if(!options.length)return json(payload,200,request);
-  return json({ok:true,meal:toRecipe(options[Math.floor(Math.random()*options.length)]),catalogue:{authority:'structured_published',legacy_fallback_used:false}},200,request);
+  return json({ok:true,meal:toRecipe(options[Math.floor(Math.random()*options.length)]),catalogue:{authority:'structured_published',total_items:1,structured_items_served:1,legacy_fallback_items:0,structured_serving_pct:100,legacy_fallback_pct:0,legacy_fallback_used:false}},200,request);
 }
 
 async function structuredFitPlan(request,env,userId,body,payload,nays){
@@ -67,9 +69,9 @@ async function structuredFitPlan(request,env,userId,body,payload,nays){
     }
     session.estimated_minutes=(session.exercises||[]).reduce((a,x)=>a+Number(x.minutes||0),0);
   }
-  const totalItems=(payload.plan?.sessions||[]).reduce((a,s)=>a+(s.exercises||[]).length,0);
+  const totalItems=(payload.plan?.sessions||[]).reduce((a,s)=>a+(s.exercises||[]).length,0),legacyItems=Math.max(0,totalItems-structuredServed);
   payload.plan.kind='shift_fit_plan_v7';
-  payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,structured_items_served:structuredServed,structured_unique_items_served:structuredUsedAcrossPlan.size,legacy_fallback_used:structuredServed<totalItems,progressive_cutover:true,quality_preserving_fallback:true,provenance_visible:true};
+  payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,total_items:totalItems,structured_items_served:structuredServed,structured_unique_items_served:structuredUsedAcrossPlan.size,legacy_fallback_items:legacyItems,structured_serving_pct:pct(structuredServed,totalItems),legacy_fallback_pct:pct(legacyItems,totalItems),legacy_fallback_used:legacyItems>0,progressive_cutover:true,quality_preserving_fallback:true,provenance_visible:true};
   const quality=assessMemberOutput('fit',payload,body);payload.qualityCommissioning=quality;
   if(!quality.ok)return qualityFailure(quality,request);
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'fit',payload.plan);
@@ -80,7 +82,7 @@ async function structuredFitReplace(request,env,body,payload,nays){
   const published=await listPublishedContent(env.DB,'exercise',{limit:500}),group=String(body.group||payload?.exercise?.group||''),exclude=new Set([...(body.exclude||[]).map(String),...nays]),context=fitContext(body);
   const options=published.filter(x=>x.data?.movement_group===group&&!exclude.has(x.id)&&exerciseAllowed(x,context));
   if(!options.length)return json(payload,200,request);
-  return json({ok:true,exercise:toExercise(options[Math.floor(Math.random()*options.length)]),catalogue:{authority:'structured_published',legacy_fallback_used:false}},200,request);
+  return json({ok:true,exercise:toExercise(options[Math.floor(Math.random()*options.length)]),catalogue:{authority:'structured_published',total_items:1,structured_items_served:1,legacy_fallback_items:0,structured_serving_pct:100,legacy_fallback_pct:0,legacy_fallback_used:false}},200,request);
 }
 
 function qualityFailure(quality,request){return json({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_structured_v7'},503,request)}
