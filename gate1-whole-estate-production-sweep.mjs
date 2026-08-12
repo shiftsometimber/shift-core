@@ -53,7 +53,11 @@ while(queue.length&&visited.size<MAX_PAGES){
 
 const checked=[...visited.entries()].map(([url,x])=>({url,...x}));
 const critical=failures.filter(x=>x.status>=400||x.error);
-console.log(JSON.stringify({proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES},null,2));
-if(critical.length)process.exit(1);
+const report={proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES};
+console.log(JSON.stringify(report,null,2));
+if(critical.length){
+  for(const f of critical.slice(0,20)){const detail=[f.status&&`HTTP ${f.status}`,f.error,f.final&&f.final!==f.url&&`final=${f.final}`].filter(Boolean).join(' · ');console.error(`::error title=M10 route sweep::${String(f.url).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')} — ${String(detail).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')}`)}
+  process.exit(1);
+}
 if(!visited.has(START+'/'))throw new Error('Homepage was not swept');
 if(checked.length<2)throw new Error('Sweep discovered too little estate surface to be meaningful');
