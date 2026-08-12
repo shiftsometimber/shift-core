@@ -11,6 +11,9 @@ This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the l
 - **M07 / G5-009 PASS:** authenticated production V7 structured Grub/Fit serving with validated nutrition, approved Fit visual and durable Nays; V4 remains controlled migration fallback.
 - **M14/G4-002, M15/G5-004 and M16/G5-006 PASS** remain locked.
 
+## G4-004 automatic CMS -> Knowledge Graph flywheel — PASS
+PR #98 merged the scheduled Knowledge flywheel and its dedicated unchanged `Shift Knowledge Flywheel Gate` completed GREEN. The lifecycle evidence records `scheduled:true`, two approved chunks ingested, zero draft chunks ingested, both chunks withdrawn when their source was withdrawn, successful reactivation only after re-review/update, stable canonical IDs, and `approved_document` provenance. This demonstrates the actual scheduled ingestion/reconciliation lifecycle rather than code existence: scheduled approved ingest -> canonical Knowledge Graph provenance -> draft exclusion -> source withdrawal -> graph withdrawal -> re-review/update -> canonical reactivation.
+
 ## G1-010 + M05 / original G5-011 — PASS
 Merged PR #86 added source and deployed release security/privacy commissioning. Production run `31640854509` completed GREEN. Its dedicated production step proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions.
 
@@ -73,9 +76,9 @@ The dedicated reconciliation maps **15/20 non-duplicated journey legs** to retai
 Unresolved legs remain explicit rather than cosmetically promoted: real-inbox registration, real-inbox verification, rendered/mobile authenticated release acceptance, real-inbox account recovery, and partner-dependent treatment support. B08 remains AMBER.
 
 ## Current authoritative scoreboard
-**57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G5-008 / B06**. Earlier locked closures include G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
+Latest original row closure: **G4-004 automatic CMS -> Knowledge Graph flywheel**. Earlier locked closures include G5-008/B06, G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
