@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {"concept_id":"box-squat","asset_ref":"assets/fit/shift-fit-batch1.svg#box-squat","status":"authored_pending_member_qa","structured_exercise_id":null},
+    {"concept_id":"wall-pushup","asset_ref":"assets/fit/shift-fit-batch1.svg#wall-pushup","status":"authored_pending_member_qa","structured_exercise_id":null},
+    {"concept_id":"band-row","asset_ref":"assets/fit/shift-fit-batch1.svg#band-row","status":"authored_pending_member_qa","structured_exercise_id":null},
+    {"concept_id":"dead-bug","asset_ref":"assets/fit/shift-fit-batch1.svg#dead-bug","status":"authored_pending_member_qa","structured_exercise_id":null},
+    {"concept_id":"goblet-squat","asset_ref":"assets/fit/shift-fit-batch2.svg#goblet-squat","status":"authored_pending_member_qa","structured_exercise_id":"dumbbell-goblet-squat"},
+    {"concept_id":"floor-press","asset_ref":"assets/fit/shift-fit-batch2.svg#floor-press","status":"authored_pending_member_qa","structured_exercise_id":"dumbbell-floor-press"},
+    {"concept_id":"bird-dog","asset_ref":"assets/fit/shift-fit-batch2.svg#bird-dog","status":"authored_pending_member_qa","structured_exercise_id":"bird-dog"},
+    {"concept_id":"glute-bridge","asset_ref":"assets/fit/shift-fit-batch2.svg#glute-bridge","status":"authored_pending_member_qa","structured_exercise_id":null}
+  ],
+  "note":"These are authored Shift-owned guidance concepts recovered from the superseded #55 branch. They are not member-QA approved and must not be counted as commissioned visuals. Only exact current structured-exercise bindings are populated."
+}
