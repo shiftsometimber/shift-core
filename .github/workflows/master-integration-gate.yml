@@ -4,6 +4,7 @@ on:
     paths:
       - '**.js'
       - '**.mjs'
+      - 'content/**'
       - 'docs/COMMISSIONING-EVIDENCE.md'
       - 'docs/FINISH-LINE.md'
       - 'docs/LAUNCH-FINISH-LINE.md'
@@ -29,6 +30,8 @@ jobs:
         run: node gate1-auth-security-source-gate.mjs
       - name: Gate 2 Grub/Fit source contract
         run: node gate2-product-source-gate.mjs
+      - name: M11/M12 content-factory authoring quality contract
+        run: node content-factory-gate.mjs
       - name: Gate 2 durable learning contract
         run: node gate2-learning-source-gate.mjs
       - name: Gate 2 Today/Progress/Plans contract
