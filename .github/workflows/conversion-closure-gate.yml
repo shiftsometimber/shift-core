@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'industrial-conversion-gate.mjs'
+      - 'industrial-catalogue-v4.js'
+      - 'industrial-catalogue-v5.js'
+      - 'industrial-snack-quality-gate.mjs'
       - 'industrial-grub-nutrition-v1.js'
       - 'industrial-grub-targeted-diagnostics.mjs'
       - 'cofid-candidate-diagnostics.py'
@@ -21,6 +24,8 @@ jobs:
         run: |
           python3 -m pip install --quiet openpyxl
           python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Industrial snack recipe quality
+        run: node industrial-snack-quality-gate.mjs
       - name: Industrial conversion diagnostics
         env:
           COFID_INDEX: /tmp/cofid-index.json
