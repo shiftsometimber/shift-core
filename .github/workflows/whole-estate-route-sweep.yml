@@ -13,3 +13,5 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Whole-estate production routes, links and blank-page sweep
         run: node gate1-whole-estate-production-sweep.mjs
+      - name: Production member/HQ failure-contract sweep
+        run: node gate1-production-error-contract.mjs
