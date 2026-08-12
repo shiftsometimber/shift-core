@@ -1,0 +1,6 @@
+const steps=[
+['discover','GET','https://shiftsometimber.co.uk/'],
+['trust','GET','https://shiftsometimber.co.uk/about/'],
+['register','MANUAL_AUTH',null],['verify','MANUAL_INBOX',null],['onboard','AUTHENTICATED',null],['today','AUTHENTICATED',null],['grub','AUTHENTICATED',null],['fit','AUTHENTICATED',null],['hydration','AUTHENTICATED',null],['progress','AUTHENTICATED',null],['picture','AUTHENTICATED',null],['ask_shift','AUTHENTICATED',null],['preference_learning','AUTHENTICATED',null],['leave_return','AUTHENTICATED',null],['changed_recommendation','AUTHENTICATED',null],['treatment_support','PARTNER_DEPENDENT',null],['account_recovery','MANUAL_INBOX',null]
+];
+let failures=0;for(const [name,mode,url] of steps){if(mode==='GET'){const started=Date.now();try{const r=await fetch(url,{headers:{'User-Agent':'Shift-Dave-Commissioner/1'}});if(!r.ok)throw new Error(`HTTP ${r.status}`);console.log('PASS',name,`${Date.now()-started}ms`)}catch(e){failures++;console.error('FAIL',name,e.message)}}else console.log('AMBER',name,mode)}if(failures)process.exit(1);console.log('DAVE JOURNEY SKELETON PASS — public discovery/trust automated; authenticated/inbox/partner legs remain explicit AMBER/BLOCKED until safely runnable.');
