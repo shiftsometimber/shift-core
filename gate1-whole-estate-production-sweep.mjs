@@ -1,5 +1,5 @@
 const START=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
-const MAX_PAGES=Number(process.env.SHIFT_SWEEP_MAX||250);
+const MAX_PAGES=Number(process.env.SHIFT_SWEEP_MAX||1000);
 const USER_AGENT='ShiftCommissioning/1.0 (+release-route-sweep)';
 const queue=[START+'/',START+'/member-login.html'];
 const queued=new Set(queue),visited=new Map(),failures=[],externalHosts=new Map();
@@ -61,4 +61,5 @@ if(critical.length){
 }
 if(!visited.has(START+'/'))throw new Error('Homepage was not swept');
 if(checked.length<2)throw new Error('Sweep discovered too little estate surface to be meaningful');
-console.log(`::notice title=M10 production sweep GREEN::${checked.length} same-origin URLs checked · ${report.htmlPages} HTML pages · 0 critical route/asset/blank-page failures${report.truncated?' · discovery hit configured limit':''}`);
+if(report.truncated)throw new Error(`Whole-estate sweep exceeded ${MAX_PAGES} same-origin URLs; increase SHIFT_SWEEP_MAX rather than accepting partial evidence.`);
+console.log(`::notice title=M10 production sweep GREEN::${checked.length} same-origin URLs checked · ${report.htmlPages} HTML pages · 0 critical route/asset/blank-page failures · discovery exhausted`);
