@@ -1,0 +1,29 @@
+name: Shift Knowledge Flywheel Gate
+on:
+  pull_request:
+    paths:
+      - 'scheduled-knowledge-v1.js'
+      - 'knowledge-publication-v1.js'
+      - 'knowledge-graph-v1.js'
+      - 'knowledge-flywheel-staging.mjs'
+      - 'worker-entry-v6.js'
+      - '.github/workflows/knowledge-flywheel-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scheduled-knowledge-v1.js'
+      - 'knowledge-publication-v1.js'
+      - 'knowledge-graph-v1.js'
+      - 'knowledge-flywheel-staging.mjs'
+      - 'worker-entry-v6.js'
+      - '.github/workflows/knowledge-flywheel-gate.yml'
+jobs:
+  knowledge-flywheel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Automatic CMS to Knowledge Graph lifecycle
+        run: node knowledge-flywheel-staging.mjs
