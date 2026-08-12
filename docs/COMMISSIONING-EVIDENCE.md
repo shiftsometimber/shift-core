@@ -1,6 +1,6 @@
 # Shift Commissioning Evidence Ledger
 
-This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume and candidate-capacity simulation are not PASS by themselves.
+This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Locked foundations
 - **B02 PASS:** authenticated A/B member isolation + durable leave/return state.
@@ -12,70 +12,74 @@ This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the l
 - **M14/G4-002, M15/G5-004 and M16/G5-006 PASS** remain locked.
 
 ## G1-010 + M05 / original G5-011 — PASS
-Merged PR #86 added source and deployed release security/privacy commissioning. The unchanged production run `31640854509` completed GREEN. Its dedicated production step proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions. Original G1-010 and G5-011 are PASS; M05 is PASS.
+Merged PR #86 added source and deployed release security/privacy commissioning. Production run `31640854509` completed GREEN. Its dedicated production step proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions.
 
 ## B07 / original G5-007 — PASS
-PR #88 rebuilt the Watchtower fire drill on current main and passed Master Integration, whole-estate and the dedicated Watchtower gate. The drill proves GREEN baseline -> core latency AMBER -> core outage RED -> actionable operator next actions -> retained core outage history after endpoint restoration -> recovery to GREEN. Production dependencies are not deliberately broken. This closes G5-007/B07; G5-008/B06 remains separate because authorised HQ operator interaction is still outstanding.
+PR #88's dedicated Watchtower fire drill proves GREEN baseline -> core latency AMBER -> core outage RED -> actionable operator next actions -> retained core outage history after endpoint restoration -> recovery to GREEN. Production dependencies are not deliberately broken.
+
+## B06 / original G5-008 — PASS
+PR #93 added the authorised HQ operator fire drill and its unchanged Master Integration step passed. Demonstrated journey: anonymous operational attention denied -> protected commissioning owner bootstrap -> normal HQ login -> retained owner session -> GREEN -> actionable `core_latency` AMBER -> actionable `core_failure_rate` RED -> retained incident/probe history -> recovered endpoint -> eventual GREEN. Both degraded states exposed an operator `nextAction`, the run retained five core probe samples and HQ bootstrap/login audit actions, and `productionDependencyBroken:false`. This is demonstrated operational interaction through the actual `/v1/hq/attention` and `/v1/hq/watchtower` routes, not a code-presence promotion.
 
 ## G1-006 production route detection — PASS; G1-007 still AMBER
-The exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, zero critical failures, `truncated:false`. The deployed safe-error release lane now also proves representative API failures are correlated, no-store and non-leaking. G1-007 remains AMBER only for rendered/member-facing failure-state acceptance.
+The exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, zero critical failures, `truncated:false`. The deployed safe-error release lane proves representative API failures are correlated, no-store and non-leaking. G1-007 remains AMBER only for rendered/member-facing failure-state acceptance.
 
-## Industrial Grub factory
-Current short-term authored target: **2,500**. Long-term minimum: **10,000+**.
+## Industrial Grub factory — M11 remains AMBER
+Short-term authored target: **2,500**. Long-term minimum: **10,000+**.
 
-PR #87 passed full Master Integration and whole-estate gates and merged. Current authored structured Grub universe: **2,908** = 2,876 industrial + 32 existing structured objects. This wave added **2,652 authored objects** beyond the prior 256 total.
+Current authored structured Grub universe: **2,908** = 2,876 industrial + 32 existing structured.
 
-Industrial Grub evidence:
-- Schema/structural gate: **2,876 / 2,876 industrial objects pass**.
-- Quarantined D1 staging: **2,876 drafts**, zero volume-driven publication.
-- Meal distribution: **464 breakfast / 668 lunch / 1,280 dinner / 464 snack**.
-- Real-life food families: **26**.
-- Fakeaway/treat-tagged objects: **612**.
-- Downstream: **1 nutrition-valid / 1 reviewed / 1 published / 1 production-served**.
-- Nutrition precision is not fabricated: unvalidated industrial recipes remain `pending_validation` and blocked from publication.
+Demonstrated conversion evidence from the merged industrial conversion work:
+- Industrial schema/structure: **2,876 / 2,876**.
+- Canonical ingredient mapping: **2,876 / 2,876 recipes**.
+- Ingredient identities mapped: **17,440 / 17,440** across **168 canonical ingredient identities**.
+- Strict generic CoFID matching remains fail-closed where an authoritative food match is ambiguous; it does not auto-promote uncertain nutrition.
+- The targeted CoFID 2021 conversion path now validates **70 industrial recipes** at ingredient level. Those objects remain drafts until independent content review; no publication barrier is bypassed.
+- Existing independently reviewed / published / production-served: **1 / 1 / 1** (`lighter-beef-cottage-pie`).
+- Current dominant targeted blockers are concentrated in reusable sauce/ingredient families such as medium curry, jalfrezi/pepper-and-tomato masala, balti, madras and smoked-chilli tomato; resolving one authoritative reusable mapping can unlock many recipes.
+- Authoring remains frozen as a priority while conversion catches up.
 
-The first 2,500-scale gate found exact duplicate Grub fingerprints in the new snack/treat family layer. The gate was not weakened. Four snack/treat families were made materially different in ingredients and method, then the unchanged exact-duplicate gate passed.
-
-Authored-capacity simulation — explicitly not commissioned/published diversity:
-- 30 days: 120 slots / **0 exact repeats / 120 unique**.
-- 60 days: 240 slots / **0 exact repeats / 240 unique**.
-- 90 days: 360 slots / **0 exact repeats / 360 unique**.
-- 365 days: 1,460 slots / **0 exact repeats / 1,460 unique**.
-
-M11 remains AMBER because downstream ingredient-level nutrition validation, second-person review, publication and production-serving breadth are still prototype-scale.
-
-## Industrial Fit factory
-Current short-term authored target: **2,500**. Long-term minimum: **10,000+**.
-
-Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured objects. This wave added **2,244 authored objects** beyond the prior 256 total.
-
-Industrial Fit evidence:
-- Schema/structural gate: **2,468 / 2,468 industrial objects pass**.
-- Quarantined D1 staging: **2,468 drafts**, zero volume-driven publication.
-- New canonical universe: **44 canonical movements × 51 protocol/ability identities**, spanning strength, cardio, mobility, stretching and balance.
-- Existing authored visual concepts: **8**.
-- New canonical visual specifications: **44**.
-- Member-QA visual: **3**.
-- Reviewed/published/production-served: **3 / 3 / 3**.
+Catalogue breadth remains materially bloke-friendly rather than generic diet food: breakfast butties/wraps/hashes; sandwich/bagel/toastie/jacket/meal-prep lunches; curries/chilli/pasta/pies/traybakes/roasts/slow-cooker meals; burgers/kebabs/loaded fries/pizza; and explicit treat/snack families. The authored industrial catalogue contains **612 fakeaway/treat-tagged objects**.
 
 Authored-capacity simulation — explicitly not commissioned/published diversity:
-- 12 weeks / 180 slots: **0 exact repeats / 180 unique / 51 canonical movements used**.
-- 26 weeks / 390 slots: **0 exact repeats / 390 unique / 52 canonical movements used**.
-- 52 weeks / 780 slots: **0 exact repeats / 780 unique / 54 canonical movements used**.
+- 30 days: 120 slots / 120 unique / 0 exact repeats.
+- 60 days: 240 / 240 / 0.
+- 90 days: 360 / 360 / 0.
+- 365 days: 1,460 / 1,460 / 0.
 
-M12 remains AMBER because visual production/member-QA/review/publication/production-serving conversion has not scaled with authoring yet.
+M11 remains AMBER because 70 validated industrial drafts are not yet independently reviewed/published/production-served at catalogue scale.
 
-## Dave
-Automated progressive journey still reports public discovery/trust/Core and anonymous-boundary legs green, while registration/verification/recovery and authenticated rendered legs remain explicitly AMBER and treatment support remains partner-dependent. The separate authenticated production suites are green but have not been used to vanity-promote B08.
+## Industrial Fit factory — M12 remains AMBER
+Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured. Short-term authored target is reached; long-term minimum remains **10,000+**.
+
+Demonstrated conversion evidence:
+- Industrial schema/structure: **2,468 / 2,468**.
+- New canonical universe: 44 new canonical movements × 51 protocol/ability identities across strength, cardio, walking-style work, mobility, stretching and balance.
+- Canonical movement visual specifications: **44**.
+- Visual-covered industrial objects: **2,244 / 2,468**.
+- Automatic visual-integrity pass: **2,468 / 2,468**.
+- Existing member/domain-QA visual: **3**.
+- Reviewed / published / production-served: **3 / 3 / 3**.
+
+Canonical visual coverage and automatic asset integrity are deliberately not treated as member/domain QA. M12 remains AMBER until real movement guidance is correctly QA'd/reviewed/published/served at scale.
+
+Authored-capacity simulation — explicitly not commissioned/published diversity:
+- 12 weeks / 180 slots: 0 exact repeats / 180 unique / 51 canonical movements used.
+- 26 weeks / 390 slots: 0 exact repeats / 390 unique / 52 canonicals used.
+- 52 weeks / 780 slots: 0 exact repeats / 780 unique / 54 canonicals used.
+
+## Dave / B08 — 75% reconciled, still AMBER
+The dedicated reconciliation maps **15/20 non-duplicated journey legs** to retained evidence: discovery, trust, Core health, anonymous Today/Grub boundaries, Today, Grub, Fit, Hydration, Progress, Progress Picture, Shift AI, preference learning, leave/return and changed recommendation. Truthful evidence coverage is **75%**.
+
+Unresolved legs remain explicit rather than cosmetically promoted: real-inbox registration, real-inbox verification, rendered/mobile authenticated release acceptance, real-inbox account recovery, and partner-dependent treatment support. B08 remains AMBER.
 
 ## Current authoritative scoreboard
-**57 total / 19 PASS / 35 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Rows closed by the latest swarmed evidence: **G1-010, G5-007, G5-011**. Content authoring crossed the short-term 2,500 target in both Grub and Fit but M11/M12 correctly remain AMBER for conversion quality and breadth.
+Latest original row closure: **G5-008 / B06**. Earlier locked closures include G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
 ## Active swarm
-B01; B03 rendered only; B05; B06; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub nutrition/review/publication conversion and Fit visual/review/publication conversion.
+B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub nutrition/review/publication conversion and Fit visual/domain-QA/review/publication conversion. Human/device and external boundaries do not queue non-blocked work.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**
