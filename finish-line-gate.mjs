@@ -1,4 +1,5 @@
 import fs from'node:fs';
+import {execFileSync} from 'node:child_process';
 import {GRUB_BATCH_001} from './content/grub-batch-001.js';
 import {FIT_BATCH_001} from './content/fit-batch-001.js';
 import {validateContentItem} from './content-factory-v1.js';
@@ -15,5 +16,8 @@ for(const id of ['G2-006','G2-007'])must(crosswalk.includes(`| ${id} | AMBER | M
 for(const item of [...GRUB_BATCH_001,...FIT_BATCH_001]){const v=validateContentItem(item);must(v.ok,`${item.id} deterministic content validation: ${v.errors.join(',')}`)}
 must(GRUB_BATCH_001.every(x=>x.data.nutrition.status==='estimated_pending_validation'),'new Grub batch must not fabricate validated nutrition');
 must(FIT_BATCH_001.filter(x=>x.data.visualGuidance.status==='approved').every(x=>x.data.visualGuidance.assetRef),'approved Fit visual must have asset');
+let sim={};try{sim=JSON.parse(execFileSync(process.execPath,['content-factory-simulator.mjs'],{encoding:'utf8'}));}catch(e){must(false,`content simulator execution ${e.message}`)}
+must(sim?.inventory?.legacyLiveRecipes===16,'simulator must inventory 16 live legacy recipes');must(sim?.inventory?.legacyLiveExercises===12,'simulator must inventory 12 live legacy exercises');must(sim?.inventory?.structuredRecipeBatch===8,'simulator must include Grub batch 001');must(sim?.inventory?.structuredExerciseBatch===8,'simulator must include Fit batch 001');must(sim?.inventory?.approvedVisualsInBatch===4,'simulator must expose four first-batch approved visuals');
 for(const x of ['recordAuthDelivery','password_reset','binding_missing','status:\x27failed\x27'])must(auth.includes(x),`auth delivery ${x}`);for(const x of ['auth_delivery_events','email_hash','authDeliveryHealth'])must(delivery.includes(x),`delivery store ${x}`);for(const x of ['authDeliveryHealth','auth_email_','Check email binding/provider delivery'])must(watch.includes(x),`Watchtower email ${x}`);
-if(bad)process.exit(1);console.log(`PASS finish-line 57/57 crosswalk + M01-M17 + content factory contract — ${GRUB_BATCH_001.length} recipe drafts, ${FIT_BATCH_001.length} exercise drafts`);
+if(bad)process.exit(1);console.log(`PASS finish-line 57/57 + content factory + simulators — ${GRUB_BATCH_001.length} recipe drafts, ${FIT_BATCH_001.length} exercise drafts, ${sim.inventory.approvedVisualsInBatch} visuals`);
+console.log('SIMULATION '+JSON.stringify({grub:sim.grub,fit:sim.fit}));
