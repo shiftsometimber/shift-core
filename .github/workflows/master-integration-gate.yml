@@ -78,6 +78,18 @@ jobs:
         run: node gate5-watchtower-analytics-gate.mjs
       - name: Gate 5 parallel trust scale contract
         run: node gate5-trust-scale-gate.mjs
+      - name: B06 authorised HQ operator Watchtower fire drill
+        shell: bash
+        run: |
+          set +e
+          node hq-operator-fire-drill-staging.mjs > /tmp/b06.log 2>&1
+          rc=$?
+          cat /tmp/b06.log
+          if [ "$rc" -ne 0 ]; then
+            msg=$(tail -n 16 /tmp/b06.log | tr '\n' ' ')
+            echo "::error file=hq-operator-fire-drill-staging.mjs::$msg"
+            exit "$rc"
+          fi
       - name: M14 member memory inspect/correct/delete commissioning
         run: node memory-controls-e2e-staging.mjs
       - name: M15 mocked partner Health MOT -> Progress -> Today commissioning
