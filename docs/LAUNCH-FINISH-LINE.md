@@ -20,7 +20,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 | ID | Requirement | State / exact closure |
 |---|---|---|
 | M01 | One Shift premium visual system across public + My Shift | AMBER — representative desktop/mobile member surfaces must meet homepage design constitution |
-| M02 | Reviewed Knowledge publication lifecycle | **PASS** — publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding |
+| M02 | Reviewed Knowledge publication lifecycle | **PASS** — publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding, plus scheduled automatic approved CMS/document ingestion -> draft exclusion -> withdrawal reconciliation -> re-review/reactivation with stable canonical IDs |
 | M03 | Radar production freshness | **PASS** — genuine production MHRA/EMA scan completed through restricted OIDC and production freshness returned GREEN inside declared SLOs; adversarial stale/failure/recovery transitions are locked |
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors |
 | M05 | Security/privacy release review | **PASS** — deployed production proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS denial, per-member export isolation, deletion-session revocation and hardened response envelopes; source gate covers auth/rate/session/recovery/secrets/analytics controls |
@@ -40,7 +40,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification: **20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans** after the authorised HQ operator fire drill earned G5-008/B06 PASS.
+Exactly **57** original rows remain mandatory. Current evidenced classification: **21 PASS / 33 AMBER / 3 BLOCKED / 0 abstraction orphans** after the automatic CMS/approved-document -> Knowledge Graph lifecycle earned G4-004 PASS.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876**. Canonical ingredient mapping covers **2,876/2,876 recipes**, **17,440/17,440 ingredient identities** and **168 canonical ingredient identities**. The strict generic matcher still refuses ambiguous CoFID promotion; a targeted authoritative CoFID tranche now validates **70 industrial recipes**, which remain drafts until independent review. Existing reviewed/published/production-served remains **1/1/1**. Authored-capacity simulation shows zero exact repeats at 30/60/90/365 days, but this is explicitly not commissioned/published diversity.
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 34 remaining AMBERs are classified in the remediation matrix as FINITE / LARGE / HUMAN-DEVICE.
+B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 33 remaining AMBERs are classified in the remediation matrix as FINITE / LARGE / HUMAN-DEVICE.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening the acceptance test. Homepage-level premium quality remains the estate-wide design constitution.
