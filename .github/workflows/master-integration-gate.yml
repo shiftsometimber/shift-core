@@ -53,6 +53,8 @@ jobs:
         run: node runtime-auth-abuse-v1.mjs
       - name: Dave progressive journey
         run: node dave-journey-v1.mjs
+      - name: One-shot authenticated A/B + leave/return production proof
+        run: node authenticated-longitudinal-production-v1.mjs
       - name: Syntax checks
         run: |
           set -e
