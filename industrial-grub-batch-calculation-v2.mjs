@@ -1,11 +1,56 @@
 import fs from 'node:fs';
 import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
 import {APPROVED,grams} from './industrial-grub-systemic-v2.mjs';
-const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));const foods=new Map((index.foods||[]).map(f=>[String(f.code),f]));
-const N=['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];const round=n=>Math.round((n+Number.EPSILON)*10)/10;
-const out=[];const quarantine=[];const risks={LOW:0,MEDIUM:0,HIGH:0};
-for(const r of buildIndustrialCatalogue().recipes){let ok=true,proxy=false;const ev=[],tot=Object.fromEntries(N.map(k=>[k,0]));for(const ing of r.ingredients||[]){const map=APPROVED[ing.item],g=grams(ing.amount,ing.item);if(!map||!(g>0)){ok=false;break}const f=foods.get(String(map[0]));if(!f){ok=false;break}if(map[1]!=='exact')proxy=true;ev.push({item:ing.item,amount:ing.amount,grams:round(g),cofid_code:f.code,cofid_name:f.name,mapping_state:map[1]});for(const k of N){const v=Number(f[k]);if(!Number.isFinite(v)){ok=false;break}tot[k]+=v*g/100}if(!ok)break}if(!ok){quarantine.push(r.id);continue}const servings=Math.max(1,Number(r.servings)||1),nutrition=Object.fromEntries(N.map(k=>[k,round(tot[k]/servings)]));const suspicious=nutrition.kcal<80||nutrition.kcal>1800||nutrition.protein_g<0||nutrition.protein_g>150||nutrition.fat_g>160||nutrition.carbohydrate_g>250;const safety=!(r.food_safety?.length>=2&&r.method?.length>=4);const risk=suspicious||safety?'HIGH':proxy?'MEDIUM':'LOW';risks[risk]++;out.push({...r,nutrition:{status:'validated',methodology:'CoFID 2021 canonical ingredient propagation',dataset_version:'CoFID 2021',validated_at:'2026-08-12',...nutrition,ingredient_evidence:ev},review:{...(r.review||{}),pre_review:risk==='LOW'?'auto_check_pass':'review_required',risk_tier:risk,reasons:[...(proxy?['reviewed_proxy_mapping']:[]),...(suspicious?['nutrition_outlier']:[]),...(safety?['food_safety_structure']:[])]}}})}
+
+const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
+const foods=new Map((index.foods||[]).map(f=>[String(f.code),f]));
+const N=['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];
+const round=n=>Math.round((n+Number.EPSILON)*10)/10;
+const out=[];
+const quarantine=[];
+const risks={LOW:0,MEDIUM:0,HIGH:0};
+
+for(const r of buildIndustrialCatalogue().recipes){
+  let ok=true;
+  let proxy=false;
+  const ev=[];
+  const tot=Object.fromEntries(N.map(k=>[k,0]));
+  for(const ing of r.ingredients||[]){
+    const map=APPROVED[ing.item];
+    const g=grams(ing.amount,ing.item);
+    if(!map||!(g>0)){ok=false;break;}
+    const f=foods.get(String(map[0]));
+    if(!f){ok=false;break;}
+    if(map[1]!=='exact')proxy=true;
+    ev.push({item:ing.item,amount:ing.amount,grams:round(g),cofid_code:f.code,cofid_name:f.name,mapping_state:map[1]});
+    for(const k of N){
+      const v=Number(f[k]);
+      if(!Number.isFinite(v)){ok=false;break;}
+      tot[k]+=v*g/100;
+    }
+    if(!ok)break;
+  }
+  if(!ok){quarantine.push(r.id);continue;}
+  const servings=Math.max(1,Number(r.servings)||1);
+  const nutrition=Object.fromEntries(N.map(k=>[k,round(tot[k]/servings)]));
+  const suspicious=nutrition.kcal<80||nutrition.kcal>1800||nutrition.protein_g<0||nutrition.protein_g>150||nutrition.fat_g>160||nutrition.carbohydrate_g>250;
+  const safety=!(r.food_safety?.length>=2&&r.method?.length>=4);
+  const risk=suspicious||safety?'HIGH':proxy?'MEDIUM':'LOW';
+  risks[risk]++;
+  const reasons=[];
+  if(proxy)reasons.push('reviewed_proxy_mapping');
+  if(suspicious)reasons.push('nutrition_outlier');
+  if(safety)reasons.push('food_safety_structure');
+  out.push({
+    ...r,
+    nutrition:{
+      status:'validated',methodology:'CoFID 2021 canonical ingredient propagation',dataset_version:'CoFID 2021',validated_at:'2026-08-12',...nutrition,ingredient_evidence:ev
+    },
+    review:{...(r.review||{}),pre_review:risk==='LOW'?'auto_check_pass':'review_required',risk_tier:risk,reasons}
+  });
+}
 const auto=out.filter(r=>r.review.pre_review==='auto_check_pass').length;
 console.log(JSON.stringify({catalogue:2876,nutritionValidated:out.length,riskTiers:risks,autoReviewPassLowRisk:auto,reviewRequired:out.length-auto,quarantined:quarantine.length,sampleValidated:out.slice(0,3).map(r=>({id:r.id,nutrition:r.nutrition,review:r.review}))},null,2));
-if(out.length<300)throw new Error(`expected systemic validated wave >=300, got ${out.length}`);if(out.some(r=>!r.nutrition.ingredient_evidence.length))throw new Error('missing provenance');
+if(out.length<300)throw new Error(`expected systemic validated wave >=300, got ${out.length}`);
+if(out.some(r=>!r.nutrition.ingredient_evidence.length))throw new Error('missing provenance');
 console.log(`PASS batch calculation: ${out.length}/2876 recipes carry calculated CoFID nutrition in-memory; ${auto} low-risk auto-check passes; ${out.length-auto} require targeted review; ${quarantine.length} remain quarantined.`);
