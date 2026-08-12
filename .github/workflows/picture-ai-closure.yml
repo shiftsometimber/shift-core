@@ -1,0 +1,16 @@
+name: Progress Picture and Shift AI Closure
+on:
+  pull_request:
+    paths:
+      - 'finish-picture-ai-production.mjs'
+      - '.github/workflows/picture-ai-closure.yml'
+jobs:
+  picture-ai-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Authenticated Progress Picture and Shift AI production journey
+        run: node finish-picture-ai-production.mjs
