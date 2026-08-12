@@ -24,5 +24,7 @@ jobs:
         run: node finish-longitudinal-products-production.mjs
       - name: Final B03 Progress Picture and Shift AI production closure
         run: node finish-b03-final3-production.mjs
+      - name: M07 structured Grub/Fit production serving
+        run: node structured-runtime-production.mjs
       - name: M03 production Radar freshness
         run: node radar-production-freshness.mjs
