@@ -24,11 +24,11 @@ must(rows.length===57,`original remediation matrix has 57 status-bearing rows (f
 must(unique.size===57,`original remediation matrix has 57 unique IDs (found ${unique.size})`);
 for(const gate of [1,2,3,4,5])must(ids.some(id=>id.startsWith(`G${gate}-`)),`Gate ${gate} remains represented`);
 const counts=rows.reduce((a,x)=>(a[x.status]=(a[x.status]||0)+1,a),{});
-must(counts.PASS===12,`original matrix PASS count is 12 (found ${counts.PASS||0})`);
-must(counts.AMBER===42,`original matrix AMBER count is 42 (found ${counts.AMBER||0})`);
+must(counts.PASS===14,`original matrix PASS count is 14 (found ${counts.PASS||0})`);
+must(counts.AMBER===40,`original matrix AMBER count is 40 (found ${counts.AMBER||0})`);
 must(counts.BLOCKED===3,`original matrix BLOCKED count is 3 (found ${counts.BLOCKED||0})`);
-must(matrix.includes('PASS rows: 12. AMBER rows: 42. BLOCKED rows: 3.'),'matrix reconciliation summary matches enforced counts');
-must(launchFinish.includes('12 PASS / 42 AMBER / 3 BLOCKED'),'launch board scoreboard matches enforced counts');
+must(matrix.includes('PASS rows: 14. AMBER rows: 40. BLOCKED rows: 3.'),'matrix reconciliation summary matches enforced counts');
+must(launchFinish.includes('14 PASS / 40 AMBER / 3 BLOCKED'),'launch board scoreboard matches enforced counts');
 
 for(const marker of ['recordAuthDelivery','password_reset','binding_missing',"status:'failed'"])must(auth.includes(marker),`auth delivery ${marker}`);
 for(const marker of ['auth_delivery_events','email_hash','authDeliveryHealth'])must(delivery.includes(marker),`delivery store ${marker}`);
