@@ -110,6 +110,8 @@ jobs:
         run: node runtime-auth-abuse-v1.mjs
       - name: Dave progressive journey
         run: node dave-journey-v1.mjs
+      - name: Dave production-evidence reconciliation
+        run: node dave-evidence-reconciliation.mjs
       - name: Syntax checks
         run: |
           set -e
