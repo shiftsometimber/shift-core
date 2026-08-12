@@ -104,5 +104,5 @@ jobs:
         run: node radar-scheduled-scan-staging.mjs
       - name: Gate 1 public production probe
         run: node gate1-production-journey-probe.mjs
-      - name: Finish-line authenticated production isolation and retained state
-        run: node finish-authenticated-production.mjs
+      - name: M09 production unverified-session boundary
+        run: node email-verification-production-boundary.mjs
