@@ -1,0 +1,279 @@
+[
+  {
+    "schema_version":1,
+    "id":"sausage-egg-breakfast-muffin",
+    "title":"Sausage & egg breakfast muffin",
+    "meal_type":"breakfast",
+    "servings":1,
+    "prep_minutes":4,
+    "cook_minutes":12,
+    "ingredients":[
+      {"amount":"2 / about 90g","item":"lean pork sausages","allergens":["check-pack"]},
+      {"amount":"1","item":"large egg","allergens":["egg"]},
+      {"amount":"1 / about 65g","item":"wholemeal English muffin","allergens":["gluten"]},
+      {"amount":"40g","item":"tomato, sliced"},
+      {"amount":"20g","item":"spinach"},
+      {"amount":"1 tsp / 5ml","item":"olive oil"}
+    ],
+    "method":[
+      "Split the sausages lengthways, remove the skins if needed and press the meat into two thin patties.",
+      "Heat a non-stick frying pan with half the oil and cook the sausage patties for 4–5 minutes each side until completely cooked through.",
+      "Toast the muffin while the sausages cook, then wilt the spinach briefly in the pan.",
+      "Add the remaining oil, fry the egg until the white is set, then stack the muffin with spinach, tomato, sausage and egg."
+    ],
+    "equipment":["hob","frying-pan","toaster"],
+    "tags":["weekend-breakfast","high-protein","quick"],
+    "allergens":["egg","gluten","check-pack"],
+    "substitutions":[
+      {"from":"lean pork sausages","to":"lean chicken or vegetarian sausages","note":"Use a product suitable for your dietary needs and cook according to its pack instructions."},
+      {"from":"wholemeal English muffin","to":"wholemeal toast","note":"Use an equivalent bread portion and check allergen labelling."}
+    ],
+    "storage":{"chilled":"Best eaten fresh. Cooked sausage can be cooled promptly and refrigerated for up to 2 days.","reheat":"Reheat cooked sausage once until steaming hot throughout; cook the egg fresh for best quality."},
+    "food_safety":["Cook sausage meat thoroughly with no pink remaining in the centre.","Keep raw sausage separate from ready-to-eat ingredients and wash hands and utensils after handling it."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"banana-peanut-butter-porridge",
+    "title":"Banana & peanut butter porridge",
+    "meal_type":"breakfast",
+    "servings":1,
+    "prep_minutes":3,
+    "cook_minutes":6,
+    "ingredients":[
+      {"amount":"50g","item":"porridge oats","allergens":["gluten"]},
+      {"amount":"250ml","item":"semi-skimmed milk","allergens":["milk"]},
+      {"amount":"1 small / about 90g","item":"banana"},
+      {"amount":"15g","item":"smooth peanut butter","allergens":["peanuts"]},
+      {"amount":"1/2 tsp","item":"ground cinnamon"}
+    ],
+    "method":[
+      "Add the oats and milk to a saucepan and bring gently to a simmer.",
+      "Cook for 4–5 minutes, stirring regularly, until thick and creamy.",
+      "Slice the banana and stir half through the porridge with the cinnamon.",
+      "Spoon into a bowl and top with the remaining banana and measured peanut butter."
+    ],
+    "equipment":["hob","saucepan"],
+    "tags":["vegetarian","quick","warm-breakfast"],
+    "allergens":["gluten","milk","peanuts"],
+    "substitutions":[
+      {"from":"peanut butter","to":"sunflower-seed butter","note":"Choose a product suitable for your allergy requirements and use the same measured portion."},
+      {"from":"semi-skimmed milk","to":"unsweetened fortified plant drink","note":"Check allergen labelling and choose one appropriate to your dietary needs."}
+    ],
+    "storage":{"chilled":"Best eaten immediately. If prepared ahead, cool promptly and refrigerate for up to 24 hours.","reheat":"Reheat once until steaming hot, adding a splash of milk if needed."},
+    "food_safety":["Keep milk refrigerated until use and cool any leftovers promptly."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"chicken-pesto-pasta-pot",
+    "title":"Chicken pesto pasta pot",
+    "meal_type":"lunch",
+    "servings":1,
+    "prep_minutes":8,
+    "cook_minutes":12,
+    "ingredients":[
+      {"amount":"75g dry","item":"wholewheat pasta","allergens":["gluten"]},
+      {"amount":"120g","item":"cooked chicken breast"},
+      {"amount":"20g","item":"green pesto","allergens":["milk","nuts","check-pack"]},
+      {"amount":"100g","item":"cherry tomatoes, halved"},
+      {"amount":"50g","item":"baby spinach"},
+      {"amount":"30g","item":"0% Greek yoghurt","allergens":["milk"]}
+    ],
+    "method":[
+      "Cook the pasta according to the packet instructions until tender, then drain and cool under cold running water.",
+      "Mix the pesto with the Greek yoghurt to make a lighter dressing.",
+      "Add the cooled pasta, cooked chicken, tomatoes and spinach to a lunch container.",
+      "Stir through the pesto dressing, cover and keep chilled until eating."
+    ],
+    "equipment":["hob","saucepan","lidded-container"],
+    "tags":["packed-lunch","high-protein","meal-prep"],
+    "allergens":["gluten","milk","nuts","check-pack"],
+    "substitutions":[
+      {"from":"cooked chicken breast","to":"cooked turkey breast","note":"Use an equivalent cooked portion and keep chilled."},
+      {"from":"green pesto","to":"nut-free pesto","note":"Choose a product suitable for your allergy requirements and check its label."}
+    ],
+    "storage":{"chilled":"Cool the pasta promptly, refrigerate the assembled pot and eat within 24 hours.","reheat":"Designed to be eaten cold; do not repeatedly warm and chill cooked chicken."},
+    "food_safety":["Use safely cooked and chilled chicken within its use-by period.","Cool cooked pasta promptly before combining with chilled ingredients."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"tuna-sweetcorn-jacket-potato",
+    "title":"Tuna & sweetcorn jacket potato",
+    "meal_type":"lunch",
+    "servings":1,
+    "prep_minutes":6,
+    "cook_minutes":12,
+    "ingredients":[
+      {"amount":"1 large / about 300g","item":"baking potato"},
+      {"amount":"1 small tin / 110g drained","item":"tuna in spring water","allergens":["fish"]},
+      {"amount":"80g drained","item":"sweetcorn"},
+      {"amount":"50g","item":"0% Greek yoghurt","allergens":["milk"]},
+      {"amount":"1 tsp / 5g","item":"Dijon mustard","allergens":["mustard"]},
+      {"amount":"40g","item":"mixed salad leaves"},
+      {"amount":"pinch","item":"black pepper"}
+    ],
+    "method":[
+      "Prick the potato several times with a fork and microwave on high for 8–12 minutes, turning halfway, until soft throughout.",
+      "Drain the tuna and sweetcorn well, then mix with the yoghurt, mustard and black pepper.",
+      "Split the hot potato and fluff the inside with a fork.",
+      "Spoon over the tuna mixture and serve with the salad leaves."
+    ],
+    "equipment":["microwave"],
+    "tags":["quick-lunch","high-protein","budget"],
+    "allergens":["fish","milk","mustard"],
+    "substitutions":[
+      {"from":"tuna in spring water","to":"cooked shredded chicken","note":"Use an equivalent cooked portion and keep chilled before use."},
+      {"from":"0% Greek yoghurt","to":"light mayonnaise","note":"Check allergen labelling and use a measured portion."}
+    ],
+    "storage":{"chilled":"Best assembled fresh. Refrigerate unused tuna mixture promptly and eat within 24 hours.","reheat":"Reheat only the plain cooked potato until steaming hot; add chilled tuna mixture afterwards."},
+    "food_safety":["Refrigerate opened tuna promptly and do not leave the tuna mixture at room temperature for extended periods."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"turkey-meatball-tomato-pasta",
+    "title":"Turkey meatball tomato pasta",
+    "meal_type":"dinner",
+    "servings":4,
+    "prep_minutes":15,
+    "cook_minutes":30,
+    "ingredients":[
+      {"amount":"500g","item":"5% turkey mince"},
+      {"amount":"300g dry","item":"wholewheat spaghetti","allergens":["gluten"]},
+      {"amount":"1","item":"large egg","allergens":["egg"]},
+      {"amount":"30g","item":"wholemeal breadcrumbs","allergens":["gluten"]},
+      {"amount":"2 x 400g tins","item":"chopped tomatoes"},
+      {"amount":"150g","item":"onion, finely diced"},
+      {"amount":"2 cloves","item":"garlic, crushed"},
+      {"amount":"1 tsp / 5ml","item":"olive oil"},
+      {"amount":"1 tsp","item":"dried oregano"}
+    ],
+    "method":[
+      "Mix the turkey mince with the egg, breadcrumbs and half the oregano, then shape into 16 small meatballs.",
+      "Heat the oil in a large frying pan and brown the meatballs for 6–8 minutes, turning carefully, then set aside.",
+      "Cook the onion for 5 minutes, add the garlic, tomatoes and remaining oregano, then return the meatballs and simmer for 15 minutes until completely cooked through.",
+      "Meanwhile cook the spaghetti according to the packet instructions, drain and divide between four bowls.",
+      "Spoon over the meatballs and tomato sauce and serve immediately."
+    ],
+    "equipment":["hob","large-frying-pan","saucepan"],
+    "tags":["family","batch","high-protein"],
+    "allergens":["egg","gluten"],
+    "substitutions":[
+      {"from":"5% turkey mince","to":"5% beef mince","note":"Cook thoroughly and keep the same total quantity."},
+      {"from":"wholewheat spaghetti","to":"gluten-free pasta","note":"Choose a suitable product and follow its pack cooking instructions."}
+    ],
+    "storage":{"chilled":"Cool leftovers promptly, cover and refrigerate for up to 2 days.","freeze":"Freeze cooled sauce and meatballs in individual portions.","reheat":"Defrost safely if frozen and reheat until steaming hot throughout; only reheat once."},
+    "food_safety":["Cook turkey meatballs completely through with no pink remaining.","Wash hands and utensils after handling raw mince and egg."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"chicken-saag-rice",
+    "title":"Chicken saag with basmati rice",
+    "meal_type":"dinner",
+    "servings":2,
+    "prep_minutes":10,
+    "cook_minutes":28,
+    "ingredients":[
+      {"amount":"320g","item":"chicken breast, diced"},
+      {"amount":"140g dry","item":"basmati rice"},
+      {"amount":"200g","item":"spinach"},
+      {"amount":"200g tin","item":"chopped tomatoes"},
+      {"amount":"120g","item":"onion, diced"},
+      {"amount":"2 cloves","item":"garlic, crushed"},
+      {"amount":"10g","item":"fresh ginger, grated"},
+      {"amount":"2 tsp","item":"medium curry powder","allergens":["check-pack"]},
+      {"amount":"80g","item":"0% Greek yoghurt","allergens":["milk"]},
+      {"amount":"1 tsp / 5ml","item":"rapeseed oil"}
+    ],
+    "method":[
+      "Cook the basmati rice according to the packet instructions.",
+      "Heat the oil in a deep frying pan and cook the onion for 5 minutes, then add the garlic, ginger and curry powder for 1 minute.",
+      "Add the chicken and cook for 5 minutes, stirring, then add the tomatoes and simmer for 10 minutes until the chicken is completely cooked through.",
+      "Add the spinach in handfuls until wilted, remove the pan from the heat and stir through the yoghurt.",
+      "Serve the chicken saag with the cooked rice."
+    ],
+    "equipment":["hob","saucepan","deep-frying-pan"],
+    "tags":["curry","high-protein","family-style"],
+    "allergens":["milk","check-pack"],
+    "substitutions":[
+      {"from":"chicken breast","to":"firm tofu","note":"Use a suitable tofu and cook until hot throughout; check allergen labelling."},
+      {"from":"0% Greek yoghurt","to":"unsweetened dairy-free yoghurt","note":"Choose an option suitable for your dietary needs and stir in off the heat."}
+    ],
+    "storage":{"chilled":"Cool leftovers promptly and refrigerate for up to 2 days.","reheat":"Reheat curry once until steaming hot throughout. Cool cooked rice quickly, refrigerate promptly and reheat only once."},
+    "food_safety":["Cook chicken completely through before serving.","Handle cooked rice carefully: cool quickly, refrigerate promptly and reheat only once."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"cottage-cheese-pineapple-pot",
+    "title":"Cottage cheese & pineapple pot",
+    "meal_type":"snack",
+    "servings":1,
+    "prep_minutes":3,
+    "cook_minutes":0,
+    "ingredients":[
+      {"amount":"150g","item":"low-fat cottage cheese","allergens":["milk"]},
+      {"amount":"100g","item":"pineapple chunks in juice, drained"},
+      {"amount":"10g","item":"pumpkin seeds"},
+      {"amount":"pinch","item":"ground cinnamon"}
+    ],
+    "method":[
+      "Spoon the cottage cheese into a bowl or lidded pot.",
+      "Drain the pineapple thoroughly and add it on top.",
+      "Sprinkle over the pumpkin seeds and cinnamon.",
+      "Eat immediately or cover and keep chilled until needed."
+    ],
+    "equipment":["none"],
+    "tags":["quick","high-protein","vegetarian"],
+    "allergens":["milk"],
+    "substitutions":[
+      {"from":"pineapple chunks","to":"berries or chopped peach","note":"Use an equivalent fruit portion."},
+      {"from":"pumpkin seeds","to":"sunflower seeds","note":"Use the same measured portion."}
+    ],
+    "storage":{"chilled":"Keep covered in the fridge and eat within 24 hours.","reheat":"Not suitable for reheating."},
+    "food_safety":["Keep cottage cheese refrigerated and use within its use-by period."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version":1,
+    "id":"apple-peanut-butter-crunch",
+    "title":"Apple & peanut butter crunch",
+    "meal_type":"snack",
+    "servings":1,
+    "prep_minutes":4,
+    "cook_minutes":0,
+    "ingredients":[
+      {"amount":"1 medium / about 150g","item":"apple, sliced"},
+      {"amount":"20g","item":"smooth peanut butter","allergens":["peanuts"]},
+      {"amount":"10g","item":"pumpkin seeds"},
+      {"amount":"pinch","item":"ground cinnamon"}
+    ],
+    "method":[
+      "Wash, core and slice the apple into wedges.",
+      "Measure the peanut butter into a small bowl or pot.",
+      "Sprinkle the apple with cinnamon and pumpkin seeds.",
+      "Dip the apple slices into the measured peanut butter as you eat."
+    ],
+    "equipment":["none"],
+    "tags":["quick","vegetarian","no-cook"],
+    "allergens":["peanuts"],
+    "substitutions":[
+      {"from":"peanut butter","to":"sunflower-seed butter","note":"Choose a product suitable for your allergy requirements."},
+      {"from":"apple","to":"pear","note":"Use an equivalent fruit portion."}
+    ],
+    "storage":{"chilled":"Best eaten soon after slicing; refrigerate prepared apple if not eating immediately.","reheat":"Not suitable for reheating."},
+    "food_safety":["Use a clean knife and board for preparing the fruit and keep nut products away from anyone with a relevant allergy."],
+    "nutrition":{"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review":{"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  }
+]
