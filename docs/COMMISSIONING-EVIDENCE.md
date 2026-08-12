@@ -1,295 +1,87 @@
 # Shift Commissioning Evidence Ledger
 
-This file records demonstrated evidence against the authoritative remediation matrix. A merge or source presence alone is not PASS.
+This file records demonstrated evidence against the authoritative remediation matrix. A merge or source presence alone is not PASS. AMBER means substantial commissioned engineering exists but required behavioural/production/device evidence remains outstanding. BLOCKED means an external dependency is genuinely required.
 
 ## Gate 1
 
-### G1-001 — Password recovery consolidation
-Status: AMBER / IN PROGRESS.
+G1-001/002/003 remain AMBER pending real inbox recovery/welcome lifecycle evidence. G1-005/006/007/010/012 remain AMBER pending authenticated production/mobile/security evidence. G1-011 remains PASS: authoritative production entry-point wiring is regression protected and deployed.
 
-Evidence:
-- `auth-recovery-v1.js` is wired before fallback routing in `worker-entry-v6.js`.
-- integration source gate asserts authoritative recovery wiring.
-- reset/change-password source contracts exist.
+## Gate 2
 
-Outstanding before PASS:
-- real inbox receipt of reset email;
-- one-time reset link works;
-- existing sessions revoked;
-- login with new password succeeds.
+G2-001 through G2-015 remain AMBER unless separately promoted by demonstrated production/member evidence. PRs #31-#34 established the current Grub/Fit, durable learning, Today/Progress/Plans, Conundrum, hydration and Progress Picture engineering baselines. Remaining acceptance evidence is primarily premium frontend/mobile behaviour, authenticated persistence/learning journeys, content breadth and nutrition validation. No Gate 2 row is promoted merely because later architecture consumes it.
 
-### G1-002 — Email delivery binding
-Status: AMBER / IN PROGRESS.
+## Gate 3
 
-Evidence:
-- Email Service binding `EMAIL` configured on production Worker and represented in current `wrangler.jsonc`.
-- Cloudflare dependency/toolchain failure diagnosed and permanently remediated.
-- stable Wrangler/Node/npm toolchain pinned and guarded against prerelease drift.
-- Cloudflare branch deployment for PR #28 succeeded after remediation.
+Gate 3 remains AMBER where genuine Safari/Chrome/device evidence is required. Engineering may continue in parallel; device evidence is not inferred from source or desktop CI.
 
-Outstanding before PASS:
-- production Worker demonstrates reset and welcome mail reaching a real inbox.
+## Gate 4 — Shift Becomes Intelligent
 
-### G1-003 — Registration transactional lifecycle
-Status: AMBER / IN PROGRESS.
+### G4-001 — Single formal Shift Brain member model
+Status: AMBER / ENGINEERING COMMISSIONED.
+Evidence: PR #35 merged `one-shift-brain/v1`; canonical context assembles profile/lifecycle, state/goals/preferences, Progress, active/recent plans, Yay/Nay, intelligent/explicit memory, privacy and unified reviewed Knowledge. Shift AI V6, Today V3, Grub/Fit V6 and proactive/member experience consume the shared contract. Gate 4 architecture regression passes in Master Integration.
+Outstanding before PASS: authenticated behavioural proof that the same member change is reflected coherently across Today/Grub/Fit/chat.
 
-Evidence:
-- registration wrapper calls transactional welcome email through `env.EMAIL` when registration succeeds.
+### G4-002 — Memory provenance/confidence/edit/delete controls
+Status: AMBER.
+Evidence: One Shift Brain exposes memory provenance/privacy and preserves the current-member-statement-overrides-memory rule; intelligent-memory privacy controls are wired.
+Outstanding: member-facing inspect/change/delete commissioning and retention/confidence governance proof.
 
-Outstanding before PASS:
-- new account receives welcome/verification lifecycle expected at launch.
+### G4-003 — Recommendation outcomes learned
+Status: AMBER.
+Evidence: durable product_feedback Yay/Nay is canonical Brain context and Grub/Fit V6 apply historical Nays; regression coverage protects the flow.
+Outstanding: authenticated later-session behavioural proof and broader completion/outcome loop.
 
-### G1-005 — Member persistence
-Status: AMBER / IN PROGRESS.
+### G4-004 — Automatic reviewed content ingestion
+Status: AMBER / ACTIVE BATCH.
+Evidence: canonical Knowledge retrieval already unifies approved chunks and verified graph material; current commissioning branch adds reviewed publication/synchronisation into the canonical graph with health provenance enforcement.
+Outstanding: deployed CMS publish -> review -> automatic index/graph -> searchable/grounding production proof.
 
-Evidence:
-- canonical profile persists in `users`.
-- canonical member preferences/state persists in `member_state` via `ON CONFLICT(user_id) DO UPDATE`.
-- Gate 1 persistence source contract is enforced in CI.
-- `gate1-production-journey-probe.mjs` implements non-destructive save -> reread -> logout -> login -> retained-state commissioning and restores the test account afterwards.
-- frontend audit identified and removed split-brain API ownership in the prepared V3.3G public package: old adapters and the legacy shell could overwrite the current `window.SST_API`.
+### G4-005 — Grounding provenance inspectable
+Status: AMBER.
+Evidence: Shift AI V6 returns source title/citation/reviewState/provenance from One Shift Brain; unified retrieval rejects unverified health graph material.
+Outstanding: HQ trace/premium member presentation where appropriate and production answer trace evidence.
 
-Outstanding before PASS:
-- run authenticated production probe with dedicated commissioning credentials and capture PASS output;
-- deploy V3.3G+ frontend integrity package and exercise critical member saves on production.
+### G4-006 — Radar end-to-end live status
+Status: AMBER.
+Evidence: Radar ingest/evidence verification/review/publication job/Knowledge ingestion architecture is deployed and staging Radar E2E runs in Master Integration. Current batch adds one canonical freshness state consumed by public ticker and Watchtower.
+Outstanding: live source scan -> review -> publish -> public ticker evidence with production timestamps.
 
-### G1-006 — Broken/dead route detection
-Status: AMBER / IN PROGRESS.
+### G4-007 — Ticker freshness cannot silently degrade
+Status: AMBER / ACTIVE BATCH.
+Evidence: current batch defines explicit scan/event/publication/ticker SLOs, stale/failure states, fail-safe ticker suppression and Watchtower consumption.
+Outstanding: deploy and demonstrate stale/current transitions against production data.
 
-Evidence:
-- production probe deliberately requests a nonexistent API route and requires controlled 404 behaviour.
-- public production route probe runs in the master integration gate.
-- V3.3F public package static inventory inspected 418 HTML files.
-- V3.3G remediation package has zero unresolved local href/src references after static route resolution.
-- frontend integrity audit recorded in `docs/GATE1-FRONTEND-INTEGRITY-AUDIT.md`.
+### G4-008 — Coherent proactive orchestration
+Status: AMBER.
+Evidence: Today/proactive experience share One Shift Brain plans, Progress, feedback and memory context.
+Outstanding: authenticated explainable next-action behavioural proof across realistic member states.
 
-Outstanding before PASS:
-- deploy remediated public package and complete production navigation/form journey check on mobile.
+## Gate 5 — Trust & Scale
 
-### G1-007 — Error handling / traceability
-Status: AMBER / IN PROGRESS.
+G5-001/G5-002/G5-003 remain BLOCKED on genuine clinical/provider/verification governance. They do not block independent engineering.
 
-Evidence:
-- production API probe demonstrated controlled 404 with `X-Shift-Request-Id` and body `requestId`.
-- source gate requires request IDs on unhandled errors and not-found responses.
-- current API adapter converts timeout/network failures to member-safe messages.
+### G5-006 — Outcome measurement
+Status: AMBER.
+Evidence: PR #36 merged canonical privacy-filtered product events, server instrumentation and internal observational cohort analysis joining engagement with longitudinal Progress. Outcome view explicitly prohibits causal/clinical interpretation without governance.
+Outstanding: broaden journey instrumentation, QA real event flows and approve governed analysis definitions.
 
-Outstanding before PASS:
-- member-facing critical errors use shared safe UX states after frontend deployment and all important failures remain traceable.
+### G5-007 — Watchtower observability
+Status: AMBER.
+Evidence: PR #36 merged authenticated Watchtower with D1/member/AI/Knowledge/Radar/product signals and alerts. Current batch moves Radar freshness/failure SLOs into a canonical contract and exposes attention-first alerts.
+Outstanding: external website/Core/email/AI/Grub/Fit synthetic probes, failure-rate trends, latency SLOs and production alert validation.
 
-### G1-010 — Auth/session security commissioning
-Status: AMBER / IN PROGRESS.
+### G5-008 — HQ operating nerve centre
+Status: AMBER.
+Evidence: authenticated Watchtower/outcomes endpoints exist and Watchtower now exposes ordered attention conditions rather than only raw telemetry.
+Outstanding: premium HQ attention-first presentation and operator journey proof.
 
-Evidence:
-- auth security regression gate enforces `HttpOnly`, `Secure`, `SameSite=Lax` session cookies.
-- failed-login lockout, session revocation, reset-token expiry, reset password minimum length, PBKDF2 and constant-time comparison are regression-protected in CI.
+### G5-010 — Coherent product event taxonomy
+Status: AMBER.
+Evidence: PR #36 established canonical event taxonomy/store, sensitive-key filtering and Today/Shift AI/Grub/Fit server instrumentation.
+Outstanding: end-to-end important-member-journey coverage and funnel/usefulness QA.
 
-Outstanding before PASS:
-- formal rate-limit/session/security commissioning including production behaviour and abuse cases.
+G5-004 Health MOT partner-ready model, G5-005 public trust, G5-009 structured content scalability, G5-011 security/privacy and G5-012 performance remain active non-blocked workstreams. G5-013 Dave remains TODO until Gates 1-5 acceptance permits a meaningful fresh-persona end-to-end run; G5-014 follows Dave.
 
-### G1-011 — Production entry-point wiring
-Status: PASS.
+## Current authoritative recovery point
 
-Evidence:
-- master integration gate asserts production entry-point wiring for member commissioning, personal routes, Knowledge Graph, Radar, scheduled intelligence and authoritative auth recovery.
-- Shift Master Integration Gate passed after the toolchain remediation.
-- Cloudflare deployment succeeded using the pinned production toolchain.
-
-Regression control:
-- source gate fails if authoritative routing disappears.
-
-### G1-012 — Synthetic member commissioning
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- existing member commissioning endpoint tests product-engine contracts.
-- production persistence journey probe added and wired to CI for public checks.
-- frontend route/adapter integrity has now been statically commissioned in the V3.3G package.
-
-Outstanding before PASS:
-- authenticated register/login/member-product/return journey automated end-to-end, including frontend states.
-
-## Gate 2 — Nothing Half-Finished
-
-### G2-001 — Shift Today daily command centre
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #33 merged after Master Integration Gate + Academy PASS.
-- `member-daily-v2.js` now composes Today from active Grub/Fit/Hydration plans, Progress and member context.
-- response deliberately prioritises up to five actions plus Ask Shift rather than exposing a backend dashboard.
-- source regression gate protects the Today contract.
-
-Outstanding before PASS:
-- member frontend consumes the V2 contract cleanly;
-- phone commissioning demonstrates priorities are understandable within five seconds;
-- proactive/medication context remains appropriately integrated where available.
-
-### G2-002 — Real Grub recipes
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #31 merged after corrected full gate PASS.
-- Grub V4 contains structured ingredients with quantities, servings, method, timings, equipment/storage metadata and independently cookable reference recipes.
-- the previous `Cook pasta / Brown chicken` reference implementation is no longer the authoritative Grub route.
-
-Outstanding before PASS:
-- breadth/variety is still insufficient for a premium paid product;
-- allergens/substitutions/easier alternatives/batch metadata are not complete across the catalogue;
-- frontend/mobile recipe presentation still requires final commissioning.
-
-### G2-003 — Nutrition integrity
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- Grub V4 explicitly labels current nutrition as curated estimates tied to stated quantities instead of implying false precision.
-- source gate prevents removal of the declared nutrition basis.
-
-Outstanding before PASS:
-- commission an ingredient nutrition source/calculation workflow and reconcile every displayed serving;
-- validated figures must replace curated estimates before PASS.
-
-### G2-004 — Grub variety/repetition
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- Grub V4 avoids repeating recipes within a generated plan while unused valid options exist.
-
-Outstanding before PASS:
-- starter catalogue is intentionally small and not premium-scale;
-- structured catalogue/content migration must materially expand cuisines, formats, cooking methods and ordinary-bloke food variety.
-
-### G2-005 — Durable Grub Yay/Nay learning
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #32 merged after Master Integration Gate + Academy PASS.
-- `product_feedback` persists Yay/Nay per member/product/entity.
-- a requested replacement records the rejected meal as a Nay signal.
-- later Grub replacements and plans consult historical Nays and avoid rejected meals where a valid alternative exists.
-- adjusted active plans are persisted back to D1.
-
-Outstanding before PASS:
-- credentialed production proof: Nay -> later session/new plan -> rejected meal remains excluded;
-- frontend must send explicit Yay as well as replacement/Nay signals.
-
-### G2-006 — Fit session duration composition
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #31 merged with session-composer contract.
-- Fit V4 composes by requested time, location, equipment and limitations and returns requested vs estimated duration.
-- source gate explicitly prohibits the historical time-padding behaviour.
-
-Outstanding before PASS:
-- production/member proof across 10/20/40/60 minute sessions;
-- frontend must expose location/equipment controls, not hide the capability behind free text.
-
-### G2-007 — Fit exercise quality/instructions
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- Fit V4 returns named movements, sets/reps/time, rest and plain-English `how` instructions plus safety stop guidance.
-- current frontend has simple line-diagram support for movement groups.
-
-Outstanding before PASS:
-- exercise library breadth remains too small;
-- movement-specific premium illustrations, regressions/progressions and common-mistake cues need commissioning;
-- member should never need external search to perform a prescribed movement.
-
-### G2-008 — Durable Fit Yay/Nay learning
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #32 merged with the same durable `product_feedback` model used by Grub.
-- rejected exercises become persistent Nay signals and later plans/replacements consult them.
-
-Outstanding before PASS:
-- credentialed production proof across a later plan/session;
-- frontend explicit Yay persistence and preference controls.
-
-### G2-009 — Conundrum kitchen intelligence
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #34 merged after all integration steps passed.
-- current authoritative Conundrum route ranks explicit ingredient relationships such as bacon+bread and chicken+cheese+wrap.
-- pantry assumptions are explicit and limited; no unlisted ingredient is silently invented.
-- weak matches return an honest no-match state rather than hallucinating a meal.
-
-Outstanding before PASS:
-- frontend needs premium ingredient-entry/selection treatment and mobile proof;
-- broaden candidate intelligence using the structured recipe catalogue rather than a small hard-coded practical set.
-
-### G2-010 — Hydration beyond water
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #34 added persisted hydration logging for water, tea/brews, coffee, squash, milk, juice, soft drinks, energy drinks and beer/alcohol.
-- daily hydration contribution is calculated separately from total drink volume.
-- alcohol can be logged but is deliberately not counted toward the hydration target.
-
-Outstanding before PASS:
-- frontend quick-log controls and Today integration;
-- authenticated mobile save/reload proof.
-
-### G2-011 — Whole-person Progress story
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #33 added `Since You Started` summary across weight, waist, BP, steps, sleep and mood where data exists.
-- improvement milestones are generated without treating weight as the only useful signal.
-
-Outstanding before PASS:
-- frontend visualisation/narrative commissioning;
-- confirm additional member metrics and treatment context are surfaced only where appropriate.
-
-### G2-012 — Progress unit consistency
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- Progress summary now returns latest weight in kg plus stone/lb representation.
-- existing frontend Progress Picture already uses dropdown-based stone/lb/kg inputs rather than free text.
-
-Outstanding before PASS:
-- shared reusable unit controls across all member Progress surfaces;
-- mobile proof and removal of remaining inconsistent/free-text weight inputs.
-
-### G2-013 — Progress Picture persistence/reliability
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- authenticated original-photo save/list/image/delete routes exist and are user-scoped.
-- PR #34 added the missing agreed `Same` comparison state.
-- V2 visualisation flow can save the original photo during the visualisation journey when requested.
-- original-photo history is available through the list route.
-
-Outstanding before PASS:
-- authenticated phone proof: upload -> save -> reload -> retrieve -> delete;
-- generated comparison-history policy/storage still needs explicit commissioning;
-- current D1 text/base64 storage is not the final scale architecture.
-
-### G2-014 — Progress Picture premium UI
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- current frontend includes dropdown-based weight/waist controls and saved-photo preview/history.
-
-Outstanding before PASS:
-- `Same` must be exposed in the member UI;
-- final premium visual treatment, comparison states, delete UI and mobile commissioning.
-
-### G2-015 — My Plans product surface
-Status: AMBER / IN PROGRESS.
-
-Evidence:
-- PR #33 added readable plan-manager output grouped into current/replaced/other states.
-- Grub/Fit/Hydration plan summaries no longer need to be exposed as raw JSON.
-
-Outstanding before PASS:
-- member frontend must consume `/v1/plan/list` and present current/replaced history cleanly;
-- authenticated return journey must demonstrate plan state persists.
-
-## Gates 3–5
-
-Evidence will continue against the same matrix IDs as commissioning progresses. Items with genuine external clinical/partner dependencies remain BLOCKED rather than being omitted.
+Merged baseline: PR #35 One Shift Brain and PR #36 Watchtower/analytics/outcome-ready layer are green and merged. Active coordinated batch: evidence reconciliation -> reviewed Knowledge publication/ingestion -> canonical Brain grounding -> Radar freshness/fail-safe ticker -> Watchtower freshness consumption. In parallel continue non-blocked Gate 5 workstreams. Do not promote device, behavioural, clinical or partner-dependent rows without genuine evidence.
