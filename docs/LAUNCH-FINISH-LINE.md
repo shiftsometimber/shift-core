@@ -25,12 +25,12 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors |
 | M05 | Security/privacy release review | AMBER — authz/rate/session/secrets/uploads/export-delete/audit/analytics boundaries |
 | M06 | Accessibility + performance release check | AMBER — critical interaction audit + measured production budgets |
-| M07 | Structured content production path | AMBER — V7 structured-preferred runtime is merged; authenticated production structured-serving proof must complete before V4 authority can be retired |
+| M07 | Structured content production path | **PASS** — authenticated production member consumed reviewed/published structured Grub and Fit through V7, with validated nutrition, approved visual guidance, provenance and durable Nay behaviour; V4 is controlled quality-preserving migration fallback, not future authority |
 | M08 | Release evidence + recovery checkpoint | AMBER — continuously reconcile matrix/ledger/recovery through release candidate |
 | M09 | Proper email verification lifecycle | AMBER — deterministic lifecycle green; real production inbox verification/login evidence remains |
-| M10 | Whole-estate routes/links/errors release sweep | AMBER — exhaustive crawler has exposed a real malformed live link; fix/re-run plus rendered states remain |
-| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — 256 authored universe (32 original + 224 industrial), 1 nutrition-validated/reviewed/published commissioning-floor recipe; 224 new industrial objects remain quarantined pending validation/review; target 2,500 commissioned / 10,000+ long-term |
-| M12 | Fit catalogue/session breadth and visual guidance | AMBER — 256 authored universe (32 original + 224 industrial across 28 canonical movements × 8 variants), 3 member-QA/reviewed/published commissioning-floor movements; 224 new industrial objects remain visual/review quarantined; target 2,500 commissioned / 10,000+ long-term |
+| M10 | Whole-estate routes/links/errors release sweep | AMBER — route/link/asset detection sub-requirement is closed by exhaustive 418-URL / 370-HTML production crawl with zero critical failures and no truncation; rendered loading/empty/error/mobile acceptance remains |
+| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — 256 authored universe (32 original + 224 industrial), 1 nutrition-validated/reviewed/published/production-served commissioning-floor recipe; 224 new industrial objects remain quarantined pending validation/review; target 2,500 commissioned / 10,000+ long-term |
+| M12 | Fit catalogue/session breadth and visual guidance | AMBER — 256 authored universe (32 original + 224 industrial across 28 canonical movements × 8 variants), 3 member-QA/reviewed/published/production-served commissioning-floor movements; 224 new industrial objects remain visual/review quarantined; target 2,500 commissioned / 10,000+ long-term |
 | M13 | Whole-person Progress + proper units | AMBER — coherent story + controlled stone/lb/kg and metric experience |
 | M14 | Member memory inspect/edit/delete controls | **PASS** — inspect/correct/delete, provenance/confidence, durable deletion, privacy controls and cross-member isolation proven |
 | M15 | Health MOT mocked partner-ready integration | **PASS** — mocked payload -> idempotent MOT -> sourced Progress -> One Shift Brain -> authenticated Today, member-isolated and non-diagnostic; live provider remains external/post-launch |
@@ -40,14 +40,14 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification: **14 PASS / 40 AMBER / 3 BLOCKED / 0 abstraction orphans** after live M03 production scan/freshness closure.
+Exactly **57** original rows remain mandatory. Current evidenced classification: **16 PASS / 38 AMBER / 3 BLOCKED / 0 abstraction orphans** after production Radar, exhaustive route detection and structured-runtime proof.
 
 ## Content conversion funnel
-**Grub:** legacy migration fallback 16. Structured authored universe **256**: 32 original structured objects + 224 new industrial authored/schema-valid objects. Current commissioning floor is **1 nutrition-validated / 1 reviewed / 1 published**; authenticated production-serving proof is still being run. The 224 industrial objects are deliberately **quarantined drafts** until ingredient-level validation and review succeed. Short-term objective **2,500 commissioned**; long-term minimum **10,000+**.
+**Grub:** legacy migration fallback 16. Structured authored universe **256**: 32 original structured objects + 224 new industrial authored/schema-valid objects. Current commissioning floor is **1 nutrition-validated / 1 reviewed / 1 published / 1 production-served**. Production proof served `lighter-beef-cottage-pie`, retained CoFID validation and respected durable Nay exclusion. The 224 industrial objects are deliberately **quarantined drafts** until ingredient-level validation and review succeed. Short-term objective **2,500 commissioned**; long-term minimum **10,000+**.
 
 The industrial Grub batch adds a balanced 56 breakfast / 56 lunch / 56 dinner / 56 snack objects in one execution window. Exact-duplicate fingerprinting caught a generated snack-variation padding defect; the content was corrected to make each variation materially distinct rather than weakening the gate. Existing long-horizon simulator must now expand to 7/14/30/60/90/180/365-day commissioned-catalogue simulations and feed catalogue holes back into authoring.
 
-**Fit:** legacy migration fallback 12. Structured authored universe **256**: 32 original structured objects + 224 new industrial objects covering **28 canonical movements × 8 meaningful variation identities**. Current commissioning floor is **3 member-QA illustrated / 3 reviewed / 3 published**; authenticated production-serving proof is still being run. The 224 industrial objects remain visual/review-quarantined. Short-term objective **2,500 commissioned**; long-term minimum **10,000+**.
+**Fit:** legacy migration fallback 12. Structured authored universe **256**: 32 original structured objects + 224 new industrial objects covering **28 canonical movements × 8 meaningful variation identities**. Current commissioning floor is **3 member-QA illustrated / 3 reviewed / 3 published / 3 production-served**. Production proof served all three published structured movements, included approved visual guidance and respected durable Nay exclusion. The 224 industrial objects remain visual/review-quarantined. Short-term objective **2,500 commissioned**; long-term minimum **10,000+**.
 
 Fit simulation must expand to 4/8/12/26/52-week horizons across frequency, location, equipment and limitation profiles. Visual guidance must convert alongside prescription eligibility; authored movement count alone is not launch-ready inventory.
 
@@ -63,7 +63,7 @@ The conversion metric is authored -> domain validated -> reviewed -> published -
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-B01; B03 rendered only; B05; B06/B07; B08; M01; M04–M13; M17. M11/M12 conversion must not queue the other rows. The 40 remaining AMBERs are classified in the remediation matrix as QUICK KILL / FINITE / LARGE / HUMAN-DEVICE.
+B01; B03 rendered only; B05; B06/B07; B08; M01; M04–M06; M08–M13; M17. M11/M12 conversion must not queue the other rows. The 38 remaining AMBERs are classified in the remediation matrix as QUICK KILL / FINITE / LARGE / HUMAN-DEVICE.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening the acceptance test.
