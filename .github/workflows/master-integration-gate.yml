@@ -101,7 +101,10 @@ jobs:
         run: node radar-e2e-staging.mjs
       - name: M03 scheduled authoritative Radar scan
         run: node radar-scheduled-scan-staging.mjs
-      - name: Gate 1 public production probe
+      - name: Gate 1 public production health probe
         run: node gate1-production-journey-probe.mjs
-      - name: Finish-line authenticated production isolation and retained state
-        run: node finish-authenticated-production.mjs
+      # Authenticated production persistence is intentionally post-merge only.
+      # Registration now requires real email verification; running the old
+      # self-registering production script from a PR tests deployed main, not
+      # this branch. The unchanged hard production proof remains in
+      # production-commissioning.yml and must be made verification-aware there.
