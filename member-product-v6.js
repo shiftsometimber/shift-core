@@ -1,14 +1,15 @@
 import core from './worker.js';
 import {memberProductV5Routes} from './member-product-v5.js';
 import {buildShiftBrainContext} from './shift-brain-v1.js';
+import {recordProductEvent} from './product-analytics-v1.js';
 
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/fit/plan','/v1/fit/replace']);
 
 export async function memberProductV6Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(!OWNED.has(path)||request.method!=='POST')return memberProductV5Routes(request,env,ctx);
-  const a=await auth(request,env,ctx);if(a.response)return a.response;
-  const body=await read(request.clone()),brain=await buildShiftBrainContext(env,Number(a.user.id),'',{knowledgeLimit:0});
+  const a=await auth(request,env,ctx);if(a.response)return a.response;const uid=Number(a.user.id);
+  const body=await read(request.clone()),brain=await buildShiftBrainContext(env,uid,'',{knowledgeLimit:0});
   const product=path.startsWith('/v1/grub/')?'grub':'fit',nays=brain.behaviour.feedback.nay.filter(x=>x.product===product).map(x=>x.entity_id),prefs=brain.member.state.preferences||{};
   const merged={...body,exclude:[...new Set([...(Array.isArray(body.exclude)?body.exclude:[]),...nays])],brain_contract:brain.contract};
   if(product==='grub'){
@@ -25,6 +26,8 @@ export async function memberProductV6Routes(request,env,ctx){
   if(!response?.ok)return response;
   const payload=await response.clone().json().catch(()=>null);if(!payload)return response;
   payload.oneShiftBrain={contract:brain.contract,preferencesApplied:Object.keys(prefs).length>0,historicalNaysApplied:nays.length};
+  const eventName=path.endsWith('/plan')?(product==='grub'?'grub_plan_generated':'fit_plan_generated'):null;
+  if(eventName){const eventJob=recordProductEvent(env,{userId:uid,eventName,surface:`shift_${product}`,source:'server',properties:{oneShiftBrain:true,preferencesApplied:Object.keys(prefs).length>0,historicalNaysApplied:nays.length,days:Number(body.days)||null,minutesPerDay:product==='fit'?Number(body.minutes_per_day)||null:null}}).catch(e=>console.warn('analytics_product_failed',e?.message));if(ctx?.waitUntil)ctx.waitUntil(eventJob);else await eventJob;}
   return new Response(JSON.stringify(payload),{status:response.status,headers:response.headers});
 }
 
