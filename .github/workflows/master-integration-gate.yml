@@ -29,6 +29,10 @@ jobs:
         run: node gate1-persistence-source-gate.mjs
       - name: Gate 1 auth security source contract
         run: node gate1-auth-security-source-gate.mjs
+      - name: Gate 1 / M09 explicit email verification lifecycle
+        run: node gate1-email-verification-e2e.mjs
+      - name: Secure production commissioning identity contract
+        run: node commissioning-identity-gate.mjs
       - name: Gate 2 Grub/Fit source contract
         run: node gate2-product-source-gate.mjs
       - name: M11/M12 content-factory authoring quality contract
@@ -103,8 +107,3 @@ jobs:
         run: node radar-scheduled-scan-staging.mjs
       - name: Gate 1 public production health probe
         run: node gate1-production-journey-probe.mjs
-      # Authenticated production persistence is intentionally post-merge only.
-      # Registration now requires real email verification; running the old
-      # self-registering production script from a PR tests deployed main, not
-      # this branch. The unchanged hard production proof remains in
-      # production-commissioning.yml and must be made verification-aware there.
