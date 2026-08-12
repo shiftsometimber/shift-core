@@ -50,11 +50,11 @@ Behaviour PASS above is closed and must not be reopened without regression evide
 | M08 | Release evidence + recovery checkpoint | remediation/evidence ledger reconciled to current main with exact release status, known external blockers and rollback/recovery state |
 | M09 | Proper email verification lifecycle | launch verification policy/state is explicit, tested and not misleading; maps original G1-003/G1-004 |
 | M10 | Whole-estate routes/links/errors release sweep | zero critical broken routes/forms/dead ends; useful loading/empty/error states; maps G1-006/G1-007/G1-008/G1-009 |
-| M11 | Grub catalogue depth, validated nutrition and variety | current audit baseline: 16 recipes / 0 fully commissioned / initial floor 64; structured migration, validated nutrition methodology and 7/14/30/60-day variety simulation required; maps G2-002/G2-003/G2-004/G5-009 |
-| M12 | Fit catalogue/session breadth and visual guidance | current audit baseline: 12 exercises / 0 fully commissioned / 0 visuals / initial floor 48 with 48/48 guidance; 12-week simulator required; maps G2-006/G2-007/G5-009 |
+| M11 | Grub catalogue depth, validated nutrition and variety | live baseline 16; **32 additional structured drafts authored** in batches 01–04; 0 fully commissioned. Initial floor 64; nutrition validation, review/publication, runtime migration and 7/14/30/60-day variety simulation remain; maps G2-002/G2-003/G2-004/G5-009 |
+| M12 | Fit catalogue/session breadth and visual guidance | live baseline 12; **32 additional structured drafts authored** in batches 01–04; 0 fully commissioned. Initial floor 48 with visual guidance for every prescribed movement; review/publication, runtime migration and 12-week simulator remain; maps G2-006/G2-007/G5-009 |
 | M13 | Whole-person Progress + proper unit experience | coherent whole-person progress story and shared controlled units; maps G2-011/G2-012 |
 | M14 | Member memory inspect/edit/delete controls | appropriate learned preferences/memory have provenance/confidence and member controls; maps G4-002 |
-| M15 | Health MOT mocked partner-ready integration | mocked partner payload flows safely through unified model/Progress/Today without implying a live partner; maps G5-004 |
+| M15 | Health MOT mocked partner-ready integration | **PASS** — PR #59 hard staging journey proves mocked provider payload -> durable sourced Progress -> canonical One Shift Brain -> authenticated Today, plus provider-retry idempotence, cross-member isolation and no-diagnosis/no-treatment-change boundaries. Live provider integration remains P06/external. |
 | M16 | Outcomes launch architecture proof | governed outcome/cohort model is usable from member one without unsupported causal claims; maps G5-006 |
 | M17 | Explicit sceptical-customer / Numan competitive acceptance | fresh release candidate can answer why choose Shift through evidence, trust, usefulness and premium execution; maps G5-014 |
 
@@ -73,41 +73,41 @@ M09–M17 are explicit anti-abstraction tracking rows restored from the original
 | P07 | Paid clinical prescribing/dispensing/identity-evidence workflow until provider, pharmacy and governance responsibilities are formally commissioned; Shift may launch only without selling/implying unavailable clinical service |
 
 ## Original-audit reconciliation
-The original remediation matrix contains exactly **57** substantive rows across Gates 1–5. Current last reconciled classification remains **9 PASS / 45 AMBER / 3 BLOCKED** pending row-by-row evidence promotion. The nine previously obscured requirements are now explicit as M09–M17. The automated finish-line gate must fail if the remediation matrix ceases to contain 57 unique G1–G5 IDs or if M09–M17 disappear from this launch board.
+The original remediation matrix contains exactly **57** substantive rows across Gates 1–5. Current reconciled classification is **10 PASS / 44 AMBER / 3 BLOCKED** after M15/G5-004 mocked Health MOT acceptance was demonstrated by PR #59. The nine previously obscured requirements remain explicit as M09–M17. The automated finish-line gate must fail if the remediation matrix ceases to contain 57 unique G1–G5 IDs or if M09–M17 disappear from this launch board.
 
 ## Content-depth launch baselines
-**Grub:** 16 current recipes / 0 fully launch-ready / initial experience floor 64 / minimum deficit +48. Current four-per-meal-type pool repeats exact meals from around day five and may repeat sooner under dislikes/Nays. The floor is provisional and must rise if 30/60-day simulation still feels repetitive.
+**Grub:** 16 live hard-coded recipes + 32 structured drafts / 0 fully launch-ready / initial experience floor 64. The authored prospective pool is now 48, but that is **not** a commissioned count: nutrition validation, second-person review/publication and runtime migration remain blockers. The floor is provisional and must rise if 30/60-day simulation still feels repetitive.
 
-**Fit:** 12 current exercises / 0 fully launch-ready / 0 visual guidance / initial experience floor 48 / minimum deficit +36 exercises and +48 visuals. The floor is provisional and must rise if three sessions/week for 12 weeks still produces poor repetition, weak equipment/location coverage or inadequate progression/substitution.
+**Fit:** 12 live hard-coded exercises + 32 structured drafts / 0 fully launch-ready / initial experience floor 48. The authored prospective pool is now 44, but visual approval, review/publication and runtime migration remain blockers. The floor is provisional and must rise if three sessions/week for 12 weeks still produces poor repetition, weak equipment/location coverage or inadequate progression/substitution.
 
 ## Critical path
 B01 real-token recovery completion -> B03 rendered/premium/mobile evidence -> B06/B07 controlled operations proof -> B08 fresh Dave -> M01/M05/M06 release sweep -> final evidence reconciliation.
 
-Parallel lanes are mandatory where independent: B05 trust; M03 Radar; M04 analytics; M05 security/privacy; M06 accessibility/performance; M07 structured content; M09/M10 release lifecycle; M11 Grub content factory; M12 Fit content + visual factory; M13–M17; B08 Dave expansion.
+Parallel lanes are mandatory where independent: B05 trust; M03 Radar; M04 analytics; M05 security/privacy; M06 accessibility/performance; M07 structured content; M09/M10 release lifecycle; M11 Grub content factory; M12 Fit content + visual factory; M13/M14/M16/M17; B08 Dave expansion.
 
 ## External blockers
 Clinical provider/pharmacy/clinical governance and provider-specific identity/evidence integration cannot be truthfully commissioned without formal external arrangements. They remain the three BLOCKED original-audit rows for a non-clinical V1 and become launch blockers only if V1 is defined as selling/providing clinical treatment.
 
 B01 has one execution dependency: the real reset token arrives only in the connected inbox and must be submitted to the production reset POST without exposing that single-use secret in repository source/logs. If the active execution environment cannot securely perform that token-bearing POST, the remaining B01 proof is a minimal human/secure-runtime dependency, not an engineering gap.
 
-## Burn-down — reconciled through merged PR #54 and production run on `e46aa035`, 2026-08-12
+## Burn-down — reconciled through merged PR #59 (`0f561768`) and its green post-merge production commissioning, 2026-08-12
 Launch blockers: **8 -> 6** (B02, B04 CLOSED)
 B03 production behavioural subrows closed: **9/9**
 B03 full product rows closed: **0/9** until rendered/mobile member evidence is attached; content-depth requirements remain independent M11/M12
-Original audit: **57 total / 9 PASS / 45 AMBER / 3 BLOCKED** at last full row-level reconciliation
-Abstraction orphans: **9 found -> 0 unmapped once M09–M17 are merged into this board**
-Grub: **16 total / 0 fully commissioned / floor 64 / deficit 48**
-Fit: **12 total / 0 fully commissioned / visuals 0 / floor 48 / deficit 36 (+48 visuals)**
-Dave journey genuinely GREEN: **~60% last quantified automatable coverage**, now explicitly extended to rendered/content-depth acceptance
-Regressions exposed during final B03 hardening: retained-context evidence weakness and prescription-boundary defect; both engineering fixes landed and unchanged #54 production commissioning passed
+Original audit: **57 total / 10 PASS / 44 AMBER / 3 BLOCKED**
+Abstraction orphans: **0 unmapped**
+Grub: **16 live + 32 structured drafts / 0 fully commissioned / floor 64**
+Fit: **12 live + 32 structured drafts / 0 fully commissioned / floor 48**
+Dave journey genuinely GREEN: **~60% last quantified automatable coverage**, explicitly extended to rendered/content-depth acceptance
+M15: **PASS** mocked partner-ready journey; live provider remains external/post-launch
 Regressions unresolved: **0 known**
 
 ## Exact next actions
-1. Lock B03 behavioural 9/9 and do not reopen without regression evidence.
+1. Keep B03 behavioural 9/9 locked; do not reopen without regression evidence.
 2. Close B03 rendered/premium/mobile/error states using automation first; reduce final physical-device work to irreducible human judgement only.
-3. Start/continue M11 Grub structured-content factory and 7/14/30/60-day simulator immediately; do not add another 48 hard-coded recipes.
-4. Start/continue M12 Fit structured exercise + visual factory and 12-week simulator immediately.
+3. Continue M11 Grub validation/review/publication/runtime migration and 7/14/30/60-day simulator; do not confuse authored drafts with commissioned content.
+4. Continue M12 Fit validation/visual/review/publication/runtime migration and 12-week simulator.
 5. Close B06/B07 with controlled production-safe degradation -> AMBER/RED -> HQ action -> recovery proof.
 6. Close B01 via secure real-token execution when a secret-safe executor/human action is available; keep all other lanes moving.
-7. Continue B05/M03–M10/M13–M17 and Dave in parallel only against explicit closure criteria.
+7. Continue B05/M03–M10/M13/M14/M16/M17 and Dave in parallel only against explicit closure criteria.
 8. Reconcile remediation matrix, evidence ledger and recovery checkpoint after every evidenced closure.
