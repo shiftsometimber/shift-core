@@ -1,4 +1,5 @@
 const RESET_TTL_MS=30*60*1000;
+const PBKDF2_ITERATIONS=600000;
 const DEFAULT_FROM='hello@shiftsometimber.co.uk';
 const DEFAULT_SITE='https://shiftsometimber.co.uk';
 
@@ -7,10 +8,19 @@ export async function handleAuthRecovery(request,env,ctx,next){
   if(request.method==='POST'&&p==='/v1/auth/request-password-reset') return requestPasswordReset(request,env);
   if(request.method==='POST'&&p==='/v1/auth/reset-password') return resetPassword(request,env);
   if(request.method==='POST'&&p==='/v1/auth/change-password') return changePassword(request,env,next,ctx);
+  if(request.method==='POST'&&p==='/v1/auth/login'){
+    const clone=request.clone();let supplied={};try{supplied=await clone.json()}catch{}
+    const response=await next(request,env,ctx);
+    if(response.ok)await upgradeAuthHashIfNeeded(env,supplied.email,supplied.password).catch(e=>console.warn('auth_rehash_warning',e?.message));
+    return response;
+  }
   if(request.method==='POST'&&p==='/v1/auth/register'){
     const clone=request.clone();let supplied={};try{supplied=await clone.json()}catch{}
     const response=await next(request,env,ctx);
-    if(response.ok&&env.EMAIL){try{const data=await response.clone().json();await sendWelcomeEmail(env,data.user||{email:supplied.email,firstName:supplied.firstName})}catch(e){console.warn('welcome_email_warning',e?.message)}}
+    if(response.ok){
+      await upgradeAuthHashIfNeeded(env,supplied.email,supplied.password).catch(e=>console.warn('auth_register_rehash_warning',e?.message));
+      if(env.EMAIL){try{const data=await response.clone().json();await sendWelcomeEmail(env,data.user||{email:supplied.email,firstName:supplied.firstName})}catch(e){console.warn('welcome_email_warning',e?.message)}}
+    }
     return response;
   }
   return null;
@@ -58,11 +68,19 @@ async function changePassword(request,env,next,ctx){
   return cors(json({ok:true,message:'Password changed.'}),request,env);
 }
 
+async function upgradeAuthHashIfNeeded(env,email,password){
+  email=String(email||'').trim().toLowerCase();password=String(password||'');if(!email||!password)return false;
+  const row=await env.DB.prepare('SELECT a.user_id,a.password_hash FROM user_auth a JOIN users u ON u.id=a.user_id WHERE lower(u.email)=?').bind(email).first();
+  if(!row?.password_hash)return false;const parts=String(row.password_hash).split('$'),iterations=Number(parts[1]||0);if(parts[0]==='pbkdf2'&&iterations>=PBKDF2_ITERATIONS)return false;
+  if(!(await verifyPassword(password,row.password_hash)))return false;
+  await env.DB.prepare('UPDATE user_auth SET password_hash=?,updated_at=? WHERE user_id=?').bind(await hashPassword(password),new Date().toISOString(),row.user_id).run();return true;
+}
+
 async function sendWelcomeEmail(env,user){if(!user?.email)return;await env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Welcome to My Shift',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Welcome to My Shift</h1><p>Hi ${escapeHtml(user.firstName||user.first_name||'there')},</p><p>Your Shift account is ready.</p><p><a href="${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Open My Shift</a></p><p>Helping ordinary blokes feel like themselves again.</p></div>`,text:`Welcome to My Shift. Your account is ready: ${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html`})}
 async function readJson(r){try{return await r.json()}catch{return{}}}
 function json(d,s=200){return new Response(JSON.stringify(d),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}})}
 function cors(r,request,env){const h=new Headers(r.headers),o=request.headers.get('Origin'),allowed=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com',...String(env.ALLOWED_ORIGINS||'').split(',').map(x=>x.trim()).filter(Boolean)]);if(o&&allowed.has(o))h.set('Access-Control-Allow-Origin',o);h.set('Access-Control-Allow-Credentials','true');h.set('Access-Control-Allow-Methods','POST,OPTIONS');h.set('Access-Control-Allow-Headers','Content-Type');h.set('Vary','Origin');return new Response(r.body,{status:r.status,headers:h})}
-async function hashPassword(password){const iterations=100000,salt=crypto.getRandomValues(new Uint8Array(16)),key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']),bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations},key,256);return `pbkdf2$${iterations}$${base64url(salt)}$${base64url(new Uint8Array(bits))}`}
+async function hashPassword(password){const iterations=PBKDF2_ITERATIONS,salt=crypto.getRandomValues(new Uint8Array(16)),key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']),bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations},key,256);return `pbkdf2$${iterations}$${base64url(salt)}$${base64url(new Uint8Array(bits))}`}
 async function verifyPassword(password,stored){try{const[scheme,iter,saltB64,hashB64]=String(stored).split('$');if(scheme!=='pbkdf2')return false;const salt=fromBase64url(saltB64),expected=fromBase64url(hashB64),key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']),bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations:Number(iter)},key,256);return constantTimeBytesEqual(new Uint8Array(bits),expected)}catch{return false}}
 async function sha256Hex(value){const data=new TextEncoder().encode(String(value)),digest=new Uint8Array(await crypto.subtle.digest('SHA-256',data));return[...digest].map(b=>b.toString(16).padStart(2,'0')).join('')}
 function randomToken(bytes=32){return base64url(crypto.getRandomValues(new Uint8Array(bytes)))}
