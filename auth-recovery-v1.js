@@ -1,3 +1,4 @@
+import {recordAuthDelivery} from './auth-delivery-v1.js';
 const RESET_TTL_MS=30*60*1000;
 const DEFAULT_FROM='hello@shiftsometimber.co.uk';
 const DEFAULT_SITE='https://shiftsometimber.co.uk';
@@ -10,7 +11,7 @@ export async function handleAuthRecovery(request,env,ctx,next){
   if(request.method==='POST'&&p==='/v1/auth/register'){
     const clone=request.clone();let supplied={};try{supplied=await clone.json()}catch{}
     const response=await next(request,env,ctx);
-    if(response.ok&&env.EMAIL){try{const data=await response.clone().json();await sendWelcomeEmail(env,data.user||{email:supplied.email,firstName:supplied.firstName})}catch(e){console.warn('welcome_email_warning',e?.message)}}
+    if(response.ok){try{const data=await response.clone().json(),user=data.user||{email:supplied.email,firstName:supplied.firstName};if(!env.EMAIL){await recordAuthDelivery(env.DB,{userId:user?.id,email:user?.email,eventType:'welcome',status:'binding_missing'});console.error('welcome_email_binding_missing')}else{try{const result=await sendWelcomeEmail(env,user);await recordAuthDelivery(env.DB,{userId:user?.id,email:user?.email,eventType:'welcome',status:'sent',providerId:result?.id||result?.messageId||null})}catch(e){await recordAuthDelivery(env.DB,{userId:user?.id,email:user?.email,eventType:'welcome',status:'failed',errorCode:cleanError(e)});console.error('welcome_email_failed',cleanError(e))}}}catch(e){console.warn('welcome_email_observability_warning',cleanError(e))}}
     return response;
   }
   return null;
@@ -18,7 +19,7 @@ export async function handleAuthRecovery(request,env,ctx,next){
 
 async function requestPasswordReset(request,env){
   const b=await readJson(request),email=String(b.email||'').trim().toLowerCase();
-  const generic={ok:true,message:'If that account exists, reset instructions will be sent shortly.',emailDeliveryConfigured:Boolean(env.EMAIL)};
+  const generic={ok:true,message:'If that account exists, reset instructions will be sent shortly.'};
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return cors(json(generic),request,env);
   const user=await env.DB.prepare('SELECT id,email,first_name FROM users WHERE lower(email)=?').bind(email).first();
   if(user){
@@ -27,8 +28,8 @@ async function requestPasswordReset(request,env){
     await env.DB.prepare('INSERT INTO auth_tokens(user_id,token_hash,token_type,expires_at) VALUES(?,?,?,?)').bind(user.id,tokenHash,'password_reset',expiresAt).run();
     if(env.EMAIL){
       const resetUrl=`${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/reset-password.html?token=${encodeURIComponent(token)}`;
-      try{await env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Reset your My Shift password',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Reset your My Shift password</h1><p>Hi ${escapeHtml(user.first_name||'there')},</p><p>We received a request to reset your My Shift password.</p><p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Choose a new password</a></p><p>This link expires in 30 minutes. If you did not request this, ignore this email.</p><p>Shift Some Timber</p></div>`,text:`Reset your My Shift password: ${resetUrl}\n\nThis link expires in 30 minutes. If you did not request this, ignore this email.`})}catch(e){console.error('auth_reset_email_failed',e?.message)}
-    }else console.warn('auth_reset_email_binding_missing');
+      try{const result=await env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Reset your My Shift password',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Reset your My Shift password</h1><p>Hi ${escapeHtml(user.first_name||'there')},</p><p>We received a request to reset your My Shift password.</p><p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Choose a new password</a></p><p>This link expires in 30 minutes. If you did not request this, ignore this email.</p><p>Shift Some Timber</p></div>`,text:`Reset your My Shift password: ${resetUrl}\n\nThis link expires in 30 minutes. If you did not request this, ignore this email.`});await recordAuthDelivery(env.DB,{userId:user.id,email:user.email,eventType:'password_reset',status:'sent',providerId:result?.id||result?.messageId||null})}catch(e){await recordAuthDelivery(env.DB,{userId:user.id,email:user.email,eventType:'password_reset',status:'failed',errorCode:cleanError(e)});console.error('auth_reset_email_failed',cleanError(e))}
+    }else{await recordAuthDelivery(env.DB,{userId:user.id,email:user.email,eventType:'password_reset',status:'binding_missing'});console.error('auth_reset_email_binding_missing')}
   }
   return cors(json(generic),request,env);
 }
@@ -58,7 +59,7 @@ async function changePassword(request,env,next,ctx){
   return cors(json({ok:true,message:'Password changed.'}),request,env);
 }
 
-async function sendWelcomeEmail(env,user){if(!user?.email)return;await env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Welcome to My Shift',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Welcome to My Shift</h1><p>Hi ${escapeHtml(user.firstName||user.first_name||'there')},</p><p>Your Shift account is ready.</p><p><a href="${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Open My Shift</a></p><p>Helping ordinary blokes feel like themselves again.</p></div>`,text:`Welcome to My Shift. Your account is ready: ${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html`})}
+async function sendWelcomeEmail(env,user){if(!user?.email)return;return env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},to:user.email,subject:'Welcome to My Shift',html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1 style="color:#173c29">Welcome to My Shift</h1><p>Hi ${escapeHtml(user.firstName||user.first_name||'there')},</p><p>Your Shift account is ready.</p><p><a href="${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html" style="display:inline-block;background:#173c29;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;font-weight:bold">Open My Shift</a></p><p>Helping ordinary blokes feel like themselves again.</p></div>`,text:`Welcome to My Shift. Your account is ready: ${String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}/member-login.html`})}
 async function readJson(r){try{return await r.json()}catch{return{}}}
 function json(d,s=200){return new Response(JSON.stringify(d),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}})}
 function cors(r,request,env){const h=new Headers(r.headers),o=request.headers.get('Origin'),allowed=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com',...String(env.ALLOWED_ORIGINS||'').split(',').map(x=>x.trim()).filter(Boolean)]);if(o&&allowed.has(o))h.set('Access-Control-Allow-Origin',o);h.set('Access-Control-Allow-Credentials','true');h.set('Access-Control-Allow-Methods','POST,OPTIONS');h.set('Access-Control-Allow-Headers','Content-Type');h.set('Vary','Origin');return new Response(r.body,{status:r.status,headers:h})}
@@ -70,3 +71,4 @@ function base64url(bytes){let binary='';for(const b of bytes)binary+=String.from
 function fromBase64url(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const bin=atob(s);return Uint8Array.from(bin,c=>c.charCodeAt(0))}
 function constantTimeBytesEqual(a,b){if(a.length!==b.length)return false;let d=0;for(let i=0;i<a.length;i++)d|=a[i]^b[i];return d===0}
 function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function cleanError(e){return String(e?.code||e?.name||e?.message||'delivery_error').replace(/[^a-zA-Z0-9_.:-]/g,'_').slice(0,120)}
