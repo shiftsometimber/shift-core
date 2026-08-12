@@ -39,6 +39,8 @@ jobs:
         run: node fit-visual-reconciliation-gate.mjs
       - name: M07 structured publication barrier
         run: node structured-content-publication-gate.mjs
+      - name: M07 structured commissioning-floor runtime contract
+        run: node structured-runtime-staging.mjs
       - name: M11/M12 longitudinal catalogue capacity simulator
         run: node content-factory-simulator.mjs
       - name: Gate 2 durable learning contract
