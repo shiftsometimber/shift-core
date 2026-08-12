@@ -98,6 +98,8 @@ jobs:
         run: node gate5-full-assault-gate.mjs
       - name: Gate 5 persisted probe history contract
         run: node gate5-probe-history-gate.mjs
+      - name: B06 authorised HQ operator alert/action/recovery proof
+        run: node hq-operator-fire-drill-staging.mjs
       - name: Adversarial break/security state transitions
         run: node adversarial-commissioning-v1.mjs
       - name: Longitudinal cross-system adversarial commissioning
