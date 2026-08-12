@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+let failed=false;const fail=m=>{console.error(`FAIL ${m}`);failed=true};
+const read=f=>fs.readFileSync(f,'utf8');
+const analytics=read('product-analytics-v1.js'),watch=read('watchtower-v1.js'),hq=read('hq-ai-v2.js'),outcomes=read('outcomes-v1.js'),entry=read('worker-entry-v6.js'),ai=read('shift-ai-v6.js'),today=read('member-daily-v3.js'),product=read('member-product-v6.js');
+for(const marker of ['product_events','today_viewed','grub_plan_generated','fit_plan_generated','shift_ai_message','error_presented'])if(!analytics.includes(marker))fail(`Analytics taxonomy missing ${marker}`);
+if(!analytics.includes('/password|token|secret|email|phone|address|symptom|diagnos|medication/i'))fail('Analytics sanitiser sensitive-key rule missing');
+for(const marker of ['radar_stale','radar_publication_failures','member_errors','knowledge_stale','workersAiBound','emailBound'])if(!watch.includes(marker))fail(`Watchtower missing ${marker}`);
+for(const route of ['/v1/hq/watchtower','/v1/hq/outcomes'])if(!hq.includes(route))fail(`HQ wrapper missing ${route}`);
+if(!outcomes.includes('Correlation does not establish causation'))fail('Outcome analysis lacks anti-overclaim governance warning');
+if(!outcomes.includes('today_views')||!outcomes.includes('grub_plans')||!outcomes.includes('fit_plans')||!outcomes.includes('ai_messages'))fail('Outcome cohort is not joining engagement domains');
+if(!entry.includes("./hq-ai-v2.js")||!entry.includes('analyticsRoutes'))fail('Production entrypoint missing Gate 5 operational/analytics routing');
+for(const [name,src,event] of [['Shift AI',ai,'shift_ai_message'],['Today',today,'today_viewed'],['Grub/Fit',product,'grub_plan_generated']])if(!src.includes('recordProductEvent')||!src.includes(event))fail(`${name} server instrumentation missing`);
+if(failed)process.exit(1);
+console.log('GATE 5 WATCHTOWER/ANALYTICS PASS — operational snapshot, canonical event taxonomy, core server instrumentation and internal outcome cohort are regression-protected.');
