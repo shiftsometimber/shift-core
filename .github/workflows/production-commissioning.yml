@@ -1,0 +1,24 @@
+name: Shift Production Commissioning
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.js'
+      - '**.mjs'
+      - '.github/workflows/production-commissioning.yml'
+jobs:
+  production-commissioning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Wait for Worker deployment propagation
+        run: sleep 20
+      - name: Core production health and route contract
+        run: node gate1-production-journey-probe.mjs
+      - name: Authenticated isolation and retained state in production
+        run: node finish-authenticated-production.mjs
+      - name: Longitudinal Grub/Fit learning in production
+        run: node finish-longitudinal-products-production.mjs
