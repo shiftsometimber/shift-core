@@ -36,6 +36,8 @@ jobs:
         run: node gate5-watchtower-analytics-gate.mjs
       - name: Gate 5 parallel trust scale contract
         run: node gate5-trust-scale-gate.mjs
+      - name: Gate 5 full assault contract
+        run: node gate5-full-assault-gate.mjs
       - name: Syntax checks
         run: |
           set -e
