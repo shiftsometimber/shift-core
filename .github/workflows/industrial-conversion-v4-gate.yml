@@ -6,6 +6,7 @@ on:
     paths:
       - 'industrial-catalogue-v4.js'
       - 'industrial-grub-systemic-v2.mjs'
+      - 'cofid-v4-blocker-diagnostics.py'
       - '.github/workflows/industrial-conversion-v4-gate.yml'
 jobs:
   systemic-grub:
@@ -19,9 +20,13 @@ jobs:
         run: |
           python3 -m pip install --quiet openpyxl
           python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Highest-unlock CoFID diagnostics
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: python3 cofid-v4-blocker-diagnostics.py
       - name: Full-catalogue canonical propagation
         env:
           COFID_INDEX: /tmp/cofid-index.json
         run: node industrial-grub-systemic-v2.mjs
-      - name: Existing master content regression
-        run: node industrial-scale-gate.mjs
+      - name: Existing catalogue quality regression
+        run: node industrial-authoring-quality-gate.mjs
