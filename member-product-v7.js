@@ -2,6 +2,7 @@ import core from './worker.js';
 import {memberProductV6Routes} from './member-product-v6.js';
 import {listPublishedContent} from './structured-content-v1.js';
 import {ensureStructuredLaunchSeed} from './structured-launch-seed-v1.js';
+import {assessMemberOutput} from './member-quality-v1.js';
 
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/fit/plan','/v1/fit/replace']);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -14,7 +15,7 @@ export async function memberProductV7Routes(request,env,ctx){
   const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
   const body=await readClone(request);
   await ensureStructuredLaunchSeed(env.DB);
-  const base=await memberProductV6Routes(request,env,ctx);
+  const base=await memberProductV6Routes(request,env,ctx,{deferQuality:true});
   if(!base?.ok)return withCors(base,request);
   const payload=await base.clone().json().catch(()=>null);if(!payload)return withCors(base,request);
   const nays=await negativeIds(env.DB,auth.user.id,path.startsWith('/v1/grub')?'grub':'fit');
@@ -41,6 +42,8 @@ async function structuredGrubPlan(request,env,userId,body,payload,nays){
   }
   payload.plan.kind='shift_grub_plan_v7';
   payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,structured_items_served:structuredServed,legacy_fallback_used:structuredServed<(payload.plan?.days||[]).reduce((a,d)=>a+(d.meals||[]).length,0),provenance_visible:true};
+  const quality=assessMemberOutput('grub',payload,body);payload.qualityCommissioning=quality;
+  if(!quality.ok)return qualityFailure(quality,request);
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'grub',payload.plan);
   return json(payload,200,request);
 }
@@ -67,6 +70,8 @@ async function structuredFitPlan(request,env,userId,body,payload,nays){
   const totalItems=(payload.plan?.sessions||[]).reduce((a,s)=>a+(s.exercises||[]).length,0);
   payload.plan.kind='shift_fit_plan_v7';
   payload.plan.catalogue={authority:structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:published.length,structured_items_served:structuredServed,structured_unique_items_served:structuredUsedAcrossPlan.size,legacy_fallback_used:structuredServed<totalItems,progressive_cutover:true,quality_preserving_fallback:true,provenance_visible:true};
+  const quality=assessMemberOutput('fit',payload,body);payload.qualityCommissioning=quality;
+  if(!quality.ok)return qualityFailure(quality,request);
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'fit',payload.plan);
   return json(payload,200,request);
 }
@@ -78,6 +83,7 @@ async function structuredFitReplace(request,env,body,payload,nays){
   return json({ok:true,exercise:toExercise(options[Math.floor(Math.random()*options.length)]),catalogue:{authority:'structured_published',legacy_fallback_used:false}},200,request);
 }
 
+function qualityFailure(quality,request){return json({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_structured_v7'},503,request)}
 function toRecipe(row){const d=row.data,n=d.nutrition||{};return{id:row.id,type:d.meal_type,name:row.title,minutes:Number(d.prep_minutes||0)+Number(d.cook_minutes||0),kcal:Number(n.kcal||0),protein:Number(n.protein_g||0),fibre:Number(n.fibre_g||0),servings:Number(d.servings||1),ingredients:d.ingredients||[],method:d.method||[],tags:d.tags||[],equipment:d.equipment||[],storage:d.storage,nutrition_basis:n.precision_note,nutrition:{status:n.status,kcal:Number(n.kcal||0),protein_g:Number(n.protein_g||0),carbohydrate_g:Number(n.carbohydrate_g||0),fat_g:Number(n.fat_g||0),fibre_g:Number(n.fibre_g||0),methodology:n.methodology,dataset_version:n.dataset_version},recipe:{servings:Number(d.servings||1),ingredients:(d.ingredients||[]).map(x=>`${x.amount} ${x.item}`),method:d.method||[],minutes:Number(d.prep_minutes||0)+Number(d.cook_minutes||0),equipment:d.equipment||[],storage:d.storage,food_safety:d.food_safety||[],substitutions:d.substitutions||[]},structured:{published:true,version:row.version,updated_at:row.updated_at,provenance:d.provenance||{}}};}
 function toExercise(row){const d=row.data;return{id:row.id,name:row.title,group:d.movement_group,minutes:Number(d.minutes||0),sets:d.dosage?.sets??null,reps:d.dosage?.reps??d.dosage?.time_seconds??null,rest_seconds:Number(d.dosage?.rest_seconds||0),how:d.instructions||[],form_cues:d.form_cues||[],equipment:d.equipment||[],locations:d.locations||[],avoid:d.limitations?.avoid||[],caution:d.limitations?.caution||[],regressions:d.regressions||[],progressions:d.progressions||[],substitutions:d.substitutions||[],visual:d.visual,structured:{published:true,version:row.version,updated_at:row.updated_at,provenance:d.provenance||{}}};}
 function preferenceText(body){return [body.preferences,body.dislikes,body.dietaryRequirements].filter(Boolean).join(' ').toLowerCase();}
