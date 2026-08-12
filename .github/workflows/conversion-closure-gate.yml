@@ -1,0 +1,31 @@
+name: Shift Conversion Closure Gate
+on:
+  pull_request:
+    paths:
+      - 'industrial-conversion-gate.mjs'
+      - 'industrial-grub-nutrition-v1.js'
+      - 'hq-ai-v2.js'
+      - 'hq-operator-fire-drill-staging.mjs'
+      - 'dave-evidence-reconciliation.mjs'
+      - 'docs/**'
+      - '.github/workflows/conversion-closure-gate.yml'
+jobs:
+  conversion-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prepare CoFID 2021
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Industrial conversion diagnostics
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-conversion-gate.mjs
+      - name: B06 authorised HQ operator proof
+        run: node hq-operator-fire-drill-staging.mjs
+      - name: Dave evidence reconciliation
+        run: node dave-evidence-reconciliation.mjs
