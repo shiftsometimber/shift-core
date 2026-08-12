@@ -1,4 +1,4 @@
-import {buildIndustrialCatalogue} from './industrial-catalogue-v1.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v2.js';
 import {ensureStructuredContent,upsertStructuredContent} from './structured-content-v1.js';
 export async function seedIndustrialFactory(DB,{recipeLimit=224,exerciseLimit=224}={}){
   await ensureStructuredContent(DB);
