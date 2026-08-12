@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import hq from './hq-ai-v2.js';
+
+class D1Statement{constructor(db,sql,params=[]){this.db=db;this.sql=sql;this.params=params}bind(...p){return new D1Statement(this.db,this.sql,p.map(v=>v===undefined?null:v))}async run(){const r=this.db.prepare(this.sql).run(...this.params);return{success:true,meta:{changes:Number(r.changes||0),last_row_id:Number(r.lastInsertRowid||0)}}}async first(){return this.db.prepare(this.sql).get(...this.params)||null}async all(){return{results:this.db.prepare(this.sql).all(...this.params)}}}
+class D1Database{constructor(){this.sqlite=new DatabaseSync(':memory:')}prepare(sql){return new D1Statement(this.sqlite,sql)}async exec(sql){this.sqlite.exec(sql);return{success:true}}async batch(stmts){const out=[];for(const s of stmts)out.push(await s.run());return out}}
+const DB=new D1Database(),env={DB,AI:{},EMAIL:{},AUTO_VERIFY_EMAIL:'false'};
+const token='hq-operator-fire-drill-token';const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(token));const hash=[...new Uint8Array(bytes)].map(x=>x.toString(16).padStart(2,'0')).join('');
+const realFetch=globalThis.fetch;let mode='green';globalThis.fetch=async(input)=>{const url=String(input instanceof Request?input.url:input);const service=url.includes('/health')?'core':url.includes('/v1/radar/ticker')?'radar':'public';if(mode==='red'&&service==='core')return new Response('down',{status:503});return new Response(service==='radar'?JSON.stringify({ok:true,items:[]}):'ok',{status:200,headers:{'content-type':service==='radar'?'application/json':'text/plain'}})};
+try{
+ const health=await hq.fetch(new Request('https://core.test/health'),env,{});assert.equal(health.status,200);
+ await DB.prepare(`INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled) VALUES(?,?,?,?,?,?)`).bind('operator@shift.test','Shift Operator','not-used','owner','active',1).run();
+ const user=await DB.prepare(`SELECT id FROM hq_users WHERE email=?`).bind('operator@shift.test').first();await DB.prepare(`INSERT INTO hq_sessions(hq_user_id,token_hash,expires_at) VALUES(?,?,?)`).bind(user.id,hash,new Date(Date.now()+3600000).toISOString()).run();
+ const headers={Cookie:`sst_hq_session=${encodeURIComponent(token)}`};
+ mode='red';const alertRes=await hq.fetch(new Request('https://core.test/v1/hq/attention',{headers}),env,{});assert.equal(alertRes.status,200);const alert=await alertRes.json();assert.equal(alert.status,'RED');const item=alert.attention.find(x=>x.code==='core_failure_rate');assert.ok(item?.nextAction);
+ const ackRes=await hq.fetch(new Request(`https://core.test/v1/hq/attention/${item.code}/ack`,{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({note:'Investigating core availability and deployment state.'})}),env,{});assert.equal(ackRes.status,200);const ack=await ackRes.json();assert.equal(ack.persisted,true);assert.equal(ack.operator.email,'operator@shift.test');
+ const after=await hq.fetch(new Request('https://core.test/v1/hq/attention',{headers}),env,{});const state=await after.json();assert.equal(state.attention.find(x=>x.code===item.code)?.operatorAction?.status,'acknowledged');
+ const row=await DB.prepare(`SELECT * FROM hq_attention_actions WHERE alert_code=? ORDER BY id DESC LIMIT 1`).bind(item.code).first();assert.equal(row.operator_email,'operator@shift.test');
+ mode='green';await DB.prepare(`UPDATE watchtower_probe_history SET checked_at=datetime('now','-25 hours')`).run();const recovered=await hq.fetch(new Request('https://core.test/v1/hq/attention',{headers}),env,{});const recovery=await recovered.json();assert.equal(recovery.status,'GREEN');
+ const resolved=await hq.fetch(new Request(`https://core.test/v1/hq/attention/${item.code}/ack`,{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({status:'resolved',note:'Core recovered; incident closed.'})}),env,{});assert.equal((await resolved.json()).status,'resolved');
+ console.log(JSON.stringify({authorisedOperator:true,alert:item.code,nextAction:item.nextAction,ackPersisted:true,recovery:recovery.status,resolutionPersisted:true},null,2));console.log('PASS B06 authorised HQ operator proof: alert visible -> context/next action -> operator acknowledgement persisted -> recovery visible -> resolution persisted.');
+}finally{globalThis.fetch=realFetch}
