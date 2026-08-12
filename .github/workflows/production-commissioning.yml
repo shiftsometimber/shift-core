@@ -6,6 +6,9 @@ on:
       - '**.js'
       - '**.mjs'
       - '.github/workflows/production-commissioning.yml'
+permissions:
+  contents: read
+  id-token: write
 jobs:
   production-commissioning:
     runs-on: ubuntu-latest
@@ -14,17 +17,37 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Wait for Worker deployment propagation
         run: sleep 20
       - name: Core production health and route contract
         run: node gate1-production-journey-probe.mjs
-      - name: Authenticated isolation and retained state in production
-        run: node finish-authenticated-production.mjs
-      - name: Longitudinal Grub/Fit learning in production
-        run: node finish-longitudinal-products-production.mjs
-      - name: Final B03 Progress Picture and Shift AI production closure
-        run: node finish-b03-final3-production.mjs
-      - name: M07 structured Grub/Fit production serving
-        run: node structured-runtime-production.mjs
       - name: M03 production Radar freshness
         run: node radar-production-freshness.mjs
+      - name: Authenticated isolation and retained state in production
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-authenticated-production.mjs
+      - name: Longitudinal Grub/Fit learning in production
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-longitudinal-products-production.mjs
+      - name: Final B03 Progress Picture and Shift AI production closure
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-b03-final3-production.mjs
+      - name: M07 structured Grub/Fit production serving
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node structured-runtime-production.mjs
