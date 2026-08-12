@@ -60,3 +60,8 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node structured-runtime-production.mjs
+      - name: G2-006 Fit duration/session quality production matrix
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node fit-duration-production.mjs
