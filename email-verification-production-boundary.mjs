@@ -3,7 +3,7 @@ const ORIGIN='https://shiftsometimber.co.uk';
 const nonce=`verify-${Date.now()}`;
 const email=`shiftsometimber+${nonce}@gmail.com`;
 const password='Shift-Verification-Proof-2026!';
-const assert=(condition,message)=>{if(!condition)throw new Error(message)};
+const assert=(condition,message)=>{if(!condition){const clean=String(message).replace(/%/g,'%25').replace(/\r?\n/g,'%0A');console.error(`::error title=M09 production verification::${clean}`);throw new Error(message)}};
 async function call(path,{method='GET',body,cookie}={}){const headers={Origin:ORIGIN};if(body!==undefined)headers['Content-Type']='application/json';if(cookie)headers.Cookie=cookie;const response=await fetch(BASE+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body)});let data=null;try{data=await response.json()}catch{}return{response,data,cookie:(response.headers.get('set-cookie')||'').split(';')[0]}}
 
 const registration=await call('/v1/auth/register',{method:'POST',body:{email,password,firstName:'DaveVerify',source:'commissioning'}});
