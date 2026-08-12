@@ -1,92 +1,88 @@
 # Shift Some Timber — Commissioning Remediation Matrix
 
-Authoritative brief: FULL PRODUCT RECOVERY, PREMIUM UX & COMMISSIONING BRIEF.
+Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence.
 
-Status vocabulary: `TODO`, `IN PROGRESS`, `BLOCKED`, `PASS`, `FAIL`.
-A feature is not PASS because code exists; PASS requires demonstrated acceptance evidence.
+**Current reconciled scoreboard: 57 total / 12 PASS / 42 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
-
-| ID | Problem / audit requirement | Systems | Severity | Root cause / risk | Proposed resolution | Dependencies | Status | Acceptance / evidence required |
-|---|---|---|---|---|---|---|---|---|
-| G1-001 | Duplicate/incomplete password recovery paths | Core/Auth | P0 | legacy worker reset handler coexists with recovery module | make recovery module authoritative; remove/bypass duplicate path | none | IN PROGRESS | reset request -> email -> one-time reset -> sessions revoked -> login succeeds |
-| G1-002 | Email binding not deployment-persistent | Core/Cloudflare | P0 | dashboard binding existed but wrangler config omitted it | persist `send_email` EMAIL binding and sender/site vars | onboarded Email Service domain | IN PROGRESS | deployed Worker sees EMAIL and sends welcome/reset mail |
-| G1-003 | Registration email lifecycle incomplete | Auth/Email | P0 | register worked without transactional lifecycle | welcome + verification/security notifications | G1-002 | IN PROGRESS | new account receives expected email and can sign in |
-| G1-004 | Email verification is effectively bypassed | Auth | P1 | AUTO_VERIFY_EMAIL true | define launch verification policy and implement verification flow | owner/clinical launch policy if verification mandatory | TODO | member email state is explicit, tested and not misleading |
-| G1-005 | Member persistence confidence damaged | Core/D1/My Shift | P0 | multiple product layers and inconsistent reads/writes | canonical member profile/state contract and persistence tests | none | TODO | save -> refresh -> logout/login -> same data everywhere |
-| G1-006 | Broken/dead routes and links not centrally detected | Public/My Shift/Core | P0 | manual discovery | automated route/link/form checker | deploy target access | TODO | zero critical broken journeys; report generated each release |
-| G1-007 | Error handling exposes generic failures | All | P1 | inconsistent client/server error contracts | standard error envelope, request ID, member-safe copy | none | TODO | every critical failure traceable in logs with useful UX |
-| G1-008 | Loading/empty/success states inconsistent | Public/My Shift | P1 | feature-by-feature UI | shared state components | Gate 3 design tokens | TODO | no blank screens or ambiguous saves in commissioned journeys |
-| G1-009 | Mobile/cross-browser regressions found manually | Public/My Shift | P0 | no systematic responsive commissioning | viewport/browser test matrix | test tooling | TODO | iOS Safari + Chrome + desktop critical flows pass |
-| G1-010 | Auth rate limits/security controls need formal commissioning | Auth/Core | P0 | partial lockout only | rate limiting, session review, CSRF/CORS strategy, security tests | Cloudflare config as needed | TODO | security checklist PASS |
-| G1-011 | Production entry-point wiring can diverge from modules | Core | P0 | layered entrypoint + legacy fallback | source gate asserts all authoritative routes and bindings | none | IN PROGRESS | CI fails if auth/product wiring disappears |
-| G1-012 | Synthetic member commissioning is incomplete as release gate | Core/My Shift | P0 | commissioning endpoint tests engines more than whole UX | full end-to-end synthetic journey | website deployment | TODO | register-to-return journey passes automatically |
+| ID | Original audit requirement | Status | Current evidence / exact remaining closure |
+|---|---|---|---|
+| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery module is authoritative and reset/change implementation is proven; B01 still needs secret-safe real-token reset -> login -> change-password -> logout/login. |
+| G1-002 | Email binding not deployment-persistent | AMBER | Welcome/reset inbox receipt is proven; final launch email/recovery lifecycle remains coupled to B01/M09. |
+| G1-003 | Registration email lifecycle incomplete | AMBER | Welcome delivery proven; explicit verification lifecycle remains M09. |
+| G1-004 | Email verification is effectively bypassed | AMBER | AUTO_VERIFY ambiguity remains; M09 requires explicit verified state/policy/token behaviour. |
+| G1-005 | Member persistence confidence damaged | **PASS** | Production A/B authenticated state, Progress, Brain and leave/return persistence proven without contamination. |
+| G1-006 | Broken/dead routes and links not centrally detected | AMBER | Route probes exist; whole-estate release sweep remains M10. |
+| G1-007 | Error handling exposes generic failures | AMBER | Request IDs/contracts exist in Core; whole-estate member-facing error/diagnostic sweep remains M10. A prior generic registration 500 did not reproduce and must be diagnosable if it recurs. |
+| G1-008 | Loading/empty/success states inconsistent | AMBER | Behavioural endpoints are green; rendered state-system acceptance remains M01/M10/B08. |
+| G1-009 | Mobile/cross-browser regressions found manually | AMBER | Genuine mobile/cross-browser release evidence remains M01/M06/M10/B08. |
+| G1-010 | Auth rate limits/security controls need formal commissioning | AMBER | Runtime abuse/source security gates pass; full release threat/privacy review remains M05. |
+| G1-011 | Production entry-point wiring can diverge from modules | **PASS** | Master/source gates fail if authoritative auth/product/Brain wiring disappears; current gates green. |
+| G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Progressive Dave and hard production suites cover much of the journey; fresh unassisted B08 remains. |
 
 ## Gate 2 — Nothing Half-Finished
-
-| ID | Problem / audit requirement | Systems | Severity | Root cause / risk | Proposed resolution | Dependencies | Status | Acceptance / evidence required |
-|---|---|---|---|---|---|---|---|---|
-| G2-001 | Shift Today is an engine, not a premium daily command centre | My Shift/Core/AI | P0 | backend/UI split | rebuild around next-useful-action orchestration | Shift Brain | TODO | Dave understands today's priorities in <5 seconds |
-| G2-002 | Grub recipes are not real recipes | Grub/Core/My Shift | P0 | hard-coded shallow arrays | structured recipe model with quantities/method/nutrition/allergens/etc | content migration | TODO | every surfaced recipe independently cookable |
-| G2-003 | Grub nutrition figures are not tied to exact ingredients | Grub | P0 | static headline macros | calculated/validated nutrition per serving | ingredient nutrition source | TODO | recipe quantities reconcile with displayed nutrition |
-| G2-004 | Grub variety/repetition is poor | Grub | P1 | tiny library | scalable structured recipe catalogue + diversity constraints | G2-002 | TODO | 7-day plan has sensible variety and repeat controls |
-| G2-005 | Grub Yay/Nay is shallow and not durable learning | Grub/Brain | P1 | swap-only implementation | persist feedback signals with confidence/decay | Shift Brain | TODO | repeated Nay changes future plans, not only current card |
-| G2-006 | Fit composes durations incorrectly | Fit | P0 | spare minutes historically padded final exercise | session composer by time/goal/location/equipment | none | TODO | 10/20/40/60 min sessions materially differ and total sensibly |
-| G2-007 | Exercise library/instructions are too thin | Fit | P0 | prototype exercise data | structured exercise catalogue, visuals, cues, regressions/progressions | content migration | TODO | member never needs Google to understand movement |
-| G2-008 | Fit Yay/Nay is not durable learning | Fit/Brain | P1 | immediate swap only | persist exercise preference/limitation signals | Shift Brain | TODO | future programmes respect feedback |
-| G2-009 | Conundrum lacks kitchen intelligence | Conundrum | P1 | literal matching | ingredient graph, pantry assumptions, recipe candidates, preference filters | recipe catalogue | TODO | obvious combinations rank correctly with no invented ingredients |
-| G2-010 | Hydration is too water-centric | Hydration | P1 | simplistic model | drink-type logging + contribution/caffeine/calorie context | none | TODO | water/tea/coffee/squash/juice/milk/soft drinks/energy/alcohol log correctly |
-| G2-011 | Progress is a data log, not a whole-person story | Progress/My Shift | P1 | disconnected metrics | Since You Started + trends + milestone narrative | canonical profile | TODO | weight/waist/BP/movement/etc show coherent progress |
-| G2-012 | Progress units are inconsistent | Progress | P1 | typed/manual fields | shared stone/lb/kg and metric controls | Gate 3 components | TODO | no free-text weight entry in member UX |
-| G2-013 | Progress Picture persistence/reliability incomplete | Picture/Core | P0 | storage path failures | durable private storage + save/delete/history | storage decision | TODO | upload/save/reload/delete works on mobile |
-| G2-014 | Progress Picture UI feels developer-grade | Picture/My Shift | P1 | prototype controls | premium component treatment + clear illustrative disclaimer | Gate 3 | TODO | same/homepage visual-quality test PASS |
-| G2-015 | My Plans surface is not a proper plan manager | My Shift/Core | P1 | stored plan objects not productised | active/upcoming/completed/paused/replaced plan views | canonical plan model | TODO | member can understand current plan state instantly |
+| ID | Original audit requirement | Status | Current evidence / exact remaining closure |
+|---|---|---|---|
+| G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
+| G2-002 | Grub recipes are not real recipes | AMBER | 32 structured drafts satisfy deterministic authoring schema; nutrition/review/publication/runtime-serving remain M11. |
+| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | Structured recipes explicitly block publication pending ingredient-level nutrition validation; validated count remains 0. |
+| G2-004 | Grub variety/repetition is poor | AMBER | Simulator proves live repetition from day 5; drafted capacity improves but 30/60-day repetition remains unacceptable. |
+| G2-005 | Grub Yay/Nay is shallow and not durable learning | **PASS** | Authenticated Nay -> leave/return -> later recommendation change is production-proven; unrelated Fit remains unaffected. |
+| G2-006 | Fit composes durations incorrectly | AMBER | Historical padding defect fixed and behaviour green; complete 10/15/20/30/45/60 session-quality commissioning remains M12. |
+| G2-007 | Exercise library/instructions are too thin | AMBER | 32 structured drafts added; member-ready visuals/review/publication/runtime serving remain M12. |
+| G2-008 | Fit Yay/Nay is not durable learning | **PASS** | Authenticated exercise dislike/Nay persists and influences later Fit while Grub signals stay isolated. |
+| G2-009 | Conundrum lacks kitchen intelligence | AMBER | Obvious chicken+cheese+wrap relationship is production-proven; broader catalogue-backed ingredient intelligence remains tied to M11. |
+| G2-010 | Hydration is too water-centric | **PASS** | Production suite proves non-water drink contribution rules including coffee contributing and beer not contributing, with durable plan/log state. |
+| G2-011 | Progress is a data log, not a whole-person story | AMBER | Progress behaviour/retention green; coherent whole-person story remains M13. |
+| G2-012 | Progress units are inconsistent | AMBER | Controlled stone/lb/kg + metric member UX remains M13. |
+| G2-013 | Progress Picture persistence/reliability incomplete | AMBER | Save/history/private ownership/delete/return behaviour green; full rendered/mobile member acceptance remains. |
+| G2-014 | Progress Picture UI feels developer-grade | AMBER | Premium/mobile presentation remains M01/B08. |
+| G2-015 | My Plans surface is not a proper plan manager | AMBER | Active-plan persistence is production-proven; complete premium plan-management surface remains. |
 
 ## Gate 3 — One Shift
-
-| ID | Problem / audit requirement | Systems | Severity | Root cause / risk | Proposed resolution | Dependencies | Status | Acceptance / evidence required |
-|---|---|---|---|---|---|---|---|---|
-| G3-001 | Homepage quality is not systemic | Public/My Shift | P0 | one-off styling accumulated | extract homepage design constitution into tokens/components | current site package | TODO | every member/public route passes standalone visual test |
-| G3-002 | Header/navigation variants drift | Public/My Shift | P1 | duplicated markup | canonical responsive header/nav | G3-001 | TODO | one source/component behaviour across routes |
-| G3-003 | Footer variants drift/are visually heavy | Public | P1 | duplicated footer markup/CSS | canonical premium footer | G3-001 | TODO | footer parity on every public page |
-| G3-004 | Forms/selectors expose browser-default/prototype UI | Public/My Shift | P0 | local controls | shared fields, selects, steppers, segmented controls, unit controls | G3-001 | TODO | no cheap/default controls in commissioned routes |
-| G3-005 | Cards/spacing/type hierarchy inconsistent | Public/My Shift | P1 | local CSS | design tokens + reusable surfaces/cards | G3-001 | TODO | visual regression review PASS |
-| G3-006 | Knowledge Hub editorial experience is inconsistent | Public/Knowledge | P1 | SEO-first pages | premium editorial templates, related content, author/review metadata | G3-001 | TODO | article pages feel authoritative and branded |
-| G3-007 | Member navigation reflects architecture rather than intent | My Shift | P1 | feature accumulation | Today -> Grub -> Fit -> Progress -> Ask Shift information architecture | none | TODO | Dave can find key actions without instruction |
-| G3-008 | Accessibility is not a design-system gate | All | P0 | retrofit mindset | keyboard/focus/labels/contrast/reduced-motion baked into components | G3-001 | TODO | WCAG-oriented audit PASS for critical journeys |
+| ID | Original audit requirement | Status | Current evidence / exact remaining closure |
+|---|---|---|---|
+| G3-001 | Homepage quality is not systemic | AMBER | Homepage remains design constitution; representative public/member parity evidence remains M01. |
+| G3-002 | Header/navigation variants drift | AMBER | Canonical whole-estate responsive nav acceptance remains M01/M10. |
+| G3-003 | Footer variants drift/are visually heavy | AMBER | Whole-estate footer parity acceptance remains M01/M10. |
+| G3-004 | Forms/selectors expose browser-default/prototype UI | AMBER | Premium shared-control release sweep remains M01/M10/M13. |
+| G3-005 | Cards/spacing/type hierarchy inconsistent | AMBER | Visual-system regression review remains M01. |
+| G3-006 | Knowledge Hub editorial experience is inconsistent | AMBER | Knowledge lifecycle is green; premium editorial presentation/reviewer metadata remains. |
+| G3-007 | Member navigation reflects architecture rather than intent | AMBER | Behavioural routes exist; Dave/premium IA acceptance remains B08/M01. |
+| G3-008 | Accessibility is not a design-system gate | AMBER | Critical keyboard/focus/forms/contrast/reduced-motion audit remains M06. |
 
 ## Gate 4 — Shift Becomes Intelligent
-
-| ID | Problem / audit requirement | Systems | Severity | Root cause / risk | Proposed resolution | Dependencies | Status | Acceptance / evidence required |
-|---|---|---|---|---|---|---|---|---|
-| G4-001 | No single formal Shift Brain member model | AI/Core/D1 | P0 | memory/context spread across modules | canonical structured member intelligence model | privacy model | TODO | AI consumes same trusted context across Today/Grub/Fit/chat |
-| G4-002 | Memory provenance/confidence/edit/delete controls incomplete | AI/Privacy | P0 | inference stored without product governance | provenance, confidence, source, retention, member controls | G4-001 | TODO | member can inspect/change/delete appropriate learned preferences |
-| G4-003 | AI recommendation outcomes are not consistently learned | AI/Products | P1 | feedback stored locally/episodically | central recommendation log + outcome loop | G4-001 | TODO | Yay/Nay and completion measurably affect later choices |
-| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | Knowledge/AI/CMS | P0 | modules exist without guaranteed lifecycle | publish -> classify -> review -> index -> graph -> AI pipeline | CMS integration | TODO | new approved article becomes searchable/grounding automatically |
-| G4-005 | Grounding provenance is not consistently visible/inspectable | AI/HQ | P1 | retrieval components vary | provenance contract and HQ trace | G4-004 | TODO | answer can identify member/context/knowledge basis where appropriate |
-| G4-006 | Radar is built but end-to-end live status is unproven | Radar/HQ/Public | P0 | architecture != commissioning | run/monitor source scan -> review -> publish -> ticker | external sources/review workflow | TODO | freshness and publication evidence visible in HQ |
-| G4-007 | GLP ticker freshness can silently degrade | Radar/Public | P0 | no release-level freshness SLA | stale threshold + fail-safe UI + Watchtower alert | G4-006 | TODO | stale ticker cannot present as current |
-| G4-008 | Proactive insights are not yet a coherent daily orchestration system | Today/AI | P1 | multiple intelligence modules | unify into next-useful-action prioritisation | G4-001 | TODO | Today recommendations are consistent and explainable |
+| ID | Original audit requirement | Status | Current evidence / exact remaining closure |
+|---|---|---|---|
+| G4-001 | No single formal Shift Brain member model | **PASS** | One Shift Brain is canonical across Shift AI, Today, Grub/Fit and proactive consumers; integration gate green. |
+| G4-002 | Memory provenance/confidence/edit/delete controls incomplete | **PASS** | PR #61 proof: inspect/correct/delete learned memory, source/confidence visible, correction provenance explicit, privacy controls durable, cross-member isolation enforced. |
+| G4-003 | AI recommendation outcomes are not consistently learned | **PASS** | Durable Yay/Nay and current intent measurably alter later recommendations across leave/return without cross-domain contamination. |
+| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | **PASS** | Reviewed Knowledge publish -> canonical retrieval -> Brain grounding/provenance -> withdrawal -> no grounding is regression-protected. |
+| G4-005 | Grounding provenance is not consistently visible/inspectable | **PASS** | Shift AI production contract returns provenance-aware sources and reviewed state; hard production proof green. |
+| G4-006 | Radar is built but end-to-end live status is unproven | AMBER | Staged Radar e2e passes; live production scan/publication/ticker freshness remains M03. |
+| G4-007 | GLP ticker freshness can silently degrade | AMBER | Stale thresholds/Watchtower contract exist; production freshness/stale-state proof remains M03/B07. |
+| G4-008 | Proactive insights are not yet a coherent daily orchestration system | AMBER | Canonical Brain/proactive plumbing exists; premium Today orchestration acceptance remains. |
 
 ## Gate 5 — Trust & Scale
+| ID | Original audit requirement | Status | Current evidence / exact remaining closure |
+|---|---|---|---|
+| G5-001 | Clinical operating boundaries not fully commissioned | BLOCKED | Requires signed provider/pharmacy/prescriber operating model. Non-clinical V1 must not imply unavailable clinical service. |
+| G5-002 | Medication Companion incomplete | BLOCKED | Requires clinically governed prescribing/escalation owner/pathway. |
+| G5-003 | Identity/weight evidence verification not commissioned | BLOCKED | Requires provider-approved verification journey/requirements. |
+| G5-004 | Health MOT/bloods integration needs partner-ready data model | **PASS** | PR #59/#61 proves mocked partner payload -> idempotent MOT -> sourced Progress -> One Shift Brain -> authenticated Today, with member isolation and non-diagnostic/no-treatment-change boundaries. |
+| G5-005 | Public trust architecture is incomplete | AMBER | Production operator/AI/privacy/support/current-provider trust audit remains B05. |
+| G5-006 | Outcome measurement not embedded from member one | **PASS** | PR #61 proves member-one Progress + engagement cohort analysis with separated members and explicit internal-only/non-causal guardrails. |
+| G5-007 | Watchtower observability is incomplete | AMBER | Probes/history/SLO/attention architecture exists; controlled degradation -> retained history -> HQ action -> recovery proof remains B07. |
+| G5-008 | HQ is admin UI rather than operating nerve centre | AMBER | Attention endpoint exists; authorised operator fire-drill evidence remains B06. |
+| G5-009 | Recipes/exercises are hard-coded scaling traps | AMBER | 10k structured-content benchmark and 32+32 drafts prove scalable representation, but member runtime still serves V4 arrays; M07 cutover remains. |
+| G5-010 | Analytics lacks coherent product-event taxonomy | **PASS** | Canonical product-event taxonomy/instrumentation, privacy filtering and Watchtower analytics gates are regression-protected. |
+| G5-011 | Security/privacy audit not yet complete | AMBER | Multiple security/privacy gates pass; full release review of exposed V1 boundaries remains M05. |
+| G5-012 | Performance not a release criterion | AMBER | SLO budgets exist; production critical-path performance/accessibility evidence remains M06. |
+| G5-013 | Dave end-to-end commissioning not yet run | AMBER | Progressive automated Dave coverage exists; fresh unassisted rendered/recovery/content-depth release candidate remains B08. |
+| G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-| ID | Problem / audit requirement | Systems | Severity | Root cause / risk | Proposed resolution | Dependencies | Status | Acceptance / evidence required |
-|---|---|---|---|---|---|---|---|---|
-| G5-001 | Clinical operating boundaries not fully commissioned | Clinical/Public/HQ | P0 | partners/process still developing | explicit provider/pharmacy/prescriber/AI boundaries and workflows | external partners | BLOCKED | signed operating model + accurate public trust surfaces |
-| G5-002 | Medication Companion incomplete | Clinical/My Shift | P0 | treatment support not productised | timeline/dose/reminders/check-ins/side effects/escalation | clinical governance | BLOCKED | clinical owner approves pathways; escalation tested |
-| G5-003 | Identity/weight evidence verification not commissioned | Clinical/Core | P0 | architecture undecided | verification workflow and human escalation | provider/regulatory requirement | BLOCKED | partner-approved verification journey |
-| G5-004 | Health MOT/bloods integration needs partner-ready data model | MOT/Core | P1 | current assessments are generic | unified health-result model + partner adapters | lab/clinical partner | TODO | mocked partner payload flows through Progress/Today safely |
-| G5-005 | Public trust architecture is incomplete | Public | P0 | new brand lacks incumbent proof | transparent operator/partner/reviewer/privacy/AI-boundary surfaces | partner names when formal | TODO | customer can answer 'who looks after me?' in <60 sec |
-| G5-006 | Outcome measurement not embedded from member one | Analytics/Core | P1 | feature metrics separate from outcomes | cohort/outcome event/data model | governance | TODO | programme engagement can be analysed against legitimate outcomes |
-| G5-007 | Watchtower observability is incomplete | All/HQ | P0 | logs exist but no unified health layer | synthetic probes, failure-rate metrics, freshness, HQ alerting | none | TODO | HQ shows website/Core/email/AI/Grub/Fit/Radar status |
-| G5-008 | HQ is admin UI rather than operating nerve centre | HQ | P1 | feature accumulation | attention-first operational home + system health | G5-007 | TODO | operator sees what needs action now, not vanity metrics |
-| G5-009 | Recipes/exercises are hard-coded scaling traps | Core/Content | P0 | arrays embedded in Worker code | structured D1/content repository with versioning/moderation | migration tooling | TODO | 10k objects without source-code growth |
-| G5-010 | Analytics lacks coherent product-event taxonomy | All | P1 | pageview-centric/incomplete | event specification + instrumentation + QA | analytics provider/config | TODO | funnel and feature usefulness answerable from data |
-| G5-011 | Security/privacy audit not yet complete | All | P0 | rapid-build debt | threat model, permissions, secrets, uploads, deletion/export, audit trail | none | TODO | documented security/privacy commissioning PASS |
-| G5-012 | Performance not a release criterion | Public/My Shift/Core | P1 | feature-first optimisation | Web Vitals/API latency budgets and regression checks | none | TODO | agreed mobile performance budgets PASS |
-| G5-013 | Dave end-to-end commissioning not yet run | Entire platform | P0 | no fresh-persona release gate | observe/fix/rerun complete journey | Gates 1-5 | TODO | zero P0/P1 Dave defects; documented evidence |
-| G5-014 | Numan/customer trust competitive test not embedded | Product | P0 | internal feature completion bias | final sceptical-customer/partner/investor review | G5-013 | TODO | clear evidence-based answer to why choose Shift |
+## Reconciliation check
+PASS rows: 12. AMBER rows: 42. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
 ## Commissioning rule
-
-No row moves to PASS without evidence. Evidence can be automated test output, production probe, screenshots, monitored events, partner sign-off, or a documented blocked external dependency. Strategic items cannot disappear; they remain explicit rows until implemented, blocked, or formally decided.
+A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.

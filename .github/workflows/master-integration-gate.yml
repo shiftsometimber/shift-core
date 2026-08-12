@@ -48,6 +48,8 @@ jobs:
         run: node gate5-watchtower-analytics-gate.mjs
       - name: Gate 5 parallel trust scale contract
         run: node gate5-trust-scale-gate.mjs
+      - name: M14 member memory inspect/correct/delete commissioning
+        run: node memory-controls-e2e-staging.mjs
       - name: M15 mocked partner Health MOT -> Progress -> Today commissioning
         shell: bash
         run: |
@@ -60,6 +62,8 @@ jobs:
             echo "::error file=health-mot-e2e-staging.mjs::$msg"
             exit "$rc"
           fi
+      - name: M16 governed outcomes member-one/cohort proof
+        run: node outcomes-e2e-staging.mjs
       - name: Gate 5 full assault contract
         run: node gate5-full-assault-gate.mjs
       - name: Gate 5 persisted probe history contract

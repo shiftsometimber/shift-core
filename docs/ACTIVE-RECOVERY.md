@@ -1,45 +1,69 @@
 # Active recovery checkpoint — 2026-08-12
 
-Authoritative execution state if interrupted.
+Authoritative execution state if interrupted. GitHub `main` is authoritative for landed code; `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements; `docs/COMMISSIONING-EVIDENCE.md` records demonstrated evidence.
 
-## Last merged
-PR #54 merged to `main` at `e46aa035774068cbec84af851568a4064ae98d59` after its PR gates were green. The automatic hard production commissioning run `31614521100` then completed successfully on the merged commit.
+## Current base / active PR
+Observed `main` base for this closure batch: `0f5617687dd3555f5bb11be4c513629e02da6eb3`. PR #60 content batches and PR #59 mocked MOT work are merged. Active PR: **#61 `finish/conversion-and-amber-swarm`**.
 
-The unchanged production sequence all passed: production health/routes -> authenticated isolation/retained state -> longitudinal Grub/Fit learning -> final B03 Progress Picture + Shift AI hostile closure. The final leg includes the strengthened exact Progress retention assertion (`114.3kg -> 109.8kg` after logout/login) and the deterministic prescription boundary added after the previous hostile run exposed a real safety defect.
+PR #55 is closed as superseded. Its unchanged rerun was 29/29 GREEN; the earlier generic `register DaveA` 500 did not reproduce. Do not reopen #55 without genuine regression evidence.
 
-## Locked closure state
-- B02 authenticated isolation/durable state: PASS.
-- B04 longitudinal One Shift Brain behaviour: PASS.
-- M02 reviewed Knowledge lifecycle: PASS.
-- B03 behavioural products: **9/9 PASS**. Do not reopen without regression evidence.
-- Known unresolved product regressions from the #52/#53/#54 sequence: **0**.
+## Locked PASS
+- B02 authenticated isolation + durable state.
+- B03 behavioural products: **9/9 PASS**, locked unless genuine regression.
+- B04 longitudinal One Shift Brain.
+- M02 reviewed Knowledge lifecycle.
+- **M14 / G4-002 member memory controls: PASS** — PR #61 proves inspect/correct/delete, provenance/confidence, durable deletion, privacy controls and cross-member isolation.
+- **M15 / G5-004 mocked partner-ready Health MOT: PASS** — PR #59/#61 proves mocked payload -> idempotent MOT -> sourced Progress -> One Shift Brain -> authenticated Today with isolation and non-diagnostic boundaries.
+- **M16 / G5-006 outcomes launch architecture: PASS** — PR #61 proves member-one Progress + engagement cohort analysis with explicit internal-only/non-causal guardrails.
 
-Full B03 remains AMBER only for rendered/premium/mobile/error-state evidence. Grub/Fit content depth remains independently AMBER and is not hidden by behavioural PASS.
+## PR #61 proof state
+Master Integration run `31624564126` is GREEN on the repaired M16 fixture: M14, M15 and M16 steps pass and all prior source/security/Brain/content/Watchtower/adversarial/10k/runtime-auth/Dave/Radar/production-isolation gates pass. The first M16 attempt failed only because the staging fixture used an obsolete product-events shape lacking `occurred_at`; production code was not weakened. Fixture was corrected to the production analytics schema and rerun green.
 
-## Reconciled product-depth baseline
-- Grub: **16 recipes / 0 fully commissioned / initial floor 64 / deficit 48**. Current four-item meal-type pools begin exact repeats around day five. Structured migration, validated nutrition methodology and 7/14/30/60-day simulation remain.
-- Fit: **12 exercises / 0 fully commissioned / 0 visuals / initial floor 48 / deficit 36 exercises + 48 visuals**. Structured migration, visual guidance and 12-week three-sessions/week simulation remain.
-- Original audit: **57 rows / last full classification 9 PASS / 45 AMBER / 3 BLOCKED**.
-- Nine abstraction-orphans were identified and are being physically restored to the authoritative launch board as M09–M17; automated crosswalk protection is being added so they cannot disappear again.
+Documentation/matrix reconciliation has now been committed and must complete its own unchanged CI before merge.
 
-## Current critical path
-1. B03 rendered/premium/mobile/error-state evidence, automation first and only irreducible physical-device judgement left to human acceptance.
-2. B06/B07 controlled production-safe degradation -> AMBER/RED -> HQ actionable next step -> retained history -> recovery -> healthy.
-3. B01 secure real-token reset completion when a secret-safe executor/human action is available. Do not leak a live token into repo/history/logs.
-4. B08 fresh Dave release-candidate journey as each newly closed leg becomes available.
+## Original audit
+**57 total / 12 PASS / 42 AMBER / 3 BLOCKED / 0 unmapped.**
+Current matrix physically contains all 57 rows and the 12/42/3 classification.
 
-## Mandatory parallel lanes
-- M11 Grub structured-content/content-quality factory + simulator.
-- M12 Fit structured exercise + visual factory + simulator.
-- B05 trust boundary.
-- M03 Radar freshness.
-- M04 analytics QA.
-- M05 security/privacy.
-- M06 accessibility/performance.
-- M07 structured production content path.
-- M09/M10 and M13–M17 anti-abstraction requirements.
+## Content conversion checkpoint
+Member runtime still serves legacy hard-coded V4 content, therefore M07/M11/M12 remain AMBER.
+
+### Grub
+- legacy production source: 16
+- structured authored: 32 (8 breakfast / 8 lunch / 10 dinner / 6 snack)
+- deterministic/schema gate: 32/32 pass
+- nutrition-validated: 0
+- reviewed/approved: 0
+- published: 0
+- structured production-served: 0
+- launch-ready: 0
+
+Draft capacity simulation with legacy+structured: pools breakfast 12 / lunch 12 / dinner 14 / snack 10. First exact repeats move from day 5 live to day 13 / 13 / 15 / 11. 30-day: 72 exact repeats / 120 slots = 60%. 60-day: 192 / 240 = 80%. Therefore more breadth and smarter constraint-aware simulation are required; 64 remains only the first hypothesis.
+
+### Fit
+- legacy production source: 12
+- structured authored: 32
+- deterministic/schema gate: 32/32 pass
+- approved member visuals: 0
+- reviewed/approved: 0
+- published: 0
+- structured production-served: 0
+- launch-ready: 0
+
+Draft capacity simulation with legacy+structured: prospective 44 exercises / 13 movement groups / worst exercise 5 appearances across 180 slots, down from 15 live. Progression, limitation compliance, session similarity and member visual acceptance remain unproven.
+
+## External blocked
+- G5-001 signed clinical operating model/provider/pharmacy governance.
+- G5-002 clinically governed Medication Companion prescribing/escalation.
+- G5-003 provider-approved identity/weight/evidence verification.
+
+## Remaining independent AMBER swarm
+B01 recovery; B03 rendered/premium/mobile only; B05 trust; B06/B07 HQ/Watchtower fire drill; B08 Dave; M01 premium/mobile; M03 Radar production freshness; M04 analytics; M05 security/privacy; M06 accessibility/performance; M07 structured runtime cutover; M08 release evidence; M09 verification; M10 routes/errors; M11 Grub conversion/simulation; M12 Fit/visual conversion/simulation; M13 Progress/units; M17 sceptical-customer/Numan acceptance.
 
 ## Exact next action
-Finish and merge the reconciliation/crosswalk batch that records #54 hard production PASS, restores M09–M17 and makes CI fail if the original 57-row inventory or restored launch mappings disappear. Then continue directly into B03 rendered evidence + B06/B07 fire test while the Grub/Fit factories run in parallel.
+1. Merge PR #61 once the docs/matrix reconciliation rerun is fully GREEN.
+2. Next content prey is **conversion**, not more headline drafts: establish real ingredient-level nutrition methodology and move a Grub batch into validated state; create/review member visual guidance for a Fit batch; then review/publish and make canonical structured content eligible for the production member path.
+3. In parallel run B06/B07 controlled degradation -> retained evidence -> HQ next action -> recovery and attack other independent AMBERs.
+4. B01 remains only the secret-bearing real inbox token chain; never place a live token in source/logs.
 
-Operating rule: **SWARM -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+Operating rule: **CONVERT -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
