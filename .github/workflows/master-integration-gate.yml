@@ -32,6 +32,8 @@ jobs:
         run: node gate2-product-source-gate.mjs
       - name: M11/M12 content-factory authoring quality contract
         run: node content-factory-gate.mjs
+      - name: M11/M12 longitudinal catalogue capacity simulator
+        run: node content-factory-simulator.mjs
       - name: Gate 2 durable learning contract
         run: node gate2-learning-source-gate.mjs
       - name: Gate 2 Today/Progress/Plans contract
