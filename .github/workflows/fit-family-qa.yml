@@ -1,0 +1,17 @@
+name: Fit Canonical Family QA
+on:
+  push:
+    branches: ['industrial/fit-family-qa-v1']
+  pull_request:
+    paths:
+      - 'fit-canonical-family-qa-v1.mjs'
+      - '.github/workflows/fit-family-qa.yml'
+jobs:
+  canonical-family-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node fit-canonical-family-qa-v1.mjs
