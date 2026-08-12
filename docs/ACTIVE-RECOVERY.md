@@ -1,45 +1,58 @@
 # Active recovery checkpoint — 2026-08-12
 
-Authoritative execution state if interrupted.
+Authoritative execution state if interrupted. GitHub `main` is authoritative for landed code; `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves the original 57 requirements; `docs/COMMISSIONING-EVIDENCE.md` records demonstrated evidence.
 
-## Last merged
-PR #54 merged to `main` at `e46aa035774068cbec84af851568a4064ae98d59` after its PR gates were green. The automatic hard production commissioning run `31614521100` then completed successfully on the merged commit.
+## Current main
+Latest observed `main`: `0f5617687dd3555f5bb11be4c513629e02da6eb3`, merge of PR #59. PR #60 content batches are also merged on main. PR #55 is closed as superseded by #56–#60; its unchanged rerun was 29/29 GREEN and the one earlier `register DaveA` 500 did not reproduce. Do not reopen #55 without genuine regression evidence.
 
-The unchanged production sequence all passed: production health/routes -> authenticated isolation/retained state -> longitudinal Grub/Fit learning -> final B03 Progress Picture + Shift AI hostile closure. The final leg includes the strengthened exact Progress retention assertion (`114.3kg -> 109.8kg` after logout/login) and the deterministic prescription boundary added after the previous hostile run exposed a real safety defect.
-
-## Locked closure state
-- B02 authenticated isolation/durable state: PASS.
-- B04 longitudinal One Shift Brain behaviour: PASS.
+## Locked PASS
+- B02 authenticated isolation + durable state: PASS.
+- B03 behavioural member products: **9/9 PASS**, locked unless a genuine regression appears.
+- B04 longitudinal One Shift Brain: PASS.
 - M02 reviewed Knowledge lifecycle: PASS.
-- B03 behavioural products: **9/9 PASS**. Do not reopen without regression evidence.
-- Known unresolved product regressions from the #52/#53/#54 sequence: **0**.
+- M15 mocked partner-ready Health MOT path: **PASS for the agreed mocked V1 requirement**. PR #59 proves mocked partner payload -> idempotent MOT persistence -> clearly sourced Progress -> One Shift Brain -> authenticated Today, with cross-member isolation and explicit non-diagnostic/no-treatment-change boundaries. Live provider mapping/sign-off remains external/post-launch until a provider is formalised.
 
-Full B03 remains AMBER only for rendered/premium/mobile/error-state evidence. Grub/Fit content depth remains independently AMBER and is not hidden by behavioural PASS.
+## Content conversion checkpoint
+The member runtime still serves the legacy hard-coded V4 catalogue, so M07/M11/M12 remain AMBER despite increased authoring.
 
-## Reconciled product-depth baseline
-- Grub: **16 recipes / 0 fully commissioned / initial floor 64 / deficit 48**. Current four-item meal-type pools begin exact repeats around day five. Structured migration, validated nutrition methodology and 7/14/30/60-day simulation remain.
-- Fit: **12 exercises / 0 fully commissioned / 0 visuals / initial floor 48 / deficit 36 exercises + 48 visuals**. Structured migration, visual guidance and 12-week three-sessions/week simulation remain.
-- Original audit: **57 rows / last full classification 9 PASS / 45 AMBER / 3 BLOCKED**.
-- Nine abstraction-orphans were identified and are being physically restored to the authoritative launch board as M09–M17; automated crosswalk protection is being added so they cannot disappear again.
+- Grub legacy production source: 16 recipes.
+- Grub structured authored: 32 across four 8-recipe batches.
+- Grub structured nutrition-validated: 0.
+- Grub second-person reviewed/approved: 0.
+- Grub published/production-served structured: 0.
+- Grub launch-ready: 0.
+- Fit legacy production source: 12 exercises.
+- Fit structured authored: 32 across four 8-exercise batches.
+- Fit approved member visual guidance: 0 on current main factory batches.
+- Fit reviewed/published/production-served structured: 0.
+- Fit launch-ready: 0.
 
-## Current critical path
-1. B03 rendered/premium/mobile/error-state evidence, automation first and only irreducible physical-device judgement left to human acceptance.
-2. B06/B07 controlled production-safe degradation -> AMBER/RED -> HQ actionable next step -> retained history -> recovery -> healthy.
-3. B01 secure real-token reset completion when a secret-safe executor/human action is available. Do not leak a live token into repo/history/logs.
-4. B08 fresh Dave release-candidate journey as each newly closed leg becomes available.
+Do not confuse authored capacity with product conversion. Required funnel is: authored -> deterministic/schema validation -> domain validation (nutrition/visual) -> reviewed -> published -> production-served -> launch-ready -> longitudinal simulation.
 
-## Mandatory parallel lanes
-- M11 Grub structured-content/content-quality factory + simulator.
-- M12 Fit structured exercise + visual factory + simulator.
-- B05 trust boundary.
-- M03 Radar freshness.
-- M04 analytics QA.
-- M05 security/privacy.
-- M06 accessibility/performance.
-- M07 structured production content path.
-- M09/M10 and M13–M17 anti-abstraction requirements.
+## Active closure branch
+`finish/conversion-and-amber-swarm`, PR #61.
+
+PR #61 currently adds:
+- M14 member memory inspect/correct/delete API controls with provenance/confidence and user-scoped durable deletion, plus staging proof.
+- M16 governed outcomes member-one/cohort commissioning proof using real Progress + product-event contracts and explicit internal-only/non-causal guardrails.
+- Master Integration regression steps for M14, existing M15 and M16.
+
+Do not promote M14/M16 to PASS until PR #61 CI is green unchanged.
+
+## Original audit
+57 original rows remain mandatory. Last reconciled classification before the M14/M15/M16 promotion batch: **9 PASS / 45 AMBER / 3 BLOCKED**. If M14/G4-002, M15/G5-004 and M16/G5-006 all earn PASS evidence, next reconciled classification becomes **12 PASS / 42 AMBER / 3 BLOCKED**.
+
+## External blocked
+- G5-001 signed clinical operating model/provider/pharmacy governance.
+- G5-002 clinically governed Medication Companion prescribing/escalation.
+- G5-003 provider-approved identity/weight/evidence verification.
+
+## Active independent AMBER swarm
+B01 recovery; B03 rendered/premium/mobile only; B05 trust; B06/B07 HQ/Watchtower fire drill; B08 Dave; M01 premium/mobile; M03 Radar production freshness; M04 analytics; M05 security/privacy; M06 accessibility/performance; M07 structured runtime cutover; M08 release evidence; M09 verification; M10 routes/errors; M11 Grub conversion+simulation; M12 Fit/visual conversion+simulation; M13 Progress/units; M14 memory controls (PR #61); M16 outcomes (PR #61); M17 sceptical-customer/Numan acceptance.
 
 ## Exact next action
-Finish and merge the reconciliation/crosswalk batch that records #54 hard production PASS, restores M09–M17 and makes CI fail if the original 57-row inventory or restored launch mappings disappear. Then continue directly into B03 rendered evidence + B06/B07 fire test while the Grub/Fit factories run in parallel.
+1. Let PR #61 run unchanged. If red, fix the exact product/test-environment defect without weakening proof. If green, promote M14/G4-002 and M16/G5-006; M15/G5-004 is already evidenced by merged #59 and must be reconciled at the same checkpoint.
+2. Move Grub/Fit from draft inventory into domain validation/review, then published structured content and actual member serving; do not merely add more drafts.
+3. In parallel attack B06/B07 controlled degradation->action->recovery and the remaining independently closable AMBER rows.
 
-Operating rule: **SWARM -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+Operating rule: **CONVERT -> PROVE -> CLOSE -> CONTINUE.**
