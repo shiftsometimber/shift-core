@@ -10,6 +10,7 @@ const registration=await call('/v1/auth/register',{method:'POST',body:{email,pas
 assert(registration.response.status===201,`registration expected 201, got ${registration.response.status}: ${JSON.stringify(registration.data)}`);
 assert(registration.data?.emailVerified===false,'production registration must retain emailVerified:false before verification');
 assert(registration.data?.verificationRequired===true,'production registration must explicitly require email verification');
+assert(registration.data?.verificationDelivery==='sent',`verification email must be accepted for delivery, got ${registration.data?.verificationDelivery||'missing'}`);
 assert(!registration.cookie||registration.cookie==='sst_session=','unverified registration must not retain an authenticated session');
 
 const loginBefore=await call('/v1/auth/login',{method:'POST',body:{email,password}});
@@ -20,4 +21,4 @@ assert(!loginBefore.cookie||loginBefore.cookie==='sst_session=','unverified logi
 const resend=await call('/v1/auth/resend-verification',{method:'POST',body:{email}});
 assert(resend.response.ok&&resend.data?.ok===true,'verification resend must return enumeration-safe success');
 
-console.log(JSON.stringify({proof:'M09_PRODUCTION_BOUNDARY_PASS',email,registration:{status:registration.response.status,emailVerified:registration.data?.emailVerified,verificationRequired:registration.data?.verificationRequired,sessionRetained:false},unverifiedLogin:{status:loginBefore.response.status,error:loginBefore.data?.error,sessionRetained:false},resend:{status:resend.response.status},next:'Use the newest verification email for this address; never log or commit its token.'}));
+console.log(JSON.stringify({proof:'M09_PRODUCTION_BOUNDARY_PASS',email,registration:{status:registration.response.status,emailVerified:registration.data?.emailVerified,verificationRequired:registration.data?.verificationRequired,verificationDelivery:registration.data?.verificationDelivery,sessionRetained:false},unverifiedLogin:{status:loginBefore.response.status,error:loginBefore.data?.error,sessionRetained:false},resend:{status:resend.response.status},next:'Use the newest verification email for this address; never log or commit its token.'}));
