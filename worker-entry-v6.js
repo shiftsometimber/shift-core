@@ -1,5 +1,6 @@
 import hq from './hq-ai-v2.js';
 import {runScheduledIntelligence} from './scheduled-intelligence.js';
+import {runKnowledgeFlywheel} from './scheduled-knowledge-v1.js';
 import {memberCommissioningRoute} from './member-commissioning-v1.js';
 import {shiftVisualiseV2Routes} from './shift-visualise-v2.js';
 import {memberPracticalRoutes} from './member-practical-v1.js';
@@ -51,7 +52,7 @@ export default {
     return hq.fetch(request,env,ctx);
   },
   async scheduled(controller,env,ctx){
-    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env)])
+    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env),runKnowledgeFlywheel(env,{limit:1000})])
       .then(r=>console.log('shift_scheduled_intelligence',JSON.stringify(r)))
       .catch(e=>console.error('shift_scheduled_intelligence_failed',e?.message));
     if(ctx?.waitUntil)ctx.waitUntil(job); else await job;
