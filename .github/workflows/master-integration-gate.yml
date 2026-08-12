@@ -7,6 +7,8 @@ on:
       - 'docs/COMMISSIONING-EVIDENCE.md'
       - 'docs/FINISH-LINE.md'
       - 'docs/LAUNCH-FINISH-LINE.md'
+      - 'docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md'
+      - 'docs/ACTIVE-RECOVERY.md'
       - '.github/workflows/master-integration-gate.yml'
       - '.github/workflows/production-commissioning.yml'
 jobs:
@@ -17,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: V1 finish-line and auth delivery contract
+      - name: V1 finish-line, 57-row audit crosswalk and auth delivery contract
         run: node finish-line-gate.mjs
       - name: Toolchain source gate
         run: node toolchain-source-gate.mjs
