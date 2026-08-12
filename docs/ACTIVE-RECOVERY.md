@@ -1,37 +1,37 @@
 # Active recovery checkpoint — 2026-08-12
 
-Authoritative execution state if interrupted. GitHub `main` is authoritative for landed code; `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements; `docs/COMMISSIONING-EVIDENCE.md` records demonstrated evidence.
-
 ## Current head
-`main` = `8b3921661ff93361b829f6c4e40304c22858f70e` / PR #61 merged. Active PR #62 `finish/radar-watchtower-fire-drill` is OPEN/RED. M03 production Radar failure is reproduced by the unchanged hard production freshness proof: production returned `AMBER`, `current:false`, no scan/event/publication/ticker timestamps and zero ticker items. Do not weaken the proof.
+`main` = `8b3921661ff93361b829f6c4e40304c22858f70e` / PR #61 merged. Active PR #62 `finish/radar-watchtower-fire-drill`, head `7da063fe421e72be73e07a1888916df1925eabb7`, is open with fresh CI running. Original M03 production failure remains reproduced: AMBER/current:false, no scan/event/publication/ticker timestamps, zero ticker items.
 
-PR #55 is closed and behind us. B03 behavioural products remain **9/9 PASS** and locked unless genuine regression evidence appears.
+## Locked
+B03 behaviour **9/9 PASS**; #55 behind us. Original audit **57 / 12 PASS / 42 AMBER / 3 BLOCKED / 0 unmapped**.
 
-## Locked PASS
-B02 authenticated isolation + durable state; B03 behaviour 9/9; B04 longitudinal One Shift Brain; M02 reviewed Knowledge lifecycle; M14/G4-002 member memory controls; M15/G5-004 mocked partner-ready Health MOT; M16/G5-006 governed outcomes architecture.
+## #62 repair now implemented
+- Genuine scheduled authoritative retrieval added for MHRA Drug Safety Update, MHRA alerts/recalls and EMA official news feed.
+- Feed items are deduplicated into `radar_events` with tier-1 regulator provenance and per-item ingestion audit.
+- Per-source `radar_scan_runs` persist authority/source URL/status/item count/new-event count/duration/error.
+- A scan-level `radar_audit` event records the authoritative source results.
+- Scheduler now performs authoritative retrieval/ingestion before freshness maintenance; old fake no-change heartbeat behaviour is removed.
+- Publication freshness accepts the existing `complete` state as well as `completed`, and publication staleness is now evaluated.
+- Stale/no-scan remains fail-safe AMBER; publication failures remain RED.
+- Staging proof was rewritten to require real feed retrieval -> three authoritative source ingestions -> scan provenance -> AMBER-to-GREEN freshness transition. CI is running on that unchanged criterion.
+- Hard production proof remains post-deployment; M03 is NOT promoted until deployed production genuinely earns GREEN/current.
 
-## Original audit
-**57 total / 12 PASS / 42 AMBER / 3 BLOCKED / 0 unmapped.**
+Authoritative source selection is grounded in the regulators' own publication mechanisms: GOV.UK Drug Safety Update exposes a subscription feed; EMA documents RSS feeds for news/new medicines and explicitly directs automated systems toward machine-readable data.
 
-## Radar defect state
-Production M03 proof exposed real product gaps, not a test problem:
-1. The six-hour Worker cron calls `runRadarFreshness`, but that function only marks existing claims due; it does not perform an authoritative external source scan or record a scan audit/provenance event.
-2. `readRadarFreshness` requires a recent `scan`/`ingested` audit record, so production correctly fails safe AMBER when no scan lifecycle exists.
-3. Radar publication writes job status `complete` while the freshness reader queries `completed`; publication freshness can therefore remain invisible after a successful publish.
-4. Production currently has no Radar event/publication/ticker data. Do not seed fake data merely to make the proof green.
+## Content funnel unchanged this checkpoint
+Grub 32 authored / 32 schema-valid / 0 nutrition-validated / 0 reviewed / 0 published / 0 structured production-served / 0 launch-ready. 30-day exact repeats 60%; 60-day 80% with draft+legacy capacity.
 
-## Content conversion checkpoint
-Grub: 32 structured authored / 32 schema-valid / 0 nutrition-validated / 0 reviewed / 0 published / 0 structured production-served / 0 launch-ready. Draft+legacy 30-day exact repeats 72/120 = 60%; 60-day 192/240 = 80%. Earliest repeats: snack day 11, breakfast/lunch day 13, dinner day 15. Catalogue-count alone is disproven.
+Fit 32 authored / 32 schema-valid / 0 approved member visuals / 0 reviewed / 0 published / 0 structured production-served / 0 launch-ready. Prospective 44 / 13 movement groups / worst exercise 5 appearances across 180 slots.
 
-Fit: 32 structured authored / 32 schema-valid / 0 approved member visuals / 0 reviewed / 0 published / 0 structured production-served / 0 launch-ready. Draft+legacy prospective pool 44 exercises / 13 movement groups / worst exercise 5 appearances across 180 slots vs 15 live. Visual/member-QA, progression, limitation compliance and structured runtime serving remain.
+## Dave
+No percentage promotion this checkpoint: existing progressive wrapper still undercounts separately proven authenticated production legs and requires explicit reconciliation before changing the figure.
 
-## External blocked
-G5-001 signed clinical operating model/provider/pharmacy governance; G5-002 clinically governed Medication Companion prescribing/escalation; G5-003 provider-approved identity/weight/evidence verification.
+## Defects
+This execution sequence has active Radar defects: missing genuine scan lifecycle (fixed in #62 code), fake heartbeat semantics (removed), publication `complete`/`completed` mismatch (fixed compatibly), missing publication-stale evaluation (fixed). Production deployment/proof remains unresolved until #62 CI/merge/deploy and a real scheduled scan complete.
 
-## Active swarm
-#62 M03 Radar real scan lifecycle + publication-state repair; M07/M11/M12 content conversion/runtime cutover; B05; B06/B07; B08/Dave; M01; M04-M13; M17; B01 non-secret work.
-
-## Exact next action
-Implement a genuine authoritative MHRA/EMA source scanner with scan audit/provenance and deduplicated ingestion, repair `complete`/`completed`, make scan -> intelligence -> review/publication -> ticker -> freshness -> Watchtower coherent, preserve stale fail-safe behaviour, then rerun the unchanged production proof. While CI/deployment waits, move Grub/Fit from draft inventory into validated/reviewed/published structured runtime serving and attack independent AMBER acceptance criteria.
-
-Operating rule: **CONVERT -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+## Exact next recovery action
+1. Let #62 CI complete. Fix any exact regression without weakening authoritative retrieval/provenance proof.
+2. Merge #62 only green, deploy, allow/trigger the real scheduled scan through the normal Worker cron path, then rerun unchanged `radar-production-freshness.mjs`. Close M03 only on genuine production evidence.
+3. Next independent code lane: M07/M11/M12 structured content publication/runtime cutover, with first Grub nutrition-validation methodology and Fit member-visual QA batch; do not finish another window at 0 published/served if technically closable.
+4. Then B06/B07 controlled degradation/recovery + Dave coverage reconciliation.
