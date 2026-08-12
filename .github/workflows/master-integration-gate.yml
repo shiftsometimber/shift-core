@@ -38,6 +38,8 @@ jobs:
         run: node gate5-trust-scale-gate.mjs
       - name: Gate 5 full assault contract
         run: node gate5-full-assault-gate.mjs
+      - name: Gate 5 persisted probe history contract
+        run: node gate5-probe-history-gate.mjs
       - name: Syntax checks
         run: |
           set -e
