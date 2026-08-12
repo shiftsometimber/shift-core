@@ -21,7 +21,7 @@ export async function buildShiftBrainContext(env,userId,question='',opts={}){
   const [profile,state,progress,plans,feedback,legacyNotes,privacy,intelligentMemories,knowledge]=await Promise.all([
     first(env.DB,`SELECT u.id,u.first_name,u.last_name,u.date_of_birth,u.postcode,u.email,ms.lifecycle_stage,ms.membership_status FROM users u LEFT JOIN member_status ms ON ms.user_id=u.id WHERE u.id=?`,[userId]),
     first(env.DB,`SELECT my_why,roadmap,treatment_finder,decision_readiness,preferences FROM member_state WHERE user_id=?`,[userId]),
-    all(env.DB,`SELECT recorded_on,weight_kg,waist_cm,systolic,diastolic,resting_hr,steps,protein_g,sleep_hours,mood_score FROM progress_entries WHERE user_id=? ORDER BY recorded_on DESC,id DESC LIMIT 60`,[userId]),
+    all(env.DB,`SELECT recorded_on,weight_kg,waist_cm,systolic,diastolic,resting_hr,steps,protein_g,sleep_hours,mood_score,source FROM progress_entries WHERE user_id=? ORDER BY recorded_on DESC,id DESC LIMIT 60`,[userId]),
     all(env.DB,`SELECT id,plan_type,starts_on,ends_on,status,plan_json,created_at FROM shift_plans WHERE user_id=? ORDER BY id DESC LIMIT 60`,[userId]),
     all(env.DB,`SELECT product,entity_id,sentiment,reason,context_json,updated_at FROM product_feedback WHERE user_id=? ORDER BY updated_at DESC LIMIT 250`,[userId]),
     all(env.DB,`SELECT memory_key,memory_value,updated_at FROM shift_ai_member_memory WHERE user_id=? ORDER BY updated_at DESC LIMIT 30`,[userId]),
