@@ -29,6 +29,8 @@ jobs:
         run: node gate1-persistence-source-gate.mjs
       - name: Gate 1 auth security source contract
         run: node gate1-auth-security-source-gate.mjs
+      - name: Gate 1 release security/privacy source contract
+        run: node gate1-release-security-privacy-gate.mjs
       - name: Gate 1 / M09 explicit email verification lifecycle
         run: node gate1-email-verification-e2e.mjs
       - name: Secure production commissioning identity contract
