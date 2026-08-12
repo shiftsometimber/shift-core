@@ -1,50 +1,51 @@
 # Active recovery checkpoint — 2026-08-12
 
-## Current head
-`main` = `f1a78a01d3878d2b9079218008ba7ca47d61a187`.
+## Current production authority
+`main` = `d28d0fde59b1146506c98d8f16f4ff5c88e82138` (`M07: enforce quality after structured cutover`, merged PR #80).
 
-PR #62 is merged; its merge commit is `21b76f259169e74caf7edbff0b1f42ba7643d4f0`. The first unchanged post-merge production commissioning run and one unchanged rerun both kept M03 AMBER because production still had no recorded scheduled Radar scan (`scan:null`, no event/publication/ticker age, zero ticker items). Do not promote M03 until a real scheduled scan has executed and the unchanged production freshness proof returns GREEN/current with provenance.
+Production commissioning run `31638147840` completed GREEN unchanged against this exact main commit. It re-proved health, genuine regulator scanning/freshness, authenticated member isolation/retained state, longitudinal Grub/Fit learning, Progress Picture, Shift AI provenance/clinical boundary, and finally authenticated structured Grub/Fit serving.
 
-A content-conversion slice then landed on main and must be treated as **verification pending**, not accepted closure, until the full Master Integration gate runs against it. `finish/content-conversion-verify` exists solely to force that full gate and checkpoint evidence; do not infer PASS from the direct commits.
+Evidence reconciliation is active in PR #81. The demonstrated original-audit state is **57 / 16 PASS / 38 AMBER / 3 BLOCKED / 0 unmapped** once that evidence-only reconciliation is merged. No catalogue-depth or rendered/mobile row is being promoted by inference.
+
+## Newly earned hard production closures
+### G1-006 / central route detection
+Merged PR #73's production release sweep checked **418 same-origin URLs / 370 HTML pages**, found **0 critical route/asset/blank-page failures**, exhausted discovery with `truncated:false`, and fails rather than accepting partial discovery. Evidence file: `docs/evidence/2026-08-12-m10-exhaustive-production-sweep.md`.
+
+### G5-009 / M07 structured runtime authority
+Production commissioning run `31638147840` proved an authenticated member actually consumed reviewed/published structured V7 content:
+- Grub: 1 published available / 1 served, `lighter-beef-cottage-pie`, validated nutrition, Nay respected.
+- Fit: 3 published available / 3 served, example `dumbbell-goblet-squat`, approved Shift visual returned, Nay respected.
+- Legacy remains controlled migration fallback only while commissioned inventory grows.
+
+This proof came only after two genuine runtime defects were fixed without weakening semantic quality: PR #77 stopped cycling the three commissioned Fit movements through a plan; PR #80 moved final V7 semantic-quality enforcement after structured enrichment while preserving V6 fail-closed behaviour.
+
+## Current content funnel
+**Grub:** 256 authored / 256 schema-valid universe; 1 ingredient-level CoFID validated / 1 reviewed / 1 published / **1 production-served** commissioning-floor object. The 224 industrial additions remain quarantined pending nutrition validation/review. Launch-depth rows stay AMBER. Short-term commissioned target 2,500; long-term minimum 10,000+.
+
+**Fit:** 256 authored / 256 schema-valid universe; 3 member-QA visual / 3 reviewed / 3 published / **3 production-served** commissioning-floor movements. The 224 industrial additions remain visual/review quarantined. Launch-depth rows stay AMBER. Short-term commissioned target 2,500; long-term minimum 10,000+.
+
+## Gate 1 active lane
+PR #82 (`G1-007: commission safe production error contracts`) adds a production member/HQ failure-contract sweep. The first run deliberately found a real defect: the intercepted password-reset path lacked `X-Shift-Request-Id` although fallback Worker responses carried correlation IDs. The test was not weakened. `worker-entry-v6.js` was repaired so intercepted member responses receive request correlation plus `Cache-Control: no-store` and `X-Content-Type-Options: nosniff`. Latest branch commit: `f6bafa3b4e1bff9949bc902029615e2fa7784bc8`; rerun is the next truth boundary.
+
+The same first #82 run already proved controlled contracts for unknown route, unauthenticated member, unauthenticated HQ, malformed registration JSON, invalid registration guidance and invalid login before exposing the password-reset header gap.
+
+## Radar / M03
+Locked PASS. The genuine production scanner invoked MHRA drug-safety, MHRA alerts and EMA sources successfully; production freshness immediately returned GREEN inside declared SLOs. Do not reopen without regression evidence.
 
 ## Locked
-B03 behaviour **9/9 PASS**; #55 behind us. Original audit remains **57 / 12 PASS / 42 AMBER / 3 BLOCKED / 0 unmapped**.
+- B03 behavioural subrows: **9/9 PASS**. Do not reopen #55 without genuine regression evidence.
+- G4-006/G4-007 Radar production scan/freshness: PASS.
+- M07/G5-009 runtime authority: production proof earned; catalogue depth remains separate M11/M12 AMBER.
+- External blockers remain exactly G5-001/G5-002/G5-003.
 
-## M03 Radar
-- Genuine scheduled authoritative retrieval is present for MHRA Drug Safety Update, MHRA alerts/recalls and EMA official feed sources.
-- Tier-1 source provenance, deduplicated ingestion, per-source scan history and scan audit are implemented.
-- Fake heartbeat semantics are removed.
-- Publication `complete`/`completed` compatibility and publication staleness are repaired.
-- Fail-safe AMBER/RED remains.
-- Deployment is visible through production health, but no scheduled scan had run by the latest unchanged proof; M03 therefore remains AMBER.
-
-## Content conversion verification
-Current code now contains three deliberately non-promotional steps:
-
-1. **Grub nutrition evidence:** one recipe (`lighter-beef-cottage-pie`) has a CoFID 2021 ingredient-level weighted calculation manifest with explicit per-ingredient food codes, quantities, conversion assumptions and precision caveat. `grub-nutrition-gate.mjs` recomputes the declared per-serving values and fails if an ingredient/amount mapping becomes stale. This is pending full Master Integration verification; the remaining 31 recipes are still unvalidated.
-2. **Publication barrier:** `structured-content-v1.js` now rejects `published` recipes without approved review + validated nutrition, and rejects `published` exercises without approved review + approved member visual. `structured-content-publication-gate.mjs` proves those barriers at source level. This does not itself make any content published or production-served.
-3. **Fit visual reconciliation:** the two Shift-owned SVG sheets from superseded #55 have been restored so the prior “8 authored visual concepts” evidence is no longer pointing at files absent from main. The manifest records 8 authored concepts, only 3 exact bindings to current structured exercises, and **0 member-QA approved**. Authored is not commissioned.
-
-## Content funnel
-Grub: 32 authored / 32 schema-valid / **1 nutrition-validation candidate pending full CI** / 0 reviewed / 0 published / 0 structured production-served / 0 launch-ready. Existing 30/60-day candidate-capacity repetition remains 60% / 80%.
-
-Fit: 32 authored / 32 schema-valid / 8 authored visual concepts restored / 3 exact structured-exercise bindings / **0 member-QA approved** / 0 reviewed / 0 published / 0 structured production-served / 0 launch-ready. Existing 12-week prospective capacity result remains 44 total legacy+candidate exercises / 13 movement groups / worst individual exercise 5 appearances across 180 slots.
-
-The hard-coded V4 arrays remain the production authority. M07/M11/M12 stay AMBER.
-
-## Dave
-No percentage promotion. The progressive wrapper still requires explicit reconciliation with separately proven authenticated production legs.
-
-## Defects / integrity notes
-- M03 production no-scan state remains unresolved pending a real scheduled invocation.
-- A real content-governance defect was fixed in code: `upsertStructuredContent` previously allowed callers to write `status:'published'` without enforcing the review/nutrition/visual barriers claimed by the commissioning model.
-- A reconciliation defect was found: the prior report counted 8 authored Fit visual concepts, but those SVG files lived only on superseded #55 and were absent from main. They are restored, with honest 8 authored / 3 exact-bound / 0 approved accounting.
-- The content-conversion commits reached main before the intended PR because the GitHub contents write used the default branch. Therefore the full Master Integration verification PR is mandatory before treating this slice as clean. Do not hide this procedural defect.
+## CI health
+`main` production commissioning on `d28d0fde...` is GREEN. PR #81 initially failed only because `finish-line-gate.mjs` had stale hard-coded 14/40 counts; the gate is being repaired to derive evidence-led counts while strengthening the exact three-BLOCKED-ID assertion. PR #82 exposed one genuine failure-contract defect and has a product fix pending rerun. No red branch is eligible to merge.
 
 ## Exact next recovery action
-1. Open/run the verification PR from `finish/content-conversion-verify`; repair any exact failure without weakening nutrition, publication or visual accounting criteria.
-2. After the next real Worker scheduled invocation, rerun unchanged M03 production commissioning. Promote M03 only if real scan provenance makes Radar GREEN/current.
-3. Continue M11 nutrition validation across a coherent recipe batch; keep explicit unmapped/low-confidence ingredients blocked rather than guessing.
-4. Continue M12 exact exercise-to-visual binding and member-facing visual QA; do not count authored SVGs as approved.
-5. Build the M07 structured runtime cutover only after publication barriers are green; prove a reviewed/published structured item is actually selected, persisted and served through the authenticated member path before retiring the V4 arrays.
-6. In parallel continue B06/B07 degradation→detection→HQ action→recovery and Dave coverage reconciliation.
+1. Complete PR #81 CI after the finish-line/launch-board reconciliation update; merge only if required gates are GREEN.
+2. Rerun PR #82 unchanged after the request-correlation product fix; if it fails, repair the exact defect, not the acceptance criteria. Merge only GREEN.
+3. Continue Gate 1 finite automated closure work (G1-010/M05) while human/device-only inbox/rendered rows remain explicitly AMBER.
+4. Then continue Gate 2 conversion at throughput scale: batch Grub ingredient/nutrition validation + review/publication; batch Fit visual QA/review/publication; quarantine failures without queueing clean objects.
+5. Continue independent B06/B07 Watchtower/HQ fire-drill, B08/Dave, premium/mobile, accessibility/performance and other non-blocked lanes while CI/content processing waits.
+
+Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
