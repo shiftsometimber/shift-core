@@ -23,7 +23,7 @@ export async function healthMotProgressView(DB,userId){
 
 async function persistProgressSignals(DB,{userId,motId,mot,signals}){
   if(!signals.length)return null;
-  const values={};for(const signal of signals){const column=PROGRESS_COLUMNS[signal.code];if(column&&Number.isFinite(Number(signal.value)))values[column]=Number(signal.value)}
+  const values={};for(const signal of signals){const signalKey=signal.code||signal.metric;const column=PROGRESS_COLUMNS[signalKey];if(column&&Number.isFinite(Number(signal.value)))values[column]=Number(signal.value)}
   if(!Object.keys(values).length)return null;
   const recordedOn=normaliseDate(mot.collectedAt)||new Date().toISOString().slice(0,10),source=progressSource(motId);
   const existing=await DB.prepare('SELECT id FROM progress_entries WHERE user_id=? AND source=? LIMIT 1').bind(userId,source).first().catch(()=>null);if(existing?.id)return Number(existing.id);
