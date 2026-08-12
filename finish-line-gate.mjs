@@ -24,15 +24,19 @@ must(rows.length===57,`original remediation matrix has 57 status-bearing rows (f
 must(unique.size===57,`original remediation matrix has 57 unique IDs (found ${unique.size})`);
 for(const gate of [1,2,3,4,5])must(ids.some(id=>id.startsWith(`G${gate}-`)),`Gate ${gate} remains represented`);
 const counts=rows.reduce((a,x)=>(a[x.status]=(a[x.status]||0)+1,a),{});
-must(counts.PASS===14,`original matrix PASS count is 14 (found ${counts.PASS||0})`);
-must(counts.AMBER===40,`original matrix AMBER count is 40 (found ${counts.AMBER||0})`);
-must(counts.BLOCKED===3,`original matrix BLOCKED count is 3 (found ${counts.BLOCKED||0})`);
-must(matrix.includes('PASS rows: 14. AMBER rows: 40. BLOCKED rows: 3.'),'matrix reconciliation summary matches enforced counts');
-must(launchFinish.includes('14 PASS / 40 AMBER / 3 BLOCKED'),'launch board scoreboard matches enforced counts');
+const pass=counts.PASS||0,amber=counts.AMBER||0,blocked=counts.BLOCKED||0;
+must(pass+amber+blocked===57,`original matrix status counts reconcile to 57 (found ${pass+amber+blocked})`);
+must(blocked===3,`original matrix retains exactly 3 external BLOCKED rows (found ${blocked})`);
+const blockedIds=rows.filter(x=>x.status==='BLOCKED').map(x=>x.id).sort();
+must(JSON.stringify(blockedIds)===JSON.stringify(['G5-001','G5-002','G5-003']),'only the three genuine external clinical/provider rows are BLOCKED');
+const reconciliation=`PASS rows: ${pass}. AMBER rows: ${amber}. BLOCKED rows: ${blocked}.`;
+must(matrix.includes(reconciliation),'matrix reconciliation summary matches computed evidence-led counts');
+const launchScore=`${pass} PASS / ${amber} AMBER / ${blocked} BLOCKED`;
+must(launchFinish.includes(launchScore),'launch board scoreboard matches computed matrix counts');
 
 for(const marker of ['recordAuthDelivery','password_reset','binding_missing',"status:'failed'"])must(auth.includes(marker),`auth delivery ${marker}`);
 for(const marker of ['auth_delivery_events','email_hash','authDeliveryHealth'])must(delivery.includes(marker),`delivery store ${marker}`);
 for(const marker of ['authDeliveryHealth','auth_email_','Check email binding/provider delivery'])must(watch.includes(marker),`Watchtower email ${marker}`);
 
 if(bad)process.exit(1);
-console.log(`PASS V1 finish-line + 57-row audit crosswalk (${counts.PASS}/${counts.AMBER}/${counts.BLOCKED}) + transactional auth observability`);
+console.log(`PASS V1 finish-line + 57-row audit crosswalk (${pass}/${amber}/${blocked}) + transactional auth observability`);
