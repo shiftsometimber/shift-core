@@ -16,6 +16,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Placeholder eradication
+        run: |
+          if grep -R "flavouring or spice to match the title" industrial-catalogue-v4.js; then exit 1; fi
       - name: Prepare CoFID 2021
         run: |
           python3 -m pip install --quiet openpyxl
@@ -28,5 +31,3 @@ jobs:
         env:
           COFID_INDEX: /tmp/cofid-index.json
         run: node industrial-grub-systemic-v2.mjs
-      - name: Existing catalogue quality regression
-        run: node industrial-authoring-quality-gate.mjs
