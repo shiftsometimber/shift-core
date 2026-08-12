@@ -7,6 +7,7 @@ import {memberProductV5Routes} from './member-product-v5.js';
 import {memberDailyV2Routes} from './member-daily-v2.js';
 import {personalRoutes} from './personal-platform-v1.js';
 import {knowledgeRoutes} from './knowledge-graph-v1.js';
+import {shiftBrainRoutes} from './shift-brain-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
 import {radarRoutes,runRadarFreshness} from './radar-integration-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
@@ -26,6 +27,7 @@ export default {
 
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
     const visualise=await shiftVisualiseV2Routes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
+    const brain=await shiftBrainRoutes(request,env,ctx); if(brain)return withMemberCors(brain,request);
     const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return isMemberProductPath(path)?withMemberCors(knowledge,request):knowledge;
     const daily=await memberDailyV2Routes(request,env,ctx); if(daily)return withMemberCors(daily,request);
     const practical=await memberPracticalRoutes(request,env,ctx); if(practical)return withMemberCors(practical,request);
