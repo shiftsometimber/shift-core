@@ -72,6 +72,11 @@ try {
   const evidence={source_tier:1,title:'Stage Regulator Notice',url:'https://regulator.test/stage-medicine',source_date:'2026-08-11',region:'US'};
   let r=await radarRoutes(request('/v1/radar/ingest',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer stage-ingest-token'},body:JSON.stringify({development:{title:'Stage Medicine test regulatory update',url:evidence.url,source_date:evidence.source_date,event_type:'regulatory_update',region:'US',regulator:'Stage Regulator',relevance_score:88,urgency_score:82},evidence:[evidence]})}),env,{});
   assert.equal(r.status,201);let d=await body(r);assert.equal(d.verification.verified,true);const eventId=d.event.id;
+  // This end-to-end test starts after a scanner has delivered the verified item. Record
+  // that scanner cycle explicitly so the public ticker is tested under the same fail-safe
+  // freshness contract as production. Authoritative feed retrieval itself is separately
+  // exercised by radar-scheduled-scan-staging.mjs.
+  await DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'scan','radar_stage_scanner',?)`).bind(JSON.stringify({staging:true,authoritative_cycle:true,delivered_event_id:eventId})).run();
 
   // 2) PACKAGE via the authenticated HQ review route.
   r=await radarRoutes(request(`/v1/hq/radar/events/${eventId}/process`,{method:'POST',headers:hqHeaders,body:'{}'}),env,{});assert.equal(r.status,200);d=await body(r);assert.equal(d.status,'ready_for_review');assert.equal(aiCalls,2);assert.equal(d.medicinePatch.medicine_id,'stage-medicine');
@@ -96,11 +101,11 @@ try {
   // 5) Public/mobile products reflect the approved/published living data.
   r=await radarPublicRoutes(request('/v1/radar/cards'),env);d=await body(r);assert.ok(d.cards.some(x=>x.id==='stage-medicine'));
   r=await radarPublicRoutes(request('/v1/radar/medicines/stage-medicine'),env);d=await body(r);assert.equal(d.dossier.id,'stage-medicine');assert.ok(d.updates.some(x=>x.id===eventId));
-  r=await radarPublicRoutes(request('/v1/radar/ticker'),env);d=await body(r);assert.ok(d.items.some(x=>x.id===eventId));
+  r=await radarPublicRoutes(request('/v1/radar/ticker'),env);d=await body(r);assert.equal(d.current,true);assert.ok(d.items.some(x=>x.id===eventId));
 
   // 6) Audit the staging-only adapter commissioning boundary.
   assert.deepEqual(calls.map(x=>x.url),['https://staging.test/site-publish','https://staging.test/brain-ingest','https://staging.test/search-refresh']);
-  console.log(JSON.stringify({ok:true,eventId,aiCalls,adapters:calls.map(x=>x.url),medicine:'stage-medicine',publicProducts:['cards','dossier','ticker'],relatedContent:'site-payload-verified',freshness:'registered',knowledgeGraph:'updated',shiftBrain:'staging-ingested',searchSitemap:'staging-refreshed'},null,2));
+  console.log(JSON.stringify({ok:true,eventId,aiCalls,adapters:calls.map(x=>x.url),medicine:'stage-medicine',publicProducts:['cards','dossier','ticker'],relatedContent:'site-payload-verified',freshness:'current-with-scan-evidence',knowledgeGraph:'updated',shiftBrain:'staging-ingested',searchSitemap:'staging-refreshed'},null,2));
 } finally {
   globalThis.fetch=nativeFetch;
 }

@@ -10,7 +10,8 @@ import {knowledgeRoutes} from './knowledge-graph-v1.js';
 import {shiftBrainRoutes} from './shift-brain-v1.js';
 import {analyticsRoutes} from './product-analytics-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
-import {radarRoutes,runRadarFreshness} from './radar-integration-v1.js';
+import {radarRoutes} from './radar-integration-v1.js';
+import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -40,7 +41,7 @@ export default {
     return hq.fetch(request,env,ctx);
   },
   async scheduled(controller,env,ctx){
-    const job=Promise.all([runScheduledIntelligence(env),runRadarFreshness(env)])
+    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env)])
       .then(r=>console.log('shift_scheduled_intelligence',JSON.stringify(r)))
       .catch(e=>console.error('shift_scheduled_intelligence_failed',e?.message));
     if(ctx?.waitUntil)ctx.waitUntil(job); else await job;
