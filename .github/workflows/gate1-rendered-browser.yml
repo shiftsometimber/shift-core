@@ -4,6 +4,7 @@ on:
     paths:
       - 'gate1-rendered-browser-production.mjs'
       - 'gate1-state-system-production.mjs'
+      - 'gate1-fit-network-diagnostic.mjs'
       - 'v1-accessibility-performance-production.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
@@ -54,6 +55,14 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium firefox webkit
+      - name: Run focused Fit production network diagnostic
+        continue-on-error: true
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          STATE_EVIDENCE_DIR: state-system-evidence
+        run: node gate1-fit-network-diagnostic.mjs
       - name: Run G1-008 rendered loading and empty-state acceptance
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
