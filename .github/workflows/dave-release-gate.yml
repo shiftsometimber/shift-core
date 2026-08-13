@@ -1,0 +1,54 @@
+name: Dave Synthetic Release Gate
+on:
+  pull_request:
+    paths:
+      - 'dave-release-gate-production.mjs'
+      - 'dave-journey-v1.mjs'
+      - 'finish-authenticated-production.mjs'
+      - 'finish-longitudinal-products-production.mjs'
+      - 'finish-member-products-production.mjs'
+      - 'finish-b03-final3-production.mjs'
+      - '.github/workflows/dave-release-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'dave-release-gate-production.mjs'
+      - 'dave-journey-v1.mjs'
+      - 'finish-authenticated-production.mjs'
+      - 'finish-longitudinal-products-production.mjs'
+      - 'finish-member-products-production.mjs'
+      - 'finish-b03-final3-production.mjs'
+      - '.github/workflows/dave-release-gate.yml'
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  synthetic-dave-release-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Run fresh unattended synthetic Dave production release gate
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node dave-release-gate-production.mjs
+      - name: Upload Dave release-gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dave-synthetic-release-gate-evidence
+          path: dave-release-gate-evidence
+          if-no-files-found: warn
+          retention-days: 30
