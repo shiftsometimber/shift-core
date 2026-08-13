@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'gate1-overflow-direct-diagnostic.mjs'
+      - 'commissioning-identity-v1.js'
       - '.github/workflows/gate1-overflow-direct.yml'
   workflow_dispatch:
 permissions:
@@ -34,10 +35,7 @@ jobs:
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           OVERFLOW_EVIDENCE_DIR: overflow-direct-evidence
-        shell: bash
-        run: |
-          sed -i 's/shiftsometimber+overflow-direct-/shiftsometimber+structured-authrender-overflow-direct-/' gate1-overflow-direct-diagnostic.mjs
-          node gate1-overflow-direct-diagnostic.mjs
+        run: node gate1-overflow-direct-diagnostic.mjs
       - if: always()
         uses: actions/upload-artifact@v4
         with:
