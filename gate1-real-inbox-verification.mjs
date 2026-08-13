@@ -1,7 +1,9 @@
 import fs from 'node:fs';
+import path from 'node:path';
 
 const BASE=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const ORIGIN='https://shiftsometimber.co.uk';
+const OUT=process.env.RENDER_EVIDENCE_DIR||'render-evidence';
 const run=String(process.env.GITHUB_RUN_ID||Date.now());
 const stamp=Date.now();
 const email=`shiftsometimber+gate1-${run}-${stamp}@gmail.com`;
@@ -10,11 +12,11 @@ const evidence={proof:'GATE1_REAL_INBOX_VERIFICATION',email,startedAt:new Date()
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const assert=(c,m)=>{if(!c)throw new Error(m)};
 
-async function call(path,{method='GET',body,cookie}={}){
+async function call(pathname,{method='GET',body,cookie}={}){
   const headers={Origin:ORIGIN};
   if(body!==undefined)headers['Content-Type']='application/json';
   if(cookie)headers.Cookie=cookie;
-  const response=await fetch(BASE+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body),redirect:'manual'});
+  const response=await fetch(BASE+pathname,{method,headers,body:body===undefined?undefined:JSON.stringify(body),redirect:'manual'});
   let data=null;try{data=await response.clone().json()}catch{}
   return {response,data,cookie:(response.headers.get('set-cookie')||'').split(';')[0]};
 }
@@ -55,6 +57,6 @@ evidence.steps.push({step:'logout',status:logout.response.status,ok:logout.data?
 assert(logout.response.ok,'logout failed');
 
 evidence.completedAt=new Date().toISOString();
-fs.mkdirSync('commissioning-evidence',{recursive:true});
-fs.writeFileSync('commissioning-evidence/gate1-real-inbox-verification.json',JSON.stringify(evidence,null,2));
+fs.mkdirSync(OUT,{recursive:true});
+fs.writeFileSync(path.join(OUT,'gate1-real-inbox-verification.json'),JSON.stringify(evidence,null,2));
 console.log(`PASS real inbox verification lifecycle for ${email}: register -> unverified login denied -> real email verification -> verified login -> authenticated member -> reset email requested -> logout.`);
