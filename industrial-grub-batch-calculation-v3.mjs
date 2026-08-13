@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v7.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v8.js';
 import {APPROVED,grams,mappingFor,systemicCoverage} from './industrial-grub-systemic-v3.mjs';
 
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
@@ -30,7 +30,7 @@ for(const r of buildIndustrialCatalogue().recipes){
 const low=calculated.filter(r=>r.review.risk_tier==='LOW').length;const coverage=systemicCoverage();
 const result={catalogue:coverage.recipes,canonicalDecisions:coverage.canonicalDecisions,canonicalDecisionsUsed:coverage.canonicalDecisionsUsed,nutritionValidated:calculated.length,riskTiers:risks,autoPreReviewLowRisk:low,targetedReview:calculated.length-low,quarantined:quarantine.length,remainingBlockers:coverage.topBlockers.slice(0,20),sample:calculated.slice(0,2).map(r=>({id:r.id,nutrition:r.nutrition,review:r.review}))};
 console.log(JSON.stringify(result,null,2));
-if(calculated.length<500)throw new Error(`expected systemic nutrition-valid wave >=500, got ${calculated.length}`);
+if(calculated.length<1500)throw new Error(`expected systemic nutrition-valid wave >=1500, got ${calculated.length}`);
 if(calculated.some(r=>!r.nutrition.ingredient_evidence.length))throw new Error('missing ingredient-level provenance');
 if(calculated.some(r=>r.nutrition.ingredient_evidence.some(e=>e.mapping_state==='approved_canonical_proxy'&&(!e.mapping_basis||!e.mapping_confidence))))throw new Error('governed proxy evidence incomplete');
 if(calculated.some(r=>(r.review.blockers||[]).includes('nutrition_validation')))throw new Error('validated recipes retain stale nutrition_validation blocker');
