@@ -12,44 +12,44 @@ This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the l
 - **M14/G4-002, M15/G5-004 and M16/G5-006 PASS** remain locked.
 
 ## G1-010 + M05 / original G5-011 — PASS
-Merged PR #86 added source and deployed release security/privacy commissioning. Production run `31640854509` completed GREEN. Its dedicated production step proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions.
+Merged PR #86 added source and deployed release security/privacy commissioning. Production run `31640854509` completed GREEN. It proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, two authenticated members receiving isolated privacy exports, account deletion revoking only the requesting member's active session, and correlated/no-store/nosniff response envelopes. Source gates additionally cover authentication defences, recovery TTL/constant-time comparison, cookie policy, sensitive analytics-key denial and commissioning-identity restrictions.
 
 ## B07 / original G5-007 — PASS
 PR #88's dedicated Watchtower fire drill proves GREEN baseline -> core latency AMBER -> core outage RED -> actionable operator next actions -> retained core outage history after endpoint restoration -> recovery to GREEN. Production dependencies are not deliberately broken.
 
 ## B06 / original G5-008 — PASS
-PR #93 added the authorised HQ operator fire drill and its unchanged Master Integration step passed. Demonstrated journey: anonymous operational attention denied -> protected commissioning owner bootstrap -> normal HQ login -> retained owner session -> GREEN -> actionable `core_latency` AMBER -> actionable `core_failure_rate` RED -> retained incident/probe history -> recovered endpoint -> eventual GREEN. Both degraded states exposed an operator `nextAction`, the run retained core probe samples and HQ bootstrap/login audit actions, and `productionDependencyBroken:false`. This is demonstrated operational interaction through the actual `/v1/hq/attention` and `/v1/hq/watchtower` routes, not a code-presence promotion.
+PR #93 added the authorised HQ operator fire drill and its unchanged Master Integration step passed. Demonstrated journey: anonymous operational attention denied -> protected commissioning owner bootstrap -> normal HQ login -> retained owner session -> GREEN -> actionable `core_latency` AMBER -> actionable `core_failure_rate` RED -> retained incident/probe history -> recovered endpoint -> eventual GREEN. Both degraded states exposed an operator `nextAction`; audit actions and probe history were retained.
 
-## G1-006 production route detection — PASS; rendered Gate 1 rows still AMBER
-The exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, zero critical failures, `truncated:false`. The deployed safe-error release lane proves representative API failures are correlated, no-store and non-leaking.
+## Gate 1 route/error/browser evidence
+**G1-006 PASS:** the exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages with zero critical route/asset/blank-page failures and `truncated:false`.
 
-PR #112 then added real rendered production-browser evidence across Chromium, Firefox and WebKit at desktop and 390px mobile. The unchanged workflow completed GREEN across **18 rendered cases**, including intelligible invalid-login guidance and no internal diagnostic leakage. That evidence is useful but deliberately does not over-promote Gate 1: the rendered run found that the member-login registration affordance resolves to `programme#register` with **no visible registration controls**, and **no password-reset affordance is discoverable from the member-login surface**. Those are current in-scope product gaps, not reasons to weaken the test. G1-007/G1-009/B08/M01/M06/M10 therefore remain AMBER as applicable.
+The public/login rendered harness now finds and clicks both **Create account** and **Forgot password?** across Chromium/Firefox/WebKit at desktop and 390px, rather than relying on link-only selectors. Real inbox verification/recovery remains deliberately unpromoted.
+
+**G1-007 PASS:** merged PR #129 added a dedicated real-production rendered failure-state matrix. Run `31669056410` completed GREEN across Chromium, Firefox and WebKit at desktop and 390px. Six genuine not-found journeys rendered a substantial page with intelligible recovery/navigation guidance, no internal diagnostic leakage and no horizontal overflow. Screenshots plus `report.json` are retained in artifact **`9169047430`** through 2026-09-12. PR #129 also passed the Whole-Estate Route Sweep and Master Integration gate before merge. This evidence complements the already-green correlated/non-leaking API error contracts and cross-browser invalid-login guidance; G1-007 therefore earned PASS on demonstrated user-facing outcomes rather than source presence.
+
+Authenticated rendered acceptance is still **not** green. A fresh harness exposed an authenticated/session-state failure in that journey, a **20px Progress horizontal overflow**, and mobile pointer interception involving navigation/cookie UI. Those defects remain in G1-009/M01/M06/M10/B08 rather than being hidden by the public-browser success.
 
 ## G2-006 Fit duration/session quality — PASS
-PR #109 merged the repaired duration-aware V8 production harness without broadening the restricted commissioning identity. The unchanged post-merge production run `31649921033` completed GREEN, including the dedicated authenticated `G2-006 Fit duration/session quality production matrix` step for 10/15/20/30/45/60-minute requests. This is the missing production acceptance evidence; G2-006 is therefore PASS rather than being promoted from source or PR CI alone.
+PR #109 merged the repaired duration-aware V8 production harness. Unchanged post-merge production run `31649921033` completed GREEN, including the authenticated 10/15/20/30/45/60-minute session-quality matrix. Padding/overrun regressions remain protected.
 
 ## G4-004 — PASS
-Merged PR #98 passed the dedicated Knowledge Flywheel gate, Master Integration, whole-estate route sweep and Academy gate. The scheduled Worker path proves approved CMS content is ingested into the canonical Knowledge graph with provenance, draft content is excluded, withdrawn source content is removed from active graph use, and re-review reactivates the same canonical identity without a manual HQ ingest call.
+Merged PR #98 passed the dedicated Knowledge Flywheel gate, Master Integration, whole-estate route sweep and Academy gate. The scheduled Worker path proves approved CMS content is ingested into the canonical Knowledge graph with provenance, draft content excluded, withdrawn content removed from active graph use, and re-review restoring the same canonical identity without manual HQ ingest.
 
 ## Industrial Grub factory — M11 remains AMBER
 Short-term authored target: **2,500**. Long-term minimum: **10,000+**.
 
-Current authored structured Grub universe: **2,908** = 2,876 industrial + 32 existing structured.
+Current authored structured universe: **2,908** = 2,876 industrial + 32 existing structured.
 
-Demonstrated conversion evidence through merged PR #115:
+Latest demonstrated conversion evidence:
 - Industrial schema/structure: **2,876 / 2,876**.
-- Full-catalogue canonical decisions: **104**, with **96 exercised** by the current catalogue.
-- Governed shared canonical proxy approvals: **62** = 28 high-confidence + 34 medium-confidence. Every inherited proxy retains its CoFID code, suitability basis, confidence and limitations in ingredient-level evidence.
-- Full-catalogue CoFID 2021 nutrition validation: **1,503 / 2,876 industrial recipes**.
-- Latest risk calculation: **1,503 LOW / 0 MEDIUM / 0 HIGH** among the nutrition-valid cohort.
-- Explicit quarantine: **1,373** recipes. No uncertain mapping receives fabricated precision.
-- All 1,503 validated recipes remain drafts behind the genuine `second_person_content_review` blocker. A canonical nutrition decision is not treated as independent recipe content review.
-- Existing independently reviewed / published / production-served: **1 / 1 / 1** (`lighter-beef-cottage-pie`).
-- Authoring remains frozen as a priority while conversion catches up.
-
-The remaining quarantine is concentrated enough for further canonical leverage rather than recipe-row work. Highest-volume current blockers include `toasted oat crunch` (102), `light peppercorn sauce` (72), `chicken sausages` (68), `buffalo hot sauce` (60), and several 48-object families including Cajun seasoning, chipotle salsa, garlic herb sauce, reduced-salt teriyaki sauce, hoisin-style sauce and lemon herb sauce.
-
-Catalogue breadth remains materially bloke-friendly rather than generic diet food: breakfast butties/wraps/hashes; sandwich/bagel/toastie/jacket/meal-prep lunches; curries/chilli/pasta/pies/traybakes/roasts/slow-cooker meals; burgers/kebabs/loaded fries/pizza; and explicit treat/snack families. The authored industrial catalogue contains **612 fakeaway/treat-tagged objects**.
+- Merged PR #123 proves **2,876 / 2,876 industrial recipes** carry ingredient-level CoFID 2021 nutrition validation and calculate LOW-risk through the current full-catalogue path.
+- Nutrition quarantine: **0 / 2,876**.
+- Ingredient evidence retains CoFID identity, converted grams, mapping state, methodology/provenance and declared precision/limitations where relevant.
+- Independent content review is still required; nutrition/canonical governance is not treated as second-person editorial review.
+- The review workload is compressed from 2,876 row reviews into **101 immutable canonical review templates** while each recipe retains its own content hash, title, exact ingredients, method, allergens, food-safety guidance and nutrition evidence. The largest template can unlock 100 recipes.
+- Merged PR #128 adds full-catalogue semantic/quality validation across all **2,876** industrial recipes, including method/instruction adequacy, allergens consistency, duration/quantity sanity and mutable defect probes. It fixed duplicate-title family output rather than weakening the gate.
+- Existing independently reviewed / published / production-served remains **1 / 1 / 1** (`lighter-beef-cottage-pie`).
+- Authoring remains frozen as a priority while independent review/publication/serving catches up.
 
 Authored-capacity simulation — explicitly not commissioned/published diversity:
 - 30 days: 120 slots / 120 unique / 0 exact repeats.
@@ -57,40 +57,34 @@ Authored-capacity simulation — explicitly not commissioned/published diversity
 - 90 days: 360 / 360 / 0.
 - 365 days: 1,460 / 1,460 / 0.
 
-M11 remains AMBER because 1,503 validated LOW-risk industrial drafts are not yet independently reviewed/published/production-served at catalogue scale.
+M11 remains AMBER because **2,876 validated drafts are not yet independently reviewed/published/production-served at catalogue scale**.
 
 ## Industrial Fit factory — M12 remains AMBER
-Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured. Short-term authored target is reached; long-term minimum remains **10,000+**.
+Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured. Long-term minimum remains **10,000+**.
 
 Demonstrated conversion evidence:
 - Industrial schema/structure: **2,468 / 2,468**.
-- New canonical universe: **44** canonical movements × protocol/ability identities across strength, cardio, mobility, stretching and balance.
-- Canonical movement visual metadata/specifications: **44**.
-- Industrial objects with stable canonical visual metadata bindings: **2,244 / 2,468**.
-- Deterministic technical/protocol checks cover the industrial set.
-- Existing member/domain-QA visual: **3**.
+- Canonical movement universe/specifications: **44**.
+- Stable canonical visual metadata bindings: **2,244 / 2,468**.
+- Deterministic technical/protocol checks cover the industrial set and the 44 family definitions.
+- Existing genuine member/domain-QA visual: **3**.
 - Reviewed / published / production-served: **3 / 3 / 3**.
 
-Important evidence boundary discovered during this reconciliation: the industrial catalogue points descendants at `assets/fit/shift-fit-industrial-v3.svg#<canonical>`, but that consolidated 44-family rendered asset does **not exist in current `main`**. The 2,244 figure is therefore inheritance/specification readiness, not rendered visual completion. Automatic metadata/instruction integrity may not be described as movement-accuracy QA. M12 remains AMBER until real canonical visuals exist, receive domain/member judgement, and the approved descendants are reviewed/published/served at scale.
-
-Authored-capacity simulation — explicitly not commissioned/published diversity:
-- 12 weeks / 180 slots: 0 exact repeats / 180 unique / 51 canonical movements used.
-- 26 weeks / 390 slots: 0 repeats / 390 unique / 52 canonicals used.
-- 52 weeks / 780 slots: 0 repeats / 780 unique / 54 canonicals used.
+Evidence boundary: descendants reference the intended consolidated 44-family industrial visual asset, but that rendered asset does **not exist in current `main`**. The 2,244 figure is therefore inheritance/specification readiness, not anatomical/movement visual approval. Automatic metadata/instruction integrity may not be described as member/domain visual QA. M12 remains AMBER until real canonical visuals exist, receive movement-accuracy judgement, and approved descendants are reviewed/published/served at scale.
 
 ## Dave / B08 — 75% reconciled, still AMBER
 The dedicated reconciliation maps **15/20 non-duplicated journey legs** to retained evidence: discovery, trust, Core health, anonymous Today/Grub boundaries, Today, Grub, Fit, Hydration, Progress, Progress Picture, Shift AI, preference learning, leave/return and changed recommendation. Truthful evidence coverage is **75%**.
 
-Unresolved legs remain explicit rather than cosmetically promoted: real-inbox registration, real-inbox verification, rendered/mobile authenticated release acceptance, real-inbox account recovery, and partner-dependent treatment support. B08 remains AMBER.
+Unresolved legs remain explicit: real-inbox registration, real-inbox verification, rendered/mobile authenticated release acceptance, real-inbox account recovery, and partner-dependent treatment support. The public browser harness now proves registration/recovery controls are discoverable/clickable; that does not replace real inbox/authenticated completion evidence.
 
 ## Current authoritative scoreboard
-**57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 23 PASS / 31 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure remains **G2-006** from unchanged post-merge production duration/session-quality commissioning. Earlier locked closures include G4-004, G5-008/B06, G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
+Latest original row closure: **G1-007** via merged PR #129 and retained production rendered evidence. Grub PRs #123/#128 materially advance M11 but do not themselves close an original row because independent review/publication/production-serving breadth is still missing. M12 remains AMBER for real visual/domain QA breadth.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
 ## Active swarm
-Gate 1 rendered/auth discoverability repair; B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub nutrition/review/publication conversion and Fit real-visual/domain-QA/review/publication conversion. Human/device and external boundaries do not queue non-blocked work.
+Gate 1 authenticated rendered/session/mobile repair; B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17, plus continuous Grub independent-review/publication conversion and Fit real-visual/domain-QA/review/publication conversion. Human/device and external boundaries do not queue non-blocked work.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**
