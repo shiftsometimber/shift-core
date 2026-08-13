@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 27 PASS / 27 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 28 PASS / 26 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G2-009 Conundrum catalogue intelligence.** Unchanged main production commissioning run `31710006859`, job `94480182185`, proved the governed `published_catalogue` path end-to-end: relevant suggestions came from the published catalogue, known governed recipe `lighter-beef-cottage-pie` was returned for its ingredient relationship with matched-ingredient evidence, and unrelated ingredients returned an honest zero-result outcome without an invented fallback. Evidence: `docs/evidence/2026-08-13-g2-009-catalogue-conundrum.md`. No other row is promoted by association.
+Latest original row closure: **G1-008 loading/empty/success state-system consistency.** After the exact-path public adapter deployment, fresh live-source capture proved production serves the Git-authoritative 7,278-byte adapter with Fit's finite 60-second generation budget. Unchanged production run `31744305693`, rendered-state-system job `94594994187`, then passed the strict desktop + 390px journey with retained auth, four fresh-member empty states, explicit Grub/Fit loading, locked actions, HTTP 200 product responses, visibly rendered returned content, settled completion and zero document-root overflow. Evidence: `docs/evidence/2026-08-13-g1-008-production-pass.md`. No adjacent row is promoted by association.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -19,21 +19,21 @@ External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 - **M14/G4-002, M15/G5-004 and M16/G5-006 PASS** remain locked.
 
 ## Gate 1 security, routes and rendered RC
-**G1-010 + M05 / G5-011 PASS:** deployed release security/privacy commissioning proved restricted OIDC commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, isolated privacy exports, deletion-session revocation and hardened response envelopes.
+**G1-010 + M05 / G5-011 PASS:** deployed release security/privacy commissioning proved restricted commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin credentialed-CORS denial, isolated privacy exports, deletion-session revocation and hardened response envelopes.
 
 **G1-006 PASS:** exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages with zero critical route/asset/blank-page failures and `truncated:false`. Post-RC3 route integrity remains green on the live extensionless estate.
 
 **G1-007 PASS:** PR #129/run `31669056410` proved real-production 404 journeys across Chromium/Firefox/WebKit desktop + 390px: non-blank rendering, intelligible recovery, no internal diagnostic leakage and no horizontal overflow. Evidence artifact `9169047430` retained through 2026-09-12.
 
+**G1-008 PASS:** PR #176 placed the Git-authoritative member adapter on the exact production URL already referenced by the live dashboard without replacing the wider public site. Fresh recapture proved the stale 7,217-byte 15-second-only asset is gone and production now serves the 7,278-byte adapter with `GENERATION_TIMEOUT=60000` isolated to Fit. Run `31744305693`, job `94594994187`, then proved desktop + 390px retained authenticated state, Grub/Fit/Progress/My Plans empty states, explicit in-flight Grub/Fit loading, locked generation controls, successful HTTP responses, visibly returned recipe/exercise content, settled completion and zero root overflow. Artifact `9198446706`, digest `c50deb642456f43555c52925709c0b389865f62ca0fb916e3eaab2391a5795e5`. Evidence: `docs/evidence/2026-08-13-g1-008-production-pass.md`.
+
 **G1-009 PASS:** the final RC3 source repair is proven in production. The acceptance job fingerprinted the deployed `/member/dashboard`, P0 stylesheet and member shell, preventing a source-green/stale-production false positive. All six Chromium/Firefox/WebKit × desktop/390 cases then registered successfully, signed in, received `sst_session`, returned authenticated member-state 200 and remained inside the authenticated product. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI each finished with document width equal to viewport width: 1440/1440 desktop and 390/390 mobile, zero overflow throughout. Evidence: run `31689802921`, authenticated-rendered job `94426973527`, `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`.
 
 **G1-003/G1-004 remain AMBER, but the live defect moved forward.** PR #170 merged the verification-first registration repair to main as `8d8759f438280ef896767e39f3aa9b97b64138fb`. The unchanged main production commissioning run `31741403662` is GREEN. Fresh production registration attempt `realverify-31736835464-3` delivered the genuine `Verify your My Shift email` message to the connected Gmail inbox at 20:33:43 UTC on 2026-08-13; crucially, the previous contradictory pre-verification `Welcome to My Shift` message was no longer present before verification. This is demonstrated production behaviour, not source inference. The rows still require the actual real-inbox token click -> verified login -> post-verification Welcome -> logout/final-login sequence before PASS.
 
-**G1-008 remains AMBER with a bounded deployment mismatch.** Canonical `frontend/member/api-adapter-v33d.js` gives Fit a finite 60-second generation budget, while the live static `/api-adapter-v33d.js` still serves the stale 15-second client timeout. Direct production Fit generation succeeds at about 29.4 seconds while the browser client aborts first. Closure requires the static frontend authority to publish the canonical adapter and then an unchanged rendered loading/empty/success rerun at desktop and 390px. Evidence: `docs/evidence/2026-08-13-g1-008-post-merge-production-recheck.md`.
-
 The separate direct-overflow diagnostic received `commissioning_identity_rejected` because its diagnostic workflow path is not in the production commissioning-identity allowlist. That is a commissioning-tool authorization gap, not a member-auth failure, and does not supersede the successful unchanged rendered RC.
 
-Gate 1 remains open overall: G1-001 needs the complete real reset-token/recovery journey; G1-003/G1-004 need the retained real verification-token lifecycle; G1-008 needs the static frontend publish plus rendered state-system proof; G1-012 needs the fresh unassisted Dave run. None is promoted by association.
+Gate 1 remains open overall: G1-001 needs the complete real reset-token/recovery journey; G1-003/G1-004 need the retained real verification-token lifecycle; G1-012 needs the fresh one-shot unattended synthetic Dave production gate to pass after its bounded fixture-namespace repair. G1-008 is closed and must not be reopened without genuine regression evidence.
 
 ## Gate 2 Fit duration/session quality — PASS
 PR #109 and unchanged post-merge production run `31649921033` proved authenticated 10/15/20/30/45/60-minute session-quality composition end-to-end. Padding/overrun regressions remain protected.
@@ -93,14 +93,16 @@ M12/G2-007 remains AMBER because coaching quality, automatic binding, rendered c
 ## Dave / B08 — still AMBER
 Reconciled retained evidence is now **16/20 non-duplicated journey legs (80%)**. Fresh production onboarding creates a new member with empty state, saves the onboarding profile through the production route, opens a new authenticated session, proves retained target/safety/preferences data and requires the rendered personalised `Your Shift starts here` outcome. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`.
 
+The first one-shot unattended synthetic Dave release-gate run `31744366892` demonstrated fresh PASS for public/trust boundaries, authenticated isolation/onboarding and Grub/Fit learning before failing at the Hydration/My Plans leg because that legacy fixture alias used a synthetic namespace outside the existing commissioning fixture pattern. The identity policy was not widened; PR #180 repairs only the fixture alias to the existing `finish-*` namespace. G1-012 remains AMBER until the post-merge main run proves every automatable leg together.
+
 Remaining human-only Dave legs are `register`, `verify` and `account_recovery`; partner-dependent `treatment_support` remains external BLOCKED. G5-013 stays AMBER until the complete Dave acceptance boundary is satisfied.
 
 ## Active release swarm
-- Gate 1: finish genuine verification/recovery token lifecycles; publish the canonical static Fit adapter and rerun explicit loading/empty/success acceptance; fresh Dave remains the final unassisted leg.
-- M01/M06/M10: preserve homepage-level premium forest/cream quality while closing demonstrated member contrast defects, responsive parity and state-system acceptance.
-- M11: serious 783 Grub launch-cohort review -> publication -> production-serving proof.
+- Gate 1: G1-008 is closed; finish genuine verification/recovery token lifecycles and rerun the repaired one-shot synthetic Dave release gate.
+- M01/M06/M10: preserve homepage-level premium forest/cream quality while closing demonstrated member contrast defects, responsive parity and final consolidated release-sweep evidence.
+- M11: genuine second-person review has exposed semantic template defects in the 783-recipe launch cohort; repair them systemically, regenerate immutable decisions, then review -> publication -> production-serving proof. Do not rubber-stamp the current eight families.
 - M12: 26-family Fit premium visual/domain review -> propagation/publication -> production-serving proof.
-- G5-012: diagnose the measured registration/login latency breach before changing security-sensitive KDF behaviour; prove the fix in unchanged production.
+- G5-012: diagnose the measured registration/login latency breach and prove the fix in unchanged production without weakening authentication controls.
 - M04, M13 and M17 continue without queueing behind genuine human/external dependencies.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**
