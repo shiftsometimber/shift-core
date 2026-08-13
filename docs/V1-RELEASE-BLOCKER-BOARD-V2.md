@@ -16,11 +16,11 @@ G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-008 and G1-
 ## A3 Today command centre
 G2-001, G4-008. Coherent premium daily orchestration across available non-clinical food, movement, hydration, Progress/context and Ask Shift.
 
-## A4 Grub serious launch cohort
-G2-002, G2-003, G2-004. V1 critical-path cohort is now **783 clean recipes behind 8 regenerated immutable editorial decisions** after the systemic humanness repair. Nutrition remains 2,876/2,876 valid with zero nutrition quarantine; the launch cohort preserves zero exact repeats through 30/60/90 days under deterministic 25% Nay pressure. The exact 8-decision -> 783-descendant propagation barrier is regression-protected on main. Remaining closure is real second-person PASS decisions -> publication -> production serving of the approved cohort, followed by proof that the served member path preserves exact nutrition, quality and diversity.
+## A4 Grub serious launch cohort — TECHNICALLY MATT-READY
+G2-002, G2-003, G2-004. V1 critical-path cohort is **783 clean recipes behind 8 regenerated immutable editorial decisions** after the systemic humanness repair. Nutrition remains 2,876/2,876 valid with zero nutrition quarantine; the launch cohort preserves zero exact repeats through 30/60/90 days under deterministic 25% Nay pressure. The exact 8-decision -> 783-descendant propagation barrier is regression-protected on main. Grub V1 Publication Bridge run `31740393224` is GREEN and retained artifact `9196824062` proves: all eight PASS decisions yield exactly 783 approved/publication records with `publicationReady=true`; any FIX/REJECT fails closed and emits no partial publication payload. **Technical readiness for Matt's 8 decisions = YES.** Remaining closure is the real eight second-person PASS/FIX/REJECT decisions, then automated publication + production-serving proof preserving exact nutrition, quality and diversity. Evidence: `docs/evidence/2026-08-13-grub-v1-matt-readiness.md`.
 
-## A5 Fit serious launch cohort
-G2-007. V1 critical-path cohort remains **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. Genuine replacement production has started with a movement-specific START -> MOVE -> FINISH `sit-to-stand` candidate; candidate production is not acceptance. Remaining closure is premium explanatory visual/domain/member-comprehension PASS decisions -> publication/propagation -> production serving.
+## A5 Fit serious launch cohort — 26/26 PRODUCED + TECH QA PASS
+G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. Replacement premium START -> MOVE -> FINISH candidates are now **26/26 produced and 26/26 technically QA-passed on main**. Legacy rejected schematic artwork remains excluded. Remaining closure is finite domain/member-comprehension PASS/FIX/REJECT decisions -> publication/propagation -> production serving.
 
 ## A6 Progress core
 G2-011, G2-012. Whole-person Progress story plus controlled kg/stone-lb and metric UX.
@@ -42,7 +42,7 @@ G3-008, G5-012. Critical public/member journeys meet declared keyboard/focus/for
 G5-001, G5-002, G5-003. Clinical/provider capability remains hidden/unavailable/accurately labelled until external governance exists.
 
 ## Matt Final Acceptance Pack
-PREPARED / NOT READY TO RUN. Final finite bundle remains: 8 regenerated Grub decisions; 26 genuine replacement Fit visual decisions; verification click; reset click; final iPhone Safari + Chrome hostile acceptance. Human execution waits only for the automated release prerequisites and actual review assets, not for pack preparation.
+PREPARED / NOT READY TO RUN. Grub technical prerequisite is now READY: 783 / 8 with fail-closed publication bridge GREEN. Fit production prerequisite is now READY: 26/26 replacement candidates produced and technically QA-passed. Remaining pack readiness work is attachment/presentation of the finite Fit review cohort plus verification/reset account preparation and any still-open automated estate defects. Human execution remains one consolidated session: 8 regenerated Grub decisions; 26 Fit domain/member-comprehension decisions; verification click; reset click; final iPhone Safari + Chrome hostile acceptance.
 
 ## Freeze
 A=0 -> freeze new product work -> deploy RC -> full regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> NON-CLINICAL V1 READY.
