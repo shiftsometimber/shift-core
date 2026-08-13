@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 const css=fs.readFileSync('frontend/member/member-p0-v1.css','utf8');
 const shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
+const adapter=fs.readFileSync('frontend/member/api-adapter-v33d.js','utf8');
 const fail=[];
 const need=(ok,msg)=>{if(!ok)fail.push(msg)};
 need(/\.ask-drawer\{[\s\S]*display:none!important;[\s\S]*visibility:hidden!important;[\s\S]*pointer-events:none!important;[\s\S]*contain:layout paint!important/.test(css),'closed Ask Timber drawer still contributes layout/scroll geometry');
@@ -16,5 +17,8 @@ need(/function clearNotice\(\)/.test(shell)&&/getMe\(\);clearNotice\(\)/.test(sh
 need(/function authenticatedNav\(\)/.test(shell)&&/replace\('\/member\/dashboard\.html','\/member\/dashboard'\)/.test(shell),'member dashboard .html routes are not normalised to the live extensionless route');
 need(/a\.setAttribute\('href','\/member\/dashboard'\)/.test(shell),'authenticated My Shift destination is not repaired');
 need(/if\(err\.status===401\)\{location\.replace\('\/member-login\?next='/.test(shell),'401 session guard is not using the live extensionless login route');
+need(/const DEFAULT_TIMEOUT=15000;/.test(adapter),'ordinary member API timeout is no longer the bounded 15-second default');
+need(/const GENERATION_TIMEOUT=60000;/.test(adapter),'Fit generation no longer has the commissioned finite 60-second client budget');
+need(/generateFit:data=>request\('\/fit\/plan',\{method:'POST',body:JSON\.stringify\(data\|\|\{\}\),timeout:GENERATION_TIMEOUT\}\)/.test(adapter),'Fit generation is not explicitly isolated from the ordinary API timeout');
 if(fail.length){console.error(JSON.stringify({proof:'V1_FRONTEND_SOURCE_P0',fail},null,2));process.exit(1)}
-console.log(JSON.stringify({proof:'V1_FRONTEND_SOURCE_P0',status:'PASS',checks:['closed drawer removed from layout geometry without global masking','member hero decoration locally clipped','mobile member sidebar locally contains scroll overflow','mobile member tabs locally contain scroll overflow','notice non-interactive and cleared on successful auth','member dashboard links normalised to extensionless production route','authenticated My Shift points to live dashboard route','401 guard uses live login route'],authority:'frontend/README.md'},null,2));
+console.log(JSON.stringify({proof:'V1_FRONTEND_SOURCE_P0',status:'PASS',checks:['closed drawer removed from layout geometry without global masking','member hero decoration locally clipped','mobile member sidebar locally contains scroll overflow','mobile member tabs locally contain scroll overflow','notice non-interactive and cleared on successful auth','member dashboard links normalised to extensionless production route','authenticated My Shift points to live dashboard route','401 guard uses live login route','ordinary APIs retain a finite 15-second client budget','Fit generation alone receives the commissioned finite 60-second client budget'],authority:'frontend/README.md'},null,2));
