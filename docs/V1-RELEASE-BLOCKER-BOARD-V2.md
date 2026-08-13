@@ -2,8 +2,8 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 24 AMBER rows / 7 active shared clusters.**
-**A CLOSED: 3 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance.**
+**A — V1 RELEASE BLOCKERS: 23 AMBER rows / 7 active shared clusters.**
+**A CLOSED: 4 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 production loading/empty/success state-system acceptance.**
 **B — POST-LAUNCH HARDENING: 3 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
@@ -11,7 +11,7 @@ Operational critical path; the 57-row audit remains authoritative.
 G1-001, G1-003, G1-004, G1-012, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery alone.
 
 ## A2 Authenticated rendered/mobile premium estate
-G1-008, G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-009 is PASS:** post-RC3 production acceptance proved Chromium/Firefox/WebKit desktop + 390px auth/session plus dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI with zero document-root horizontal overflow and live extensionless routing intact. Remaining closure is the premium populated/empty/error state system, shell/navigation/footer/forms/Progress Picture/member IA and final physical-device hostile acceptance; do not reopen G1-009 without genuine regression evidence.
+G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-008 and G1-009 are PASS:** post-RC3 production acceptance proved Chromium/Firefox/WebKit desktop + 390px auth/session plus dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI with zero document-root horizontal overflow and live extensionless routing intact. G1-008 additionally proves explicit Grub/Fit loading, locked actions, HTTP-successful returned content, settled completion and fresh-member empty states on desktop + 390px. Remaining closure is the premium visual system, shell/navigation/footer/forms/Progress Picture/member IA and final physical-device hostile acceptance; do not reopen G1-008/G1-009 without genuine regression evidence.
 
 ## A3 Today command centre
 G2-001, G4-008. Coherent premium daily orchestration across available non-clinical food, movement, hydration, Progress/context and Ask Shift.
