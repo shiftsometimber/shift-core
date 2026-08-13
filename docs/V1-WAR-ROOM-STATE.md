@@ -1,37 +1,24 @@
 # V1 War Room State
 
-Authoritative audit remains **23 PASS / 31 AMBER / 3 BLOCKED**. No row is promoted without completed journey evidence.
+Authoritative audit is now **24 PASS / 30 AMBER / 3 BLOCKED** after G5-005 earned production acceptance. No row is promoted without completed journey evidence.
 
-Operational release board V2 remains **27 Category-A release-blocking AMBER rows grouped into 8 root clusters; 4 Category-B post-launch AMBER rows; 3 Category-C external rows**. The audit is the evidence truth; this board is the release critical path.
+Operational release board V2 is now **26 Category-A release-blocking AMBER rows grouped into 7 active root clusters; 4 Category-B post-launch AMBER rows; 3 Category-C external rows**. **1 Category-A blocker has closed in this execution: G5-005.** The audit is the evidence truth; this board is the release critical path.
 
-Current main: `fdd75b2fc3530a539b3dbbd9e34fea4110d8e82b` (PR #145 Fit V1 launch cohort merged after PR #144 Grub V1 launch cohort).
+Current main: `de4cfac41cfb7f113ca3841b7831f4a131d9b068` (PR #146 production public-trust proof merged after the Grub and Fit V1 cohort merges).
 
 ## A1/A2 — authenticated Dave / rendered premium
 
-Fresh restricted-OIDC production RC evidence has removed the authentication/session uncertainty across **Chromium / Firefox / WebKit × desktop / 390px**:
+Authentication/session establishment remains locked GREEN unless the unchanged RC materially regresses. The unchanged authenticated production RC continues to prove that the consistent release defect is the shared rendered layout rather than the session path.
 
-- all 6 synthetic registrations: 201;
-- all 6 login responses: 200;
-- all 6 `sst_session` cookies present;
-- all 6 browser member-state calls: 200;
-- all 6 request-context member-state calls: 200.
+The authenticated member estate still fails the unchanged rendered gate with a shared horizontal-overflow defect: **20px desktop / 88px at 390px** across Today, Grub, Fit, Progress and Shift AI. Public rendering remains green. A separate populated-state defect is also reproduced: `#sstMemberNotice` can intercept pointer events intended for the member navigation. My Shift navigation has also resolved to `/member-login#sign-in` in the RC and must not be counted as a successful authenticated member destination.
 
-Gate 1 is **not commissioned** because the authenticated member estate still fails the unchanged rendered gate with a shared horizontal-overflow defect: **20px desktop / 88px at 390px** across Today, Grub, Fit, Progress and Shift AI. Public rendering remains green. A retained 390px render is 478px wide and shows the authenticated surface alongside the Ask Timber/right-hand overlay state plus a member notice, so the shared overlay/dashboard layout is the leading root-cause family. My Shift navigation also currently resolves to `/member-login#sign-in` in the RC and must not be counted as a successful authenticated member destination.
-
-Do not hide overflow globally. Repair the authoritative frontend layout/overlay source, rerun the unchanged six-case RC, and only then reconcile rows genuinely earned by that proof.
+Do not hide overflow globally. Repair the authoritative frontend layout/overlay source, rerun the unchanged six-case RC, and only then reconcile rows genuinely earned by that proof. The authoritative deployed member-shell CSS/HTML is not present in the accessible `shift-core` or `shift-hq-cloudflare` GitHub source trees, so a legitimate production patch cannot be committed from this repository until that deployment source is recovered/connected; runtime test injection is explicitly not accepted as a fix.
 
 ## A4 — Grub launch cohort
 
-Latest green V12/V13 evidence:
+Latest green evidence retains 2,876 / 2,876 nutrition-valid, 0 nutrition quarantine, **2,696 editorial-ready**, **180 semantic quarantine** and 128 immutable review families in the clean universe.
 
-- 2,876 / 2,876 nutrition-valid;
-- 0 nutrition quarantine;
-- **2,696 editorial-ready**;
-- **180 semantic quarantine**;
-- **128 immutable review families** in the current clean universe;
-- largest family unlock: 96.
-
-The serious V1 cohort is now simulation-selected and merged:
+The serious V1 cohort is simulation-selected and merged:
 
 - **683 clean recipes**;
 - **11 immutable editorial decisions**;
@@ -43,9 +30,9 @@ The launch review surface is generated and retained. Human PASS/FIX/REJECT remai
 
 ## A5 — Fit launch cohort
 
-The full candidate estate now contains **44/44 rendered canonical visual fragments** covering **2,244 descendants**. Candidate rendering is not anatomical/member-comprehension approval.
+The full candidate estate contains **44/44 rendered canonical visual fragments** covering **2,244 descendants**. Candidate rendering is not anatomical/member-comprehension approval.
 
-The serious V1 cohort is now simulation-selected and merged:
+The serious V1 cohort is simulation-selected and merged:
 
 - **26 canonical visual decisions**;
 - **1,326 eligible already-green protocol descendants**;
@@ -59,9 +46,13 @@ The serious V1 cohort is now simulation-selected and merged:
 
 The launch-only visual acceptance surface is generated and retained. Human anatomical/member-comprehension PASS/FIX/REJECT remains required before those 26 families can become commissioned production visuals.
 
+## A7 — public trust
+
+**G5-005 CLOSED / PASS.** PR #146 added a production-only trust audit which crawled **80/80 live public pages successfully** and required evidence for operator identity, AI disclosure, privacy, support and current-provider status. The provider check also failed closed if apparently live prescribing/pharmacy claims existed without qualifying/current-status language. Production trust proof, whole-estate route sweep and master integration all passed before merge. Retained workflow: Gate 5 Public Trust Production run `31678816780`, artifact `9172615958`.
+
 ## Matt final acceptance pack
 
-The human decision population is now finite and explicit:
+**READY as one concrete bundle.** The human decision population is finite and explicit:
 
 1. **11 Grub launch-family decisions**;
 2. **26 Fit launch-visual decisions**;
@@ -73,4 +64,4 @@ Do not invoke the pack until the automated Gate 1 rendered defect is repaired an
 
 ## Exact next blocker
 
-**Gate 1 shared authenticated dashboard/overlay layout.** Repair the common 20px/88px overflow and incorrect My Shift destination in the authoritative frontend deployment path, rerun the unchanged six-case authenticated RC, retain evidence, then reconcile every legitimately closed A1/A2 row. Gate 2 does not advance ahead of a red Gate 1.
+**Gate 1 shared authenticated dashboard/overlay layout.** Recover/connect the authoritative deployed member-shell frontend source, repair the common 20px/88px overflow plus `#sstMemberNotice` pointer interception and incorrect My Shift destination at source, rerun the unchanged six-case authenticated RC, retain evidence, then reconcile every legitimately closed A1/A2 row. In parallel, Grub/Fit remain ready for their finite launch-only human decisions once the automated gate is green.
