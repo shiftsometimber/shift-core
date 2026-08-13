@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence.
 
-**Current reconciled scoreboard: 57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -24,11 +24,11 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
 | G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
-| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908** including 2,876 industrial objects across real-life meal/fakeaway/treat families. Current industrial conversion has 70 ingredient-level CoFID-validated draft recipes; only 1 reviewed/published recipe is production-served. Review/publication/serving breadth remains M11. |
-| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | 70 industrial recipes now carry ingredient-level CoFID 2021 validation in the targeted tranche, while the original production-served recipe is also validated. All remaining recipes stay quarantined rather than receiving fabricated precision. |
+| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908** including 2,876 industrial objects across real-life meal/fakeaway/treat families. The governed V6 full-catalogue conversion now has **546 ingredient-level CoFID-validated LOW-risk draft recipes**; only 1 reviewed/published recipe is production-served. Independent review/publication/serving breadth remains M11. |
+| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | **546 industrial recipes** now carry ingredient-level CoFID 2021 validation from the repaired V6 catalogue, with 546 LOW / 0 MEDIUM / 0 HIGH in the governed calculation wave. The remaining 2,330 stay quarantined rather than receiving fabricated precision. |
 | G2-004 | Grub variety/repetition is poor | AMBER | Authored-capacity simulation produces zero exact repeats across 30/60/90/365-day horizons, including 1,460 unique choices over 365 days; commissioned/published catalogue diversity under real member constraints remains M11. |
 | G2-005 | Grub Yay/Nay is shallow and not durable learning | **PASS** | Authenticated Nay -> leave/return -> later recommendation change is production-proven; unrelated Fit remains unaffected. |
-| G2-006 | Fit composes durations incorrectly | AMBER | Historical padding defect fixed and behaviour green; complete 10/15/20/30/45/60 session-quality commissioning remains M12. |
+| G2-006 | Fit composes durations incorrectly | **PASS** | Unchanged post-merge production commissioning after PR #109 proved the authenticated 10/15/20/30/45/60-minute session-quality matrix end-to-end through the duration-aware V8 composition path. The production gate completed GREEN; duration padding/overrun regressions remain protected. |
 | G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500**. Canonical visual specifications now cover 2,244/2,468 industrial objects with automatic integrity checks, but only 3 movements have member-QA/review/publication/production-serving evidence. Visual/domain QA and publication conversion remain M12. |
 | G2-008 | Fit Yay/Nay is not durable learning | **PASS** | Authenticated exercise dislike/Nay persists and influences later Fit while Grub signals stay isolated. |
 | G2-009 | Conundrum lacks kitchen intelligence | AMBER | Obvious chicken+cheese+wrap relationship is production-proven; broader catalogue-backed ingredient intelligence remains tied to M11. |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence proves 15/20 non-duplicated journey legs (75%); real-inbox registration/verification/recovery, rendered/mobile authenticated release acceptance and partner-dependent treatment support remain. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 33-AMBER burn-down classification
+## 32-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -98,7 +98,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G2-002 | LARGE | M11 nutrition/review/publication conversion at scale |
 | G2-003 | LARGE | M11 industrial ingredient-level nutrition validation |
 | G2-004 | LARGE | M11 commissioned 30/60/90/365-day catalogue diversity under real constraints |
-| G2-006 | FINITE | M12 duration/session-quality matrix |
 | G2-007 | LARGE | M12 visuals/review/publication conversion at scale |
 | G2-009 | FINITE | M11 catalogue-backed Conundrum intelligence |
 | G2-011 | LARGE | M13 whole-person Progress story |
@@ -121,7 +120,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
-PASS rows: 21. AMBER rows: 33. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+PASS rows: 22. AMBER rows: 32. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
 ## Commissioning rule
 A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.

@@ -29,7 +29,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 | M08 | Release evidence + recovery checkpoint | AMBER — continuously reconcile matrix/ledger/recovery through release candidate |
 | M09 | Proper email verification lifecycle | AMBER — deterministic lifecycle green; real production inbox verification/login evidence remains |
 | M10 | Whole-estate routes/links/errors release sweep | AMBER — route/link/asset detection is closed and deployed safe-error contracts are green; rendered loading/empty/error/mobile acceptance remains |
-| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — **2,908 authored structured objects**. The industrial 2,876-object pool is schema-valid; all 17,440 ingredient identities are canonically mapped across 168 ingredient identities, and the targeted CoFID 2021 conversion tranche now validates **70 industrial recipes** at ingredient level. Only 1 recipe is independently reviewed/published/production-served; review/publication/serving breadth remains the bottleneck. Short-term authored target 2,500 exceeded; long-term minimum 10,000+ |
+| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — **2,908 authored structured objects**. The repaired V6 industrial 2,876-object pool is schema-valid; the governed conversion currently validates **546 industrial recipes** at ingredient level, all LOW-risk in the latest calculation wave, with 2,330 explicitly quarantined. Only 1 recipe is independently reviewed/published/production-served; review/publication/serving breadth remains the bottleneck. Short-term authored target 2,500 exceeded; long-term minimum 10,000+ |
 | M12 | Fit catalogue/session breadth and visual guidance | AMBER — **2,500 authored structured objects**. Canonical movement visual specifications cover **2,244/2,468 industrial objects** and automatic visual-integrity checks cover the industrial set, but only 3 movements are member-QA/reviewed/published/production-served. Short-term authored target reached; visual/domain-QA/review/publication conversion remains the bottleneck. Long-term minimum 10,000+ |
 | M13 | Whole-person Progress + proper units | AMBER — coherent story + controlled stone/lb/kg and metric experience |
 | M14 | Member memory inspect/edit/delete controls | **PASS** — inspect/correct/delete, provenance/confidence, durable deletion, privacy controls and cross-member isolation proven |
@@ -40,10 +40,10 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification: **21 PASS / 33 AMBER / 3 BLOCKED / 0 abstraction orphans** after the authorised HQ operator fire drill earned G5-008/B06 PASS.
+Exactly **57** original rows remain mandatory. Current evidenced classification: **22 PASS / 32 AMBER / 3 BLOCKED / 0 abstraction orphans** after unchanged post-merge production commissioning earned G2-006 PASS.
 
 ## Content conversion funnel
-**Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876**. Canonical ingredient mapping covers **2,876/2,876 recipes**, **17,440/17,440 ingredient identities** and **168 canonical ingredient identities**. The strict generic matcher still refuses ambiguous CoFID promotion; a targeted authoritative CoFID tranche now validates **70 industrial recipes**, which remain drafts until independent review. Existing reviewed/published/production-served remains **1/1/1**. Authored-capacity simulation shows zero exact repeats at 30/60/90/365 days, but this is explicitly not commissioned/published diversity.
+**Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876**. Canonical ingredient mapping covers **2,876/2,876 recipes**, **17,440/17,440 ingredient identities** and **168 canonical ingredient identities**. The strict generic matcher still refuses ambiguous CoFID promotion. The governed repaired-V6 propagation/calculation now validates **546 industrial recipes**, all LOW-risk in the latest wave; **2,330 remain quarantined**. These remain drafts pending independent/second-person content review. Existing reviewed/published/production-served remains **1/1/1**. Authored-capacity simulation shows zero exact repeats at 30/60/90/365 days, but this is explicitly not commissioned/published diversity.
 
 **Fit:** structured authored universe **2,500** = 2,468 industrial + 32 existing structured. Industrial schema-valid **2,468**. Canonical visual specifications cover **2,244/2,468 industrial objects**; automatic visual-integrity checks cover the industrial set. Member/domain QA remains **3**, and reviewed/published/production-served remains **3/3/3**. Authored-capacity simulations show zero exact repeats over 12/26/52 weeks, while commissioned visual/review/publication breadth remains M12 work.
 
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 33 remaining AMBERs are classified in the remediation matrix as FINITE / LARGE / HUMAN-DEVICE.
+B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 32 remaining AMBERs are classified in the remediation matrix as FINITE / LARGE / HUMAN-DEVICE.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening the acceptance test. Homepage-level premium quality remains the estate-wide design constitution.
