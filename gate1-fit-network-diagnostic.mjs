@@ -1,0 +1,61 @@
+import {chromium} from 'playwright';
+import fs from 'node:fs';
+import {randomUUID} from 'node:crypto';
+
+const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
+const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
+const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
+const OUT=process.env.STATE_EVIDENCE_DIR||'state-system-evidence';
+if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
+fs.mkdirSync(OUT,{recursive:true});
+const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
+const report={proof:'G1_008_FIT_NETWORK_DIAGNOSTIC_V1',events:[],console:[],pageErrors:[],requestFailures:[],auth:null,ui:null,result:null};
+const write=()=>fs.writeFileSync(`${OUT}/fit-network-diagnostic.json`,JSON.stringify(report,null,2));
+const email=`shiftsometimber+structured-g1fitdiag-${Date.now()}@gmail.com`;
+const password=`Sst-${randomUUID()}-Aa1!`;
+
+const registration=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,firstName:'Dave',password,source:'commissioning-g1-fit-diagnostic'})});
+if(registration.status!==201)throw new Error(`diagnostic registration failed HTTP ${registration.status}`);
+
+const browser=await chromium.launch({headless:true});
+try{
+  const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+  const page=await context.newPage();
+  page.on('request',req=>{if(req.url().startsWith(API))report.events.push({type:'request',method:req.method(),url:req.url(),at:Date.now()})});
+  page.on('response',res=>{if(res.url().startsWith(API))report.events.push({type:'response',method:res.request().method(),url:res.url(),status:res.status(),at:Date.now()})});
+  page.on('requestfailed',req=>{if(req.url().startsWith(API))report.requestFailures.push({method:req.method(),url:req.url(),failure:req.failure(),at:Date.now()})});
+  page.on('console',msg=>{if(['error','warning'].includes(msg.type()))report.console.push({type:msg.type(),text:clean(msg.text()).slice(0,800)})});
+  page.on('pageerror',err=>report.pageErrors.push(clean(err?.message||err).slice(0,1200)));
+
+  await page.goto(`${SITE}/member-login`,{waitUntil:'networkidle',timeout:45000});
+  const auth=await page.evaluate(async({api,email,password})=>{const login=await fetch(`${api}/v1/auth/login`,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const state=await fetch(`${api}/v1/member-state`,{credentials:'include',headers:{Accept:'application/json'}});return{loginStatus:login.status,loginOk:login.ok,stateStatus:state.status,stateOk:state.ok}}, {api:API,email,password});
+  const jar=await context.cookies(`${API}/`);
+  report.auth={...auth,sessionCookie:jar.some(x=>x.name==='sst_session')};
+  if(!auth.loginOk||!auth.stateOk||!report.auth.sessionCookie)throw new Error(`diagnostic auth failed ${JSON.stringify(report.auth)}`);
+
+  await page.goto(`${SITE}/member/dashboard`,{waitUntil:'domcontentloaded',timeout:45000});
+  const fitNav=page.getByRole('button',{name:/^fit$/i}).first();
+  const fitLink=page.getByRole('link',{name:/^fit$/i}).first();
+  const fitText=page.getByText(/^fit$/i).first();
+  const nav=await fitNav.count()&&await fitNav.isVisible().catch(()=>false)?fitNav:await fitLink.count()&&await fitLink.isVisible().catch(()=>false)?fitLink:fitText;
+  if(!await nav.count())throw new Error('Fit navigation control missing');
+  await nav.click({timeout:8000});
+  const build=page.getByRole('button',{name:/build my session/i}).first();
+  await build.waitFor({state:'visible',timeout:15000});
+  const before=clean(await page.locator('body').innerText());
+  const start=Date.now();
+  const responsePromise=page.waitForResponse(r=>{let u;try{u=new URL(r.url())}catch{return false}return r.request().method()==='POST'&&u.pathname==='/v1/fit/plan'},{timeout:60000}).catch(()=>null);
+  await build.click({timeout:8000});
+  await page.waitForTimeout(350);
+  report.ui={disabledDuring:await build.isDisabled().catch(()=>false),bodyChangedDuring:clean(await page.locator('body').innerText())!==before,bodyDuring:clean(await page.locator('body').innerText()).slice(0,1800)};
+  const response=await responsePromise;
+  if(!response){report.result={ok:false,reason:'no /v1/fit/plan response inside 60s',elapsedMs:Date.now()-start};write();throw new Error(`Fit diagnostic saw no /v1/fit/plan response; API events=${JSON.stringify(report.events.slice(-20))}`)}
+  let payload=null;try{payload=await response.json()}catch{}
+  await page.waitForTimeout(1000);
+  const after=clean(await page.locator('body').innerText());
+  report.result={ok:response.ok(),status:response.status(),elapsedMs:Date.now()-start,error:payload?.error||null,qualityIssues:payload?.quality?.issues||payload?.qualityCommissioning?.issues||null,sessionCount:payload?.plan?.sessions?.length||0,bodyAfter:after.slice(0,2200)};
+  await page.screenshot({path:`${OUT}/fit-network-diagnostic.png`,fullPage:true}).catch(()=>{});
+  write();
+  if(!response.ok())throw new Error(`Fit diagnostic endpoint returned HTTP ${response.status()} ${payload?.error||''}`);
+  console.log(JSON.stringify(report,null,2));
+}finally{write();await browser.close()}
