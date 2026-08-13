@@ -12,7 +12,16 @@ const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(rep
 const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
 async function register(email){const r=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'ProgressUnits',source:'commissioning-rendered-progress-units'})});if(r.status!==201)throw new Error(`register ${r.status} ${await r.text()}`)}
 async function login(page,email){await page.goto(`${SITE}/member-login`,{waitUntil:'domcontentloaded',timeout:30000});const result=await page.evaluate(async({api,email,password})=>{const r=await fetch(`${api}/v1/auth/login`,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});let body={};try{body=await r.json()}catch{}return{ok:r.ok,status:r.status,error:body.error||null}}, {api:API,email,password});if(!result.ok)throw new Error(`login ${result.status} ${result.error||''}`)}
-async function openVisual(page){await page.goto(`${SITE}/member/dashboard#visualise`,{waitUntil:'domcontentloaded',timeout:30000});await page.waitForSelector('#photoWeightUnit',{state:'visible',timeout:20000});await page.waitForSelector('#photoWaistUnit',{state:'visible',timeout:20000});await page.waitForSelector('#savedPhotos',{state:'attached',timeout:20000});}
+async function openVisual(page){
+ await page.goto(`${SITE}/member/dashboard`,{waitUntil:'domcontentloaded',timeout:30000});
+ await page.waitForSelector('#photoWeightUnit',{state:'attached',timeout:20000});
+ const candidates=[page.getByRole('button',{name:/^Progress Picture$/i}).first(),page.getByRole('link',{name:/^Progress Picture$/i}).first(),page.getByText(/^Progress Picture$/i).first()];
+ let entered=false;for(const x of candidates){if(await x.count()&&await x.isVisible().catch(()=>false)){await x.click({timeout:8000});entered=true;break}}
+ if(!entered)throw new Error('rendered Progress Picture navigation control missing');
+ await page.waitForSelector('#photoWeightUnit',{state:'visible',timeout:20000});
+ await page.waitForSelector('#photoWaistUnit',{state:'visible',timeout:20000});
+ await page.waitForSelector('#savedPhotos',{state:'attached',timeout:20000});
+}
 const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9Z3p8AAAAASUVORK5CYII=','base64');
 const browser=await chromium.launch({headless:true});
 try{
