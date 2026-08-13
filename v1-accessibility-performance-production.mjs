@@ -1,1 +1,16 @@
-// V1 production accessibility and performance commissioning.
+import {chromium} from 'playwright';
+import fs from 'node:fs';
+const SITE='https://shiftsometimber.co.uk';
+const OUT='v1-ap-evidence';
+fs.mkdirSync(OUT,{recursive:true});
+const report={proof:'V1_ACCESSIBILITY_PERFORMANCE_PUBLIC_FLOOR',cases:[],failures:[]};
+const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=V1 A11y Performance::${name} — ${detail}`)};
+async function inspect(page,name,url,budget){
+ const started=Date.now();const response=await page.goto(url,{waitUntil:'networkidle',timeout:45000});const elapsed=Date.now()-started;
+ const state=await page.evaluate(()=>{const n=performance.getEntriesByType('navigation')[0];const visible=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};return{dcl:Math.round(n?.domContentLoadedEventEnd||0),load:Math.round(n?.loadEventEnd||0),rootOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,main:document.querySelectorAll('main').length,h1:document.querySelectorAll('h1').length,unlabelledInputs:[...document.querySelectorAll('input,select,textarea')].filter(e=>visible(e)&&e.type!=='hidden'&&!e.getAttribute('aria-label')&&!e.getAttribute('aria-labelledby')&&!(e.id&&document.querySelector('label[for="'+e.id+'"]')&&!e.closest('label'))).length,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches}});
+ if(!response||response.status()>=400)fail(name,`HTTP ${response?.status()||0}`);if(state.dcl>budget)fail(name,`DOMContentLoaded ${state.dcl}ms > ${budget}ms`);if(state.rootOverflow>0)fail(name,`root overflow ${state.rootOverflow}px`);if(state.main<1)fail(name,'missing main landmark');if(state.h1<1)fail(name,'missing h1');if(state.unlabelledInputs)fail(name,`${state.unlabelledInputs} visible form controls lack labels`);if(!state.reducedMotion)fail(name,'reduced-motion preference not active');
+ await page.keyboard.press('Tab');const focus=await page.evaluate(()=>{const e=document.activeElement,s=e&&getComputedStyle(e);return{ok:!!e&&e!==document.body&&e!==document.documentElement,tag:e?.tagName||'',outline:s?.outlineStyle||'',outlineWidth:s?.outlineWidth||'',boxShadow:s?.boxShadow||''}});if(!focus.ok)fail(name,'Tab did not move keyboard focus');if((focus.outline==='none'||focus.outlineWidth==='0px')&&(!focus.boxShadow||focus.boxShadow==='none'))fail(name,`focused ${focus.tag} has no visible focus treatment`);
+ report.cases.push({name,status:response?.status()||0,elapsed,state,focus});
+}
+const browser=await chromium.launch({headless:true});try{for(const [name,vp] of Object.entries({desktop:{width:1440,height:900},mobile390:{width:390,height:844}})){const context=await browser.newContext({viewport:vp,reducedMotion:'reduce'});const page=await context.newPage();await inspect(page,`${name}-home`,`${SITE}/`,2500);await inspect(page,`${name}-login`,`${SITE}/member-login`,2500);await context.close()}}finally{await browser.close()}
+fs.writeFileSync(`${OUT}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));if(report.failures.length)throw new Error(`V1 accessibility/performance public floor failed ${report.failures.length}`);console.log('PASS V1 public accessibility/performance floor.');
