@@ -1,0 +1,76 @@
+name: G1 Real Email Verification
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/g1-real-email-verification.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Register genuine unverified member and wait for real inbox click
+        shell: bash
+        run: |
+          set -euo pipefail
+          API='https://api.shiftsometimber.co.uk'
+          SITE='https://shiftsometimber.co.uk'
+          EMAIL="shiftsometimber+realverify-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}@gmail.com"
+          PASSWORD="Sst-$(openssl rand -hex 18)-Aa1!"
+          mkdir -p g1-real-verification
+          echo "Commissioning inbox alias: ${EMAIL}"
+
+          status=$(curl -sS -o /tmp/register.json -w '%{http_code}' \
+            -H "Origin: ${SITE}" -H 'Content-Type: application/json' \
+            -X POST "${API}/v1/auth/register" \
+            --data "$(jq -nc --arg email "$EMAIL" --arg password "$PASSWORD" '{email:$email,password:$password,firstName:"DaveVerify",source:"commissioning-real-verification"}')")
+          test "$status" = '201'
+          jq -e '.verificationRequired == true and .emailVerified == false and .verificationDelivery == "sent"' /tmp/register.json >/dev/null
+
+          before=$(curl -sS -o /tmp/login-before.json -w '%{http_code}' \
+            -H "Origin: ${SITE}" -H 'Content-Type: application/json' \
+            -X POST "${API}/v1/auth/login" \
+            --data "$(jq -nc --arg email "$EMAIL" --arg password "$PASSWORD" '{email:$email,password:$password}')")
+          test "$before" = '403'
+          jq -e '.error == "email_verification_required"' /tmp/login-before.json >/dev/null
+
+          verified='false'
+          after='0'
+          for i in $(seq 1 40); do
+            sleep 15
+            after=$(curl -sS -c /tmp/cookies.txt -o /tmp/login-after.json -w '%{http_code}' \
+              -H "Origin: ${SITE}" -H 'Content-Type: application/json' \
+              -X POST "${API}/v1/auth/login" \
+              --data "$(jq -nc --arg email "$EMAIL" --arg password "$PASSWORD" '{email:$email,password:$password}')")
+            if [ "$after" = '200' ]; then verified='true'; break; fi
+            test "$after" = '403'
+            jq -e '.error == "email_verification_required"' /tmp/login-after.json >/dev/null
+          done
+          test "$verified" = 'true'
+
+          logout=$(curl -sS -b /tmp/cookies.txt -c /tmp/cookies.txt -o /tmp/logout.json -w '%{http_code}' \
+            -H "Origin: ${SITE}" -H 'Content-Type: application/json' \
+            -X POST "${API}/v1/auth/logout")
+          test "$logout" = '200'
+          final=$(curl -sS -o /tmp/login-final.json -w '%{http_code}' \
+            -H "Origin: ${SITE}" -H 'Content-Type: application/json' \
+            -X POST "${API}/v1/auth/login" \
+            --data "$(jq -nc --arg email "$EMAIL" --arg password "$PASSWORD" '{email:$email,password:$password}')")
+          test "$final" = '200'
+
+          jq -nc --arg proof 'G1_REAL_EMAIL_VERIFICATION_PRODUCTION_V1' --arg email "$EMAIL" \
+            --argjson registerStatus "$status" --argjson loginBeforeStatus "$before" --argjson loginAfterStatus "$after" --argjson finalLoginStatus "$final" \
+            '{proof:$proof,email:$email,registration:{status:$registerStatus,verificationRequired:true,delivery:"sent"},preVerificationLogin:{status:$loginBeforeStatus,error:"email_verification_required"},postVerificationLogin:{status:$loginAfterStatus},logout:{status:200},retainedVerifiedLogin:{status:$finalLoginStatus},criterion:"Real production registration -> real inbox verification click -> verified login -> logout -> retained verified login"}' \
+            > g1-real-verification/report.json
+          cat g1-real-verification/report.json
+      - name: Upload genuine lifecycle evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1-real-email-verification
+          path: g1-real-verification
+          if-no-files-found: warn
+          retention-days: 30
