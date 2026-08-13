@@ -26,6 +26,11 @@ function withMemberCors(response,request){const headers=new Headers(response.hea
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname;
+    if(path==='/api-adapter-v33d.js'&&env.MEMBER_ASSETS){
+      const asset=await env.MEMBER_ASSETS.fetch(new Request('https://member-assets.local/api-adapter-v33d.js',{method:'GET'}));
+      const headers=new Headers(asset.headers);headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority','git:frontend/member/api-adapter-v33d.js');
+      return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
+    }
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
     const commissioningOps=await commissioningOpsRoutes(request,env);if(commissioningOps)return commissioningOps;
