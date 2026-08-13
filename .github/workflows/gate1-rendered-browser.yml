@@ -3,11 +3,34 @@ on:
   pull_request:
     paths:
       - 'gate1-rendered-browser-production.mjs'
+      - 'v1-accessibility-performance-production.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  accessibility-performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Run V1 accessibility performance floor
+        run: node v1-accessibility-performance-production.mjs
+      - name: Upload accessibility performance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1-accessibility-performance-evidence
+          path: v1-ap-evidence
+          if-no-files-found: warn
+          retention-days: 14
   rendered-browser:
     runs-on: ubuntu-latest
     timeout-minutes: 20
