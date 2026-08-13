@@ -4,6 +4,9 @@ const REPOSITORY='shiftsometimber/shift-core';
 const ACTOR_ID='315011648';
 const SYNTHETIC=/^shiftsometimber\+(?:finish|longitudinal|b03|structured|structured-authrender)-[a-z0-9-]+@gmail\.com$/i;
 const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@','/.github/workflows/gate1-rendered-browser.yml@','/.github/workflows/dave-release-gate.yml@'];
+const JWKS_URL=`${ISSUER}/.well-known/jwks`;
+const JWKS_TTL_MS=5*60*1000;
+let jwksMemory={expiresAt:0,keys:[]};
 
 export async function handleCommissioningIdentity(request,env,ctx,next){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
@@ -19,10 +22,27 @@ export async function handleCommissioningIdentity(request,env,ctx,next){
   let data={};try{data=await response.clone().json()}catch{return response}
   const userId=Number(data?.user?.id||0);if(!userId)return response;
   const stamp=new Date().toISOString();
-  await env.DB.prepare('UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=?').bind(stamp,stamp,userId).run();
-  try{await env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,'auth.commissioning_identity_verified','user',String(userId),JSON.stringify({issuer:identity.claims.iss,repository:identity.claims.repository,workflow_ref:identity.claims.workflow_ref,actor_id:identity.claims.actor_id})).run()}catch{}
+  const ops=[env.DB.prepare('UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=?').bind(stamp,stamp,userId),env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,'auth.commissioning_identity_verified','user',String(userId),JSON.stringify({issuer:identity.claims.iss,repository:identity.claims.repository,workflow_ref:identity.claims.workflow_ref,actor_id:identity.claims.actor_id}))];
+  try{if(typeof env.DB.batch==='function')await env.DB.batch(ops);else for(const op of ops)await op.run()}catch(e){console.warn('commissioning_identity_post_verify_warning',e?.message)}
   const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');
   return new Response(JSON.stringify({...data,emailVerified:true,verificationRequired:false,commissioningIdentity:'github_actions_oidc'}),{status:response.status,headers});
 }
-export async function verifyGithubOidc(token){try{const parts=String(token).split('.');if(parts.length!==3)return{ok:false};const header=JSON.parse(text(parts[0])),claims=JSON.parse(text(parts[1]));if(header.alg!=='RS256'||!header.kid)return{ok:false};const now=Math.floor(Date.now()/1000),aud=Array.isArray(claims.aud)?claims.aud:[claims.aud];if(claims.iss!==ISSUER||!aud.includes(AUDIENCE)||claims.repository!==REPOSITORY||String(claims.actor_id)!==ACTOR_ID)return{ok:false};if(Number(claims.exp||0)<=now||Number(claims.nbf||0)>now+60||Number(claims.iat||0)>now+60)return{ok:false};if(!ALLOWED_WORKFLOWS.some(x=>String(claims.workflow_ref||'').includes(x)))return{ok:false};const jwks=await fetch(`${ISSUER}/.well-known/jwks`).then(r=>{if(!r.ok)throw new Error('jwks');return r.json()});const jwk=(jwks.keys||[]).find(k=>k.kid===header.kid&&k.kty==='RSA');if(!jwk)return{ok:false};const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);const signed=new TextEncoder().encode(`${parts[0]}.${parts[1]}`),sig=bytes(parts[2]);const valid=await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,sig,signed);return valid?{ok:true,claims}:{ok:false}}catch{return{ok:false}}}
+
+async function fetchJwks({force=false}={}){
+  const now=Date.now();
+  if(!force&&jwksMemory.keys.length&&jwksMemory.expiresAt>now)return jwksMemory.keys;
+  const cache=globalThis.caches?.default;
+  const cacheKey=new Request(JWKS_URL,{method:'GET'});
+  if(!force&&cache){
+    const cached=await cache.match(cacheKey).catch(()=>null);
+    if(cached){const body=await cached.json().catch(()=>null);if(Array.isArray(body?.keys)&&body.keys.length){jwksMemory={keys:body.keys,expiresAt:now+JWKS_TTL_MS};return body.keys}}
+  }
+  const r=await fetch(JWKS_URL,{headers:{Accept:'application/json'}});if(!r.ok)throw new Error('jwks');
+  const body=await r.json();if(!Array.isArray(body?.keys)||!body.keys.length)throw new Error('jwks_empty');
+  jwksMemory={keys:body.keys,expiresAt:now+JWKS_TTL_MS};
+  if(cache){const h=new Headers({'Content-Type':'application/json','Cache-Control':'public, max-age=300'});cache.put(cacheKey,new Response(JSON.stringify({keys:body.keys}),{status:200,headers:h})).catch(()=>{})}
+  return body.keys;
+}
+
+export async function verifyGithubOidc(token){try{const parts=String(token).split('.');if(parts.length!==3)return{ok:false};const header=JSON.parse(text(parts[0])),claims=JSON.parse(text(parts[1]));if(header.alg!=='RS256'||!header.kid)return{ok:false};const now=Math.floor(Date.now()/1000),aud=Array.isArray(claims.aud)?claims.aud:[claims.aud];if(claims.iss!==ISSUER||!aud.includes(AUDIENCE)||claims.repository!==REPOSITORY||String(claims.actor_id)!==ACTOR_ID)return{ok:false};if(Number(claims.exp||0)<=now||Number(claims.nbf||0)>now+60||Number(claims.iat||0)>now+60)return{ok:false};if(!ALLOWED_WORKFLOWS.some(x=>String(claims.workflow_ref||'').includes(x)))return{ok:false};let keys=await fetchJwks();let jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA');if(!jwk){keys=await fetchJwks({force:true});jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA')}if(!jwk)return{ok:false};const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);const signed=new TextEncoder().encode(`${parts[0]}.${parts[1]}`),sig=bytes(parts[2]);const valid=await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,sig,signed);return valid?{ok:true,claims}:{ok:false}}catch{return{ok:false}}}
 function text(s){return new TextDecoder().decode(bytes(s))}function bytes(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s);return Uint8Array.from(b,c=>c.charCodeAt(0))}async function readJson(r){try{return await r.json()}catch{return{}}}function json(d,s=200){return new Response(JSON.stringify(d),{status:s,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}})}
