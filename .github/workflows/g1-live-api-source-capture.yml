@@ -1,4 +1,5 @@
 name: G1 Live API Source Capture
+# 2026-08-13 post-deploy recapture trigger for canonical adapter route
 on:
   pull_request:
     paths:
