@@ -42,7 +42,33 @@ export const CANONICAL_APPROVALS={
  'reduced-sugar BBQ sauce':{code:'17-705',basis:'barbecue sauce is the closest CoFID analogue',confidence:'medium',limitation:'reduced-sugar brands may be lower in carbohydrate/energy'},
  'reduced-sugar BBQ glaze':{code:'17-705',basis:'barbecue sauce is the closest CoFID analogue',confidence:'medium',limitation:'glaze concentration and reduced-sugar formulations vary'},
  'peri-peri sauce':{code:'17-719',basis:'chilli sauce is the closest CoFID analogue',confidence:'medium',limitation:'brand recipes vary'},
- 'sweet chilli sauce':{code:'17-719',basis:'chilli sauce is the closest CoFID analogue',confidence:'medium',limitation:'sugar level varies by brand'}
+ 'sweet chilli sauce':{code:'17-719',basis:'chilli sauce is the closest CoFID analogue',confidence:'medium',limitation:'sugar level varies by brand'},
+
+ // Second governed conversion wave. These are intentionally explicit proxies,
+ // not token-similarity promotions. Each maps a generated generic family to a
+ // defensible CoFID macro analogue and keeps material formulation variance visible.
+ 'mustard mayo':{code:'17-679',basis:'reduced-fat mayonnaise is the dominant macro component of a light mustard mayonnaise portion',confidence:'medium',limitation:'mustard addition changes flavour and sodium more than the five calculated macros'},
+ 'peri-peri yoghurt':{code:'12-533',basis:'virtually fat-free plain yoghurt is the dominant macro component of the generated peri-peri yoghurt dressing',confidence:'medium',limitation:'seasoning and chilli additions vary; estimate is for the five macro nutrients only'},
+ 'Cajun yoghurt':{code:'12-533',basis:'virtually fat-free plain yoghurt is the dominant macro component of the generated Cajun yoghurt dressing',confidence:'medium',limitation:'seasoning additions vary; estimate is for the five macro nutrients only'},
+ 'light Caesar dressing':{code:'17-789',basis:'homemade yoghurt dressing is the closest light creamy dressing analogue in CoFID',confidence:'medium',limitation:'Caesar recipes vary in oil, cheese and anchovy content'},
+ 'lemon herb yoghurt':{code:'12-533',basis:'virtually fat-free plain yoghurt is the dominant macro component of the generated lemon-herb yoghurt dressing',confidence:'medium',limitation:'lemon and herb additions are not separately represented'},
+ 'tomato salsa':{code:'17-354',basis:'tomato-based relish is the closest CoFID prepared tomato condiment analogue for the generated salsa portion',confidence:'medium',limitation:'fresh salsa can be lower in sugar and energy than prepared relish'},
+ 'tikka yoghurt':{code:'12-533',basis:'virtually fat-free plain yoghurt is the dominant macro component of the generated tikka yoghurt dressing',confidence:'medium',limitation:'spice paste additions vary'},
+ 'katsu-style sauce':{code:'15-751',basis:'UK-style sweet curry sauce is the closest CoFID macro analogue for the generated katsu-style curry sauce',confidence:'medium',limitation:'katsu sauce sweetness and thickening vary materially by recipe'},
+ 'garlic herb yoghurt':{code:'12-533',basis:'virtually fat-free plain yoghurt is the dominant macro component of the generated garlic-herb yoghurt dressing',confidence:'medium',limitation:'garlic and herb additions are not separately represented'},
+ 'smoked paprika dressing':{code:'17-789',basis:'homemade yoghurt dressing is a suitable light-dressing macro analogue for the generated smoked-paprika dressing',confidence:'medium',limitation:'actual oil content varies by formulation'},
+ 'pickle mustard relish':{code:'17-708',basis:'corn/cucumber/onion relish is the closest CoFID pickle-relish analogue; mustard changes flavour more than the five calculated macros',confidence:'medium',limitation:'sugar and mustard content varies'},
+ 'tomato pepper relish':{code:'17-354',basis:'tomato-based relish is the closest prepared condiment analogue for the generated tomato-pepper relish',confidence:'medium',limitation:'pepper proportion and sugar level vary'},
+ 'medium curry sauce':{code:'15-751',basis:'UK-style sweet curry sauce is the closest general prepared curry-sauce analogue for the generated medium curry family',confidence:'medium',limitation:'heat level and recipe fat/sugar vary'},
+ 'pepper and tomato masala':{code:'15-881',basis:'homemade tomato-and-onion curry sauce is the closest CoFID tomato-led masala sauce analogue',confidence:'medium',limitation:'pepper and spice proportions vary'},
+ 'balti-style sauce':{code:'15-881',basis:'homemade tomato-and-onion curry sauce is a suitable tomato-led macro analogue for a generic balti-style sauce',confidence:'medium',limitation:'balti recipes vary in oil and spice content'},
+ 'madras-style sauce':{code:'15-881',basis:'homemade tomato-and-onion curry sauce is a suitable tomato-led macro analogue for a generic madras-style sauce',confidence:'medium',limitation:'madras heat and oil content vary'},
+ 'smoked chilli tomato sauce':{code:'17-834',basis:'homemade tomato-based sauce is the appropriate macro base for the generated smoked-chilli tomato sauce',confidence:'medium',limitation:'chilli/smoke additions and oil content vary'},
+ 'Cajun tomato sauce':{code:'17-834',basis:'homemade tomato-based sauce is the appropriate macro base for the generated Cajun tomato sauce',confidence:'medium',limitation:'Cajun seasoning and oil content vary'},
+ 'tomato olive herb sauce':{code:'17-834',basis:'homemade tomato-based sauce is the closest macro base for the generated tomato-olive-herb sauce',confidence:'medium',limitation:'olive quantity can increase fat versus the proxy'},
+ 'harissa tomato sauce':{code:'17-834',basis:'homemade tomato-based sauce is the closest macro base for the generated harissa tomato sauce',confidence:'medium',limitation:'harissa and oil content vary'},
+ 'burger relish':{code:'17-354',basis:'tomato-based relish is the closest CoFID prepared relish analogue for the generated burger relish',confidence:'medium',limitation:'commercial burger relishes vary in sugar and vegetable content'},
+ 'tikka sauce':{code:'17-626',basis:'CoFID Indian cook-in korma/tikka masala sauce is the closest direct family analogue for the generated tikka sauce',confidence:'medium',limitation:'retail recipes vary'}
 };
 for(const x of Object.values(CANONICAL_APPROVALS))x.state='approved_canonical_proxy';
 export const approvalFor=item=>CANONICAL_APPROVALS[item]||null;
