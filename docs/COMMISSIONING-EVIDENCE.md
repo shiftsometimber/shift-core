@@ -3,7 +3,7 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 27 PASS / 27 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 29 PASS / 25 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
 Latest original row closure: **G2-009 Conundrum catalogue intelligence.** Unchanged main production commissioning run `31710006859`, job `94480182185`, proved the governed `published_catalogue` path end-to-end: relevant suggestions came from the published catalogue, known governed recipe `lighter-beef-cottage-pie` was returned for its ingredient relationship with matched-ingredient evidence, and unrelated ingredients returned an honest zero-result outcome without an invented fallback. Evidence: `docs/evidence/2026-08-13-g2-009-catalogue-conundrum.md`. No other row is promoted by association.
 

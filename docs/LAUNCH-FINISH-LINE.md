@@ -40,7 +40,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification is **28 PASS / 26 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G1-008 loading/empty/success states**, after the live adapter fingerprint and unchanged desktop + 390px state-system run passed. No adjacent premium/Dave row is promoted by association.
+Exactly **57** original rows remain mandatory. Current evidenced classification is **29 PASS / 25 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G1-008 loading/empty/success states**, after the live adapter fingerprint and unchanged desktop + 390px state-system run passed. No adjacent premium/Dave row is promoted by association.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876** and **2,876/2,876** ingredient-level CoFID nutrition-valid with zero nutrition quarantine. The V1 launch conversion is the repaired **783-recipe** cohort behind **8 regenerated immutable editorial decisions**; the decision-to-publication bridge is technically ready and fails closed on any non-PASS decision. Genuine second-person decisions still govern publication.
