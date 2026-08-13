@@ -25,6 +25,7 @@ jobs:
           raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
+          printf '%s' "$token" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const p=JSON.parse(Buffer.from(s.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'),'base64').toString()); console.log(JSON.stringify({iss:p.iss,aud:p.aud,repository:p.repository,actor_id:p.actor_id,workflow_ref:p.workflow_ref,ref:p.ref,event_name:p.event_name,job_workflow_ref:p.job_workflow_ref||null}))})"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - run: |
           npm install --no-save --ignore-scripts playwright
