@@ -20,7 +20,9 @@ const WAVE2={
   'reduced-salt soy sauce':{code:'17-721',basis:'CoFID soy sauce light/dark varieties is the closest direct family analogue for reduced-salt soy sauce',confidence:'medium',limitation:'reduced-salt products contain less sodium; sodium is outside the current five-nutrient calculation'},
   'smoked paprika':{code:'13-879',basis:'paprika is the direct spice-family source; smoking changes flavour rather than the five calculated macros materially',confidence:'high'},
   'pineapple chunks':{code:'14-376',basis:'raw pineapple is a suitable unsweetened fruit macro analogue when generated pineapple chunks do not specify syrup',confidence:'medium',limitation:'canned-in-syrup products would be higher in carbohydrate and energy'},
-  'cooked salmon':{code:'16-359',basis:'baked salmon is the closest generic cooked-salmon CoFID source',confidence:'high',limitation:'cooking method and retained moisture vary'}
+  'cooked salmon':{code:'16-359',basis:'baked salmon is the closest generic cooked-salmon CoFID source',confidence:'high',limitation:'cooking method and retained moisture vary'},
+  'turkey breast':{code:'18-349',basis:'raw turkey light meat is the closest raw CoFID identity for uncooked turkey breast used by the recipe generator',confidence:'medium',limitation:'CoFID labels the sample as light meat rather than an anatomical breast-only cut'},
+  'reduced-salt vegetable stock cube (make up to 250ml with water)':{code:'17-727',basis:'CoFID vegetable stock cube is the direct dry product family for the measured cube used to make the recipe stock',confidence:'medium',limitation:'reduced-salt products differ in sodium; sodium is outside the current five-nutrient calculation'}
 };
 
 for(const x of Object.values(WAVE2))x.state='approved_canonical_proxy';
