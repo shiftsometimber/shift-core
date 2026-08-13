@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v10.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v11.js';
 import {APPROVED,grams} from './industrial-grub-systemic-v3.mjs';
 
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
