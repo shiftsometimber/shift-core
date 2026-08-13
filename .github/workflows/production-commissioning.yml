@@ -65,9 +65,17 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node fit-duration-production.mjs
+      - name: Refresh short-lived Shift commissioning identity for Dave
+        id: dave_oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: G1-012 fresh unattended synthetic Dave release gate
         env:
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.dave_oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node dave-release-gate-production.mjs
       - name: Upload Dave release-gate evidence
