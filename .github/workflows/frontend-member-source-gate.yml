@@ -1,0 +1,26 @@
+name: Shift Member Frontend Source Gate
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'frontend-member-source-gate.mjs'
+      - '.github/workflows/frontend-member-source-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'frontend-member-source-gate.mjs'
+      - '.github/workflows/frontend-member-source-gate.yml'
+  workflow_dispatch:
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Prove member frontend P0 source
+        run: node frontend-member-source-gate.mjs
