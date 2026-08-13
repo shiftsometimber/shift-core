@@ -11,8 +11,22 @@
     {
       "pattern": "api.shiftsometimber.co.uk",
       "custom_domain": true
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/api-adapter-v33d.js*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/api-adapter-v33d.js*",
+      "zone_name": "shiftsometimber.co.uk"
     }
   ],
+
+  "assets": {
+    "directory": "./frontend/member",
+    "binding": "MEMBER_ASSETS",
+    "run_worker_first": true
+  },
 
   "triggers": {
     "crons": ["0 * * * *"]
