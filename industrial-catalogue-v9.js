@@ -1,8 +1,8 @@
 import {buildIndustrialCatalogue as buildV8} from './industrial-catalogue-v8.js';
 
-// Final high-volume quarantine repair wave. These are recipe-content repairs,
-// not nutrition shortcuts: vague/non-CoFID generator labels are replaced with
-// explicit edible ingredients that still match the member-facing recipe idea.
+// Final quarantine repair wave. These are recipe-content repairs, not nutrition
+// shortcuts: vague/non-CoFID generator labels are replaced with explicit edible
+// ingredients that still match the member-facing recipe idea.
 const COMPONENTS={
   'oven hash brown':[
     {amount:'120g',item:'baby potatoes'},
@@ -51,6 +51,18 @@ function repair(recipe){
     if(ingredient.item==='lemon zest'&&/tsp/i.test(String(ingredient.amount||''))){
       changed=true;repairs.push('lemon-zest-measure-normalised');
       ingredients.push({...ingredient,amount:'1g'});
+      continue;
+    }
+    if(ingredient.item==='vanilla extract'){
+      changed=true;repairs.push('unsupported-vanilla-to-cinnamon');
+      ingredients.push({amount:'1/2 tsp',item:'ground cinnamon'});
+      title=title.replace(/Berry Vanilla/gi,'Berry Cinnamon');
+      continue;
+    }
+    if(ingredient.item==='black beans'||ingredient.item==='mixed beans'){
+      changed=true;repairs.push('unsupported-bean-to-kidney-beans');
+      ingredients.push({...ingredient,item:'kidney beans'});
+      title=title.replace(/Black Beans/gi,'Kidney Beans').replace(/Mixed Beans/gi,'Kidney Beans');
       continue;
     }
     if(ingredient.item==='caramel flavouring'){
