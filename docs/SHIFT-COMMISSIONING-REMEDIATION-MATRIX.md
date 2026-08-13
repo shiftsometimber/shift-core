@@ -2,34 +2,34 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 25 PASS / 29 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 26 PASS / 28 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
-| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery implementation is regression-protected and the current rendered browser harness discovers/clicks the Forgot password control across Chromium/Firefox/WebKit desktop + 390px. Real reset mail is now independently confirmed in the connected Gmail inbox, but B01 still needs the secret-safe reset-email token -> reset -> login -> authenticated change-password -> logout/login journey. |
+| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery implementation is regression-protected and the rendered browser harness discovers/clicks the Forgot password control across Chromium/Firefox/WebKit desktop + 390px. Real reset mail is independently confirmed in the connected Gmail inbox, but B01 still needs the secret-safe reset-email token -> reset -> login -> authenticated change-password -> logout/login journey. |
 | G1-002 | Email binding not deployment-persistent | **PASS** | Direct connected-inbox evidence on 2026-08-13 confirms genuine deployed delivery from `welcome@shiftsometimber.co.uk`: multiple real `Welcome to My Shift` messages reached production commissioning Gmail aliases on 2026-08-12, and a real `Reset your My Shift password` message reached `shiftsometimber+commissioning@gmail.com` at 11:22:26 UTC. These are retained Gmail messages, not mocks/source assertions. Adjacent token-click lifecycle rows remain AMBER. Evidence: `docs/evidence/2026-08-13-g1-002-real-inbox-delivery.md`. |
-| G1-003 | Registration email lifecycle incomplete | AMBER | Explicit verification lifecycle is regression-protected and the current rendered browser harness discovers/clicks Create account across Chromium/Firefox/WebKit desktop + 390px. Real production registration -> inbox verification click -> verified login -> Welcome evidence remains M09. |
+| G1-003 | Registration email lifecycle incomplete | AMBER | Explicit verification lifecycle is regression-protected and the rendered browser harness discovers/clicks Create account across Chromium/Firefox/WebKit desktop + 390px. Real production registration -> inbox verification click -> verified login -> Welcome evidence remains M09. |
 | G1-004 | Email verification is effectively bypassed | AMBER | `AUTO_VERIFY_EMAIL=false`, unverified login is blocked, resend invalidates prior token and replay is rejected; real production inbox verification remains before PASS. |
 | G1-005 | Member persistence confidence damaged | **PASS** | Production A/B authenticated state, Progress, Brain and leave/return persistence proven without contamination. |
-| G1-006 | Broken/dead routes and links not centrally detected | **PASS** | Exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, found zero critical route/asset/blank-page failures and exhausted discovery without truncation. |
+| G1-006 | Broken/dead routes and links not centrally detected | **PASS** | Exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, found zero critical route/asset/blank-page failures and exhausted discovery without truncation. Post-RC3 route integrity also remained green on the live extensionless member/public estate. |
 | G1-007 | Error handling exposes generic failures | **PASS** | API safe-error contracts are correlated/no-store/non-leaking; invalid-login guidance is rendered cross-browser/device; merged PR #129 adds a dedicated production 404 matrix across Chromium/Firefox/WebKit desktop + 390px proving non-blank, intelligible recovery with no internal diagnostic leakage or horizontal overflow. Run `31669056410` GREEN; retained evidence artifact `9169047430`. |
-| G1-008 | Loading/empty/success states inconsistent | AMBER | Behavioural endpoints are green; rendered authenticated loading/empty/success state-system acceptance remains M01/M10/B08. |
-| G1-009 | Mobile/cross-browser regressions found manually | AMBER | Public/login rendered coverage and authenticated auth/session establishment are green across Chromium/Firefox/WebKit desktop + 390px. Retained production geometry now isolates the common 20px desktop / 88px mobile overflow to the closed global Ask Timber drawer using `transform:translateX(105%)`; separate `#sstMemberNotice` pointer interception and incorrect authenticated My Shift destination also remain. Recover/connect the authoritative `projectshift` static source, repair at source without a global overflow mask, deploy explicitly when authorised, then rerun the unchanged six-case RC. Evidence: `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`. |
+| G1-008 | Loading/empty/success states inconsistent | AMBER | Behavioural endpoints are green and populated authenticated rendering is now cross-browser/mobile green; explicit rendered loading/empty/success state-system acceptance remains M01/M10/B08. |
+| G1-009 | Mobile/cross-browser regressions found manually | **PASS** | Unchanged post-RC3 production rendered acceptance is GREEN across Chromium/Firefox/WebKit desktop + 390px. All six cases registered, signed in, received the session cookie and read authenticated member state. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI all rendered with document width equal to viewport width and zero horizontal overflow; live extensionless routing remained intact. The job fingerprinted the deployed P0 stylesheet/member shell before running, so source-green/stale-production evidence is excluded. Run `31689802921`, authenticated-rendered job `94426973527`. Evidence: `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`. |
 | G1-010 | Auth rate limits/security controls need formal commissioning | **PASS** | Deployed production security/privacy commissioning proved restricted OIDC commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin CORS denial, member-scoped export isolation, deletion-session revocation, hardened response envelopes and source-level auth/rate/session/recovery/analytics controls. |
 | G1-011 | Production entry-point wiring can diverge from modules | **PASS** | Master/source gates fail if authoritative auth/product/Brain wiring disappears; current gates green. |
-| G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and longitudinal product behaviour are green; fresh unassisted B08 remains. |
+| G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and the six-case rendered browser/device member journey are green; fresh unassisted B08 remains. |
 
 ## Gate 2 — Nothing Half-Finished
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
 | G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
-| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908**, including **2,876 industrial objects**. Merged PR #123 proves **2,876/2,876 industrial recipes** pass ingredient-level CoFID nutrition/risk validation with **0 nutrition quarantine**; PR #128 adds systemic recipe-quality validation across all 2,876. Independent editorial review/publication/production-serving breadth remains M11; authoritative reviewed/published/served is still **1/1/1**. |
-| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | The entire 2,876 industrial pool now carries ingredient-level CoFID evidence with exact converted grams/mapping state and LOW-risk calculation, zero nutrition quarantine. The row remains AMBER until that validated nutrition is independently reviewed/published and demonstrated at meaningful production-serving breadth rather than existing only in drafts. |
-| G2-004 | Grub variety/repetition is poor | AMBER | The V1 launch cohort is now finite: 683 editorial-ready recipes behind 11 immutable decisions, selected to produce zero exact repeats at 30/60/90 days under deterministic 25% Nay pressure. Closure still requires those decisions to PASS and the approved cohort to be published/production-served under real member constraints. |
+| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908**, including **2,876 industrial objects**. All 2,876 industrial recipes pass ingredient-level CoFID nutrition/risk validation with 0 nutrition quarantine. The systemic humanness repair regenerated a **783-recipe V1 candidate cohort behind 8 immutable editorial decisions**. Independent editorial approval/publication/production-serving breadth remains M11; authoritative approved/published/served launch breadth is still zero until those changed decisions are genuinely accepted. |
+| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | The entire 2,876 industrial pool carries ingredient-level CoFID evidence with exact converted grams/mapping state and LOW-risk calculation, zero nutrition quarantine. The row remains AMBER until that validated nutrition is independently reviewed/published and demonstrated at meaningful production-serving breadth rather than existing only in drafts/candidates. |
+| G2-004 | Grub variety/repetition is poor | AMBER | The repaired V1 launch cohort is finite at **783 clean recipes behind 8 regenerated immutable decisions**. Under deterministic 25% Nay pressure, all four meal categories retain substantial eligible breadth and the cohort produces zero exact repeats through 30/60/90 days. Closure still requires those decisions to PASS and the approved cohort to be published/production-served under real member constraints. |
 | G2-005 | Grub Yay/Nay is shallow and not durable learning | **PASS** | Authenticated Nay -> leave/return -> later recommendation change is production-proven; unrelated Fit remains unaffected. |
 | G2-006 | Fit composes durations incorrectly | **PASS** | Unchanged post-merge production commissioning proved the authenticated 10/15/20/30/45/60-minute session-quality matrix end-to-end through the duration-aware V8 composition path. |
-| G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500** and the consolidated **44/44 canonical rendered candidate visual set now exists**, covering 2,244 descendants. The V1 launch cohort is finite at **26 canonical movement decisions / 1,326 technically eligible descendants** and passes the 12-week 180-slot capacity simulation with 0 exact repeats and no consecutive canonical repeat. Closure still requires real anatomical/member-comprehension/domain PASS decisions followed by publication/production serving. |
+| G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500**. The V1 launch cohort is finite at **26 canonical movement decisions / 1,326 technically eligible descendants**; all 26 canonical families now have repaired human coaching guidance and the 12-week simulation produces 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. The 26-family rendered visual review cohort remains candidate anatomy only; rejected legacy schematic artwork is not accepted launch art. Closure requires genuine premium visual/anatomical/member-comprehension/domain PASS decisions followed by publication/production serving. |
 | G2-008 | Fit Yay/Nay is not durable learning | **PASS** | Authenticated exercise dislike/Nay persists and influences later Fit while Grub signals stay isolated. |
 | G2-009 | Conundrum lacks kitchen intelligence | AMBER | Obvious chicken+cheese+wrap relationship is production-proven; broader catalogue-backed ingredient intelligence remains tied to M11. |
 | G2-010 | Hydration is too water-centric | **PASS** | Production suite proves non-water drink contribution rules including coffee contributing and beer not contributing, with durable plan/log state. |
@@ -43,12 +43,12 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
 | G3-001 | Homepage quality is not systemic | AMBER | Homepage remains design constitution; representative public/member parity evidence remains M01. |
-| G3-002 | Header/navigation variants drift | AMBER | Canonical whole-estate responsive nav acceptance remains M01/M10. |
+| G3-002 | Header/navigation variants drift | AMBER | Canonical whole-estate responsive nav acceptance remains M01/M10; the repaired member route destinations are now production-green across the six-case RC. |
 | G3-003 | Footer variants drift/are visually heavy | AMBER | Whole-estate footer parity acceptance remains M01/M10. |
 | G3-004 | Forms/selectors expose browser-default/prototype UI | AMBER | Premium shared-control release sweep remains M01/M10/M13. |
 | G3-005 | Cards/spacing/type hierarchy inconsistent | AMBER | Visual-system regression review remains M01. |
 | G3-006 | Knowledge Hub editorial experience is inconsistent | AMBER | Knowledge lifecycle is green; premium editorial presentation/reviewer metadata remains. |
-| G3-007 | Member navigation reflects architecture rather than intent | AMBER | Behavioural routes exist; Dave/premium IA acceptance remains B08/M01. |
+| G3-007 | Member navigation reflects architecture rather than intent | AMBER | Behavioural routes exist and member routing is now production-stable cross-browser/mobile; Dave/premium IA acceptance remains B08/M01. |
 | G3-008 | Accessibility is not a design-system gate | AMBER | Critical keyboard/focus/forms/contrast/reduced-motion audit remains M06. |
 
 ## Gate 4 — Shift Becomes Intelligent
@@ -78,10 +78,10 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-010 | Analytics lacks coherent product-event taxonomy | **PASS** | Canonical product-event taxonomy/instrumentation, privacy filtering and Watchtower analytics gates are regression-protected. |
 | G5-011 | Security/privacy audit not yet complete | **PASS** | Deployed production security/privacy proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS, per-member export isolation, deletion-session revocation, safe response envelopes and source gates covering secrets/analytics/recovery/auth controls. |
 | G5-012 | Performance not a release criterion | AMBER | SLO budgets exist; production critical-path performance/accessibility evidence remains M06. |
-| G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence proves 15/20 non-duplicated journey legs (75%); real-inbox registration/verification/recovery, rendered/mobile authenticated release acceptance and partner-dependent treatment support remain. |
+| G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence remains 15/20 non-duplicated Dave journey legs (75%). The authenticated rendered/mobile production estate is now separately GREEN, removing that release prerequisite, but real-inbox registration/verification/recovery, fresh unassisted Dave execution and partner-dependent treatment support still prevent PASS. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 29-AMBER burn-down classification
+## 28-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -90,13 +90,12 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G1-003 | HUMAN/DEVICE | M09 real registration + verification inbox click/login |
 | G1-004 | HUMAN/DEVICE | M09 real verification inbox click/login |
 | G1-008 | HUMAN/DEVICE | M01/M10 rendered authenticated loading/empty/success review |
-| G1-009 | FINITE | Fix the proven global Ask Timber off-canvas overflow plus notice/nav defects at authoritative `projectshift` source, then rerun cross-browser/mobile matrix |
 | G1-012 | HUMAN/DEVICE | B08 fresh unassisted Dave run |
 | G2-001 | LARGE | M01/B08 premium Today experience |
-| G2-002 | LARGE | M11 independent review/publication/serving conversion at scale from 2,876 validated drafts |
+| G2-002 | LARGE | M11 independent review/publication/serving conversion at V1 launch breadth from validated drafts |
 | G2-003 | LARGE | M11 demonstrate exact validated nutrition through broad reviewed/published/served production catalogue |
-| G2-004 | LARGE | M11 commissioned 30/60/90/365-day catalogue diversity under real constraints |
-| G2-007 | LARGE | M12 create real 44-family visuals -> domain QA -> review/publication/serving at scale |
+| G2-004 | LARGE | M11 commissioned launch-catalogue diversity under real constraints; retain 365-day depth post-launch |
+| G2-007 | LARGE | M12 produce/accept genuine premium 26-family launch visuals -> domain QA -> review/publication/serving at scale |
 | G2-009 | FINITE | M11 catalogue-backed Conundrum intelligence |
 | G2-011 | LARGE | M13 whole-person Progress story |
 | G2-012 | FINITE | M13 unit system |
@@ -118,4 +117,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 25. AMBER rows: 29. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 26. AMBER rows: 28. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
