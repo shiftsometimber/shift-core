@@ -86,6 +86,19 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_dave.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node dave-release-gate-production.mjs
+      - name: G5-012 aggregate natural production auth p95
+        if: always()
+        env:
+          G5_012_EVIDENCE_DIR: g5-012-auth-p95-evidence
+        run: node g5-012-natural-auth-p95.mjs
+      - name: Upload G5-012 natural auth p95 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-012-auth-p95-evidence
+          path: g5-012-auth-p95-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Upload Dave release-gate evidence
         if: always()
         uses: actions/upload-artifact@v4

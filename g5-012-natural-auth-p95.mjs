@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {SLOS} from './operational-slos-v1.js';
+const FILE=process.env.SHIFT_G5_012_TIMING_FILE||'g5-012-auth-timings.ndjson';
+const OUT=process.env.G5_012_EVIDENCE_DIR||'g5-012-auth-p95-evidence';fs.mkdirSync(OUT,{recursive:true});
+const rows=fs.existsSync(FILE)?fs.readFileSync(FILE,'utf8').split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x)):[];
+const good=kind=>rows.filter(x=>x.kind===kind&&x.status>=200&&x.status<300).map(x=>Number(x.ms)).filter(Number.isFinite);
+const reg=good('register'),login=good('login');
+const p95=xs=>{const s=[...xs].sort((a,b)=>a-b);return s[Math.min(s.length-1,Math.ceil(s.length*.95)-1)]};
+const median=xs=>{const s=[...xs].sort((a,b)=>a-b);return s[Math.floor(s.length/2)]};
+const stats=xs=>({count:xs.length,p95Ms:xs.length?p95(xs):null,medianMs:xs.length?median(xs):null,maxMs:xs.length?Math.max(...xs):null,samplesMs:xs});
+const report={proof:'G5_012_NATURAL_AUTH_P95_PRODUCTION_V1',budgetMs:SLOS.apiP95Ms,registration:stats(reg),login:stats(login),allObservedRows:rows.length,passwordSecurityChanged:false,sampling:'existing production commissioning traffic only; no extra accounts or login load created for measurement'};
+const enough=reg.length>=5&&login.length>=5;report.status=enough&&report.registration.p95Ms<=SLOS.apiP95Ms&&report.login.p95Ms<=SLOS.apiP95Ms?'PASS':'FAIL';
+fs.writeFileSync(`${OUT}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+if(!enough)throw new Error(`G5-012 insufficient natural samples: registrations ${reg.length}, logins ${login.length}; require >=5 each`);
+if(report.status!=='PASS')throw new Error(`G5-012 p95 breach: registration ${report.registration.p95Ms}ms, login ${report.login.p95Ms}ms, budget ${SLOS.apiP95Ms}ms`);
+console.log(`PASS G5-012 natural production auth p95: registration ${report.registration.p95Ms}ms (${reg.length} samples), login ${report.login.p95Ms}ms (${login.length} samples), budget ${SLOS.apiP95Ms}ms.`);
