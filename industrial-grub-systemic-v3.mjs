@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v8.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v9.js';
 import {CANONICAL_APPROVALS} from './grub-canonical-approval-registry-v2.mjs';
 
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
@@ -9,7 +9,7 @@ const EXACT={
  'olive oil':'17-038','tomato':'13-517','red pepper':'13-524','rolled oats':'11-788','pumpkin seeds':'14-842','lettuce':'13-520','rocket':'13-522','baby potatoes':'13-618','wholemeal bread':'11-981','broccoli':'13-502','onion':'13-499','mixed salad':'15-648','brown rice, dry':'11-866','basmati rice, dry':'11-857','5% beef mince':'18-508','lean pork loin':'18-518','salmon fillet':'16-356','reduced-fat pork sausages':'19-658','boiled eggs':'12-940','large eggs':'12-937','low-fat cottage cheese':'12-550','cherry tomatoes':'13-519','courgette':'13-627','raw king prawns':'16-387','cooked green lentils':'13-661','oven chips':'13-487','individual pizza base':'11-1016','paprika':'13-879','chilli powder':'13-873','garlic powder':'13-830','dried parsley':'13-845','dried oregano':'13-878','wholegrain mustard':'17-365','reduced-fat mayonnaise':'17-679','light mayonnaise':'17-679','tomato ketchup':'17-709','black pepper':'13-880','salt':'17-367',
  'chickpeas, drained':'13-670','reduced-fat cheddar':'12-548','apple':'14-319','diced apple':'14-319','dark chocolate, chopped':'17-491','dark chocolate chips':'17-491',
  'cucumber':'13-523','peanut butter':'14-892','cherries':'14-382','semi-skimmed milk':'12-313','chopped tomatoes':'13-530','brown sauce':'17-678','garlic mushrooms':'15-642','cinnamon':'13-874','ground cinnamon':'13-874','sliced banana':'14-318','banana, sliced':'14-318','banana':'14-318','unsweetened cocoa':'12-545','unsweetened cocoa powder':'12-545','cocoa powder':'12-545','instant espresso':'17-158','mango':'14-378','pineapple':'14-376','ground ginger':'13-832','apple, diced':'14-319','chickpeas':'13-670','porridge oats':'11-788','shredded lettuce':'13-520','couscous, dry':'11-901','carrot sticks':'13-496','tomatoes':'13-517',
- 'pear, diced':'14-321','peach, diced':'14-299','blueberries':'14-325','plum, diced':'14-372','kale':'13-234','beetroot':'13-164'
+ 'pear, diced':'14-321','peach, diced':'14-299','blueberries':'14-325','plum, diced':'14-372','kale':'13-234','beetroot':'13-164','orange juice':'14-369','honey':'17-050'
 };
 
 export const APPROVED={};
@@ -18,9 +18,6 @@ for(const [item,a] of Object.entries(CANONICAL_APPROVALS))APPROVED[item]={code:a
 
 const PORTION_G={'wholemeal bread':80,'wholemeal wrap':65,'brown rice, dry':75,'basmati rice, dry':75,'wholewheat noodles':70,'baking potato':250,'wholemeal bap':80,'wholemeal burger bun':80,'wholemeal bagel':90,'wholemeal flatbread':70,'oven chips':250,'individual pizza base':150,'roast potatoes':220};
 const EACH_G={'boiled eggs':50,'large eggs':60,'egg':60};
-// Household teaspoon conversions are limited to ingredients already emitted by
-// the governed generator. They convert the explicit measure into grams rather
-// than allowing a valid food identity to remain quarantined on syntax alone.
 const TSP_G={'black pepper':2.3,'ground cinnamon':2.6,'cocoa powder':2.5,'ground ginger':1.8};
 const norm=s=>String(s||'').trim();
 function fractionNumber(raw){const s=String(raw||'').trim();if(/^\d+(?:\.\d+)?$/.test(s))return Number(s);const m=s.match(/^(\d+)\/(\d+)$/);return m&&Number(m[2])?Number(m[1])/Number(m[2]):null}
@@ -33,4 +30,4 @@ export function systemicCoverage(){
  return{recipes:recipes.length,canonicalDecisions:Object.keys(APPROVED).length,canonicalDecisionsUsed:used.size,nutritionEligible:eligible,exactOnly,governedProxyUsed,quarantined:recipes.length-eligible,topBlockers:[...blocked].sort((a,b)=>b[1]-a[1]).slice(0,50).map(([reason,count])=>({reason,count}))};
 }
 
-if(import.meta.url===`file://${process.argv[1]}`){const result=systemicCoverage();console.log(JSON.stringify(result,null,2));if(result.nutritionEligible<2490)throw new Error(`systemic mapping regressed below 2,490 eligible recipes: ${result.nutritionEligible}`);console.log(`PASS systemic Grub canonical propagation: ${result.nutritionEligible}/${result.recipes} recipes are calculation-eligible from ${result.canonicalDecisionsUsed} reused governed ingredient decisions; ${result.quarantined} remain quarantined.`);}
+if(import.meta.url===`file://${process.argv[1]}`){const result=systemicCoverage();console.log(JSON.stringify(result,null,2));if(result.nutritionEligible<2800)throw new Error(`systemic mapping regressed below 2,800 eligible recipes: ${result.nutritionEligible}`);console.log(`PASS systemic Grub canonical propagation: ${result.nutritionEligible}/${result.recipes} recipes are calculation-eligible from ${result.canonicalDecisionsUsed} reused governed ingredient decisions; ${result.quarantined} remain quarantined.`);}
