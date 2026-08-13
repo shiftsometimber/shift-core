@@ -2,20 +2,20 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 24 PASS / 30 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 25 PASS / 29 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
-| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery implementation is regression-protected and the current rendered browser harness discovers/clicks the Forgot password control across Chromium/Firefox/WebKit desktop + 390px. B01 still needs the secret-safe real reset-email token -> reset -> login -> authenticated change-password -> logout/login journey. |
-| G1-002 | Email binding not deployment-persistent | AMBER | Delivery wiring/lifecycle is regression-protected; final launch evidence remains real Welcome/reset inbox receipt across the B01/M09 journey. |
+| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery implementation is regression-protected and the current rendered browser harness discovers/clicks the Forgot password control across Chromium/Firefox/WebKit desktop + 390px. Real reset mail is now independently confirmed in the connected Gmail inbox, but B01 still needs the secret-safe reset-email token -> reset -> login -> authenticated change-password -> logout/login journey. |
+| G1-002 | Email binding not deployment-persistent | **PASS** | Direct connected-inbox evidence on 2026-08-13 confirms genuine deployed delivery from `welcome@shiftsometimber.co.uk`: multiple real `Welcome to My Shift` messages reached production commissioning Gmail aliases on 2026-08-12, and a real `Reset your My Shift password` message reached `shiftsometimber+commissioning@gmail.com` at 11:22:26 UTC. These are retained Gmail messages, not mocks/source assertions. Adjacent token-click lifecycle rows remain AMBER. Evidence: `docs/evidence/2026-08-13-g1-002-real-inbox-delivery.md`. |
 | G1-003 | Registration email lifecycle incomplete | AMBER | Explicit verification lifecycle is regression-protected and the current rendered browser harness discovers/clicks Create account across Chromium/Firefox/WebKit desktop + 390px. Real production registration -> inbox verification click -> verified login -> Welcome evidence remains M09. |
 | G1-004 | Email verification is effectively bypassed | AMBER | `AUTO_VERIFY_EMAIL=false`, unverified login is blocked, resend invalidates prior token and replay is rejected; real production inbox verification remains before PASS. |
 | G1-005 | Member persistence confidence damaged | **PASS** | Production A/B authenticated state, Progress, Brain and leave/return persistence proven without contamination. |
 | G1-006 | Broken/dead routes and links not centrally detected | **PASS** | Exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, found zero critical route/asset/blank-page failures and exhausted discovery without truncation. |
 | G1-007 | Error handling exposes generic failures | **PASS** | API safe-error contracts are correlated/no-store/non-leaking; invalid-login guidance is rendered cross-browser/device; merged PR #129 adds a dedicated production 404 matrix across Chromium/Firefox/WebKit desktop + 390px proving non-blank, intelligible recovery with no internal diagnostic leakage or horizontal overflow. Run `31669056410` GREEN; retained evidence artifact `9169047430`. |
 | G1-008 | Loading/empty/success states inconsistent | AMBER | Behavioural endpoints are green; rendered authenticated loading/empty/success state-system acceptance remains M01/M10/B08. |
-| G1-009 | Mobile/cross-browser regressions found manually | AMBER | Public/login rendered coverage is green across Chromium/Firefox/WebKit desktop + 390px. The fresh authenticated harness has not earned closure: it exposed session/auth-state failure in that path plus a 20px Progress overflow and mobile navigation/cookie-overlay interception. Diagnose/fix/re-run authenticated release matrix. |
+| G1-009 | Mobile/cross-browser regressions found manually | AMBER | Public/login rendered coverage and authenticated auth/session establishment are green across Chromium/Firefox/WebKit desktop + 390px. Retained production geometry now isolates the common 20px desktop / 88px mobile overflow to the closed global Ask Timber drawer using `transform:translateX(105%)`; separate `#sstMemberNotice` pointer interception and incorrect authenticated My Shift destination also remain. Recover/connect the authoritative `projectshift` static source, repair at source without a global overflow mask, deploy explicitly when authorised, then rerun the unchanged six-case RC. Evidence: `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`. |
 | G1-010 | Auth rate limits/security controls need formal commissioning | **PASS** | Deployed production security/privacy commissioning proved restricted OIDC commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin CORS denial, member-scoped export isolation, deletion-session revocation, hardened response envelopes and source-level auth/rate/session/recovery/analytics controls. |
 | G1-011 | Production entry-point wiring can diverge from modules | **PASS** | Master/source gates fail if authoritative auth/product/Brain wiring disappears; current gates green. |
 | G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and longitudinal product behaviour are green; fresh unassisted B08 remains. |
@@ -81,17 +81,16 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence proves 15/20 non-duplicated journey legs (75%); real-inbox registration/verification/recovery, rendered/mobile authenticated release acceptance and partner-dependent treatment support remain. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 30-AMBER burn-down classification
+## 29-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
 |---|---|---|
 | G1-001 | HUMAN/DEVICE | B01 real reset-token/inbox lifecycle |
-| G1-002 | HUMAN/DEVICE | B01/M09 production transactional inbox proof |
 | G1-003 | HUMAN/DEVICE | M09 real registration + verification inbox click/login |
 | G1-004 | HUMAN/DEVICE | M09 real verification inbox click/login |
 | G1-008 | HUMAN/DEVICE | M01/M10 rendered authenticated loading/empty/success review |
-| G1-009 | FINITE | Diagnose/fix authenticated session + Progress overflow + mobile navigation interception, then rerun cross-browser/mobile matrix |
+| G1-009 | FINITE | Fix the proven global Ask Timber off-canvas overflow plus notice/nav defects at authoritative `projectshift` source, then rerun cross-browser/mobile matrix |
 | G1-012 | HUMAN/DEVICE | B08 fresh unassisted Dave run |
 | G2-001 | LARGE | M01/B08 premium Today experience |
 | G2-002 | LARGE | M11 independent review/publication/serving conversion at scale from 2,876 validated drafts |
@@ -118,7 +117,5 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
-PASS rows: 24. AMBER rows: 30. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
-## Commissioning rule
-A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 25. AMBER rows: 29. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
