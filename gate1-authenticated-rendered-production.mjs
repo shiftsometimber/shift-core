@@ -6,7 +6,7 @@ const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replac
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
 const OUT=process.env.AUTH_RENDER_EVIDENCE_DIR||'auth-render-evidence';
-if(!OIDIDC)throw new Error('SHIFT_COMMISSIONING_OIDC is required for restricted synthetic-member registration');
+if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC is required for restricted synthetic-member registration');
 fs.mkdirSync(OUT,{recursive:true});
 
 const browsers={chromium,firefox,webkit};
