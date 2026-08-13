@@ -19,6 +19,14 @@
     {
       "pattern": "www.shiftsometimber.co.uk/api-adapter-v33d.js*",
       "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member-product-v33d.js*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member-product-v33d.js*",
+      "zone_name": "shiftsometimber.co.uk"
     }
   ],
 
