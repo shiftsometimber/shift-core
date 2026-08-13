@@ -1,12 +1,12 @@
 import fs from 'node:fs';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v6.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v7.js';
 import {CANONICAL_APPROVALS} from './grub-canonical-approval-registry-v1.mjs';
 
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
 const foods=new Map((index.foods||[]).map(f=>[String(f.code),f]));
 
 const EXACT={
- 'olive oil':'17-038','tomato':'13-517','red pepper':'13-524','rolled oats':'11-788','pumpkin seeds':'14-842','lettuce':'13-520','rocket':'13-522','baby potatoes':'13-618','wholemeal bread':'11-981','broccoli':'13-502','onion':'13-499','mixed salad':'15-648','brown rice, dry':'11-866','basmati rice, dry':'11-857','5% beef mince':'18-508','lean pork loin':'18-518','salmon fillet':'16-356','reduced-fat pork sausages':'19-658','boiled eggs':'12-940','large eggs':'12-937','low-fat cottage cheese':'12-550','cherry tomatoes':'13-519','courgette':'13-627','raw king prawns':'16-387','cooked green lentils':'13-661','oven chips':'13-487','individual pizza base':'11-1016','paprika':'13-879','chilli powder':'13-873','garlic powder':'13-830','dried parsley':'13-845','dried oregano':'13-878','wholegrain mustard':'17-365','reduced-fat mayonnaise':'17-679','tomato ketchup':'17-709',
+ 'olive oil':'17-038','tomato':'13-517','red pepper':'13-524','rolled oats':'11-788','pumpkin seeds':'14-842','lettuce':'13-520','rocket':'13-522','baby potatoes':'13-618','wholemeal bread':'11-981','broccoli':'13-502','onion':'13-499','mixed salad':'15-648','brown rice, dry':'11-866','basmati rice, dry':'11-857','5% beef mince':'18-508','lean pork loin':'18-518','salmon fillet':'16-356','reduced-fat pork sausages':'19-658','boiled eggs':'12-940','large eggs':'12-937','low-fat cottage cheese':'12-550','cherry tomatoes':'13-519','courgette':'13-627','raw king prawns':'16-387','cooked green lentils':'13-661','oven chips':'13-487','individual pizza base':'11-1016','paprika':'13-879','chilli powder':'13-873','garlic powder':'13-830','dried parsley':'13-845','dried oregano':'13-878','wholegrain mustard':'17-365','reduced-fat mayonnaise':'17-679','light mayonnaise':'17-679','tomato ketchup':'17-709',
  'chickpeas, drained':'13-670','reduced-fat cheddar':'12-548','apple':'14-319','diced apple':'14-319','dark chocolate, chopped':'17-491','dark chocolate chips':'17-491'
 };
 
@@ -26,4 +26,4 @@ export function systemicCoverage(){
  return{recipes:recipes.length,canonicalDecisions:Object.keys(APPROVED).length,canonicalDecisionsUsed:used.size,nutritionEligible:eligible,exactOnly,governedProxyUsed,quarantined:recipes.length-eligible,topBlockers:[...blocked].sort((a,b)=>b[1]-a[1]).slice(0,50).map(([reason,count])=>({reason,count}))};
 }
 
-if(import.meta.url===`file://${process.argv[1]}`){const result=systemicCoverage();console.log(JSON.stringify(result,null,2));if(result.nutritionEligible<300)throw new Error(`systemic mapping regressed below 300 eligible recipes: ${result.nutritionEligible}`);console.log(`PASS systemic Grub canonical propagation: ${result.nutritionEligible}/${result.recipes} recipes are calculation-eligible from ${result.canonicalDecisionsUsed} reused governed ingredient decisions; ${result.quarantined} remain quarantined.`);}
+if(import.meta.url===`file://${process.argv[1]}`){const result=systemicCoverage();console.log(JSON.stringify(result,null,2));if(result.nutritionEligible<500)throw new Error(`systemic mapping regressed below 500 eligible recipes: ${result.nutritionEligible}`);console.log(`PASS systemic Grub canonical propagation: ${result.nutritionEligible}/${result.recipes} recipes are calculation-eligible from ${result.canonicalDecisionsUsed} reused governed ingredient decisions; ${result.quarantined} remain quarantined.`);}
