@@ -3,12 +3,46 @@ on:
   pull_request:
     paths:
       - 'gate1-rendered-browser-production.mjs'
+      - 'gate1-authenticated-rendered-production.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
   contents: read
+  id-token: write
 jobs:
-  rendered-browser:
+  authenticated-rendered:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Run authenticated member rendered RC acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          AUTH_RENDER_EVIDENCE_DIR: auth-render-evidence
+        run: node gate1-authenticated-rendered-production.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate1-authenticated-rendered-evidence
+          path: auth-render-evidence
+          retention-days: 14
+  public-rendered:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -16,20 +50,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Install browser harness
-        run: |
+      - run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium firefox webkit
-      - name: Run rendered production acceptance
-        env:
+      - env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           RENDER_EVIDENCE_DIR: render-evidence
         run: node gate1-rendered-browser-production.mjs
-      - name: Upload rendered evidence
-        if: always()
+      - if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gate1-rendered-production-evidence
           path: render-evidence
-          if-no-files-found: warn
           retention-days: 14
