@@ -3,12 +3,50 @@ on:
   pull_request:
     paths:
       - 'gate1-rendered-browser-production.mjs'
+      - 'gate1-state-system-production.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
   contents: read
+  id-token: write
 jobs:
-  rendered-browser:
+  rendered-state-system:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install browser harness
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Run G1-008 rendered loading and empty-state acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          STATE_EVIDENCE_DIR: state-system-evidence
+        run: node gate1-state-system-production.mjs
+      - name: Upload state-system evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate1-state-system-production-evidence
+          path: state-system-evidence
+          if-no-files-found: warn
+          retention-days: 14
+
+  public-rendered:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
