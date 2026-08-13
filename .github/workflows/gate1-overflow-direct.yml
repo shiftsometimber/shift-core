@@ -1,0 +1,46 @@
+name: Gate 1 Populated Overflow Direct Trace
+on:
+  pull_request:
+    paths:
+      - 'gate1-overflow-direct-diagnostic.mjs'
+      - '.github/workflows/gate1-overflow-direct.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  populated-overflow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Trace populated dashboard geometry without nav clicks
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          OVERFLOW_EVIDENCE_DIR: overflow-direct-evidence
+        shell: bash
+        run: |
+          sed -i 's/shiftsometimber+overflow-direct-/shiftsometimber+structured-authrender-overflow-direct-/' gate1-overflow-direct-diagnostic.mjs
+          node gate1-overflow-direct-diagnostic.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate1-populated-overflow-direct-evidence
+          path: overflow-direct-evidence
+          retention-days: 14
