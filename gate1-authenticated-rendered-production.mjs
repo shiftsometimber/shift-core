@@ -1,6 +1,7 @@
 import { chromium, firefox, webkit } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
+// Post-#136 production rerun. Acceptance assertions and thresholds are unchanged.
 
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
