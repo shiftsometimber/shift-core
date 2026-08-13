@@ -1,10 +1,11 @@
 {
-  "schema_version": 2,
-  "contract": "Premium Shift-owned START -> MOVE -> FINISH coaching artwork generated directly from the canonical V1 render contracts. Technical QA is deterministic; domain/member-comprehension approval remains separate.",
+  "schema_version": 3,
+  "contract": "Premium Shift-owned START -> MOVE -> FINISH coaching artwork generated from explicit movement-specific body/equipment geometry. Technical QA is deterministic; domain/member-comprehension approval remains separate.",
+  "geometry_version": "v3",
   "launch_total": 26,
   "production_batches": [
     {
-      "batch": 1,
+      "batch": 2,
       "status": "produced",
       "canonical_movements": [
         "calf-raise",
@@ -47,8 +48,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "chair-balance-reach",
@@ -60,8 +62,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "chest-press",
@@ -73,8 +76,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "dead-bug",
@@ -86,8 +90,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "glute-bridge",
@@ -99,8 +104,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "squat",
@@ -112,8 +118,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "hamstring-mobility",
@@ -125,8 +132,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "hip-flexor-mobility",
@@ -138,8 +146,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "hip-hinge",
@@ -151,8 +160,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "lat-pulldown",
@@ -164,8 +174,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "loaded-carry",
@@ -177,8 +188,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "low-impact-march",
@@ -190,8 +202,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "overhead-press",
@@ -203,8 +216,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "plank",
@@ -216,8 +230,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "push-up",
@@ -229,8 +244,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "reverse-lunge",
@@ -242,8 +258,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "row",
@@ -255,8 +272,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "rowing-erg",
@@ -268,8 +286,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "shadow-boxing",
@@ -281,8 +300,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "sit-to-stand",
@@ -294,8 +314,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "stationary-bike",
@@ -307,8 +328,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "step-up",
@@ -320,8 +342,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "thoracic-rotation",
@@ -333,8 +356,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "triceps-extension",
@@ -346,8 +370,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "walk",
@@ -359,8 +384,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     },
     {
       "canonical_movement": "wall-slides",
@@ -372,8 +398,9 @@
         "FINISH"
       ],
       "status": "technical_qa_pass",
-      "technical_qa": "PASS — Fit Premium Produce All run 31747956460",
-      "domain_acceptance": "pending"
+      "technical_qa": "PASS — Fit Premium Produce All run 31751231211",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
     }
   ],
   "acceptance": {
@@ -384,6 +411,7 @@
       "FINISH"
     ],
     "movement_specific": true,
+    "equipment_integrated": true,
     "member_comprehension": true,
     "safety_cues_consistent_with_canonical_guidance": true,
     "desktop_and_mobile_render": true,
