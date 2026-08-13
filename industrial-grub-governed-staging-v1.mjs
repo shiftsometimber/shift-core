@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v7.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v8.js';
 import {APPROVED,grams} from './industrial-grub-systemic-v3.mjs';
 import {ensureStructuredContent,upsertStructuredContent} from './structured-content-v1.js';
 
@@ -106,7 +106,7 @@ for(const row of rows){
   }
 }
 assert.equal(stagedValidated,validated);
-assert.ok(validated>=1500,`current governed staging regressed below 1,500 nutrition-valid recipes: ${validated}`);
+assert.ok(validated>=2200,`current governed staging regressed below 2,200 nutrition-valid recipes: ${validated}`);
 assert.equal(validated+quarantined,2876);
 const published=await DB.prepare("SELECT COUNT(*) AS c FROM structured_content WHERE status='published'").first();
 assert.equal(Number(published.c),0,'staging must not bypass review/publication');
