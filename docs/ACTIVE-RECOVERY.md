@@ -1,64 +1,60 @@
 # Active recovery checkpoint — 2026-08-13
 
 ## Current implementation authority
-`main` authority at this checkpoint = `4b7296873d5436d1667aaf5f7e7c08feff8f1389`, squash merge of PR #115 after its current-main Grub propagation, Master Integration and whole-estate checks completed GREEN.
+`main` authority = `afddbf502c48ead07f3ffab1be0aa95da9c222e8`, merge of PR #130. This commit is 13 commits ahead of retained Grub review checkpoint `ee8c96dbfb3116a9b4e5119d56b537dfdb713252`; no later commit invalidates that nutrition evidence.
 
-Authoritative original audit remains **57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 unmapped**. B03 behavioural remains **9/9 PASS and locked**. No original row is promoted by content-volume or code evidence alone.
+Authoritative original audit = **57 total / 23 PASS / 31 AMBER / 3 BLOCKED / 0 unmapped**. B03 behavioural remains **9/9 PASS and locked**.
 
-## Newly demonstrated/merged
-- **PR #115 / merge `4b7296873d5436d1667aaf5f7e7c08feff8f1389`** — current-main systemic Grub canonical propagation. The unchanged full-catalogue gate proves **1,503 / 2,876 industrial recipes** nutrition-valid and LOW-risk, with **1,373** deliberately quarantined. Master Integration and whole-estate route checks were GREEN before merge.
-- Stale superseded PRs #113 and #114 are closed to prevent branch/state drift.
-- **Gate 1 rendered production evidence remains truthful rather than cosmetically green:** PR #112's browser sweep passed 18 rendered cases across Chromium, Firefox and WebKit at desktop and 390px, including intelligible invalid-login guidance with no internal diagnostics. It also exposed that the member-login registration affordance reaches `programme#register` with no visible registration controls and that no reset affordance is discoverable from the login surface. Those remain in-scope Gate 1 gaps; no row is promoted from the browser harness alone.
-- Locked closures remain G2-006 duration/session quality, G5-008/B06 HQ operation, G1-010/M05/G5-011 security/privacy, G5-007/B07 Watchtower, G4-004 Knowledge flywheel, M03 Radar, M07 structured runtime and B03 9/9 behaviour.
+## Monotonic recovery rule
+Recovery state is monotonic unless a later commit contains explicit regression evidence. Before accepting any checkpoint as authority:
+1. resolve current `main` SHA;
+2. verify the proposed evidence commit is an ancestor of current main;
+3. read the current remediation matrix and evidence ledger rather than a stale recovery file;
+4. never reduce PASS or demonstrated content evidence merely because an older branch/checkpoint is encountered;
+5. any deliberate downgrade must name the exact regression, failing unchanged proof and fixing PR.
 
-## Grub factory
-Short-term authored target **2,500** is exceeded; long-term minimum remains **10,000+ quality objects**.
+Direct connector/tooling probe writes to `main` are forbidden. All exploratory writes must use a disposable/non-main branch. Main source changes require an intentional PR/merge or an explicitly constructed commit whose complete diff is understood and regression-gated.
 
-Current structured universe: **2,908 authored** = 2,876 industrial + 32 existing structured.
+## Current earned closures
+Latest original row closure is **G1-007** through merged PR #129 and retained rendered production evidence. Locked PASS rows include G1-005/006/007/010/011, G2-005/006/008/010, G4-001/002/003/004/005/006/007, G5-004/006/007/008/009/010/011 as represented by the current 57-row matrix.
+
+## Grub factory — current retained evidence
+Structured universe: **2,908 authored = 2,876 industrial + 32 existing structured**.
 - Industrial schema-valid: **2,876 / 2,876**.
-- Full-catalogue canonical decisions: **104**, with **96 exercised** by the current catalogue.
-- Governed shared canonical proxy approvals: **62** = 28 high-confidence + 34 medium-confidence; every approved proxy retains its basis/limitations in ingredient-level evidence.
-- Governed CoFID 2021 ingredient-level validation: **1,503 industrial recipes**.
-- Current calculated risk wave: **1,503 LOW / 0 MEDIUM / 0 HIGH**.
-- **1,373** remain quarantined rather than receiving fabricated precision.
-- Every validated recipe remains a draft behind the real `second_person_content_review` barrier; canonical mapping approval is not silently treated as content review.
-- Independently reviewed / published / production-served: **1 / 1 / 1**.
-- Existing bloke-friendly breadth includes breakfast butties/wraps/hashes, proper lunches/dinners, fakeaways, burgers/kebabs/loaded fries/pizza and treat/snack families; authored catalogue contains **612 fakeaway/treat-tagged objects**.
-
-Highest-unlock remaining ingredient/family blockers include `toasted oat crunch` (102), `light peppercorn sauce` (72), `chicken sausages` (68), `buffalo hot sauce` (60), then several 48-object seasoning/sauce families including Cajun seasoning, chipotle salsa, garlic herb sauce, reduced-salt teriyaki sauce, hoisin-style sauce and lemon herb sauce. M11 remains AMBER until independent review/publication/production-serving breadth genuinely scales.
-
-Authored-capacity diversity only, not commissioned diversity: 0 exact repeats across 30/60/90/365-day simulations.
+- Merged PR #123 and retained review artifact prove **2,876 / 2,876 nutrition-valid LOW-risk**, **0 nutrition quarantine**.
+- Ingredient-level evidence retains CoFID identity, converted grams, mapping state, methodology/provenance and precision/limitations.
+- Independent editorial review remains a real publication barrier.
+- Review workload is compressed into **101 immutable canonical review templates** with per-recipe content hashes; any descendant edit changes the digest and requires re-review.
+- Merged PR #128 adds full-catalogue semantic/quality validation and repairs duplicate ingredient/title/family defects rather than weakening gates.
+- Authoritative independently reviewed / published / production-served remains **1 / 1 / 1** until second-person decisions are recorded and propagated.
+- M11 remains AMBER for review/publication/production-serving breadth, not nutrition coverage.
 
 ## Fit factory
-Current structured universe: **2,500 authored** = 2,468 industrial + 32 existing structured.
-- Industrial schema-valid: **2,468 / 2,468**.
-- Canonical movement families/specifications: **44**.
-- Industrial protocol objects with stable canonical visual metadata bindings: **2,244 / 2,468**.
-- Deterministic technical/protocol validation covers the industrial set.
-- Existing member/domain-QA visual / reviewed / published / production-served: **3 / 3 / 3 / 3**.
-- Critical truth boundary: the industrial objects reference `assets/fit/shift-fit-industrial-v3.svg#<canonical>`, but that consolidated 44-family rendered asset does not currently exist in `main`. The 2,244 figure is therefore inheritance/specification readiness, not rendered visual completion or anatomical approval. M12 remains AMBER.
-
-The next Fit action is not more exercise authoring. It is to produce the real 44 canonical movement visuals, expose them in one rapid domain-review surface, obtain movement-accuracy approval once per canonical family, then propagate approval only to legitimately bound protocol descendants.
+Structured universe: **2,500 authored = 2,468 industrial + 32 existing structured**.
+- 44 canonical movement families/specifications.
+- 2,244 / 2,468 industrial objects have stable canonical visual metadata bindings and deterministic protocol checks.
+- Critical blocker: descendants reference `assets/fit/shift-fit-industrial-v3.svg#<canonical>` but that consolidated 44-family rendered asset is absent from current main. Metadata readiness is not anatomical/member visual QA.
+- Existing genuine member/domain-QA / reviewed / published / production-served remains **3 / 3 / 3 / 3**.
+- Next Fit action is to create the real 44-family visual set plus a single review surface ordered by descendant unlock, then propagate approved families to eligible descendants.
 
 ## Dave / B08
-Authoritative evidence coverage remains **15/20 non-duplicated legs = 75%**. Proven legs include discovery/trust/Core, anonymous boundaries, Today, Grub, Fit, Hydration, Progress, Progress Picture, Shift AI, preference learning, leave/return and changed recommendation.
+Authoritative coverage remains **15 / 20 = 75%**. Public registration/recovery affordances and rendered failure handling are now proven, but real-inbox registration/verification/recovery, authenticated rendered/mobile acceptance and external treatment support remain distinct unresolved legs.
 
-Still unresolved: real-inbox registration, real-inbox verification, rendered/mobile authenticated acceptance, real-inbox recovery and partner-dependent treatment support. B08 stays AMBER.
+## Current defects exposed by rendered acceptance
+Authenticated/session-state journey failure; Progress horizontal overflow (~20px); mobile pointer interception involving navigation/cookie UI. These remain in G1-009/M01/M06/M10/B08 and must be fixed/re-run rather than hidden by public-browser success.
 
-## Remaining human/external boundary
-Human/device: B01 real reset inbox-token chain; M09 real verification inbox click/login; rendered/mobile/cross-browser release-candidate acceptance; eventual movement/domain judgement of real Fit visual assets once those assets exist.
+## Human/external boundary
+Human/device: B01 real reset inbox-token chain; M09 real verification inbox click/login; final authenticated/mobile release acceptance; eventual movement/domain judgement of the real 44-family Fit visual pack.
+External BLOCKED: exactly G5-001, G5-002, G5-003.
 
-External BLOCKED remain exactly G5-001, G5-002 and G5-003.
-
-## Active non-content swarm
-B05 public trust; B08 Dave; M01 premium/mobile; M04 analytics; M06 accessibility/performance; M08 evidence/recovery; M09/M10 rendered/inbox closure; M13 Progress; M17 sceptical-customer/Numan. Locked PASS rows must not be reopened without genuine regression evidence.
+## Active swarm
+M11 independent Grub review/publication/serving conversion; M12 real Fit visuals/domain QA/publication; G1-009 authenticated rendered defects; B05; B08; M01; M04; M06; M08-M13; M17. Human/device/external waits never queue independent work.
 
 ## Exact next actions
-1. **Gate 1:** repair/discoverably surface the existing registration and password-recovery journeys from the member login entry surface, then rerun the unchanged Chromium/Firefox/WebKit desktop/mobile rendered sweep. Leave real inbox clicks human rather than synthesising them.
-2. **Gate 2 / Grub:** continue highest-unlock canonical ingredient/family decisions through the remaining 1,373 quarantine; rerun all 2,876 after every systemic wave. In parallel, reduce the second-person content-review hand brake with a governed batch-review pack/process rather than bypassing it.
-3. **Gate 2 / Fit:** treat the missing 44-family rendered asset as a real product defect. Build the actual canonical visual set/review surface first; do not call metadata bindings visual approval.
-4. **Gate 3:** execute systemic premium/mobile/accessibility evidence against the homepage design constitution rather than page-by-page cosmetic drift.
-5. **Gate 4/5:** continue B05/M04/M06/M13/M17 and Dave independently; do not queue them behind content conversion or human inbox/device steps.
-6. Reconcile matrix/ledger/launch board to the proven 1,503/1,373 Grub state without changing the 22/32/3 audit count.
+1. Protect recovery/source integrity with a CI gate that fails stale recovery heads, scoreboard regressions and known-good source hash drift.
+2. Convert the 101 Grub canonical review templates into the smallest legitimate second-person decision pack and propagate decisions without row-by-row review.
+3. Build the actual 44-family Fit rendered review pack; do not call metadata visual approval.
+4. Fix authenticated rendered session/overflow/mobile interception defects and rerun Chromium/Firefox/WebKit desktop + 390px acceptance.
+5. Run accessibility/performance and M17/B05 quick-kill lanes concurrently.
 
-Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+Operating rule: **RECOVER LATEST -> PROTECT STATE -> CONVERT -> PROVE -> CLOSE -> CONTINUE.**
