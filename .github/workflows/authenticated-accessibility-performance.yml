@@ -1,0 +1,41 @@
+name: Authenticated Accessibility Performance
+on:
+  pull_request:
+    paths:
+      - 'v1-authenticated-accessibility-performance-production.mjs'
+      - '.github/workflows/authenticated-accessibility-performance.yml'
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  authenticated-estate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - run: npm install --no-save --ignore-scripts playwright && npx playwright install --with-deps chromium
+      - name: Run authenticated member accessibility/performance acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+        run: node v1-authenticated-accessibility-performance-production.mjs
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: authenticated-accessibility-performance-evidence
+          path: v1-auth-ap-evidence
+          if-no-files-found: warn
+          retention-days: 14
