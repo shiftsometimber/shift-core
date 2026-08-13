@@ -118,4 +118,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. `PASS + AMBER + BLOCKED = 25 + 29 + 3 = 57`.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 25. AMBER rows: 29. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
