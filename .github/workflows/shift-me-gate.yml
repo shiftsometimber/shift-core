@@ -1,0 +1,33 @@
+name: Shift Me Source and Privacy Gate
+on:
+  pull_request:
+    paths:
+      - 'shift-me-v1.js'
+      - 'shift-me-source-gate.mjs'
+      - 'worker-entry-shift-me-v1.js'
+      - 'wrangler-shift-me.jsonc'
+      - 'frontend/member/shift-me-api-v1.js'
+      - '.github/workflows/shift-me-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'shift-me-v1.js'
+      - 'shift-me-source-gate.mjs'
+      - 'worker-entry-shift-me-v1.js'
+      - 'wrangler-shift-me.jsonc'
+      - 'frontend/member/shift-me-api-v1.js'
+      - '.github/workflows/shift-me-gate.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  shift-me-source-privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Run Shift Me source/privacy contract
+        run: node shift-me-source-gate.mjs
