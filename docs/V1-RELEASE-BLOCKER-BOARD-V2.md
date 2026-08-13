@@ -2,13 +2,13 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 23 AMBER rows / 7 active shared clusters.**
-**A CLOSED: 4 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system.**
+**A — V1 RELEASE BLOCKERS: 22 AMBER rows / 7 active shared clusters.**
+**A CLOSED: 5 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 fresh unattended synthetic Dave release gate.**
 **B — POST-LAUNCH HARDENING: 3 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
-G1-001, G1-003, G1-004, G1-012, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery alone.
+G1-001, G1-003, G1-004, G5-013. Real registration/verification/login/session/recovery/logout-return and complete Dave acceptance remain. **G1-012 is PASS:** dedicated production run `31747265458`, job `94607793129`, executed every currently automatable Dave lane afresh in one unattended release job, including isolated authenticated state, onboarding, leave/return retention, Grub/Fit learning, Hydration/My Plans, Progress Picture and Shift AI/provenance. Retained artifact `9199902642` (SHA-256 `6be215940c2c47ca13bdaa5212d9df7eed307dda79156bfff6ff0e9b095d39c2`). Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery or synthetic evidence alone; partner treatment support remains external.
 
 ## A2 Authenticated rendered/mobile premium estate
 G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-008 and G1-009 are PASS:** production serves the Git-authoritative Fit adapter and unchanged desktop + 390px state-system acceptance proved empty states, explicit loading, locked build actions, HTTP-successful Grub/Fit generation, visibly rendered returned outcomes, settled completion and zero document-root overflow. Cross-browser/mobile routing and geometry remain production-green. Remaining closure is premium shell/navigation/footer/forms/Progress Picture/member IA and final physical-device hostile acceptance; do not reopen G1-008/G1-009 without genuine regression evidence.
@@ -20,7 +20,7 @@ G2-001, G4-008. Coherent premium daily orchestration across available non-clinic
 G2-002, G2-003, G2-004. V1 critical-path cohort is now **783 clean recipes behind 8 regenerated immutable editorial decisions** after the systemic humanness repair. Nutrition remains 2,876/2,876 valid with zero nutrition quarantine; the launch cohort preserves zero exact repeats through 30/60/90 days under deterministic 25% Nay pressure. The exact 8-decision -> 783-descendant propagation barrier is regression-protected on main. Remaining closure is real second-person PASS decisions -> publication -> production serving of the approved cohort, followed by proof that the served member path preserves exact nutrition, quality and diversity.
 
 ## A5 Fit serious launch cohort
-G2-007. V1 critical-path cohort remains **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. Genuine replacement production has started with a movement-specific START -> MOVE -> FINISH `sit-to-stand` candidate; candidate production is not acceptance. Remaining closure is premium explanatory visual/domain/member-comprehension PASS decisions -> publication/propagation -> production serving.
+G2-007. V1 critical-path cohort remains **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. All 26 premium replacement candidates have now been produced and technically QA'd; candidate production/technical QA is not domain acceptance. Remaining closure is premium explanatory visual/domain/member-comprehension PASS decisions -> publication/propagation -> production serving.
 
 ## A6 Progress core
 G2-011, G2-012. Whole-person Progress story plus controlled kg/stone-lb and metric UX.
