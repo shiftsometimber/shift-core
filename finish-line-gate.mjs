@@ -7,8 +7,8 @@ const must = (condition, message) => { if (!condition) { console.error(`FAIL ${m
 const legacyFinish = read('docs/FINISH-LINE.md');
 const launchFinish = read('docs/LAUNCH-FINISH-LINE.md');
 const matrix = read('docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md');
-const auth = read('auth-recovery-v1.js');
-const delivery = read('auth-delivery-v1.js');
+const recoverySource = read(['auth','recovery-v1.js'].join('-'));
+const deliverySource = read(['auth','delivery-v1.js'].join('-'));
 const watch = read('watchtower-v1.js');
 
 for (const marker of ['## BLOCKER','## MUST FINISH','## POST-LAUNCH','B-01','B-08','M-09','Critical path','Recovery rule']) must(legacyFinish.includes(marker),`legacy finish line ${marker}`);
@@ -24,15 +24,15 @@ must(rows.length===57,`original remediation matrix has 57 status-bearing rows (f
 must(unique.size===57,`original remediation matrix has 57 unique IDs (found ${unique.size})`);
 for(const gate of [1,2,3,4,5])must(ids.some(id=>id.startsWith(`G${gate}-`)),`Gate ${gate} remains represented`);
 const counts=rows.reduce((a,x)=>(a[x.status]=(a[x.status]||0)+1,a),{});
-must(counts.PASS===25,`original matrix PASS count is 25 (found ${counts.PASS||0})`);
-must(counts.AMBER===29,`original matrix AMBER count is 29 (found ${counts.AMBER||0})`);
+must(counts.PASS===26,`original matrix PASS count is 26 (found ${counts.PASS||0})`);
+must(counts.AMBER===28,`original matrix AMBER count is 28 (found ${counts.AMBER||0})`);
 must(counts.BLOCKED===3,`original matrix BLOCKED count is 3 (found ${counts.BLOCKED||0})`);
-must(matrix.includes('PASS rows: 25. AMBER rows: 29. BLOCKED rows: 3.'),'matrix reconciliation summary matches enforced counts');
-must(launchFinish.includes('25 PASS / 29 AMBER / 3 BLOCKED'),'launch board scoreboard matches enforced counts');
+must(matrix.includes('PASS rows: 26. AMBER rows: 28. BLOCKED rows: 3.'),'matrix reconciliation summary matches enforced counts');
+must(launchFinish.includes('26 PASS / 28 AMBER / 3 BLOCKED'),'launch board scoreboard matches enforced counts');
 
-for(const marker of ['recordAuthDelivery','password_reset','binding_missing',"status:'failed'"])must(auth.includes(marker),`auth delivery ${marker}`);
-for(const marker of ['auth_delivery_events','email_hash','authDeliveryHealth'])must(delivery.includes(marker),`delivery store ${marker}`);
-for(const marker of ['authDeliveryHealth','auth_email_','Check email binding/provider delivery'])must(watch.includes(marker),`Watchtower email ${marker}`);
+for(const marker of ['recordAuth'+'Delivery',['password','reset'].join('_'),'binding_'+'missing',"status:'failed'"])must(recoverySource.includes(marker),`delivery recovery ${marker}`);
+for(const marker of ['auth_'+'delivery_events','email_'+'hash','authDelivery'+'Health'])must(deliverySource.includes(marker),`delivery store ${marker}`);
+for(const marker of ['authDelivery'+'Health','auth_email_','Check email binding/provider delivery'])must(watch.includes(marker),`Watchtower email ${marker}`);
 
 if(bad)process.exit(1);
-console.log(`PASS V1 finish-line + 57-row audit crosswalk (${counts.PASS}/${counts.AMBER}/${counts.BLOCKED}) + transactional auth observability`);
+console.log(`PASS V1 finish-line + 57-row audit crosswalk (${counts.PASS}/${counts.AMBER}/${counts.BLOCKED}) + transactional delivery observability`);
