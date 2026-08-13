@@ -18,11 +18,13 @@ import {handleCommissioningIdentity} from './commissioning-identity-v1.js';
 import {handleEmailVerification} from './auth-email-verification-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
 import {memberContrastStatic} from './member-contrast-static-v1.js';
+import {fastMemberRegister} from './member-register-fastpath-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path.startsWith('/v1/auth/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
+async function registerCore(request,env,ctx){return (await fastMemberRegister(request,env))||hq.fetch(request,env,ctx);}
 
 export default {
   async fetch(request,env,ctx){
@@ -36,7 +38,7 @@ export default {
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
     const commissioningOps=await commissioningOpsRoutes(request,env);if(commissioningOps)return commissioningOps;
-    const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
+    const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,registerCore);
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
 
     const emailVerification=await handleEmailVerification(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
@@ -45,6 +47,7 @@ export default {
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
 
+    const fastRegistration=await fastMemberRegister(request,env);if(fastRegistration)return withMemberCors(fastRegistration,request);
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
     const visualise=await shiftVisualiseV2Routes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
     const brain=await shiftBrainRoutes(request,env,ctx); if(brain)return withMemberCors(brain,request);
