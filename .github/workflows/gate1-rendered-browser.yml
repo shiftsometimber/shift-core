@@ -7,6 +7,7 @@ on:
       - 'gate1-state-system-production.mjs'
       - 'gate1-fit-network-diagnostic.mjs'
       - 'v1-accessibility-performance-production.mjs'
+      - 'existing-member-browser-closure.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
@@ -97,6 +98,16 @@ jobs:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           RENDER_EVIDENCE_DIR: render-evidence
         run: node gate1-rendered-browser-production.mjs
+      - name: Run existing-member Progress + authenticated accessibility closure
+        run: node existing-member-browser-closure.mjs
+      - name: Upload existing-member closure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: existing-member-browser-closure-evidence
+          path: existing-member-browser-closure-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Upload rendered evidence
         if: always()
         uses: actions/upload-artifact@v4
