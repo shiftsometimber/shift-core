@@ -1,15 +1,17 @@
 /* Shift V1 P0 member-shell repair — authoritative source.
-   Fixes Ask Timber closed-drawer scroll overflow without globally hiding page overflow. */
+   Closed Ask Timber must contribute zero layout/scroll geometry. Do not mask page overflow globally. */
 .ask-drawer{
   width:min(430px,100vw)!important;
   max-width:100vw!important;
-  transform:translateX(100%)!important;
+  display:none!important;
+  transform:none!important;
   visibility:hidden!important;
   pointer-events:none!important;
   overflow:hidden!important;
   contain:layout paint!important;
 }
 .ask-drawer.open{
+  display:flex!important;
   transform:translateX(0)!important;
   visibility:visible!important;
   pointer-events:auto!important;
@@ -23,3 +25,35 @@
 }
 .ask-drawer .ask-body{overflow-x:hidden!important;overflow-y:auto!important}
 .ask-drawer .ask-input textarea{min-width:0!important;max-width:100%!important}
+
+/* Post-deployment RC P0: the premium member hero owns a decorative ::after circle.
+   Clip that decoration locally so it cannot inflate documentElement.scrollWidth. */
+.mp-hero{
+  overflow:hidden!important;
+  max-width:100%!important;
+  min-width:0!important;
+}
+
+/* Mobile member navigation and product tabs are intentionally horizontally scrollable.
+   Keep their nowrap descendants inside the local scroll container rather than allowing
+   their scrollable overflow to propagate to the document root. */
+@media(max-width:1000px){
+  .member-side{
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    contain:layout paint!important;
+    overscroll-behavior-x:contain;
+  }
+}
+@media(max-width:640px){
+  .mp-tabs{
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    contain:layout paint!important;
+    overscroll-behavior-x:contain;
+  }
+}
