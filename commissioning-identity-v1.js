@@ -23,7 +23,7 @@ export async function handleCommissioningIdentity(request,env,ctx,next){
   const userId=Number(data?.user?.id||0);if(!userId)return response;
   const stamp=new Date().toISOString();
   const ops=[env.DB.prepare('UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=?').bind(stamp,stamp,userId),env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,'auth.commissioning_identity_verified','user',String(userId),JSON.stringify({issuer:identity.claims.iss,repository:identity.claims.repository,workflow_ref:identity.claims.workflow_ref,actor_id:identity.claims.actor_id}))];
-  try{await env.DB.batch(ops)}catch(e){console.warn('commissioning_identity_post_verify_warning',e?.message)}
+  try{if(typeof env.DB.batch==='function')await env.DB.batch(ops);else for(const op of ops)await op.run()}catch(e){console.warn('commissioning_identity_post_verify_warning',e?.message)}
   const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');
   return new Response(JSON.stringify({...data,emailVerified:true,verificationRequired:false,commissioningIdentity:'github_actions_oidc'}),{status:response.status,headers});
 }
