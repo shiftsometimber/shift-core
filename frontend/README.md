@@ -27,15 +27,18 @@ The retained source-capture artifact is `gate1-live-static-source-evidence`, art
 
 `member/member-p0-v1.css` fixes the real horizontal-overflow root cause: the closed Ask Timber drawer's static children remained scroll-overflow contributors after their fixed parent was translated off-screen. The repair contains/clips the drawer while closed, gives its children an explicit shrinkable 100% width, and enables pointer events only when the drawer is open. It deliberately does **not** apply a global `overflow-x:hidden` mask.
 
+`member/api-adapter-v33d.js` is now also release-critical Git authority. Ordinary member API calls retain the finite 15-second client budget, while Fit generation alone receives a finite 60-second client budget because demonstrated production generation can legitimately take materially longer than 15 seconds. Do not widen the ordinary request budget or remove the finite Fit failure boundary.
+
 ## Build / deploy / rollback rule
 
 The Git commit is the release identity. Production deployment must publish these files unchanged at their root production paths:
 
 - `frontend/member/member-shell-v33g.js` -> `/member-shell-v33g.js`
 - `frontend/member/member-p0-v1.css` -> `/member-p0-v1.css`
+- `frontend/member/api-adapter-v33d.js` -> `/api-adapter-v33d.js`
 
-A deployment is accepted only when live SHA/content checks match the Git commit and the unchanged authenticated six-case rendered RC passes Chromium, Firefox and WebKit at desktop and 390px.
+A deployment is accepted only when live SHA/content checks match the Git commit and the unchanged authenticated rendered RC passes at the required browser/device boundary. For G1-008 specifically, the production adapter must show `GENERATION_TIMEOUT=60000` and `generateFit(...timeout:GENERATION_TIMEOUT)` before any rendered Fit success can be accepted; source-green with a stale 15-second live adapter is an explicit deployment failure, not PASS.
 
-Rollback target for this P0 is the retained pre-change production source capture above. Never reconstruct a rollback from memory or an unversioned local copy.
+Rollback target for the original P0 shell/CSS repair is the retained pre-change production source capture above. For later release-critical frontend files, retain the exact pre-change live capture before deployment and use that captured source as rollback authority. Never reconstruct a rollback from memory or an unversioned local copy.
 
 The public estate must not be bulk-overwritten from RC2: this recovery establishes authority for the member frontend while retaining any independent later public-site changes.
