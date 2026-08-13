@@ -9,7 +9,7 @@ const OUT=process.env.STATE_EVIDENCE_DIR||'state-system-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
-const report={proof:'G1_008_FIT_NETWORK_DIAGNOSTIC_V2_CLIENT_VS_BACKEND',events:[],console:[],pageErrors:[],requestFailures:[],auth:null,ui:null,result:null,directReplay:null};
+const report={proof:'G1_008_FIT_NETWORK_DIAGNOSTIC_V3_CLIENT_SOURCE',events:[],console:[],pageErrors:[],requestFailures:[],auth:null,ui:null,result:null,directReplay:null,liveClient:null};
 const write=()=>fs.writeFileSync(`${OUT}/fit-network-diagnostic.json`,JSON.stringify(report,null,2));
 const email=`shiftsometimber+structured-g1fitdiag-${Date.now()}@gmail.com`;
 const password=`Sst-${randomUUID()}-Aa1!`;
@@ -36,6 +36,19 @@ try{
   if(!auth.loginOk||!auth.stateOk||!report.auth.sessionCookie)throw new Error(`diagnostic auth failed ${JSON.stringify(report.auth)}`);
 
   await page.goto(`${SITE}/member/dashboard`,{waitUntil:'domcontentloaded',timeout:45000});
+  const liveClient=await page.evaluate(async()=>{
+    const scripts=[...document.scripts].map(s=>s.src).filter(Boolean);
+    const target=scripts.find(src=>/member-product-v33d\.js/i.test(src))||scripts.find(src=>/member-product/i.test(src))||null;
+    if(!target)return{target:null,error:'member product script not found',scripts};
+    try{const r=await fetch(target,{cache:'no-store'});return{target,status:r.status,ok:r.ok,text:await r.text(),scripts}}catch(e){return{target,error:String(e?.message||e),scripts}}
+  });
+  if(liveClient?.text){
+    fs.writeFileSync(`${OUT}/member-product-live.js`,liveClient.text);
+    const lines=liveClient.text.split(/\r?\n/),hits=[];
+    for(let i=0;i<lines.length;i++)if(/AbortController|abort\(|15000|15_000|setTimeout|fit\/plan|fitGenerate/i.test(lines[i]))hits.push({line:i+1,text:lines[i].slice(0,1200)});
+    report.liveClient={target:liveClient.target,status:liveClient.status,ok:liveClient.ok,bytes:Buffer.byteLength(liveClient.text),hits:hits.slice(0,120)};
+  }else report.liveClient={target:liveClient?.target||null,error:liveClient?.error||'source capture failed',scripts:liveClient?.scripts||[]};
+
   const fitNav=page.getByRole('button',{name:/^fit$/i}).first();
   const fitLink=page.getByRole('link',{name:/^fit$/i}).first();
   const fitText=page.getByText(/^fit$/i).first();
