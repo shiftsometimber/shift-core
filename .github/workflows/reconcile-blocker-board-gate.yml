@@ -1,0 +1,44 @@
+name: Reconcile Blocker Board Gate
+on:
+  push:
+    branches: [reconcile/g1-012-dave-pass]
+    paths:
+      - '.github/workflows/reconcile-blocker-board-gate.yml'
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: reconcile/g1-012-dave-pass
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Align blocker-board guard with earned state
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs'),p='release-blocker-board-gate.mjs';let s=fs.readFileSync(p,'utf8');
+          const swaps=[
+            ['A — V1 RELEASE BLOCKERS: 23','A — V1 RELEASE BLOCKERS: 22'],
+            ['A CLOSED: 4','A CLOSED: 5'],
+            ["'A=23','B=3','C=3','AUDIT_PASS=28','AUDIT_AMBER=26','AUDIT_BLOCKED=3'","'A=22','B=3','C=3','AUDIT_PASS=29','AUDIT_AMBER=25','AUDIT_BLOCKED=3'"],
+            ['expected 23 release AMBER + 3 post-launch AMBER + 3 external + 4 explicitly retained Category-A closed rows + G2-009 retained PASS','expected 22 release AMBER + 3 post-launch AMBER + 3 external + 5 explicitly retained Category-A closed rows + G2-009 retained PASS'],
+            ['PASS V1 blocker board: 4 Category-A blockers closed; 23 release-blocking AMBER / 3 post-launch AMBER / 3 external; audit 28 PASS / 26 AMBER / 3 BLOCKED; G1-008 and G2-009 retained as evidenced PASS.','PASS V1 blocker board: 5 Category-A blockers closed; 22 release-blocking AMBER / 3 post-launch AMBER / 3 external; audit 29 PASS / 25 AMBER / 3 BLOCKED; G1-008, G1-012 and G2-009 retained as evidenced PASS.']
+          ];
+          for(const [a,b] of swaps){if(!s.includes(a))throw new Error(`anchor missing ${a}`);s=s.replace(a,b)}
+          fs.writeFileSync(p,s);
+          NODE
+          node release-blocker-board-gate.mjs
+          git diff --check
+      - name: Commit guard and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name shiftsometimber
+          git config user.email shiftsometimber@gmail.com
+          git add release-blocker-board-gate.mjs
+          git rm .github/workflows/reconcile-blocker-board-gate.yml
+          git commit -m 'Reconcile blocker-board guard to A22 and 29/25/3'
+          git push origin HEAD:reconcile/g1-012-dave-pass
