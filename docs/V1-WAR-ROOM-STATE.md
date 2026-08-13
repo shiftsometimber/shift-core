@@ -1,42 +1,30 @@
 # V1 War Room State
 
-Authoritative audit is now **25 PASS / 29 AMBER / 3 BLOCKED**. No row is promoted without completed journey evidence.
+Authoritative audit is now **26 PASS / 28 AMBER / 3 BLOCKED**. No row is promoted without completed journey evidence.
 
-Operational release board is now **25 Category-A release-blocking AMBER rows; 4 Category-B post-launch AMBER rows; 3 Category-C external rows**. **2 Category-A blockers are closed: G5-005 public trust and G1-002 production email binding/delivery.** The audit is the evidence truth; this board is the release critical path.
+Operational release board is now **24 Category-A release-blocking AMBER rows; 4 Category-B post-launch AMBER rows; 3 Category-C external rows**. **3 Category-A blockers are closed: G5-005 public trust, G1-002 production email binding/delivery and G1-009 authenticated cross-browser/mobile regression acceptance.** The audit is the evidence truth; this board is the release critical path.
 
-Current main includes PR #149 systemic Grub/Fit humanness repair and PR #152 authoritative member-frontend source recovery/P0 source fix.
+Current main includes PR #149 systemic Grub/Fit humanness repair, PR #152 authoritative member-frontend source recovery and PR #154 final Gate 1 member geometry repair.
 
 ## A1/A2 — authenticated Dave / rendered premium
 
-Authentication/session establishment remains locked GREEN unless the unchanged RC materially regresses.
+Authentication/session establishment remains locked GREEN unless genuine regression evidence appears.
 
-The historical production failure is the shared authenticated horizontal overflow: **20px desktop / 88px at 390px** across Today, Grub, Fit, Progress and Shift AI, plus `#sstMemberNotice` pointer interception and an authenticated My Shift destination resolving to the sign-in front door.
+**G1-009 is CLOSED / PASS.** After the RC3 root-flat frontend was deployed, unchanged production run `31689802921`, authenticated-rendered job `94426973527`, first fingerprinted the live member P0 stylesheet and shell and then passed the full Chromium/Firefox/WebKit × desktop/390px authenticated matrix.
 
-RC2 source recovery is now reconciled rather than blindly redeployed. Retained production capture from Gate 1 run `31680649245` at `2026-08-13T08:07:13Z` proves:
+All six cases demonstrated registration 201, sign-in 200, session cookie receipt and authenticated member-state 200. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI all remained on the live extensionless member estate. Every tested route completed with document width equal to viewport width: 1440/1440 desktop and 390/390 mobile, zero document-root horizontal overflow.
 
-- `styles.css` is byte-identical to RC2, SHA-256 `82fd211e9031ca72793980d7e62ce001a4855ea14bcd8054d4dde82872a796f3`;
-- `member-product-v33d.css` is byte-identical, SHA-256 `82ba0f98794aef07de4add8345c8897adbe0048f5b9b5485581ad678f1ae883e`;
-- `one-shift-v34.css` is byte-identical, SHA-256 `c70dd3ae89f268a909e92fc115f20377bdf652c31a6963ac5a6f336747425c8a`;
-- the captured dashboard differs from RC2 only by Cloudflare runtime email-obfuscation markup/script injection, not a later Shift product/source change;
-- retained capture artifact: `gate1-live-static-source-evidence`, ID `9173318023`, digest `sha256:199340cdcb94f8f7922fcbc8121963c24732ca35641531a49f46df06678b5bd7`.
+The final source repair uses local containment only. No global `overflow-x:hidden` mask or softened acceptance was introduced. The earlier `.html` routing regression is gone.
 
-The retained overflow diagnostic identifies the actual root cause: the closed fixed Ask Timber drawer is translated off canvas while its static `.ask-head`, `.ask-body` and `.ask-input` descendants remain document scroll-overflow contributors. It is not a member-grid width problem.
+Remaining A1/A2 work is deliberately narrower: real reset/verification inbox token lifecycles; explicit rendered loading/empty/success acceptance; premium shell/navigation/footer/forms/Progress Picture/member IA review; accessibility/performance; fresh unassisted Dave; final physical-device hostile acceptance. Do not reopen G1-009 without genuine regression evidence.
 
-PR #152 is merged and establishes `frontend/` as the authoritative release-critical member frontend source. The source repair:
-
-1. contains/clips the closed Ask Timber drawer, caps it to viewport width and disables closed-state pointer events without globally masking page overflow;
-2. keeps the open drawer interactive;
-3. makes `#sstMemberNotice` non-blocking and removes it after successful session verification;
-4. normalises authenticated `My Shift` links to `/member/dashboard.html` while leaving the 401 session guard unchanged;
-5. adds a permanent source gate. Source gate, whole-estate route sweep and master integration are GREEN.
-
-**Production deployment is still required before G1-009 or any shared premium rows can close.** This execution environment has GitHub write authority but no connected Cloudflare Pages write action/token, so it cannot truthfully claim the static production deployment. A deployment-ready reconciled full-site package was built locally as `ShiftSomeTimber-V3.4B-ONE-SHIFT-RC2-P0-FIXED.zip`; the production deployment must publish the exact Git-authoritative member source, then the unchanged Chromium/Firefox/WebKit × desktop/390 RC must rerun.
+A separate direct-overflow diagnostic workflow received `commissioning_identity_rejected` because its workflow path is not in the production commissioning-identity allowlist. This is a diagnostic-tool authorization gap, not member-auth failure, and does not supersede the successful unchanged rendered RC.
 
 ## Permanent member-facing standard — humanness
 
-Matt's 2026-08-13 acceptance return remains authoritative human evidence: **11/11 Grub launch decisions = FIX** and **26/26 Fit launch decisions = FIX**. FIX means systemic generator/canonical repair and regeneration, not catalogue deletion or descendant-by-descendant rewriting.
+Matt's 2026-08-13 first acceptance return remains authoritative human evidence: **11/11 Grub launch decisions = FIX** and **26/26 Fit launch decisions = FIX**. FIX means systemic generator/canonical repair and regeneration, not catalogue deletion or descendant-by-descendant rewriting.
 
-PR #149 makes **THE MEMBER MUST NEVER FEEL THE MACHINE** a permanent commissioning rule. The dedicated automated humanness gate is GREEN: **992 Grub descendants / 0 automated failures** and **26/26 Fit launch canonical coaching families / 0 failures**. Automated heuristics do not replace human/domain acceptance.
+PR #149 makes **THE MEMBER MUST NEVER FEEL THE MACHINE** a permanent commissioning rule. The automated humanness gate remains GREEN: **992 Grub descendants / 0 automated failures** and **26/26 Fit launch canonical coaching families / 0 failures**. Automated heuristics do not replace human/domain acceptance.
 
 ## A4 — Grub launch cohort
 
@@ -46,21 +34,20 @@ Systemic humanness regeneration remains green:
 - **0 nutrition quarantine**;
 - **2,696 editorial-ready**;
 - **180 semantic quarantine**;
-- **99** clean-universe aggregate review groups;
 - serious V1 launch cohort **783 clean recipes / 8 immutable aggregate decisions**;
 - breakfast **212** / lunch **204** / dinner **180** / snack **187**;
 - deterministic 25% Nay pressure leaves **161 / 165 / 135 / 142** eligible respectively;
 - **0 exact repeats at 30, 60 or 90 days**.
 
-The prior 11 FIX decisions are consumed. The regenerated 8 immutable aggregate digests require fresh second-person PASS/FIX/REJECT before reviewed -> published -> production-served can be claimed.
+The prior 11 FIX decisions are consumed. The regenerated 8 immutable aggregate digests require fresh second-person PASS/FIX/REJECT before reviewed -> published -> production-served can be claimed. Current launch state remains 0 approved / 0 published / 0 served at 783 breadth.
 
 ## A5 — Fit launch cohort
 
-The serious V1 cohort remains **26 canonical families / 1,326 eligible protocol descendants** with 36 sessions / 180 prescribed slots / 180 unique objects / 0 exact repeats / all 26 families / no consecutive canonical repetition.
+The serious V1 cohort remains **26 canonical families / 1,326 eligible descendants** with 36 sessions / 180 prescribed slots / 180 unique objects / 0 exact repeats / all 26 families / no consecutive canonical repetition.
 
 All **26/26 canonical coaching families are systemically repaired** with movement-specific instruction, expected sensation, warning sensation, regression, progression and equipment context.
 
-The previous 44-family schematic SVG remains **legacy candidate only** and cannot receive V1 visual PASS. Premium replacement visual production/domain acceptance/publication/serving remains open.
+The 26-family rendered visual review cohort is candidate anatomy only. The previous 44-family schematic artwork remains **legacy candidate only** and cannot receive V1 visual PASS. Premium replacement visual/domain acceptance/publication/serving remains open at 0/26 approved.
 
 ## A7 — public trust
 
@@ -68,19 +55,22 @@ The previous 44-family schematic SVG remains **legacy candidate only** and canno
 
 ## Quick-kill lane
 
-**G1-002 is now CLOSED / PASS** from real connected-inbox production evidence: genuine Welcome and Reset emails reached the commissioning Gmail inbox. Adjacent token-click lifecycle rows remain AMBER and are not being collapsed into this closure.
+**G1-002 CLOSED / PASS** from real connected-inbox production evidence: genuine Welcome and Reset emails reached the commissioning Gmail inbox. Adjacent token-click lifecycle rows remain AMBER.
+
+**G1-009 CLOSED / PASS** from the unchanged post-deployment six-case production rendered matrix. No related premium row is promoted by association.
 
 ## Matt final acceptance pack
 
-**NOT READY.** It will be rebuilt as one finite bundle only after:
+**PREPARED / NOT READY TO RUN.** Final finite bundle remains:
 
-1. regenerated 8 Grub aggregate decisions are ready for human review;
-2. 26 replacement premium Fit visuals are ready for domain/member-comprehension review;
-3. deployed shared authenticated frontend P0 and follow-on rendered sweep are green;
-4. verification/reset and final physical-device acceptance can be batched into the same run.
+1. regenerated 8 Grub aggregate decisions;
+2. 26 genuine replacement premium Fit visual decisions;
+3. real verification lifecycle;
+4. real reset lifecycle;
+5. final iPhone Safari + Chrome hostile acceptance.
 
-## Exact release blocker
+## Exact next release pressure
 
-**Deploy the merged authoritative member frontend P0 source to the current static production project, then rerun the unchanged six-case authenticated RC.** Do not reopen auth/session uncertainty unless that unchanged RC regresses. If green, immediately reconcile every legitimately earned G1/G2/G3 Category-A closure and continue into populated states, responsive quality, accessibility/performance and fresh Dave acceptance.
+Gate 1 no longer has a broad frontend P0. Continue the remaining Gate 1 finite/human legs without weakening them, while using the stable production member shell to drive the premium/mobile, accessibility/performance, Grub, Fit and Progress lanes forward. The next automated closure opportunities are explicit loading/empty/success acceptance, premium/systemic rendered review, accessibility/performance evidence and any finite Gate 2/3 gaps that can be proved independently.
 
 The Product Opportunity Register remains retained and explicitly does not expand the V1 finish line.
