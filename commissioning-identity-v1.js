@@ -7,6 +7,7 @@ const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.gi
 const JWKS_URL=`${ISSUER}/.well-known/jwks`;
 const JWKS_TTL_MS=5*60*1000;
 let jwksMemory={expiresAt:0,keys:[]};
+const elapsed=start=>Math.max(0,Math.round(performance.now()-start));
 
 export async function handleCommissioningIdentity(request,env,ctx,next){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
@@ -15,18 +16,26 @@ export async function handleCommissioningIdentity(request,env,ctx,next){
   if(!token)return null;
   const body=await readJson(request.clone()),email=String(body.email||'').trim().toLowerCase();
   if(!SYNTHETIC.test(email))return json({ok:false,error:'commissioning_identity_email_rejected'},403);
+  const verifyStarted=performance.now();
   const identity=await verifyGithubOidc(token);
+  const verifyMs=elapsed(verifyStarted);
   if(!identity.ok)return json({ok:false,error:'commissioning_identity_rejected'},403);
+  const coreStarted=performance.now();
   const response=await next(request,env,ctx);
-  if(!response.ok)return response;
-  let data={};try{data=await response.clone().json()}catch{return response}
-  const userId=Number(data?.user?.id||0);if(!userId)return response;
+  const coreRegisterMs=elapsed(coreStarted);
+  if(!response.ok)return withTiming(response,{verifyMs,coreRegisterMs,postVerifyMs:0});
+  let data={};try{data=await response.clone().json()}catch{return withTiming(response,{verifyMs,coreRegisterMs,postVerifyMs:0})}
+  const userId=Number(data?.user?.id||0);if(!userId)return withTiming(response,{verifyMs,coreRegisterMs,postVerifyMs:0});
   const stamp=new Date().toISOString();
   const ops=[env.DB.prepare('UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=?').bind(stamp,stamp,userId),env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,'auth.commissioning_identity_verified','user',String(userId),JSON.stringify({issuer:identity.claims.iss,repository:identity.claims.repository,workflow_ref:identity.claims.workflow_ref,actor_id:identity.claims.actor_id}))];
+  const postStarted=performance.now();
   try{if(typeof env.DB.batch==='function')await env.DB.batch(ops);else for(const op of ops)await op.run()}catch(e){console.warn('commissioning_identity_post_verify_warning',e?.message)}
-  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');
+  const postVerifyMs=elapsed(postStarted);
+  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');setTiming(headers,{verifyMs,coreRegisterMs,postVerifyMs});
   return new Response(JSON.stringify({...data,emailVerified:true,verificationRequired:false,commissioningIdentity:'github_actions_oidc'}),{status:response.status,headers});
 }
+function setTiming(headers,{verifyMs,coreRegisterMs,postVerifyMs}){headers.set('X-Shift-Commissioning-OIDC-Ms',String(verifyMs));headers.set('X-Shift-Core-Register-Ms',String(coreRegisterMs));headers.set('X-Shift-Commissioning-Postverify-Ms',String(postVerifyMs));headers.set('Server-Timing',`shift_oidc;dur=${verifyMs}, shift_register_core;dur=${coreRegisterMs}, shift_commissioning_postverify;dur=${postVerifyMs}`)}
+function withTiming(response,timing){const h=new Headers(response.headers);setTiming(h,timing);return new Response(response.body,{status:response.status,statusText:response.statusText,headers:h})}
 
 async function fetchJwks({force=false}={}){
   const now=Date.now();
