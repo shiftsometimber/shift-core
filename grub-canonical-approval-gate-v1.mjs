@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {CANONICAL_APPROVALS} from './grub-canonical-approval-registry-v1.mjs';
+import {CANONICAL_APPROVALS} from './grub-canonical-approval-registry-v2.mjs';
 const idx=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
 const foods=new Map((idx.foods||[]).map(f=>[String(f.code),f]));
 const failures=[];
