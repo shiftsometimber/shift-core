@@ -36,14 +36,28 @@ function duplicateIngredientIssues(recipe){
   }
   return [...duplicates].sort().map(key=>({code:'duplicate_ingredient_line',detail:`${seen.get(key)||key} appears more than once as the same ingredient identity; combine/rebuild quantities before editorial approval`}));
 }
+function methodText(recipe){return (recipe?.method||[]).join(' ').toLowerCase().replace(/\s+/g,' ').trim()}
+function salmonMethodHasSpecificRepair(recipe){
+  const m=methodText(recipe);
+  return /cook the salmon separately/.test(m)&&(/avoiding prolonged slow cooking/.test(m)||/cooked salmon (?:through|in|on).*\b(?:end|finish)/.test(m));
+}
+function salmonFakeawayHasSpecificRepair(recipe){
+  const m=methodText(recipe);
+  return /cook the salmon/.test(m)&&/meat-style fakeaway method/.test(m)&&/finishing flavour/.test(m);
+}
+function beanPrimaryHasSpecificRepair(recipe){
+  if(/bean loaded beans/i.test(String(recipe?.title||'')))return false;
+  const beans=(recipe?.ingredients||[]).filter(row=>/^(?:baked )?beans$/.test(ingredientKey(row?.item))||ingredientKey(row?.item)==='baked beans');
+  return beans.length===1&&!duplicateIngredientIssues(recipe).some(i=>/beans/i.test(i.detail));
+}
 
 export function editorialSemanticIssues(recipe){
   const issues=duplicateIngredientIssues(recipe);
   const x=identity(recipe);if(!x)return issues;
   if(PROPER_STYLE_BLOCKS[x.family]?.has(x.style))issues.push({code:'style_format_mismatch',detail:`${x.style} is not commissioned for ${x.family}`});
-  if((x.family==='chilli'||x.family==='slow-cooker')&&x.protein==='salmon')issues.push({code:'protein_method_mismatch',detail:`salmon is not commissioned for ${x.family}`});
-  if(['kebab','loaded-fries','pizza'].includes(x.family)&&x.protein==='salmon'&&['doner','nashville','katsu','tikka','salt-pepper'].includes(x.style))issues.push({code:'fakeaway_salmon_style_mismatch',detail:`${x.style} salmon ${x.family} needs a recipe-specific rebuild rather than cross-product approval`});
-  if(x.family.startsWith('breakfast')&&x.style==='bean-loaded'&&x.protein==='beans')issues.push({code:'duplicate_primary_ingredient',detail:'bean-loaded beans duplicates baked beans as both protein and flavour component'});
+  if((x.family==='chilli'||x.family==='slow-cooker')&&x.protein==='salmon'&&!salmonMethodHasSpecificRepair(recipe))issues.push({code:'protein_method_mismatch',detail:`salmon is not commissioned for ${x.family} without an explicit separate-cook/end-finish method`});
+  if(['kebab','loaded-fries','pizza'].includes(x.family)&&x.protein==='salmon'&&['doner','nashville','katsu','tikka','salt-pepper'].includes(x.style)&&!salmonFakeawayHasSpecificRepair(recipe))issues.push({code:'fakeaway_salmon_style_mismatch',detail:`${x.style} salmon ${x.family} needs a recipe-specific salmon method rather than cross-product approval`});
+  if(x.family.startsWith('breakfast')&&x.style==='bean-loaded'&&x.protein==='beans'&&!beanPrimaryHasSpecificRepair(recipe))issues.push({code:'duplicate_primary_ingredient',detail:'bean-loaded beans duplicates baked beans as both protein and flavour component'});
   return issues;
 }
 
