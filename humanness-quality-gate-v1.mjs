@@ -1,0 +1,12 @@
+import {buildIndustrialCatalogue,grubHumannessIssues} from './industrial-catalogue-v14.js';
+import {FIT_CANONICAL_GUIDANCE,fitHumannessIssues,applyFitCanonicalGuidance} from './fit-canonical-guidance-v1.mjs';
+const catalogue=buildIndustrialCatalogue();
+const target=catalogue.recipes.filter(r=>/Proper Sandwich|Traybake|Work Snack Box|Slow Cooker|Protein Pot|Loaded Wrap|Breakfast Hash|Breakfast Buttie|Breakfast Wrap|Breakfast Toastie|Overnight Oats/i.test(String(r.title)));
+const grubFailures=target.flatMap(r=>grubHumannessIssues(r).map(code=>({id:r.id,title:r.title,code})));
+const launch=Object.keys(FIT_CANONICAL_GUIDANCE);
+const groups=new Map();for(const x of catalogue.exercises||[]){if(!launch.includes(x.canonical_movement))continue;if(!groups.has(x.canonical_movement))groups.set(x.canonical_movement,x)}
+const fitFailures=[];for(const id of launch){const raw=groups.get(id);if(!raw){fitFailures.push({id,code:'missing_canonical_movement'});continue}const f=applyFitCanonicalGuidance({canonical_movement:id,name:String(raw.title||'').replace(/ — .*/,''),...raw});for(const code of fitHumannessIssues(f))fitFailures.push({id,code});if(!f.visual?.sequence?.includes('START')||!f.visual?.sequence?.includes('MOVE')||!f.visual?.sequence?.includes('FINISH'))fitFailures.push({id,code:'visual_sequence_missing'});}
+const evidence={proof:'SHIFT_HUMANNESS_QUALITY_GATE_V1',principle:'THE MEMBER MUST NEVER FEEL THE MACHINE',grub:{targetRecipes:target.length,failures:grubFailures.slice(0,100),failureCount:grubFailures.length,checks:['dish-specific method','heat/timing/texture/doneness cues','no generic factory language','slow-cooker settings','overnight soaking','clean titles']},fit:{canonicalFamilies:launch.length,failures:fitFailures,failureCount:fitFailures.length,checks:['movement-specific coaching','what it should feel like','what it should not feel like','regression','progression','START/MOVE/FINISH visual contract']},policy:'Automated heuristics catch obvious machine-feel failures; second-person/domain sampling remains mandatory before publication.'};
+console.log(JSON.stringify(evidence,null,2));
+if(grubFailures.length||fitFailures.length)throw new Error(`humanness gate failed: Grub ${grubFailures.length}; Fit ${fitFailures.length}`);
+console.log(`PASS humanness gate: ${target.length} repaired Grub launch-family descendants and ${launch.length} Fit canonical coaching families satisfy the automated member-facing floor.`);
