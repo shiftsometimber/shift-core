@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v6.js';
 import {APPROVED,grams,mappingFor,systemicCoverage} from './industrial-grub-systemic-v3.mjs';
 
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));
@@ -23,7 +23,9 @@ for(const r of buildIndustrialCatalogue().recipes){
  const unresolvedMapping=ev.some(x=>!['exact','approved_canonical_proxy'].includes(x.mapping_state));
  const risk=suspicious||safety?'HIGH':unresolvedMapping?'MEDIUM':'LOW';risks[risk]++;
  const reasons=[];if(unresolvedMapping)reasons.push('unresolved_mapping');if(suspicious)reasons.push('nutrition_outlier');if(safety)reasons.push('food_safety_structure');
- calculated.push({...r,nutrition:{status:'validated',methodology:'CoFID 2021 governed canonical ingredient propagation',dataset_version:'CoFID 2021',validated_at:'2026-08-12',precision_note:'Calculated ingredient-level estimate, not laboratory analysis; brands, cooking yield and drained weights can vary.',...nutrition,ingredient_evidence:ev},review:{...(r.review||{}),pre_review:risk==='LOW'?'auto_check_pass':'review_required',risk_tier:risk,reasons,canonical_mapping_governance:risk==='LOW'?'resolved':'exception'}});
+ const priorReview=r.review||{};
+ const blockers=(priorReview.blockers||[]).filter(x=>x!=='nutrition_validation');
+ calculated.push({...r,nutrition:{status:'validated',methodology:'CoFID 2021 governed canonical ingredient propagation',dataset_version:'CoFID 2021',validated_at:'2026-08-12',precision_note:'Calculated ingredient-level estimate, not laboratory analysis; brands, cooking yield and drained weights can vary.',...nutrition,ingredient_evidence:ev},review:{...priorReview,blockers,pre_review:risk==='LOW'?'auto_check_pass':'review_required',risk_tier:risk,reasons,canonical_mapping_governance:risk==='LOW'?'resolved':'exception'}});
 }
 const low=calculated.filter(r=>r.review.risk_tier==='LOW').length;const coverage=systemicCoverage();
 const result={catalogue:coverage.recipes,canonicalDecisions:coverage.canonicalDecisions,canonicalDecisionsUsed:coverage.canonicalDecisionsUsed,nutritionValidated:calculated.length,riskTiers:risks,autoPreReviewLowRisk:low,targetedReview:calculated.length-low,quarantined:quarantine.length,remainingBlockers:coverage.topBlockers.slice(0,20),sample:calculated.slice(0,2).map(r=>({id:r.id,nutrition:r.nutrition,review:r.review}))};
@@ -31,5 +33,6 @@ console.log(JSON.stringify(result,null,2));
 if(calculated.length<300)throw new Error(`expected systemic nutrition-valid wave >=300, got ${calculated.length}`);
 if(calculated.some(r=>!r.nutrition.ingredient_evidence.length))throw new Error('missing ingredient-level provenance');
 if(calculated.some(r=>r.nutrition.ingredient_evidence.some(e=>e.mapping_state==='approved_canonical_proxy'&&(!e.mapping_basis||!e.mapping_confidence))))throw new Error('governed proxy evidence incomplete');
+if(calculated.some(r=>(r.review.blockers||[]).includes('nutrition_validation')))throw new Error('validated recipes retain stale nutrition_validation blocker');
 if(risks.MEDIUM!==0)throw new Error(`governed canonical proxies must not remain unresolved MEDIUM mappings: ${risks.MEDIUM}`);
 console.log(`PASS governed Grub batch calculation: ${calculated.length}/${coverage.recipes} recipes carry ingredient-level CoFID nutrition; ${low} LOW-risk pre-review passes, ${risks.HIGH} HIGH-risk exceptions, ${quarantine.length} remain quarantined. Canonical proxy decisions are governed once rather than re-reviewing each recipe row.`);
