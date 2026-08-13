@@ -1,0 +1,35 @@
+name: Gate 1 Rendered Failure Acceptance
+on:
+  pull_request:
+    paths:
+      - 'gate1-rendered-failure-production.mjs'
+      - '.github/workflows/gate1-rendered-failure.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rendered-failure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install browser harness
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Run rendered public failure-state acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          FAILURE_RENDER_EVIDENCE_DIR: failure-render-evidence
+        run: node gate1-rendered-failure-production.mjs
+      - name: Upload retained evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1-007-rendered-failure-evidence
+          path: failure-render-evidence
+          if-no-files-found: error
+          retention-days: 30
