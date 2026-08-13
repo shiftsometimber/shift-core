@@ -1,13 +1,14 @@
-# Active recovery checkpoint — 2026-08-12
+# Active recovery checkpoint — 2026-08-13
 
 ## Current implementation authority
 `main` at the start of this reconciliation = `6455a570f7efa8eb5532f3c496f40defaa0820c1`, merge of PR #94 on top of merged PR #93. The active reconciliation branch is `commissioning/run3-reconcile-and-continue` and must merge only after unchanged CI is GREEN.
 
-Authoritative original audit after demonstrated closures: **57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 unmapped**. B03 behavioural remains **9/9 PASS and locked**.
+Authoritative original audit after demonstrated closures: **57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 unmapped**. B03 behavioural remains **9/9 PASS and locked**.
 
 ## Newly demonstrated/merged
 - **PR #93 / merge `69a0e02d8488891914da4b3fe1f42a31f63c80d6`** — authorised HQ operator Watchtower fire drill. Master Integration was GREEN. Anonymous operational access is denied; owner bootstrap/login establishes a retained HQ session; GREEN -> actionable AMBER -> actionable RED -> retained incident evidence -> recovery -> GREEN is demonstrated through actual HQ attention/Watchtower routes. G5-008/B06 earns PASS.
 - **PR #94 / merge `6455a570f7efa8eb5532f3c496f40defaa0820c1`** — industrial conversion diagnostics + Dave evidence reconciliation. All required checks were GREEN before merge.
+- **G2-006 now earns PASS:** unchanged post-merge production run `31649921033` completed the authenticated 10/15/20/30/45/60 Fit duration/session-quality matrix GREEN after PR #109.
 - Previously locked in this wave: G1-010/M05/G5-011 security/privacy; G5-007/B07 Watchtower degradation/recovery; M03 Radar; M07 structured runtime; B03 9/9 behaviour.
 
 ## Grub factory
@@ -17,8 +18,8 @@ Current structured universe: **2,908 authored** = 2,876 industrial + 32 existing
 - Industrial schema-valid: **2,876 / 2,876**.
 - Canonical ingredient mapped recipes: **2,876 / 2,876**.
 - Ingredient identities mapped: **17,440 / 17,440** across **168 canonical ingredient identities**.
-- Targeted authoritative CoFID 2021 ingredient-level validation: **70 industrial recipes**.
-- Those 70 remain draft/quarantined pending independent review; strict ambiguous mappings remain fail-closed.
+- Governed repaired-V6 CoFID 2021 ingredient-level validation: **546 industrial recipes**, all LOW-risk in the latest calculation wave.
+- **2,330** remain quarantined behind unresolved ingredient families; the 546 validated drafts remain blocked on real second-person content review rather than stale nutrition-validation state.
 - Independently reviewed / published / production-served: **1 / 1 / 1**.
 - Existing bloke-friendly breadth includes breakfast butties/wraps/hashes, proper lunches/dinners, fakeaways, burgers/kebabs/loaded fries/pizza and treat/snack families; authored catalogue contains **612 fakeaway/treat-tagged objects**.
 
@@ -54,5 +55,6 @@ B05 public trust; B08 Dave; M01 premium/mobile; M04 analytics; M06 accessibility
 4. **Gate 3:** execute systemic premium/mobile/accessibility evidence against the homepage design constitution rather than page-by-page cosmetic drift.
 5. **Gate 4/5:** continue G4-004 CMS->Knowledge flywheel, B05/M04/M06/M13/M17 and Dave independently; do not queue them behind content conversion.
 6. Merge this reconciliation only on unchanged GREEN CI; after merge, GitHub `main` plus this file/matrix/ledger are the recovery authority.
+7. Continue M11 from the ranked high-unlock blockers (`toasted oat crunch`, `light peppercorn sauce`, `chicken sausages`, sauce/yoghurt families) while keeping human review/publication barriers hard.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**

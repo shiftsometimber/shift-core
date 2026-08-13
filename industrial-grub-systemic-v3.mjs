@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v6.js';
 import {CANONICAL_APPROVALS} from './grub-canonical-approval-registry-v1.mjs';
 
 const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-index.json','utf8'));

@@ -23,6 +23,9 @@ PR #93 added the authorised HQ operator fire drill and its unchanged Master Inte
 ## G1-006 production route detection — PASS; G1-007 still AMBER
 The exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, zero critical failures, `truncated:false`. The deployed safe-error release lane proves representative API failures are correlated, no-store and non-leaking. G1-007 remains AMBER only for rendered/member-facing failure-state acceptance.
 
+## G2-006 Fit duration/session quality — PASS
+PR #109 merged the repaired duration-aware V8 production harness without broadening the restricted commissioning identity. The unchanged post-merge production run `31649921033` completed GREEN, including the dedicated authenticated `G2-006 Fit duration/session quality production matrix` step for 10/15/20/30/45/60-minute requests. This is the missing production acceptance evidence; G2-006 is therefore PASS rather than being promoted from source or PR CI alone.
+
 ## Industrial Grub factory — M11 remains AMBER
 Short-term authored target: **2,500**. Long-term minimum: **10,000+**.
 
@@ -33,7 +36,7 @@ Demonstrated conversion evidence from the merged industrial conversion work:
 - Canonical ingredient mapping: **2,876 / 2,876 recipes**.
 - Ingredient identities mapped: **17,440 / 17,440** across **168 canonical ingredient identities**.
 - Strict generic CoFID matching remains fail-closed where an authoritative food match is ambiguous; it does not auto-promote uncertain nutrition.
-- The targeted CoFID 2021 conversion path now validates **70 industrial recipes** at ingredient level. Those objects remain drafts until independent content review; no publication barrier is bypassed.
+- The governed repaired-V6 full-catalogue path now validates **546 industrial recipes** at ingredient level. The current wave is **546 LOW / 0 MEDIUM / 0 HIGH**, with **2,330 quarantined**. Validated drafts retain the real `second_person_content_review` blocker but no longer carry a stale nutrition-validation blocker; no publication barrier is bypassed.
 - Existing independently reviewed / published / production-served: **1 / 1 / 1** (`lighter-beef-cottage-pie`).
 - Current dominant targeted blockers are concentrated in reusable sauce/ingredient families such as medium curry, jalfrezi/pepper-and-tomato masala, balti, madras and smoked-chilli tomato; resolving one authoritative reusable mapping can unlock many recipes.
 - Authoring remains frozen as a priority while conversion catches up.
@@ -46,7 +49,7 @@ Authored-capacity simulation — explicitly not commissioned/published diversity
 - 90 days: 360 / 360 / 0.
 - 365 days: 1,460 / 1,460 / 0.
 
-M11 remains AMBER because 70 validated industrial drafts are not yet independently reviewed/published/production-served at catalogue scale.
+M11 remains AMBER because 546 validated LOW-risk industrial drafts are not yet independently reviewed/published/production-served at catalogue scale.
 
 ## Industrial Fit factory — M12 remains AMBER
 Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured. Short-term authored target is reached; long-term minimum remains **10,000+**.
@@ -76,9 +79,9 @@ Unresolved legs remain explicit rather than cosmetically promoted: real-inbox re
 Merged PR #98 passed the dedicated Knowledge Flywheel gate, Master Integration, whole-estate route sweep and Academy gate. The scheduled Worker path now proves approved CMS content is ingested into the canonical Knowledge graph with provenance, draft content is excluded, withdrawn source content is removed from active graph use, and re-review reactivates the same canonical identity without a manual HQ ingest call.
 
 ## Current authoritative scoreboard
-**57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G5-008 / B06**. Earlier locked closures include G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
+Latest original row closure: **G2-006** from unchanged post-merge production duration/session-quality commissioning. Earlier locked closures include G5-008/B06, G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
