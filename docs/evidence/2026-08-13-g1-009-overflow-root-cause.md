@@ -1,21 +1,34 @@
-# G1-009 authenticated overflow root cause
+# G1-009 authenticated rendered production RC
 
 Date: 2026-08-13
 
-Status: AMBER. Root cause is isolated; production repair and unchanged RC proof remain required.
+Status: **PASS.** The production member estate now passes the unchanged authenticated Chromium/Firefox/WebKit desktop + 390px rendered acceptance after the RC3 source repair was deployed.
 
-Production evidence run `31680649245` retained authenticated-rendered, public-rendered, overflow-diagnostic and live-static-source artifacts.
+## Earlier retained failure
 
-The direct authenticated trace shows the same shared surplus across representative member routes: 1440px viewport -> 1460px scroll width (20px overflow), and 390px viewport -> 478px scroll width (88px overflow).
+Production evidence run `31680649245` had retained the common authenticated surplus: 1440px viewport -> 1460px scroll width (20px overflow), and 390px viewport -> 478px scroll width (88px overflow). Subsequent production diagnosis showed the final causes were local member-layout geometry: the decorative `.mp-hero::after` escaping the hero on desktop and the deliberately horizontally-scrollable `.member-side` / `.mp-tabs` strips allowing nowrap descendants to inflate document-root width on mobile. The authoritative repair used local containment only; no global overflow mask or weakened acceptance was introduced.
 
-The top right-edge contributor on every affected route is the closed Ask Timber drawer `#askTimberDrawer.ask-drawer` and its descendants. The captured production `styles.css` positions the closed drawer with `right:0` and `transform:translateX(105%)`. That places the drawer beyond the viewport while it still contributes to scrollable document geometry.
+PR #154 was merged to `main` as `34f22153a7b6c43584363d8e35ccc6f2bbfb6262`, preserving the final member geometry repair and live extensionless member routing in version-controlled source.
 
-This evidence narrows the defect from the member product grid to a shared global closed-drawer rule.
+## Unchanged post-deployment proof
 
-Do not hide the defect with a global overflow mask. The authoritative frontend fix must keep the closed drawer from extending scrollable geometry while preserving the intended premium open/close interaction. After the source fix, rerun the unchanged Chromium/Firefox/WebKit desktop + 390px authenticated RC and retain evidence before any PASS promotion.
+GitHub Actions run `31689802921`, authenticated-rendered job `94426973527`, fingerprinted the actual live deployment before running the matrix. `/member/dashboard` and the member P0 stylesheet returned 200 and the deployed source contained the expected `mp-hero`, `member-side`, `mp-tabs` and member-shell repair markers.
 
-Two related rendered observations remain in the same lane: `#sstMemberNotice` has reproduced pointer interception, and the authenticated member top-navigation My Shift destination has resolved to the sign-in path. These require source repair and unchanged rendered proof as well.
+All six production browser/device cases then demonstrated the authentication prerequisite and rendered member journey: registration 201, sign-in 200, session cookie present, authenticated member-state 200, and authenticated landing remained in the member product.
 
-The current `shift-core` and `shift-hq` source trees do not contain the deployed `projectshift` public/member static source, so diagnosis alone cannot close G1-009. Historic release evidence confirms the public site is a separate Cloudflare Pages direct-upload estate rather than the Shift Core API Worker.
+The journey exercised dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI. Every tested route completed with document width equal to viewport width and zero horizontal overflow:
 
-Commissioning decision: authentication/session stays GREEN; root-cause diagnosis is PROVEN; G1-009 remains AMBER; RC remains NOT READY.
+- Chromium desktop: 1440 -> 1440, overflow 0
+- Chromium mobile: 390 -> 390, overflow 0
+- Firefox desktop: 1440 -> 1440, overflow 0
+- Firefox mobile: 390 -> 390, overflow 0
+- WebKit desktop: 1440 -> 1440, overflow 0
+- WebKit mobile: 390 -> 390, overflow 0
+
+The earlier route regression is absent and the live extensionless member routes remain intact.
+
+## Scope discipline
+
+This evidence closes **G1-009 only**. It does not promote G1-001, G1-003, G1-004, G1-008 or G1-012 by association.
+
+A separate direct-overflow diagnostic rerun received `commissioning_identity_rejected` because that diagnostic workflow path is not currently in the production commissioning-identity allowlist. That is an internal diagnostic authorization gap, not a member-authentication failure, and it does not supersede the successful unchanged rendered production acceptance above.
