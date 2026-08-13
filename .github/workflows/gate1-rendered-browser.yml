@@ -75,6 +75,26 @@ jobs:
           name: gate1-overflow-diagnostic-evidence
           path: overflow-evidence
           retention-days: 14
+  live-static-source-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Retain current production member shell and CSS
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p live-static-evidence
+          curl -fsSL 'https://shiftsometimber.co.uk/member/dashboard?release=33d#today' -o live-static-evidence/member-dashboard.html
+          curl -fsSL 'https://shiftsometimber.co.uk/styles.css?v=30n' -o live-static-evidence/styles.css
+          curl -fsSL 'https://shiftsometimber.co.uk/member-product-v33d.css?v=33h' -o live-static-evidence/member-product-v33d.css
+          curl -fsSL 'https://shiftsometimber.co.uk/one-shift-v34.css?v=34a' -o live-static-evidence/one-shift-v34.css
+          printf 'Captured UTC: '; date -u +%FT%TZ
+          wc -c live-static-evidence/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gate1-live-static-source-evidence
+          path: live-static-evidence
+          retention-days: 14
   public-rendered:
     runs-on: ubuntu-latest
     timeout-minutes: 20
