@@ -5,6 +5,7 @@ on:
       - 'gate1-rendered-browser-production.mjs'
       - 'gate1-authenticated-rendered-production.mjs'
       - 'gate1-overflow-diagnostic.mjs'
+      - 'gate1-overflow-direct-diagnostic.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
@@ -62,13 +63,13 @@ jobs:
       - run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Pinpoint authenticated horizontal overflow
+      - name: Pinpoint populated authenticated horizontal overflow directly
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           OVERFLOW_EVIDENCE_DIR: overflow-evidence
-        run: node gate1-overflow-diagnostic.mjs
+        run: node gate1-overflow-direct-diagnostic.mjs
       - if: always()
         uses: actions/upload-artifact@v4
         with:
