@@ -1,3 +1,4 @@
+// Evidence-led release accounting gate. Keep this executable: the workflow must fail closed if board/counts drift.
 import fs from 'node:fs';
 const s=fs.readFileSync('docs/V1-RELEASE-BLOCKER-BOARD-V2.md','utf8');
 for(const x of ['A — V1 RELEASE BLOCKERS: 22','A CLOSED: 5','B — POST-LAUNCH HARDENING: 3','C — EXTERNAL: 3','G5-005 PASS','G1-008 and G1-009 are PASS','G2-009 is no longer in B'])if(!s.includes(x))throw new Error(`release-board accounting missing ${x}`);
