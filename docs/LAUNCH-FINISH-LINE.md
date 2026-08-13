@@ -5,32 +5,32 @@ This is the authoritative launch closure board. `docs/SHIFT-COMMISSIONING-REMEDI
 ## BLOCKER — cannot launch without it
 | ID | Requirement | State / exact closure |
 |---|---|---|
-| B01 | Production authentication + transactional email recovery | AMBER — rendered browser discovery now finds/clicks the Forgot password control; remaining proof is the real inbox reset token -> reset -> login new password -> authenticated change-password -> logout -> login again journey. |
+| B01 | Production authentication + transactional email recovery | AMBER — rendered browser discovery finds/clicks Forgot password across Chromium/Firefox/WebKit desktop + 390px; remaining proof is the real inbox reset token -> reset -> login new password -> authenticated change-password -> logout -> login again journey. |
 | B02 | Authenticated isolation + durable longitudinal state | **PASS** — production A/B isolation and leave/return retained state. |
 | B03 | Core member V1 journeys | Behaviour **9/9 PASS and locked**; full row remains AMBER only for rendered/premium/mobile/loading-state evidence. |
 | B04 | One Shift Brain longitudinal behaviour | **PASS** — current intent precedence, durable Grub/Fit learning, cross-domain isolation, retained Progress/AI context. |
-| B05 | Public/member trust boundary | AMBER — operator/AI/data/support/current clinical-provider status trust audit. |
+| B05 | Public/member trust boundary | **PASS** — production trust audit crawled 80/80 public pages and proved operator identity, AI disclosure, privacy, support and qualified/current provider presentation, while guarding against implied live prescribing/pharmacy capability without qualification. |
 | B06 | HQ production operation | **PASS** — authorised HQ owner fire drill proves anonymous denial, retained owner session, GREEN -> actionable AMBER -> actionable RED -> retained incident evidence -> recovery -> GREEN. |
 | B07 | Critical monitoring degradation/recovery | **PASS** — dedicated fire drill proves GREEN -> latency AMBER -> outage RED -> operator next actions + retained history -> recovery -> GREEN without deliberately breaking production dependencies. |
-| B08 | Dave release-candidate journey | AMBER — reconciled evidence proves 15/20 non-duplicated journey legs (75%); rendered browser discovery now finds/clicks registration and recovery controls, but real inbox registration/verification/recovery, authenticated rendered/mobile acceptance and partner-dependent treatment support remain. |
+| B08 | Dave release-candidate journey | AMBER — reconciled evidence proves 15/20 non-duplicated journey legs (75%); auth/session establishment is now GREEN across Chromium/Firefox/WebKit desktop + 390px, but the unchanged authenticated rendered RC still fails on the shared member-dashboard overflow, pointer interception and My Shift route escape. Real inbox registration/verification/recovery and final physical-device acceptance remain. |
 
 B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration, Conundrum, My Plans, Progress, Progress Picture and Shift AI are behaviour-green. Do not reopen without genuine regression evidence. Catalogue depth remains M11/M12; rendered quality remains B03/M01/M06/M10/B08.
 
 ## MUST FINISH — agreed V1 requirement
 | ID | Requirement | State / exact closure |
 |---|---|---|
-| M01 | One Shift premium visual system across public + My Shift | AMBER — representative desktop/mobile member surfaces must meet homepage design constitution; authenticated rendered acceptance remains incomplete. |
+| M01 | One Shift premium visual system across public + My Shift | AMBER — public rendered lane is GREEN; authenticated populated estate remains RED on a shared 20px desktop / 88px mobile overflow plus `#sstMemberNotice` pointer interception and a My Shift route escape. Homepage remains the design constitution. |
 | M02 | Reviewed Knowledge publication lifecycle | **PASS** — publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding. |
 | M03 | Radar production freshness | **PASS** — genuine production MHRA/EMA scan via restricted OIDC plus GREEN freshness and adversarial stale/failure/recovery transitions are locked. |
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors. |
 | M05 | Security/privacy release review | **PASS** — deployed production proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS denial, per-member export isolation, deletion-session revocation and hardened response envelopes. |
-| M06 | Accessibility + performance release check | AMBER — critical interaction audit + measured production budgets. |
+| M06 | Accessibility + performance release check | AMBER — critical interaction audit + measured production budgets; authenticated rendered defects remain part of this release-quality floor. |
 | M07 | Structured content production path | **PASS** — authenticated production member consumed reviewed/published structured Grub and Fit through V7, with validated nutrition, approved visual guidance, provenance and durable Nay behaviour; V4 is controlled migration fallback. |
 | M08 | Release evidence + recovery checkpoint | AMBER — continuously reconcile matrix/ledger/recovery through release candidate. |
-| M09 | Proper email verification lifecycle | AMBER — deterministic lifecycle green; rendered registration control is now discoverable/clickable; real production registration/inbox verification/login/Welcome evidence remains. |
-| M10 | Whole-estate routes/links/errors release sweep | AMBER — exhaustive routing is green and **G1-007 rendered failure-state acceptance is now PASS** via PR #129/run `31669056410`; authenticated loading/empty/mobile acceptance remains. |
-| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — **2,908 authored**; **2,876/2,876 industrial recipes** now pass ingredient-level CoFID nutrition/risk validation with **0 nutrition quarantine**; PR #128 adds systemic recipe-quality validation. The 2,876 drafts are compressed into **101 canonical second-person review templates**. Only **1/1/1** remains independently reviewed/published/production-served. |
-| M12 | Fit catalogue/session breadth and visual guidance | AMBER — **2,500 authored**; stable canonical metadata bindings cover **2,244/2,468** industrial objects, but the consolidated 44-family rendered asset is absent on current main; only 3 movements have genuine member/domain-QA/review/publication/production-serving evidence. |
+| M09 | Proper email verification lifecycle | AMBER — deterministic lifecycle green; rendered registration control is discoverable/clickable; real production registration/inbox verification/login/Welcome evidence remains. |
+| M10 | Whole-estate routes/links/errors release sweep | AMBER — exhaustive routing is green and **G1-007 rendered failure-state acceptance is PASS** via PR #129/run `31669056410`; authenticated loading/empty/mobile acceptance remains. |
+| M11 | Grub catalogue depth, validated nutrition and variety | AMBER — **2,908 authored / 2,876 industrial**; **2,876/2,876** ingredient-level CoFID nutrition/risk valid with zero nutrition quarantine. The serious V1 cohort is now **683 editorial-ready recipes behind 11 immutable launch decisions**, split 164 breakfast / 192 lunch / 154 dinner / 173 snack and simulation-selected to survive deterministic 25% Nay pressure with zero exact repeats at 30/60/90 days. Closure still requires real independent PASS decisions, publication and production-serving proof. |
+| M12 | Fit catalogue/session breadth and visual guidance | AMBER — **2,500 authored**; the consolidated **44/44 canonical rendered candidate set exists**. The serious V1 cohort is **26 canonical decisions covering 1,326 technically eligible descendants** and the 12-week simulator yields 180/180 unique prescribed objects, all 26 families used and no consecutive canonical repeat. Closure still requires genuine anatomical/member-comprehension/domain PASS decisions, propagation/publication and production-serving proof. |
 | M13 | Whole-person Progress + proper units | AMBER — coherent story + controlled stone/lb/kg and metric experience. |
 | M14 | Member memory inspect/edit/delete controls | **PASS** — inspect/correct/delete, provenance/confidence, durable deletion, privacy controls and cross-member isolation proven. |
 | M15 | Health MOT mocked partner-ready integration | **PASS** — mocked payload -> idempotent MOT -> sourced Progress -> One Shift Brain -> authenticated Today, member-isolated and non-diagnostic. |
@@ -40,12 +40,12 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification is **23 PASS / 31 AMBER / 3 BLOCKED / 0 abstraction orphans**. G1-007 moved only after merged PR #129's dedicated real-production rendered failure matrix, retained evidence artifact and full estate/integration gates all passed.
+Exactly **57** original rows remain mandatory. Current evidenced classification is **24 PASS / 30 AMBER / 3 BLOCKED / 0 abstraction orphans**. G5-005 moved only after the live production trust audit crawled 80/80 public pages and the whole-estate and master integration gates were green; no other row is promoted by association.
 
 ## Content conversion funnel
-**Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876**. Merged PR #123 proves **2,876/2,876 industrial recipes** are ingredient-level CoFID nutrition-valid and LOW-risk with **zero nutrition quarantine**. PR #128 adds systemic semantic/quality validation across the full industrial catalogue. Independent second-person review is compressed into **101 immutable canonical review templates** while preserving recipe-specific hashes/evidence. Existing independently reviewed/published/production-served remains **1/1/1**. Authored-capacity simulation shows zero exact repeats at 30/60/90/365 days, but this is explicitly not commissioned/published diversity.
+**Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876**. Merged PR #123 proves **2,876/2,876** industrial recipes are ingredient-level CoFID nutrition-valid and LOW-risk with zero nutrition quarantine; PR #128 adds systemic semantic/quality validation. V1 launch conversion is deliberately narrowed to the serious **683-recipe** simulation-selected cohort behind **11 immutable editorial decisions**. Current independently reviewed/published/production-served remains **1/1/1** until those decisions are actually accepted and propagated. Raw authored volume or simulation capacity is not commissioning.
 
-**Fit:** structured authored universe **2,500** = 2,468 industrial + 32 existing structured. Industrial schema-valid **2,468**. Canonical visual metadata/specifications bind **2,244/2,468** industrial objects; automatic technical checks cover the industrial set. The referenced consolidated 44-family rendered visual asset is absent, so metadata binding is not visual completion. Member/domain QA remains **3**, and reviewed/published/production-served remains **3/3/3**.
+**Fit:** structured authored universe **2,500** = 2,468 industrial + 32 existing structured. Industrial schema-valid **2,468**. The consolidated **44-family rendered candidate asset now exists** and covers 2,244 descendants. V1 launch conversion is narrowed to **26 canonical visual decisions / 1,326 technically eligible descendants** selected by the 12-week simulator. Current independently domain-QA/reviewed/published/production-served remains **3/3/3** until the launch visual decisions are genuinely accepted and propagated. Automatic binding and simulation capacity are not anatomical/member-comprehension approval.
 
 The conversion metric remains authored -> domain/nutrition/visual validated -> reviewed -> published -> production-served -> launch-ready. Raw candidate count, canonical mapping, metadata visual binding or automatic integrity never closes M11/M12 by itself.
 
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-Gate 1 authenticated rendered/session/mobile repair; B01; B03 rendered only; B05; B08; M01; M04; M06; M08–M13; M17. M11/M12 downstream conversion must not queue the other rows. The 31 remaining AMBERs are classified in the remediation matrix as FINITE / LARGE / HUMAN-DEVICE.
+Gate 1 authenticated rendered/mobile repair; B01; B03 rendered only; B08; M01; M04; M06; M08–M13; M17. B05 is locked PASS. M11/M12 downstream conversion must not queue the other rows. Human/device and external boundaries do not queue non-blocked work.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening acceptance. Homepage-level premium quality remains the estate-wide design constitution.
