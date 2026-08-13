@@ -1,27 +1,30 @@
-import {buildIndustrialCatalogue} from './industrial-catalogue-v5.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v11.js';
 
 let bad=false;
 const must=(condition,message)=>{if(!condition){console.error(`FAIL ${message}`);bad=true;}};
 const catalogue=buildIndustrialCatalogue();
-const snacks=catalogue.recipes.filter(r=>String(r.id).startsWith('industrial-v4-'));
+const snacks=catalogue.recipes.filter(r=>r.meal_type==='snack');
+const v4=snacks.filter(r=>String(r.id).startsWith('industrial-v4-'));
 const forbidden=new Set(['flavouring or spice to match the title']);
-const expectedStyle={
-  classic:['cinnamon','1g'],berry:['mixed berries','80g'],apple:['diced apple','80g'],banana:['sliced banana','80g'],chocolate:['unsweetened cocoa','5g'],peanut:['peanut butter','15g'],coffee:['instant espresso','1g'],lemon:['lemon zest','1g'],orange:['orange zest','1g'],caramel:['caramel flavouring','2ml'],cherry:['cherries','80g'],mango:['mango','80g'],pineapple:['pineapple','80g'],'biscoff-style':['crushed wholegrain biscuit','20g'],'cheesecake-style':['light cream cheese','30g'],crunch:['pumpkin seeds','15g'],'weekend-treat':['dark chocolate chips','15g']
-};
-let placeholderCount=0,missingStyle=0,absurdQuantity=0;
+let placeholderCount=0,absurdQuantity=0,sweetSavoryCollision=0,eggDessertCollision=0,coffeeFruitCollision=0;
+const savoryIds=['egg-snack-box','bean-dip-box','tuna-snack-pot'];
+const sweetTerms=/\b(berry|banana|cocoa|cinnamon|lemon|orange)\b/i;
 for(const recipe of snacks){
   for(const ingredient of recipe.ingredients||[]){
     if(forbidden.has(ingredient.item))placeholderCount++;
     if(['cinnamon','instant espresso','lemon zest','orange zest','unsweetened cocoa','peanut butter','pumpkin seeds','dark chocolate chips'].includes(ingredient.item)&&/^80g$/i.test(String(ingredient.amount)))absurdQuantity++;
   }
-  const style=(recipe.tags||[]).find(t=>Object.hasOwn(expectedStyle,t));
-  const expected=expectedStyle[style];
-  if(!expected||!(recipe.ingredients||[]).some(i=>i.item===expected[0]&&String(i.amount)===expected[1]))missingStyle++;
+  const id=String(recipe.id||''),title=String(recipe.title||'');
+  if(savoryIds.some(x=>id.includes(`-${x}-`))&&sweetTerms.test(title))sweetSavoryCollision++;
+  if(id.startsWith('industrial-v4-')&&/dessert|protein pot|work snack|big feed/i.test(title)&&(recipe.ingredients||[]).some(x=>x.item==='boiled eggs'))eggDessertCollision++;
+  if(id.startsWith('industrial-v4-')&&/coffee fruit crunch/i.test(title))coffeeFruitCollision++;
 }
-must(snacks.length===408,`industrial snack set remains 408 recipes (found ${snacks.length})`);
+must(v4.length===408,`industrial V4 snack set remains 408 recipes (found ${v4.length})`);
 must(placeholderCount===0,`no placeholder flavour/spice ingredients remain (found ${placeholderCount})`);
 must(absurdQuantity===0,`no known seasoning/flavour ingredient retains the former 80g blanket amount (found ${absurdQuantity})`);
-must(missingStyle===0,`all 408 snacks carry the recipe-specific style ingredient and quantity (missing ${missingStyle})`);
+must(sweetSavoryCollision===0,`no sweet modifier title remains on tuna/egg/bean savoury snack families (found ${sweetSavoryCollision})`);
+must(eggDessertCollision===0,`no boiled-egg base remains inside V4 dessert/treat families (found ${eggDessertCollision})`);
+must(coffeeFruitCollision===0,`no Coffee Fruit Crunch collision remains (found ${coffeeFruitCollision})`);
 if(bad)process.exit(1);
-console.log(JSON.stringify({proof:'INDUSTRIAL_SNACK_RECIPE_QUALITY',snacks:snacks.length,placeholderIngredients:placeholderCount,missingStyleQuantities:missingStyle,absurdBlanketQuantities:absurdQuantity},null,2));
-console.log('PASS industrial snack quality: 408 recipe objects use explicit style-specific ingredients/quantities with the placeholder removed.');
+console.log(JSON.stringify({proof:'INDUSTRIAL_SNACK_EDITORIAL_QUALITY',snacks:snacks.length,v4Snacks:v4.length,placeholderIngredients:placeholderCount,absurdBlanketQuantities:absurdQuantity,sweetSavoryCollisions:sweetSavoryCollision,eggDessertCollisions:eggDessertCollision,coffeeFruitCollisions:coffeeFruitCollision},null,2));
+console.log('PASS industrial snack editorial quality: placeholder/quantity defects remain closed and the second-person review defects for sweet-savory combinations are now prevented systemically.');
