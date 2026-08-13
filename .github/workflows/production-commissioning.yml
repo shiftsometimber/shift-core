@@ -29,6 +29,19 @@ jobs:
         run: sleep 20
       - name: Core production health and route contract
         run: node gate1-production-journey-probe.mjs
+      - name: G5-012 production auth p95 — 20 registration + 20 login samples
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G5_012_EVIDENCE_DIR: g5-012-auth-p95-evidence
+        run: node g5-012-auth-p95-production.mjs
+      - name: Upload G5-012 auth p95 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-012-auth-p95-evidence
+          path: g5-012-auth-p95-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: G1-010 / M05 deployed release security and privacy
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
