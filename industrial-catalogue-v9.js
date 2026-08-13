@@ -62,6 +62,11 @@ function repair(recipe){
       facets=facets.map(x=>x==='style:caramel'?'style:honey':x);
       continue;
     }
+    if(ingredient.item==='reduced-salt stock'){
+      changed=true;repairs.push('measurable-reduced-salt-stock');
+      ingredients.push({amount:'5g',item:'reduced-salt vegetable stock cube (make up to 250ml with water)'});
+      continue;
+    }
     const parts=COMPONENTS[ingredient.item];
     if(parts){changed=true;repairs.push(`explicit-${ingredient.item.replaceAll(' ','-')}`);ingredients.push(...parts);continue}
     ingredients.push(ingredient);
