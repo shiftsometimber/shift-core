@@ -29,3 +29,9 @@ for(const validation of manifest.validations||[]){
 const validated=(manifest.validations||[]).length;
 console.log(JSON.stringify({dataset:manifest.dataset.version,authored:batches.length,nutritionValidated:validated,remaining:batches.length-validated,validatedRecipes:(manifest.validations||[]).map(x=>x.recipe_id)},null,2));
 console.log(`PASS M11 ingredient-level nutrition evidence for ${validated}/${batches.length} structured Grub recipes; unvalidated recipes remain blocked from publication`);
+
+// V1 handoff guard: this runs after the authoritative CoFID extract exists in the
+// master integration job. It proves the regenerated 8-decision launch pack binds
+// exactly the intended 783 descendants and that the publication boundary fails
+// closed on mutated, incomplete, FIX or REJECT decisions.
+await import('./grub-v1-decision-propagation-gate.mjs');
