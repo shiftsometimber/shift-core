@@ -12,8 +12,10 @@
     {"batch":7,"status":"queued","canonical_movements":["thoracic-rotation","wall-slides"]}
   ],
   "produced_candidates": [
-    {"canonical_movement":"sit-to-stand","asset":"assets/fit/premium/sit-to-stand.svg","states":["START","MOVE","FINISH"],"status":"technical_qa_pass","technical_qa":"PASS — Fit Premium Candidate Gate run 31746231047","domain_acceptance":"pending"}
+    {"canonical_movement":"sit-to-stand","asset":"assets/fit/premium/sit-to-stand.svg","states":["START","MOVE","FINISH"],"status":"technical_qa_pass","technical_qa":"PASS — Fit Premium Candidate Gate run 31746231047","domain_acceptance":"pending"},
+    {"canonical_movement":"squat","asset":"assets/fit/premium/squat.svg","states":["START","MOVE","FINISH"],"status":"produced_candidate","technical_qa":"pending","domain_acceptance":"pending"},
+    {"canonical_movement":"hip-hinge","asset":"assets/fit/premium/hip-hinge.svg","states":["START","MOVE","FINISH"],"status":"produced_candidate","technical_qa":"pending","domain_acceptance":"pending"}
   ],
   "acceptance": {"movement_match":true,"three_distinct_states":["START","MOVE","FINISH"],"movement_specific":true,"member_comprehension":true,"safety_cues_consistent_with_canonical_guidance":true,"desktop_and_mobile_render":true,"domain_approval_required":true},
-  "counts": {"produced":1,"technically_qa_passed":1,"domain_accepted":0}
+  "counts": {"produced":3,"technically_qa_passed":1,"domain_accepted":0}
 }
