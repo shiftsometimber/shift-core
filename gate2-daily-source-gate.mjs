@@ -10,3 +10,7 @@ if(!brain.includes('canonical_contract:brain.contract'))fail('Daily V3 does not 
 if(!entry.includes("path.startsWith('/v1/progress/')"))fail('Progress routes are missing from member CORS contract');
 if(failed)process.exit(1);
 console.log('Gate 2 daily source gate passed: Today V3 Brain wrapper preserves Today/Progress/Plans contract.');
+
+// G2-012 is a bounded deployed-client defect. Keep its exact production proof inside the
+// existing trusted Gate 2 lane so a stale Pages origin or missing Worker patch fails closed.
+await import('./g2-012-production-proof.mjs');
