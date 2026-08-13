@@ -7,15 +7,15 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
-| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery module is authoritative and reset/change implementation is proven; B01 still needs secret-safe real-token reset -> login -> change-password -> logout/login. |
+| G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery module is authoritative and reset/change implementation is proven; B01 still needs secret-safe real-token reset -> login -> change-password -> logout/login. PR #112's rendered production sweep additionally found no password-reset affordance discoverable from the member-login surface. |
 | G1-002 | Email binding not deployment-persistent | AMBER | Welcome/reset inbox receipt is proven; final launch email/recovery lifecycle remains coupled to B01/M09. |
-| G1-003 | Registration email lifecycle incomplete | AMBER | Explicit verification lifecycle is regression-protected; real production inbox click -> verified login -> Welcome evidence remains M09. |
+| G1-003 | Registration email lifecycle incomplete | AMBER | Explicit verification lifecycle is regression-protected; real production inbox click -> verified login -> Welcome evidence remains M09. PR #112 found the login registration affordance resolves to `programme#register` without visible registration controls. |
 | G1-004 | Email verification is effectively bypassed | AMBER | `AUTO_VERIFY_EMAIL=false`, unverified login is blocked, resend invalidates prior token and replay is rejected; real production inbox verification remains before PASS. |
 | G1-005 | Member persistence confidence damaged | **PASS** | Production A/B authenticated state, Progress, Brain and leave/return persistence proven without contamination. |
 | G1-006 | Broken/dead routes and links not centrally detected | **PASS** | Exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, found zero critical route/asset/blank-page failures and exhausted discovery without truncation. Earlier malformed-link defect was fixed and the unchanged sweep reran green. |
-| G1-007 | Error handling exposes generic failures | AMBER | Deployed safe-error contracts prove correlated/no-store/non-leaking JSON across representative API failures; rendered/member-facing failure-state acceptance remains M10/M01/B08. |
+| G1-007 | Error handling exposes generic failures | AMBER | Deployed safe-error contracts prove correlated/no-store/non-leaking JSON across representative API failures; PR #112 also proves intelligible invalid-login guidance across Chromium/Firefox/WebKit desktop+390px, but broader rendered/member-facing failure-state acceptance remains M10/M01/B08. |
 | G1-008 | Loading/empty/success states inconsistent | AMBER | Behavioural endpoints are green; rendered state-system acceptance remains M01/M10/B08. |
-| G1-009 | Mobile/cross-browser regressions found manually | AMBER | Genuine mobile/cross-browser release evidence remains M01/M06/M10/B08. |
+| G1-009 | Mobile/cross-browser regressions found manually | AMBER | PR #112 completed 18 rendered public/login cases across Chromium, Firefox and WebKit at desktop and 390px; genuine authenticated member mobile/cross-browser release evidence remains M01/M06/M10/B08. |
 | G1-010 | Auth rate limits/security controls need formal commissioning | **PASS** | Deployed production security/privacy commissioning proved restricted OIDC commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin CORS denial, member-scoped export isolation, deletion-session revocation, hardened response envelopes and source-level auth/rate/session/recovery/analytics controls. |
 | G1-011 | Production entry-point wiring can diverge from modules | **PASS** | Master/source gates fail if authoritative auth/product/Brain wiring disappears; current gates green. |
 | G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and longitudinal product behaviour are green; fresh unassisted B08 remains. |
@@ -24,12 +24,12 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
 | G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
-| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908** including 2,876 industrial objects across real-life meal/fakeaway/treat families. The governed V6 full-catalogue conversion now has **546 ingredient-level CoFID-validated LOW-risk draft recipes**; only 1 reviewed/published recipe is production-served. Independent review/publication/serving breadth remains M11. |
-| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | **546 industrial recipes** now carry ingredient-level CoFID 2021 validation from the repaired V6 catalogue, with 546 LOW / 0 MEDIUM / 0 HIGH in the governed calculation wave. The remaining 2,330 stay quarantined rather than receiving fabricated precision. |
+| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908** including 2,876 industrial objects across real-life meal/fakeaway/treat families. Merged PR #115 proves **1,503 / 2,876 industrial recipes** now carry governed ingredient-level CoFID nutrition and are LOW-risk in the full-catalogue calculation, but all remain draft pending genuine second-person content review; only 1 independently reviewed/published recipe is production-served. Review/publication/serving breadth remains M11. |
+| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | PR #115 proves **1,503 industrial recipes** carry ingredient-level CoFID 2021 validation from the current full-catalogue path via **104 canonical decisions / 96 exercised decisions**, including **62 governed shared proxy approvals** with retained basis/limitations. Latest calculation is 1,503 LOW / 0 MEDIUM / 0 HIGH; the remaining **1,373** stay quarantined rather than receiving fabricated precision. |
 | G2-004 | Grub variety/repetition is poor | AMBER | Authored-capacity simulation produces zero exact repeats across 30/60/90/365-day horizons, including 1,460 unique choices over 365 days; commissioned/published catalogue diversity under real member constraints remains M11. |
 | G2-005 | Grub Yay/Nay is shallow and not durable learning | **PASS** | Authenticated Nay -> leave/return -> later recommendation change is production-proven; unrelated Fit remains unaffected. |
 | G2-006 | Fit composes durations incorrectly | **PASS** | Unchanged post-merge production commissioning after PR #109 proved the authenticated 10/15/20/30/45/60-minute session-quality matrix end-to-end through the duration-aware V8 composition path. The production gate completed GREEN; duration padding/overrun regressions remain protected. |
-| G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500**. Canonical visual specifications now cover 2,244/2,468 industrial objects with automatic integrity checks, but only 3 movements have member-QA/review/publication/production-serving evidence. Visual/domain QA and publication conversion remain M12. |
+| G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500**. Stable canonical visual metadata/specifications bind 2,244/2,468 industrial objects with automatic technical/protocol checks, but the referenced consolidated `assets/fit/shift-fit-industrial-v3.svg` rendered 44-family asset does not exist on current main. Only 3 movements have genuine member/domain-QA/review/publication/production-serving evidence. Real visual creation/domain QA and publication conversion remain M12. |
 | G2-008 | Fit Yay/Nay is not durable learning | **PASS** | Authenticated exercise dislike/Nay persists and influences later Fit while Grub signals stay isolated. |
 | G2-009 | Conundrum lacks kitchen intelligence | AMBER | Obvious chicken+cheese+wrap relationship is production-proven; broader catalogue-backed ingredient intelligence remains tied to M11. |
 | G2-010 | Hydration is too water-centric | **PASS** | Production suite proves non-water drink contribution rules including coffee contributing and beer not contributing, with durable plan/log state. |
@@ -86,19 +86,19 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 | ID | Class | Immediate closure lane |
 |---|---|---|
-| G1-001 | HUMAN/DEVICE | B01 real reset-token/inbox lifecycle |
+| G1-001 | HUMAN/DEVICE | B01 real reset-token/inbox lifecycle + fix login reset discoverability |
 | G1-002 | HUMAN/DEVICE | B01/M09 production transactional inbox proof |
-| G1-003 | HUMAN/DEVICE | M09 real verification inbox click/login |
+| G1-003 | HUMAN/DEVICE | M09 real verification inbox click/login + fix registration discoverability |
 | G1-004 | HUMAN/DEVICE | M09 real verification inbox click/login |
 | G1-007 | FINITE | M10 rendered/member-facing failure-state acceptance |
 | G1-008 | HUMAN/DEVICE | M01/M10 rendered loading/empty/success review |
-| G1-009 | HUMAN/DEVICE | M01/M06 cross-browser/mobile matrix |
+| G1-009 | HUMAN/DEVICE | M01/M06 authenticated cross-browser/mobile matrix |
 | G1-012 | HUMAN/DEVICE | B08 fresh unassisted Dave run |
 | G2-001 | LARGE | M01/B08 premium Today experience |
-| G2-002 | LARGE | M11 nutrition/review/publication conversion at scale |
-| G2-003 | LARGE | M11 industrial ingredient-level nutrition validation |
+| G2-002 | LARGE | M11 independent review/publication/serving conversion at scale from 1,503 LOW-risk drafts |
+| G2-003 | LARGE | M11 remaining 1,373 ingredient/family nutrition quarantine |
 | G2-004 | LARGE | M11 commissioned 30/60/90/365-day catalogue diversity under real constraints |
-| G2-007 | LARGE | M12 visuals/review/publication conversion at scale |
+| G2-007 | LARGE | M12 create real 44-family visuals -> domain QA -> review/publication/serving at scale |
 | G2-009 | FINITE | M11 catalogue-backed Conundrum intelligence |
 | G2-011 | LARGE | M13 whole-person Progress story |
 | G2-012 | FINITE | M13 unit system |
