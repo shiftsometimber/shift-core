@@ -29,7 +29,42 @@ async function assertBasic(page,name){
   return {title,textChars:text.length,horizontalOverflowPx:Math.max(0,scroll.w-scroll.cw),mainCount,h1Count};
 }
 async function screenshot(page,name){const file=path.join(OUT,`${slug(name)}.png`);await page.screenshot({path:file,fullPage:true});return file}
-async function findHref(page,pattern){const links=await page.locator('a[href]').evaluateAll(as=>as.map(a=>({href:a.href,text:(a.textContent||'').trim()})));return links.find(x=>pattern.test(`${x.href} ${x.text}`))?.href||null}
+async function findAction(page,pattern){
+  const candidates=[
+    page.getByRole('link',{name:pattern}).first(),
+    page.getByRole('button',{name:pattern}).first(),
+    page.getByRole('tab',{name:pattern}).first(),
+    page.locator('[role="button"],[role="tab"],a,button').filter({hasText:pattern}).first(),
+    page.getByText(pattern).first()
+  ];
+  for(const candidate of candidates){if(await candidate.count()&&await candidate.isVisible().catch(()=>false))return candidate}
+  return null;
+}
+async function exerciseRegistration(page,name){
+  const action=await findAction(page,/create account|register|sign\s*up|join/i);
+  if(!action){gap(name,'no discoverable Create account / registration control on member-login surface');return null}
+  const beforeUrl=page.url();
+  await action.click();
+  await page.waitForTimeout(800);
+  const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true});
+  const passwords=page.locator('input[type="password"]').filter({visible:true});
+  const visibleInputs=await page.locator('input,select,textarea').filter({visible:true}).count();
+  const evidence={beforeUrl,afterUrl:page.url(),visibleEmail:await email.count(),visiblePasswords:await passwords.count(),visibleInputs};
+  if(evidence.visibleEmail<1||evidence.visiblePasswords<1||visibleInputs<2) gap(name,`registration control clicked but account form is incomplete: email=${evidence.visibleEmail}, password=${evidence.visiblePasswords}, visibleControls=${visibleInputs}, url=${page.url()}`);
+  return evidence;
+}
+async function exerciseRecovery(page,name){
+  const action=await findAction(page,/forgot password|reset password|forgot|reset/i);
+  if(!action){gap(name,'no discoverable Forgot password / reset control on member-login surface');return null}
+  const beforeUrl=page.url();
+  await action.click();
+  await page.waitForTimeout(800);
+  const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true});
+  const text=await visibleText(page);
+  const evidence={beforeUrl,afterUrl:page.url(),visibleEmail:await email.count(),recoveryGuidance:/reset|forgot|recovery|send.{0,20}(link|email)|check your email/i.test(text)};
+  if(evidence.visibleEmail<1) gap(name,`password-recovery control clicked but no visible email control rendered; url=${page.url()}`);
+  return evidence;
+}
 
 for(const [browserName,browserType] of Object.entries(browsers)){
   const browser=await browserType.launch({headless:true});
@@ -71,27 +106,15 @@ for(const [browserName,browserType] of Object.entries(browsers)){
         }
       }
       const loginImage=await screenshot(page,`${loginName}-invalid-state`);
-      const registerHref=await findHref(page,/register|sign\s*up|join/i);
-      const resetHref=await findHref(page,/forgot|reset|password/i);
-      report.cases.push({name:loginName,url:page.url(),status:loginResponse?.status(),...loginBasic,registerHref,resetHref,screenshot:loginImage});
+      report.cases.push({name:loginName,url:page.url(),status:loginResponse?.status(),...loginBasic,screenshot:loginImage});
 
-      if(registerHref){
-        const regName=`${browserName}-${viewportName}-register`;
-        const r=await page.goto(registerHref,{waitUntil:'networkidle',timeout:45000});
-        if(!r||r.status()>=400) fail(regName,`register HTTP ${r?.status()??'no response'}`);
-        const b=await assertBasic(page,regName);const inputs=await page.locator('input,select,textarea').filter({visible:true}).count();
-        if(inputs<2) gap(regName,`member-login registration affordance resolves to ${page.url()} with ${inputs} visible form controls; account registration remains uncommissioned`);
-        report.cases.push({name:regName,url:page.url(),status:r?.status(),visibleControls:inputs,...b,screenshot:await screenshot(page,regName)});
-      } else gap(loginName,'no registration affordance discovered from member-login surface');
+      await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});
+      const registration=await exerciseRegistration(page,`${browserName}-${viewportName}-register`);
+      report.cases.push({name:`${browserName}-${viewportName}-register`,registration,screenshot:await screenshot(page,`${browserName}-${viewportName}-register`)});
 
-      if(resetHref){
-        const resetName=`${browserName}-${viewportName}-reset`;
-        const r=await page.goto(resetHref,{waitUntil:'networkidle',timeout:45000});
-        if(!r||r.status()>=400) fail(resetName,`reset HTTP ${r?.status()??'no response'}`);
-        const b=await assertBasic(page,resetName);const resetEmail=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true}).first();
-        if(await resetEmail.count()===0) gap(resetName,'reset surface has no visible email control; recovery remains human/product AMBER');
-        report.cases.push({name:resetName,url:page.url(),status:r?.status(),...b,screenshot:await screenshot(page,resetName)});
-      } else gap(loginName,'no reset affordance discovered from member-login surface');
+      await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});
+      const recovery=await exerciseRecovery(page,`${browserName}-${viewportName}-reset`);
+      report.cases.push({name:`${browserName}-${viewportName}-reset`,recovery,screenshot:await screenshot(page,`${browserName}-${viewportName}-reset`)});
       await context.close();
     }
   } finally {await browser.close()}
