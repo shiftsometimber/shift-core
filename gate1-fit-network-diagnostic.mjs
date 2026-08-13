@@ -9,10 +9,11 @@ const OUT=process.env.STATE_EVIDENCE_DIR||'state-system-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
-const report={proof:'G1_008_FIT_NETWORK_DIAGNOSTIC_V1',events:[],console:[],pageErrors:[],requestFailures:[],auth:null,ui:null,result:null};
+const report={proof:'G1_008_FIT_NETWORK_DIAGNOSTIC_V2_CLIENT_VS_BACKEND',events:[],console:[],pageErrors:[],requestFailures:[],auth:null,ui:null,result:null,directReplay:null};
 const write=()=>fs.writeFileSync(`${OUT}/fit-network-diagnostic.json`,JSON.stringify(report,null,2));
 const email=`shiftsometimber+structured-g1fitdiag-${Date.now()}@gmail.com`;
 const password=`Sst-${randomUUID()}-Aa1!`;
+let fitPostData=null;
 
 const registration=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,firstName:'Dave',password,source:'commissioning-g1-fit-diagnostic'})});
 if(registration.status!==201)throw new Error(`diagnostic registration failed HTTP ${registration.status}`);
@@ -21,9 +22,10 @@ const browser=await chromium.launch({headless:true});
 try{
   const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'});
   const page=await context.newPage();
-  page.on('request',req=>{if(req.url().startsWith(API))report.events.push({type:'request',method:req.method(),url:req.url(),at:Date.now()})});
-  page.on('response',res=>{if(res.url().startsWith(API))report.events.push({type:'response',method:res.request().method(),url:res.url(),status:res.status(),at:Date.now()})});
-  page.on('requestfailed',req=>{if(req.url().startsWith(API))report.requestFailures.push({method:req.method(),url:req.url(),failure:req.failure(),at:Date.now()})});
+  const startedAt=Date.now();
+  page.on('request',req=>{if(req.url().startsWith(API)){const row={type:'request',method:req.method(),url:req.url(),at:Date.now(),elapsedMs:Date.now()-startedAt};if(req.method()==='POST'&&req.url().includes('/v1/fit/plan')){fitPostData=req.postData();row.postData=clean(fitPostData).slice(0,4000)}report.events.push(row)}});
+  page.on('response',res=>{if(res.url().startsWith(API))report.events.push({type:'response',method:res.request().method(),url:res.url(),status:res.status(),at:Date.now(),elapsedMs:Date.now()-startedAt})});
+  page.on('requestfailed',req=>{if(req.url().startsWith(API))report.requestFailures.push({method:req.method(),url:req.url(),failure:req.failure(),at:Date.now(),elapsedMs:Date.now()-startedAt})});
   page.on('console',msg=>{if(['error','warning'].includes(msg.type()))report.console.push({type:msg.type(),text:clean(msg.text()).slice(0,800)})});
   page.on('pageerror',err=>report.pageErrors.push(clean(err?.message||err).slice(0,1200)));
 
@@ -44,18 +46,32 @@ try{
   await build.waitFor({state:'visible',timeout:15000});
   const before=clean(await page.locator('body').innerText());
   const start=Date.now();
-  const responsePromise=page.waitForResponse(r=>{let u;try{u=new URL(r.url())}catch{return false}return r.request().method()==='POST'&&u.pathname==='/v1/fit/plan'},{timeout:60000}).catch(()=>null);
+  const responsePromise=page.waitForResponse(r=>{let u;try{u=new URL(r.url())}catch{return false}return r.request().method()==='POST'&&u.pathname==='/v1/fit/plan'},{timeout:65000}).catch(()=>null);
   await build.click({timeout:8000});
   await page.waitForTimeout(350);
   report.ui={disabledDuring:await build.isDisabled().catch(()=>false),bodyChangedDuring:clean(await page.locator('body').innerText())!==before,bodyDuring:clean(await page.locator('body').innerText()).slice(0,1800)};
   const response=await responsePromise;
-  if(!response){report.result={ok:false,reason:'no /v1/fit/plan response inside 60s',elapsedMs:Date.now()-start};write();throw new Error(`Fit diagnostic saw no /v1/fit/plan response; API events=${JSON.stringify(report.events.slice(-20))}`)}
-  let payload=null;try{payload=await response.json()}catch{}
-  await page.waitForTimeout(1000);
-  const after=clean(await page.locator('body').innerText());
-  report.result={ok:response.ok(),status:response.status(),elapsedMs:Date.now()-start,error:payload?.error||null,qualityIssues:payload?.quality?.issues||payload?.qualityCommissioning?.issues||null,sessionCount:payload?.plan?.sessions?.length||0,bodyAfter:after.slice(0,2200)};
+  if(response){
+    let payload=null;try{payload=await response.json()}catch{}
+    await page.waitForTimeout(1000);
+    const after=clean(await page.locator('body').innerText());
+    report.result={ok:response.ok(),status:response.status(),elapsedMs:Date.now()-start,error:payload?.error||null,qualityIssues:payload?.quality?.issues||payload?.qualityCommissioning?.issues||null,sessionCount:payload?.plan?.sessions?.length||0,bodyAfter:after.slice(0,2200)};
+  }else{
+    report.result={ok:false,reason:'no browser /v1/fit/plan response inside 65s',elapsedMs:Date.now()-start};
+  }
+
+  if(fitPostData){
+    const cookie=(await context.cookies(`${API}/`)).map(x=>`${x.name}=${x.value}`).join('; ');
+    const directStart=Date.now();
+    try{
+      const replay=await fetch(`${API}/v1/fit/plan`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json',Cookie:cookie},body:fitPostData,signal:AbortSignal.timeout(120000)});
+      let payload=null;try{payload=await replay.json()}catch{}
+      report.directReplay={ok:replay.ok,status:replay.status,elapsedMs:Date.now()-directStart,error:payload?.error||null,qualityIssues:payload?.quality?.issues||payload?.qualityCommissioning?.issues||null,sessionCount:payload?.plan?.sessions?.length||0,planDays:payload?.plan?.days?.length||null};
+    }catch(e){report.directReplay={ok:false,elapsedMs:Date.now()-directStart,error:clean(e?.message||e),name:e?.name||null,cause:clean(e?.cause?.message||'').slice(0,500)||null}}
+  }else report.directReplay={ok:false,error:'browser emitted no captured Fit POST body'};
+
   await page.screenshot({path:`${OUT}/fit-network-diagnostic.png`,fullPage:true}).catch(()=>{});
   write();
-  if(!response.ok())throw new Error(`Fit diagnostic endpoint returned HTTP ${response.status()} ${payload?.error||''}`);
+  if(!report.result?.ok)throw new Error(`Fit browser diagnostic did not receive a successful response; replay=${JSON.stringify(report.directReplay)}`);
   console.log(JSON.stringify(report,null,2));
 }finally{write();await browser.close()}
