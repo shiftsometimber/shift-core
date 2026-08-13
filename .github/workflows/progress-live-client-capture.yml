@@ -11,12 +11,15 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Capture exact deployed member product client
+      - name: Capture exact deployed member product client and verify Pages origin
         shell: bash
         run: |
           mkdir -p progress-live-client
           curl -fLsS --retry 3 --max-time 30 'https://shiftsometimber.co.uk/member-product-v33d.js?v=33h' -o progress-live-client/member-product-v33d.js
-          wc -c progress-live-client/member-product-v33d.js
+          curl -fLsS --retry 3 --max-time 30 'https://projectshift.pages.dev/member-product-v33d.js?v=33h' -o progress-live-client/pages-member-product-v33d.js
+          wc -c progress-live-client/member-product-v33d.js progress-live-client/pages-member-product-v33d.js
+          sha256sum progress-live-client/member-product-v33d.js progress-live-client/pages-member-product-v33d.js | tee progress-live-client/source-sha256.txt
+          cmp progress-live-client/member-product-v33d.js progress-live-client/pages-member-product-v33d.js
           node --check progress-live-client/member-product-v33d.js
           grep -nE 'formatWeight|stone|lb|waist|waist_cm|photo' progress-live-client/member-product-v33d.js > progress-live-client/unit-hits.txt || true
           cat progress-live-client/unit-hits.txt
