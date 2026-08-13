@@ -1,20 +1,26 @@
 # V1 War Room State
 
-Authoritative audit remains **24 PASS / 30 AMBER / 3 BLOCKED** after G5-005 earned production acceptance. No row is promoted without completed journey evidence.
+Authoritative audit is now **25 PASS / 29 AMBER / 3 BLOCKED** after G1-002 earned direct production-inbox acceptance. No row is promoted without completed journey evidence.
 
-Operational release board V2 remains **26 Category-A release-blocking AMBER rows grouped into 7 active root clusters; 4 Category-B post-launch AMBER rows; 3 Category-C external rows**. **1 Category-A blocker is closed: G5-005.** The audit is the evidence truth; this board is the release critical path.
+Operational release board V2 is now **25 Category-A release-blocking AMBER rows grouped into 7 active root clusters; 4 Category-B post-launch AMBER rows; 3 Category-C external rows**. **2 Category-A blockers are closed: G5-005 and G1-002.** The audit is the evidence truth; this board is the release critical path.
 
 Current main includes PR #149 systemic Grub/Fit humanness repair and the permanent member-facing product requirement: **THE MEMBER MUST NEVER FEEL THE MACHINE.**
 
+## A1 — auth + Dave lifecycle
+
+Authentication/session establishment remains locked GREEN unless the unchanged RC materially regresses. Connected Gmail now proves the deployed transactional email path itself: real `Welcome to My Shift` and `Reset your My Shift password` messages from `welcome@shiftsometimber.co.uk` reached retained external Gmail inbox storage. Therefore **G1-002 is PASS**. This does not promote adjacent lifecycle rows: the full reset-token journey and fresh registration verification click/login remain AMBER.
+
 ## A1/A2 — authenticated Dave / rendered premium
 
-Authentication/session establishment remains locked GREEN unless the unchanged RC materially regresses. The unchanged authenticated production RC continues to prove that the consistent release defect is the shared rendered layout rather than the session path.
+The unchanged authenticated production RC continues to prove that the consistent release defect is rendered product geometry rather than the session path.
 
 The authenticated member estate still fails the unchanged rendered gate with a shared horizontal-overflow defect: **20px desktop / 88px at 390px** across Today, Grub, Fit, Progress and Shift AI. Public rendering remains green. A separate populated-state defect is also reproduced: `#sstMemberNotice` can intercept pointer events intended for the member navigation. My Shift navigation has also resolved to `/member-login#sign-in` in the RC and must not be counted as a successful authenticated member destination.
 
-Do not hide overflow globally. Repair the authoritative frontend layout/overlay source, rerun the unchanged six-case RC, and only then reconcile rows genuinely earned by that proof. The authoritative deployed member-shell CSS/HTML is not present in the accessible `shift-core` or `shift-hq` repositories, so a legitimate production patch cannot be committed until that deployment source is recovered/connected; runtime test injection is explicitly not accepted as a fix.
+Retained production geometry has now isolated the common overflow to the closed global `#askTimberDrawer.ask-drawer`: the live rule uses `right:0` plus `transform:translateX(105%)`, placing the closed drawer beyond the viewport while it still contributes scrollable document geometry. Do not hide overflow globally. Repair the authoritative frontend drawer/notice/member-route source, rerun the unchanged six-case RC, and only then reconcile rows genuinely earned by that proof.
 
-**Exactly one Matt dependency remains for frontend ownership:** upload the current production frontend source package containing `styles.css`, `member-product-v33d.css`, `one-shift-v34.css`, and the `/member/dashboard` source/template presently deployed to `shiftsometimber.co.uk`. No other frontend clarification is required.
+The authoritative deployed member-shell CSS/HTML is not present in the accessible `shift-core` or `shift-hq` repositories, so a legitimate production patch cannot be committed until that deployment source is recovered/connected; runtime test injection is explicitly not accepted as a fix.
+
+**Exactly one Matt dependency remains for frontend ownership:** upload/connect the current authoritative `projectshift` production frontend source package containing `styles.css`, `member-product-v33d.css`, `one-shift-v34.css`, and the `/member/dashboard` source/template presently deployed to `shiftsometimber.co.uk`. No other frontend clarification is required.
 
 ## Permanent member-facing standard — humanness
 
