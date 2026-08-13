@@ -33,7 +33,9 @@ async function findAction(page,pattern){
   const candidates=[
     page.getByRole('link',{name:pattern}).first(),
     page.getByRole('button',{name:pattern}).first(),
-    page.locator('[role="button"]').filter({hasText:pattern}).first()
+    page.getByRole('tab',{name:pattern}).first(),
+    page.locator('[role="button"],[role="tab"],a,button').filter({hasText:pattern}).first(),
+    page.getByText(pattern).first()
   ];
   for(const candidate of candidates){if(await candidate.count()&&await candidate.isVisible().catch(()=>false))return candidate}
   return null;
