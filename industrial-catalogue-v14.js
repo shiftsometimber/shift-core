@@ -1,0 +1,4 @@
+import {buildIndustrialCatalogue as buildV13,grubHumannessIssues} from './industrial-catalogue-v13.js';
+function family(title=''){for(const [re,id] of [[/Proper Sandwich/i,'proper-sandwich'],[/Traybake/i,'traybake'],[/Slow Cooker/i,'slow-cooker'],[/Protein Pot/i,'protein-pot'],[/Loaded Wrap/i,'loaded-wrap'],[/Breakfast Hash/i,'breakfast-hash'],[/Breakfast Buttie/i,'breakfast-buttie'],[/Breakfast Wrap/i,'breakfast-wrap'],[/Breakfast Toastie/i,'breakfast-toastie'],[/Overnight Oats/i,'overnight-oats'],[/Work Snack Box/i,'work-snack-box']])if(re.test(title))return id;return null}
+export {grubHumannessIssues};
+export function buildIndustrialCatalogue(){const c=buildV13(),recipes=c.recipes.map(r=>{const f=family(r.title);if(!f)return r;return{...r,provenance:{...(r.provenance||{}),humanness_v1:{...(r.provenance?.humanness_v1||{}),family:f,composer_version:'v1'}}}});return{...c,recipes}}
