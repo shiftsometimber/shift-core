@@ -1,7 +1,7 @@
 const BASE=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const ORIGIN='https://shiftsometimber.co.uk';
 const nonce=`conundrum-catalogue-${Date.now()}`;
-const email=`shiftsometimber+${nonce}@gmail.com`;
+const email=`shiftsometimber+structured-${nonce}@gmail.com`;
 const password=`Sst!A9-${nonce}`;
 const assert=(condition,message)=>{if(!condition)throw new Error(message)};
 
