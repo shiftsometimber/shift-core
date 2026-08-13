@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {SLOS} from './operational-slos-v1.js';
+const FILE=process.env.SHIFT_G5_012_TIMING_FILE||'g5-012-auth-timings.ndjson';
+const OUT=process.env.G5_012_EVIDENCE_DIR||'g5-012-auth-p95-evidence';fs.mkdirSync(OUT,{recursive:true});
+const rows=fs.existsSync(FILE)?fs.readFileSync(FILE,'utf8').split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x)):[];
+const good=kind=>rows.filter(x=>x.kind===kind&&x.status>=200&&x.status<300).map(x=>Number(x.ms)).filter(Number.isFinite);
+const regCore=good('register_core'),regWrapper=good('register_wrapper'),login=good('login'),oidc=good('commissioning_oidc'),post=good('commissioning_postverify');
+const p95=xs=>{const s=[...xs].sort((a,b)=>a-b);return s[Math.min(s.length-1,Math.ceil(s.length*.95)-1)]};
+const median=xs=>{const s=[...xs].sort((a,b)=>a-b);return s[Math.floor(s.length/2)]};
+const stats=xs=>({count:xs.length,p95Ms:xs.length?p95(xs):null,medianMs:xs.length?median(xs):null,maxMs:xs.length?Math.max(...xs):null,samplesMs:xs});
+const report={proof:'G5_012_MEMBER_AUTH_P95_PRODUCTION_V2',budgetMs:SLOS.apiP95Ms,memberApi:{registration:stats(regCore),login:stats(login)},commissioningOverhead:{endToEndSyntheticRegistration:stats(regWrapper),githubOidcVerification:stats(oidc),postVerificationWrites:stats(post)},allObservedRows:rows.length,passwordSecurityChanged:false,sampling:'existing production commissioning traffic only; member registration handler measured server-side separately from GitHub OIDC fixture overhead; no extra accounts or login load created'};
+const enough=regCore.length>=5&&login.length>=5;report.status=enough&&report.memberApi.registration.p95Ms<=SLOS.apiP95Ms&&report.memberApi.login.p95Ms<=SLOS.apiP95Ms?'PASS':'FAIL';
+fs.writeFileSync(`${OUT}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+if(!enough)throw new Error(`G5-012 insufficient natural member-path samples: registrations ${regCore.length}, logins ${login.length}; require >=5 each`);
+if(report.status!=='PASS')throw new Error(`G5-012 member API p95 breach: registration ${report.memberApi.registration.p95Ms}ms, login ${report.memberApi.login.p95Ms}ms, budget ${SLOS.apiP95Ms}ms`);
+console.log(`PASS G5-012 member API p95: registration ${report.memberApi.registration.p95Ms}ms (${regCore.length} samples), login ${report.memberApi.login.p95Ms}ms (${login.length} samples), budget ${SLOS.apiP95Ms}ms. Synthetic commissioning overhead retained separately.`);
