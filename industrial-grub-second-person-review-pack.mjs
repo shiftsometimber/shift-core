@@ -8,7 +8,7 @@ const index=JSON.parse(fs.readFileSync(process.env.COFID_INDEX||'/tmp/cofid-inde
 const foods=new Map((index.foods||[]).map(food=>[String(food.code),food]));
 const nutrients=['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];
 const round=n=>Math.round((Number(n)+Number.EPSILON)*10)/10;
-const normalise=x=>String(x||'').replace(/\s+/g,' ').trim();
+const normalise=x=>String(x||'').toLowerCase().replace(/\s+/g,' ').trim();
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
 function calculate(recipe){
@@ -35,11 +35,15 @@ function calculate(recipe){
   return {eligible:true,nutrition,evidence};
 }
 
-function familyKey(recipe){
+function methodTemplate(recipe){
+  let text=(recipe.method||[]).map(normalise).join('|');
+  const ingredientNames=[...new Set((recipe.ingredients||[]).map(x=>normalise(x.item)).filter(Boolean))].sort((a,b)=>b.length-a.length);
+  for(const ingredient of ingredientNames)text=text.split(ingredient).join('{ingredient}');
+  return text.replace(/\b\d+(?:\.\d+)?\b/g,'#');
+}
+function templateKey(recipe){
   const equipment=(recipe.equipment||[]).map(normalise).sort().join('+')||'none';
-  const tags=(recipe.tags||[]).map(normalise).filter(Boolean).sort().slice(0,5).join('+')||'untagged';
-  const methodShape=(recipe.method||[]).map(step=>normalise(step).replace(/\d+(?:\.\d+)?/g,'#')).join('|');
-  return `${recipe.meal_type||'unknown'}|${equipment}|${tags}|${hash(methodShape).slice(0,10)}`;
+  return `${recipe.meal_type||'unknown'}|${equipment}|${(recipe.ingredients||[]).length}|${hash(methodTemplate(recipe)).slice(0,12)}`;
 }
 
 const catalogue=buildIndustrialCatalogue().recipes;
@@ -67,11 +71,11 @@ for(const recipe of catalogue){
     id:recipe.id,
     title:recipe.title,
     meal_type:recipe.meal_type,
-    family_key:familyKey(recipe),
+    template_key:templateKey(recipe),
+    method_template:methodTemplate(recipe),
     content_hash:hash(decisionContent),
     review_status:'decision_required',
     allowed_decisions:['approve','fix','reject'],
-    unlocks:1,
     ...decisionContent,
     ingredient_evidence:calculated.evidence,
     authoring_provenance:recipe.provenance||{},
@@ -79,10 +83,29 @@ for(const recipe of catalogue){
   });
 }
 
-const familyCounts=new Map();
-for(const item of reviewable)familyCounts.set(item.family_key,(familyCounts.get(item.family_key)||0)+1);
-for(const item of reviewable)item.family_unlock_count=familyCounts.get(item.family_key)||1;
-reviewable.sort((a,b)=>b.family_unlock_count-a.family_unlock_count||a.meal_type.localeCompare(b.meal_type)||a.title.localeCompare(b.title));
+const grouped=new Map();
+for(const item of reviewable){const xs=grouped.get(item.template_key)||[];xs.push(item);grouped.set(item.template_key,xs)}
+const templateFamilies=[...grouped.entries()].map(([key,items])=>{
+  items.sort((a,b)=>a.title.localeCompare(b.title)||a.id.localeCompare(b.id));
+  const contentHashes=items.map(x=>x.content_hash).sort();
+  const representativeIndexes=[0,Math.floor((items.length-1)/2),items.length-1];
+  const representatives=[...new Set(representativeIndexes)].map(i=>items[i]).map(x=>({id:x.id,title:x.title,content_hash:x.content_hash,ingredients:x.ingredients,method:x.method,nutrition:x.nutrition,allergens:x.allergens,food_safety:x.food_safety}));
+  return{
+    template_key:key,
+    template_digest:hash({key,contentHashes}),
+    descendant_count:items.length,
+    meal_type:items[0]?.meal_type,
+    equipment:items[0]?.equipment||[],
+    method_template:items[0]?.method_template,
+    titles:items.map(x=>x.title),
+    content_hashes:contentHashes,
+    representatives,
+    reviewer_scope_rule:'Template-level approval is permitted only when the reviewer explicitly approves this immutable template digest after checking the representatives and full title/variant list. Any descendant content change changes a content hash and therefore the template digest.'
+  };
+}).sort((a,b)=>b.descendant_count-a.descendant_count||String(a.template_key).localeCompare(String(b.template_key)));
+const familyCountByKey=new Map(templateFamilies.map(x=>[x.template_key,x.descendant_count]));
+for(const item of reviewable)item.template_unlock_count=familyCountByKey.get(item.template_key)||1;
+reviewable.sort((a,b)=>b.template_unlock_count-a.template_unlock_count||a.meal_type.localeCompare(b.meal_type)||a.title.localeCompare(b.title));
 
 const duplicateHashes=[...reviewable.reduce((m,x)=>{m.set(x.content_hash,(m.get(x.content_hash)||[]).concat(x.id));return m},new Map())].filter(([,ids])=>ids.length>1);
 const missingSecondPersonBarrier=reviewable.filter(x=>!x.existing_blockers.includes('second_person_content_review'));
@@ -92,44 +115,47 @@ const summary={
   catalogue:catalogue.length,
   reviewable_low_risk:reviewable.length,
   quarantined:quarantine.length,
-  review_families:familyCounts.size,
+  canonical_review_templates:templateFamilies.length,
+  largest_template_unlock:templateFamilies[0]?.descendant_count||0,
   duplicate_content_hashes:duplicateHashes.length,
   missing_second_person_barrier:missingSecondPersonBarrier.length,
-  policy:'This pack does not approve or publish content. A reviewer independent of the authoring decision must inspect each decision or governed family sample and record approve/fix/reject against the immutable content hash before publication eligibility.'
+  policy:'This pack does not approve or publish content. A reviewer independent of the authoring decision must record approve/fix/reject against either an immutable recipe content hash or an immutable canonical template digest. Template approval is allowed only because the pack proves identical normalised method/equipment/ingredient-count structure and retains every descendant hash/title for scope inspection.'
 };
 
 if(catalogue.length!==2876)throw new Error(`expected 2,876 industrial recipes, got ${catalogue.length}`);
-if(reviewable.length<2800)throw new Error(`review pack regressed below 2,800 LOW-risk nutrition-valid recipes: ${reviewable.length}`);
+if(reviewable.length!==2876)throw new Error(`expected all 2,876 recipes to be LOW-risk nutrition-valid after PR #122, got ${reviewable.length}`);
+if(quarantine.length!==0)throw new Error(`expected zero nutrition quarantine after PR #122, got ${quarantine.length}`);
+if(templateFamilies.length>120)throw new Error(`canonical review compression regressed above 120 templates: ${templateFamilies.length}`);
 if(duplicateHashes.length)throw new Error(`review pack contains ${duplicateHashes.length} duplicate immutable content hashes`);
 if(missingSecondPersonBarrier.length)throw new Error(`${missingSecondPersonBarrier.length} reviewable recipes lost second_person_content_review barrier`);
 
 const outDir=process.env.REVIEW_PACK_DIR||'review-evidence';
 fs.mkdirSync(outDir,{recursive:true});
-fs.writeFileSync(path.join(outDir,'grub-second-person-review-pack.json'),JSON.stringify({summary,reviewable,quarantine},null,2));
-const topFamilies=[...familyCounts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30);
+fs.writeFileSync(path.join(outDir,'grub-second-person-review-pack.json'),JSON.stringify({summary,templateFamilies,reviewable,quarantine},null,2));
 const md=[
   '# Grub second-person review pack',
   '',
   `Catalogue: ${summary.catalogue}`,
   `Reviewable LOW-risk nutrition-valid: ${summary.reviewable_low_risk}`,
   `Quarantined: ${summary.quarantined}`,
-  `Review families: ${summary.review_families}`,
+  `Canonical review templates: ${summary.canonical_review_templates}`,
+  `Largest single template unlock: ${summary.largest_template_unlock}`,
   '',
   '## Review rule',
   summary.policy,
   '',
-  'Approval must be recorded against the immutable `content_hash`. Any content edit changes the hash and requires re-review. Canonical nutrition governance is evidence, not content-review approval.',
+  'Canonical nutrition governance is evidence, not content-review approval. Approval must name the independent reviewer and be bound to either the recipe `content_hash` or family `template_digest`. Any content edit invalidates the affected digest and requires re-review.',
   '',
-  '## Highest-volume review families',
-  ...topFamilies.map(([key,count])=>`- ${count} recipes — ${key}`),
+  '## Canonical template queue — highest unlock first',
+  ...templateFamilies.map((family,index)=>`${index+1}. **${family.descendant_count} recipes** — \`${family.template_key}\` — digest \`${family.template_digest.slice(0,16)}…\` — representatives: ${family.representatives.map(x=>x.title).join(' / ')}`),
   '',
   '## Decision workflow',
-  '1. Inspect title, exact ingredients/amounts, method, food-safety guidance, allergens and calculated nutrition.',
-  '2. Record `approve`, `fix` or `reject` against the immutable content hash.',
-  '3. `fix` and `reject` remain unpublished. Any fixed content receives a new hash and must be reviewed again.',
-  '4. Publication remains separately gated by structured-content publication rules.',
+  '1. Review each canonical template from highest unlock down: method structure, representative ingredient/amount combinations, food-safety guidance, allergens, nutrition plausibility and the full title/variant list.',
+  '2. Record `approve`, `fix` or `reject` against the immutable `template_digest` (or an individual `content_hash` when an exception needs recipe-level treatment).',
+  '3. `fix` and `reject` remain unpublished. Any fixed descendant changes the family digest and must be reviewed again.',
+  '4. Publication remains separately gated by structured-content publication rules; this pack itself can never publish.',
   ''
 ].join('\n');
 fs.writeFileSync(path.join(outDir,'grub-second-person-review-pack.md'),md);
 console.log(JSON.stringify(summary,null,2));
-console.log(`PASS M11 second-person review-pack preparation: ${reviewable.length}/${catalogue.length} LOW-risk nutrition-valid recipes are packaged for independent content review without weakening the publication barrier; ${quarantine.length} remain quarantined.`);
+console.log(`PASS M11 second-person review-pack preparation: all ${reviewable.length}/${catalogue.length} industrial recipes are LOW-risk nutrition-valid and compressed into ${templateFamilies.length} immutable canonical review templates without weakening independent review or publication barriers.`);
