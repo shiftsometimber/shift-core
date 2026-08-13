@@ -1,6 +1,7 @@
 import { chromium, firefox, webkit } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
+// Post-auth proof rerun: assertions below are intentionally unchanged.
 
 const BASE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const OUT=process.env.RENDER_EVIDENCE_DIR||'render-evidence';
@@ -11,116 +12,12 @@ const report={proof:'GATE1_RENDERED_BROWSER_PRODUCTION',base:BASE,cases:[],failu
 const slug=s=>s.replace(/[^a-z0-9-]+/gi,'-').replace(/^-|-$/g,'').toLowerCase();
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=Gate1 rendered acceptance::${name} — ${detail}`)};
 const gap=(name,detail)=>{report.knownGaps.push({name,detail});console.warn(`::warning title=Known Gate1 product gap::${name} — ${detail}`)};
-
 function cleanText(s){return String(s||'').replace(/\s+/g,' ').trim()}
 async function visibleText(page){return cleanText(await page.locator('body').innerText().catch(()=>''))}
-async function assertBasic(page,name){
-  const text=await visibleText(page);
-  if(text.length<80) fail(name,`near-blank rendered body (${text.length} visible chars)`);
-  if(/internal server error|application error|sqlite|sql error|stack trace|cloudflare ray id/i.test(text)) fail(name,'raw/internal failure text exposed');
-  const title=cleanText(await page.title()); if(title.length<2) fail(name,'missing document title');
-  const bodyBox=await page.locator('body').boundingBox();
-  const scroll=await page.evaluate(()=>({w:document.documentElement.scrollWidth,cw:document.documentElement.clientWidth}));
-  if(scroll.w-scroll.cw>8) fail(name,`horizontal overflow ${scroll.w-scroll.cw}px`);
-  if(!bodyBox) fail(name,'body did not render');
-  const mainCount=await page.locator('main, [role="main"]').count();
-  const h1Count=await page.locator('h1').count();
-  if(mainCount===0&&h1Count===0) fail(name,'no main landmark or h1');
-  return {title,textChars:text.length,horizontalOverflowPx:Math.max(0,scroll.w-scroll.cw),mainCount,h1Count};
-}
+async function assertBasic(page,name){const text=await visibleText(page);if(text.length<80)fail(name,`near-blank rendered body (${text.length} visible chars)`);if(/internal server error|application error|sqlite|sql error|stack trace|cloudflare ray id/i.test(text))fail(name,'raw/internal failure text exposed');const title=cleanText(await page.title());if(title.length<2)fail(name,'missing document title');const bodyBox=await page.locator('body').boundingBox();const scroll=await page.evaluate(()=>({w:document.documentElement.scrollWidth,cw:document.documentElement.clientWidth}));if(scroll.w-scroll.cw>8)fail(name,`horizontal overflow ${scroll.w-scroll.cw}px`);if(!bodyBox)fail(name,'body did not render');const mainCount=await page.locator('main, [role="main"]').count(),h1Count=await page.locator('h1').count();if(mainCount===0&&h1Count===0)fail(name,'no main landmark or h1');return{title,textChars:text.length,horizontalOverflowPx:Math.max(0,scroll.w-scroll.cw),mainCount,h1Count}}
 async function screenshot(page,name){const file=path.join(OUT,`${slug(name)}.png`);await page.screenshot({path:file,fullPage:true});return file}
-async function findAction(page,pattern){
-  const candidates=[
-    page.getByRole('link',{name:pattern}).first(),
-    page.getByRole('button',{name:pattern}).first(),
-    page.getByRole('tab',{name:pattern}).first(),
-    page.locator('[role="button"],[role="tab"],a,button').filter({hasText:pattern}).first(),
-    page.getByText(pattern).first()
-  ];
-  for(const candidate of candidates){if(await candidate.count()&&await candidate.isVisible().catch(()=>false))return candidate}
-  return null;
-}
-async function exerciseRegistration(page,name){
-  const action=await findAction(page,/create account|register|sign\s*up|join/i);
-  if(!action){gap(name,'no discoverable Create account / registration control on member-login surface');return null}
-  const beforeUrl=page.url();
-  await action.click();
-  await page.waitForTimeout(800);
-  const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true});
-  const passwords=page.locator('input[type="password"]').filter({visible:true});
-  const visibleInputs=await page.locator('input,select,textarea').filter({visible:true}).count();
-  const evidence={beforeUrl,afterUrl:page.url(),visibleEmail:await email.count(),visiblePasswords:await passwords.count(),visibleInputs};
-  if(evidence.visibleEmail<1||evidence.visiblePasswords<1||visibleInputs<2) gap(name,`registration control clicked but account form is incomplete: email=${evidence.visibleEmail}, password=${evidence.visiblePasswords}, visibleControls=${visibleInputs}, url=${page.url()}`);
-  return evidence;
-}
-async function exerciseRecovery(page,name){
-  const action=await findAction(page,/forgot password|reset password|forgot|reset/i);
-  if(!action){gap(name,'no discoverable Forgot password / reset control on member-login surface');return null}
-  const beforeUrl=page.url();
-  await action.click();
-  await page.waitForTimeout(800);
-  const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true});
-  const text=await visibleText(page);
-  const evidence={beforeUrl,afterUrl:page.url(),visibleEmail:await email.count(),recoveryGuidance:/reset|forgot|recovery|send.{0,20}(link|email)|check your email/i.test(text)};
-  if(evidence.visibleEmail<1) gap(name,`password-recovery control clicked but no visible email control rendered; url=${page.url()}`);
-  return evidence;
-}
-
-for(const [browserName,browserType] of Object.entries(browsers)){
-  const browser=await browserType.launch({headless:true});
-  try{
-    for(const [viewportName,viewport] of Object.entries(viewports)){
-      const context=await browser.newContext({viewport,reducedMotion:'reduce'});
-      const page=await context.newPage();
-      const consoleErrors=[]; page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
-      const name=`${browserName}-${viewportName}-home`;
-      const response=await page.goto(`${BASE}/`,{waitUntil:'networkidle',timeout:45000});
-      if(!response||response.status()>=400) fail(name,`homepage HTTP ${response?.status()??'no response'}`);
-      const basic=await assertBasic(page,name);const image=await screenshot(page,name);
-      report.cases.push({name,url:page.url(),status:response?.status(),...basic,consoleErrors:consoleErrors.slice(0,5),screenshot:image});
-
-      const loginName=`${browserName}-${viewportName}-login`;
-      const loginResponse=await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});
-      if(!loginResponse||loginResponse.status()>=400) fail(loginName,`login HTTP ${loginResponse?.status()??'no response'}`);
-      const loginBasic=await assertBasic(page,loginName);
-      const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true}).first();
-      const password=page.locator('input[type="password"]').filter({visible:true}).first();
-      if(await email.count()===0||await password.count()===0){fail(loginName,'visible email/password controls not found');}
-      else {
-        const form=email.locator('xpath=ancestor::form[1]');
-        const submit=(await form.count()?form:page).locator('button[type="submit"], input[type="submit"], button').filter({visible:true}).first();
-        if(await submit.count()===0) fail(loginName,'visible submit control not found');
-        else {
-          const before=await visibleText(page);
-          await email.fill('rendered-commissioning-no-account@example.invalid');
-          await password.fill('DefinitelyNotARealPassword-2026!');
-          await submit.click();
-          await page.waitForTimeout(1800);
-          const after=await visibleText(page);
-          const changed=after!==before;
-          const alertText=cleanText(await page.locator('[role="alert"], [aria-live], .error, .form-error, .message-error, .alert').filter({visible:true}).allInnerTexts().catch(()=>[]));
-          const combined=`${after} ${alertText}`;
-          if(!changed) fail(loginName,'invalid login produced no rendered state change');
-          if(!/invalid|incorrect|not recognised|not recognized|check.{0,30}(email|password)|(email|password).{0,30}check|try again|sign in|login/i.test(combined)) fail(loginName,'invalid login did not expose intelligible member guidance');
-          if(/stack trace|sqlite|sql error|internal server error/i.test(combined)) fail(loginName,'invalid login leaked internal diagnostics');
-        }
-      }
-      const loginImage=await screenshot(page,`${loginName}-invalid-state`);
-      report.cases.push({name:loginName,url:page.url(),status:loginResponse?.status(),...loginBasic,screenshot:loginImage});
-
-      await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});
-      const registration=await exerciseRegistration(page,`${browserName}-${viewportName}-register`);
-      report.cases.push({name:`${browserName}-${viewportName}-register`,registration,screenshot:await screenshot(page,`${browserName}-${viewportName}-register`)});
-
-      await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});
-      const recovery=await exerciseRecovery(page,`${browserName}-${viewportName}-reset`);
-      report.cases.push({name:`${browserName}-${viewportName}-reset`,recovery,screenshot:await screenshot(page,`${browserName}-${viewportName}-reset`)});
-      await context.close();
-    }
-  } finally {await browser.close()}
-}
-
-fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
-console.log(JSON.stringify(report,null,2));
-if(report.failures.length) throw new Error(`Gate 1 rendered production evidence sweep failed ${report.failures.length} hard assertion(s)`);
-console.log(`PASS Gate 1 rendered production evidence sweep: ${report.cases.length} rendered cases across Chromium/Firefox/WebKit and desktop/390px mobile; invalid-login failure guidance rendered without diagnostic leakage. ${report.knownGaps.length} known product-gap observations were retained without false PASS promotion.`);
+async function findAction(page,pattern){for(const candidate of [page.getByRole('link',{name:pattern}).first(),page.getByRole('button',{name:pattern}).first(),page.getByRole('tab',{name:pattern}).first(),page.locator('[role="button"],[role="tab"],a,button').filter({hasText:pattern}).first(),page.getByText(pattern).first()])if(await candidate.count()&&await candidate.isVisible().catch(()=>false))return candidate;return null}
+async function exerciseRegistration(page,name){const action=await findAction(page,/create account|register|sign\s*up|join/i);if(!action){gap(name,'no discoverable Create account / registration control on member-login surface');return null}const beforeUrl=page.url();await action.click();await page.waitForTimeout(800);const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true}),passwords=page.locator('input[type="password"]').filter({visible:true}),visibleInputs=await page.locator('input,select,textarea').filter({visible:true}).count(),evidence={beforeUrl,afterUrl:page.url(),visibleEmail:await email.count(),visiblePasswords:await passwords.count(),visibleInputs};if(evidence.visibleEmail<1||evidence.visiblePasswords<1||visibleInputs<2)gap(name,`registration control clicked but account form is incomplete: email=${evidence.visibleEmail}, password=${evidence.visiblePasswords}, visibleControls=${visibleInputs}, url=${page.url()}`);return evidence}
+async function exerciseRecovery(page,name){const action=await findAction(page,/forgot password|reset password|forgot|reset/i);if(!action){gap(name,'no discoverable Forgot password / reset control on member-login surface');return null}const beforeUrl=page.url();await action.click();await page.waitForTimeout(800);const email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true}),text=await visibleText(page),evidence={beforeUrl,afterUrl:page.url(),visibleEmail:await email.count(),recoveryGuidance:/reset|forgot|recovery|send.{0,20}(link|email)|check your email/i.test(text)};if(evidence.visibleEmail<1)gap(name,`password-recovery control clicked but no visible email control rendered; url=${page.url()}`);return evidence}
+for(const [browserName,browserType] of Object.entries(browsers)){const browser=await browserType.launch({headless:true});try{for(const [viewportName,viewport] of Object.entries(viewports)){const context=await browser.newContext({viewport,reducedMotion:'reduce'}),page=await context.newPage(),consoleErrors=[];page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});const name=`${browserName}-${viewportName}-home`,response=await page.goto(`${BASE}/`,{waitUntil:'networkidle',timeout:45000});if(!response||response.status()>=400)fail(name,`homepage HTTP ${response?.status()??'no response'}`);const basic=await assertBasic(page,name),image=await screenshot(page,name);report.cases.push({name,url:page.url(),status:response?.status(),...basic,consoleErrors:consoleErrors.slice(0,5),screenshot:image});const loginName=`${browserName}-${viewportName}-login`,loginResponse=await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});if(!loginResponse||loginResponse.status()>=400)fail(loginName,`login HTTP ${loginResponse?.status()??'no response'}`);const loginBasic=await assertBasic(page,loginName),email=page.locator('input[type="email"], input[name*="email" i]').filter({visible:true}).first(),password=page.locator('input[type="password"]').filter({visible:true}).first();if(await email.count()===0||await password.count()===0)fail(loginName,'visible email/password controls not found');else{const form=email.locator('xpath=ancestor::form[1]'),submit=(await form.count()?form:page).locator('button[type="submit"], input[type="submit"], button').filter({visible:true}).first();if(await submit.count()===0)fail(loginName,'visible submit control not found');else{const before=await visibleText(page);await email.fill('rendered-commissioning-no-account@example.invalid');await password.fill('DefinitelyNotARealPassword-2026!');await submit.click();await page.waitForTimeout(1800);const after=await visibleText(page),changed=after!==before,alertText=cleanText(await page.locator('[role="alert"], [aria-live], .error, .form-error, .message-error, .alert').filter({visible:true}).allInnerTexts().catch(()=>[])),combined=`${after} ${alertText}`;if(!changed)fail(loginName,'invalid login produced no rendered state change');if(!/invalid|incorrect|not recognised|not recognized|check.{0,30}(email|password)|(email|password).{0,30}check|try again|sign in|login/i.test(combined))fail(loginName,'invalid login did not expose intelligible member guidance');if(/stack trace|sqlite|sql error|internal server error/i.test(combined))fail(loginName,'invalid login leaked internal diagnostics')}}report.cases.push({name:loginName,url:page.url(),status:loginResponse?.status(),...loginBasic,screenshot:await screenshot(page,`${loginName}-invalid-state`)});await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});report.cases.push({name:`${browserName}-${viewportName}-register`,registration:await exerciseRegistration(page,`${browserName}-${viewportName}-register`),screenshot:await screenshot(page,`${browserName}-${viewportName}-register`)});await page.goto(`${BASE}/member-login.html`,{waitUntil:'networkidle',timeout:45000});report.cases.push({name:`${browserName}-${viewportName}-reset`,recovery:await exerciseRecovery(page,`${browserName}-${viewportName}-reset`),screenshot:await screenshot(page,`${browserName}-${viewportName}-reset`)});await context.close()}}finally{await browser.close()}}
+fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));if(report.failures.length)throw new Error(`Gate 1 rendered production evidence sweep failed ${report.failures.length} hard assertion(s)`);console.log(`PASS Gate 1 rendered production evidence sweep: ${report.cases.length} rendered cases across Chromium/Firefox/WebKit and desktop/390px mobile; invalid-login failure guidance rendered without diagnostic leakage. ${report.knownGaps.length} known product-gap observations were retained without false PASS promotion.`);
