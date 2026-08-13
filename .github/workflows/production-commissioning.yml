@@ -65,3 +65,16 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node fit-duration-production.mjs
+      - name: G1-012 fresh unattended synthetic Dave release gate
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node dave-release-gate-production.mjs
+      - name: Upload Dave release-gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dave-synthetic-release-gate-evidence
+          path: dave-release-gate-evidence
+          if-no-files-found: warn
+          retention-days: 30
