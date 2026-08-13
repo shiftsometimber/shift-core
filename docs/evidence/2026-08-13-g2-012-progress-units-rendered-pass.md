@@ -24,11 +24,11 @@ Retained artifact: `9202339510`.
 
 Artifact SHA-256: `661d48dfe4206db9f963e443f41c71035db9294bf52196680b5387f512f6044e`.
 
-The same PR head has GREEN Shift Master Integration Gate run `31754823818` and GREEN Whole-Estate Route Sweep run `31754823829`.
+The same PR lineage has GREEN Shift Master Integration and Whole-Estate Route Sweep gates. Gate 1 run `31754823760` was rerun after a one-off dashboard-navigation commit timeout in the independent G1-008 state harness; the rerun completed GREEN for `rendered-state-system` job `94629176950`, G2-012 job `94629177272`, rendered-browser job `94629177460` and accessibility-performance job `94629177500`. That confirms the navigation timeout was transient and unrelated to the Progress unit acceptance.
 
 ## Prior red runs
 
-The earlier failures were commissioning-fixture defects rather than product-unit failures. The synthetic image bytes supplied by the harness were corrupt; the live member client correctly rejected them with `The source image could not be decoded.` Replacing that corrupt fixture with a genuinely decoded RGB PNG allowed the unchanged production unit path to execute end-to-end and pass.
+The earlier G2 failures were commissioning-fixture defects rather than product-unit failures. The synthetic image bytes supplied by the harness were corrupt; the live member client correctly rejected them with `The source image could not be decoded.` Replacing that corrupt fixture with a genuinely decoded RGB PNG allowed the unchanged production unit path to execute end-to-end and pass.
 
 ## Accounting consequence
 
