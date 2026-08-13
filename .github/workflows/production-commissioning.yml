@@ -60,9 +60,17 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node structured-runtime-production.mjs
+      - name: Refresh short-lived Shift commissioning identity for Fit duration
+        id: oidc_fit_duration
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: G2-006 Fit duration/session quality production matrix
         env:
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_fit_duration.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node fit-duration-production.mjs
       - name: Refresh short-lived Shift commissioning identity for Dave
