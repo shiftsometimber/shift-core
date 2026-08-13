@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 27 PASS / 27 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 28 PASS / 26 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -14,11 +14,11 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G1-005 | Member persistence confidence damaged | **PASS** | Production A/B authenticated state, Progress, Brain and leave/return persistence proven without contamination. |
 | G1-006 | Broken/dead routes and links not centrally detected | **PASS** | Exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, found zero critical route/asset/blank-page failures and exhausted discovery without truncation. Post-RC3 route integrity also remained green on the live extensionless member/public estate. |
 | G1-007 | Error handling exposes generic failures | **PASS** | API safe-error contracts are correlated/no-store/non-leaking; invalid-login guidance is rendered cross-browser/device; merged PR #129 adds a dedicated production 404 matrix across Chromium/Firefox/WebKit desktop + 390px proving non-blank, intelligible recovery with no internal diagnostic leakage or horizontal overflow. Run `31669056410` GREEN; retained evidence artifact `9169047430`. |
-| G1-008 | Loading/empty/success states inconsistent | AMBER | Behavioural endpoints and populated authenticated rendering are green, but the explicit state-system acceptance is not yet closed. The current failure is bounded: canonical `frontend/member/api-adapter-v33d.js` gives Fit a finite 60-second generation budget, while live production `/api-adapter-v33d.js` still serves the stale 15-second client timeout. Direct production Fit generation succeeds at about 29.4 seconds while the browser client aborts first. Closure requires the static frontend authority to publish the canonical adapter, followed by unchanged rendered loading/empty/success acceptance at desktop and 390px. Evidence: `docs/evidence/2026-08-13-g1-008-post-merge-production-recheck.md`. |
+| G1-008 | Loading/empty/success states inconsistent | **PASS** | Exact-path production deployment now serves the Git-authoritative 7,278-byte member adapter with the Fit-only finite 60-second generation budget. Unchanged production run `31744305693`, rendered-state-system job `94594994187`, proves desktop + 390px retained auth, four fresh-member empty states, Grub and Fit explicit in-flight loading, locked generating actions, HTTP 200 product responses, visibly rendered returned items, settled completion copy and zero document-root overflow. Evidence artifact `9198446706`, digest `c50deb642456f43555c52925709c0b389865f62ca0fb916e3eaab2391a5795e5`; retained evidence `docs/evidence/2026-08-13-g1-008-production-pass.md`. |
 | G1-009 | Mobile/cross-browser regressions found manually | **PASS** | Unchanged post-RC3 production rendered acceptance is GREEN across Chromium/Firefox/WebKit desktop + 390px. All six cases registered, signed in, received the session cookie and read authenticated member state. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI all rendered with document width equal to viewport width and zero horizontal overflow; live extensionless routing remained intact. The job fingerprinted the deployed P0 stylesheet/member shell before running, so source-green/stale-production evidence is excluded. Run `31689802921`, authenticated-rendered job `94426973527`. Evidence: `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`. |
 | G1-010 | Auth rate limits/security controls need formal commissioning | **PASS** | Deployed production security/privacy commissioning proved restricted OIDC commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin CORS denial, member-scoped export isolation, deletion-session revocation, hardened response envelopes and source-level auth/rate/session/recovery/analytics controls. |
 | G1-011 | Production entry-point wiring can diverge from modules | **PASS** | Master/source gates fail if authoritative auth/product/Brain wiring disappears; current gates green. |
-| G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and the six-case rendered browser/device member journey are green; fresh unassisted B08 remains. |
+| G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and the six-case rendered browser/device member journey are green. A one-shot unattended Dave gate is now on main; its first run exposed a synthetic fixture namespace mismatch in the Hydration/My Plans leg rather than a product failure. G1-012 remains AMBER until the corrected unchanged main production run proves every automatable Dave lane together. |
 
 ## Gate 2 — Nothing Half-Finished
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 27-AMBER burn-down classification
+## 26-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -89,8 +89,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G1-001 | HUMAN/DEVICE | B01 real reset-token/inbox lifecycle |
 | G1-003 | HUMAN/DEVICE | M09 real registration + verification inbox click/login |
 | G1-004 | HUMAN/DEVICE | M09 real verification inbox click/login |
-| G1-008 | HUMAN/DEVICE | publish canonical static adapter then rendered loading/empty/success acceptance |
-| G1-012 | HUMAN/DEVICE | B08 fresh unassisted Dave run |
+| G1-012 | HUMAN/DEVICE | one-shot unattended Dave production gate, then B08 human/external remainder |
 | G2-001 | LARGE | M01/B08 premium Today experience |
 | G2-002 | LARGE | M11 independent review/publication/serving conversion at V1 launch breadth from validated drafts |
 | G2-003 | LARGE | M11 demonstrate exact validated nutrition through broad reviewed/published/served production catalogue |
@@ -116,4 +115,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 27. AMBER rows: 27. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 28. AMBER rows: 26. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
