@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 28 PASS / 26 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 29 PASS / 25 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -18,7 +18,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G1-009 | Mobile/cross-browser regressions found manually | **PASS** | Unchanged post-RC3 production rendered acceptance is GREEN across Chromium/Firefox/WebKit desktop + 390px. All six cases registered, signed in, received the session cookie and read authenticated member state. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI all rendered with document width equal to viewport width and zero horizontal overflow; live extensionless routing remained intact. The job fingerprinted the deployed P0 stylesheet/member shell before running, so source-green/stale-production evidence is excluded. Run `31689802921`, authenticated-rendered job `94426973527`. Evidence: `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`. |
 | G1-010 | Auth rate limits/security controls need formal commissioning | **PASS** | Deployed production security/privacy commissioning proved restricted OIDC commissioning identity, anonymous member/HQ/privacy boundaries, hostile-origin CORS denial, member-scoped export isolation, deletion-session revocation, hardened response envelopes and source-level auth/rate/session/recovery/analytics controls. |
 | G1-011 | Production entry-point wiring can diverge from modules | **PASS** | Master/source gates fail if authoritative auth/product/Brain wiring disappears; current gates green. |
-| G1-012 | Synthetic member commissioning is incomplete as release gate | AMBER | Authenticated production isolation/retention and the six-case rendered browser/device member journey are green; fresh unassisted B08 remains. |
+| G1-012 | Synthetic member commissioning is incomplete as release gate | **PASS** | Authoritative main production commissioning run `31747143306` / job `94604287540` executed every currently automatable Dave release lane afresh in one unattended job and completed GREEN. Real-inbox registration/verification/account-recovery and external treatment support remain explicitly outside this synthetic row. Evidence: `docs/evidence/2026-08-13-g1-012-dave-release-gate.md`. |
 
 ## Gate 2 — Nothing Half-Finished
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -115,4 +115,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 28. AMBER rows: 26. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 29. AMBER rows: 25. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.

@@ -2,13 +2,13 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 23 AMBER rows / 7 active shared clusters.**
-**A CLOSED: 4 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system.**
+**A — V1 RELEASE BLOCKERS: 22 AMBER rows / 7 active shared clusters.**
+**A CLOSED: 5 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate.**
 **B — POST-LAUNCH HARDENING: 3 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
-G1-001, G1-003, G1-004, G1-012, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery alone.
+G1-001, G1-003, G1-004, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery alone.
 
 ## A2 Authenticated rendered/mobile premium estate
 G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-008 and G1-009 are PASS:** production serves the Git-authoritative Fit adapter and unchanged desktop + 390px state-system acceptance proved empty states, explicit loading, locked build actions, HTTP-successful Grub/Fit generation, visibly rendered returned outcomes, settled completion and zero document-root overflow. Cross-browser/mobile routing and geometry remain production-green. Remaining closure is premium shell/navigation/footer/forms/Progress Picture/member IA and final physical-device hostile acceptance; do not reopen G1-008/G1-009 without genuine regression evidence.
