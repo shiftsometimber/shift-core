@@ -21,9 +21,25 @@ function identity(recipe){
   return{family,style,protein:afterFamily.slice(style.length+1)};
 }
 
+function ingredientKey(item){
+  return String(item||'').toLowerCase()
+    .replace(/\b(diced|sliced|chopped|halved|crushed|grated|peeled)\b/g,' ')
+    .replace(/[^a-z0-9%]+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function duplicateIngredientIssues(recipe){
+  const seen=new Map(),duplicates=new Set();
+  for(const row of recipe?.ingredients||[]){
+    const key=ingredientKey(row?.item);if(!key)continue;
+    if(seen.has(key))duplicates.add(key); else seen.set(key,row?.item);
+  }
+  return [...duplicates].sort().map(key=>({code:'duplicate_ingredient_line',detail:`${seen.get(key)||key} appears more than once as the same ingredient identity; combine/rebuild quantities before editorial approval`}));
+}
+
 export function editorialSemanticIssues(recipe){
-  const x=identity(recipe);if(!x)return[];
-  const issues=[];
+  const issues=duplicateIngredientIssues(recipe);
+  const x=identity(recipe);if(!x)return issues;
   if(PROPER_STYLE_BLOCKS[x.family]?.has(x.style))issues.push({code:'style_format_mismatch',detail:`${x.style} is not commissioned for ${x.family}`});
   if((x.family==='chilli'||x.family==='slow-cooker')&&x.protein==='salmon')issues.push({code:'protein_method_mismatch',detail:`salmon is not commissioned for ${x.family}`});
   if(['kebab','loaded-fries','pizza'].includes(x.family)&&x.protein==='salmon'&&['doner','nashville','katsu','tikka','salt-pepper'].includes(x.style))issues.push({code:'fakeaway_salmon_style_mismatch',detail:`${x.style} salmon ${x.family} needs a recipe-specific rebuild rather than cross-product approval`});
