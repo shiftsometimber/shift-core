@@ -23,3 +23,8 @@ const a2=await login(A.email),b2=await login(B.email);const [as,bs]=await Promis
 assert(as.data?.state?.preferences?.commissioningOwner==='A','A state lost across session');assert(bs.data?.state?.preferences?.commissioningOwner==='B','B state lost across session');
 const [ap,bp]=await Promise.all([call('/v1/progress',{cookie:a2}),call('/v1/progress',{cookie:b2})]);assert(JSON.stringify(ap.data).includes('111.1')&&!JSON.stringify(ap.data).includes('88.8'),'A progress isolation failed');assert(JSON.stringify(bp.data).includes('88.8')&&!JSON.stringify(bp.data).includes('111.1'),'B progress isolation failed');
 console.log('FINISH AUTHENTICATED PRODUCTION PASS — two real sessions isolated across state, Brain, Today and Progress; logout/login retained own state.');
+
+// Dave's remaining automatable journey leg is onboarding. Keep the existing
+// authenticated isolation proof unchanged, then execute a fresh member's real
+// profile + personal-context onboarding, Today entry and leave/return retention.
+await import('./dave-onboarding-production.mjs');
