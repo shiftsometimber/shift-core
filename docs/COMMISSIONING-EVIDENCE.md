@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 26 PASS / 28 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 27 PASS / 27 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G1-009 mobile/cross-browser regression acceptance.** Unchanged post-RC3 production run `31689802921`, authenticated-rendered job `94426973527`, fingerprinted the deployed member P0 source and then passed the complete Chromium/Firefox/WebKit × desktop/390px authenticated journey with zero document-root overflow on dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI. PR #154 is merged to main as `34f22153a7b6c43584363d8e35ccc6f2bbfb6262`. No other row is promoted by association.
+Latest original row closure: **G2-009 Conundrum catalogue intelligence.** Unchanged main production commissioning run `31710006859`, job `94480182185`, proved the governed `published_catalogue` path end-to-end: relevant suggestions came from the published catalogue, known governed recipe `lighter-beef-cottage-pie` was returned for its ingredient relationship with matched-ingredient evidence, and unrelated ingredients returned an honest zero-result outcome without an invented fallback. Evidence: `docs/evidence/2026-08-13-g2-009-catalogue-conundrum.md`. No other row is promoted by association.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -25,14 +25,21 @@ External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
 **G1-007 PASS:** PR #129/run `31669056410` proved real-production 404 journeys across Chromium/Firefox/WebKit desktop + 390px: non-blank rendering, intelligible recovery, no internal diagnostic leakage and no horizontal overflow. Evidence artifact `9169047430` retained through 2026-09-12.
 
-**G1-009 PASS:** the final RC3 source repair is now proven in production. The acceptance job first fingerprinted the deployed `/member/dashboard`, P0 stylesheet and member shell, preventing a source-green/stale-production false positive. All six Chromium/Firefox/WebKit × desktop/390 cases then registered successfully, signed in, received `sst_session`, returned authenticated member-state 200 and remained inside the authenticated product. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI each finished with document width equal to viewport width: 1440/1440 desktop and 390/390 mobile, zero overflow throughout. Evidence: run `31689802921`, authenticated-rendered job `94426973527`, `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`.
+**G1-009 PASS:** the final RC3 source repair is proven in production. The acceptance job fingerprinted the deployed `/member/dashboard`, P0 stylesheet and member shell, preventing a source-green/stale-production false positive. All six Chromium/Firefox/WebKit × desktop/390 cases then registered successfully, signed in, received `sst_session`, returned authenticated member-state 200 and remained inside the authenticated product. Dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI each finished with document width equal to viewport width: 1440/1440 desktop and 390/390 mobile, zero overflow throughout. Evidence: run `31689802921`, authenticated-rendered job `94426973527`, `docs/evidence/2026-08-13-g1-009-overflow-root-cause.md`.
+
+**G1-003/G1-004 remain AMBER, but the live defect moved forward.** PR #170 merged the verification-first registration repair to main as `8d8759f438280ef896767e39f3aa9b97b64138fb`. The unchanged main production commissioning run `31741403662` is GREEN. Fresh production registration attempt `realverify-31736835464-3` delivered the genuine `Verify your My Shift email` message to the connected Gmail inbox at 20:33:43 UTC on 2026-08-13; crucially, the previous contradictory pre-verification `Welcome to My Shift` message was no longer present before verification. This is demonstrated production behaviour, not source inference. The rows still require the actual real-inbox token click -> verified login -> post-verification Welcome -> logout/final-login sequence before PASS.
+
+**G1-008 remains AMBER with a bounded deployment mismatch.** Canonical `frontend/member/api-adapter-v33d.js` gives Fit a finite 60-second generation budget, while the live static `/api-adapter-v33d.js` still serves the stale 15-second client timeout. Direct production Fit generation succeeds at about 29.4 seconds while the browser client aborts first. Closure requires the static frontend authority to publish the canonical adapter and then an unchanged rendered loading/empty/success rerun at desktop and 390px. Evidence: `docs/evidence/2026-08-13-g1-008-post-merge-production-recheck.md`.
 
 The separate direct-overflow diagnostic received `commissioning_identity_rejected` because its diagnostic workflow path is not in the production commissioning-identity allowlist. That is a commissioning-tool authorization gap, not a member-auth failure, and does not supersede the successful unchanged rendered RC.
 
-Gate 1 remains open overall: G1-001, G1-003 and G1-004 require genuine reset/verification inbox token lifecycles; G1-008 requires explicit loading/empty/success rendered acceptance; G1-012 requires the fresh unassisted Dave run. None is promoted from G1-009 by association.
+Gate 1 remains open overall: G1-001 needs the complete real reset-token/recovery journey; G1-003/G1-004 need the retained real verification-token lifecycle; G1-008 needs the static frontend publish plus rendered state-system proof; G1-012 needs the fresh unassisted Dave run. None is promoted by association.
 
 ## Gate 2 Fit duration/session quality — PASS
 PR #109 and unchanged post-merge production run `31649921033` proved authenticated 10/15/20/30/45/60-minute session-quality composition end-to-end. Padding/overrun regressions remain protected.
+
+## Gate 2 Conundrum catalogue intelligence — PASS
+**G2-009 PASS:** production proof requires runtime source `published_catalogue`, a non-empty governed catalogue, relevant returned suggestions from that catalogue, the governed `lighter-beef-cottage-pie` relationship, retained matched-ingredient evidence and honest zero-result behaviour for unrelated ingredients with no invented fallback. All assertions passed in unchanged main production run `31710006859` / job `94480182185`. Evidence: `docs/evidence/2026-08-13-g2-009-catalogue-conundrum.md`.
 
 ## Gate 4 Knowledge flywheel — PASS
 PR #98 proved approved CMS content is ingested into the canonical Knowledge graph with provenance, draft exclusion, withdrawal reconciliation and stable canonical reactivation after re-review without manual HQ ingest.
@@ -43,6 +50,13 @@ PR #98 proved approved CMS content is ingested into the canonical Knowledge grap
 **G5-008 / B06 PASS:** authorised HQ operator fire drill proves anonymous denial -> protected owner bootstrap/login -> retained owner session -> GREEN -> actionable AMBER -> actionable RED -> retained incident/probe history -> recovered GREEN.
 
 **G5-005 / B05 PASS:** production public-trust proof crawled **80/80** live public pages and demonstrated operator identity, AI disclosure, privacy, support and qualified/current provider-status presentation. The audit explicitly fails if apparently live prescribing/pharmacy capability is implied without qualification/current-status language.
+
+## Authenticated accessibility + performance — measured, still AMBER
+The production acceptance behind PR #168 is now retained as explicit evidence rather than a generic future audit. Gate 1 Rendered Browser run `31736275376`, authenticated accessibility/performance job `94568558840`, correctly failed the production acceptance and retained artifact `9195277536` with `report.json` plus full-page screenshots for all six authenticated surfaces at desktop and 390px.
+
+**G3-008 remains AMBER.** Already-proven positives include zero root overflow, usable main/H1 structure, no visible unlabeled controls, reduced-motion support and visible keyboard focus. Genuine remaining defects include primary olive actions at about 3.14:1 against a 4.5:1 normal-text requirement, light-olive eyebrow text at about 1.9–2.1:1, and pale form/toggle boundaries below the 3:1 non-text threshold. Some reported hero/filled-control results are harness-classification issues because the current measurement does not composite background images/gradients and compares filled-control borders against their own fill; those must be fixed in the measurement before blindly changing the premium forest/cream design constitution. Evidence: `docs/evidence/2026-08-13-authenticated-accessibility-performance-production.md`.
+
+**G5-012 remains AMBER with a demonstrated SLO breach.** Fixture registration measured **20,627 ms** and authenticated login **17,548 ms**, both above the declared **800 ms API p95** budget. Post-login surface transitions were generally fast. The remaining work is diagnosis/remediation of the auth critical path followed by an unchanged production rerun; the existence of SLO constants or a green merge is not PASS.
 
 ## Industrial Grub factory — M11 / G2-002/G2-003/G2-004 remain AMBER
 Short-term authored target: **2,500**. Long-term minimum: **10,000+**.
@@ -77,13 +91,16 @@ Demonstrated conversion evidence:
 M12/G2-007 remains AMBER because coaching quality, automatic binding, rendered candidate existence and simulator breadth do not equal premium visual/anatomical accuracy or member comprehension approval.
 
 ## Dave / B08 — still AMBER
-Reconciled retained evidence remains **15/20 non-duplicated journey legs (75%)**. The authenticated rendered/mobile production release prerequisite is now separately GREEN across all six browser/device cases. Dave itself remains AMBER: real-inbox registration/verification/recovery, fresh unassisted end-to-end execution and partner-dependent treatment support remain unresolved. Partner-dependent treatment support is external rather than blocking non-clinical work.
+Reconciled retained evidence is now **16/20 non-duplicated journey legs (80%)**. Fresh production onboarding creates a new member with empty state, saves the onboarding profile through the production route, opens a new authenticated session, proves retained target/safety/preferences data and requires the rendered personalised `Your Shift starts here` outcome. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`.
+
+Remaining human-only Dave legs are `register`, `verify` and `account_recovery`; partner-dependent `treatment_support` remains external BLOCKED. G5-013 stays AMBER until the complete Dave acceptance boundary is satisfied.
 
 ## Active release swarm
-- Gate 1 real inbox verification/recovery evidence and explicit loading/empty/success acceptance; fresh Dave remains the final unassisted Gate 1 leg.
-- M01/M06/M10 premium/mobile/accessibility closure now proceeds on a production-stable authenticated member shell.
-- M11 serious 783 Grub launch-cohort review -> publication -> production-serving proof.
-- M12 26-family Fit premium visual/domain review -> propagation/publication -> production-serving proof.
-- M04, M13 and M17 continue without queueing behind the above.
+- Gate 1: finish genuine verification/recovery token lifecycles; publish the canonical static Fit adapter and rerun explicit loading/empty/success acceptance; fresh Dave remains the final unassisted leg.
+- M01/M06/M10: preserve homepage-level premium forest/cream quality while closing demonstrated member contrast defects, responsive parity and state-system acceptance.
+- M11: serious 783 Grub launch-cohort review -> publication -> production-serving proof.
+- M12: 26-family Fit premium visual/domain review -> propagation/publication -> production-serving proof.
+- G5-012: diagnose the measured registration/login latency breach before changing security-sensitive KDF behaviour; prove the fix in unchanged production.
+- M04, M13 and M17 continue without queueing behind genuine human/external dependencies.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**
