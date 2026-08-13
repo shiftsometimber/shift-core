@@ -41,13 +41,12 @@ export default {
     const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,registerCore);
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
 
-    const emailVerification=await handleEmailVerification(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
+    const emailVerification=await handleEmailVerification(request,env,ctx,registerCore);
     if(emailVerification)return withMemberCors(emailVerification,request);
 
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
 
-    const fastRegistration=await fastMemberRegister(request,env);if(fastRegistration)return withMemberCors(fastRegistration,request);
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
     const visualise=await shiftVisualiseV2Routes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
     const brain=await shiftBrainRoutes(request,env,ctx); if(brain)return withMemberCors(brain,request);
