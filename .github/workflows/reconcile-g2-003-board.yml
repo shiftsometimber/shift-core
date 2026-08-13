@@ -1,0 +1,26 @@
+name: Reconcile G2-003 Board
+on:
+  push:
+    branches: ['reconcile/g2-003-23pass']
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: reconcile/g2-003-23pass
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node reconcile-g2-003-board.mjs
+      - run: node finish-line-gate.mjs
+      - name: Commit reconciliation
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md docs/LAUNCH-FINISH-LINE.md docs/COMMISSIONING-EVIDENCE.md finish-line-gate.mjs
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Reconcile G2-003 to 23 PASS / 31 AMBER'
+          git push origin HEAD:reconcile/g2-003-23pass
