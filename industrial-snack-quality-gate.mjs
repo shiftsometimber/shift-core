@@ -1,4 +1,4 @@
-import {buildIndustrialCatalogue} from './industrial-catalogue-v10.js';
+import {buildIndustrialCatalogue} from './industrial-catalogue-v11.js';
 
 let bad=false;
 const must=(condition,message)=>{if(!condition){console.error(`FAIL ${message}`);bad=true;}};
