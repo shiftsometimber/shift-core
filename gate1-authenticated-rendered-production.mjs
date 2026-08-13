@@ -12,7 +12,7 @@ fs.mkdirSync(OUT,{recursive:true});
 const browsers={chromium,firefox,webkit};
 const viewports={desktop:{width:1440,height:900},mobile390:{width:390,height:844}};
 const password='Shift-Commissioning-2026!';
-const nonce=`authrender-${Date.now()}`;
+const nonce=`structured-authrender-${Date.now()}`;
 const report={proof:'GATE1_AUTHENTICATED_RENDERED_PRODUCTION',site:SITE,api:API,cases:[],failures:[],observations:[]};
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=Authenticated rendered acceptance::${name} — ${detail}`)};
 const observe=(name,detail)=>{report.observations.push({name,detail});console.log(`::notice title=Authenticated rendered observation::${name} — ${detail}`)};
