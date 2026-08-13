@@ -3,7 +3,7 @@ const ISSUER='https://token.actions.githubusercontent.com';
 const REPOSITORY='shiftsometimber/shift-core';
 const ACTOR_ID='315011648';
 const SYNTHETIC=/^shiftsometimber\+(?:finish|longitudinal|b03|structured)-[a-z0-9-]+@gmail\.com$/i;
-const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@'];
+const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@','/.github/workflows/gate1-rendered-browser.yml@'];
 
 export async function handleCommissioningIdentity(request,env,ctx,next){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
