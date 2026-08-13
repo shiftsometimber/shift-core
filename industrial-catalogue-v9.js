@@ -48,6 +48,11 @@ function repair(recipe){
       ingredients.push({amount:'15ml',item:'orange juice'});
       continue;
     }
+    if(ingredient.item==='lemon zest'&&/tsp/i.test(String(ingredient.amount||''))){
+      changed=true;repairs.push('lemon-zest-measure-normalised');
+      ingredients.push({...ingredient,amount:'1g'});
+      continue;
+    }
     if(ingredient.item==='caramel flavouring'){
       changed=true;repairs.push('caramel-flavour-to-honey');
       ingredients.push({amount:'8g',item:'honey'});
