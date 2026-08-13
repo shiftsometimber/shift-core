@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence.
 
-**Current reconciled scoreboard: 57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 23 PASS / 31 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -24,8 +24,8 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
 | G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
-| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908** including 2,876 industrial objects across real-life meal/fakeaway/treat families. Merged PR #115 proves **1,503 / 2,876 industrial recipes** now carry governed ingredient-level CoFID nutrition and are LOW-risk in the full-catalogue calculation, but all remain draft pending genuine second-person content review; only 1 independently reviewed/published recipe is production-served. Review/publication/serving breadth remains M11. |
-| G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | PR #115 proves **1,503 industrial recipes** carry ingredient-level CoFID 2021 validation from the current full-catalogue path via **104 canonical decisions / 96 exercised decisions**, including **62 governed shared proxy approvals** with retained basis/limitations. Latest calculation is 1,503 LOW / 0 MEDIUM / 0 HIGH; the remaining **1,373** stay quarantined rather than receiving fabricated precision. |
+| G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908** including 2,876 industrial objects. PR #123 proves all **2,876 / 2,876 industrial recipes** are ingredient-level CoFID nutrition-valid, but nutrition validity is not editorial approval: independent inspection in open PR #125 has already quarantined obvious semantic cross-product defects and only 1 recipe is independently reviewed/published/production-served. Editorial review/publication/serving breadth remains M11. |
+| G2-003 | Grub nutrition figures are not tied to exact ingredients | **PASS** | PR #123 proves **2,876 / 2,876 industrial recipes** calculate nutrition from their exact structured ingredient quantities through governed CoFID 2021 mappings with ingredient-level evidence and zero nutrition quarantine. Separately, authenticated production M07 serves the reviewed/published structured cottage pie with its exact ingredient list and validated `CoFID 2021 ingredient-level weighted calculation`, proving the same nutrition contract reaches the member rather than existing only in factory code. |
 | G2-004 | Grub variety/repetition is poor | AMBER | Authored-capacity simulation produces zero exact repeats across 30/60/90/365-day horizons, including 1,460 unique choices over 365 days; commissioned/published catalogue diversity under real member constraints remains M11. |
 | G2-005 | Grub Yay/Nay is shallow and not durable learning | **PASS** | Authenticated Nay -> leave/return -> later recommendation change is production-proven; unrelated Fit remains unaffected. |
 | G2-006 | Fit composes durations incorrectly | **PASS** | Unchanged post-merge production commissioning after PR #109 proved the authenticated 10/15/20/30/45/60-minute session-quality matrix end-to-end through the duration-aware V8 composition path. The production gate completed GREEN; duration padding/overrun regressions remain protected. |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence proves 15/20 non-duplicated journey legs (75%); real-inbox registration/verification/recovery, rendered/mobile authenticated release acceptance and partner-dependent treatment support remain. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 32-AMBER burn-down classification
+## 31-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -96,7 +96,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G1-012 | HUMAN/DEVICE | B08 fresh unassisted Dave run |
 | G2-001 | LARGE | M01/B08 premium Today experience |
 | G2-002 | LARGE | M11 independent review/publication/serving conversion at scale from 1,503 LOW-risk drafts |
-| G2-003 | LARGE | M11 remaining 1,373 ingredient/family nutrition quarantine |
 | G2-004 | LARGE | M11 commissioned 30/60/90/365-day catalogue diversity under real constraints |
 | G2-007 | LARGE | M12 create real 44-family visuals -> domain QA -> review/publication/serving at scale |
 | G2-009 | FINITE | M11 catalogue-backed Conundrum intelligence |
@@ -120,7 +119,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
-PASS rows: 22. AMBER rows: 32. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+PASS rows: 23. AMBER rows: 31. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
 ## Commissioning rule
 A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.

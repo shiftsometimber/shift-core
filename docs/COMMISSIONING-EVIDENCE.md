@@ -31,23 +31,24 @@ PR #109 merged the repaired duration-aware V8 production harness without broaden
 ## G4-004 — PASS
 Merged PR #98 passed the dedicated Knowledge Flywheel gate, Master Integration, whole-estate route sweep and Academy gate. The scheduled Worker path proves approved CMS content is ingested into the canonical Knowledge graph with provenance, draft content is excluded, withdrawn source content is removed from active graph use, and re-review reactivates the same canonical identity without a manual HQ ingest call.
 
+## G2-003 — PASS — exact ingredient-level Grub nutrition provenance
+Merged PR #123 proves **2,876 / 2,876 industrial recipes** calculate nutrition from each recipe’s exact structured ingredient quantities through governed CoFID 2021 mappings, retain per-ingredient CoFID identity/converted grams/mapping provenance and have zero nutrition quarantine. That factory proof is connected to a demonstrated member outcome by locked M07 production commissioning: an authenticated production member is served the reviewed/published `lighter-beef-cottage-pie` with its exact ingredient list and `nutrition.status=validated`, using `CoFID 2021 ingredient-level weighted calculation`. G2-003 therefore closes on both catalogue-wide provenance and real production serving. This does **not** close G2-002/M11: editorial quality, independent review, publication breadth and commissioned diversity remain separate AMBER work.
+
 ## Industrial Grub factory — M11 remains AMBER
 Short-term authored target: **2,500**. Long-term minimum: **10,000+**.
 
 Current authored structured Grub universe: **2,908** = 2,876 industrial + 32 existing structured.
 
-Demonstrated conversion evidence through merged PR #115:
+Demonstrated nutrition conversion evidence through merged PR #123 (superseding the earlier PR #115 counts):
 - Industrial schema/structure: **2,876 / 2,876**.
 - Full-catalogue canonical decisions: **104**, with **96 exercised** by the current catalogue.
 - Governed shared canonical proxy approvals: **62** = 28 high-confidence + 34 medium-confidence. Every inherited proxy retains its CoFID code, suitability basis, confidence and limitations in ingredient-level evidence.
-- Full-catalogue CoFID 2021 nutrition validation: **1,503 / 2,876 industrial recipes**.
-- Latest risk calculation: **1,503 LOW / 0 MEDIUM / 0 HIGH** among the nutrition-valid cohort.
-- Explicit quarantine: **1,373** recipes. No uncertain mapping receives fabricated precision.
-- All 1,503 validated recipes remain drafts behind the genuine `second_person_content_review` blocker. A canonical nutrition decision is not treated as independent recipe content review.
+- Full-catalogue CoFID 2021 nutrition validation: **2,876 / 2,876 industrial recipes**.
+- Latest nutrition-risk calculation: **2,876 LOW / 0 MEDIUM / 0 HIGH**.
+- Nutrition quarantine: **0** recipes. Every nutrition-valid object retains governed ingredient-level mapping evidence rather than fabricated precision.
+- All 2,876 nutrition-valid recipes remain drafts behind genuine independent editorial review/publication controls. A canonical nutrition decision is not treated as recipe-quality approval.
 - Existing independently reviewed / published / production-served: **1 / 1 / 1** (`lighter-beef-cottage-pie`).
 - Authoring remains frozen as a priority while conversion catches up.
-
-The remaining quarantine is concentrated enough for further canonical leverage rather than recipe-row work. Highest-volume current blockers include `toasted oat crunch` (102), `light peppercorn sauce` (72), `chicken sausages` (68), `buffalo hot sauce` (60), and several 48-object families including Cajun seasoning, chipotle salsa, garlic herb sauce, reduced-salt teriyaki sauce, hoisin-style sauce and lemon herb sauce.
 
 Catalogue breadth remains materially bloke-friendly rather than generic diet food: breakfast butties/wraps/hashes; sandwich/bagel/toastie/jacket/meal-prep lunches; curries/chilli/pasta/pies/traybakes/roasts/slow-cooker meals; burgers/kebabs/loaded fries/pizza; and explicit treat/snack families. The authored industrial catalogue contains **612 fakeaway/treat-tagged objects**.
 
@@ -57,7 +58,7 @@ Authored-capacity simulation — explicitly not commissioned/published diversity
 - 90 days: 360 / 360 / 0.
 - 365 days: 1,460 / 1,460 / 0.
 
-M11 remains AMBER because 1,503 validated LOW-risk industrial drafts are not yet independently reviewed/published/production-served at catalogue scale.
+M11 remains AMBER because nutrition validity is now complete but the industrial drafts are not yet independently editorially reviewed/published/production-served at catalogue scale; open PR #125 is additionally quarantining obvious semantic cross-product defects before bulk approval.
 
 ## Industrial Fit factory — M12 remains AMBER
 Current authored structured Fit universe: **2,500** = 2,468 industrial + 32 existing structured. Short-term authored target is reached; long-term minimum remains **10,000+**.
@@ -84,9 +85,9 @@ The dedicated reconciliation maps **15/20 non-duplicated journey legs** to retai
 Unresolved legs remain explicit rather than cosmetically promoted: real-inbox registration, real-inbox verification, rendered/mobile authenticated release acceptance, real-inbox account recovery, and partner-dependent treatment support. B08 remains AMBER.
 
 ## Current authoritative scoreboard
-**57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 23 PASS / 31 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure remains **G2-006** from unchanged post-merge production duration/session-quality commissioning. Earlier locked closures include G4-004, G5-008/B06, G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
+Latest original row closure is **G2-003**, earned from PR #123 full-catalogue exact-ingredient nutrition provenance plus locked M07 authenticated production serving; G2-006 remains locked PASS from its unchanged duration/session-quality commissioning. Earlier locked closures include G4-004, G5-008/B06, G1-010, G5-007 and G5-011. M11/M12 remain AMBER because downstream commissioned breadth, not authored scale, is the launch criterion.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
