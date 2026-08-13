@@ -4,6 +4,7 @@ const out='dave-release-gate-evidence';
 fs.mkdirSync(out,{recursive:true});
 const startedAt=new Date().toISOString();
 const legs=[];
+const feedbackLane='dedicated_fresh_oidc';
 
 async function run(name,module){
   const started=Date.now();
@@ -24,6 +25,7 @@ try{
   await run('progress-picture-shift-ai-provenance-return-and-clinical-boundary','./finish-b03-final3-production.mjs');
   const report={
     proof:'G1_012_DAVE_SYNTHETIC_RELEASE_GATE_PRODUCTION_V1',
+    feedbackLane,
     startedAt,
     completedAt:new Date().toISOString(),
     status:'PASS',
@@ -37,7 +39,7 @@ try{
   console.log(JSON.stringify(report,null,2));
   console.log('PASS G1-012 synthetic Dave release gate — all automatable production lanes executed afresh in one unattended release job; inbox/external boundaries remain explicit.');
 }catch(error){
-  const report={proof:'G1_012_DAVE_SYNTHETIC_RELEASE_GATE_PRODUCTION_V1',startedAt,completedAt:new Date().toISOString(),status:'FAIL',freshExecution:true,legs,error:String(error?.message||error)};
+  const report={proof:'G1_012_DAVE_SYNTHETIC_RELEASE_GATE_PRODUCTION_V1',feedbackLane,startedAt,completedAt:new Date().toISOString(),status:'FAIL',freshExecution:true,legs,error:String(error?.message||error)};
   fs.writeFileSync(`${out}/report.json`,JSON.stringify(report,null,2));
   console.error(JSON.stringify(report,null,2));
   process.exitCode=1;
