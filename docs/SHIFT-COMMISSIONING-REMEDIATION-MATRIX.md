@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 23 PASS / 31 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 24 PASS / 30 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -26,10 +26,10 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
 | G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908**, including **2,876 industrial objects**. Merged PR #123 proves **2,876/2,876 industrial recipes** pass ingredient-level CoFID nutrition/risk validation with **0 nutrition quarantine**; PR #128 adds systemic recipe-quality validation across all 2,876. Independent editorial review/publication/production-serving breadth remains M11; authoritative reviewed/published/served is still **1/1/1**. |
 | G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | The entire 2,876 industrial pool now carries ingredient-level CoFID evidence with exact converted grams/mapping state and LOW-risk calculation, zero nutrition quarantine. The row remains AMBER until that validated nutrition is independently reviewed/published and demonstrated at meaningful production-serving breadth rather than existing only in drafts. |
-| G2-004 | Grub variety/repetition is poor | AMBER | Authored-capacity simulation produces zero exact repeats across 30/60/90/365-day horizons, including 1,460 unique choices over 365 days; commissioned/published catalogue diversity under real member constraints remains M11. |
+| G2-004 | Grub variety/repetition is poor | AMBER | The V1 launch cohort is now finite: 683 editorial-ready recipes behind 11 immutable decisions, selected to produce zero exact repeats at 30/60/90 days under deterministic 25% Nay pressure. Closure still requires those decisions to PASS and the approved cohort to be published/production-served under real member constraints. |
 | G2-005 | Grub Yay/Nay is shallow and not durable learning | **PASS** | Authenticated Nay -> leave/return -> later recommendation change is production-proven; unrelated Fit remains unaffected. |
 | G2-006 | Fit composes durations incorrectly | **PASS** | Unchanged post-merge production commissioning proved the authenticated 10/15/20/30/45/60-minute session-quality matrix end-to-end through the duration-aware V8 composition path. |
-| G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500**. Stable canonical visual metadata/specifications bind **2,244/2,468** industrial objects with automatic technical/protocol checks, but the referenced consolidated 44-family rendered asset is absent on current main. Only 3 movements have genuine member/domain-QA/review/publication/production-serving evidence. Real visual creation/domain QA and publication conversion remain M12. |
+| G2-007 | Exercise library/instructions are too thin | AMBER | Structured authored universe is **2,500** and the consolidated **44/44 canonical rendered candidate visual set now exists**, covering 2,244 descendants. The V1 launch cohort is finite at **26 canonical movement decisions / 1,326 technically eligible descendants** and passes the 12-week 180-slot capacity simulation with 0 exact repeats and no consecutive canonical repeat. Closure still requires real anatomical/member-comprehension/domain PASS decisions followed by publication/production serving. |
 | G2-008 | Fit Yay/Nay is not durable learning | **PASS** | Authenticated exercise dislike/Nay persists and influences later Fit while Grub signals stay isolated. |
 | G2-009 | Conundrum lacks kitchen intelligence | AMBER | Obvious chicken+cheese+wrap relationship is production-proven; broader catalogue-backed ingredient intelligence remains tied to M11. |
 | G2-010 | Hydration is too water-centric | **PASS** | Production suite proves non-water drink contribution rules including coffee contributing and beer not contributing, with durable plan/log state. |
@@ -70,7 +70,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-002 | Medication Companion incomplete | BLOCKED | Requires clinically governed prescribing/escalation owner/pathway. |
 | G5-003 | Identity/weight evidence verification not commissioned | BLOCKED | Requires provider-approved verification journey/requirements. |
 | G5-004 | Health MOT/bloods integration needs partner-ready data model | **PASS** | Mocked partner payload -> idempotent MOT -> sourced Progress -> One Shift Brain -> authenticated Today is proven, with member isolation and clinical boundaries. |
-| G5-005 | Public trust architecture is incomplete | AMBER | Production operator/AI/privacy/support/current-provider trust audit remains B05. |
+| G5-005 | Public trust architecture is incomplete | **PASS** | Production B05 proof crawled 80/80 live public pages successfully and demonstrated operator identity, AI disclosure, privacy, support and qualified current-provider status. The audit also fails if apparently live prescribing/pharmacy capability is implied without qualification/current-status language. Gate 5 Public Trust Production run `31678816780` GREEN; artifact `9172615958`; PR #146 merged after whole-estate and master integration gates were GREEN. |
 | G5-006 | Outcome measurement not embedded from member one | **PASS** | Member-one Progress + engagement cohort analysis is proven with separated members and explicit internal-only/non-causal guardrails. |
 | G5-007 | Watchtower observability is incomplete | **PASS** | Dedicated fire drill proves GREEN baseline -> latency AMBER -> outage RED, operator next actions, retained probe history after endpoint restoration and recovery back to GREEN. |
 | G5-008 | HQ is admin UI rather than operating nerve centre | **PASS** | Authorised HQ fire drill proves anonymous denial -> owner bootstrap/login -> retained HQ session -> GREEN -> actionable AMBER -> actionable RED -> retained incident history -> recovered GREEN through real HQ routes. |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence proves 15/20 non-duplicated journey legs (75%); real-inbox registration/verification/recovery, rendered/mobile authenticated release acceptance and partner-dependent treatment support remain. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 31-AMBER burn-down classification
+## 30-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -113,13 +113,12 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G3-007 | HUMAN/DEVICE | B08/M01 member IA acceptance |
 | G3-008 | FINITE | M06 accessibility gate |
 | G4-008 | LARGE | premium proactive Today orchestration |
-| G5-005 | FINITE | B05 public trust audit |
 | G5-012 | FINITE | M06 critical-path performance evidence |
 | G5-013 | HUMAN/DEVICE | B08 fresh unassisted rendered Dave journey |
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
-PASS rows: 23. AMBER rows: 31. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+PASS rows: 24. AMBER rows: 30. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
 
 ## Commissioning rule
 A row moves to PASS only with demonstrated acceptance evidence. External clinical/provider rows remain BLOCKED rather than being hidden or falsely promoted. Discovered in-scope launch gaps become execution lanes automatically.
