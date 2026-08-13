@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "contract": "Premium Shift-owned START -> MOVE -> FINISH coaching artwork. Legacy SVG review evidence does not count.",
+  "launch_total": 26,
+  "production_batches": [
+    {"batch":1,"status":"production_started","canonical_movements":["sit-to-stand","squat","reverse-lunge","hip-hinge"]},
+    {"batch":2,"status":"queued","canonical_movements":["glute-bridge","calf-raise","push-up","chest-press"]},
+    {"batch":3,"status":"queued","canonical_movements":["row","overhead-press","lat-pulldown","triceps-extension"]},
+    {"batch":4,"status":"queued","canonical_movements":["plank","dead-bug","loaded-carry","step-up"]},
+    {"batch":5,"status":"queued","canonical_movements":["walk","stationary-bike","rowing-erg","low-impact-march"]},
+    {"batch":6,"status":"queued","canonical_movements":["shadow-boxing","chair-balance-reach","hamstring-mobility","hip-flexor-mobility"]},
+    {"batch":7,"status":"queued","canonical_movements":["thoracic-rotation","wall-slides"]}
+  ],
+  "produced_candidates": [
+    {"canonical_movement":"sit-to-stand","asset":"assets/fit/premium/sit-to-stand.svg","states":["START","MOVE","FINISH"],"status":"produced_candidate","technical_qa":"pending","domain_acceptance":"pending"}
+  ],
+  "acceptance": {"movement_match":true,"three_distinct_states":["START","MOVE","FINISH"],"movement_specific":true,"member_comprehension":true,"safety_cues_consistent_with_canonical_guidance":true,"desktop_and_mobile_render":true,"domain_approval_required":true},
+  "counts": {"produced":1,"technically_qa_passed":0,"domain_accepted":0}
+}
