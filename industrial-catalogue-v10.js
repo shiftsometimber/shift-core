@@ -33,8 +33,26 @@ function repairLegacySavorySnack(recipe){
   const method=['Measure everything before assembling the snack so the portion stays intentional.',base.step,'Keep chilled protein and vegetables refrigerated until you are ready to eat.','Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.'];
   return provenance({...recipe,title:`${variant.label} ${base.name}`,ingredients,allergens,method},'savory-snack-variant-coherence');
 }
+function repairV4SweetBase(recipe){
+  const id=text(recipe.id);if(!id.startsWith('industrial-v4-'))return recipe;
+  let out=recipe;
+  if(id.endsWith('-savory-box')){
+    const coffee=id.includes('-coffee-');
+    const replacement=coffee?{amount:'180g',item:'0% Greek yoghurt',allergens:['milk']}:{amount:'140g',item:'banana'};
+    const ingredients=(out.ingredients||[]).map(x=>text(x.item)==='boiled eggs'?replacement:{...x});
+    const title=text(out.title).replace(/Savory Box/g,coffee?'Yoghurt Crunch':'Banana Split');
+    const allergens=[...new Set([...(out.allergens||[]).filter(x=>x!=='egg'),...(replacement.allergens||[])])];
+    out=provenance({...out,title,ingredients,allergens},'sweet-snack-base-coherence');
+  }
+  if(id.includes('-coffee-')&&text(out.title).includes('Fruit Crunch')){
+    const ingredients=(out.ingredients||[]).map(x=>text(x.item)==='apple'?{amount:'180g',item:'0% Greek yoghurt',allergens:['milk']}:{...x});
+    out=provenance({...out,title:text(out.title).replace(/Fruit Crunch/g,'Yoghurt Crunch'),ingredients,allergens:[...new Set([...(out.allergens||[]),'milk'])]},'coffee-fruit-base-coherence');
+  }
+  return out;
+}
+function repairRecipe(recipe){return repairV4SweetBase(repairLegacySavorySnack(recipe))}
 export function buildIndustrialCatalogue(){
   const c=buildV9();let repaired=0;
-  const recipes=c.recipes.map(recipe=>{const next=repairLegacySavorySnack(recipe);if(next!==recipe)repaired++;return next});
+  const recipes=c.recipes.map(recipe=>{const next=repairRecipe(recipe);if(next!==recipe)repaired++;return next});
   return{...c,recipes,metrics:{...c.metrics,editorialV10RecipesRepaired:repaired,grubAuthored:recipes.length,totalWithOriginalStructured:{grub:recipes.length+32,fit:c.exercises.length+32}}};
 }
