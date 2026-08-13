@@ -1,0 +1,19 @@
+name: Fit Premium Candidate Gate
+on:
+  pull_request:
+    paths:
+      - 'assets/fit/premium/**'
+      - 'content/fit/premium-visual-production-v1.json'
+      - 'fit-premium-candidate-gate.mjs'
+      - '.github/workflows/fit-premium-candidate-gate.yml'
+permissions:
+  contents: read
+jobs:
+  technical-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node fit-premium-candidate-gate.mjs
