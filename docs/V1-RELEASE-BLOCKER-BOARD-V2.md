@@ -2,25 +2,25 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 26 AMBER rows / 7 active shared clusters.**
-**A CLOSED THIS EXECUTION: 1 — G5-005 public trust architecture.**
+**A — V1 RELEASE BLOCKERS: 24 AMBER rows / 7 active shared clusters.**
+**A CLOSED: 3 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance.**
 **B — POST-LAUNCH HARDENING: 4 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
-G1-001, G1-002, G1-003, G1-004, G1-012, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment itself is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. Human inbox clicks are batched only after all automation is green.
+G1-001, G1-003, G1-004, G1-012, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery alone.
 
 ## A2 Authenticated rendered/mobile premium estate
-G1-008, G1-009, G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. Chromium/Firefox/WebKit desktop + 390px authenticated populated/empty/error states; no material overflow/pointer interception; premium shell/navigation/footer/forms/Progress Picture/member IA; final physical-device hostile script only. Current P0 remains the shared authenticated dashboard overflow: 20px desktop / 88px mobile across Today, Grub, Fit, Progress and Shift AI; a separate `#sstMemberNotice` pointer-interception defect has also been reproduced and stays in this cluster.
+G1-008, G2-013, G2-014, G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-009 is PASS:** post-RC3 production acceptance proved Chromium/Firefox/WebKit desktop + 390px auth/session plus dashboard/My Shift, Today, Grub, Fit, Progress and Shift AI with zero document-root horizontal overflow and live extensionless routing intact. Remaining closure is the premium populated/empty/error state system, shell/navigation/footer/forms/Progress Picture/member IA and final physical-device hostile acceptance; do not reopen G1-009 without genuine regression evidence.
 
 ## A3 Today command centre
 G2-001, G4-008. Coherent premium daily orchestration across available non-clinical food, movement, hydration, Progress/context and Ask Shift.
 
 ## A4 Grub serious launch cohort
-G2-002, G2-003, G2-004. V1 critical-path cohort is now finite and prepared: 683 clean recipes behind 11 immutable launch-only editorial decisions, with 0 exact repeats at 30/60/90 days under deterministic 25% Nay pressure. Remaining closure is real independent PASS decisions -> publication -> production serving of the approved cohort, followed by proof that the served member path preserves nutrition/diversity. Full 2,500+ commissioning/365-day depth remains a retained post-launch audit obligation after the V1 floor is green.
+G2-002, G2-003, G2-004. V1 critical-path cohort is now **783 clean recipes behind 8 regenerated immutable editorial decisions** after the systemic humanness repair. Nutrition remains 2,876/2,876 valid with zero nutrition quarantine; the launch cohort preserves zero exact repeats through 30/60/90 days under deterministic 25% Nay pressure. Remaining closure is real second-person PASS decisions -> publication -> production serving of the approved cohort, followed by proof that the served member path preserves exact nutrition, quality and diversity. Full 2,500+ commissioning/365-day depth remains a retained post-launch audit obligation after the V1 floor is green.
 
 ## A5 Fit serious launch cohort
-G2-007. V1 critical-path cohort is now finite and illustrated: 26 canonical movement decisions covering 1,326 technically eligible descendants, selected to pass the 12-week simulation with 180/180 unique exercise objects, 0 exact repeats, all 26 families used and no consecutive canonical repeat. The wider 44-family rendered candidate asset exists. Remaining closure is real anatomical/member-comprehension/domain PASS decisions -> publication/propagation -> production serving.
+G2-007. V1 critical-path cohort remains **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. The current rendered visual review cohort is candidate anatomy only; rejected legacy schematic artwork is not final launch art. Remaining closure is genuinely premium explanatory visual/domain/member-comprehension PASS decisions -> publication/propagation -> production serving.
 
 ## A6 Progress core
 G2-011, G2-012. Whole-person Progress story plus controlled kg/stone-lb and metric UX.
@@ -41,7 +41,7 @@ G3-008, G5-012. Critical public/member journeys meet declared keyboard/focus/for
 G5-001, G5-002, G5-003. Clinical/provider capability remains hidden/unavailable/accurately labelled until external governance exists.
 
 ## Matt Final Acceptance Pack
-READY AS ONE CONCRETE BUNDLE: launch-cohort Grub decisions; launch-cohort Fit visual decisions + actual rendered asset; verification click; reset click; final iPhone Safari + Chrome hostile acceptance. Human execution waits only for the automated release prerequisites, not for pack preparation.
+PREPARED / NOT READY TO RUN. Final finite bundle remains: 8 regenerated Grub decisions; 26 genuine replacement Fit visual decisions; verification click; reset click; final iPhone Safari + Chrome hostile acceptance. Human execution waits only for the automated release prerequisites and actual review assets, not for pack preparation.
 
 ## Freeze
 A=0 -> freeze new product work -> deploy RC -> full regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> NON-CLINICAL V1 READY.
