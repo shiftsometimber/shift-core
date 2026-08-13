@@ -11,9 +11,9 @@ permissions:
   contents: read
   id-token: write
 jobs:
-  rendered-browser:
+  authenticated-rendered:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,7 +27,35 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Install browser harness
+      - name: Install authenticated browser harness
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Run authenticated member rendered production acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          AUTH_RENDER_EVIDENCE_DIR: auth-render-evidence
+        run: node gate1-authenticated-rendered-production.mjs
+      - name: Upload authenticated rendered evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate1-authenticated-rendered-evidence
+          path: auth-render-evidence
+          if-no-files-found: warn
+          retention-days: 14
+
+  public-rendered:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install public browser harness
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium firefox webkit
@@ -41,21 +69,13 @@ jobs:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           FAILURE_RENDER_EVIDENCE_DIR: failure-render-evidence
         run: node gate1-rendered-failure-production.mjs
-      - name: Run authenticated member rendered production acceptance
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
-          AUTH_RENDER_EVIDENCE_DIR: auth-render-evidence
-        run: node gate1-authenticated-rendered-production.mjs
-      - name: Upload rendered evidence
+      - name: Upload public rendered evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gate1-rendered-production-evidence
+          name: gate1-public-rendered-evidence
           path: |
             render-evidence
             failure-render-evidence
-            auth-render-evidence
           if-no-files-found: warn
           retention-days: 14
