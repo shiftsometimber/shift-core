@@ -6,7 +6,7 @@ const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
 const OUT=process.env.PROGRESS_UNIT_EVIDENCE_DIR||'progress-unit-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');fs.mkdirSync(OUT,{recursive:true});
 const password='Shift-Progress-Units-2026!';
-const report={proof:'G2_012_PROGRESS_UNITS_RENDERED_PRODUCTION_V1',cases:[],failures:[]};
+const report={proof:'G2_012_PROGRESS_UNITS_RENDERED_PRODUCTION_V2',cases:[],failures:[]};
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=G2-012 Progress units::${name} — ${detail}`)};
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
 const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
@@ -15,12 +15,23 @@ async function login(page,email){await page.goto(`${SITE}/member-login`,{waitUnt
 async function openVisual(page){
  await page.goto(`${SITE}/member/dashboard`,{waitUntil:'domcontentloaded',timeout:30000});
  await page.waitForSelector('#photoWeightUnit',{state:'attached',timeout:20000});
- const candidates=[page.getByRole('button',{name:/^Progress Picture$/i}).first(),page.getByRole('link',{name:/^Progress Picture$/i}).first(),page.getByText(/^Progress Picture$/i).first()];
- let entered=false;for(const x of candidates){if(await x.count()&&await x.isVisible().catch(()=>false)){await x.click({timeout:8000});entered=true;break}}
- if(!entered)throw new Error('rendered Progress Picture navigation control missing');
- await page.waitForSelector('#photoWeightUnit',{state:'visible',timeout:20000});
- await page.waitForSelector('#photoWaistUnit',{state:'visible',timeout:20000});
- await page.waitForSelector('#savedPhotos',{state:'attached',timeout:20000});
+ const candidates=[
+  page.getByRole('tab',{name:/^Progress Picture$/i}).first(),
+  page.locator('.mp-tab').filter({hasText:/^Progress Picture$/i}).first(),
+  page.getByRole('button',{name:/^Progress Picture$/i}).first(),
+  page.getByRole('link',{name:/^Progress Picture$/i}).first(),
+  page.getByText(/^Progress Picture$/i).first(),
+  page.getByRole('button',{name:/^Shift Progress$/i}).first(),
+  page.getByRole('link',{name:/^Shift Progress$/i}).first()
+ ];
+ for(const x of candidates){
+  if(!await x.count()||!await x.isVisible().catch(()=>false))continue;
+  await x.click({timeout:8000}).catch(()=>{});await page.waitForTimeout(700);
+  if(await page.locator('#photoWeightUnit').isVisible().catch(()=>false))break;
+ }
+ await page.waitForSelector('#photoWeightUnit',{state:'visible',timeout:5000});
+ await page.waitForSelector('#photoWaistUnit',{state:'visible',timeout:5000});
+ await page.waitForSelector('#savedPhotos',{state:'attached',timeout:10000});
 }
 const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9Z3p8AAAAASUVORK5CYII=','base64');
 const browser=await chromium.launch({headless:true});
