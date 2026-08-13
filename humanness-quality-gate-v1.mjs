@@ -1,4 +1,4 @@
-import {buildIndustrialCatalogue,grubHumannessIssues} from './industrial-catalogue-v13.js';
+import {buildIndustrialCatalogue,grubHumannessIssues} from './industrial-catalogue-v14.js';
 import {FIT_CANONICAL_GUIDANCE,fitHumannessIssues,applyFitCanonicalGuidance} from './fit-canonical-guidance-v1.mjs';
 const catalogue=buildIndustrialCatalogue();
 const target=catalogue.recipes.filter(r=>/Proper Sandwich|Traybake|Work Snack Box|Slow Cooker|Protein Pot|Loaded Wrap|Breakfast Hash|Breakfast Buttie|Breakfast Wrap|Breakfast Toastie|Overnight Oats/i.test(String(r.title)));
