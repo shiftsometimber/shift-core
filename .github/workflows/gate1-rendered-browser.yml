@@ -4,6 +4,7 @@ on:
     paths:
       - 'gate1-rendered-browser-production.mjs'
       - 'gate1-authenticated-rendered-production.mjs'
+      - 'gate1-rendered-failure-production.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
@@ -12,7 +13,7 @@ permissions:
 jobs:
   rendered-browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,6 +36,11 @@ jobs:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           RENDER_EVIDENCE_DIR: render-evidence
         run: node gate1-rendered-browser-production.mjs
+      - name: Run rendered public failure-state acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          FAILURE_RENDER_EVIDENCE_DIR: failure-render-evidence
+        run: node gate1-rendered-failure-production.mjs
       - name: Run authenticated member rendered production acceptance
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
@@ -49,6 +55,7 @@ jobs:
           name: gate1-rendered-production-evidence
           path: |
             render-evidence
+            failure-render-evidence
             auth-render-evidence
           if-no-files-found: warn
           retention-days: 14
