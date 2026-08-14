@@ -10,7 +10,7 @@ import {personalRoutes} from './personal-platform-v1.js';
 import {knowledgeRoutes} from './knowledge-graph-v1.js';
 import {knowledgeEditorialRoutes} from './knowledge-editorial-v1.js';
 import {shiftBrainRoutes} from './shift-brain-v1.js';
-import {analyticsRoutes} from './product-analytics-v1.js';
+import {analyticsRoutes,recordProductEvent} from './product-analytics-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
 import {radarRoutes} from './radar-integration-v1.js';
 import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
@@ -33,7 +33,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-today-premium-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path.startsWith('/v1/auth/')||path==='/v1/events';}
+function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
@@ -44,13 +44,23 @@ async function gitMemberAsset(path,env){
   return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
 }
 async function coreAuthFetch(request,env,ctx){
-  const fast=await fastMemberRegister(request,env);if(fast)return fast;
-  return hq.fetch(request,env,ctx);
+  const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',registration=request.method==='POST'&&path==='/v1/auth/register',startedAt=registration?new Date().toISOString():null;
+  const fast=await fastMemberRegister(request,env);const response=fast||await hq.fetch(request,env,ctx);
+  if(registration&&response.ok){
+    const data=await response.clone().json().catch(()=>null),uid=Number(data?.user?.id||0);
+    if(uid){
+      try{
+        await recordProductEvent(env,{userId:uid,eventName:'registration_started',surface:'registration',source:'server',occurredAt:startedAt,properties:{path:fast?'fast-v2':'core'}});
+        await recordProductEvent(env,{userId:uid,eventName:'registration_completed',surface:'registration',source:'server',properties:{path:fast?'fast-v2':'core'}});
+      }catch(e){console.warn('analytics_registration_failed',e?.message)}
+    }
+  }
+  return response;
 }
 
 export default {
   async fetch(request,env,ctx){
-    const path=new URL(request.url).pathname;
+    const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
@@ -60,7 +70,7 @@ export default {
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
 
     const emailVerification=await handleEmailVerification(request,env,ctx,coreAuthFetch);
-    if(emailVerification)return withMemberCors(emailVerification,request);
+    if(emailVerification){await recordFinalLogin(request,emailVerification,env);return withMemberCors(emailVerification,request)}
 
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
@@ -77,7 +87,10 @@ export default {
     const personal=await personalRoutes(request,env,ctx); if(personal)return withMemberCors(personal,request);
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
     const radar=await radarRoutes(request,env,ctx); if(radar)return radar;
-    return hq.fetch(request,env,ctx);
+    const legacyBody=(request.method==='PATCH'&&path==='/v1/member-state')?await request.clone().json().catch(()=>({})):null;
+    const fallback=await hq.fetch(request,env,ctx);
+    if(fallback.ok&&(path==='/v1/member-state'||path==='/v1/progress'))await recordLegacyJourneyEvent(request,env,ctx,path,legacyBody);
+    return isMemberProductPath(path)?withMemberCors(fallback,request):fallback;
   },
   async scheduled(controller,env,ctx){
     const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env),runKnowledgeFlywheel(env,{limit:1000})])
@@ -86,3 +99,30 @@ export default {
     if(ctx?.waitUntil)ctx.waitUntil(job); else await job;
   }
 };
+
+async function recordFinalLogin(request,response,env){
+  const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';if(request.method!=='POST'||path!=='/v1/auth/login')return;
+  const supplied=await request.clone().json().catch(()=>({}));let body={};try{body=await response.clone().json()}catch{}
+  let uid=Number(body?.user?.id||0);
+  if(!uid){const email=String(supplied?.email||'').trim().toLowerCase();if(email){const row=await env.DB.prepare('SELECT id FROM users WHERE lower(email)=?').bind(email).first().catch(()=>null);uid=Number(row?.id||0)}}
+  if(!uid)return;
+  try{
+    if(response.ok){
+      const prior=await env.DB.prepare(`SELECT COUNT(*) c FROM product_events WHERE user_id=? AND event_name='login_succeeded'`).bind(uid).first().catch(()=>({c:0}));
+      await recordProductEvent(env,{userId:uid,eventName:'login_succeeded',surface:'auth',source:'server',properties:{verified:true}});
+      if(Number(prior?.c||0)>0)await recordProductEvent(env,{userId:uid,eventName:'member_returned',surface:'auth',source:'server',properties:{via:'login'}});
+    }else{
+      await recordProductEvent(env,{userId:uid,eventName:'error_presented',surface:'auth',source:'server',properties:{reason:String(body?.error||`http_${response.status}`).slice(0,80),status:response.status}});
+    }
+  }catch(e){console.warn('analytics_login_failed',e?.message)}
+}
+async function recordLegacyJourneyEvent(request,env,ctx,path,body){
+  const me=await hq.fetch(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!me.ok)return;const data=await me.json().catch(()=>({})),uid=Number(data?.user?.id||0);if(!uid)return;
+  try{
+    if(path==='/v1/progress'&&request.method==='POST')await recordProductEvent(env,{userId:uid,eventName:'progress_logged',surface:'progress',source:'server',properties:{retained:true}});
+    if(path==='/v1/member-state'&&request.method==='PATCH'&&body&&body.myWhy&&body.preferences){
+      const prior=await env.DB.prepare(`SELECT COUNT(*) c FROM product_events WHERE user_id=? AND event_name='onboarding_completed'`).bind(uid).first().catch(()=>({c:0}));
+      if(!Number(prior?.c||0))await recordProductEvent(env,{userId:uid,eventName:'onboarding_completed',surface:'onboarding',source:'server',properties:{profileContext:true}});
+    }
+  }catch(e){console.warn('analytics_legacy_journey_failed',e?.message)}
+}
