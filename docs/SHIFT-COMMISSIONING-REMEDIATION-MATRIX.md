@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 43 PASS / 11 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 44 PASS / 10 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -61,7 +61,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G4-005 | Grounding provenance is not consistently visible/inspectable | **PASS** | Shift AI production contract returns provenance-aware sources and reviewed state; hard production proof green. |
 | G4-006 | Radar is built but end-to-end live status is unproven | **PASS** | Production commissioning invoked the genuine regulator scanner through restricted GitHub OIDC; live MHRA drug-safety, MHRA alerts and EMA sources all returned successfully. |
 | G4-007 | GLP ticker freshness can silently degrade | **PASS** | Production Radar freshness returned GREEN inside declared SLOs; adversarial gates prove stale -> AMBER, publication failure -> RED and recovery -> GREEN. |
-| G4-008 | Proactive insights are not yet a coherent daily orchestration system | AMBER | Canonical Brain/proactive plumbing exists; premium Today orchestration acceptance remains. |
+| G4-008 | Proactive insights are not yet a coherent daily orchestration system | **PASS** | Fresh unchanged merged-production member acceptance on main `a18b7d09ca04034b8385a8f3dcea02024dc34334` proved the existing One Shift Brain/proactive system as coherent daily orchestration rather than plumbing alone: an explicit ordinary-life strategy was durably retained as `effective_strategy` at 0.92 confidence; the real premium Today surface rendered exactly one `SHIFT NOTICED` card with zero root overflow; a second feed call inside the configured 12-hour cooldown returned no insight; disabling proactive insights returned `proactive_disabled`; and reloading Today retained zero proactive cards. The same job reran canonical premium Today desktop + 390px acceptance green. Run `31781806555`, job `94708984307`, retained Today artifact `9212021040`, digest `sha256:cd81613ebd745bd626cd3a27e5a1af57524ce0e9f5120660c8db11087e467136`. Evidence: `docs/evidence/2026-08-14-g4-008-proactive-today-production-pass.md`. |
 
 ## Gate 5 — Trust & Scale
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 11-AMBER burn-down classification
+## 10-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -94,10 +94,9 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G2-004 | LARGE | M11 commissioned launch-catalogue diversity under real constraints; retain 365-day depth post-launch |
 | G2-007 | LARGE | M12 produce/accept genuine premium 26-family launch visuals -> domain QA -> review/publication/serving at scale |
 | G3-006 | FINITE | M01 Knowledge editorial/reviewer presentation |
-| G4-008 | LARGE | premium proactive Today orchestration |
 | G5-013 | HUMAN/DEVICE | remaining real inbox/recovery + fresh unassisted rendered Dave legs |
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 43. AMBER rows: 11. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 44. AMBER rows: 10. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
