@@ -1,4 +1,5 @@
 name: Reconcile G5-012 Board
+# Installed-workflow trigger: no product or threshold change.
 on:
   push:
     branches: ['main']
