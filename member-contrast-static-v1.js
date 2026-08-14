@@ -1,8 +1,10 @@
 const PATCH=`
-/* G3-008 bounded production contrast remediation */
-.mp-btn:not(.ghost),.btn.btn-primary,button.btn-primary,.member-form button[type="submit"]{background:#53624d!important;border-color:#53624d!important;color:#fff!important}
+/* G3-008 bounded production contrast remediation.
+   One Shift V3.4 still carries high-specificity !important legacy ash/button and form-boundary rules.
+   These selectors deliberately outrank those existing rules without changing the commissioned forest/cream system. */
+.member-product .mp-btn:not(.ghost):not(.secondary),.btn.btn-primary,button.btn-primary,.member-form button[type="submit"]{background:#53624d!important;border-color:#53624d!important;color:#fff!important}
 .eyebrow,.mp-eyebrow{color:#53624d!important}
-.member-form input,.member-form select,.member-form textarea,.mp-form input,.mp-form select,.mp-form textarea,.mp-input,.mp-select,.ask-input textarea{border-color:#6f7869!important}
+.member-form input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),.mp-form input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),input.mp-input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),.member-form select,.member-form textarea,.mp-form select,.mp-form textarea,select.mp-select,textarea.mp-input,.ask-input textarea{border-color:#6f7869!important}
 [role="switch"],.accessibility-toggle,.access-toggle,.mp-toggle{border-color:#6f7869!important}
 `;
 export async function memberContrastStatic(request,env){
