@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'reconcile-final-v1-gate2-board.mjs'
+      - 'reconcile-final-v1-recovery-pointers.mjs'
       - 'final-v1-gate2-reconciliation-source-gate.mjs'
       - '.github/workflows/final-v1-production-publication.yml'
       - '.github/workflows/final-v1-gate2-reconciliation.yml'
@@ -14,6 +15,7 @@ on:
     branches: [main]
     paths:
       - 'reconcile-final-v1-gate2-board.mjs'
+      - 'reconcile-final-v1-recovery-pointers.mjs'
       - 'final-v1-gate2-reconciliation-source-gate.mjs'
       - '.github/workflows/final-v1-production-publication.yml'
       - '.github/workflows/final-v1-gate2-reconciliation.yml'
