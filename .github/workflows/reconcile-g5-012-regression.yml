@@ -1,0 +1,38 @@
+name: Reconcile G5-012 Regression
+on:
+  pull_request:
+    paths:
+      - 'reconcile-g5-012-regression-board.mjs'
+      - '.github/workflows/reconcile-g5-012-regression.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'reconcile-g5-012-regression-board.mjs'
+      - '.github/workflows/reconcile-g5-012-regression.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'main' }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Reconcile repeatable G5-012 regression
+        run: node reconcile-g5-012-regression-board.mjs
+      - name: Prove 57-row crosswalk remains exact
+        run: node finish-line-gate.mjs
+      - name: Commit authoritative board reconciliation
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md docs/LAUNCH-FINISH-LINE.md docs/COMMISSIONING-EVIDENCE.md docs/V1-RELEASE-BLOCKER-BOARD-V2.md docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Reconcile repeatable G5-012 regression to AMBER'
+          git push origin HEAD:main
