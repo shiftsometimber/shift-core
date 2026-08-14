@@ -9,7 +9,7 @@ permissions:
 jobs:
   real-verification:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - name: Register genuine unverified member and wait for real inbox click
@@ -39,7 +39,7 @@ jobs:
 
           verified='false'
           after='0'
-          for i in $(seq 1 40); do
+          for i in $(seq 1 180); do
             sleep 15
             after=$(curl -sS -c /tmp/cookies.txt -o /tmp/login-after.json -w '%{http_code}' \
               -H "Origin: ${SITE}" -H 'Content-Type: application/json' \
