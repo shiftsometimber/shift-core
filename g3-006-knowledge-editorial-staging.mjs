@@ -19,13 +19,12 @@ CREATE TABLE radar_audit (id INTEGER PRIMARY KEY AUTOINCREMENT,action TEXT NOT N
 `);
 const env={DB,ADMIN_API_KEY:'g3-006-admin',AI:{},EMAIL:{}};
 const origin='https://hq.shiftsometimber.co.uk';
-const req=(path,{method='GET',body,headers={}}={})=>new Request(`https://api.shiftsometimber.co.uk${path}`,{method,headers:{Origin:origin,...headers,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});
+const req=(path,{method='GET',body,headers={}}={})=>new Request(`https://api.shiftsometimber.co.uk${path}`,{method,headers:{Origin:origin,...headers,...(body!==undefined?{'Content-Type':'application/json'}:{})},body:body!==undefined?JSON.stringify(body):undefined});
 const read=async r=>{const t=await r.text();try{return JSON.parse(t)}catch{return{text:t}}};
 const hqCall=async(path,opts={})=>{const response=await hq.fetch(req(path,opts),env,{});return{response,body:await read(response.clone())}};
 const editorial=async(path,opts={})=>{const response=await knowledgeEditorialRoutes(req(path,opts),env,{});return{response,body:await read(response.clone())}};
 
 let x=await hqCall('/health');assert.equal(x.response.status,200);
-// Anonymous editorial access is still denied by the existing HQ security boundary.
 x=await editorial('/v1/hq/articles');assert.equal(x.response.status,401);
 
 const email='g3-006-editor@shift.test',password='Shift-G3-006-Editor-2026!';
@@ -37,18 +36,19 @@ const article={title:'Protein without the pub science',slug:'g3-006-protein',cat
 x=await editorial('/v1/hq/articles',{method:'POST',headers:auth,body:article});assert.ok([200,201].includes(x.response.status),JSON.stringify(x.body));
 x=await editorial('/v1/hq/articles',{headers:auth});assert.equal(x.response.status,200);let a=x.body.articles.find(v=>v.slug===article.slug);assert.ok(a?.id);assert.equal(a.review,null);const articleId=a.id;
 
-// Publishing cannot jump the editorial gate.
+// The exact explicit publish action used by Shift HQ cannot bypass editorial approval.
+x=await editorial(`/v1/hq/articles/${articleId}/publish`,{method:'POST',headers:auth,body:{}});assert.equal(x.response.status,409);assert.equal(x.body.error,'editorial_review_required');
+// Nor can the legacy article write contract publish/schedule without retained approval.
 x=await editorial('/v1/hq/articles',{method:'POST',headers:auth,body:{...article,status:'published'}});assert.equal(x.response.status,409);assert.equal(x.body.error,'editorial_review_required');
 
-// Named review is retained independently of the browser/session request.
 x=await editorial(`/v1/hq/articles/${articleId}/review`,{method:'POST',headers:auth,body:{decision:'approved',notes:'Evidence, tone and claims checked for Knowledge Hub publication.'}});assert.equal(x.response.status,200,JSON.stringify(x.body));assert.equal(x.body.decision,'approved');assert.equal(x.body.reviewedBy,'Commissioning Editor');
 
-// Simulate leave/return by issuing a fresh list request: the review identity, decision and note persist.
+// Fresh list request simulates leave/return: reviewer identity, decision, note and timestamp are retained.
 x=await editorial('/v1/hq/articles',{headers:auth});a=x.body.articles.find(v=>v.id===articleId);assert.equal(a.status,'review');assert.equal(a.review.decision,'approved');assert.equal(a.review.reviewer_name,'Commissioning Editor');assert.equal(a.review.reviewer_email,email);assert.match(a.review.notes,/Evidence, tone and claims checked/);assert.ok(a.review.reviewed_at);
 
-// Only after retained approval can the same existing CMS contract publish the article.
-x=await editorial('/v1/hq/articles',{method:'POST',headers:auth,body:{...article,status:'published'}});assert.ok([200,201].includes(x.response.status),JSON.stringify(x.body));
+// The same explicit action used by the premium HQ desk now succeeds and retains the review provenance.
+x=await editorial(`/v1/hq/articles/${articleId}/publish`,{method:'POST',headers:auth,body:{}});assert.equal(x.response.status,200,JSON.stringify(x.body));assert.equal(x.body.status,'published');assert.equal(x.body.review.decision,'approved');assert.equal(x.body.review.reviewer_name,'Commissioning Editor');
 x=await editorial('/v1/hq/articles',{headers:auth});a=x.body.articles.find(v=>v.id===articleId);assert.equal(a.status,'published');assert.equal(a.review.decision,'approved');assert.equal(a.review.reviewer_name,'Commissioning Editor');
 
-console.log(JSON.stringify({proof:'G3-006_KNOWLEDGE_EDITORIAL_REVIEW',anonymousDenied:true,editor:{name:'Commissioning Editor',role:'owner'},journey:['draft','publish_blocked_without_review','approved','leave_return_review_retained','published'],article:{id:articleId,slug:a.slug,status:a.status},review:{decision:a.review.decision,reviewer:a.review.reviewer_name,reviewerEmail:a.review.reviewer_email,notesRetained:true,reviewedAt:a.review.reviewed_at},expectedUserOutcome:'HQ editor can see who reviewed a Knowledge Hub article and publication cannot bypass retained approval.'},null,2));
-console.log('PASS G3-006 governed Knowledge editorial journey: authenticated draft -> blocked premature publish -> named approval -> leave/return retained reviewer evidence -> publish.');
+console.log(JSON.stringify({proof:'G3-006_KNOWLEDGE_EDITORIAL_REVIEW',anonymousDenied:true,editor:{name:'Commissioning Editor',role:'owner'},journey:['draft','explicit_publish_blocked_without_review','legacy_publish_blocked_without_review','approved','leave_return_review_retained','explicit_publish','published_review_retained'],article:{id:articleId,slug:a.slug,status:a.status},review:{decision:a.review.decision,reviewer:a.review.reviewer_name,reviewerEmail:a.review.reviewer_email,notesRetained:true,reviewedAt:a.review.reviewed_at},expectedUserOutcome:'HQ editor can see who reviewed a Knowledge Hub article, leave and return without losing that approval, and the visible Publish action cannot bypass retained review.'},null,2));
+console.log('PASS G3-006 governed Knowledge editorial journey: authenticated draft -> both publish paths blocked -> named approval -> leave/return retained reviewer evidence -> explicit HQ publish -> retained published review.');
