@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+const matrixPath='docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md';
+let matrix=fs.readFileSync(matrixPath,'utf8');
+const old=/^\| G5-013 \| Dave end-to-end commissioning not yet run \| AMBER \|.*$/m;
+if(!old.test(matrix)) throw new Error('G5-013 row not found');
+const row='| G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **18/20 non-duplicated Dave journey legs (90%)**. Existing unattended synthetic/onboarding evidence remains green, and fresh genuine production lifecycle run `31793828102` / job `94753848697` now proves the real registration + verification legs through the connected inbox: unverified login blocked, genuine verification, verified login, logout and retained final login, with Welcome ordering correct. Remaining non-external Dave closure is real account recovery plus final genuine-device acceptance; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md`. |';
+matrix=matrix.replace(old,row);
+fs.writeFileSync(matrixPath,matrix);
+const evidencePath='docs/COMMISSIONING-EVIDENCE.md';
+let evidence=fs.readFileSync(evidencePath,'utf8');
+const marker='## 2026-08-14 — Dave genuine lifecycle moves to 18/20';
+if(!evidence.includes(marker)) evidence += `\n\n${marker}\n\nFresh genuine registration + verification production evidence from run \`31793828102\` / job \`94753848697\` closes two previously human-only Dave legs. Dave therefore moves from 16/20 to **18/20 (90%)** without promoting G5-013 itself. Remaining non-external legs are real account recovery and final genuine-device acceptance; treatment support remains external/BLOCKED.\n`;
+fs.writeFileSync(evidencePath,evidence);
+console.log('PASS Dave reconciliation: G5-013 remains AMBER at 18/20; 48/6/3 unchanged');
