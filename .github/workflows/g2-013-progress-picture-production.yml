@@ -1,21 +1,21 @@
-name: G2-011 Progress Production Acceptance
+name: G2-013 Progress Picture Production Acceptance
 on:
   push:
     branches: [main]
     paths:
-      - 'frontend/member/member-progress-v1.js'
+      - 'frontend/member/member-product-v33d.js'
       - 'frontend/member/member-shell-v33g.js'
       - 'frontend/member/member-p0-v1.css'
       - 'worker-entry-v6.js'
       - 'wrangler.jsonc'
       - 'commissioning-identity-v1.js'
-      - 'g2-011-progress-story-production.mjs'
-      - '.github/workflows/g2-011-progress-production.yml'
+      - 'g2-013-progress-picture-rendered-production.mjs'
+      - '.github/workflows/g2-013-progress-picture-production.yml'
 permissions:
   contents: read
   id-token: write
 jobs:
-  g2-011-progress-rendered-production:
+  g2-013-progress-picture-rendered-production:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -31,24 +31,24 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Wait for Worker deployment propagation
-        run: sleep 25
+      - name: Wait for production propagation
+        run: sleep 20
       - name: Install Chromium
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Run authenticated rendered Progress acceptance
+      - name: Run rendered private Progress Picture journey
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
-          G2_011_EVIDENCE_DIR: g2-011-progress-story-evidence
-        run: node g2-011-progress-story-production.mjs
-      - name: Upload G2-011 Progress evidence
+          G2_013_EVIDENCE_DIR: g2-013-progress-picture-evidence
+        run: node g2-013-progress-picture-rendered-production.mjs
+      - name: Upload G2-013 Progress Picture evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: g2-011-progress-story-evidence
-          path: g2-011-progress-story-evidence
+          name: g2-013-progress-picture-evidence
+          path: g2-013-progress-picture-evidence
           if-no-files-found: warn
           retention-days: 30
