@@ -20,18 +20,22 @@ import {handleAuthRecovery} from './auth-recovery-v1.js';
 import {memberContrastStatic} from './member-contrast-static-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
+const GIT_MEMBER_JS_ASSETS=new Set(['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js']);
 function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path.startsWith('/v1/auth/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
+async function gitMemberJsAsset(path,env){
+  if(!env.MEMBER_ASSETS||!GIT_MEMBER_JS_ASSETS.has(path))return null;
+  const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
+  if(!asset.ok)return new Response('member asset unavailable',{status:502,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+  const headers=new Headers(asset.headers);headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority',`git:frontend/member${path}`);
+  return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
+}
 
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname;
-    if(path==='/api-adapter-v33d.js'&&env.MEMBER_ASSETS){
-      const asset=await env.MEMBER_ASSETS.fetch(new Request('https://member-assets.local/api-adapter-v33d.js',{method:'GET'}));
-      const headers=new Headers(asset.headers);headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority','git:frontend/member/api-adapter-v33d.js');
-      return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
-    }
+    const gitAsset=await gitMemberJsAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
