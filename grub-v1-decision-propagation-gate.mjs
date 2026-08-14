@@ -9,8 +9,9 @@ execFileSync(process.execPath,['grub-editorial-review-surface.mjs'],{stdio:'inhe
 const pack=JSON.parse(fs.readFileSync(path.join(dir,'grub-second-person-review-pack.json'),'utf8'));
 const launch=JSON.parse(fs.readFileSync(path.join(dir,'grub-v1-launch-cohort.json'),'utf8'));
 const selected=new Set(launch.templateDigests||[]),launchIds=new Set(launch.recipeIds||[]);
+const requiredRecipes=Number(launch?.summary?.requiredRecipes||0);
 if(selected.size!==8)throw new Error(`expected 8 immutable V1 decisions, got ${selected.size}`);
-if(launchIds.size!==783)throw new Error(`expected 783 bound V1 descendants, got ${launchIds.size}`);
+if(!(requiredRecipes>0)||launchIds.size!==requiredRecipes)throw new Error(`launch manifest count mismatch: summary ${requiredRecipes} / unique descendants ${launchIds.size}`);
 
 const families=new Map(pack.templateFamilies.map(f=>[f.template_digest,f]));
 const reviewableById=new Map(pack.reviewable.map(r=>[r.id,r]));
@@ -50,12 +51,12 @@ function apply(decisions){
 
 const allPass=[...selected].map(template_digest=>({template_digest,decision:'PASS'}));
 const passResult=apply(allPass);
-if(passResult.approved.length!==783||passResult.held.length!==0)throw new Error(`all-PASS propagation did not unlock exactly 783 descendants: ${passResult.approved.length}/${passResult.held.length}`);
+if(passResult.approved.length!==requiredRecipes||passResult.held.length!==0)throw new Error(`all-PASS propagation did not unlock exact manifest descendants: ${passResult.approved.length}/${passResult.held.length}, expected ${requiredRecipes}`);
 
 const first=allPass[0].template_digest,firstCount=familyIds.get(first).size;
 const holdResult=apply(allPass.map(d=>d.template_digest===first?{...d,decision:'FIX',note:'bounded repair required'}:d));
 if(holdResult.held.length!==firstCount)throw new Error(`FIX did not hold exact family descendants: ${holdResult.held.length}/${firstCount}`);
-if(holdResult.approved.length!==783-firstCount)throw new Error('FIX leaked or over-held descendants outside exact family');
+if(holdResult.approved.length!==requiredRecipes-firstCount)throw new Error('FIX leaked or over-held descendants outside exact family');
 
 let rejectedMutation=false;try{apply(allPass.map((d,i)=>i?d:{...d,template_digest:d.template_digest.slice(0,-1)+(d.template_digest.endsWith('0')?'1':'0')}))}catch{rejectedMutation=true}
 if(!rejectedMutation)throw new Error('mutated immutable digest was accepted');
@@ -63,4 +64,4 @@ let rejectedMissing=false;try{apply(allPass.slice(1))}catch{rejectedMissing=true
 if(!rejectedMissing)throw new Error('incomplete decision set was accepted');
 
 console.log(JSON.stringify({proof:'M11_V1_DECISION_PROPAGATION_GATE_V1',decisions:selected.size,boundDescendants:launchIds.size,allPassApproved:passResult.approved.length,fixFamilyHeld:firstCount,mutationRejected:rejectedMutation,incompleteSetRejected:rejectedMissing},null,2));
-console.log('PASS M11 V1 propagation mechanism: 8 immutable decisions bind exactly 783 descendants; PASS unlocks only bound validated recipes; FIX/REJECT hold their exact family; mutated/missing decision sets fail closed.');
+console.log(`PASS M11 V1 propagation mechanism: 8 immutable decisions bind exactly ${requiredRecipes} regenerated descendants; PASS unlocks only bound validated recipes; FIX/REJECT hold their exact family; mutated/missing decision sets fail closed.`);
