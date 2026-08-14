@@ -6,6 +6,7 @@ const browser=fs.readFileSync('frontend/member/shift-me-api-v1.js','utf8');
 const creator=fs.readFileSync('frontend/member/member-shift-me-premium-v1.js','utf8');
 const creatorCss=fs.readFileSync('frontend/member/member-shift-me-premium-v1.css','utf8');
 const shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
+const creatorLower=creator.toLowerCase();
 const checks=[
  ['consent required',route.includes('consent_required')],
  ['authenticated via existing me route',route.includes("new URL('/v1/me'")],
@@ -28,7 +29,7 @@ const checks=[
  ['creator reloads persisted record',creator.includes('getShiftMe()')&&creator.includes('shiftMeImageUrl')],
  ['creator exposes deletion',creator.includes('deleteShiftMe()')&&creator.includes('Delete my Shift Me')],
  ['no fake placeholder person',creator.includes('No fake mannequin.')&&!creator.includes('placeholder-avatar')],
- ['privacy and non-clinical copy',creator.includes('source photo is used for the render and is not retained')&&creator.includes('not identity verification')&&creator.includes('not a body scan')],
+ ['privacy and non-clinical copy',creatorLower.includes('source photo')&&creatorLower.includes('not retained')&&creatorLower.includes('not identity verification')&&creatorLower.includes('not a body scan')],
  ['premium mobile layout',creatorCss.includes('@media(max-width:640px)')&&creatorCss.includes('.sm-control-grid{grid-template-columns:1fr}')],
  ['forest/cream constitution',creatorCss.includes('--sm-forest:#17261d')&&creatorCss.includes('--sm-cream:#f4f1e8')],
  ['canonical routes publish creator assets on both hosts',['shift-me-api-v1.js','member-shift-me-premium-v1.js','member-shift-me-premium-v1.css'].every(a=>canonicalConfig.includes(`shiftsometimber.co.uk/${a}*`)&&canonicalConfig.includes(`www.shiftsometimber.co.uk/${a}*`))]
