@@ -11,6 +11,10 @@ if(!entry.includes("path.startsWith('/v1/progress/')"))fail('Progress routes are
 if(failed)process.exit(1);
 console.log('Gate 2 daily source gate passed: Today V3 Brain wrapper preserves Today/Progress/Plans contract.');
 
+// G2-001 stays in the existing Today lane: prove the presentation consumes the canonical
+// contract and is published by the same Git-authoritative member runtime rather than a parallel dashboard.
+await import('./g2-001-today-premium-source-gate.mjs');
+
 // G2-012 is a bounded deployed-client defect. Keep its exact production proof inside the
 // existing trusted Gate 2 lane so a stale Pages origin or missing Worker patch fails closed.
 await import('./g2-012-production-proof.mjs');
