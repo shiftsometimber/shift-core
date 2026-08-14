@@ -1,0 +1,19 @@
+/* G2-001-TODAY-PREMIUM — homepage-grade presentation over canonical Today data. */
+#panel-today [hidden]{display:none!important}
+.mp-today-premium{min-width:0;margin-top:18px}
+.mp-today-priority-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin:0 0 16px;padding:0 2px;min-width:0}
+.mp-today-priority-intro>div{display:flex;flex-direction:column;gap:5px;min-width:0}.mp-today-priority-intro strong{font-size:1.35rem;line-height:1.15;color:#17261d}.mp-today-priority-intro p{margin:0;max-width:44ch;color:#58645b;line-height:1.5;text-align:right}
+.mp-today-action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;min-width:0}
+.mp-today-action-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:260px;padding:26px;border:1px solid rgba(83,98,77,.24);border-radius:24px;background:#f8f6ef;color:#17261d;box-shadow:0 14px 36px rgba(23,38,29,.08);overflow:hidden}
+.mp-today-action-card.is-lead{background:#17261d;color:#f4f1e8;border-color:#17261d;box-shadow:0 18px 48px rgba(23,38,29,.16)}
+.mp-today-action-top{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:28px}.mp-today-action-card.is-lead .eyebrow{color:#dce8c7!important}.mp-today-priority{font-size:.74rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6b776e}.mp-today-action-card.is-lead .mp-today-priority{color:#cbd6c3}
+.mp-today-action-card h3{margin:0 0 12px;max-width:19ch;font-size:clamp(1.55rem,2.5vw,2.15rem);line-height:1.05;color:#17261d}.mp-today-action-card.is-lead h3{color:#fff}
+.mp-today-action-card p{margin:0 0 24px;max-width:58ch;line-height:1.58;color:#4e5b52}.mp-today-action-card.is-lead p{color:#e2e7df}
+.mp-today-action-cta{margin-top:auto;min-height:48px!important;padding:11px 18px!important;border-radius:999px!important;font-weight:800!important;box-shadow:none!important}.mp-today-action-card.is-lead .mp-today-action-cta{background:#dce8c7!important;border-color:#dce8c7!important;color:#17261d!important}
+.mp-today-action-status{display:block;min-height:1.2em;margin-top:10px;font-size:.86rem;font-weight:700;color:#58645b}.mp-today-action-card.is-lead .mp-today-action-status{color:#dce8c7}
+.mp-today-empty{padding:26px;border:1px solid rgba(83,98,77,.24);border-radius:22px;background:#f8f6ef;box-shadow:0 14px 34px rgba(23,38,29,.06)}.mp-today-empty strong{display:block;margin:.45rem 0;font-size:1.35rem;color:#17261d}.mp-today-empty p{margin:0;color:#58645b;line-height:1.55}
+#panel-today [data-today-metric-count="1"]{grid-template-columns:minmax(0,1fr)!important;max-width:360px}
+#panel-today [data-today-metric-count="2"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:740px}
+
+@media(max-width:760px){.mp-today-priority-intro{align-items:flex-start;flex-direction:column;gap:8px}.mp-today-priority-intro p{text-align:left}.mp-today-action-grid{grid-template-columns:minmax(0,1fr)}.mp-today-action-card{min-height:0;padding:21px;border-radius:21px}.mp-today-action-top{margin-bottom:22px}.mp-today-action-card h3{font-size:1.75rem}.mp-today-action-cta{width:100%;min-height:48px!important}.mp-today-action-status{width:100%}}
+@media(max-width:420px){.mp-today-action-card{padding:19px}.mp-today-action-card h3{font-size:1.62rem}.mp-today-priority-intro strong{font-size:1.22rem}}
