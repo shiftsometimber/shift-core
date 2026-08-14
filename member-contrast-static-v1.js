@@ -15,6 +15,6 @@ export async function memberContrastStatic(request,env){
  const asset=await env.MEMBER_ASSETS.fetch(new Request('https://member-assets.local/member-p0-v1.css',{method:'GET'}));
  if(!asset.ok)return new Response('member stylesheet unavailable',{status:502,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});
  const source=await asset.text();
- const headers=new Headers(asset.headers);headers.set('Content-Type','text/css; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority','git:member-p0-v1.css+g3-008-contrast-final');
+ const headers=new Headers(asset.headers);headers.set('Content-Type','text/css; charset=utf-8');headers.set('Cache-Control','no-cache, max-age=0, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority','git:member-p0-v1.css+g3-008-contrast-final-v2');
  return new Response(source+'\n'+PATCH,{status:200,headers});
 }
