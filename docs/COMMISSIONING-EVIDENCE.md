@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 31 PASS / 23 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 32 PASS / 22 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G2-011 whole-person Progress.** Fresh production rendered acceptance on desktop 1440x900 and mobile 390x844 proves the real authenticated member sees a coherent `Since you started` story across retained weight, waist, steps, sleep and mood, with `2 check-ins retained`, non-judgemental direction language, logout/fresh-login persistence and zero root overflow. Run `31766649536`, job `94663838273`, artifact `9206580040`. Retained evidence: `docs/evidence/2026-08-14-g2-011-whole-person-progress-rendered-pass.md`. No adjacent Progress Picture/premium row is promoted by association.
+Latest original row closure: **G2-013 Progress Picture persistence/reliability.** Fresh unchanged production rendered acceptance on desktop 1440x900 and mobile 390x844 proves a real authenticated member saves a valid private photo, sees the decoded image and retained measurements across reload and logout/fresh-login return, while a second member sees none; deletion then persists across reload and another return. Both viewports have zero root overflow and no browser errors. Run `31768040389`, job `94667884627`, artifact `9207081894`, digest `sha256:cb1c50b2ca2af99ae3f56c904cebddc1c44194f06b84584e6762d4bd2229db29`. Retained evidence: `docs/evidence/2026-08-14-g2-013-progress-picture-rendered-pass.md`. G2-014 premium presentation remains independently AMBER.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -34,6 +34,9 @@ External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 The separate direct-overflow diagnostic received `commissioning_identity_rejected` because its diagnostic workflow path is not in the production commissioning-identity allowlist. That is a commissioning-tool authorization gap, not a member-auth failure, and does not supersede the successful unchanged rendered RC.
 
 Gate 1 remains open overall: G1-001 needs the complete real reset-token/recovery journey; G1-003/G1-004 need the retained real verification-token lifecycle; G1-008 needs the static frontend publish plus rendered state-system proof; G1-012 needs the fresh unassisted Dave run. None is promoted by association.
+
+## Gate 2 Progress Picture reliability — PASS
+**G2-013 PASS:** unchanged production rendered acceptance proves the full private photo lifecycle through the member product at desktop + 390px: valid image upload, decoded rendered history, retained metadata after reload, retained image after logout/fresh login, cross-member privacy isolation, rendered delete, and durable deletion after reload and another return. Run `31768040389`, job `94667884627`, artifact `9207081894`, digest `sha256:cb1c50b2ca2af99ae3f56c904cebddc1c44194f06b84584e6762d4bd2229db29`. Evidence: `docs/evidence/2026-08-14-g2-013-progress-picture-rendered-pass.md`. G2-014 remains AMBER because functional reliability is not premium visual acceptance.
 
 ## Gate 2 whole-person Progress — PASS
 **G2-011 PASS:** production rendered acceptance turns two genuine retained Progress check-ins into one coherent `Since you started` member story spanning weight, waist, steps, sleep and mood. The member sees `2 check-ins retained` plus non-judgemental direction language, and the same story persists after logout/fresh login at desktop + 390px with zero root overflow. Run `31766649536`, job `94663838273`, artifact `9206580040`. Evidence: `docs/evidence/2026-08-14-g2-011-whole-person-progress-rendered-pass.md`.
