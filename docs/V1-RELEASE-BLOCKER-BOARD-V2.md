@@ -4,14 +4,14 @@ Operational critical path; the 57-row audit remains authoritative.
 
 **A — V1 RELEASE BLOCKERS: 18 AMBER rows / 6 active shared clusters.**
 **A CLOSED: 9 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation.**
-**B — POST-LAUNCH HARDENING: 3 AMBER rows.**
+**B — POST-LAUNCH HARDENING: 2 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
 G1-001, G1-003, G1-004, G5-013. Real registration/verification/login/session/recovery/logout-return and unassisted Dave RC. Auth/session establishment is locked GREEN and is not to be reopened unless the unchanged RC materially regresses. G1-002 production delivery is PASS. Human inbox/token journeys remain batched final acceptance rather than being inferred from delivery alone.
 
 ## A2 Authenticated rendered/mobile premium estate
-G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-008, G1-009, G2-013 and G2-014 are PASS:** production serves the Git-authoritative Fit adapter and unchanged desktop + 390px state-system acceptance proved empty states, explicit loading, locked build actions, HTTP-successful Grub/Fit generation, visibly rendered returned outcomes, settled completion and zero document-root overflow. Cross-browser/mobile routing and geometry remain production-green. Remaining closure is premium shell/navigation/footer/forms/member IA and final physical-device hostile acceptance; Progress Picture premium presentation is now production PASS and must not be reopened without genuine regression evidence.
+G3-001, G3-002, G3-003, G3-004, G3-005, G3-007. **G1-008, G1-009, G2-013, G2-014 and G2-015 are PASS:** production serves the Git-authoritative Fit adapter and unchanged desktop + 390px state-system acceptance proved empty states, explicit loading, locked build actions, HTTP-successful Grub/Fit generation, visibly rendered returned outcomes, settled completion and zero document-root overflow. Cross-browser/mobile routing and geometry remain production-green. Remaining closure is premium shell/navigation/footer/forms/member IA and final physical-device hostile acceptance; Progress Picture premium presentation and the premium retained My Plans manager are now production PASS and must not be reopened without genuine regression evidence.
 
 ## A3 Today command centre
 G2-001, G4-008. Coherent premium daily orchestration across available non-clinical food, movement, hydration, Progress/context and Ask Shift.
@@ -32,7 +32,6 @@ G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,
 G3-008, G5-012. Critical public/member journeys meet declared keyboard/focus/forms/landmark/contrast/reduced-motion and performance budgets.
 
 ## B — post-launch hardening
-- G2-015 richer My Plans manager; V1 retained-plan journey still participates in Dave RC.
 - G3-006 Knowledge editorial/reviewer presentation refinement; governed Knowledge lifecycle is already production-proven.
 - G5-014 Numan/sceptical-customer competitive hardening.
 

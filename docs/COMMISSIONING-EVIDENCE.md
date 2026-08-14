@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 33 PASS / 21 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 34 PASS / 20 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G2-014 premium Progress Picture presentation.** Fresh unchanged production rendered acceptance on desktop 1440x900 and mobile 390x844 proves the live Git-authoritative premium layer through the real authenticated save/return/delete outcome: forest/cream hierarchy, deliberate controls, large decoded preview/history image treatment, explicit completion copy, retained history after reload, mobile touch targets, zero root overflow and no browser errors. Run `31769074070`, job `94670992621`, artifact `9207452900`, digest `sha256:67f9c510695583640f7f8e25427cdf44a500fda75051434fb1eac62132711b5a`. Retained evidence: `docs/evidence/2026-08-14-g2-014-progress-picture-premium-rendered-pass.md`.
+Latest original row closure: **G2-015 My Plans premium manager.** Fresh unchanged production rendered acceptance at 1440x900 and 390x844 proves a real authenticated plan is created and rendered as current, opened into the real Shift Grub surface, replaced while the prior plan is retained in history, and that current/history state survives reload and logout/fresh-login return. Live Git-authoritative premium assets were fingerprinted; both viewports have usable actions, zero root overflow and no browser errors. Run `31771170735`, job `94677258683`, artifact `9208209981`, digest `sha256:9af821e164f45f9c8dcf655e6b1c58fd192734df12c7380374a6d4722991bb6f`. Retained evidence: `docs/evidence/2026-08-14-g2-015-my-plans-premium-manager-rendered-pass.md`.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -29,11 +29,14 @@ External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
 **G1-003/G1-004 remain AMBER, but the live defect moved forward.** PR #170 merged the verification-first registration repair to main as `8d8759f438280ef896767e39f3aa9b97b64138fb`. The unchanged main production commissioning run `31741403662` is GREEN. Fresh production registration attempt `realverify-31736835464-3` delivered the genuine `Verify your My Shift email` message to the connected Gmail inbox at 20:33:43 UTC on 2026-08-13; crucially, the previous contradictory pre-verification `Welcome to My Shift` message was no longer present before verification. This is demonstrated production behaviour, not source inference. The rows still require the actual real-inbox token click -> verified login -> post-verification Welcome -> logout/final-login sequence before PASS.
 
-**G1-008 remains AMBER with a bounded deployment mismatch.** Canonical `frontend/member/api-adapter-v33d.js` gives Fit a finite 60-second generation budget, while the live static `/api-adapter-v33d.js` still serves the stale 15-second client timeout. Direct production Fit generation succeeds at about 29.4 seconds while the browser client aborts first. Closure requires the static frontend authority to publish the canonical adapter and then an unchanged rendered loading/empty/success rerun at desktop and 390px. Evidence: `docs/evidence/2026-08-13-g1-008-post-merge-production-recheck.md`.
+**G1-008 PASS:** production now serves the Git-authoritative API adapter with the bounded Fit generation budget, and unchanged desktop + 390px rendered acceptance proves explicit empty/loading/success member states, locked in-flight actions, successful Grub/Fit outcomes, settled completion and zero document-root overflow. Run `31744305693`; live-source capture `31744305816`.
 
 The separate direct-overflow diagnostic received `commissioning_identity_rejected` because its diagnostic workflow path is not in the production commissioning-identity allowlist. That is a commissioning-tool authorization gap, not a member-auth failure, and does not supersede the successful unchanged rendered RC.
 
-Gate 1 remains open overall: G1-001 needs the complete real reset-token/recovery journey; G1-003/G1-004 need the retained real verification-token lifecycle; G1-008 needs the static frontend publish plus rendered state-system proof; G1-012 needs the fresh unassisted Dave run. None is promoted by association.
+Gate 1 remains open overall only on the irreducible real-inbox lifecycle rows: G1-001 reset-token/recovery, G1-003 verification-link -> verified login -> post-verification Welcome -> logout/final login, and G1-004 genuine verification ordering/replay proof. All currently automatable Gate 1 rows are PASS and remain locked absent regression evidence.
+
+## Gate 2 My Plans premium manager — PASS
+**G2-015 PASS:** unchanged production rendered acceptance proves the real authenticated plan-management outcome at desktop + 390px: create current plan -> render current -> open real product -> replace -> retain prior plan in history -> reload -> logout/fresh-login -> same current/history state. The job fingerprinted the live Git-authoritative premium JS/CSS and member shell, measured usable mobile actions, and retained zero root overflow plus zero console/page errors. Run `31771170735`, job `94677258683`, artifact `9208209981`, digest `sha256:9af821e164f45f9c8dcf655e6b1c58fd192734df12c7380374a6d4722991bb6f`. Evidence: `docs/evidence/2026-08-14-g2-015-my-plans-premium-manager-rendered-pass.md`. This does not promote the wider M01/Gate 3 estate.
 
 ## Gate 2 premium Progress Picture — PASS
 **G2-014 PASS:** unchanged production rendered acceptance proves live Git-authoritative premium Progress Picture presentation at desktop + 390px through the real authenticated save/return/delete member journey. It verifies homepage-grade forest/cream hierarchy, a large decoded preview and retained photo card, deliberate upload/measurement/consent controls, explicit save completion, retained history after reload, touch-size actions, zero root overflow and no browser/page errors. Run `31769074070`, job `94670992621`, artifact `9207452900`, digest `sha256:67f9c510695583640f7f8e25427cdf44a500fda75051434fb1eac62132711b5a`. Evidence: `docs/evidence/2026-08-14-g2-014-progress-picture-premium-rendered-pass.md`. This completes mapped M13 but does not promote the wider M01/Gate 3 estate.
@@ -97,8 +100,8 @@ Demonstrated conversion evidence:
 - All 26 canonical families now have repaired member-facing coaching guidance: movement-specific explanation, expected/warning sensations, equipment context, useful regression and useful progression.
 - The humanness gate covers **26/26 coaching families with zero automated failures**; human/domain review remains mandatory.
 - The 12-week launch simulator produces **180/180 unique prescribed objects**, zero exact repeats, all 26 families exercised and zero consecutive canonical repetition.
-- The 26-family rendered visual review cohort exists as candidate anatomy only. Rejected legacy schematic artwork remains excluded from final launch acceptance.
-- Genuine premium visual approval / publication / production-serving remains **0 / 0 / 0** for the V1 launch cohort.
+- The premium replacement visual review cohort is **26/26 produced and 26/26 technically QA-passed**; rejected legacy schematic artwork remains excluded from final launch acceptance.
+- Genuine domain/member-comprehension approval / publication / production-serving remains **0 / 0 / 0** for the V1 launch cohort.
 
 M12/G2-007 remains AMBER because coaching quality, automatic binding, rendered candidate existence and simulator breadth do not equal premium visual/anatomical accuracy or member comprehension approval.
 
@@ -113,6 +116,6 @@ Remaining human-only Dave legs are `register`, `verify` and `account_recovery`; 
 - M11: serious 783 Grub launch-cohort review -> publication -> production-serving proof.
 - M12: 26-family Fit premium visual/domain review -> propagation/publication -> production-serving proof.
 - G5-012: diagnose the measured registration/login latency breach before changing security-sensitive KDF behaviour; prove the fix in unchanged production.
-- M04, M13 and M17 continue without queueing behind genuine human/external dependencies.
+- M04 and M17 continue without queueing behind genuine human/external dependencies; M13 is PASS and remains locked absent regression evidence.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**

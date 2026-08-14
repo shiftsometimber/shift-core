@@ -19,7 +19,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 ## MUST FINISH — agreed V1 requirement
 | ID | Requirement | State / exact closure |
 |---|---|---|
-| M01 | One Shift premium visual system across public + My Shift | AMBER — public rendered lane is GREEN, G1-009 proves authenticated cross-browser/mobile geometry/routing, G1-008 proves representative empty/loading/success product states, and G2-014 now proves premium Progress Picture presentation at desktop + 390px. Remaining work is premium shell/navigation/footer/forms/member IA parity against the homepage design constitution. |
+| M01 | One Shift premium visual system across public + My Shift | AMBER — public rendered lane is GREEN, G1-009 proves authenticated cross-browser/mobile geometry/routing, G1-008 proves representative empty/loading/success product states, G2-014 proves premium Progress Picture presentation, and G2-015 now proves the premium retained My Plans manager at desktop + 390px. Remaining work is systemic premium shell/navigation/footer/forms/member IA parity against the homepage design constitution. |
 | M02 | Reviewed Knowledge publication lifecycle | **PASS** — publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding. |
 | M03 | Radar production freshness | **PASS** — genuine production MHRA/EMA scan via restricted OIDC plus GREEN freshness and adversarial stale/failure/recovery transitions are locked. |
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors. |
@@ -40,12 +40,12 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification is **33 PASS / 21 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G2-014 premium Progress Picture presentation**, after unchanged production rendered acceptance proved the live Git-authoritative forest/cream member experience through a real save/return/delete journey at desktop + 390px with explicit outcome, large photo treatment, usable touch targets, zero root overflow and no browser errors.
+Exactly **57** original rows remain mandatory. Current evidenced classification is **34 PASS / 20 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G2-015 My Plans premium manager**, after unchanged production rendered acceptance proved a real authenticated current-plan -> open -> replacement -> retained-history -> reload -> logout/fresh-login journey at desktop + 390px, with the live Git-authoritative premium assets fingerprinted, usable mobile actions, zero root overflow and no browser errors.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876** and **2,876/2,876** ingredient-level CoFID nutrition-valid with zero nutrition quarantine. The V1 launch conversion is the repaired **783-recipe** cohort behind **8 regenerated immutable editorial decisions**; the decision-to-publication bridge is technically ready and fails closed on any non-PASS decision. Genuine second-person decisions still govern publication.
 
-**Fit:** structured authored universe **2,500** = 2,468 industrial + 32 existing structured. Industrial schema-valid **2,468**. The V1 launch conversion is **26 canonical movement decisions / 1,326 technically eligible descendants** with repaired human coaching guidance. Genuine replacement production is **1/26 produced / 0/26 accepted**; rejected legacy schematic artwork is excluded from final launch acceptance.
+**Fit:** structured authored universe **2,500** = 2,468 industrial + 32 existing structured. Industrial schema-valid **2,468**. The V1 launch conversion is **26 canonical movement decisions / 1,326 technically eligible descendants** with repaired human coaching guidance. Replacement premium candidates are **26/26 produced and 26/26 technically QA-passed**; domain/member-comprehension acceptance remains 0/26 and rejected legacy schematic artwork remains excluded from final launch acceptance.
 
 The conversion metric remains authored -> domain/nutrition/visual validated -> reviewed -> published -> production-served -> launch-ready. Raw candidate count, canonical mapping, metadata visual binding or automatic integrity never closes M11/M12 by itself.
 

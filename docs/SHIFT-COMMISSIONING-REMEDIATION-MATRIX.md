@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 33 PASS / 21 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 34 PASS / 20 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -37,7 +37,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G2-012 | Progress units are inconsistent | **PASS** | Fresh production rendered acceptance proves the real member Progress Picture journey at 1440px and 390px: a valid image is decoded, `14 st 13.5 lb` is saved and correctly normalised/rendered as `15 st 0 lb`, `50.0 in waist` is retained, the member sees explicit save completion, production returns HTTP 201, and the same units/state remain after logout and fresh login with zero root overflow and no console/page errors. Evidence: `docs/evidence/2026-08-13-g2-012-progress-units-rendered-pass.md`. |
 | G2-013 | Progress Picture persistence/reliability incomplete | **PASS** | Fresh unchanged production rendered acceptance proves a real authenticated member saves a valid photo through the rendered product, sees the decoded image and retained metadata across reload and logout/fresh-login return at 1440px and 390px, while a separate member sees no photo; delete then remains deleted across reload and another fresh-login return. Both viewports had zero root overflow and no browser console/page errors. Run `31768040389`, job `94667884627`, artifact `9207081894`, digest `sha256:cb1c50b2ca2af99ae3f56c904cebddc1c44194f06b84584e6762d4bd2229db29`. Evidence: `docs/evidence/2026-08-14-g2-013-progress-picture-rendered-pass.md`. |
 | G2-014 | Progress Picture UI feels developer-grade | **PASS** | Fresh unchanged production rendered acceptance proves the live Git-authoritative Progress Picture at 1440x900 and 390x844 through the real authenticated member journey: premium forest/cream hierarchy, deliberate upload/measurement/consent controls, large decoded preview and saved-photo treatment, explicit save outcome, retained history after reload, rendered delete, mobile touch targets, zero document-root overflow and no browser console/page errors. Run `31769074070`, job `94670992621`, artifact `9207452900`, digest `sha256:67f9c510695583640f7f8e25427cdf44a500fda75051434fb1eac62132711b5a`. Evidence: `docs/evidence/2026-08-14-g2-014-progress-picture-premium-rendered-pass.md`. |
-| G2-015 | My Plans surface is not a proper plan manager | AMBER | Active-plan persistence is production-proven; complete premium plan-management surface remains. |
+| G2-015 | My Plans surface is not a proper plan manager | **PASS** | Fresh unchanged production rendered acceptance proves the real authenticated My Plans journey at 1440x900 and 390x844: create a current Grub plan -> render it as current -> open the real Grub surface from My Plans -> create a replacement -> retain the old plan in history -> preserve the same current/history state after reload and logout/fresh-login return. The live Git-authoritative premium JS/CSS and member shell were fingerprinted, mobile actions meet touch sizing, document-root overflow is zero and browser console/page errors are zero. Run `31771170735`, job `94677258683`, artifact `9208209981`, digest `sha256:9af821e164f45f9c8dcf655e6b1c58fd192734df12c7380374a6d4722991bb6f`. Evidence: `docs/evidence/2026-08-14-g2-015-my-plans-premium-manager-rendered-pass.md`. |
 
 ## Gate 3 — One Shift
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 21-AMBER burn-down classification
+## 20-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -94,7 +94,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G2-003 | LARGE | M11 demonstrate exact validated nutrition through broad reviewed/published/served production catalogue |
 | G2-004 | LARGE | M11 commissioned launch-catalogue diversity under real constraints; retain 365-day depth post-launch |
 | G2-007 | LARGE | M12 produce/accept genuine premium 26-family launch visuals -> domain QA -> review/publication/serving at scale |
-| G2-015 | LARGE | M01/B08 proper plan manager |
 | G3-001 | LARGE | M01 systemic premium parity |
 | G3-002 | HUMAN/DEVICE | M01/M10 responsive navigation acceptance |
 | G3-003 | HUMAN/DEVICE | M01/M10 footer parity acceptance |
@@ -110,4 +109,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 33. AMBER rows: 21. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 34. AMBER rows: 20. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
