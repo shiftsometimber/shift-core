@@ -74,3 +74,5 @@ jobs:
           path: g1-real-verification
           if-no-files-found: warn
           retention-days: 30
+
+# commissioning live proof trigger 2026-08-14
