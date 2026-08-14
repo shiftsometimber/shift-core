@@ -20,6 +20,7 @@ import {handleEmailVerification} from './auth-email-verification-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
 import {memberContrastStatic} from './member-contrast-static-v1.js';
 import {fastMemberRegister} from './member-register-fastpath-v2.js';
+import {fastMemberLogin} from './member-login-fastpath-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -65,6 +66,7 @@ export default {
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
+    const fastLogin=await fastMemberLogin(request,env);if(fastLogin){await recordFinalLogin(request,fastLogin,env);return withMemberCors(fastLogin,request)}
     const commissioningOps=await commissioningOpsRoutes(request,env);if(commissioningOps)return commissioningOps;
     const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,coreAuthFetch);
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
