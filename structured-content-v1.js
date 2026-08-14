@@ -9,6 +9,8 @@ export function assertPublishableStructuredContent(item){
   const review=item?.review||{};
   if(review.status!=='approved')throw new Error('structured_content_review_approval_required');
   if(type==='recipe'){
+    const mealType=String(data?.meal_type||'').toLowerCase();
+    if(!['breakfast','lunch','dinner','snack'].includes(mealType))throw new Error('structured_recipe_meal_type_required');
     if(data?.nutrition?.status!=='validated')throw new Error('structured_recipe_nutrition_validation_required');
     for(const key of ['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'])if(!Number.isFinite(Number(data?.nutrition?.[key])))throw new Error(`structured_recipe_${key}_required`);
     if(!String(data?.nutrition?.methodology||'').trim())throw new Error('structured_recipe_nutrition_methodology_required');
@@ -29,6 +31,11 @@ export async function upsertStructuredContent(DB,item){
 
 export async function listPublishedContent(DB,type,{limit=100,offset=0}={}){
   await ensureStructuredContent(DB);
-  const{results=[]}=await DB.prepare(`SELECT id,title,version,data_json,updated_at FROM structured_content WHERE content_type=? AND status='published' ORDER BY updated_at DESC LIMIT ? OFFSET ?`).bind(type,Math.min(500,Math.max(1,limit)),Math.max(0,offset)).all();
+  // The member runtime historically asked for 500 because 500 was the old hard cap.
+  // For launch recipe/exercise catalogues that call means "the governed catalogue",
+  // not "silently truncate accepted authority to its first 500 rows".
+  const requested=Math.max(1,Number(limit)||100);
+  const effectiveLimit=(['recipe','exercise'].includes(String(type))&&requested===500)?2500:Math.min(2500,requested);
+  const{results=[]}=await DB.prepare(`SELECT id,title,version,data_json,updated_at FROM structured_content WHERE content_type=? AND status='published' ORDER BY updated_at DESC LIMIT ? OFFSET ?`).bind(type,effectiveLimit,Math.max(0,offset)).all();
   return results.map(x=>({...x,data:JSON.parse(x.data_json||'{}')}));
 }
