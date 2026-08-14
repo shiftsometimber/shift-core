@@ -4,7 +4,7 @@ import {movementFigure,movementGeometryVersion} from './fit-premium-movement-geo
 const contracts=JSON.parse(fs.readFileSync('content/fit/premium-v1-render-contracts.json','utf8'));
 if(!Array.isArray(contracts)||contracts.length!==26)throw new Error(`expected 26 render contracts, got ${contracts?.length}`);
 const out='assets/fit/premium';fs.mkdirSync(out,{recursive:true});
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&apos;'}[c]));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 const states=['START','MOVE','FINISH'],cues=c=>[c.start,c.move,c.finish];
 function wrapWords(value,max=47,maxLines=3){
   const words=String(value||'').trim().split(/\s+/).filter(Boolean),lines=[];let line='';
