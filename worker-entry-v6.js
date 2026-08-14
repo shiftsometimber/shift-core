@@ -27,7 +27,9 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-progress-v1.js','application/javascript; charset=utf-8'],
   ['/member-progress-picture-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-plans-premium-v1.js','application/javascript; charset=utf-8'],
-  ['/member-plans-premium-v1.css','text/css; charset=utf-8']
+  ['/member-plans-premium-v1.css','text/css; charset=utf-8'],
+  ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
+  ['/member-today-premium-v1.css','text/css; charset=utf-8']
 ]);
 function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path.startsWith('/v1/auth/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
