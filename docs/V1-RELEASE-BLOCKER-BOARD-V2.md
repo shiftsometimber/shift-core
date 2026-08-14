@@ -2,8 +2,8 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 22 AMBER rows / 7 active shared clusters.**
-**A CLOSED: 5 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate.**
+**A — V1 RELEASE BLOCKERS: 21 AMBER rows / 7 active shared clusters.**
+**A CLOSED: 6 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip.**
 **B — POST-LAUNCH HARDENING: 3 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
@@ -23,7 +23,7 @@ G2-002, G2-003, G2-004. V1 critical-path cohort is **783 clean recipes behind 8 
 G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. Replacement premium START -> MOVE -> FINISH candidates are now **26/26 produced and 26/26 technically QA-passed on main**. Legacy rejected schematic artwork remains excluded. Remaining closure is finite domain/member-comprehension PASS/FIX/REJECT decisions -> publication/propagation -> production serving.
 
 ## A6 Progress core
-G2-011, G2-012. Whole-person Progress story plus controlled kg/stone-lb and metric UX.
+G2-011. Whole-person Progress story remains open. **G2-012 is PASS:** the real member UI now production-proves correct stone/lb normalisation, inches readback and logout/login retention at desktop + 390px; do not keep the unit defect in the active blocker count.
 
 ## A7 Trust — CLOSED
 **G5-005 PASS.** Production proof crawled 80/80 live public pages successfully and found operator identity, AI disclosure, privacy, support and current-provider/qualification evidence. The audit explicitly checks that apparently live clinical/pharmacy language is accompanied by qualification/current-status language.

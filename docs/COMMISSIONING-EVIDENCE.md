@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 29 PASS / 25 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 30 PASS / 24 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G2-009 Conundrum catalogue intelligence.** Unchanged main production commissioning run `31710006859`, job `94480182185`, proved the governed `published_catalogue` path end-to-end: relevant suggestions came from the published catalogue, known governed recipe `lighter-beef-cottage-pie` was returned for its ingredient relationship with matched-ingredient evidence, and unrelated ingredients returned an honest zero-result outcome without an invented fallback. Evidence: `docs/evidence/2026-08-13-g2-009-catalogue-conundrum.md`. No other row is promoted by association.
+Latest original row closure: **G2-012 Progress units.** Fresh production rendered acceptance on desktop 1440x900 and mobile 390x844 proves the real Progress Picture member journey: valid image decode, explicit save completion, HTTP 201, correct `15 st 0 lb · 50.0 in waist` rendering, no impossible 14 lb remainder, retained state after logout/fresh login, zero root overflow and no console/page errors. Retained evidence: `docs/evidence/2026-08-13-g2-012-progress-units-rendered-pass.md`. No adjacent Progress/premium row is promoted by association.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -34,6 +34,9 @@ External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 The separate direct-overflow diagnostic received `commissioning_identity_rejected` because its diagnostic workflow path is not in the production commissioning-identity allowlist. That is a commissioning-tool authorization gap, not a member-auth failure, and does not supersede the successful unchanged rendered RC.
 
 Gate 1 remains open overall: G1-001 needs the complete real reset-token/recovery journey; G1-003/G1-004 need the retained real verification-token lifecycle; G1-008 needs the static frontend publish plus rendered state-system proof; G1-012 needs the fresh unassisted Dave run. None is promoted by association.
+
+## Gate 2 Progress units — PASS
+**G2-012 PASS:** production rendered acceptance proves the member-visible unit round-trip at desktop + 390px. `14 st 13.5 lb` normalises to `15 st 0 lb`; `50.0 in waist` is retained; the save succeeds through the production API; and the same values return after logout/login with zero root overflow and no browser errors. Evidence: `docs/evidence/2026-08-13-g2-012-progress-units-rendered-pass.md`.
 
 ## Gate 2 Fit duration/session quality — PASS
 PR #109 and unchanged post-merge production run `31649921033` proved authenticated 10/15/20/30/45/60-minute session-quality composition end-to-end. Padding/overrun regressions remain protected.
