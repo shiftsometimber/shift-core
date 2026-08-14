@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 35 PASS / 19 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 36 PASS / 18 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -49,7 +49,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G3-005 | Cards/spacing/type hierarchy inconsistent | AMBER | Visual-system regression review remains M01. |
 | G3-006 | Knowledge Hub editorial experience is inconsistent | AMBER | Knowledge lifecycle is green; premium editorial presentation/reviewer metadata remains. |
 | G3-007 | Member navigation reflects architecture rather than intent | AMBER | Behavioural routes exist and member routing is now production-stable cross-browser/mobile; Dave/premium IA acceptance remains B08/M01. |
-| G3-008 | Accessibility is not a design-system gate | AMBER | Authenticated production acceptance now bounds the remaining defects rather than merely asserting an audit gap: desktop + 390px prove zero root overflow, usable landmarks, labelled visible controls, reduced-motion support and visible keyboard focus, but genuine WCAG contrast failures remain on olive primary actions, light-olive eyebrow text and pale form/toggle boundaries. Preserve the premium forest/cream constitution; remediate only the demonstrated contrast defects and rerun with corrected gradient/filled-control measurement. Evidence: `docs/evidence/2026-08-13-authenticated-accessibility-performance-production.md`. |
+| G3-008 | Accessibility is not a design-system gate | **PASS** | Fresh unchanged merged-production authenticated acceptance proves the commissioned accessibility floor at desktop + 390px after the bounded Ask Timber repair: primary action contrast 6.52:1, textarea/control boundary contrast 4.52:1, visible 3px keyboard focus, required main/H1 landmarks, reduced-motion support and zero document-root overflow across representative member surfaces. The final evidence pulse ran against merged main `cc298069792da17fb7aa8a4095d888ec8471e336`, returned `failures=[]`, fingerprinted live CSS as `sha256:6486dccb0205269cd342b1306610dc4667e71ca7b054193a69c343a60636e959`, and retained artifact `9210113652` / `sha256:ae7b88c23cba0363e503037a6dd25ecc2e90d6cdf24b140ebd6c954f14b07ed8`. Run `31776604378`, job `94693238364`. Evidence: `docs/evidence/2026-08-14-g3-008-authenticated-accessibility-production-pass.md`. |
 
 ## Gate 4 — Shift Becomes Intelligent
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 19-AMBER burn-down classification
+## 18-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -100,7 +100,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G3-005 | LARGE | M01 visual-system regression closure |
 | G3-006 | FINITE | M01 Knowledge editorial/reviewer presentation |
 | G3-007 | HUMAN/DEVICE | B08/M01 member IA acceptance |
-| G3-008 | FINITE | remediate demonstrated contrast defects and rerun authenticated accessibility acceptance |
 | G4-008 | LARGE | premium proactive Today orchestration |
 | G5-012 | FINITE | diagnose/remediate registration/login SLO breach and rerun production performance proof |
 | G5-013 | HUMAN/DEVICE | remaining real inbox/recovery + fresh unassisted rendered Dave legs |
@@ -108,4 +107,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 35. AMBER rows: 19. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 36. AMBER rows: 18. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.

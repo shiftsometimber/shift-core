@@ -2,8 +2,8 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 17 AMBER rows / 6 active shared clusters.**
-**A CLOSED: 10 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation., G2-001 Shift Today premium daily command centre.**
+**A — V1 RELEASE BLOCKERS: 16 AMBER rows / 6 active shared clusters.**
+**A CLOSED: 11 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate.**
 **B — POST-LAUNCH HARDENING: 2 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
@@ -29,7 +29,7 @@ G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,
 **G5-005 PASS.** Production proof crawled 80/80 live public pages successfully and found operator identity, AI disclosure, privacy, support and current-provider/qualification evidence. The audit explicitly checks that apparently live clinical/pharmacy language is accompanied by qualification/current-status language.
 
 ## A8 Accessibility + performance release floor
-G3-008, G5-012. Critical public/member journeys meet declared keyboard/focus/forms/landmark/contrast/reduced-motion and performance budgets.
+**G3-008 PASS:** authenticated desktop + 390px production proof now meets the commissioned contrast/control-boundary, focus, landmark, reduced-motion and zero-overflow floor. **G5-012 remains AMBER:** fresh natural production registration/login p95 must meet the declared 800 ms member API budget.
 
 ## B — post-launch hardening
 - G3-006 Knowledge editorial/reviewer presentation refinement; governed Knowledge lifecycle is already production-proven.

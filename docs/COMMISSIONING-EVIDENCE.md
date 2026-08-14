@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 35 PASS / 19 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 36 PASS / 18 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G2-001 Shift Today premium daily command centre.** Fresh unchanged merged-production rendered acceptance proves the real authenticated Shift Today daily command centre at 1440x900 and 390x844. The canonical `/v1/shift/today` response is visibly rendered with personalised headline/subhead, useful priorities, real detail and CTAs; `Log a drink` reaches the commissioned Hydration surface; returning to Today restores the same canonical priorities; the in-surface `Done later` acknowledgement settles explicitly; unavailable metrics are hidden rather than faked; Git-authoritative premium JS/CSS/shell assets are fingerprinted; both viewports retain homepage-grade hierarchy, 48px actions, zero root overflow and zero browser console/page errors. Run `31774086353`, job `94685791902`, artifact `9209230856`, digest `sha256:841f0a38bb9b40ff1a65e3eb203ece5275fc50017621ca8783b5bd17c45a1ee2`. Evidence: `docs/evidence/2026-08-14-g2-001-today-premium-rendered-pass.md`.
+Latest original row closure: **G3-008 authenticated accessibility design-system gate.** Fresh unchanged merged-production authenticated acceptance at desktop + 390px returned `failures=[]` and proved primary Ask action contrast 6.52:1, textarea/control boundary contrast 4.52:1, visible 3px keyboard focus, required main/H1 landmarks, reduced-motion support and zero document-root overflow across representative member surfaces. Live CSS was fingerprinted as `sha256:6486dccb0205269cd342b1306610dc4667e71ca7b054193a69c343a60636e959`. Run `31776604378`, job `94693238364`, artifact `9210113652`, digest `sha256:ae7b88c23cba0363e503037a6dd25ecc2e90d6cdf24b140ebd6c954f14b07ed8`. Evidence: `docs/evidence/2026-08-14-g3-008-authenticated-accessibility-production-pass.md`.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -59,6 +59,9 @@ PR #109 and unchanged post-merge production run `31649921033` proved authenticat
 ## Gate 2 Conundrum catalogue intelligence — PASS
 **G2-009 PASS:** production proof requires runtime source `published_catalogue`, a non-empty governed catalogue, relevant returned suggestions from that catalogue, the governed `lighter-beef-cottage-pie` relationship, retained matched-ingredient evidence and honest zero-result behaviour for unrelated ingredients with no invented fallback. All assertions passed in unchanged main production run `31710006859` / job `94480182185`. Evidence: `docs/evidence/2026-08-13-g2-009-catalogue-conundrum.md`.
 
+## Gate 3 authenticated accessibility design-system gate — PASS
+**G3-008 PASS:** unchanged merged-production authenticated acceptance at desktop + 390px returned `failures=[]` after the bounded Ask Timber repair. It proves primary-action contrast 6.52:1, control-boundary contrast 4.52:1, visible 3px keyboard focus, required main/H1 landmarks, reduced-motion support and zero document-root overflow across representative member surfaces while preserving the homepage forest/cream design constitution. The final run fingerprinted live CSS as `sha256:6486dccb0205269cd342b1306610dc4667e71ca7b054193a69c343a60636e959`. Run `31776604378`, job `94693238364`, artifact `9210113652`, digest `sha256:ae7b88c23cba0363e503037a6dd25ecc2e90d6cdf24b140ebd6c954f14b07ed8`. Evidence: `docs/evidence/2026-08-14-g3-008-authenticated-accessibility-production-pass.md`. This closes G3-008 only; G3-001 through G3-007 and G5-012 remain independent.
+
 ## Gate 4 Knowledge flywheel — PASS
 PR #98 proved approved CMS content is ingested into the canonical Knowledge graph with provenance, draft exclusion, withdrawal reconciliation and stable canonical reactivation after re-review without manual HQ ingest.
 
@@ -69,10 +72,10 @@ PR #98 proved approved CMS content is ingested into the canonical Knowledge grap
 
 **G5-005 / B05 PASS:** production public-trust proof crawled **80/80** live public pages and demonstrated operator identity, AI disclosure, privacy, support and qualified/current provider-status presentation. The audit explicitly fails if apparently live prescribing/pharmacy capability is implied without qualification/current-status language.
 
-## Authenticated accessibility + performance — measured, still AMBER
+## Authenticated accessibility + performance — accessibility PASS, performance AMBER
 The production acceptance behind PR #168 is now retained as explicit evidence rather than a generic future audit. Gate 1 Rendered Browser run `31736275376`, authenticated accessibility/performance job `94568558840`, correctly failed the production acceptance and retained artifact `9195277536` with `report.json` plus full-page screenshots for all six authenticated surfaces at desktop and 390px.
 
-**G3-008 remains AMBER.** Already-proven positives include zero root overflow, usable main/H1 structure, no visible unlabeled controls, reduced-motion support and visible keyboard focus. Genuine remaining defects include primary olive actions at about 3.14:1 against a 4.5:1 normal-text requirement, light-olive eyebrow text at about 1.9–2.1:1, and pale form/toggle boundaries below the 3:1 non-text threshold. Some reported hero/filled-control results are harness-classification issues because the current measurement does not composite background images/gradients and compares filled-control borders against their own fill; those must be fixed in the measurement before blindly changing the premium forest/cream design constitution. Evidence: `docs/evidence/2026-08-13-authenticated-accessibility-performance-production.md`.
+**G3-008 PASS:** the earlier measured defects were repaired without weakening the homepage-grade premium visual constitution, then fresh unchanged merged-production authenticated acceptance proved the corrected member outcome at desktop + 390px. Primary action contrast is 6.52:1, textarea/control boundary contrast is 4.52:1, keyboard focus/landmarks/reduced motion remain green and document-root overflow is zero. Run `31776604378`, job `94693238364`, artifact `9210113652`, digest `sha256:ae7b88c23cba0363e503037a6dd25ecc2e90d6cdf24b140ebd6c954f14b07ed8`.
 
 **G5-012 remains AMBER with a demonstrated SLO breach.** Fixture registration measured **20,627 ms** and authenticated login **17,548 ms**, both above the declared **800 ms API p95** budget. Post-login surface transitions were generally fast. The remaining work is diagnosis/remediation of the auth critical path followed by an unchanged production rerun; the existence of SLO constants or a green merge is not PASS.
 
