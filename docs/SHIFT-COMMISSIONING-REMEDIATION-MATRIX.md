@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 45 PASS / 9 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 46 PASS / 8 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -79,9 +79,9 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-011 | Security/privacy audit not yet complete | **PASS** | Deployed production security/privacy proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS, per-member export isolation, deletion-session revocation, safe response envelopes and source gates covering secrets/analytics/recovery/auth controls. |
 | G5-012 | Performance not a release criterion | **PASS** | Fresh unchanged production commissioning on main proves the declared 800 ms member API p95 budget after the bounded registration fast-path repair. Natural existing commissioning traffic measured the member handler server-side: registration p95 **350 ms** across 17 samples (median 297, max 350) and login p95 **776 ms** across 11 samples (median 466, max 776). Synthetic GitHub OIDC/fixture overhead is reported separately and is not used to hide member latency; password security was unchanged. Run `31776554705`, job `94693085868`, artifact `9210154378`, digest `sha256:1d0160df5b9d5fe4326761b8d8f76bedc4e3760c8b8ef5ab2b91c24601c0857b`. |
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
-| G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
+| G5-014 | Numan/customer trust competitive test not embedded | **PASS** | Fresh unchanged main-production browser acceptance on `2e4b062cb64bb7db17bb73215b522519a14c0976` proved the real sceptical-customer outcome: Shift loaded cleanly at 1440x900 and 390x844 with HTTP 200, visible H1/main landmark, zero root overflow and zero browser page/console errors; meaningful mobile decision controls met the commissioned touch-size floor. The live proposition visibly communicates ordinary-bloke audience, evidence-before-hype/no-profit-led-rankings, useful free decision-support, long-term maintenance thinking, the Useful First / Commercial Second promise, pre-launch honesty and explicit qualified-clinician boundaries. The browser followed Knowledge, Editorial Standards, Clinical Governance and Tools, all HTTP 200 with substantive content and zero overflow. The same run opened the current Numan weight-loss benchmark and observed clinician, coaching, medication, long-term and regulated-service signals; Shift passed by differentiating through evidence, trust, usefulness and premium execution without pretending unavailable regulated clinical capability exists. Run `31783956351`, job `94715577166`, artifact `9212761395`, digest `sha256:e7cef0655dc4146d5ef2e800978696e881afdc68242945548c9a781727b59b06`. Evidence: `docs/evidence/2026-08-14-g5-014-sceptical-customer-production-pass.md`. |
 
-## 9-AMBER burn-down classification
+## 8-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -94,8 +94,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G2-004 | LARGE | M11 commissioned launch-catalogue diversity under real constraints; retain 365-day depth post-launch |
 | G2-007 | LARGE | M12 produce/accept genuine premium 26-family launch visuals -> domain QA -> review/publication/serving at scale |
 | G5-013 | HUMAN/DEVICE | remaining real inbox/recovery + fresh unassisted rendered Dave legs |
-| G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 45. AMBER rows: 9. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 46. AMBER rows: 8. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
