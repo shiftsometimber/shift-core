@@ -1,5 +1,22 @@
 name: Grub Editorial Review Surface
-on: [pull_request]
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'industrial-catalogue-v14.js'
+      - 'industrial-catalogue-v13.js'
+      - 'grub-v1-editorial-defect-gate.mjs'
+      - 'grub-editorial-review-surface.mjs'
+      - 'industrial-grub-second-person-review-pack.mjs'
+      - '.github/workflows/grub-editorial-review-surface.yml'
+  pull_request:
+    paths:
+      - 'industrial-catalogue-v14.js'
+      - 'industrial-catalogue-v13.js'
+      - 'grub-v1-editorial-defect-gate.mjs'
+      - 'grub-editorial-review-surface.mjs'
+      - 'industrial-grub-second-person-review-pack.mjs'
+      - '.github/workflows/grub-editorial-review-surface.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
