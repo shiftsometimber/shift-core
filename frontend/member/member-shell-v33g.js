@@ -4,7 +4,7 @@
 (function(){
   'use strict';if(!/^\/member\//.test(location.pathname))return;
   if(location.hostname==='shiftsometimber.com'||location.hostname==='www.shiftsometimber.com'){location.replace('https://shiftsometimber.co.uk'+location.pathname+location.search+location.hash);return}
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const P0_HREF='/member-p0-v1.css?v=8';const PROGRESS_SRC='/member-progress-v1.js?v=1';const PICTURE_PREMIUM_SRC='/member-progress-picture-premium-v1.js?v=1';const PLANS_PREMIUM_SRC='/member-plans-premium-v1.js?v=1';const PLANS_PREMIUM_CSS='/member-plans-premium-v1.css?v=1';const TODAY_PREMIUM_SRC='/member-today-premium-v1.js?v=1';const TODAY_PREMIUM_CSS='/member-today-premium-v1.css?v=1';let p0Guard=false;
   function ensureP0(){if(p0Guard||!document.head)return;p0Guard=true;try{let p0=document.querySelector('link[data-shift-p0="member-shell"]');if(!p0){p0=document.createElement('link');p0.rel='stylesheet';p0.dataset.shiftP0='member-shell';document.head.appendChild(p0)}if(p0.getAttribute('href')!==P0_HREF)p0.setAttribute('href',P0_HREF);document.querySelectorAll('link[rel="stylesheet"][href*="member-p0-v1.css"]').forEach(link=>{if(link!==p0)link.remove()});if(document.head.lastElementChild!==p0)document.head.appendChild(p0)}finally{p0Guard=false}}
   function onDashboard(){return location.pathname==='/member/dashboard'||location.pathname==='/member/dashboard.html'}
