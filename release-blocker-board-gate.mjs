@@ -1,10 +1,40 @@
-// Evidence-led release accounting gate. Keep this executable: the workflow must fail closed if board/counts drift.
+// Evidence-led release accounting gate. Fail closed if the authoritative matrix, compact counts and release board drift.
 import fs from 'node:fs';
-const s=fs.readFileSync('docs/V1-RELEASE-BLOCKER-BOARD-V2.md','utf8');
-for(const x of ['A — V1 RELEASE BLOCKERS: 22','A CLOSED: 5','B — POST-LAUNCH HARDENING: 3','C — EXTERNAL: 3','G5-005 PASS','G1-008 and G1-009 are PASS','G2-009 is no longer in B'])if(!s.includes(x))throw new Error(`release-board accounting missing ${x}`);
-const counts=fs.readFileSync('docs/V1-RELEASE-BLOCKER-COUNTS.txt','utf8');
-for(const x of ['A=22','B=3','C=3','AUDIT_PASS=29','AUDIT_AMBER=25','AUDIT_BLOCKED=3'])if(!counts.includes(x))throw new Error(`release-board counts missing ${x}`);
-const ids=[...s.matchAll(/G[1-5]-\d{3}/g)].map(x=>x[0]);
-const unique=new Set(ids);
-if(unique.size!==34)throw new Error(`expected 22 release AMBER + 3 post-launch AMBER + 3 external + 5 explicitly retained Category-A closed rows + G2-009 retained PASS, got ${unique.size}`);
-console.log('PASS V1 blocker board: 5 Category-A blockers closed; 22 release-blocking AMBER / 3 post-launch AMBER / 3 external; audit 29 PASS / 25 AMBER / 3 BLOCKED; G1-008, G1-012 and G2-009 retained as evidenced PASS.');
+
+const board=fs.readFileSync('docs/V1-RELEASE-BLOCKER-BOARD-V2.md','utf8');
+const countsText=fs.readFileSync('docs/V1-RELEASE-BLOCKER-COUNTS.txt','utf8');
+const matrix=fs.readFileSync('docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md','utf8');
+
+const counts=Object.fromEntries(countsText.trim().split(/\r?\n/).map(line=>line.split('=').map(x=>x.trim())));
+for(const key of ['A','B','C','AUDIT_PASS','AUDIT_AMBER','AUDIT_BLOCKED']){
+  if(!/^\d+$/.test(String(counts[key]??''))) throw new Error(`release-board count missing/invalid ${key}`);
+  counts[key]=Number(counts[key]);
+}
+if(counts.A+counts.B!==counts.AUDIT_AMBER) throw new Error(`AMBER classification drift A+B=${counts.A+counts.B} audit=${counts.AUDIT_AMBER}`);
+if(counts.C!==counts.AUDIT_BLOCKED) throw new Error(`BLOCKED classification drift C=${counts.C} audit=${counts.AUDIT_BLOCKED}`);
+if(counts.AUDIT_PASS+counts.AUDIT_AMBER+counts.AUDIT_BLOCKED!==57) throw new Error('authoritative audit total is not 57');
+
+for(const x of [
+  `A — V1 RELEASE BLOCKERS: ${counts.A} AMBER rows`,
+  `B — POST-LAUNCH HARDENING: ${counts.B} AMBER rows`,
+  `C — EXTERNAL: ${counts.C} BLOCKED rows`
+]) if(!board.includes(x)) throw new Error(`release-board accounting missing ${x}`);
+
+const scoreboard=`Current reconciled scoreboard: 57 total / ${counts.AUDIT_PASS} PASS / ${counts.AUDIT_AMBER} AMBER / ${counts.AUDIT_BLOCKED} BLOCKED / 0 unmapped.`;
+if(!matrix.includes(scoreboard)) throw new Error(`matrix scoreboard drift: expected ${scoreboard}`);
+
+const authoritative=matrix.split('## 8-AMBER burn-down classification')[0];
+const rows=authoritative.split(/\r?\n/).filter(line=>/^\| G[1-5]-\d{3} \|/.test(line));
+if(rows.length!==57) throw new Error(`expected 57 authoritative matrix rows, got ${rows.length}`);
+const tally={PASS:0,AMBER:0,BLOCKED:0};
+for(const row of rows){
+  const cells=row.split('|').map(x=>x.trim()).filter(Boolean);
+  const status=String(cells[2]||'').replace(/\*/g,'').trim();
+  if(!(status in tally)) throw new Error(`unknown matrix status ${status} in ${cells[0]}`);
+  tally[status]++;
+}
+if(tally.PASS!==counts.AUDIT_PASS||tally.AMBER!==counts.AUDIT_AMBER||tally.BLOCKED!==counts.AUDIT_BLOCKED){
+  throw new Error(`matrix row tally drift ${JSON.stringify(tally)} vs counts ${counts.AUDIT_PASS}/${counts.AUDIT_AMBER}/${counts.AUDIT_BLOCKED}`);
+}
+
+console.log(`PASS V1 blocker board: A=${counts.A}, B=${counts.B}, C=${counts.C}; audit ${tally.PASS} PASS / ${tally.AMBER} AMBER / ${tally.BLOCKED} BLOCKED; all 57 authoritative rows reconciled.`);
