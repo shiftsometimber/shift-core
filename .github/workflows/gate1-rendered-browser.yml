@@ -1,5 +1,5 @@
 name: Gate 1 Rendered Browser Acceptance
-# 2026-08-14 retained commissioning coverage: Gate 1 state/rendered + G2-012 Progress units
+# Retained commissioning coverage: Gate 1 state/rendered + G2-012 Progress units + G3-008 authenticated accessibility
 on:
   pull_request:
     paths:
@@ -9,6 +9,7 @@ on:
       - 'v1-accessibility-performance-production.mjs'
       - 'g2-012-progress-units-production.mjs'
       - 'g2-012-progress-units-rendered-v9.mjs'
+      - 'g3-008-accessibility-production.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
@@ -109,6 +110,22 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           STATE_EVIDENCE_DIR: state-system-evidence
         run: node gate1-state-system-production.mjs
+      - name: Run G3-008 authenticated accessibility production acceptance
+        if: always()
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G3_008_EVIDENCE_DIR: g3-008-accessibility-evidence
+        run: node g3-008-accessibility-production.mjs
+      - name: Upload G3-008 accessibility evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g3-008-accessibility-evidence
+          path: g3-008-accessibility-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Upload state-system evidence
         if: always()
         uses: actions/upload-artifact@v4
