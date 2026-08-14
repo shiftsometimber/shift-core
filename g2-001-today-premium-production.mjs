@@ -11,7 +11,7 @@ if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 
 const password=`Sst-${randomUUID()}-Aa1!`;
-const report={proof:'G2_001_TODAY_RENDERED_PREMIUM_PRODUCTION_V2',assets:{},cases:[],failures:[]};
+const report={proof:'G2_001_TODAY_RENDERED_PREMIUM_PRODUCTION_V3_STABLE_INTERACTION_IDENTITY',assets:{},cases:[],failures:[]};
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=G2-001 Today::${name} — ${detail}`)};
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
 const clean=v=>String(v||'').replace(/\s+/g,' ').trim();
@@ -41,7 +41,7 @@ function snapshotFn(){return()=>{const visible=e=>{const s=getComputedStyle(e),r
 const browser=await chromium.launch({headless:true});
 try{
   for(const [id,viewport] of Object.entries({desktop:{width:1440,height:900},mobile390:{width:390,height:844}})){
-    const row={id,viewport,pageErrors:[],consoleErrors:[]};report.cases.push(row);const email=`shiftsometimber+structured-authrender-g3008-${Date.now()}-${id}@gmail.com`;let context;
+    const row={id,viewport,pageErrors:[],consoleErrors:[]};report.cases.push(row);const email=`shiftsometimber+today-proof-${Date.now()}-${id}@gmail.com`;let context;
     try{
       await register(email);context=await browser.newContext({viewport,reducedMotion:'reduce'});const page=await context.newPage();page.on('pageerror',e=>row.pageErrors.push(clean(e.message)));page.on('console',m=>{if(m.type()==='error')row.consoleErrors.push(clean(m.text()))});await login(page,email);row.api=await seedAndReadToday(page);if(!row.api.plan.ok)fail(`${id}-seed-plan`,`hydration plan ${row.api.plan.status}`);const today=row.api.today.body?.today;if(!row.api.today.ok||!today)fail(`${id}-today-api`,`today ${row.api.today.status}`);
       if(today){if(today.headline!=="Here’s your Shift today.")fail(`${id}-headline-contract`,clean(today.headline));if(today.subhead!=='No dashboard archaeology. Just the useful stuff.')fail(`${id}-subhead-contract`,clean(today.subhead));if(!Array.isArray(today.actions)||today.actions.length<2)fail(`${id}-action-depth`,`${today.actions?.length||0}`);if(!today.actions?.some(a=>a.domain==='hydration'))fail(`${id}-personalised-action`,'hydration plan not consumed by Today')}
@@ -54,8 +54,15 @@ try{
       if(id==='mobile390'&&row.rendered.actionCards.some(card=>card.cta&&card.cta.w<280))fail(`${id}-mobile-cta-width`,JSON.stringify(row.rendered.actionCards.map(x=>x.cta)));
       if(row.rendered.visibleMetrics.some(x=>!x||x==='—'))fail(`${id}-fake-metric`,JSON.stringify(row.rendered.visibleMetrics));if(row.rendered.rootOverflow>0)fail(`${id}-overflow`,`${row.rendered.rootOverflow}px`);if(!row.rendered.main)fail(`${id}-main`,'missing main landmark');if(!row.rendered.h1)fail(`${id}-h1`,'missing h1');if(row.rendered.rawJson)fail(`${id}-raw-json`,'implementation JSON visible');if(row.rendered.implementationJunk)fail(`${id}-implementation-junk`,'debug/error/internal text visible');if(row.rendered.headings.length<2)fail(`${id}-hierarchy`,'insufficient visible heading hierarchy');
       await page.screenshot({path:path.join(OUT,`${id}-today.png`),fullPage:true});
-      row.ctaProof={};const logDrink=page.getByRole('button',{name:/^Log a drink$/i}).first();if(!(await logDrink.count())||!(await logDrink.isVisible().catch(()=>false)))fail(`${id}-log-drink-cta`,'missing');else{await logDrink.click();await page.waitForFunction(()=>document.querySelector('#panel-water')?.classList.contains('active'),null,{timeout:5000});row.ctaProof.logDrinkReachedHydration=true;const back=await todayControl(page);if(!back)fail(`${id}-today-return-control`,'missing');else{await back.click();await page.waitForFunction(()=>document.querySelector('#panel-today')?.dataset.todayPremiumReady==='true',null,{timeout:10000});await page.waitForTimeout(250);const returnBody=clean(await page.locator('#panel-today').innerText());row.ctaProof.returnedWithCanonicalState=today?.actions?.slice(0,3).every(a=>(!a.title||returnBody.includes(a.title))&&(!(a.detail||a.text)||returnBody.includes(a.detail||a.text)));if(!row.ctaProof.returnedWithCanonicalState)fail(`${id}-return-state`,returnBody.slice(0,500))}}
-      const doneLater=page.getByRole('button',{name:/^Done later$/i}).first();if(!(await doneLater.count())||!(await doneLater.isVisible().catch(()=>false)))fail(`${id}-done-later-cta`,'missing');else{await doneLater.click();row.ctaProof.todayAcknowledged=await doneLater.getAttribute('aria-pressed')==='true'&&/Kept simple/i.test(await doneLater.textContent());if(!row.ctaProof.todayAcknowledged)fail(`${id}-today-acknowledgement`,'CTA did not settle to explicit outcome')}
+      row.ctaProof={};
+      const logDrink=page.locator('button[data-today-target="hydration"]').first();
+      if(!(await logDrink.count())||!(await logDrink.isVisible().catch(()=>false)))fail(`${id}-log-drink-cta`,'missing');
+      else if(!/^Log a drink$/i.test(clean(await logDrink.textContent())))fail(`${id}-log-drink-label`,clean(await logDrink.textContent()));
+      else{await logDrink.click();await page.waitForFunction(()=>document.querySelector('#panel-water')?.classList.contains('active'),null,{timeout:5000});row.ctaProof.logDrinkReachedHydration=true;const back=await todayControl(page);if(!back)fail(`${id}-today-return-control`,'missing');else{await back.click();await page.waitForFunction(()=>document.querySelector('#panel-today')?.dataset.todayPremiumReady==='true',null,{timeout:10000});await page.waitForTimeout(250);const returnBody=clean(await page.locator('#panel-today').innerText());row.ctaProof.returnedWithCanonicalState=today?.actions?.slice(0,3).every(a=>(!a.title||returnBody.includes(a.title))&&(!(a.detail||a.text)||returnBody.includes(a.detail||a.text)));if(!row.ctaProof.returnedWithCanonicalState)fail(`${id}-return-state`,returnBody.slice(0,500))}}
+      const doneLater=page.locator('button[data-today-target="today"]').first();
+      if(!(await doneLater.count())||!(await doneLater.isVisible().catch(()=>false)))fail(`${id}-done-later-cta`,'missing');
+      else if(!/^Done later$/i.test(clean(await doneLater.textContent())))fail(`${id}-done-later-label`,clean(await doneLater.textContent()));
+      else{await doneLater.click();await page.waitForFunction(()=>{const b=document.querySelector('button[data-today-target="today"]');return b?.getAttribute('aria-pressed')==='true'&&/Kept simple/i.test(b?.textContent||'')},null,{timeout:3000});row.ctaProof.todayAcknowledged=await doneLater.getAttribute('aria-pressed')==='true'&&/Kept simple/i.test(await doneLater.textContent());if(!row.ctaProof.todayAcknowledged)fail(`${id}-today-acknowledgement`,'CTA did not settle to explicit outcome')}
       await page.waitForTimeout(120);if(row.pageErrors.length)fail(`${id}-page-errors`,JSON.stringify(row.pageErrors));if(row.consoleErrors.length)fail(`${id}-console-errors`,JSON.stringify(row.consoleErrors));
     }catch(error){fail(`${id}-exception`,clean(error?.message||error).slice(0,1600))}finally{write();if(context)await context.close().catch(()=>{})}
   }
