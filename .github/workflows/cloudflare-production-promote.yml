@@ -34,12 +34,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: npm
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
-      - name: Install exact toolchain
-        run: npm ci
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
