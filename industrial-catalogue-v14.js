@@ -46,6 +46,7 @@ function repairMethod(r,f){
   method=method.map(step=>String(step)
     .replace('rather than being thrown in because the matrix found them.','rather than being thrown in just to fill the box.')
     .replace(/Get the pan properly hot first\. Cook the (cooked [^.]+?) until browned and cooked through — colour is flavour, so do not crowd the pan\./gi,(_,p)=>prepareAlreadyCooked(p))
+    .replace(/Get the pan properly hot first\. Cook the (tuna in spring water, drained|lean ham) until browned and cooked through — colour is flavour, so do not crowd the pan\./gi,(_,p)=>prepareAlreadyCooked(p))
     .replace(/Cook the (boiled eggs?) until just set, keeping it tender rather than hammering it dry\./gi,(_,p)=>prepareAlreadyCooked(p))
     .replace(/the boiled eggs is meant to be warm/gi,'the boiled eggs are meant to be warm'));
   if(f==='loaded-wrap')method=loadedWrap(r,method);
