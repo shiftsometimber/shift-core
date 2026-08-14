@@ -4,18 +4,24 @@ on:
     paths:
       - 'shift-me-v1.js'
       - 'shift-me-source-gate.mjs'
-      - 'worker-entry-shift-me-v1.js'
-      - 'wrangler-shift-me.jsonc'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
       - 'frontend/member/shift-me-api-v1.js'
+      - 'frontend/member/member-shift-me-premium-v1.js'
+      - 'frontend/member/member-shift-me-premium-v1.css'
+      - 'frontend/member/member-shell-v33g.js'
       - '.github/workflows/shift-me-gate.yml'
   push:
     branches: [main]
     paths:
       - 'shift-me-v1.js'
       - 'shift-me-source-gate.mjs'
-      - 'worker-entry-shift-me-v1.js'
-      - 'wrangler-shift-me.jsonc'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
       - 'frontend/member/shift-me-api-v1.js'
+      - 'frontend/member/member-shift-me-premium-v1.js'
+      - 'frontend/member/member-shift-me-premium-v1.css'
+      - 'frontend/member/member-shell-v33g.js'
       - '.github/workflows/shift-me-gate.yml'
   workflow_dispatch:
 permissions:
@@ -29,5 +35,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Run Shift Me source/privacy contract
+      - name: Syntax-check member creator
+        run: node --check frontend/member/member-shift-me-premium-v1.js
+      - name: Run Shift Me source/privacy/member-journey contract
         run: node shift-me-source-gate.mjs
