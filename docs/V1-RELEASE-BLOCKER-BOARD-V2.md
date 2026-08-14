@@ -4,7 +4,7 @@ Operational critical path; the 57-row audit remains authoritative.
 
 **A — V1 RELEASE BLOCKERS: 8 AMBER rows / 3 active shared clusters.**
 **A CLOSED: 19 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate, G5-012 member API performance release criterion, G3-001 systemic homepage/member quality, G3-002 responsive navigation parity, G3-003 footer parity, G3-004 premium controls, G3-005 hierarchy/spacing/cards, G3-007 member-intent IA, G4-008 proactive Today orchestration.**
-**B — POST-LAUNCH HARDENING: 2 AMBER rows.**
+**B — POST-LAUNCH HARDENING: 1 AMBER row.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
@@ -23,7 +23,7 @@ G2-002, G2-003, G2-004. V1 critical-path cohort is **783 clean recipes behind 8 
 G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,326 technically eligible descendants**, with coaching repaired and the 12-week simulation retaining 180/180 unique prescribed objects, zero exact repeats, all 26 families used and no consecutive canonical repeat. Replacement premium START -> MOVE -> FINISH candidates are now **26/26 produced and 26/26 technically QA-passed on main**. Legacy rejected schematic artwork remains excluded. Remaining closure is finite domain/member-comprehension PASS/FIX/REJECT decisions -> publication/propagation -> production serving.
 
 ## A6 Progress core — CLOSED
-**G2-011 and G2-012 PASS.** Production proves the retained whole-person `Since you started` Progress story plus correct stone/lb normalisation and inches readback at desktop + 390px, including logout/fresh-login retention. Progress Picture reliability and premium presentation are both PASS through G2-013/G2-014. M01/Gate 3 premium-system parity is now PASS; G3-006 remains the separate governed Knowledge/HQ hardening lane.
+**G2-011 and G2-012 PASS.** Production proves the retained whole-person `Since you started` Progress story plus correct stone/lb normalisation and inches readback at desktop + 390px, including logout/fresh-login retention. Progress Picture reliability and premium presentation are both PASS through G2-013/G2-014. M01/Gate 3 premium-system parity and the separate governed Knowledge/HQ editorial workflow are now PASS.
 
 ## A7 Trust — CLOSED
 **G5-005 PASS.** Production proof crawled 80/80 live public pages successfully and found operator identity, AI disclosure, privacy, support and current-provider/qualification evidence. The audit explicitly checks that apparently live clinical/pharmacy language is accompanied by qualification/current-status language.
@@ -31,8 +31,10 @@ G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,
 ## A8 Accessibility + performance release floor — CLOSED
 **G3-008 and G5-012 PASS.** Authenticated desktop + 390px accessibility meets the commissioned contrast/control/focus/landmark/reduced-motion/zero-overflow floor, and fresh natural production member-handler evidence meets the unchanged 800 ms p95 budget: registration 350 ms p95 / 17 samples; login 776 ms p95 / 11 samples.
 
+## Gate 3 governed Knowledge/HQ — CLOSED
+**G3-006 GOVERNED KNOWLEDGE/HQ PASS:** Merged-main editorial lifecycle proof blocks both exact HQ and legacy publication before review, retains named approval across leave/return, and preserves reviewer provenance after reviewed publish. After PR #279 repaired production HQ editorial CORS without reflecting hostile origins, a fresh unchanged deployed HQ rerun proved the real Knowledge Hub CMS desk at 1440x900 and 390x844 with the editorial standard and review/publish controls visible, responsive stylesheet settled, `pageErrors: []`, `consoleErrors: []`, zero root overflow and intentional table containment on mobile. HQ run `31781843657`, rerun job `94723912030`, artifact `9213770096`, digest `sha256:132e79eec8d93fe0cea19b300215a5b1e4b18ada5d100d0937af24c04ca5e1e5`. Evidence: `docs/evidence/2026-08-14-g3-006-knowledge-hq-production-pass.md`.
+
 ## B — post-launch hardening
-- G3-006 Knowledge editorial/reviewer presentation refinement; governed Knowledge lifecycle is already production-proven.
 - G5-014 Numan/sceptical-customer competitive hardening.
 
 **G2-009 is no longer in B:** corrected-main production commissioning proved governed published-catalogue Conundrum matching plus honest zero-result behaviour, so it is retained as PASS evidence rather than an open hardening blocker.
