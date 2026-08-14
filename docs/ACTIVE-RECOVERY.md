@@ -1,64 +1,81 @@
-# Active recovery checkpoint — 2026-08-13
+# Active recovery checkpoint — 2026-08-14
 
-## Current implementation authority
-`main` authority at this checkpoint = `4b7296873d5436d1667aaf5f7e7c08feff8f1389`, squash merge of PR #115 after its current-main Grub propagation, Master Integration and whole-estate checks completed GREEN.
+## Current authority
 
-Authoritative original audit remains **57 total / 22 PASS / 32 AMBER / 3 BLOCKED / 0 unmapped**. B03 behavioural remains **9/9 PASS and locked**. No original row is promoted by content-volume or code evidence alone.
+`main` authority at this checkpoint = `e0fba058e7cd6ef07ad7f377fd14263409140bc8`, squash merge of PR #216 after its Master Integration, whole-estate, Grub editorial and member-frontend source gates completed GREEN.
 
-## Newly demonstrated/merged
-- **PR #115 / merge `4b7296873d5436d1667aaf5f7e7c08feff8f1389`** — current-main systemic Grub canonical propagation. The unchanged full-catalogue gate proves **1,503 / 2,876 industrial recipes** nutrition-valid and LOW-risk, with **1,373** deliberately quarantined. Master Integration and whole-estate route checks were GREEN before merge.
-- Stale superseded PRs #113 and #114 are closed to prevent branch/state drift.
-- **Gate 1 rendered production evidence remains truthful rather than cosmetically green:** PR #112's browser sweep passed 18 rendered cases across Chromium, Firefox and WebKit at desktop and 390px, including intelligible invalid-login guidance with no internal diagnostics. It also exposed that the member-login registration affordance reaches `programme#register` with no visible registration controls and that no reset affordance is discoverable from the login surface. Those remain in-scope Gate 1 gaps; no row is promoted from the browser harness alone.
-- Locked closures remain G2-006 duration/session quality, G5-008/B06 HQ operation, G1-010/M05/G5-011 security/privacy, G5-007/B07 Watchtower, G4-004 Knowledge flywheel, M03 Radar, M07 structured runtime and B03 9/9 behaviour.
+The authoritative original audit remains **57 total / 30 PASS / 24 AMBER / 3 BLOCKED / 0 unmapped**. A merge, source gate or green workflow is not enough to change an AMBER row: the required production journey, retained state where relevant, expected member outcome and retained evidence still have to pass.
 
-## Grub factory
-Short-term authored target **2,500** is exceeded; long-term minimum remains **10,000+ quality objects**.
+## Gate 1
 
-Current structured universe: **2,908 authored** = 2,876 industrial + 32 existing structured.
-- Industrial schema-valid: **2,876 / 2,876**.
-- Full-catalogue canonical decisions: **104**, with **96 exercised** by the current catalogue.
-- Governed shared canonical proxy approvals: **62** = 28 high-confidence + 34 medium-confidence; every approved proxy retains its basis/limitations in ingredient-level evidence.
-- Governed CoFID 2021 ingredient-level validation: **1,503 industrial recipes**.
-- Current calculated risk wave: **1,503 LOW / 0 MEDIUM / 0 HIGH**.
-- **1,373** remain quarantined rather than receiving fabricated precision.
-- Every validated recipe remains a draft behind the real `second_person_content_review` barrier; canonical mapping approval is not silently treated as content review.
-- Independently reviewed / published / production-served: **1 / 1 / 1**.
-- Existing bloke-friendly breadth includes breakfast butties/wraps/hashes, proper lunches/dinners, fakeaways, burgers/kebabs/loaded fries/pizza and treat/snack families; authored catalogue contains **612 fakeaway/treat-tagged objects**.
+Only the irreducible real-inbox lifecycle rows remain AMBER:
 
-Highest-unlock remaining ingredient/family blockers include `toasted oat crunch` (102), `light peppercorn sauce` (72), `chicken sausages` (68), `buffalo hot sauce` (60), then several 48-object seasoning/sauce families including Cajun seasoning, chipotle salsa, garlic herb sauce, reduced-salt teriyaki sauce, hoisin-style sauce and lemon herb sauce. M11 remains AMBER until independent review/publication/production-serving breadth genuinely scales.
+- **G1-001** — reset email token -> reset -> login -> authenticated password change -> logout/login.
+- **G1-003** — genuine verification link -> verified login -> post-verification Welcome -> logout/final login.
+- **G1-004** — genuine verification-link ordering/replay proof.
 
-Authored-capacity diversity only, not commissioned diversity: 0 exact repeats across 30/60/90/365-day simulations.
+All non-human Gate 1 rows are PASS. Do not reopen them without regression evidence.
 
-## Fit factory
-Current structured universe: **2,500 authored** = 2,468 industrial + 32 existing structured.
-- Industrial schema-valid: **2,468 / 2,468**.
-- Canonical movement families/specifications: **44**.
-- Industrial protocol objects with stable canonical visual metadata bindings: **2,244 / 2,468**.
-- Deterministic technical/protocol validation covers the industrial set.
-- Existing member/domain-QA visual / reviewed / published / production-served: **3 / 3 / 3 / 3**.
-- Critical truth boundary: the industrial objects reference `assets/fit/shift-fit-industrial-v3.svg#<canonical>`, but that consolidated 44-family rendered asset does not currently exist in `main`. The 2,244 figure is therefore inheritance/specification readiness, not rendered visual completion or anatomical approval. M12 remains AMBER.
+## Gate 2 — exact current breakpoint
 
-The next Fit action is not more exercise authoring. It is to produce the real 44 canonical movement visuals, expose them in one rapid domain-review surface, obtain movement-accuracy approval once per canonical family, then propagate approval only to legitimately bound protocol descendants.
+### G2-001 Today
 
-## Dave / B08
-Authoritative evidence coverage remains **15/20 non-duplicated legs = 75%**. Proven legs include discovery/trust/Core, anonymous boundaries, Today, Grub, Fit, Hydration, Progress, Progress Picture, Shift AI, preference learning, leave/return and changed recommendation.
+PR #215 added trusted authenticated rendered desktop + 390px acceptance to the existing production commissioning workflow. It proved the real Today API returns the canonical command-centre headline/subhead and personalised actions, hydration state persists, Today -> Grub -> Today retains personalised actions, root overflow is zero and no raw JSON/debug implementation detail is exposed.
 
-Still unresolved: real-inbox registration, real-inbox verification, rendered/mobile authenticated acceptance, real-inbox recovery and partner-dependent treatment support. B08 stays AMBER.
+That acceptance correctly failed because production still rendered the old hard-coded `Shift Today / One useful view of today. / No guilt trip, no punishment workout.` copy rather than the canonical `/v1/shift/today` headline/subhead.
 
-## Remaining human/external boundary
-Human/device: B01 real reset inbox-token chain; M09 real verification inbox click/login; rendered/mobile/cross-browser release-candidate acceptance; eventual movement/domain judgement of real Fit visual assets once those assets exist.
+PR #216 then made the smallest existing-architecture repair: the recovered live `member-product-v33d.js` remains the single member product client and now renders `t.headline` and `t.subhead` from the existing `SST_API.getShiftToday()` response. The exact pre-change live client SHA-256 retained by the recovery runner was `3a3077c39ace56dcceb5627c1de3464e21b2114ebafa7833e1c65aa0f5e6d3db`.
 
-External BLOCKED remain exactly G5-001, G5-002 and G5-003.
+**Do not mark G2-001 PASS yet.** Post-merge production run `31763359265`, job `94654138456`, reached the real authenticated member journey again and failed the same six headline/subhead/return-state assertions on desktop + 390px. The API outcome and personalised retained state are green; the live static client is stale. Artifact `9205424463`, digest `sha256:45dea7dcafa2e08c640f012e6174281c31dceb658aad721aea1512dd7b0b46aa`.
 
-## Active non-content swarm
-B05 public trust; B08 Dave; M01 premium/mobile; M04 analytics; M06 accessibility/performance; M08 evidence/recovery; M09/M10 rendered/inbox closure; M13 Progress; M17 sceptical-customer/Numan. Locked PASS rows must not be reopened without genuine regression evidence.
+Exact remaining closure: publish Git-authoritative `frontend/member/member-product-v33d.js` unchanged to production root `/member-product-v33d.js`, verify the live source/SHA matches Git, then rerun the unchanged trusted authenticated Today acceptance and inspect the rendered desktop + 390px evidence. Static Pages publication is separate from Git/Worker deployment; a main merge cannot be treated as publication proof.
+
+### G2-002 / G2-003 / G2-004 Grub
+
+The V1 launch cohort is finite at **783 clean candidate recipes behind eight immutable editorial decisions**. Nutrition/systemic quality and long-horizon diversity are technically proven. The eight decisions require attributable independent human editorial acceptance before canonical approval/publication can propagate. `evidence/matt-v1-content-acceptance-2026-08-13.json` is explicitly a system-readiness acceptance and explicitly is **not** item-by-item/decision publication authority. Leave these rows AMBER; continue around them.
+
+### G2-007 Fit
+
+The latest main review-pack run `31751231158` completed GREEN and retained artifact `9200983545` (`sha256:4521022cfb68f5bfa2c802dfbeebe39daf64aa8bff8ad20ba96b8c6f08e4d507`). Its manifest is deliberately explicit: **26 produced / 26 technical QA PASS / 0 domain accepted**. This is now a finite human/domain boundary, not unfinished generation. Closure requires genuine visual/anatomical/member-comprehension decisions, followed by publication and production serving. Do not self-promote technical QA into domain acceptance.
+
+### G2-011 / G2-013 / G2-014 / G2-015 Progress and Plans
+
+Existing production behaviour is not being discarded: Progress Picture already has real authenticated save/list/read/delete, optional weight/waist metadata, retained units and separate generated illustrations; active-plan persistence is also proven. The remaining commissioned scope is productisation: whole-person Progress story, full rendered/mobile acceptance, homepage-standard premium Progress presentation and a proper plan-management surface. Inspect and extend the existing member product/static surface; do not create a parallel Progress or Plans architecture.
+
+## Gate 3
+
+G3-008's source repair has already been merged and retained. Production remains honestly AMBER because static publication is stale: the live member shell still references an older P0 stylesheet version while Git authority requires the repaired current source. Exact closure remains: publish `frontend/member/member-shell-v33g.js` unchanged to `/member-shell-v33g.js`, verify the current versioned P0 reference is live, then rerun the unchanged authenticated desktop + 390px accessibility acceptance. Evidence: `docs/evidence/2026-08-14-g3-008-post-merge-production-publication-blocker.md`.
+
+The rest of Gate 3 remains systemic premium/UX acceptance against the homepage design constitution; do not solve it as isolated cosmetic page patches.
+
+## Gate 4
+
+G4-001 through G4-007 are PASS. **G4-008 remains AMBER** and is coupled to the same premium Today orchestration outcome as G2-001. Do not build a second orchestration engine; finish and prove the existing Today/Brain surface.
+
+## Gate 5
+
+External BLOCKED remains exactly **G5-001, G5-002 and G5-003**.
+
+G5-013 is now **16/20** non-duplicated Dave legs; the remaining registration/verification/recovery legs are real-inbox human work and treatment support is external. Do not hold independent commissioning behind them.
+
+G5-012 has a bounded production measurement path on current main. `g5-012-natural-auth-p95.mjs` measures member registration handler time separately from GitHub OIDC/fixture wrapper overhead, requires at least five successful natural registration and login samples, and enforces the declared 800 ms p95 member API budget. The current post-merge production commissioning run `31763359265` is the next authoritative evidence source; reconcile its final G5-012 artifact rather than quoting the older 20.6s/17.5s wrapper timings if the new member-path measurement completes.
+
+## Deployment truth boundary
+
+GitHub + production define what exists; matrix + evidence define what is proven. Cloudflare Worker production deployment is automated from main, but the static `shiftsometimber.co.uk` Pages publication path is distinct. Current demonstrated static-publication blockers include at least:
+
+- G2-001: `/member-product-v33d.js` is not yet serving the merged canonical Today headline/subhead integration.
+- G3-008: `/member-shell-v33g.js` is not yet serving the current Git-authoritative P0 stylesheet reference.
+
+Do not retry source rewrites to compensate for an unperformed static publish. Publish the Git-authoritative files unchanged, fingerprint live source, then run acceptance.
 
 ## Exact next actions
-1. **Gate 1:** repair/discoverably surface the existing registration and password-recovery journeys from the member login entry surface, then rerun the unchanged Chromium/Firefox/WebKit desktop/mobile rendered sweep. Leave real inbox clicks human rather than synthesising them.
-2. **Gate 2 / Grub:** continue highest-unlock canonical ingredient/family decisions through the remaining 1,373 quarantine; rerun all 2,876 after every systemic wave. In parallel, reduce the second-person content-review hand brake with a governed batch-review pack/process rather than bypassing it.
-3. **Gate 2 / Fit:** treat the missing 44-family rendered asset as a real product defect. Build the actual canonical visual set/review surface first; do not call metadata bindings visual approval.
-4. **Gate 3:** execute systemic premium/mobile/accessibility evidence against the homepage design constitution rather than page-by-page cosmetic drift.
-5. **Gate 4/5:** continue B05/M04/M06/M13/M17 and Dave independently; do not queue them behind content conversion or human inbox/device steps.
-6. Reconcile matrix/ledger/launch board to the proven 1,503/1,373 Grub state without changing the 22/32/3 audit count.
 
-Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE -> CONTINUE.**
+1. Finish current production run `31763359265`; retain/reconcile G5-012 p95 and fresh Dave evidence.
+2. Keep G2-001 AMBER until the static client is genuinely published; then rerun the unchanged authenticated desktop + 390px proof and visually inspect it before PASS.
+3. Leave Grub's eight immutable decisions and Fit's 26 domain decisions at the human boundary; all technical preparation is finite and ready for review rather than more factory work.
+4. Continue Gate 2 non-blocked productisation in order: G2-011 Progress story -> G2-013 rendered/mobile Progress -> G2-014 premium Progress -> G2-015 plan manager, reusing current Progress/Plans state and member client.
+5. Continue Gate 3 systemic premium/accessibility closure, then Gate 4 G4-008 using existing Today/Brain, then Gate 5 G5-012/G5-014 and non-blocked Dave evidence.
+6. Update matrix/evidence only when the demonstrated outcome changes. Never convert source-green, merge-green or technical-QA-green into a commissioning PASS by narration.
+
+Operating rule: **REUSE -> EXTEND -> CONNECT -> PRODUCTISE -> BUILD ONLY ON A REAL GAP -> PROVE IN PRODUCTION -> RETAIN EVIDENCE -> CONTINUE.**
