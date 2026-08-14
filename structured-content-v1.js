@@ -9,6 +9,8 @@ export function assertPublishableStructuredContent(item){
   const review=item?.review||{};
   if(review.status!=='approved')throw new Error('structured_content_review_approval_required');
   if(type==='recipe'){
+    const mealType=String(data?.meal_type||'').toLowerCase();
+    if(!['breakfast','lunch','dinner','snack'].includes(mealType))throw new Error('structured_recipe_meal_type_required');
     if(data?.nutrition?.status!=='validated')throw new Error('structured_recipe_nutrition_validation_required');
     for(const key of ['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'])if(!Number.isFinite(Number(data?.nutrition?.[key])))throw new Error(`structured_recipe_${key}_required`);
     if(!String(data?.nutrition?.methodology||'').trim())throw new Error('structured_recipe_nutrition_methodology_required');
