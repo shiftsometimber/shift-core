@@ -10,6 +10,7 @@ on:
       - 'g2-012-progress-units-production.mjs'
       - 'g2-012-progress-units-rendered-v9.mjs'
       - 'g3-008-accessibility-production.mjs'
+      - 'g3-008-stylesheet-source-proof.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
@@ -110,6 +111,11 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           STATE_EVIDENCE_DIR: state-system-evidence
         run: node gate1-state-system-production.mjs
+      - name: Prove live G3-008 stylesheet source
+        if: always()
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+        run: node g3-008-stylesheet-source-proof.mjs
       - name: Run G3-008 authenticated accessibility production acceptance
         if: always()
         env:
