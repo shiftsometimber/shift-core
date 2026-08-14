@@ -153,3 +153,8 @@ Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BRE
 - Connected Gmail shows `Welcome to My Shift` at 11:27:49 UTC, after verification rather than before it.
 - Retained artifact: `9217492229`; SHA256 `82bce3845465ff96a651fd3f15dfc5427986f324f4f1e29f4f6aebc76603f2c5`.
 - Commissioning conclusion: G1-003 PASS and G1-004 PASS. G1-001 recovery remains independently AMBER.
+
+
+## 2026-08-14 — Dave genuine lifecycle moves to 18/20
+
+Fresh genuine registration + verification production evidence from run `31793828102` / job `94753848697` closes two previously human-only Dave legs. Dave therefore moves from 16/20 to **18/20 (90%)** without promoting G5-013 itself. Remaining non-external legs are real account recovery and final genuine-device acceptance; treatment support remains external/BLOCKED.
