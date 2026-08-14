@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 36 PASS / 18 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 37 PASS / 17 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -77,11 +77,11 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-009 | Recipes/exercises are hard-coded scaling traps | **PASS** | Authenticated production commissioning proves V7 consumes reviewed/published structured Grub and Fit objects, preserves validated nutrition/approved visuals and durable Nay behaviour, and uses V4 only as controlled migration fallback. |
 | G5-010 | Analytics lacks coherent product-event taxonomy | **PASS** | Canonical product-event taxonomy/instrumentation, privacy filtering and Watchtower analytics gates are regression-protected. |
 | G5-011 | Security/privacy audit not yet complete | **PASS** | Deployed production security/privacy proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS, per-member export isolation, deletion-session revocation, safe response envelopes and source gates covering secrets/analytics/recovery/auth controls. |
-| G5-012 | Performance not a release criterion | AMBER | The authenticated production estate now has retained critical-path timing evidence rather than an unmeasured gap. The acceptance measured fixture registration at **20,627 ms** and authenticated login at **17,548 ms**, both materially above the declared **800 ms API p95** budget, while post-login surface transitions were generally fast. This is a demonstrated release defect, so the row remains AMBER pending bounded diagnosis/remediation and unchanged production rerun. Evidence: `docs/evidence/2026-08-13-authenticated-accessibility-performance-production.md`. |
+| G5-012 | Performance not a release criterion | **PASS** | Fresh unchanged production commissioning on main proves the declared 800 ms member API p95 budget after the bounded registration fast-path repair. Natural existing commissioning traffic measured the member handler server-side: registration p95 **350 ms** across 17 samples (median 297, max 350) and login p95 **776 ms** across 11 samples (median 466, max 776). Synthetic GitHub OIDC/fixture overhead is reported separately and is not used to hide member latency; password security was unchanged. Run `31776554705`, job `94693085868`, artifact `9210154378`, digest `sha256:1d0160df5b9d5fe4326761b8d8f76bedc4e3760c8b8ef5ab2b91c24601c0857b`. |
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 18-AMBER burn-down classification
+## 17-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -101,10 +101,9 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G3-006 | FINITE | M01 Knowledge editorial/reviewer presentation |
 | G3-007 | HUMAN/DEVICE | B08/M01 member IA acceptance |
 | G4-008 | LARGE | premium proactive Today orchestration |
-| G5-012 | FINITE | diagnose/remediate registration/login SLO breach and rerun production performance proof |
 | G5-013 | HUMAN/DEVICE | remaining real inbox/recovery + fresh unassisted rendered Dave legs |
 | G5-014 | FINITE | M17 sceptical-customer/Numan acceptance |
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 36. AMBER rows: 18. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 37. AMBER rows: 17. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.

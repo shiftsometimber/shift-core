@@ -2,8 +2,8 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 16 AMBER rows / 6 active shared clusters.**
-**A CLOSED: 11 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate.**
+**A — V1 RELEASE BLOCKERS: 15 AMBER rows / 5 active shared clusters.**
+**A CLOSED: 12 — G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate., G5-012 member API performance release criterion.**
 **B — POST-LAUNCH HARDENING: 2 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
@@ -28,8 +28,8 @@ G2-007. V1 critical-path cohort is **26 canonical movement decisions covering 1,
 ## A7 Trust — CLOSED
 **G5-005 PASS.** Production proof crawled 80/80 live public pages successfully and found operator identity, AI disclosure, privacy, support and current-provider/qualification evidence. The audit explicitly checks that apparently live clinical/pharmacy language is accompanied by qualification/current-status language.
 
-## A8 Accessibility + performance release floor
-**G3-008 PASS:** authenticated desktop + 390px production proof now meets the commissioned contrast/control-boundary, focus, landmark, reduced-motion and zero-overflow floor. **G5-012 remains AMBER:** fresh natural production registration/login p95 must meet the declared 800 ms member API budget.
+## A8 Accessibility + performance release floor — CLOSED
+**G3-008 and G5-012 PASS.** Authenticated desktop + 390px accessibility meets the commissioned contrast/control/focus/landmark/reduced-motion/zero-overflow floor, and fresh natural production member-handler evidence meets the unchanged 800 ms p95 budget: registration 350 ms p95 / 17 samples; login 776 ms p95 / 11 samples.
 
 ## B — post-launch hardening
 - G3-006 Knowledge editorial/reviewer presentation refinement; governed Knowledge lifecycle is already production-proven.

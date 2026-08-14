@@ -24,7 +24,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 | M03 | Radar production freshness | **PASS** — genuine production MHRA/EMA scan via restricted OIDC plus GREEN freshness and adversarial stale/failure/recovery transitions are locked. |
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors. |
 | M05 | Security/privacy release review | **PASS** — deployed production proof covers restricted commissioning identity, anonymous/HQ/privacy boundaries, hostile-origin CORS denial, per-member export isolation, deletion-session revocation and hardened response envelopes. |
-| M06 | Accessibility + performance release check | AMBER — the accessibility half is now production PASS through G3-008: authenticated desktop + 390px proves contrast/control boundaries, visible keyboard focus, landmarks, reduced motion and zero root overflow with retained evidence. M06 remains AMBER only because G5-012 production registration/login p95 still needs to meet the declared 800 ms API budget in a fresh unchanged production proof. |
+| M06 | Accessibility + performance release check | **PASS** — G3-008 proves the authenticated desktop + 390px accessibility floor and G5-012 now proves the declared 800 ms member API p95 budget on natural production commissioning traffic: registration 350 ms p95 / 17 samples and login 776 ms p95 / 11 samples, with synthetic fixture overhead separated and password security unchanged. |
 | M07 | Structured content production path | **PASS** — authenticated production member consumed reviewed/published structured Grub and Fit through V7, with validated nutrition, approved visual guidance, provenance and durable Nay behaviour; V4 is controlled migration fallback. |
 | M08 | Release evidence + recovery checkpoint | AMBER — continuously reconcile matrix/ledger/recovery through release candidate. |
 | M09 | Proper email verification lifecycle | AMBER — PR #170 deployed the verification-first registration repair and fresh production registration now sends the genuine verification email without the contradictory pre-verification Welcome. PASS still requires the retained real-inbox token click -> verified login -> post-verification Welcome -> logout -> retained final login sequence. |
@@ -40,7 +40,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification is **36 PASS / 18 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G3-008 authenticated accessibility design-system gate**, after unchanged merged-production acceptance proved desktop + 390px contrast/control boundaries, visible keyboard focus, required landmarks, reduced-motion support and zero root overflow while preserving the homepage forest/cream constitution.
+Exactly **57** original rows remain mandatory. Current evidenced classification is **37 PASS / 17 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G5-012 performance release criterion**, after fresh unchanged production commissioning proved registration 350 ms p95 and login 776 ms p95 against the declared 800 ms member API budget without weakening password security or folding synthetic fixture overhead into the member measurement.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876** and **2,876/2,876** ingredient-level CoFID nutrition-valid with zero nutrition quarantine. The V1 launch conversion is the repaired **783-recipe** cohort behind **8 regenerated immutable editorial decisions**; the decision-to-publication bridge is technically ready and fails closed on any non-PASS decision. Genuine second-person decisions still govern publication.
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-Gate 1: finish genuine verification/recovery token lifecycles and the fresh unattended Dave gate. In parallel: premium member parity, auth critical-path performance, product analytics, the finite Grub decision review, and 26-family Fit premium visual/domain acceptance. Human/device and external boundaries do not queue non-blocked work.
+Gate 1: finish genuine verification/recovery token lifecycles and the fresh unattended Dave gate. In parallel: premium member parity, product analytics, the finite Grub decision review, 26-family Fit premium visual/domain acceptance and proactive Today orchestration. Human/device and external boundaries do not queue non-blocked work.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening acceptance. Homepage-level premium quality remains the estate-wide design constitution.

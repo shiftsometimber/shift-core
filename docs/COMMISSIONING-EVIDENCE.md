@@ -3,9 +3,9 @@
 This ledger records demonstrated evidence. `docs/LAUNCH-FINISH-LINE.md` is the launch board; `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` preserves all 57 original requirements. Code existence, authored volume, canonical mappings and candidate-capacity simulation are not PASS by themselves.
 
 ## Current authoritative scoreboard
-**57 total / 36 PASS / 18 AMBER / 3 BLOCKED / 0 abstraction orphans.**
+**57 total / 37 PASS / 17 AMBER / 3 BLOCKED / 0 abstraction orphans.**
 
-Latest original row closure: **G3-008 authenticated accessibility design-system gate.** Fresh unchanged merged-production authenticated acceptance at desktop + 390px returned `failures=[]` and proved primary Ask action contrast 6.52:1, textarea/control boundary contrast 4.52:1, visible 3px keyboard focus, required main/H1 landmarks, reduced-motion support and zero document-root overflow across representative member surfaces. Live CSS was fingerprinted as `sha256:6486dccb0205269cd342b1306610dc4667e71ca7b054193a69c343a60636e959`. Run `31776604378`, job `94693238364`, artifact `9210113652`, digest `sha256:ae7b88c23cba0363e503037a6dd25ecc2e90d6cdf24b140ebd6c954f14b07ed8`. Evidence: `docs/evidence/2026-08-14-g3-008-authenticated-accessibility-production-pass.md`.
+Latest original row closure: **G5-012 performance release criterion.** Fresh unchanged production commissioning on main proves the declared 800 ms member API p95 budget after the bounded registration fast-path repair. Natural existing commissioning traffic measured the member handler server-side: registration p95 **350 ms** across 17 samples (median 297, max 350) and login p95 **776 ms** across 11 samples (median 466, max 776). Synthetic GitHub OIDC/fixture overhead is reported separately and is not used to hide member latency; password security was unchanged. Run `31776554705`, job `94693085868`, artifact `9210154378`, digest `sha256:1d0160df5b9d5fe4326761b8d8f76bedc4e3760c8b8ef5ab2b91c24601c0857b`.
 
 External BLOCKED originals remain exactly G5-001, G5-002 and G5-003.
 
@@ -72,7 +72,7 @@ PR #98 proved approved CMS content is ingested into the canonical Knowledge grap
 
 **G5-005 / B05 PASS:** production public-trust proof crawled **80/80** live public pages and demonstrated operator identity, AI disclosure, privacy, support and qualified/current provider-status presentation. The audit explicitly fails if apparently live prescribing/pharmacy capability is implied without qualification/current-status language.
 
-## Authenticated accessibility + performance — accessibility PASS, performance AMBER
+## Authenticated accessibility + performance — PASS
 The production acceptance behind PR #168 is now retained as explicit evidence rather than a generic future audit. Gate 1 Rendered Browser run `31736275376`, authenticated accessibility/performance job `94568558840`, correctly failed the production acceptance and retained artifact `9195277536` with `report.json` plus full-page screenshots for all six authenticated surfaces at desktop and 390px.
 
 **G3-008 PASS:** the earlier measured defects were repaired without weakening the homepage-grade premium visual constitution, then fresh unchanged merged-production authenticated acceptance proved the corrected member outcome at desktop + 390px. Primary action contrast is 6.52:1, textarea/control boundary contrast is 4.52:1, keyboard focus/landmarks/reduced motion remain green and document-root overflow is zero. Run `31776604378`, job `94693238364`, artifact `9210113652`, digest `sha256:ae7b88c23cba0363e503037a6dd25ecc2e90d6cdf24b140ebd6c954f14b07ed8`.
@@ -125,3 +125,6 @@ Remaining human-only Dave legs are `register`, `verify` and `account_recovery`; 
 - M04 and M17 continue without queueing behind genuine human/external dependencies; M13 is PASS and remains locked absent regression evidence.
 
 Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BREAK -> FIX -> PROVE -> CLOSE.**
+
+## Gate 5 member API performance release criterion — PASS
+**G5-012 PASS:** Fresh unchanged production commissioning on main proves the declared 800 ms member API p95 budget after the bounded registration fast-path repair. Natural existing commissioning traffic measured the member handler server-side: registration p95 **350 ms** across 17 samples (median 297, max 350) and login p95 **776 ms** across 11 samples (median 466, max 776). Synthetic GitHub OIDC/fixture overhead is reported separately and is not used to hide member latency; password security was unchanged. Run `31776554705`, job `94693085868`, artifact `9210154378`, digest `sha256:1d0160df5b9d5fe4326761b8d8f76bedc4e3760c8b8ef5ab2b91c24601c0857b`.
