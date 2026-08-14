@@ -80,10 +80,12 @@
   }
   function schedule(){
     clearTimeout(timer);
+    const box=q('#todayActions'),panel=q('#panel-today');
+    if(!box||!panel||box.querySelector('[data-today-premium-v1]'))return;
+    if(lastToday){renderToday(lastToday);return}
     timer=setTimeout(()=>{
-      const box=q('#todayActions'),panel=q('#panel-today');
-      if(!box||!panel||box.querySelector('[data-today-premium-v1]'))return;
-      if(lastToday){renderToday(lastToday);return}
+      const retryBox=q('#todayActions'),retryPanel=q('#panel-today');
+      if(!retryBox||!retryPanel||retryBox.querySelector('[data-today-premium-v1]'))return;
       render();
     },35);
   }
