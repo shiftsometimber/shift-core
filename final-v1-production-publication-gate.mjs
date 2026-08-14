@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 const ops=fs.readFileSync('commissioning-ops-v1.js','utf8');
 const grub=fs.readFileSync('grub-v1-publication-pack.mjs','utf8');
+const fit=fs.readFileSync('fit-v1-publication-pack.mjs','utf8');
+const publish=fs.readFileSync('final-v1-production-publish.mjs','utf8');
 const fail=[];const need=(ok,msg)=>{if(!ok)fail.push(msg)};
 need(ops.includes("'/v1/commissioning/structured-content/batch'"),'missing restricted structured batch route');
 need(ops.includes("'/v1/commissioning/structured-content/status'"),'missing restricted structured status route');
@@ -10,9 +12,18 @@ need(ops.includes("FINAL_V1_AUTHORITY='matt-final-v1-2026-08-14'"),'exact Matt V
 need(ops.includes('await upsertStructuredContent(env.DB,item)'),'validated structured upsert not used');
 need(ops.includes("item?.review?.authority")&&ops.includes('FINAL_V1_AUTHORITY'),'accepted review authority not enforced per item');
 need(ops.includes("json_extract(review_json,'$.authority')"),'publication status does not count exact accepted authority');
+need(ops.includes("/^\\/fit-premium\\/[a-z0-9-]+\\.svg$/")&&ops.includes("'image/svg+xml; charset=utf-8'"),'accepted Fit SVG public Worker asset route missing');
 need(grub.includes('meal_type:mealType'),'Grub publication payload does not retain member-serving meal_type');
 need(grub.includes('servedByMeal'),'Grub publication payload does not assert per-meal launch floor');
 need(grub.includes("authority:'matt-final-v1-2026-08-14'"),'Grub records are not bound to final human authority');
 need(grub.includes("['breakfast','lunch','dinner','snack']"),'Grub member-serving meal type validation missing');
-if(fail.length){console.error(JSON.stringify({proof:'FINAL_V1_PRODUCTION_PUBLICATION_SOURCE_V1',status:'FAIL',fail},null,2));process.exit(1)}
-console.log(JSON.stringify({proof:'FINAL_V1_PRODUCTION_PUBLICATION_SOURCE_V1',status:'PASS',batchMax:25,authority:'matt-final-v1-2026-08-14',criterion:'Only GitHub Actions OIDC may batch-publish bounded reviewed+approved exact final V1 authority; Grub records retain member-serving meal metadata and publication status can be reconciled by authority.'},null,2));
+need(fit.includes("FIT_V1_DOMAIN_MEMBER_ACCEPTANCE")&&fit.includes("items.length!==26"),'Fit payload is not bound to exact 26 accepted movements');
+need(fit.includes("FIT_CANONICAL_GUIDANCE")&&fit.includes("visual:{status:'approved'"),'Fit payload does not bind canonical guidance to approved visual');
+need(fit.includes("https://api.shiftsometimber.co.uk")&&fit.includes("/fit-premium/"),'Fit accepted asset authority is not API-origin served');
+need(publish.includes("grub?.items?.length===798")&&publish.includes("fit?.items?.length===26"),'production client does not pin exact accepted record counts');
+need(publish.includes("acceptedRecipes)===798")&&publish.includes("acceptedExercises)===26")&&publish.includes("acceptedPublished)===824"),'production client does not reconcile exact D1 authority counts');
+need(publish.includes('accepted final V1 Grub item was not actually served to member')&&publish.includes('accepted final V1 Fit item was not actually served to member'),'production client does not prove accepted descendants through member serving');
+const premium=fs.readdirSync('frontend/member/fit-premium').filter(x=>x.endsWith('.svg'));
+need(premium.length===26,`Worker member binding must contain exactly 26 accepted Fit SVGs; got ${premium.length}`);
+if(fail.length){console.error(JSON.stringify({proof:'FINAL_V1_PRODUCTION_PUBLICATION_SOURCE_V2',status:'FAIL',fail},null,2));process.exit(1)}
+console.log(JSON.stringify({proof:'FINAL_V1_PRODUCTION_PUBLICATION_SOURCE_V2',status:'PASS',batchMax:25,authority:'matt-final-v1-2026-08-14',grubRecipes:798,fitExercises:26,fitAssets:premium.length,criterion:'Exact final human authority is converted into member-serviceable Grub/Fit records only through bounded GitHub OIDC publication; accepted Fit visuals are Worker-served and production proof requires exact D1 counts plus authenticated accepted-descendant serving.'},null,2));
