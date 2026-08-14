@@ -4,6 +4,7 @@ const paths={matrix:'docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md',launch:'doc
 const data=Object.fromEntries(Object.entries(paths).map(([k,p])=>[k,fs.readFileSync(p,'utf8')]));
 const replace=(key,from,to,label)=>{if(!data[key].includes(from))throw new Error(`missing ${label}`);data[key]=data[key].replace(from,to)};
 const replaceRe=(key,re,to,label)=>{if(!re.test(data[key]))throw new Error(`missing ${label}`);data[key]=data[key].replace(re,to)};
+const replaceOptionalRe=(key,re,to)=>{if(re.test(data[key]))data[key]=data[key].replace(re,to)};
 
 const proof='Fresh unchanged production commissioning on main proves the declared 800 ms member API p95 budget after the bounded registration fast-path repair. Natural existing commissioning traffic measured the member handler server-side: registration p95 **350 ms** across 17 samples (median 297, max 350) and login p95 **776 ms** across 11 samples (median 466, max 776). Synthetic GitHub OIDC/fixture overhead is reported separately and is not used to hide member latency; password security was unchanged. Run `31776554705`, job `94693085868`, artifact `9210154378`, digest `sha256:1d0160df5b9d5fe4326761b8d8f76bedc4e3760c8b8ef5ab2b91c24601c0857b`.';
 
@@ -20,8 +21,8 @@ replace('launch','In parallel: premium member parity, auth critical-path perform
 replace('evidence','**57 total / 36 PASS / 18 AMBER / 3 BLOCKED / 0 abstraction orphans.**','**57 total / 37 PASS / 17 AMBER / 3 BLOCKED / 0 abstraction orphans.**','ledger scoreboard');
 replaceRe('evidence',/^Latest original row closure: .*$/m,`Latest original row closure: **G5-012 performance release criterion.** ${proof}`,'ledger latest closure');
 if(!data.evidence.includes('## Gate 5 member API performance release criterion — PASS')) data.evidence += `\n\n## Gate 5 member API performance release criterion — PASS\n**G5-012 PASS:** ${proof}\n`;
-replaceRe('evidence',/^## Authenticated accessibility \+ performance — accessibility PASS, performance AMBER$/m,'## Authenticated accessibility + performance — PASS','ledger combined heading');
-replaceRe('evidence',/^\*\*G5-012 remains AMBER\.\*\*.*$/m,`**G5-012 PASS:** ${proof}`,'ledger stale G5-012');
+replaceOptionalRe('evidence',/^## Authenticated accessibility \+ performance — accessibility PASS, performance AMBER$/m,'## Authenticated accessibility + performance — PASS');
+replaceOptionalRe('evidence',/^\*\*G5-012 remains AMBER\.\*\*.*$/m,`**G5-012 PASS:** ${proof}`);
 
 replace('gate','must(counts.PASS===36,`original matrix PASS count is 36 (found ${counts.PASS||0})`);','must(counts.PASS===37,`original matrix PASS count is 37 (found ${counts.PASS||0})`);','gate pass count');
 replace('gate','must(counts.AMBER===18,`original matrix AMBER count is 18 (found ${counts.AMBER||0})`);','must(counts.AMBER===17,`original matrix AMBER count is 17 (found ${counts.AMBER||0})`);','gate amber count');
