@@ -1,0 +1,10 @@
+const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
+const url=`${SITE}/member-p0-v1.css?v=3`;
+const r=await fetch(url,{redirect:'manual'});
+const text=await r.text();
+const evidence={proof:'G3_008_LIVE_STYLESHEET_SOURCE',url,status:r.status,authority:r.headers.get('x-shift-frontend-authority'),cache:r.headers.get('cache-control'),contentType:r.headers.get('content-type'),bytes:Buffer.byteLength(text),hasPrimaryRepair:text.includes('#53624d'),hasControlRepair:text.includes('#6f7869'),hasFocusRepair:text.includes('focus-visible')&&text.includes('#53624d')};
+console.log(JSON.stringify(evidence,null,2));
+if(!r.ok)throw new Error(`live stylesheet HTTP ${r.status}`);
+if(!evidence.hasPrimaryRepair||!evidence.hasControlRepair||!evidence.hasFocusRepair)throw new Error(`live stylesheet is stale: ${JSON.stringify(evidence)}`);
+if(!String(evidence.authority||'').includes('member-p0-v1.css'))throw new Error(`live stylesheet authority missing/stale: ${evidence.authority||'none'}`);
+console.log('PASS G3-008 live stylesheet source: production serves the commissioned contrast/control/focus repair from Git authority.');
