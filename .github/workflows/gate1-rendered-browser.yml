@@ -1,10 +1,10 @@
 name: Gate 1 Rendered Browser Acceptance
 # 2026-08-14 retained commissioning coverage: Gate 1 state/rendered + G2-012 Progress units
-# G3-008 current-main final precedence proof pulse: unchanged acceptance against bounded contrast repair.
-# 2026-08-14 v7 proof pulse: intentionally no product or acceptance-threshold change.
+# G3-008 final hero-eyebrow repair: unchanged acceptance; implementation now directly triggers its own production gate.
 on:
   pull_request:
     paths:
+      - 'member-contrast-static-v1.js'
       - 'gate1-rendered-browser-production.mjs'
       - 'gate1-state-system-production.mjs'
       - 'gate1-fit-network-diagnostic.mjs'
