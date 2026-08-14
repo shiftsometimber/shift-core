@@ -171,3 +171,8 @@ G1-003/G1-004 genuine production verification evidence also closes Dave `registe
 - Passwords and token remained ephemeral and are not retained.
 
 This closes G1-001 and Dave `account_recovery`, moving Dave **18/20 -> 19/20 (95%)**. The sole twentieth leg is `treatment_support`, which remains external BLOCKED and outside non-clinical V1. G5-013 is therefore PASS for non-clinical V1 rather than held AMBER by an external leg already represented in G5-001/G5-002/G5-003.
+
+
+## 2026-08-14 — Current Grub + Fit final review authority
+
+Corrected finite review authority is retained in `docs/evidence/2026-08-14-current-grub-fit-final-review-authority.md`. Grub: run `31799592951`, artifact `9218697749`, 806 recipes / 8 decisions. Fit: run `31799592961`, artifact `9218694338`, 26/26 technically QA-passed with zero generic state placeholders. No audit PASS promotion is inferred; genuine review and downstream publication/serving remain required.
