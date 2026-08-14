@@ -20,7 +20,8 @@ export async function commissioningOpsRoutes(request,env){
   }catch(e){console.error('commissioning_product_events_failed',e?.message);return json({ok:false,error:'analytics_evidence_unavailable',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},503)}
 }
 async function fitPremiumAsset(request,env,path){
-  if(request.method!=='GET'||!/^\/fit-premium\/[a-z0-9-]+\.svg$/.test(path)||!env.MEMBER_ASSETS)return null;
+  const acceptedPath=/^(?:\/fit-premium\/|\/assets\/fit\/premium\/)[a-z0-9-]+\.svg$/.test(path);
+  if(request.method!=='GET'||!acceptedPath||!env.MEMBER_ASSETS)return null;
   const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
   if(!asset.ok)return new Response('fit premium asset unavailable',{status:404,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff'}});
   const h=new Headers(asset.headers);h.set('content-type','image/svg+xml; charset=utf-8');h.set('cache-control','public, max-age=3600, must-revalidate');h.set('x-content-type-options','nosniff');h.set('x-shift-fit-visual-authority',`git:frontend/member${path}`);
