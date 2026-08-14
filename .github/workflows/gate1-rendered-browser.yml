@@ -11,6 +11,16 @@ on:
       - 'g2-012-progress-units-rendered-v9.mjs'
       - 'g3-008-accessibility-production.mjs'
       - 'g3-008-stylesheet-source-proof.mjs'
+      - 'frontend/member/member-p0-v1.css'
+      - 'member-contrast-static-v1.js'
+      - '.github/workflows/gate1-rendered-browser.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'g3-008-accessibility-production.mjs'
+      - 'g3-008-stylesheet-source-proof.mjs'
+      - 'frontend/member/member-p0-v1.css'
+      - 'member-contrast-static-v1.js'
       - '.github/workflows/gate1-rendered-browser.yml'
   workflow_dispatch:
 permissions:
@@ -92,6 +102,9 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Verify candidate G3-008 repair is in Git authority
+        run: |
+          node -e "const fs=require('fs');const css=fs.readFileSync('frontend/member/member-p0-v1.css','utf8');const worker=fs.readFileSync('member-contrast-static-v1.js','utf8');for(const [n,s] of [['css primary','html body .mp-btn:not(.ghost)'],['css control','html body .member-form input'],['worker primary','html body .mp-btn:not(.ghost)'],['worker control','html body .member-form input']]){const src=n.startsWith('css')?css:worker;if(!src.includes(s))throw new Error('missing '+n+' '+s)}console.log('PASS candidate G3-008 high-specificity repair present in canonical asset + worker append')"
       - name: Install browser harness
         run: |
           npm install --no-save --ignore-scripts playwright
@@ -112,12 +125,12 @@ jobs:
           STATE_EVIDENCE_DIR: state-system-evidence
         run: node gate1-state-system-production.mjs
       - name: Prove live G3-008 stylesheet source
-        if: always()
+        if: ${{ always() && github.event_name != 'pull_request' }}
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
         run: node g3-008-stylesheet-source-proof.mjs
       - name: Run G3-008 authenticated accessibility production acceptance
-        if: always()
+        if: ${{ always() && github.event_name != 'pull_request' }}
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
@@ -125,7 +138,7 @@ jobs:
           G3_008_EVIDENCE_DIR: g3-008-accessibility-evidence
         run: node g3-008-accessibility-production.mjs
       - name: Upload G3-008 accessibility evidence
-        if: always()
+        if: ${{ always() && github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
           name: g3-008-accessibility-evidence
