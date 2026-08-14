@@ -1,17 +1,15 @@
 name: Shift Production Commissioning
 on:
   push:
-    branches: [main]
-    paths:
-      - '**.js'
-      - '**.mjs'
-      - '.github/workflows/production-commissioning.yml'
+    branches: ['main']
+  workflow_dispatch:
 permissions:
   contents: read
   id-token: write
 jobs:
   production-commissioning:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -135,6 +133,12 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           G2_001_EVIDENCE_DIR: g2-001-today-evidence
         run: node g2-001-today-premium-production.mjs
+      - name: Prove G4-008 proactive Brain to Today orchestration
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+        run: node g4-008-proactive-today-production.mjs
       - name: Upload G2-001 Today evidence
         if: always()
         uses: actions/upload-artifact@v4
