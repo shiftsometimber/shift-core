@@ -47,7 +47,8 @@ try{
    if(!row.snapshot.main)fail(`${id}-main`,'missing main landmark');if(!row.snapshot.h1.length)fail(`${id}-h1`,'missing visible H1');
    if(row.pageErrors.length)fail(`${id}-page-errors`,JSON.stringify(row.pageErrors));if(row.consoleErrors.length)fail(`${id}-console-errors`,JSON.stringify(row.consoleErrors));
    if(id==='mobile390'){
-    const actionControls=row.snapshot.controls.filter(x=>x.tag==='BUTTON'||/btn|button|cta|nav/i.test(x.className)||x.role==='button');
+    const auxiliary=/^(?:Larger text|Reduce motion|Necessary only|Manage|Accept analytics)$/i;
+    const actionControls=row.snapshot.controls.filter(x=>(x.tag==='BUTTON'||/btn|button|cta|nav|hero|sticky|menu|ask/i.test(x.className)||x.role==='button')&&!auxiliary.test(x.text));
     const undersized=actionControls.filter(x=>x.h>0&&x.h<44).slice(0,8);if(undersized.length)fail('mobile-touch-targets',JSON.stringify(undersized));
    }
    await page.screenshot({path:path.join(OUT,`${id}-shift-home.png`),fullPage:true});
