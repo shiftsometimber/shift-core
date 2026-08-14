@@ -14,7 +14,7 @@ function prepareAlreadyCooked(p){
 }
 function slowCooker(r){const p=protein(r),coldCream=ingredient(r,/mayonnaise|yoghurt|creme fraiche|cream cheese/i,''),hasLiquid=hasSubstantiveCookingLiquid(r);return[
   `If you have five minutes, brown the ${p} in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.`,
-  hasLiquid?`Put the vegetables, measured cooking liquid and ${p} into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.`:`Put the vegetables and ${p} into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, so do not pretend a spoonful of dressing or citrus is a cooking liquid.`,
+  hasLiquid?`Put the vegetables, measured cooking liquid and ${p} into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.`:`Put the vegetables and ${p} into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.`,
   hasLiquid?`Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.`:`Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.`,
   coldCream?`Check the ${p} is safely cooked, switch the cooker off, then stir through the ${coldCream} and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.`:`Check the ${p} is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.`
 ]}
@@ -44,9 +44,11 @@ function oatCrunch(r){const oats=ingredient(r,/rolled oats|porridge oats/i,'oats
   'Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.'
 ]}
 function repairMethod(r,f){
+  const p=protein(r);
   let method=f==='slow-cooker'?slowCooker(r):[...(r.method||[])];
   method=method.map(step=>String(step)
     .replace('rather than being thrown in because the matrix found them.','rather than being thrown in just to fill the box.')
+    .replace(/the the filling/gi,p)
     .replace(/Get the pan properly hot first\. Cook the (cooked [^.]+?) until browned and cooked through — colour is flavour, so do not crowd the pan\./gi,(_,p)=>prepareAlreadyCooked(p))
     .replace(/Get the pan properly hot first\. Cook the (tuna in spring water, drained|lean ham) until browned and cooked through — colour is flavour, so do not crowd the pan\./gi,(_,p)=>prepareAlreadyCooked(p))
     .replace(/Cook the (boiled eggs?) until just set, keeping it tender rather than hammering it dry\./gi,(_,p)=>prepareAlreadyCooked(p))
