@@ -2,99 +2,95 @@
 
 ## Authority and recovery rule
 
-This file is a recovery pointer, not the status authority. On every resumed execution turn, read these in order before acting:
+Read, in order:
 
-1. `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` — authoritative original 57-row audit state.
-2. `docs/COMMISSIONING-EVIDENCE.md` plus the newest dated evidence checkpoint — retained proof/provenance.
-3. `docs/LAUNCH-FINISH-LINE.md` — launch-board M-lane state.
-4. `docs/MATT-FINAL-ACCEPTANCE-PACK.md` — finite human-only tail.
+1. `docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md` — authoritative 57-row status.
+2. `docs/evidence/2026-08-14-final-human-publication-readiness-current.md` — newest current-state evidence checkpoint.
+3. `docs/COMMISSIONING-EVIDENCE.md` — historical ledger; later appended chronology/detailed evidence may supersede older prose near the top.
+4. `docs/LAUNCH-FINISH-LINE.md` — launch-board view.
+5. `docs/MATT-FINAL-ACCEPTANCE-PACK.md` — human/device tail.
 
-Snapshot reconciled from code main at `62be9dc0a26d99ba7f218788b2de9b5de783e421`; the evidence-only reconciliation commit can advance main beyond this SHA. Never use this SHA or this file to overwrite a newer matrix/ledger state.
+Current code main: `f7b5011bc5c80e401fd4307543787592fc798d4d` (PR #337 merged after #335/#334).
 
-The authoritative original audit is **57 total / 50 PASS / 4 AMBER / 3 BLOCKED / 0 unmapped**. Category mapping is **A=4 / B=0 / C=3**. PASS still requires demonstrated journey, retained state where relevant, expected member outcome and retained evidence. A source gate, build, deployment check or green merge is not enough by itself.
+Authoritative original audit: **57 total / 50 PASS / 4 AMBER / 3 BLOCKED / 0 unmapped**. PASS requires demonstrated journey, retained state where relevant, expected member outcome and retained evidence.
 
 ## Gate 1 — CLOSED
 
-All original Gate-1 rows are PASS. In particular:
+All original Gate-1 rows remain PASS. Genuine connected-inbox registration, verification, Welcome ordering, password recovery, logout and retained login are already proven. Do not generate more verification/reset mail absent genuine regression evidence.
 
-- **G1-001 PASS:** genuine connected-inbox password-reset delivery, real token consumption, reset login, authenticated password change, logout and retained final login are production-proven. Do not generate further recovery mail absent genuine regression evidence.
-- **G1-003/G1-004 PASS:** genuine unverified registration -> real inbox verification -> blocked pre-verification login -> verified login -> Welcome ordering -> logout/final login are retained production evidence.
-- **G1-012 PASS:** fresh unattended production run `31800981142` executed every currently automatable Dave lane and passed: public discovery/trust/anonymous boundaries; authenticated A/B isolation + onboarding + Today + Progress retention; Grub/Fit learning + leave/return; Hydration/Plans/Today/Progress safe state; Progress Picture + Shift AI provenance/return/clinical boundary. Real-inbox legs remain separately proven; treatment support remains external. Dave evidence artifact `9219344533`, digest `sha256:4e9b4d992e61f90933b30338f30fbe4b520acc9abe9b69646e22727fbfc3ace9`.
+Fresh broad production commissioning on pre-#337 main (`31809506744`, ordinary job `94796447962`) remained GREEN across Core, security/privacy, Radar, A/B isolation, retained state, longitudinal Grub/Fit learning, Progress Picture/Shift AI behaviour, existing structured serving, Fit duration, unattended Dave and G5-012.
 
-## Exact four original-audit AMBER rows — Gate 2 human tail
+## Gate 2 — exact remaining original-audit tail
 
-### G2-002 / G2-003 / G2-004 — Grub
+Only **G2-002 / G2-003 / G2-004 / G2-007** remain AMBER. They are **not waiting for human review**.
 
-Current V1 launch authority is **806 clean recipes behind exactly 8 regenerated immutable aggregate decisions**. Breakfast 212 / lunch 204 / dinner 203 / snack 187. The decision -> publication bridge binds only to the unchanged regenerated manifest; all eight PASS yields exactly 806 reviewed/validated publication records and any FIX/REJECT emits no partial payload.
+### Final human authority — COMPLETE
 
-Retained review authority: run `31799592951`, artifact `9218697749` (`grub-101-editorial-review-surface`), digest `sha256:18225619aa8e28030fbd008ea40cdb39759adc92e2a9db73a261d318ae33fc6f`. Review only `grub-v1-launch-review.html`; the earlier 783-recipe pack is superseded and must not be resurfaced.
+- Grub: run `31803717241`, artifact `9220287723`, **798 recipes / 8 decisions / 8 PASS**.
+- Fit: run `31802631318`, artifact `9219877222`, **26 canonical movements / 26 PASS**.
 
-Remaining closure is irreducibly second-person: 8 genuine PASS/FIX/REJECT decisions -> automated immutable propagation -> publication -> production-serving proof. Do not manufacture additional recipe volume in place of those decisions.
+PR #332 records the explicit decisions; PR #333 proves post-human publication authority. Do not ask Matt to repeat them.
 
-### G2-007 — Fit
+### Runtime/publication conversion — COMPLETE BEFORE PRODUCTION
 
-Current V1 launch authority is **26 canonical movement decisions / 1,326 eligible descendants**. Replacement premium candidates are **26/26 produced and 26/26 technically QA-passed**. Technical QA is not anatomy/member-comprehension/domain acceptance; that remains **0/26** until genuine review.
+PR #335 fixed the accepted-Grub runtime publication defect (`meal_type`/serving metadata). The exact accepted split is 212 breakfast / 204 lunch / 195 dinner / 187 snack.
 
-Retained review authority: run `31799592961`, artifact `9218694338` (`fit-premium-v1-26-review-pack`), digest `sha256:b48d5d2f7770d16c8ad4a4da76bb5036a26e360c6603704144194644de8a8a9f`. The rejected legacy schematic/stick-figure treatment must not return as final launch artwork.
+PR #334 binds the accepted authority to the existing `structured_content` layer and fail-closed production publication/serving proof.
 
-Remaining closure is 26 genuine PASS/FIX/REJECT decisions -> publication/binding -> production-serving proof. Do not equate candidate production or technical visual QA with member/domain acceptance.
+`Final V1 Publication Readiness` run `31809506731`, artifact `9222529459`, digest `sha256:626b38ff5720aad5b3560957877bf9bb27bac9f061ad2e0d43f5b32871bc0911`, proves:
 
-All other Gate-2 original rows are PASS. Do not reopen Today, Progress, Plans, Hydration, Conundrum, duration/learning or locked units/photo journeys without genuine regression evidence.
+- **798** accepted Grub rows, zero held;
+- **1,326** accepted Fit descendants, exactly **51 per each of 26 accepted movements**;
+- **2,124 total** exact publication rows;
+- existing structured-content layer;
+- partial publication forbidden;
+- production PASS deliberately false until D1 publication + authenticated serving proof.
 
-## Gate 3 and Gate 4
+PR #337 is now merged and hardens the last visual-serving edge: the exact 26 accepted premium SVGs are present in the Worker member-asset binding/public routes, source-gated and required to return real SVG START/MOVE/FINISH content in the downstream live proof. It also stops missing optional Shift Me assets contaminating unrelated Today/Gate-3 pages, while retaining Shift Me's own independent fail-closed proof.
 
-All original Gate-3 and Gate-4 rows remain PASS. Fresh main run `31800981142` kept the dedicated premium-system production job and Today/G4 proactive rendered job green. The homepage-grade forest/cream premium system remains the estate-wide design constitution. Do not restart cosmetic architecture or create a parallel member product.
+### Remaining Gate-2 closure
+
+Publish the exact 2,124 accepted rows to production D1 after current main is genuinely promoted, then prove a fresh authenticated member consumes the accepted Grub/Fit authority with validated nutrition, accepted premium visual guidance, durable Nays across logout/login and retained plan analytics.
+
+Do not promote the four rows from readiness/source CI alone.
+
+## Gate 3 and Gate 4 — PASS remains locked
+
+All original Gate-3 and Gate-4 rows retain earned PASS. The homepage-grade forest/cream hierarchy remains the design constitution.
+
+Pre-#337 rendered reds were tied to stale production returning 404 HTML for optional Shift Me premium CSS/JS. #337 has repaired cross-surface contamination in source, but this still requires genuine current-main Worker deployment before a new production browser proof is useful.
+
+Fresh pre-#337 G2-013 run `31809506805` hit the same stale asset graph; its mobile path still retained the saved image across reload/logout/login, cross-member isolation and deletion. Do not reopen the previously earned G2-013 lifecycle PASS.
 
 ## Gate 5
 
-All automatable non-external original Gate-5 rows remain PASS. **G5-013 is PASS for non-clinical V1 at 19/20 non-duplicated Dave legs**; treatment support is the sole twentieth leg and remains external BLOCKED.
+All automatable non-external original Gate-5 rows remain PASS. Dave remains PASS for non-clinical V1 at 19/20; treatment support is the sole external leg.
 
-**G5-001 / G5-002 / G5-003** remain the only three external BLOCKED original rows: signed clinical/provider/pharmacy operating model, clinically governed Medication Companion prescribing/escalation, and provider-approved identity/weight/evidence verification. Keep unavailable/accurately qualified and continue non-clinical V1 around them.
+**G5-001 / G5-002 / G5-003** remain the only external BLOCKED original rows.
 
-**G5-012 remains PASS.** Fresh main production run `31800981142` measured natural member API p95 at **registration 332 ms / login 503 ms** against the unchanged **800 ms** budget, with **17 registration / 11 login samples** and `passwordSecurityChanged:false`. Retained evidence artifact `9219344293`, digest `sha256:295daad8c6d2caa04d275738a9061f6b08a7ab15c087718cc9b86ed1956ec179`. Do not reopen it from stale earlier transient samples unless a repeatable current-production breach is demonstrated.
+## Singular Worker deployment blocker — issue #298
 
-## M04 product analytics — separate launch-board AMBER
+The existing `Cloudflare Production Promote` workflow is the only intended promotion path. Its latest explicit attempt before #337 (`31809506824`, job `94796448931`) failed exactly at `Fail closed when deploy credential is absent`; deploy/live-proof steps skipped.
 
-M04 remains a launch-board AMBER, not one of the four original-audit AMBER rows. Source already contains the restricted `/v1/commissioning/product-events` route and canonical worker dispatch; do not rewrite analytics logic to solve a serving problem.
+Missing external input: **GitHub Actions secret `CLOUDFLARE_API_TOKEN`** with permission to deploy Worker `shift-core`. Do not commit/send the token, add another deployment architecture or create trigger-only rebuilds.
 
-Fresh main run `31800981142`, M04 job `94768632433`, waited for deployment and then polled the restricted route for the full five-minute readiness window. At 12:41:13 UTC it still ended with live **404 `not_found`**. Retained artifact `9219390939`, digest `sha256:daff2d315ed60068534c5c3a67f7b28cddde3f39f5b1fc1f90cbe953a6e153b7`.
+After the secret exists, run the existing promotion once on **current main including #337**. On GREEN promotion, the existing chained Final V1 production-publication workflow must atomically publish the exact 2,124 accepted rows and prove authenticated accepted-authority serving + premium Fit SVG HTTP delivery.
 
-Issue **#298** is the infrastructure authority: successful Cloudflare/GitHub builds are producing versions but production traffic is not reliably promoted to the current Worker/module graph. The same drift is independently visible in the Shift Me commissioning identity boundary and the live `member-product-v33d.js` hash lag after #317. Treat these as deployment/promotion truth, not permission to invent duplicate M04/Shift Me/frontend implementations.
+Current pre-#337 M04 evidence (`31809506744`, job `94796447939`, artifact `9222585279`) again lacks persisted `grub_plan_generated`. Do not rerun M04/Shift Me/Today/G3 until production deployment changes.
 
-Only retry M04 after Cloudflare Deployments confirms a genuinely current production deployment/promotion.
+## Auto-reconciliation after production proof
 
-## Shift Me — isolated commissioned adjunct
+PR #336 proved the desired fail-closed A=0 reconciliation model in CI, but its branch now conflicts with the newer #337 final production-publication workflow. Do not merge stale/conflicting workflow code. Recreate/retarget the reconciliation atop current main only if it preserves #337's live visual-serving requirements and still refuses stale production evidence.
 
-PR **#318** merged at code main `62be9dc0a26d99ba7f218788b2de9b5de783e421` to preserve commissioning integrity:
+## Timber Mill — separate manual publication boundary
 
-- Dave's earned authenticated/isolation/onboarding proof no longer imports Shift Me.
-- Shift Me has its own fail-closed source/privacy + authenticated production technical gate.
-- The exact Shift Me GitHub workflow is added to the existing narrow OIDC commissioning allow-list; the synthetic identity family is not widened.
-- Source/privacy is green.
-- The production technical gate remains fail-closed because production still rejects the newly-authorised Shift Me OIDC workflow with `commissioning_identity_rejected`, including a rerun several minutes after successful Workers Build `59adad20-2963-4868-a219-250374deef03` / Version `d25251a7-ccfb-41eb-b89f-913b03f07ea1`.
+Issue #300 remains outside the 57-row audit. Publish exactly `ShiftSomeTimber-APPROVED-STORYBOARD-TIMBER-MILL-CORRECTED.zip` through the existing Cloudflare static/manual path, then rerun the retained desktop + 390px visual acceptance once. Do not rebuild the page again.
 
-Shift Me production technical PASS is therefore still withheld. Do not rerun until #298's deployment/promotion defect has genuinely changed.
+## Exact next execution after external unlock
 
-## Current frontend deployment regression from #317
-
-Main `b07a55f0c6282b417b24030752cf33151a73f01c` / PR #317 correctly removed legacy Fit stick-figure generation, kept text-led fallback unless an approved visual URL exists, activated the existing Shift AI member panel and pointed it at `/v1/shift-ai/chat`.
-
-The master integration gate caught a real deployment-authority mismatch: production `member-product-v33d.js` SHA did not match current Git authority. This is retained evidence that #317's source changes are not yet proven live. Do not cash #317's member-visible outcome until production serves current Git authority and a rendered Fit/Shift-AI journey passes. This deployment drift is part of #298's infrastructure investigation.
-
-## Other launch-tail state
-
-- **M08 release evidence/recovery checkpoint:** remains AMBER by definition until the release candidate is reconciled/frozen; keep this file and the evidence ledger current.
-- **Timber Mill / issue #300:** Git/source authority is recovered. Remaining boundary is the real static Cloudflare publication of the corrected package plus desktop/mobile production visual acceptance. Do not reopen source discovery or build a parallel shop.
-- **Final physical-device hostile acceptance:** remains a release-pack activity after the four Category-A human rows close; automated desktop/390px prerequisites are already retained PASS and should not be manually re-proven without regression evidence.
-
-## Exact autonomous next actions
-
-1. Keep the four Gate-2 Category-A rows at the genuine human-decision boundary; do not ask for already-consumed old decisions and do not manufacture more content.
-2. Preserve fresh run `31800981142` as the current Dave/G1-012/G5-012/Gate-3/Gate-4 regression evidence; do not re-run green lanes for activity theatre.
-3. Do not rerun M04/Shift Me merely to create red noise while production is demonstrably serving the stale Worker/module graph. Resume those proofs only after a genuinely current deployment is active.
-4. Keep #298 as the single infrastructure defect. External acceptance action is finite: verify Worker `shift-core` production branch/deploy command actually deploys current main, then verify the current Version is active at 100% production traffic.
-5. Preserve G5-012 and all other locked PASS rows absent repeatable current-production regression evidence.
-6. Reconcile matrix/evidence/launch board immediately when — and only when — demonstrated evidence changes status.
-7. After the four human Gate-2 rows close: freeze new product work -> publish/serve accepted Grub/Fit -> full RC regression -> Dave/security/Watchtower/routes/accessibility/performance -> final physical-device hostile acceptance -> release defects only.
-
-Operating rule: **REUSE -> EXTEND -> CONNECT -> PRODUCTISE -> BUILD ONLY ON A REAL GAP -> PROVE IN PRODUCTION -> RETAIN EVIDENCE -> CONTINUE.**
+1. Promote current main through the existing Cloudflare workflow.
+2. Let the existing chained workflow atomically publish the exact 2,124 accepted rows to production D1.
+3. Prove authenticated accepted-authority Grub/Fit serving, accepted premium SVG HTTP delivery, provenance and retained Nay behaviour.
+4. Rerun M04 + Shift Me/Today/G3 targeted proofs once against the changed deployment.
+5. Reconcile G2-002/G2-003/G2-004/G2-007 only if production evidence is GREEN.
+6. Freeze non-clinical RC; run release regression and final genuine-device hostile acceptance; fix release defects only.
