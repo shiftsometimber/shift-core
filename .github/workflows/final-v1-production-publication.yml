@@ -24,6 +24,7 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+      SHIFT_SITE_BASE: https://shiftsometimber.co.uk
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,6 +37,8 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Validate exact final human acceptance
         run: node final-v1-human-acceptance-gate.mjs
+      - name: Validate accepted Fit visual public-serving source
+        run: node fit-premium-public-serving-gate.mjs
       - run: python3 -m pip install --quiet openpyxl
       - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
       - name: Regenerate exact accepted Grub publication payload
@@ -66,6 +69,10 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           FINAL_V1_SERVING_DIR: final-v1-production-serving-evidence
         run: node final-v1-production-serving.mjs
+      - name: Prove all 26 accepted Fit premium visuals over production HTTP
+        env:
+          FIT_PREMIUM_ASSET_EVIDENCE_DIR: final-v1-production-serving-evidence/fit-premium-assets
+        run: node fit-premium-assets-production.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
