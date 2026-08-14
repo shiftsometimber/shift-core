@@ -18,6 +18,7 @@ import {handleCommissioningIdentity} from './commissioning-identity-v1.js';
 import {handleEmailVerification} from './auth-email-verification-v1.js';
 import {handleAuthRecovery} from './auth-recovery-v1.js';
 import {memberContrastStatic} from './member-contrast-static-v1.js';
+import {fastMemberRegister} from './member-register-fastpath-v2.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -41,6 +42,10 @@ async function gitMemberAsset(path,env){
   const headers=new Headers(asset.headers);headers.set('Content-Type',contentType);headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority',`git:frontend/member${path}`);
   return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
 }
+async function coreAuthFetch(request,env,ctx){
+  const fast=await fastMemberRegister(request,env);if(fast)return fast;
+  return hq.fetch(request,env,ctx);
+}
 
 export default {
   async fetch(request,env,ctx){
@@ -50,10 +55,10 @@ export default {
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
     const commissioningOps=await commissioningOpsRoutes(request,env);if(commissioningOps)return commissioningOps;
-    const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
+    const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,coreAuthFetch);
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
 
-    const emailVerification=await handleEmailVerification(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
+    const emailVerification=await handleEmailVerification(request,env,ctx,coreAuthFetch);
     if(emailVerification)return withMemberCors(emailVerification,request);
 
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
