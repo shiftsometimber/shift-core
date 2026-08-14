@@ -17,6 +17,8 @@ Production comparison:
 
 The retained source-capture artifact is `gate1-live-static-source-evidence`, artifact ID `9173318023`, digest `sha256:199340cdcb94f8f7922fcbc8121963c24732ca35641531a49f46df06678b5bd7`.
 
+`member/member-product-v33d.js` was recovered from the exact live `shiftsometimber.co.uk`/`projectshift.pages.dev` client proven byte-identical by Progress Live Client Capture run `31747472479` and artifact `9199576591`. G2-001 then made the smallest safe extension: the existing `SST_API.getShiftToday()` response now supplies the rendered Today headline and subhead instead of leaving stale hard-coded prototype copy above the already-personalised actions. This keeps one API call and one existing render path; it does not create a parallel Today client.
+
 ## P0 source repair
 
 `member/member-shell-v33g.js` is the recovered shell with three source-level fixes:
@@ -29,6 +31,8 @@ The retained source-capture artifact is `gate1-live-static-source-evidence`, art
 
 `member/api-adapter-v33d.js` is now also release-critical Git authority. Ordinary member API calls retain the finite 15-second client budget, while Fit generation alone receives a finite 60-second client budget because demonstrated production generation can legitimately take materially longer than 15 seconds. Do not widen the ordinary request budget or remove the finite Fit failure boundary.
 
+`member/member-product-v33d.js` is the release-critical member product client authority. Today, Grub, Fit, Hydration, Conundrum, plans, Progress Picture and member feedback remain on this existing client; product repairs must extend it rather than inventing a second member dashboard runtime.
+
 ## Build / deploy / rollback rule
 
 The Git commit is the release identity. Production deployment must publish these files unchanged at their root production paths:
@@ -36,6 +40,7 @@ The Git commit is the release identity. Production deployment must publish these
 - `frontend/member/member-shell-v33g.js` -> `/member-shell-v33g.js`
 - `frontend/member/member-p0-v1.css` -> `/member-p0-v1.css`
 - `frontend/member/api-adapter-v33d.js` -> `/api-adapter-v33d.js`
+- `frontend/member/member-product-v33d.js` -> `/member-product-v33d.js`
 
 A deployment is accepted only when live SHA/content checks match the Git commit and the unchanged authenticated rendered RC passes at the required browser/device boundary. For G1-008 specifically, the production adapter must show `GENERATION_TIMEOUT=60000` and `generateFit(...timeout:GENERATION_TIMEOUT)` before any rendered Fit success can be accepted; source-green with a stale 15-second live adapter is an explicit deployment failure, not PASS.
 
