@@ -8,6 +8,7 @@ on:
       - 'frontend/member/member-p0-v1.css'
       - 'worker-entry-v6.js'
       - 'wrangler.jsonc'
+      - 'commissioning-identity-v1.js'
       - 'g2-013-progress-picture-rendered-production.mjs'
       - '.github/workflows/g2-013-progress-picture-production.yml'
 permissions:
