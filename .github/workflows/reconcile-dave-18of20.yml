@@ -1,0 +1,36 @@
+name: Reconcile Dave 18 of 20
+on:
+  push:
+    branches: ['reconcile/dave-18of20']
+    paths:
+      - 'scripts/reconcile-dave-18of20.mjs'
+      - '.github/workflows/reconcile-dave-18of20.yml'
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: reconcile/dave-18of20
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node scripts/reconcile-dave-18of20.mjs
+      - name: Assert G5-013 remains honest AMBER
+        run: |
+          grep -F '| G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **18/20 non-duplicated Dave journey legs (90%)**.' docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md
+          grep -qx 'A=6' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'AUDIT_PASS=48' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'AUDIT_AMBER=6' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+      - name: Commit reconciliation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name shiftsometimber
+          git config user.email shiftsometimber@gmail.com
+          git add docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md docs/COMMISSIONING-EVIDENCE.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'G5-013: reconcile Dave to 18/20'
+          git push origin HEAD:reconcile/dave-18of20
