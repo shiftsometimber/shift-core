@@ -1,12 +1,14 @@
 # Matt Final Acceptance Pack — V1
 
-**Status: FINITE HUMAN TAIL / 8 CATEGORY-A ROWS REMAIN.** The automated estate is no longer the blocker. The authoritative 57-row matrix is **46 PASS / 8 AMBER / 3 BLOCKED**, with **A=8 / B=0 / C=3**. Keep this as one finite acceptance session where possible; do not reopen already-earned production PASS rows.
+**Status: FINITE HUMAN TAIL / 6 CATEGORY-A ROWS REMAIN.** The authoritative 57-row matrix is **48 PASS / 6 AMBER / 3 BLOCKED**, with **A=6 / B=0 / C=3**. Keep this as one finite acceptance session where possible; do not reopen already-earned production PASS rows.
 
 Matt's previous acceptance return is already authoritative and consumed: **11/11 prior Grub decisions = FIX; 26/26 prior Fit visual decisions = FIX. Do not ask for those decisions again.**
 
 ## 1. Regenerated Grub V1 launch cohort — 8 decisions
 
-Use only the regenerated V1 launch review surface produced after the systemic humanness repair.
+**ATTACHABLE / TECHNICALLY READY.** Use only `grub-v1-launch-review.html` from the current regenerated editorial artifact, not the wider 99-template surface.
+
+Current retained review artifact: workflow run `31796868151`, artifact `9217696352` (`grub-101-editorial-review-surface`), digest `sha256:29a30fe53fbaba95b83a575b655f3cd77d3d96712e721c257e5c9df3804cebbf`. It contains the exact `grub-v1-launch-review.html` and `grub-v1-launch-cohort.json` launch files.
 
 Current cohort: **783 clean recipes / 8 immutable aggregate decisions**. Breakfast 212 / lunch 204 / dinner 180 / snack 187. Deterministic 25% Nay pressure still leaves 161 / 165 / 135 / 142 eligible respectively, with **0 exact repeats through 30/60/90 days**.
 
@@ -24,13 +26,13 @@ Retained review pack: workflow run `31751231158`, artifact `9200983545` (`fit-pr
 
 For each movement choose **PASS / FIX / REJECT** after checking anatomy/body position, START -> MOVE -> FINISH comprehension where applicable, equipment agreement, instruction agreement, safety/comprehension, mobile legibility and alt-text suitability. Technical QA is not domain acceptance.
 
-## 3. Email verification — one genuine lifecycle
+## 3. Email verification — CLOSED
 
-A fresh real verification harness is used. It creates a random-password commissioning member, proves unverified login is blocked, then waits for the genuine inbox link click. After the click, automation owns verified login -> logout -> retained final login.
+**G1-003 / G1-004 PASS.** Fresh production run `31793828102`, rerun job `94753848697`, proved the genuine lifecycle: registration 201 with verification required and real inbox delivery; pre-verification login 403 `email_verification_required`; genuine connected-inbox verification; post-verification login 200; logout 200; final fresh login 200. Connected Gmail shows `Welcome to My Shift` only after verification.
 
-Current execution pulse: PR #285 / workflow `G1 Real Email Verification`. The connected Gmail inbox receives the genuine `Verify your My Shift email` message. PASS requires the real token click plus the green retained lifecycle evidence; delivery alone is not PASS.
+Retained artifact `9217492229`, digest `sha256:82bce3845465ff96a651fd3f15dfc5427986f324f4f1e29f4f6aebc76603f2c5`. Evidence: `docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md`.
 
-Expected: verified login succeeds; bypass/replay remains rejected; Welcome ordering is correct; final verified login succeeds.
+Do not ask for another verification decision unless genuine regression evidence appears.
 
 ## 4. Password recovery — one genuine lifecycle
 
@@ -38,9 +40,10 @@ Expected: verified login succeeds; bypass/replay remains rejected; Welcome order
 2. Enter the designated commissioning inbox.
 3. Open the genuine reset email.
 4. Tap the genuine reset link.
-5. Set the supplied commissioning password.
+5. Complete the new-password reset.
+6. Prove new login -> authenticated change-password -> logout -> final login with retained evidence.
 
-Automation then owns login -> authenticated password change -> logout -> final login -> retained evidence. G1-001 remains AMBER until this real token lifecycle is demonstrated.
+G1-001 remains the sole Gate-1 account-lifecycle AMBER until this real token lifecycle is demonstrated. The existing implementation already invalidates prior reset tokens, consumes reset tokens once, revokes active sessions on reset, retains PBKDF2-SHA256 100,000-iteration password hashing and requires the current password for authenticated change-password.
 
 ## 5. Final physical-device hostile acceptance
 
@@ -58,18 +61,17 @@ Record only failures with page/action/screenshot. If all pass, mark **FINAL DEVI
 
 ## Automated prerequisites — CLOSED
 
-Homepage/member premium-system parity, responsive navigation, footer, forms/controls, hierarchy, accessibility, performance, Today, Progress, My Plans, governed Knowledge/HQ, public trust, competitive sceptical-customer acceptance and the unattended synthetic Dave gate are already production PASS. Do not make Matt manually retest around already-closed automated rows unless genuine regression evidence appears.
+Homepage/member premium-system parity, responsive navigation, footer, forms/controls, hierarchy, accessibility, performance, Today, Progress, My Plans, governed Knowledge/HQ, public trust, competitive sceptical-customer acceptance, real registration/verification lifecycle and the unattended synthetic Dave gate are already production PASS. Do not make Matt manually retest around already-closed automated rows unless genuine regression evidence appears.
 
 ## Remaining Category-A mapping
 
 - **G1-001** — real password recovery token lifecycle.
-- **G1-003 / G1-004** — genuine verification token lifecycle and retained verified login/order proof.
 - **G2-002 / G2-003 / G2-004** — 8 real Grub editorial decisions, then automated propagation/publication/production-serving proof.
 - **G2-007** — 26 real Fit domain/member-comprehension decisions, then publication/production-serving proof.
-- **G5-013** — remaining real inbox/recovery + final unassisted/device Dave legs; external treatment support remains outside non-clinical V1.
+- **G5-013** — remaining real recovery + final unassisted/device Dave legs; external treatment support remains outside non-clinical V1.
 
 The three clinical/provider rows **G5-001/G5-002/G5-003 remain BLOCKED/external** and must stay hidden/unavailable/accurately labelled rather than blocking the non-clinical V1 finish.
 
 ## READY rule
 
-The non-clinical RC reaches the freeze line only when the eight Category-A rows above are genuinely closed. Then: freeze new product work -> deploy RC -> full regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> **NON-CLINICAL V1 READY**.
+The non-clinical RC reaches the freeze line only when the six Category-A rows above are genuinely closed. Then: freeze new product work -> deploy RC -> full regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> **NON-CLINICAL V1 READY**.
