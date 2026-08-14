@@ -9,12 +9,14 @@ import {recordProductEvent} from './product-analytics-v1.js';
 export async function memberProductV8Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(path==='/v1/grub/plan'&&request.method==='POST'){
+    const analyticsAuth=await authenticate(request,env,ctx);
     const response=await memberProductV7Routes(request,env,ctx);
-    if(response?.ok)await recordPlanAnalytics(request,env,ctx,'grub_plan_generated','grub');
+    if(response?.ok&&!analyticsAuth.response)await recordPlanAnalyticsForUser(env,analyticsAuth.user.id,'grub_plan_generated','grub');
     return response;
   }
   if(path!=='/v1/fit/plan'||request.method!=='POST')return memberProductV7Routes(request,env,ctx);
 
+  const analyticsAuth=await authenticate(request,env,ctx);
   const body=await readClone(request);
   const response=await memberProductV7Routes(rebuild(request,request.url,body),env,ctx);
   if(!response?.ok){
@@ -22,7 +24,7 @@ export async function memberProductV8Routes(request,env,ctx){
     const repetition=Array.isArray(failure?.quality?.issues)&&failure.quality.issues.some(x=>x?.code==='fit_repetition');
     if(failure?.error==='quality_gate_failed'&&repetition){
       const repaired=await repairRepeatedComposition(request,env,ctx,body,response.headers);
-      if(repaired){if(repaired.ok)await recordPlanAnalytics(request,env,ctx,'fit_plan_generated','fit');return repaired;}
+      if(repaired){if(repaired.ok&&!analyticsAuth.response)await recordPlanAnalyticsForUser(env,analyticsAuth.user.id,'fit_plan_generated','fit');return repaired;}
     }
     return response;
   }
@@ -36,19 +38,19 @@ export async function memberProductV8Routes(request,env,ctx){
   if(!quality.ok)return new Response(JSON.stringify({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_duration_v8'}),{status:503,headers:response.headers});
 
   if(duration.changed){
-    const auth=await authenticate(request,env,ctx);
+    const auth=analyticsAuth.response?await authenticate(request,env,ctx):analyticsAuth;
     if(auth.response)return auth.response;
     await replaceLatestPlan(env.DB,auth.user.id,payload.plan);
   }
-  await recordPlanAnalytics(request,env,ctx,'fit_plan_generated','fit');
+  if(!analyticsAuth.response)await recordPlanAnalyticsForUser(env,analyticsAuth.user.id,'fit_plan_generated','fit');
   return new Response(JSON.stringify(payload),{status:response.status,headers:response.headers});
 }
 
-async function recordPlanAnalytics(request,env,ctx,eventName,surface){
-  try{
-    const auth=await authenticate(request,env,ctx);if(auth.response)return;
-    await recordProductEvent(env,{userId:Number(auth.user.id),eventName,surface,source:'server',properties:{retainedPlan:true,composer:'v8'}});
-  }catch(e){console.warn(`analytics_${surface}_plan_failed`,e?.message)}
+async function recordPlanAnalyticsForUser(env,userId,eventName,surface){
+  const uid=Number(userId||0);if(!uid)throw new Error(`analytics_${surface}_member_missing`);
+  const recent=await env.DB.prepare(`SELECT id FROM product_events WHERE user_id=? AND event_name=? AND occurred_at>=datetime('now','-2 minutes') ORDER BY id DESC LIMIT 1`).bind(uid,eventName).first().catch(()=>null);
+  if(recent?.id)return;
+  await recordProductEvent(env,{userId:uid,eventName,surface,source:'server',properties:{retainedPlan:true,composer:'v8',recording:'authenticated_request'}});
 }
 async function repairRepeatedComposition(request,env,ctx,body,headers){
   const base=await memberProductV6Routes(rebuild(request,request.url,body),env,ctx,{deferQuality:true});
