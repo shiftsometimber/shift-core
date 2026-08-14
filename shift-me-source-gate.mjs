@@ -44,7 +44,7 @@ const checks=[
   ['creator performs real photo render',creator.includes("type=\"file\"")&&creator.includes('renderShiftMe(file,appearance(panel))')],
   ['creator exposes every commissioned control',['build','bodyShape','face','hair','hairline','facial','skin','eyes','glasses','top','bottom','accessory'].every(k=>creator.includes(`${k}:[`))],
   ['creator performs control rerender',creator.includes('rerenderShiftMe(appearance(panel))')&&creator.includes('data-shift-me-control')],
-  ['creator reloads persisted member Shift Me',creator.includes('getShiftMe()')&&creator.includes('shiftMeImageUrl')&&creator.includes('Saved to your Shift account'))],
+  ['creator reloads persisted member Shift Me',creator.includes('getShiftMe()')&&creator.includes('shiftMeImageUrl')&&creator.includes('Saved to your Shift account')],
   ['creator exposes real deletion lifecycle',creator.includes('deleteShiftMe()')&&creator.includes('Delete my Shift Me')],
   ['creator refuses a fake placeholder person',creator.includes('No fake mannequin.')&&!creator.includes('placeholder-avatar')],
   ['creator carries privacy and non-clinical boundary copy',creator.includes('source photo is used for the render and is not retained')&&creator.includes('not identity verification')&&creator.includes('not a body scan')&&creator.includes('not a health assessment')],
