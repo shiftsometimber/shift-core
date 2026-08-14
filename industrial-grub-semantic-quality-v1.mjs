@@ -56,7 +56,7 @@ function delicateSlowCooker(recipe){return slowCookerTitle(recipe)&&/salmon|praw
 export function editorialSemanticIssues(recipe){
   const issues=duplicateIngredientIssues(recipe);
   const x=identity(recipe);
-  if(/\bthe filling\b/i.test(methodText(recipe)))issues.push({code:'generic_protein_placeholder',detail:'method contains unresolved generic protein placeholder'});
+  if(/\bthe the filling\b/i.test(methodText(recipe)))issues.push({code:'generic_protein_placeholder',detail:'method contains unresolved generic protein placeholder'});
   if(delicateSlowCooker(recipe))issues.push({code:'slow_cooker_delicate_protein_mismatch',detail:'salmon, prawns or already-cooked lentils are not launch-approved for the generic all-day slow-cooker method'});
   if(!x)return issues;
   if(PROPER_STYLE_BLOCKS[x.family]?.has(x.style))issues.push({code:'style_format_mismatch',detail:`${x.style} is not commissioned for ${x.family}`});
