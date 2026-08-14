@@ -3,7 +3,7 @@ const ISSUER='https://token.actions.githubusercontent.com';
 const REPOSITORY='shiftsometimber/shift-core';
 const ACTOR_ID='315011648';
 const SYNTHETIC=/^shiftsometimber\+(?:finish|longitudinal|b03|structured|structured-authrender)-[a-z0-9-]+@gmail\.com$/i;
-const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@','/.github/workflows/gate1-rendered-browser.yml@','/.github/workflows/dave-release-gate.yml@','/.github/workflows/g2-011-progress-production.yml@','/.github/workflows/g2-013-progress-picture-production.yml@'];
+const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@','/.github/workflows/gate1-rendered-browser.yml@','/.github/workflows/dave-release-gate.yml@','/.github/workflows/g2-011-progress-production.yml@','/.github/workflows/g2-013-progress-picture-production.yml@','/.github/workflows/g2-014-progress-picture-premium.yml@'];
 const JWKS_URL=`${ISSUER}/.well-known/jwks`;
 const JWKS_TTL_MS=5*60*1000;
 let jwksMemory={expiresAt:0,keys:[]};
@@ -43,8 +43,7 @@ async function fetchJwks({force=false}={}){
   const cache=globalThis.caches?.default;
   const cacheKey=new Request(JWKS_URL,{method:'GET'});
   if(!force&&cache){
-    const cached=await cache.match(cacheKey).catch(()=>null);
-    if(cached){const body=await cached.json().catch(()=>null);if(Array.isArray(body?.keys)&&body.keys.length){jwksMemory={keys:body.keys,expiresAt:now+JWKS_TTL_MS};return body.keys}}
+    const cached=await cache.match(cacheKey).catch(()=>null);if(cached){const body=await cached.json().catch(()=>null);if(Array.isArray(body?.keys)&&body.keys.length){jwksMemory={keys:body.keys,expiresAt:now+JWKS_TTL_MS};return body.keys}}
   }
   const r=await fetch(JWKS_URL,{headers:{Accept:'application/json'}});if(!r.ok)throw new Error('jwks');
   const body=await r.json();if(!Array.isArray(body?.keys)||!body.keys.length)throw new Error('jwks_empty');
