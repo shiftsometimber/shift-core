@@ -1,6 +1,6 @@
 # Matt Final Acceptance Pack — V1
 
-**Status: FINITE HUMAN TAIL / 6 CATEGORY-A ROWS REMAIN.** The authoritative 57-row matrix is **48 PASS / 6 AMBER / 3 BLOCKED**, with **A=6 / B=0 / C=3**. Keep this as one finite acceptance session where possible; do not reopen already-earned production PASS rows.
+**Status: FINITE HUMAN TAIL / 4 CATEGORY-A ROWS REMAIN.** The authoritative 57-row matrix is **50 PASS / 4 AMBER / 3 BLOCKED**, with **A=4 / B=0 / C=3**. Keep this as one finite acceptance session where possible; do not reopen already-earned production PASS rows.
 
 Matt's previous acceptance return is already authoritative and consumed: **11/11 prior Grub decisions = FIX; 26/26 prior Fit visual decisions = FIX. Do not ask for those decisions again.**
 
@@ -34,16 +34,9 @@ Retained artifact `9217492229`, digest `sha256:82bce3845465ff96a651fd3f15dfc5427
 
 Do not ask for another verification decision unless genuine regression evidence appears.
 
-## 4. Password recovery — one genuine lifecycle
+## 4. Password recovery — CLOSED
 
-1. From member login choose Forgot password.
-2. Enter the designated commissioning inbox.
-3. Open the genuine reset email.
-4. Tap the genuine reset link.
-5. Complete the new-password reset.
-6. Prove new login -> authenticated change-password -> logout -> final login with retained evidence.
-
-G1-001 remains the sole Gate-1 account-lifecycle AMBER until this real token lifecycle is demonstrated. The existing implementation already invalidates prior reset tokens, consumes reset tokens once, revokes active sessions on reset, retains PBKDF2-SHA256 100,000-iteration password hashing and requires the current password for authenticated change-password.
+**G1-001 PASS.** Genuine connected-inbox reset delivery, token consumption, reset-password login, authenticated change-password, logout and retained final login are production-proven. This also closes Dave's account-recovery leg, moving Dave to 19/20; only external treatment support remains.
 
 ## 5. Final physical-device hostile acceptance
 
@@ -65,13 +58,11 @@ Homepage/member premium-system parity, responsive navigation, footer, forms/cont
 
 ## Remaining Category-A mapping
 
-- **G1-001** — real password recovery token lifecycle.
 - **G2-002 / G2-003 / G2-004** — 8 real Grub editorial decisions, then automated propagation/publication/production-serving proof.
 - **G2-007** — 26 real Fit domain/member-comprehension decisions, then publication/production-serving proof.
-- **G5-013** — remaining real recovery + final unassisted/device Dave legs; external treatment support remains outside non-clinical V1.
 
 The three clinical/provider rows **G5-001/G5-002/G5-003 remain BLOCKED/external** and must stay hidden/unavailable/accurately labelled rather than blocking the non-clinical V1 finish.
 
 ## READY rule
 
-The non-clinical RC reaches the freeze line only when the six Category-A rows above are genuinely closed. Then: freeze new product work -> deploy RC -> full regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> **NON-CLINICAL V1 READY**.
+The non-clinical RC reaches the freeze line only when the four Category-A rows above are genuinely closed. Then: freeze new product work -> deploy RC -> full regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> **NON-CLINICAL V1 READY**.
