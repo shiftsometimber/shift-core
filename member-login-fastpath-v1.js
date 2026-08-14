@@ -22,6 +22,11 @@ export async function fastMemberLogin(request,env){
     await env.DB.prepare('UPDATE user_auth SET failed_login_attempts=?,locked_until=?,updated_at=? WHERE user_id=?').bind(lockedUntil?0:attempts,lockedUntil,now,row.id).run();
     return json({ok:false,error:'invalid_credentials'},401);
   }
+  if(!Number(row.email_verified||0)){
+    const now=new Date().toISOString();
+    await env.DB.prepare('UPDATE user_auth SET failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(now,row.id).run();
+    return json({ok:false,error:'email_verification_required',emailVerified:false,verificationRequired:true,message:'Verify your email address before signing in.'},403);
+  }
   const now=new Date().toISOString(),expires=new Date(Date.now()+SESSION_DAYS*24*60*60*1000).toISOString();
   const token=randomToken(32),tokenHash=await sha256Hex(token),ip=request.headers.get('CF-Connecting-IP')||'',ipHash=ip?`sha256:${await sha256Hex(ip)}`:null;
   await env.DB.batch([
@@ -30,7 +35,7 @@ export async function fastMemberLogin(request,env){
     env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)').bind(row.id,'auth.login','user',String(row.id),'{}',ipHash,now),
     env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)').bind(row.id,tokenHash,expires,now,now)
   ]);
-  return json({ok:true,user:publicUser(row),emailVerified:!!row.email_verified},200,{'Set-Cookie':sessionCookie(token,expires)});
+  return json({ok:true,user:publicUser(row),emailVerified:true},200,{'Set-Cookie':sessionCookie(token,expires)});
 }
 
 async function verifyPassword(password,stored){
