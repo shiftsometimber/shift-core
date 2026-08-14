@@ -1,0 +1,56 @@
+name: Recover G2-001 Member Product Source
+on:
+  push:
+    branches: [commissioning/g2-001-today-live-integration-20260814]
+    paths:
+      - '.github/workflows/recover-g2-001-member-product-source.yml'
+permissions:
+  contents: write
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: commissioning/g2-001-today-live-integration-20260814
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Recover exact current member product source and apply bounded Today integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p frontend/member
+          curl -fLsS --retry 3 --max-time 30 'https://shiftsometimber.co.uk/member-product-v33d.js?v=33h' -o /tmp/member-product-live.js
+          actual=$(sha256sum /tmp/member-product-live.js | awk '{print $1}')
+          test "$actual" = '2d50a7ab38e586b317faa9a4fac7b7319dfe983f3f19dd974f76cab862406a33'
+          python - <<'PY'
+          from pathlib import Path
+          source=Path('/tmp/member-product-live.js').read_text()
+          old="""  $('#metricCalories').textContent=t?.summary?.calories_left??'—';
+            $('#metricProtein').textContent=(t?.summary?.protein_left??'—')+(t?.summary?.protein_left!=null?'g':'');"""
+          new="""  const todayPanel=$('#panel-today');
+            const todayHeadline=todayPanel?.querySelector(':scope > h2');
+            const todaySubhead=todayPanel?.querySelector(':scope > .mp-muted');
+            if(todayHeadline&&t?.headline)todayHeadline.textContent=t.headline;
+            if(todaySubhead&&t?.subhead)todaySubhead.textContent=t.subhead;
+            $('#metricCalories').textContent=t?.summary?.calories_left??'—';
+            $('#metricProtein').textContent=(t?.summary?.protein_left??'—')+(t?.summary?.protein_left!=null?'g':'');"""
+          if old not in source:
+              raise SystemExit('expected live Today render anchor not found')
+          patched=source.replace(old,new,1)
+          Path('frontend/member/member-product-v33d.js').write_text(patched)
+          PY
+          node --check frontend/member/member-product-v33d.js
+          grep -F "if(todayHeadline&&t?.headline)todayHeadline.textContent=t.headline;" frontend/member/member-product-v33d.js
+          grep -F "if(todaySubhead&&t?.subhead)todaySubhead.textContent=t.subhead;" frontend/member/member-product-v33d.js
+      - name: Commit recovered authoritative source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'shift-commissioning-bot'
+          git config user.email 'shiftsometimber@gmail.com'
+          git add frontend/member/member-product-v33d.js
+          git commit -m 'G2-001: integrate canonical Today copy into member surface'
+          git push origin HEAD:commissioning/g2-001-today-live-integration-20260814
