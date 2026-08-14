@@ -1,0 +1,36 @@
+name: G4-008 Proactive Today Production
+on:
+  push:
+    paths:
+      - 'g4-008-proactive-today-production.mjs'
+      - '.github/workflows/g4-008-proactive-today-production.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  production-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Prove proactive Brain to Today orchestration
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+        run: node g4-008-proactive-today-production.mjs
