@@ -24,3 +24,13 @@ jobs:
         run: node fit-premium-generate-all.mjs
       - name: Technical candidate gate
         run: node fit-premium-candidate-gate.mjs
+      - name: Retain regenerated premium candidate source
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fit-premium-regenerated-candidates
+          path: |
+            assets/fit/premium
+            content/fit/premium-visual-production-v1.json
+          if-no-files-found: error
+          retention-days: 30
