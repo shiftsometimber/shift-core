@@ -1,22 +1,21 @@
-name: G2-013 Progress Picture Production Acceptance
+name: G2-014 Progress Picture Premium Production Acceptance
 on:
   push:
     branches: [main]
     paths:
-      - 'frontend/member/member-product-v33d.js'
+      - 'frontend/member/member-progress-picture-premium-v1.js'
       - 'frontend/member/member-shell-v33g.js'
       - 'frontend/member/member-p0-v1.css'
-      - 'frontend/member/member-progress-picture-premium-v1.js'
       - 'worker-entry-v6.js'
       - 'wrangler.jsonc'
       - 'commissioning-identity-v1.js'
-      - 'g2-013-progress-picture-rendered-production.mjs'
-      - '.github/workflows/g2-013-progress-picture-production.yml'
+      - 'g2-014-progress-picture-premium-production.mjs'
+      - '.github/workflows/g2-014-progress-picture-premium.yml'
 permissions:
   contents: read
   id-token: write
 jobs:
-  g2-013-progress-picture-rendered-production:
+  g2-014-progress-picture-premium-production:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -33,23 +32,23 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Wait for production propagation
-        run: sleep 20
+        run: sleep 25
       - name: Install Chromium
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Run rendered private Progress Picture journey
+      - name: Run rendered premium Progress Picture journey
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
-          G2_013_EVIDENCE_DIR: g2-013-progress-picture-evidence
-        run: node g2-013-progress-picture-rendered-production.mjs
-      - name: Upload G2-013 Progress Picture evidence
+          G2_014_EVIDENCE_DIR: g2-014-progress-picture-premium-evidence
+        run: node g2-014-progress-picture-premium-production.mjs
+      - name: Upload G2-014 premium evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: g2-013-progress-picture-evidence
-          path: g2-013-progress-picture-evidence
+          name: g2-014-progress-picture-premium-evidence
+          path: g2-014-progress-picture-premium-evidence
           if-no-files-found: warn
           retention-days: 30
