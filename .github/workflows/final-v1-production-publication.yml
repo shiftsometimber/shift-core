@@ -1,0 +1,93 @@
+name: Final V1 Production Publication
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'grub-v1-publication-pack.mjs'
+      - 'fit-v1-publication-pack.mjs'
+      - 'final-v1-production-publish.mjs'
+      - 'final-v1-production-publication-gate.mjs'
+      - 'commissioning-ops-v1.js'
+      - 'structured-content-v1.js'
+      - 'content/fit/premium-v1-render-contracts.json'
+      - 'frontend/member/fit-premium/**'
+      - 'evidence/grub-v1-final-decisions-2026-08-14.json'
+      - 'evidence/fit-v1-final-decisions-2026-08-14.json'
+      - '.github/workflows/final-v1-production-publication.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish-and-prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prepare authoritative CoFID 2021 index
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Regenerate exact accepted Grub publication payload
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          GRUB_DECISIONS_FILE: evidence/grub-v1-final-decisions-2026-08-14.json
+          GRUB_PUBLICATION_DIR: grub-publication-evidence
+        run: node grub-v1-publication-pack.mjs
+      - name: Build exact accepted Fit publication payload
+        env:
+          FIT_DECISIONS_FILE: evidence/fit-v1-final-decisions-2026-08-14.json
+          FIT_PUBLICATION_DIR: fit-publication-evidence
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+        run: node fit-v1-publication-pack.mjs
+      - name: Source-gate final publication path
+        run: node final-v1-production-publication-gate.mjs
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Wait for current Worker publication route
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 24); do
+            code=$(curl -sS -o /tmp/status -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $SHIFT_COMMISSIONING_OIDC" https://api.shiftsometimber.co.uk/v1/commissioning/structured-content/status || true)
+            if [ "$code" != "404" ]; then
+              echo "publication route ready: HTTP $code"
+              cat /tmp/status
+              exit 0
+            fi
+            echo "publication route still on legacy graph (404), attempt $i/24"
+            sleep 10
+          done
+          echo 'Current Worker publication route never reached live traffic.'
+          cat /tmp/status || true
+          exit 1
+      - name: Publish exact final authority and prove authenticated serving
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+          GRUB_PUBLISHABLE_FILE: grub-publication-evidence/grub-v1-publishable.json
+          FIT_PUBLISHABLE_FILE: fit-publication-evidence/fit-v1-publishable.json
+          FINAL_V1_PRODUCTION_EVIDENCE_DIR: final-v1-production-evidence
+        run: node final-v1-production-publish.mjs
+      - name: Retain final publication evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-v1-production-publication-evidence
+          path: |
+            grub-publication-evidence
+            fit-publication-evidence
+            final-v1-production-evidence
+          if-no-files-found: warn
+          retention-days: 30
