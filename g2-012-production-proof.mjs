@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 
 const URL='https://shiftsometimber.co.uk/member-product-v33d.js?v=33h&g2_012_proof=1';
-const EXPECTED_UPSTREAM='2d50a7ab38e586b317faa9a4fac7b7319dfe983f3f19dd974f76cab862406a33';
+const CANONICAL_PATH='frontend/member/member-product-v33d.js';
+const EXPECTED_AUTHORITY='git:frontend/member/member-product-v33d.js';
 const OLD_STONE="const st=Math.floor(pounds/14),lb=Math.round(pounds-st*14); return `${st} st ${lb} lb`;";
 const NEW_STONE="const rounded=Math.round(pounds),st=Math.floor(rounded/14),lb=rounded%14; return `${st} st ${lb} lb`;";
 const OLD_WAIST="${x.waist_cm?` · ${esc(Number(x.waist_cm).toFixed(1)+' cm')} waist`:''}";
@@ -10,14 +11,15 @@ const NEW_WAIST="${x.waist_cm?` · ${esc((localStorage.getItem('shiftWaistUnit')
 
 const fail=(m)=>{throw new Error(m)};
 const count=(s,n)=>s.split(n).length-1;
+const canonical=fs.readFileSync(CANONICAL_PATH,'utf8');
+const canonicalSha256=crypto.createHash('sha256').update(canonical).digest('hex');
 const response=await fetch(URL,{headers:{Accept:'application/javascript','Cache-Control':'no-cache'}});
 if(!response.ok)fail(`live member client HTTP ${response.status}`);
 const source=await response.text();
 const sha256=crypto.createHash('sha256').update(source).digest('hex');
 const authority=response.headers.get('x-shift-frontend-authority');
-const upstream=response.headers.get('x-shift-upstream-sha256');
-if(authority!=='pages-fingerprint+g2-012-patch')fail(`unexpected frontend authority ${authority}`);
-if(upstream!==EXPECTED_UPSTREAM)fail(`unexpected upstream fingerprint ${upstream}`);
+if(authority!==EXPECTED_AUTHORITY)fail(`unexpected frontend authority ${authority}`);
+if(sha256!==canonicalSha256)fail(`live Git-authoritative member product drift ${sha256} != ${canonicalSha256}`);
 if(count(source,NEW_STONE)!==1||count(source,OLD_STONE)!==0)fail('live source does not contain exactly the repaired stone/lb algorithm');
 if(count(source,NEW_WAIST)!==1||count(source,OLD_WAIST)!==0)fail('live source does not contain exactly the repaired waist-unit history algorithm');
 
@@ -41,13 +43,14 @@ const waistCases=[
 for(const t of waistCases){const actual=waistHistory(t.cm,t.unit);if(actual!==t.expected)fail(`waist history ${JSON.stringify(t)} => ${actual}`)}
 
 const evidence={
-  proof:'G2_012_DEPLOYED_PROGRESS_UNITS_V1',
+  proof:'G2_012_DEPLOYED_PROGRESS_UNITS_V2_GIT_AUTHORITY',
   url:URL,
   capturedAt:new Date().toISOString(),
   status:response.status,
   authority,
-  upstreamSha256:upstream,
-  livePatchedSha256:sha256,
+  canonicalPath:CANONICAL_PATH,
+  canonicalSha256,
+  liveSha256:sha256,
   bytes:Buffer.byteLength(source),
   oldStoneOccurrences:count(source,OLD_STONE),
   newStoneOccurrences:count(source,NEW_STONE),
@@ -60,4 +63,4 @@ fs.mkdirSync('g2-012-production-evidence',{recursive:true});
 fs.writeFileSync('g2-012-production-evidence/report.json',JSON.stringify(evidence,null,2));
 fs.writeFileSync('g2-012-production-evidence/live-member-product.js',source);
 console.log(JSON.stringify(evidence,null,2));
-console.log('PASS G2-012 exact deployed Progress unit semantics.');
+console.log('PASS G2-012 exact deployed Progress unit semantics from Git-authoritative member source.');
