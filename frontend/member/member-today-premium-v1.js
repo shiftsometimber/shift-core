@@ -4,7 +4,7 @@
   'use strict';
   if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
   const q=s=>document.querySelector(s);
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const PANEL_TARGET={hydration:'water',grub:'grub',fit:'fit',progress:'visualise'};
   let rendering=false,timer=null,lastToday=null;
 
