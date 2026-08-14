@@ -4,9 +4,15 @@ import {memberProductV6Routes} from './member-product-v6.js';
 import {memberProductV5Routes} from './member-product-v5.js';
 import {assessMemberOutput} from './member-quality-v1.js';
 import {ensureFitDurationUtilisation} from './fit-duration-v1.js';
+import {recordProductEvent} from './product-analytics-v1.js';
 
 export async function memberProductV8Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+  if(path==='/v1/grub/plan'&&request.method==='POST'){
+    const response=await memberProductV7Routes(request,env,ctx);
+    if(response?.ok)await recordPlanAnalytics(request,env,ctx,'grub_plan_generated','grub');
+    return response;
+  }
   if(path!=='/v1/fit/plan'||request.method!=='POST')return memberProductV7Routes(request,env,ctx);
 
   const body=await readClone(request);
@@ -16,7 +22,7 @@ export async function memberProductV8Routes(request,env,ctx){
     const repetition=Array.isArray(failure?.quality?.issues)&&failure.quality.issues.some(x=>x?.code==='fit_repetition');
     if(failure?.error==='quality_gate_failed'&&repetition){
       const repaired=await repairRepeatedComposition(request,env,ctx,body,response.headers);
-      if(repaired)return repaired;
+      if(repaired){if(repaired.ok)await recordPlanAnalytics(request,env,ctx,'fit_plan_generated','fit');return repaired;}
     }
     return response;
   }
@@ -34,9 +40,16 @@ export async function memberProductV8Routes(request,env,ctx){
     if(auth.response)return auth.response;
     await replaceLatestPlan(env.DB,auth.user.id,payload.plan);
   }
+  await recordPlanAnalytics(request,env,ctx,'fit_plan_generated','fit');
   return new Response(JSON.stringify(payload),{status:response.status,headers:response.headers});
 }
 
+async function recordPlanAnalytics(request,env,ctx,eventName,surface){
+  try{
+    const auth=await authenticate(request,env,ctx);if(auth.response)return;
+    await recordProductEvent(env,{userId:Number(auth.user.id),eventName,surface,source:'server',properties:{retainedPlan:true,composer:'v8'}});
+  }catch(e){console.warn(`analytics_${surface}_plan_failed`,e?.message)}
+}
 async function repairRepeatedComposition(request,env,ctx,body,headers){
   const base=await memberProductV6Routes(rebuild(request,request.url,body),env,ctx,{deferQuality:true});
   if(!base?.ok)return null;
