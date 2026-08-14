@@ -10,7 +10,15 @@
     {"pattern":"shiftsometimber.co.uk/api-adapter-v33d.js*","zone_name":"shiftsometimber.co.uk"},
     {"pattern":"www.shiftsometimber.co.uk/api-adapter-v33d.js*","zone_name":"shiftsometimber.co.uk"},
     {"pattern":"shiftsometimber.co.uk/member-product-v33d.js*","zone_name":"shiftsometimber.co.uk"},
-    {"pattern":"www.shiftsometimber.co.uk/member-product-v33d.js*","zone_name":"shiftsometimber.co.uk"}
+    {"pattern":"www.shiftsometimber.co.uk/member-product-v33d.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"shiftsometimber.co.uk/member-shell-v33g.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"www.shiftsometimber.co.uk/member-shell-v33g.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"shiftsometimber.co.uk/shift-me-api-v1.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"www.shiftsometimber.co.uk/shift-me-api-v1.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"shiftsometimber.co.uk/member-shift-me-premium-v1.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"www.shiftsometimber.co.uk/member-shift-me-premium-v1.js*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"shiftsometimber.co.uk/member-shift-me-premium-v1.css*","zone_name":"shiftsometimber.co.uk"},
+    {"pattern":"www.shiftsometimber.co.uk/member-shift-me-premium-v1.css*","zone_name":"shiftsometimber.co.uk"}
   ],
   "assets":{"directory":"./frontend/member","binding":"MEMBER_ASSETS","run_worker_first":true},
   "triggers":{"crons":["0 * * * *"]},

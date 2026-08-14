@@ -8,102 +8,37 @@
   "preview_urls": false,
 
   "routes": [
-    {
-      "pattern": "api.shiftsometimber.co.uk",
-      "custom_domain": true
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/api-adapter-v33d.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/api-adapter-v33d.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-product-v33d.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-product-v33d.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-shell-v33g.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-shell-v33g.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-progress-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-progress-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-progress-picture-premium-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-progress-picture-premium-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-plans-premium-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-plans-premium-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-plans-premium-v1.css*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-plans-premium-v1.css*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-today-premium-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.js*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-today-premium-v1.css*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.css*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "shiftsometimber.co.uk/member-p0-v1.css*",
-      "zone_name": "shiftsometimber.co.uk"
-    },
-    {
-      "pattern": "www.shiftsometimber.co.uk/member-p0-v1.css*",
-      "zone_name": "shiftsometimber.co.uk"
-    }
+    {"pattern": "api.shiftsometimber.co.uk","custom_domain": true},
+    {"pattern": "shiftsometimber.co.uk/api-adapter-v33d.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/api-adapter-v33d.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-product-v33d.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-product-v33d.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-shell-v33g.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-shell-v33g.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-progress-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-progress-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-progress-picture-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-progress-picture-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-plans-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-plans-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-plans-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-plans-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-today-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-today-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/shift-me-api-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/shift-me-api-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-shift-me-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-shift-me-premium-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-shift-me-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-shift-me-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"}
   ],
 
-  "assets": {
-    "directory": "./frontend/member",
-    "binding": "MEMBER_ASSETS",
-    "run_worker_first": true
-  },
-
-  "triggers": {
-    "crons": ["0 * * * *"]
-  },
-
+  "assets": {"directory": "./frontend/member","binding": "MEMBER_ASSETS","run_worker_first": true},
+  "triggers": {"crons": ["0 * * * *"]},
   "vars": {
     "AUTO_VERIFY_EMAIL": "false",
     "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com,https://hq.shiftsometimber.co.uk",
@@ -111,29 +46,8 @@
     "PUBLIC_SITE_URL": "https://shiftsometimber.co.uk",
     "AUTH_EMAIL_FROM": "welcome@shiftsometimber.co.uk"
   },
-
-  "ai": {
-    "binding": "AI"
-  },
-
-  "send_email": [
-    {
-      "name": "EMAIL"
-    }
-  ],
-
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "shift-core-db",
-      "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"
-    }
-  ],
-
-  "observability": {
-    "enabled": true,
-    "logs": {
-      "enabled": true
-    }
-  }
+  "ai": {"binding": "AI"},
+  "send_email": [{"name": "EMAIL"}],
+  "d1_databases": [{"binding": "DB","database_name": "shift-core-db","database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"}],
+  "observability": {"enabled": true,"logs": {"enabled": true}}
 }
