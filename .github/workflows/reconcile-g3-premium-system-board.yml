@@ -22,6 +22,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Correct burn-down-only deletion scope
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('reconcile-g3-premium-system-board.mjs')
+          s=p.read_text()
+          old="for(const id of Object.keys(rows))replaceRe('matrix',new RegExp(`^\\\\| ${id.replace('-','\\\\-')} \\\\|[^\\\\n]*\\\\|\\\\n`,'m'),' ',`${id} amber classification`);"
+          new="const marker='## 11-AMBER burn-down classification'; const cut=data.matrix.indexOf(marker); if(cut<0)throw new Error('burn-down marker missing'); let head=data.matrix.slice(0,cut),tail=data.matrix.slice(cut); for(const id of Object.keys(rows)){const re=new RegExp(`^\\\\| ${id.replace('-','\\\\-')} \\\\|[^\\\\n]*\\\\|\\\\n`,'m'); if(!re.test(tail))throw new Error(`missing ${id} amber classification`); tail=tail.replace(re,'');} data.matrix=head+tail;"
+          if old not in s:
+              raise SystemExit('target line not found')
+          p.write_text(s.replace(old,new))
+          PY
       - name: Reconcile six earned Gate 3 rows
         run: node reconcile-g3-premium-system-board.mjs
       - name: Prove exact 57-row crosswalk
