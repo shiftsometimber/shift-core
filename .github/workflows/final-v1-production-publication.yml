@@ -10,7 +10,7 @@ on:
         required: true
         type: string
 permissions:
-  contents: read
+  contents: write
   id-token: write
 concurrency:
   group: final-v1-production-publication
@@ -25,16 +25,29 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       SHIFT_API_BASE: https://api.shiftsometimber.co.uk
       SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+      FINAL_V1_SOURCE_SHA: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ env.FINAL_V1_SOURCE_SHA }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
       - name: Fail closed when production deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Refuse stale source before any production publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          current=$(git rev-parse origin/main)
+          echo "Promoted source: $FINAL_V1_SOURCE_SHA"
+          echo "Current main: $current"
+          test "$current" = "$FINAL_V1_SOURCE_SHA" || { echo 'main moved after Worker promotion; promote current main before publishing accepted content'; exit 1; }
+      - name: Regression-protect final A=0 reconciliation before production mutation
+        run: node final-v1-gate2-reconciliation-source-gate.mjs
       - name: Validate exact final human acceptance
         run: node final-v1-human-acceptance-gate.mjs
       - name: Validate accepted Fit visual public-serving source
@@ -81,3 +94,32 @@ jobs:
             final-v1-production-publication-evidence/
             final-v1-production-serving-evidence/
           retention-days: 90
+      - name: Refuse to reconcile stale production evidence onto a newer main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          current=$(git rev-parse origin/main)
+          echo "Promoted/proven source: $FINAL_V1_SOURCE_SHA"
+          echo "Current main: $current"
+          test "$current" = "$FINAL_V1_SOURCE_SHA" || { echo 'main moved during production proof; rerun promotion/publication on current main before reconciliation'; exit 1; }
+      - name: Atomically reconcile final four Gate-2 originals to A=0
+        env:
+          FINAL_V1_SERVING_REPORT: final-v1-production-serving-evidence/final-v1-production-serving.json
+          FINAL_V1_PUBLICATION_SUMMARY: final-v1-production-publication-evidence/final-v1-production-publication-summary.json
+          FINAL_V1_FIT_ASSET_REPORT: final-v1-production-serving-evidence/fit-premium-assets/fit-v1-26-premium-assets-production.json
+        run: |
+          node reconcile-final-v1-gate2-board.mjs
+          node reconcile-final-v1-recovery-pointers.mjs
+          node finish-line-gate.mjs
+      - name: Commit exact production evidence and A=0 source of truth
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout -B main "$FINAL_V1_SOURCE_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md docs/COMMISSIONING-EVIDENCE.md docs/LAUNCH-FINISH-LINE.md docs/V1-RELEASE-BLOCKER-BOARD-V2.md docs/V1-RELEASE-BLOCKER-COUNTS.txt docs/evidence/2026-08-14-final-v1-gate2-production-pass.md docs/ACTIVE-RECOVERY.md docs/MATT-FINAL-ACCEPTANCE-PACK.md
+          git diff --cached --quiet && { echo 'Final Gate-2 source of truth already reconciled'; exit 0; }
+          git commit -m 'Commissioning: close final Gate 2 rows from production accepted-authority proof'
+          git push origin HEAD:main
