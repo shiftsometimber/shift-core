@@ -55,9 +55,17 @@ Desktop and 390px both passed the automated geometry/quality floor:
 
 The retained job emitted: `PASS G2-014 Progress Picture premium UI: live Git-authoritative premium assets render the real save/return outcome with homepage-grade forest/cream hierarchy, large photo treatment, deliberate controls and mobile touch targets at desktop and 390px with zero root overflow.`
 
-## Regression discipline
+## Same-SHA persistence regression
 
-G2-013 persistence/reliability remains independently commissioned and is not inferred from this presentation result. The premium change explicitly triggers the G2-013 production lifecycle suite as a separate regression gate; G2-014 does not weaken or replace the private persistence/isolation/deletion boundary.
+G2-013 persistence/reliability remains independently commissioned rather than inferred from presentation. The premium main SHA triggered the full G2-013 production lifecycle again and that separate run completed GREEN:
+
+- G2-013 regression run: `31769074080`
+- job: `94670992655`
+- same main SHA: `6fdaa6f98413ba5f52004bacebe64d504caba7d6`
+- artifact: `9207479805`
+- digest: `sha256:5e0e627e1e352c2407f1093691edac04f948a8322ba95f0f8e02a5566746cbc7`
+
+That means the premium presentation passed without trading away the separately commissioned private upload/retention/isolation/delete lifecycle.
 
 ## Scope discipline
 
