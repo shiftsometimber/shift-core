@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 
 const SITE = (process.env.SHIFT_SITE_BASE || 'https://shiftsometimber.co.uk').replace(/\/$/, '');
 const API = (process.env.SHIFT_API_BASE || 'https://api.shiftsometimber.co.uk').replace(/\/$/, '');
@@ -13,7 +13,8 @@ fs.mkdirSync(OUT, { recursive: true });
 
 const password = `Sst-${randomUUID()}-Aa1!`;
 const report = {
-  proof: 'G3_008_AUTHENTICATED_ACCESSIBILITY_PRODUCTION_V3_AUTHORITATIVE_CSS',
+  proof: 'G3_008_AUTHENTICATED_ACCESSIBILITY_PRODUCTION_V4_LIVE_CSS_PRECEDENCE',
+  liveCss: null,
   cases: [],
   failures: [],
 };
@@ -24,6 +25,32 @@ const fail = (name, detail) => {
   console.error(`::error title=G3-008 accessibility::${name} — ${detail}`);
 };
 const write = () => fs.writeFileSync(path.join(OUT, 'report.json'), JSON.stringify(report, null, 2));
+
+async function captureLiveCssIdentity() {
+  try {
+    const response = await fetch(`${SITE}/member-p0-v1.css?commissioning=${Date.now()}`, {
+      headers: { 'Cache-Control': 'no-cache' },
+    });
+    const text = await response.text();
+    report.liveCss = {
+      url: `${SITE}/member-p0-v1.css`,
+      status: response.status,
+      sha256: createHash('sha256').update(text).digest('hex'),
+      bytes: Buffer.byteLength(text),
+      expectedPrimaryRepair: /#53624d/i.test(text) && /mp-btn/i.test(text),
+      expectedBoundaryRepair: /#6f7869/i.test(text) && /member-form/i.test(text),
+      preview: text.slice(0, 1800),
+    };
+    fs.writeFileSync(path.join(OUT, 'live-member-p0-v1.css'), text);
+    if (!response.ok) fail('live-css-http', `${response.status}`);
+    if (!report.liveCss.expectedPrimaryRepair) fail('live-css-primary-identity', 'expected #53624d primary repair not present in live member-p0-v1.css');
+    if (!report.liveCss.expectedBoundaryRepair) fail('live-css-boundary-identity', 'expected #6f7869 boundary repair not present in live member-p0-v1.css');
+  } catch (error) {
+    report.liveCss = { error: clean(error?.message || error).slice(0, 1000) };
+    fail('live-css-capture', report.liveCss.error);
+  }
+  write();
+}
 
 async function register(email) {
   const response = await fetch(`${API}/v1/auth/register`, {
@@ -122,7 +149,15 @@ function auditFn() {
     };
     const rgba = (value) => {
       const match = String(value).match(/rgba?\((\d+(?:\.\d+)?)[, ]+\s*(\d+(?:\.\d+)?)[, ]+\s*(\d+(?:\.\d+)?)(?:[, /]+\s*(\d+(?:\.\d+)?))?\)/i);
-      return match ? [+match[1], +match[2], +match[3], match[4] === undefined ? 1 : +match[4]] : null;
+      if (match) return [+match[1], +match[2], +match[3], match[4] === undefined ? 1 : +match[4]];
+      const hex = String(value).match(/#([0-9a-f]{6}|[0-9a-f]{3})(?![0-9a-f])/i);
+      if (!hex) return null;
+      const raw = hex[1].length === 3 ? hex[1].split('').map((x) => x + x).join('') : hex[1];
+      return [parseInt(raw.slice(0, 2), 16), parseInt(raw.slice(2, 4), 16), parseInt(raw.slice(4, 6), 16), 1];
+    };
+    const coloursIn = (value) => {
+      const tokens = String(value).match(/rgba?\([^)]*\)|#[0-9a-f]{3,8}/gi) || [];
+      return tokens.map(rgba).filter(Boolean).filter((colour) => colour[3] > 0.05);
     };
     const luminance = (colour) => {
       const channels = colour.slice(0, 3).map((value) => {
@@ -140,11 +175,43 @@ function auditFn() {
       let current = element;
       while (current) {
         const style = getComputedStyle(current);
-        const colour = rgba(style.backgroundColor);
-        if (colour && colour[3] > 0.05) return colour;
+        const solid = rgba(style.backgroundColor);
+        if (solid && solid[3] > 0.05) {
+          return { kind: 'solid', value: style.backgroundColor, colours: [solid], at: current.className || current.tagName };
+        }
+        if (style.backgroundImage && style.backgroundImage !== 'none') {
+          const colours = coloursIn(style.backgroundImage);
+          if (colours.length) return { kind: 'image-or-gradient', value: style.backgroundImage, colours, at: current.className || current.tagName };
+        }
         current = current.parentElement;
       }
-      return [255, 255, 255, 1];
+      return { kind: 'fallback-white', value: 'rgb(255,255,255)', colours: [[255, 255, 255, 1]], at: 'document' };
+    };
+    const matchingSources = (element, property) => {
+      const found = [];
+      const visit = (rules, href) => {
+        if (!rules) return;
+        for (const rule of rules) {
+          if (rule.cssRules) {
+            visit(rule.cssRules, href);
+            continue;
+          }
+          const selector = rule.selectorText;
+          if (!selector || !rule.style) continue;
+          let matches = false;
+          try { matches = element.matches(selector); } catch {}
+          if (!matches) continue;
+          const value = rule.style.getPropertyValue(property);
+          if (!value) continue;
+          found.push({ href: href || 'inline-style-sheet', selector, value, important: rule.style.getPropertyPriority(property) || '' });
+          if (found.length >= 12) return;
+        }
+      };
+      for (const sheet of document.styleSheets) {
+        try { visit(sheet.cssRules, sheet.href); } catch {}
+        if (found.length >= 12) break;
+      }
+      return found.slice(-12);
     };
 
     const text = [];
@@ -153,15 +220,19 @@ function auditFn() {
       const style = getComputedStyle(element);
       const foreground = rgba(style.color);
       if (!foreground) continue;
-      const ratio = contrast(foreground, background(element));
+      const bg = background(element);
+      const ratios = bg.colours.map((colour) => contrast(foreground, colour));
+      const ratio = Math.min(...ratios);
       text.push({
         tag: element.tagName,
         cls: String(element.className || ''),
         text: String(element.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 90),
         fg: style.color,
-        bg: style.backgroundColor,
+        bg,
         ratio: +ratio.toFixed(2),
         pass: ratio >= 4.5,
+        colorSources: matchingSources(element, 'color'),
+        backgroundSources: matchingSources(element, 'background-color'),
       });
     }
 
@@ -171,19 +242,24 @@ function auditFn() {
       const style = getComputedStyle(element);
       const border = rgba(style.borderTopColor);
       if (!border) continue;
-      const ratio = contrast(border, background(element.parentElement || element));
+      const bg = background(element.parentElement || element);
+      const ratios = bg.colours.map((colour) => contrast(border, colour));
+      const ratio = Math.min(...ratios);
       controls.push({
         tag: element.tagName,
         cls: String(element.className || ''),
         border: style.borderTopColor,
+        bg,
         ratio: +ratio.toFixed(2),
         pass: ratio >= 3,
+        borderSources: matchingSources(element, 'border-color'),
       });
     }
 
     return {
       text,
       controls,
+      linkedP0: [...document.querySelectorAll('link[rel="stylesheet"]')].map((link) => link.href).filter((href) => href.includes('member-p0-v1.css')),
       rootOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       main: document.querySelectorAll('main,[role="main"]').length,
       h1: document.querySelectorAll('h1').length,
@@ -231,6 +307,7 @@ async function surfaceAudit(page, row, surface) {
   });
 }
 
+await captureLiveCssIdentity();
 const browser = await chromium.launch({ headless: true });
 try {
   for (const [id, viewport] of Object.entries({
