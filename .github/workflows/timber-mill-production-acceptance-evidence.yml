@@ -1,0 +1,108 @@
+name: Timber Mill production acceptance evidence
+
+on:
+  push:
+    branches:
+      - evidence/timber-mill-production-acceptance-20260814
+    paths:
+      - .github/workflows/timber-mill-production-acceptance-evidence.yml
+
+permissions:
+  contents: read
+
+jobs:
+  production-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Capture live Timber Mill acceptance
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { chromium } from 'playwright';
+
+          const base='https://shiftsometimber.co.uk';
+          const out='timber-mill-production-evidence';
+          fs.mkdirSync(out,{recursive:true});
+          const report={proof:'TIMBER_MILL_PRODUCTION_ACCEPTANCE_V1',base,sourceCommit:process.env.GITHUB_SHA,checks:{},cases:[],failures:[]};
+          const fail=(name,detail)=>report.failures.push({name,detail:String(detail).slice(0,1000)});
+
+          const sourceHtml=fs.readFileSync('public-site/timber-mill.html','utf8');
+          const sourceCss=fs.readFileSync('public-site/timber-mill-final.css','utf8');
+          const markers=['tm-premium-v2','Kit for getting on with it.','01 · SHIFT ESSENTIALS','02 · GUTS GONE','SEE IT ON MY SHIFT ME','No pretend inventory'];
+          for(const marker of markers) if(!sourceHtml.includes(marker)) fail('source-marker-missing',marker);
+          if(!sourceCss.includes('premium-lineup.jpg')) fail('source-lineup-marker-missing','premium-lineup.jpg');
+
+          const htmlRes=await fetch(`${base}/timber-mill.html`,{redirect:'follow'});
+          const html=await htmlRes.text();
+          report.checks.html={status:htmlRes.status,contentType:htmlRes.headers.get('content-type'),markers:Object.fromEntries(markers.map(m=>[m,html.includes(m)]))};
+          if(htmlRes.status!==200) fail('live-html-status',htmlRes.status);
+          for(const marker of markers) if(!html.includes(marker)) fail('live-html-marker-missing',marker);
+
+          const cssRes=await fetch(`${base}/timber-mill-final.css?v=final-2`,{redirect:'follow'});
+          const css=await cssRes.text();
+          report.checks.css={status:cssRes.status,contentType:cssRes.headers.get('content-type'),premiumLineup:css.includes('premium-lineup.jpg')};
+          if(cssRes.status!==200||!String(cssRes.headers.get('content-type')||'').includes('text/css')) fail('live-css',`${cssRes.status} ${cssRes.headers.get('content-type')}`);
+          if(!css.includes('premium-lineup.jpg')) fail('live-css-lineup-marker','premium-lineup.jpg absent');
+
+          const imgRes=await fetch(`${base}/assets/timber-mill/premium-lineup.jpg`,{redirect:'follow'});
+          const img=Buffer.from(await imgRes.arrayBuffer());
+          report.checks.lineup={status:imgRes.status,contentType:imgRes.headers.get('content-type'),bytes:img.length};
+          if(imgRes.status!==200||!String(imgRes.headers.get('content-type')||'').startsWith('image/')||img.length<20000) fail('live-lineup-image',JSON.stringify(report.checks.lineup));
+
+          const browser=await chromium.launch({headless:true});
+          for(const c of [{id:'desktop',width:1440,height:900},{id:'mobile390',width:390,height:844}]){
+            const context=await browser.newContext({viewport:{width:c.width,height:c.height}});
+            const page=await context.newPage();
+            const consoleErrors=[]; const pageErrors=[];
+            page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
+            page.on('pageerror',e=>pageErrors.push(String(e)));
+            const response=await page.goto(`${base}/timber-mill.html`,{waitUntil:'networkidle',timeout:60000});
+            const rendered=await page.evaluate(()=>{
+              const lineup=document.querySelector('.tmv2-lineup');
+              const cards=[...document.querySelectorAll('.tmv2-product')];
+              const h1=document.querySelector('h1');
+              return {
+                title:document.title,
+                h1:h1?.textContent?.trim()||'',
+                rootOverflow:Math.max(0,document.documentElement.scrollWidth-document.documentElement.clientWidth),
+                main:document.querySelectorAll('main').length,
+                productCards:cards.length,
+                lineupBackground:lineup?getComputedStyle(lineup).backgroundImage:'',
+                comingSoon:/COMING SOON/i.test(document.body.innerText),
+                noFakeCheckout:/no fake checkout/i.test(document.body.innerText)
+              };
+            });
+            await page.screenshot({path:`${out}/${c.id}.png`,fullPage:true});
+            const row={...c,status:response?.status()||0,consoleErrors,pageErrors,rendered};
+            report.cases.push(row);
+            if(row.status!==200) fail(`${c.id}-status`,row.status);
+            if(rendered.h1!=='Kit for getting on with it.') fail(`${c.id}-h1`,rendered.h1);
+            if(rendered.productCards<5) fail(`${c.id}-product-cards`,rendered.productCards);
+            if(!rendered.lineupBackground.includes('premium-lineup.jpg')) fail(`${c.id}-lineup-background`,rendered.lineupBackground);
+            if(rendered.rootOverflow!==0) fail(`${c.id}-overflow`,rendered.rootOverflow);
+            if(pageErrors.length) fail(`${c.id}-page-errors`,JSON.stringify(pageErrors));
+            if(consoleErrors.length) fail(`${c.id}-console-errors`,JSON.stringify(consoleErrors));
+            await context.close();
+          }
+          await browser.close();
+          report.status=report.failures.length?'RED':'PASS';
+          fs.writeFileSync(`${out}/report.json`,JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          if(report.failures.length) process.exit(1);
+          NODE
+      - name: Retain production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: timber-mill-production-acceptance-evidence
+          path: timber-mill-production-evidence
+          retention-days: 30
