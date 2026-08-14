@@ -8,9 +8,9 @@ need(/WRITE_ROLES=new Set\(\['owner','admin','marketing','content'\]\)/.test(mod
 need(/editorial_review_required/.test(module),'publish cannot be blocked before retained approval');
 need(/reviewer_name/.test(module)&&/reviewer_email/.test(module)&&/reviewed_at/.test(module),'named reviewer provenance missing');
 need(/changes_requested/.test(module)&&/approved/.test(module),'review decisions missing');
-need(/publishMatch=p\.match\(\/\^\\\/v1\\\/hq\\\/articles\\\/(\\d\+\)\\\/publish\$\//.test(module),'explicit reviewed publish action missing');
+need(module.includes("const publishMatch=p.match(/^\\/v1\\/hq\\/articles\\/(\\d+)\\/publish$/)"),'explicit reviewed publish action missing');
 need(/status:'published'/.test(module)&&/review:approval\.row/.test(module),'explicit publish does not return retained review provenance');
-need(staging.includes(`/publish`)&&staging.includes('explicit_publish_blocked_without_review')&&staging.includes('explicit_publish'),'staging journey does not exercise the same explicit publish action as HQ');
+need(staging.includes('/publish')&&staging.includes('explicit_publish_blocked_without_review')&&staging.includes('explicit_publish'),'staging journey does not exercise the same explicit publish action as HQ');
 need(/import \{knowledgeEditorialRoutes\} from '\.\/knowledge-editorial-v1\.js'/.test(entry),'editorial route not imported by production entry');
 need(entry.indexOf('knowledgeEditorialRoutes(request,env,ctx)')<entry.indexOf('memberCommissioningRoute(request,env,ctx)'),'editorial route does not intercept legacy HQ article route before fallback');
 if(fail.length){console.error(JSON.stringify({proof:'G3-006_EDITORIAL_SOURCE',fail},null,2));process.exit(1)}
