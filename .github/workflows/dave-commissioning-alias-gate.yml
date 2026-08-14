@@ -1,0 +1,17 @@
+name: Dave Commissioning Alias Gate
+on:
+  pull_request:
+    paths:
+      - 'finish-authenticated-production.mjs'
+      - 'tests/dave-commissioning-alias-source-gate.mjs'
+      - '.github/workflows/dave-commissioning-alias-gate.yml'
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node tests/dave-commissioning-alias-source-gate.mjs
