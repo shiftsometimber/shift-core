@@ -4,7 +4,7 @@ const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replac
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
-const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+g4008-${Date.now()}@gmail.com`;
+const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-g3008-${Date.now()}-g4008@gmail.com`;
 const api=async(page,p,o={})=>page.evaluate(async({api,p,o})=>{const r=await fetch(api+p,{credentials:'include',...o,headers:{Accept:'application/json','Content-Type':'application/json',...(o.headers||{})}});let body={};try{body=await r.json()}catch{}return{ok:r.ok,status:r.status,body}}, {api:API,p,o});
 const reg=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'ProactiveProof',source:'commissioning-g4-008'})});
 if(reg.status!==201)throw new Error(`register ${reg.status} ${await reg.text()}`);
