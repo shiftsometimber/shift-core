@@ -1,5 +1,9 @@
 name: Reconcile Gate 3 Premium System
 on:
+  pull_request:
+    paths:
+      - 'reconcile-g3-premium-system-board.mjs'
+      - '.github/workflows/reconcile-g3-premium-system-board.yml'
   push:
     branches: ['main']
     paths:
@@ -14,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'main' }}
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
@@ -23,6 +27,7 @@ jobs:
       - name: Prove exact 57-row crosswalk
         run: node finish-line-gate.mjs
       - name: Commit authoritative matrix, ledger and evidence
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
