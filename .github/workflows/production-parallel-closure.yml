@@ -1,0 +1,194 @@
+name: Shift Production Parallel Closure
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Trigger genuine regulator scan
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+        run: node radar-production-trigger.mjs
+      - name: Prove Radar freshness
+        if: always()
+        run: node radar-production-freshness.mjs
+
+  retained-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Authenticated isolation and retained state
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-authenticated-production.mjs
+
+  longitudinal-products:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Grub/Fit learning and return state
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-longitudinal-products-production.mjs
+
+  progress-shift-ai:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Progress Picture and Shift AI closure
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-b03-final3-production.mjs
+
+  structured-serving:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Structured Grub/Fit production serving
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node structured-runtime-production.mjs
+
+  fit-duration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Fit duration production matrix
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node fit-duration-production.mjs
+
+  dave:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Fresh unattended Dave release gate
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node dave-release-gate-production.mjs
+      - name: Upload Dave evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parallel-dave-release-evidence
+          path: dave-release-gate-evidence
+          if-no-files-found: warn
+          retention-days: 30
+
+  auth-p95:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Aggregate natural production auth p95
+        env:
+          G5_012_EVIDENCE_DIR: g5-012-auth-p95-evidence
+        run: node g5-012-natural-auth-p95.mjs
+      - name: Upload p95 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parallel-g5-012-auth-p95-evidence
+          path: g5-012-auth-p95-evidence
+          if-no-files-found: warn
+          retention-days: 30
