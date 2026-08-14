@@ -1,59 +1,20 @@
-/* Shift V1 P0 member-shell repair — authoritative source.
-   Closed Ask Timber must contribute zero layout/scroll geometry. Do not mask page overflow globally. */
-.ask-drawer{
-  width:min(430px,100vw)!important;
-  max-width:100vw!important;
-  display:none!important;
-  transform:none!important;
-  visibility:hidden!important;
-  pointer-events:none!important;
-  overflow:hidden!important;
-  contain:layout paint!important;
-}
-.ask-drawer.open{
-  display:flex!important;
-  transform:translateX(0)!important;
-  visibility:visible!important;
-  pointer-events:auto!important;
-}
-.ask-drawer .ask-head,
-.ask-drawer .ask-body,
-.ask-drawer .ask-input{
-  min-width:0!important;
-  width:100%!important;
-  max-width:100%!important;
-}
+/* Shift V1 P0 member-shell repair — authoritative source. */
+.ask-drawer{width:min(430px,100vw)!important;max-width:100vw!important;display:none!important;transform:none!important;visibility:hidden!important;pointer-events:none!important;overflow:hidden!important;contain:layout paint!important}
+.ask-drawer.open{display:flex!important;transform:translateX(0)!important;visibility:visible!important;pointer-events:auto!important}
+.ask-drawer .ask-head,.ask-drawer .ask-body,.ask-drawer .ask-input{min-width:0!important;width:100%!important;max-width:100%!important}
 .ask-drawer .ask-body{overflow-x:hidden!important;overflow-y:auto!important}
 .ask-drawer .ask-input textarea{min-width:0!important;max-width:100%!important}
+.mp-hero{overflow:hidden!important;max-width:100%!important;min-width:0!important}
 
-/* Post-deployment RC P0: the premium member hero owns a decorative ::after circle.
-   Clip that decoration locally so it cannot inflate documentElement.scrollWidth. */
-.mp-hero{
-  overflow:hidden!important;
-  max-width:100%!important;
-  min-width:0!important;
-}
+/* G3-008 bounded authenticated contrast repair using the existing forest palette. */
+.mp-btn:not(.ghost),.btn.btn-primary,button.btn-primary,.member-form button[type="submit"]{background:#53624d!important;border-color:#53624d!important;color:#fff!important}
+.eyebrow,.mp-eyebrow{color:#53624d!important}
+.member-form input,.member-form select,.member-form textarea,.mp-form input,.mp-form select,.mp-form textarea,.mp-input,.mp-select,.ask-input textarea{border-color:#6f7869!important}
+[role="switch"],.accessibility-toggle,.access-toggle,.mp-toggle{border-color:#6f7869!important}
 
-/* Mobile member navigation and product tabs are intentionally horizontally scrollable.
-   Keep their nowrap descendants inside the local scroll container rather than allowing
-   their scrollable overflow to propagate to the document root. */
-@media(max-width:1000px){
-  .member-side{
-    min-width:0!important;
-    max-width:100%!important;
-    overflow-x:auto!important;
-    overflow-y:hidden!important;
-    contain:layout paint!important;
-    overscroll-behavior-x:contain;
-  }
-}
-@media(max-width:640px){
-  .mp-tabs{
-    min-width:0!important;
-    max-width:100%!important;
-    overflow-x:auto!important;
-    overflow-y:hidden!important;
-    contain:layout paint!important;
-    overscroll-behavior-x:contain;
-  }
-}
+/* Visible keyboard focus within the same premium forest/cream design system. */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[role="button"]:focus-visible,[role="tab"]:focus-visible,[role="switch"]:focus-visible{outline:3px solid #53624d!important;outline-offset:3px!important}
+.mp-hero a:focus-visible,.mp-hero button:focus-visible,.member-side a:focus-visible,.member-side button:focus-visible{outline-color:#dce8c7!important}
+
+@media(max-width:1000px){.member-side{min-width:0!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;contain:layout paint!important;overscroll-behavior-x:contain}}
+@media(max-width:640px){.mp-tabs{min-width:0!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;contain:layout paint!important;overscroll-behavior-x:contain}}
