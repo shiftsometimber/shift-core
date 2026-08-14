@@ -1,6 +1,10 @@
 name: Cloudflare Production Promote
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cloudflare-production-promote.yml'
   workflow_dispatch:
     inputs:
       confirm:
@@ -17,7 +21,7 @@ concurrency:
 
 jobs:
   promote:
-    if: ${{ inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
+    if: ${{ github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
