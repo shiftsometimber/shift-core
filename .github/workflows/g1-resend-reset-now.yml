@@ -1,0 +1,22 @@
+name: G1 Resend Reset Now
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/g1-resend-reset-now.yml'
+permissions:
+  contents: read
+jobs:
+  resend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request fresh genuine password reset email
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/reset.json -w '%{http_code}' \
+            -H 'Origin: https://shiftsometimber.co.uk' \
+            -H 'Content-Type: application/json' \
+            -X POST 'https://api.shiftsometimber.co.uk/v1/auth/request-password-reset' \
+            --data '{"email":"shiftsometimber+realverify-31793828102-2@gmail.com"}')
+          test "$status" = '200'
+          echo 'Fresh genuine reset email requested.'
