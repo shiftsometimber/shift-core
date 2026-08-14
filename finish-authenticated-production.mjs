@@ -28,3 +28,8 @@ console.log('FINISH AUTHENTICATED PRODUCTION PASS — two real sessions isolated
 // authenticated isolation proof unchanged, then execute a fresh member's real
 // profile + personal-context onboarding, Today entry and leave/return retention.
 await import('./dave-onboarding-production.mjs');
+
+// Shift Me is now a production-critical member identity surface. Keep this
+// inside the already-authorised production commissioning workflow so the proof
+// exercises the real authenticated service rather than a parallel test path.
+await import('./shift-me-production-proof.mjs');
