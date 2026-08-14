@@ -7,7 +7,7 @@ This is the authoritative launch closure board. `docs/SHIFT-COMMISSIONING-REMEDI
 |---|---|---|
 | B01 | Production authentication + transactional email recovery | AMBER — real Welcome/reset inbox delivery is independently proven; remaining proof is the real inbox reset token -> reset -> login new password -> authenticated change-password -> logout -> login again journey. |
 | B02 | Authenticated isolation + durable longitudinal state | **PASS** — production A/B isolation and leave/return retained state. |
-| B03 | Core member V1 journeys | Behaviour **9/9 PASS and locked** and G1-008 loading/empty/success state-system acceptance is now production PASS at desktop + 390px. The full blocker row remains AMBER only for premium rendered/member-IA acceptance; do not reopen the behaviour/state foundations without genuine regression evidence. |
+| B03 | Core member V1 journeys | **PASS** — behaviour remains 9/9 locked; G1-008 proves member loading/empty/success outcomes; G1-009 proves cross-browser/mobile authenticated routing/geometry; and merged-production Gate 3 premium-system acceptance run `31779645970` now proves the representative authenticated shell, member IA, footer, forms/controls and premium presentation at desktop + 390px. Final genuine-device hostile acceptance remains part of B08 rather than reopening B03. |
 | B04 | One Shift Brain longitudinal behaviour | **PASS** — current intent precedence, durable Grub/Fit learning, cross-domain isolation, retained Progress/AI context. |
 | B05 | Public/member trust boundary | **PASS** — production trust audit crawled 80/80 public pages and proved operator identity, AI disclosure, privacy, support and qualified/current provider presentation, while guarding against implied live prescribing/pharmacy capability without qualification. |
 | B06 | HQ production operation | **PASS** — authorised HQ owner fire drill proves anonymous denial, retained owner session, GREEN -> actionable AMBER -> actionable RED -> retained incident evidence -> recovery -> GREEN. |
@@ -19,7 +19,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 ## MUST FINISH — agreed V1 requirement
 | ID | Requirement | State / exact closure |
 |---|---|---|
-| M01 | One Shift premium visual system across public + My Shift | AMBER — public rendered lane is GREEN; G1-009 proves authenticated cross-browser/mobile geometry/routing; G1-008 proves representative empty/loading/success product states; G2-001 proves premium retained Today; G2-014 proves premium Progress Picture; G2-015 proves premium retained My Plans; and G3-008 now proves the authenticated accessibility design-system floor at desktop + 390px. Remaining work is systemic premium shell/navigation/footer/forms/member IA parity against the homepage design constitution. |
+| M01 | One Shift premium visual system across public + My Shift | **PASS** — fresh unchanged merged-production Gate 3 acceptance run `31779645970` / job `94702405998` proves the homepage-grade forest/cream design constitution across the real authenticated My Shift shell and representative Today/Grub/Fit/My Plans/Progress destinations at 1440x900 + 390x844: intent-led IA, deliberate hierarchy, governed controls, contained footer, zero root overflow and zero browser errors. Artifact `9211217951`, digest `sha256:b9b00ee52a0b3e6718454c40178ddb8e1af34d0082476a0724b6fb8edf25d3eb`. |
 | M02 | Reviewed Knowledge publication lifecycle | **PASS** — publish -> canonical retrieval -> grounding/provenance -> withdrawal -> no grounding. |
 | M03 | Radar production freshness | **PASS** — genuine production MHRA/EMA scan via restricted OIDC plus GREEN freshness and adversarial stale/failure/recovery transitions are locked. |
 | M04 | Product analytics funnel | AMBER — real-flow QA acquisition/register/onboard/Today/core products/Progress/return/errors. |
@@ -40,7 +40,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification is **37 PASS / 17 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G5-012 performance release criterion**, after fresh unchanged production commissioning proved registration 350 ms p95 and login 776 ms p95 against the declared 800 ms member API budget without weakening password security or folding synthetic fixture overhead into the member measurement.
+Exactly **57** original rows remain mandatory. Current evidenced classification is **43 PASS / 11 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotions are **G3-001, G3-002, G3-003, G3-004, G3-005 and G3-007**, after fresh unchanged merged-production Gate 3 acceptance proved the homepage-grade premium system across the real authenticated member estate at desktop + 390px with responsive intent navigation, contained footer, deliberate controls/hierarchy, zero root overflow and no browser errors. G3-006 remains independently AMBER pending its governed Knowledge/HQ presentation proof.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876** and **2,876/2,876** ingredient-level CoFID nutrition-valid with zero nutrition quarantine. The V1 launch conversion is the repaired **783-recipe** cohort behind **8 regenerated immutable editorial decisions**; the decision-to-publication bridge is technically ready and fails closed on any non-PASS decision. Genuine second-person decisions still govern publication.
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-Gate 1: finish genuine verification/recovery token lifecycles and the fresh unattended Dave gate. In parallel: premium member parity, product analytics, the finite Grub decision review, 26-family Fit premium visual/domain acceptance and proactive Today orchestration. Human/device and external boundaries do not queue non-blocked work.
+Gate 1 human token lifecycles remain batched final acceptance. Gate 2 human editorial/domain decisions remain finite. Gate 3 public/member premium-system parity is now PASS; continue the independent G3-006 governed Knowledge/HQ presentation closure, then G4-008 proactive orchestration and remaining Gate 5 non-external acceptance. Human/device and external boundaries do not queue non-blocked work.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening acceptance. Homepage-level premium quality remains the estate-wide design constitution.
