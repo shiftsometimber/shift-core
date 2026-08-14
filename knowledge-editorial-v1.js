@@ -2,6 +2,9 @@ import hq from './hq-ai-v2.js';
 
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const WRITE_ROLES=new Set(['owner','admin','marketing','content']);
+const HQ_ORIGINS=new Set(['https://hq.shiftsometimber.co.uk']);
+function hqCorsHeaders(request,env){const origin=request.headers.get('Origin')||'';const allowed=new Set([...HQ_ORIGINS,...String(env.ALLOWED_ORIGINS||'').split(',').map(x=>x.trim()).filter(Boolean)]);const headers={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};if(allowed.has(origin))headers['Access-Control-Allow-Origin']=origin;return headers;}
+function withHqCors(response,request,env){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(hqCorsHeaders(request,env)))headers.set(k,v);return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 
 async function ensureReviewSchema(DB){
   await DB.exec(`CREATE TABLE IF NOT EXISTS knowledge_article_reviews (
@@ -49,32 +52,33 @@ export async function canPublishEditorialArticle(DB,slug){
 export async function knowledgeEditorialRoutes(request,env,ctx){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/',m=request.method.toUpperCase();
   if(p!=='/v1/hq/articles'&&!/^\/v1\/hq\/articles\/\d+\/(?:review|publish)$/.test(p))return null;
+  if(m==='OPTIONS')return new Response(null,{status:204,headers:hqCorsHeaders(request,env)});
   await ensureReviewSchema(env.DB);
 
   if(m==='GET'&&p==='/v1/hq/articles'){
-    const base=await hq.fetch(request,env,ctx);if(!base.ok)return base;
-    const body=await base.json();return json({...body,articles:await listEditorialArticles(env.DB,body.articles||[])});
+    const base=await hq.fetch(request,env,ctx);if(!base.ok)return withHqCors(base,request,env);
+    const body=await base.json();return withHqCors(json({...body,articles:await listEditorialArticles(env.DB,body.articles||[])}),request,env);
   }
 
-  const a=await actor(request,env,ctx);if(a.response)return a.response;
-  if(!WRITE_ROLES.has(String(a.user.role||'')))return json({ok:false,error:'forbidden'},403);
+  const a=await actor(request,env,ctx);if(a.response)return withHqCors(a.response,request,env);
+  if(!WRITE_ROLES.has(String(a.user.role||'')))return withHqCors(json({ok:false,error:'forbidden'},403),request,env);
 
   const reviewMatch=p.match(/^\/v1\/hq\/articles\/(\d+)\/review$/);
   if(m==='POST'&&reviewMatch){
     let b={};try{b=await request.json()}catch{}
     const out=await reviewEditorialArticle(env.DB,Number(reviewMatch[1]),a.user,b);
-    return json(out,out.status||200);
+    return withHqCors(json(out,out.status||200),request,env);
   }
 
   const publishMatch=p.match(/^\/v1\/hq\/articles\/(\d+)\/publish$/);
   if(m==='POST'&&publishMatch){
     const row=await env.DB.prepare(`SELECT id,title,slug,category,author,status,summary,body,seo_title,publish_at FROM knowledge_articles WHERE id=?`).bind(Number(publishMatch[1])).first();
-    if(!row)return json({ok:false,error:'article_not_found'},404);
+    if(!row)return withHqCors(json({ok:false,error:'article_not_found'},404),request,env);
     const approval=await canPublishEditorialArticle(env.DB,row.slug);
-    if(!approval.ok)return json({ok:false,error:'editorial_review_required',message:'Approve this article in Knowledge Hub before publishing it.'},409);
+    if(!approval.ok)return withHqCors(json({ok:false,error:'editorial_review_required',message:'Approve this article in Knowledge Hub before publishing it.'},409),request,env);
     const delegated=new Request(new URL('/v1/hq/articles',request.url),{method:'POST',headers:request.headers,body:JSON.stringify({title:row.title,slug:row.slug,category:row.category,author:row.author,status:'published',summary:row.summary,body:row.body,seoTitle:row.seo_title,publishAt:row.publish_at||new Date().toISOString()})});
-    const response=await hq.fetch(delegated,env,ctx);if(!response.ok)return response;
-    return json({ok:true,articleId:Number(row.id),status:'published',review:approval.row});
+    const response=await hq.fetch(delegated,env,ctx);if(!response.ok)return withHqCors(response,request,env);
+    return withHqCors(json({ok:true,articleId:Number(row.id),status:'published',review:approval.row}),request,env);
   }
 
   if(m==='POST'&&p==='/v1/hq/articles'){
@@ -82,9 +86,9 @@ export async function knowledgeEditorialRoutes(request,env,ctx){
     const status=String(b.status||'draft').toLowerCase();
     if(['published','scheduled'].includes(status)){
       const approval=await canPublishEditorialArticle(env.DB,b.slug);
-      if(!approval.ok)return json({ok:false,error:'editorial_review_required',message:'Approve this article in Knowledge Hub before publishing or scheduling it.'},409);
+      if(!approval.ok)return withHqCors(json({ok:false,error:'editorial_review_required',message:'Approve this article in Knowledge Hub before publishing or scheduling it.'},409),request,env);
     }
-    return hq.fetch(request,env,ctx);
+    return withHqCors(await hq.fetch(request,env,ctx),request,env);
   }
-  return json({ok:false,error:'not_found'},404);
+  return withHqCors(json({ok:false,error:'not_found'},404),request,env);
 }
