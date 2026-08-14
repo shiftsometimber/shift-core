@@ -175,4 +175,4 @@ This closes G1-001 and Dave `account_recovery`, moving Dave **18/20 -> 19/20 (95
 
 ## 2026-08-14 — Current Grub + Fit final review authority
 
-Corrected finite review authority is retained in `docs/evidence/2026-08-14-current-grub-fit-final-review-authority.md`. Grub: run `31799592951`, artifact `9218697749`, 806 recipes / 8 decisions. Fit: run `31799592961`, artifact `9218694338`, 26/26 technically QA-passed with zero generic state placeholders. No audit PASS promotion is inferred; genuine review and downstream publication/serving remain required.
+Corrected finite review authority is retained in `docs/evidence/2026-08-14-current-grub-fit-final-review-authority.md`. Grub: run `31803717241`, artifact `9220287723`, 798 recipes / 8 decisions. Fit: run `31802631318`, artifact `9219877222`, 26/26 technically QA-passed with zero generic state placeholders. No audit PASS promotion is inferred; genuine review and downstream publication/serving remain required.
