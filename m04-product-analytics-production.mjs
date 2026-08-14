@@ -16,6 +16,7 @@ const report={proof:'M04_REAL_PRODUCT_ANALYTICS_FUNNEL_PRODUCTION_V1',status:'RU
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
 const fail=(name,detail)=>{report.failures.push({name,detail:String(detail).slice(0,1200)});write();throw new Error(`${name}: ${detail}`)};
 const cookieOf=r=>(r.headers.get('set-cookie')||'').split(';')[0];
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
 async function call(p,{method='GET',body,cookie,oidc=false}={}){
   const headers={Origin:SITE,Accept:'application/json'};
@@ -26,6 +27,20 @@ async function call(p,{method='GET',body,cookie,oidc=false}={}){
   let data={};try{data=await r.clone().json()}catch{data={text:(await r.text()).slice(0,500)}}
   return{r,data,cookie:cookieOf(r)};
 }
+
+// A green source merge is not deployment evidence. Do not begin the member journey
+// until production itself exposes the restricted commissioning evidence route.
+// The prior fixed 35-second sleep was falsified by run 31793732771: production still
+// returned the legacy 404 after the sleep, so that run could not prove M04 either way.
+let readiness=null;
+for(let attempt=0;attempt<150;attempt++){
+  readiness=await call('/v1/commissioning/product-events?userId=1&hours=1',{oidc:true});
+  if(readiness.r.status===200||readiness.r.status===503)break;
+  if(readiness.r.status!==404&&readiness.r.status!==502)fail('analytics-route-readiness',`${readiness.r.status} ${JSON.stringify(readiness.data)}`);
+  if(attempt<149)await sleep(2000);
+}
+if(!readiness||![200,503].includes(readiness.r.status))fail('analytics-route-readiness-timeout',`${readiness?.r?.status} ${JSON.stringify(readiness?.data)}`);
+report.journey.analyticsRouteReady={status:readiness.r.status};write();
 
 const registration=await call('/v1/auth/register',{method:'POST',oidc:true,body:{email,password,firstName:'AnalyticsProof',source:'commissioning-m04'}});
 if(registration.r.status!==201||!registration.data?.user?.id||!registration.cookie)fail('registration',`${registration.r.status} ${JSON.stringify(registration.data)}`);
@@ -66,10 +81,10 @@ report.journey.retainedAfterReturn=true;write();
 
 const required=['registration_started','registration_completed','login_succeeded','onboarding_completed','today_viewed','grub_plan_generated','fit_plan_generated','progress_logged','shift_ai_message','error_presented','member_returned'];
 let evidence=null;
-for(let attempt=0;attempt<20;attempt++){
+for(let attempt=0;attempt<30;attempt++){
   evidence=await call(`/v1/commissioning/product-events?userId=${userId}&hours=1`,{oidc:true});
   if(evidence.r.ok){const names=(evidence.data?.events||[]).map(e=>e.event_name);if(required.every(n=>names.includes(n))&&names.filter(n=>n==='login_succeeded').length>=2)break}
-  await new Promise(r=>setTimeout(r,1000));
+  await sleep(1000);
 }
 if(!evidence?.r?.ok)fail('analytics-evidence-route',`${evidence?.r?.status} ${JSON.stringify(evidence?.data)}`);
 const events=evidence.data?.events||[],names=events.map(e=>e.event_name);for(const name of required)if(!names.includes(name))fail(`event-${name}`,`missing from ${JSON.stringify(names)}`);
