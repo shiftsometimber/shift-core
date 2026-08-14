@@ -8,6 +8,7 @@ import {memberProductV8Routes} from './member-product-v8.js';
 import {memberDailyV3Routes} from './member-daily-v3.js';
 import {personalRoutes} from './personal-platform-v1.js';
 import {knowledgeRoutes} from './knowledge-graph-v1.js';
+import {knowledgeEditorialRoutes} from './knowledge-editorial-v1.js';
 import {shiftBrainRoutes} from './shift-brain-v1.js';
 import {analyticsRoutes} from './product-analytics-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
@@ -64,6 +65,7 @@ export default {
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
 
+    const editorial=await knowledgeEditorialRoutes(request,env,ctx); if(editorial)return editorial;
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
     const visualise=await shiftVisualiseV2Routes(request,env,ctx); if(visualise)return withMemberCors(visualise,request);
     const brain=await shiftBrainRoutes(request,env,ctx); if(brain)return withMemberCors(brain,request);
