@@ -50,11 +50,17 @@ function beanPrimaryHasSpecificRepair(recipe){
   const beans=(recipe?.ingredients||[]).filter(row=>/^(?:baked )?beans$/.test(ingredientKey(row?.item))||ingredientKey(row?.item)==='baked beans');
   return beans.length===1&&!duplicateIngredientIssues(recipe).some(i=>/beans/i.test(i.detail));
 }
+function slowCookerTitle(recipe){return /slow[- ]?cooker/i.test(String(recipe?.title||''))}
+function delicateSlowCooker(recipe){return slowCookerTitle(recipe)&&/salmon|prawn|lentil/i.test(String(recipe?.title||''))}
 
 export function editorialSemanticIssues(recipe){
   const issues=duplicateIngredientIssues(recipe);
-  const x=identity(recipe);if(!x)return issues;
+  const x=identity(recipe);
+  if(/\bthe the filling\b/i.test(methodText(recipe)))issues.push({code:'generic_protein_placeholder',detail:'method contains unresolved generic protein placeholder'});
+  if(delicateSlowCooker(recipe))issues.push({code:'slow_cooker_delicate_protein_mismatch',detail:'salmon, prawns or already-cooked lentils are not launch-approved for the generic all-day slow-cooker method'});
+  if(!x)return issues;
   if(PROPER_STYLE_BLOCKS[x.family]?.has(x.style))issues.push({code:'style_format_mismatch',detail:`${x.style} is not commissioned for ${x.family}`});
+  if(x.family==='slow-cooker'&&x.style==='lemon-herb')issues.push({code:'slow_cooker_low_liquid_mismatch',detail:'lemon-herb slow-cooker variants have only a small citrus/dressing quantity and are not approved as all-day wet-cook recipes'});
   if((x.family==='chilli'||x.family==='slow-cooker')&&x.protein==='salmon'&&!salmonMethodHasSpecificRepair(recipe))issues.push({code:'protein_method_mismatch',detail:`salmon is not commissioned for ${x.family} without an explicit separate-cook/end-finish method`});
   if(['kebab','loaded-fries','pizza'].includes(x.family)&&x.protein==='salmon'&&['doner','nashville','katsu','tikka','salt-pepper'].includes(x.style)&&!salmonFakeawayHasSpecificRepair(recipe))issues.push({code:'fakeaway_salmon_style_mismatch',detail:`${x.style} salmon ${x.family} needs a recipe-specific salmon method rather than cross-product approval`});
   if(x.family.startsWith('breakfast')&&x.style==='bean-loaded'&&x.protein==='beans'&&!beanPrimaryHasSpecificRepair(recipe))issues.push({code:'duplicate_primary_ingredient',detail:'bean-loaded beans duplicates baked beans as both protein and flavour component'});

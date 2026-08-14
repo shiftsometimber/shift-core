@@ -5,14 +5,16 @@ const FAMILIES=[[/Proper Sandwich/i,'proper-sandwich'],[/Traybake/i,'traybake'],
 function family(title=''){for(const [re,id] of FAMILIES)if(re.test(title))return id;return null}
 function ingredient(r,re,fallback='the filling'){return r.ingredients?.find(x=>re.test(lower(x.item)))?.item||fallback}
 function hasIngredient(r,re){return (r.ingredients||[]).some(x=>re.test(lower(x.item)))}
-function protein(r){return ingredient(r,/chicken|turkey|beef|pork|salmon|tuna|ham|bacon|sausage|egg|beans|chickpea|tofu|cottage cheese|yoghurt|pudding/i)}
+function protein(r){return ingredient(r,/chicken|turkey|beef|pork|salmon|prawn|tuna|ham|bacon|sausage|egg|beans|chickpea|lentil|tofu|cottage cheese|yoghurt|pudding/i)}
+function amountNumber(row){const m=String(row?.amount||'').match(/\d+(?:\.\d+)?/);return m?Number(m[0]):0}
+function hasSubstantiveCookingLiquid(r){return (r.ingredients||[]).some(row=>{const item=lower(row.item),n=amountNumber(row);if(/stock cube/.test(item)&&/make up to\s*\d{3,}\s*ml/i.test(String(row.amount||'')))return true;if(/stock|broth|passata|chopped tomato|tomato sauce|water|coconut milk|\bmilk\b|wine/.test(item))return true;if(/juice|sauce|glaze|ketchup|relish/.test(item))return n>=80;return false})}
 function prepareAlreadyCooked(p){
   if(/^boiled eggs?$/i.test(String(p).trim()))return `Slice the ${p} and keep them chilled until assembly, or warm them gently if this dish is being served hot.`;
   return `Warm the ${p} through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.`;
 }
-function slowCooker(r){const p=protein(r),coldCream=ingredient(r,/mayonnaise|yoghurt|creme fraiche|cream cheese/i,''),hasLiquid=hasIngredient(r,/stock|broth|passata|chopped tomato|tomato sauce|water|coconut milk|milk|juice|wine|sauce/i);return[
+function slowCooker(r){const p=protein(r),coldCream=ingredient(r,/mayonnaise|yoghurt|creme fraiche|cream cheese/i,''),hasLiquid=hasSubstantiveCookingLiquid(r);return[
   `If you have five minutes, brown the ${p} in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.`,
-  hasLiquid?`Put the vegetables, measured cooking liquid and ${p} into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.`:`Put the vegetables and ${p} into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, so do not add a heavy creamy dressing at this stage.`,
+  hasLiquid?`Put the vegetables, measured cooking liquid and ${p} into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.`:`Put the vegetables and ${p} into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.`,
   hasLiquid?`Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.`:`Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.`,
   coldCream?`Check the ${p} is safely cooked, switch the cooker off, then stir through the ${coldCream} and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.`:`Check the ${p} is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.`
 ]}
@@ -42,9 +44,11 @@ function oatCrunch(r){const oats=ingredient(r,/rolled oats|porridge oats/i,'oats
   'Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.'
 ]}
 function repairMethod(r,f){
+  const p=protein(r);
   let method=f==='slow-cooker'?slowCooker(r):[...(r.method||[])];
   method=method.map(step=>String(step)
     .replace('rather than being thrown in because the matrix found them.','rather than being thrown in just to fill the box.')
+    .replace(/the the filling/gi,p)
     .replace(/Get the pan properly hot first\. Cook the (cooked [^.]+?) until browned and cooked through — colour is flavour, so do not crowd the pan\./gi,(_,p)=>prepareAlreadyCooked(p))
     .replace(/Get the pan properly hot first\. Cook the (tuna in spring water, drained|lean ham) until browned and cooked through — colour is flavour, so do not crowd the pan\./gi,(_,p)=>prepareAlreadyCooked(p))
     .replace(/Cook the (boiled eggs?) until just set, keeping it tender rather than hammering it dry\./gi,(_,p)=>prepareAlreadyCooked(p))
