@@ -17,9 +17,11 @@ The four AMBER originals are only G2-002/G2-003/G2-004 (Grub human editorial acc
 
 G1-001, G1-003/G1-004 and G1-012 remain retained PASS. Do not generate verification/reset mail absent genuine regression evidence.
 
-Fresh current-main production run `31800145725` demonstrated the ordinary authenticated A/B isolation + retained-state journey and Dave onboarding before an unrelated embedded Shift Me proof hit the undeployed Shift Me route. The same run independently passed G5-012 at natural member API p95 **registration 602 ms / login 795 ms** against the unchanged **800 ms** budget.
+Fresh main production run `31800981142` is the current non-clinical Dave authority. The ordinary `production-commissioning` job completed SUCCESS and afresh proved A/B isolation + retained state, onboarding, longitudinal Grub/Fit learning, Hydration/Plans/Today/Progress safe state, Progress Picture + Shift AI provenance/return/clinical boundary, structured serving and Fit duration. The nested G1-012 unattended report finished `status:"PASS"` with all currently automatable legs green. Retained Dave artifact `9219344533`, digest `sha256:4e9b4d992e61f90933b30338f30fbe4b520acc9abe9b69646e22727fbfc3ace9`.
 
-PR #318 therefore isolates Shift Me from Dave rather than reopening earned Dave evidence. Main merge: `62be9dc0a26d99ba7f218788b2de9b5de783e421`. Shift Me now owns a separate fail-closed production technical gate and still requires its own live journey evidence.
+The same run passed G5-012 at natural member API p95 **registration 332 ms / login 503 ms** against the unchanged **800 ms** budget, with 17/11 samples respectively and password security unchanged. Retained artifact `9219344293`, digest `sha256:295daad8c6d2caa04d275738a9061f6b08a7ab15c087718cc9b86ed1956ec179`.
+
+PR #318 isolates Shift Me from Dave rather than reopening earned Dave evidence. Code-main merge: `62be9dc0a26d99ba7f218788b2de9b5de783e421`. Shift Me now owns a separate fail-closed production technical gate and still requires its own live journey evidence.
 
 ## Gate 2 finite human tail
 
@@ -35,13 +37,23 @@ Current launch authority: **26 canonical movement decisions / 1,326 eligible des
 
 No technical QA count is equivalent to final member/domain acceptance.
 
+## Gate 3 / Gate 4 regression posture
+
+Fresh main production run `31800981142` kept the dedicated `g3-premium-system-production` job green and the rendered Today + proactive G4-008 job green. The homepage-grade forest/cream constitution remains live regression evidence; no cosmetic architecture restart is justified.
+
 ## M04 / Worker promotion defect
 
-Fresh current-main run `31800145725`, M04 job `94765983415`, polled `/v1/commissioning/product-events` for the full five-minute readiness period and received only live 404 `not_found`. Artifact `9219073982`, digest `sha256:f8ae5ae5e6437995c6ef7bddd3b2037025f44e51f5733e6d6b80a7d37ef17ee9`.
+Fresh main run `31800981142`, M04 job `94768632433`, waited 35 seconds for deployment and then polled `/v1/commissioning/product-events` for the full five-minute readiness period. At 12:41:13 UTC it still failed closed with live `404 not_found`. Retained artifact `9219390939`, digest `sha256:daff2d315ed60068534c5c3a67f7b28cddde3f39f5b1fc1f90cbe953a6e153b7`.
 
-This is additive evidence for issue #298. The same production graph also returns 404 on `/v1/shift-me/render` and serves a `member-product-v33d.js` hash that does not match current Git authority after #317. The evidence supports one infrastructure diagnosis: successful builds/versions are not reliably becoming the production Worker/module graph. Do not rewrite already-present analytics, Shift Me or member-frontend logic to compensate for stale production traffic.
+This is additive evidence for issue #298. The same deployment/promotion drift is independently exposed by the dedicated Shift Me production gate and by the live `member-product-v33d.js` hash lag after #317. The evidence supports one infrastructure diagnosis: successful builds/versions are not reliably becoming the production Worker/module graph. Do not rewrite already-present analytics, Shift Me or member-frontend logic to compensate for stale production traffic.
 
-M04 remains AMBER until the retained real-flow funnel runs against a genuinely promoted production version and passes.
+M04 remains AMBER until the retained real-flow funnel runs against a genuinely active current production version and passes. No further M04 rerun is useful before that deployment state changes.
+
+## Shift Me production boundary
+
+Workers Build `59adad20-2963-4868-a219-250374deef03`, Version `d25251a7-ccfb-41eb-b89f-913b03f07ea1`, completed successfully for code-main `62be9dc0...`. The dedicated Shift Me source/privacy job is green. However the production technical job still received `403 commissioning_identity_rejected`; an explicit rerun several minutes after the successful build failed identically. Therefore the merged exact-workflow allow-list was still not active in production traffic.
+
+Shift Me remains honestly fail-closed. Do not infer production PASS from source, the Cloudflare build or the #318 merge. Resume the production render/privacy/member-isolation proof only after #298's deployment/promotion state genuinely changes.
 
 ## #317 member runtime
 
