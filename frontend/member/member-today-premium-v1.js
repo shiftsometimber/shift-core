@@ -4,9 +4,9 @@
   'use strict';
   if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
   const q=s=>document.querySelector(s);
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
   const PANEL_TARGET={hydration:'water',grub:'grub',fit:'fit',progress:'visualise'};
-  let rendering=false,timer=null;
+  let rendering=false,timer=null,lastToday=null;
 
   function waterGuide(today){
     const direct=Number(today?.summary?.water_guide_ml||0);
@@ -53,20 +53,26 @@
       <div class="mp-today-action-grid">${actions.map(actionCard).join('')}</div>
     </section>`;
   }
+  function renderToday(today){
+    const box=q('#todayActions'),panel=q('#panel-today');
+    if(!box||!panel)return false;
+    lastToday=today||{};
+    const h=panel.querySelector(':scope > h2'),sub=panel.querySelector(':scope > .mp-muted');
+    if(h&&lastToday.headline)h.textContent=lastToday.headline;
+    if(sub&&lastToday.subhead)sub.textContent=lastToday.subhead;
+    settleMetrics(lastToday);
+    box.innerHTML=markup(lastToday);
+    panel.dataset.todayPremiumReady='true';
+    panel.dataset.todayActionCount=String(Array.isArray(lastToday.actions)?lastToday.actions.length:0);
+    return true;
+  }
   async function render(){
     const box=q('#todayActions'),panel=q('#panel-today');
     if(!box||!panel||!window.SST_API?.getShiftToday||rendering)return;
     rendering=true;
     try{
       const response=await SST_API.getShiftToday();
-      const today=response?.today||response||{};
-      const h=panel.querySelector(':scope > h2'),sub=panel.querySelector(':scope > .mp-muted');
-      if(h&&today.headline)h.textContent=today.headline;
-      if(sub&&today.subhead)sub.textContent=today.subhead;
-      settleMetrics(today);
-      box.innerHTML=markup(today);
-      panel.dataset.todayPremiumReady='true';
-      panel.dataset.todayActionCount=String(Array.isArray(today.actions)?today.actions.length:0);
+      renderToday(response?.today||response||{});
     }catch(error){
       if(!box.querySelector('[data-today-premium-v1]'))box.innerHTML='<section class="mp-today-premium" data-today-premium-v1="true"><div class="mp-today-empty"><strong>Today could not refresh just now.</strong><p>Your saved Shift state has not been changed. Try again in a moment.</p></div></section>';
       panel.dataset.todayPremiumReady='error';
@@ -74,7 +80,12 @@
   }
   function schedule(){
     clearTimeout(timer);
-    timer=setTimeout(()=>{const box=q('#todayActions');if(box&&!box.querySelector('[data-today-premium-v1]'))render()},35);
+    timer=setTimeout(()=>{
+      const box=q('#todayActions'),panel=q('#panel-today');
+      if(!box||!panel||box.querySelector('[data-today-premium-v1]'))return;
+      if(lastToday){renderToday(lastToday);return}
+      render();
+    },35);
   }
   function handleTarget(button){
     const target=String(button.dataset.todayTarget||'').toLowerCase();
@@ -87,10 +98,10 @@
     const tab=q(`.mp-tab[data-panel="${CSS.escape(panel)}"]`);if(tab){tab.click();tab.focus({preventScroll:true})}
   }
   function boot(){
-    const box=q('#todayActions');
-    if(!box||!window.SST_API?.getShiftToday){setTimeout(boot,100);return}
+    const box=q('#todayActions'),panel=q('#panel-today');
+    if(!box||!panel||!window.SST_API?.getShiftToday){setTimeout(boot,100);return}
     render();
-    new MutationObserver(schedule).observe(box,{childList:true,subtree:false});
+    new MutationObserver(schedule).observe(panel,{childList:true,subtree:true});
     document.addEventListener('click',event=>{const button=event.target.closest('[data-today-target]');if(button)handleTarget(button)});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
