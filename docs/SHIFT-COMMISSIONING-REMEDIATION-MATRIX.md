@@ -2,7 +2,7 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 34 PASS / 20 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 35 PASS / 19 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
@@ -23,7 +23,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 ## Gate 2 — Nothing Half-Finished
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
-| G2-001 | Shift Today is an engine, not a premium daily command centre | AMBER | Behaviour/persistence green; premium rendered daily-command-centre acceptance remains. |
+| G2-001 | Shift Today is an engine, not a premium daily command centre | **PASS** | Fresh unchanged merged-production rendered acceptance proves the real authenticated Shift Today daily command centre at 1440x900 and 390x844. The canonical `/v1/shift/today` response is visibly rendered with personalised headline/subhead, useful priorities, real detail and CTAs; `Log a drink` reaches the commissioned Hydration surface; returning to Today restores the same canonical priorities; the in-surface `Done later` acknowledgement settles explicitly; unavailable metrics are hidden rather than faked; Git-authoritative premium JS/CSS/shell assets are fingerprinted; both viewports retain homepage-grade hierarchy, 48px actions, zero root overflow and zero browser console/page errors. Run `31774086353`, job `94685791902`, artifact `9209230856`, digest `sha256:841f0a38bb9b40ff1a65e3eb203ece5275fc50017621ca8783b5bd17c45a1ee2`. Evidence: `docs/evidence/2026-08-14-g2-001-today-premium-rendered-pass.md`. |
 | G2-002 | Grub recipes are not real recipes | AMBER | Structured authored universe is **2,908**, including **2,876 industrial objects**. All 2,876 industrial recipes pass ingredient-level CoFID nutrition/risk validation with 0 nutrition quarantine. The systemic humanness repair regenerated a **783-recipe V1 candidate cohort behind 8 immutable editorial decisions**. Independent editorial approval/publication/production-serving breadth remains M11; authoritative approved/published/served launch breadth is still zero until those changed decisions are genuinely accepted. |
 | G2-003 | Grub nutrition figures are not tied to exact ingredients | AMBER | The entire 2,876 industrial pool carries ingredient-level CoFID evidence with exact converted grams/mapping state and LOW-risk calculation, zero nutrition quarantine. The row remains AMBER until that validated nutrition is independently reviewed/published and demonstrated at meaningful production-serving breadth rather than existing only in drafts/candidates. |
 | G2-004 | Grub variety/repetition is poor | AMBER | The repaired V1 launch cohort is finite at **783 clean recipes behind 8 regenerated immutable decisions**. Under deterministic 25% Nay pressure, all four meal categories retain substantial eligible breadth and the cohort produces zero exact repeats through 30/60/90 days. Closure still requires those decisions to PASS and the approved cohort to be published/production-served under real member constraints. |
@@ -81,7 +81,7 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G5-013 | Dave end-to-end commissioning not yet run | AMBER | Reconciled evidence is **16/20 non-duplicated Dave journey legs (80%)**. Fresh production onboarding now proves empty-state -> onboarding save -> new authenticated session -> retained personalised `Your Shift starts here` outcome. Remaining human-only legs are registration, verification and account recovery; treatment support remains external BLOCKED. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`. |
 | G5-014 | Numan/customer trust competitive test not embedded | AMBER | Explicit sceptical-customer/Numan acceptance remains M17 after release candidate stabilises. |
 
-## 20-AMBER burn-down classification
+## 19-AMBER burn-down classification
 `QUICK KILL` = mostly implemented/evidence gap. `FINITE` = defined work with a clear endpoint. `LARGE` = substantial remaining product work. `HUMAN/DEVICE` = irreducible inbox/device/rendered proof. No additional row is currently reclassified as externally BLOCKED.
 
 | ID | Class | Immediate closure lane |
@@ -89,7 +89,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | G1-001 | HUMAN/DEVICE | B01 real reset-token/inbox lifecycle |
 | G1-003 | HUMAN/DEVICE | M09 real registration + verification inbox click/login |
 | G1-004 | HUMAN/DEVICE | M09 real verification inbox click/login |
-| G2-001 | LARGE | M01/B08 premium Today experience |
 | G2-002 | LARGE | M11 independent review/publication/serving conversion at V1 launch breadth from validated drafts |
 | G2-003 | LARGE | M11 demonstrate exact validated nutrition through broad reviewed/published/served production catalogue |
 | G2-004 | LARGE | M11 commissioned launch-catalogue diversity under real constraints; retain 365-day depth post-launch |
@@ -109,4 +108,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 34. AMBER rows: 20. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 35. AMBER rows: 19. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
