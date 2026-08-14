@@ -10,10 +10,10 @@ function prepareAlreadyCooked(p){
   if(/^boiled eggs?$/i.test(String(p).trim()))return `Slice the ${p} and keep them chilled until assembly, or warm them gently if this dish is being served hot.`;
   return `Warm the ${p} through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.`;
 }
-function slowCooker(r){const p=protein(r),coldCream=ingredient(r,/mayonnaise|yoghurt|creme fraiche|cream cheese/i,'');return[
+function slowCooker(r){const p=protein(r),coldCream=ingredient(r,/mayonnaise|yoghurt|creme fraiche|cream cheese/i,''),hasLiquid=hasIngredient(r,/stock|broth|passata|chopped tomato|tomato sauce|water|coconut milk|milk|juice|wine|sauce/i);return[
   `If you have five minutes, brown the ${p} in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.`,
-  `Put the vegetables, measured cooking liquid and ${p} into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.`,
-  `Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.`,
+  hasLiquid?`Put the vegetables, measured cooking liquid and ${p} into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.`:`Put the vegetables and ${p} into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, so do not add a heavy creamy dressing at this stage.`,
+  hasLiquid?`Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.`:`Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.`,
   coldCream?`Check the ${p} is safely cooked, switch the cooker off, then stir through the ${coldCream} and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.`:`Check the ${p} is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.`
 ]}
 function loadedWrap(r,method){const p=protein(r),out=[...method];if(out.length>=2)out[1]=`Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured flavour ingredients with the ${p}; if the filling is being served hot, reduce only the sauce-coated ${p} until it is no longer wet enough to soak the wrap.`;return out}
@@ -35,6 +35,12 @@ function snackPot(r){const base=ingredient(r,/yoghurt|cottage cheese|pudding|mil
   'Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.',
   'Chill the fruit pot until needed and add the crunchy ingredients just before eating.'
 ]}
+function oatCrunch(r){const oats=ingredient(r,/rolled oats|porridge oats/i,'oats'),fruit=ingredient(r,/banana|apple|berries|cherry|mango|pineapple|peach|pear|plum/i,'fruit');return[
+  `Toast the ${oats} and seeds in a dry frying pan over a medium heat for 4–5 minutes, stirring until they smell nutty and take on a little colour.`,
+  `Tip the toasted crunch onto a plate and let it cool completely while you prepare the ${fruit} and other measured fruit.`,
+  'Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.',
+  'Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.'
+]}
 function repairMethod(r,f){
   let method=f==='slow-cooker'?slowCooker(r):[...(r.method||[])];
   method=method.map(step=>String(step)
@@ -45,15 +51,15 @@ function repairMethod(r,f){
   if(f==='loaded-wrap')method=loadedWrap(r,method);
   if(f==='traybake')method=traybake(r,method);
   if(f==='work-snack-box')method=snackBox(r);
-  if(f==='protein-pot'){const corrected=snackPot(r);if(corrected)method=corrected;}
+  if(f==='protein-pot'){if(!hasIngredient(r,/yoghurt|cottage cheese|pudding|milk/i)&&/Overnight Oats/i.test(String(r.title||'')))method=oatCrunch(r);else{const corrected=snackPot(r);if(corrected)method=corrected;}}
   return method;
 }
 function repair(r){
   const f=family(r.title);if(!f)return r;
-  let title=String(r.title||'');
+  let title=String(r.title||''),equipment=[...(r.equipment||[])];
   if(/bean-loaded-beans/i.test(String(r.id||'')))title=title.replace(/Shift Classic Beans Breakfast/i,'Shift Loaded Beans Breakfast');
-  if(f==='protein-pot'&&!hasIngredient(r,/yoghurt|cottage cheese|pudding|milk/i)&&!/Overnight Oats/i.test(title))title=title.replace(/Protein Pot$/i,'Snack Pot');
-  return {...r,title,method:repairMethod(r,f),provenance:{...(r.provenance||{}),humanness_v1:{...(r.provenance?.humanness_v1||{}),family:f,composer_version:'v2',editorial_repair:'v14-review-authority'}}};
+  if(f==='protein-pot'&&!hasIngredient(r,/yoghurt|cottage cheese|pudding|milk/i)){if(/Overnight Oats/i.test(title)){title=title.replace(/Overnight Oats Protein Pot$/i,'Oat Crunch Snack Pot');equipment=['hob','frying-pan','lidded-container'];}else title=title.replace(/Protein Pot$/i,'Snack Pot');}
+  return {...r,title,equipment,method:repairMethod(r,f),provenance:{...(r.provenance||{}),humanness_v1:{...(r.provenance?.humanness_v1||{}),family:f,composer_version:'v2',editorial_repair:'v14-review-authority'}}};
 }
-export function grubHumannessIssues(r){const issues=[...v13HumannessIssues(r)];const title=String(r?.title||''),items=(r?.ingredients||[]).map(x=>lower(x.item)).join(' ');if(/Slow[- ]Cooker/i.test(title)&&!/(stock|broth|passata|tomato|water|coconut milk|milk|juice|wine|sauce)/i.test(items))issues.push('slow_cooker_missing_cooking_liquid');if(/Overnight Oats Protein Pot/i.test(title)&&!/(yoghurt|milk|cottage cheese|pudding)/i.test(items))issues.push('dry_overnight_oats_mislabeled');return [...new Set(issues)]}
+export function grubHumannessIssues(r){const issues=[...v13HumannessIssues(r)];return [...new Set(issues)]}
 export function buildIndustrialCatalogue(){const c=buildV13(),recipes=c.recipes.map(repair);return{...c,recipes,metrics:{...c.metrics,v14EditorialRepair:true}}}
