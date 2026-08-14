@@ -21,6 +21,7 @@ import {handleAuthRecovery} from './auth-recovery-v1.js';
 import {memberContrastStatic} from './member-contrast-static-v1.js';
 import {fastMemberRegister} from './member-register-fastpath-v2.js';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
+import {shiftMeRoutes} from './shift-me-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -32,9 +33,12 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-plans-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-plans-premium-v1.css','text/css; charset=utf-8'],
   ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
-  ['/member-today-premium-v1.css','text/css; charset=utf-8']
+  ['/member-today-premium-v1.css','text/css; charset=utf-8'],
+  ['/shift-me-api-v1.js','application/javascript; charset=utf-8'],
+  ['/member-shift-me-premium-v1.js','application/javascript; charset=utf-8'],
+  ['/member-shift-me-premium-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path==='/v1/events';}
+function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
@@ -67,6 +71,7 @@ export default {
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
     const fastLogin=await fastMemberLogin(request,env);if(fastLogin){await recordFinalLogin(request,fastLogin,env);return withMemberCors(fastLogin,request)}
+    const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const commissioningOps=await commissioningOpsRoutes(request,env);if(commissioningOps)return commissioningOps;
     const commissioningIdentity=await handleCommissioningIdentity(request,env,ctx,coreAuthFetch);
     if(commissioningIdentity)return withMemberCors(commissioningIdentity,request);
