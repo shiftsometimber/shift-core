@@ -41,7 +41,7 @@ function snapshotFn(){return()=>{const visible=e=>{const s=getComputedStyle(e),r
 const browser=await chromium.launch({headless:true});
 try{
   for(const [id,viewport] of Object.entries({desktop:{width:1440,height:900},mobile390:{width:390,height:844}})){
-    const row={id,viewport,pageErrors:[],consoleErrors:[]};report.cases.push(row);const email=`shiftsometimber+today-proof-${Date.now()}-${id}@gmail.com`;let context;
+    const row={id,viewport,pageErrors:[],consoleErrors:[]};report.cases.push(row);const email=`shiftsometimber+structured-authrender-g3008-${Date.now()}-${id}@gmail.com`;let context;
     try{
       await register(email);context=await browser.newContext({viewport,reducedMotion:'reduce'});const page=await context.newPage();page.on('pageerror',e=>row.pageErrors.push(clean(e.message)));page.on('console',m=>{if(m.type()==='error')row.consoleErrors.push(clean(m.text()))});await login(page,email);row.api=await seedAndReadToday(page);if(!row.api.plan.ok)fail(`${id}-seed-plan`,`hydration plan ${row.api.plan.status}`);const today=row.api.today.body?.today;if(!row.api.today.ok||!today)fail(`${id}-today-api`,`today ${row.api.today.status}`);
       if(today){if(today.headline!=="Here’s your Shift today.")fail(`${id}-headline-contract`,clean(today.headline));if(today.subhead!=='No dashboard archaeology. Just the useful stuff.')fail(`${id}-subhead-contract`,clean(today.subhead));if(!Array.isArray(today.actions)||today.actions.length<2)fail(`${id}-action-depth`,`${today.actions?.length||0}`);if(!today.actions?.some(a=>a.domain==='hydration'))fail(`${id}-personalised-action`,'hydration plan not consumed by Today')}
