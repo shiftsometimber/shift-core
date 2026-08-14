@@ -6,11 +6,13 @@
 .ask-drawer .ask-input textarea{min-width:0!important;max-width:100%!important}
 .mp-hero{overflow:hidden!important;max-width:100%!important;min-width:0!important}
 
-/* G3-008 bounded authenticated contrast repair using the existing forest palette. */
-.mp-btn:not(.ghost),.btn.btn-primary,button.btn-primary,.member-form button[type="submit"]{background:#53624d!important;border-color:#53624d!important;color:#fff!important}
+/* G3-008 bounded authenticated contrast repair using the existing forest palette.
+   The html/body prefix deliberately outranks late-injected product-surface rules without
+   changing the visual language or relying on JavaScript inline styling. */
+html body .mp-btn:not(.ghost),html body .btn.btn-primary,html body button.btn-primary,html body .member-form button[type="submit"]{background:#53624d!important;border-color:#53624d!important;color:#fff!important}
 .eyebrow,.mp-eyebrow{color:#53624d!important}
-.member-form input,.member-form select,.member-form textarea,.mp-form input,.mp-form select,.mp-form textarea,.mp-input,.mp-select,.ask-input textarea{border-color:#6f7869!important}
-[role="switch"],.accessibility-toggle,.access-toggle,.mp-toggle{border-color:#6f7869!important}
+html body .member-form input,html body .member-form select,html body .member-form textarea,html body .mp-form input,html body .mp-form select,html body .mp-form textarea,html body .mp-input,html body .mp-select,html body .ask-input textarea{border-color:#6f7869!important}
+html body [role="switch"],html body .accessibility-toggle,html body .access-toggle,html body .mp-toggle{border-color:#6f7869!important}
 
 /* Visible keyboard focus within the same premium forest/cream design system. */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[role="button"]:focus-visible,[role="tab"]:focus-visible,[role="switch"]:focus-visible{outline:3px solid #53624d!important;outline-offset:3px!important}
