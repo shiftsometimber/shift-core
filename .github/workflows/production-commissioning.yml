@@ -24,41 +24,51 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Wait for Worker deployment propagation
+        if: always()
         run: sleep 20
       - name: Core production health and route contract
+        if: always()
         run: node gate1-production-journey-probe.mjs
       - name: G1-010 / M05 deployed release security and privacy
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node gate1-release-security-privacy-production.mjs
       - name: Trigger genuine production regulator scan
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
         run: node radar-production-trigger.mjs
       - name: M03 production Radar freshness
+        if: always()
         run: node radar-production-freshness.mjs
       - name: Authenticated isolation and retained state in production
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node finish-authenticated-production.mjs
       - name: Longitudinal Grub/Fit learning in production
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node finish-longitudinal-products-production.mjs
       - name: Final B03 Progress Picture and Shift AI production closure
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node finish-b03-final3-production.mjs
       - name: M07 structured Grub/Fit production serving
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node structured-runtime-production.mjs
       - name: Refresh short-lived Shift commissioning identity for Fit duration
+        if: always()
         id: oidc_fit_duration
         shell: bash
         run: |
@@ -67,11 +77,13 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: G2-006 Fit duration/session quality production matrix
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_fit_duration.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
         run: node fit-duration-production.mjs
       - name: Refresh short-lived Shift commissioning identity for Dave
+        if: always()
         id: oidc_dave
         shell: bash
         run: |
@@ -80,6 +92,7 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: G1-012 fresh unattended synthetic Dave release gate
+        if: always()
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_dave.outputs.token }}
           NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
