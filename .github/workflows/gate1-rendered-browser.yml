@@ -1,5 +1,6 @@
 name: Gate 1 Rendered Browser Acceptance
 # 2026-08-14 retained commissioning coverage: Gate 1 state/rendered + G2-012 Progress units
+# Current-main proof pulse: rerun unchanged acceptance after G3-008 bounded contrast repair.
 on:
   pull_request:
     paths:
@@ -7,6 +8,7 @@ on:
       - 'gate1-state-system-production.mjs'
       - 'gate1-fit-network-diagnostic.mjs'
       - 'v1-accessibility-performance-production.mjs'
+      - 'g3-008-accessibility-production.mjs'
       - 'g2-012-progress-units-production.mjs'
       - 'g2-012-progress-units-rendered-v9.mjs'
       - '.github/workflows/gate1-rendered-browser.yml'
@@ -37,6 +39,42 @@ jobs:
           path: v1-ap-evidence
           if-no-files-found: warn
           retention-days: 14
+
+  g3-008-authenticated-accessibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc_accessibility
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Run G3-008 authenticated production accessibility acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_accessibility.outputs.token }}
+          G3_008_EVIDENCE_DIR: g3-008-accessibility-evidence
+        run: node g3-008-accessibility-production.mjs
+      - name: Upload G3-008 accessibility evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g3-008-accessibility-evidence
+          path: g3-008-accessibility-evidence
+          if-no-files-found: warn
+          retention-days: 30
 
   g2-012-progress-units:
     runs-on: ubuntu-latest
