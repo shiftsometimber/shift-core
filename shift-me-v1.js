@@ -13,14 +13,12 @@ export async function shiftMeRoutes(request,env,ctx){
   try{
     await ensureSchema(env.DB);
     if(path==='/v1/shift-me/render'&&request.method==='POST')return await renderShiftMe(request,env,a.user);
+    if(path==='/v1/shift-me/rerender'&&request.method==='POST')return await rerenderShiftMe(request,env,a.user);
     if(path==='/v1/shift-me'&&request.method==='GET')return await getShiftMe(request,env,a.user);
     if(path==='/v1/shift-me/image'&&request.method==='GET')return await getShiftMeImage(request,env,a.user);
     if(path==='/v1/shift-me'&&request.method==='DELETE')return await deleteShiftMe(request,env,a.user);
     return json({ok:false,error:'not_found'},404,request);
-  }catch(e){
-    console.error('shift_me_route_failed',path,e?.message,e?.stack);
-    return json({ok:false,error:'shift_me_service_error',message:'Shift Me could not complete that request.'},500,request);
-  }
+  }catch(e){console.error('shift_me_route_failed',path,e?.message,e?.stack);return json({ok:false,error:'shift_me_service_error',message:'Shift Me could not complete that request.'},500,request);}
 }
 
 async function renderShiftMe(request,env,user){
@@ -30,46 +28,55 @@ async function renderShiftMe(request,env,user){
   if(!consent)return json({ok:false,error:'consent_required'},400,request);
   const checked=validateImage(image);if(checked)return json(checked.body,checked.status,request);
   const appearance=safeAppearance(form.get('appearance'));
-  const prompt=`Create a photorealistic Shift Me portrait from the supplied photograph of the same adult man. Preserve his recognisable identity, face shape, hairline, hair colour, facial hair, apparent age, skin tone and ordinary body proportions. He should look like a normal bloke, not a fashion model or fitness influencer. Natural relaxed posture, neutral dark studio background, plain black crew-neck T-shirt with no logos or text. Do not make him younger, more muscular, leaner, taller, more glamorous or more symmetrical than the source. Do not change ethnicity or invent tattoos. Keep the result realistic, friendly and recognisably the same person. Framing: head to upper thighs, straight-on camera, realistic lighting. ${appearance.prompt}`;
-  const negative='bodybuilder, six pack, fashion model, fitness model, superhero physique, glamour retouching, younger face, plastic skin, distorted hands, extra fingers, text, watermark, logo, brand mark, cartoon, anime';
-  const modelForm=new FormData();
-  modelForm.append('prompt',prompt);
-  modelForm.append('negative_prompt',negative);
-  modelForm.append('input_image_0',new File([await image.arrayBuffer()],'shift-me-source',{type:image.type}));
-  modelForm.append('width','768');modelForm.append('height','1024');modelForm.append('guidance','3.5');
+  return await generateAndPersist(request,env,user,new Uint8Array(await image.arrayBuffer()),image.type,appearance,'source-photo');
+}
+
+async function rerenderShiftMe(request,env,user){
+  if(!env.AI?.run)return json({ok:false,error:'ai_unavailable'},503,request);
+  let body;try{body=await request.json();}catch{return json({ok:false,error:'invalid_json'},400,request);}
+  const appearance=safeAppearance(JSON.stringify(body?.appearance||{}));
+  const row=await env.DB.prepare(`SELECT mime_type,image_base64 FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();
+  if(!row||!row.image_base64)return json({ok:false,error:'shift_me_required',message:'Create your Shift Me from a photo first.'},409,request);
+  return await generateAndPersist(request,env,user,base64ToBytes(row.image_base64),row.mime_type||'image/png',appearance,'existing-shift-me');
+}
+
+async function generateAndPersist(request,env,user,inputBytes,inputType,appearance,sourceKind){
+  const prompt=`Create a photorealistic Shift Me full character from the supplied image of the SAME adult man. Identity lock is the highest priority: preserve recognisable facial identity, apparent age, ethnicity, skin character, eye identity and distinguishing facial proportions. He must remain an ordinary bloke, not a fashion model or fitness model. Apply the member-selected appearance controls visibly and literally while keeping him recognisably the same person. ${appearance.prompt} Use natural ordinary body proportions and posture. Do not beautify, slim, muscularise, de-age or alter height unless that specific member control requests it. Neutral dark premium Shift studio background. Framing head to upper thighs, straight-on, realistic lighting. Clothing must match the selected garment and use only a subtle left-chest circular Shift S badge equivalent to 28–30mm on apparel. Do not invent tattoos or jewellery. The selected controls MUST cause obvious visual differences between renders without changing identity.`;
+  const negative='different person, identity drift, bodybuilder, six pack, fashion model, fitness model, superhero physique, glamour retouching, younger face, plastic skin, exaggerated jaw, oversized chest logo, football crest, distorted hands, extra fingers, text, watermark, unrelated brand, cartoon, anime, mannequin, faceless avatar';
+  const modelForm=new FormData();modelForm.append('prompt',prompt);modelForm.append('negative_prompt',negative);modelForm.append('input_image_0',new File([inputBytes],'shift-me-input',{type:inputType}));modelForm.append('width','768');modelForm.append('height','1024');modelForm.append('guidance','4.5');
   const modelRequest=new Request('https://shift.invalid/shift-me',{method:'POST',body:modelForm});
   const result=await env.AI.run(MODEL,{multipart:{body:modelRequest.body,contentType:modelRequest.headers.get('content-type')}});
   const b64=result?.image;if(!b64)return json({ok:false,error:'generation_failed'},502,request);
   const id=crypto.randomUUID(),now=new Date().toISOString();
   await env.DB.prepare(`INSERT INTO shift_me_v1(id,user_id,mime_type,image_base64,appearance_json,model,created_at,updated_at,deleted_at) VALUES(?,?,?,?,?,?,?, ?,NULL) ON CONFLICT(user_id) DO UPDATE SET id=excluded.id,mime_type=excluded.mime_type,image_base64=excluded.image_base64,appearance_json=excluded.appearance_json,model=excluded.model,updated_at=excluded.updated_at,deleted_at=NULL`).bind(id,user.id,'image/png',b64,JSON.stringify(appearance.data),MODEL,now,now).run();
-  try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_me_generated',?,?)`).bind(`user:${user.id}`,JSON.stringify({shiftMeId:id,model:MODEL,sourceStored:false,generatedStored:true})).run();}catch{}
-  return json({ok:true,shiftMe:{id,imageUrl:'/v1/shift-me/image',appearance:appearance.data,updatedAt:now},sourcePhotoStored:false,disclaimer:'Shift Me is an AI-generated visual likeness for Shift experiences. It is not identity verification, a body scan, a health assessment, a fit guarantee or a prediction of future appearance.'},201,request);
+  try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_me_generated',?,?)`).bind(`user:${user.id}`,JSON.stringify({shiftMeId:id,model:MODEL,sourceStored:false,generatedStored:true,sourceKind,appearance:appearance.data})).run();}catch{}
+  return json({ok:true,shiftMe:{id,imageUrl:'/v1/shift-me/image',appearance:appearance.data,updatedAt:now},sourcePhotoStored:false,sourceKind,disclaimer:'Shift Me is an AI-generated visual likeness for Shift experiences. It is not identity verification, a body scan, a health assessment, a fit guarantee or a prediction of future appearance.'},201,request);
 }
 
-async function getShiftMe(request,env,user){
-  const row=await env.DB.prepare(`SELECT id,appearance_json,model,created_at,updated_at FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();
-  if(!row)return json({ok:true,shiftMe:null},200,request);
-  return json({ok:true,shiftMe:{id:row.id,imageUrl:'/v1/shift-me/image',appearance:parseJson(row.appearance_json),model:row.model,createdAt:row.created_at,updatedAt:row.updated_at}},200,request);
-}
-
-async function getShiftMeImage(request,env,user){
-  const row=await env.DB.prepare(`SELECT mime_type,image_base64 FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();
-  if(!row)return json({ok:false,error:'not_found'},404,request);
-  return new Response(base64ToBytes(row.image_base64),{status:200,headers:{'Content-Type':row.mime_type||'image/png','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...corsHeaders(request)}});
-}
-
-async function deleteShiftMe(request,env,user){
-  await env.DB.prepare(`UPDATE shift_me_v1 SET deleted_at=CURRENT_TIMESTAMP,image_base64='' WHERE user_id=? AND deleted_at IS NULL`).bind(user.id).run();
-  try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_me_deleted',?,?)`).bind(`user:${user.id}`,JSON.stringify({sourcePhotoStored:false})).run();}catch{}
-  return json({ok:true,deleted:true},200,request);
-}
+async function getShiftMe(request,env,user){const row=await env.DB.prepare(`SELECT id,appearance_json,model,created_at,updated_at FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();if(!row)return json({ok:true,shiftMe:null},200,request);return json({ok:true,shiftMe:{id:row.id,imageUrl:'/v1/shift-me/image',appearance:parseJson(row.appearance_json),model:row.model,createdAt:row.created_at,updatedAt:row.updated_at}},200,request);}
+async function getShiftMeImage(request,env,user){const row=await env.DB.prepare(`SELECT mime_type,image_base64 FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();if(!row)return json({ok:false,error:'not_found'},404,request);return new Response(base64ToBytes(row.image_base64),{status:200,headers:{'Content-Type':row.mime_type||'image/png','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...corsHeaders(request)}});}
+async function deleteShiftMe(request,env,user){await env.DB.prepare(`UPDATE shift_me_v1 SET deleted_at=CURRENT_TIMESTAMP,image_base64='' WHERE user_id=? AND deleted_at IS NULL`).bind(user.id).run();try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_me_deleted',?,?)`).bind(`user:${user.id}`,JSON.stringify({sourcePhotoStored:false})).run();}catch{}return json({ok:true,deleted:true},200,request);}
 
 function safeAppearance(raw){
   let data={};try{data=raw?JSON.parse(String(raw)):{};}catch{}
-  const allowed={build:['Slim','Average','Stocky','Bigger bloke','Broad','Tall','Shorter'],hair:['Short','Shaved','Receding','Buzz cut','Curly','Longer','Bald'],facial:['Clean shaven','Stubble','Short beard','Full beard','Moustache','Goatee'],top:['Black tee','Olive tee','White tee','Black hoodie','Olive hoodie','Polo']};
+  const allowed={
+    build:['Slim','Average','Stocky','Bigger bloke','Broad','Tall','Shorter'],
+    bodyShape:['Straight','Round middle','Broad shoulders','Narrow shoulders','Long torso','Short torso'],
+    face:['Round','Oval','Square','Longer','Fuller','Angular'],
+    hair:['Short','Shaved','Receding','Buzz cut','Curly','Longer','Bald'],
+    hairline:['Full','Mature','Receding','High','Shaved','Bald'],
+    facial:['Clean shaven','Stubble','Short beard','Full beard','Moustache','Goatee'],
+    skin:['Light','Light-medium','Medium','Olive','Brown','Deep'],
+    eyes:['Brown','Blue','Green','Hazel','Grey'],
+    glasses:['Keep source glasses','No glasses','Black rectangular','Black round','Thin metal'],
+    top:['Black tee','Olive tee','White tee','Grey marl vest','Black polo','Black hoodie','Olive hoodie','Black quarter zip'],
+    bottom:['Black shorts','Olive joggers','Black joggers'],
+    accessory:['None','Black cap']
+  };
   const clean={};for(const[k,values]of Object.entries(allowed)){if(values.includes(data[k]))clean[k]=data[k];}
-  const prompt=Object.entries(clean).map(([k,v])=>`${k}: ${v}`).join(', ');
-  return{data:clean,prompt:prompt?`Member-selected appearance cues: ${prompt}. Preserve these only where they do not conflict with the source photograph.`:''};
+  const labels={build:'body build',bodyShape:'body shape',face:'face shape',hair:'hair style',hairline:'hairline',facial:'facial hair',skin:'skin tone',eyes:'eye colour',glasses:'glasses',top:'top',bottom:'bottoms',accessory:'accessory'};
+  const prompt=Object.entries(clean).map(([k,v])=>`${labels[k]||k} = ${v}`).join('; ');
+  return{data:clean,prompt:prompt?`MEMBER CONTROLS (apply visibly): ${prompt}. Where a deliberate member control conflicts with the source image, change ONLY that selected trait and preserve all other identity traits.`:''};
 }
 function validateImage(image){if(!(image instanceof File))return{status:400,body:{ok:false,error:'image_required'}};if(!ALLOWED.has(image.type))return{status:415,body:{ok:false,error:'unsupported_image_type'}};if(image.size<=0||image.size>MAX_BYTES)return{status:413,body:{ok:false,error:'image_too_large',maxBytes:MAX_BYTES}};return null;}
 function base64ToBytes(s){const bin=atob(String(s||'')),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out;}
