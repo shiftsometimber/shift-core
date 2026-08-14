@@ -152,9 +152,16 @@ Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BRE
 - Logout: HTTP 200. Fresh final login: HTTP 200, proving retained verified state.
 - Connected Gmail shows `Welcome to My Shift` at 11:27:49 UTC, after verification rather than before it.
 - Retained artifact: `9217492229`; SHA256 `82bce3845465ff96a651fd3f15dfc5427986f324f4f1e29f4f6aebc76603f2c5`.
-- Commissioning conclusion: G1-003 PASS and G1-004 PASS. G1-001 recovery remains independently AMBER.
+- Commissioning conclusion: G1-003 PASS and G1-004 PASS. G1-001 was subsequently closed by the genuine recovery lifecycle below.
 
+## 2026-08-14 — G1-001 genuine password recovery lifecycle PASS
 
-## 2026-08-14 — Dave verification reconciliation 18/20
-
-G1-003/G1-004 genuine production verification evidence also closes Dave `register` and `verify` as non-duplicated journey legs. Dave moves **16/20 -> 18/20 (90%)**. Only `account_recovery` remains human; `treatment_support` remains external BLOCKED. This does not promote G5-013 to PASS.
+- Production member: the genuinely verified connected-inbox member from run `31796196719`.
+- Reset request: HTTP 200; genuine reset email delivered at 11:44:34 UTC.
+- Genuine one-time token consumption/password mutation: HTTP 200.
+- Login after reset: HTTP 200.
+- Authenticated change-password: HTTP 200.
+- Logout: HTTP 200.
+- Fresh final login with the changed password: HTTP 200; `emailVerified=true` retained.
+- Passwords and token remained ephemeral and are not retained in evidence.
+- Commissioning conclusion: G1-001 PASS. Gate 1 registration, verification and recovery lifecycles are now production-proven.
