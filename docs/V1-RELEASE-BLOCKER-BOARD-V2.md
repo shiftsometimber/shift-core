@@ -2,13 +2,13 @@
 
 Operational critical path; the 57-row audit remains authoritative.
 
-**A — V1 RELEASE BLOCKERS: 6 AMBER rows / 3 active shared clusters.**
-**A CLOSED: 21 — G1-003 real verification lifecycle, G1-004 verification enforcement, G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate, G5-012 member API performance release criterion, G3-001 systemic homepage/member quality, G3-002 responsive navigation parity, G3-003 footer parity, G3-004 premium controls, G3-005 hierarchy/spacing/cards, G3-007 member-intent IA, G4-008 proactive Today orchestration.**
+**A — V1 RELEASE BLOCKERS: 5 AMBER rows / 2 active shared clusters.**
+**A CLOSED: 22 — G1-001 real password recovery lifecycle, G1-003 real verification lifecycle, G1-004 verification enforcement, G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate, G5-012 member API performance release criterion, G3-001 systemic homepage/member quality, G3-002 responsive navigation parity, G3-003 footer parity, G3-004 premium controls, G3-005 hierarchy/spacing/cards, G3-007 member-intent IA, G4-008 proactive Today orchestration.**
 **B — POST-LAUNCH HARDENING: 0 AMBER rows.**
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
-G1-001, G5-013. Real registration/verification/login/session is production-proven. Dave is now 18/20 non-duplicated legs (90%): only account recovery remains human; treatment support remains external BLOCKED. Final genuine-device acceptance remains a release-pack activity rather than an unproven Dave product leg.
+G5-013. Real registration, verification, password recovery, authenticated password change and retained login are now production-proven through the genuine connected inbox. G5-013 remains open only on final unassisted/device Dave acceptance; external treatment support remains separately BLOCKED.
 
 ## A2 Authenticated rendered/mobile premium estate — CLOSED
 **G3-001/G3-002/G3-003/G3-004/G3-005/G3-007 PASS:** merged-production run `31779645970` proves the homepage-grade forest/cream system across the authenticated member shell and representative Today/Grub/Fit/My Plans/Progress journeys at desktop + 390px: intent-led navigation, contained footer, governed forms/controls, deliberate hierarchy, zero document-root overflow and no browser errors. G1-009 remains the locked Chromium/Firefox/WebKit routing/geometry companion evidence. Final genuine-device hostile acceptance stays in the Matt/B08 pack rather than reopening these earned rows.
