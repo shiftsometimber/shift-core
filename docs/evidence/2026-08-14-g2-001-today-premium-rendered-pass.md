@@ -6,34 +6,34 @@ Status: **PASS — unchanged production rendered journey demonstrated with retai
 
 ## Commissioning standard
 
-This closure is not based on source existence, a green merge or a static screenshot. The acceptance exercised the real authenticated production Today journey at desktop and 390px, required a meaningful user outcome, left the surface and returned to it, and retained both screenshots and machine-readable return-state evidence.
+This closure is not based on source existence, a green merge or a static screenshot. The acceptance exercised the real authenticated production Today journey at desktop and 390px, required a meaningful user outcome, left the surface and returned to it, and retained screenshots plus machine-readable journey evidence.
 
 ## Production proof
 
-Gate 2 production commissioning run `31774086353`, job `94685791902` completed the Today premium acceptance GREEN.
+Gate 2 production commissioning run `31774086353`, job `94685791902` completed the Today premium acceptance GREEN on unchanged main `59609ed5d98c71b77dd07c9c93f26fdb62260e04`.
 
 Retained artifact:
 
-- name: `g2-001-today-premium-evidence`
-- artifact ID: `9209340762`
-- digest: `sha256:ae39f970fb070f21cf03269a57d575c1c30bd0bbb96518842a947a3a3e7fb379`
-- retained files include `desktop-today-acknowledged.png`, `desktop-return-state.json`, `mobile390-today-acknowledged.png`, and `mobile390-return-state.json`.
+- name: `g2-001-today-evidence`
+- artifact ID: `9209230856`
+- digest: `sha256:841f0a38bb9b40ff1a65e3eb203ece5275fc50017621ca8783b5bd17c45a1ee2`
+- retained through 2026-09-13
 
 ## Demonstrated member outcome
 
 At both commissioned viewports the authenticated member received the canonical `/v1/shift/today` outcome through the real Today surface. The journey demonstrated:
 
-- the canonical Today headline, detail and subhead visibly rendered rather than stale prototype copy;
-- a meaningful action linked to a real product route (`Open My Grub`);
-- hydration action linked to the real My Shift hydration destination;
-- explicit member acknowledgement (`Done later`) rather than a decorative card-only surface;
-- leave/return behaviour from Today to the real Grub route and back with Today state retained;
-- no invented/fake metrics in the premium layer;
-- API availability without exposing a duplicate product implementation globally;
+- the canonical Today headline and subhead visibly rendered rather than stale prototype copy;
+- real priority detail and CTA controls rather than title-only cards;
+- `Log a drink` navigating into the commissioned Hydration surface;
+- return to Today with the same canonical priorities retained;
+- explicit in-surface acknowledgement (`Done later`) settling to the expected state;
+- unavailable metrics hidden rather than represented by fake placeholders;
+- Git-authoritative `member-today-premium-v1.js`, `member-today-premium-v1.css` and `member-shell-v33g.js` fingerprinted from production;
 - zero browser console/page errors;
 - zero document-root horizontal overflow on desktop and mobile.
 
-The premium geometry was also rendered rather than inferred: desktop hero spacing/corners/action-card spacing and the 390px compact equivalents were measured, with primary actions in the 50–52px touch range.
+The premium geometry was rendered rather than inferred: desktop uses deliberate forest/cream cards, 24px radii and 48px CTAs; the 390px treatment retains hierarchy and full-width 48px actions without overflow.
 
 ## Scope boundary
 
