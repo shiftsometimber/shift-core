@@ -8,13 +8,13 @@ Matt's previous acceptance return is already authoritative and consumed: **11/11
 
 **ATTACHABLE / TECHNICALLY READY.** Use only `grub-v1-launch-review.html` from the current regenerated editorial artifact, not the wider 99-template surface.
 
-Current retained review artifact: workflow run `31796868151`, artifact `9217696352` (`grub-101-editorial-review-surface`), digest `sha256:29a30fe53fbaba95b83a575b655f3cd77d3d96712e721c257e5c9df3804cebbf`. It contains the exact `grub-v1-launch-review.html` and `grub-v1-launch-cohort.json` launch files.
+Current retained review artifact: workflow run `31799592951`, artifact `9218697749` (`grub-101-editorial-review-surface`), digest `sha256:18225619aa8e28030fbd008ea40cdb39759adc92e2a9db73a261d318ae33fc6f`. This is the post-defect-repair pack; the earlier 783-recipe artifact is superseded and must not be reviewed. It contains the exact `grub-v1-launch-review.html` and `grub-v1-launch-cohort.json` launch files.
 
-Current cohort: **783 clean recipes / 8 immutable aggregate decisions**. Breakfast 212 / lunch 204 / dinner 180 / snack 187. Deterministic 25% Nay pressure still leaves 161 / 165 / 135 / 142 eligible respectively, with **0 exact repeats through 30/60/90 days**.
+Current cohort: **806 clean recipes / 8 immutable aggregate decisions**. Breakfast 212 / lunch 204 / dinner 203 / snack 187. Deterministic 25% Nay pressure still leaves 161 / 165 / 156 / 142 eligible respectively, with **0 exact repeats through 30/60/90 days**. Pre-review commissioning has already removed the known Slow-Cooker coverage miss, implementation-language leakage, already-cooked-protein method defects and duplicate launch titles.
 
 For each regenerated immutable aggregate choose **PASS / FIX / REJECT** after checking whether the actual food now meets the Shift standard: desirable dish, coherent title/ingredients, dish-specific method, meaningful heat/timing/texture/doneness/seasoning cues, sensible nutrition/allergens/food safety, and genuine descendant equivalence.
 
-PASS may propagate only inside the unchanged approved digest. FIX/REJECT cannot publish. The publication bridge is already green: a complete eight-PASS set yields exactly **783 publication records**; any FIX/REJECT fails closed with no partial publication payload. Evidence: `docs/evidence/2026-08-13-grub-v1-matt-readiness.md`.
+PASS may propagate only inside the unchanged approved digest. FIX/REJECT cannot publish. The publication bridge is already green: a complete eight-PASS set yields exactly **806 publication records**; any FIX/REJECT fails closed with no partial publication payload. Evidence: `docs/evidence/2026-08-13-grub-v1-matt-readiness.md`.
 
 ## 2. Replacement Fit V1 premium visuals — 26 decisions
 
@@ -22,7 +22,7 @@ PASS may propagate only inside the unchanged approved digest. FIX/REJECT cannot 
 
 The replacement launch cohort is **26/26 produced and 26/26 technically QA-passed**, covering **26 canonical movements / 1,326 eligible descendants** and supporting 12 weeks / 36 sessions / 180 prescribed objects / 180 unique objects / 0 exact repeats / all 26 families.
 
-Retained review pack: workflow run `31751231158`, artifact `9200983545` (`fit-premium-v1-26-review-pack`), digest `sha256:4521022cfb68f5bfa2c802dfbeebe39daf64aa8bff8ad20ba96b8c6f08e4d507`.
+Retained review pack: workflow run `31799592961`, artifact `9218694338` (`fit-premium-v1-26-review-pack`), digest `sha256:b48d5d2f7770d16c8ad4a4da76bb5036a26e360c6603704144194644de8a8a9f`. This supersedes the earlier pack: 16 generic state-caption placeholders were removed before human/domain review.
 
 For each movement choose **PASS / FIX / REJECT** after checking anatomy/body position, START -> MOVE -> FINISH comprehension where applicable, equipment agreement, instruction agreement, safety/comprehension, mobile legibility and alt-text suitability. Technical QA is not domain acceptance.
 
