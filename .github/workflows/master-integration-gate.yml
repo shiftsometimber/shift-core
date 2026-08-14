@@ -72,6 +72,8 @@ jobs:
         run: node gate2-practical-source-gate.mjs
       - name: Gate 4 One Shift Brain architecture contract
         run: node gate4-one-shift-brain-gate.mjs
+      - name: Gate 4 explicit safe memory retention fallback
+        run: node intelligent-memory-explicit-fallback-gate.mjs
       - name: Gate 4/5 Knowledge Radar Watchtower lifecycle contract
         run: node gate45-knowledge-radar-watchtower-gate.mjs
       - name: Gate 5 Watchtower analytics outcomes contract

@@ -2,6 +2,7 @@ import {analyseRelationshipPatterns} from './relationship-intelligence.js';
 
 const MEMORY_MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 const ALLOWED=new Set(['goal','preference','routine','motivator','blocker','social_context','food_preference','communication_preference','recurring_pattern','win','trigger','effective_strategy','avoid_strategy']);
+const EXPLICIT_SENSITIVE=/\b(?:diagnos(?:is|ed)|symptom|pain|bleed(?:ing)?|vomit(?:ing)?|nausea|diarrh(?:ea|oea)|constipat(?:ion|ed)|blood pressure|heart rate|pulse|glucose|hba1c|cholesterol|bmi|body fat|weight\s*(?:is|of|=|:)?\s*\d|waist\s*(?:is|of|=|:)?\s*\d|kg\b|stone\b|st\b|lb\b|lbs\b|mmhg\b|mounjaro|wegovy|tirzepatide|semaglutide|medicine|medication|prescription|dose|dosage|tablet|injection|sex(?:ual)?|erection|libido|bank|card|account number|sort code|salary|income|debt|mortgage|postcode|address|street|road\b|avenue\b|api key|secret key|private key|password|passcode|pin\b|cvv)\b/i;
 
 export async function ensureIntelligentMemorySchema(DB){
   await DB.batch([
@@ -44,13 +45,32 @@ Existing memories: ${JSON.stringify(existing.map(x=>({key:x.memory_key,category:
       for(const item of items){
         const key=normaliseKey(item?.key),category=String(item?.category||''),value=String(item?.value||'').trim().slice(0,500),confidence=Math.max(0,Math.min(1,Number(item?.confidence)||0));
         if(!key||!ALLOWED.has(category)||!value||confidence<0.68)continue;
-        await env.DB.prepare(`INSERT INTO shift_ai_memory_v2(user_id,memory_key,category,memory_value,confidence,source,created_at,updated_at) VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP) ON CONFLICT(user_id,memory_key) DO UPDATE SET category=excluded.category,memory_value=excluded.memory_value,confidence=MAX(shift_ai_memory_v2.confidence,excluded.confidence),source=excluded.source,updated_at=CURRENT_TIMESTAMP`).bind(userId,key,category,value,confidence,explicit?'explicit':'conversation').run();
+        await upsertMemory(env.DB,userId,{key,category,value,confidence,source:explicit?'explicit':'conversation'});
         stored++;
       }
     }catch(e){console.warn('shift_memory_learn_failed',e?.message);}
+    if(explicit&&stored===0){
+      const fallback=explicitSafeStrategy(text);
+      if(fallback){await upsertMemory(env.DB,userId,fallback);stored=1;}
+    }
   }
   const patternResult=await analyseRelationshipPatterns(env,userId);
   return {stored,patterns:Number(patternResult?.stored||0)};
+}
+
+async function upsertMemory(DB,userId,{key,category,value,confidence,source}){
+  await DB.prepare(`INSERT INTO shift_ai_memory_v2(user_id,memory_key,category,memory_value,confidence,source,created_at,updated_at) VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP) ON CONFLICT(user_id,memory_key) DO UPDATE SET category=excluded.category,memory_value=excluded.memory_value,confidence=MAX(shift_ai_memory_v2.confidence,excluded.confidence),source=excluded.source,updated_at=CURRENT_TIMESTAMP`).bind(userId,key,category,value,confidence,source).run();
+}
+
+function explicitSafeStrategy(text){
+  let value=String(text||'').trim().replace(/^\s*(?:remember(?:\s+(?:this|that))?\s*:?|don't forget\s*:?|dont forget\s*:?)\s*/i,'').trim();
+  value=value.replace(/\s+/g,' ').slice(0,280);
+  if(value.length<12||EXPLICIT_SENSITIVE.test(value))return null;
+  const repeated=/\b(?:always|usually|normally|reliably|every time)\b/i.test(value);
+  const helped=/\b(?:works? for me|helps? me|clears? my head|keeps? me on track|gets? me back on track|makes? (?:things|it|the day) easier)\b/i.test(value);
+  if(!repeated||!helped)return null;
+  const key=`explicit_strategy_${normaliseKey(value).slice(0,56)}`.slice(0,80);
+  return{key,category:'effective_strategy',value,confidence:0.92,source:'explicit_fallback'};
 }
 
 function looksMemoryWorthy(s){return /\b(always|usually|normally|every |each |prefer|like|love|hate|can't stand|cant stand|goal|aim|target|trying to|want to|need to|motivates|keeps me|struggle with|tend to|weekends?|fridays?|sundays?|family|wife|partner|kids?|children|work shifts?|routine|habit|works for me|worked for me|helps me|doesn't work for me|doesnt work for me|never works|sets me off|triggers|dont like being told|prefer you)\b/i.test(s);}
