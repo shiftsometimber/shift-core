@@ -1,6 +1,8 @@
 const BASE=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const ORIGIN='https://shiftsometimber.co.uk',nonce=`finish-${Date.now()}`,password='Shift-Commissioning-2026!';
-const A={email:`shiftsometimber+${nonce}-a@gmail.com`,firstName:'DaveA'},B={email:`shiftsometimber+${nonce}-b@gmail.com`,firstName:'DaveB'};
+// Production commissioning deliberately accepts only the narrow structured alias family.
+// Keep this synthetic isolation proof inside that allowlist rather than widening production auth.
+const A={email:`shiftsometimber+structured-${nonce}-a@gmail.com`,firstName:'DaveA'},B={email:`shiftsometimber+structured-${nonce}-b@gmail.com`,firstName:'DaveB'};
 const assert=(c,m)=>{if(!c)throw new Error(m)};
 async function call(path,{method='GET',body,cookie}={}){const h={Origin:ORIGIN};if(body!==undefined)h['Content-Type']='application/json';if(cookie)h.Cookie=cookie;const r=await fetch(BASE+path,{method,headers:h,body:body===undefined?undefined:JSON.stringify(body)});let data=null;try{data=await r.json()}catch{}return{r,data,cookie:(r.headers.get('set-cookie')||'').split(';')[0]}}
 async function register(person){const x=await call('/v1/auth/register',{method:'POST',body:{...person,password,source:'commissioning'}});assert(x.r.status===201,`register ${person.firstName}: ${x.r.status} ${JSON.stringify(x.data)}`);assert(x.cookie,'registration session missing');return x.cookie}
