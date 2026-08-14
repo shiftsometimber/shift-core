@@ -73,6 +73,7 @@ jobs:
           STATE_EVIDENCE_DIR: state-system-evidence
         run: node gate1-state-system-production.mjs
       - name: Run G3-008 authenticated accessibility production acceptance
+        if: always()
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
