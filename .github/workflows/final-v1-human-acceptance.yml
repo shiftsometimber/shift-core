@@ -6,6 +6,8 @@ on:
       - 'evidence/grub-v1-final-decisions-2026-08-14.json'
       - 'evidence/fit-v1-final-decisions-2026-08-14.json'
       - 'final-v1-human-acceptance-gate.mjs'
+      - 'grub-v1-publication-pack.mjs'
+      - 'structured-content-v1.js'
       - '.github/workflows/final-v1-human-acceptance.yml'
   push:
     branches: [main]
@@ -14,6 +16,8 @@ on:
       - 'evidence/grub-v1-final-decisions-2026-08-14.json'
       - 'evidence/fit-v1-final-decisions-2026-08-14.json'
       - 'final-v1-human-acceptance-gate.mjs'
+      - 'grub-v1-publication-pack.mjs'
+      - 'structured-content-v1.js'
       - '.github/workflows/final-v1-human-acceptance.yml'
 permissions:
   contents: read
@@ -34,13 +38,21 @@ jobs:
           COFID_INDEX: /tmp/cofid-index.json
           GRUB_PUBLICATION_DIR: final-v1-acceptance-evidence/grub
         run: node grub-v1-publication-pack.mjs evidence/grub-v1-final-decisions-2026-08-14.json
-      - name: Require exact 798-recipe fail-closed publication result
+      - name: Require exact 798-recipe fail-closed runtime-addressable publication result
         run: |
           node - <<'NODE'
           const fs=require('fs');
           const p=JSON.parse(fs.readFileSync('final-v1-acceptance-evidence/grub/grub-v1-publication-summary.json','utf8'));
+          const payload=JSON.parse(fs.readFileSync('final-v1-acceptance-evidence/grub/grub-v1-publishable.json','utf8'));
+          const accepted={breakfast:198,lunch:200,dinner:200,snack:200};
           if(p.approvedRecipes!==798||p.heldRecipes!==0||p.allPass!==true||p.publicationReady!==true)throw new Error(`unexpected Grub publication summary: ${JSON.stringify(p)}`);
-          console.log('PASS: 798/798 final Grub recipes are bound to all-eight human PASS decisions; 0 held.');
+          if(JSON.stringify(p.publicationByMeal)!==JSON.stringify(accepted))throw new Error(`publication meal partition does not match accepted launch authority: ${JSON.stringify(p.publicationByMeal)}`);
+          if(payload.items.length!==798)throw new Error(`publishable item count ${payload.items.length}`);
+          for(const item of payload.items){
+            if(!accepted.hasOwnProperty(item?.data?.meal_type))throw new Error(`runtime-addressable meal_type missing: ${item?.id}`);
+            if(item?.review?.status!=='approved'||item?.data?.nutrition?.status!=='validated')throw new Error(`publication authority missing: ${item?.id}`);
+          }
+          console.log('PASS: 798/798 final Grub recipes retain exact accepted meal-type partitions and are addressable by the live structured Grub selector; 0 held.');
           NODE
       - name: Retain Fit domain/member acceptance evidence
         run: |
