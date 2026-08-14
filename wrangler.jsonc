@@ -34,7 +34,9 @@
     {"pattern": "shiftsometimber.co.uk/member-shift-me-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "www.shiftsometimber.co.uk/member-shift-me-premium-v1.css*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"},
-    {"pattern": "www.shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"}
+    {"pattern": "www.shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/assets/fit/premium/*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/assets/fit/premium/*","zone_name": "shiftsometimber.co.uk"}
   ],
 
   "assets": {"directory": "./frontend/member","binding": "MEMBER_ASSETS","run_worker_first": true},
