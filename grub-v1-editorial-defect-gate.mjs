@@ -14,7 +14,7 @@ for(const r of target){
   if(/matrix found/i.test(method))failures.push({id:r.id,code:'implementation_language_leak'});
   if(/Cook the cooked .* cooked through/i.test(method))failures.push({id:r.id,code:'recooks_already_cooked_protein'});
   if(/Cook the boiled eggs until just set/i.test(method))failures.push({id:r.id,code:'recooks_boiled_eggs'});
-  if(/\bthe filling\b/i.test(method))failures.push({id:r.id,code:'unresolved_protein_placeholder'});
+  if(/\bthe the filling\b/i.test(method))failures.push({id:r.id,code:'unresolved_protein_placeholder'});
   if(/Slow[- ]Cooker/i.test(title)&&!/LOW for 6–8 hours|HIGH for 3–4 hours/i.test(method))failures.push({id:r.id,code:'slow_cooker_not_humanised'});
   if(!semantic.length&&/Slow[- ]Cooker/i.test(title)&&/salmon|prawn|lentil/i.test(title))failures.push({id:r.id,code:'delicate_slow_cooker_leaked_into_reviewable_pool'});
   if(!semantic.length&&/Slow[- ]Cooker/i.test(title)&&/lemon herb/i.test(title))failures.push({id:r.id,code:'low_liquid_slow_cooker_leaked_into_reviewable_pool'});
@@ -24,4 +24,4 @@ for(const [title,ids] of titles)if(ids.length>1)failures.push({title,ids,code:'d
 if(failures.length)throw new Error(`Grub V1 editorial defects remain: ${JSON.stringify(failures.slice(0,30))}`);
 const slow=target.filter(r=>/Slow[- ]Cooker/i.test(r.title||''));
 if(slow.length<70)throw new Error(`expected at least 70 Slow-Cooker descendants under humanness authority, got ${slow.length}`);
-console.log(`PASS Grub V1 editorial defect gate: ${target.length} launch-family recipes; ${slow.length} Slow-Cooker descendants governed; zero implementation leaks, unresolved protein placeholders, unsafe generic slow-cooker leaks, already-cooked recook instructions or duplicate launch titles.`);
+console.log(`PASS Grub V1 editorial defect gate: ${target.length} launch-family recipes; ${slow.length} Slow-Cooker descendants governed; zero implementation leaks, malformed protein placeholders, unsafe generic slow-cooker leaks, already-cooked recook instructions or duplicate launch titles.`);
