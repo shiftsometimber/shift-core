@@ -140,3 +140,16 @@ Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BRE
 
 ## Gate 5 member API performance release criterion — PASS
 **G5-012 PASS:** Fresh unchanged production commissioning on main proves the declared 800 ms member API p95 budget after the bounded registration fast-path repair. Natural existing commissioning traffic measured the member handler server-side: registration p95 **350 ms** across 17 samples (median 297, max 350) and login p95 **776 ms** across 11 samples (median 466, max 776). Synthetic GitHub OIDC/fixture overhead is reported separately and is not used to hide member latency; password security was unchanged. Run `31776554705`, job `94693085868`, artifact `9210154378`, digest `sha256:1d0160df5b9d5fe4326761b8d8f76bedc4e3760c8b8ef5ab2b91c24601c0857b`.
+
+
+## 2026-08-14 — G1-003 / G1-004 genuine email verification lifecycle PASS
+
+- Production workflow run: `31793828102`; rerun job: `94753848697`.
+- Fresh member registration: HTTP 201, `verificationRequired=true`, delivery sent.
+- Pre-verification login: HTTP 403, `email_verification_required`.
+- Genuine verification email delivered to the connected Gmail alias at 11:26:49 UTC.
+- After the genuine inbox token was used, login became HTTP 200.
+- Logout: HTTP 200. Fresh final login: HTTP 200, proving retained verified state.
+- Connected Gmail shows `Welcome to My Shift` at 11:27:49 UTC, after verification rather than before it.
+- Retained artifact: `9217492229`; SHA256 `82bce3845465ff96a651fd3f15dfc5427986f324f4f1e29f4f6aebc76603f2c5`.
+- Commissioning conclusion: G1-003 PASS and G1-004 PASS. G1-001 recovery remains independently AMBER.

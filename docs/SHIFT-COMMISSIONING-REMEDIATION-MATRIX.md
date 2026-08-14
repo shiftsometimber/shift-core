@@ -2,15 +2,15 @@
 
 Authoritative original-audit inventory. No row may disappear through B/M abstraction. Status is evidence-led: `PASS`, `AMBER`, `BLOCKED`. PASS requires demonstrated acceptance evidence, not code existence or a green merge by itself.
 
-**Current reconciled scoreboard: 57 total / 46 PASS / 8 AMBER / 3 BLOCKED / 0 unmapped.**
+**Current reconciled scoreboard: 57 total / 48 PASS / 6 AMBER / 3 BLOCKED / 0 unmapped.**
 
 ## Gate 1 — Nothing Broken
 | ID | Original audit requirement | Status | Current evidence / exact remaining closure |
 |---|---|---|---|
 | G1-001 | Duplicate/incomplete password recovery paths | AMBER | Recovery implementation is regression-protected and the rendered browser harness discovers/clicks the Forgot password control across Chromium/Firefox/WebKit desktop + 390px. Real reset mail is independently confirmed in the connected Gmail inbox, but B01 still needs the secret-safe reset-email token -> reset -> login -> authenticated change-password -> logout/login journey. |
 | G1-002 | Email binding not deployment-persistent | **PASS** | Direct connected-inbox evidence on 2026-08-13 confirms genuine deployed delivery from `welcome@shiftsometimber.co.uk`: multiple real `Welcome to My Shift` messages reached production commissioning Gmail aliases on 2026-08-12, and a real `Reset your My Shift password` message reached `shiftsometimber+commissioning@gmail.com` at 11:22:26 UTC. These are retained Gmail messages, not mocks/source assertions. Adjacent token-click lifecycle rows remain AMBER. Evidence: `docs/evidence/2026-08-13-g1-002-real-inbox-delivery.md`. |
-| G1-003 | Registration email lifecycle incomplete | AMBER | PR #170 merged the verification-first registration repair to main as `8d8759f438280ef896767e39f3aa9b97b64138fb`. Fresh production attempt `realverify-31736835464-3` delivered the genuine `Verify your My Shift email` message to the connected inbox at 20:33:43 UTC on 2026-08-13 and, unlike the pre-fix attempt, no premature `Welcome to My Shift` message was present before verification. The unchanged main production commissioning run `31741403662` is GREEN. PASS still requires the retained real inbox link -> verified login -> post-verification Welcome -> logout/final-login journey; merge/source/inbox arrival alone is not enough. |
-| G1-004 | Email verification is effectively bypassed | AMBER | `AUTO_VERIFY_EMAIL=false`, unverified login is blocked, resend invalidates prior token and replay is rejected. PR #170 removed the live contradictory pre-verification Welcome/account-ready delivery, and a fresh production registration now presents only the verification message before verification. PASS still requires the genuine inbox token click, verified login and replay/ordering evidence. |
+| G1-003 | Registration email lifecycle incomplete | **PASS** | Fresh real production lifecycle run `31793828102` rerun job `94753848697` registered a genuinely unverified member, delivered the real verification email to the connected Gmail inbox, blocked pre-verification login with HTTP 403 / `email_verification_required`, then after the genuine inbox token was used accepted verified login with HTTP 200, completed logout with HTTP 200 and retained a fresh final login with HTTP 200. Connected-inbox evidence also shows `Welcome to My Shift` arrived at 11:27:49 UTC only after the 11:26:49 verification email and successful verification. Artifact `9217492229`, digest `sha256:82bce3845465ff96a651fd3f15dfc5427986f324f4f1e29f4f6aebc76603f2c5`. Evidence: `docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md`. |
+| G1-004 | Email verification is effectively bypassed | **PASS** | The same fresh real production lifecycle proves verification is not bypassed: registration requires verification, pre-verification login is rejected, genuine inbox verification changes the account state, post-verification login succeeds, logout succeeds, and verified state survives a new login. The Welcome message is observed only after verification. Existing resend invalidation/replay rejection source and regression evidence remain additive rather than substituted. Run `31793828102`, job `94753848697`, artifact `9217492229`. Evidence: `docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md`. |
 | G1-005 | Member persistence confidence damaged | **PASS** | Production A/B authenticated state, Progress, Brain and leave/return persistence proven without contamination. |
 | G1-006 | Broken/dead routes and links not centrally detected | **PASS** | Exhaustive production crawler checked 418 same-origin URLs / 370 HTML pages, found zero critical route/asset/blank-page failures and exhausted discovery without truncation. Post-RC3 route integrity also remained green on the live extensionless member/public estate. |
 | G1-007 | Error handling exposes generic failures | **PASS** | API safe-error contracts are correlated/no-store/non-leaking; invalid-login guidance is rendered cross-browser/device; merged PR #129 adds a dedicated production 404 matrix across Chromium/Firefox/WebKit desktop + 390px proving non-blank, intelligible recovery with no internal diagnostic leakage or horizontal overflow. Run `31669056410` GREEN; retained evidence artifact `9169047430`. |
@@ -87,8 +87,6 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 | ID | Class | Immediate closure lane |
 |---|---|---|
 | G1-001 | HUMAN/DEVICE | B01 real reset-token/inbox lifecycle |
-| G1-003 | HUMAN/DEVICE | M09 real registration + verification inbox click/login |
-| G1-004 | HUMAN/DEVICE | M09 real verification inbox click/login |
 | G2-002 | LARGE | M11 independent review/publication/serving conversion at V1 launch breadth from validated drafts |
 | G2-003 | LARGE | M11 demonstrate exact validated nutrition through broad reviewed/published/served production catalogue |
 | G2-004 | LARGE | M11 commissioned launch-catalogue diversity under real constraints; retain 365-day depth post-launch |
@@ -97,4 +95,4 @@ Authoritative original-audit inventory. No row may disappear through B/M abstrac
 
 ## Reconciliation check
 
-All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 46. AMBER rows: 8. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.
+All 57 original audit requirements remain represented exactly once in the matrix. PASS rows: 48. AMBER rows: 6. BLOCKED rows: 3. Total: 57. Zero row may be removed or compressed away.

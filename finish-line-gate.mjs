@@ -7,6 +7,7 @@ const must = (condition, message) => { if (!condition) { console.error(`FAIL ${m
 const legacyFinish = read('docs/FINISH-LINE.md');
 const launchFinish = read('docs/LAUNCH-FINISH-LINE.md');
 const matrix = read('docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md');
+const compact = Object.fromEntries(read('docs/V1-RELEASE-BLOCKER-COUNTS.txt').trim().split(/\r?\n/).map(line=>line.split('=').map(x=>x.trim())));
 const recoverySource = read(['auth','recovery-v1.js'].join('-'));
 const deliverySource = read(['auth','delivery-v1.js'].join('-'));
 const watch = read('watchtower-v1.js');
@@ -24,11 +25,18 @@ must(rows.length===57,`original remediation matrix has 57 status-bearing rows (f
 must(unique.size===57,`original remediation matrix has 57 unique IDs (found ${unique.size})`);
 for(const gate of [1,2,3,4,5])must(ids.some(id=>id.startsWith(`G${gate}-`)),`Gate ${gate} remains represented`);
 const counts=rows.reduce((a,x)=>(a[x.status]=(a[x.status]||0)+1,a),{});
-must(counts.PASS===46,`original matrix PASS count is 46 (found ${counts.PASS||0})`);
-must(counts.AMBER===8,`original matrix AMBER count is 8 (found ${counts.AMBER||0})`);
-must(counts.BLOCKED===3,`original matrix BLOCKED count is 3 (found ${counts.BLOCKED||0})`);
-must(matrix.includes('PASS rows: 46. AMBER rows: 8. BLOCKED rows: 3.'),'matrix reconciliation summary matches enforced counts');
-must(launchFinish.includes('46 PASS / 8 AMBER / 3 BLOCKED'),'launch board scoreboard matches enforced counts');
+const expected={PASS:Number(compact.AUDIT_PASS),AMBER:Number(compact.AUDIT_AMBER),BLOCKED:Number(compact.AUDIT_BLOCKED)};
+for(const key of ['PASS','AMBER','BLOCKED']){
+  must(Number.isInteger(expected[key]),`compact ${key} count is numeric`);
+  must(counts[key]===expected[key],`original matrix ${key} count matches compact count ${expected[key]} (found ${counts[key]||0})`);
+}
+must(expected.PASS+expected.AMBER+expected.BLOCKED===57,'compact audit total is exactly 57');
+must(Number(compact.A)+Number(compact.B)===expected.AMBER,'A+B equals audit AMBER');
+must(Number(compact.C)===expected.BLOCKED,'C equals audit BLOCKED');
+const summary=`PASS rows: ${expected.PASS}. AMBER rows: ${expected.AMBER}. BLOCKED rows: ${expected.BLOCKED}.`;
+must(matrix.includes(summary),'matrix reconciliation summary matches enforced counts');
+const launchSummary=`${expected.PASS} PASS / ${expected.AMBER} AMBER / ${expected.BLOCKED} BLOCKED`;
+must(launchFinish.includes(launchSummary),'launch board scoreboard matches enforced counts');
 
 for(const marker of ['recordAuth'+'Delivery',['password','reset'].join('_'),'binding_'+'missing',"status:'failed'"])must(recoverySource.includes(marker),`delivery recovery ${marker}`);
 for(const marker of ['auth_'+'delivery_events','email_'+'hash','authDelivery'+'Health'])must(deliverySource.includes(marker),`delivery store ${marker}`);
