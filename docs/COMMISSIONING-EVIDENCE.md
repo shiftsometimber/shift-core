@@ -126,7 +126,7 @@ M12/G2-007 remains AMBER because coaching quality, automatic binding, rendered c
 ## Dave / B08 — still AMBER
 Reconciled retained evidence is now **16/20 non-duplicated journey legs (80%)**. Fresh production onboarding creates a new member with empty state, saves the onboarding profile through the production route, opens a new authenticated session, proves retained target/safety/preferences data and requires the rendered personalised `Your Shift starts here` outcome. Evidence: `docs/evidence/2026-08-13-dave-onboarding-production.md`.
 
-Remaining human-only Dave legs are `register`, `verify` and `account_recovery`; partner-dependent `treatment_support` remains external BLOCKED. G5-013 stays AMBER until the complete Dave acceptance boundary is satisfied.
+At this checkpoint the remaining human-only Dave legs were `register`, `verify` and `account_recovery`; partner-dependent `treatment_support` was external BLOCKED. The later genuine verification and recovery evidence below closes all three non-external legs.
 
 ## Active release swarm
 - Gate 1: finish genuine verification/recovery token lifecycles; publish the canonical static Fit adapter and rerun explicit loading/empty/success acceptance; fresh Dave remains the final unassisted leg.
@@ -152,9 +152,22 @@ Operating rule: **SWARM -> INDUSTRIALISE -> VALIDATE -> SERVE -> SIMULATE -> BRE
 - Logout: HTTP 200. Fresh final login: HTTP 200, proving retained verified state.
 - Connected Gmail shows `Welcome to My Shift` at 11:27:49 UTC, after verification rather than before it.
 - Retained artifact: `9217492229`; SHA256 `82bce3845465ff96a651fd3f15dfc5427986f324f4f1e29f4f6aebc76603f2c5`.
-- Commissioning conclusion: G1-003 PASS and G1-004 PASS. G1-001 recovery remains independently AMBER.
+- Commissioning conclusion: G1-003 PASS and G1-004 PASS. G1-001 was subsequently closed by the genuine recovery lifecycle below.
 
 
 ## 2026-08-14 — Dave verification reconciliation 18/20
 
 G1-003/G1-004 genuine production verification evidence also closes Dave `register` and `verify` as non-duplicated journey legs. Dave moves **16/20 -> 18/20 (90%)**. Only `account_recovery` remains human; `treatment_support` remains external BLOCKED. This does not promote G5-013 to PASS.
+
+## 2026-08-14 — G1-001 recovery PASS / Dave 19/20
+
+- Production member: the genuinely verified connected-inbox member from run `31796196719`.
+- Reset request: HTTP 200; genuine reset email delivered at 11:44:34 UTC.
+- Genuine one-time token consumption/password mutation: HTTP 200.
+- Login after reset: HTTP 200.
+- Authenticated change-password: HTTP 200.
+- Logout: HTTP 200.
+- Fresh final login with the changed password: HTTP 200; `emailVerified=true` retained.
+- Passwords and token remained ephemeral and are not retained.
+
+This closes G1-001 and Dave `account_recovery`, moving Dave **18/20 -> 19/20 (95%)**. The sole twentieth leg is `treatment_support`, which remains external BLOCKED and outside non-clinical V1. G5-013 is therefore PASS for non-clinical V1 rather than held AMBER by an external leg already represented in G5-001/G5-002/G5-003.

@@ -11,13 +11,13 @@ This file is a recovery pointer, not the status authority. On every resumed exec
 
 Snapshot reconciled from main at `b4740d2598977c405292835b38adcdcbeadca152`. Main can advance after this checkpoint; never use this SHA or this file to overwrite a newer matrix/ledger state.
 
-The authoritative original audit at this snapshot is **57 total / 48 PASS / 6 AMBER / 3 BLOCKED / 0 unmapped**. PASS still requires demonstrated journey, retained state where relevant, expected member outcome and retained evidence. A source gate, build, deployment check or green merge is not enough by itself.
+The authoritative original audit at this snapshot is **57 total / 50 PASS / 4 AMBER / 3 BLOCKED / 0 unmapped**. PASS still requires demonstrated journey, retained state where relevant, expected member outcome and retained evidence. A source gate, build, deployment check or green merge is not enough by itself.
 
-## Exact six AMBER rows
+## Exact four AMBER rows
 
-### Gate 1
+### Gate 1 — CLOSED
 
-- **G1-001** — the sole remaining Gate-1 AMBER. Requires one genuine reset-inbox token lifecycle: reset -> login with new password -> authenticated change-password -> logout -> final login, with retained evidence. Do not generate another reset merely to show activity; if the existing genuine human click is the only missing step, leave the acceptance action explicit and work elsewhere.
+**G1-001 is PASS.** Genuine connected-inbox recovery, authenticated password change and retained final login are production-proven. The same evidence closes Dave's recovery leg; G5-013 is PASS for non-clinical V1 at 19/20, with treatment support external BLOCKED.
 
 **G1-003 and G1-004 are now PASS.** Fresh production run `31793828102`, rerun job `94753848697`, proved genuine unverified registration, real connected-inbox verification, blocked pre-verification login, successful post-verification login, logout and final fresh login. Welcome ordering was observed only after verification. Evidence: `docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md`.
 
@@ -34,7 +34,7 @@ All original Gate-3 and Gate-4 rows are PASS. The homepage-grade forest/cream pr
 
 ### Gate 5
 
-- **G5-013** remains AMBER at **16/20 non-duplicated Dave legs**. The remaining non-external closure is real recovery/final unassisted-device acceptance; treatment support remains external.
+- **G5-013 is PASS for non-clinical V1** at **19/20 non-duplicated Dave legs**. Registration, verification and account recovery are genuine-inbox production proof; the sole twentieth leg is treatment support and remains external BLOCKED.
 - **G5-001 / G5-002 / G5-003** remain the only three external BLOCKED rows. Keep them unavailable/accurately labelled and continue the non-clinical V1 around them.
 
 **G5-012 remains PASS.** A fresh production run briefly exposed a login-p95 breach (913 ms against the 800 ms budget), so it was treated as genuine regression evidence and re-proved rather than ignored. The next fresh production run on `5dff8f29...` cleared the same unchanged gate at **registration p95 413 ms / login p95 644 ms**, with 17/11 natural samples respectively and unchanged password security. The transient RED is retained evidence, but there is no basis to reopen the original row after the immediate clean reproduction.
@@ -49,12 +49,10 @@ Continue using the newest production run after each current-main deployment. If 
 
 ## Current finite human tail
 
-The current acceptance pack is reconciled to **A=6 / B=0 / C=3**. Do not ask for already-consumed decisions again. The remaining human work is finite:
+The current acceptance pack is reconciled to **A=4 / B=0 / C=3**. Do not ask for already-consumed decisions again. The remaining human work is finite:
 
-- G1-001 genuine password-reset token journey.
 - 8 Grub aggregate editorial decisions, followed by automatic propagation/publication/serving proof.
 - 26 Fit visual/domain/member-comprehension decisions, followed by publication/serving proof.
-- G5-013 final recovery/unassisted physical-device Dave acceptance.
 
 If a human-only click or editorial judgement is the sole remaining step for one lane, record the exact acceptance action and immediately move execution capacity to another non-blocked lane.
 
@@ -64,7 +62,7 @@ If a human-only click or editorial judgement is the sole remaining step for one 
 2. Preserve G5-012 as PASS unless a repeatable current-production breach is demonstrated; retain both the transient RED and the clean reproduction.
 3. Keep Gate-3 premium-system, G2-001 Today/G4-008, security/privacy, Dave synthetic, route integrity and retained-state suites green on current-main changes; cash evidence, do not narratively reopen them.
 4. Hold Grub and Fit at the finite human decision boundary; do not manufacture more candidate content in place of the required decisions.
-5. Leave G1-001 at the genuine reset-token boundary without redundant reset mail. Once the human token step exists, automation owns the rest of the password lifecycle proof.
+5. Preserve the earned G1-001/G5-013 PASSes; do not generate redundant auth mail absent genuine regression evidence.
 6. Reconcile matrix/evidence/launch board immediately when — and only when — demonstrated evidence changes status.
 
 Operating rule: **REUSE -> EXTEND -> CONNECT -> PRODUCTISE -> BUILD ONLY ON A REAL GAP -> PROVE IN PRODUCTION -> RETAIN EVIDENCE -> CONTINUE.**
