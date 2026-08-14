@@ -31,6 +31,11 @@ export async function upsertStructuredContent(DB,item){
 
 export async function listPublishedContent(DB,type,{limit=100,offset=0}={}){
   await ensureStructuredContent(DB);
-  const{results=[]}=await DB.prepare(`SELECT id,title,version,data_json,updated_at FROM structured_content WHERE content_type=? AND status='published' ORDER BY updated_at DESC LIMIT ? OFFSET ?`).bind(type,Math.min(500,Math.max(1,limit)),Math.max(0,offset)).all();
+  // The member runtime historically asked for 500 because 500 was the old hard cap.
+  // For launch recipe/exercise catalogues that call means "the governed catalogue",
+  // not "silently truncate accepted authority to its first 500 rows".
+  const requested=Math.max(1,Number(limit)||100);
+  const effectiveLimit=(['recipe','exercise'].includes(String(type))&&requested===500)?2500:Math.min(2500,requested);
+  const{results=[]}=await DB.prepare(`SELECT id,title,version,data_json,updated_at FROM structured_content WHERE content_type=? AND status='published' ORDER BY updated_at DESC LIMIT ? OFFSET ?`).bind(type,effectiveLimit,Math.max(0,offset)).all();
   return results.map(x=>({...x,data:JSON.parse(x.data_json||'{}')}));
 }
