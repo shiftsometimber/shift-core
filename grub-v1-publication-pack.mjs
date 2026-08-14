@@ -52,7 +52,9 @@ for(const digest of launch.templateDigests){
       continue;
     }
     const source=reviewableById.get(r.id);if(!source)throw new Error(`bound descendant missing from reviewable catalogue: ${r.id}`);
-    const item={id:source.id,contentType:'recipe',title:source.title,status:'published',data:{nutrition:{status:'validated',...source.nutrition,methodology:'CoFID 2021 ingredient-level weighted calculation'},ingredients:source.ingredients,method:source.method,allergens:source.allergens||[],food_safety:source.food_safety,ingredient_evidence:source.ingredient_evidence,canonical_review:{template_digest:digest}},review:{status:'approved',scope:'canonical_family',template_digest:digest,decision_source:'M11_SECOND_PERSON_DECISIONS'}};
+    const mealType=String(source.meal_type||'').toLowerCase();
+    if(!['breakfast','lunch','dinner','snack'].includes(mealType))throw new Error(`member-serving meal_type missing/invalid for ${source.id}: ${mealType}`);
+    const item={id:source.id,contentType:'recipe',title:source.title,status:'published',data:{meal_type:mealType,servings:Math.max(1,Number(source.servings)||1),equipment:source.equipment||[],storage:source.storage||null,shift_says:source.shift_says||null,nutrition:{status:'validated',...source.nutrition,methodology:'CoFID 2021 ingredient-level weighted calculation'},ingredients:source.ingredients,method:source.method,allergens:source.allergens||[],food_safety:source.food_safety,ingredient_evidence:source.ingredient_evidence,canonical_review:{template_digest:digest}},review:{status:'approved',scope:'canonical_family',template_digest:digest,decision_source:'M11_SECOND_PERSON_DECISIONS',authority:'matt-final-v1-2026-08-14'}};
     assertPublishableStructuredContent(item);
     items.push(item);
   }
@@ -62,9 +64,11 @@ const approvedIds=new Set(items.map(x=>x.id)),heldIds=new Set(held.map(x=>x.id))
 if(approvedIds.size+heldIds.size!==requiredRecipes)throw new Error(`decision propagation does not reconcile to launch manifest ${requiredRecipes}: ${approvedIds.size}+${heldIds.size}`);
 if([...approvedIds].some(id=>heldIds.has(id)))throw new Error('recipe is simultaneously approved and held');
 if([...approvedIds,...heldIds].some(id=>!launchIds.has(id)))throw new Error('publication pack contains recipe outside immutable V1 cohort');
+const servedByMeal=Object.fromEntries(['breakfast','lunch','dinner','snack'].map(t=>[t,items.filter(x=>x.data.meal_type===t).length]));
+if(Object.values(servedByMeal).some(n=>n<150))throw new Error(`member-serving launch floor regressed: ${JSON.stringify(servedByMeal)}`);
 
 const allPass=held.length===0&&items.length===requiredRecipes;
-const summary={proof:'M11_V1_PUBLICATION_PACK_V1',decisionCount:byDigest.size,boundRecipes:requiredRecipes,approvedRecipes:items.length,heldRecipes:held.length,allPass,publicationReady:allPass,criterion:`Publication payload exists only when all ${requiredDecisions} immutable family decisions PASS; any FIX/REJECT fails the ${requiredRecipes}-recipe regenerated launch publication closed.`};
+const summary={proof:'M11_V1_PUBLICATION_PACK_V2_MEMBER_SERVING',decisionCount:byDigest.size,boundRecipes:requiredRecipes,approvedRecipes:items.length,heldRecipes:held.length,servedByMeal,allPass,publicationReady:allPass,criterion:`Publication payload exists only when all ${requiredDecisions} immutable family decisions PASS; all ${requiredRecipes} records retain member-serving meal_type/servings/equipment/storage metadata; any FIX/REJECT fails closed.`};
 fs.writeFileSync(path.join(outDir,'grub-v1-publication-summary.json'),JSON.stringify(summary,null,2));
 fs.writeFileSync(path.join(outDir,'grub-v1-held.json'),JSON.stringify(held,null,2));
 if(!allPass){
@@ -72,6 +76,6 @@ if(!allPass){
   console.error(JSON.stringify(summary,null,2));
   throw new Error(`V1 publication held: ${held.length} descendants are behind FIX/REJECT decisions; no partial launch payload emitted`);
 }
-fs.writeFileSync(path.join(outDir,'grub-v1-publishable.json'),JSON.stringify({proof:'M11_V1_PUBLISHABLE_CONTENT_V1',source_summary:{requiredRecipes,requiredTemplateDecisions:requiredDecisions},items},null,2));
+fs.writeFileSync(path.join(outDir,'grub-v1-publishable.json'),JSON.stringify({proof:'M11_V1_PUBLISHABLE_CONTENT_V2_MEMBER_SERVING',source_summary:{requiredRecipes,requiredTemplateDecisions:requiredDecisions,servedByMeal},items},null,2));
 console.log(JSON.stringify(summary,null,2));
-console.log(`PASS M11 V1 publication pack: ${requiredDecisions} immutable PASS decisions generate exactly ${requiredRecipes} regenerated publishable reviewed+validated recipe records; any non-PASS decision fails closed before partial publication.`);
+console.log(`PASS M11 V1 publication pack: ${requiredDecisions} immutable PASS decisions generate exactly ${requiredRecipes} member-serviceable reviewed+validated recipe records; any non-PASS decision fails closed before partial publication.`);
