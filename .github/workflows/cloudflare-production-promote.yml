@@ -1,0 +1,57 @@
+name: Cloudflare Production Promote
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type PROMOTE_CURRENT_MAIN to deploy current main to production'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    if: ${{ inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - name: Fail closed when deploy credential is absent
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Install exact toolchain
+        run: npm ci
+      - name: Deploy current main to production
+        run: npx wrangler deploy --config wrangler.jsonc
+      - name: Wait briefly for route propagation
+        run: sleep 10
+      - name: Prove newer restricted routes are on live traffic
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in /v1/shift-me/render /v1/commissioning/product-events; do
+            code=$(curl -sS -o /tmp/resp -w '%{http_code}' "https://api.shiftsometimber.co.uk${path}" || true)
+            echo "$path -> HTTP $code"
+            cat /tmp/resp || true
+            echo
+            if [ "$code" = "404" ]; then
+              echo "Route still missing after explicit deploy: $path"
+              exit 1
+            fi
+          done
+          echo 'Explicit production promotion reached the newer route graph.'
