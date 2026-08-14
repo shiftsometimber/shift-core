@@ -36,7 +36,7 @@ const fitVisuals=new Map((fitLedger?.produced_candidates||[]).map(x=>[String(x.c
 need(fitLedger?.geometry_version==='v3'&&fitLedger?.counts?.produced===26&&fitLedger?.counts?.technically_qa_passed===26,'Fit v3 technical authority is not 26/26');
 need([...acceptedFit].every(id=>fitVisuals.has(id)),'accepted Fit movement missing produced v3 visual');
 
-const fitSource=buildIndustrialCatalogue().exercises.filter(x=>acceptedFit.has(String(x.canonical_movement)));
+const fitSource=buildIndustrialCatalogue().exercises.filter(x=>String(x.id||'').startsWith('industrial-v3-fit-')&&acceptedFit.has(String(x.canonical_movement)));
 need(fitSource.length===1326,`expected 1,326 accepted Fit descendants, got ${fitSource.length}`);
 const perCanonical=new Map();for(const x of fitSource)perCanonical.set(x.canonical_movement,(perCanonical.get(x.canonical_movement)||0)+1);
 need([...acceptedFit].every(id=>perCanonical.get(id)===51),`each accepted Fit movement must bind exactly 51 descendants: ${JSON.stringify(Object.fromEntries(perCanonical))}`);
