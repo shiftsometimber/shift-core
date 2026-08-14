@@ -8,7 +8,7 @@ Operational critical path; the 57-row audit remains authoritative.
 **C — EXTERNAL: 3 BLOCKED rows.**
 
 ## A1 Auth + Dave account lifecycle
-G1-001, G5-013. Real registration/verification/login/session is now production-proven through genuine connected-inbox verification evidence; password recovery remains the sole Gate-1 account-lifecycle AMBER and G5-013 remains open until recovery plus final human/device legs are complete.
+G1-001, G5-013. Real registration/verification/login/session is production-proven. Dave is now 18/20 non-duplicated legs (90%): only account recovery remains human; treatment support remains external BLOCKED. Final genuine-device acceptance remains a release-pack activity rather than an unproven Dave product leg.
 
 ## A2 Authenticated rendered/mobile premium estate — CLOSED
 **G3-001/G3-002/G3-003/G3-004/G3-005/G3-007 PASS:** merged-production run `31779645970` proves the homepage-grade forest/cream system across the authenticated member shell and representative Today/Grub/Fit/My Plans/Progress journeys at desktop + 390px: intent-led navigation, contained footer, governed forms/controls, deliberate hierarchy, zero document-root overflow and no browser errors. G1-009 remains the locked Chromium/Firefox/WebKit routing/geometry companion evidence. Final genuine-device hostile acceptance stays in the Matt/B08 pack rather than reopening these earned rows.
