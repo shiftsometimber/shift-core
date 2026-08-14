@@ -7,6 +7,7 @@ const realFetch=globalThis.fetch;globalThis.fetch=async url=>String(url).include
 const now=Math.floor(Date.now()/1000),base={iss:'https://token.actions.githubusercontent.com',aud:'shift-production-commissioning',repository:'shiftsometimber/shift-core',actor_id:'315011648',workflow_ref:'shiftsometimber/shift-core/.github/workflows/production-commissioning.yml@refs/heads/main',iat:now-5,nbf:now-5,exp:now+300};
 async function jwt(claims=base){const h=enc({alg:'RS256',kid:jwk.kid,typ:'JWT'}),p=enc(claims),signed=`${h}.${p}`,sig=await crypto.subtle.sign('RSASSA-PKCS1-v1_5',privateKey,new TextEncoder().encode(signed));return `${signed}.${Buffer.from(sig).toString('base64url')}`}
 const valid=await jwt();assert.equal((await verifyGithubOidc(valid)).ok,true);
+const shiftMeValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/shift-me-gate.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(shiftMeValid)).ok,true,'dedicated Shift Me commissioning workflow not authorised');
 assert.equal((await verifyGithubOidc(await jwt({...base,actor_id:'999'}))).ok,false,'wrong actor accepted');
 assert.equal((await verifyGithubOidc(await jwt({...base,aud:'wrong'}))).ok,false,'wrong audience accepted');
 assert.equal((await verifyGithubOidc(await jwt({...base,repository:'evil/fork'}))).ok,false,'wrong repository accepted');
@@ -18,4 +19,4 @@ const response=await handleCommissioningIdentity(req,{DB},{},async()=>new Respon
 assert.equal(response.status,201);const data=await response.json();assert.equal(data.emailVerified,true);assert.equal(data.verificationRequired,false);assert.equal(data.commissioningIdentity,'github_actions_oidc');assert.match(response.headers.get('set-cookie')||'',/sst_session=test/);assert.ok(statements.some(x=>x.sql.includes('UPDATE user_auth SET email_verified=1')));
 const badEmail=new Request('https://api.shiftsometimber.co.uk/v1/auth/register',{method:'POST',headers:{'content-type':'application/json','x-shift-commissioning-oidc':valid},body:JSON.stringify({email:'realperson@example.com'})});
 assert.equal((await handleCommissioningIdentity(badEmail,{DB},{},async()=>{throw new Error('must not reach registration')})).status,403);
-console.log('PASS secure commissioning identity: RS256 GitHub OIDC requires exact audience/repository/actor/approved workflow and is restricted to synthetic Shift aliases; public email verification remains untouched.');
+console.log('PASS secure commissioning identity: RS256 GitHub OIDC requires exact audience/repository/actor/approved workflow including dedicated Shift Me gate and is restricted to synthetic Shift aliases; public email verification remains untouched.');
