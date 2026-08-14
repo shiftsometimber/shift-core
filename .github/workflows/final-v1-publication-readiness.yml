@@ -1,0 +1,60 @@
+name: Final V1 Publication Readiness
+on:
+  pull_request:
+    paths:
+      - 'evidence/matt-v1-final-content-acceptance-2026-08-14.json'
+      - 'evidence/grub-v1-final-decisions-2026-08-14.json'
+      - 'evidence/fit-v1-final-decisions-2026-08-14.json'
+      - 'final-v1-human-acceptance-gate.mjs'
+      - 'final-v1-production-publication.mjs'
+      - 'grub-v1-publication-pack.mjs'
+      - 'industrial-catalogue-v14.js'
+      - 'fit-canonical-guidance-v1.mjs'
+      - 'content/fit/premium-visual-production-v1.json'
+      - '.github/workflows/final-v1-publication-readiness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'evidence/matt-v1-final-content-acceptance-2026-08-14.json'
+      - 'evidence/grub-v1-final-decisions-2026-08-14.json'
+      - 'evidence/fit-v1-final-decisions-2026-08-14.json'
+      - 'final-v1-production-publication.mjs'
+      - '.github/workflows/final-v1-publication-readiness.yml'
+permissions:
+  contents: read
+jobs:
+  exact-publication-payload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Validate exact human acceptance authority
+        run: node final-v1-human-acceptance-gate.mjs
+      - run: python3 -m pip install --quiet openpyxl
+      - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Regenerate exact accepted Grub publication payload
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          GRUB_PUBLICATION_DIR: final-v1-publication-evidence/grub
+        run: node grub-v1-publication-pack.mjs evidence/grub-v1-final-decisions-2026-08-14.json
+      - name: Build exact Grub + Fit production publication package
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          GRUB_PUBLISHABLE_FILE: final-v1-publication-evidence/grub/grub-v1-publishable.json
+          FINAL_V1_PUBLICATION_DIR: final-v1-publication-evidence
+        run: node final-v1-production-publication.mjs
+      - name: Require exact accepted publication counts
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync('final-v1-publication-evidence/final-v1-production-publication-summary.json','utf8'));
+          if(x.status!=='PASS'||x.grub?.published!==798||x.fit?.published!==1326||x.totalPublished!==2124||x.productionPass!==false)throw new Error(JSON.stringify(x));
+          console.log('PASS: exact 798 Grub + 1,326 Fit accepted publication package is ready; no production PASS inferred.');
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-v1-publication-readiness-evidence
+          path: final-v1-publication-evidence/
+          retention-days: 90

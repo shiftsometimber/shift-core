@@ -1,0 +1,76 @@
+name: Final V1 Production Publication
+on:
+  workflow_run:
+    workflows: ['Cloudflare Production Promote']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type PUBLISH_ACCEPTED_V1 after current main is deployed'
+        required: true
+        type: string
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: final-v1-production-publication
+  cancel-in-progress: false
+jobs:
+  publish-and-prove:
+    if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || (github.event_name == 'workflow_dispatch' && inputs.confirm == 'PUBLISH_ACCEPTED_V1') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Fail closed when production deploy credential is absent
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Validate exact final human acceptance
+        run: node final-v1-human-acceptance-gate.mjs
+      - run: python3 -m pip install --quiet openpyxl
+      - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Regenerate exact accepted Grub publication payload
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          GRUB_PUBLICATION_DIR: final-v1-production-publication-evidence/grub
+        run: node grub-v1-publication-pack.mjs evidence/grub-v1-final-decisions-2026-08-14.json
+      - name: Generate exact accepted production SQL
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          GRUB_PUBLISHABLE_FILE: final-v1-production-publication-evidence/grub/grub-v1-publishable.json
+          FINAL_V1_PUBLICATION_DIR: final-v1-production-publication-evidence
+        run: node final-v1-production-publication.mjs
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
+      - name: Publish accepted V1 authority atomically to existing production structured_content
+        run: npx wrangler d1 execute shift-core-db --remote --file=final-v1-production-publication-evidence/final-v1-production-publication.sql --config wrangler.jsonc
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Prove real authenticated accepted Grub + Fit serving and retained outcomes
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          FINAL_V1_SERVING_DIR: final-v1-production-serving-evidence
+        run: node final-v1-production-serving.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-v1-production-publication-serving-evidence
+          path: |
+            final-v1-production-publication-evidence/
+            final-v1-production-serving-evidence/
+          retention-days: 90

@@ -3,7 +3,7 @@ const ISSUER='https://token.actions.githubusercontent.com';
 const REPOSITORY='shiftsometimber/shift-core';
 const ACTOR_ID='315011648';
 const SYNTHETIC=/^shiftsometimber\+(?:finish|longitudinal|b03|structured|structured-authrender)-[a-z0-9-]+@gmail\.com$/i;
-const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@','/.github/workflows/gate1-rendered-browser.yml@','/.github/workflows/dave-release-gate.yml@','/.github/workflows/g2-011-progress-production.yml@','/.github/workflows/g2-013-progress-picture-production.yml@','/.github/workflows/g2-014-progress-picture-premium.yml@','/.github/workflows/g2-015-plan-manager.yml@','/.github/workflows/g1-real-password-recovery.yml@','/.github/workflows/shift-me-gate.yml@'];
+const ALLOWED_WORKFLOWS=['/.github/workflows/master-integration-gate.yml@','/.github/workflows/production-commissioning.yml@','/.github/workflows/gate1-rendered-browser.yml@','/.github/workflows/dave-release-gate.yml@','/.github/workflows/g2-011-progress-production.yml@','/.github/workflows/g2-013-progress-picture-production.yml@','/.github/workflows/g2-014-progress-picture-premium.yml@','/.github/workflows/g2-015-plan-manager.yml@','/.github/workflows/g1-real-password-recovery.yml@','/.github/workflows/shift-me-gate.yml@','/.github/workflows/final-v1-production-publication.yml@'];
 const JWKS_URL=`${ISSUER}/.well-known/jwks`;
 const JWKS_TTL_MS=5*60*1000;
 let jwksMemory={expiresAt:0,keys:[]};
@@ -48,7 +48,7 @@ async function fetchJwks({force=false}={}){
   const r=await fetch(JWKS_URL,{headers:{Accept:'application/json'}});if(!r.ok)throw new Error('jwks');
   const body=await r.json();if(!Array.isArray(body?.keys)||!body.keys.length)throw new Error('jwks_empty');
   jwksMemory={keys:body.keys,expiresAt:now+JWKS_TTL_MS};
-  if(cache){const h=new Headers({'Content-Type':'application/json','Cache-Control':'public, max-age=300'});cache.put(cacheKey,new Response(JSON.stringify({keys:body.keys}),{status:200,headers:h})).catch(()=>{})}
+  if(cache){const h=new Headers({'Content-Type':'application/json','Cache-Control':'public, max-age=300'});cache.put(cacheKey,new Response(JSON.stringify({keys:body.keys}),{status:200,headers:h}).clone()).catch(()=>{})}
   return body.keys;
 }
 

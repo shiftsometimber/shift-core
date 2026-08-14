@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/cloudflare-production-promote.yml'
+      - 'structured-content-v1.js'
+      - 'member-product-v7.js'
+      - 'commissioning-identity-v1.js'
+      - 'final-v1-production-serving.mjs'
+      - '.github/workflows/final-v1-production-publication.yml'
   workflow_dispatch:
     inputs:
       confirm:
@@ -58,3 +63,14 @@ jobs:
             fi
           done
           echo 'Explicit production promotion reached the newer route graph.'
+      - name: Prove Shift Me premium static assets are actually published
+        shell: bash
+        run: |
+          set -euo pipefail
+          js_type=$(curl -sSI 'https://shiftsometimber.co.uk/member-shift-me-premium-v1.js?v=1' | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print tolower($2);exit}')
+          css_type=$(curl -sSI 'https://shiftsometimber.co.uk/member-shift-me-premium-v1.css?v=1' | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print tolower($2);exit}')
+          echo "Shift Me JS content-type: $js_type"
+          echo "Shift Me CSS content-type: $css_type"
+          [[ "$js_type" == *javascript* ]] || { echo 'Shift Me JS is not published with JavaScript MIME'; exit 1; }
+          [[ "$css_type" == text/css* ]] || { echo 'Shift Me CSS is not published with CSS MIME'; exit 1; }
+          echo 'Shift Me premium static assets are published with correct MIME types.'
