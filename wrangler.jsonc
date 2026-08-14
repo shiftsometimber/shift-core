@@ -69,6 +69,22 @@
       "zone_name": "shiftsometimber.co.uk"
     },
     {
+      "pattern": "shiftsometimber.co.uk/member-today-premium-v1.js*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.js*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member-today-premium-v1.css*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.css*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
       "pattern": "shiftsometimber.co.uk/member-p0-v1.css*",
       "zone_name": "shiftsometimber.co.uk"
     },
