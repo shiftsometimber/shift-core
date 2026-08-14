@@ -27,20 +27,25 @@ need(grubPayload?.proof==='M11_V1_PUBLISHABLE_CONTENT_V1','Grub publishable payl
 need(grubPayload?.source_summary?.requiredRecipes===798&&grubPayload?.source_summary?.requiredTemplateDecisions===8,'Grub publication authority drifted');
 need(Array.isArray(grubPayload?.items)&&grubPayload.items.length===798,'exactly 798 Grub publication items required');
 
+const catalogue=buildIndustrialCatalogue(),recipeSource=new Map(catalogue.recipes.map(x=>[String(x.id),x]));
 const finalMarker={accepted:true,reviewer:'Matt',accepted_at:human.accepted_at,proof:human.proof};
 const grubItems=grubPayload.items.map(item=>{
-  const data={...item.data,provenance:{...(item.data?.provenance||{}),final_v1_acceptance:{...finalMarker,review_run:human.grub.review_run,artifact_id:human.grub.artifact_id,artifact_sha256:human.grub.artifact_sha256}},canonical_review:{...(item.data?.canonical_review||{}),accepted:true,decision_source:'M11_SECOND_PERSON_DECISIONS'}};
+  const source=recipeSource.get(String(item.id));need(Boolean(source),`accepted Grub id is not present in current V14 serving catalogue: ${item.id}`);
+  const data={...source,...item.data,provenance:{...(source.provenance||{}),...(item.data?.provenance||{}),final_v1_acceptance:{...finalMarker,review_run:human.grub.review_run,artifact_id:human.grub.artifact_id,artifact_sha256:human.grub.artifact_sha256}},canonical_review:{...(item.data?.canonical_review||{}),accepted:true,decision_source:'M11_SECOND_PERSON_DECISIONS'}};
   const review={...(item.review||{}),status:'approved',reviewer:'Matt',reviewed_at:human.accepted_at,final_v1:true};
-  const out={...item,status:'published',data,review};assertPublishableStructuredContent(out);return out;
+  const out={...item,title:source.title,status:'published',data,review};assertPublishableStructuredContent(out);return out;
 });
 need(new Set(grubItems.map(x=>x.id)).size===798,'Grub publication ids are not unique');
+const byMeal=Object.fromEntries(['breakfast','lunch','dinner','snack'].map(t=>[t,grubItems.filter(x=>x.data?.meal_type===t).length]));
+need(byMeal.breakfast===212&&byMeal.lunch===204&&byMeal.dinner===195&&byMeal.snack===187,`Grub serving-field binding drifted: ${JSON.stringify(byMeal)}`);
+need(grubItems.every(x=>Number(x.data?.servings)>0&&Array.isArray(x.data?.ingredients)&&x.data.ingredients.length>0&&Array.isArray(x.data?.method)&&x.data.method.length>=4),'accepted Grub row missing member-serving fields');
 
 const acceptedFit=new Set(fitDecisions.decisions.map(x=>String(x.movement_id)));
 const fitVisuals=new Map((fitLedger?.produced_candidates||[]).map(x=>[String(x.canonical_movement),x]));
 need(fitLedger?.geometry_version==='v3'&&fitLedger?.counts?.produced===26&&fitLedger?.counts?.technically_qa_passed===26,'Fit v3 technical authority is not 26/26');
 need([...acceptedFit].every(id=>fitVisuals.has(id)),'accepted Fit movement missing produced v3 visual');
 
-const fitSource=buildIndustrialCatalogue().exercises.filter(x=>String(x.id||'').startsWith('industrial-v3-fit-')&&acceptedFit.has(String(x.canonical_movement)));
+const fitSource=catalogue.exercises.filter(x=>String(x.id||'').startsWith('industrial-v3-fit-')&&acceptedFit.has(String(x.canonical_movement)));
 need(fitSource.length===1326,`expected 1,326 accepted Fit descendants, got ${fitSource.length}`);
 const perCanonical=new Map();for(const x of fitSource)perCanonical.set(x.canonical_movement,(perCanonical.get(x.canonical_movement)||0)+1);
 need([...acceptedFit].every(id=>perCanonical.get(id)===51),`each accepted Fit movement must bind exactly 51 descendants: ${JSON.stringify(Object.fromEntries(perCanonical))}`);
@@ -73,11 +78,10 @@ const sql=sqlFor(all);
 const sqlPath=path.join(outDir,'final-v1-production-publication.sql');fs.writeFileSync(sqlPath,sql);
 localVerify(sql,grubItems,fitItems);
 
-const byMeal=Object.fromEntries(['breakfast','lunch','dinner','snack'].map(t=>[t,grubItems.filter(x=>x.data?.meal_type===t).length]));
 const summary={proof:'FINAL_V1_PRODUCTION_PUBLICATION_READY_V1',status:'PASS',humanAuthority:{proof:human.proof,reviewer:human.reviewer,accepted_at:human.accepted_at},grub:{published:grubItems.length,decisions:8,byMeal},fit:{published:fitItems.length,canonicalDecisions:26,perCanonical:Object.fromEntries([...perCanonical].sort())},totalPublished:all.length,publicationLayer:'existing structured_content',partialPublicationAllowed:false,productionPass:false,next:'apply SQL to production D1 only after current main is explicitly deployed, then prove authenticated member serving'};
 fs.writeFileSync(path.join(outDir,'final-v1-production-publication-summary.json'),JSON.stringify(summary,null,2));
 console.log(JSON.stringify(summary,null,2));
-console.log('PASS Final V1 publication readiness: exact human-accepted 798 Grub + 1,326 Fit descendants validate against the existing structured_content publication contract. No audit PASS is inferred until production D1 publication and authenticated serving proof succeed.');
+console.log('PASS Final V1 publication readiness: exact human-accepted 798 Grub + 1,326 Fit descendants validate against the existing structured_content publication contract with complete member-serving fields. No audit PASS is inferred until production D1 publication and authenticated serving proof succeed.');
 
 function read(p){return JSON.parse(fs.readFileSync(p,'utf8'))}
 function need(ok,msg){if(!ok)throw new Error(msg)}
