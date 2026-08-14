@@ -1,3 +1,4 @@
+// Evidence pulse only: rerun unchanged G3-008 acceptance against merged main cc298069.
 const PATCH=`
 /* G3-008 bounded production contrast remediation — precedence-safe override.
    Dark olive remains the premium eyebrow colour on cream; dark heroes use the existing light sage. */
