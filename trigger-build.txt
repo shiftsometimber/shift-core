@@ -1,1 +1,1 @@
-Trigger first Cloudflare build
+Trigger Cloudflare build — 2026-08-14 M04 commissioning product-events route
