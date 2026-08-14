@@ -1,6 +1,6 @@
 name: Gate 1 Rendered Browser Acceptance
 # 2026-08-14 retained commissioning coverage: Gate 1 state/rendered + G2-012 Progress units
-# G3-008 final hero-eyebrow repair: unchanged acceptance; implementation now directly triggers its own production gate.
+# G3-008 FINAL deployed post-merge proof on 37ea6ef3: no product or acceptance-threshold change.
 on:
   pull_request:
     paths:
