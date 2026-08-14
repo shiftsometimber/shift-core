@@ -1,0 +1,46 @@
+name: G2-001 Today Rendered Production Acceptance
+on:
+  pull_request:
+    paths:
+      - 'g2-001-today-premium-production.mjs'
+      - '.github/workflows/g2-001-today-premium.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  today-rendered-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Run authenticated rendered Today acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G2_001_EVIDENCE_DIR: g2-001-today-evidence
+        run: node g2-001-today-premium-production.mjs
+      - name: Upload G2-001 Today evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g2-001-today-evidence
+          path: g2-001-today-evidence
+          if-no-files-found: warn
+          retention-days: 30
