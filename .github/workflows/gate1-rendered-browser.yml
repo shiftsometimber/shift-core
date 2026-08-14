@@ -1,6 +1,6 @@
 name: Gate 1 Rendered Browser Acceptance
 # 2026-08-14 retained commissioning coverage: Gate 1 state/rendered + G2-012 Progress units
-# G3-008 current-main final precedence proof pulse: unchanged acceptance against bounded contrast repair.
+# G3-008 final-live proof pulse after main deployment propagation; unchanged acceptance, no threshold/product change.
 # 2026-08-14 v7 proof pulse: intentionally no product or acceptance-threshold change.
 on:
   pull_request:
