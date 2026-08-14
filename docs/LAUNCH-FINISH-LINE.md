@@ -5,7 +5,7 @@ This is the authoritative launch closure board. `docs/SHIFT-COMMISSIONING-REMEDI
 ## BLOCKER — cannot launch without it
 | ID | Requirement | State / exact closure |
 |---|---|---|
-| B01 | Production authentication + transactional email recovery | AMBER — real registration/verification/login/logout-return is now production-proven through the genuine connected inbox. Remaining proof is the real inbox reset token -> reset -> login new password -> authenticated change-password -> logout -> login again journey. |
+| B01 | Production authentication + transactional email recovery | **PASS** — genuine connected-inbox production evidence now proves registration, verification, blocked pre-verification login, verified login, reset delivery, real token consumption, login with the reset password, authenticated password change, logout and retained final login. |
 | B02 | Authenticated isolation + durable longitudinal state | **PASS** — production A/B isolation and leave/return retained state. |
 | B03 | Core member V1 journeys | **PASS** — behaviour remains 9/9 locked; G1-008 proves member loading/empty/success outcomes; G1-009 proves cross-browser/mobile authenticated routing/geometry; and merged-production Gate 3 premium-system acceptance run `31779645970` now proves the representative authenticated shell, member IA, footer, forms/controls and premium presentation at desktop + 390px. Final genuine-device hostile acceptance remains part of B08 rather than reopening B03. |
 | B04 | One Shift Brain longitudinal behaviour | **PASS** — current intent precedence, durable Grub/Fit learning, cross-domain isolation, retained Progress/AI context. |
@@ -40,7 +40,7 @@ B03 production behavioural subrows closed: **9/9**. Grub, Fit, Today, Hydration,
 M09–M17 are anti-abstraction mappings to original requirements, not new scope. They may not disappear from this board.
 
 ## Original-audit reconciliation
-Exactly **57** original rows remain mandatory. Current evidenced classification is **48 PASS / 6 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotions are **G1-003 registration verification lifecycle** and **G1-004 verification enforcement**, proved through the genuine connected inbox and retained login journey. Evidence: `docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md`.
+Exactly **57** original rows remain mandatory. Current evidenced classification is **49 PASS / 5 AMBER / 3 BLOCKED / 0 abstraction orphans**. The latest earned original-row promotion is **G1-001 real password recovery lifecycle**, proved through the genuine connected inbox, real reset token, authenticated password change and retained final login. Evidence: `docs/evidence/2026-08-14-g1-001-real-password-recovery-pass.md`.
 
 ## Content conversion funnel
 **Grub:** structured authored universe **2,908** = 2,876 industrial + 32 existing structured. Industrial schema-valid **2,876** and **2,876/2,876** ingredient-level CoFID nutrition-valid with zero nutrition quarantine. The V1 launch conversion is the repaired **783-recipe** cohort behind **8 regenerated immutable editorial decisions**; the decision-to-publication bridge is technically ready and fails closed on any non-PASS decision. Genuine second-person decisions still govern publication.
@@ -59,7 +59,7 @@ The conversion metric remains authored -> domain/nutrition/visual validated -> r
 Non-clinical V1 must not imply/sell unavailable clinical capability.
 
 ## Current swarm
-Gate 1 verification is PASS; password recovery remains the only open Gate-1 account lifecycle. Gate 2 human editorial/domain decisions remain finite. Gate 3 is fully PASS; Gate 4 proactive Today orchestration is PASS; and all currently automatable non-external Gate 5 original rows are now PASS. Keep human/device and genuine external boundaries honest while continuing only evidence/recovery upkeep and any newly exposed regression defects.
+Gate 1 registration, verification and recovery are PASS. Gate 2 human editorial/domain decisions remain finite. Gate 3 is fully PASS; Gate 4 proactive Today orchestration is PASS; and all currently automatable non-external Gate 5 original rows are now PASS. Keep human/device and genuine external boundaries honest while continuing only evidence/recovery upkeep and any newly exposed regression defects.
 
 ## Recovery/commissioning rule
 Do not reopen behaviour-green foundations without genuine regression evidence. Failed industrial objects are quarantined; failed production gates are diagnosed and fixed without weakening acceptance. Homepage-level premium quality remains the estate-wide design constitution.
