@@ -6,6 +6,7 @@ on:
       - 'frontend/member/member-product-v33d.js'
       - 'frontend/member/member-shell-v33g.js'
       - 'frontend/member/member-p0-v1.css'
+      - 'frontend/member/member-progress-picture-premium-v1.js'
       - 'worker-entry-v6.js'
       - 'wrangler.jsonc'
       - 'commissioning-identity-v1.js'
