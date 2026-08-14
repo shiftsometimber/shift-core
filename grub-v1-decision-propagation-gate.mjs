@@ -41,7 +41,7 @@ function apply(decisions){
     for(const id of ids){
       const r=reviewableById.get(id);if(!r)throw new Error(`bound descendant missing: ${id}`);
       if(decision.decision==='PASS'){
-        const item={id:r.id,contentType:'recipe',title:r.title,status:'published',data:{nutrition:{status:'validated',...r.nutrition,methodology:'CoFID 2021 ingredient-level weighted calculation'},ingredients:r.ingredients,method:r.method,food_safety:r.food_safety,ingredient_evidence:r.ingredient_evidence,canonical_review:{template_digest:digest}},review:{status:'approved',scope:'canonical_family',template_digest:digest}};
+        const item={id:r.id,contentType:'recipe',title:r.title,status:'published',data:{meal_type:r.meal_type,nutrition:{status:'validated',...r.nutrition,methodology:'CoFID 2021 ingredient-level weighted calculation'},ingredients:r.ingredients,method:r.method,food_safety:r.food_safety,ingredient_evidence:r.ingredient_evidence,canonical_review:{template_digest:digest}},review:{status:'approved',scope:'canonical_family',template_digest:digest}};
         assertPublishableStructuredContent(item);approved.push(id);
       }else held.push({id,template_digest:digest,decision:decision.decision});
     }
@@ -64,4 +64,4 @@ let rejectedMissing=false;try{apply(allPass.slice(1))}catch{rejectedMissing=true
 if(!rejectedMissing)throw new Error('incomplete decision set was accepted');
 
 console.log(JSON.stringify({proof:'M11_V1_DECISION_PROPAGATION_GATE_V1',decisions:selected.size,boundDescendants:launchIds.size,allPassApproved:passResult.approved.length,fixFamilyHeld:firstCount,mutationRejected:rejectedMutation,incompleteSetRejected:rejectedMissing},null,2));
-console.log(`PASS M11 V1 propagation mechanism: 8 immutable decisions bind exactly ${requiredRecipes} regenerated descendants; PASS unlocks only bound validated recipes; FIX/REJECT hold their exact family; mutated/missing decision sets fail closed.`);
+console.log(`PASS M11 V1 propagation mechanism: 8 immutable decisions bind exactly ${requiredRecipes} regenerated descendants; PASS unlocks only bound validated runtime-addressable recipes; FIX/REJECT hold their exact family; mutated/missing decision sets fail closed.`);
