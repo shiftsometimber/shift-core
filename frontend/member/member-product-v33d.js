@@ -41,24 +41,17 @@ function renderGrub(r){
  return '<p class="mp-muted">No menu returned.</p>';
 }
 
-function exerciseDiagram(group){
- const body=group==='legs'
-  ?'<circle cx="34" cy="22" r="7"/><path d="M34 29v24m0 0-16 20m16-20 18 20m-18-34-18 10m18-10 16 10"/><path d="M12 74h48"/>'
-  :group==='push'
-  ?'<circle cx="31" cy="20" r="7"/><path d="M31 27v25m0 0-18 12m18-12 19 12M31 35 14 44m17-9 18 8"/><path d="M58 14v62"/>'
-  :group==='pull'
-  ?'<circle cx="33" cy="20" r="7"/><path d="M33 27v27m0 0-15 19m15-19 18 19M33 36 17 47m16-11 18 11"/><path d="M10 46h12m26 0h12"/>'
-  :group==='core'
-  ?'<circle cx="22" cy="43" r="6"/><path d="M28 43h28m-22 0-9-18m24 18 10-18m-20 18-12 18m25-18 12 18"/>'
-  :group==='cardio'
-  ?'<circle cx="30" cy="18" r="7"/><path d="M30 25 39 45 57 50M39 45 25 66m14-21 18 22M34 32 17 42"/>'
-  :'<circle cx="34" cy="21" r="7"/><path d="M34 28v28m0-18-18 8m18-8 18 8M34 56 21 74m13-18 13 18"/>';
- return `<svg class="mp-exercise-svg" viewBox="0 0 72 82" aria-hidden="true">${body}</svg>`;
+const approvedFitVisuals=Object.freeze({});
+function exerciseVisual(x){
+ const mapped=approvedFitVisuals[String(x.id||x.slug||'')];
+ const candidate=x.visual_url||x.visualUrl||x.approved_visual_url||mapped;
+ if(!candidate)return '';
+ try{const url=new URL(candidate,location.origin);if(url.protocol!=='https:'&&url.origin!==location.origin)return '';return `<div class="mp-exercise-figure"><img src="${esc(url.href)}" alt="${esc(x.visual_alt||`${x.name||'Exercise'} demonstration`)}" loading="lazy" decoding="async"></div>`;}catch{return ''}
 }
 function exerciseCard(x){
  const bits=[];if(x.sets)bits.push(`${esc(x.sets)} sets`);if(x.reps)bits.push(`${esc(x.reps)} reps`);if(x.minutes)bits.push(`${esc(x.minutes)} min`);if(x.rest_seconds)bits.push(`${esc(x.rest_seconds)} sec rest`);
  return `<div class="mp-exercise" data-exercise-id="${esc(x.id||'')}" data-exercise-group="${esc(x.group||'')}" data-exercise-minutes="${esc(x.minutes||'')}">
- <div class="mp-exercise-figure">${exerciseDiagram(x.group||'warmup')}</div>
+ ${exerciseVisual(x)}
  <div class="mp-exercise-copy"><h3>${esc(x.name)}</h3>${bits.length?`<div class="mp-mini">${bits.map(v=>`<span>${v}</span>`).join('')}</div>`:''}
  ${x.notes?`<p>${esc(x.notes)}</p>`:''}
  ${(x.how||[]).length?`<details class="mp-how"><summary>How do I actually do this?</summary><ol>${x.how.map(y=>`<li>${esc(y)}</li>`).join('')}</ol></details>`:''}
@@ -235,11 +228,15 @@ window.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('click',async e=>{const b=e.target.closest('[data-vote]');if(b)handleMealVote(b);const f=e.target.closest('[data-fit-vote]');if(f)handleFitVote(f);const d=e.target.closest('[data-photo-delete]');if(d){d.disabled=true;try{await SST_API.deleteProgressPhoto(d.dataset.photoDelete);await loadSavedPhotos();status('#visualStatus','Photo deleted.');}catch(err){d.disabled=false;status('#visualStatus',err.message||'Could not delete that photo.',true)}}});
  setupMeasurementDropdowns();
  $$('.mp-tab').forEach(b=>b.onclick=()=>activate(b.dataset.panel));
- const hash=location.hash.slice(1);activate(['today','grub','fit','water','conundrum','plans','visualise'].includes(hash)?hash:'today');
+ const hash=location.hash.slice(1);activate(['today','grub','fit','water','conundrum','plans','ai','visualise'].includes(hash)?hash:'today');
  $('#grubGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateGrub({days:Number($('#grubDays').value)||7,preferences:$('#grubPrefs').value||undefined}),'#grubStatus','#grubOutput','Building your Grub plan');
  $('#fitGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateFit({days:Number($('#fitDays').value)||3,minutes_per_day:Number($('#fitMinutes').value)||30,location:$('#fitLocation').value,equipment:$('#fitEquipment').value,preferences:$('#fitPrefs').value||undefined,limitations:$('#fitPrefs').value||undefined}),'#fitStatus','#fitOutput','Building your Fit plan');
  $('#waterGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateHydration({}),'#waterStatus','#waterOutput','Refreshing your hydration guide'); $('#drinkLog').onclick=logDrink; loadHydration();
  $('#conundrumGo').onclick=e=>{const items=$('#conundrumItems').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean);run(e.currentTarget,()=>SST_API.conundrum({items}),'#conundrumStatus','#conundrumOutput','Checking what you’ve got')};
+ const aiForm=$('#shiftAiForm'),aiInput=$('#shiftAiInput'),aiThread=$('#shiftAiThread'),aiSend=$('#shiftAiSend');
+ function aiMessage(role,text){const row=document.createElement('div');row.className='mp-ai-message '+role;row.innerHTML=`<strong>${role==='user'?'You':'Shift'}</strong><p>${esc(text)}</p>`;aiThread.appendChild(row);row.scrollIntoView({block:'nearest',behavior:'smooth'})}
+ if(aiForm)aiForm.onsubmit=async e=>{e.preventDefault();const message=aiInput.value.trim();if(!message)return;aiMessage('user',message);aiInput.value='';aiSend.disabled=true;status('#shiftAiStatus','Shift is thinking…');try{const r=await SST_API.askShiftAI({message});aiMessage('assistant',r.answer||r.message||'I could not form a useful answer just then.');status('#shiftAiStatus',r.sources?.length?`Answered using ${r.sources.length} reviewed Shift source${r.sources.length===1?'':'s'}.`:'Answered from your current Shift context.')}catch(err){if(err.status===401){location.replace('/member-login?next='+encodeURIComponent('/member/dashboard#ai'));return}aiMessage('assistant',err.message||'I could not answer just then. Please try again.');status('#shiftAiStatus','Shift AI is unavailable just now.',true)}finally{aiSend.disabled=false;aiInput.focus()}};
+ $('#shiftAiClear')?.addEventListener('click',()=>{aiThread.innerHTML='<div class="mp-ai-message assistant"><strong>Shift</strong><p>What would be useful right now?</p></div>';status('#shiftAiStatus','Cleared from this screen. Your saved Shift context is unchanged.')});
  $('#photoInput').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const img=$('#photoPreview');img.src=URL.createObjectURL(f);img.style.display='block';$('#visualConsentWrap').style.display='block'};
  $$('.visual-gen').forEach(b=>b.onclick=()=>generateVisual(b.dataset.visual));
  $('#saveOriginal').onclick=saveOriginal;

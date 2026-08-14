@@ -73,6 +73,6 @@
     generateHydration:data=>request('/hydration/plan',{method:'POST',body:JSON.stringify(data||{})}),logHydration:data=>request('/hydration/log',{method:'POST',body:JSON.stringify(data||{})}),getHydrationToday:()=>request('/hydration/today'),
     conundrum:data=>request('/grub/conundrum',{method:'POST',body:JSON.stringify(data||{})}),
     recommend:data=>request('/shift/recommend',{method:'POST',body:JSON.stringify(data||{})}),
-    askShiftAI:data=>request('/ai/chat',{method:'POST',body:JSON.stringify(data||{})})
+    askShiftAI:data=>request('/shift-ai/chat',{method:'POST',body:JSON.stringify(data||{})})
   };
 })();
