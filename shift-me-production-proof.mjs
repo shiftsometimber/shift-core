@@ -54,7 +54,7 @@ async function render(cookie,appearance){
   return x.data;
 }
 async function rerender(cookie,appearance){
-  const x=await jsonCall('/v1/shift-me/rerender',{method:'POST',body:appearance,cookie});
+  const x=await jsonCall('/v1/shift-me/rerender',{method:'POST',body:{appearance},cookie});
   assert(x.r.status===201,`rerender failed ${x.r.status} ${JSON.stringify(x.data)}`);
   assert(x.data?.shiftMe?.id,'rerender missing Shift Me id');
   return x.data;
