@@ -228,7 +228,7 @@ window.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('click',async e=>{const b=e.target.closest('[data-vote]');if(b)handleMealVote(b);const f=e.target.closest('[data-fit-vote]');if(f)handleFitVote(f);const d=e.target.closest('[data-photo-delete]');if(d){d.disabled=true;try{await SST_API.deleteProgressPhoto(d.dataset.photoDelete);await loadSavedPhotos();status('#visualStatus','Photo deleted.');}catch(err){d.disabled=false;status('#visualStatus',err.message||'Could not delete that photo.',true)}}});
  setupMeasurementDropdowns();
  $$('.mp-tab').forEach(b=>b.onclick=()=>activate(b.dataset.panel));
- const hash=location.hash.slice(1);activate(['today','grub','fit','water','conundrum','plans','ai','visualise','shiftme'].includes(hash)?hash:'today');
+ const hash=location.hash.slice(1);activate(['today','grub','fit','water','conundrum','plans','ai','visualise','shiftme','lifeback'].includes(hash)?hash:'today');
  $('#grubGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateGrub({days:Number($('#grubDays').value)||7,preferences:$('#grubPrefs').value||undefined}),'#grubStatus','#grubOutput','Building your Grub plan');
  $('#fitGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateFit({days:Number($('#fitDays').value)||3,minutes_per_day:Number($('#fitMinutes').value)||30,location:$('#fitLocation').value,equipment:$('#fitEquipment').value,preferences:$('#fitPrefs').value||undefined,limitations:$('#fitPrefs').value||undefined}),'#fitStatus','#fitOutput','Building your Fit plan');
  $('#waterGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateHydration({}),'#waterStatus','#waterOutput','Refreshing your hydration guide'); $('#drinkLog').onclick=logDrink; loadHydration();
