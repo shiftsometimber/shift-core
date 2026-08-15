@@ -24,3 +24,5 @@ jobs:
           node-version-file: .nvmrc
       - name: Prove member frontend P0 source
         run: node frontend-member-source-gate.mjs
+      - name: Syntax-check Life Back member experience
+        run: node --check frontend/member/member-life-back-v1.js
