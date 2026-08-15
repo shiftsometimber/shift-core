@@ -21,8 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       SHIFT_API_BASE: https://api.shiftsometimber.co.uk
       SHIFT_SITE_BASE: https://shiftsometimber.co.uk
       FINAL_V1_SOURCE_SHA: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
@@ -34,9 +32,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Fail closed when production deploy credential is absent
-        run: |
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Refuse stale source before any production publication
         shell: bash
         run: |
@@ -65,10 +60,33 @@ jobs:
           GRUB_PUBLISHABLE_FILE: final-v1-production-publication-evidence/grub/grub-v1-publishable.json
           FINAL_V1_PUBLICATION_DIR: final-v1-production-publication-evidence
         run: node final-v1-production-publication.mjs
-      - name: Install exact Wrangler toolchain
-        run: npm install --no-audit --no-fund
-      - name: Publish accepted V1 authority atomically to existing production structured_content
-        run: npx wrangler d1 execute shift-core-db --remote --file=final-v1-production-publication-evidence/final-v1-production-publication.sql --config wrangler.jsonc
+      - name: Derive exact Worker publication payload from locally verified SQL
+        env:
+          FINAL_V1_SQL_FILE: final-v1-production-publication-evidence/final-v1-production-publication.sql
+          FINAL_V1_WORKER_PAYLOAD: final-v1-production-publication-evidence/final-v1-worker-publication-payload.json
+        run: node final-v1-worker-publication-payload.mjs
+      - name: Acquire short-lived Shift publication identity
+        id: publish_oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Publish accepted V1 authority transactionally through production Worker D1 binding
+        shell: bash
+        env:
+          SHIFT_PUBLICATION_OIDC: ${{ steps.publish_oidc.outputs.token }}
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/final-v1-publish-response.json -w '%{http_code}' \
+            -X POST "$SHIFT_API_BASE/v1/commissioning/final-v1-publication" \
+            -H 'Content-Type: application/json' \
+            -H "X-Shift-Commissioning-OIDC: $SHIFT_PUBLICATION_OIDC" \
+            --data-binary @final-v1-production-publication-evidence/final-v1-worker-publication-payload.json)
+          cat /tmp/final-v1-publish-response.json
+          test "$code" = "200" || { echo "Worker publication failed HTTP $code"; exit 1; }
+          node -e "const fs=require('fs');const x=JSON.parse(fs.readFileSync('/tmp/final-v1-publish-response.json','utf8'));if(!x.ok||x.proof!=='FINAL_V1_WORKER_D1_PUBLICATION_V1'||x.published!==2124||x.recipes!==798||x.exercises!==1326)process.exit(1)"
       - name: Acquire short-lived Shift commissioning identity
         id: oidc
         shell: bash
