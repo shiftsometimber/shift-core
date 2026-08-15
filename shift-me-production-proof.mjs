@@ -6,7 +6,9 @@ const ORIGIN='https://shiftsometimber.co.uk';
 const OUT=process.env.SHIFT_ME_EVIDENCE_DIR||'shift-me-production-evidence';
 const password='Shift-Commissioning-2026!';
 const nonce=`finish-shiftme-${Date.now()}`;
-const SOURCE_B64='/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCQEsAUADASIAAhEBAxEB/8QAHQAAAQUBAQEAAAAAAAAAAAAAAAECAwQFBgcICf/EAEIQAAEDAgMFBQYEBQMFAAAAAAECAwQFEQASITFBBhMiUWFxFDKBkaGxByNCUsHR8BUzYnKSorLC4fEWNENzk//EABsBAAMBAQEBAAAAAAAAAAAAAAABAgMEBQYH/8QANhEAAgIBAwMDAgQEBwAAAAAAAAECEQMSITEEQVEFEyJhcYGRFDKhscHR8BQjQvEVM2KS/9oADAMBAAIRAxEAPwD5W4pLcq4Lr38RPxBGm3D3VbI0izXKrd/lrL3y3X2OWxrMMhrBdyGbTiW2nmHUH2u5sT9nfVX0Adq+zlYLW6KY7fr3fZ84+SbUeJVcB5q1r1VnIy3dR8moE2jvtxHY7Ngp1Vo2Wl3qRV5Rsu8Swmf47BPiK/Uqwlz0sJ7jN9rShPj1p0VVHeoHzm5WhmjvjnG3XrVPuu1tMuTkI7qkH3D0+PUhVQNbhrh6SVmUD6A8I5wy9zvyOdFYJVEdpTcBrm8gbt2c8Iyb5csH0dWnHJkgOn8+eI7T7qnsc7Hq0p3jju3kFvnfM9hVPVcWpOYgQ7NFZ2mVlH3rfS6h9mfQXfEiK1mEvkCnvHbw3I7kiW2Pn0+XKj0q5xJjGic0E9zxryY5CGv1x9kKc7K4j+sXFX2TxHM1R+vms9NuXpYcOl0qxlBMd6p4b6rHfydkOWrHFV2+rRoNVfQiM1PW5FpRjyRDNou9wjh8j+YysfuvhF0wzLnBih1HKOvhySzDfxnJ9y8+XKpVjPsuZVbwylqnI7dZkF4ck8h5ULW7XnGmptcOH7dBwY3qtQVji6JbPpxWqfKfb9OQGHU1MqFp+SdBmj+smd4fcMi0pIqLgBgO7D5zYG+8K79A3nM6FjqA//9k=';
+// Valid 128x128 PNG synthetic commissioning fixture. The previous embedded JPEG was truncated
+// (missing JPEG EOI), so it exercised image-decoder failure rather than Shift Me behaviour.
+const SOURCE_B64='iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACLklEQVR42u3doVLDQBRG4XQnHs2zYfGIKgwCg4rAV2AwaN4JzRsgmOlAS5nSlN27ud9RFcnO7X/27qaEpqvXl6cB7SgiIIAAEEAACCAABBAAAggAAQSgDmN3FV8O778f8DZcEFA79EMHx5cxLin6Q6dH1jAuNfpeNIzLjj6+hpIk/Wrjd9wB1aIJ1QolW/rRWqHkTD+Og5I2/SAOSub0I9RQkqffvBJ/jMu6B0S7Hm9VT5F+26osQfmWoJjTv1VtOiBZB0Se/k0q1AGZOiD+9K9fpw7I+kEMtQX0sv5UrjboTfmr2+nzxfPDOtpoy1+CtnntvI4w2vIF7Gc0J7XzjtaxgL42gJo1uwqyBH1nf5+cs3Oed7QsHfA1o/l5nXe0s7Oq87COHveAoco/b9kDLEEEgAACQAABfV/PdVqzDrAEEYAUAvraBqpVqwMsQQRYhRrWGb0DpmkzTZtWpy9QQPwmqFzhqv7T0/96c2Y7hdfr6/8+q76AEn+KbRM8fjHpJf02HTCcdIdyJ/0fkz3mGAJOd3B8E5wQfav9adXwFzTm3Kn/0cRpube9OujvoX3zs/ZJONwlacNKStp3HqSGkvz9N58BJfMKEKH/mm3CN3fhvivxeL9O2gGZIYAAAkAAASCAABBAAAggAAQQAAIIAAEEgAACQAABIIAAEEAACCAABBAAAggAAQSAAAJAAAEggAAQQAAIIAAEEAACCAABBIAAAkAAAThAy4d3YxiGD56Ll6KDQGCiAAAAAElFTkSuQmCC';
 fs.mkdirSync(OUT,{recursive:true});
 
 const assert=(c,m)=>{if(!c)throw new Error(m)};
@@ -42,7 +44,7 @@ async function getImage(cookie,label){
 async function render(cookie,appearance){
   const src=Buffer.from(SOURCE_B64,'base64');
   const form=new FormData();
-  form.append('image',new File([src],'ordinary-bloke-test.jpg',{type:'image/jpeg'}));
+  form.append('image',new File([src],'ordinary-bloke-test.png',{type:'image/png'}));
   form.append('consent','true');
   form.append('appearance',JSON.stringify(appearance));
   const x=await jsonCall('/v1/shift-me/render',{method:'POST',body:form,cookie});
