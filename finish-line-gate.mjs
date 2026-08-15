@@ -28,7 +28,8 @@ const counts=rows.reduce((a,x)=>(a[x.status]=(a[x.status]||0)+1,a),{});
 const expected={PASS:Number(compact.AUDIT_PASS),AMBER:Number(compact.AUDIT_AMBER),BLOCKED:Number(compact.AUDIT_BLOCKED)};
 for(const key of ['PASS','AMBER','BLOCKED']){
   must(Number.isInteger(expected[key]),`compact ${key} count is numeric`);
-  must(counts[key]===expected[key],`original matrix ${key} count matches compact count ${expected[key]} (found ${counts[key]||0})`);
+  const actual=Number(counts[key]||0);
+  must(actual===expected[key],`original matrix ${key} count matches compact count ${expected[key]} (found ${actual})`);
 }
 must(expected.PASS+expected.AMBER+expected.BLOCKED===57,'compact audit total is exactly 57');
 must(Number(compact.A)+Number(compact.B)===expected.AMBER,'A+B equals audit AMBER');
@@ -43,4 +44,4 @@ for(const marker of ['auth_'+'delivery_events','email_'+'hash','authDelivery'+'H
 for(const marker of ['authDelivery'+'Health','auth_email_','Check email binding/provider delivery'])must(watch.includes(marker),`Watchtower email ${marker}`);
 
 if(bad)process.exit(1);
-console.log(`PASS V1 finish-line + 57-row audit crosswalk (${counts.PASS}/${counts.AMBER}/${counts.BLOCKED}) + transactional delivery observability`);
+console.log(`PASS V1 finish-line + 57-row audit crosswalk (${Number(counts.PASS||0)}/${Number(counts.AMBER||0)}/${Number(counts.BLOCKED||0)}) + transactional delivery observability`);
