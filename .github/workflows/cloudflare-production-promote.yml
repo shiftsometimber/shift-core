@@ -54,7 +54,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for path in /v1/shift-me/render /v1/commissioning/product-events /v1/commissioning/final-v1-publication; do
+          for path in /v1/shift-me/render /v1/commissioning/product-events; do
             code=$(curl -sS -o /tmp/resp -w '%{http_code}' "https://api.shiftsometimber.co.uk${path}" || true)
             echo "$path -> HTTP $code"
             cat /tmp/resp || true
@@ -64,6 +64,14 @@ jobs:
               exit 1
             fi
           done
+          code=$(curl -sS -X POST -H 'content-type: application/json' -d '{}' -o /tmp/resp -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/commissioning/final-v1-publication' || true)
+          echo "/v1/commissioning/final-v1-publication [POST] -> HTTP $code"
+          cat /tmp/resp || true
+          echo
+          if [ "$code" = "404" ]; then
+            echo 'POST-only final publication route still missing after explicit deploy'
+            exit 1
+          fi
           echo 'Explicit production promotion reached the newer route graph.'
       - name: Prove Shift Me premium static assets are actually published
         shell: bash
