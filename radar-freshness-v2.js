@@ -4,7 +4,10 @@ export function radarFreshnessState({lastScan,lastEvent,lastPublication,lastTick
  const ages={scan:ageHours(lastScan,now),event:ageHours(lastEvent,now),publication:ageHours(lastPublication,now),ticker:ageHours(lastTickerItem,now)};
  const reasons=[];if(failures>0)reasons.push({code:'publication_failures',level:'RED',count:failures});
  if(ages.scan===null||ages.scan>RADAR_SLO.scanHours)reasons.push({code:'scan_stale',level:'AMBER',ageHours:ages.scan});
- if(ages.event!==null&&ages.event>RADAR_SLO.eventHours)reasons.push({code:'event_stale',level:'AMBER',ageHours:ages.event});
+ // A healthy current scan may legitimately discover zero new regulator events. Event age is retained as
+ // evidence/observability, but it must not make Radar stale by itself: otherwise quiet upstream feeds
+ // create a false outage. Scan freshness is the liveness SLO; publication/ticker ages still protect
+ // stale member-facing output when such output exists.
  if(ages.publication!==null&&ages.publication>RADAR_SLO.publicationHours)reasons.push({code:'publication_stale',level:'AMBER',ageHours:ages.publication});
  if(ages.ticker!==null&&ages.ticker>RADAR_SLO.tickerHours)reasons.push({code:'ticker_stale',level:'AMBER',ageHours:ages.ticker});
  const status=reasons.some(x=>x.level==='RED')?'RED':reasons.length?'AMBER':'GREEN';return{status,current:status==='GREEN',ages,sloHours:RADAR_SLO,reasons};
