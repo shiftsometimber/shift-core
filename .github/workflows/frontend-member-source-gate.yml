@@ -26,3 +26,5 @@ jobs:
         run: node frontend-member-source-gate.mjs
       - name: Syntax-check Life Back member experience
         run: node --check frontend/member/member-life-back-v1.js
+      - name: Syntax-check Medicines Watch member experience
+        run: node --check frontend/member/member-medicines-watch-v1.js
