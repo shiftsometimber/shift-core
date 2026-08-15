@@ -23,7 +23,8 @@
     }).catch(()=>console.warn('shift_me_optional_assets_unavailable'));
   }
   function ensureLifeBack(){if(!onDashboard())return;ensureCss('link[data-life-back-v1]',LIFE_BACK_CSS,'lifeBackV1','v1');ensureScript('script[data-life-back-v1]',LIFE_BACK_SRC,'lifeBackV1','v1')}
-  function ensureMemberAssets(){ensureP0();ensureProgressProduct();ensureProgressPicturePremium();ensurePlansPremium();ensureTodayPremium();ensureShiftMePremium();ensureLifeBack()}
+  function ensureMedicinesWatch(){if(!onDashboard())return;ensureCss('link[data-medicines-watch-v1]',MEDICINES_WATCH_CSS,'medicinesWatchV1','v1');ensureScript('script[data-medicines-watch-v1]',MEDICINES_WATCH_SRC,'medicinesWatchV1','v1')}
+  function ensureMemberAssets(){ensureP0();ensureProgressProduct();ensureProgressPicturePremium();ensurePlansPremium();ensureTodayPremium();ensureShiftMePremium();ensureLifeBack();ensureMedicinesWatch()}
   ensureMemberAssets();const p0Observer=new MutationObserver(ensureMemberAssets);p0Observer.observe(document.head,{childList:true,subtree:false});
   function notice(text){let n=document.getElementById('sstMemberNotice');if(!n){n=document.createElement('div');n.id='sstMemberNotice';n.setAttribute('role','status');n.setAttribute('aria-live','polite');n.style.cssText='position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:99999;max-width:min(680px,calc(100vw - 28px));background:#102017;color:#f4f1e8;padding:14px 18px;text-align:center;font:16px/1.45 Arial,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.22);pointer-events:none';document.body.appendChild(n)}n.innerHTML='<div><strong>My Shift</strong><p style="margin:6px 0 0">'+esc(text)+'</p></div>'}
   function clearNotice(){document.getElementById('sstMemberNotice')?.remove()}
