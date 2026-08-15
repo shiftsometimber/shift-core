@@ -9,6 +9,7 @@ on:
       - 'member-product-v7.js'
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
+      - 'fit-canonical-guidance-v1.mjs'
       - 'final-v1-production-serving.mjs'
       - 'final-v1-worker-publication-payload.mjs'
       - '.github/workflows/final-v1-production-publication.yml'
