@@ -7,6 +7,7 @@ on:
       - 'frontend/member/member-medicines-watch-v1.js'
       - 'frontend/member/member-medicines-watch-v1.css'
       - 'radar-public-v1.js'
+      - 'radar-medicine-seed-v1.js'
   workflow_dispatch:
 permissions:
   contents: read
