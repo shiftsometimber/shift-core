@@ -12,6 +12,7 @@ on:
       - 'fit-canonical-guidance-v1.mjs'
       - 'final-v1-production-serving.mjs'
       - 'final-v1-worker-publication-payload.mjs'
+      - 'finish-line-gate.mjs'
       - '.github/workflows/final-v1-production-publication.yml'
   workflow_dispatch:
     inputs:
