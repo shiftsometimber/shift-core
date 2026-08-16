@@ -12,6 +12,7 @@ import {knowledgeEditorialRoutes} from './knowledge-editorial-v1.js';
 import {shiftBrainRoutes} from './shift-brain-v1.js';
 import {analyticsRoutes,recordProductEvent} from './product-analytics-v1.js';
 import {radarPublicRoutes} from './radar-public-v1.js';
+import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {radarRoutes} from './radar-integration-v1.js';
 import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
 import {commissioningOpsRoutes} from './commissioning-ops-v1.js';
@@ -99,6 +100,7 @@ export default {
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
 
+    const fastState=await fastMemberStateRoute(request,env);if(fastState)return withMemberCors(fastState,request);
     const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const editorial=await knowledgeEditorialRoutes(request,env,ctx); if(editorial)return editorial;
     const commissioning=await memberCommissioningRoute(request,env,ctx); if(commissioning)return isMemberProductPath(path)?withMemberCors(commissioning,request):commissioning;
