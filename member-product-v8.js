@@ -1,4 +1,5 @@
 import core from './worker.js';
+import {authenticateMember} from './member-state-fast-v1.js';
 import {memberProductV7Routes} from './member-product-v7.js';
 import {memberProductV6Routes} from './member-product-v6.js';
 import {memberProductV5Routes} from './member-product-v5.js';
@@ -9,14 +10,14 @@ import {recordProductEvent} from './product-analytics-v1.js';
 export async function memberProductV8Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(path==='/v1/grub/plan'&&request.method==='POST'){
-    const analyticsAuth=await authenticate(request,env,ctx);
+    const analyticsAuth=await authenticateMember(request,env);
     const response=await memberProductV7Routes(request,env,ctx);
     if(response?.ok&&!analyticsAuth.response)await recordPlanAnalyticsForUser(env,analyticsAuth.user.id,'grub_plan_generated','grub');
     return response;
   }
   if(path!=='/v1/fit/plan'||request.method!=='POST')return memberProductV7Routes(request,env,ctx);
 
-  const analyticsAuth=await authenticate(request,env,ctx);
+  const analyticsAuth=await authenticateMember(request,env);
   const body=await readClone(request);
   const response=await memberProductV7Routes(rebuild(request,request.url,body),env,ctx);
   if(!response?.ok){
@@ -38,7 +39,7 @@ export async function memberProductV8Routes(request,env,ctx){
   if(!quality.ok)return new Response(JSON.stringify({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_duration_v8'}),{status:503,headers:response.headers});
 
   if(duration.changed){
-    const auth=analyticsAuth.response?await authenticate(request,env,ctx):analyticsAuth;
+    const auth=analyticsAuth.response?await authenticateMember(request,env):analyticsAuth;
     if(auth.response)return auth.response;
     await replaceLatestPlan(env.DB,auth.user.id,payload.plan);
   }
@@ -73,7 +74,7 @@ async function repairRepeatedComposition(request,env,ctx,body,headers){
   payload.plan.repetition_repair={kind:'same_group_cross_session_diversification',replacements,quality_gate_preserved:true};
   const quality=assessMemberOutput('fit',payload,body);payload.qualityCommissioning=quality;
   if(!quality.ok)return new Response(JSON.stringify({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_repetition_repair_v8',replacements}),{status:503,headers});
-  const auth=await authenticate(request,env,ctx);if(auth.response)return auth.response;
+  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
   await replaceLatestPlan(env.DB,auth.user.id,payload.plan);
   return new Response(JSON.stringify(payload),{status:200,headers});
 }
