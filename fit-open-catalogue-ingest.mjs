@@ -10,11 +10,16 @@ const tidy=value=>String(value||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').
 const key=value=>tidy(value).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const usable=x=>x.name&&x.instructions.length&&x.equipment.length;
 
-async function json(url){const r=await fetch(url,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Catalogue/1.0'}});if(!r.ok)throw new Error(`${url} returned ${r.status}`);return r.json()}
+async function json(url){for(let attempt=0;attempt<5;attempt++){const r=await fetch(url,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Catalogue/1.0'}});if(r.ok)return r.json();if(r.status!==429)throw new Error(`${url} returned ${r.status}`);const seconds=Math.max(2,Math.min(15,Number(r.headers.get('retry-after'))||2**attempt));await new Promise(resolve=>setTimeout(resolve,seconds*1000));}throw new Error(`${url} remained rate limited after bounded retries`)}
 
 async function exerciseDb(){
-  const body=await json('https://oss.exercisedb.dev/api/v1/exercises?limit=2000&offset=0');
-  const rows=Array.isArray(body)?body:body.data||body.exercises||[];
+  let after='',rows=[];
+  do{
+    const body=await json(`https://oss.exercisedb.dev/api/v1/exercises?limit=100${after?`&after=${encodeURIComponent(after)}`:''}`);
+    rows.push(...(Array.isArray(body)?body:body.data||body.exercises||[]));
+    after=body?.meta?.hasNextPage?String(body.meta.nextCursor||''):'';
+    if(after)await new Promise(resolve=>setTimeout(resolve,350));
+  }while(after&&rows.length<2000);
   return rows.map(x=>({source:'ExerciseDB OSS',source_id:String(x.exerciseId||x.id||''),name:tidy(x.name),instructions:(x.instructions||[]).map(tidy).filter(Boolean),equipment:[tidy(x.equipments?.[0]||x.equipment||'none')].filter(Boolean),body_parts:(x.bodyParts||[x.bodyPart]).map(tidy).filter(Boolean),media_url:/^https:\/\//.test(x.gifUrl||'')?x.gifUrl:null,licence:'provider free hosted tier; commercial terms require final legal check'}));
 }
 
