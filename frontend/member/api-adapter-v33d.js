@@ -5,6 +5,7 @@
   const V1=API_ROOT+'/v1';
   const DEFAULT_TIMEOUT=15000;
   const GENERATION_TIMEOUT=60000;
+  let memberStateInFlight=null,memberStateCached=null,memberStateCachedAt=0;
   function apiError(body,status){
     const code=(body&&typeof body==='object'&&(body.error||body.code))||`http_${status}`;
     const messages={invalid_credentials:'Email or password not recognised.',email_in_use:'An account already exists for that email.',invalid_registration:'Please check your email address and password.',temporarily_locked:'Too many failed attempts. Please try again in 15 minutes.',session_expired:'Your session has expired. Please sign in again.',unauthorised:'Please sign in to continue.',unauthorized:'Please sign in to continue.'};
@@ -22,6 +23,17 @@
       if(err instanceof TypeError){const e=new Error('We could not reach Shift Core. Check your connection and try again.');e.code='network_error';throw e;}
       throw err;
     }finally{clearTimeout(timer)}
+  }
+  async function getMemberState(){
+    if(memberStateCached&&Date.now()-memberStateCachedAt<3000)return memberStateCached;
+    if(memberStateInFlight)return memberStateInFlight;
+    memberStateInFlight=request('/member-state').then(result=>{memberStateCached=result;memberStateCachedAt=Date.now();return result}).finally(()=>{memberStateInFlight=null});
+    return memberStateInFlight;
+  }
+  async function saveMemberState(data){
+    const result=await request('/member-state',{method:'PATCH',body:JSON.stringify(data)});
+    memberStateCached=null;memberStateCachedAt=0;
+    return result;
   }
 
   async function visualise(file,direction){
@@ -62,7 +74,7 @@
   window.SST_API_BASE=API_ROOT;
   window.SST_API={version:'3.3H',connected:()=>true,health,
     register:data=>request('/auth/register',{method:'POST',body:JSON.stringify(data)}),login:data=>request('/auth/login',{method:'POST',body:JSON.stringify(data)}),logout:()=>request('/auth/logout',{method:'POST'}),requestPasswordReset:data=>request('/auth/request-password-reset',{method:'POST',body:JSON.stringify(data)}),
-    getMe:()=>request('/me'),getProfile:()=>request('/profile'),saveProfile:data=>request('/profile',{method:'PATCH',body:JSON.stringify(data)}),getMemberState:()=>request('/member-state'),saveMemberState:data=>request('/member-state',{method:'PATCH',body:JSON.stringify(data)}),
+    getMe:()=>request('/me'),getProfile:()=>request('/profile'),saveProfile:data=>request('/profile',{method:'PATCH',body:JSON.stringify(data)}),getMemberState,saveMemberState,
     getProgress:()=>request('/progress'),saveProgress:data=>request('/progress',{method:'POST',body:JSON.stringify(data)}),getMots:()=>request('/health-mot'),saveMot:data=>request('/health-mot',{method:'POST',body:JSON.stringify(data)}),getCheckIns:()=>request('/check-ins'),saveCheckIn:data=>request('/check-ins',{method:'POST',body:JSON.stringify(data)}),
     getCases:()=>request('/cases'),createCase:data=>request('/cases',{method:'POST',body:JSON.stringify(data)}),getPharmacyOrders:()=>request('/pharmacy/orders'),createPharmacyOrder:data=>request('/pharmacy/orders',{method:'POST',body:JSON.stringify(data)}),getConsents:()=>request('/consents'),saveConsent:data=>request('/consents',{method:'POST',body:JSON.stringify(data)}),exportData:()=>request('/privacy/export',{method:'POST'}),deleteAccount:()=>request('/privacy/account',{method:'DELETE'}),visualise,saveProgressPhoto,listProgressPhotos,deleteProgressPhoto,progressPhotoUrl,
     getShiftContext:()=>request('/shift/context'),

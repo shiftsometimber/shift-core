@@ -11,6 +11,7 @@ const workerEntry=fs.readFileSync('worker-entry-v6.js','utf8');
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 const fail=[];
 const need=(ok,msg)=>{if(!ok)fail.push(msg)};
+need(adapter.includes('memberStateInFlight')&&adapter.includes('memberStateCachedAt'), 'member-state reads are not deduplicated across concurrently loading member products');
 need(/\.ask-drawer\{[\s\S]*display:none!important;[\s\S]*visibility:hidden!important;[\s\S]*pointer-events:none!important;[\s\S]*contain:layout paint!important/.test(css),'closed Ask Timber drawer still contributes layout/scroll geometry');
 need(/\.ask-drawer\.open\{[\s\S]*display:flex!important;[\s\S]*visibility:visible!important;[\s\S]*pointer-events:auto!important/.test(css),'open Ask Timber drawer is not restored');
 need(/\.mp-hero\{[\s\S]*overflow:hidden!important;[\s\S]*max-width:100%!important;[\s\S]*min-width:0!important/.test(css),'member hero decorative pseudo-element is not locally clipped');
