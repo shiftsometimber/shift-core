@@ -1,8 +1,5 @@
 name: Final V1 Production Publication
 on:
-  workflow_run:
-    workflows: ['Cloudflare Production Promote']
-    types: [completed]
   workflow_dispatch:
     inputs:
       confirm:
@@ -17,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish-and-prove:
-    if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || (github.event_name == 'workflow_dispatch' && inputs.confirm == 'PUBLISH_ACCEPTED_V1') }}
+    if: ${{ inputs.confirm == 'PUBLISH_ACCEPTED_V1' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:

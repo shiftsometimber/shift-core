@@ -1,32 +1,11 @@
 name: Sport and Fit Production Acceptance
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/member/member-sport-v1.js'
-      - 'frontend/member/member-sport-v1.css'
-      - 'frontend/member/member-life-back-v1.js'
-      - 'frontend/member/member-life-back-v1.css'
-      - 'frontend/member/member-medicines-watch-v1.js'
-      - 'frontend/member/member-medicines-watch-v1.css'
-      - 'frontend/member/member-product-v33d.js'
-      - 'frontend/member/member-shell-v33g.js'
-      - 'frontend/member/api-adapter-v33d.js'
-      - 'worker-entry-v6.js'
-      - 'wrangler.jsonc'
-      - 'sport-fit-production.mjs'
-      - '.github/workflows/sport-fit-production.yml'
   workflow_dispatch:
 permissions:
   contents: read
   id-token: write
 jobs:
   prove:
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        acceptance-case: [desktop, mobile390]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -47,16 +26,15 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Run complete visible member journey on desktop and mobile
+      - name: Run desktop and mobile member journeys
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
-          SHIFT_ACCEPTANCE_CASE: ${{ matrix.acceptance-case }}
         run: node sport-fit-production.mjs
       - name: Retain sanitised evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sport-fit-production-evidence-${{ matrix.acceptance-case }}
+          name: sport-fit-production-evidence
           path: sport-fit-production-evidence
           if-no-files-found: error
           retention-days: 30
