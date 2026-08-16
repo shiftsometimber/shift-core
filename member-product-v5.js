@@ -12,7 +12,6 @@ export async function memberProductV5Routes(request,env,ctx){
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   if(request.method!=='POST')return json({ok:false,error:'method_not_allowed'},405,request);
   const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
-  await ensureFeedbackSchema(env.DB);
   const body=await read(request);
   if(path==='/v1/grub/feedback')return saveFeedbackResponse(request,env,auth.user.id,'grub',body);
   if(path==='/v1/fit/feedback')return saveFeedbackResponse(request,env,auth.user.id,'fit',body);
