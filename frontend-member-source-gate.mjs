@@ -35,6 +35,7 @@ need(/if\(err\.status===401\)\{location\.replace\('\/member-login\?next='/.test(
 need(/const DEFAULT_TIMEOUT=15000;/.test(adapter),'ordinary member API timeout is no longer the bounded 15-second default');
 need(/const PERSISTENCE_TIMEOUT=30000;/.test(adapter)&&/saveMemberState[\s\S]*timeout:PERSISTENCE_TIMEOUT/.test(adapter),'durable member-state writes do not have the bounded persistence response budget');
 need(/const GENERATION_TIMEOUT=60000;/.test(adapter),'Fit generation no longer has the commissioned finite 60-second client budget');
+need(/generateGrub:data=>request\('\/grub\/plan',[\s\S]*timeout:GENERATION_TIMEOUT/.test(adapter),'Grub generation does not receive the commissioned finite generation budget');
 need(/generateFit:data=>request\('\/fit\/plan',\{method:'POST',body:JSON\.stringify\(data\|\|\{\}\),timeout:GENERATION_TIMEOUT\}\)/.test(adapter),'Fit generation is not explicitly isolated from the ordinary API timeout');
 need(/\[context,today\]=await Promise\.all\(\[SST_API\.getShiftContext\(\),SST_API\.getShiftToday\(\)\]\)/.test(memberProduct),'member product no longer uses the existing canonical Today API render path');
 need(/const todayHeadline=todayPanel\?\.querySelector\(':scope > h2'\)/.test(memberProduct)&&/todayHeadline\.textContent=t\.headline/.test(memberProduct),'canonical Today headline is not rendered into the existing Today surface');

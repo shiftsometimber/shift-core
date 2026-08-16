@@ -81,7 +81,7 @@
     getShiftContext:()=>request('/shift/context'),
     getShiftToday:()=>request('/shift/today'),
     getProgressSummary:()=>request('/progress/summary'),getPlanList:()=>request('/plan/list'),
-    generateGrub:data=>request('/grub/plan',{method:'POST',body:JSON.stringify(data||{})}),replaceGrubMeal:data=>request('/grub/replace',{method:'POST',body:JSON.stringify(data||{})}),grubFeedback:data=>request('/grub/feedback',{method:'POST',body:JSON.stringify(data||{})}),
+    generateGrub:data=>request('/grub/plan',{method:'POST',body:JSON.stringify(data||{}),timeout:GENERATION_TIMEOUT}),replaceGrubMeal:data=>request('/grub/replace',{method:'POST',body:JSON.stringify(data||{})}),grubFeedback:data=>request('/grub/feedback',{method:'POST',body:JSON.stringify(data||{})}),
     generateFit:data=>request('/fit/plan',{method:'POST',body:JSON.stringify(data||{}),timeout:GENERATION_TIMEOUT}),replaceFitExercise:data=>request('/fit/replace',{method:'POST',body:JSON.stringify(data||{})}),fitFeedback:data=>request('/fit/feedback',{method:'POST',body:JSON.stringify(data||{})}),
     generateHydration:data=>request('/hydration/plan',{method:'POST',body:JSON.stringify(data||{})}),logHydration:data=>request('/hydration/log',{method:'POST',body:JSON.stringify(data||{})}),getHydrationToday:()=>request('/hydration/today'),
     conundrum:data=>request('/grub/conundrum',{method:'POST',body:JSON.stringify(data||{})}),
