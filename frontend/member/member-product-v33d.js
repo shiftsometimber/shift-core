@@ -90,7 +90,7 @@ function renderObject(obj){
  if(p.kind==='shift_grub_plan'||p.kind==='shift_grub_day'||Array.isArray(p.days)&&p.targets?.calories!=null)return renderGrub(obj);
  if(p.kind==='shift_fit_plan'||p.kind==='shift_fit_plan_v4'||p.kind==='shift_fit_week'||Array.isArray(p.sessions))return renderFit(obj);
  if(p.kind==='shift_hydration_plan'||p.guide_ml!=null)return renderHydration(obj);
- if(obj.mode==='fridge_freezer_cupboard')return renderConundrum(obj);
+ if(obj.mode==='fridge_freezer_cupboard'||obj.mode==='use_what_you_have')return renderConundrum(obj);
  if(Array.isArray(obj))return obj.length?obj.map(x=>`<div class="mp-plan">${typeof x==='object'?renderObject(x):esc(x)}</div>`).join(''):'<p class="mp-muted">Nothing active yet.</p>';
  if(typeof obj!=='object')return `<p>${esc(obj)}</p>`;
  return `<details><summary>Technical details</summary><pre>${esc(pretty(obj))}</pre></details>`;

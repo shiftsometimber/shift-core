@@ -57,7 +57,7 @@ export function rankPublishedConundrum(items,recipes,{limit=6}={}){
     const ratio=pool.length?matched.length/pool.length:0;
     const nutrition=recipe?.data?.nutrition||{};
     return{id:String(recipe.id||''),name:String(recipe.title||recipe?.data?.title||'Recipe'),meal_type:recipe?.data?.meal_type||recipe?.data?.mealType||null,minutes:Number(recipe?.data?.timeMinutes||recipe?.data?.prep_minutes||0)+Number(recipe?.data?.cook_minutes||0)||null,protein_g:Number.isFinite(Number(nutrition.protein_g))?Number(nutrition.protein_g):null,matched,missing,match_ratio:ratio,method:Array.isArray(recipe?.data?.method)?recipe.data.method:[],summary:recipe?.data?.summary||null,source:'published_catalogue'};
-  }).filter(x=>x.matched.length>=1).sort((a,b)=>b.matched.length-a.matched.length||b.match_ratio-a.match_ratio||a.missing.length-b.missing.length||String(a.name).localeCompare(String(b.name))).slice(0,Math.max(1,limit));
+  }).filter(x=>x.matched.length>=2&&x.match_ratio>=0.5&&x.missing.length<=2).sort((a,b)=>b.match_ratio-a.match_ratio||a.missing.length-b.missing.length||b.matched.length-a.matched.length||String(a.name).localeCompare(String(b.name))).slice(0,Math.max(1,limit));
 }
 async function loadPublishedRecipes(DB,{max=2500}={}){
   const out=[];const pageSize=500;

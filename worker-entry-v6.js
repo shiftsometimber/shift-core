@@ -52,7 +52,7 @@ async function gitMemberAsset(path,env){
   const contentType=GIT_MEMBER_ASSETS.get(path)||(/^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)?'image/svg+xml; charset=utf-8':null);if(!env.MEMBER_ASSETS||!contentType)return null;
   const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
   if(!asset.ok)return new Response('member asset unavailable',{status:502,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
-  const headers=new Headers(asset.headers);headers.set('Content-Type',contentType);headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority',`git:frontend/member${path}`);
+  const headers=new Headers(asset.headers);headers.set('Content-Type',contentType);headers.set('Cache-Control','public, max-age=0, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority',`git:frontend/member${path}`);
   return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
 }
 function deferAnalytics(ctx,work,label){
