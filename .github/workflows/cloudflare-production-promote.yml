@@ -31,6 +31,7 @@ on:
       - 'radar-public-v1.js'
       - 'radar-medicine-seed-v1.js'
       - 'personal-platform-v1.js'
+      - 'member-state-fast-v1.js'
       - 'fit-canonical-guidance-v1.mjs'
       - 'final-v1-production-serving.mjs'
       - 'final-v1-worker-publication-payload.mjs'
