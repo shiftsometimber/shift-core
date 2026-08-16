@@ -8,6 +8,11 @@ function status(id,msg,error=false){const e=$(id);if(!e)return;e.className='mp-s
 function pretty(x){return JSON.stringify(x,null,2)}
 function guidanceText(value){if(value==null)return'';if(typeof value==='string')return value;if(Array.isArray(value))return value.map(guidanceText).filter(Boolean).join(' · ');return guidanceText(value.instruction||value.name||value.title||value.note||value.description)}
 function guidanceList(values){const rows=(Array.isArray(values)?values:[values]).map(guidanceText).filter(Boolean);return rows.length?`<ul>${rows.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+function storageGuidance(value){
+ if(!value)return'';if(typeof value==='string')return `<p class="mp-recipe-note"><strong>Leftovers:</strong> ${esc(value)}</p>`;
+ const labels={chilled:'In the fridge',freezer:'Freezing',reheat:'Reheating'},rows=Object.entries(value).map(([key,text])=>guidanceText(text)?`<li><strong>${esc(labels[key]||key)}:</strong> ${esc(guidanceText(text))}</li>`:'').filter(Boolean);
+ return rows.length?`<div class="mp-recipe-note"><strong>Leftovers</strong><ul>${rows.join('')}</ul></div>`:'';
+}
 
 
 
@@ -21,7 +26,7 @@ function recipeBlock(m){
  ${meta.length?`<div class="mp-mini mp-recipe-meta">${meta.map(x=>`<span>${x}</span>`).join('')}</div>`:''}
  <div class="mp-recipe-grid"><div><strong>You'll need</strong><ul>${ing.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
  <div><strong>How to make it</strong><ol>${method.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div></div>
- ${m.recipe?.storage?`<p class="mp-recipe-note"><strong>Leftovers:</strong> ${esc(m.recipe.storage)}</p>`:''}
+ ${storageGuidance(m.recipe?.storage)}
  ${(m.recipe?.substitutions||[]).length?`<div class="mp-recipe-note"><strong>Easy swaps</strong>${guidanceList(m.recipe.substitutions)}</div>`:''}
  ${(m.recipe?.food_safety||[]).length?`<div class="mp-recipe-note mp-food-safe"><strong>Cook it safely</strong>${guidanceList(m.recipe.food_safety)}</div>`:''}
  ${m.recipe?.nutrition_basis?`<p class="mp-recipe-note mp-muted"><strong>Nutrition:</strong> ${esc(m.recipe.nutrition_basis)}</p>`:''}
@@ -66,7 +71,7 @@ function exerciseCard(x){
  <div class="mp-vote mp-fit-vote"><button class="mp-yay" data-fit-vote="yay">👍 Yay — keep it</button><button class="mp-nay" data-fit-vote="nay">👎 Nay — swap it</button></div></div></div>`;
 }
 function sessionBrief(session){
- const exercises=session.exercises||[],names=exercises.map(x=>String(x.name||'').toLowerCase()),text=names.join(' ');
+ const exercises=session.exercises||[],displayNames=exercises.map(x=>String(x.name||'Exercise').replace(/\s+—\s+.*/,'').trim()),names=displayNames.map(x=>x.toLowerCase()),text=names.join(' ');
  const themes=[];
  if(/squat|lunge|step|calf|bridge|hinge/.test(text))themes.push('lower-body strength and steadiness');
  if(/press|push|row|pull|carry/.test(text))themes.push('upper-body strength and posture');
@@ -74,7 +79,13 @@ function sessionBrief(session){
  if(/walk|bike|cycle|rower|march|boxing/.test(text))themes.push('heart and lung fitness');
  if(/mobility|stretch|slide/.test(text))themes.push('mobility');
  const focus=themes.slice(0,2).join(' plus ')||'whole-body movement and confidence';
- return `Today we’re working on ${focus}. The idea is to build useful strength and fitness you can carry into everyday life, without emptying the tank on day one.`;
+ const day=Math.max(1,Number(session.day)||1),moves=displayNames.slice(0,3).join(', ');
+ const phases=[
+  `Today is about laying the foundations: controlled reps, comfortable effort and learning the movements properly. ${moves} will develop ${focus} without emptying the tank.`,
+  `Today we build on the first session. The focus is ${focus}, using ${moves} to add useful work capacity while keeping your technique tidy.`,
+  `Today brings the week together. ${moves} will reinforce ${focus}; finish knowing what felt stronger and what should progress gently next week.`
+ ];
+ return phases[(day-1)%phases.length];
 }
 function renderFit(r){
  const p=r?.plan||r||{},sessions=p.sessions||[];
