@@ -3,6 +3,7 @@ const css=fs.readFileSync('frontend/member/member-p0-v1.css','utf8');
 const shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
 const adapter=fs.readFileSync('frontend/member/api-adapter-v33d.js','utf8');
 const memberProduct=fs.readFileSync('frontend/member/member-product-v33d.js','utf8');
+const memberSport=fs.readFileSync('frontend/member/member-sport-v1.js','utf8');
 const progress=fs.readFileSync('frontend/member/member-progress-v1.js','utf8');
 const progressPicturePremium=fs.readFileSync('frontend/member/member-progress-picture-premium-v1.js','utf8');
 const plansPremium=fs.readFileSync('frontend/member/member-plans-premium-v1.js','utf8');
@@ -32,6 +33,7 @@ need(/const f=document\.getElementById\('sstProfileForm'\);f\.onsubmit=[\s\S]*tr
 need(/x\.visual\?\.asset_ref/.test(memberProduct),'Fit cards do not consume the governed production visual asset reference');
 need(/What good form feels like/.test(memberProduct)&&/Watch out for/.test(memberProduct)&&/Make it easier, harder or swap it/.test(memberProduct),'Fit hides commissioned form, safety, regression and progression guidance');
 need(/Easy swaps/.test(memberProduct)&&/Cook it safely/.test(memberProduct),'Grub hides commissioned substitutions or food-safety guidance');
+need(/clubhouseApi=location\.hostname==='localhost'\?'':'https:\/\/api\.shiftsometimber\.co\.uk'/.test(memberSport)&&/fetch\(`\$\{clubhouseApi\}\/v1\/sport\/clubhouse/.test(memberSport),'Tap Room live feed is not routed to the production API Worker');
 need(/a\.setAttribute\('href','\/member\/dashboard'\)/.test(shell),'authenticated My Shift destination is not repaired');
 need(/if\(err\.status===401\)\{location\.replace\('\/member-login\?next='/.test(shell),'401 session guard is not using the live extensionless login route');
 need(/const DEFAULT_TIMEOUT=15000;/.test(adapter),'ordinary member API timeout is no longer the bounded 15-second default');
