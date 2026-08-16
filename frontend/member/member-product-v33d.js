@@ -41,7 +41,9 @@ function renderGrub(r){
  return '<p class="mp-muted">No menu returned.</p>';
 }
 
-const approvedFitVisuals=Object.freeze({});
+const approvedFitVisuals=Object.freeze(Object.fromEntries([
+ 'chair-balance-reach','row','reverse-lunge','sit-to-stand','plank','calf-raise','stationary-bike','triceps-extension','dead-bug','lat-pulldown','shadow-boxing','walk','hamstring-mobility','chest-press','thoracic-rotation','overhead-press','hip-hinge','rowing-erg','squat','loaded-carry','hip-flexor-mobility','wall-slides','glute-bridge','low-impact-march','push-up','step-up'
+].map(id=>[id,`/assets/fit/premium/${id}.svg`])));
 function exerciseVisual(x){
  const mapped=approvedFitVisuals[String(x.id||x.slug||'')];
  const candidate=x.visual_url||x.visualUrl||x.approved_visual_url||mapped;
