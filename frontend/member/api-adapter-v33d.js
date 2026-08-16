@@ -25,7 +25,7 @@
     }finally{clearTimeout(timer)}
   }
   async function getMemberState(){
-    if(memberStateCached&&Date.now()-memberStateCachedAt<3000)return memberStateCached;
+    if(memberStateCached&&Date.now()-memberStateCachedAt<10000)return memberStateCached;
     if(memberStateInFlight)return memberStateInFlight;
     memberStateInFlight=request('/member-state').then(result=>{memberStateCached=result;memberStateCachedAt=Date.now();return result}).finally(()=>{memberStateInFlight=null});
     return memberStateInFlight;
