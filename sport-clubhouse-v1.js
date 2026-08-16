@@ -15,9 +15,14 @@ async function storyFeed(sport){
  const section=BBC_FEEDS[sport]||'sport';const response=await fetch(`https://feeds.bbci.co.uk/sport/${section}/rss.xml`,{headers:{Accept:'application/rss+xml, application/xml, text/xml','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];
  const xml=await response.text();return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0,10).map((match,index)=>{const item=match[1],link=tag(item,'link');return{id:`bbc-${sport}-${index}`,title:tag(item,'title'),summary:tag(item,'description'),published_at:tag(item,'pubDate'),url:/^https:\/\/www\.bbc\.(co\.uk|com)\//.test(link)?link:'',source:'BBC Sport'}}).filter(x=>x.title&&x.url);
 }
-async function tableFeed(key){
- const season=`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`;const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/lookuptable.php?l=4328&s=${season}`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();
+async function tableFeed(key,league,season){
+ const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/lookuptable.php?l=${encodeURIComponent(league)}&s=${encodeURIComponent(season)}`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();
  return (body.table||[]).slice(0,20).map((row,index)=>({position:Number(row.intRank||index+1),team:clean(row.strTeam,80),played:Number(row.intPlayed||0),won:Number(row.intWin||0),drawn:Number(row.intDraw||0),lost:Number(row.intLoss||0),goal_difference:Number(row.intGoalDifference||0),points:Number(row.intPoints||0)}));
+}
+const FOOTBALL_COUNTRIES=['England','Scotland','Wales','Northern Ireland','Ireland'];
+async function footballLeagues(key){
+ const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}));
+ const seen=new Set();return lists.flat().filter(x=>x.idLeague&&x.idCup!=='1'&&!seen.has(x.idLeague)&&seen.add(x.idLeague)).map(x=>({id:clean(x.idLeague,12),name:clean(x.strLeague,90),country:clean(x.strCountry,30),division:Number(x.intDivision||99),season:clean(x.strCurrentSeason,20)})).sort((a,b)=>FOOTBALL_COUNTRIES.indexOf(a.country)-FOOTBALL_COUNTRIES.indexOf(b.country)||a.division-b.division||a.name.localeCompare(b.name));
 }
 
 async function dayFeed(key,sport,date){
@@ -32,9 +37,9 @@ async function leagueFeed(key,id,sport,endpoint){
   if(!response.ok)return[];const body=await response.json();return (body.events||[]).map(e=>normalise(e,sport));
 }
 
-async function footballFeed(key,date){
-  const [today,next,recent]=await Promise.all([dayFeed(key,'football',date),leagueFeed(key,'4328','football','eventsnextleague'),leagueFeed(key,'4328','football','eventspastleague')]);
-  const seen=new Set();return ukFirst([...today,...next,...recent]).filter(event=>ukScore(event)&&event.id&&!seen.has(event.id)&&seen.add(event.id)).slice(0,24);
+async function footballFeed(key,date,league){
+  const [today,next,recent]=await Promise.all([dayFeed(key,'football',date),leagueFeed(key,league,'football','eventsnextleague'),leagueFeed(key,league,'football','eventspastleague')]);
+  const leagueName=next[0]?.league||recent[0]?.league||'';const seen=new Set();return ukFirst([...today.filter(x=>String(x.league).toLowerCase()===String(leagueName).toLowerCase()),...next,...recent]).filter(event=>ukScore(event)&&event.id&&!seen.has(event.id)&&seen.add(event.id)).slice(0,30);
 }
 
 export async function sportClubhouseRoutes(request,env){
@@ -45,9 +50,11 @@ export async function sportClubhouseRoutes(request,env){
   const date=/^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('date')||'')?url.searchParams.get('date'):new Date().toISOString().slice(0,10);
   try{
     const key=env.SPORTSDB_API_KEY||'123';
-    const events=sport==='football'?await footballFeed(key,date):await dayFeed(key,sport,date);
-    const [stories,table]=await Promise.all([storyFeed(sport).catch(()=>[]),sport==='football'?tableFeed(key).catch(()=>[]):Promise.resolve([])]);
-    return json({ok:true,source:'TheSportsDB + BBC Sport',sport,date,updated_at:new Date().toISOString(),coverage:'uk_first_clubhouse',events,stories,table});
+    const leagues=sport==='football'?await footballLeagues(key):[];
+    const requestedLeague=clean(url.searchParams.get('league')||'4328',12),selected=leagues.find(x=>x.id===requestedLeague)||leagues.find(x=>x.id==='4328')||leagues[0];
+    const events=sport==='football'&&selected?await footballFeed(key,date,selected.id):await dayFeed(key,sport,date);
+    const [stories,table]=await Promise.all([storyFeed(sport).catch(()=>[]),sport==='football'&&selected?tableFeed(key,selected.id,selected.season||`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`).catch(()=>[]):Promise.resolve([])]);
+    return json({ok:true,source:'TheSportsDB + BBC Sport',sport,date,updated_at:new Date().toISOString(),coverage:'uk_and_ireland_multi_league_clubhouse',selected_league:selected||null,leagues,events,stories,table});
   }catch(error){
     return json({ok:false,source:'TheSportsDB',sport,date,updated_at:new Date().toISOString(),events:[],message:'Live sport is temporarily off the board. Please try again shortly.'},503);
   }
