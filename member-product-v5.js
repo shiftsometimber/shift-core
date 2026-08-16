@@ -1,4 +1,5 @@
 import core from './worker.js';
+import {authenticateMember} from './member-state-fast-v1.js';
 import {memberProductV4Routes} from './member-product-v4.js';
 
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/grub/feedback','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback']);
@@ -10,7 +11,7 @@ export async function memberProductV5Routes(request,env,ctx){
   if(!OWNED.has(path))return memberProductV4Routes(request,env,ctx);
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   if(request.method!=='POST')return json({ok:false,error:'method_not_allowed'},405,request);
-  const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
+  const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
   await ensureFeedbackSchema(env.DB);
   const body=await read(request);
   if(path==='/v1/grub/feedback')return saveFeedbackResponse(request,env,auth.user.id,'grub',body);

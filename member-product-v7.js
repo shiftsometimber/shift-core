@@ -1,4 +1,5 @@
 import core from './worker.js';
+import {authenticateMember} from './member-state-fast-v1.js';
 import {memberProductV6Routes} from './member-product-v6.js';
 import {listPublishedContent} from './structured-content-v1.js';
 import {ensureStructuredLaunchSeed} from './structured-launch-seed-v1.js';
@@ -14,7 +15,7 @@ export async function memberProductV7Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(!OWNED.has(path))return memberProductV6Routes(request,env,ctx);
   if(request.method==='OPTIONS')return memberProductV6Routes(request,env,ctx);
-  const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
+  const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
   const body=await readClone(request);
   await ensureStructuredLaunchSeed(env.DB);
   const base=await memberProductV6Routes(request,env,ctx,{deferQuality:true});

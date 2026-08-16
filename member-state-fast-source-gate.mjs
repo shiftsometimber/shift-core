@@ -13,6 +13,7 @@ need(/body\.myWhy\?\?safe\(current\?\.my_why\)/.test(source)&&/body\.preferences
 need(!/console\.(?:log|warn|error)/.test(source),'fast member-state route writes runtime data to logs');
 need(/await env\.DB\.prepare\('UPDATE user_sessions/.test(source)&&/await env\.DB\.prepare\('UPDATE member_status/.test(source),'D1 side effects are not awaited');
 need(/fastMemberStateRoute\(request,env\)/.test(entry),'worker entry does not invoke the fast member-state route');
+for(const file of ['member-product-v5.js','member-product-v6.js','member-product-v7.js','member-product-v8.js'])need(fs.readFileSync(file,'utf8').includes('authenticateMember(request,env)'),`${file} still uses legacy schema-bootstrap authentication for Grub/Fit`);
 
 if(fail.length){console.error(JSON.stringify({proof:'FAST_MEMBER_STATE_SOURCE',status:'FAIL',fail},null,2));process.exit(1)}
 console.log(JSON.stringify({proof:'FAST_MEMBER_STATE_SOURCE',status:'PASS',checks:8},null,2));
