@@ -21,6 +21,7 @@ export async function memberPracticalRoutes(request,env,ctx){
 const IDEAS=[
  {id:'bacon-buttie',name:'Bacon butty',needs:['bacon','bread'],optional:['brown sauce','ketchup'],minutes:10,protein_g:25,method:['Cook the bacon until properly cooked.','Put it between the bread. Add sauce only if you actually have it.']},
  {id:'chicken-cheese-wrap',name:'Chicken & cheese toasted wrap',needs:['chicken','wrap','cheese'],optional:['hot sauce','salad'],minutes:10,protein_g:42,method:['Warm cooked chicken until piping hot.','Add chicken and cheese to the wrap.','Fold and toast in a dry pan until the cheese melts.']},
+ {id:'chicken-cheese-sandwich',name:'Chicken & cheese sandwich',needs:['chicken','bread','cheese'],optional:['butter','salad','mayo','hot sauce'],minutes:8,protein_g:40,method:['If the chicken is raw, cook it fully and let it rest before slicing. If it is already cooked, use it cold or reheat until piping hot.','Butter the bread if you want to, then add the chicken and cheese.','Add only the extras you listed, close the sandwich and serve.']},
  {id:'egg-bacon-buttie',name:'Bacon & egg butty',needs:['bacon','egg','bread'],optional:['brown sauce'],minutes:12,protein_g:31,method:['Cook the bacon and egg.','Layer both into the bread and add sauce only if listed.']},
  {id:'cheesy-beans-toast',name:'Cheesy beans on toast',needs:['beans','bread','cheese'],optional:['chilli sauce'],minutes:10,protein_g:24,method:['Toast the bread.','Heat the beans until piping hot.','Spoon over the toast and add cheese.']},
  {id:'tuna-jacket',name:'Tuna jacket potato',needs:['potato','tuna'],optional:['sweetcorn','yoghurt','mayo','cheese'],minutes:18,protein_g:36,method:['Cook the potato until completely soft.','Drain the tuna.','Split the potato and add the tuna plus only the optional extras you listed.']},
@@ -72,7 +73,9 @@ async function conundrum(request,env,uid){
   if(!items.length)return json({ok:true,top:[],message:'Tell Shift what you genuinely have in. No fantasy berries.',source:'published_catalogue'},200,request);
   const pantry=b.allow_pantry_staples===false?[]:['salt','black pepper','cooking oil'];
   let published=[];try{published=await loadPublishedRecipes(env.DB)}catch{}
-  const candidates=published.length?rankPublishedConundrum(items,published):fallbackConundrum(items,pantry);
+  const governed=published.length?rankPublishedConundrum(items,published):[];
+  const quick=fallbackConundrum(items,pantry);
+  const seen=new Set();const candidates=[...quick.filter(x=>x.missing.length===0),...governed,...quick].filter(x=>x.id&&!seen.has(x.id)&&seen.add(x.id)).slice(0,6);
   return json({ok:true,mode:'use_what_you_have',top:candidates,catalogue_size:published.length,source:published.length?'published_catalogue':'commissioning_fallback',pantry_policy:pantry.length?'Shift assumes only salt, black pepper and cooking oil unless you switch pantry assumptions off.':'No pantry staples assumed.',message:candidates.length?'These are built from the ingredients you actually listed.':published.length?'Nothing in the reviewed, published Grub catalogue matched strongly enough yet — add another ingredient rather than Shift making one up.':'Nothing sensible matched strongly enough yet — add another ingredient rather than Shift making one up.'},200,request);
 }
 
