@@ -11,6 +11,7 @@ on:
       - 'frontend/member/member-medicines-watch-v1.css'
       - 'frontend/member/member-product-v33d.js'
       - 'frontend/member/member-shell-v33g.js'
+      - 'frontend/member/api-adapter-v33d.js'
       - 'worker-entry-v6.js'
       - 'wrangler.jsonc'
       - 'sport-fit-production.mjs'
@@ -41,7 +42,7 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Run desktop and mobile Sport, Life Back, Medicines and Fit journeys
+      - name: Run complete visible member journey on desktop and mobile
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
         run: node sport-fit-production.mjs
