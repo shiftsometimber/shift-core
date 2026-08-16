@@ -1,6 +1,6 @@
 import {readRadarFreshness} from './radar-freshness-v2.js';
 import {RADAR_MEDICINE_SEED} from './radar-medicine-seed-v1.js';
-const json=(d,s=200)=>new Response(JSON.stringify(d),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'public, max-age=300','X-Content-Type-Options':'nosniff'}});
+const json=(d,s=200)=>new Response(JSON.stringify(d),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'public, max-age=300','X-Content-Type-Options':'nosniff','Access-Control-Allow-Origin':'*'}});
 const safe=(v,d={})=>{try{return typeof v==='string'?JSON.parse(v):v??d}catch{return d}};
 const medicine=x=>({...x,mechanism:safe(x.mechanism_json,[]),regions:safe(x.regions_json,[]),provenance:safe(x.provenance_json,{})});
 async function ensureMedicineRegistry(DB){

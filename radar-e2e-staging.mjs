@@ -99,7 +99,7 @@ try {
   assert.equal((await DB.prepare('SELECT status FROM radar_events WHERE id=?').bind(eventId).first()).status,'published');
 
   // 5) Public/mobile products reflect the approved/published living data.
-  r=await radarPublicRoutes(request('/v1/radar/cards'),env);d=await body(r);assert.ok(d.cards.some(x=>x.id==='stage-medicine'));
+  r=await radarPublicRoutes(request('/v1/radar/cards'),env);assert.equal(r.headers.get('access-control-allow-origin'),'*');d=await body(r);assert.ok(d.cards.some(x=>x.id==='stage-medicine'));
   r=await radarPublicRoutes(request('/v1/radar/medicines/stage-medicine'),env);d=await body(r);assert.equal(d.dossier.id,'stage-medicine');assert.ok(d.updates.some(x=>x.id===eventId));
   r=await radarPublicRoutes(request('/v1/radar/ticker'),env);d=await body(r);assert.equal(d.current,true);assert.ok(d.items.some(x=>x.id===eventId));
 
