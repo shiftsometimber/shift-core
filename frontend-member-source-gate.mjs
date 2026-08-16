@@ -30,6 +30,8 @@ need(/function restoreRequestedPanel\(\)/.test(shell)&&/addEventListener\('hashc
 need(/function waitForApi\(\)/.test(shell)&&/if\(!await waitForApi\(\)\)/.test(shell),'late-loaded member API adapter is not awaited before session verification');
 need(/const f=document\.getElementById\('sstProfileForm'\);f\.onsubmit=[\s\S]*try\{const r=await SST_API\.getProfile\(\)/.test(shell),'profile form submission is not protected while existing details load');
 need(/x\.visual\?\.asset_ref/.test(memberProduct),'Fit cards do not consume the governed production visual asset reference');
+need(/What good form feels like/.test(memberProduct)&&/Watch out for/.test(memberProduct)&&/Make it easier, harder or swap it/.test(memberProduct),'Fit hides commissioned form, safety, regression and progression guidance');
+need(/Easy swaps/.test(memberProduct)&&/Cook it safely/.test(memberProduct),'Grub hides commissioned substitutions or food-safety guidance');
 need(/a\.setAttribute\('href','\/member\/dashboard'\)/.test(shell),'authenticated My Shift destination is not repaired');
 need(/if\(err\.status===401\)\{location\.replace\('\/member-login\?next='/.test(shell),'401 session guard is not using the live extensionless login route');
 need(/const DEFAULT_TIMEOUT=15000;/.test(adapter),'ordinary member API timeout is no longer the bounded 15-second default');
