@@ -1,4 +1,5 @@
 import core from './worker.js';
+import {authenticateMember} from './member-state-fast-v1.js';
 import {memberProductV5Routes} from './member-product-v5.js';
 import {buildShiftBrainContext} from './shift-brain-v1.js';
 import {recordProductEvent} from './product-analytics-v1.js';
@@ -8,7 +9,7 @@ import {buildProductBrainOverrides} from './member-personalisation-v1.js';
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/fit/plan','/v1/fit/replace']);
 export async function memberProductV6Routes(request,env,ctx,options={}){
  const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';if(!OWNED.has(path)||request.method!=='POST')return memberProductV5Routes(request,env,ctx);
- const a=await auth(request,env,ctx);if(a.response)return a.response;const uid=Number(a.user.id),body=await read(request.clone()),brain=await buildShiftBrainContext(env,uid,'',{knowledgeLimit:0}),product=path.startsWith('/v1/grub/')?'grub':'fit';
+ const a=await authenticateMember(request,env);if(a.response)return a.response;const uid=Number(a.user.id),body=await read(request.clone()),brain=await buildShiftBrainContext(env,uid,'',{knowledgeLimit:0}),product=path.startsWith('/v1/grub/')?'grub':'fit';
  const {merged,prefs,nays}=buildProductBrainOverrides(product,body,brain);
  const forwarded=new Request(request.url,{method:'POST',headers:request.headers,body:JSON.stringify(merged)}),response=await memberProductV5Routes(forwarded,env,ctx);if(!response?.ok)return response;
  const payload=await response.clone().json().catch(()=>null);if(!payload)return response;
