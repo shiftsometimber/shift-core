@@ -22,6 +22,11 @@ permissions:
   id-token: write
 jobs:
   prove:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        acceptance-case: [desktop, mobile390]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -45,12 +50,13 @@ jobs:
       - name: Run complete visible member journey on desktop and mobile
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_ACCEPTANCE_CASE: ${{ matrix.acceptance-case }}
         run: node sport-fit-production.mjs
       - name: Retain sanitised evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sport-fit-production-evidence
+          name: sport-fit-production-evidence-${{ matrix.acceptance-case }}
           path: sport-fit-production-evidence
           if-no-files-found: error
           retention-days: 30
