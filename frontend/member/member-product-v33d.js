@@ -65,10 +65,21 @@ function exerciseCard(x){
  ${(x.regressions||[]).length||(x.progressions||[]).length||(x.substitutions||[]).length?`<details class="mp-how mp-options"><summary>Make it easier, harder or swap it</summary>${(x.regressions||[]).length?`<strong>Easier</strong>${guidanceList(x.regressions)}`:''}${(x.progressions||[]).length?`<strong>Harder</strong>${guidanceList(x.progressions)}`:''}${(x.substitutions||[]).length?`<strong>Alternative</strong>${guidanceList(x.substitutions)}`:''}</details>`:''}
  <div class="mp-vote mp-fit-vote"><button class="mp-yay" data-fit-vote="yay">👍 Yay — keep it</button><button class="mp-nay" data-fit-vote="nay">👎 Nay — swap it</button></div></div></div>`;
 }
+function sessionBrief(session){
+ const exercises=session.exercises||[],names=exercises.map(x=>String(x.name||'').toLowerCase()),text=names.join(' ');
+ const themes=[];
+ if(/squat|lunge|step|calf|bridge|hinge/.test(text))themes.push('lower-body strength and steadiness');
+ if(/press|push|row|pull|carry/.test(text))themes.push('upper-body strength and posture');
+ if(/plank|dead bug|rotation|core/.test(text))themes.push('core control');
+ if(/walk|bike|cycle|rower|march|boxing/.test(text))themes.push('heart and lung fitness');
+ if(/mobility|stretch|slide/.test(text))themes.push('mobility');
+ const focus=themes.slice(0,2).join(' plus ')||'whole-body movement and confidence';
+ return `Today we’re working on ${focus}. The idea is to build useful strength and fitness you can carry into everyday life, without emptying the tank on day one.`;
+}
 function renderFit(r){
  const p=r?.plan||r||{},sessions=p.sessions||[];
  return `<div class="mp-summary-card mp-feature"><div><span class="eyebrow">SHIFT FIT</span><h3>${esc(p.days_requested||sessions.length)} sessions · ${esc(p.minutes_per_day||sessions[0]?.requested_minutes||sessions[0]?.estimated_minutes||'—')} mins each</h3><p>Built to the time you've actually got, where you are and what you have available — not padded with more of the same exercise.</p></div><div class="mp-mini">${p.location?`<span>${esc(p.location)}</span>`:''}${(p.equipment||[]).length?`<span>${esc(p.equipment.join(', '))}</span>`:''}</div></div>`+
- sessions.map(x=>`<section class="mp-day"><div class="mp-day-head"><strong>Day ${esc(x.day)} · ${esc(x.title)}</strong><span>${esc(x.estimated_minutes)} mins planned${x.requested_minutes&&Number(x.requested_minutes)!==Number(x.estimated_minutes)?` · ${esc(x.requested_minutes)} available`:''}</span></div><div class="mp-exercises">${(x.exercises||[]).map(exerciseCard).join('')}</div><p class="mp-progress-tip"><strong>Next time:</strong> ${esc(x.progression||'Build gradually.')}</p></section>`).join('')+
+ sessions.map(x=>`<section class="mp-day"><div class="mp-day-head"><strong>Day ${esc(x.day)} · ${esc(x.title)}</strong><span>${esc(x.estimated_minutes)} mins planned${x.requested_minutes&&Number(x.requested_minutes)!==Number(x.estimated_minutes)?` · ${esc(x.requested_minutes)} available`:''}</span><p class="mp-session-brief"><b>Your coach’s brief:</b> ${esc(x.brief||x.coach_brief||sessionBrief(x))}</p></div><div class="mp-exercises">${(x.exercises||[]).map(exerciseCard).join('')}</div><p class="mp-progress-tip"><strong>Next time:</strong> ${esc(x.progression||'Build gradually.')}</p></section>`).join('')+
  `<p class="mp-safety">${esc(p.rule||'')}</p>`;
 }
 function renderHydration(r){
