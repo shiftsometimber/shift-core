@@ -22,8 +22,8 @@
       ensureCss('link[data-shift-me-premium]',SHIFT_ME_PREMIUM_CSS,'shiftMePremium','v1');ensureScript('script[data-shift-me-api]',SHIFT_ME_API_SRC,'shiftMeApi','v1');ensureScript('script[data-shift-me-premium]',SHIFT_ME_PREMIUM_SRC,'shiftMePremium','v1');
     }).catch(()=>console.warn('shift_me_optional_assets_unavailable'));
   }
-  function ensureLifeBack(){if(!onDashboard())return;ensureCss('link[data-life-back-v1]',LIFE_BACK_CSS,'lifeBackV1','v1');ensureScript('script[data-life-back-v1]',LIFE_BACK_SRC,'lifeBackV1','v1')}
-  function ensureMedicinesWatch(){if(!onDashboard())return;ensureCss('link[data-medicines-watch-v1]',MEDICINES_WATCH_CSS,'medicinesWatchV1','v1');ensureScript('script[data-medicines-watch-v1]',MEDICINES_WATCH_SRC,'medicinesWatchV1','v1')}
+  function ensureLifeBack(){if(!onDashboard())return;if(location.hash==='#lifeback')sessionStorage.setItem('sst-open-lifeback','1');ensureCss('link[data-life-back-v1]',LIFE_BACK_CSS,'lifeBackV1','v1');ensureScript('script[data-life-back-v1]',LIFE_BACK_SRC,'lifeBackV1','v1')}
+  function ensureMedicinesWatch(){if(!onDashboard())return;if(location.hash==='#medicines')sessionStorage.setItem('sst-open-medicines','1');ensureCss('link[data-medicines-watch-v1]',MEDICINES_WATCH_CSS,'medicinesWatchV1','v1');ensureScript('script[data-medicines-watch-v1]',MEDICINES_WATCH_SRC,'medicinesWatchV1','v1')}
   function ensureSport(){if(!onDashboard())return;if(location.hash==='#sport')sessionStorage.setItem('sst-open-sport','1');ensureCss('link[data-sport-v1]',SPORT_CSS,'sportV1','v1');ensureScript('script[data-sport-v1]',SPORT_SRC,'sportV1','v1')}
   function ensureMemberAssets(){ensureP0();ensureProgressProduct();ensureProgressPicturePremium();ensurePlansPremium();ensureTodayPremium();ensureShiftMePremium();ensureLifeBack();ensureMedicinesWatch();ensureSport()}
   ensureMemberAssets();const p0Observer=new MutationObserver(ensureMemberAssets);p0Observer.observe(document.head,{childList:true,subtree:false});
