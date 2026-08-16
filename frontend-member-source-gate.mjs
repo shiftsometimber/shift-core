@@ -26,7 +26,7 @@ need(/link\[rel=\"stylesheet\"\]\[href\*=\"member-p0-v1\.css\"\]/.test(shell)&&/
 need(/pointer-events:none/.test(shell),'member notice can still intercept pointer events');
 need(/function clearNotice\(\)/.test(shell)&&/getMe\(\);clearNotice\(\)/.test(shell),'member notice is not cleared after successful session verification');
 need(/function authenticatedNav\(\)/.test(shell)&&/replace\('\/member\/dashboard\.html','\/member\/dashboard'\)/.test(shell),'member dashboard .html routes are not normalised to the live extensionless route');
-need(/function restoreRequestedPanel\(\)/.test(shell)&&/data-panel=/.test(shell),'direct member panel links are not restored after asynchronous product loading');
+need(/function restoreRequestedPanel\(\)/.test(shell)&&/document\.readyState==='loading'[\s\S]*else boot\(\)/.test(shell),'direct member panel links are not restored after asynchronous product loading');
 need(/x\.visual\?\.asset_ref/.test(memberProduct),'Fit cards do not consume the governed production visual asset reference');
 need(/a\.setAttribute\('href','\/member\/dashboard'\)/.test(shell),'authenticated My Shift destination is not repaired');
 need(/if\(err\.status===401\)\{location\.replace\('\/member-login\?next='/.test(shell),'401 session guard is not using the live extensionless login route');
