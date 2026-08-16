@@ -1,5 +1,11 @@
 const SPORTS={football:'Soccer',rugby:'Rugby',cricket:'Cricket',golf:'Golf',boxing:'Fighting',formula1:'Motorsport',tennis:'Tennis',darts:'Darts'};
 const BBC_FEEDS={football:'football',rugby:'rugby-union',cricket:'cricket',golf:'golf',boxing:'boxing',formula1:'formula1',tennis:'tennis',darts:'darts'};
+const FOOTBALL_NEWS=[
+ {source:'BBC Sport',url:'https://feeds.bbci.co.uk/sport/football/rss.xml',hosts:['www.bbc.co.uk','www.bbc.com']},
+ {source:'The Guardian',url:'https://www.theguardian.com/football/rss',hosts:['www.theguardian.com']},
+ {source:'The Guardian Transfers',url:'https://www.theguardian.com/football/transfer-window/rss',hosts:['www.theguardian.com'],category:'Transfers'},
+ {source:'The Independent',url:'https://www.independent.co.uk/sport/football/rss',hosts:['www.independent.co.uk']}
+];
 
 function json(body,status=200){return new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'public, max-age=120, stale-while-revalidate=300','X-Content-Type-Options':'nosniff'}})}
 function clean(value,max=120){return String(value||'').replace(/[\u0000-\u001f<>]/g,' ').replace(/\s+/g,' ').trim().slice(0,max)}
@@ -11,9 +17,12 @@ function ukScore(event){return UK_RE.test([event.country,event.league,event.titl
 function ukFirst(events){return events.map((event,index)=>({event,index,uk:ukScore(event)})).sort((a,b)=>b.uk-a.uk||a.index-b.index).map(x=>x.event)}
 function decodeXml(value){return clean(String(value||'').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>'),500)}
 function tag(xml,name){return decodeXml((xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)<\\/${name}>`,'i'))||[])[1])}
+function storyCategory(title,summary,fallback='Latest'){const text=`${title} ${summary}`.toLowerCase();if(/rumour|gossip|linked with|eyeing|targeting|interested in/.test(text))return'Rumours';if(/transfer|signing|signs|signed|deal|move|loan|bid|window/.test(text))return'Transfers';if(/match report|reaction|beats? |defeats? |draws? |wins? /.test(text))return'Match reports';if(/opinion|analysis|column|explainer|why /.test(text))return'Analysis';return fallback}
+async function readStories(feed,sport){
+ const response=await fetch(feed.url,{headers:{Accept:'application/rss+xml, application/xml, text/xml','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const xml=await response.text();return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0,18).map((match,index)=>{const item=match[1],link=tag(item,'link'),title=tag(item,'title'),summary=decodeXml(tag(item,'description')).slice(0,240);let host='';try{host=new URL(link).hostname}catch{}return{id:`${sport}-${feed.source}-${index}`,title,summary,published_at:tag(item,'pubDate'),url:feed.hosts.includes(host)?link:'',source:feed.source,category:feed.category||storyCategory(title,summary)}}).filter(x=>x.title&&x.url);
+}
 async function storyFeed(sport){
- const section=BBC_FEEDS[sport]||'sport';const response=await fetch(`https://feeds.bbci.co.uk/sport/${section}/rss.xml`,{headers:{Accept:'application/rss+xml, application/xml, text/xml','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];
- const xml=await response.text();return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0,10).map((match,index)=>{const item=match[1],link=tag(item,'link');return{id:`bbc-${sport}-${index}`,title:tag(item,'title'),summary:tag(item,'description'),published_at:tag(item,'pubDate'),url:/^https:\/\/www\.bbc\.(co\.uk|com)\//.test(link)?link:'',source:'BBC Sport'}}).filter(x=>x.title&&x.url);
+ const section=BBC_FEEDS[sport]||'sport',feeds=sport==='football'?FOOTBALL_NEWS:[{source:'BBC Sport',url:`https://feeds.bbci.co.uk/sport/${section}/rss.xml`,hosts:['www.bbc.co.uk','www.bbc.com']}];const results=await Promise.all(feeds.map(feed=>readStories(feed,sport).catch(()=>[]))),seen=new Set();return results.flat().sort((a,b)=>new Date(b.published_at)-new Date(a.published_at)).filter(x=>{const key=x.url||x.title.toLowerCase();return !seen.has(key)&&seen.add(key)}).slice(0,48);
 }
 async function tableFeed(key,league,season){
  const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/lookuptable.php?l=${encodeURIComponent(league)}&s=${encodeURIComponent(season)}`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();
