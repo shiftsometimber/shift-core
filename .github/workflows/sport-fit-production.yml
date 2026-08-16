@@ -5,6 +5,10 @@ on:
     paths:
       - 'frontend/member/member-sport-v1.js'
       - 'frontend/member/member-sport-v1.css'
+      - 'frontend/member/member-life-back-v1.js'
+      - 'frontend/member/member-life-back-v1.css'
+      - 'frontend/member/member-medicines-watch-v1.js'
+      - 'frontend/member/member-medicines-watch-v1.css'
       - 'frontend/member/member-product-v33d.js'
       - 'frontend/member/member-shell-v33g.js'
       - 'worker-entry-v6.js'
@@ -37,7 +41,7 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Run desktop and mobile member journeys
+      - name: Run desktop and mobile Sport, Life Back, Medicines and Fit journeys
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
         run: node sport-fit-production.mjs
