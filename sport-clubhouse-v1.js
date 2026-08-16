@@ -1,4 +1,5 @@
 const SPORTS={football:'Soccer',rugby:'Rugby',cricket:'Cricket',golf:'Golf',boxing:'Fighting',formula1:'Motorsport',tennis:'Tennis',darts:'Darts'};
+const BBC_FEEDS={football:'football',rugby:'rugby-union',cricket:'cricket',golf:'golf',boxing:'boxing',formula1:'formula1',tennis:'tennis',darts:'darts'};
 
 function json(body,status=200){return new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'public, max-age=120, stale-while-revalidate=300','X-Content-Type-Options':'nosniff'}})}
 function clean(value,max=120){return String(value||'').replace(/[\u0000-\u001f<>]/g,' ').replace(/\s+/g,' ').trim().slice(0,max)}
@@ -8,6 +9,16 @@ function normalise(event,sport){return {id:clean(event.idEvent,40),sport,country
 const UK_RE=/\b(england|english|scotland|scottish|wales|welsh|northern ireland|ireland|irish|britain|british|united kingdom|premier league|english championship|efl championship|fa cup|efl|six nations|county championship)\b/i;
 function ukScore(event){return UK_RE.test([event.country,event.league,event.title,event.venue].join(' '))?1:0}
 function ukFirst(events){return events.map((event,index)=>({event,index,uk:ukScore(event)})).sort((a,b)=>b.uk-a.uk||a.index-b.index).map(x=>x.event)}
+function decodeXml(value){return clean(String(value||'').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>'),500)}
+function tag(xml,name){return decodeXml((xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)<\\/${name}>`,'i'))||[])[1])}
+async function storyFeed(sport){
+ const section=BBC_FEEDS[sport]||'sport';const response=await fetch(`https://feeds.bbci.co.uk/sport/${section}/rss.xml`,{headers:{Accept:'application/rss+xml, application/xml, text/xml','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];
+ const xml=await response.text();return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0,10).map((match,index)=>{const item=match[1],link=tag(item,'link');return{id:`bbc-${sport}-${index}`,title:tag(item,'title'),summary:tag(item,'description'),published_at:tag(item,'pubDate'),url:/^https:\/\/www\.bbc\.(co\.uk|com)\//.test(link)?link:'',source:'BBC Sport'}}).filter(x=>x.title&&x.url);
+}
+async function tableFeed(key){
+ const season=`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`;const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/lookuptable.php?l=4328&s=${season}`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();
+ return (body.table||[]).slice(0,20).map((row,index)=>({position:Number(row.intRank||index+1),team:clean(row.strTeam,80),played:Number(row.intPlayed||0),won:Number(row.intWin||0),drawn:Number(row.intDraw||0),lost:Number(row.intLoss||0),goal_difference:Number(row.intGoalDifference||0),points:Number(row.intPoints||0)}));
+}
 
 async function dayFeed(key,sport,date){
   const url=`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/eventsday.php?d=${date}&s=${encodeURIComponent(SPORTS[sport])}`;
@@ -35,7 +46,8 @@ export async function sportClubhouseRoutes(request,env){
   try{
     const key=env.SPORTSDB_API_KEY||'123';
     const events=sport==='football'?await footballFeed(key,date):await dayFeed(key,sport,date);
-    return json({ok:true,source:'TheSportsDB',sport,date,updated_at:new Date().toISOString(),coverage:'uk_first_fixtures_and_results',events});
+    const [stories,table]=await Promise.all([storyFeed(sport).catch(()=>[]),sport==='football'?tableFeed(key).catch(()=>[]):Promise.resolve([])]);
+    return json({ok:true,source:'TheSportsDB + BBC Sport',sport,date,updated_at:new Date().toISOString(),coverage:'uk_first_clubhouse',events,stories,table});
   }catch(error){
     return json({ok:false,source:'TheSportsDB',sport,date,updated_at:new Date().toISOString(),events:[],message:'Live sport is temporarily off the board. Please try again shortly.'},503);
   }
