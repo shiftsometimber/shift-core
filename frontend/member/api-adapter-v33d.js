@@ -4,6 +4,7 @@
   const API_ROOT=(window.SST_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
   const V1=API_ROOT+'/v1';
   const DEFAULT_TIMEOUT=15000;
+  const PERSISTENCE_TIMEOUT=30000;
   const GENERATION_TIMEOUT=60000;
   let memberStateInFlight=null,memberStateCached=null,memberStateCachedAt=0;
   function apiError(body,status){
@@ -31,7 +32,7 @@
     return memberStateInFlight;
   }
   async function saveMemberState(data){
-    const result=await request('/member-state',{method:'PATCH',body:JSON.stringify(data)});
+    const result=await request('/member-state',{method:'PATCH',body:JSON.stringify(data),timeout:PERSISTENCE_TIMEOUT});
     memberStateCached=null;memberStateCachedAt=0;
     return result;
   }
