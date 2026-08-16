@@ -17,7 +17,6 @@ export async function memberProductV7Routes(request,env,ctx){
   if(request.method==='OPTIONS')return memberProductV6Routes(request,env,ctx);
   const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
   const body=await readClone(request);
-  await ensureStructuredLaunchSeed(env.DB);
   const base=await memberProductV6Routes(request,env,ctx,{deferQuality:true});
   if(!base?.ok)return withCors(base,request);
   const payload=await base.clone().json().catch(()=>null);if(!payload)return withCors(base,request);
