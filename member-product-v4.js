@@ -1,4 +1,5 @@
 import core from './worker.js';
+import {authenticateMember} from './member-state-fast-v1.js';
 import {memberProductV3Routes} from './member-product-v3.js';
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -14,8 +15,7 @@ export async function memberProductV4Routes(request,env,ctx){
   if(!owned.has(path))return memberProductV3Routes(request,env,ctx);
   if(method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   if(method!=='POST')return reply({ok:false,error:'method_not_allowed'},405,request);
-  const session=await authenticate(request,env,ctx);if(session.response)return withCors(session.response,request);
-  await ensurePlanSchema(env.DB);
+  const session=await authenticateMember(request,env);if(session.response)return withCors(session.response,request);
   if(path==='/v1/grub/plan')return grubPlan(request,env,session.user.id);
   if(path==='/v1/grub/replace')return replaceMeal(request,env,session.user.id);
   if(path==='/v1/fit/plan')return fitPlan(request,env,session.user.id);
