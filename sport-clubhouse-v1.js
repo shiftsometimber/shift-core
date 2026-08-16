@@ -5,7 +5,7 @@ function clean(value,max=120){return String(value||'').replace(/[\u0000-\u001f<>
 function score(event){const home=event.intHomeScore,away=event.intAwayScore;return home!==null&&home!==undefined&&away!==null&&away!==undefined?`${home} – ${away}`:''}
 function normalise(event,sport){return {id:clean(event.idEvent,40),sport,country:clean(event.strCountry,40),league:clean(event.strLeague),title:clean(event.strEvent||`${event.strHomeTeam||''} v ${event.strAwayTeam||''}`),home:clean(event.strHomeTeam),away:clean(event.strAwayTeam),score:score(event),date:clean(event.dateEvent,20),time:clean(event.strTime,20),status:clean(event.strStatus||event.strProgress,30),venue:clean(event.strVenue),report:clean(event.strDescriptionEN,280),thumb:/^https:\/\//.test(event.strThumb||'')?event.strThumb:''}}
 
-const UK_RE=/\b(england|english|scotland|scottish|wales|welsh|northern ireland|ireland|irish|britain|british|united kingdom|premier league|championship|fa cup|efl|six nations|county championship|super league)\b/i;
+const UK_RE=/\b(england|english|scotland|scottish|wales|welsh|northern ireland|ireland|irish|britain|british|united kingdom|premier league|english championship|efl championship|fa cup|efl|six nations|county championship)\b/i;
 function ukScore(event){return UK_RE.test([event.country,event.league,event.title,event.venue].join(' '))?1:0}
 function ukFirst(events){return events.map((event,index)=>({event,index,uk:ukScore(event)})).sort((a,b)=>b.uk-a.uk||a.index-b.index).map(x=>x.event)}
 
