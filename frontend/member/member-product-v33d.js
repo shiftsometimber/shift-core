@@ -6,6 +6,8 @@ let context=null,today=null;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(id,msg,error=false){const e=$(id);if(!e)return;e.className='mp-status'+(error?' error':'');e.textContent=msg}
 function pretty(x){return JSON.stringify(x,null,2)}
+function guidanceText(value){if(value==null)return'';if(typeof value==='string')return value;if(Array.isArray(value))return value.map(guidanceText).filter(Boolean).join(' · ');return guidanceText(value.instruction||value.name||value.title||value.note||value.description)}
+function guidanceList(values){const rows=(Array.isArray(values)?values:[values]).map(guidanceText).filter(Boolean);return rows.length?`<ul>${rows.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
 
 
 
@@ -20,6 +22,8 @@ function recipeBlock(m){
  <div class="mp-recipe-grid"><div><strong>You'll need</strong><ul>${ing.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
  <div><strong>How to make it</strong><ol>${method.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div></div>
  ${m.recipe?.storage?`<p class="mp-recipe-note"><strong>Leftovers:</strong> ${esc(m.recipe.storage)}</p>`:''}
+ ${(m.recipe?.substitutions||[]).length?`<div class="mp-recipe-note"><strong>Easy swaps</strong>${guidanceList(m.recipe.substitutions)}</div>`:''}
+ ${(m.recipe?.food_safety||[]).length?`<div class="mp-recipe-note mp-food-safe"><strong>Cook it safely</strong>${guidanceList(m.recipe.food_safety)}</div>`:''}
  ${m.recipe?.nutrition_basis?`<p class="mp-recipe-note mp-muted"><strong>Nutrition:</strong> ${esc(m.recipe.nutrition_basis)}</p>`:''}
  </details>`;
 }
@@ -46,7 +50,8 @@ const approvedFitVisuals=Object.freeze(Object.fromEntries([
 ].map(id=>[id,`/assets/fit/premium/${id}.svg`])));
 function exerciseVisual(x){
  const mapped=approvedFitVisuals[String(x.id||x.slug||'')];
- const candidate=x.visual_url||x.visualUrl||x.approved_visual_url||mapped;
+ const governed=x.visual?.asset_ref?'/'+String(x.visual.asset_ref).replace(/^\/+/, ''):'';
+ const candidate=x.visual_url||x.visualUrl||x.approved_visual_url||governed||mapped;
  if(!candidate)return '';
  try{const url=new URL(candidate,location.origin);if(url.protocol!=='https:'&&url.origin!==location.origin)return '';return `<div class="mp-exercise-figure"><img src="${esc(url.href)}" alt="${esc(x.visual_alt||`${x.name||'Exercise'} demonstration`)}" loading="lazy" decoding="async"></div>`;}catch{return ''}
 }
@@ -56,7 +61,8 @@ function exerciseCard(x){
  ${exerciseVisual(x)}
  <div class="mp-exercise-copy"><h3>${esc(x.name)}</h3>${bits.length?`<div class="mp-mini">${bits.map(v=>`<span>${v}</span>`).join('')}</div>`:''}
  ${x.notes?`<p>${esc(x.notes)}</p>`:''}
- ${(x.how||[]).length?`<details class="mp-how"><summary>How do I actually do this?</summary><ol>${x.how.map(y=>`<li>${esc(y)}</li>`).join('')}</ol></details>`:''}
+ ${(x.how||[]).length?`<details class="mp-how"><summary>Show me how</summary><ol>${x.how.map(y=>`<li>${esc(y)}</li>`).join('')}</ol>${(x.form_cues||[]).length?`<strong>What good form feels like</strong>${guidanceList(x.form_cues)}`:''}${(x.safety_cues||[]).length?`<strong>Watch out for</strong>${guidanceList(x.safety_cues)}`:''}</details>`:''}
+ ${(x.regressions||[]).length||(x.progressions||[]).length||(x.substitutions||[]).length?`<details class="mp-how mp-options"><summary>Make it easier, harder or swap it</summary>${(x.regressions||[]).length?`<strong>Easier</strong>${guidanceList(x.regressions)}`:''}${(x.progressions||[]).length?`<strong>Harder</strong>${guidanceList(x.progressions)}`:''}${(x.substitutions||[]).length?`<strong>Alternative</strong>${guidanceList(x.substitutions)}`:''}</details>`:''}
  <div class="mp-vote mp-fit-vote"><button class="mp-yay" data-fit-vote="yay">👍 Yay — keep it</button><button class="mp-nay" data-fit-vote="nay">👎 Nay — swap it</button></div></div></div>`;
 }
 function renderFit(r){
