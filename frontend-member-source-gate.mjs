@@ -28,6 +28,7 @@ need(/function clearNotice\(\)/.test(shell)&&/getMe\(\);clearNotice\(\)/.test(sh
 need(/function authenticatedNav\(\)/.test(shell)&&/replace\('\/member\/dashboard\.html','\/member\/dashboard'\)/.test(shell),'member dashboard .html routes are not normalised to the live extensionless route');
 need(/function restoreRequestedPanel\(\)/.test(shell)&&/addEventListener\('hashchange',restoreRequestedPanel\)/.test(shell)&&/document\.readyState==='loading'[\s\S]*else boot\(\)/.test(shell),'direct member panel links are not restored at late boot or after in-page navigation');
 need(/function waitForApi\(\)/.test(shell)&&/if\(!await waitForApi\(\)\)/.test(shell),'late-loaded member API adapter is not awaited before session verification');
+need(/const f=document\.getElementById\('sstProfileForm'\);f\.onsubmit=[\s\S]*try\{const r=await SST_API\.getProfile\(\)/.test(shell),'profile form submission is not protected while existing details load');
 need(/x\.visual\?\.asset_ref/.test(memberProduct),'Fit cards do not consume the governed production visual asset reference');
 need(/a\.setAttribute\('href','\/member\/dashboard'\)/.test(shell),'authenticated My Shift destination is not repaired');
 need(/if\(err\.status===401\)\{location\.replace\('\/member-login\?next='/.test(shell),'401 session guard is not using the live extensionless login route');
