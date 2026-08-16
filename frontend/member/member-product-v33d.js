@@ -46,7 +46,8 @@ const approvedFitVisuals=Object.freeze(Object.fromEntries([
 ].map(id=>[id,`/assets/fit/premium/${id}.svg`])));
 function exerciseVisual(x){
  const mapped=approvedFitVisuals[String(x.id||x.slug||'')];
- const candidate=x.visual_url||x.visualUrl||x.approved_visual_url||mapped;
+ const governed=x.visual?.asset_ref?'/'+String(x.visual.asset_ref).replace(/^\/+/, ''):'';
+ const candidate=x.visual_url||x.visualUrl||x.approved_visual_url||governed||mapped;
  if(!candidate)return '';
  try{const url=new URL(candidate,location.origin);if(url.protocol!=='https:'&&url.origin!==location.origin)return '';return `<div class="mp-exercise-figure"><img src="${esc(url.href)}" alt="${esc(x.visual_alt||`${x.name||'Exercise'} demonstration`)}" loading="lazy" decoding="async"></div>`;}catch{return ''}
 }
