@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/cloudflare-production-promote.yml'
+      - 'wrangler.jsonc'
       - 'worker-entry-v6.js'
       - 'frontend/member/assets/fit/premium/**'
       - 'structured-content-v1.js'
