@@ -4,63 +4,74 @@
   "builds": {
     "average": {
       "params": {
-        "gender": 1.0,
+        "gender": 0.0,
         "age": 0.6,
-        "muscle": 0.4,
-        "weight": 0.52,
-        "proportions": 0.55
+        "muscle": 0.34,
+        "weight": 0.48
       },
-      "breadth": 0.0
+      "breadth": 0.0,
+      "mass": 0.0,
+      "visual_note": "baseline ordinary male"
     },
     "solid": {
       "params": {
-        "gender": 1.0,
+        "gender": 0.0,
         "age": 0.6,
-        "muscle": 0.48,
-        "weight": 0.62,
+        "muscle": 0.43,
+        "weight": 0.64,
         "proportions": 0.62
       },
-      "breadth": 0.025
+      "breadth": 0.06,
+      "mass": 0.045,
+      "visual_note": "clearly broader shoulders, chest and limbs"
     },
     "stocky": {
       "params": {
-        "gender": 1.0,
+        "gender": 0.0,
         "age": 0.6,
-        "muscle": 0.44,
-        "weight": 0.72,
-        "proportions": 0.7
+        "muscle": 0.39,
+        "weight": 0.76,
+        "proportions": 0.72
       },
-      "breadth": 0.045
+      "breadth": 0.095,
+      "mass": 0.09,
+      "visual_note": "shorter-looking, thicker all-round build"
     },
     "bigger-bloke": {
       "params": {
-        "gender": 1.0,
+        "gender": 0.0,
         "age": 0.6,
-        "muscle": 0.36,
-        "weight": 0.82,
-        "proportions": 0.69
+        "muscle": 0.3,
+        "weight": 0.88,
+        "proportions": 0.68
       },
-      "breadth": 0.06
+      "breadth": 0.13,
+      "mass": 0.145,
+      "visual_note": "visibly overweight before stomach choice"
     },
     "heavy": {
       "params": {
-        "gender": 1.0,
+        "gender": 0.0,
         "age": 0.6,
-        "muscle": 0.3,
-        "weight": 0.91,
-        "proportions": 0.66
+        "muscle": 0.24,
+        "weight": 0.97,
+        "proportions": 0.64
       },
-      "breadth": 0.078
+      "breadth": 0.175,
+      "mass": 0.22,
+      "visual_note": "substantially heavy build"
     },
     "very-heavy": {
       "params": {
-        "gender": 1.0,
+        "gender": 0.0,
         "age": 0.6,
-        "muscle": 0.25,
-        "weight": 0.99,
-        "proportions": 0.64
+        "muscle": 0.2,
+        "weight": 1.0,
+        "proportions": 0.6
       },
-      "breadth": 0.095
+      "breadth": 0.23,
+      "mass": 0.32,
+      "visual_note": "very large build; intended to reach roughly 25-stone visual territory depending on height"
     }
   },
   "stomachs": {
@@ -69,12 +80,12 @@
       "waist": 0.0
     },
     "dad-bod": {
-      "belly": 0.075,
-      "waist": 0.025
+      "belly": 0.11,
+      "waist": 0.045
     },
     "beer-belly": {
-      "belly": 0.155,
-      "waist": 0.05
+      "belly": 0.24,
+      "waist": 0.075
     }
   },
   "variants": {
@@ -184,5 +195,8 @@
     "muscle": "muscle",
     "height": "height",
     "proportions": "proportions"
+  },
+  "notes": {
+    "very-heavy": "visual target is a genuinely very large male, roughly 25-stone territory depending on height; not an exact weight simulator"
   }
 }
