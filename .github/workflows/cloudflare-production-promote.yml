@@ -7,6 +7,8 @@ on:
       - '.github/workflows/cloudflare-production-promote.yml'
       - 'wrangler.jsonc'
       - 'worker-entry-v6.js'
+      - 'shift-me-3d-proof-v1.js'
+      - 'public/shift-me-3d/**'
       - 'frontend/member/assets/fit/premium/**'
       - 'structured-content-v1.js'
       - 'member-product-v7.js'
