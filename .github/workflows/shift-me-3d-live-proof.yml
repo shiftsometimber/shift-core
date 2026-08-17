@@ -1,0 +1,49 @@
+name: Shift Me 3D Live Proof
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/shift-me-3d-live-proof.py'
+      - 'shift-me-3d-proof-v1.js'
+      - '.github/workflows/shift-me-3d-live-proof.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-wire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free 3D body dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install 'anny==0.6.0' trimesh
+      - name: Generate build meshes and wire live route
+        run: python scripts/shift-me-3d-live-proof.py
+      - name: Validate generated assets
+        run: |
+          test -s public/shift-me-3d/lean.glb
+          test -s public/shift-me-3d/average.glb
+          test -s public/shift-me-3d/athletic.glb
+          test -s public/shift-me-3d/broad.glb
+          grep -q "shiftMe3DProofRoutes" worker-entry-v6.js
+          grep -q "shift-me-3d-proof" wrangler.jsonc
+      - name: Commit generated assets and production wiring
+        run: |
+          git config user.name 'shift-actions'
+          git config user.email 'actions@users.noreply.github.com'
+          git add public/shift-me-3d worker-entry-v6.js wrangler.jsonc
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'Generate live Shift Me 3D build proof assets [skip ci]'
+            git push origin HEAD:main
+          fi
