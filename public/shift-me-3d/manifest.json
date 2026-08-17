@@ -1,40 +1,172 @@
 {
   "engine": "Anny 0.6 / MakeHuman-derived CC0 assets",
+  "purpose": "Shift Me adult male body + independent stomach proof",
   "builds": {
-    "lean": {
-      "file": "lean.glb",
-      "params": {
-        "gender": 1.0,
-        "muscle": 0.38,
-        "weight": 0.28,
-        "proportions": 0.46
-      }
-    },
     "average": {
-      "file": "average.glb",
       "params": {
         "gender": 1.0,
-        "muscle": 0.45,
-        "weight": 0.47
-      }
+        "age": 0.6,
+        "muscle": 0.4,
+        "weight": 0.52,
+        "proportions": 0.55
+      },
+      "breadth": 0.0
     },
-    "athletic": {
-      "file": "athletic.glb",
+    "solid": {
       "params": {
         "gender": 1.0,
-        "muscle": 0.76,
-        "weight": 0.45,
-        "proportions": 0.54
-      }
+        "age": 0.6,
+        "muscle": 0.48,
+        "weight": 0.62,
+        "proportions": 0.62
+      },
+      "breadth": 0.025
     },
-    "broad": {
-      "file": "broad.glb",
+    "stocky": {
       "params": {
         "gender": 1.0,
-        "muscle": 0.62,
-        "weight": 0.68,
+        "age": 0.6,
+        "muscle": 0.44,
+        "weight": 0.72,
+        "proportions": 0.7
+      },
+      "breadth": 0.045
+    },
+    "bigger-bloke": {
+      "params": {
+        "gender": 1.0,
+        "age": 0.6,
+        "muscle": 0.36,
+        "weight": 0.82,
+        "proportions": 0.69
+      },
+      "breadth": 0.06
+    },
+    "heavy": {
+      "params": {
+        "gender": 1.0,
+        "age": 0.6,
+        "muscle": 0.3,
+        "weight": 0.91,
         "proportions": 0.66
-      }
+      },
+      "breadth": 0.078
+    },
+    "very-heavy": {
+      "params": {
+        "gender": 1.0,
+        "age": 0.6,
+        "muscle": 0.25,
+        "weight": 0.99,
+        "proportions": 0.64
+      },
+      "breadth": 0.095
+    }
+  },
+  "stomachs": {
+    "flat": {
+      "belly": 0.0,
+      "waist": 0.0
+    },
+    "dad-bod": {
+      "belly": 0.075,
+      "waist": 0.025
+    },
+    "beer-belly": {
+      "belly": 0.155,
+      "waist": 0.05
+    }
+  },
+  "variants": {
+    "average:flat": {
+      "file": "average-flat.glb",
+      "build": "average",
+      "stomach": "flat"
+    },
+    "average:dad-bod": {
+      "file": "average-dad-bod.glb",
+      "build": "average",
+      "stomach": "dad-bod"
+    },
+    "average:beer-belly": {
+      "file": "average-beer-belly.glb",
+      "build": "average",
+      "stomach": "beer-belly"
+    },
+    "solid:flat": {
+      "file": "solid-flat.glb",
+      "build": "solid",
+      "stomach": "flat"
+    },
+    "solid:dad-bod": {
+      "file": "solid-dad-bod.glb",
+      "build": "solid",
+      "stomach": "dad-bod"
+    },
+    "solid:beer-belly": {
+      "file": "solid-beer-belly.glb",
+      "build": "solid",
+      "stomach": "beer-belly"
+    },
+    "stocky:flat": {
+      "file": "stocky-flat.glb",
+      "build": "stocky",
+      "stomach": "flat"
+    },
+    "stocky:dad-bod": {
+      "file": "stocky-dad-bod.glb",
+      "build": "stocky",
+      "stomach": "dad-bod"
+    },
+    "stocky:beer-belly": {
+      "file": "stocky-beer-belly.glb",
+      "build": "stocky",
+      "stomach": "beer-belly"
+    },
+    "bigger-bloke:flat": {
+      "file": "bigger-bloke-flat.glb",
+      "build": "bigger-bloke",
+      "stomach": "flat"
+    },
+    "bigger-bloke:dad-bod": {
+      "file": "bigger-bloke-dad-bod.glb",
+      "build": "bigger-bloke",
+      "stomach": "dad-bod"
+    },
+    "bigger-bloke:beer-belly": {
+      "file": "bigger-bloke-beer-belly.glb",
+      "build": "bigger-bloke",
+      "stomach": "beer-belly"
+    },
+    "heavy:flat": {
+      "file": "heavy-flat.glb",
+      "build": "heavy",
+      "stomach": "flat"
+    },
+    "heavy:dad-bod": {
+      "file": "heavy-dad-bod.glb",
+      "build": "heavy",
+      "stomach": "dad-bod"
+    },
+    "heavy:beer-belly": {
+      "file": "heavy-beer-belly.glb",
+      "build": "heavy",
+      "stomach": "beer-belly"
+    },
+    "very-heavy:flat": {
+      "file": "very-heavy-flat.glb",
+      "build": "very-heavy",
+      "stomach": "flat"
+    },
+    "very-heavy:dad-bod": {
+      "file": "very-heavy-dad-bod.glb",
+      "build": "very-heavy",
+      "stomach": "dad-bod"
+    },
+    "very-heavy:beer-belly": {
+      "file": "very-heavy-beer-belly.glb",
+      "build": "very-heavy",
+      "stomach": "beer-belly"
     }
   },
   "phenotype_labels": [
