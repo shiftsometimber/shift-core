@@ -32,19 +32,21 @@ keys={
 }
 print('Matched phenotype keys:',keys)
 
+# Deliberately wide visual range for Shift's likely starting audience.
+# The labels are UX labels, not claims about exact body weight or BMI.
 builds={
-    'average':{'weight':0.52,'muscle':0.40,'proportions':0.55,'breadth':0.00},
-    'solid':{'weight':0.62,'muscle':0.48,'proportions':0.62,'breadth':0.025},
-    'stocky':{'weight':0.72,'muscle':0.44,'proportions':0.70,'breadth':0.045},
-    'bigger-bloke':{'weight':0.82,'muscle':0.36,'proportions':0.69,'breadth':0.060},
-    'heavy':{'weight':0.91,'muscle':0.30,'proportions':0.66,'breadth':0.078},
-    'very-heavy':{'weight':0.99,'muscle':0.25,'proportions':0.64,'breadth':0.095},
+    'average':{'weight':0.48,'muscle':0.34,'proportions':0.50,'breadth':0.00,'mass':0.00,'visual_note':'baseline ordinary male'},
+    'solid':{'weight':0.64,'muscle':0.43,'proportions':0.62,'breadth':0.060,'mass':0.045,'visual_note':'clearly broader shoulders, chest and limbs'},
+    'stocky':{'weight':0.76,'muscle':0.39,'proportions':0.72,'breadth':0.095,'mass':0.090,'visual_note':'shorter-looking, thicker all-round build'},
+    'bigger-bloke':{'weight':0.88,'muscle':0.30,'proportions':0.68,'breadth':0.130,'mass':0.145,'visual_note':'visibly overweight before stomach choice'},
+    'heavy':{'weight':0.97,'muscle':0.24,'proportions':0.64,'breadth':0.175,'mass':0.220,'visual_note':'substantially heavy build'},
+    'very-heavy':{'weight':1.00,'muscle':0.20,'proportions':0.60,'breadth':0.230,'mass':0.320,'visual_note':'very large build; intended to reach roughly 25-stone visual territory depending on height'},
 }
 
 stomachs={
     'flat':{'belly':0.00,'waist':0.00},
-    'dad-bod':{'belly':0.075,'waist':0.025},
-    'beer-belly':{'belly':0.155,'waist':0.050},
+    'dad-bod':{'belly':0.11,'waist':0.045},
+    'beer-belly':{'belly':0.24,'waist':0.075},
 }
 
 def orient(vertices):
@@ -60,32 +62,69 @@ def orient(vertices):
     v[:,1]-=v[:,1].min()
     return v
 
-def shift_male_shape(vertices,breadth=0.0,belly=0.0,waist=0.0):
+def shift_male_shape(vertices,breadth=0.0,mass=0.0,belly=0.0,waist=0.0):
     v=np.asarray(vertices,dtype=np.float64).copy()
     h=max(float(v[:,1].max()-v[:,1].min()),1e-6)
     t=(v[:,1]-v[:,1].min())/h
+    body_width=max(float(np.ptp(v[:,0])),1e-6)
     body_depth=max(float(np.ptp(v[:,2])),1e-6)
-    shoulder=np.exp(-((t-0.70)/0.115)**2)
-    torso=np.exp(-((t-0.57)/0.20)**2)
-    v[:,0]*=(1.0 + breadth*(0.35*torso+0.85*shoulder))
-    mid=np.exp(-((t-0.49)/0.105)**2)
-    lower=np.exp(-((t-0.43)/0.12)**2)
+
+    # Overall build separation. These masks deliberately avoid simply scaling
+    # the whole avatar and instead add mass through torso, upper arms and thighs.
+    shoulders=np.exp(-((t-0.73)/0.095)**2)
+    chest=np.exp(-((t-0.65)/0.105)**2)
+    waist_band=np.exp(-((t-0.555)/0.105)**2)
+    upper_leg=np.exp(-((t-0.31)/0.115)**2)
+    upper_arm=np.exp(-((t-0.57)/0.19)**2)
+
+    v[:,0]*=(1.0 + breadth*(0.95*shoulders+0.55*chest+0.30*upper_arm+0.34*upper_leg))
+    if mass:
+        v[:,0]*=(1.0 + mass*(0.38*chest+0.46*waist_band+0.34*upper_leg))
+        v[:,2]*=(1.0 + mass*(0.30*chest+0.52*waist_band+0.22*upper_leg))
+
+    # Stomach is intentionally centred above the hip/thigh region. Earlier
+    # tuning was too low and made thighs grow. Dad Bod softens the waist;
+    # Beer Belly projects the central/lower abdomen forwards.
+    abdomen=np.exp(-((t-0.565)/0.070)**2)
+    lower_abdomen=np.exp(-((t-0.515)/0.065)**2)
+    hip_guard=np.clip((t-0.43)/0.07,0.0,1.0)  # suppress stomach morph below hips
+    abdomen*=hip_guard
+    lower_abdomen*=hip_guard
+
     if waist:
-        v[:,0]*=(1.0 + waist*(0.45*mid+0.55*lower))
-        v[:,2]*=(1.0 + waist*(0.30*mid+0.35*lower))
+        v[:,0]*=(1.0 + waist*(0.70*abdomen+0.42*lower_abdomen))
+        v[:,2]*=(1.0 + waist*(0.32*abdomen+0.28*lower_abdomen))
+
     if belly:
-        front_weight=np.clip((v[:,2]/(body_depth*0.5)+1.0)/2.0,0.0,1.0)
-        v[:,2]+=belly*body_depth*(0.72*mid+0.48*lower)*(0.28+0.72*front_weight)
-        v[:,0]*=(1.0 + belly*0.18*(0.65*mid+0.35*lower))
+        # Only push forward-facing abdomen vertices. Back and thighs should not
+        # balloon with the stomach selector.
+        frontness=np.clip((v[:,2]/(body_depth*0.5)+1.0)/2.0,0.0,1.0)
+        centre=np.clip(1.0-np.abs(v[:,0])/(body_width*0.56),0.0,1.0)
+        stomach_mask=(0.76*abdomen+0.58*lower_abdomen)*hip_guard*centre
+        forward=belly*body_depth*stomach_mask*(0.20+0.80*frontness)
+        v[:,2]+=forward
+        v[:,0]*=(1.0 + belly*0.11*stomach_mask)
+
     v[:,0]-=(v[:,0].min()+v[:,0].max())/2
     v[:,2]-=(v[:,2].min()+v[:,2].max())/2
     v[:,1]-=v[:,1].min()
     return v
 
-manifest={'engine':'Anny 0.6 / MakeHuman-derived CC0 assets','purpose':'Shift Me adult male body + independent stomach proof','builds':{},'stomachs':stomachs,'variants':{},'phenotype_labels':labels,'matched_keys':keys}
+manifest={
+    'engine':'Anny 0.6 / MakeHuman-derived CC0 assets',
+    'purpose':'Shift Me adult male body + independent stomach proof',
+    'builds':{},
+    'stomachs':stomachs,
+    'variants':{},
+    'phenotype_labels':labels,
+    'matched_keys':keys,
+    'notes':{'very-heavy':'visual target is a genuinely very large male, roughly 25-stone territory depending on height; not an exact weight simulator'}
+}
+
 for old in OUT.glob('*.glb'):
     old.unlink()
 faces=np.asarray(model.faces)
+
 for build_name,tuning in builds.items():
     params={k:0.5 for k in labels}
     if keys['gender'] is not None: params[keys['gender']]=0.0  # Anny: 0 = male, 1 = female
@@ -96,9 +135,14 @@ for build_name,tuning in builds.items():
         if key is not None: params[key]=float(tuning[kind])
     out=model(pose_parameters=pose,phenotype_kwargs=params)
     base=orient(out['vertices'].squeeze(0).detach().cpu().numpy())
-    manifest['builds'][build_name]={'params':{k:params[k] for k in labels if abs(float(params[k])-0.5)>1e-9},'breadth':tuning['breadth']}
+    manifest['builds'][build_name]={
+        'params':{k:params[k] for k in labels if abs(float(params[k])-0.5)>1e-9},
+        'breadth':tuning['breadth'],
+        'mass':tuning['mass'],
+        'visual_note':tuning['visual_note']
+    }
     for stomach_name,stomach in stomachs.items():
-        vertices=shift_male_shape(base,tuning['breadth'],stomach['belly'],stomach['waist'])
+        vertices=shift_male_shape(base,tuning['breadth'],tuning['mass'],stomach['belly'],stomach['waist'])
         mesh=trimesh.Trimesh(vertices=vertices,faces=faces,process=False)
         mesh.visual.vertex_colors=np.tile(np.array([28,42,35,255],dtype=np.uint8),(len(vertices),1))
         filename=f'{build_name}-{stomach_name}.glb'
