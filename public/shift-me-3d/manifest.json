@@ -1,0 +1,56 @@
+{
+  "engine": "Anny 0.6 / MakeHuman-derived CC0 assets",
+  "builds": {
+    "lean": {
+      "file": "lean.glb",
+      "params": {
+        "gender": 1.0,
+        "muscle": 0.38,
+        "weight": 0.28,
+        "proportions": 0.46
+      }
+    },
+    "average": {
+      "file": "average.glb",
+      "params": {
+        "gender": 1.0,
+        "muscle": 0.45,
+        "weight": 0.47
+      }
+    },
+    "athletic": {
+      "file": "athletic.glb",
+      "params": {
+        "gender": 1.0,
+        "muscle": 0.76,
+        "weight": 0.45,
+        "proportions": 0.54
+      }
+    },
+    "broad": {
+      "file": "broad.glb",
+      "params": {
+        "gender": 1.0,
+        "muscle": 0.62,
+        "weight": 0.68,
+        "proportions": 0.66
+      }
+    }
+  },
+  "phenotype_labels": [
+    "gender",
+    "age",
+    "muscle",
+    "weight",
+    "height",
+    "proportions"
+  ],
+  "matched_keys": {
+    "gender": "gender",
+    "age": "age",
+    "weight": "weight",
+    "muscle": "muscle",
+    "height": "height",
+    "proportions": "proportions"
+  }
+}

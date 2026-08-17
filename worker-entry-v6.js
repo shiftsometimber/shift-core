@@ -22,6 +22,7 @@ import {memberContrastStatic} from './member-contrast-static-v1.js';
 import {fastMemberRegister} from './member-register-fastpath-v2.js';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
 import {shiftMeRoutes} from './shift-me-v1.js';
+import {shiftMe3DProofRoutes} from './shift-me-3d-proof-v1.js';
 import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -78,6 +79,7 @@ export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
     if((request.method==='GET'||request.method==='HEAD')&&path==='/shift-me')return Response.redirect(new URL('/member/dashboard#shiftme',request.url),302);
+    const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
