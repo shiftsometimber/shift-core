@@ -32,11 +32,21 @@ keys={
 }
 print('Matched phenotype keys:',keys)
 
+# Shift Me is aimed at ordinary adult blokes across a deliberately broad
+# starting-weight range. These are phenotype inputs, not clinical labels.
 builds={
-    'lean':{'weight':0.28,'muscle':0.38,'proportions':0.46},
-    'average':{'weight':0.47,'muscle':0.45,'proportions':0.50},
-    'athletic':{'weight':0.45,'muscle':0.76,'proportions':0.54},
-    'broad':{'weight':0.68,'muscle':0.62,'proportions':0.66},
+    'average':{'weight':0.52,'muscle':0.40,'proportions':0.55,'breadth':0.00},
+    'solid':{'weight':0.62,'muscle':0.48,'proportions':0.62,'breadth':0.025},
+    'stocky':{'weight':0.72,'muscle':0.44,'proportions':0.70,'breadth':0.045},
+    'bigger-bloke':{'weight':0.82,'muscle':0.36,'proportions':0.69,'breadth':0.060},
+    'heavy':{'weight':0.91,'muscle':0.30,'proportions':0.66,'breadth':0.078},
+    'very-heavy':{'weight':0.99,'muscle':0.25,'proportions':0.64,'breadth':0.095},
+}
+
+stomachs={
+    'flat':{'belly':0.00,'waist':0.00},
+    'dad-bod':{'belly':0.075,'waist':0.025},
+    'beer-belly':{'belly':0.155,'waist':0.050},
 }
 
 def orient(vertices):
@@ -52,24 +62,92 @@ def orient(vertices):
     v[:,1]-=v[:,1].min()
     return v
 
-manifest={'engine':'Anny 0.6 / MakeHuman-derived CC0 assets','builds':{},'phenotype_labels':labels,'matched_keys':keys}
-for name,tuning in builds.items():
+def shift_male_shape(vertices,breadth=0.0,belly=0.0,waist=0.0):
+    """Apply a deterministic Shift-specific adult male silhouette pass.
+
+    Anny/MakeHuman remains the body source. This pass only corrects the current
+    proof's overly feminine chest silhouette and adds independent abdomen shape
+    so Build and Stomach are genuinely separate controls.
+    """
+    v=np.asarray(vertices,dtype=np.float64).copy()
+    h=max(float(v[:,1].max()-v[:,1].min()),1e-6)
+    t=(v[:,1]-v[:,1].min())/h
+    body_width=max(float(np.ptp(v[:,0])),1e-6)
+    body_depth=max(float(np.ptp(v[:,2])),1e-6)
+
+    # Adult male torso: slightly stronger shoulder/rib-cage width, tapering away
+    # from limbs/head. This is deliberately subtle; Anny still supplies identity.
+    shoulder=np.exp(-((t-0.70)/0.115)**2)
+    torso=np.exp(-((t-0.57)/0.20)**2)
+    v[:,0]*=(1.0 + breadth*(0.35*torso+0.85*shoulder))
+
+    # Flatten the female-coded breast projection visible in the first proof.
+    chest=np.exp(-((t-0.665)/0.075)**2)
+    central=np.clip(1.0-(np.abs(v[:,0])/(body_width*0.42)),0.0,1.0)
+    front=v[:,2]>0
+    flatten=0.36*chest*central*front
+    v[:,2]*=(1.0-flatten)
+
+    # Independent stomach morph. Dad Bod is softer waist/abdomen; Beer Belly
+    # projects forwards much more strongly without changing shoulders or height.
+    mid=np.exp(-((t-0.49)/0.105)**2)
+    lower=np.exp(-((t-0.43)/0.12)**2)
+    if waist:
+        v[:,0]*=(1.0 + waist*(0.45*mid+0.55*lower))
+        v[:,2]*=(1.0 + waist*(0.30*mid+0.35*lower))
+    if belly:
+        front_weight=np.clip((v[:,2]/(body_depth*0.5)+1.0)/2.0,0.0,1.0)
+        v[:,2]+=belly*body_depth*(0.72*mid+0.48*lower)*(0.28+0.72*front_weight)
+        v[:,0]*=(1.0 + belly*0.18*(0.65*mid+0.35*lower))
+
+    # Re-centre after asymmetric abdomen projection, while keeping feet on y=0.
+    v[:,0]-=(v[:,0].min()+v[:,0].max())/2
+    v[:,2]-=(v[:,2].min()+v[:,2].max())/2
+    v[:,1]-=v[:,1].min()
+    return v
+
+manifest={
+    'engine':'Anny 0.6 / MakeHuman-derived CC0 assets',
+    'purpose':'Shift Me adult male body + independent stomach proof',
+    'builds':{},
+    'stomachs':stomachs,
+    'variants':{},
+    'phenotype_labels':labels,
+    'matched_keys':keys
+}
+
+# Clean old proof GLBs so the live asset set cannot silently retain obsolete
+# Lean/Athletic/Broad files from the first body-engine pass.
+for old in OUT.glob('*.glb'):
+    old.unlink()
+
+faces=np.asarray(model.faces)
+for build_name,tuning in builds.items():
     params={k:0.5 for k in labels}
-    if keys['gender'] is not None: params[keys['gender']]=1.0
-    if keys['age'] is not None: params[keys['age']]=0.50
+    if keys['gender'] is not None: params[keys['gender']]=1.0  # MakeHuman: 1 = male
+    if keys['age'] is not None: params[keys['age']]=0.60
     if keys['height'] is not None: params[keys['height']]=0.50
-    for kind,value in tuning.items():
+    for kind in ('weight','muscle','proportions'):
         key=keys.get(kind)
-        if key is not None: params[key]=float(value)
+        if key is not None: params[key]=float(tuning[kind])
     out=model(pose_parameters=pose,phenotype_kwargs=params)
-    vertices=orient(out['vertices'].squeeze(0).detach().cpu().numpy())
-    faces=np.asarray(model.faces)
-    mesh=trimesh.Trimesh(vertices=vertices,faces=faces,process=False)
-    mesh.visual.vertex_colors=np.tile(np.array([58,69,62,255],dtype=np.uint8),(len(vertices),1))
-    path=OUT/f'{name}.glb'
-    path.write_bytes(mesh.export(file_type='glb'))
-    manifest['builds'][name]={'file':path.name,'params':{k:params[k] for k in labels if abs(float(params[k])-0.5)>1e-9}}
-    print(name,path.stat().st_size)
+    base=orient(out['vertices'].squeeze(0).detach().cpu().numpy())
+    manifest['builds'][build_name]={
+        'params':{k:params[k] for k in labels if abs(float(params[k])-0.5)>1e-9},
+        'breadth':tuning['breadth']
+    }
+    for stomach_name,stomach in stomachs.items():
+        vertices=shift_male_shape(base,tuning['breadth'],stomach['belly'],stomach['waist'])
+        mesh=trimesh.Trimesh(vertices=vertices,faces=faces,process=False)
+        # Dark neutral proof material: avoids the pale mannequin look while the
+        # actual Shift stock clothing meshes are produced in the next visual pass.
+        mesh.visual.vertex_colors=np.tile(np.array([28,42,35,255],dtype=np.uint8),(len(vertices),1))
+        filename=f'{build_name}-{stomach_name}.glb'
+        path=OUT/filename
+        path.write_bytes(mesh.export(file_type='glb'))
+        key=f'{build_name}:{stomach_name}'
+        manifest['variants'][key]={'file':filename,'build':build_name,'stomach':stomach_name}
+        print(key,path.stat().st_size)
 
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
 
