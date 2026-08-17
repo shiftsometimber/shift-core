@@ -22,6 +22,8 @@ need(/@media\(max-width:640px\)\{[\s\S]*\.mp-tabs\{[\s\S]*overflow-x:auto!import
 const globalBlocks=(css.match(/(^|\n)\s*(?:html|body)(?:\s*,\s*(?:html|body))*\s*\{[^}]*\}/gi)||[]).join('\n');
 need(!/overflow-x\s*:\s*(?:hidden|clip)/i.test(globalBlocks),'P0 attempts to mask page overflow globally');
 need(/P0_HREF='\/member-p0-v1\.css\?v=7'/.test(shell),'member shell does not inject current versioned P0 CSS');
+need(/@media\(min-width:1001px\)\{[\s\S]*\.member-shell\{[\s\S]*grid-template-columns:265px minmax\(0,1fr\)!important[\s\S]*\.member-shell>\.member-side\{[\s\S]*grid-column:1!important[\s\S]*\.member-shell>\.member-main\{[\s\S]*grid-column:2!important/.test(css),'desktop member shell does not isolate navigation and product content into separate columns');
+need(/@media\(max-width:1000px\)\{[\s\S]*\.member-shell\{[\s\S]*grid-template-columns:minmax\(0,1fr\)!important[\s\S]*\.member-shell>\.member-side\{[\s\S]*position:static!important/.test(css),'mobile member shell does not collapse to one bounded column');
 need(/function ensureP0\(\)/.test(shell)&&/MutationObserver\(ensureMemberAssets\)/.test(shell),'member shell does not retain canonical P0/member assets through member-surface head mutations');
 need(/link\[rel=\"stylesheet\"\]\[href\*=\"member-p0-v1\.css\"\]/.test(shell)&&/if\(link!==p0\)link\.remove\(\)/.test(shell),'member shell does not remove stale duplicate P0 stylesheet versions');
 need(/pointer-events:none/.test(shell),'member notice can still intercept pointer events');
@@ -55,6 +57,8 @@ need(/PLANS_PREMIUM_SRC='\/member-plans-premium-v1\.js\?v=1'/.test(shell)&&/PLAN
 need(/G2-015-PREMIUM-PLAN-MANAGER/.test(plansPremium)&&/data-plan-manager-v1/.test(plansPremium)&&/data-open-plan/.test(plansPremium)&&/groups\.replaced/.test(plansPremium),'premium My Plans layer does not preserve current/open/history plan-management semantics');
 need(/G2-015-PREMIUM-PLAN-MANAGER/.test(plansPremiumCss)&&/\.mp-plan-manager-hero/.test(plansPremiumCss)&&/\.mp-plan-manager-history/.test(plansPremiumCss)&&/@media\(max-width:640px\)/.test(plansPremiumCss),'premium My Plans forest/cream/mobile styling is missing');
 for(const asset of ['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js','/member-progress-v1.js','/member-progress-picture-premium-v1.js','/member-plans-premium-v1.js','/member-plans-premium-v1.css'])need(workerEntry.includes(`['${asset}'`),`${asset} is not explicitly served as a Git-authoritative member asset`);
+need(/path==='\/shift-me'/.test(workerEntry)&&/\/member\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');
+need(wrangler.includes('shiftsometimber.co.uk/shift-me*')&&wrangler.includes('www.shiftsometimber.co.uk/shift-me*'),'legacy Shift Me handoff is not routed through the Worker on both canonical hosts');
 need(/X-Shift-Frontend-Authority/.test(workerEntry)&&/git:frontend\/member/.test(workerEntry),'Git member asset responses do not expose frontend authority');
 for(const asset of ['member-product-v33d.js','member-shell-v33g.js','member-progress-v1.js','member-progress-picture-premium-v1.js','member-plans-premium-v1.js','member-plans-premium-v1.css']){
   need(wrangler.includes(`shiftsometimber.co.uk/${asset}*`)&&wrangler.includes(`www.shiftsometimber.co.uk/${asset}*`),`${asset} is not routed through the Shift Worker on both canonical hosts`);
