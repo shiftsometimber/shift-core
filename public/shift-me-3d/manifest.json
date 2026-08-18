@@ -197,6 +197,7 @@
     "proportions": "proportions"
   },
   "notes": {
-    "very-heavy": "visual target is a genuinely very large male, roughly 25-stone territory depending on height; not an exact weight simulator"
+    "very-heavy": "visual target is a genuinely very large male, roughly 25-stone territory depending on height; not an exact weight simulator",
+    "arm-proportion": "distal T-pose arm span shortened by 8.5% while preserving shoulder width"
   }
 }
