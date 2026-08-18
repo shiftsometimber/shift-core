@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/shift-me-3d-live-proof.py'
+      - 'scripts/shift-me-3d-overlays.py'
       - 'shift-me-3d-proof-v1.js'
       - '.github/workflows/shift-me-3d-live-proof.yml'
 
@@ -22,13 +23,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install free 3D body dependencies
+      - name: Install free 3D dependencies
         run: |
           python -m pip install --upgrade pip
           pip install 'anny==0.6.0' trimesh
-      - name: Generate build and stomach meshes
+      - name: Generate locked body matrix
         run: python scripts/shift-me-3d-live-proof.py
-      - name: Validate generated body matrix
+      - name: Generate modular appearance overlays
+        run: python scripts/shift-me-3d-overlays.py
+      - name: Validate body and appearance assets
         run: |
           for build in average solid stocky bigger-bloke heavy very-heavy; do
             for stomach in flat dad-bod beer-belly; do
@@ -36,7 +39,13 @@ jobs:
             done
           done
           test "$(find public/shift-me-3d -maxdepth 1 -name '*.glb' | wc -l)" -eq 18
+          for asset in hair-buzz-cut hair-crew-cut hair-textured-crop beard-heavy-stubble beard-short beard-full kit-shift-tee-black kit-shift-tee-green kit-shift-hoodie-black; do
+            test -s "public/shift-me-3d/overlays/${asset}.glb"
+          done
           grep -q 'very-heavy:beer-belly' public/shift-me-3d/manifest.json
+          grep -q 'Textured Crop' public/shift-me-3d/overlays/manifest.json
+          grep -q 'Short Beard' public/shift-me-3d/overlays/manifest.json
+          grep -q 'Shift Tee' public/shift-me-3d/overlays/manifest.json
           grep -q "shiftMe3DProofRoutes" worker-entry-v6.js
           grep -q "shift-me-3d-proof" wrangler.jsonc
       - name: Commit generated assets and production wiring
@@ -47,6 +56,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No generated changes to commit.'
           else
-            git commit -m 'Generate expanded Shift Me male body matrix [skip ci]'
+            git commit -m 'Generate modular Shift Me appearance assets [skip ci]'
             git push origin HEAD:main
           fi
