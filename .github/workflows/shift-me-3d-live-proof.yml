@@ -56,6 +56,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No generated changes to commit.'
           else
-            git commit -m 'Generate modular Shift Me appearance assets [skip ci]'
+            git commit -m 'Generate modular Shift Me appearance assets'
             git push origin HEAD:main
           fi
