@@ -62,6 +62,26 @@ def orient(vertices):
     v[:,1]-=v[:,1].min()
     return v
 
+def shorten_arms(vertices, amount=0.085):
+    """Shorten the T-pose arm span without altering shoulders or body width.
+
+    The Anny base is proportionally a little long-armed for the approved Shift
+    bloke. Only vertices in the upper-body arm band and beyond the shoulder
+    anchor are pulled inward. Build and stomach geometry remain untouched.
+    """
+    v=np.asarray(vertices,dtype=np.float64).copy()
+    h=max(float(v[:,1].max()-v[:,1].min()),1e-6)
+    t=(v[:,1]-v[:,1].min())/h
+    absx=np.abs(v[:,0])
+    maxx=max(float(absx.max()),1e-6)
+    shoulder_anchor=maxx*0.43
+    excess=np.clip((absx-shoulder_anchor)/(maxx-shoulder_anchor+1e-9),0.0,1.0)
+    arm_band=np.exp(-((t-0.665)/0.145)**2)
+    strength=amount*excess*arm_band
+    new_abs=np.where(absx>shoulder_anchor,shoulder_anchor+(absx-shoulder_anchor)*(1.0-strength),absx)
+    v[:,0]=np.sign(v[:,0])*new_abs
+    return v
+
 def shift_male_shape(vertices,breadth=0.0,mass=0.0,belly=0.0,waist=0.0):
     v=np.asarray(vertices,dtype=np.float64).copy()
     h=max(float(v[:,1].max()-v[:,1].min()),1e-6)
@@ -87,7 +107,7 @@ def shift_male_shape(vertices,breadth=0.0,mass=0.0,belly=0.0,waist=0.0):
     # Beer Belly projects the central/lower abdomen forwards.
     abdomen=np.exp(-((t-0.565)/0.070)**2)
     lower_abdomen=np.exp(-((t-0.515)/0.065)**2)
-    hip_guard=np.clip((t-0.43)/0.07,0.0,1.0)  # suppress stomach morph below hips
+    hip_guard=np.clip((t-0.43)/0.07,0.0,1.0)
     abdomen*=hip_guard
     lower_abdomen*=hip_guard
 
@@ -96,14 +116,16 @@ def shift_male_shape(vertices,breadth=0.0,mass=0.0,belly=0.0,waist=0.0):
         v[:,2]*=(1.0 + waist*(0.32*abdomen+0.28*lower_abdomen))
 
     if belly:
-        # Only push forward-facing abdomen vertices. Back and thighs should not
-        # balloon with the stomach selector.
         frontness=np.clip((v[:,2]/(body_depth*0.5)+1.0)/2.0,0.0,1.0)
         centre=np.clip(1.0-np.abs(v[:,0])/(body_width*0.56),0.0,1.0)
         stomach_mask=(0.76*abdomen+0.58*lower_abdomen)*hip_guard*centre
         forward=belly*body_depth*stomach_mask*(0.20+0.80*frontness)
         v[:,2]+=forward
         v[:,0]*=(1.0 + belly*0.11*stomach_mask)
+
+    # Arm correction is applied last so body/stomach tuning cannot re-lengthen
+    # the limbs. It only changes distal arm span in the T-pose.
+    v=shorten_arms(v)
 
     v[:,0]-=(v[:,0].min()+v[:,0].max())/2
     v[:,2]-=(v[:,2].min()+v[:,2].max())/2
@@ -118,7 +140,10 @@ manifest={
     'variants':{},
     'phenotype_labels':labels,
     'matched_keys':keys,
-    'notes':{'very-heavy':'visual target is a genuinely very large male, roughly 25-stone territory depending on height; not an exact weight simulator'}
+    'notes':{
+        'very-heavy':'visual target is a genuinely very large male, roughly 25-stone territory depending on height; not an exact weight simulator',
+        'arm-proportion':'distal T-pose arm span shortened by 8.5% while preserving shoulder width'
+    }
 }
 
 for old in OUT.glob('*.glb'):
