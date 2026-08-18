@@ -46,7 +46,6 @@
     }finally{clearTimeout(timer)}
   }
 
-  
   async function saveProgressPhoto(file,meta={}){
     const form=new FormData();
     form.append('image',file,'shift-progress.jpg');
@@ -73,11 +72,11 @@
 
   async function health(){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{const res=await fetch(API_ROOT+'/health',{cache:'no-store',signal:controller.signal});const body=await res.json();if(!res.ok)throw apiError(body,res.status);return body;}finally{clearTimeout(timer)}}
   window.SST_API_BASE=API_ROOT;
-  window.SST_API={version:'3.3H',connected:()=>true,health,
+  window.SST_API={version:'3.3I',connected:()=>true,health,
     register:data=>request('/auth/register',{method:'POST',body:JSON.stringify(data)}),login:data=>request('/auth/login',{method:'POST',body:JSON.stringify(data)}),logout:()=>request('/auth/logout',{method:'POST'}),requestPasswordReset:data=>request('/auth/request-password-reset',{method:'POST',body:JSON.stringify(data)}),
     getMe:()=>request('/me'),getProfile:()=>request('/profile'),saveProfile:data=>request('/profile',{method:'PATCH',body:JSON.stringify(data)}),getMemberState,saveMemberState,
     getProgress:()=>request('/progress'),saveProgress:data=>request('/progress',{method:'POST',body:JSON.stringify(data)}),getMots:()=>request('/health-mot'),saveMot:data=>request('/health-mot',{method:'POST',body:JSON.stringify(data)}),getCheckIns:()=>request('/check-ins'),saveCheckIn:data=>request('/check-ins',{method:'POST',body:JSON.stringify(data)}),
-    getCases:()=>request('/cases'),createCase:data=>request('/cases',{method:'POST',body:JSON.stringify(data)}),getPharmacyOrders:()=>request('/pharmacy/orders'),createPharmacyOrder:data=>request('/pharmacy/orders',{method:'POST',body:JSON.stringify(data)}),getConsents:()=>request('/consents'),saveConsent:data=>request('/consents',{method:'POST',body:JSON.stringify(data)}),exportData:()=>request('/privacy/export',{method:'POST'}),deleteAccount:()=>request('/privacy/account',{method:'DELETE'}),visualise,saveProgressPhoto,listProgressPhotos,deleteProgressPhoto,progressPhotoUrl,
+    getCases:()=>request('/cases'),createCase:data=>request('/cases',{method:'POST',body:JSON.stringify(data)}),getPharmacyOrders:()=>request('/pharmacy/orders'),createPharmacyOrder:data=>request('/pharmacy/orders',{method:'POST',body:JSON.stringify(data)}),getConsents:()=>request('/consents'),saveConsent:data=>request('/consents',{method:'POST',body:JSON.stringify(data)}),exportData:()=>request('/privacy/export',{method:'POST'}),eraseHealthTracking:()=>request('/privacy/health-tracking',{method:'DELETE'}),deleteAccount:()=>request('/privacy/account',{method:'DELETE'}),visualise,saveProgressPhoto,listProgressPhotos,deleteProgressPhoto,progressPhotoUrl,
     getShiftContext:()=>request('/shift/context'),
     getShiftToday:()=>request('/shift/today'),
     getProgressSummary:()=>request('/progress/summary'),getPlanList:()=>request('/plan/list'),
