@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {commerceCatalogue,commerceStripeRoutes,validStripeSignature} from '../commerce-stripe-v1.js';
+import {commerceCatalogue,commerceStripeRoutes,trackingUrl,validStripeSignature} from '../commerce-stripe-v1.js';
 
 async function signature(payload,secret,timestamp){
   const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
@@ -55,4 +55,11 @@ test('post-payment status uses the Stripe session capability without exposing cu
 test('unknown routes are ignored',async()=>{
   const response=await commerceStripeRoutes(new Request('https://api.shiftsometimber.co.uk/v1/other'),{},{});
   assert.equal(response,null);
+});
+
+test('tracking links are restricted to known carrier websites',()=>{
+  assert.equal(trackingUrl('DPD','123'),'https://track.dpd.co.uk');
+  assert.equal(trackingUrl('Royal Mail','AA123'),'https://www.royalmail.com/track-your-item');
+  assert.equal(trackingUrl('Unknown courier','123'),null);
+  assert.equal(trackingUrl('DPD',''),null);
 });
