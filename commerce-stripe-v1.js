@@ -204,10 +204,13 @@ async function webhook(request,env,ctx){
 }
 
 async function orderStatus(request,env){
-  const member=await requireMember(request,env);if(!member)return json({ok:false,error:'account_required'},401,corsHeaders(request));
   const sessionId=clean(new URL(request.url).searchParams.get('session_id'),200);
   if(!/^cs_(test|live)_[A-Za-z0-9_]+$/.test(sessionId))return json({ok:false,error:'invalid_session'},400,corsHeaders(request));
-  const order=await env.DB.prepare(`SELECT o.order_number,o.status,o.payment_status FROM commerce_order_details d JOIN orders o ON o.id=d.order_id WHERE d.stripe_checkout_session_id=? AND o.user_id=?`).bind(sessionId,member.id).first();
+  // The Stripe Checkout session id is a high-entropy capability returned only
+  // to the successful browser. Expose no customer or delivery data here: just
+  // enough to render the post-payment confirmation reliably when mobile Safari
+  // withholds the API session cookie after returning from stripe.com.
+  const order=await env.DB.prepare(`SELECT o.order_number,o.status,o.payment_status FROM commerce_order_details d JOIN orders o ON o.id=d.order_id WHERE d.stripe_checkout_session_id=?`).bind(sessionId).first();
   if(!order)return json({ok:false,error:'order_not_found'},404,corsHeaders(request));
   return json({ok:true,orderNumber:order.order_number,status:order.status,paymentStatus:order.payment_status},200,corsHeaders(request));
 }
