@@ -25,6 +25,8 @@ import {shiftMeRoutes} from './shift-me-v1.js';
 import {shiftMe3DProofRoutes} from './shift-me-3d-proof-v1.js';
 import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
 import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
+import {commerceStripeRoutes} from './commerce-stripe-v1.js';
+import {fastMemberStateRoute} from './member-state-fast-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -83,6 +85,7 @@ export default {
     const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
+    const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
     const loginAnalyticsRequest=request.method==='POST'&&path==='/v1/auth/login'?request.clone():null;
@@ -104,6 +107,7 @@ export default {
     const authRecovery=await handleAuthRecovery(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));
     if(authRecovery)return withMemberCors(authRecovery,request);
 
+    const fastMemberState=await fastMemberStateRoute(request,env);if(fastMemberState)return withMemberCors(fastMemberState,request);
     const healthErasure=await privacyHealthErasureRoute(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));if(healthErasure)return withMemberCors(healthErasure,request);
     const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const sportClubhouse=await sportClubhouseRoutes(request,env);if(sportClubhouse)return withMemberCors(sportClubhouse,request);
