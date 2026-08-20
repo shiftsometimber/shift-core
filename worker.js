@@ -1261,8 +1261,21 @@ async function adminRoutes(request, env, path, method) {
   }
 
   if (method === 'GET' && path === '/v1/hq/orders') {
-    const { results } = await env.DB.prepare(`SELECT o.*,p.name product_name,p.sku FROM orders o LEFT JOIN products p ON p.id=o.product_id ORDER BY o.id DESC LIMIT 1000`).all();
+    const { results } = await env.DB.prepare(`SELECT o.*,p.name product_name,p.sku,d.size,d.delivery_pence,d.shipping_name,d.shipping_address_json,d.stripe_checkout_session_id,d.stripe_payment_intent_id,d.stripe_payment_status FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id ORDER BY o.id DESC LIMIT 1000`).all();
     return json({orders:results||[]});
+  }
+
+  const orderUpdateMatch=path.match(/^\/v1\/hq\/orders\/(\d+)$/);
+  if(method==='PATCH'&&orderUpdateMatch){
+    const id=Number(orderUpdateMatch[1]),b=await readJson(request),status=clean(b.status,30),allowed=['paid','processing','dispatched','fulfilled','cancelled','refunded'];
+    if(!allowed.includes(status))return json({ok:false,error:'invalid_status'},400);
+    const order=await env.DB.prepare(`SELECT o.*,p.name product_name,d.size FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.id=?`).bind(id).first();
+    if(!order)return json({ok:false,error:'order_not_found'},404);
+    const tracking=clean(b.trackingReference,200),carrier=clean(b.carrier,100),existing=parseJsonObject(order.notes),notes=JSON.stringify({...existing,trackingReference:tracking||existing.trackingReference||'',carrier:carrier||existing.carrier||'',fulfilmentUpdatedBy:hqActor.email,fulfilmentUpdatedAt:isoNow()});
+    await env.DB.prepare('UPDATE orders SET status=?,notes=?,updated_at=? WHERE id=?').bind(status,notes,isoNow(),id).run();
+    await hqAudit(env,hqActor,'commerce.order_status_updated','order',String(id),{orderNumber:order.order_number,status,trackingReference:tracking,carrier});
+    if(status==='dispatched'&&order.customer_email&&env.EMAIL)await sendDispatchEmail(env,{...order,trackingReference:tracking,carrier}).catch(e=>console.warn('dispatch_email_failed',e?.message));
+    return json({ok:true,orderNumber:order.order_number,status});
   }
 
   if (method === 'POST' && path === '/v1/hq/orders') {
@@ -1270,7 +1283,7 @@ async function adminRoutes(request, env, path, method) {
     const product=productId?await env.DB.prepare('SELECT * FROM products WHERE id=?').bind(productId).first():null;
     if(productId&&!product) return json({ok:false,error:'product_not_found'},404);
     const status=clean(b.status,30)||'new', paymentStatus=clean(b.paymentStatus,30)||'pending';
-    if(!['new','paid','processing','fulfilled','refunded','cancelled'].includes(status)||!['pending','paid','failed','refunded'].includes(paymentStatus)) return json({ok:false,error:'invalid_status'},400);
+    if(!['new','paid','processing','dispatched','fulfilled','refunded','cancelled'].includes(status)||!['pending','paid','failed','refunded'].includes(paymentStatus)) return json({ok:false,error:'invalid_status'},400);
     const last=await env.DB.prepare('SELECT id FROM orders ORDER BY id DESC LIMIT 1').first(); const next=Number(last?.id||0)+1;
     const number=`SST-${String(next).padStart(6,'0')}`; const unit=Number(product?.price_pence||0); const total=unit*qty;
     await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
@@ -1490,6 +1503,14 @@ function parseMemberState(row) {
 
 function publicUser(u) {
   return { id:u.id,email:u.email,firstName:u.first_name,lastName:u.last_name,phone:u.phone,dateOfBirth:u.date_of_birth,postcode:u.postcode,createdAt:u.created_at };
+}
+
+function parseJsonObject(value){try{const parsed=JSON.parse(value||'{}');return parsed&&typeof parsed==='object'&&!Array.isArray(parsed)?parsed:{}}catch{return {}}}
+function emailEscape(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function sendDispatchEmail(env,order){
+  const detail=[order.carrier,order.trackingReference].filter(Boolean).join(' · '),tracking=detail?`<div style="margin:24px 0;padding:18px;border-radius:14px;background:#707762;color:#050505"><strong>Delivery details</strong><br>${emailEscape(detail)}</div>`:'';
+  const html=`<!doctype html><html><body style="margin:0;background:#050505;color:#E7E3DA;font-family:Arial,sans-serif"><div style="max-width:640px;margin:auto;padding:32px 20px"><img src="https://shiftsometimber.co.uk/assets/start-here-approved-logo.png?v=1" width="560" alt="Shift Some Timber" style="display:block;width:100%;height:auto;border:0;border-bottom:2px solid #707762;padding-bottom:20px"><p style="margin:32px 0 8px;color:#899078;font-weight:900;letter-spacing:.12em">ORDER UPDATE</p><h1 style="font-size:38px;margin:0 0 20px">It’s on the way.</h1><p style="font-size:17px;line-height:1.7">Your ${emailEscape(order.product_name||'Shift order')} has been dispatched.</p>${tracking}<p style="line-height:1.7">Order <strong>${emailEscape(order.order_number)}</strong></p><p><a href="https://shiftsometimber.co.uk/member/dashboard#orders" style="display:inline-block;background:#899078;color:#050505;text-decoration:none;font-weight:900;padding:13px 18px;border-radius:999px">View in My Shift</a></p><div style="margin-top:30px;padding-top:18px;border-top:1px solid #707762;color:#aaa69d;font-size:12px">Questions? orders@shiftsometimber.co.uk</div></div></body></html>`;
+  await env.EMAIL.send({from:{email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'},to:order.customer_email,subject:`Your Shift order is on the way · ${order.order_number}`,html,text:`Your Shift order ${order.order_number} has been dispatched.${detail?` ${detail}.`:''} View it in My Shift: https://shiftsometimber.co.uk/member/dashboard#orders`});
 }
 
 function corsHeaders(request, env) {

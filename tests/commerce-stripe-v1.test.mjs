@@ -22,11 +22,11 @@ test('validates Stripe HMAC signature and timestamp tolerance',async()=>{
   assert.equal(await validStripeSignature(`${payload}x`,`t=${timestamp},v1=${digest}`,secret,timestamp),false);
 });
 
-test('checkout fails closed when Stripe is not configured',async()=>{
+test('checkout requires a My Shift account',async()=>{
   const request=new Request('https://api.shiftsometimber.co.uk/v1/commerce/checkout',{method:'POST',headers:{Origin:'https://shiftsometimber.co.uk','Content-Type':'application/json'},body:JSON.stringify({size:'L',quantity:1})});
   const response=await commerceStripeRoutes(request,{DB:{}},{});
-  assert.equal(response.status,503);
-  assert.deepEqual(await response.json(),{ok:false,error:'payments_not_configured'});
+  assert.equal(response.status,401);
+  assert.deepEqual(await response.json(),{ok:false,error:'account_required',message:'Create or sign in to your My Shift account before ordering.'});
   assert.equal(response.headers.get('Access-Control-Allow-Origin'),'https://shiftsometimber.co.uk');
 });
 

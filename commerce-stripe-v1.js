@@ -11,13 +11,21 @@ function json(data,status=200,headers={}){
 
 function corsHeaders(request){
   const origin=request.headers.get('Origin')||'';
-  return ALLOWED_ORIGINS.has(origin)?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Methods':'GET, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'}:{};
+  return ALLOWED_ORIGINS.has(origin)?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'}:{};
 }
 
 function clean(value,max=300){return String(value??'').trim().slice(0,max)}
 function now(){return new Date().toISOString()}
 function orderNumber(){return `SST-${crypto.randomUUID().replaceAll('-','').slice(0,12).toUpperCase()}`}
 function siteUrl(env){return String(env.PUBLIC_SITE_URL||'https://shiftsometimber.co.uk').replace(/\/$/,'')}
+function sessionToken(request){const match=(request.headers.get('Cookie')||'').match(/(?:^|;\s*)sst_session=([^;]+)/);return match?decodeURIComponent(match[1]):null}
+async function sha256(value){const bytes=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(value))));return [...bytes].map(byte=>byte.toString(16).padStart(2,'0')).join('')}
+async function requireMember(request,env){
+  const token=sessionToken(request);if(!token)return null;
+  const row=await env.DB.prepare(`SELECT u.id,u.email,u.first_name,u.last_name,a.email_verified,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id LEFT JOIN user_auth a ON a.user_id=u.id WHERE s.token_hash=?`).bind(await sha256(token)).first();
+  if(!row||row.revoked_at||new Date(row.expires_at).getTime()<=Date.now())return null;
+  return row;
+}
 async function smallJson(request,maxBytes=8192){
   const declared=Number(request.headers.get('content-length')||0);if(declared>maxBytes)return null;
   const text=await request.text();if(new TextEncoder().encode(text).length>maxBytes)return null;
@@ -58,7 +66,7 @@ async function ensureCommerceSchema(env){
   ]);
 }
 
-function stripeForm(order,size,quantity,env){
+function stripeForm(order,size,quantity,member,env){
   const form=new URLSearchParams();
   const put=(key,value)=>form.append(key,String(value));
   put('mode','payment');
@@ -75,7 +83,9 @@ function stripeForm(order,size,quantity,env){
   put('metadata[order_number]',order.order_number);
   put('metadata[sku]',SHIRT_SKU);
   put('metadata[size]',size);
+  put('metadata[user_id]',member.id);
   put('payment_intent_data[metadata][order_number]',order.order_number);
+  put('customer_email',member.email);
   put('line_items[0][price_data][currency]',CURRENCY);
   put('line_items[0][price_data][unit_amount]',SHIRT_PRICE);
   put('line_items[0][price_data][product_data][name]','Shift Some Timber T-shirt');
@@ -89,6 +99,8 @@ function stripeForm(order,size,quantity,env){
 }
 
 async function createCheckout(request,env){
+  const member=await requireMember(request,env);
+  if(!member)return json({ok:false,error:'account_required',message:'Create or sign in to your My Shift account before ordering.'},401,corsHeaders(request));
   if(!env.STRIPE_SECRET_KEY)return json({ok:false,error:'payments_not_configured'},503,corsHeaders(request));
   const stripeMode=String(env.STRIPE_MODE||'test').toLowerCase();
   if(stripeMode==='test'&&!String(env.STRIPE_SECRET_KEY).startsWith('sk_test_'))return json({ok:false,error:'stripe_mode_mismatch'},503,corsHeaders(request));
@@ -103,8 +115,9 @@ async function createCheckout(request,env){
   if(!product)return json({ok:false,error:'product_unavailable'},409,corsHeaders(request));
 
   const createdAt=now(),number=orderNumber(),subtotal=SHIRT_PRICE*quantity,total=subtotal+DELIVERY_PRICE;
-  const inserted=await env.DB.prepare(`INSERT INTO orders(order_number,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,'GBP','new','pending',?,?,?)`)
-    .bind(number,product.id,quantity,subtotal,total,JSON.stringify({size,channel:'stripe_checkout'}),createdAt,createdAt).run();
+  const memberName=clean([member.first_name,member.last_name].filter(Boolean).join(' '),200);
+  const inserted=await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,'GBP','new','pending',?,?,?)`)
+    .bind(number,member.id,member.email,memberName,product.id,quantity,subtotal,total,JSON.stringify({size,channel:'stripe_checkout'}),createdAt,createdAt).run();
   const orderId=inserted.meta.last_row_id;
   await env.DB.prepare(`INSERT INTO commerce_order_details(order_id,size,delivery_pence,created_at,updated_at) VALUES(?,?,?,?,?)`)
     .bind(orderId,size,DELIVERY_PRICE,createdAt,createdAt).run();
@@ -112,7 +125,7 @@ async function createCheckout(request,env){
   const response=await fetch('https://api.stripe.com/v1/checkout/sessions',{
     method:'POST',
     headers:{Authorization:`Bearer ${env.STRIPE_SECRET_KEY}`,'Content-Type':'application/x-www-form-urlencoded','Idempotency-Key':number},
-    body:stripeForm({order_number:number},size,quantity,env)
+    body:stripeForm({order_number:number},size,quantity,member,env)
   });
   const session=await response.json().catch(()=>null);
   if(!response.ok||!session?.id||!session?.url){
@@ -191,12 +204,21 @@ async function webhook(request,env,ctx){
 }
 
 async function orderStatus(request,env){
+  const member=await requireMember(request,env);if(!member)return json({ok:false,error:'account_required'},401,corsHeaders(request));
   const sessionId=clean(new URL(request.url).searchParams.get('session_id'),200);
   if(!/^cs_(test|live)_[A-Za-z0-9_]+$/.test(sessionId))return json({ok:false,error:'invalid_session'},400,corsHeaders(request));
-  const order=await env.DB.prepare(`SELECT o.order_number,o.status,o.payment_status FROM commerce_order_details d JOIN orders o ON o.id=d.order_id WHERE d.stripe_checkout_session_id=?`).bind(sessionId).first();
+  const order=await env.DB.prepare(`SELECT o.order_number,o.status,o.payment_status FROM commerce_order_details d JOIN orders o ON o.id=d.order_id WHERE d.stripe_checkout_session_id=? AND o.user_id=?`).bind(sessionId,member.id).first();
   if(!order)return json({ok:false,error:'order_not_found'},404,corsHeaders(request));
   return json({ok:true,orderNumber:order.order_number,status:order.status,paymentStatus:order.payment_status},200,corsHeaders(request));
 }
+
+async function memberOrders(request,env){
+  const member=await requireMember(request,env);if(!member)return json({ok:false,error:'account_required'},401,corsHeaders(request));
+  if(Number(member.email_verified||0)===1)await env.DB.prepare(`UPDATE orders SET user_id=?,updated_at=? WHERE user_id IS NULL AND lower(customer_email)=lower(?)`).bind(member.id,now(),member.email).run();
+  const {results}=await env.DB.prepare(`SELECT o.order_number,o.quantity,o.subtotal_pence,o.total_pence,o.currency,o.status,o.payment_status,o.created_at,o.updated_at,p.name product_name,p.sku,d.size,d.delivery_pence,d.shipping_name,d.shipping_address_json,d.stripe_payment_intent_id FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.user_id=? ORDER BY o.id DESC LIMIT 100`).bind(member.id).all();
+  return json({ok:true,orders:(results||[]).map(order=>({...order,shipping_address:parseJson(order.shipping_address_json)}))},200,corsHeaders(request));
+}
+function parseJson(value){try{return JSON.parse(value||'{}')}catch{return {}}}
 
 function escapeHtml(value){return clean(value,500).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}
 
@@ -223,6 +245,7 @@ export async function commerceStripeRoutes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(request.method==='OPTIONS'&&path==='/v1/commerce/checkout')return new Response(null,{status:204,headers:corsHeaders(request)});
   if(request.method==='GET'&&path==='/v1/commerce/catalogue')return json({ok:true,product:commerceCatalogue},200,corsHeaders(request));
+  if(request.method==='GET'&&path==='/v1/commerce/orders')return memberOrders(request,env);
   if(request.method==='GET'&&path==='/v1/commerce/order-status')return orderStatus(request,env);
   if(request.method==='POST'&&path==='/v1/commerce/checkout')return createCheckout(request,env);
   if(request.method==='POST'&&path==='/v1/commerce/stripe/webhook')return webhook(request,env,ctx);
