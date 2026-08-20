@@ -77,8 +77,6 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
-      - name: Apply additive shop schema to remote D1
-        run: npx wrangler d1 execute shift-core-db --remote --file migrations/003_stripe_merch_checkout.sql --config wrangler.jsonc
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
