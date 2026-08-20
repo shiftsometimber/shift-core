@@ -39,6 +39,19 @@ test('catalogue is available without exposing Stripe configuration',async()=>{
   assert.equal(response.headers.get('Access-Control-Allow-Origin'),'https://www.shiftsometimber.co.uk');
 });
 
+test('post-payment status uses the Stripe session capability without exposing customer data',async()=>{
+  const DB={prepare:sql=>({bind:sessionId=>({first:async()=>{
+    assert.match(sql,/stripe_checkout_session_id=\?/);
+    assert.equal(sessionId,'cs_test_securecapability123');
+    return {order_number:'SST-TEST123',status:'paid',payment_status:'paid'};
+  }})})};
+  const request=new Request('https://api.shiftsometimber.co.uk/v1/commerce/order-status?session_id=cs_test_securecapability123',{headers:{Origin:'https://shiftsometimber.co.uk'}});
+  const response=await commerceStripeRoutes(request,{DB},{}),body=await response.json();
+  assert.equal(response.status,200);
+  assert.deepEqual(body,{ok:true,orderNumber:'SST-TEST123',status:'paid',paymentStatus:'paid'});
+  assert.equal('customer_email' in body,false);
+});
+
 test('unknown routes are ignored',async()=>{
   const response=await commerceStripeRoutes(new Request('https://api.shiftsometimber.co.uk/v1/other'),{},{});
   assert.equal(response,null);
