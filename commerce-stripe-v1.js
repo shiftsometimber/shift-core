@@ -11,15 +11,19 @@ const TIMBER_PRODUCTS=[
   ['SST-PERF-TEE','Performance Tee','tees','tee','Ash Green','Lighter, breathable kit for training, walking and everything between.',0],
   ['SST-CLASSIC-TEE','Classic Tee','tees','tee','Cream','Understated everyday cotton with the Shift roundel kept deliberately quiet.',0],
   ['SST-HOODIE','Shift Hoodie','layers','hoodie','Ash Green','Heavyweight comfort, clean lines and the layer you will keep reaching for.',0],
+  ['SST-VEST','Training Vest','tees','vest','Cream','A comfortable performance vest for warmer sessions and hard graft.',0],
   ['SST-QUARTER-ZIP','Quarter Zip','layers','zip','Black','A smart training layer that works just as well away from the gym.',0],
   ['SST-POLO','Performance Polo','layers','polo','Cream','A proper polo without the golf-club committee meeting energy.',0],
   ['SST-JOGGERS','Shift Joggers','bottoms','joggers','Ash Green','Soft, tapered and made for moving or doing absolutely nothing.',0],
   ['SST-SHORTS','Training Shorts','bottoms','shorts','Black','No-fuss training shorts with enough room to actually move.',0],
   ['SST-GUTS-TEE','Guts Gone Tee','tees','statement','Cream','Strong words. A reminder of what you are building and what you have shifted.',0],
+  ['SST-GUTS-HOODIE','Guts Gone Statement Hoodie','layers','statement-hoodie','Ash Green','The Guts Gone message on a premium heavyweight hoodie.',0],
   ['SST-CAP','Shift Cap','accessories','cap','Black','Low-key Shift branding. High-level bad-hair-day management.',1],
-  ['SST-GYM-BAG','Gym Bag','accessories','bag','Ash Green','Kit in. Excuses out. A durable everyday training bag.',1],
-  ['SST-BOTTLE','Water Bottle','accessories','bottle','Cream','Hydration without an inspirational quote down the side.',1]
-].map((row,index)=>({sku:row[0],name:row[1],category:row[2],imageKey:row[3],featuredColour:row[4],description:row[5],oneSize:Boolean(row[6]),pricePence:1000,sortOrder:index+1,colours:[...COLOURS],sizes:row[6]?['One size']:APPAREL_SIZES}));
+  ['SST-CREW-SOCKS','Crew Socks','accessories','crew-socks','Cream','Premium ribbed crew socks, finished with the Shift mark.',0,['S','M','L']],
+  ['SST-GYM-BAG','Gym Bag','equipment','bag','Ash Green','Kit in. Excuses out. A durable everyday training bag.',1],
+  ['SST-BOTTLE','Water Bottle','equipment','bottle','Cream','Hydration without an inspirational quote down the side.',1],
+  ['SST-SHAKER','Shift Shaker','equipment','shaker','Black','A straightforward, leak-resistant shaker with no gimmicks.',1]
+].map((row,index)=>({sku:row[0],name:row[1],category:row[2],imageKey:row[3],featuredColour:row[4],description:row[5],oneSize:Boolean(row[6]),pricePence:1000,sortOrder:index+1,colours:[...COLOURS],sizes:row[7]||(row[6]?['One size']:APPAREL_SIZES)}));
 
 function json(data,status=200,headers={}){
   return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
