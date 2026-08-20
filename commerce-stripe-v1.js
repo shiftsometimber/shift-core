@@ -62,6 +62,8 @@ function stripeForm(order,size,quantity,env){
   const form=new URLSearchParams();
   const put=(key,value)=>form.append(key,String(value));
   put('mode','payment');
+  put('managed_payments[enabled]','false');
+  put('payment_method_types[0]','card');
   put('success_url',`${siteUrl(env)}/order-success.html?session_id={CHECKOUT_SESSION_ID}`);
   put('cancel_url',`${siteUrl(env)}/shop.html?checkout=cancelled`);
   put('client_reference_id',order.order_number);
