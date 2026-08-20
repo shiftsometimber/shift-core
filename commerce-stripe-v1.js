@@ -202,13 +202,19 @@ function escapeHtml(value){return clean(value,500).replace(/[&<>"']/g,char=>({'&
 
 async function sendOrderEmails(env,order){
   if(!env.EMAIL)return;
-  const from={email:String(env.AUTH_EMAIL_FROM||'welcome@shiftsometimber.co.uk'),name:'Shift Some Timber'};
   const admin=String(env.ORDER_NOTIFICATION_EMAIL||'orders@shiftsometimber.co.uk');
   const customer=order.customer_email;
   const summary=`${order.product_name} · Size ${order.size} · Quantity ${order.quantity} · £${(order.total_pence/100).toFixed(2)}`;
+  const customerFrom={email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'};
+  const adminFrom={email:'shop@shiftsometimber.co.uk',name:'Shift Shop'};
+  const shell=(preheader,title,body)=>`<!doctype html><html><body style="margin:0;background:#050505;color:#E7E3DA;font-family:Arial,Helvetica,sans-serif"><div style="display:none;max-height:0;overflow:hidden;opacity:0">${escapeHtml(preheader)}</div><div style="max-width:640px;margin:0 auto;padding:32px 20px"><div style="padding:18px 0;border-bottom:2px solid #707762;font-size:20px;font-weight:900;letter-spacing:.02em">SHIFT <span style="color:#707762">SOME</span> TIMBER</div><div style="padding:34px 0"><p style="margin:0 0 10px;color:#707762;font-size:12px;font-weight:900;letter-spacing:.14em">SHIFT ORDER</p><h1 style="margin:0 0 24px;color:#E7E3DA;font-size:36px;line-height:1.05">${escapeHtml(title)}</h1>${body}</div><div style="padding-top:20px;border-top:1px solid #707762;color:#aaa69d;font-size:12px;line-height:1.6">Shift Some Timber Ltd · Company no. 17393135<br>Questions? Email <a style="color:#E7E3DA" href="mailto:orders@shiftsometimber.co.uk">orders@shiftsometimber.co.uk</a><br>This transactional email was sent because an order was placed with Shift Some Timber.</div></div></body></html>`;
   const work=[];
-  if(customer)work.push(env.EMAIL.send({from,to:customer,subject:`Order confirmed — ${order.order_number}`,html:`<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto"><h1>Nice one. Your order is confirmed.</h1><p>Order <strong>${escapeHtml(order.order_number)}</strong></p><p>${escapeHtml(summary)}</p><p>We will email you again when it is dispatched.</p><p>Shift Some Timber</p></div>`,text:`Your order ${order.order_number} is confirmed. ${summary}. We will email you again when it is dispatched.`}));
-  work.push(env.EMAIL.send({from,to:admin,subject:`New paid order — ${order.order_number}`,html:`<div style="font-family:Arial,sans-serif"><h1>New paid order</h1><p><strong>${escapeHtml(order.order_number)}</strong></p><p>${escapeHtml(summary)}</p><p>Customer: ${escapeHtml(order.customer_name)} · ${escapeHtml(customer)}</p></div>`,text:`New paid order ${order.order_number}. ${summary}. Customer: ${order.customer_name} ${customer}` }));
+  if(customer){
+    const body=`<div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><p style="margin:0 0 12px;color:#E7E3DA">Order reference</p><p style="margin:0 0 22px;color:#E7E3DA;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><p style="margin:0;color:#E7E3DA;line-height:1.7">${escapeHtml(summary)}</p></div><p style="margin:24px 0 0;color:#E7E3DA;line-height:1.7">Payment confirmed. We’ll email you again when your order is dispatched.</p>`;
+    work.push(env.EMAIL.send({from:customerFrom,to:customer,subject:`Your Shift order is confirmed · ${order.order_number}`,html:shell(`Payment confirmed for ${order.order_number}`,'Nice one. Your order is confirmed.',body),text:`Shift Some Timber order confirmation\n\nOrder ${order.order_number}\n${summary}\n\nPayment confirmed. We will email you again when your order is dispatched.\n\nQuestions: orders@shiftsometimber.co.uk\nShift Some Timber Ltd · Company no. 17393135`}));
+  }
+  const adminBody=`<div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><p style="margin:0 0 12px;color:#E7E3DA;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><p style="margin:0 0 18px;color:#E7E3DA;line-height:1.7">${escapeHtml(summary)}</p><p style="margin:0;color:#E7E3DA;line-height:1.7">Customer: ${escapeHtml(order.customer_name)}<br>${escapeHtml(customer)}</p></div>`;
+  work.push(env.EMAIL.send({from:adminFrom,to:admin,subject:`Paid shop order · ${order.order_number}`,html:shell(`New paid shop order ${order.order_number}`,'New paid order.',adminBody),text:`New paid Shift shop order\n\n${order.order_number}\n${summary}\nCustomer: ${order.customer_name} · ${customer}` }));
   await Promise.all(work);
 }
 
