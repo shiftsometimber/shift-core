@@ -35,6 +35,9 @@ test('catalogue is available without exposing Stripe configuration',async()=>{
   const response=await commerceStripeRoutes(request,{},{}),body=await response.json();
   assert.equal(response.status,200);
   assert.equal(body.product.pricePence,1000);
+  assert.equal(body.products.length,12);
+  assert.deepEqual(body.products[0].colours,['Black','Cream','Ash Green']);
+  assert.equal(body.deliveryPence,299);
   assert.equal(body.product.deliveryPence,299);
   assert.equal(response.headers.get('Access-Control-Allow-Origin'),'https://www.shiftsometimber.co.uk');
 });
