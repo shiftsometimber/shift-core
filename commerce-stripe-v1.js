@@ -117,7 +117,8 @@ async function createCheckout(request,env){
   if(!response.ok||!session?.id||!session?.url){
     await env.DB.prepare(`UPDATE orders SET status='cancelled',payment_status='failed',updated_at=? WHERE id=?`).bind(now(),orderId).run();
     console.error('stripe_checkout_create_failed',{orderNumber:number,status:response.status,type:session?.error?.type||'unknown'});
-    return json({ok:false,error:'checkout_unavailable'},502,corsHeaders(request));
+    const diagnostic=stripeMode==='test'?{stripeCode:clean(session?.error?.code||session?.error?.type,100),stripeParam:clean(session?.error?.param,160),stripeMessage:clean(session?.error?.message,300)}:undefined;
+    return json({ok:false,error:'checkout_unavailable',...(diagnostic?{diagnostic}:{})},502,corsHeaders(request));
   }
   await env.DB.prepare(`UPDATE commerce_order_details SET stripe_checkout_session_id=?,updated_at=? WHERE order_id=?`).bind(session.id,now(),orderId).run();
   return json({ok:true,checkoutUrl:session.url,orderNumber:number},201,corsHeaders(request));
