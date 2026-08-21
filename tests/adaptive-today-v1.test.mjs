@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {grubOptions,moveOptions} from '../member-daily-v3.js';
+import {grubOptions,moveOptions,resolveTreatmentSetup} from '../member-daily-v3.js';
 
 test('rough guts produces three small named plates, not a completion task',()=>{
   const meals=grubOptions({guts:'rough'},{});
@@ -19,4 +19,10 @@ test('good energy permits a longer walk while not tonight remains valid',()=>{
   assert.equal(moves[0].minutes,25);
   assert.equal(moves.at(-1).key,'not-tonight');
   assert.equal(moves.at(-1).minutes,0);
+});
+
+test('first-run treatment is chip-driven, infers route and rejects invented doses',()=>{
+  assert.deepEqual(resolveTreatmentSetup({medicineKey:'mounjaro',doseKey:'5mg',durationKey:'weeks'}),{medicine:'Mounjaro',route:'jab',dose:'5mg',week:3,status:'active'});
+  assert.equal(resolveTreatmentSetup({medicineKey:'mounjaro',doseKey:'9mg',durationKey:'weeks'}),null);
+  assert.equal(resolveTreatmentSetup({medicineKey:'add-later'}).status,'add_later');
 });
