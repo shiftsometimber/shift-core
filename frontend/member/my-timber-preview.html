@@ -16,21 +16,22 @@
   <main class="preview-wrap">
     <section class="preview-auth" id="previewAuth">
       <p class="preview-note">PREVIEW ACCOUNT</p>
-      <h1>See tonight properly.</h1>
-      <p>Create a disposable preview account. It is stored only in the isolated test database and does not touch your live Shift account.</p>
+      <h1>Open My Timber.</h1>
+      <p>Create a disposable preview account or sign back into one you already made. Nothing here touches your live Shift account.</p>
       <form id="previewRegister">
         <label>First name<input name="firstName" autocomplete="given-name" value="Matt" required></label>
         <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
         <label>Password<input name="password" type="password" autocomplete="new-password" minlength="10" placeholder="At least 10 characters" required></label>
-        <button type="submit">Open My Timber Today</button>
+        <button type="submit" data-auth="register">Create preview account</button>
+        <button type="button" data-auth="login">Sign in to preview</button>
         <p class="preview-status" id="previewStatus" role="status" aria-live="polite"></p>
       </form>
     </section>
     <section class="preview-member" id="previewMember">
       <section class="mp-panel" id="panel-today" aria-labelledby="todayTitle">
         <p class="preview-note">MY TIMBER · TODAY</p>
-        <h1 id="todayTitle">Tonight, sorted.</h1>
-        <div id="todayActions"><p>Loading tonight…</p></div>
+        <h1 id="todayTitle">Today, sorted.</h1>
+        <div id="todayActions"><p>Loading My Timber…</p></div>
       </section>
     </section>
   </main>
@@ -38,10 +39,12 @@
   <script src="/api-adapter-v33d.js?v=preview-1"></script>
   <script>
     (function(){
-      const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus');
+      const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus'),buttons=[...form.querySelectorAll('button[data-auth]')];
       function showMember(){auth.hidden=true;member.classList.add('is-ready');const s=document.createElement('script');s.src='/member-today-premium-v1.js?v=4';document.body.appendChild(s)}
       async function existing(){try{await SST_API.getMe();showMember()}catch{auth.hidden=false}}
-      form.addEventListener('submit',async event=>{event.preventDefault();const button=form.querySelector('button');button.disabled=true;msg.textContent='Creating isolated preview account…';try{const data=Object.fromEntries(new FormData(form).entries());data.source='my-timber-hosted-preview';await SST_API.register(data);showMember()}catch(error){msg.textContent=error.message||'That did not work. Try another email.';button.disabled=false}});
+      async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating isolated preview account…';try{const data=Object.fromEntries(new FormData(form).entries());data.source='my-timber-hosted-preview';await SST_API[mode](data);showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in to preview”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
+      form.addEventListener('submit',event=>{event.preventDefault();authenticate('register')});
+      form.querySelector('[data-auth="login"]').addEventListener('click',()=>authenticate('login'));
       existing();
     })();
   </script>
