@@ -7,6 +7,8 @@ for(const marker of ['shift_today_checkins','shift_today_choices','shift_treatme
 for(const marker of ['What should I eat next?','My stomach feels rough','I have no energy','Help me move','Treatment question','I am struggling today','Show my plan'])assert.ok(client.includes(marker),`missing problem-first entry ${marker}`);
 for(const marker of ['getImmediateHelp','saveImmediateHelp','problem_first','help_action_not_savable'])assert.ok(server.includes(marker),`missing help contract ${marker}`);
 for(const marker of ['Why this helps','That is useful—and saved.','My Timber will remember this today instead of asking again.','Do not wait on an app.'])assert.ok(client.includes(marker),`missing useful outcome ${marker}`);
+for(const marker of ['treatmentSetup','saveShiftTreatmentContext','treatmentAction','askShiftAI','Get a useful answer','Checking Shift’s reviewed information'])assert.ok(client.includes(marker),`missing closure path ${marker}`);
+for(const marker of ['breakfast','brunch','lunch','snack','late'])assert.ok(server.includes(`${marker}:`),`missing daypart food ${marker}`);
 for(const forbidden of ['Question 1 of 3','check-in complete','>Done<','success confetti'])assert.ok(!client.includes(forbidden),`forbidden ${forbidden}`);
 for(const forbidden of ['Mood','Guts','Energy'])assert.ok(!client.includes(`>${forbidden}<`),`check-in leaked into entry: ${forbidden}`);
 assert.ok(client.includes('saveMyTimberHelp({need,actionKey})'),'problem-first selection is not persisted');
