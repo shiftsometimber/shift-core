@@ -40,7 +40,7 @@
   <script>
     (function(){
       const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus'),buttons=[...form.querySelectorAll('button[data-auth]')];
-      function showMember(){auth.hidden=true;member.classList.add('is-ready');const s=document.createElement('script');s.src='/member-today-premium-v1.js?v=4';document.body.appendChild(s)}
+      function showMember(){auth.hidden=true;member.classList.add('is-ready');const s=document.createElement('script');s.src='/member-today-premium-v1.js?v=5';document.body.appendChild(s)}
       async function existing(){try{await SST_API.getMe();showMember()}catch{auth.hidden=false}}
       async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating isolated preview account…';try{const data=Object.fromEntries(new FormData(form).entries());data.source='my-timber-hosted-preview';await SST_API[mode](data);showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in to preview”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
       form.addEventListener('submit',event=>{event.preventDefault();authenticate('register')});
