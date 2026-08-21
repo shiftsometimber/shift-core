@@ -94,31 +94,33 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          suffix=$(date +%s)
+          suffix=$(date +%s%N)
           email="today-known-$suffix@example.test"
-          password="PreviewOnly-$suffix!"
-          jar=/tmp/known.cookies
-          curl -fsS --retry 10 --retry-all-errors --retry-delay 2 -c "$jar" -H 'content-type: application/json' \
-            -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Matt\"}" \
-            "$PREVIEW_URL/v1/auth/register" > /tmp/register.json
-          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+          token="preview-known-$suffix"
+          token_hash=$(printf '%s' "$token" | sha256sum | cut -d' ' -f1)
+          expires=$(date -u -d '+1 day' +%Y-%m-%dT%H:%M:%SZ)
+          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" \
+            --command "INSERT INTO users(email,first_name) VALUES('$email','Matt'); INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) SELECT id,'preview-only',1,'$now' FROM users WHERE email='$email'; INSERT INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) SELECT id,'registered','none','hosted_preview','$now' FROM users WHERE email='$email'; INSERT INTO member_state(user_id) SELECT id FROM users WHERE email='$email'; INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT id,'$token_hash','$expires','$now','$now' FROM users WHERE email='$email';" >/tmp/known-seed.txt
+          auth=(-H "Cookie: sst_session=$token")
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
             -d '{"mood":"good","guts":"fine","energy":"good"}' \
             "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin-blank.json
-          curl -fsS -b "$jar" -H 'X-Shift-Local-Date: 2026-08-21' \
+          curl -fsS "${auth[@]}" -H 'X-Shift-Local-Date: 2026-08-21' \
             "$PREVIEW_URL/v1/shift/today" > /tmp/today-blank.json
           jq -e '[.today.cards[] | select(.domain=="treatment")][0] | .configured==false and (.headline | contains("Tell us what you’re on"))' /tmp/today-blank.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
             --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
           jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
-          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
             -X PATCH -d '{"medicineKey":"mounjaro","doseKey":"5mg","durationKey":"weeks"}' \
             "$PREVIEW_URL/v1/shift/treatment-context" > /tmp/treatment.json
-          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
             -d '{"mood":"alright","guts":"rough","energy":"empty"}' \
             "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin.json
-          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
             -d '{"choiceKey":"eggs-toast"}' "$PREVIEW_URL/v1/shift/today/grub" > /tmp/grub.json
-          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
             -d '{"choiceKey":"walk-10"}' "$PREVIEW_URL/v1/shift/today/move" > /tmp/move.json
           jq -e '.meal.name=="Scrambled eggs on toast"' /tmp/grub.json
           jq -e '.activity.name=="Easy walk" and .activity.minutes==10' /tmp/move.json
