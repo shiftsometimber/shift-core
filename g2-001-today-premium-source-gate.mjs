@@ -6,14 +6,14 @@ const shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
 const worker=fs.readFileSync('worker-entry-v6.js','utf8');
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 
-must(js.includes('presentation-only layer over the canonical /v1/shift/today contract'),'Today layer declares canonical presentation-only boundary');
 must(js.includes('SST_API.getShiftToday'),'Today layer reads the canonical deployed Today API');
-must(js.includes('action?.detail||action?.text'),'Today renders canonical action detail instead of dropping it');
-must(js.includes('action?.cta?.target')&&js.includes('action?.cta?.label'),'Today renders the canonical action CTA contract');
-must(js.includes("hydration:'water'")&&js.includes("grub:'grub'")&&js.includes("fit:'fit'"),'Today CTAs route into existing product surfaces');
+must(js.includes('Show me what matters')&&js.includes("key:'mood'")&&js.includes("key:'guts'")&&js.includes("key:'energy'"),'Today presents the approved three-tap check-in without scoring ceremony');
+must(js.includes('card.meals.map')&&js.includes('data-choice="${domain}:'),'Today renders named meal and movement decisions from the canonical Today response');
+must(js.includes('SST_API.saveShiftTodayGrub')&&js.includes('SST_API.saveShiftTodayMove'),'Today choices persist through the existing member API adapter');
+must(js.includes("data-panel=\"progress\"")&&js.includes("data-panel=\"ai\""),'Optional Progress and Ask Timber branches route into existing product surfaces');
 must(js.includes("dataset.todayPremiumReady='true'"),'Today exposes a settled rendered-acceptance marker');
-must(js.includes('if(!valid){if(card)card.hidden=true'),'Unavailable metrics are hidden rather than rendered as fake values');
-must(css.includes('.mp-today-action-card.is-lead')&&css.includes('#17261d')&&css.includes('#f8f6ef'),'Today uses the existing forest/cream premium constitution');
+must(!js.includes('check-in complete')&&!js.includes('success confetti'),'Today avoids generic completion and confetti language');
+must(css.includes('--shift-black:#050505')&&css.includes('--shift-cream:#E7E3DA')&&css.includes('--shift-green:#707762'),'Today uses the approved three-colour Shift constitution');
 must(css.includes('min-height:48px')&&css.includes('@media(max-width:760px)'),'Today keeps mobile actions touch-usable and responsive');
 for(const asset of ['/member-today-premium-v1.js','/member-today-premium-v1.css']){
   must(shell.includes(asset),`member shell injects ${asset}`);
