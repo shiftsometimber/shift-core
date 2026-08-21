@@ -35,13 +35,13 @@ async function getToday(request,env,ctx,uid,user){
     env.DB.prepare(`SELECT * FROM shift_today_checkins WHERE user_id=? AND local_date=?`).bind(uid,date).first(),
     env.DB.prepare(`SELECT domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all(),
     treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date),
-    buildShiftBrainContext(env,uid,'today',{knowledgeLimit:0}),
-    memberDailyV2Routes(request,env,ctx)
+    buildShiftBrainContext(env,uid,'today',{knowledgeLimit:0}).catch(error=>{console.warn('my_timber_brain_context_unavailable',error?.message);return null}),
+    memberDailyV2Routes(request,env,ctx).catch(error=>{console.warn('my_timber_canonical_today_unavailable',error?.message);return null})
   ]);
   const canonicalPayload=canonicalResponse?.ok?await canonicalResponse.clone().json().catch(()=>({})):{};
-  const canonicalToday=canonicalPayload.today||{};
-  const brainEvidence={contract:brain.contract,activePlans:Object.keys(brain.plans.active||{}),feedbackSummary:brain.behaviour.feedback.summary||{},memorySignals:brain.memory.intelligent.length,latestProgressDate:brain.progress.latest?.recorded_on||null};
-  const contextUsed={...(canonicalToday.context_used||{}),one_shift_brain:true,canonical_contract:brain.contract};
+  const canonicalToday=canonicalPayload.today||{},brainContract=brain?.contract||'one-shift-brain-v1';
+  const brainEvidence={available:!!brain,contract:brainContract,activePlans:Object.keys(brain?.plans?.active||{}),feedbackSummary:brain?.behaviour?.feedback?.summary||{},memorySignals:brain?.memory?.intelligent?.length||0,latestProgressDate:brain?.progress?.latest?.recorded_on||null};
+  const contextUsed={...(canonicalToday.context_used||{}),one_shift_brain:!!brain,canonical_contract:brainContract};
   const saved=Object.fromEntries((choices.results||[]).map(row=>[row.domain,{key:row.choice_key,...parse(row.choice_json)}]));
   if(!checkin)return respond({ok:true,today:{stage:'check_in',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}. How are you doing?`,prompts:checkInPrompts(),treatmentKnown:treatment.configured,headline:canonicalToday.headline,subhead:canonicalToday.subhead,actions:canonicalToday.actions||[],brain:brainEvidence,context_used:contextUsed,rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'}},200,request);
   const grub=grubCard(checkin,yesterday,saved.grub),move=moveCard(checkin,yesterday,saved.move),treatmentCardValue=treatmentCard(checkin,yesterday,treatment,saved.treatment);
