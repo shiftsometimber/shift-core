@@ -1,5 +1,6 @@
 import core from './worker.js';
 import {memberDailyV2Routes} from './member-daily-v2.js';
+import {buildShiftBrainContext} from './shift-brain-v1.js';
 import {recordProductEvent} from './product-analytics-v1.js';
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -30,16 +31,17 @@ export async function ensureTodaySchema(DB){await DB.batch([
 ]);}
 
 async function getToday(request,env,ctx,uid,user){
-  const date=dateOf(request),[checkin,choices,treatment,progress,yesterday]=await Promise.all([
+  const date=dateOf(request),[checkin,choices,treatment,progress,yesterday,brain]=await Promise.all([
     env.DB.prepare(`SELECT * FROM shift_today_checkins WHERE user_id=? AND local_date=?`).bind(uid,date).first(),
     env.DB.prepare(`SELECT domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all(),
-    treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date)
+    treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date),
+    buildShiftBrainContext(env,uid,'today',{knowledgeLimit:0})
   ]);
   const saved=Object.fromEntries((choices.results||[]).map(row=>[row.domain,{key:row.choice_key,...parse(row.choice_json)}]));
   if(!checkin)return respond({ok:true,today:{stage:'check_in',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}. How are you doing?`,prompts:checkInPrompts(),treatmentKnown:treatment.configured}},200,request);
   const grub=grubCard(checkin,yesterday,saved.grub),move=moveCard(checkin,yesterday,saved.move),treatmentCardValue=treatmentCard(checkin,yesterday,treatment,saved.treatment);
   const repeated=checkin.guts==='rough'&&yesterday?.guts==='rough';
-  const today={stage:'tonight',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}.`,changeLabel:'Change how I’m doing',checkin:{mood:checkin.mood,guts:checkin.guts,energy:checkin.energy},cards:repeated?[treatmentCardValue,grub,move]:[grub,move,treatmentCardValue],progress,quietLine:checkin.mood==='rough'?{text:'Rough day. Ask Timber will listen first.',target:'ai'}:null,clock:{targetSeconds:20,targetTaps:6},saved};
+  const today={stage:'tonight',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}.`,changeLabel:'Change how I’m doing',checkin:{mood:checkin.mood,guts:checkin.guts,energy:checkin.energy},cards:repeated?[treatmentCardValue,grub,move]:[grub,move,treatmentCardValue],progress,quietLine:checkin.mood==='rough'?{text:'Rough day. Ask Timber will listen first.',target:'ai'}:null,clock:{targetSeconds:20,targetTaps:6},saved,brain:{contract:brain.contract,activePlans:Object.keys(brain.plans.active||{}),feedbackSummary:brain.behaviour.feedback.summary||{},memorySignals:brain.memory.intelligent.length,latestProgressDate:brain.progress.latest?.recorded_on||null},context_used:{one_shift_brain:true,canonical_contract:brain.contract},rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'};
   defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_today_viewed',surface:'my_timber_today',source:'server',properties:{date,guts:checkin.guts,energy:checkin.energy,mealSaved:!!saved.grub,moveSaved:!!saved.move}}));
   return respond({ok:true,today},200,request);
 }
