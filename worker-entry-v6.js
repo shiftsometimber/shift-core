@@ -40,6 +40,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-plans-premium-v1.css','text/css; charset=utf-8'],
   ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-today-premium-v1.css','text/css; charset=utf-8'],
+  ['/member-my-timber-problem-v1.js','application/javascript; charset=utf-8'],
   ['/shift-me-api-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.css','text/css; charset=utf-8'],
