@@ -98,7 +98,7 @@ jobs:
           email="today-known-$suffix@example.test"
           password="PreviewOnly-$suffix!"
           jar=/tmp/known.cookies
-          curl -fsS -c "$jar" -H 'content-type: application/json' \
+          curl -fsS --retry 10 --retry-all-errors --retry-delay 2 -c "$jar" -H 'content-type: application/json' \
             -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Matt\"}" \
             "$PREVIEW_URL/v1/auth/register" > /tmp/register.json
           curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
@@ -126,7 +126,7 @@ jobs:
           email="today-blank-$suffix@example.test"
           password="PreviewOnly-$suffix!"
           jar=/tmp/blank.cookies
-          curl -fsS -c "$jar" -H 'content-type: application/json' \
+          curl -fsS --retry 10 --retry-all-errors --retry-delay 2 -c "$jar" -H 'content-type: application/json' \
             -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Sam\"}" \
             "$PREVIEW_URL/v1/auth/register" > /tmp/register-blank.json
           curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
