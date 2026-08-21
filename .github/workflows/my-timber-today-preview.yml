@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 concurrency:
   group: my-timber-today-hosted-preview
@@ -147,3 +148,39 @@ jobs:
             echo 'Production routes, production D1 and customer records were not touched.'
             echo 'Manual gate: one thumb, six taps, named dinner and move in under 20 seconds.'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish preview result to the draft PR
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker='<!-- my-timber-today-hosted-preview -->'
+          if [ "$JOB_STATUS" = 'success' ]; then
+            body="$marker
+          ## My Timber Today hosted preview: ready
+
+          The isolated Worker and preview-only D1 both passed:
+          - a named dinner was saved as **Scrambled eggs on toast**
+          - movement was saved as **Easy walk · 10 min**
+          - a blank treatment account was not assigned a medicine or dose
+
+          **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
+
+          Use a fresh test email. Production routes and live customer data were not touched."
+          else
+            body="$marker
+          ## My Timber Today hosted preview: commissioning failed
+
+          The isolated preview did not pass its automated acceptance run. No production route or live customer record was touched.
+
+          [Open the failed Actions run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          fi
+          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/436/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          if [ -n "$comment_id" ]; then
+            gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$comment_id" -f body="$body" >/dev/null
+          else
+            gh pr comment 436 --body "$body" >/dev/null
+          fi
