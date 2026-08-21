@@ -98,9 +98,15 @@ jobs:
           email="today-known-$suffix@example.test"
           password="PreviewOnly-$suffix!"
           jar=/tmp/known.cookies
-          curl -fsS --retry 12 --retry-all-errors --retry-delay 2 --retry-max-time 45 -c "$jar" -H 'content-type: application/json' \
+          curl -fsS --retry 10 --retry-all-errors --retry-delay 2 -c "$jar" -H 'content-type: application/json' \
             -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Matt\"}" \
             "$PREVIEW_URL/v1/auth/register" > /tmp/register.json
+          curl -fsS -b "$jar" -H 'X-Shift-Local-Date: 2026-08-21' \
+            "$PREVIEW_URL/v1/shift/today" > /tmp/today-blank.json
+          jq -e '[.today.cards[] | select(.domain=="treatment")][0] | .configured==false and (.headline | contains("Tell us what you’re on"))' /tmp/today-blank.json
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
+            --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
+          jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
           curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
             -X PATCH -d '{"medicineKey":"mounjaro","doseKey":"5mg","durationKey":"weeks"}' \
             "$PREVIEW_URL/v1/shift/treatment-context" > /tmp/treatment.json
@@ -117,27 +123,6 @@ jobs:
             --command "SELECT domain,json_extract(choice_json,'$.name') AS name,json_extract(choice_json,'$.minutes') AS minutes FROM shift_today_choices WHERE user_id=(SELECT id FROM users WHERE email='$email') ORDER BY domain" > /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "grub" and .name == "Scrambled eggs on toast")] | length == 1' /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "move" and .name == "Easy walk" and .minutes == 10)] | length == 1' /tmp/persisted.json
-
-      - name: Prove blank treatment is never invented
-        shell: bash
-        run: |
-          set -euo pipefail
-          suffix=$(date +%s%N)
-          email="today-blank-$suffix@example.test"
-          token="preview-blank-$suffix"
-          token_hash=$(printf '%s' "$token" | sha256sum | cut -d' ' -f1)
-          expires=$(date -u -d '+1 day' +%Y-%m-%dT%H:%M:%SZ)
-          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" \
-            --command "INSERT INTO users(email,first_name) VALUES('$email','Sam'); INSERT INTO member_status(user_id) SELECT id FROM users WHERE email='$email'; INSERT INTO member_state(user_id) SELECT id FROM users WHERE email='$email'; INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at) SELECT id,'$token_hash','$expires',CURRENT_TIMESTAMP FROM users WHERE email='$email';" >/tmp/blank-seed.txt
-          curl -fsS -H "Cookie: sst_session=$token" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
-            -d '{"mood":"good","guts":"fine","energy":"good"}' \
-            "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin-blank.json
-          curl -fsS -H "Cookie: sst_session=$token" -H 'X-Shift-Local-Date: 2026-08-21' \
-            "$PREVIEW_URL/v1/shift/today" > /tmp/today-blank.json
-          jq -e '[.today.cards[] | select(.domain=="treatment")][0] | .configured==false and (.headline | contains("Tell us what you’re on"))' /tmp/today-blank.json
-          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
-            --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
-          jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
 
       - name: Publish review instructions
         run: |
