@@ -4,16 +4,18 @@ import {buildShiftBrainContext} from './shift-brain-v1.js';
 import {recordProductEvent} from './product-analytics-v1.js';
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
-const CHECKIN='/v1/shift/today/check-in',GRUB='/v1/shift/today/grub',MOVE='/v1/shift/today/move',TREATMENT='/v1/shift/today/treatment',CONTEXT='/v1/shift/treatment-context';
+const CHECKIN='/v1/shift/today/check-in',GRUB='/v1/shift/today/grub',MOVE='/v1/shift/today/move',TREATMENT='/v1/shift/today/treatment',CONTEXT='/v1/shift/treatment-context',HELP='/v1/shift/today/help';
 const clean=(v,n=500)=>String(v??'').trim().slice(0,n),parse=v=>{try{return JSON.parse(v||'{}')}catch{return{}}};
 const dateOf=request=>clean(request.headers.get('X-Shift-Local-Date'),10)||new Date().toISOString().slice(0,10);
 
 export async function memberDailyV3Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',method=request.method.toUpperCase();
-  if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT].includes(path))return memberDailyV2Routes(request,env,ctx);
+  if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT,HELP].includes(path))return memberDailyV2Routes(request,env,ctx);
   if(method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
   const uid=Number(auth.user.id);await ensureTodaySchema(env.DB);
+  if(path===HELP&&method==='GET')return getImmediateHelp(request,env,uid);
+  if(path===HELP&&method==='POST')return saveImmediateHelp(request,env,ctx,uid);
   if(path==='/v1/shift/today'&&method==='GET')return getToday(request,env,ctx,uid,auth.user);
   if(path===CHECKIN&&method==='POST')return saveCheckIn(request,env,ctx,uid);
   if(path===GRUB&&method==='POST')return saveGrub(request,env,ctx,uid);
@@ -49,6 +51,36 @@ async function getToday(request,env,ctx,uid,user){
   const today={stage:'tonight',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}.`,intro:moment.intro,foodMoment:moment,changeLabel:'Things have changed',checkin:{mood:checkin.mood,guts:checkin.guts,energy:checkin.energy},cards:repeated?[treatmentCardValue,grub,move]:[grub,move,treatmentCardValue],progress,quietLine:checkin.mood==='rough'?{text:'Rough day. Ask Timber will listen first.',target:'ai'}:null,clock:{targetSeconds:20,targetTaps:6},saved,headline:canonicalToday.headline,subhead:canonicalToday.subhead,actions:canonicalToday.actions||[],brain:brainEvidence,context_used:contextUsed,rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'};
   defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_today_viewed',surface:'my_timber_today',source:'server',properties:{date,guts:checkin.guts,energy:checkin.energy,mealSaved:!!saved.grub,moveSaved:!!saved.move}}));
   return respond({ok:true,today},200,request);
+}
+
+async function getImmediateHelp(request,env,uid){
+  const need=clean(new URL(request.url).searchParams.get('need'),30),allowed=new Set(['eat','guts','energy','move','treatment','struggling','plan']);if(!allowed.has(need))return respond({ok:false,error:'invalid_help_need'},400,request);
+  const moment=foodMoment(request),date=dateOf(request),rows=(await env.DB.prepare(`SELECT domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all()).results||[],saved=Object.fromEntries(rows.map(row=>[row.domain,{key:row.choice_key,...parse(row.choice_json)}]));
+  if(need==='eat')return respond({ok:true,solution:{need,title:`Sort ${moment.label.toLowerCase()} now`,summary:'Three named options, with no calorie target or food theatre.',why:'My Timber uses the time of day and what has already worked—not a fixed meal timetable.',actions:grubOptions({},{}).map(item=>({key:item.key,label:item.name,detail:item.detail})),alternatives:[{key:'guts',label:'My stomach is rough'},{key:'own',label:'I already know what I’m having'}],saved:saved.grub||null}},200,request);
+  if(need==='guts')return respond({ok:true,solution:{need,title:'Make the next few hours gentler',summary:'Keep food smaller and plain, sip fluids, and lower the demand on movement.',why:'Persistent or severe symptoms—and being unable to keep fluids down—need clinical advice, not another recipe.',actions:grubOptions({guts:'rough'},{}).map(item=>({key:item.key,label:item.name,detail:item.detail})),alternatives:[{key:'treatment',label:'Check treatment support'},{key:'urgent',label:'I cannot keep fluids down'}]}},200,request);
+  if(need==='energy'||need==='move')return respond({ok:true,solution:{need,title:need==='energy'?'Lower the bar without writing the day off':'Start something that fits now',summary:'Choose one small useful action—or honestly choose not tonight.',why:'The useful plan is the one that fits the energy actually available.',actions:moveOptions({energy:need==='energy'?'empty':'managing'},{}).map(item=>({key:item.key,label:item.name,detail:item.detail,minutes:item.minutes}))}},200,request);
+  if(need==='treatment'){const context=await treatmentContext(env,uid);return respond({ok:true,solution:{need,title:context.configured?`${context.medicine} · ${context.dose}`:'Add treatment only if it helps',summary:context.configured?'Your explicit treatment context is available. Nothing was guessed.':'No medicine or dose is recorded.',why:'Treatment support uses only what the member explicitly supplied.',actions:context.configured?[{key:'side-effects',label:'Side effects are bothering me'},{key:'stopping',label:'I’m considering stopping'},{key:'fine',label:'Everything feels fine'}]:[{key:'setup',label:'Add my treatment'},{key:'later',label:'Leave it for later'}]}},200,request)}
+  if(need==='struggling')return respond({ok:true,solution:{need,title:'Make today smaller',summary:'Food, movement and optimisation can wait. Start with what is making today hard.',why:'Ask Timber should listen first and use today’s context without pretending to diagnose.',actions:[{key:'ask',label:'Tell Ask Timber what is happening'},{key:'essentials',label:'Give me an essentials-only plan'},{key:'support',label:'Show urgent support'}]}},200,request);
+  return respond({ok:true,solution:{need,title:'Your current day',summary:saved.grub||saved.move?'Your real choices are here. My Timber will not ask for them again.':'Nothing is locked in yet. Choose what you want help with.',why:'The plan uses explicit choices, not invented completion.',saved,actions:[{key:'eat',label:'Sort food'},{key:'move',label:'Sort movement'},{key:'treatment',label:'Treatment support'}]}},200,request)
+}
+
+async function saveImmediateHelp(request,env,ctx,uid){
+  const body=await request.json().catch(()=>({})),need=clean(body.need,30),key=clean(body.actionKey,40),date=dateOf(request);
+  if(['eat','guts'].includes(need)){
+    const options=grubOptions(need==='guts'?{guts:'rough'}:{},{}),choice=options.find(item=>item.key===key);
+    if(!choice)return respond({ok:false,error:'invalid_help_action'},400,request);
+    const saved={...choice,source:'problem_first'};await saveChoice(env,uid,date,'grub',key,saved);
+    defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_meal_saved',surface:'my_timber_problem_first',source:'server',properties:{date,meal:saved.name,need}}));
+    return respond({ok:true,saved:{domain:'grub',...saved},message:`${saved.name} is in your plan.`,next:[{key:'plan',label:'Show my plan'},{key:'eat',label:'Choose something else'}]},200,request);
+  }
+  if(['energy','move'].includes(need)){
+    const options=moveOptions({energy:need==='energy'?'empty':'managing'},{}),choice=options.find(item=>item.key===key);
+    if(!choice)return respond({ok:false,error:'invalid_help_action'},400,request);
+    const saved={...choice,source:'problem_first'};await saveChoice(env,uid,date,'move',key,saved);
+    defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_move_saved',surface:'my_timber_problem_first',source:'server',properties:{date,activity:saved.name,minutes:saved.minutes,need}}));
+    return respond({ok:true,saved:{domain:'move',...saved},message:key==='not-tonight'?'No movement tonight. That is a valid plan.':`${saved.name} · ${saved.minutes} min is in your plan.`,next:[{key:'plan',label:'Show my plan'},{key:'move',label:'Choose something else'}]},200,request);
+  }
+  return respond({ok:false,error:'help_action_not_savable'},400,request);
 }
 
 function checkInPrompts(){return[
