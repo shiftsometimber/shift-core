@@ -101,6 +101,9 @@ jobs:
           curl -fsS --retry 10 --retry-all-errors --retry-delay 2 -c "$jar" -H 'content-type: application/json' \
             -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Matt\"}" \
             "$PREVIEW_URL/v1/auth/register" > /tmp/register.json
+          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"mood":"good","guts":"fine","energy":"good"}' \
+            "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin-blank.json
           curl -fsS -b "$jar" -H 'X-Shift-Local-Date: 2026-08-21' \
             "$PREVIEW_URL/v1/shift/today" > /tmp/today-blank.json
           jq -e '[.today.cards[] | select(.domain=="treatment")][0] | .configured==false and (.headline | contains("Tell us what you’re on"))' /tmp/today-blank.json
