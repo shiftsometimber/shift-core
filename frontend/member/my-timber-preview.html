@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>My Timber Today — isolated preview</title>
+  <link rel="stylesheet" href="/member-p0-v1.css?v=7">
+  <link rel="stylesheet" href="/member-today-premium-v1.css?v=4">
+  <style>
+    :root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#050505;color:#E7E3DA;font-family:Arial,sans-serif}.preview-head{padding:18px 20px;border-bottom:1px solid #707762;display:flex;justify-content:space-between;gap:16px;align-items:center}.preview-head strong{letter-spacing:.08em}.preview-head span{color:#a9ad9f;font-size:13px}.preview-wrap{width:min(760px,100%);margin:auto;padding:24px 16px 64px}.preview-auth{background:#171a17;border:1px solid #707762;border-radius:20px;padding:22px}.preview-auth h1{font-size:clamp(34px,10vw,56px);line-height:1;margin:0 0 12px}.preview-auth p{color:#c5c2b9;line-height:1.55}.preview-auth form{display:grid;gap:12px;margin-top:22px}.preview-auth label{display:grid;gap:6px;font-weight:700}.preview-auth input{width:100%;min-height:50px;padding:12px 14px;border:1px solid #707762;border-radius:12px;background:#050505;color:#E7E3DA;font:inherit}.preview-auth button{min-height:52px;border:0;border-radius:999px;padding:12px 18px;background:#707762;color:#050505;font-weight:900;font-size:16px}.preview-auth button:disabled{opacity:.55}.preview-status{min-height:24px;color:#E7E3DA}.preview-note{font-size:13px;color:#a9ad9f}.preview-member{display:none}.preview-member.is-ready{display:block}#panel-today{display:block!important}#todayActions{min-height:280px}
+  </style>
+</head>
+<body>
+  <header class="preview-head"><strong>SHIFT SOME TIMBER</strong><span>Isolated My Timber preview</span></header>
+  <main class="preview-wrap">
+    <section class="preview-auth" id="previewAuth">
+      <p class="preview-note">PREVIEW ACCOUNT</p>
+      <h1>See tonight properly.</h1>
+      <p>Create a disposable preview account. It is stored only in the isolated test database and does not touch your live Shift account.</p>
+      <form id="previewRegister">
+        <label>First name<input name="firstName" autocomplete="given-name" value="Matt" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>Password<input name="password" type="password" autocomplete="new-password" minlength="10" placeholder="At least 10 characters" required></label>
+        <button type="submit">Open My Timber Today</button>
+        <p class="preview-status" id="previewStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <section class="preview-member" id="previewMember">
+      <section class="mp-panel" id="panel-today" aria-labelledby="todayTitle">
+        <p class="preview-note">MY TIMBER · TODAY</p>
+        <h1 id="todayTitle">Tonight, sorted.</h1>
+        <div id="todayActions"><p>Loading tonight…</p></div>
+      </section>
+    </section>
+  </main>
+  <script>window.SST_API_BASE=window.location.origin;</script>
+  <script src="/api-adapter-v33d.js?v=preview-1"></script>
+  <script>
+    (function(){
+      const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus');
+      function showMember(){auth.hidden=true;member.classList.add('is-ready');const s=document.createElement('script');s.src='/member-today-premium-v1.js?v=4';document.body.appendChild(s)}
+      async function existing(){try{await SST_API.getMe();showMember()}catch{auth.hidden=false}}
+      form.addEventListener('submit',async event=>{event.preventDefault();const button=form.querySelector('button');button.disabled=true;msg.textContent='Creating isolated preview account…';try{const data=Object.fromEntries(new FormData(form).entries());data.source='my-timber-hosted-preview';await SST_API.register(data);showMember()}catch(error){msg.textContent=error.message||'That did not work. Try another email.';button.disabled=false}});
+      existing();
+    })();
+  </script>
+</body>
+</html>
