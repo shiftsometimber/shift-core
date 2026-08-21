@@ -1,22 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {buildAdaptiveActions} from '../member-daily-v3.js';
+import {grubOptions,moveOptions} from '../member-daily-v3.js';
 
-test('always returns one balanced Eat, Move and Life Back action',()=>{
-  const actions=buildAdaptiveActions({baseActions:[{domain:'grub',title:'Your planned lunch',detail:'12 mins'},{domain:'fit',title:'Walk',detail:'10 mins'}],setup:{values:{life_priority:'confidence'}},history:{}});
-  assert.deepEqual(actions.map(x=>x.domain),['eat','move','life']);
-  assert.equal(actions.length,3);
-  assert.match(actions[2].title,/confidence/i);
-  assert.ok(actions.every(x=>x.why.medical_advice===false));
+test('rough guts produces three small named plates, not a completion task',()=>{
+  const meals=grubOptions({guts:'rough'},{});
+  assert.equal(meals.length,3);
+  assert.equal(meals[0].name,'Scrambled eggs on toast');
+  assert.ok(meals.every(meal=>meal.name&&meal.proteinG>0));
 });
 
-test('explains how recent behaviour changed a suggestion',()=>{
-  const actions=buildAdaptiveActions({setup:{values:{}},history:{skippedDomains:['move'],completedDomains:['eat']}});
-  assert.match(actions.find(x=>x.domain==='move').why.learned,/skipped/i);
-  assert.match(actions.find(x=>x.domain==='eat').why.learned,/completed/i);
+test('yesterday rewrites tonight without asking the member again',()=>{
+  assert.equal(grubOptions({guts:'fine'},{guts:'rough'})[0].key,'eggs-toast');
+  assert.equal(moveOptions({energy:'good'},{energy:'empty'})[0].minutes,10);
 });
 
-test('does not expose more than the three daily domains when upstream is noisy',()=>{
-  const actions=buildAdaptiveActions({baseActions:[{domain:'hydration',title:'Drink'},{domain:'progress',title:'Log weight'},{domain:'today',title:'Outside'},{domain:'grub',title:'Dinner'}]});
-  assert.deepEqual(actions.map(x=>x.domain),['eat','move','life']);
+test('good energy permits a longer walk while not tonight remains valid',()=>{
+  const moves=moveOptions({energy:'good'},{});
+  assert.equal(moves[0].minutes,25);
+  assert.equal(moves.at(-1).key,'not-tonight');
+  assert.equal(moves.at(-1).minutes,0);
 });

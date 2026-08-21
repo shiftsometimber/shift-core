@@ -78,10 +78,12 @@
     getProgress:()=>request('/progress'),saveProgress:data=>request('/progress',{method:'POST',body:JSON.stringify(data)}),getMots:()=>request('/health-mot'),saveMot:data=>request('/health-mot',{method:'POST',body:JSON.stringify(data)}),getCheckIns:()=>request('/check-ins'),saveCheckIn:data=>request('/check-ins',{method:'POST',body:JSON.stringify(data)}),
     getCases:()=>request('/cases'),createCase:data=>request('/cases',{method:'POST',body:JSON.stringify(data)}),getOrders:()=>request('/commerce/orders'),getPharmacyOrders:()=>request('/pharmacy/orders'),createPharmacyOrder:data=>request('/pharmacy/orders',{method:'POST',body:JSON.stringify(data)}),getConsents:()=>request('/consents'),saveConsent:data=>request('/consents',{method:'POST',body:JSON.stringify(data)}),exportData:()=>request('/privacy/export',{method:'POST'}),eraseHealthTracking:()=>request('/privacy/health-tracking',{method:'DELETE'}),deleteAccount:()=>request('/privacy/account',{method:'DELETE'}),visualise,saveProgressPhoto,listProgressPhotos,deleteProgressPhoto,progressPhotoUrl,
     getShiftContext:()=>request('/shift/context'),
-    getShiftToday:()=>request('/shift/today',{headers:{'X-Shift-Local-Date':new Date().toLocaleDateString('en-CA')}}),
-    getShiftSetup:()=>request('/shift/setup'),
-    saveShiftSetup:data=>request('/shift/setup',{method:'PATCH',headers:{'X-Shift-Local-Date':new Date().toLocaleDateString('en-CA')},body:JSON.stringify(data||{})}),
-    decideShiftTodayAction:(id,data)=>request('/shift/today/actions/'+encodeURIComponent(id)+'/decision',{method:'POST',body:JSON.stringify(data||{})}),
+    getShiftToday:()=>request('/shift/today',{headers:todayHeaders()}),
+    saveShiftTodayCheckIn:data=>request('/shift/today/check-in',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
+    saveShiftTodayGrub:data=>request('/shift/today/grub',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
+    saveShiftTodayMove:data=>request('/shift/today/move',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
+    saveShiftTodayTreatment:data=>request('/shift/today/treatment',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
+    saveShiftTreatmentContext:data=>request('/shift/treatment-context',{method:'PATCH',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     getProgressSummary:()=>request('/progress/summary'),getPlanList:()=>request('/plan/list'),
     generateGrub:data=>request('/grub/plan',{method:'POST',body:JSON.stringify(data||{}),timeout:GENERATION_TIMEOUT}),replaceGrubMeal:data=>request('/grub/replace',{method:'POST',body:JSON.stringify(data||{})}),grubFeedback:data=>request('/grub/feedback',{method:'POST',body:JSON.stringify(data||{})}),
     generateFit:data=>request('/fit/plan',{method:'POST',body:JSON.stringify(data||{}),timeout:GENERATION_TIMEOUT}),replaceFitExercise:data=>request('/fit/replace',{method:'POST',body:JSON.stringify(data||{})}),fitFeedback:data=>request('/fit/feedback',{method:'POST',body:JSON.stringify(data||{})}),
@@ -90,4 +92,5 @@
     recommend:data=>request('/shift/recommend',{method:'POST',body:JSON.stringify(data||{})}),
     askShiftAI:data=>request('/shift-ai/chat',{method:'POST',body:JSON.stringify(data||{})})
   };
+  function todayHeaders(){const now=new Date();return{'X-Shift-Local-Date':now.toLocaleDateString('en-CA'),'X-Shift-Local-Hour':String(now.getHours())}}
 })();

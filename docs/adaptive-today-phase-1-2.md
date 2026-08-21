@@ -1,36 +1,31 @@
-# Adaptive Today — Phase 1 and Phase 2 contract
+# My Timber Today — six-tap contract
 
-## One source of truth
+## Definition of done
 
-Shift Core owns identity, member preferences, the stable daily plan and its append-only action events. The website and HQ are clients. They do not create local shadow records.
+A tired member can use one thumb at 19:40 to record Mood, Guts and Energy, reveal tonight, save a named dinner, and save a movement choice in six taps and twenty seconds. There is no keyboard, scoring ceremony, generic completion event, success screen or manual Save button.
 
-## Privacy and permissions
+## Main path
 
-- Member routes require the existing authenticated member session and every read/write is constrained by `user_id`.
-- Setup stores practical personalisation preferences under consent scope `personalisation_v1`; it does not infer diagnoses or change clinical records.
-- HQ visibility uses the existing HQ session and `audit_read` permission boundary.
-- Clinical and safety boundaries always override optimisation; Today actions are explicitly non-clinical.
+1. Three 48px state taps: Mood, Guts, Energy.
+2. `Show me what matters` writes the check-in.
+3. Exactly three cards: Grub, Move, Treatment. Repeated rough guts may raise Treatment because safety context outranks presentation order.
+4. Selecting a meal writes its actual title. Selecting movement writes its actual activity and minutes. Treatment is read-only unless the member chooses an action.
+5. A same-evening return lands on the saved cards with `Change how I’m doing`.
 
-## API
+Fridge, takeaway, treatment support, stopping, Ask Timber and progress logging are deliberate branches after tonight is decided.
 
-- `GET /v1/shift/setup` — setup completeness and saved practical preferences.
-- `PATCH /v1/shift/setup` — validated short setup.
-- `GET /v1/shift/today` — exactly three stable actions for the supplied local date: Eat, Move, Life Back.
-- `POST /v1/shift/today/actions/:id/decision` — `complete`, `swap`, or `skip`, with an idempotency key.
-- `GET /v1/hq/adaptive-today` — authorised operational view; optional `memberId` and `limit` filters.
+## Adaptation
 
-## Behaviour contract
+The current and previous check-in drive all three domains from one server context. Rough guts selects smaller meals. Empty energy selects ten minutes rather than twenty-five. Repeated rough guts strengthens and raises Treatment. The client never fabricates medicine, dose or week.
 
-The first request for a member/date snapshots One Shift Brain context and creates one plan. Further requests return that plan and its current statuses. Complete, swap and skip are persisted. Recent completed/skipped domains are included when the next date is generated, and each action exposes a plain-English `why` object.
+## Persistence and privacy
 
-## Failure contract
+- `shift_today_checkins` stores one member/date state row.
+- `shift_today_choices` stores the real meal, movement or optional treatment action.
+- `shift_treatment_context` stores explicit member treatment context once.
+- Every route requires the existing authenticated member session and constrains reads/writes by `user_id`.
+- HQ uses the existing authorised operational endpoint and displays check-ins and saved real-world choices.
 
-- Invalid input returns 400 without changing state.
-- Another member cannot address an action they do not own (404).
-- Retrying the same idempotency key returns the saved result without a duplicate event.
-- The browser leaves the current card unchanged if a write fails and tells the member to retry.
-- A failed refresh states that saved Shift state has not been lost.
+## Grub direction
 
-## Acceptance evidence
-
-`tests/adaptive-today-v1.test.mjs` proves the balanced three-domain contract and behaviour explanations. `tests/adaptive-today-source-gate.mjs` guards persistence, idempotency and all three controls. Full source syntax and repository checks run before publication.
+Grub is dose-aware decision support, not calorie counting or a recipe catalogue. Tonight comes first: three suitable plates, fridge, takeaway or the member’s own dinner. Actual saved meals later power a short repeated week and shopping list. Language and habit precede any retail SKU.
