@@ -6,6 +6,7 @@ const product=server+'\n'+client;
 for(const marker of ['shift_today_checkins','shift_today_choices','shift_treatment_context','my_timber_meal_saved','my_timber_move_saved'])assert.ok(server.includes(marker),`missing ${marker}`);
 for(const marker of ['Show me what matters','Brunch or snack','Use what’s available','I already know what I’m having','Not tonight','Things have changed'])assert.ok(product.includes(marker),`missing ${marker}`);
 for(const marker of ['What are you on at the moment?','What dose are you on now?','How far in?','Not on anything yet','I’ll add it later'])assert.ok(client.includes(marker),`missing treatment setup ${marker}`);
+for(const marker of ['I’m sorted for now','Food and movement are saved. Treatment can wait unless you need it.','Things have changed'])assert.ok(client.includes(marker),`missing loop closure ${marker}`);
 for(const forbidden of ['Question 1 of 3','check-in complete','>Done<','success confetti'])assert.ok(!client.includes(forbidden),`forbidden ${forbidden}`);
 for(const forbidden of ['name="route"','name="weekNumber"','placeholder="e.g. 5mg"'])assert.ok(!client.includes(forbidden),`first-run treatment form leaked: ${forbidden}`);
 assert.ok(client.includes('mealTitle:picked.dataset.name'),'meal title is not persisted');
