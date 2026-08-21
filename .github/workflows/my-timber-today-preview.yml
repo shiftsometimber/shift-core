@@ -134,7 +134,7 @@ jobs:
           grep -Fq 'Create preview account' /tmp/member-dashboard.html
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
           grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
-          curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=1" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
+          curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
 
       - name: Publish review instructions
         run: |
