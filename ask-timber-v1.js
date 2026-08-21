@@ -103,6 +103,6 @@ function confidenceFor(items,claimed){const top=Math.max(...items.map(x=>Number(
 function publicSource(provenance){for(const p of provenance||[]){const ref=String(p?.ref||'');if(/^https:\/\//i.test(ref))return ref;}return null;}
 function list(value,max,len){return(Array.isArray(value)?value:[]).map(x=>clean(x,len)).filter(Boolean).slice(0,max)}
 function clean(value,max){return String(value??'').replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,max)}
-function allowedOrigin(request){const origin=request.headers.get('Origin');return !origin||ORIGINS.has(origin)}
-function cors(request){const origin=request.headers.get('Origin')||'',headers={'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};if(ORIGINS.has(origin))headers['Access-Control-Allow-Origin']=origin;return headers}
+function allowedOrigin(request){const origin=request.headers.get('Origin');return !origin||origin===new URL(request.url).origin||ORIGINS.has(origin)}
+function cors(request){const origin=request.headers.get('Origin')||'',headers={'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};if(origin&&(origin===new URL(request.url).origin||ORIGINS.has(origin)))headers['Access-Control-Allow-Origin']=origin;return headers}
 function json(data,status,request){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8',...cors(request)}})}
