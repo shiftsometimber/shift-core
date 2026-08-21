@@ -124,6 +124,17 @@ jobs:
           jq -e '[.. | objects | select(.domain? == "grub" and .name == "Scrambled eggs on toast")] | length == 1' /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "move" and .name == "Easy walk" and .minutes == 10)] | length == 1' /tmp/persisted.json
 
+      - name: Prove the actual member page is served
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS "$PREVIEW_URL/member/dashboard#today" -o /tmp/member-dashboard.html
+          grep -Fq '<title>My Timber Today — isolated preview</title>' /tmp/member-dashboard.html
+          grep -Fq 'id="todayActions"' /tmp/member-dashboard.html
+          grep -Fq 'Open My Timber Today' /tmp/member-dashboard.html
+          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=4" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
+          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=4" | grep -Eqi '^content-type:.*text/css'
+
       - name: Publish review instructions
         run: |
           {
