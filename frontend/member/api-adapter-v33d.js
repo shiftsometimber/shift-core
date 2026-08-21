@@ -79,6 +79,8 @@
     getCases:()=>request('/cases'),createCase:data=>request('/cases',{method:'POST',body:JSON.stringify(data)}),getOrders:()=>request('/commerce/orders'),getPharmacyOrders:()=>request('/pharmacy/orders'),createPharmacyOrder:data=>request('/pharmacy/orders',{method:'POST',body:JSON.stringify(data)}),getConsents:()=>request('/consents'),saveConsent:data=>request('/consents',{method:'POST',body:JSON.stringify(data)}),exportData:()=>request('/privacy/export',{method:'POST'}),eraseHealthTracking:()=>request('/privacy/health-tracking',{method:'DELETE'}),deleteAccount:()=>request('/privacy/account',{method:'DELETE'}),visualise,saveProgressPhoto,listProgressPhotos,deleteProgressPhoto,progressPhotoUrl,
     getShiftContext:()=>request('/shift/context'),
     getShiftToday:()=>request('/shift/today',{headers:todayHeaders()}),
+    getMyTimberHelp:need=>request('/shift/today/help?need='+encodeURIComponent(need),{headers:todayHeaders()}),
+    saveMyTimberHelp:data=>request('/shift/today/help',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     saveShiftTodayCheckIn:data=>request('/shift/today/check-in',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     saveShiftTodayGrub:data=>request('/shift/today/grub',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     saveShiftTodayMove:data=>request('/shift/today/move',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
