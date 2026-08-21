@@ -1,124 +1,35 @@
-// G2-001-TODAY-PREMIUM — presentation-only layer over the canonical /v1/shift/today contract.
-// G4-008-PROACTIVE-TODAY — privacy/cooldown-governed proactive feed joins the daily orchestration without owning member state.
 (function(){
   'use strict';
   if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
-  const q=s=>document.querySelector(s);
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const PANEL_TARGET={hydration:'water',grub:'grub',fit:'fit',progress:'visualise','life-back':'lifeback'};
-  let rendering=false,timer=null,lastToday=null,lastProactive=[];
+  const q=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let today=null,busy=false;
 
-  function waterGuide(today){
-    const direct=Number(today?.summary?.water_guide_ml||0);
-    if(direct>0)return direct;
-    const hydration=(today?.actions||[]).find(a=>String(a?.domain||'').toLowerCase()==='hydration');
-    const match=String(hydration?.title||'').match(/\b([\d,]+)\s*ml\b/i);
-    return match?Number(match[1].replace(/,/g,''))||0:0;
+  function setupMarkup(missing){
+    if(!missing?.length)return'';
+    return `<form class="mp-today-setup" data-shift-setup><span class="eyebrow">MAKE THIS YOURS</span><h3>Four quick choices. Better suggestions from tomorrow.</h3><div class="mp-setup-grid">
+      ${select('activity_level','Most days I move…',[['low','Not much'],['some','A bit'],['regular','Regularly']])}
+      ${select('meal_pattern','Food is usually…',[['structured','Planned'],['mixed','A mixed bag'],['chaotic','Last minute']])}
+      ${select('movement_preference','I would rather…',[['walking','Walk'],['strength','Do strength work'],['mixed','Mix it up'],['unsure','Not sure yet']])}
+      ${select('life_priority','I most want back…',[['energy','Energy'],['confidence','Confidence'],['sleep','Better sleep'],['family','Family time'],['headspace','Headspace']])}
+      </div><button class="mp-btn" type="submit">Build my Shift</button><p class="mp-today-action-status" aria-live="polite"></p></form>`;
   }
-  function settleMetrics(today){
-    const metrics=[
-      ['#metricCalories',today?.summary?.calories_left,v=>String(v)],
-      ['#metricProtein',today?.summary?.protein_left,v=>`${v}g`],
-      ['#metricSteps',today?.summary?.step_gap,v=>String(v)],
-      ['#metricWater',waterGuide(today),v=>`${Math.round(Number(v)/100)/10}L`]
-    ];
-    for(const [selector,value,format] of metrics){
-      const el=q(selector);if(!el)continue;
-      const card=el.closest('.mp-card')||el.parentElement;
-      const valid=value!==null&&value!==undefined&&value!==''&&Number(value)!==0&&Number.isFinite(Number(value));
-      if(!valid){if(card)card.hidden=true;continue}
-      el.textContent=format(value);if(card)card.hidden=false;
-    }
-    const visible=metrics.map(([selector])=>q(selector)?.closest('.mp-card')).filter(x=>x&&!x.hidden);
-    const metricWrap=visible[0]?.parentElement;
-    if(metricWrap)metricWrap.dataset.todayMetricCount=String(visible.length);
-  }
-  function actionCard(action,index){
-    const target=String(action?.cta?.target||'').toLowerCase();
-    const canRoute=Boolean(PANEL_TARGET[target])||target==='today';
-    const label=String(action?.cta?.label||'').trim();
-    const button=label&&canRoute?`<button type="button" class="mp-btn mp-today-action-cta" data-today-target="${esc(target)}"${target==='today'?' aria-pressed="false"':''}>${esc(label)}</button>`:'';
-    const proactive=action?.proactive?' is-proactive':'';
-    return `<article class="mp-today-action-card${index===0?' is-lead':''}${proactive}" data-today-action-card="${esc(action?.domain||index)}"${action?.proactive?' data-today-proactive="true"':''}>
-      <div class="mp-today-action-top"><span class="eyebrow">${esc(action?.eyebrow||action?.domain||'TODAY')}</span><span class="mp-today-priority">${action?.proactive?'Shift noticed':index===0?'First up':`Then ${index+1}`}</span></div>
-      <h3>${esc(action?.title||'Your next useful thing')}</h3>
-      ${action?.detail||action?.text?`<p>${esc(action.detail||action.text)}</p>`:''}
-      ${button}<span class="mp-today-action-status" aria-live="polite"></span>
-    </article>`;
-  }
-  function proactiveActions(insights){
-    return (Array.isArray(insights)?insights:[]).slice(0,1).filter(x=>x&&x.title&&x.body).map(x=>({domain:'shift',eyebrow:'SHIFT NOTICED',title:x.title,detail:x.body,proactive:true}));
-  }
-  function markup(today,proactive=[]){
-    const actions=[...(Array.isArray(today?.actions)?today.actions:[]),...proactiveActions(proactive)];
-    if(!actions.length)return '<section class="mp-today-premium" data-today-premium-v1="true"><div class="mp-today-empty"><span class="eyebrow">TODAY</span><strong>Nothing urgent to chase.</strong><p>Shift will put the useful next thing here when there is one.</p></div></section>';
-    return `<section class="mp-today-premium" data-today-premium-v1="true">
-      <div class="mp-today-priority-intro"><div><span class="eyebrow">WHAT MATTERS TODAY</span><strong>${actions.length===1?'One useful thing':`${actions.length} useful things`}</strong></div><p>Small, specific and linked to the part of Shift that can help.</p></div>
-      <div class="mp-today-action-grid">${actions.map(actionCard).join('')}</div>
-    </section>`;
-  }
-  async function fetchProactive(){
-    try{
-      const root=String(window.SST_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
-      const response=await fetch(root+'/v1/shift-ai/proactive/feed',{credentials:'include',cache:'no-store',headers:{Accept:'application/json'}});
-      if(!response.ok)return [];
-      const body=await response.json();
-      return Array.isArray(body?.insights)?body.insights:[];
-    }catch{return []}
-  }
-  function renderToday(today,proactive=[]){
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel)return false;
-    lastToday=today||{};lastProactive=Array.isArray(proactive)?proactive:[];
-    const h=panel.querySelector(':scope > h2'),sub=panel.querySelector(':scope > .mp-muted');
-    if(h&&lastToday.headline)h.textContent=lastToday.headline;
-    if(sub&&lastToday.subhead)sub.textContent=lastToday.subhead;
-    settleMetrics(lastToday);
-    box.innerHTML=markup(lastToday,lastProactive);
-    panel.dataset.todayPremiumReady='true';
-    panel.dataset.todayActionCount=String((Array.isArray(lastToday.actions)?lastToday.actions.length:0)+proactiveActions(lastProactive).length);
-    panel.dataset.todayProactiveCount=String(proactiveActions(lastProactive).length);
-    return true;
-  }
-  async function render(){
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel||!window.SST_API?.getShiftToday||rendering)return;
-    rendering=true;
-    try{
-      const [response,proactive]=await Promise.all([SST_API.getShiftToday(),fetchProactive()]);
-      renderToday(response?.today||response||{},proactive);
-    }catch(error){
-      if(!box.querySelector('[data-today-premium-v1]'))box.innerHTML='<section class="mp-today-premium" data-today-premium-v1="true"><div class="mp-today-empty"><strong>Today could not refresh just now.</strong><p>Your saved Shift state has not been changed. Try again in a moment.</p></div></section>';
-      panel.dataset.todayPremiumReady='error';
-    }finally{rendering=false}
-  }
-  function schedule(){
-    clearTimeout(timer);
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel||box.querySelector('[data-today-premium-v1]'))return;
-    if(lastToday){renderToday(lastToday,lastProactive);return}
-    timer=setTimeout(()=>{
-      const retryBox=q('#todayActions'),retryPanel=q('#panel-today');
-      if(!retryBox||!retryPanel||retryBox.querySelector('[data-today-premium-v1]'))return;
-      render();
-    },35);
-  }
-  function handleTarget(button){
-    const target=String(button.dataset.todayTarget||'').toLowerCase();
-    if(target==='today'){
-      button.setAttribute('aria-pressed','true');button.disabled=true;button.textContent='✓ Kept simple';
-      const status=button.parentElement?.querySelector('.mp-today-action-status');if(status)status.textContent='Nothing else to do here.';
-      return;
-    }
-    const panel=PANEL_TARGET[target];if(!panel)return;
-    const tab=q(`.mp-tab[data-panel="${CSS.escape(panel)}"]`);if(tab){tab.click();tab.focus({preventScroll:true})}
-  }
-  function boot(){
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel||!window.SST_API?.getShiftToday){setTimeout(boot,100);return}
-    render();
-    new MutationObserver(schedule).observe(panel,{childList:true,subtree:true});
-    document.addEventListener('click',event=>{const button=event.target.closest('[data-today-target]');if(button)handleTarget(button)});
-  }
+  function select(name,label,options){return`<label><span>${esc(label)}</span><select name="${name}" required><option value="">Choose one</option>${options.map(([v,t])=>`<option value="${v}">${esc(t)}</option>`).join('')}</select></label>`}
+  function actionMarkup(action,index){const done=action.status==='completed',skipped=action.status==='skipped';return`<article class="mp-today-action-card ${done?'is-done':''} ${skipped?'is-skipped':''}" data-action-id="${esc(action.id)}">
+    <div class="mp-today-action-top"><span class="eyebrow">${esc(action.eyebrow)}</span><span>${done?'DONE':skipped?'NOT TODAY':`${index+1} OF 3`}</span></div>
+    <h3>${esc(action.title)}</h3><p>${esc(action.detail)}</p>
+    <details class="mp-today-why"><summary>Why this?</summary><strong>${esc(action.why?.headline||'Why this today?')}</strong><p>${esc(action.why?.reason||'Built from your current Shift context.')}</p>${action.why?.learned?`<p>${esc(action.why.learned)}</p>`:''}</details>
+    <div class="mp-today-controls">
+      <button type="button" data-decision="complete" ${done?'disabled':''}>${done?'✓ Done':'Done'}</button>
+      <button type="button" data-decision="swap" ${done?'disabled':''}>Swap</button>
+      <button type="button" data-decision="skip" ${done||skipped?'disabled':''}>Not today</button>
+    </div><p class="mp-today-action-status" aria-live="polite"></p></article>`}
+  function render(){const box=q('#todayActions'),panel=q('#panel-today');if(!box||!today)return;const actions=today.actions||[],complete=actions.filter(a=>a.status==='completed').length;box.innerHTML=`<section class="mp-today-premium" data-today-premium-v2>
+    ${setupMarkup(today.setup?.missing)}
+    <div class="mp-today-priority-intro"><div><span class="eyebrow">TODAY</span><strong>${complete===3?'Nice one. Today is yours.':'Three things that count.'}</strong></div><p>${complete} of 3 done · Swap or skip without guilt.</p></div>
+    <div class="mp-today-action-grid">${actions.map(actionMarkup).join('')}</div></section>`;panel.dataset.todayPremiumReady='true'}
+  async function load(){if(busy||!window.SST_API?.getShiftToday)return;busy=true;try{const body=await SST_API.getShiftToday();today=body.today||body;render()}catch{const box=q('#todayActions');if(box)box.innerHTML='<div class="mp-today-empty"><strong>Today could not refresh.</strong><p>Nothing has been lost. Try again in a moment.</p><button type="button" data-retry-today>Try again</button></div>'}finally{busy=false}}
+  async function decide(button){const card=button.closest('[data-action-id]'),id=card?.dataset.actionId,decision=button.dataset.decision;if(!id||!decision||busy)return;busy=true;card.classList.add('is-working');const status=card.querySelector('.mp-today-action-status');status.textContent='Saving…';try{const body=await SST_API.decideShiftTodayAction(id,{decision,idempotencyKey:crypto.randomUUID()});const index=today.actions.findIndex(a=>a.id===id);if(index>=0)today.actions[index]=body.action;render();const updated=q(`[data-action-id="${CSS.escape(id)}"] .mp-today-action-status`);if(updated)updated.textContent=body.message||'Saved.'}catch{status.textContent='That did not save. Nothing changed—please try again.';card.classList.remove('is-working')}finally{busy=false}}
+  async function saveSetup(form){if(busy)return;busy=true;const status=form.querySelector('.mp-today-action-status');status.textContent='Building your Shift…';try{const data=Object.fromEntries(new FormData(form));await SST_API.saveShiftSetup(data);busy=false;await load()}catch{status.textContent='That did not save. Please try once more.'}finally{busy=false}}
+  function boot(){const box=q('#todayActions');if(!box||!window.SST_API?.getShiftToday){setTimeout(boot,100);return}load();document.addEventListener('click',event=>{const button=event.target.closest('[data-decision]');if(button)decide(button);if(event.target.closest('[data-retry-today]'))load()});document.addEventListener('submit',event=>{if(event.target.matches('[data-shift-setup]')){event.preventDefault();saveSetup(event.target)}})}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
