@@ -4,7 +4,7 @@ const server=fs.readFileSync(new URL('../member-daily-v3.js',import.meta.url),'u
 const client=fs.readFileSync(new URL('../frontend/member/member-today-premium-v1.js',import.meta.url),'utf8');
 const product=server+'\n'+client;
 for(const marker of ['shift_today_checkins','shift_today_choices','shift_treatment_context','my_timber_meal_saved','my_timber_move_saved'])assert.ok(server.includes(marker),`missing ${marker}`);
-for(const marker of ['Show me what matters','Show me three suitable meals','I’m getting a takeaway','I already know what I’m having','Not tonight','Change how I’m doing'])assert.ok(product.includes(marker),`missing ${marker}`);
+for(const marker of ['Show me what matters','Brunch or snack','Use what’s available','I already know what I’m having','Not tonight','Things have changed'])assert.ok(product.includes(marker),`missing ${marker}`);
 for(const marker of ['What are you on at the moment?','What dose are you on now?','How far in?','Not on anything yet','I’ll add it later'])assert.ok(client.includes(marker),`missing treatment setup ${marker}`);
 for(const forbidden of ['Question 1 of 3','check-in complete','>Done<','success confetti'])assert.ok(!client.includes(forbidden),`forbidden ${forbidden}`);
 for(const forbidden of ['name="route"','name="weekNumber"','placeholder="e.g. 5mg"'])assert.ok(!client.includes(forbidden),`first-run treatment form leaked: ${forbidden}`);
