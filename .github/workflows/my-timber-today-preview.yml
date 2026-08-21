@@ -131,7 +131,8 @@ jobs:
           curl -fsS "$PREVIEW_URL/member/dashboard#today" -o /tmp/member-dashboard.html
           grep -Fq '<title>My Timber Today — isolated preview</title>' /tmp/member-dashboard.html
           grep -Fq 'id="todayActions"' /tmp/member-dashboard.html
-          grep -Fq 'Open My Timber Today' /tmp/member-dashboard.html
+          grep -Fq 'Create preview account' /tmp/member-dashboard.html
+          grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=4" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
           curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=4" | grep -Eqi '^content-type:.*text/css'
 
