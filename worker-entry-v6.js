@@ -27,6 +27,7 @@ import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
 import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
 import {fastMemberStateRoute} from './member-state-fast-v1.js';
+import {askTimberRoutes} from './ask-timber-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -85,6 +86,7 @@ export default {
     const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
+    const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
