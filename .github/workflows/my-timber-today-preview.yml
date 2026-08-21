@@ -90,7 +90,7 @@ jobs:
           echo "### My Timber Today preview" >> "$GITHUB_STEP_SUMMARY"
           echo "[$preview_url/member/dashboard#today]($preview_url/member/dashboard#today)" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Prove six taps persist named decisions
+      - name: Prove problem-first help persists named decisions
         shell: bash
         run: |
           set -euo pipefail
@@ -133,8 +133,8 @@ jobs:
           grep -Fq 'id="todayActions"' /tmp/member-dashboard.html
           grep -Fq 'Create preview account' /tmp/member-dashboard.html
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
-          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=4" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
-          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=4" | grep -Eqi '^content-type:.*text/css'
+          grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
+          curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=1" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
 
       - name: Publish review instructions
         run: |
@@ -142,7 +142,7 @@ jobs:
             echo ''
             echo 'Use a fresh test email on the registration screen.'
             echo 'Production routes, production D1 and customer records were not touched.'
-            echo 'Manual gate: one thumb, six taps, named dinner and move in under 20 seconds.'
+          echo 'Manual gate: choose a real problem, receive a useful action, save it, and see the next CTA.'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish preview result to the draft PR
