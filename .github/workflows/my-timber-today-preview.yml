@@ -1,0 +1,149 @@
+name: My Timber Today Hosted Preview
+
+on:
+  push:
+    branches: [feat/adaptive-today-phase-1-2]
+    paths:
+      - '.github/workflows/my-timber-today-preview.yml'
+      - 'preview/**'
+      - 'wrangler.my-timber-preview.template.jsonc'
+      - 'worker-entry-v6.js'
+      - 'worker.js'
+      - 'member-daily-v3.js'
+      - 'member-daily-v2.js'
+      - 'shift-brain-v1.js'
+      - 'frontend/member/**'
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type BUILD_ISOLATED_PREVIEW'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: my-timber-today-hosted-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: ${{ github.event_name == 'push' || inputs.confirm == 'BUILD_ISOLATED_PREVIEW' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PREVIEW_DB_NAME: shift-core-my-timber-preview-db
+      PREVIEW_CONFIG: /tmp/wrangler.my-timber-preview.jsonc
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed without Cloudflare credentials
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
+
+      - name: Resolve isolated preview D1
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 list --json > /tmp/d1-list.json
+          db_id=$(jq -r --arg name "$PREVIEW_DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          if [ -z "$db_id" ] || [ "$db_id" = "null" ]; then
+            npx wrangler d1 create "$PREVIEW_DB_NAME" --location weur
+            npx wrangler d1 list --json > /tmp/d1-list.json
+            db_id=$(jq -r --arg name "$PREVIEW_DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          fi
+          test -n "$db_id" && test "$db_id" != "null"
+          sed "s/__PREVIEW_D1_DATABASE_ID__/$db_id/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
+          echo "Isolated D1 resolved: $PREVIEW_DB_NAME"
+
+      - name: Initialise preview-only schema
+        run: npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
+
+      - name: Keep preview browser calls on the preview origin
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const file='frontend/member/api-adapter-v33d.js';
+          const source=fs.readFileSync(file,'utf8');
+          const next=source.replace("window.SST_API_BASE||'https://api.shiftsometimber.co.uk'","window.SST_API_BASE||window.location.origin");
+          if(next===source) throw new Error('preview API base replacement did not apply');
+          fs.writeFileSync(file,next);
+          NODE
+
+      - name: Deploy isolated preview Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$PREVIEW_CONFIG" 2>&1 | tee /tmp/deploy.txt
+          preview_url=$(grep -Eo 'https://[a-zA-Z0-9.-]+\.workers\.dev' /tmp/deploy.txt | tail -n1)
+          test -n "$preview_url"
+          echo "PREVIEW_URL=$preview_url" >> "$GITHUB_ENV"
+          echo "### My Timber Today preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "[$preview_url/member/dashboard#today]($preview_url/member/dashboard#today)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Prove six taps persist named decisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          suffix=$(date +%s)
+          email="today-known-$suffix@example.test"
+          password="PreviewOnly-$suffix!"
+          jar=/tmp/known.cookies
+          curl -fsS -c "$jar" -H 'content-type: application/json' \
+            -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Matt\"}" \
+            "$PREVIEW_URL/v1/auth/register" > /tmp/register.json
+          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -X PATCH -d '{"medicineKey":"mounjaro","doseKey":"5mg","durationKey":"weeks"}' \
+            "$PREVIEW_URL/v1/shift/treatment-context" > /tmp/treatment.json
+          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"mood":"alright","guts":"rough","energy":"empty"}' \
+            "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin.json
+          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"choiceKey":"eggs-toast"}' "$PREVIEW_URL/v1/shift/today/grub" > /tmp/grub.json
+          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"choiceKey":"walk-10"}' "$PREVIEW_URL/v1/shift/today/move" > /tmp/move.json
+          jq -e '.meal.name=="Scrambled eggs on toast"' /tmp/grub.json
+          jq -e '.activity.name=="Easy walk" and .activity.minutes==10' /tmp/move.json
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
+            --command "SELECT domain,json_extract(choice_json,'$.name') AS name,json_extract(choice_json,'$.minutes') AS minutes FROM shift_today_choices WHERE user_id=(SELECT id FROM users WHERE email='$email') ORDER BY domain" > /tmp/persisted.json
+          jq -e '[.. | objects | select(.domain? == "grub" and .name == "Scrambled eggs on toast")] | length == 1' /tmp/persisted.json
+          jq -e '[.. | objects | select(.domain? == "move" and .name == "Easy walk" and .minutes == 10)] | length == 1' /tmp/persisted.json
+
+      - name: Prove blank treatment is never invented
+        shell: bash
+        run: |
+          set -euo pipefail
+          suffix=$(date +%s)
+          email="today-blank-$suffix@example.test"
+          password="PreviewOnly-$suffix!"
+          jar=/tmp/blank.cookies
+          curl -fsS -c "$jar" -H 'content-type: application/json' \
+            -d "{\"email\":\"$email\",\"password\":\"$password\",\"firstName\":\"Sam\"}" \
+            "$PREVIEW_URL/v1/auth/register" > /tmp/register-blank.json
+          curl -fsS -b "$jar" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"mood":"good","guts":"fine","energy":"good"}' \
+            "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin-blank.json
+          curl -fsS -b "$jar" -H 'X-Shift-Local-Date: 2026-08-21' \
+            "$PREVIEW_URL/v1/shift/today" > /tmp/today-blank.json
+          jq -e '[.today.cards[] | select(.domain=="treatment")][0] | .configured==false and (.headline | contains("Tell us what you’re on"))' /tmp/today-blank.json
+          if grep -Eqi 'Mounjaro|Wegovy|[0-9]+(\.[0-9]+)?mg' /tmp/today-blank.json; then
+            echo 'Blank account was assigned invented treatment data.'
+            exit 1
+          fi
+
+      - name: Publish review instructions
+        run: |
+          {
+            echo ''
+            echo 'Use a fresh test email on the registration screen.'
+            echo 'Production routes, production D1 and customer records were not touched.'
+            echo 'Manual gate: one thumb, six taps, named dinner and move in under 20 seconds.'
+          } >> "$GITHUB_STEP_SUMMARY"
