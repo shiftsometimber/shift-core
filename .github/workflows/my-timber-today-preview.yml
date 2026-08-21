@@ -37,7 +37,7 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
       PREVIEW_DB_NAME: shift-core-my-timber-preview-db
-      PREVIEW_CONFIG: /tmp/wrangler.my-timber-preview.jsonc
+      PREVIEW_CONFIG: wrangler.my-timber-preview.generated.jsonc
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
