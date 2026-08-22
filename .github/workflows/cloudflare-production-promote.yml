@@ -33,6 +33,7 @@ on:
       - 'my-timber-75-green-gate.mjs'
       - 'my-timber-final-source-gate.mjs'
       - 'my-timber-final-production.mjs'
+      - '.github/workflows/my-timber-final-production.yml'
       - 'member-quality-v1.js'
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
