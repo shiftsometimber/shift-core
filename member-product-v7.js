@@ -48,7 +48,7 @@ async function structuredGrubPlan(request,env,userId,body,payload,nays){
   const totalItems=(payload.plan?.days||[]).reduce((a,d)=>a+(d.meals||[]).length,0),legacyItems=Math.max(0,totalItems-structuredServed);
   payload.plan.kind='shift_grub_plan_v7';
   payload.plan.catalogue=catalogueMeta(authority,allPublished.length,structuredServed,totalItems,legacyItems);
-  payload.plan.personalisation={taste_profile_applied:Boolean(prefs),historical_nays_applied:nays.length,recent_meals_cooled_off:recent.length,exact_repeats_in_plan:totalItems-globallyUsed.size,catalogue_target:2500,catalogue_target_is_not_live_count:true};
+  payload.plan.personalisation={taste_profile_applied:Boolean(prefs),historical_nays_applied:nays.length,recent_meals_cooled_off:recent.length,exact_repeats_in_plan:totalItems-globallyUsed.size,household_size:Math.max(1,Number(body.household_size)||1),catalogue_target:2500,catalogue_target_is_not_live_count:true};
   const quality=assessMemberOutput('grub',payload,body);payload.qualityCommissioning=quality;
   if(!quality.ok)return qualityFailure(quality,request);
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'grub',payload.plan);
