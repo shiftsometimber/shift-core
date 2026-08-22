@@ -142,7 +142,11 @@ function syncWeightInputs(){
  ['photoWeightStoneWrap','photoWeightKgWrap','photoWeightLbWrap'].forEach(id=>{const e=$('#'+id);if(e)e.style.display='none'});
  const target=unit==='kg'?'#photoWeightKgWrap':unit==='lb'?'#photoWeightLbWrap':'#photoWeightStoneWrap';if($(target))$(target).style.display='grid';
 }
-function activate(name){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+name));history.replaceState(null,'','#'+name)}
+function revealPanel(name){
+ const panel=$('#panel-'+name);if(!panel)return;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>panel.scrollIntoView({behavior:'auto',block:'start',inline:'nearest'})));
+}
+function activate(name){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+name));history.replaceState(null,'','#'+name);revealPanel(name)}
 async function load(){
  try{
   await SST_API.getMe();
