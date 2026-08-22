@@ -3,7 +3,7 @@ name: My Timber Today Hosted Preview
 
 on:
   push:
-    branches: [feat/real-daily-shift-recovery]
+    branches: [feat/real-daily-shift-recovery, codex/my-timber-adaptive-day-v1]
     paths:
       - '.github/workflows/my-timber-today-preview.yml'
       - 'preview/**'
