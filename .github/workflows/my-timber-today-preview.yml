@@ -123,7 +123,13 @@ jobs:
           jq -e '.daily.daily_output.meal.id!="preview-dinner"' /tmp/next-day.json
           curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
             -X POST -d '{"scenario":"working_late"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/late.json
-          jq -e '.daily.daily_output.adjustment=="working_late" and .daily.daily_output.meal.name=="Loaded chicken tikka jacket potato" and .daily.daily_output.workout.minutes==10 and .daily.daily_output.next.href=="/member/fit"' /tmp/late.json
+          jq -e '.daily.daily_output.adjustment=="working_late" and .daily.daily_output.meal.name=="Loaded chicken tikka jacket potato" and .daily.daily_output.workout.minutes==10 and .daily.daily_output.next.kind=="meal" and .daily.daily_output.next.href=="#today-meal"' /tmp/late.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"scenario":"next_three_hours"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/chaos.json
+          jq -e '.daily.daily_output.adjustment=="next_three_hours" and .daily.daily_output.workout.minutes==10 and (.daily.daily_output.subhead|contains("Chaos Mode"))' /tmp/chaos.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"scenario":"rough_guts"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/rough-guts.json
+          jq -e '.daily.daily_output.adjustment=="rough_guts" and .daily.daily_output.workout.minutes==10 and (.daily.daily_output.subhead|contains("Rough Guts Mode"))' /tmp/rough-guts.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
             --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
           jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
@@ -182,6 +188,7 @@ jobs:
           The isolated Worker and preview-only D1 both passed:
           - a named dinner was saved as **Scrambled eggs on toast**
           - movement was saved as **Easy walk · 10 min**
+          - **Working Late**, **Chaos** and **Rough Guts** rebuilt the joined day
           - a blank treatment account was not assigned a medicine or dose
 
           **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
@@ -195,9 +202,14 @@ jobs:
 
           [Open the failed Actions run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
           fi
-          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/436/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          pr_number=$(gh pr list --head "$GITHUB_REF_NAME" --state open --json number --jq '.[0].number')
+          if [ -z "$pr_number" ]; then
+            echo "No open PR found for $GITHUB_REF_NAME; result remains in the job summary."
+            exit 0
+          fi
+          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/$pr_number/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
           if [ -n "$comment_id" ]; then
             gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$comment_id" -f body="$body" >/dev/null
           else
-            gh pr comment 436 --body "$body" >/dev/null
+            gh pr comment "$pr_number" --body "$body" >/dev/null
           fi
