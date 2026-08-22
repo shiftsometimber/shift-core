@@ -1,0 +1,182 @@
+name: My Timber Today Hosted Preview
+
+on:
+  push:
+    branches: [feat/adaptive-today-phase-1-2]
+    paths:
+      - '.github/workflows/my-timber-today-preview.yml'
+      - 'preview/**'
+      - 'wrangler.my-timber-preview.template.jsonc'
+      - 'worker-entry-v6.js'
+      - 'worker.js'
+      - 'member-daily-v3.js'
+      - 'member-daily-v2.js'
+      - 'shift-brain-v1.js'
+      - 'frontend/member/**'
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type BUILD_ISOLATED_PREVIEW'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: my-timber-today-hosted-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: ${{ github.event_name == 'push' || inputs.confirm == 'BUILD_ISOLATED_PREVIEW' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      PREVIEW_DB_NAME: shift-core-my-timber-preview-db
+      PREVIEW_CONFIG: wrangler.my-timber-preview.generated.jsonc
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed without Cloudflare credentials
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
+
+      - name: Resolve isolated preview D1
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 list --json > /tmp/d1-list.json
+          db_id=$(jq -r --arg name "$PREVIEW_DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          if [ -z "$db_id" ] || [ "$db_id" = "null" ]; then
+            npx wrangler d1 create "$PREVIEW_DB_NAME" --location weur
+            npx wrangler d1 list --json > /tmp/d1-list.json
+            db_id=$(jq -r --arg name "$PREVIEW_DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          fi
+          test -n "$db_id" && test "$db_id" != "null"
+          sed "s/__PREVIEW_D1_DATABASE_ID__/$db_id/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
+          echo "Isolated D1 resolved: $PREVIEW_DB_NAME"
+
+      - name: Initialise preview-only schema
+        run: npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
+
+      - name: Keep preview browser calls on the preview origin
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const file='frontend/member/api-adapter-v33d.js';
+          const source=fs.readFileSync(file,'utf8');
+          const next=source.replace("window.SST_API_BASE||'https://api.shiftsometimber.co.uk'","window.SST_API_BASE||window.location.origin");
+          if(next===source) throw new Error('preview API base replacement did not apply');
+          fs.writeFileSync(file,next);
+          NODE
+
+      - name: Deploy isolated preview Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$PREVIEW_CONFIG" 2>&1 | tee /tmp/deploy.txt
+          preview_url=$(grep -Eo 'https://[a-zA-Z0-9.-]+\.workers\.dev' /tmp/deploy.txt | tail -n1)
+          test -n "$preview_url"
+          echo "PREVIEW_URL=$preview_url" >> "$GITHUB_ENV"
+          echo "### My Timber Today preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "[$preview_url/member/dashboard#today]($preview_url/member/dashboard#today)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Prove problem-first help persists named decisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          suffix=$(date +%s%N)
+          email="today-known-$suffix@example.test"
+          token="preview-known-$suffix"
+          token_hash=$(printf '%s' "$token" | sha256sum | cut -d' ' -f1)
+          expires=$(date -u -d '+1 day' +%Y-%m-%dT%H:%M:%SZ)
+          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" \
+            --command "INSERT INTO users(email,first_name) VALUES('$email','Matt'); INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) SELECT id,'preview-only',1,'$now' FROM users WHERE email='$email'; INSERT INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) SELECT id,'registered','none','hosted_preview','$now' FROM users WHERE email='$email'; INSERT INTO member_state(user_id) SELECT id FROM users WHERE email='$email'; INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT id,'$token_hash','$expires','$now','$now' FROM users WHERE email='$email';" >/tmp/known-seed.txt
+          auth=(-H "Cookie: sst_session=$token")
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
+            --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
+          jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
+          grep -Fq "headline:'Tell us what you’re on so tonight can be right.'" member-daily-v3.js
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -X PATCH -d '{"medicineKey":"mounjaro","doseKey":"5mg","durationKey":"weeks"}' \
+            "$PREVIEW_URL/v1/shift/treatment-context" > /tmp/treatment.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"mood":"alright","guts":"rough","energy":"empty"}' \
+            "$PREVIEW_URL/v1/shift/today/check-in" > /tmp/checkin.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"choiceKey":"eggs-toast"}' "$PREVIEW_URL/v1/shift/today/grub" > /tmp/grub.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"choiceKey":"walk-10"}' "$PREVIEW_URL/v1/shift/today/move" > /tmp/move.json
+          jq -e '.meal.name=="Scrambled eggs on toast"' /tmp/grub.json
+          jq -e '.activity.name=="Easy walk" and .activity.minutes==10' /tmp/move.json
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
+            --command "SELECT domain,json_extract(choice_json,'$.name') AS name,json_extract(choice_json,'$.minutes') AS minutes FROM shift_today_choices WHERE user_id=(SELECT id FROM users WHERE email='$email') ORDER BY domain" > /tmp/persisted.json
+          jq -e '[.. | objects | select(.domain? == "grub" and .name == "Scrambled eggs on toast")] | length == 1' /tmp/persisted.json
+          jq -e '[.. | objects | select(.domain? == "move" and .name == "Easy walk" and .minutes == 10)] | length == 1' /tmp/persisted.json
+
+      - name: Prove the actual member page is served
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS "$PREVIEW_URL/member/dashboard#today" -o /tmp/member-dashboard.html
+          grep -Fq '<title>My Timber Today — isolated preview</title>' /tmp/member-dashboard.html
+          grep -Fq 'id="todayActions"' /tmp/member-dashboard.html
+          grep -Fq 'Create preview account' /tmp/member-dashboard.html
+          grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
+          grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
+          curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
+
+      - name: Publish review instructions
+        run: |
+          {
+            echo ''
+            echo 'Use a fresh test email on the registration screen.'
+            echo 'Production routes, production D1 and customer records were not touched.'
+          echo 'Manual gate: choose a real problem, receive a useful action, save it, and see the next CTA.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish preview result to the draft PR
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker='<!-- my-timber-today-hosted-preview -->'
+          if [ "$JOB_STATUS" = 'success' ]; then
+            body="$marker
+          ## My Timber Today hosted preview: ready
+
+          The isolated Worker and preview-only D1 both passed:
+          - a named dinner was saved as **Scrambled eggs on toast**
+          - movement was saved as **Easy walk · 10 min**
+          - a blank treatment account was not assigned a medicine or dose
+
+          **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
+
+          Use a fresh test email. Production routes and live customer data were not touched."
+          else
+            body="$marker
+          ## My Timber Today hosted preview: commissioning failed
+
+          The isolated preview did not pass its automated acceptance run. No production route or live customer record was touched.
+
+          [Open the failed Actions run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          fi
+          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/436/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          if [ -n "$comment_id" ]; then
+            gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$comment_id" -f body="$body" >/dev/null
+          else
+            gh pr comment 436 --body "$body" >/dev/null
+          fi

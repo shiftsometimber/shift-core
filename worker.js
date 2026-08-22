@@ -812,6 +812,18 @@ async function adminRoutes(request, env, path, method) {
   if (access.response) return access.response;
   const hqActor = access.actor;
 
+  if (method === 'GET' && path === '/v1/hq/adaptive-today') {
+    await env.DB.batch([
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_daily_plans (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,context_json TEXT NOT NULL DEFAULT '{}',version INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(user_id,local_date))`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_daily_actions (id TEXT PRIMARY KEY,plan_id TEXT NOT NULL,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,position INTEGER NOT NULL,domain TEXT NOT NULL,title TEXT NOT NULL,detail TEXT NOT NULL,why_json TEXT NOT NULL DEFAULT '{}',source_json TEXT NOT NULL DEFAULT '{}',status TEXT NOT NULL DEFAULT 'planned',swap_count INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_daily_action_events (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,action_id TEXT NOT NULL,plan_id TEXT NOT NULL,local_date TEXT NOT NULL,decision TEXT NOT NULL,reason TEXT,idempotency_key TEXT NOT NULL,payload_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(user_id,idempotency_key))`)
+    ]);
+    const url=new URL(request.url),memberId=Math.max(0,Number(url.searchParams.get('memberId')||0)),limit=Math.min(250,Math.max(1,Number(url.searchParams.get('limit')||100)));
+    const where=memberId?'WHERE p.user_id=?':'',statement=env.DB.prepare(`SELECT p.local_date,p.user_id,u.email,u.first_name,u.last_name,a.id action_id,a.domain,a.title,a.status,a.swap_count,a.updated_at,(SELECT COUNT(*) FROM shift_daily_action_events e WHERE e.action_id=a.id) event_count FROM shift_daily_plans p JOIN shift_daily_actions a ON a.plan_id=p.id LEFT JOIN users u ON u.id=p.user_id ${where} ORDER BY p.local_date DESC,p.user_id DESC,a.position LIMIT ?`);
+    const rows=(memberId?await statement.bind(memberId,limit).all():await statement.bind(limit).all()).results||[];
+    return json({ok:true,actions:rows,summary:{members:new Set(rows.map(x=>x.user_id)).size,completed:rows.filter(x=>x.status==='completed').length,skipped:rows.filter(x=>x.status==='skipped').length,swapped:rows.filter(x=>Number(x.swap_count)>0).length}});
+  }
+
   if (method === 'GET' && path === '/v1/hq/deploy/status') {
     if (hqActor.role !== 'owner') return json({ok:false,error:'hq_forbidden'},403);
     return json({ok:true,ready:Boolean(env.GITHUB_TOKEN),repository:env.GITHUB_REPO||'shiftsometimber/shift-core',branch:env.GITHUB_BRANCH||'main',version:API_VERSION});

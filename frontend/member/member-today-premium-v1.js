@@ -1,124 +1,40 @@
-// G2-001-TODAY-PREMIUM — presentation-only layer over the canonical /v1/shift/today contract.
-// G4-008-PROACTIVE-TODAY — privacy/cooldown-governed proactive feed joins the daily orchestration without owning member state.
 (function(){
   'use strict';
   if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
-  const q=s=>document.querySelector(s);
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const PANEL_TARGET={hydration:'water',grub:'grub',fit:'fit',progress:'visualise','life-back':'lifeback'};
-  let rendering=false,timer=null,lastToday=null,lastProactive=[];
-
-  function waterGuide(today){
-    const direct=Number(today?.summary?.water_guide_ml||0);
-    if(direct>0)return direct;
-    const hydration=(today?.actions||[]).find(a=>String(a?.domain||'').toLowerCase()==='hydration');
-    const match=String(hydration?.title||'').match(/\b([\d,]+)\s*ml\b/i);
-    return match?Number(match[1].replace(/,/g,''))||0:0;
+  const q=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let today=null,busy=false,draft={},open={},treatmentSetup={step:0,medicineKey:null,doseKey:null};
+  const status=(node,text,error=false)=>{if(!node)return;node.textContent=text||'';node.classList.toggle('is-error',error)};
+  function prompts(){return[{key:'mood',label:'Mood',options:[['rough','Rough'],['alright','Alright'],['good','Good']]},{key:'guts',label:'Guts',options:[['rough','Rough'],['settled','Settled'],['fine','Fine']]},{key:'energy',label:'Energy',options:[['empty','Empty'],['managing','Managing'],['good','Good']]}]}
+  function checkIn(){return`<section class="mt-today mt-checkin" aria-labelledby="mt-greeting"><h2 id="mt-greeting">${esc(today.greeting)}</h2><form data-checkin>${(today.prompts||prompts()).map(row=>`<fieldset><legend>${esc(row.label)}</legend><div class="mt-pills">${row.options.map(([value,label])=>`<button type="button" data-state="${esc(row.key)}" data-value="${esc(value)}" aria-pressed="${draft[row.key]===value}">${esc(label)}</button>`).join('')}</div></fieldset>`).join('')}<button class="mt-primary" type="submit" ${Object.keys(draft).length<3?'disabled':''}>Show me what matters</button><p class="mt-status" aria-live="polite"></p></form></section>`}
+  function grub(card){if(card.saved)return cardShell(card,`<div class="mt-saved"><strong>${esc(card.saved.name)}</strong><span>Saved.</span></div>${doors(card)}`);let body=`<span class="mt-subhead">${esc(card.suggestionLabel||'Three suitable options')}</span><div class="mt-choices">${card.meals.map(m=>choice('grub',m.key,m.name,m.detail)).join('')}</div>${doors(card,true)}`;if(open.grub==='suggestions')body=`<div class="mt-choices">${card.meals.map(m=>choice('grub',m.key,m.name,m.detail)).join('')}</div>`;if(open.grub==='takeaway')body=`<p>Keep it smaller, protein-led and stop when you have had enough.</p>${choice('grub','takeaway','That’s what I’m doing','Save the choice, kept simple.')}`;if(open.grub==='fridge')body=fridge();return cardShell(card,body)}
+  function doors(card,branchesOnly=false){const list=branchesOnly?card.doors.filter(d=>d.key!=='suggestions'):card.doors;return`<div class="mt-doors ${branchesOnly?'mt-branches':''}">${list.map(d=>`<button type="button" data-open="grub:${esc(d.key)}">${esc(d.label)} <span>→</span></button>`).join('')}</div>`}
+  function fridge(){const items=['Eggs','Bread','Chicken','Cheese','Yoghurt','Rice','Leftovers','Tuna','Potatoes','Wraps'],selected=open.fridge||[];return`<p>Pick up to three things. No pantry interview.</p><div class="mt-fridge">${items.map(item=>`<button type="button" data-fridge="${item}" aria-pressed="${selected.includes(item)}">${item}</button>`).join('')}</div>${selected.length?`<div class="mt-choices">${[{key:'fridge-plate',name:`Simple plate with ${selected.join(', ')}`,detail:'Use what is there; keep it straightforward.'},{key:'fridge-toast',name:'Quick protein on toast',detail:'Fast, warm and protein-led.'},{key:'fridge-bowl',name:'Simple fridge bowl',detail:'A plain, useful dinner.'}].map(m=>choice('grub',m.key,m.name,m.detail)).join('')}</div>`:''}`}
+  function move(card){if(card.saved)return cardShell(card,`<div class="mt-saved"><strong>${esc(card.saved.name)}${card.saved.minutes?` · ${card.saved.minutes} min`:''}</strong><span>Saved for tonight.</span></div>`);return cardShell(card,`<div class="mt-choices">${card.options.map((m,i)=>choice('move',m.key,i===0&&m.key!=='not-tonight'?'Start the '+m.name.toLowerCase():m.name,m.detail)).join('')}</div>`)}
+  function treatment(card){if(!card.configured){let body=`<p>${esc(card.detail)}</p><button type="button" class="mt-setup-door" data-open-treatment>${card.deferred?'Add treatment when you’re ready':'Add my treatment'} <span>→</span></button>`;if(open.treatment)body=treatmentSetupMarkup();return cardShell(card,body)}return cardShell(card,`${card.nextDose?`<p class="mt-next">Next dose: <strong>${esc(card.nextDose)}</strong></p>`:'<button type="button" class="mt-next-add">Next dose: add when you know</button>'}<p>${esc(card.note)}</p><div class="mt-treatment-actions">${card.actions.map(([key,label])=>`<button type="button" data-treatment="${esc(key)}">${esc(label)}</button>`).join('')}</div><div class="mt-pathway" data-pathway></div>`)}
+  function treatmentSetupMarkup(){if(treatmentSetup.step===0)return`<div class="mt-treatment-setup"><strong>What are you on at the moment?</strong><div class="mt-setup-chips">${setupChip('medicine','mounjaro','Mounjaro')}${setupChip('medicine','wegovy','Wegovy')}${setupChip('medicine','tablet','A tablet')}${setupChip('medicine','not-taking','Not on anything yet')}${setupChip('medicine','add-later','I’ll add it later')}</div><p class="mt-status" aria-live="polite"></p></div>`;if(treatmentSetup.step===1){const doses=treatmentSetup.medicineKey==='mounjaro'?['2.5mg','5mg','7.5mg','10mg','12.5mg','15mg']:treatmentSetup.medicineKey==='wegovy'?['0.25mg','0.5mg','1mg','1.7mg','2.4mg']:['60mg','120mg'];return`<div class="mt-treatment-setup"><strong>What dose are you on now?</strong><div class="mt-setup-chips">${doses.map(value=>setupChip('dose',value,value)).join('')}</div><button type="button" class="mt-back" data-treatment-back>Back</button></div>`}return`<div class="mt-treatment-setup"><strong>How far in?</strong><div class="mt-setup-chips">${setupChip('duration','started','Just started')}${setupChip('duration','weeks','A few weeks')}${setupChip('duration','months','A couple of months')}${setupChip('duration','longer','Longer')}</div><button type="button" class="mt-back" data-treatment-back>Back</button><p class="mt-status" aria-live="polite"></p></div>`}
+  function setupChip(kind,value,label){return`<button type="button" data-setup-kind="${kind}" data-setup-value="${value}">${label}</button>`}
+  function choice(domain,key,name,detail){return`<button type="button" class="mt-choice" data-choice="${domain}:${esc(key)}" data-name="${esc(name)}"><strong>${esc(name)}</strong>${detail?`<span>${esc(detail)}</span>`:''}</button>`}
+  function cardShell(card,body){return`<article class="mt-card mt-${esc(card.domain)}" data-domain="${esc(card.domain)}"><span class="mt-label">${esc(card.label)}</span><h3>${esc(card.headline)}</h3>${body}<p class="mt-status" aria-live="polite"></p></article>`}
+  function tonight(){const food=today.cards.find(card=>card.domain==='grub'),movement=today.cards.find(card=>card.domain==='move'),decided=!!food?.saved&&!!movement?.saved;if(open.finished)return`<section class="mt-today mt-finished"><span class="mt-label">MY TIMBER · SORTED FOR NOW</span><h2>${esc(today.greeting)}</h2><p>You have made the two decisions that matter next.</p><div class="mt-saved"><strong>${esc(food?.saved?.name||'Food decided')}</strong><span>${esc(movement?.saved?.name||'Movement decided')}${movement?.saved?.minutes?` · ${movement.saved.minutes} min`:''}</span></div><p>Come back if your guts, energy or plans change.</p><button class="mt-primary" type="button" data-change>Things have changed</button></section>`;return`<section class="mt-today mt-tonight"><header><div><h2>${esc(today.greeting)}</h2><p>${esc(today.intro||'Here’s what matters now.')}</p></div><button type="button" data-change>${esc(today.changeLabel)}</button></header><div class="mt-cards">${today.cards.map(c=>c.domain==='grub'?grub(c):c.domain==='move'?move(c):treatment(c)).join('')}</div>${decided?`<div class="mt-finish"><button class="mt-primary" type="button" data-finish>I’m sorted for now</button><p>Food and movement are saved. Treatment can wait unless you need it.</p></div>`:''}${today.progress?`<div class="mt-number"><span>${esc(today.progress.text)}</span><button type="button" data-panel="progress">Log weight</button><button type="button" data-panel="progress">Log waist</button></div>`:''}${today.quietLine?`<button class="mt-listen" type="button" data-panel="ai">${esc(today.quietLine.text)} →</button>`:''}</section>`}
+  function render(){const box=q('#todayActions'),panel=q('#panel-today');if(!box||!today)return;box.innerHTML=today.stage==='check_in'?checkIn():tonight();if(panel)panel.dataset.todayPremiumReady='true'}
+  async function load(){if(busy||!SST_API?.getShiftToday)return;busy=true;try{const body=await SST_API.getShiftToday();today=body.today||body;draft=today.checkin?{...today.checkin}:{};render()}catch{const box=q('#todayActions');if(box)box.innerHTML='<div class="mt-error"><strong>Today could not refresh.</strong><button type="button" data-retry>Try again</button></div>'}finally{busy=false}}
+  async function save(api,data,node){if(busy)return;busy=true;status(node,'Saving…');try{await api(data);open={};busy=false;await load()}catch(err){status(node,err?.message||'That did not save. Try again.',true)}finally{busy=false}}
+  function activatePanel(name){const target=q(`#panel-${name}`);if(target){target.hidden=false;target.scrollIntoView({behavior:'smooth',block:'start'})}}
+  function onClick(event){
+    const state=event.target.closest('[data-state]');if(state){draft[state.dataset.state]=state.dataset.value;render();return}
+    if(event.target.closest('[data-change]')){open={};today={stage:'check_in',greeting:`${today.greeting} How are you doing?`,prompts:prompts()};render();return}
+    if(event.target.closest('[data-finish]')){open.finished=true;render();return}
+    if(event.target.closest('[data-open-treatment]')){open.treatment=true;treatmentSetup={step:0,medicineKey:null,doseKey:null};render();return}
+    const setup=event.target.closest('[data-setup-kind]');if(setup){const kind=setup.dataset.setupKind,value=setup.dataset.setupValue;if(kind==='medicine'){if(value==='not-taking'||value==='add-later'){save(SST_API.saveShiftTreatmentContext,{medicineKey:value},setup.closest('.mt-card').querySelector('.mt-status'));return}treatmentSetup={step:1,medicineKey:value,doseKey:null};render();return}if(kind==='dose'){treatmentSetup={...treatmentSetup,step:2,doseKey:value};render();return}if(kind==='duration'){save(SST_API.saveShiftTreatmentContext,{medicineKey:treatmentSetup.medicineKey,doseKey:treatmentSetup.doseKey,durationKey:value},setup.closest('.mt-card').querySelector('.mt-status'));return}}
+    if(event.target.closest('[data-treatment-back]')){treatmentSetup.step=Math.max(0,treatmentSetup.step-1);render();return}
+    const opener=event.target.closest('[data-open]');if(opener){const value=opener.dataset.open.slice(5);if(value==='own')save(SST_API.saveShiftTodayGrub,{choiceKey:'own'},opener.closest('.mt-card').querySelector('.mt-status'));else{open.grub=value;render()}return}
+    const fridge=event.target.closest('[data-fridge]');if(fridge){const list=open.fridge||[],item=fridge.dataset.fridge,index=list.indexOf(item);if(index>=0)list.splice(index,1);else if(list.length<3)list.push(item);open.fridge=list;render();return}
+    const picked=event.target.closest('[data-choice]');if(picked){const[domain,key]=picked.dataset.choice.split(':');save(domain==='grub'?SST_API.saveShiftTodayGrub:SST_API.saveShiftTodayMove,{choiceKey:key,mealTitle:picked.dataset.name},picked.closest('.mt-card').querySelector('.mt-status'));return}
+    const treatmentAction=event.target.closest('[data-treatment]');if(treatmentAction){saveTreatment(treatmentAction.dataset.treatment,treatmentAction.closest('.mt-card').querySelector('[data-pathway]'));return}
+    const panel=event.target.closest('[data-panel]');if(panel){activatePanel(panel.dataset.panel);return}if(event.target.closest('[data-retry]'))load()
   }
-  function settleMetrics(today){
-    const metrics=[
-      ['#metricCalories',today?.summary?.calories_left,v=>String(v)],
-      ['#metricProtein',today?.summary?.protein_left,v=>`${v}g`],
-      ['#metricSteps',today?.summary?.step_gap,v=>String(v)],
-      ['#metricWater',waterGuide(today),v=>`${Math.round(Number(v)/100)/10}L`]
-    ];
-    for(const [selector,value,format] of metrics){
-      const el=q(selector);if(!el)continue;
-      const card=el.closest('.mp-card')||el.parentElement;
-      const valid=value!==null&&value!==undefined&&value!==''&&Number(value)!==0&&Number.isFinite(Number(value));
-      if(!valid){if(card)card.hidden=true;continue}
-      el.textContent=format(value);if(card)card.hidden=false;
-    }
-    const visible=metrics.map(([selector])=>q(selector)?.closest('.mp-card')).filter(x=>x&&!x.hidden);
-    const metricWrap=visible[0]?.parentElement;
-    if(metricWrap)metricWrap.dataset.todayMetricCount=String(visible.length);
-  }
-  function actionCard(action,index){
-    const target=String(action?.cta?.target||'').toLowerCase();
-    const canRoute=Boolean(PANEL_TARGET[target])||target==='today';
-    const label=String(action?.cta?.label||'').trim();
-    const button=label&&canRoute?`<button type="button" class="mp-btn mp-today-action-cta" data-today-target="${esc(target)}"${target==='today'?' aria-pressed="false"':''}>${esc(label)}</button>`:'';
-    const proactive=action?.proactive?' is-proactive':'';
-    return `<article class="mp-today-action-card${index===0?' is-lead':''}${proactive}" data-today-action-card="${esc(action?.domain||index)}"${action?.proactive?' data-today-proactive="true"':''}>
-      <div class="mp-today-action-top"><span class="eyebrow">${esc(action?.eyebrow||action?.domain||'TODAY')}</span><span class="mp-today-priority">${action?.proactive?'Shift noticed':index===0?'First up':`Then ${index+1}`}</span></div>
-      <h3>${esc(action?.title||'Your next useful thing')}</h3>
-      ${action?.detail||action?.text?`<p>${esc(action.detail||action.text)}</p>`:''}
-      ${button}<span class="mp-today-action-status" aria-live="polite"></span>
-    </article>`;
-  }
-  function proactiveActions(insights){
-    return (Array.isArray(insights)?insights:[]).slice(0,1).filter(x=>x&&x.title&&x.body).map(x=>({domain:'shift',eyebrow:'SHIFT NOTICED',title:x.title,detail:x.body,proactive:true}));
-  }
-  function markup(today,proactive=[]){
-    const actions=[...(Array.isArray(today?.actions)?today.actions:[]),...proactiveActions(proactive)];
-    if(!actions.length)return '<section class="mp-today-premium" data-today-premium-v1="true"><div class="mp-today-empty"><span class="eyebrow">TODAY</span><strong>Nothing urgent to chase.</strong><p>Shift will put the useful next thing here when there is one.</p></div></section>';
-    return `<section class="mp-today-premium" data-today-premium-v1="true">
-      <div class="mp-today-priority-intro"><div><span class="eyebrow">WHAT MATTERS TODAY</span><strong>${actions.length===1?'One useful thing':`${actions.length} useful things`}</strong></div><p>Small, specific and linked to the part of Shift that can help.</p></div>
-      <div class="mp-today-action-grid">${actions.map(actionCard).join('')}</div>
-    </section>`;
-  }
-  async function fetchProactive(){
-    try{
-      const root=String(window.SST_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
-      const response=await fetch(root+'/v1/shift-ai/proactive/feed',{credentials:'include',cache:'no-store',headers:{Accept:'application/json'}});
-      if(!response.ok)return [];
-      const body=await response.json();
-      return Array.isArray(body?.insights)?body.insights:[];
-    }catch{return []}
-  }
-  function renderToday(today,proactive=[]){
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel)return false;
-    lastToday=today||{};lastProactive=Array.isArray(proactive)?proactive:[];
-    const h=panel.querySelector(':scope > h2'),sub=panel.querySelector(':scope > .mp-muted');
-    if(h&&lastToday.headline)h.textContent=lastToday.headline;
-    if(sub&&lastToday.subhead)sub.textContent=lastToday.subhead;
-    settleMetrics(lastToday);
-    box.innerHTML=markup(lastToday,lastProactive);
-    panel.dataset.todayPremiumReady='true';
-    panel.dataset.todayActionCount=String((Array.isArray(lastToday.actions)?lastToday.actions.length:0)+proactiveActions(lastProactive).length);
-    panel.dataset.todayProactiveCount=String(proactiveActions(lastProactive).length);
-    return true;
-  }
-  async function render(){
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel||!window.SST_API?.getShiftToday||rendering)return;
-    rendering=true;
-    try{
-      const [response,proactive]=await Promise.all([SST_API.getShiftToday(),fetchProactive()]);
-      renderToday(response?.today||response||{},proactive);
-    }catch(error){
-      if(!box.querySelector('[data-today-premium-v1]'))box.innerHTML='<section class="mp-today-premium" data-today-premium-v1="true"><div class="mp-today-empty"><strong>Today could not refresh just now.</strong><p>Your saved Shift state has not been changed. Try again in a moment.</p></div></section>';
-      panel.dataset.todayPremiumReady='error';
-    }finally{rendering=false}
-  }
-  function schedule(){
-    clearTimeout(timer);
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel||box.querySelector('[data-today-premium-v1]'))return;
-    if(lastToday){renderToday(lastToday,lastProactive);return}
-    timer=setTimeout(()=>{
-      const retryBox=q('#todayActions'),retryPanel=q('#panel-today');
-      if(!retryBox||!retryPanel||retryBox.querySelector('[data-today-premium-v1]'))return;
-      render();
-    },35);
-  }
-  function handleTarget(button){
-    const target=String(button.dataset.todayTarget||'').toLowerCase();
-    if(target==='today'){
-      button.setAttribute('aria-pressed','true');button.disabled=true;button.textContent='✓ Kept simple';
-      const status=button.parentElement?.querySelector('.mp-today-action-status');if(status)status.textContent='Nothing else to do here.';
-      return;
-    }
-    const panel=PANEL_TARGET[target];if(!panel)return;
-    const tab=q(`.mp-tab[data-panel="${CSS.escape(panel)}"]`);if(tab){tab.click();tab.focus({preventScroll:true})}
-  }
-  function boot(){
-    const box=q('#todayActions'),panel=q('#panel-today');
-    if(!box||!panel||!window.SST_API?.getShiftToday){setTimeout(boot,100);return}
-    render();
-    new MutationObserver(schedule).observe(panel,{childList:true,subtree:true});
-    document.addEventListener('click',event=>{const button=event.target.closest('[data-today-target]');if(button)handleTarget(button)});
-  }
+  async function saveTreatment(key,path){if(busy)return;busy=true;status(path,'Saving…');try{const result=await SST_API.saveShiftTodayTreatment({choiceKey:key});if(key==='stopping')path.innerHTML='<strong>You do not have to work this out alone.</strong><p>Your treatment can be reviewed safely. Message the clinical team before changing or stopping a prescribed medicine.</p><button type="button" data-treatment="message-clinical">Message the clinical team</button>';else if(key==='side-effects')path.innerHTML='<strong>Tell us what is happening.</strong><p>If symptoms are severe, persistent, or you cannot keep fluids down, seek urgent clinical advice. Otherwise the clinical team can review your dose and timing.</p><button type="button" data-treatment="message-clinical">Message the clinical team</button>';else if(result.caseReference)path.innerHTML=`<strong>Message started.</strong><p>Reference ${esc(result.caseReference)}. The clinical team can now pick this up.</p>`;else path.textContent='Saved.'}catch(err){status(path,err?.message||'That did not save. Try again.',true)}finally{busy=false}}
+  function onSubmit(event){if(event.target.matches('[data-checkin]')){event.preventDefault();save(SST_API.saveShiftTodayCheckIn,draft,event.target.querySelector('.mt-status'))}}
+  function boot(){if(!q('#todayActions')||!window.SST_API?.getShiftToday){setTimeout(boot,100);return}document.addEventListener('click',onClick);document.addEventListener('submit',onSubmit);load()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();

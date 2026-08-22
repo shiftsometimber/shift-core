@@ -40,6 +40,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-plans-premium-v1.css','text/css; charset=utf-8'],
   ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-today-premium-v1.css','text/css; charset=utf-8'],
+  ['/member-my-timber-problem-v1.js','application/javascript; charset=utf-8'],
   ['/shift-me-api-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.css','text/css; charset=utf-8'],
@@ -82,6 +83,10 @@ async function coreAuthFetch(request,env,ctx){
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/'||path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-register'||path==='/my-timber-preview')){
+      if(!env.MEMBER_ASSETS)return new Response('preview shell unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/my-timber-preview',request.url),request));
+    }
     if((request.method==='GET'||request.method==='HEAD')&&path==='/shift-me')return Response.redirect(new URL('/member/dashboard#shiftme',request.url),302);
     const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
