@@ -31,7 +31,7 @@ try{
   await login(page);
   await page.goto(`${SITE}/member/dashboard#grub`,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>window.SST_API?.generateGrub&&window.SST_API?.generateFit,null,{timeout:20000});
-  const seeded=await page.evaluate(async()=>{const grub=await window.SST_API.generateGrub({days:7,likes:['chicken','beef','pasta','rice'],preferences:'UK family food, healthy fakeaways, no berries',dislikes:['berries'],dietaryRequirements:[],max_minutes:35,household_size:2});const fit=await window.SST_API.generateFit({days:1,minutes_per_day:30,location:'home',equipment:['bodyweight','dumbbells'],preferences:'fat loss, build confidence',limitations:'no acute injuries'});return{grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0}});
+  const seeded=await page.evaluate(async()=>{const grub=await window.SST_API.generateGrub({days:7,calories:2000,protein_g:120,preferences:'UK family food, healthy fakeaways, no mushrooms',max_minutes:60,household_size:2});const fit=await window.SST_API.generateFit({days:1,minutes_per_day:30,location:'home',equipment:['bodyweight','dumbbells'],preferences:'fat loss, build confidence',limitations:'no acute injuries'});return{grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0}});
   if(!seeded.grub||!seeded.fit)fail('Billy plan seed',JSON.stringify(seeded));else pass('Billy receives real Grub and Fit plans',JSON.stringify(seeded));
   await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
