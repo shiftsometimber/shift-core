@@ -39,7 +39,8 @@
       host=document.createElement('section');host.id='shiftProgressStory';host.className='shift-progress-story';host.setAttribute('aria-live','polite');host.setAttribute('aria-busy','true');
       const heading=panel.querySelector(':scope > h2');
       const sub=panel.querySelector(':scope > .mp-muted');
-      if(sub?.nextSibling)panel.insertBefore(host,sub.nextSibling);else if(heading?.nextSibling)panel.insertBefore(host,heading.nextSibling);else panel.prepend(host);
+      const anchor=sub||heading,direct=anchor?.parentElement===panel?anchor:[...panel.children].find(child=>anchor&&child.contains(anchor));
+      if(direct?.nextSibling)panel.insertBefore(host,direct.nextSibling);else if(direct)panel.append(host);else panel.prepend(host);
     }
     const tab=document.querySelector('.mp-tab[data-panel="visualise"]');
     if(tab&&/progress picture/i.test(tab.textContent||'')){tab.textContent='Progress';tab.setAttribute('aria-label','Progress')}
