@@ -29,9 +29,12 @@ page.on('pageerror',error=>fail('page error',clean(error.message)));
 page.on('console',message=>{if(message.type()==='error')fail('console error',clean(message.text()))});
 try{
   await login(page);
-  await page.goto(`${SITE}/member/dashboard#grub`,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>window.SST_API?.generateGrub&&window.SST_API?.generateFit,null,{timeout:20000});
-  const seeded=await page.evaluate(async()=>{const grub=await window.SST_API.generateGrub({days:7,calories:2000,protein_g:120,preferences:'UK family food, healthy fakeaways, no mushrooms',max_minutes:60,household_size:2});const fit=await window.SST_API.generateFit({days:1,minutes_per_day:30,location:'home',equipment:['bodyweight','dumbbells'],preferences:'fat loss, build confidence',limitations:'no acute injuries'});return{grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0}});
+  const todayHeaders={Origin:SITE,'X-Shift-Local-Date':new Date().toISOString().slice(0,10),'X-Shift-Local-Hour':'18'};
+  const grubResponse=await context.request.post(`${API}/v1/grub/plan`,{headers:todayHeaders,data:{days:7,calories:2000,protein_g:120,preferences:'UK family food, healthy fakeaways, no mushrooms',max_minutes:60,household_size:2}}),grub=await grubResponse.json().catch(()=>({}));
+  if(!grubResponse.ok())throw new Error(`Grub seed ${grubResponse.status()} ${JSON.stringify(grub)}`);
+  const fitResponse=await context.request.post(`${API}/v1/fit/plan`,{headers:todayHeaders,data:{days:1,minutes_per_day:30,location:'home',equipment:['bodyweight','dumbbells'],preferences:'fat loss, build confidence',limitations:'no acute injuries'}}),fit=await fitResponse.json().catch(()=>({}));
+  if(!fitResponse.ok())throw new Error(`Fit seed ${fitResponse.status()} ${JSON.stringify(fit)}`);
+  const seeded={grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0};
   if(!seeded.grub||!seeded.fit)fail('Billy plan seed',JSON.stringify(seeded));else pass('Billy receives real Grub and Fit plans',JSON.stringify(seeded));
   await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
