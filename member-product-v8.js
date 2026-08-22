@@ -53,13 +53,13 @@ export async function memberProductV8Routes(request,env,ctx){
 
 async function completeFitToday(request,env,ctx){
   const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
-  const body=await readClone(request),date=localDate(request),minutes=Math.max(0,Math.min(180,Number(body.minutes)||0)),mode=String(body.mode||'train').slice(0,30),exerciseIds=Array.isArray(body.exercise_ids)?body.exercise_ids.map(String).slice(0,30):[];
-  await recordProductEvent(env,{userId:auth.user.id,eventName:'fit_session_completed',surface:'fit_programme_uk',source:'member',properties:{date,minutes,mode,exerciseIds}});
+  const body=await readClone(request),date=localDate(request),localHour=Math.max(0,Math.min(23,Number(request.headers.get('X-Shift-Local-Hour'))||new Date().getUTCHours())),minutes=Math.max(0,Math.min(180,Number(body.minutes)||0)),mode=String(body.mode||'train').slice(0,30),exerciseIds=Array.isArray(body.exercise_ids)?body.exercise_ids.map(String).slice(0,30):[];
+  await recordProductEvent(env,{userId:auth.user.id,eventName:'fit_session_completed',surface:'fit_programme_uk',source:'member',properties:{date,local_hour:localHour,minutes,mode,exerciseIds}});
   try{await env.DB.prepare(`INSERT INTO shift_today_choices(user_id,local_date,domain,choice_key,choice_json) VALUES(?,?,?,?,?) ON CONFLICT(user_id,local_date,domain) DO UPDATE SET choice_key=excluded.choice_key,choice_json=excluded.choice_json,updated_at=CURRENT_TIMESTAMP`).bind(auth.user.id,date,'fit','completed',JSON.stringify({completed:true,minutes,mode,exercise_ids:exerciseIds,completed_at:new Date().toISOString()})).run()}catch(error){console.warn('fit_today_choice_save_failed',error?.message)}
   return jsonResponse({ok:true,date,completed:true,message:'Today, sorted. Shift will use this when it builds tomorrow.'},200,request);
 }
 
-async function fitDailyContext(request,env,userId){
+export async function fitDailyContext(request,env,userId){
   const date=localDate(request),hour=Math.max(0,Math.min(23,Number(request.headers.get('X-Shift-Local-Hour'))||new Date().getUTCHours()));
   const [checkin,previous,progress,choices,hydration,recent]=await Promise.all([
     safeFirst(env.DB,`SELECT mood,guts,energy FROM shift_today_checkins WHERE user_id=? AND local_date=?`,[userId,date]),
