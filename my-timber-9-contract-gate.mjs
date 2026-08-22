@@ -10,6 +10,8 @@ const fixture={date:'2026-08-22',hour:17,grubStartsOn:'2026-08-22',grubPlan:{day
 const chaos=composeDailyOutput({...fixture,dayChange:'next_three_hours'});
 need(chaos.adjustment==='next_three_hours'&&chaos.workout.minutes===10&&/Chaos Mode/.test(chaos.subhead),'Chaos Mode must rebuild the remaining day');
 need(chaos.meal.alternatives.some(x=>x.key==='quickest')&&chaos.meal.alternatives.some(x=>x.key==='protein')&&chaos.meal.alternatives.some(x=>x.key==='takeaway'),'meal alternatives must be consequence-led');
+const chosenTakeaway=composeDailyOutput({...fixture,dayChange:'rough_guts',mealOverride:{id:'takeaway-simple',type:'Dinner',name:'Takeaway, kept simple',takeaway:true}});
+need(chosenTakeaway.meal.id==='takeaway-simple','a member alternative must remain authoritative after rescue-mode recalculation');
 const complete=composeDailyOutput({...fixture,hydrationMl:1500,mealAccepted:true,completedToday:true,recoveryDone:true,dayChange:'working_late'});
 need(complete.next.kind==='complete'&&complete.shifted?.headline==='Today shifted.'&&/changed day work/.test(complete.shifted.copy),'completion must reward adaptation');
 for(const marker of ['daily-feedback','shift_daily_feedback','buildDailyLearning','buildTreatmentSupport','rankMealAlternatives'])need(source.includes(marker),`backend contract missing ${marker}`);

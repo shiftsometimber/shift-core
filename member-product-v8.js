@@ -174,12 +174,13 @@ export function composeDailyOutput({date,hour,grubPlan,grubStartsOn,fitPlan,hydr
   const days=Array.isArray(grubPlan?.days)?grubPlan.days:[],start=new Date(`${grubStartsOn||date}T00:00:00Z`),today=new Date(`${date}T00:00:00Z`),offset=Math.max(0,Math.floor((today-start)/86400000)),day=days.length?days[offset%days.length]:null,allMeals=days.flatMap(item=>item?.meals||[]),dayMeals=day?.meals||[],wanted=hour<11?/breakfast/i:hour<16?/lunch|snack/i:/dinner|tea|evening/i;
   const allowedMeals=allMeals.filter(item=>!rejectedMealIds.includes(String(item.id||''))),allowedDayMeals=dayMeals.filter(item=>!rejectedMealIds.includes(String(item.id||'')));
   let meal=mealOverride?.id?mealOverride:(allowedDayMeals.find(item=>wanted.test(String(item.type||'')))||allowedDayMeals[0]||null);
+  const overrideFitsMoment=Boolean(mealOverride?.id&&wanted.test(String(mealOverride.type||'')));
   const quickModes=new Set(['working_late','knackered','no_time','plans_cancelled','next_three_hours','missed_lunch']),gentleModes=new Set(['feeling_rough','rough_guts','knackered']);
-  if(quickModes.has(dayChange)){
+  if(!overrideFitsMoment&&quickModes.has(dayChange)){
     const quickDinners=allowedMeals.filter(item=>/dinner|tea|evening/i.test(String(item.type||''))&&Number(item.minutes||999)<=20);
     meal=[...quickDinners].sort((a,b)=>Number(a.minutes||999)-Number(b.minutes||999)||Number(b.protein||0)-Number(a.protein||0))[0]||meal;
   }
-  if(gentleModes.has(dayChange)){
+  if(!overrideFitsMoment&&gentleModes.has(dayChange)){
     const sameMealType=allowedMeals.filter(item=>String(item.type||'').toLowerCase()===String(meal?.type||'').toLowerCase()&&Number(item.minutes||999)<=15);
     meal=[...sameMealType].sort((a,b)=>Number(a.minutes||999)-Number(b.minutes||999)||Number(b.protein||0)-Number(a.protein||0))[0]||meal;
   }
