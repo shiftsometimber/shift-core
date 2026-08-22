@@ -12,6 +12,8 @@ test('Grub is an informational programme with a complete next-action loop',async
   assert.match(ui,/grubFeedback/);
   assert.match(ui,/replaceGrubMeal/);
   assert.match(ui,/window\.print/);
+  assert.match(ui,/location\.assign\('\/member\/grub'\)/);
+  assert.match(ui,/compactLayout/);
 });
 
 test('Grub selection applies tastes, hard exclusions, time and repeat cooling',async()=>{
@@ -28,4 +30,5 @@ test('new Grub assets are served and mounted through the existing member shell',
   assert.match(entry,/member-grub-programme-v1\.js/);
   assert.match(entry,/member-grub-programme-v1\.css/);
   assert.match(shell,/ensureGrubProgramme/);
+  assert.match(entry,/member-grub\.html/);
 });
