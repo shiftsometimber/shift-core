@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+const need=(ok,message)=>{if(!ok)throw new Error(message)};
+const ui=fs.readFileSync('frontend/member/member-my-timber-problem-v1.js','utf8'),css=fs.readFileSync('frontend/member/member-today-premium-v1.css','utf8'),api=fs.readFileSync('frontend/member/api-adapter-v33d.js','utf8'),backend=fs.readFileSync('member-product-v8.js','utf8');
+for(const marker of ['I’m here.','Today, sorted.','Shift used','mt-ribbon','mt-command-main','Meh mode','Sort me out','Something else'])need(ui.includes(marker),`front-door value marker missing: ${marker}`);
+for(const marker of ['getDailyShift','saveDailyShiftAction','logHydration','sort-grub','sort-move','recovery'])need(ui.includes(marker),`front-door action missing: ${marker}`);
+for(const marker of ['getDailyShift','saveDailyShiftAction'])need(api.includes(marker),`front-door API adapter missing: ${marker}`);
+for(const marker of ['/v1/shift/daily-plan','/v1/shift/daily-action','grub_done','movement_done','hydration_ml','recovery_done','shift_treatment_context','daily_recovery_completed'])need(backend.includes(marker),`shared Daily Shift contract missing: ${marker}`);
+for(const marker of ['background:var(--shift-cream)','background:var(--shift-green)','background:var(--shift-black)','scroll-snap-type:x mandatory','prefers-reduced-motion','mt-rise','mt-orbit'])need(css.includes(marker),`fluid branded front-door treatment missing: ${marker}`);
+need(!ui.includes('confetti'),'front door must not use generic celebration theatre');
+console.log('daily Shift front-door gate: PASS');

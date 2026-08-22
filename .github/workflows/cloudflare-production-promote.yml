@@ -28,6 +28,7 @@ on:
       - 'structured-content-v1.js'
       - 'member-product-v7.js'
       - 'member-product-v8.js'
+      - 'daily-shift-frontdoor-gate.mjs'
       - 'member-quality-v1.js'
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
@@ -93,6 +94,8 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Prove Daily Shift is a fluid one-thumb front door
+        run: node daily-shift-frontdoor-gate.mjs
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
