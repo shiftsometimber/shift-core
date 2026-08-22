@@ -18,7 +18,7 @@ for(const marker of ['RX_BOUNDARY','clinicalBoundary:true','can\'t choose or cha
 for(const marker of ['shiftBrainRoutes','memberDailyV3Routes','memberProductV8Routes'])if(!entry.includes(marker))fail(`Production entrypoint missing ${marker}`);
 if(!ai.includes('brain.knowledge.items')||!ai.includes('brain.behaviour.feedback')||!ai.includes('brain.plans.active')||!ai.includes('brain.memory.intelligent'))fail('Chat prompt is not consuming the complete canonical context families');
 if(!product.includes('historicalNaysApplied')||!product.includes('preferencesApplied'))fail('Product recommendation wrapper does not prove Brain preference/Nay use');
-if(!daily.includes('canonical_contract:brain.contract'))fail('Today response does not expose canonical context evidence');
+if(!daily.includes('canonical_contract:brainContract')||!daily.includes("brain?.contract||'one-shift-brain-v1'"))fail('Today response does not expose canonical context evidence with a safe fallback');
 if(!experience.includes('feedbackSummary')||!experience.includes('activePlans'))fail('Proactive/bootstrap surface does not consume product context');
 
 if(failed)process.exit(1);
