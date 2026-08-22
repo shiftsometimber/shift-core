@@ -181,8 +181,19 @@ CREATE TABLE IF NOT EXISTS product_events (
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS shift_daily_feedback (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  local_date TEXT NOT NULL,
+  target TEXT NOT NULL,
+  feedback TEXT NOT NULL,
+  context_json TEXT NOT NULL DEFAULT '{}',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX IF NOT EXISTS idx_sessions_token ON user_sessions(token_hash);
 CREATE INDEX IF NOT EXISTS idx_progress_user ON progress_entries(user_id, recorded_on);
 CREATE INDEX IF NOT EXISTS idx_cases_user ON cases(user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_user ON pharmacy_orders(user_id);
 CREATE INDEX IF NOT EXISTS idx_shift_today_choices_user_date ON shift_today_choices(user_id, local_date);
+CREATE INDEX IF NOT EXISTS idx_shift_daily_feedback_user_date ON shift_daily_feedback(user_id, local_date);
