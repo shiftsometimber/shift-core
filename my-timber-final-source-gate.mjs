@@ -5,6 +5,7 @@ for(const marker of ['todayDecisionReady','Working late','I’ll have that','Sta
 for(const marker of ['MY-TIMBER-FINAL-MOBILE-V1','min-height:148px','min-height:188px','grid-template-columns:1fr','scroll-snap-type:none','focus-visible'])need(css.includes(marker),`missing final mobile marker: ${marker}`);
 need(shell.includes('member-today-final-v1.css?v=1'),'final mobile CSS is not loaded');
 need(worker.includes("'/member-today-final-v1.css'"),'final mobile CSS is not Worker-served');
+need(worker.includes("Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour"),'Today local date/hour headers are not allowed through the production CORS preflight');
 for(const marker of ['390,height:844','recordVideo','working_late','data-meal="accept"','Start the session','horizontal overflow'])need(production.includes(marker),`missing genuine production walkthrough assertion: ${marker}`);
 for(const marker of ['my-timber-final-production.mjs','my-timber-billy-iphone.mp4','actions/upload-artifact@v4'])need(workflow.includes(marker),`final production workflow missing: ${marker}`);
 console.log('PASS My Timber final source gate: above-fold phone refinement, immediate-result contract, genuine authenticated Billy journey, dead-end/CTA/overflow assertions and production video evidence are fail-closed.');
