@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 const read=file=>fs.readFileSync(file,'utf8'),need=(ok,message)=>{if(!ok)throw new Error(message)};
-const ui=read('frontend/member/member-my-timber-problem-v1.js'),css=read('frontend/member/member-today-final-v1.css'),shell=read('frontend/member/member-shell-v33g.js'),worker=read('worker-entry-v6.js'),workflow=read('.github/workflows/production-commissioning.yml'),production=read('my-timber-final-production.mjs');
+const ui=read('frontend/member/member-my-timber-problem-v1.js'),css=read('frontend/member/member-today-final-v1.css'),shell=read('frontend/member/member-shell-v33g.js'),worker=read('worker-entry-v6.js'),workflow=read('.github/workflows/my-timber-final-production.yml'),production=read('my-timber-final-production.mjs');
 for(const marker of ['todayDecisionReady','Working late','I’ll have that','Start the session','revealRoot'])need(ui.includes(marker),`missing final Today marker: ${marker}`);
 for(const marker of ['MY-TIMBER-FINAL-MOBILE-V1','min-height:148px','min-height:188px','grid-template-columns:1fr','scroll-snap-type:none','focus-visible'])need(css.includes(marker),`missing final mobile marker: ${marker}`);
 need(shell.includes('member-today-final-v1.css?v=1'),'final mobile CSS is not loaded');
