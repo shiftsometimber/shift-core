@@ -13,12 +13,13 @@ test('Grub is an informational programme with a complete next-action loop',async
   assert.match(ui,/replaceGrubMeal/);
   assert.match(ui,/window\.print/);
   assert.match(ui,/location\.assign\('\/member\/grub'\)/);
+  for(const preference of ['British','Chippy-style','Curry-house favourites','Chinese takeaway-style','Kebab-shop style','Pub classics'])assert.match(ui,new RegExp(preference));
   assert.match(ui,/compactLayout/);
 });
 
 test('Grub selection applies tastes, hard exclusions, time and repeat cooling',async()=>{
   const api=await read('member-product-v7.js');
-  for(const required of ['recentGrubIds','rankRecipes','preferenceLikes','withinTime','no_safe_recipe_match','exact_repeats_in_plan'])assert.match(api,new RegExp(required));
+  for(const required of ['recentGrubIds','rankRecipes','preferenceLikes','withinTime','no_safe_recipe_match','exact_repeats_in_plan','UK_TASTE_ALIASES','fish and chips','curry-house favourites'])assert.match(api,new RegExp(required));
   assert.match(api,/gluten\[ -\]\?free\|coeliac/);
   assert.match(api,/peanut/);
   assert.match(api,/new Set\(\[\.\.\.nays,\.\.\.recent\]\)/);
