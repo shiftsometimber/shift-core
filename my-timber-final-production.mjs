@@ -40,10 +40,11 @@ try{
   await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
   await page.waitForSelector('.mt-now-action',{state:'visible',timeout:10000});
   const initial=await body(page),initialGeometry=await geometry(page);await screenshot(page,'01-billy-today');
-  for(const marker of ['MY TIMBER · TODAY','YOUR NEXT MEAL','TODAY’S MOVEMENT','LIFE CHANGED?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
+  for(const marker of ['MY TIMBER · TODAY','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
   if(initialGeometry.overflow!==0)fail('initial horizontal overflow',JSON.stringify(initialGeometry));else pass('390px Today has zero horizontal overflow');
   if(initialGeometry.decisionReady!=='true')fail('recommendation readiness','missing');else pass('Recommended next action is visibly ready');
-  const late=page.locator('[data-adjust="working_late"]');await late.click();
+  await page.locator('[data-life-changed]').click();
+  const late=page.locator('[data-adjust="working_late"]');await late.waitFor({state:'visible',timeout:10000});await late.click();
   await page.waitForSelector('.mt-rebuilt',{state:'visible',timeout:20000});
   await page.waitForFunction(()=>/10 minutes/i.test(document.querySelector('.mt-workout')?.textContent||''),null,{timeout:10000});
   const rebuilt=await body(page);await screenshot(page,'02-working-late-rebuilt');
