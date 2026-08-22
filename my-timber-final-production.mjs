@@ -9,7 +9,7 @@ const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
 const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
-const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+final-billy-${Date.now()}@gmail.com`;
+const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
 const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'iPhone-format Safari acceptance geometry'},checks:[],failures:[],screens:[]};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
