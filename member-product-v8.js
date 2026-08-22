@@ -9,6 +9,7 @@ import {recordProductEvent} from './product-analytics-v1.js';
 
 export async function memberProductV8Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+  if(path==='/v1/fit/today/complete'&&request.method==='POST')return completeFitToday(request,env,ctx);
   if(path==='/v1/grub/plan'&&request.method==='POST'){
     const analyticsAuth=await authenticateMember(request,env);
     const response=await memberProductV7Routes(request,env,ctx);
@@ -19,7 +20,9 @@ export async function memberProductV8Routes(request,env,ctx){
 
   const analyticsAuth=await authenticateMember(request,env);
   const body=await readClone(request);
-  const response=await memberProductV7Routes(rebuild(request,request.url,body),env,ctx);
+  const daily=!analyticsAuth.response?await fitDailyContext(request,env,analyticsAuth.user.id):neutralDailyContext(request);
+  const adaptedBody=adaptFitRequest(body,daily);
+  const response=await memberProductV7Routes(rebuild(request,request.url,adaptedBody),env,ctx);
   if(!response?.ok){
     const failure=await response.clone().json().catch(()=>null);
     const repetition=Array.isArray(failure?.quality?.issues)&&failure.quality.issues.some(x=>x?.code==='fit_repetition');
@@ -31,10 +34,11 @@ export async function memberProductV8Routes(request,env,ctx){
   }
   const payload=await response.clone().json().catch(()=>null);
   if(!payload?.plan)return response;
+  payload.plan.daily_coaching=daily;
 
   const duration=ensureFitDurationUtilisation(payload.plan,{minimumUtilisation:0.8});
   payload.plan.duration_composition={minimum_utilisation_pct:80,continuous_extension_only:true,no_duplicate_padding:true,report:duration.sessions};
-  const quality=assessMemberOutput('fit',payload,body);
+  const quality=assessMemberOutput('fit',payload,adaptedBody);
   payload.qualityCommissioning=quality;
   if(!quality.ok)return new Response(JSON.stringify({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_duration_v8'}),{status:503,headers:response.headers});
 
@@ -46,6 +50,48 @@ export async function memberProductV8Routes(request,env,ctx){
   if(!analyticsAuth.response)await recordPlanAnalyticsForUser(env,analyticsAuth.user.id,'fit_plan_generated','fit');
   return new Response(JSON.stringify(payload),{status:response.status,headers:response.headers});
 }
+
+async function completeFitToday(request,env,ctx){
+  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
+  const body=await readClone(request),date=localDate(request),minutes=Math.max(0,Math.min(180,Number(body.minutes)||0)),mode=String(body.mode||'train').slice(0,30),exerciseIds=Array.isArray(body.exercise_ids)?body.exercise_ids.map(String).slice(0,30):[];
+  await recordProductEvent(env,{userId:auth.user.id,eventName:'fit_session_completed',surface:'fit_programme_uk',source:'member',properties:{date,minutes,mode,exerciseIds}});
+  try{await env.DB.prepare(`INSERT INTO shift_today_choices(user_id,local_date,domain,choice_key,choice_json) VALUES(?,?,?,?,?) ON CONFLICT(user_id,local_date,domain) DO UPDATE SET choice_key=excluded.choice_key,choice_json=excluded.choice_json,updated_at=CURRENT_TIMESTAMP`).bind(auth.user.id,date,'fit','completed',JSON.stringify({completed:true,minutes,mode,exercise_ids:exerciseIds,completed_at:new Date().toISOString()})).run()}catch(error){console.warn('fit_today_choice_save_failed',error?.message)}
+  return jsonResponse({ok:true,date,completed:true,message:'Today, sorted. Shift will use this when it builds tomorrow.'},200,request);
+}
+
+async function fitDailyContext(request,env,userId){
+  const date=localDate(request),hour=Math.max(0,Math.min(23,Number(request.headers.get('X-Shift-Local-Hour'))||new Date().getUTCHours()));
+  const [checkin,previous,progress,choices,hydration,recent]=await Promise.all([
+    safeFirst(env.DB,`SELECT mood,guts,energy FROM shift_today_checkins WHERE user_id=? AND local_date=?`,[userId,date]),
+    safeFirst(env.DB,`SELECT mood,guts,energy FROM shift_today_checkins WHERE user_id=? AND local_date<? ORDER BY local_date DESC LIMIT 1`,[userId,date]),
+    safeFirst(env.DB,`SELECT recorded_on,protein_g,sleep_hours,mood_score,steps FROM progress_entries WHERE user_id=? ORDER BY recorded_on DESC,id DESC LIMIT 1`,[userId]),
+    safeAll(env.DB,`SELECT domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`,[userId,date]),
+    safeFirst(env.DB,`SELECT COALESCE(SUM(contribution_ml),0) hydration_ml FROM hydration_log WHERE user_id=? AND substr(logged_at,1,10)=?`,[userId,date]),
+    safeAll(env.DB,`SELECT occurred_at,properties_json FROM product_events WHERE user_id=? AND event_name='fit_session_completed' ORDER BY occurred_at DESC LIMIT 7`,[userId])
+  ]);
+  const saved=Object.fromEntries(choices.map(row=>[row.domain,{key:row.choice_key,...safeJson(row.choice_json)}])),sleep=Number(progress?.sleep_hours||0),protein=Number(progress?.protein_g||0),hydrationMl=Number(hydration?.hydration_ml||0),reasons=[];
+  let mode='train',minutesCap=60,intensity='normal';
+  if(checkin?.guts==='rough'){reasons.push('Your stomach is rough today');mode='recover';minutesCap=10;intensity='gentle'}
+  if(checkin?.energy==='empty'){reasons.push('Your energy is empty');mode='recover';minutesCap=Math.min(minutesCap,10);intensity='gentle'}
+  if(mode==='train'&&sleep>0&&sleep<5.5){reasons.push(`You logged ${sleep} hours’ sleep`);mode='light';minutesCap=20;intensity='easy'}
+  if(mode==='train'&&previous?.energy==='empty'){reasons.push('Your last check-in showed empty energy');mode='light';minutesCap=20;intensity='easy'}
+  if(mode==='train'&&hour>=14&&hydrationMl>0&&hydrationMl<750){reasons.push('Fluids are still low for this point in the day');mode='light';minutesCap=20;intensity='easy'}
+  if(!checkin)reasons.push('No My Timber check-in is saved yet, so Shift is using your profile and recent progress');
+  const completedToday=saved.fit?.key==='completed'||recent.some(row=>String(row.occurred_at||'').slice(0,10)===date),foodChoice=saved.grub?.name||null;
+  const headline=completedToday?'You have already logged movement today.':mode==='recover'?'Recovery wins today.':mode==='light'?'Keep today lighter.':'You are good to train.';
+  const after=[];
+  if(hydrationMl<1500)after.push('Have a drink after the session and keep fluids ticking over.');
+  if(protein>0&&protein<70)after.push('Protein looks light in your latest log; make the next meal protein-led.');else after.push('Follow the session with a normal protein-containing meal—no punishment eating.');
+  after.push(mode==='recover'?'Rest is part of the programme today.':'Give the worked muscles time to recover before loading them hard again.');
+  return{contract:'shift-fit-daily-context/v1',date,mode,intensity,minutes_cap:minutesCap,headline,reasons,checkin:checkin||null,recent:{sleep_hours:sleep||null,protein_g:protein||null,hydration_ml:hydrationMl,completed_today:completedToday,completed_sessions_7:recent.length},connections:{food_choice:foodChoice,move_choice:saved.move?.name||null},after_session:after,rule:'Current symptoms and safety override progression. Food, fluids, recovery and recent completion inform today’s dose.'};
+}
+function neutralDailyContext(request){return{contract:'shift-fit-daily-context/v1',date:localDate(request),mode:'train',intensity:'normal',minutes_cap:60,headline:'You are good to train.',reasons:['Using your saved movement profile.'],checkin:null,recent:{},connections:{},after_session:['Have a drink and include protein in a normal meal afterwards.'],rule:'Current symptoms and safety override progression.'}}
+function adaptFitRequest(body,daily){const requested=Math.max(10,Math.min(60,Number(body.minutes_per_day)||30)),minutes=Math.min(requested,Number(daily.minutes_cap)||requested),context=[body.preferences,daily.mode==='recover'?'gentle mobility supported movement recovery':daily.mode==='light'?'easy controlled movement leave plenty in reserve':'progressive controlled training'].filter(Boolean).join('. ');return{...body,days:1,minutes_per_day:minutes,preferences:context,limitations:[body.limitations,daily.checkin?.guts==='rough'?'rough stomach nausea avoid intense work':'',daily.checkin?.energy==='empty'?'very low energy avoid intense work':''].filter(Boolean).join('. ')}}
+async function safeFirst(DB,sql,bindings){try{return await DB.prepare(sql).bind(...bindings).first()}catch{return null}}
+async function safeAll(DB,sql,bindings){try{return(await DB.prepare(sql).bind(...bindings).all()).results||[]}catch{return[]}}
+function safeJson(value){try{return JSON.parse(value||'{}')}catch{return{}}}
+function localDate(request){return String(request.headers.get('X-Shift-Local-Date')||new Date().toISOString().slice(0,10)).slice(0,10)}
+function jsonResponse(data,status,request){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Shift-Request-Id':crypto.randomUUID()}})}
 
 async function recordPlanAnalyticsForUser(env,userId,eventName,surface){
   const uid=Number(userId||0);if(!uid)throw new Error(`analytics_${surface}_member_missing`);
