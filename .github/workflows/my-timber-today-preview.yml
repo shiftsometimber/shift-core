@@ -1,4 +1,5 @@
 name: My Timber Today Hosted Preview
+# Recovery candidate only: exercise remembered meal decisions before production sign-off.
 
 on:
   push:
