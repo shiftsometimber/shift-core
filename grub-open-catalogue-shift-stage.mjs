@@ -4,6 +4,7 @@ import path from 'node:path';
 const INPUT=process.env.GRUB_OPEN_CATALOGUE_INPUT||'grub-open-catalogue-evidence/review-candidates.json';
 const OUT=process.env.GRUB_SHIFT_STAGE_DIR||'grub-open-catalogue-stage';
 const REQUIRED=Number(process.env.GRUB_SHIFT_REQUIRED||1702);
+const CURRENT=Number(process.env.GRUB_SHIFT_CURRENT||798);
 const existingFiles=['content/grub/batch-01.json','content/grub/batch-02.json','content/grub/batch-03.json','content/grub/batch-04.json'];
 
 const tidy=value=>String(value||'').replace(/\s+/g,' ').trim();
@@ -84,10 +85,10 @@ const rejected=assessed.filter(item=>item.reasons.length).map(({row,reasons})=>(
 const summary={
   proof:'GRUB_OPEN_CATALOGUE_SHIFT_STAGE_V1',
   generated_at:new Date().toISOString(),
-  current_live_approved:798,
+  current_live_approved:CURRENT,
   expansion_required:REQUIRED,
   selected: selected.length,
-  projected_live_after_approval:798+selected.length,
+  projected_live_after_approval:CURRENT+selected.length,
   lanes:byLane,
   eligible_before_selection:eligible.length,
   rejected_or_held:rejected.length,
@@ -102,4 +103,3 @@ fs.writeFileSync(path.join(OUT,'shift-review-queue.json'),JSON.stringify(selecte
 fs.writeFileSync(path.join(OUT,'held-candidates.json'),JSON.stringify(rejected,null,2));
 fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(summary,null,2));
 console.log(JSON.stringify(summary,null,2));
-
