@@ -1,8 +1,9 @@
 name: My Timber Today Hosted Preview
+# Recovery candidate only: exercise remembered meal decisions before production sign-off.
 
 on:
   push:
-    branches: [feat/adaptive-today-phase-1-2]
+    branches: [feat/real-daily-shift-recovery]
     paths:
       - '.github/workflows/my-timber-today-preview.yml'
       - 'preview/**'
@@ -12,6 +13,9 @@ on:
       - 'member-daily-v3.js'
       - 'member-daily-v2.js'
       - 'shift-brain-v1.js'
+      - 'member-product-v8.js'
+      - 'product-analytics-v1.js'
+      - 'daily-shift-frontdoor-gate.mjs'
       - 'frontend/member/**'
   workflow_dispatch:
     inputs:
@@ -49,6 +53,9 @@ jobs:
 
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+
+      - name: Prove real Grub and Fit Today contract
+        run: node daily-shift-frontdoor-gate.mjs
 
       - name: Resolve isolated preview D1
         shell: bash
@@ -90,7 +97,7 @@ jobs:
           echo "### My Timber Today preview" >> "$GITHUB_STEP_SUMMARY"
           echo "[$preview_url/member/dashboard#today]($preview_url/member/dashboard#today)" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Prove problem-first help persists named decisions
+      - name: Prove joined Grub and Fit day rebuilds when work changes
         shell: bash
         run: |
           set -euo pipefail
@@ -103,6 +110,20 @@ jobs:
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" \
             --command "INSERT INTO users(email,first_name) VALUES('$email','Matt'); INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) SELECT id,'preview-only',1,'$now' FROM users WHERE email='$email'; INSERT INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) SELECT id,'registered','none','hosted_preview','$now' FROM users WHERE email='$email'; INSERT INTO member_state(user_id) SELECT id FROM users WHERE email='$email'; INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT id,'$token_hash','$expires','$now','$now' FROM users WHERE email='$email';" >/tmp/known-seed.txt
           auth=(-H "Cookie: sst_session=$token")
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -X POST -d '{}' "$PREVIEW_URL/v1/shift/preview-billy" > /tmp/billy.json
+          curl -fsS "${auth[@]}" -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            "$PREVIEW_URL/v1/shift/daily-plan" > /tmp/daily.json
+          jq -e '.daily.daily_output.status=="ready" and .daily.daily_output.meal.name=="Fakeaway salt and pepper chicken" and .daily.daily_output.workout.minutes==30' /tmp/daily.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"action":"reject","meal_id":"preview-dinner"}' "$PREVIEW_URL/v1/shift/daily-meal" > /tmp/rejected-meal.json
+          jq -e '.action=="reject" and .daily.daily_output.meal.id=="preview-quick-dinner" and (.message|contains("not suggest"))' /tmp/rejected-meal.json
+          curl -fsS "${auth[@]}" -H 'X-Shift-Local-Date: 2026-08-22' -H 'X-Shift-Local-Hour: 17' \
+            "$PREVIEW_URL/v1/shift/daily-plan" > /tmp/next-day.json
+          jq -e '.daily.daily_output.meal.id!="preview-dinner"' /tmp/next-day.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"scenario":"working_late"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/late.json
+          jq -e '.daily.daily_output.adjustment=="working_late" and .daily.daily_output.meal.name=="Loaded chicken tikka jacket potato" and .daily.daily_output.workout.minutes==10 and .daily.daily_output.next.href=="/member/fit"' /tmp/late.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
             --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
           jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
@@ -133,7 +154,7 @@ jobs:
           grep -Fq 'id="todayActions"' /tmp/member-dashboard.html
           grep -Fq 'Create preview account' /tmp/member-dashboard.html
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
-          grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
+          grep -Fq 'member-today-premium-v1.css?v=daily-shift-v2' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
 
       - name: Publish review instructions

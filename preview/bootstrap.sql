@@ -151,6 +151,36 @@ CREATE TABLE IF NOT EXISTS shift_treatment_context (
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS shift_plans (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  plan_type TEXT NOT NULL,
+  starts_on TEXT NOT NULL,
+  ends_on TEXT,
+  status TEXT NOT NULL DEFAULT 'active',
+  plan_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS hydration_log (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  contribution_ml INTEGER NOT NULL DEFAULT 0,
+  logged_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS product_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER,
+  event_name TEXT NOT NULL,
+  surface TEXT NOT NULL,
+  session_id TEXT,
+  source TEXT NOT NULL DEFAULT 'server',
+  occurred_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  properties_json TEXT NOT NULL DEFAULT '{}',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX IF NOT EXISTS idx_sessions_token ON user_sessions(token_hash);
 CREATE INDEX IF NOT EXISTS idx_progress_user ON progress_entries(user_id, recorded_on);
 CREATE INDEX IF NOT EXISTS idx_cases_user ON cases(user_id);
