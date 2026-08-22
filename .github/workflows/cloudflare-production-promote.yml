@@ -28,6 +28,8 @@ on:
       - 'frontend/member/member-shell-v33g.js'
       - 'frontend/member/member-p0-v1.css'
       - 'frontend/member/member-today-premium-v1.js'
+      - 'frontend/member/member-my-timber-problem-v1.js'
+      - 'frontend/member/member-today-premium-v1.css'
       - 'frontend/member/member-life-back-v1.js'
       - 'frontend/member/member-life-back-v1.css'
       - 'frontend/member/member-medicines-watch-v1.js'
