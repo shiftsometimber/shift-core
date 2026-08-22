@@ -5,7 +5,7 @@ const ALLOWED_EVENTS=new Set([
   'today_viewed','today_action_opened','grub_plan_generated','grub_feedback','fit_plan_generated','fit_feedback',
   'hydration_logged','progress_logged','progress_picture_saved','progress_picture_deleted','shift_ai_message',
   'plan_viewed','error_presented','feature_completed','treatment_checkin','member_returned',
-  'daily_shift_rebuilt','daily_recovery_completed'
+  'daily_shift_rebuilt','daily_recovery_completed','daily_meal_accepted','daily_meal_swapped','daily_meal_rejected'
 ]);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 
