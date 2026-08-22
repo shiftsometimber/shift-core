@@ -14,6 +14,7 @@ on:
       - 'public/shift-me-3d/**'
       - 'frontend/member/assets/fit/premium/**'
       - 'fit-reminders-v1.js'
+      - 'daily-reminder-copy-v1.js'
       - 'fit-reminders-source-gate.mjs'
       - 'frontend/member/member-fit.html'
       - 'frontend/member/member-fit-programme-v1.js'
@@ -29,6 +30,7 @@ on:
       - 'member-product-v7.js'
       - 'member-product-v8.js'
       - 'daily-shift-frontdoor-gate.mjs'
+      - 'my-timber-75-green-gate.mjs'
       - 'member-quality-v1.js'
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
@@ -96,6 +98,8 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Prove Daily Shift is a fluid one-thumb front door
         run: node daily-shift-frontdoor-gate.mjs
+      - name: Prove My Timber has reached the 75 percent all-green bar
+        run: node my-timber-75-green-gate.mjs
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
