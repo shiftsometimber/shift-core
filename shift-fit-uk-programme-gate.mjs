@@ -8,6 +8,8 @@ need(shell.includes('ensureFitProgramme()'),'dashboard loads the Fit redirect br
 for(const text of ["days:1",'Build today’s Fit session','1,326 reviewed exercise options','UK activity guidance','I’ve done today’s session','tomorrow','Log my progress','fit_programme_uk'])need(js.includes(text),`missing credible daily programme behaviour: ${text}`);
 need(js.includes("sentiment:'nay'")&&js.indexOf("sentiment:'nay'")<js.indexOf('replaceFitExercise'),'swap records a durable Nay before replacement');
 for(const text of ['shift-fit-daily-context/v1','shift_today_checkins','hydration_log','sleep_hours','protein_g','fit_session_completed','Current symptoms and safety override progression'])need(backend.includes(text),`daily Fit integration missing: ${text}`);
+for(const text of ['activitySummary','trained_yesterday','showing_up_streak','moderate_minutes:150','strength_days:2','progression'])need(backend.includes(text),`safe progression layer missing: ${text}`);
 need(api.includes('completeFitToday')&&js.includes('SST_API.completeFitToday'),'completion is persisted through the API');
 need(js.includes('Food, fluids and recovery')&&js.includes('Why today looks like this'),'joined-up coaching is visible to the member');
+need(js.includes('Your movement picture')&&js.includes('Progression today:')&&js.includes('showing-up streak'),'weekly progress and progression are visible');
 console.log('shift fit UK programme gate: PASS');
