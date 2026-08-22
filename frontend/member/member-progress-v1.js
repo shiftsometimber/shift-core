@@ -40,7 +40,7 @@
       const heading=panel.querySelector(':scope > h2');
       const sub=panel.querySelector(':scope > .mp-muted');
       const anchor=sub||heading,direct=anchor?.parentElement===panel?anchor:[...panel.children].find(child=>anchor&&child.contains(anchor));
-      if(direct?.nextSibling)panel.insertBefore(host,direct.nextSibling);else if(direct)panel.append(host);else panel.prepend(host);
+      if(direct)direct.after(host);else panel.prepend(host);
     }
     const tab=document.querySelector('.mp-tab[data-panel="visualise"]');
     if(tab&&/progress picture/i.test(tab.textContent||'')){tab.textContent='Progress';tab.setAttribute('aria-label','Progress')}
