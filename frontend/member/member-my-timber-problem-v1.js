@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  const root=document.getElementById('todayActions'),title=document.getElementById('todayTitle');
+  const root=document.getElementById('todayActions'),title=document.getElementById('todayTitle')||document.querySelector('#panel-today h2, #panel-today h1');
   if(!root||!window.SST_API)return;
   const needs=[
     ['eat','What should I eat next?','Named options that fit this time of day.'],
