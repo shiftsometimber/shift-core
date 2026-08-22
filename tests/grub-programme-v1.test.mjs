@@ -11,6 +11,7 @@ test('Grub is an informational programme with a complete next-action loop',async
   assert.doesNotMatch(ui,/affiliate|partner shortlist|meal-prep fulfilment|COMING NEXT/i);
   assert.match(ui,/grubFeedback/);
   for(const proof of ['planSummary','DAILY AVERAGE','SHOPPING FOR','Why this is credible','Log my progress','Per person'])assert.match(ui,new RegExp(proof));
+  for(const loop of ['swap_requested','removed from future recommendations','x\\.count\\*people','repeated meals across the week'])assert.match(ui,new RegExp(loop));
   assert.match(ui,/replaceGrubMeal/);
   assert.match(ui,/window\.print/);
   assert.match(ui,/location\.assign\('\/member\/grub'\)/);
