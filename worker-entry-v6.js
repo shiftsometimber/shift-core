@@ -28,6 +28,7 @@ import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
 import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
+import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -129,6 +130,7 @@ export default {
     if(authRecovery)return withMemberCors(authRecovery,request);
 
     const fastMemberState=await fastMemberStateRoute(request,env);if(fastMemberState)return withMemberCors(fastMemberState,request);
+    const fitReminders=await fitReminderRoutes(request,env,ctx);if(fitReminders)return withMemberCors(fitReminders,request);
     const healthErasure=await privacyHealthErasureRoute(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));if(healthErasure)return withMemberCors(healthErasure,request);
     const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const sportClubhouse=await sportClubhouseRoutes(request,env);if(sportClubhouse)return withMemberCors(sportClubhouse,request);
@@ -150,7 +152,7 @@ export default {
     return isMemberProductPath(path)?withMemberCors(fallback,request):fallback;
   },
   async scheduled(controller,env,ctx){
-    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env),runKnowledgeFlywheel(env,{limit:1000})])
+    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env),runKnowledgeFlywheel(env,{limit:1000}),runFitMorningReminders(env)])
       .then(r=>console.log('shift_scheduled_intelligence',JSON.stringify(r)))
       .catch(e=>console.error('shift_scheduled_intelligence_failed',e?.message));
     if(ctx?.waitUntil)ctx.waitUntil(job); else await job;
