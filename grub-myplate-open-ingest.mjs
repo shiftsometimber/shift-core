@@ -53,9 +53,10 @@ export function normaliseMyPlateRecipe(detail,summary={}){
       complete_table:nutrition
     },
     food_groups:detail.food_groups||[],
-    source:{name:'USDA MyPlate Kitchen',public_domain:true,source_url:detail.source_url,canonical_url:detail.canonical_url,via:'myplate.food',via_credit_required:true,contributor:detail.contributor||null},
+    source:{name:'USDA MyPlate Kitchen',market:'US',role:'nutrition_reference_and_localisation_candidate',public_domain:true,source_url:detail.source_url,canonical_url:detail.canonical_url,via:'myplate.food',via_credit_required:true,contributor:detail.contributor||null},
     shift_copy:{intro:fakeaway(title)?'Takeaway territory, shifted into a properly portioned home-cooked option.':'Straightforward food with the portions and nutrition already worked out.',method_adapted:false},
-    review:{status:'draft',blockers:[...new Set(blockers)]},
+    market:{target:'UK',source:'US',eligible_for_uk_publication:false},
+    review:{status:'draft',blockers:[...new Set([...blockers,'uk_recipe_reauthoring'])]},
     publication_ready:false
   };
 }
