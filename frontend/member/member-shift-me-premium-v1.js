@@ -21,7 +21,7 @@
   const state={...defaults};
   function categoryButton(key){return `<button type="button" class="sm-category${key==='build'?' active':''}" data-shift-me-category="${key}">${esc(labels[key])}</button>`}
   function optionButtons(key){return `<div class="sm-option-set${key==='build'?' active':''}" data-shift-me-options="${key}"><p class="sm-step">${esc(labels[key])}</p><div class="sm-option-grid">${controls[key].map(v=>`<button type="button" class="sm-option${state[key]===v?' selected':''}" data-shift-me-control="${key}" data-value="${esc(v)}">${esc(v)}</button>`).join('')}</div></div>`}
-  function ensureNavLink(){const nav=$('.member-sidebar nav')||$('main aside nav')||$('main aside');if(!nav||$('[data-shift-me-nav]',nav))return;const link=document.createElement('a');link.href='/member/dashboard#shiftme';link.dataset.shiftMeNav='v2';link.textContent='Shift Me';link.onclick=e=>{e.preventDefault();activate()};const settings=[...nav.querySelectorAll('a')].find(a=>/settings/i.test(a.textContent));settings?nav.insertBefore(link,settings):nav.appendChild(link)}
+  function ensureNavLink(){const nav=$('.member-sidebar nav')||$('main aside nav')||$('main aside');if(!nav||$('[data-shift-me-nav]',nav))return;const link=document.createElement('a');link.href='/member/dashboard#shiftme';link.dataset.shiftMeNav='v2';link.textContent='Shift Me';link.onclick=e=>{e.preventDefault();activate()};const settings=[...nav.querySelectorAll('a')].find(a=>/settings/i.test(a.textContent));settings?.parentElement===nav?settings.before(link):nav.appendChild(link)}
   function ensureUi(){
     if($('[data-shift-me-premium]')){ensureNavLink();return true}
     const tabs=$('.mp-tabs'),existing=$('.mp-panel');if(!tabs||!existing)return false;
@@ -56,7 +56,7 @@
           <p class="sm-fine">Your Shift Me is a character for your member journey—not a body scan, health assessment, fit guarantee or prediction of future appearance.</p>
         </div>
       </div>`;
-    existing.parentNode.insertBefore(panel,existing.parentNode.lastChild?.nextSibling||null);tab.onclick=()=>activate();bind(panel);renderState(panel);ensureNavLink();if(location.hash==='#shiftme'||sessionStorage.getItem('sst-open-shiftme')==='1'){sessionStorage.removeItem('sst-open-shiftme');activate()}load(panel);return true;
+    existing.parentNode.append(panel);tab.onclick=()=>activate();bind(panel);renderState(panel);ensureNavLink();if(location.hash==='#shiftme'||sessionStorage.getItem('sst-open-shiftme')==='1'){sessionStorage.removeItem('sst-open-shiftme');activate()}load(panel);return true;
   }
   function activate(){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel==='shiftme'));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-shiftme'));history.replaceState(null,'','#shiftme')}
   function appearance(){return {...state}}
