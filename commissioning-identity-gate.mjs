@@ -8,6 +8,7 @@ const now=Math.floor(Date.now()/1000),base={iss:'https://token.actions.githubuse
 async function jwt(claims=base){const h=enc({alg:'RS256',kid:jwk.kid,typ:'JWT'}),p=enc(claims),signed=`${h}.${p}`,sig=await crypto.subtle.sign('RSASSA-PKCS1-v1_5',privateKey,new TextEncoder().encode(signed));return `${signed}.${Buffer.from(sig).toString('base64url')}`}
 const valid=await jwt();assert.equal((await verifyGithubOidc(valid)).ok,true);
 const shiftMeValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/shift-me-gate.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(shiftMeValid)).ok,true,'dedicated Shift Me commissioning workflow not authorised');
+const myTimberValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/my-timber-final-production.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(myTimberValid)).ok,true,'dedicated My Timber final workflow not authorised');
 assert.equal((await verifyGithubOidc(await jwt({...base,actor_id:'999'}))).ok,false,'wrong actor accepted');
 assert.equal((await verifyGithubOidc(await jwt({...base,aud:'wrong'}))).ok,false,'wrong audience accepted');
 assert.equal((await verifyGithubOidc(await jwt({...base,repository:'evil/fork'}))).ok,false,'wrong repository accepted');
