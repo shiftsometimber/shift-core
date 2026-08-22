@@ -115,6 +115,12 @@ jobs:
             "$PREVIEW_URL/v1/shift/daily-plan" > /tmp/daily.json
           jq -e '.daily.daily_output.status=="ready" and .daily.daily_output.meal.name=="Fakeaway salt and pepper chicken" and .daily.daily_output.workout.minutes==30' /tmp/daily.json
           curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"action":"reject","meal_id":"preview-dinner"}' "$PREVIEW_URL/v1/shift/daily-meal" > /tmp/rejected-meal.json
+          jq -e '.action=="reject" and .daily.daily_output.meal.id=="preview-quick-dinner" and (.message|contains("not suggest"))' /tmp/rejected-meal.json
+          curl -fsS "${auth[@]}" -H 'X-Shift-Local-Date: 2026-08-22' -H 'X-Shift-Local-Hour: 17' \
+            "$PREVIEW_URL/v1/shift/daily-plan" > /tmp/next-day.json
+          jq -e '.daily.daily_output.meal.id!="preview-dinner"' /tmp/next-day.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
             -X POST -d '{"scenario":"working_late"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/late.json
           jq -e '.daily.daily_output.adjustment=="working_late" and .daily.daily_output.meal.name=="Loaded chicken tikka jacket potato" and .daily.daily_output.workout.minutes==10 and .daily.daily_output.next.href=="/member/fit"' /tmp/late.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
