@@ -10,6 +10,7 @@ on:
       - 'frontend/member/member-today-final-v1.css'
       - 'frontend/member/member-shell-v33g.js'
       - 'member-product-v8.js'
+      - 'commissioning-identity-v1.js'
   workflow_dispatch:
 
 permissions:
@@ -41,6 +42,8 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Wait for the production identity policy to settle
+        run: sleep 75
       - name: Record and prove Billy's live production journey
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
