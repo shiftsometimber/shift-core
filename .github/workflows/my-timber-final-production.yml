@@ -43,6 +43,8 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Install MP4 evidence encoder
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Wait for the production identity policy to settle
         run: sleep 75
       - name: Record and prove Billy's live production journey
