@@ -16,14 +16,14 @@ export async function memberProductV8Routes(request,env,ctx){
   if(path==='/v1/shift/preview-billy'&&request.method==='POST'&&env.SHIFT_ENVIRONMENT==='my-timber-preview')return seedPreviewBilly(request,env);
   if(path==='/v1/fit/today/complete'&&request.method==='POST')return completeFitToday(request,env,ctx);
   if(path==='/v1/grub/plan'&&request.method==='POST'){
-    const analyticsAuth=await authenticateMember(request,env);
+    const analyticsAuth=await authenticate(request,env,ctx);
     const response=await memberProductV7Routes(request,env,ctx);
     if(response?.ok&&!analyticsAuth.response)await recordPlanAnalyticsForUser(env,analyticsAuth.user.id,'grub_plan_generated','grub');
     return response;
   }
   if(path!=='/v1/fit/plan'||request.method!=='POST')return memberProductV7Routes(request,env,ctx);
 
-  const analyticsAuth=await authenticateMember(request,env);
+  const analyticsAuth=await authenticate(request,env,ctx);
   const body=await readClone(request);
   const daily=!analyticsAuth.response?await fitDailyContext(request,env,analyticsAuth.user.id):neutralDailyContext(request);
   const adaptedBody=adaptFitRequest(body,daily);
