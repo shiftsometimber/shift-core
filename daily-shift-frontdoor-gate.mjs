@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import {composeDailyOutput} from './member-product-v8.js';
 const need=(ok,message)=>{if(!ok)throw new Error(message)};
 const ui=fs.readFileSync('frontend/member/member-my-timber-problem-v1.js','utf8'),css=fs.readFileSync('frontend/member/member-today-premium-v1.css','utf8'),api=fs.readFileSync('frontend/member/api-adapter-v33d.js','utf8'),backend=fs.readFileSync('member-product-v8.js','utf8');
-for(const marker of ['Today, handled.','YOUR NEXT MEAL','TODAY’S MOVEMENT','Working late','Tell Shift once','mt-real-plan','mt-now-action'])need(ui.includes(marker),`real Today value marker missing: ${marker}`);
+for(const marker of ['Today, handled.','NEXT · FOOD','LATER · MOVEMENT','Working late','Life changed?','Sort my next three hours','DO THIS NOW','mt-real-plan','mt-now-action'])need(ui.includes(marker),`real Today value marker missing: ${marker}`);
 for(const marker of ['getDailyShift','adjustDailyShift','saveDailyMeal','saveDailyShiftAction','getFitReminder','saveFitReminder','I’ll have that','Swap it','Don’t suggest again','data-adjust','data-water','data-next-action','revealRoot','Morning plan reminder','mountReminder'])need(ui.includes(marker),`real Today action missing: ${marker}`);
 for(const marker of ['getDailyShift','adjustDailyShift','saveDailyMeal'])need(api.includes(marker),`Today API adapter missing: ${marker}`);
 for(const marker of ['/v1/shift/daily-plan','/v1/shift/daily-adjust','/v1/shift/daily-meal','composeDailyOutput','working_late','shift_plans','shift_meal_preferences','daily_meal_rejected'])need(backend.includes(marker),`joined Today contract missing: ${marker}`);
@@ -19,6 +19,9 @@ need(late.workout.minutes===10&&/10-minute/.test(late.workout.title),'working la
 need(late.hydration.next_ml===250&&late.next.kind==='meal'&&late.next.href==='#today-meal','working late must make the recalculated quick meal the next visible action');
 need(rejected.meal.name!=='Slow beef chilli','a permanently rejected meal must not be served again');
 need(lateAfterBreakfastSwap.meal.name==='Chicken shawarma flatbread','working late must replace a breakfast override with a real quick evening meal');
+const chaos=composeDailyOutput({...fixture,dayChange:'next_three_hours'}),rough=composeDailyOutput({...fixture,dayChange:'rough_guts'});
+need(chaos.meal.name==='Chicken shawarma flatbread'&&chaos.workout.minutes===10&&/Chaos Mode/.test(chaos.subhead),'Chaos Mode must rebuild food, movement and the immediate priority');
+need(rough.workout.minutes===10&&/Rough Guts Mode/.test(rough.subhead),'Rough Guts Mode must make the day gentler');
 const afterMeal=composeDailyOutput({...fixture,dayChange:'working_late',mealAccepted:true});
 need(afterMeal.next.kind==='movement'&&afterMeal.next.href==='/member/fit','accepted meal must advance immediately to the compressed movement action');
 const afterMovement=composeDailyOutput({...fixture,mealAccepted:true,completedToday:true});
