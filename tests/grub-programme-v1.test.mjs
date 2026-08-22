@@ -10,6 +10,7 @@ test('Grub is an informational programme with a complete next-action loop',async
   for(const required of ['Your Taste Profile','Build my 7-day Grub plan','Make my shopping list','Show my prep plan','Recipe and method','Swap meal','Keep this'])assert.match(ui,new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
   assert.doesNotMatch(ui,/affiliate|partner shortlist|meal-prep fulfilment|COMING NEXT/i);
   assert.match(ui,/grubFeedback/);
+  for(const proof of ['planSummary','DAILY AVERAGE','SHOPPING FOR','Why this is credible','Log my progress','Per person'])assert.match(ui,new RegExp(proof));
   assert.match(ui,/replaceGrubMeal/);
   assert.match(ui,/window\.print/);
   assert.match(ui,/location\.assign\('\/member\/grub'\)/);
@@ -24,6 +25,7 @@ test('Grub selection applies tastes, hard exclusions, time and repeat cooling',a
   assert.match(api,/peanut/);
   assert.match(api,/new Set\(\[\.\.\.nays,\.\.\.recent\]\)/);
   assert.match(api,/catalogue_target:2500,catalogue_target_is_not_live_count:true/);
+  assert.match(api,/household_size:Math\.max/);
 });
 
 test('new Grub assets are served and mounted through the existing member shell',async()=>{
