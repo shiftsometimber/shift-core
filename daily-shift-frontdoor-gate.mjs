@@ -12,9 +12,11 @@ need(!ui.includes('confetti'),'front door must not use generic celebration theat
 const fixture={date:'2026-08-22',hour:17,grubStartsOn:'2026-08-22',grubPlan:{days:[{day:1,meals:[{id:'dinner-1',type:'Dinner',name:'Slow beef chilli',minutes:45,kcal:610,protein:42}]},{day:2,meals:[{id:'quick-1',type:'Dinner',name:'Chicken shawarma flatbread',minutes:15,kcal:520,protein:39}]}]},fitPlan:{sessions:[{title:'Full-body strength',estimated_minutes:30,exercises:[{name:'Chair squat'},{name:'Wall press'}]}]},hydrationMl:500,mode:'train',minutesCap:60,reasons:['Busy afternoon'],completedToday:false};
 const normal=composeDailyOutput({...fixture,dayChange:null}),late=composeDailyOutput({...fixture,dayChange:'working_late'});
 const rejected=composeDailyOutput({...fixture,dayChange:null,rejectedMealIds:['dinner-1']});
+const lateAfterBreakfastSwap=composeDailyOutput({...fixture,dayChange:'working_late',mealOverride:{id:'breakfast-2',type:'Breakfast',name:'Apple protein porridge',minutes:7,kcal:405,protein:29}});
 need(normal.meal.name==='Slow beef chilli','normal Today must serve the retained day meal');
 need(late.meal.name==='Chicken shawarma flatbread','working late must serve a real quicker meal from retained Grub');
 need(late.workout.minutes===10&&/10-minute/.test(late.workout.title),'working late must compress real Fit to ten minutes');
 need(late.hydration.next_ml===250&&late.next.href==='/member/fit','working late must retain fluids and an actionable next route');
 need(rejected.meal.name!=='Slow beef chilli','a permanently rejected meal must not be served again');
+need(lateAfterBreakfastSwap.meal.name==='Chicken shawarma flatbread','working late must replace a breakfast override with a real quick evening meal');
 console.log('daily Shift real Today gate: PASS');
