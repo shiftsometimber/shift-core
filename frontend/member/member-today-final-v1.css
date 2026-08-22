@@ -1,0 +1,21 @@
+/* MY-TIMBER-FINAL-MOBILE-V1
+   The recommendation, not an introduction, owns the first phone screen. */
+#todayActions{scroll-margin-top:10px}
+.mt-now-action:focus-visible,.mt-change button:focus-visible,.mt-meal-actions button:focus-visible,.mt-fluid-line button:focus-visible{outline:4px solid var(--shift-green);outline-offset:3px}
+@media(max-width:760px){
+  .mt-arrival{min-height:148px;padding:18px;border-radius:20px}
+  .mt-arrival:before{width:180px;height:180px;right:-70px;top:-105px;border-width:26px}
+  .mt-arrival h2{margin:7px 0 8px;font-size:2.65rem;line-height:.9}
+  .mt-arrival p{max-width:88%;font-size:.96rem;line-height:1.2}
+  .mt-live-mark{position:absolute;right:14px;top:14px;padding:7px 9px}
+  .mt-live-mark span{display:none}
+  .mt-now{min-height:188px;padding:20px 18px}
+  .mt-now h3{font-size:2.18rem}
+  .mt-now-action{min-height:50px;display:grid;place-items:center}
+  .mt-real-plan{display:grid;grid-template-columns:1fr;overflow:visible;margin-right:0;padding-right:0;scroll-snap-type:none}
+  .mt-real-card{min-height:176px;width:100%;padding:19px}
+  .mt-real-card h3{font-size:1.7rem}
+  .mt-change>div:last-child{scroll-snap-type:x mandatory}
+  .mt-change button{scroll-snap-align:start}
+  .mt-rebuilt{position:sticky;top:8px;z-index:5;box-shadow:0 8px 24px rgba(5,5,5,.2)}
+}
