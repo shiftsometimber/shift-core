@@ -39,6 +39,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-grub.html','text/html; charset=utf-8'],
   ['/member-fit-programme-v1.js','application/javascript; charset=utf-8'],
   ['/member-fit-programme-v1.css','text/css; charset=utf-8'],
+  ['/shift-push-sw-v1.js','application/javascript; charset=utf-8'],
   ['/member-fit.html','text/html; charset=utf-8'],
   ['/member-shell-v33g.js','application/javascript; charset=utf-8'],
   ['/member-progress-v1.js','application/javascript; charset=utf-8'],
@@ -66,6 +67,7 @@ async function gitMemberAsset(path,env){
   const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
   if(!asset.ok)return new Response('member asset unavailable',{status:502,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
   const headers=new Headers(asset.headers);headers.set('Content-Type',contentType);headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority',`git:frontend/member${path}`);
+  if(path==='/shift-push-sw-v1.js'){headers.set('Service-Worker-Allowed','/');headers.set('Cache-Control','no-cache')}
   return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
 }
 function deferAnalytics(ctx,work,label){
