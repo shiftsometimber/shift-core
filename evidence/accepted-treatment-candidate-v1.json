@@ -1,0 +1,21 @@
+{
+  "schema": "shift.accepted-treatment-candidate.v1",
+  "acceptedAt": "2026-08-23T18:00:00.000Z",
+  "acceptedBy": "Matt O'Brien",
+  "acceptanceEnvironment": "physical iPhone Safari",
+  "acceptanceStatement": "Physical iPhone Safari sign-off: Pass. The current candidate is accepted on real-device review.",
+  "baseline": {
+    "route": "shortest responsible two-choice route with conditional previous-treatment detail",
+    "product": "exact governed medicine, strength, price status, availability and item-specific primary action",
+    "publicSurfaces": "service-level only",
+    "productionTouched": false
+  },
+  "lockedGates": [
+    "commercial",
+    "claims",
+    "stock",
+    "supplier",
+    "purchase",
+    "clinical"
+  ]
+}

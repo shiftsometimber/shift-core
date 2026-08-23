@@ -16,7 +16,7 @@ const complete=composeDailyOutput({...fixture,hydrationMl:1500,mealAccepted:true
 need(complete.next.kind==='complete'&&complete.shifted?.headline==='Today shifted.'&&/changed day work/.test(complete.shifted.copy),'completion must reward adaptation');
 for(const marker of ['daily-feedback','shift_daily_feedback','buildDailyLearning','buildTreatmentSupport','rankMealAlternatives'])need(source.includes(marker),`backend contract missing ${marker}`);
 need(analytics.includes('daily_recommendation_feedback'),'feedback analytics event must be accepted before the member request returns');
-for(const marker of ['Love this','Not again','Too much effort','Too expensive','Wrong today','SHIFT SAW THIS COMING','TONIGHT'])need(ui.includes(marker),`consumer UI missing ${marker}`);
-for(const marker of ['Quickest','Highest protein','Family-friendly','Takeaway instead','Your week, without the spreadsheet.'])need((source+ui).includes(marker),`consumer contract missing ${marker}`);
+for(const marker of ['Love this','Not again','Too much effort','Too expensive','Wrong today','SHIFT SAW THIS COMING','TONIGHT','SHIFT LEARNED · AND USED','Changed today:'])need(ui.includes(marker),`consumer UI missing ${marker}`);
+for(const marker of ['Quickest','Highest protein','Family-friendly','Takeaway instead','What worked this week'])need((source+ui).includes(marker),`consumer contract missing ${marker}`);
 for(const marker of ['mt-alternative-list','mt-prediction','mt-shifted','mt-feedback'])need(css.includes(marker),`premium treatment missing ${marker}`);
 console.log('My Timber 9/10 contract gate: PASS');

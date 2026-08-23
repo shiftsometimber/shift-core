@@ -43,9 +43,14 @@ export function validateDecisionContent(record,{at=new Date()}={}){
   if(!record?.destination)errors.push('destination_required');
   if(record?.status!=='approved')errors.push('approval_required');
   if(review?.status!=='approved'||!review?.reviewed_by||!iso(review?.reviewed_at))errors.push('governance_review_required');
+  if(review?.reviewed_by&&provenance?.authored_by&&review.reviewed_by===provenance.authored_by)errors.push('independent_review_required');
   if(review?.content_version!==record?.version)errors.push('review_version_mismatch');
   if(!provenance?.source_system||!provenance?.authored_by||!provenance?.change_reason||provenance?.schema_version!==1)errors.push('provenance_required');
-  if(!Array.isArray(evidence)||!evidence.length||evidence.some(x=>!x?.evidence_id||!Number.isInteger(x?.version)||x.version<1||!x?.source||!x?.verified_at||!x?.owner||!SHA256.test(String(x?.digest||''))))errors.push('verified_evidence_required');
+  if(!Array.isArray(evidence)||!evidence.length||evidence.some(x=>
+    !x?.evidence_id||!Number.isInteger(x?.version)||x.version<1||x?.state!=='verified'||!x?.source||
+    !iso(x?.verified_at)||iso(x.verified_at)>when||!iso(x?.expires_at)||iso(x.expires_at)<=when||
+    !x?.owner||!SHA256.test(String(x?.digest||''))
+  ))errors.push('verified_evidence_required');
   const evidenceRefs=Array.isArray(review?.evidence_refs)?review.evidence_refs:[];
   const evidenceKeys=evidence.map(x=>`${x.evidence_id}@${x.version}:${x.digest}`).sort();
   if(evidenceRefs.length!==evidenceKeys.length||evidenceRefs.slice().sort().some((x,i)=>x!==evidenceKeys[i]))errors.push('review_evidence_mismatch');
@@ -87,9 +92,10 @@ export function selectDecisionOutcome(content,answers={}){
 export async function resolveGovernedDecisionOutcome(env,{decisionKey,channel,destination,answers={},correlationId,at=new Date(),claimResolver=resolveApprovedClaim}={}){
   if(!decisionKey||!CHANNELS.has(channel)||!destination||!correlationId)return null;
   await ensureDecisionContentSchema(env);
-  const {results=[]}=await env.DB.prepare(`SELECT * FROM decision_content WHERE decision_key=? AND channel=? AND destination=? AND status='approved' ORDER BY version DESC LIMIT 5`).bind(decisionKey,channel,destination).all();
-  const candidate=results.find(row=>validateDecisionContent(row,{at}).ok);if(!candidate)return null;
-  const checked=validateDecisionContent(candidate,{at}),outcome=selectDecisionOutcome(checked.content,answers);if(!outcome)return null;
+  const {results=[]}=await env.DB.prepare(`SELECT * FROM decision_content WHERE decision_key=? AND channel=? AND destination=? AND status='approved' ORDER BY version DESC LIMIT 1`).bind(decisionKey,channel,destination).all();
+  const candidate=results[0];if(!candidate)return null;
+  const checked=validateDecisionContent(candidate,{at});if(!checked.ok)return null;
+  const outcome=selectDecisionOutcome(checked.content,answers);if(!outcome)return null;
   const claims=[];
   for(const claimKey of outcome.claim_keys){
     const claim=await claimResolver(env,{claimKey,channel,destination,correlationId});

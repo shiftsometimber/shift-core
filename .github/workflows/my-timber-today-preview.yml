@@ -35,6 +35,8 @@ on:
       - 'tests/physical-iphone-signoff-v1.test.mjs'
       - 'frontend/member/physical-iphone-signoff.html'
       - 'production-candidate-gate.mjs'
+      - 'accepted-treatment-candidate-gate.mjs'
+      - 'evidence/accepted-treatment-candidate-v1.json'
       - 'frontend/member/**'
   workflow_dispatch:
     inputs:
@@ -74,7 +76,7 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Prove real Grub and Fit Today contract
-        run: node daily-shift-frontdoor-gate.mjs && node my-timber-9-contract-gate.mjs && node production-candidate-gate.mjs && npm run test:commerce && npm run test:treatment-route
+        run: node daily-shift-frontdoor-gate.mjs && node my-timber-9-contract-gate.mjs && node production-candidate-gate.mjs && node accepted-treatment-candidate-gate.mjs && npm run test:commerce && npm run test:treatment-route
 
       - name: Resolve isolated preview D1
         shell: bash
