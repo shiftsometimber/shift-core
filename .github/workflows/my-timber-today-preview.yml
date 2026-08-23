@@ -6,9 +6,15 @@ on:
     paths:
       - '.github/workflows/my-timber-today-preview.yml'
       - 'preview/**'
+      - 'migrations/**'
       - 'wrangler.my-timber-preview.template.jsonc'
       - 'worker-entry-v6.js'
       - 'worker.js'
+      - 'commercial-catalogue-v1.js'
+      - 'commercial-hq-v1.js'
+      - 'treatment-catalogue-v1.js'
+      - 'treatment-pathway-v1.js'
+      - 'claims-library-v1.js'
       - 'member-daily-v3.js'
       - 'member-daily-v2.js'
       - 'shift-brain-v1.js'
@@ -69,7 +75,14 @@ jobs:
           echo "Isolated D1 resolved: $PREVIEW_DB_NAME"
 
       - name: Initialise preview-only schema
-        run: npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --file migrations/006_commercial_catalogue_control.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --file migrations/007_treatment_catalogue.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --file migrations/008_claims_library.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --file migrations/009_my_timber_learning.sql --config "$PREVIEW_CONFIG"
 
       - name: Keep preview browser calls on the preview origin
         run: |
@@ -152,6 +165,21 @@ jobs:
           curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=r3-1" | grep -Eqi '^content-type:.*text/css'
           curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=r3-1" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
 
+      - name: Prove service-level homepage and fail-closed live catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS "$PREVIEW_URL/" -o /tmp/home.html
+          grep -Fq 'SHIFT SOME TIMBER.' /tmp/home.html
+          grep -Fq 'Find my treatment route' /tmp/home.html
+          ! grep -Eqi 'mounjaro|wegovy|tirzepatide|semaglutide|tablet|injection' /tmp/home.html
+          status=$(curl -sS -o /tmp/no-pathway.json -w '%{http_code}' "$PREVIEW_URL/v1/treatment/catalogue")
+          test "$status" = '403'
+          curl -fsS -c /tmp/pathway.cookies -X POST "$PREVIEW_URL/v1/treatment/pathway/start" >/tmp/pathway.json
+          curl -fsS -b /tmp/pathway.cookies "$PREVIEW_URL/v1/treatment/catalogue" >/tmp/catalogue.json
+          jq -e '.saleState=="blocked" and .priceStatus=="proposed" and ([.families[].formulations[].strengths[]]|length)==15 and ([.families[].formulations[].strengths[]|select(.ctaState!="blocked")]|length)==0' /tmp/catalogue.json
+          curl -fsS -H 'Origin: https://hq.shiftsometimber.co.uk' -H 'X-Shift-Admin-Key: definitely-wrong' "$PREVIEW_URL/v1/hq/catalogue" -o /tmp/hq-denied.json -w '%{http_code}' | grep -Fq '401'
+
       - name: Install iPhone-format browser acceptance tool
         run: |
           npm install --no-save --ignore-scripts playwright
@@ -198,6 +226,11 @@ jobs:
             const alternative=await alternativeResponse;
             const alternativeBody=await alternative.text();
             if(!alternative.ok()||!alternativeBody.includes('fakeaway'))throw new Error(`fakeaway endpoint ${alternative.status()}: ${alternativeBody}`);
+            const feedbackResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/feedback')&&response.request().method()==='POST');
+            await page.getByRole('button',{name:'Love this'}).first().click();
+            const feedback=await feedbackResponse;
+            if(!feedback.ok())throw new Error(`preference feedback endpoint ${feedback.status()}: ${await feedback.text()}`);
+            await page.getByText(/more likely to appear when it fits/i).waitFor();
             const completionResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/complete')&&response.request().method()==='POST');
             await page.locator('[data-complete-shifted]').click();
             const completion=await completionResponse;
@@ -207,6 +240,36 @@ jobs:
             if(overflow)throw new Error('horizontal overflow detected');
             if(errors.length)throw new Error(`page errors: ${errors.join(' | ')}`);
             await browser.close();
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE
+
+      - name: Prove homepage to governed product on iPhone-format WebKit
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const {webkit,devices}=require('playwright');
+          (async()=>{
+            const browser=await webkit.launch();
+            const context=await browser.newContext({...devices['iPhone 13']});
+            const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
+            await page.goto(process.env.PREVIEW_URL,{waitUntil:'networkidle'});
+            if(/Mounjaro|Wegovy|tirzepatide|semaglutide|tablet|injection/i.test(await page.locator('body').innerText()))throw new Error('public homepage leaked post-CTA treatment detail');
+            await page.getByRole('link',{name:/Find my treatment route/i}).click();
+            await page.getByRole('button',{name:/Yes, I’m 18 or over/i}).click();await page.getByRole('button',{name:'Continue'}).click();
+            await page.getByLabel('Height (cm)').fill('173');await page.getByLabel('Weight (kg)').fill('102');await page.getByRole('button',{name:'Continue'}).click();
+            await page.getByRole('button',{name:'Not sure'}).click();await page.getByRole('button',{name:'Continue'}).click();
+            await page.getByRole('button',{name:'No'}).click();await page.getByRole('button',{name:'Continue'}).click();
+            await page.getByRole('button',{name:'Open to either'}).click();await page.getByRole('button',{name:'Show my routes'}).click();
+            await page.getByRole('heading',{name:'Your routes, clearly.'}).waitFor();
+            if(await page.getByRole('button',{name:'Create My Shift account'}).isEnabled())throw new Error('medicine account/purchase gate was enabled');
+            await page.getByRole('link',{name:/See prices and information/i}).first().click();
+            await page.getByText('Not available to buy').waitFor();
+            const doseButtons=page.locator('[data-strength]');if(await doseButtons.count()<2)throw new Error('strength ladder missing');
+            await doseButtons.nth(1).click();
+            if(await page.getByRole('button',{name:'Purchase unavailable'}).isEnabled())throw new Error('purchase gate was enabled');
+            const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);if(overflow)throw new Error('treatment journey horizontal overflow');
+            if(errors.length)throw new Error(errors.join(' | '));await browser.close();
           })().catch(error=>{console.error(error);process.exit(1)});
           NODE
 
@@ -250,9 +313,9 @@ jobs:
 
           [Open the failed Actions run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
           fi
-          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/436/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/475/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
           if [ -n "$comment_id" ]; then
             gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$comment_id" -f body="$body" >/dev/null
           else
-            gh pr comment 436 --body "$body" >/dev/null
+            gh pr comment 475 --body "$body" >/dev/null
           fi

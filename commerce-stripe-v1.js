@@ -1,3 +1,6 @@
+import {commercialGateForProduct,ensureCommercialCatalogueSchema} from './commercial-catalogue-v1.js';
+import {ensureTreatmentCatalogueSchema} from './treatment-catalogue-v1.js';
+
 const ALLOWED_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const APPAREL_SIZES=['XS','S','M','L','XL','XXL','3XL','4XL','5XL'];
 const SIZES=new Set(APPAREL_SIZES);
@@ -144,6 +147,8 @@ async function ensureCommerceSchema(env){
       VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(product_id) DO NOTHING`).bind(row.id,item.category,item.imageKey,item.featuredColour,JSON.stringify(item.colours),JSON.stringify(item.sizes),item.oneSize?1:0,item.sortOrder,now()).run();
     await env.DB.batch(item.sizes.flatMap(size=>item.colours.map(colour=>env.DB.prepare(`INSERT OR IGNORE INTO commerce_inventory(product_id,size,stock_on_hand,reserved,active,updated_at) VALUES(?,?,NULL,0,1,?)`).bind(row.id,`${size}|${colour}`,now()))));
   }
+  await ensureCommercialCatalogueSchema(env);
+  await ensureTreatmentCatalogueSchema(env);
 }
 
 async function reserveStock(env,productId,size,quantity){
@@ -210,6 +215,8 @@ async function createCheckout(request,env){
     if(!sku||!COLOURS.has(colour)||!Number.isInteger(quantity)||quantity<1||quantity>9)return json({ok:false,error:'invalid_product_selection'},400,corsHeaders(request));
     const product=await env.DB.prepare(`SELECT p.id,p.name,p.sku,p.price_pence,p.status,d.sizes_json,d.colours_json FROM products p LEFT JOIN commerce_product_details d ON d.product_id=p.id WHERE p.sku=?`).bind(sku).first();
     if(!product||product.status!=='active')return json({ok:false,error:'product_unavailable',sku},409,corsHeaders(request));
+    const commercial=await commercialGateForProduct(env,product.id);
+    if(!commercial.ok)return json({ok:false,error:'product_commercially_unavailable',sku,message:'This item is not currently available to order.'},409,corsHeaders(request));
     const sizes=parseJson(product.sizes_json),colours=parseJson(product.colours_json);
     const allowedSizes=Array.isArray(sizes)?sizes:(sku===SHIRT_SKU?APPAREL_SIZES:[]),allowedColours=Array.isArray(colours)?colours:['Black'];
     if(!allowedSizes.includes(size)||!allowedColours.includes(colour))return json({ok:false,error:'invalid_variant',sku},400,corsHeaders(request));
@@ -376,13 +383,14 @@ export async function commerceStripeRoutes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(request.method==='OPTIONS'&&path==='/v1/commerce/checkout')return new Response(null,{status:204,headers:corsHeaders(request)});
   if(request.method==='GET'&&path==='/v1/commerce/catalogue'){
-    if(!env.DB)return json({ok:true,mode:'test',deliveryPence:DELIVERY_PRICE,product:commerceCatalogue,products:TIMBER_PRODUCTS},200,corsHeaders(request));
+    if(!env.DB)return json({ok:true,mode:'test',deliveryPence:DELIVERY_PRICE,product:{...commerceCatalogue,commerciallyAvailable:false},products:TIMBER_PRODUCTS.map(item=>({...item,commerciallyAvailable:false}))},200,corsHeaders(request));
     await ensureCommerceSchema(env);
     const {results}=await env.DB.prepare(`SELECT p.id,p.name,p.sku,p.price_pence,p.status,p.description,d.category,d.image_key,d.featured_colour,d.colours_json,d.sizes_json,d.one_size,d.sort_order FROM products p JOIN commerce_product_details d ON d.product_id=p.id WHERE p.product_type='physical' ORDER BY d.sort_order,p.id`).all();
     const products=[];
     for(const product of results||[]){
       const stock=await env.DB.prepare('SELECT size,stock_on_hand,reserved,active FROM commerce_inventory WHERE product_id=? ORDER BY size').bind(product.id).all();
-      products.push({id:product.id,sku:product.sku,name:product.name,pricePence:product.price_pence,status:product.status,description:product.description,category:product.category,imageKey:product.image_key,featuredColour:product.featured_colour,colours:parseJson(product.colours_json),sizes:parseJson(product.sizes_json),oneSize:Boolean(product.one_size),availability:Object.fromEntries((stock.results||[]).map(row=>[row.size,{available:Number(row.active)===1&&(row.stock_on_hand===null||Number(row.stock_on_hand)>Number(row.reserved)),remaining:row.stock_on_hand===null?null:Math.max(0,Number(row.stock_on_hand)-Number(row.reserved))}]))});
+      const commercial=await commercialGateForProduct(env,product.id);
+      products.push({id:product.id,sku:product.sku,name:product.name,pricePence:product.price_pence,status:product.status,commerciallyAvailable:commercial.ok,description:product.description,category:product.category,imageKey:product.image_key,featuredColour:product.featured_colour,colours:parseJson(product.colours_json),sizes:parseJson(product.sizes_json),oneSize:Boolean(product.one_size),availability:Object.fromEntries((stock.results||[]).map(row=>[row.size,{available:commercial.ok&&Number(row.active)===1&&(row.stock_on_hand===null||Number(row.stock_on_hand)>Number(row.reserved)),remaining:row.stock_on_hand===null?null:Math.max(0,Number(row.stock_on_hand)-Number(row.reserved))}]))});
     }
     return json({ok:true,mode:String(env.STRIPE_MODE||'test').toLowerCase(),deliveryPence:DELIVERY_PRICE,product:commerceCatalogue,products},200,corsHeaders(request));
   }

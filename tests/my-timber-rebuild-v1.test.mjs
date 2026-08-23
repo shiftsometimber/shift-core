@@ -20,3 +20,7 @@ test('alternative updates food movement hydration and why together',()=>{
   assert.equal(changed.next.action,'Chicken fajita tray');assert.equal(changed.later.action,'Ten-minute family walk');assert.equal(changed.now.action,'Drinks on the table');assert.match(changed.reason,/recalculated together/);
 });
 test('all six agreed alternatives are available and invalid keys are rejected',()=>{assert.deepEqual(myTimberAlternativeKeys,['quickest','cheapest','highest_protein','family_friendly','fakeaway','takeaway']);assert.equal(applyRebuildAlternative(rebuildDay('chaos'),'nonsense'),null)});
+test('a genuine not-again preference changes the next rebuilt food action',()=>{
+  const first=rebuildDay('working_late'),learned=rebuildDay('working_late',{rejectedActions:[first.next.action]});
+  assert.notEqual(learned.next.action,first.next.action);assert.match(learned.learningStatement,/previously ruled out/i);
+});

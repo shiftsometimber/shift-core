@@ -5,13 +5,13 @@ import {recordProductEvent} from './product-analytics-v1.js';
 import {applyRebuildAlternative,rebuildDay} from './my-timber-rebuild-v1.js';
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
-const CHECKIN='/v1/shift/today/check-in',GRUB='/v1/shift/today/grub',MOVE='/v1/shift/today/move',TREATMENT='/v1/shift/today/treatment',CONTEXT='/v1/shift/treatment-context',HELP='/v1/shift/today/help',REBUILD='/v1/shift/today/rebuild',REBUILD_ALT='/v1/shift/today/rebuild/alternative',COMPLETE='/v1/shift/today/complete';
+const CHECKIN='/v1/shift/today/check-in',GRUB='/v1/shift/today/grub',MOVE='/v1/shift/today/move',TREATMENT='/v1/shift/today/treatment',CONTEXT='/v1/shift/treatment-context',HELP='/v1/shift/today/help',REBUILD='/v1/shift/today/rebuild',REBUILD_ALT='/v1/shift/today/rebuild/alternative',COMPLETE='/v1/shift/today/complete',FEEDBACK='/v1/shift/today/feedback';
 const clean=(v,n=500)=>String(v??'').trim().slice(0,n),parse=v=>{try{return JSON.parse(v||'{}')}catch{return{}}};
 const dateOf=request=>clean(request.headers.get('X-Shift-Local-Date'),10)||new Date().toISOString().slice(0,10);
 
 export async function memberDailyV3Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',method=request.method.toUpperCase();
-  if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT,HELP,REBUILD,REBUILD_ALT,COMPLETE].includes(path))return memberDailyV2Routes(request,env,ctx);
+  if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT,HELP,REBUILD,REBUILD_ALT,COMPLETE,FEEDBACK].includes(path))return memberDailyV2Routes(request,env,ctx);
   if(method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
   const uid=Number(auth.user.id);await ensureTodaySchema(env.DB);
@@ -20,6 +20,7 @@ export async function memberDailyV3Routes(request,env,ctx){
   if(path===REBUILD&&method==='POST')return saveRebuild(request,env,ctx,uid);
   if(path===REBUILD_ALT&&method==='POST')return saveRebuildAlternative(request,env,ctx,uid);
   if(path===COMPLETE&&method==='POST')return completeShiftedDay(request,env,ctx,uid);
+  if(path===FEEDBACK&&method==='POST')return saveRecommendationFeedback(request,env,ctx,uid);
   if(path==='/v1/shift/today'&&method==='GET')return getToday(request,env,ctx,uid,auth.user);
   if(path===CHECKIN&&method==='POST')return saveCheckIn(request,env,ctx,uid);
   if(path===GRUB&&method==='POST')return saveGrub(request,env,ctx,uid);
@@ -37,6 +38,8 @@ export async function ensureTodaySchema(DB){await DB.batch([
   ,DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_rebuilds (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,mode TEXT NOT NULL,rebuild_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`)
   ,DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_today_rebuilds_user_date ON shift_today_rebuilds(user_id,local_date,created_at)`)
   ,DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_completions (user_id INTEGER NOT NULL,local_date TEXT NOT NULL,completion_type TEXT NOT NULL,observation TEXT NOT NULL,rebuild_id INTEGER,completed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(user_id,local_date))`)
+  ,DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_feedback (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,domain TEXT NOT NULL,recommendation_key TEXT NOT NULL,recommendation_label TEXT NOT NULL,feedback_key TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`)
+  ,DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_today_feedback_member ON shift_today_feedback(user_id,created_at)`)
 ]);}
 
 async function saveRebuild(request,env,ctx,uid){
@@ -44,11 +47,22 @@ async function saveRebuild(request,env,ctx,uid){
   const choices=(await env.DB.prepare(`SELECT domain,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all()).results||[];
   const saved=Object.fromEntries(choices.map(row=>[row.domain,parse(row.choice_json)]));
   const rejected=(await env.DB.prepare(`SELECT choice_key FROM shift_today_choices WHERE user_id=? AND domain='meal_rejection' ORDER BY updated_at DESC LIMIT 20`).bind(uid).all()).results||[];
-  const rebuilt=rebuildDay(mode,{savedMeal:saved.grub,savedMove:saved.move,rejectedMealKeys:rejected.map(row=>row.choice_key)});
+  const rejectedActions=(await env.DB.prepare(`SELECT recommendation_label FROM shift_today_feedback WHERE user_id=? AND feedback_key='not_again' ORDER BY id DESC LIMIT 30`).bind(uid).all()).results||[];
+  const rebuilt=rebuildDay(mode,{savedMeal:saved.grub,savedMove:saved.move,rejectedMealKeys:rejected.map(row=>row.choice_key),rejectedActions:rejectedActions.map(row=>row.recommendation_label)});
   if(!rebuilt)return respond({ok:false,error:'invalid_rebuild_mode'},400,request);
   const inserted=await env.DB.prepare(`INSERT INTO shift_today_rebuilds(user_id,local_date,mode,rebuild_json) VALUES(?,?,?,?)`).bind(uid,date,mode,JSON.stringify(rebuilt)).run();rebuilt.id=Number(inserted.meta?.last_row_id||0);
   defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_day_rebuilt',surface:'my_timber_today',source:'server',properties:{date,mode,nowDomain:rebuilt.now.domain}}));
   return respond({ok:true,rebuild:rebuilt},200,request);
+}
+
+async function saveRecommendationFeedback(request,env,ctx,uid){
+  const input=await request.json().catch(()=>({})),feedbackKey=clean(input.feedbackKey,30),allowed=new Set(['love_this','not_again','too_much_effort','too_expensive','wrong_today']);
+  if(!allowed.has(feedbackKey))return respond({ok:false,error:'invalid_feedback'},400,request);
+  const domain=clean(input.domain,30),recommendationKey=clean(input.recommendationKey,80),label=clean(input.label,160);if(!domain||!recommendationKey||!label)return respond({ok:false,error:'feedback_target_required'},400,request);
+  const date=dateOf(request);await env.DB.prepare(`INSERT INTO shift_today_feedback(user_id,local_date,domain,recommendation_key,recommendation_label,feedback_key) VALUES(?,?,?,?,?,?)`).bind(uid,date,domain,recommendationKey,label,feedbackKey).run();
+  const line=feedbackKey==='not_again'?`Got it. ${label} is now on your “not again” list.`:feedbackKey==='love_this'?`Saved. ${label} is more likely to appear when it fits.`:feedbackKey==='too_much_effort'?'Saved. Shift will lower the effort next time.':feedbackKey==='too_expensive'?'Saved. Shift will favour cheaper options next time.':'Saved for today. It will not be treated as a permanent dislike.';
+  defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_recommendation_feedback',surface:'my_timber_today',source:'server',properties:{date,domain,feedbackKey}}));
+  return respond({ok:true,learningStatement:line},200,request);
 }
 
 async function saveRebuildAlternative(request,env,ctx,uid){
@@ -71,13 +85,36 @@ async function completeShiftedDay(request,env,ctx,uid){
   return respond({ok:true,completion:{headline:'Today shifted.',message:observation,observation:latest?'The useful win was adapting early instead of abandoning the evening.':'The useful win was finishing with a clear next step.'}},200,request);
 }
 
+async function memberLearning(env,uid,date){
+  const [feedback,rebuilds,checkins,choices,completions]=await Promise.all([
+    env.DB.prepare(`SELECT recommendation_label,feedback_key,COUNT(*) uses FROM shift_today_feedback WHERE user_id=? AND created_at>=datetime('now','-28 days') GROUP BY recommendation_label,feedback_key ORDER BY uses DESC,recommendation_label ASC LIMIT 20`).bind(uid).all(),
+    env.DB.prepare(`SELECT mode,local_date FROM shift_today_rebuilds WHERE user_id=? AND created_at>=datetime('now','-28 days') ORDER BY id DESC LIMIT 60`).bind(uid).all(),
+    env.DB.prepare(`SELECT energy,guts,local_date FROM shift_today_checkins WHERE user_id=? AND local_date>=date(?,'-6 days') ORDER BY local_date DESC`).bind(uid,date).all(),
+    env.DB.prepare(`SELECT domain,choice_json FROM shift_today_choices WHERE user_id=? AND domain IN ('grub','move') ORDER BY updated_at DESC LIMIT 8`).bind(uid).all(),
+    env.DB.prepare(`SELECT COUNT(*) count FROM shift_today_completions WHERE user_id=? AND local_date>=date(?,'-6 days')`).bind(uid,date).first()
+  ]);
+  const feedbackRows=feedback.results||[],rebuildRows=rebuilds.results||[],checkinRows=checkins.results||[],choiceRows=choices.results||[];
+  const statements=[];const rejected=feedbackRows.find(row=>row.feedback_key==='not_again'),loved=feedbackRows.find(row=>row.feedback_key==='love_this');
+  if(rejected)statements.push(`You said “not again” to ${rejected.recommendation_label}. Shift will stop serving it back.`);
+  if(loved)statements.push(`${loved.recommendation_label} has earned a place in reserve because you liked it.`);
+  const baseModes=rebuildRows.map(row=>String(row.mode||'').split(':')[0]),modeCounts=baseModes.reduce((map,key)=>(map[key]=(map[key]||0)+1,map),{}),topMode=Object.entries(modeCounts).sort((a,b)=>b[1]-a[1])[0];
+  const modeLabels={working_late:'working late',guts_playing_up:'rough guts',absolutely_knackered:'a low-energy day',going_to_pub:'a pub night',takeaway:'a takeaway night',chaos:'Chaos Mode'};
+  if(topMode&&topMode[1]>=2)statements.push(`You have used ${modeLabels[topMode[0]]||'the same rescue mode'} ${topMode[1]} times recently. Shift is keeping the fallback shorter.`);
+  const lowEnergy=checkinRows.filter(row=>row.energy==='empty').length,roughGuts=checkinRows.filter(row=>row.guts==='rough').length;
+  const prediction=lowEnergy>=2?'You have reported low energy at least twice this week. Today is deliberately lighter.':roughGuts>=2?'Your guts have been rough more than once this week. Smaller food and steady fluids stay in reserve.':topMode?.[1]>=2?`The ${modeLabels[topMode[0]]||'usual disruption'} has repeated recently. Shift has a reduced fallback ready.`:'';
+  const recent=Object.fromEntries(choiceRows.map(row=>[row.domain,parse(row.choice_json)]));
+  const weeklyCount=Number(completions?.count||0),weeklyInsight=weeklyCount?`You adapted and completed ${weeklyCount} ${weeklyCount===1?'day':'days'} this week. Shift will plan around what survived—not the original plan.`:'No performance theatre. Your weekly insight appears once Shift has real choices to learn from.';
+  const morningSummary=recent.grub?.name?`${recent.grub.name} worked recently, so it is available in reserve. ${prediction||'Your first useful move is the quick check-in.'}`:prediction||'Your first useful move is the quick check-in. Shift will sort the rest from there.';
+  return{statements,prediction,weeklyInsight,morningBrief:{headline:'Today’s sorted around the day you actually have.',summary:morningSummary},rejectedActions:feedbackRows.filter(row=>row.feedback_key==='not_again').map(row=>row.recommendation_label)};
+}
+
 async function getToday(request,env,ctx,uid,user){
-  const date=dateOf(request),[checkin,choices,treatment,progress,yesterday]=await Promise.all([
+  const date=dateOf(request),[checkin,choices,treatment,progress,yesterday,learning]=await Promise.all([
     env.DB.prepare(`SELECT * FROM shift_today_checkins WHERE user_id=? AND local_date=?`).bind(uid,date).first(),
     env.DB.prepare(`SELECT domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all(),
-    treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date)
+    treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date),memberLearning(env,uid,date)
   ]);
-  if(!checkin)return respond({ok:true,today:{stage:'check_in',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}. How are you doing?`,prompts:checkInPrompts(),treatmentKnown:treatment.configured,headline:null,subhead:null,actions:[],brain:{available:false,contract:'one-shift-brain-v1',activePlans:[],feedbackSummary:{},memorySignals:0,latestProgressDate:null},context_used:{one_shift_brain:false,canonical_contract:'one-shift-brain-v1'},rule:'Today opens before optional enrichment. Current member statements and safety/clinical boundaries override optimisation.'}},200,request);
+  if(!checkin)return respond({ok:true,today:{stage:'check_in',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}. How are you doing?`,prompts:checkInPrompts(),treatmentKnown:treatment.configured,learning,headline:null,subhead:null,actions:[],brain:{available:false,contract:'one-shift-brain-v1',activePlans:[],feedbackSummary:{},memorySignals:learning.statements.length,latestProgressDate:null},context_used:{one_shift_brain:false,canonical_contract:'one-shift-brain-v1'},rule:'Today opens before optional enrichment. Current member statements and safety/clinical boundaries override optimisation.'}},200,request);
   const [brain,canonicalResponse]=await Promise.all([
     within(buildShiftBrainContext(env,uid,'today',{knowledgeLimit:0}),1200,'my_timber_brain_context_unavailable'),
     within(memberDailyV2Routes(request,env,ctx),1200,'my_timber_canonical_today_unavailable')
@@ -89,7 +126,7 @@ async function getToday(request,env,ctx,uid,user){
   const saved=Object.fromEntries((choices.results||[]).map(row=>[row.domain,{key:row.choice_key,...parse(row.choice_json)}]));
   const moment=foodMoment(request),grub=grubCard(checkin,yesterday,saved.grub,moment),move=moveCard(checkin,yesterday,saved.move),treatmentCardValue=treatmentCard(checkin,yesterday,treatment,saved.treatment);
   const repeated=checkin.guts==='rough'&&yesterday?.guts==='rough';
-  const today={stage:'tonight',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}.`,intro:moment.intro,foodMoment:moment,changeLabel:'Things have changed',checkin:{mood:checkin.mood,guts:checkin.guts,energy:checkin.energy},cards:repeated?[treatmentCardValue,grub,move]:[grub,move,treatmentCardValue],progress,quietLine:checkin.mood==='rough'?{text:'Rough day. Ask Timber will listen first.',target:'ai'}:null,clock:{targetSeconds:20,targetTaps:6},saved,headline:canonicalToday.headline,subhead:canonicalToday.subhead,actions:canonicalToday.actions||[],brain:brainEvidence,context_used:contextUsed,rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'};
+  const today={stage:'tonight',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}.`,intro:moment.intro,foodMoment:moment,changeLabel:'Things have changed',checkin:{mood:checkin.mood,guts:checkin.guts,energy:checkin.energy},cards:repeated?[treatmentCardValue,grub,move]:[grub,move,treatmentCardValue],progress,learning,quietLine:checkin.mood==='rough'?{text:'Rough day. Ask Timber will listen first.',target:'ai'}:null,clock:{targetSeconds:20,targetTaps:6},saved,headline:canonicalToday.headline,subhead:canonicalToday.subhead,actions:canonicalToday.actions||[],brain:brainEvidence,context_used:contextUsed,rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'};
   defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_today_viewed',surface:'my_timber_today',source:'server',properties:{date,guts:checkin.guts,energy:checkin.energy,mealSaved:!!saved.grub,moveSaved:!!saved.move}}));
   return respond({ok:true,today},200,request);
 }

@@ -6,7 +6,7 @@ const quickMeals=[
   {key:'yoghurt-banana',label:'Greek yoghurt, banana and oats',minutes:3,proteinG:25}
 ];
 
-export function rebuildDay(mode,context={}){
+function baseRebuildDay(mode,context={}){
   if(!MODES.has(mode))return null;
   const savedMeal=context.savedMeal||null,savedMove=context.savedMove||null,rejected=new Set(context.rejectedMealKeys||[]);
   const meal=quickMeals.find(item=>!rejected.has(item.key))||quickMeals[0];
@@ -31,6 +31,16 @@ const ALTERNATIVES={
   fakeaway:{label:'Fakeaway',meal:{action:'Quick chicken kebab bowl',detail:'Takeaway feel, ordinary ingredients and about 15 minutes.'},movement:{action:'Ten-minute reset while it cooks',detail:'Optional and already fitted into the wait.'},hydration:{action:'Cold drink while cooking',detail:'Water moved forward.'}},
   takeaway:{label:'Takeaway',meal:{action:'Protein-led takeaway main',detail:'Choose what you want; use the main as the anchor and stop when satisfied.'},movement:{action:'Optional short walk',detail:'Not compensation—only if useful.'},hydration:{action:'Have a drink while ordering',detail:'Water before the food arrives.'}}
 };
+
+export function rebuildDay(mode,context={}){
+  const rebuilt=baseRebuildDay(mode,context);if(!rebuilt)return null;
+  const rejected=new Set((context.rejectedActions||[]).map(value=>String(value).trim().toLowerCase()));
+  const foodItem=[rebuilt.now,rebuilt.next,rebuilt.later].find(item=>item?.domain==='food');
+  if(!foodItem||!rejected.has(String(foodItem.action||'').trim().toLowerCase()))return rebuilt;
+  const fallbackKey=['quickest','family_friendly','cheapest','highest_protein'].find(key=>!rejected.has(ALTERNATIVES[key].meal.action.toLowerCase()));
+  if(!fallbackKey)return rebuilt;
+  const adjusted=applyRebuildAlternative(rebuilt,fallbackKey);adjusted.learningStatement=`You previously ruled out ${foodItem.action}, so Shift replaced it automatically.`;return adjusted;
+}
 
 export function applyRebuildAlternative(rebuild,key){
   const choice=ALTERNATIVES[key];if(!rebuild||!choice)return null;

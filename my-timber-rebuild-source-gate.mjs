@@ -21,6 +21,11 @@ const checks={
   sixCoreModes:['working_late','guts_playing_up','absolutely_knackered','going_to_pub','takeaway','chaos'].every(key=>files.ui.includes(key)),
   wholeDayAlternatives:/data-alternative/.test(files.ui)&&/Adjusting the whole day/.test(files.ui)&&/applyRebuildAlternative/.test(files.engine),
   todayShifted:/data-complete-shifted/.test(files.ui)&&/Today shifted\./.test(files.server)&&/shift_today_completions/.test(files.server),
+  preferenceMemory:/shift_today_feedback/.test(files.server)&&/rejectedActions/.test(files.engine)&&/saveShiftTodayFeedback/.test(files.api),
+  visibleLearning:/SHIFT IS LEARNING/.test(files.ui)&&/learningStatement/.test(files.ui),
+  frictionPrediction:/reported low energy at least twice/.test(files.server)&&/prediction/.test(files.ui),
+  weeklyInsight:/weeklyInsight/.test(files.server)&&/This week, Shift noticed/.test(files.ui),
+  morningEntry:/Today’s sorted around the day you actually have/.test(files.server)&&/mt-morning/.test(files.ui),
   brandOnly:/#050505|var\(--shift-black\)/.test(files.css)&&/#E7E3DA|var\(--shift-cream\)/.test(files.css)&&/#707762|var\(--shift-green\)/.test(files.css),
   mobileSheet:/env\(safe-area-inset-bottom\)/.test(files.css)&&/@media\(max-width:760px\)/.test(files.css)
 };

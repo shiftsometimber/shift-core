@@ -28,11 +28,23 @@ import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
 import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
+import {commercialHqRoutes} from './commercial-hq-v1.js';
+import {treatmentPathwayRoutes} from './treatment-pathway-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
   ['/api-adapter-v33d.js','application/javascript; charset=utf-8'],
   ['/member-product-v33d.js','application/javascript; charset=utf-8'],
+  ['/public-journey-v1.css','text/css; charset=utf-8'],
+  ['/public-home-v1','text/html; charset=utf-8'],
+  ['/treatment-route-v1.js','application/javascript; charset=utf-8'],
+  ['/treatment-route-v1.css','text/css; charset=utf-8'],
+  ['/treatment-route','text/html; charset=utf-8'],
+  ['/treatment-pathway-v2.css','text/css; charset=utf-8'],
+  ['/treatment-options-v1.js','application/javascript; charset=utf-8'],
+  ['/treatment-options','text/html; charset=utf-8'],
+  ['/treatment-product-v1.js','application/javascript; charset=utf-8'],
+  ['/treatment-product','text/html; charset=utf-8'],
   ['/member-shell-v33g.js','application/javascript; charset=utf-8'],
   ['/member-progress-v1.js','application/javascript; charset=utf-8'],
   ['/member-progress-picture-premium-v1.js','application/javascript; charset=utf-8'],
@@ -51,7 +63,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-sport-v1.js','application/javascript; charset=utf-8'],
   ['/member-sport-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
+function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/treatment/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
@@ -83,7 +95,23 @@ async function coreAuthFetch(request,env,ctx){
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
-    if((request.method==='GET'||request.method==='HEAD')&&(path==='/'||path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-register'||path==='/my-timber-preview')){
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/find-my-treatment-route'||path==='/treatment-route'||path==='/treatment-route.html')){
+      if(!env.MEMBER_ASSETS)return new Response('Treatment route unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/treatment-route',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&path==='/'){
+      if(!env.MEMBER_ASSETS)return new Response('homepage unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/public-home-v1',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&path==='/treatment-options'){
+      if(!env.MEMBER_ASSETS)return new Response('Treatment options unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/treatment-options',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&/^\/treatment-options\/[a-z0-9_-]+\/[a-z0-9_-]+$/.test(path)){
+      if(!env.MEMBER_ASSETS)return new Response('Treatment information unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/treatment-product',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-register'||path==='/my-timber-preview')){
       if(!env.MEMBER_ASSETS)return new Response('preview shell unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/my-timber-preview',request.url),request));
     }
@@ -92,6 +120,8 @@ export default {
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
+    const treatmentPathway=await treatmentPathwayRoutes(request,env);if(treatmentPathway)return treatmentPathway;
+    const commercialHq=await commercialHqRoutes(request,env);if(commercialHq)return commercialHq;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 

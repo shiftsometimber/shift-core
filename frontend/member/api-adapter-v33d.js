@@ -88,6 +88,7 @@
     rebuildShiftToday:data=>request('/shift/today/rebuild',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     applyShiftTodayAlternative:data=>request('/shift/today/rebuild/alternative',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     completeShiftToday:data=>request('/shift/today/complete',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
+    saveShiftTodayFeedback:data=>request('/shift/today/feedback',{method:'POST',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     saveShiftTreatmentContext:data=>request('/shift/treatment-context',{method:'PATCH',headers:todayHeaders(),body:JSON.stringify(data||{})}),
     getProgressSummary:()=>request('/progress/summary'),getPlanList:()=>request('/plan/list'),
     generateGrub:data=>request('/grub/plan',{method:'POST',body:JSON.stringify(data||{}),timeout:GENERATION_TIMEOUT}),replaceGrubMeal:data=>request('/grub/replace',{method:'POST',body:JSON.stringify(data||{})}),grubFeedback:data=>request('/grub/feedback',{method:'POST',body:JSON.stringify(data||{})}),

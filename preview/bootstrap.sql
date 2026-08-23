@@ -105,6 +105,18 @@ CREATE TABLE IF NOT EXISTS pharmacy_orders (
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  sku TEXT NOT NULL UNIQUE,
+  product_type TEXT NOT NULL DEFAULT 'physical',
+  price_pence INTEGER NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'draft',
+  description TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE IF NOT EXISTS audit_log (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER,
@@ -156,3 +168,11 @@ CREATE INDEX IF NOT EXISTS idx_progress_user ON progress_entries(user_id, record
 CREATE INDEX IF NOT EXISTS idx_cases_user ON cases(user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_user ON pharmacy_orders(user_id);
 CREATE INDEX IF NOT EXISTS idx_shift_today_choices_user_date ON shift_today_choices(user_id, local_date);
+
+CREATE TABLE IF NOT EXISTS treatment_pathway_sessions (
+  token_hash TEXT PRIMARY KEY,
+  started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  expires_at TEXT NOT NULL,
+  last_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_treatment_pathway_expiry ON treatment_pathway_sessions(expires_at);
