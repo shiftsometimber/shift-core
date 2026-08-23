@@ -1,0 +1,25 @@
+{
+  "name": "shift-core-worker",
+  "version": "3.2.0-beta.2",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": ">=22.16.0 <25"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node --check worker.js && node m04-route-readiness-gate.mjs && node m04-commissioning-ops-source-gate.mjs && node g5-012-login-fastpath-gate.mjs && node production-commissioning-independence-gate.mjs",
+    "check:toolchain": "node toolchain-source-gate.mjs",
+    "test:commerce": "node --test tests/commerce-stripe-v1.test.mjs tests/commercial-catalogue-v1.test.mjs tests/treatment-catalogue-v1.test.mjs tests/commercial-hq-v1.test.mjs tests/claims-library-v1.test.mjs",
+    "test:adaptive-today": "node --test tests/adaptive-today-v1.test.mjs && node tests/adaptive-today-source-gate.mjs",
+    "test:treatment-route": "node --test tests/treatment-route-contract-v1.test.mjs tests/treatment-pathway-v1.test.mjs tests/treatment-operations-v1.test.mjs && node treatment-route-ui-source-gate.mjs && node treatment-operations-source-gate.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.112.0"
+  },
+  "dependencies": {
+    "@block65/webcrypto-web-push": "1.0.2"
+  }
+}

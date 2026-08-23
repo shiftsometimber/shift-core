@@ -1,0 +1,24 @@
+name: M04 Plan Analytics Determinism
+on:
+  pull_request:
+    paths:
+      - 'member-product-v8.js'
+      - 'm04-plan-analytics-determinism-gate.mjs'
+      - '.github/workflows/m04-plan-analytics-determinism.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'member-product-v8.js'
+      - 'm04-plan-analytics-determinism-gate.mjs'
+permissions:
+  contents: read
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node --check member-product-v8.js
+      - run: node m04-plan-analytics-determinism-gate.mjs

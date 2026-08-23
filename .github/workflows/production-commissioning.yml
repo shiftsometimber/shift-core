@@ -1,0 +1,247 @@
+name: Shift Production Commissioning
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  production-commissioning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Wait for Worker deployment propagation
+        if: always()
+        run: sleep 20
+      - name: Core production health and route contract
+        if: always()
+        run: node gate1-production-journey-probe.mjs
+      - name: G1-010 / M05 deployed release security and privacy
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node gate1-release-security-privacy-production.mjs
+      - name: Trigger genuine production regulator scan
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+        run: node radar-production-trigger.mjs
+      - name: M03 production Radar freshness
+        if: always()
+        run: node radar-production-freshness.mjs
+      - name: Authenticated isolation and retained state in production
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-authenticated-production.mjs
+      - name: Longitudinal Grub/Fit learning in production
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-longitudinal-products-production.mjs
+      - name: Final B03 Progress Picture and Shift AI production closure
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node finish-b03-final3-production.mjs
+      - name: M07 structured Grub/Fit production serving
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node structured-runtime-production.mjs
+      - name: Refresh short-lived Shift commissioning identity for Fit duration
+        if: always()
+        id: oidc_fit_duration
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: G2-006 Fit duration/session quality production matrix
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_fit_duration.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node fit-duration-production.mjs
+      - name: Refresh short-lived Shift commissioning identity for Dave
+        if: always()
+        id: oidc_dave
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: G1-012 fresh unattended synthetic Dave release gate
+        if: always()
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_dave.outputs.token }}
+          NODE_OPTIONS: --import=./commissioning-fetch-hook.mjs
+        run: node dave-release-gate-production.mjs
+      - name: G5-012 aggregate natural production auth p95
+        if: always()
+        env:
+          G5_012_EVIDENCE_DIR: g5-012-auth-p95-evidence
+        run: node g5-012-natural-auth-p95.mjs
+      - name: Upload G5-012 natural auth p95 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-012-auth-p95-evidence
+          path: g5-012-auth-p95-evidence
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload Dave release-gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dave-synthetic-release-gate-evidence
+          path: dave-release-gate-evidence
+          if-no-files-found: warn
+          retention-days: 30
+
+  g2-001-today-rendered-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Run authenticated rendered Today acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G2_001_EVIDENCE_DIR: g2-001-today-evidence
+        run: node g2-001-today-premium-production.mjs
+      - name: Prove G4-008 proactive Brain to Today orchestration
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+        run: node g4-008-proactive-today-production.mjs
+      - name: Record and prove the final authenticated Billy phone journey
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
+        run: |
+          node my-timber-final-production.mjs
+          ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
+      - name: Upload G2-001 Today evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g2-001-today-evidence
+          path: g2-001-today-evidence
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload My Timber production candidate and phone video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-final-production-candidate
+          path: my-timber-final-evidence
+          if-no-files-found: error
+          retention-days: 30
+
+  g3-premium-system-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install Chromium
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Run Gate 3 premium-system acceptance
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G3_PREMIUM_EVIDENCE_DIR: g3-premium-system-evidence
+        run: node g3-premium-system-production.mjs
+      - name: Upload Gate 3 premium-system evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g3-premium-system-evidence
+          path: g3-premium-system-evidence
+          if-no-files-found: warn
+          retention-days: 30
+
+  m04-product-analytics-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Wait for analytics instrumentation deployment
+        run: sleep 35
+      - name: Prove retained real-flow product analytics funnel
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          M04_EVIDENCE_DIR: m04-product-analytics-evidence
+        run: node m04-product-analytics-production.mjs
+      - name: Upload M04 product analytics evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m04-product-analytics-evidence
+          path: m04-product-analytics-evidence
+          if-no-files-found: warn
+          retention-days: 30

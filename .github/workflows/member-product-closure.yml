@@ -1,0 +1,16 @@
+name: Member Product Closure
+on:
+  pull_request:
+    paths:
+      - 'finish-member-products-production.mjs'
+      - '.github/workflows/member-product-closure.yml'
+jobs:
+  member-product-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Authenticated Today Hydration Conundrum Progress My Plans journey
+        run: node finish-member-products-production.mjs

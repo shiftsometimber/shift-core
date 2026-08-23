@@ -1,0 +1,425 @@
+{
+  "schema_version": 3,
+  "contract": "Premium Shift-owned START -> MOVE -> FINISH coaching artwork generated from explicit movement-specific body/equipment geometry. Technical QA is deterministic; domain/member-comprehension approval remains separate.",
+  "geometry_version": "v3",
+  "launch_total": 26,
+  "production_batches": [
+    {
+      "batch": 2,
+      "status": "produced",
+      "canonical_movements": [
+        "calf-raise",
+        "chair-balance-reach",
+        "chest-press",
+        "dead-bug",
+        "glute-bridge",
+        "squat",
+        "hamstring-mobility",
+        "hip-flexor-mobility",
+        "hip-hinge",
+        "lat-pulldown",
+        "loaded-carry",
+        "low-impact-march",
+        "overhead-press",
+        "plank",
+        "push-up",
+        "reverse-lunge",
+        "row",
+        "rowing-erg",
+        "shadow-boxing",
+        "sit-to-stand",
+        "stationary-bike",
+        "step-up",
+        "thoracic-rotation",
+        "triceps-extension",
+        "walk",
+        "wall-slides"
+      ]
+    }
+  ],
+  "produced_candidates": [
+    {
+      "canonical_movement": "calf-raise",
+      "display_name": "Calf Raise",
+      "asset": "assets/fit/premium/calf-raise.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "chair-balance-reach",
+      "display_name": "Chair Balance Reach",
+      "asset": "assets/fit/premium/chair-balance-reach.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "chest-press",
+      "display_name": "Dumbbell Chest Press",
+      "asset": "assets/fit/premium/chest-press.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "dead-bug",
+      "display_name": "Dead Bug",
+      "asset": "assets/fit/premium/dead-bug.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "glute-bridge",
+      "display_name": "Glute Bridge",
+      "asset": "assets/fit/premium/glute-bridge.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "squat",
+      "display_name": "Goblet Squat",
+      "asset": "assets/fit/premium/squat.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "hamstring-mobility",
+      "display_name": "Hamstring Mobility",
+      "asset": "assets/fit/premium/hamstring-mobility.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "hip-flexor-mobility",
+      "display_name": "Hip Flexor Mobility",
+      "asset": "assets/fit/premium/hip-flexor-mobility.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "hip-hinge",
+      "display_name": "Hip Hinge",
+      "asset": "assets/fit/premium/hip-hinge.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "lat-pulldown",
+      "display_name": "Lat Pulldown",
+      "asset": "assets/fit/premium/lat-pulldown.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "loaded-carry",
+      "display_name": "Loaded Carry",
+      "asset": "assets/fit/premium/loaded-carry.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "low-impact-march",
+      "display_name": "Low-Impact March",
+      "asset": "assets/fit/premium/low-impact-march.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "overhead-press",
+      "display_name": "Overhead Press",
+      "asset": "assets/fit/premium/overhead-press.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "plank",
+      "display_name": "Plank",
+      "asset": "assets/fit/premium/plank.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "push-up",
+      "display_name": "Push-Up",
+      "asset": "assets/fit/premium/push-up.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "reverse-lunge",
+      "display_name": "Reverse Lunge",
+      "asset": "assets/fit/premium/reverse-lunge.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "row",
+      "display_name": "One-Arm Dumbbell Row",
+      "asset": "assets/fit/premium/row.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "rowing-erg",
+      "display_name": "Rowing Erg",
+      "asset": "assets/fit/premium/rowing-erg.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "shadow-boxing",
+      "display_name": "Shadow Boxing",
+      "asset": "assets/fit/premium/shadow-boxing.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "sit-to-stand",
+      "display_name": "Sit-to-Stand",
+      "asset": "assets/fit/premium/sit-to-stand.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "stationary-bike",
+      "display_name": "Stationary Bike",
+      "asset": "assets/fit/premium/stationary-bike.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "step-up",
+      "display_name": "Step-Up",
+      "asset": "assets/fit/premium/step-up.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "thoracic-rotation",
+      "display_name": "Thoracic Rotation",
+      "asset": "assets/fit/premium/thoracic-rotation.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "triceps-extension",
+      "display_name": "Triceps Extension",
+      "asset": "assets/fit/premium/triceps-extension.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "walk",
+      "display_name": "Walking",
+      "asset": "assets/fit/premium/walk.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    },
+    {
+      "canonical_movement": "wall-slides",
+      "display_name": "Wall Slides",
+      "asset": "assets/fit/premium/wall-slides.svg",
+      "states": [
+        "START",
+        "MOVE",
+        "FINISH"
+      ],
+      "status": "technical_qa_pass",
+      "technical_qa": "PASS — Fit Premium Produce All run 31799500091",
+      "domain_acceptance": "pending",
+      "geometry": "v3"
+    }
+  ],
+  "acceptance": {
+    "movement_match": true,
+    "three_distinct_states": [
+      "START",
+      "MOVE",
+      "FINISH"
+    ],
+    "movement_specific": true,
+    "equipment_integrated": true,
+    "member_comprehension": true,
+    "safety_cues_consistent_with_canonical_guidance": true,
+    "desktop_and_mobile_render": true,
+    "domain_approval_required": true
+  },
+  "counts": {
+    "produced": 26,
+    "technically_qa_passed": 26,
+    "domain_accepted": 0
+  }
+}

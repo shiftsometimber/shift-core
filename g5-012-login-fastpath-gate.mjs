@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+const login=fs.readFileSync('member-login-fastpath-v1.js','utf8');
+const entry=fs.readFileSync('worker-entry-v6.js','utf8');
+const fail=[];const need=(ok,msg)=>{if(!ok)fail.push(msg)};
+need(login.includes("const LOGIN_PATH='/v1/auth/login'"),'fast path is not bounded to member login');
+need(login.includes("iterations<100000"),'PBKDF2 work factor floor weakened');
+need(login.includes("hash:'SHA-256'")&&login.includes("scheme!==PBKDF2_SCHEME"),'password verification contract weakened');
+need(login.includes('constantTimeEqual'),'password hash comparison is not constant-time');
+need(login.includes('const LOCK_AFTER=8')&&login.includes('15*60*1000'),'existing 8-attempt/15-minute lockout contract weakened');
+need(login.includes("HttpOnly; Secure; SameSite=Lax"),'session cookie security contract weakened');
+need(login.includes('crypto.getRandomValues')&&login.includes("token_hash"),'session entropy/hash contract weakened');
+need(login.includes('await env.DB.batch([')&&login.includes("'auth.login'")&&login.includes("INSERT INTO user_sessions"),'successful post-password mutations are not collapsed into one D1 batch');
+need(login.includes("error:'email_verification_required'")&&login.includes('verificationRequired:true'),'fast login no longer blocks unverified accounts');
+const verificationAt=login.indexOf("if(!Number(row.email_verified||0))"),sessionAt=login.indexOf('const now=new Date().toISOString(),expires=');
+need(verificationAt>=0&&sessionAt>verificationAt,'verification guard must run before any successful session is created');
+need(entry.includes("import {fastMemberLogin} from './member-login-fastpath-v1.js'"),'canonical Worker does not load fast login');
+need(entry.includes('function deferAnalytics(ctx,work,label)')&&entry.includes('ctx.waitUntil(task)'),'analytics is not retained through Worker waitUntil');
+need(entry.includes("deferAnalytics(ctx,()=>recordFinalLogin(loginAnalyticsRequest,responseCopy,env),'analytics_login')"),'fast login bypasses deferred product analytics login/return evidence');
+need(!entry.includes('if(fastLogin){await recordFinalLogin'),'fast login analytics returned to the member response critical path');
+if(fail.length){console.error(JSON.stringify({proof:'G5_012_LOGIN_FASTPATH_SOURCE',status:'FAIL',fail},null,2));process.exit(1)}
+console.log(JSON.stringify({proof:'G5_012_LOGIN_FASTPATH_SOURCE',status:'PASS',checks:14,boundary:'same PBKDF2, lockout, verified-email and session-cookie security; successful post-password mutations remain batched; analytics is retained asynchronously after the auth response'},null,2));

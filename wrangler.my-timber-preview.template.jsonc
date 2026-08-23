@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shift-core-my-timber-preview",
+  "main": "worker-entry-v6.js",
+  "compatibility_date": "2026-08-09",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./frontend/member",
+    "binding": "MEMBER_ASSETS",
+    "run_worker_first": true
+  },
+  "vars": {
+    "AUTO_VERIFY_EMAIL": "true",
+    "ALLOWED_ORIGINS": "",
+    "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "PUBLIC_SITE_URL": "https://shift-core-my-timber-preview.workers.dev",
+    "STRIPE_MODE": "test",
+    "SHIFT_ENVIRONMENT": "my-timber-preview"
+  },
+  "ai": {"binding": "AI"},
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "shift-core-my-timber-preview-db",
+    "database_id": "__PREVIEW_D1_DATABASE_ID__"
+  }],
+  "observability": {"enabled": true, "logs": {"enabled": true}}
+}

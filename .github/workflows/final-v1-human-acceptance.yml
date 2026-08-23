@@ -1,0 +1,67 @@
+name: Final V1 Human Acceptance
+on:
+  pull_request:
+    paths:
+      - 'evidence/matt-v1-final-content-acceptance-2026-08-14.json'
+      - 'evidence/grub-v1-final-decisions-2026-08-14.json'
+      - 'evidence/fit-v1-final-decisions-2026-08-14.json'
+      - 'final-v1-human-acceptance-gate.mjs'
+      - 'grub-v1-publication-pack.mjs'
+      - 'structured-content-v1.js'
+      - '.github/workflows/final-v1-human-acceptance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'evidence/matt-v1-final-content-acceptance-2026-08-14.json'
+      - 'evidence/grub-v1-final-decisions-2026-08-14.json'
+      - 'evidence/fit-v1-final-decisions-2026-08-14.json'
+      - 'final-v1-human-acceptance-gate.mjs'
+      - 'grub-v1-publication-pack.mjs'
+      - 'structured-content-v1.js'
+      - '.github/workflows/final-v1-human-acceptance.yml'
+permissions:
+  contents: read
+jobs:
+  accept-and-bind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Validate exact final human acceptance authority
+        run: node final-v1-human-acceptance-gate.mjs
+      - run: python3 -m pip install --quiet openpyxl
+      - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Propagate eight accepted Grub families into exact publication payload
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          GRUB_PUBLICATION_DIR: final-v1-acceptance-evidence/grub
+        run: node grub-v1-publication-pack.mjs evidence/grub-v1-final-decisions-2026-08-14.json
+      - name: Require exact 798-recipe fail-closed runtime-addressable publication result
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const p=JSON.parse(fs.readFileSync('final-v1-acceptance-evidence/grub/grub-v1-publication-summary.json','utf8'));
+          const payload=JSON.parse(fs.readFileSync('final-v1-acceptance-evidence/grub/grub-v1-publishable.json','utf8'));
+          const mealTypes=['breakfast','lunch','dinner','snack'];
+          if(p.approvedRecipes!==798||p.heldRecipes!==0||p.allPass!==true||p.publicationReady!==true)throw new Error(`unexpected Grub publication summary: ${JSON.stringify(p)}`);
+          if(payload.items.length!==798)throw new Error(`publishable item count ${payload.items.length}`);
+          if(mealTypes.reduce((n,t)=>n+Number(p.publicationByMeal?.[t]||0),0)!==798)throw new Error(`publication meal partition does not reconcile: ${JSON.stringify(p.publicationByMeal)}`);
+          for(const type of mealTypes)if(Number(p.publicationByMeal?.[type]||0)<150)throw new Error(`${type} publication pool below accepted V1 floor: ${p.publicationByMeal?.[type]}`);
+          for(const item of payload.items){
+            if(!mealTypes.includes(item?.data?.meal_type))throw new Error(`runtime-addressable meal_type missing: ${item?.id}`);
+            if(item?.review?.status!=='approved'||item?.data?.nutrition?.status!=='validated')throw new Error(`publication authority missing: ${item?.id}`);
+          }
+          console.log(`PASS: 798/798 final Grub recipes retain the regenerated accepted meal-type partition ${JSON.stringify(p.publicationByMeal)} and are addressable by the live structured Grub selector; 0 held.`);
+          NODE
+      - name: Retain Fit domain/member acceptance evidence
+        run: |
+          mkdir -p final-v1-acceptance-evidence/fit
+          cp evidence/fit-v1-final-decisions-2026-08-14.json final-v1-acceptance-evidence/fit/
+          cp evidence/matt-v1-final-content-acceptance-2026-08-14.json final-v1-acceptance-evidence/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-v1-human-acceptance-evidence
+          path: final-v1-acceptance-evidence/
+          retention-days: 90

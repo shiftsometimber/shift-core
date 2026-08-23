@@ -1,0 +1,42 @@
+name: Shift Conversion Closure Gate
+on:
+  pull_request:
+    paths:
+      - 'industrial-conversion-gate.mjs'
+      - 'industrial-catalogue-v4.js'
+      - 'industrial-catalogue-v5.js'
+      - 'industrial-catalogue-v6.js'
+      - 'industrial-snack-quality-gate.mjs'
+      - 'industrial-recipe-quantity-gate.mjs'
+      - 'industrial-grub-nutrition-v1.js'
+      - 'industrial-grub-targeted-diagnostics.mjs'
+      - 'cofid-candidate-diagnostics.py'
+      - 'dave-evidence-reconciliation.mjs'
+      - 'docs/**'
+      - '.github/workflows/conversion-closure-gate.yml'
+jobs:
+  conversion-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prepare CoFID 2021
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Industrial snack recipe quality
+        run: node industrial-snack-quality-gate.mjs
+      - name: Industrial recipe exact-quantity quality
+        run: node industrial-recipe-quantity-gate.mjs
+      - name: Industrial conversion diagnostics
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-conversion-gate.mjs
+      - name: Targeted industrial nutrition blockers
+        run: node industrial-grub-targeted-diagnostics.mjs
+      - name: CoFID candidates for blocker families
+        run: python3 cofid-candidate-diagnostics.py /tmp/cofid-index.json
+      - name: Dave evidence reconciliation
+        run: node dave-evidence-reconciliation.mjs

@@ -1,0 +1,36 @@
+name: Grub V1 Publication Bridge
+on:
+  pull_request:
+    paths:
+      - 'grub-v1-publication-pack.mjs'
+      - 'grub-v1-publication-bridge-gate.mjs'
+      - 'grub-editorial-review-surface.mjs'
+      - '.github/workflows/grub-v1-publication-bridge.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'grub-v1-publication-pack.mjs'
+      - 'grub-v1-publication-bridge-gate.mjs'
+      - 'grub-editorial-review-surface.mjs'
+      - '.github/workflows/grub-v1-publication-bridge.yml'
+permissions:
+  contents: read
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: python3 -m pip install --quiet openpyxl
+      - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Prove immutable decisions through fail-closed publication payload
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node grub-v1-publication-bridge-gate.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grub-v1-publication-bridge-evidence
+          path: grub-publication-bridge-evidence/
+          retention-days: 30

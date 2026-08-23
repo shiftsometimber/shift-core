@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+const read=f=>fs.readFileSync(new URL(f,import.meta.url),'utf8'),must=(c,m)=>{if(!c)throw new Error(m)};
+const pub=read('./knowledge-publication-v1.js'),brain=read('./shift-brain-v1.js'),radar=read('./radar-public-v1.js'),fresh=read('./radar-freshness-v2.js'),watch=read('./watchtower-v1.js');
+must(pub.includes("['approved','published']")&&pub.includes('health_review_requires_verified_provenance'),'reviewed Knowledge lifecycle must reject unreviewed/unverified health content');
+must(pub.includes('upsertKnowledge')&&pub.includes('approved_document'),'approved CMS/legacy knowledge must converge on canonical graph');
+must(brain.includes('retrieveUnifiedKnowledge')&&brain.includes("n.status='active'")&&brain.includes("item.reviewState!=='unverified'"),'One Shift Brain must ground through reviewed canonical knowledge');
+must(fresh.includes('RADAR_SLO')&&fresh.includes('scan_stale')&&fresh.includes('ticker_stale')&&fresh.includes('publication_failures'),'Radar freshness must have explicit SLO and degradation states');
+must(radar.includes('freshness.current?items:[]')&&radar.includes('not current'),'stale ticker must fail safe rather than present stale items as current');
+must(watch.includes('readRadarFreshness')&&watch.includes('attention'),'Watchtower must consume canonical freshness and expose attention-first state');
+console.log('PASS gate45 Knowledge publication -> Brain grounding -> Radar freshness -> Watchtower contract');

@@ -1,0 +1,23 @@
+name: G3-006 HQ Editorial CORS
+on:
+  pull_request:
+    paths:
+      - 'knowledge-editorial-v1.js'
+      - 'g3-006-hq-editorial-cors-gate.mjs'
+      - '.github/workflows/g3-006-hq-editorial-cors.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'knowledge-editorial-v1.js'
+      - 'g3-006-hq-editorial-cors-gate.mjs'
+      - '.github/workflows/g3-006-hq-editorial-cors.yml'
+jobs:
+  cors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prove HQ editorial browser boundary
+        run: node g3-006-hq-editorial-cors-gate.mjs

@@ -1,0 +1,36 @@
+name: Grub Editorial Review Surface
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'industrial-catalogue-v14.js'
+      - 'industrial-catalogue-v13.js'
+      - 'grub-v1-editorial-defect-gate.mjs'
+      - 'grub-editorial-review-surface.mjs'
+      - 'industrial-grub-second-person-review-pack.mjs'
+      - '.github/workflows/grub-editorial-review-surface.yml'
+  pull_request:
+    paths:
+      - 'industrial-catalogue-v14.js'
+      - 'industrial-catalogue-v13.js'
+      - 'grub-v1-editorial-defect-gate.mjs'
+      - 'grub-editorial-review-surface.mjs'
+      - 'industrial-grub-second-person-review-pack.mjs'
+      - '.github/workflows/grub-editorial-review-surface.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: python3 -m pip install --quiet openpyxl
+      - run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - run: node grub-v1-editorial-defect-gate.mjs
+      - run: COFID_INDEX=/tmp/cofid-index.json REVIEW_PACK_DIR=review-evidence node grub-editorial-review-surface.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grub-101-editorial-review-surface
+          path: review-evidence/
+          retention-days: 30
