@@ -72,19 +72,21 @@ async function completeShiftedDay(request,env,ctx,uid){
 }
 
 async function getToday(request,env,ctx,uid,user){
-  const date=dateOf(request),[checkin,choices,treatment,progress,yesterday,brain,canonicalResponse]=await Promise.all([
+  const date=dateOf(request),[checkin,choices,treatment,progress,yesterday]=await Promise.all([
     env.DB.prepare(`SELECT * FROM shift_today_checkins WHERE user_id=? AND local_date=?`).bind(uid,date).first(),
     env.DB.prepare(`SELECT domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all(),
-    treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date),
-    buildShiftBrainContext(env,uid,'today',{knowledgeLimit:0}).catch(error=>{console.warn('my_timber_brain_context_unavailable',error?.message);return null}),
-    memberDailyV2Routes(request,env,ctx).catch(error=>{console.warn('my_timber_canonical_today_unavailable',error?.message);return null})
+    treatmentContext(env,uid),progressLine(env,uid),previousCheckIn(env,uid,date)
+  ]);
+  if(!checkin)return respond({ok:true,today:{stage:'check_in',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}. How are you doing?`,prompts:checkInPrompts(),treatmentKnown:treatment.configured,headline:null,subhead:null,actions:[],brain:{available:false,contract:'one-shift-brain-v1',activePlans:[],feedbackSummary:{},memorySignals:0,latestProgressDate:null},context_used:{one_shift_brain:false,canonical_contract:'one-shift-brain-v1'},rule:'Today opens before optional enrichment. Current member statements and safety/clinical boundaries override optimisation.'}},200,request);
+  const [brain,canonicalResponse]=await Promise.all([
+    within(buildShiftBrainContext(env,uid,'today',{knowledgeLimit:0}),1200,'my_timber_brain_context_unavailable'),
+    within(memberDailyV2Routes(request,env,ctx),1200,'my_timber_canonical_today_unavailable')
   ]);
   const canonicalPayload=canonicalResponse?.ok?await canonicalResponse.clone().json().catch(()=>({})):{};
   const canonicalToday=canonicalPayload.today||{},brainContract=brain?.contract||'one-shift-brain-v1';
   const brainEvidence={available:!!brain,contract:brainContract,activePlans:Object.keys(brain?.plans?.active||{}),feedbackSummary:brain?.behaviour?.feedback?.summary||{},memorySignals:brain?.memory?.intelligent?.length||0,latestProgressDate:brain?.progress?.latest?.recorded_on||null};
   const contextUsed={...(canonicalToday.context_used||{}),one_shift_brain:!!brain,canonical_contract:brainContract};
   const saved=Object.fromEntries((choices.results||[]).map(row=>[row.domain,{key:row.choice_key,...parse(row.choice_json)}]));
-  if(!checkin)return respond({ok:true,today:{stage:'check_in',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}. How are you doing?`,prompts:checkInPrompts(),treatmentKnown:treatment.configured,headline:canonicalToday.headline,subhead:canonicalToday.subhead,actions:canonicalToday.actions||[],brain:brainEvidence,context_used:contextUsed,rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'}},200,request);
   const moment=foodMoment(request),grub=grubCard(checkin,yesterday,saved.grub,moment),move=moveCard(checkin,yesterday,saved.move),treatmentCardValue=treatmentCard(checkin,yesterday,treatment,saved.treatment);
   const repeated=checkin.guts==='rough'&&yesterday?.guts==='rough';
   const today={stage:'tonight',date,greeting:`${daypart(request)}, ${user?.first_name||'mate'}.`,intro:moment.intro,foodMoment:moment,changeLabel:'Things have changed',checkin:{mood:checkin.mood,guts:checkin.guts,energy:checkin.energy},cards:repeated?[treatmentCardValue,grub,move]:[grub,move,treatmentCardValue],progress,quietLine:checkin.mood==='rough'?{text:'Rough day. Ask Timber will listen first.',target:'ai'}:null,clock:{targetSeconds:20,targetTaps:6},saved,headline:canonicalToday.headline,subhead:canonicalToday.subhead,actions:canonicalToday.actions||[],brain:brainEvidence,context_used:contextUsed,rule:'One Shift Brain is the shared member context. Current member statements and safety/clinical boundaries override optimisation.'};
@@ -156,6 +158,7 @@ async function authenticate(request,env,ctx){const response=await core.fetch(new
 function daypart(request){const supplied=Number(request.headers.get('X-Shift-Local-Hour')),hour=Number.isInteger(supplied)&&supplied>=0&&supplied<24?supplied:new Date().getUTCHours();return hour<12?'Morning':hour<18?'Afternoon':'Evening'}
 function foodMoment(request){const supplied=Number(request.headers.get('X-Shift-Local-Hour')),hour=Number.isInteger(supplied)&&supplied>=0&&supplied<24?supplied:new Date().getUTCHours();if(hour<9)return{key:'breakfast',label:'Breakfast',intro:'Let’s make the start of today easier.'};if(hour<12)return{key:'brunch',label:'Brunch or snack',intro:'Let’s sort what food needs doing next.'};if(hour<14)return{key:'lunch',label:'Lunch',intro:'Let’s steady the middle of today.'};if(hour<17)return{key:'snack',label:'Snack or dinner plan',intro:'Let’s make the rest of today easier.'};if(hour<21)return{key:'dinner',label:'Dinner',intro:'Here’s what matters tonight.'};return{key:'late',label:'Late bite or nothing',intro:'Let’s finish today without overthinking it.'}}
 function defer(ctx,promise){const guarded=promise.catch(error=>console.warn('my_timber_today_event_failed',error?.message));if(ctx?.waitUntil)ctx.waitUntil(guarded)}
+async function within(promise,ms,label){let timer;try{return await Promise.race([promise.catch(error=>{console.warn(label,error?.message);return null}),new Promise(resolve=>{timer=setTimeout(()=>resolve(null),ms)})])}finally{clearTimeout(timer)}}
 function respond(data,status,request){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...cors(request)}})}
 function cors(request){const origin=request.headers.get('Origin')||'',headers={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, PATCH, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(ORIGINS.has(origin))headers['Access-Control-Allow-Origin']=origin;return headers}
 function withCors(response,request){const headers=new Headers(response.headers);for(const[key,value]of Object.entries(cors(request)))headers.set(key,value);return new Response(response.body,{status:response.status,statusText:response.statusText,headers})}
