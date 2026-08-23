@@ -211,7 +211,17 @@ jobs:
         run: node my-timber-preview-iphone-safari.mjs
 
       - name: Package the recording for iPhone playback
-        run: ffmpeg -y -i preview-consumer-evidence/shift-consumer-preview-iphone-safari.webm -movflags +faststart -pix_fmt yuv420p preview-consumer-evidence/shift-consumer-preview-iphone-safari.mp4
+        run: |
+          ffmpeg -y -i preview-consumer-evidence/shift-consumer-preview-iphone-safari.webm -movflags +faststart -pix_fmt yuv420p preview-consumer-evidence/shift-consumer-preview-iphone-safari.mp4
+          node - <<'NODE'
+          const fs=require('fs');
+          fs.writeFileSync('preview-consumer-evidence/merge-candidate.json',JSON.stringify({
+            proof:'SHIFT_CONTROLLED_MERGE_CANDIDATE',commit:process.env.GITHUB_SHA,preview_url:process.env.PREVIEW_URL,
+            production_deployed:false,medicine_purchase_enabled:false,
+            gates:{commercial:'locked',claims:'locked',stock:'locked',supplier:'locked',purchase:'locked',clinical:'locked'},
+            required_before_production:['physical iPhone Safari sign-off','explicit merge approval','production deployment approval']
+          },null,2));
+          NODE
 
       - name: Upload genuine iPhone Safari preview evidence
         if: always()
@@ -245,13 +255,16 @@ jobs:
           ## My Timber Today hosted preview: ready
 
           The isolated Worker and preview-only D1 both passed:
+          - the definitive homepage, route finder, catalogue result and product-information path passed the bounded-scroll iPhone acceptance
           - a named dinner was saved as **Scrambled eggs on toast**
           - movement was saved as **Easy walk · 10 min**
           - **Working Late**, **Chaos** and **Rough Guts** rebuilt the joined day
           - preference learning and a consequence-led **Takeaway instead** choice persisted
           - a blank treatment account was not assigned a medicine or dose
 
-          **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
+          **Open the public journey:** $PREVIEW_URL/
+
+          **Open My Timber:** $PREVIEW_URL/member/dashboard#today
 
           [Open the scrutinised preview run and iPhone Safari recording]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)
 

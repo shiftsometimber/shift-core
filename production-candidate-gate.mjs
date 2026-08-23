@@ -12,7 +12,7 @@ const surface=[home,route,options,product].join('\n');
 
 const checks={
   definitiveHome:/path==='\/'\|\|path==='\/public-home'/.test(worker)&&/public-home-v1/.test(worker),
-  coherentJourney:/find-my-treatment-route/.test(home)&&/\/treatment-options\//.test(route)&&/\/v1\/treatment\/catalogue/.test(product),
+  coherentJourney:/find-my-treatment-route/.test(home)&&/\/treatment-options\//.test(route)&&/\/v1\/treatment\/catalogue/.test(product)&&/data-edit-route/.test(route),
   noConsumerCheckout:!/checkout|buy now|add to basket|place order/i.test(surface),
   accessExplicitlyClosed:/Treatment access is not open yet/.test(home)&&/Treatment access closed/.test(options)&&/Treatment access closed/.test(product),
   noInternalLaunchPlaceholders:!/\bTBC\b|proposed price|supplier tbc/i.test(surface),
