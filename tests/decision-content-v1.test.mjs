@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {selectDecisionOutcome,validateDecisionContent,resolveGovernedDecisionOutcome} from '../decision-content-v1.js';
+import {selectDecisionOutcome,validateDecisionContent,resolveGovernedDecisionOutcome,decisionContentOperationalStatus,validateDecisionTransition,transitionDecisionContent,listDecisionContentOperations} from '../decision-content-v1.js';
 
 const NOW='2026-08-23T12:00:00.000Z';
 const DIGEST='a'.repeat(64),REF=`nice-ta-1@1:${DIGEST}`;
@@ -22,3 +22,34 @@ test('resolver emits governed outcome with lineage proof only when every claim r
 test('missing governed claim fails closed without outcome audit',async()=>{const env=envFor([base()]);const result=await resolveGovernedDecisionOutcome(env,{decisionKey:'weight-route',channel:'treatment_pathway',destination:'/treatments/results',answers:{preference:'daily'},correlationId:'corr-2',at:NOW,claimResolver:async()=>null});assert.equal(result,null);assert.equal(env.audit.length,0)});
 test('claim lineage mismatch fails closed without outcome audit',async()=>{const env=envFor([base()]);const result=await resolveGovernedDecisionOutcome(env,{decisionKey:'weight-route',channel:'treatment_pathway',destination:'/treatments/results',answers:{preference:'daily'},correlationId:'corr-3',at:NOW,claimResolver:async()=>({key:'different-claim',version:1})});assert.equal(result,null);assert.equal(env.audit.length,0)});
 test('invalid newest approved version fails closed instead of silently falling back',async()=>{const newest=base();newest.version=3;newest.review.content_version=3;newest.review_due_at='2026-08-22T00:00:00.000Z';const env=envFor([newest,base()]);const result=await resolveGovernedDecisionOutcome(env,{decisionKey:'weight-route',channel:'treatment_pathway',destination:'/treatments/results',answers:{preference:'daily'},correlationId:'corr-4',at:NOW,claimResolver:async()=>({key:'tablet-routine',version:3})});assert.equal(result,null);assert.equal(env.audit.length,0)});
+
+test('operational status distinguishes current, due, overdue and withdrawn content',()=>{
+  assert.equal(decisionContentOperationalStatus(base(),{at:NOW}).state,'current');
+  const due=base();due.review_due_at='2026-08-30T00:00:00.000Z';assert.deepEqual(decisionContentOperationalStatus(due,{at:NOW}),{state:'review_due',reason:'review_due_soon',publishable:true,reviewDueAt:'2026-08-30T00:00:00.000Z'});
+  const stale=base();stale.review_due_at='2026-08-22T00:00:00.000Z';assert.equal(decisionContentOperationalStatus(stale,{at:NOW}).publishable,false);
+  const withdrawn=base();withdrawn.status='withdrawn';assert.equal(decisionContentOperationalStatus(withdrawn,{at:NOW}).state,'withdrawn');
+});
+test('lifecycle permits bounded review and independent approval only',()=>{
+  const draft=base();draft.status='draft';assert.equal(validateDecisionTransition(draft,{toStatus:'review',actor:'editor',reason:'ready',correlationId:'op-1'}).ok,true);
+  assert.equal(validateDecisionTransition(draft,{toStatus:'approved',actor:'editor',reason:'skip',correlationId:'op-2'}).errors.includes('transition_forbidden'),true);
+  const reviewRecord=base();reviewRecord.status='review';const approval={...reviewRecord.review};assert.equal(validateDecisionTransition(reviewRecord,{toStatus:'approved',actor:'clinical-reviewer',reason:'approved',correlationId:'op-3',review:approval}).ok,true);
+  approval.reviewed_by='content-editor';assert.equal(validateDecisionTransition(reviewRecord,{toStatus:'approved',actor:'content-editor',reason:'self approval',correlationId:'op-4',review:approval}).errors.includes('independent_review_required'),true);
+});
+test('approval actor must be the recorded reviewer and approval must be renderable now',()=>{
+  const record=base();record.status='review';const review={...record.review};assert.equal(validateDecisionTransition(record,{toStatus:'approved',actor:'different-reviewer',reason:'approved',correlationId:'op-actor',review,at:NOW}).errors.includes('approval_actor_mismatch'),true);
+  record.evidence[0].expires_at='2026-08-22T00:00:00.000Z';assert.equal(validateDecisionTransition(record,{toStatus:'approved',actor:'clinical-reviewer',reason:'approved',correlationId:'op-expired',review,at:NOW}).errors.includes('verified_evidence_required'),true);
+});
+test('optimistic lifecycle transition writes status and audit atomically',async()=>{
+  const row=base();row.status='draft';const calls=[];const env={DB:{prepare(sql){const statement={sql,args:[],bind(...args){statement.args=args;return statement},all:async()=>({results:[row]})};return statement},batch:async statements=>{calls.push(...statements);return[{meta:{changes:1}},{meta:{changes:1}}]}}};
+  const result=await transitionDecisionContent(env,{id:7,expectedVersion:2,expectedStatus:'draft',toStatus:'review',actor:'content-editor',reason:'ready for review',correlationId:'op-5',at:NOW});
+  assert.deepEqual(result,{id:7,version:2,fromStatus:'draft',toStatus:'review'});assert.match(calls.find(x=>/UPDATE decision_content/.test(x.sql)).sql,/WHERE id=\? AND version=\? AND status=\?/);assert.match(calls.find(x=>/INSERT INTO decision_content_lifecycle_audit/.test(x.sql)).sql,/WHERE changes\(\)=1/);
+});
+test('stale operator state fails closed before mutation',async()=>{
+  const row=base();row.status='review';let batches=0;const env={DB:{prepare(){return{bind(){return{all:async()=>({results:[row]})}}}},batch:async statements=>{if(statements.length===2)batches++;return statements.length>2?[]:[]}}};
+  assert.equal(await transitionDecisionContent(env,{id:7,expectedVersion:2,expectedStatus:'draft',toStatus:'review',actor:'editor',reason:'ready',correlationId:'op-6'}),null);assert.equal(batches,0);
+});
+test('operator queue returns latest records with bounded actionable status',async()=>{
+  const current=base(),due=base();due.id=8;due.decision_key='another-route';due.review_due_at='2026-08-30T00:00:00.000Z';let bound;
+  const env={DB:{prepare(sql){return{bind(value){bound=value;return{all:async()=>({results:[current,due]})}},all:async()=>({results:[]})}},batch:async()=>[]}};
+  const queue=await listDecisionContentOperations(env,{at:NOW,limit:9999});assert.equal(bound,500);assert.deepEqual(queue.map(x=>x.state),['current','review_due']);assert.equal(queue[0].key,'weight-route');
+});
