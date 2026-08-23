@@ -1,5 +1,5 @@
-import core from './worker.js';
 import {memberDailyV2Routes} from './member-daily-v2.js';
+import {authenticateMember} from './member-state-fast-v1.js';
 import {buildShiftBrainContext} from './shift-brain-v1.js';
 import {recordProductEvent} from './product-analytics-v1.js';
 import {applyRebuildAlternative,rebuildDay} from './my-timber-rebuild-v1.js';
@@ -13,7 +13,7 @@ export async function memberDailyV3Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',method=request.method.toUpperCase();
   if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT,HELP,REBUILD,REBUILD_ALT,COMPLETE].includes(path))return memberDailyV2Routes(request,env,ctx);
   if(method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
-  const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
+  const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
   const uid=Number(auth.user.id);await ensureTodaySchema(env.DB);
   if(path===HELP&&method==='GET')return getImmediateHelp(request,env,uid);
   if(path===HELP&&method==='POST')return saveImmediateHelp(request,env,ctx,uid);
@@ -154,7 +154,6 @@ async function saveChoice(env,uid,date,domain,key,value){await env.DB.prepare(`I
 async function previousCheckIn(env,uid,date){return await env.DB.prepare(`SELECT mood,guts,energy,local_date FROM shift_today_checkins WHERE user_id=? AND local_date<? ORDER BY local_date DESC LIMIT 1`).bind(uid,date).first()||{}}
 async function progressLine(env,uid){const rows=(await env.DB.prepare(`SELECT recorded_on,weight_kg,waist_cm,mood_score FROM progress_entries WHERE user_id=? ORDER BY recorded_on DESC,id DESC LIMIT 30`).bind(uid).all()).results||[];if(!rows.length)return{available:false,text:'Your useful number will appear after your first log.'};const latest=rows[0],oldWaist=rows.find(row=>Number(row.waist_cm)>0&&row!==latest),weight=Number(latest.weight_kg)>0?kgToStone(Number(latest.weight_kg)):null,waistDelta=oldWaist&&Number(latest.waist_cm)>0?Number(latest.waist_cm)-Number(oldWaist.waist_cm):null;const parts=[weight?`${weight.stone} st ${weight.lb} lb`:null,waistDelta&&waistDelta<0?`waist down ${Math.abs(waistDelta).toFixed(0)} cm`:null].filter(Boolean);return{available:true,text:parts.join(' · ')||'Your latest progress is saved.',weightKg:latest.weight_kg,waistCm:latest.waist_cm}}
 function kgToStone(kg){const lb=kg*2.2046226218,stone=Math.floor(lb/14);return{stone,lb:Math.round(lb-stone*14)}}
-async function authenticate(request,env,ctx){const response=await core.fetch(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!response.ok)return{response};return{user:(await response.json()).user}}
 function daypart(request){const supplied=Number(request.headers.get('X-Shift-Local-Hour')),hour=Number.isInteger(supplied)&&supplied>=0&&supplied<24?supplied:new Date().getUTCHours();return hour<12?'Morning':hour<18?'Afternoon':'Evening'}
 function foodMoment(request){const supplied=Number(request.headers.get('X-Shift-Local-Hour')),hour=Number.isInteger(supplied)&&supplied>=0&&supplied<24?supplied:new Date().getUTCHours();if(hour<9)return{key:'breakfast',label:'Breakfast',intro:'Let’s make the start of today easier.'};if(hour<12)return{key:'brunch',label:'Brunch or snack',intro:'Let’s sort what food needs doing next.'};if(hour<14)return{key:'lunch',label:'Lunch',intro:'Let’s steady the middle of today.'};if(hour<17)return{key:'snack',label:'Snack or dinner plan',intro:'Let’s make the rest of today easier.'};if(hour<21)return{key:'dinner',label:'Dinner',intro:'Here’s what matters tonight.'};return{key:'late',label:'Late bite or nothing',intro:'Let’s finish today without overthinking it.'}}
 function defer(ctx,promise){const guarded=promise.catch(error=>console.warn('my_timber_today_event_failed',error?.message));if(ctx?.waitUntil)ctx.waitUntil(guarded)}
