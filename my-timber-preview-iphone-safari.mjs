@@ -1,12 +1,16 @@
-import {webkit,devices} from 'playwright';
+import {chromium,webkit,devices} from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const SITE=String(process.env.PREVIEW_URL||'').replace(/\/$/,'');
 const OUT=process.env.PREVIEW_EVIDENCE_DIR||'preview-consumer-evidence';
+const PROFILE=process.env.PREVIEW_BROWSER_PROFILE||'iphone-safari';
+const desktop=PROFILE.startsWith('desktop-');
+const engine=PROFILE==='desktop-chrome'?chromium:webkit;
+const videoName=desktop?`shift-consumer-preview-${PROFILE}.webm`:'shift-consumer-preview-iphone-safari.webm';
 if(!SITE)throw new Error('PREVIEW_URL required');
 fs.mkdirSync(OUT,{recursive:true});
-const report={proof:'SHIFT_CONSUMER_PREVIEW_IPHONE_SAFARI',site:SITE,device:'iPhone 13 · WebKit · 390x844',checks:[],failures:[],screens:[]};
+const report={proof:desktop?'SHIFT_CONSUMER_PREVIEW_DESKTOP':'SHIFT_CONSUMER_PREVIEW_IPHONE_SAFARI',site:SITE,device:desktop?`${PROFILE==='desktop-chrome'?'Chrome':'Safari/WebKit'} desktop · 1440x1000`:'iPhone 13 · WebKit · 390x844',checks:[],failures:[],screens:[]};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail='')=>report.failures.push({name,status:'FAIL',detail});
 const pause=page=>page.waitForTimeout(450);
@@ -15,8 +19,9 @@ async function zeroOverflow(page,label){const value=await page.evaluate(()=>docu
 async function compactPage(page,label,maxHeight){const value=await page.evaluate(()=>document.documentElement.scrollHeight);value<=maxHeight?pass(`${label}: bounded mobile journey`,`${value}px`):fail(`${label}: excessive mobile scroll`,`${value}px`)}
 async function openToday(page,{reload=false}={}){let lastError;for(let attempt=0;attempt<3;attempt++){if(reload||attempt)await page.reload({waitUntil:'domcontentloaded'});await page.evaluate(()=>{document.getElementById('previewAuth').hidden=true;document.getElementById('previewMember').classList.add('is-ready')});try{await page.locator('[data-life-changed]').waitFor({state:'visible',timeout:8000});return}catch{}await page.evaluate(()=>{const script=document.createElement('script');script.src=`/member-my-timber-problem-v1.js?v=daily-shift-v2-${Date.now()}`;document.body.appendChild(script)});try{await page.locator('[data-life-changed]').waitFor({state:'visible',timeout:20000});return}catch(error){lastError=error}}throw lastError}
 
-const browser=await webkit.launch({headless:true});
-const context=await browser.newContext({...devices['iPhone 13'],viewport:{width:390,height:844},recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
+const browser=await engine.launch({headless:true});
+const viewport=desktop?{width:1440,height:1000}:{width:390,height:844};
+const context=await browser.newContext({...(!desktop?devices['iPhone 13']:{}),viewport,recordVideo:{dir:path.join(OUT,'raw-video'),size:viewport}});
 const page=await context.newPage();
 page.on('pageerror',error=>fail('page error',error.message));
 page.on('console',message=>{if(message.type()==='error'&&!/status of 401 \(Unauthorized\)/.test(message.text()))fail('console error',message.text())});
@@ -52,7 +57,7 @@ try{
   await page.locator('[data-life-changed]').click();const lateResponse=page.waitForResponse(response=>response.url().includes('/v1/shift/daily-adjust')&&response.request().method()==='POST');await page.locator('[data-adjust="working_late"]').click();if(!(await lateResponse).ok())throw new Error('Working Late API did not accept the rebuild');await page.getByText(/late finish/i).first().waitFor({state:'visible',timeout:15000});await pause(page);await screen(page,'08-working-late-rebuilt');
   const rebuilt=await page.locator('body').innerText();/10 minutes/i.test(rebuilt)?pass('Working Late compresses movement'):fail('Working Late did not compress movement');
 }catch(error){fail('journey exception',String(error?.message||error).slice(0,1500))}finally{
-  const video=page.video();await context.close();if(video)await video.saveAs(path.join(OUT,'shift-consumer-preview-iphone-safari.webm'));await browser.close();fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
+  const video=page.video();await context.close();if(video)await video.saveAs(path.join(OUT,videoName));await browser.close();fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
 }
 console.log(JSON.stringify(report,null,2));
 if(report.failures.length)throw new Error(`Consumer preview failed ${report.failures.length} check(s)`);

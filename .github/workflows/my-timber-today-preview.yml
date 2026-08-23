@@ -215,7 +215,7 @@ jobs:
       - name: Install iPhone Safari acceptance browser
         run: |
           npm install --no-save --ignore-scripts playwright
-          npx playwright install --with-deps webkit
+          npx playwright install --with-deps chromium webkit
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
@@ -223,6 +223,11 @@ jobs:
         env:
           PREVIEW_EVIDENCE_DIR: preview-consumer-evidence
         run: node my-timber-preview-iphone-safari.mjs
+
+      - name: Prove the consumer journey on desktop Chrome and Safari
+        run: |
+          PREVIEW_BROWSER_PROFILE=desktop-chrome PREVIEW_EVIDENCE_DIR=preview-desktop-chrome node my-timber-preview-iphone-safari.mjs
+          PREVIEW_BROWSER_PROFILE=desktop-safari PREVIEW_EVIDENCE_DIR=preview-desktop-safari node my-timber-preview-iphone-safari.mjs
 
       - name: Package the recording for iPhone playback
         run: |
@@ -243,6 +248,17 @@ jobs:
         with:
           name: shift-consumer-preview-iphone-safari
           path: preview-consumer-evidence
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload desktop Chrome and Safari evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-consumer-preview-desktop
+          path: |
+            preview-desktop-chrome
+            preview-desktop-safari
           if-no-files-found: error
           retention-days: 30
 
