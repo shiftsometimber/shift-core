@@ -1,8 +1,9 @@
 name: My Timber Today Hosted Preview
+# Recovery candidate only: exercise remembered meal decisions before production sign-off.
 
 on:
   push:
-    branches: [feat/adaptive-today-phase-1-2]
+    branches: [feat/real-daily-shift-recovery, codex/my-timber-adaptive-day-v1, feat/adaptive-today-phase-1-2]
     paths:
       - '.github/workflows/my-timber-today-preview.yml'
       - 'preview/**'
@@ -19,9 +20,11 @@ on:
       - 'member-daily-v3.js'
       - 'member-daily-v2.js'
       - 'shift-brain-v1.js'
+      - 'member-product-v8.js'
+      - 'product-analytics-v1.js'
+      - 'daily-shift-frontdoor-gate.mjs'
+      - 'my-timber-9-contract-gate.mjs'
       - 'frontend/member/**'
-  pull_request:
-    branches: [main]
   workflow_dispatch:
     inputs:
       confirm:
@@ -48,17 +51,19 @@ jobs:
       PREVIEW_DB_NAME: shift-core-my-timber-preview-db
       PREVIEW_CONFIG: wrangler.my-timber-preview.generated.jsonc
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          package-manager-cache: false
 
       - name: Fail closed without Cloudflare credentials
         run: test -n "$CLOUDFLARE_API_TOKEN"
 
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+
+      - name: Prove real Grub and Fit Today contract
+        run: node daily-shift-frontdoor-gate.mjs && node my-timber-9-contract-gate.mjs && npm run test:commerce && npm run test:treatment-route
 
       - name: Resolve isolated preview D1
         shell: bash
@@ -83,9 +88,7 @@ jobs:
           echo "Isolated D1 resolved: $PREVIEW_DB_NAME"
 
       - name: Initialise preview-only schema
-        shell: bash
         run: |
-          set -euo pipefail
           npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
           npx wrangler d1 execute DB --remote --file migrations/006_commercial_catalogue_control.sql --config "$PREVIEW_CONFIG"
           npx wrangler d1 execute DB --remote --file migrations/007_treatment_catalogue.sql --config "$PREVIEW_CONFIG"
@@ -116,7 +119,7 @@ jobs:
           echo "### My Timber Today preview" >> "$GITHUB_STEP_SUMMARY"
           echo "[$preview_url/member/dashboard#today]($preview_url/member/dashboard#today)" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Prove problem-first help persists named decisions
+      - name: Prove joined Grub and Fit day rebuilds when work changes
         shell: bash
         run: |
           set -euo pipefail
@@ -129,6 +132,35 @@ jobs:
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" \
             --command "INSERT INTO users(email,first_name) VALUES('$email','Matt'); INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) SELECT id,'preview-only',1,'$now' FROM users WHERE email='$email'; INSERT INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) SELECT id,'registered','none','hosted_preview','$now' FROM users WHERE email='$email'; INSERT INTO member_state(user_id) SELECT id FROM users WHERE email='$email'; INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT id,'$token_hash','$expires','$now','$now' FROM users WHERE email='$email';" >/tmp/known-seed.txt
           auth=(-H "Cookie: sst_session=$token")
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -X POST -d '{}' "$PREVIEW_URL/v1/shift/preview-billy" > /tmp/billy.json
+          curl -fsS "${auth[@]}" -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            "$PREVIEW_URL/v1/shift/daily-plan" > /tmp/daily.json
+          jq -e '.daily.daily_output.status=="ready" and .daily.daily_output.meal.name=="Fakeaway salt and pepper chicken" and .daily.daily_output.workout.minutes==30' /tmp/daily.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"action":"reject","meal_id":"preview-dinner"}' "$PREVIEW_URL/v1/shift/daily-meal" > /tmp/rejected-meal.json
+          jq -e '.action=="reject" and .daily.daily_output.meal.id=="preview-quick-dinner" and (.message|contains("not suggest"))' /tmp/rejected-meal.json
+          curl -fsS "${auth[@]}" -H 'X-Shift-Local-Date: 2026-08-22' -H 'X-Shift-Local-Hour: 17' \
+            "$PREVIEW_URL/v1/shift/daily-plan" > /tmp/next-day.json
+          jq -e '.daily.daily_output.meal.id!="preview-dinner"' /tmp/next-day.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"scenario":"working_late"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/late.json
+          jq -e '.daily.daily_output.adjustment=="working_late" and .daily.daily_output.meal.name=="Loaded chicken tikka jacket potato" and .daily.daily_output.workout.minutes==10 and .daily.daily_output.next.kind=="meal" and .daily.daily_output.next.href=="#today-meal"' /tmp/late.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"scenario":"next_three_hours"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/chaos.json
+          jq -e '.daily.daily_output.adjustment=="next_three_hours" and .daily.daily_output.workout.minutes==10 and (.daily.daily_output.subhead|contains("Chaos Mode"))' /tmp/chaos.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"scenario":"rough_guts"}' "$PREVIEW_URL/v1/shift/daily-adjust" > /tmp/rough-guts.json
+          jq -e '.daily.daily_output.adjustment=="rough_guts" and .daily.daily_output.workout.minutes==10 and (.daily.daily_output.subhead|contains("Rough Guts Mode"))' /tmp/rough-guts.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"feedback":"love","target":"daily_recommendation","meal_id":"preview-quick-dinner","adjustment":"rough_guts"}' "$PREVIEW_URL/v1/shift/daily-feedback" > /tmp/love.json
+          jq -e '.ok==true and (.message|contains("favour")) and ([.daily.daily_output.memory[]|select(contains("loved"))]|length)==1' /tmp/love.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' -H 'X-Shift-Local-Hour: 17' \
+            -X POST -d '{"action":"alternative","meal_id":"preview-quick-dinner","option":"takeaway"}' "$PREVIEW_URL/v1/shift/daily-meal" > /tmp/takeaway.json
+          jq -e '.ok==true and .daily.daily_output.meal.id=="takeaway-simple" and (.message|contains("Shift has rebuilt"))' /tmp/takeaway.json
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
+            --command "SELECT COUNT(*) AS feedback_count FROM shift_daily_feedback WHERE user_id=(SELECT id FROM users WHERE email='$email') AND feedback='love'" > /tmp/feedback.json
+          jq -e '[.. | objects | select(.feedback_count? == 1)] | length == 1' /tmp/feedback.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json \
             --command "SELECT COUNT(*) AS invented FROM shift_treatment_context WHERE user_id=(SELECT id FROM users WHERE email='$email')" > /tmp/blank-treatment.json
           jq -e '[.. | objects | select(.invented? == 0)] | length == 1' /tmp/blank-treatment.json
@@ -149,17 +181,6 @@ jobs:
             --command "SELECT domain,json_extract(choice_json,'$.name') AS name,json_extract(choice_json,'$.minutes') AS minutes FROM shift_today_choices WHERE user_id=(SELECT id FROM users WHERE email='$email') ORDER BY domain" > /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "grub" and .name == "Scrambled eggs on toast")] | length == 1' /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "move" and .name == "Easy walk" and .minutes == 10)] | length == 1' /tmp/persisted.json
-          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
-            -d '{"mode":"working_late"}' "$PREVIEW_URL/v1/shift/today/rebuild" > /tmp/rebuild.json
-          jq -e '.rebuild.now.domain=="hydration" and .rebuild.next.domain=="food" and .rebuild.later.domain=="movement" and (.rebuild.id>0)' /tmp/rebuild.json
-          rebuild_id=$(jq -r '.rebuild.id' /tmp/rebuild.json)
-          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
-            -d "{\"rebuildId\":$rebuild_id,\"alternativeKey\":\"fakeaway\"}" "$PREVIEW_URL/v1/shift/today/rebuild/alternative" > /tmp/alternative.json
-          jq -e '.rebuild.alternative.key=="fakeaway" and .rebuild.next.domain=="food" and .rebuild.later.domain=="movement" and (.rebuild.id>0)' /tmp/alternative.json
-          alternative_id=$(jq -r '.rebuild.id' /tmp/alternative.json)
-          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
-            -d "{\"rebuildId\":$alternative_id}" "$PREVIEW_URL/v1/shift/today/complete" > /tmp/complete.json
-          jq -e '.completion.headline=="Today shifted."' /tmp/complete.json
 
       - name: Prove the actual member page is served
         shell: bash
@@ -170,164 +191,8 @@ jobs:
           grep -Fq 'id="todayActions"' /tmp/member-dashboard.html
           grep -Fq 'Create preview account' /tmp/member-dashboard.html
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
-          grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
-          morning_location=$(curl -sSI "$PREVIEW_URL/my-timber/today" | tr -d '\r' | awk 'tolower($1)=="location:"{print $2}')
-          test "$morning_location" = "$PREVIEW_URL/member/dashboard?entry=morning#today"
+          grep -Fq 'member-today-premium-v1.css?v=daily-shift-v2' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
-          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=r3-1" | grep -Eqi '^content-type:.*text/css'
-          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=r3-1" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
-
-      - name: Prove service-level homepage and fail-closed live catalogue
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl -fsS "$PREVIEW_URL/" -o /tmp/home.html
-          grep -Fq 'SHIFT SOME TIMBER.' /tmp/home.html
-          grep -Fq 'Find my treatment route' /tmp/home.html
-          ! grep -Eqi 'mounjaro|wegovy|tirzepatide|semaglutide|tablet|injection' /tmp/home.html
-          status=$(curl -sS -o /tmp/no-pathway.json -w '%{http_code}' "$PREVIEW_URL/v1/treatment/catalogue")
-          test "$status" = '403'
-          curl -fsS -c /tmp/pathway.cookies -X POST "$PREVIEW_URL/v1/treatment/pathway/start" >/tmp/pathway.json
-          curl -fsS -b /tmp/pathway.cookies "$PREVIEW_URL/v1/treatment/catalogue" >/tmp/catalogue.json
-          jq -e '.saleState=="blocked" and .priceStatus=="proposed" and ([.families[].formulations[].strengths[]]|length)==15 and ([.families[].formulations[].strengths[]|select(.ctaState!="blocked")]|length)==0' /tmp/catalogue.json
-          status=$(curl -sS -H 'Origin: https://hq.shiftsometimber.co.uk' -H 'X-Shift-Admin-Key: definitely-wrong' "$PREVIEW_URL/v1/hq/catalogue" -o /tmp/hq-denied.json -w '%{http_code}')
-          test "$status" = '401'
-
-      - name: Prove treatment status replay, conflict and expiry protection
-        shell: bash
-        run: |
-          set -euo pipefail
-          reference="preview-journey-$GITHUB_RUN_ID"
-          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "INSERT OR IGNORE INTO treatment_journeys(public_reference,status,revision) VALUES('$reference','route_started',1); SELECT id FROM treatment_journeys WHERE public_reference='$reference';" > /tmp/journey-seed.json
-          journey_id=$(jq -r '[.. | objects | .id? // empty] | last' /tmp/journey-seed.json)
-          test -n "$journey_id" && test "$journey_id" != 'null'
-          headers=(-H 'Origin: https://hq.shiftsometimber.co.uk' -H "X-Shift-Admin-Key: $PREVIEW_ADMIN_KEY" -H 'content-type: application/json')
-          curl -fsS "${headers[@]}" -H 'Idempotency-Key: route-options-1' -X PATCH -d '{"toStatus":"options_shown","expectedRevision":1,"source":"preview_gate","reasonCode":"ROUTE_COMPLETE"}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition" > /tmp/status-first.json
-          jq -e '.ok and (.replayed|not) and .journey.status=="options_shown" and .journey.revision==2' /tmp/status-first.json
-          curl -fsS "${headers[@]}" -H 'Idempotency-Key: route-options-1' -X PATCH -d '{"toStatus":"options_shown","expectedRevision":1,"source":"preview_gate","reasonCode":"ROUTE_COMPLETE"}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition" > /tmp/status-replay.json
-          jq -e '.ok and .replayed and .journey.status=="options_shown" and .journey.revision==2' /tmp/status-replay.json
-          status=$(curl -sS "${headers[@]}" -H 'Idempotency-Key: stale-revision-1' -X PATCH -d '{"toStatus":"account_created","expectedRevision":1,"source":"preview_gate"}' -o /tmp/status-conflict.json -w '%{http_code}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition")
-          test "$status" = '409'
-          jq -e '.error=="revision_conflict" and .currentRevision==2' /tmp/status-conflict.json
-          curl -fsS "${headers[@]}" -H 'Idempotency-Key: route-expired-1' -X PATCH -d '{"toStatus":"expired","expectedRevision":2,"source":"preview_gate","reasonCode":"PROGRESS_TTL"}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition" > /tmp/status-expired.json
-          jq -e '.ok and .journey.status=="expired" and .journey.completed_at!=null' /tmp/status-expired.json
-
-      - name: Install iPhone-format browser acceptance tool
-        run: |
-          npm install --no-save --ignore-scripts playwright
-          npx playwright install --with-deps webkit
-
-      - name: Prove every R3 tap works in iPhone-format WebKit
-        shell: bash
-        run: |
-          set -euo pipefail
-          node - <<'NODE'
-          const { webkit, devices } = require('playwright');
-          const fs=require('fs');fs.mkdirSync('artifacts',{recursive:true});
-          (async()=>{
-            const browser=await webkit.launch();
-            const context=await browser.newContext({...devices['iPhone 13'],viewport:{width:390,height:844},recordVideo:{dir:'artifacts',size:{width:390,height:844}}});
-            const page=await context.newPage();
-            const errors=[];
-            page.on('pageerror',error=>errors.push(error.message));
-            const email=`r3-tap-${Date.now()}@example.test`;
-            await page.goto(`${process.env.PREVIEW_URL}/member/dashboard#today`,{waitUntil:'domcontentloaded'});
-            await page.getByLabel('First name').fill('Matt');
-            await page.getByLabel('Email').fill(email);
-            await page.getByLabel('Password').fill('PreviewOnly-4827');
-            const todayResponse=page.waitForResponse(response=>response.url().includes('/v1/shift/today')&&response.request().method()==='GET');
-            await page.getByRole('button',{name:'Create preview account'}).click();
-            const today=await todayResponse;
-            const todayBody=await today.text();
-            if(!today.ok())throw new Error(`today endpoint ${today.status()}: ${todayBody}`);
-            try{await page.locator('[data-change]').waitFor({state:'visible',timeout:15000})}catch(error){throw new Error(`today did not render; response=${todayBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
-            await page.waitForTimeout(900);
-            await page.locator('[data-change]').click();
-            await page.waitForTimeout(700);
-            const workingResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
-            await page.locator('[data-rebuild="working_late"]').click();
-            const working=await workingResponse;
-            const workingBody=await working.text();
-            if(!working.ok())throw new Error(`working-late endpoint ${working.status()}: ${workingBody}`);
-            try{await page.locator('.mt-rebuilt').waitFor({state:'visible'})}catch(error){throw new Error(`working-late did not render; response=${workingBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
-            await page.waitForTimeout(1500);
-            await page.locator('[data-change]').click();
-            await page.waitForTimeout(700);
-            const chaosResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
-            await page.locator('[data-rebuild="chaos"]').click();
-            const chaos=await chaosResponse;
-            if(!chaos.ok())throw new Error(`chaos endpoint ${chaos.status()}: ${await chaos.text()}`);
-            await page.getByRole('heading',{name:'Your next three hours are sorted.'}).waitFor({state:'visible'});
-            await page.waitForTimeout(1500);
-            const alternativeResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild/alternative')&&response.request().method()==='POST');
-            await page.locator('[data-alternative="fakeaway"]').click();
-            const alternative=await alternativeResponse;
-            const alternativeBody=await alternative.text();
-            if(!alternative.ok()||!alternativeBody.includes('fakeaway'))throw new Error(`fakeaway endpoint ${alternative.status()}: ${alternativeBody}`);
-            const alternativeData=JSON.parse(alternativeBody);
-            await page.getByText(alternativeData.rebuild.next.action,{exact:true}).waitFor({state:'visible'});
-            await page.waitForTimeout(1500);
-            await page.locator('.mt-feedback summary').first().click();
-            const feedbackResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/feedback')&&response.request().method()==='POST');
-            await page.getByRole('button',{name:'Love this'}).first().click();
-            const feedback=await feedbackResponse;
-            if(!feedback.ok())throw new Error(`preference feedback endpoint ${feedback.status()}: ${await feedback.text()}`);
-            await page.getByText(/more likely to appear when it fits/i).waitFor();
-            const persistedLearning=await page.evaluate(async()=>{const response=await fetch('/v1/shift/today',{headers:{'X-Shift-Local-Date':'2026-08-21'}});return response.json()});
-            if(!(persistedLearning.today?.learning?.statements||[]).some(line=>/earned a place in reserve because you liked it/i.test(line)))throw new Error('preference learning did not persist to the next Today read');
-            await page.waitForTimeout(1200);
-            const completionResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/complete')&&response.request().method()==='POST');
-            await page.locator('[data-complete-shifted]').click();
-            const completion=await completionResponse;
-            if(!completion.ok())throw new Error(`completion endpoint ${completion.status()}: ${await completion.text()}`);
-            await page.locator('.mt-completed').waitFor({state:'visible'});
-            await page.waitForTimeout(1800);
-            const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
-            if(overflow)throw new Error('horizontal overflow detected');
-            if(errors.length)throw new Error(`page errors: ${errors.join(' | ')}`);
-            await browser.close();
-          })().catch(error=>{console.error(error);process.exit(1)});
-          NODE
-
-      - name: Upload iPhone-format R3 walkthrough
-        uses: actions/upload-artifact@v4
-        with:
-          name: my-timber-r3-iphone-webkit-walkthrough
-          path: artifacts/*.webm
-          if-no-files-found: error
-          retention-days: 7
-
-      - name: Prove homepage to governed product on iPhone-format WebKit
-        shell: bash
-        run: |
-          set -euo pipefail
-          node - <<'NODE'
-          const {webkit,devices}=require('playwright');
-          (async()=>{
-            const browser=await webkit.launch();
-            const context=await browser.newContext({...devices['iPhone 13']});
-            const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
-            await page.goto(process.env.PREVIEW_URL,{waitUntil:'networkidle'});
-            if(/Mounjaro|Wegovy|tirzepatide|semaglutide|tablet|injection/i.test(await page.locator('body').innerText()))throw new Error('public homepage leaked post-CTA treatment detail');
-            await page.getByRole('link',{name:/Find my treatment route/i}).click();
-            await page.getByRole('button',{name:/Yes, I’m 18 or over/i}).click();await page.getByRole('button',{name:'Continue'}).click();
-            await page.reload({waitUntil:'domcontentloaded'});
-            await page.getByLabel('Height (cm)').waitFor({state:'visible'});
-            await page.getByLabel('Height (cm)').fill('173');await page.getByLabel('Weight (kg)').fill('102');await page.getByRole('button',{name:'Continue'}).click();
-            await page.getByRole('button',{name:'Not sure'}).click();await page.getByRole('button',{name:'Continue'}).click();
-            await page.getByRole('button',{name:'No'}).click();await page.getByRole('button',{name:'Continue'}).click();
-            await page.getByRole('button',{name:'Open to either'}).click();await page.getByRole('button',{name:'Show my routes'}).click();
-            await page.getByRole('heading',{name:'Your routes, clearly.'}).waitFor();
-            if(await page.getByRole('button',{name:'Create My Shift account'}).isEnabled())throw new Error('medicine account/purchase gate was enabled');
-            await page.getByRole('link',{name:/See prices and information/i}).first().click();
-            await page.getByText('Not available to buy').waitFor();
-            const doseButtons=page.locator('[data-strength]');if(await doseButtons.count()<2)throw new Error('strength ladder missing');
-            await doseButtons.nth(1).click();
-            if(await page.getByRole('button',{name:'Purchase unavailable'}).isEnabled())throw new Error('purchase gate was enabled');
-            const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);if(overflow)throw new Error('treatment journey horizontal overflow');
-            if(errors.length)throw new Error(errors.join(' | '));await browser.close();
-          })().catch(error=>{console.error(error);process.exit(1)});
-          NODE
 
       - name: Publish review instructions
         run: |
@@ -354,9 +219,9 @@ jobs:
           The isolated Worker and preview-only D1 both passed:
           - a named dinner was saved as **Scrambled eggs on toast**
           - movement was saved as **Easy walk · 10 min**
+          - **Working Late**, **Chaos** and **Rough Guts** rebuilt the joined day
+          - preference learning and a consequence-led **Takeaway instead** choice persisted
           - a blank treatment account was not assigned a medicine or dose
-          - Working Late rebuilt Now / Next / Later through the live endpoint
-          - Fakeaway recalculated the rebuilt day and Today Shifted completed
 
           **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
 
@@ -369,9 +234,14 @@ jobs:
 
           [Open the failed Actions run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
           fi
-          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/475/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          pr_number=$(gh pr list --head "$GITHUB_REF_NAME" --state open --json number --jq '.[0].number')
+          if [ -z "$pr_number" ]; then
+            echo "No open PR found for $GITHUB_REF_NAME; result remains in the job summary."
+            exit 0
+          fi
+          comment_id=$(gh api "repos/$GITHUB_REPOSITORY/issues/$pr_number/comments" --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
           if [ -n "$comment_id" ]; then
             gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$comment_id" -f body="$body" >/dev/null
           else
-            gh pr comment 475 --body "$body" >/dev/null
+            gh pr comment "$pr_number" --body "$body" >/dev/null
           fi

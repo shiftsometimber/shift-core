@@ -108,11 +108,12 @@ CREATE TABLE IF NOT EXISTS pharmacy_orders (
 CREATE TABLE IF NOT EXISTS products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
-  sku TEXT NOT NULL UNIQUE,
-  product_type TEXT NOT NULL DEFAULT 'physical',
-  price_pence INTEGER NOT NULL DEFAULT 0,
-  status TEXT NOT NULL DEFAULT 'draft',
-  description TEXT,
+  slug TEXT NOT NULL UNIQUE,
+  category TEXT NOT NULL,
+  active INTEGER NOT NULL DEFAULT 1,
+  price_pence INTEGER,
+  stock_count INTEGER NOT NULL DEFAULT 0,
+  metadata_json TEXT NOT NULL DEFAULT '{}',
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -163,16 +164,57 @@ CREATE TABLE IF NOT EXISTS shift_treatment_context (
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS shift_plans (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  plan_type TEXT NOT NULL,
+  starts_on TEXT NOT NULL,
+  ends_on TEXT,
+  status TEXT NOT NULL DEFAULT 'active',
+  plan_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS hydration_log (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  contribution_ml INTEGER NOT NULL DEFAULT 0,
+  logged_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS product_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER,
+  event_name TEXT NOT NULL,
+  surface TEXT NOT NULL,
+  session_id TEXT,
+  source TEXT NOT NULL DEFAULT 'server',
+  occurred_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  properties_json TEXT NOT NULL DEFAULT '{}',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS shift_daily_feedback (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  local_date TEXT NOT NULL,
+  target TEXT NOT NULL,
+  feedback TEXT NOT NULL,
+  context_json TEXT NOT NULL DEFAULT '{}',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX IF NOT EXISTS idx_sessions_token ON user_sessions(token_hash);
 CREATE INDEX IF NOT EXISTS idx_progress_user ON progress_entries(user_id, recorded_on);
 CREATE INDEX IF NOT EXISTS idx_cases_user ON cases(user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_user ON pharmacy_orders(user_id);
 CREATE INDEX IF NOT EXISTS idx_shift_today_choices_user_date ON shift_today_choices(user_id, local_date);
+CREATE INDEX IF NOT EXISTS idx_shift_daily_feedback_user_date ON shift_daily_feedback(user_id, local_date);
 
 CREATE TABLE IF NOT EXISTS treatment_pathway_sessions (
   token_hash TEXT PRIMARY KEY,
-  started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   expires_at TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   last_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_treatment_pathway_expiry ON treatment_pathway_sessions(expires_at);

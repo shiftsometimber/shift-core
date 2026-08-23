@@ -150,6 +150,15 @@ jobs:
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
         run: node g4-008-proactive-today-production.mjs
+      - name: Record and prove the final authenticated Billy phone journey
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
+        run: |
+          node my-timber-final-production.mjs
+          ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
       - name: Upload G2-001 Today evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -157,6 +166,14 @@ jobs:
           name: g2-001-today-evidence
           path: g2-001-today-evidence
           if-no-files-found: warn
+          retention-days: 30
+      - name: Upload My Timber production candidate and phone video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-final-production-candidate
+          path: my-timber-final-evidence
+          if-no-files-found: error
           retention-days: 30
 
   g3-premium-system-production:

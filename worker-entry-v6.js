@@ -28,6 +28,7 @@ import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
 import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
+import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {commercialHqRoutes} from './commercial-hq-v1.js';
 import {treatmentPathwayRoutes} from './treatment-pathway-v1.js';
 import {treatmentOperationsRoutes} from './treatment-operations-v1.js';
@@ -46,6 +47,13 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/treatment-options','text/html; charset=utf-8'],
   ['/treatment-product-v1.js','application/javascript; charset=utf-8'],
   ['/treatment-product','text/html; charset=utf-8'],
+  ['/member-grub-programme-v1.js','application/javascript; charset=utf-8'],
+  ['/member-grub-programme-v1.css','text/css; charset=utf-8'],
+  ['/member-grub.html','text/html; charset=utf-8'],
+  ['/member-fit-programme-v1.js','application/javascript; charset=utf-8'],
+  ['/member-fit-programme-v1.css','text/css; charset=utf-8'],
+  ['/shift-push-sw-v1.js','application/javascript; charset=utf-8'],
+  ['/member-fit.html','text/html; charset=utf-8'],
   ['/member-shell-v33g.js','application/javascript; charset=utf-8'],
   ['/member-progress-v1.js','application/javascript; charset=utf-8'],
   ['/member-progress-picture-premium-v1.js','application/javascript; charset=utf-8'],
@@ -53,6 +61,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-plans-premium-v1.css','text/css; charset=utf-8'],
   ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-today-premium-v1.css','text/css; charset=utf-8'],
+  ['/member-today-final-v1.css','text/css; charset=utf-8'],
   ['/member-my-timber-problem-v1.js','application/javascript; charset=utf-8'],
   ['/shift-me-api-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.js','application/javascript; charset=utf-8'],
@@ -65,13 +74,14 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-sport-v1.css','text/css; charset=utf-8']
 ]);
 function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/treatment/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
-function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
+function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
   const contentType=GIT_MEMBER_ASSETS.get(path)||(/^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)?'image/svg+xml; charset=utf-8':null);if(!env.MEMBER_ASSETS||!contentType)return null;
   const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
   if(!asset.ok)return new Response('member asset unavailable',{status:502,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
   const headers=new Headers(asset.headers);headers.set('Content-Type',contentType);headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Content-Type-Options','nosniff');headers.set('X-Shift-Frontend-Authority',`git:frontend/member${path}`);
+  if(path==='/shift-push-sw-v1.js'){headers.set('Service-Worker-Allowed','/');headers.set('Cache-Control','no-cache')}
   return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});
 }
 function deferAnalytics(ctx,work,label){
@@ -100,8 +110,8 @@ export default {
       if(!env.MEMBER_ASSETS)return new Response('Treatment route unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/treatment-route',request.url),request));
     }
-    if((request.method==='GET'||request.method==='HEAD')&&path==='/'){
-      if(!env.MEMBER_ASSETS)return new Response('homepage unavailable',{status:503});
+    if((request.method==='GET'||request.method==='HEAD')&&path==='/public-home'){
+      if(!env.MEMBER_ASSETS)return new Response('Homepage unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/public-home-v1',request.url),request));
     }
     if((request.method==='GET'||request.method==='HEAD')&&path==='/my-timber/today')return Response.redirect(new URL('/member/dashboard?entry=morning#today',request.url),302);
@@ -113,7 +123,15 @@ export default {
       if(!env.MEMBER_ASSETS)return new Response('Treatment information unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/treatment-product',request.url),request));
     }
-    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-register'||path==='/my-timber-preview')){
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/grub'||path==='/member/grub.html'||path==='/member-grub')){
+      if(!env.MEMBER_ASSETS)return new Response('Grub unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/member-grub',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/fit'||path==='/member/fit.html'||path==='/member-fit')){
+      if(!env.MEMBER_ASSETS)return new Response('Fit unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/member-fit',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/'||path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-register'||path==='/my-timber-preview')){
       if(!env.MEMBER_ASSETS)return new Response('preview shell unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/my-timber-preview',request.url),request));
     }
@@ -148,6 +166,7 @@ export default {
     if(authRecovery)return withMemberCors(authRecovery,request);
 
     const fastMemberState=await fastMemberStateRoute(request,env);if(fastMemberState)return withMemberCors(fastMemberState,request);
+    const fitReminders=await fitReminderRoutes(request,env,ctx);if(fitReminders)return withMemberCors(fitReminders,request);
     const healthErasure=await privacyHealthErasureRoute(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));if(healthErasure)return withMemberCors(healthErasure,request);
     const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const sportClubhouse=await sportClubhouseRoutes(request,env);if(sportClubhouse)return withMemberCors(sportClubhouse,request);
@@ -169,7 +188,7 @@ export default {
     return isMemberProductPath(path)?withMemberCors(fallback,request):fallback;
   },
   async scheduled(controller,env,ctx){
-    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env),runKnowledgeFlywheel(env,{limit:1000})])
+    const job=Promise.all([runScheduledIntelligence(env),runRadarScheduledScan(env),runKnowledgeFlywheel(env,{limit:1000}),runFitMorningReminders(env)])
       .then(r=>console.log('shift_scheduled_intelligence',JSON.stringify(r)))
       .catch(e=>console.error('shift_scheduled_intelligence_failed',e?.message));
     if(ctx?.waitUntil)ctx.waitUntil(job); else await job;

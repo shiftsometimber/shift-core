@@ -1,0 +1,66 @@
+name: My Timber Final Production Candidate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/my-timber-final-production.yml'
+      - 'my-timber-final-production.mjs'
+      - 'frontend/member/member-my-timber-problem-v1.js'
+      - 'frontend/member/member-today-final-v1.css'
+      - 'frontend/member/member-shell-v33g.js'
+      - 'frontend/member/member-progress-v1.js'
+      - 'member-product-v8.js'
+      - 'commissioning-identity-v1.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: my-timber-final-production
+  cancel-in-progress: false
+
+jobs:
+  billy-iphone-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Install phone journey browser
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Install MP4 evidence encoder
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Wait for the production identity policy to settle
+        run: sleep 75
+      - name: Record and prove Billy's live production journey
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
+        run: |
+          node my-timber-final-production.mjs
+          ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
+      - name: Upload production candidate and phone video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-final-production-candidate
+          path: my-timber-final-evidence
+          if-no-files-found: error
+          retention-days: 30

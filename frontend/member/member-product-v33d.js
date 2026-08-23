@@ -142,7 +142,11 @@ function syncWeightInputs(){
  ['photoWeightStoneWrap','photoWeightKgWrap','photoWeightLbWrap'].forEach(id=>{const e=$('#'+id);if(e)e.style.display='none'});
  const target=unit==='kg'?'#photoWeightKgWrap':unit==='lb'?'#photoWeightLbWrap':'#photoWeightStoneWrap';if($(target))$(target).style.display='grid';
 }
-function activate(name){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+name));history.replaceState(null,'','#'+name)}
+function revealPanel(name){
+ const panel=$('#panel-'+name);if(!panel)return;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>panel.scrollIntoView({behavior:'auto',block:'start',inline:'nearest'})));
+}
+function activate(name){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+name));history.replaceState(null,'','#'+name);revealPanel(name)}
 async function load(){
  try{
   await SST_API.getMe();
@@ -255,25 +259,16 @@ async function handleMealVote(btn){
  }catch(e){btn.disabled=false;btn.textContent='👎 Nay — swap it';status('#grubStatus',e.message||'Could not swap that meal.',true)}
 }
 window.addEventListener('DOMContentLoaded',()=>{
- document.addEventListener('click',async e=>{const b=e.target.closest('[data-vote]');if(b)handleMealVote(b);const f=e.target.closest('[data-fit-vote]');if(f)handleFitVote(f);const d=e.target.closest('[data-photo-delete]');if(d){d.disabled=true;try{await SST_API.deleteProgressPhoto(d.dataset.photoDelete);await loadSavedPhotos();status('#visualStatus','Photo deleted.');}catch(err){d.disabled=false;status('#visualStatus',err.message||'Could not delete that photo.',true)}}});
- setupMeasurementDropdowns();
- $$('.mp-tab').forEach(b=>b.onclick=()=>activate(b.dataset.panel));
- const hash=location.hash.slice(1);activate(['today','grub','fit','water','conundrum','plans','ai','visualise','shiftme','lifeback','medicines'].includes(hash)?hash:'today');
- $('#grubGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateGrub({days:Number($('#grubDays').value)||7,preferences:$('#grubPrefs').value||undefined}),'#grubStatus','#grubOutput','Building your Grub plan');
- $('#fitGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateFit({days:Number($('#fitDays').value)||3,minutes_per_day:Number($('#fitMinutes').value)||30,location:$('#fitLocation').value,equipment:$('#fitEquipment').value,preferences:$('#fitPrefs').value||undefined,limitations:$('#fitPrefs').value||undefined}),'#fitStatus','#fitOutput','Building your Fit plan');
- $('#waterGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateHydration({}),'#waterStatus','#waterOutput','Refreshing your hydration guide'); $('#drinkLog').onclick=logDrink; loadHydration();
- $('#conundrumGo').onclick=e=>{const items=$('#conundrumItems').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean);run(e.currentTarget,()=>SST_API.conundrum({items}),'#conundrumStatus','#conundrumOutput','Checking what you’ve got')};
- const aiForm=$('#shiftAiForm'),aiInput=$('#shiftAiInput'),aiThread=$('#shiftAiThread'),aiSend=$('#shiftAiSend');
- function aiMessage(role,text){const row=document.createElement('div');row.className='mp-ai-message '+role;row.innerHTML=`<strong>${role==='user'?'You':'Shift'}</strong><p>${esc(text)}</p>`;aiThread.appendChild(row);row.scrollIntoView({block:'nearest',behavior:'smooth'})}
- if(aiForm)aiForm.onsubmit=async e=>{e.preventDefault();const message=aiInput.value.trim();if(!message)return;aiMessage('user',message);aiInput.value='';aiSend.disabled=true;status('#shiftAiStatus','Shift is thinking…');try{const r=await SST_API.askShiftAI({message});aiMessage('assistant',r.answer||r.message||'I could not form a useful answer just then.');status('#shiftAiStatus',r.sources?.length?`Answered using ${r.sources.length} reviewed Shift source${r.sources.length===1?'':'s'}.`:'Answered from your current Shift context.')}catch(err){if(err.status===401){location.replace('/member-login?next='+encodeURIComponent('/member/dashboard#ai'));return}aiMessage('assistant',err.message||'I could not answer just then. Please try again.');status('#shiftAiStatus','Shift AI is unavailable just now.',true)}finally{aiSend.disabled=false;aiInput.focus()}};
- $('#shiftAiClear')?.addEventListener('click',()=>{aiThread.innerHTML='<div class="mp-ai-message assistant"><strong>Shift</strong><p>What would be useful right now?</p></div>';status('#shiftAiStatus','Cleared from this screen. Your saved Shift context is unchanged.')});
- $('#photoInput').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const img=$('#photoPreview');img.src=URL.createObjectURL(f);img.style.display='block';$('#visualConsentWrap').style.display='block'};
- $$('.visual-gen').forEach(b=>b.onclick=()=>generateVisual(b.dataset.visual));
- $('#saveOriginal').onclick=saveOriginal;
- $('#photoWeightUnit').onchange=syncWeightInputs; syncWeightInputs(); $('#photoWaistUnit').onchange=e=>localStorage.setItem('shiftWaistUnit',e.target.value);
- loadSavedPhotos();
+ document.addEventListener('click',async e=>{const b=e.target.closest('[data-vote]');if(b)handleMealV…30141 tokens truncated…ue,caseReference,next:key==='stopping'?'stopping_pathway':key==='side-effects'?'side_effects_pathway':null},200,request)}
 
- $('#visualConsent').onchange=e=>$$('.visual-gen').forEach(b=>b.disabled=!e.target.checked);
- load();
-});
-})();
+async function saveChoice(env,uid,date,domain,key,value){await env.DB.prepare(`INSERT INTO shift_today_choices(user_id,local_date,domain,choice_key,choice_json) VALUES(?,?,?,?,?) ON CONFLICT(user_id,local_date,domain) DO UPDATE SET choice_key=excluded.choice_key,choice_json=excluded.choice_json,updated_at=CURRENT_TIMESTAMP`).bind(uid,date,domain,key,JSON.stringify(value)).run()}
+async function previousCheckIn(env,uid,date){return await env.DB.prepare(`SELECT mood,guts,energy,local_date FROM shift_today_checkins WHERE user_id=? AND local_date<? ORDER BY local_date DESC LIMIT 1`).bind(uid,date).first()||{}}
+async function progressLine(env,uid){const rows=(await env.DB.prepare(`SELECT recorded_on,weight_kg,waist_cm,mood_score FROM progress_entries WHERE user_id=? ORDER BY recorded_on DESC,id DESC LIMIT 30`).bind(uid).all()).results||[];if(!rows.length)return{available:false,text:'Your useful number will appear after your first log.'};const latest=rows[0],oldWaist=rows.find(row=>Number(row.waist_cm)>0&&row!==latest),weight=Number(latest.weight_kg)>0?kgToStone(Number(latest.weight_kg)):null,waistDelta=oldWaist&&Number(latest.waist_cm)>0?Number(latest.waist_cm)-Number(oldWaist.waist_cm):null;const parts=[weight?`${weight.stone} st ${weight.lb} lb`:null,waistDelta&&waistDelta<0?`waist down ${Math.abs(waistDelta).toFixed(0)} cm`:null].filter(Boolean);return{available:true,text:parts.join(' · ')||'Your latest progress is saved.',weightKg:latest.weight_kg,waistCm:latest.waist_cm}}
+function kgToStone(kg){const lb=kg*2.2046226218,stone=Math.floor(lb/14);return{stone,lb:Math.round(lb-stone*14)}}
+async function authenticate(request,env,ctx){const response=await core.fetch(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!response.ok)return{response};return{user:(await response.json()).user}}
+function daypart(request){const supplied=Number(request.headers.get('X-Shift-Local-Hour')),hour=Number.isInteger(supplied)&&supplied>=0&&supplied<24?supplied:new Date().getUTCHours();return hour<12?'Morning':hour<18?'Afternoon':'Evening'}
+function foodMoment(request){const supplied=Number(request.headers.get('X-Shift-Local-Hour')),hour=Number.isInteger(supplied)&&supplied>=0&&supplied<24?supplied:new Date().getUTCHours();if(hour<9)return{key:'breakfast',label:'Breakfast',intro:'Let’s make the start of today easier.'};if(hour<12)return{key:'brunch',label:'Brunch or snack',intro:'Let’s sort what food needs doing next.'};if(hour<14)return{key:'lunch',label:'Lunch',intro:'Let’s steady the middle of today.'};if(hour<17)return{key:'snack',label:'Snack or dinner plan',intro:'Let’s make the rest of today easier.'};if(hour<21)return{key:'dinner',label:'Dinner',intro:'Here’s what matters tonight.'};return{key:'late',label:'Late bite or nothing',intro:'Let’s finish today without overthinking it.'}}
+function defer(ctx,promise){const guarded=promise.catch(error=>console.warn('my_timber_today_event_failed',error?.message));if(ctx?.waitUntil)ctx.waitUntil(guarded)}
+function respond(data,status,request){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...cors(request)}})}
+function cors(request){const origin=request.headers.get('Origin')||'',headers={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, PATCH, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(ORIGINS.has(origin))headers['Access-Control-Allow-Origin']=origin;return headers}
+function withCors(response,request){const headers=new Headers(response.headers);for(const[key,value]of Object.entries(cors(request)))headers.set(key,value);return new Response(response.body,{status:response.status,statusText:response.statusText,headers})}

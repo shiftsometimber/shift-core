@@ -5,6 +5,7 @@ const client=fs.readFileSync(new URL('../frontend/member/member-my-timber-proble
 const product=server+'\n'+client;
 for(const marker of ['shift_today_checkins','shift_today_choices','shift_treatment_context','my_timber_meal_saved','my_timber_move_saved'])assert.ok(server.includes(marker),`missing ${marker}`);
 for(const marker of ['What should I eat next?','My stomach feels rough','I have no energy','Help me move','Treatment question','I am struggling today','Show my plan'])assert.ok(client.includes(marker),`missing problem-first entry ${marker}`);
+for(const marker of ['Life changed?','Sort my next three hours','Guts playing up','Going to the pub','DO THIS NOW','NEXT · FOOD','LATER · MOVEMENT','Hang on…','sorting food…','shortening movement…','adjusting water…'])assert.ok(client.includes(marker),`missing adaptive day marker ${marker}`);
 for(const marker of ['getImmediateHelp','saveImmediateHelp','problem_first','help_action_not_savable'])assert.ok(server.includes(marker),`missing help contract ${marker}`);
 for(const marker of ['Why this helps','That is useful—and saved.','My Timber will remember this today instead of asking again.','Do not wait on an app.'])assert.ok(client.includes(marker),`missing useful outcome ${marker}`);
 for(const marker of ['treatmentSetup','saveShiftTreatmentContext','treatmentAction','askShiftAI','Get a useful answer','Checking Shift’s reviewed information'])assert.ok(client.includes(marker),`missing closure path ${marker}`);
