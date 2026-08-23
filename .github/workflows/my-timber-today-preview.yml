@@ -173,8 +173,12 @@ jobs:
             await page.getByLabel('First name').fill('Matt');
             await page.getByLabel('Email').fill(email);
             await page.getByLabel('Password').fill('PreviewOnly-4827');
+            const todayResponse=page.waitForResponse(response=>response.url().includes('/v1/shift/today')&&response.request().method()==='GET');
             await page.getByRole('button',{name:'Create preview account'}).click();
-            await page.locator('[data-change]').waitFor({state:'visible',timeout:15000});
+            const today=await todayResponse;
+            const todayBody=await today.text();
+            if(!today.ok())throw new Error(`today endpoint ${today.status()}: ${todayBody}`);
+            try{await page.locator('[data-change]').waitFor({state:'visible',timeout:15000})}catch(error){throw new Error(`today did not render; response=${todayBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
             await page.locator('[data-change]').click();
             const workingResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
             await page.locator('[data-rebuild="working_late"]').click();
