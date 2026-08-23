@@ -115,6 +115,10 @@ export default {
       if(!env.MEMBER_ASSETS)return new Response('Homepage unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/public-home-v1',request.url),request));
     }
+    if((request.method==='GET'||request.method==='HEAD')&&path==='/about'){
+      if(!env.MEMBER_ASSETS)return new Response('About unavailable',{status:503});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/about',request.url),request));
+    }
     if((request.method==='GET'||request.method==='HEAD')&&path==='/physical-iphone-signoff'){
       if(env.SHIFT_ENVIRONMENT!=='my-timber-preview'||env.PHYSICAL_IPHONE_SIGNOFF_ENABLED!=='true'||!env.MEMBER_ASSETS)return new Response('Not found',{status:404});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/physical-iphone-signoff',request.url),request));
