@@ -10,6 +10,7 @@ const checks={
   oneSection:/steps=\['adult','measurements','condition_pathway','treatment_history','previous_treatment_detail','preference','result'\]/.test(js),
   noContactGate:!/email|phone/.test(js),
   savedProgress:/sessionStorage/.test(js)&&/pageshow/.test(js),
+  expiringProgress:/PROGRESS_TTL/.test(js)&&/sessionStorage\.removeItem/.test(js),
   immediateResult:/state\.step==='result'/.test(js)&&/Your routes, clearly/.test(js),
   clinicalQualifier:/qualified clinician must review your full assessment/.test(js),
   noNamedPom:!/Mounjaro|Wegovy|Ozempic|tirzepatide|semaglutide/i.test(js+html),

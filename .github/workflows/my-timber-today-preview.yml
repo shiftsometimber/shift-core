@@ -14,6 +14,7 @@ on:
       - 'commercial-hq-v1.js'
       - 'treatment-catalogue-v1.js'
       - 'treatment-pathway-v1.js'
+      - 'treatment-operations-v1.js'
       - 'claims-library-v1.js'
       - 'member-daily-v3.js'
       - 'member-daily-v2.js'
@@ -72,6 +73,13 @@ jobs:
           fi
           test -n "$db_id" && test "$db_id" != "null"
           sed "s/__PREVIEW_D1_DATABASE_ID__/$db_id/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
+          preview_admin_key=$(openssl rand -hex 32)
+          node - "$PREVIEW_CONFIG" "$preview_admin_key" <<'NODE'
+          const fs=require('fs'),file=process.argv[2],key=process.argv[3],config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...(config.vars||{}),ADMIN_API_KEY:key};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          echo "PREVIEW_ADMIN_KEY=$preview_admin_key" >> "$GITHUB_ENV"
           echo "Isolated D1 resolved: $PREVIEW_DB_NAME"
 
       - name: Initialise preview-only schema
@@ -84,6 +92,7 @@ jobs:
           npx wrangler d1 execute DB --remote --file migrations/008_claims_library.sql --config "$PREVIEW_CONFIG"
           npx wrangler d1 execute DB --remote --file migrations/009_my_timber_learning.sql --config "$PREVIEW_CONFIG"
           npx wrangler d1 execute DB --remote --file migrations/010_treatment_catalogue_seed.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --file migrations/011_treatment_operations.sql --config "$PREVIEW_CONFIG"
 
       - name: Keep preview browser calls on the preview origin
         run: |
@@ -162,6 +171,8 @@ jobs:
           grep -Fq 'Create preview account' /tmp/member-dashboard.html
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
           grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
+          morning_location=$(curl -sSI "$PREVIEW_URL/my-timber/today" | tr -d '\r' | awk 'tolower($1)=="location:"{print $2}')
+          test "$morning_location" = "$PREVIEW_URL/member/dashboard?entry=morning#today"
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
           curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=r3-1" | grep -Eqi '^content-type:.*text/css'
           curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=r3-1" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
@@ -181,6 +192,25 @@ jobs:
           jq -e '.saleState=="blocked" and .priceStatus=="proposed" and ([.families[].formulations[].strengths[]]|length)==15 and ([.families[].formulations[].strengths[]|select(.ctaState!="blocked")]|length)==0' /tmp/catalogue.json
           status=$(curl -sS -H 'Origin: https://hq.shiftsometimber.co.uk' -H 'X-Shift-Admin-Key: definitely-wrong' "$PREVIEW_URL/v1/hq/catalogue" -o /tmp/hq-denied.json -w '%{http_code}')
           test "$status" = '401'
+
+      - name: Prove treatment status replay, conflict and expiry protection
+        shell: bash
+        run: |
+          set -euo pipefail
+          reference="preview-journey-$GITHUB_RUN_ID"
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "INSERT OR IGNORE INTO treatment_journeys(public_reference,status,revision) VALUES('$reference','route_started',1); SELECT id FROM treatment_journeys WHERE public_reference='$reference';" > /tmp/journey-seed.json
+          journey_id=$(jq -r '[.. | objects | .id? // empty] | last' /tmp/journey-seed.json)
+          test -n "$journey_id" && test "$journey_id" != 'null'
+          headers=(-H 'Origin: https://hq.shiftsometimber.co.uk' -H "X-Shift-Admin-Key: $PREVIEW_ADMIN_KEY" -H 'content-type: application/json')
+          curl -fsS "${headers[@]}" -H 'Idempotency-Key: route-options-1' -X PATCH -d '{"toStatus":"options_shown","expectedRevision":1,"source":"preview_gate","reasonCode":"ROUTE_COMPLETE"}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition" > /tmp/status-first.json
+          jq -e '.ok and (.replayed|not) and .journey.status=="options_shown" and .journey.revision==2' /tmp/status-first.json
+          curl -fsS "${headers[@]}" -H 'Idempotency-Key: route-options-1' -X PATCH -d '{"toStatus":"options_shown","expectedRevision":1,"source":"preview_gate","reasonCode":"ROUTE_COMPLETE"}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition" > /tmp/status-replay.json
+          jq -e '.ok and .replayed and .journey.status=="options_shown" and .journey.revision==2' /tmp/status-replay.json
+          status=$(curl -sS "${headers[@]}" -H 'Idempotency-Key: stale-revision-1' -X PATCH -d '{"toStatus":"account_created","expectedRevision":1,"source":"preview_gate"}' -o /tmp/status-conflict.json -w '%{http_code}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition")
+          test "$status" = '409'
+          jq -e '.error=="revision_conflict" and .currentRevision==2' /tmp/status-conflict.json
+          curl -fsS "${headers[@]}" -H 'Idempotency-Key: route-expired-1' -X PATCH -d '{"toStatus":"expired","expectedRevision":2,"source":"preview_gate","reasonCode":"PROGRESS_TTL"}' "$PREVIEW_URL/v1/hq/treatment-operations/$journey_id/transition" > /tmp/status-expired.json
+          jq -e '.ok and .journey.status=="expired" and .journey.completed_at!=null' /tmp/status-expired.json
 
       - name: Install iPhone-format browser acceptance tool
         run: |
@@ -243,6 +273,8 @@ jobs:
             const feedback=await feedbackResponse;
             if(!feedback.ok())throw new Error(`preference feedback endpoint ${feedback.status()}: ${await feedback.text()}`);
             await page.getByText(/more likely to appear when it fits/i).waitFor();
+            const persistedLearning=await page.evaluate(async()=>{const response=await fetch('/v1/shift/today',{headers:{'X-Shift-Local-Date':'2026-08-21'}});return response.json()});
+            if(!(persistedLearning.today?.learning?.statements||[]).some(line=>/good fit/i.test(line)))throw new Error('preference learning did not persist to the next Today read');
             await page.waitForTimeout(1200);
             const completionResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/complete')&&response.request().method()==='POST');
             await page.locator('[data-complete-shifted]').click();
@@ -279,6 +311,8 @@ jobs:
             if(/Mounjaro|Wegovy|tirzepatide|semaglutide|tablet|injection/i.test(await page.locator('body').innerText()))throw new Error('public homepage leaked post-CTA treatment detail');
             await page.getByRole('link',{name:/Find my treatment route/i}).click();
             await page.getByRole('button',{name:/Yes, I’m 18 or over/i}).click();await page.getByRole('button',{name:'Continue'}).click();
+            await page.reload({waitUntil:'domcontentloaded'});
+            await page.getByLabel('Height (cm)').waitFor({state:'visible'});
             await page.getByLabel('Height (cm)').fill('173');await page.getByLabel('Weight (kg)').fill('102');await page.getByRole('button',{name:'Continue'}).click();
             await page.getByRole('button',{name:'Not sure'}).click();await page.getByRole('button',{name:'Continue'}).click();
             await page.getByRole('button',{name:'No'}).click();await page.getByRole('button',{name:'Continue'}).click();

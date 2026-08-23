@@ -30,6 +30,7 @@ import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {commercialHqRoutes} from './commercial-hq-v1.js';
 import {treatmentPathwayRoutes} from './treatment-pathway-v1.js';
+import {treatmentOperationsRoutes} from './treatment-operations-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -103,6 +104,7 @@ export default {
       if(!env.MEMBER_ASSETS)return new Response('homepage unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/public-home-v1',request.url),request));
     }
+    if((request.method==='GET'||request.method==='HEAD')&&path==='/my-timber/today')return Response.redirect(new URL('/member/dashboard?entry=morning#today',request.url),302);
     if((request.method==='GET'||request.method==='HEAD')&&path==='/treatment-options'){
       if(!env.MEMBER_ASSETS)return new Response('Treatment options unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/treatment-options',request.url),request));
@@ -121,6 +123,7 @@ export default {
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
     const treatmentPathway=await treatmentPathwayRoutes(request,env);if(treatmentPathway)return treatmentPathway;
+    const treatmentOperations=await treatmentOperationsRoutes(request,env);if(treatmentOperations)return treatmentOperations;
     const commercialHq=await commercialHqRoutes(request,env);if(commercialHq)return commercialHq;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
