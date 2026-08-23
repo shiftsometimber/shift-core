@@ -196,7 +196,7 @@ jobs:
           const fs=require('fs');fs.mkdirSync('artifacts',{recursive:true});
           (async()=>{
             const browser=await webkit.launch();
-            const context=await browser.newContext({...devices['iPhone 13'],recordVideo:{dir:'artifacts',size:{width:390,height:844}}});
+            const context=await browser.newContext({...devices['iPhone 13'],viewport:{width:390,height:844},recordVideo:{dir:'artifacts',size:{width:390,height:844}}});
             const page=await context.newPage();
             const errors=[];
             page.on('pageerror',error=>errors.push(error.message));
