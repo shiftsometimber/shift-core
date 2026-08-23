@@ -7,10 +7,17 @@ const required=[
   ['withdrawal lock',"errors.push('withdrawn')"],
   ['verified evidence',"errors.push('verified_evidence_required')"],
   ['safe actions',"const NEXT_ACTIONS=new Set(['education','route_finder','member_support','urgent_help'])"],
-  ['governed claims','if(!claim)return null'],
+  ['governed claims','if(!claim||claim.key!==claimKey'],
+  ['claim lineage match','claim.key!==claimKey'],
   ['audit after resolution','INSERT INTO decision_outcome_audit'],
+  ['version-bound review','review_version_mismatch'],
+  ['evidence lineage','review_evidence_mismatch'],
+  ['content provenance','provenance_required'],
+  ['safe internal destinations','safe_destination_required'],
+  ['immutable outcome proof','INSERT INTO decision_outcome_proof'],
   ['stale proof',"test('stale review fails closed'"],
   ['missing-claim proof',"test('missing governed claim fails closed without outcome audit'"],
+  ['lineage proof test',"test('resolver emits governed outcome with lineage proof only when every claim resolves'"],
 ];
 for(const [name,needle] of required)if(!(source+'\n'+tests).includes(needle))throw new Error(`decision content gate missing ${name}`);
 console.log(`PASS governed decision-content foundation (${required.length} controls)`);

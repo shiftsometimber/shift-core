@@ -14,7 +14,7 @@
     "check:toolchain": "node toolchain-source-gate.mjs",
     "test:commerce": "node --test tests/commerce-stripe-v1.test.mjs tests/commercial-catalogue-v1.test.mjs tests/treatment-catalogue-v1.test.mjs tests/commercial-hq-v1.test.mjs tests/claims-library-v1.test.mjs",
     "test:adaptive-today": "node --test tests/adaptive-today-v1.test.mjs && node tests/adaptive-today-source-gate.mjs",
-    "test:treatment-route": "node --test tests/treatment-route-contract-v1.test.mjs tests/treatment-pathway-v1.test.mjs tests/treatment-operations-v1.test.mjs && node treatment-route-ui-source-gate.mjs && node treatment-operations-source-gate.mjs"
+    "test:treatment-route": "node --test tests/treatment-route-contract-v1.test.mjs tests/treatment-pathway-v1.test.mjs tests/treatment-operations-v1.test.mjs && node treatment-route-ui-source-gate.mjs && node treatment-operations-source-gate.mjs && node phase2-tablet-route-source-gate.mjs"
     ,"test:decision-content": "node --test tests/decision-content-v1.test.mjs && node decision-content-source-gate.mjs"
   },
   "devDependencies": {

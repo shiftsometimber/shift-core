@@ -62,6 +62,12 @@ export function treatmentHqSummary(rows=[]){
   return {total:rows.length,purchaseEnabled:0,purchaseBlocked:rows.length,allPurchasePathsLocked:true,blockerCounts};
 }
 
+export function tabletRouteHqSummary(rows=[]){
+  const tablet=rows.filter(row=>row.formulation==='daily_tablet'),blockerCounts={};
+  for(const row of tablet)for(const blocker of row.gate?.blockers||[])blockerCounts[blocker]=(blockerCounts[blocker]||0)+1;
+  return {formulation:'daily_tablet',routine:'daily',strengths:tablet.length,purchaseEnabled:0,purchaseBlocked:tablet.length,allPurchasePathsLocked:true,clinicalSelectionRequired:true,switchingReviewRequired:true,blockerCounts};
+}
+
 async function updateTreatment(request,env,strengthId){
   const input=await body(request);if(!input||typeof input.changes!=='object'||Array.isArray(input.changes))return json({ok:false,error:'invalid_body'},400,cors(request));
   const current=await env.DB.prepare('SELECT * FROM treatment_strengths WHERE id=?').bind(strengthId).first();
@@ -116,7 +122,7 @@ export async function commercialHqRoutes(request,env){
   await ensure(env);
   if(request.method==='GET'&&path==='/v1/hq/catalogue'){
     const physical=await listPhysical(env),treatments=await listTreatments(env);
-    return json({ok:true,safety:{medicinePurchaseEnabled:false,allTreatmentPurchasePathsLocked:true},summary:treatmentHqSummary(treatments),physical,treatments},200,cors(request));
+    return json({ok:true,safety:{medicinePurchaseEnabled:false,allTreatmentPurchasePathsLocked:true},summary:treatmentHqSummary(treatments),routeDepth:{dailyTablet:tabletRouteHqSummary(treatments)},physical,treatments},200,cors(request));
   }
   const match=path.match(/^\/v1\/hq\/catalogue\/physical\/(\d+)$/);if(request.method==='PATCH'&&match)return updatePhysical(request,env,Number(match[1]));
   const treatmentMatch=path.match(/^\/v1\/hq\/catalogue\/treatments\/(\d+)$/);if(request.method==='PATCH'&&treatmentMatch)return updateTreatment(request,env,Number(treatmentMatch[1]));
