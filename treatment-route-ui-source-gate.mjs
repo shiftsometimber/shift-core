@@ -18,7 +18,7 @@ const checks={
   brand:/#050505/.test(css)&&/#E7E3DA/.test(css)&&/#707762/.test(css),
   iphone:/viewport-fit=cover/.test(html)&&/safe-area-inset-bottom/.test(css),
   workerRoute:/find-my-treatment-route/.test(worker)&&/treatment-route-v1\.js/.test(worker)
-  ,liveCatalogue:/\/v1\/treatment\/pathway\/start/.test(js)&&/\/v1\/treatment\/catalogue/.test(js)
+  ,liveCatalogue:/\/v1\/treatment\/pathway\/start/.test(js)&&/catalogue=body/.test(js)
   ,homepageServiceOnly:!/Mounjaro|Wegovy|tirzepatide|semaglutide|tablet|injection/i.test(homepage)
   ,productFailClosed:/Purchase unavailable/.test(product)&&/disabled/.test(product)&&/Prices are provisional/.test(options)
 };

@@ -48,7 +48,7 @@ export async function treatmentPathwayRoutes(request,env){
   if(path==='/v1/treatment/pathway/start'&&request.method==='POST'){
     const value=token(),digest=await sha256(value),expires=new Date(Date.now()+PATHWAY_TTL_SECONDS*1000).toISOString();
     await env.DB.prepare('INSERT INTO treatment_pathway_sessions(token_hash,expires_at) VALUES(?,?)').bind(digest,expires).run();
-    return json({ok:true,pathway:'treatment_information',expiresAt:expires},200,{'Set-Cookie':setCookie(value)});
+    return json({ok:true,pathway:'treatment_information',expiresAt:expires,authority:'Shift HQ treatment catalogue',priceStatus:'proposed',saleState:'blocked',clinicalAssessmentRequired:true,families:await catalogue(env)},200,{'Set-Cookie':setCookie(value)});
   }
   if(path==='/v1/treatment/catalogue'&&request.method==='GET'){
     if(!await authorisePathway(request,env))return json({ok:false,error:'treatment_pathway_required',message:'Start with the treatment route so information appears in the correct governed journey.'},403);
