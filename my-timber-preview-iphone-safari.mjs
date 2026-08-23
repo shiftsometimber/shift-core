@@ -31,7 +31,7 @@ try{
   await page.getByRole('link',{name:/Understand this route/}).first().click();await page.getByRole('heading',{name:/Semaglutide|Tirzepatide/}).waitFor();await pause(page);await screen(page,'04-product-information');await zeroOverflow(page,'Product information');
   const productText=await page.locator('body').innerText();if(/Treatment access closed/.test(productText)&&!/Purchase unavailable|\bTBC\b|proposed £/i.test(productText))pass('Product information is honest without internal placeholders');else fail('Product information contains internal placeholders');
   await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded'});const email=`iphone-safari-${Date.now()}@example.test`;
-  const registered=await context.request.post(`${SITE}/auth/register`,{data:{firstName:'Matt',email,password:'PreviewOnly-4827',source:'my-timber-hosted-preview'}});if(!registered.ok())throw new Error(`preview registration ${registered.status()}: ${(await registered.text()).slice(0,240)}`);
+  const registered=await context.request.post(`${SITE}/v1/auth/register`,{data:{firstName:'Matt',email,password:'PreviewOnly-4827',source:'my-timber-hosted-preview'}});if(!registered.ok())throw new Error(`preview registration ${registered.status()}: ${(await registered.text()).slice(0,240)}`);
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('[data-life-changed]').waitFor({state:'visible',timeout:20000});
   const seeded=await context.request.post(`${SITE}/v1/shift/preview-billy`,{data:{}});if(!seeded.ok())throw new Error(`preview seed ${seeded.status()}`);
