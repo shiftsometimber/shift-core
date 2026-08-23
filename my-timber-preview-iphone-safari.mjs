@@ -32,7 +32,8 @@ try{
   await page.getByRole('button',{name:/Yes, I’m 18 or over/}).click();await page.getByRole('button',{name:'Continue'}).click();
   await page.locator('select[name="heightCm"]').selectOption('175');await page.locator('select[name="weightKg"]').selectOption('105');await page.getByRole('button',{name:'Continue'}).click();
   await page.getByRole('button',{name:'No →',exact:true}).click();await page.getByRole('button',{name:'Continue'}).click();
-  await page.getByRole('button',{name:'No →',exact:true}).click();await page.getByRole('button',{name:'Continue'}).click();
+  await page.getByRole('button',{name:'Yes →',exact:true}).click();await page.getByRole('button',{name:'Continue'}).click();
+  await page.locator('select[name="medicine"]').selectOption({index:1});await page.locator('select[name="strength"]').selectOption({index:1});await page.locator('select[name="lastDoseTiming"]').selectOption('0_7');await page.getByRole('button',{name:'Continue'}).click();
   await page.getByRole('button',{name:/Open to either/}).click();await page.getByRole('button',{name:/Show my routes/}).click();await page.getByRole('heading',{name:/Your answers point here/}).waitFor();await pause(page);await screen(page,'03-catalogue-results');await zeroOverflow(page,'Route results');await compactPage(page,'Route results',3800);
   const recap=await page.locator('.tr-recap').innerText();/Either routine/.test(recap)&&/175 cm · 105 kg/.test(recap)?pass('Route result explains the answers it used'):fail('Route result answer recap missing');
   const routeText=await page.locator('body').innerText();if(/Treatment access is (?:not open yet|closed)/.test(routeText)&&!/\bTBC\b|proposed from|Supplier TBC/i.test(routeText))pass('Results are consumer-facing and fail closed');else fail('Results expose internal launch language');
