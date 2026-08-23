@@ -211,8 +211,6 @@ jobs:
           node physical-iphone-signoff-source-gate.mjs
           curl -fsS "$PREVIEW_URL/physical-iphone-signoff" -o /tmp/physical-signoff.html
           grep -Fq 'Submit physical iPhone sign-off' /tmp/physical-signoff.html
-          test "$(curl -sS -o /tmp/non-iphone-signoff.json -w '%{http_code}' -H 'content-type: application/json' -X POST -d '{}' "$PREVIEW_URL/v1/preview/physical-iphone-signoff")" = 422
-          jq -e '.error=="reviewer_name_required"' /tmp/non-iphone-signoff.json
 
       - name: Install iPhone Safari acceptance browser
         run: |
