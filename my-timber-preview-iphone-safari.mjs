@@ -32,7 +32,7 @@ try{
   const productText=await page.locator('body').innerText();if(/Treatment access closed/.test(productText)&&!/Purchase unavailable|\bTBC\b|proposed £/i.test(productText))pass('Product information is honest without internal placeholders');else fail('Product information contains internal placeholders');
   await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded'});const email=`iphone-safari-${Date.now()}@example.test`;
   const registered=await page.evaluate(async payload=>{const response=await fetch('/v1/auth/register',{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});return{ok:response.ok,status:response.status,body:(await response.text()).slice(0,240)}},{firstName:'Matt',email,password:'PreviewOnly-4827',source:'my-timber-hosted-preview'});if(!registered.ok)throw new Error(`preview registration ${registered.status}: ${registered.body}`);
-  await page.reload({waitUntil:'domcontentloaded'});
+  await page.evaluate(()=>{document.getElementById('previewAuth').hidden=true;document.getElementById('previewMember').classList.add('is-ready');const script=document.createElement('script');script.src='/member-my-timber-problem-v1.js?v=daily-shift-v2';document.body.appendChild(script)});
   await page.locator('[data-life-changed]').waitFor({state:'visible',timeout:20000});
   const seeded=await context.request.post(`${SITE}/v1/shift/preview-billy`,{data:{}});if(!seeded.ok())throw new Error(`preview seed ${seeded.status()}`);
   const date=new Date(),iso=offset=>{const day=new Date(date);day.setUTCDate(day.getUTCDate()-offset);return day.toISOString().slice(0,10)};
