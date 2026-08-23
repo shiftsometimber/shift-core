@@ -1,0 +1,27 @@
+{
+  "schema": "shift.frozen-candidate.v1",
+  "frozenAt": "2026-08-23T21:40:00.000Z",
+  "targetCommit": "1f75348bcc0b91a82b64797a69f8e32f0cd832a9",
+  "pullRequest": "https://github.com/shiftsometimber/shift-core/pull/475",
+  "preview": "https://shift-core-my-timber-preview.matobrien.workers.dev/",
+  "physicalIphoneSafari": {
+    "state": "passed",
+    "acceptedBy": "Matt O'Brien",
+    "scope": "colour-corrected consumer candidate"
+  },
+  "automation": {
+    "workflowRun": 32667881601,
+    "iphoneArtifact": {
+      "id": 9500605716,
+      "digest": "d95ca5adc9fc82d76cdb3ee138d018663f6c11b6005a94fdb3fda09446ad096b"
+    },
+    "desktopArtifact": {
+      "id": 9500606316,
+      "digest": "fd2c1637e2426a4b0c78f207cdbedd39c6fa8b4c9da26528f2792eacaed463e4"
+    }
+  },
+  "palette": ["#050505", "#E7E3DA", "#707762"],
+  "lockedGates": ["commercial", "claims", "supplier", "stock", "purchase", "clinical"],
+  "productionTouched": false,
+  "state": "merge-ready-frozen"
+}
