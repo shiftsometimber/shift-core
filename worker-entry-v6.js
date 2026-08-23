@@ -117,7 +117,7 @@ export default {
     }
     if((request.method==='GET'||request.method==='HEAD')&&path==='/physical-iphone-signoff'){
       if(env.SHIFT_ENVIRONMENT!=='my-timber-preview'||env.PHYSICAL_IPHONE_SIGNOFF_ENABLED!=='true'||!env.MEMBER_ASSETS)return new Response('Not found',{status:404});
-      return env.MEMBER_ASSETS.fetch(new Request(new URL('/physical-iphone-signoff.html',request.url),request));
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/physical-iphone-signoff',request.url),request));
     }
     if((request.method==='GET'||request.method==='HEAD')&&/^\/physical-iphone-signoff\/proof\/[a-f0-9-]{36}\.json$/.test(path)){
       const evidenceId=path.split('/').pop().replace('.json','');
