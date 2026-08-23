@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "check": "node --check worker.js && node surface-contrast-source-gate.mjs && node m04-route-readiness-gate.mjs && node m04-commissioning-ops-source-gate.mjs && node g5-012-login-fastpath-gate.mjs && node production-commissioning-independence-gate.mjs",
+    "check": "node --check worker.js && node brand-palette-source-gate.mjs && node surface-contrast-source-gate.mjs && node m04-route-readiness-gate.mjs && node m04-commissioning-ops-source-gate.mjs && node g5-012-login-fastpath-gate.mjs && node production-commissioning-independence-gate.mjs",
     "check:toolchain": "node toolchain-source-gate.mjs",
     "test:commerce": "node --test tests/commerce-stripe-v1.test.mjs tests/commercial-catalogue-v1.test.mjs tests/treatment-catalogue-v1.test.mjs tests/commercial-hq-v1.test.mjs tests/treatment-catalogue-intake-v1.test.mjs tests/claims-library-v1.test.mjs && node treatment-catalogue-intake-source-gate.mjs",
     "test:adaptive-today": "node --test tests/adaptive-today-v1.test.mjs && node tests/adaptive-today-source-gate.mjs",
