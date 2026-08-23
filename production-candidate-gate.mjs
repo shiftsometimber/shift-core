@@ -18,7 +18,8 @@ const checks={
   noInternalLaunchPlaceholders:!/\bTBC\b|proposed price|supplier tbc/i.test(surface),
   catalogueDefaultsClosed:/cta_state TEXT NOT NULL DEFAULT 'blocked'/.test(catalogue)&&/stock_state TEXT NOT NULL DEFAULT 'tbc'/.test(catalogue)&&/commercial_state TEXT NOT NULL DEFAULT 'blocked'/.test(catalogue),
   claimsFailClosed:/claim\.state!=='approved'/.test(claims)&&/review_at/.test(claims)&&/expires_at/.test(claims)&&/return null/.test(claims),
-  noUngovernedNumericClaim:!/4½ stone|4\.5 stone|lost \d/i.test(home)
+  noUngovernedNumericClaim:!/4½ stone|4\.5 stone|lost \d/i.test(home),
+  noPlaceholderDeadEnds:!/Explore men’s health|href="#"|javascript:/i.test(home)
 };
 
 const failed=Object.entries(checks).filter(([,value])=>!value).map(([name])=>name);
