@@ -201,6 +201,8 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps webkit
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
 
       - name: Record and prove the consumer journey in iPhone WebKit
         env:
