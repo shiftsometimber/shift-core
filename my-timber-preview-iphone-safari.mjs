@@ -35,6 +35,7 @@ try{
   const email=`iphone-safari-${Date.now()}@example.test`;
   const registered=await context.request.post(`${SITE}/v1/auth/register`,{data:{firstName:'Matt',email,password:'PreviewOnly-4827',source:'my-timber-hosted-preview'}});if(!registered.ok())throw new Error(`preview registration ${registered.status()}: ${(await registered.text()).slice(0,240)}`);
   await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded'});
+  await page.evaluate(async()=>{await SST_API.getMe();document.getElementById('previewAuth').hidden=true;document.getElementById('previewMember').classList.add('is-ready');if(!document.querySelector('script[src^="/member-my-timber-problem-v1.js"]')){const script=document.createElement('script');script.src='/member-my-timber-problem-v1.js?v=daily-shift-v2';document.body.appendChild(script)}});
   await page.locator('[data-life-changed]').waitFor({state:'visible',timeout:20000});
   const seeded=await context.request.post(`${SITE}/v1/shift/preview-billy`,{data:{}});if(!seeded.ok())throw new Error(`preview seed ${seeded.status()}`);
   const date=new Date(),iso=offset=>{const day=new Date(date);day.setUTCDate(day.getUTCDate()-offset);return day.toISOString().slice(0,10)};
