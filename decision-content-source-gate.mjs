@@ -18,10 +18,18 @@ const required=[
   ['safe internal destinations','safe_destination_required'],
   ['immutable outcome proof','INSERT INTO decision_outcome_proof'],
   ['latest-only resolution','ORDER BY version DESC LIMIT 1'],
+  ['bounded lifecycle transitions','const TRANSITIONS=Object.freeze'],
+  ['optimistic transition lock','WHERE id=? AND version=? AND status=?'],
+  ['atomic lifecycle audit','WHERE changes()=1'],
+  ['operational review status','decisionContentOperationalStatus'],
+  ['latest operator queue','listDecisionContentOperations'],
+  ['approval actor binding','approval_actor_mismatch'],
+  ['withdrawal timestamp',"toStatus==='withdrawn'?iso(at):null"],
   ['stale proof',"test('stale review fails closed'"],
   ['missing-claim proof',"test('missing governed claim fails closed without outcome audit'"],
   ['lineage proof test',"test('resolver emits governed outcome with lineage proof only when every claim resolves'"],
   ['no silent fallback proof',"test('invalid newest approved version fails closed instead of silently falling back'"],
+  ['stale operator proof',"test('stale operator state fails closed before mutation'"],
 ];
 for(const [name,needle] of required)if(!(source+'\n'+tests).includes(needle))throw new Error(`decision content gate missing ${name}`);
 console.log(`PASS governed decision-content foundation (${required.length} controls)`);
