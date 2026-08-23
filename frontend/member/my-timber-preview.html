@@ -6,6 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>My Timber Today — isolated preview</title>
   <link rel="stylesheet" href="/member-p0-v1.css?v=7">
+  <link rel="stylesheet" href="/member-today-premium-v1.css?v=r3-1">
   <style>
     :root{color-scheme:dark;--ink:#e9e5dc;--muted:#a9ad9f;--sage:#89927a;--panel:#151715}*{box-sizing:border-box}body{margin:0;background:#050505;color:var(--ink);font-family:Arial,sans-serif}.preview-head{padding:18px 20px;border-bottom:1px solid #707762;display:flex;justify-content:space-between;gap:16px;align-items:center}.preview-head strong{letter-spacing:.08em}.preview-head span,.muted{color:var(--muted)}.preview-wrap{width:min(760px,100%);margin:auto;padding:24px 16px 64px}.preview-auth{background:#171a17;border:1px solid #707762;border-radius:20px;padding:22px}.preview-auth h1,.preview-member h1{font-size:clamp(34px,10vw,56px);line-height:1.02;margin:0 0 12px}.preview-auth p{color:#c5c2b9;line-height:1.55}.preview-auth form{display:grid;gap:12px;margin-top:22px}.preview-auth label{display:grid;gap:6px;font-weight:700}.preview-auth input{width:100%;min-height:50px;padding:12px 14px;border:1px solid #707762;border-radius:12px;background:#050505;color:var(--ink);font:inherit}.preview-auth button,.mt-button{min-height:52px;border:1px solid #89927a;border-radius:16px;padding:13px 16px;background:var(--sage);color:#050505;font-weight:900;font-size:16px;text-align:left}.preview-auth button{border-radius:999px;text-align:center}.preview-auth button:disabled,.mt-button:disabled{opacity:.55}.preview-status{min-height:24px}.preview-note,.eyebrow{font-size:13px;color:var(--muted);letter-spacing:.12em;font-weight:800}.preview-member{display:none}.preview-member.is-ready{display:block}#panel-today{display:block!important}#todayActions{min-height:280px}.mt-grid,.mt-actions{display:grid;gap:12px;margin-top:22px}.mt-button.secondary{background:var(--panel);color:var(--ink)}.mt-card{border:1px solid #727a67;border-radius:18px;padding:18px;background:var(--panel)}.mt-card h2{font-size:23px;margin:0 0 8px}.mt-card p{margin:6px 0;line-height:1.45}.mt-why{border-left:3px solid var(--sage);padding-left:12px;color:#c9c7bf;margin:18px 0}.mt-back{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;padding:14px 0}.mt-saved{background:var(--sage);color:#050505;border-radius:18px;padding:18px}.mt-saved h2{margin:0 0 8px}.mt-error{border:1px solid #a97770;padding:16px;border-radius:14px}
   </style>
@@ -33,7 +34,7 @@
       <section class="mp-panel" id="panel-today" aria-labelledby="todayTitle">
         <p class="preview-note">MY TIMBER · TODAY</p>
         <h1 id="todayTitle">What do you need help sorting?</h1>
-        <div id="todayActions"><p>Loading My Timber…</p></div>
+        <div id="todayActions" aria-busy="true"><p>Opening My Timber…</p></div>
       </section>
     </section>
   </main>
@@ -41,12 +42,24 @@
   <script src="/api-adapter-v33d.js?v=preview-1"></script>
   <script>
     (function(){
-      const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus'),buttons=[...form.querySelectorAll('button[data-auth]')];
-      function showMember(){auth.hidden=true;member.classList.add('is-ready');const s=document.createElement('script');s.src='/member-today-premium-v1.js?v=r3';document.body.appendChild(s)}
-      async function existing(){try{await SST_API.getMe();showMember()}catch{auth.hidden=false}}
+      const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus'),todayActions=document.getElementById('todayActions'),buttons=[...form.querySelectorAll('button[data-auth]')];
+      let memberBoot=null,authResolved=false;
+      function memberBootError(){todayActions.setAttribute('aria-busy','false');todayActions.innerHTML='<div class="mt-error"><strong>My Timber did not open.</strong><p>Your tap was not lost. Check your connection, then try again.</p><button type="button" class="mt-button" data-preview-retry>Try again</button></div>'}
+      function loadMember(){
+        if(memberBoot)return memberBoot;
+        memberBoot=new Promise((resolve,reject)=>{
+          const s=document.createElement('script');s.src='/member-today-premium-v1.js?v=r3-1';s.async=true;
+          s.onload=()=>resolve();s.onerror=()=>{memberBoot=null;memberBootError();reject(new Error('member_bundle_failed'))};
+          document.body.appendChild(s);
+        });
+        return memberBoot;
+      }
+      function showMember(){authResolved=true;auth.hidden=true;member.classList.add('is-ready');todayActions.setAttribute('aria-busy','true');loadMember().catch(()=>{})}
+      async function existing(){try{await SST_API.getMe();if(!authResolved)showMember()}catch{if(!authResolved)auth.hidden=false}}
       async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating isolated preview account…';try{const data=Object.fromEntries(new FormData(form).entries());data.source='my-timber-hosted-preview';await SST_API[mode](data);showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in to preview”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
       form.addEventListener('submit',event=>{event.preventDefault();authenticate('register')});
       form.querySelector('[data-auth="login"]').addEventListener('click',()=>authenticate('login'));
+      document.addEventListener('click',event=>{if(event.target.closest('[data-preview-retry]')){todayActions.setAttribute('aria-busy','true');todayActions.innerHTML='<p>Opening My Timber…</p>';loadMember().catch(()=>{})}});
       existing();
     })();
   </script>
