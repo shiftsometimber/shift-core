@@ -193,3 +193,5 @@ jobs:
           else
             gh pr comment 436 --body "$body" >/dev/null
           fi
+
+# R3 isolated preview trigger: 2026-08-23
