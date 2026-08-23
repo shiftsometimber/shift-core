@@ -12,6 +12,7 @@ const checks={
   savedProgress:/sessionStorage/.test(js)&&/pageshow/.test(js),
   expiringProgress:/PROGRESS_TTL/.test(js)&&/sessionStorage\.removeItem/.test(js),
   immediateResult:/state\.step==='result'/.test(js)&&/Your answers point here/.test(js),
+  structuredMeasurements:/name="heightUnit"/.test(js)&&/Feet and inches/.test(js)&&/name="weightUnit"/.test(js)&&/Stone and pounds/.test(js)&&!/inputmode=/.test(js),
   clinicalQualifier:/qualified clinician would need to review a full assessment/.test(js),
   noNamedPom:!/Mounjaro|Wegovy|Ozempic|tirzepatide|semaglutide/i.test(js+html),
   noInventedPrice:!/£\d|pricePence|sellingPrice/.test(js),
