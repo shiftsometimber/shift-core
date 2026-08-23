@@ -23,7 +23,7 @@ page.on('console',message=>{if(message.type()==='error'&&!/status of 401 \(Unaut
 try{
   await page.goto(SITE,{waitUntil:'domcontentloaded'});await pause(page);await screen(page,'01-home');await zeroOverflow(page,'Homepage');await compactPage(page,'Homepage',3300);
   if(await page.getByRole('link',{name:/Find my treatment route/i}).count())pass('Homepage has one dominant route CTA');else fail('Homepage route CTA missing');
-  await page.getByRole('link',{name:/Find my treatment route/i}).click();await pause(page);await screen(page,'02-route-start');
+  await page.getByRole('link',{name:/Find my treatment route/i}).first().click();await pause(page);await screen(page,'02-route-start');
   await page.getByRole('button',{name:/Yes, I’m 18 or over/}).click();await page.getByRole('button',{name:'Continue'}).click();
   await page.getByLabel('Height (cm)').fill('175');await page.getByLabel('Weight (kg)').fill('105');await page.getByRole('button',{name:'Continue'}).click();
   await page.getByRole('button',{name:'No →',exact:true}).click();await page.getByRole('button',{name:'Continue'}).click();
