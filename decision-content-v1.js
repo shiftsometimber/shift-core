@@ -3,6 +3,8 @@ import {resolveApprovedClaim} from './claims-library-v1.js';
 const CHANNELS=new Set(['public_service','treatment_pathway','member_support']);
 const NEXT_ACTIONS=new Set(['education','route_finder','member_support','urgent_help']);
 const SHA256=/^[a-f0-9]{64}$/;
+const DECISION_STATES=new Set(['draft','review','approved','withdrawn','expired']);
+const TRANSITIONS=Object.freeze({draft:new Set(['review','withdrawn']),review:new Set(['draft','approved','withdrawn']),approved:new Set(['withdrawn']),withdrawn:new Set(),expired:new Set()});
 const safe=(v,d=null)=>{try{return typeof v==='string'?JSON.parse(v):v??d}catch{return d}};
 const iso=value=>{const date=value instanceof Date?value:new Date(value);return Number.isNaN(date.getTime())?null:date.toISOString()};
 
@@ -26,8 +28,72 @@ export async function ensureDecisionContentSchema(env){
       evidence_fingerprint TEXT NOT NULL, claim_versions_json TEXT NOT NULL,
       rendered_snapshot_json TEXT NOT NULL, rendered_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY(decision_content_id) REFERENCES decision_content(id))`),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS decision_content_lifecycle_audit (
+      id INTEGER PRIMARY KEY AUTOINCREMENT, decision_content_id INTEGER NOT NULL,
+      decision_version INTEGER NOT NULL, from_status TEXT NOT NULL, to_status TEXT NOT NULL,
+      actor TEXT NOT NULL, reason TEXT NOT NULL, correlation_id TEXT NOT NULL,
+      changed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(decision_content_id) REFERENCES decision_content(id))`),
     env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_decision_content_lookup ON decision_content(decision_key,channel,destination,status,review_due_at)')
   ]);
+}
+
+export function decisionContentOperationalStatus(record,{at=new Date(),warningDays=14}={}){
+  const when=iso(at),reviewDue=iso(record?.review_due_at),expires=record?.expires_at?iso(record.expires_at):null;
+  if(!when||!DECISION_STATES.has(record?.status))return{state:'blocked',reason:'invalid_record',publishable:false};
+  if(record.status==='withdrawn'||record.withdrawn_at)return{state:'withdrawn',reason:'withdrawn',publishable:false};
+  if(record.status==='expired'||(expires&&expires<=when))return{state:'expired',reason:'expired',publishable:false};
+  if(record.status!=='approved')return{state:record.status,reason:`awaiting_${record.status==='review'?'approval':'review'}`,publishable:false};
+  if(!reviewDue||reviewDue<when)return{state:'overdue',reason:'review_stale',publishable:false};
+  const warningAt=new Date(new Date(when).getTime()+Math.max(0,warningDays)*86400000).toISOString();
+  if(reviewDue<=warningAt)return{state:'review_due',reason:'review_due_soon',publishable:true,reviewDueAt:reviewDue};
+  return{state:'current',reason:'governance_current',publishable:true,reviewDueAt:reviewDue};
+}
+
+export function validateDecisionTransition(record,{toStatus,actor,reason,correlationId,review=null,at=new Date()}={}){
+  const errors=[],from=record?.status;
+  if(!DECISION_STATES.has(from)||!DECISION_STATES.has(toStatus)||!TRANSITIONS[from]?.has(toStatus))errors.push('transition_forbidden');
+  if(!actor||!reason||!correlationId)errors.push('transition_audit_required');
+  if(toStatus==='approved'){
+    const provenance=safe(record?.provenance_json??record?.provenance,{}),evidence=safe(record?.evidence_json??record?.evidence,[]);
+    const refs=Array.isArray(review?.evidence_refs)?review.evidence_refs:[];
+    const keys=Array.isArray(evidence)?evidence.map(x=>`${x.evidence_id}@${x.version}:${x.digest}`).sort():[];
+    if(!review||review.status!=='approved'||review.content_version!==record?.version||!review.reviewed_by||!iso(review.reviewed_at))errors.push('approval_review_required');
+    if(review?.reviewed_by!==actor)errors.push('approval_actor_mismatch');
+    if(review?.reviewed_by===provenance?.authored_by)errors.push('independent_review_required');
+    if(refs.length!==keys.length||refs.slice().sort().some((x,i)=>x!==keys[i]))errors.push('review_evidence_mismatch');
+    const publishCheck=validateDecisionContent({...record,status:'approved',review_json:JSON.stringify(review),review},{at});
+    errors.push(...publishCheck.errors);
+  }
+  if(toStatus==='withdrawn'&&!iso(at))errors.push('valid_transition_time_required');
+  return{ok:errors.length===0,errors:[...new Set(errors)],fromStatus:from,toStatus};
+}
+
+export async function listDecisionContentOperations(env,{at=new Date(),warningDays=14,limit=100}={}){
+  await ensureDecisionContentSchema(env);
+  const boundedLimit=Math.max(1,Math.min(500,Number(limit)||100));
+  const {results=[]}=await env.DB.prepare(`SELECT d.* FROM decision_content d INNER JOIN (
+    SELECT decision_key,channel,destination,MAX(version) AS version FROM decision_content
+    GROUP BY decision_key,channel,destination
+  ) latest ON latest.decision_key=d.decision_key AND latest.channel=d.channel AND latest.destination=d.destination AND latest.version=d.version
+  ORDER BY d.review_due_at ASC,d.decision_key ASC LIMIT ?`).bind(boundedLimit).all();
+  return results.map(record=>({id:record.id,key:record.decision_key,version:record.version,channel:record.channel,destination:record.destination,...decisionContentOperationalStatus(record,{at,warningDays})}));
+}
+
+export async function transitionDecisionContent(env,{id,expectedVersion,expectedStatus,toStatus,actor,reason,correlationId,review=null,at=new Date()}={}){
+  if(!Number.isInteger(id)||id<1||!Number.isInteger(expectedVersion)||expectedVersion<1||!expectedStatus)return null;
+  await ensureDecisionContentSchema(env);
+  const {results=[]}=await env.DB.prepare('SELECT * FROM decision_content WHERE id=? AND version=? LIMIT 1').bind(id,expectedVersion).all();
+  const record=results[0];if(!record||record.status!==expectedStatus)return null;
+  const checked=validateDecisionTransition(record,{toStatus,actor,reason,correlationId,review,at});if(!checked.ok)return null;
+  const safeActor=String(actor).slice(0,120),safeReason=String(reason).slice(0,500),safeCorrelation=String(correlationId).slice(0,120);
+  const reviewJson=toStatus==='approved'?JSON.stringify(review):(record.review_json??JSON.stringify(record.review??{}));
+  const withdrawnAt=toStatus==='withdrawn'?iso(at):null;
+  const update=env.DB.prepare(`UPDATE decision_content SET status=?,review_json=?,withdrawn_at=?,updated_at=CURRENT_TIMESTAMP WHERE id=? AND version=? AND status=?`).bind(toStatus,reviewJson,withdrawnAt,id,expectedVersion,expectedStatus);
+  const audit=env.DB.prepare(`INSERT INTO decision_content_lifecycle_audit(decision_content_id,decision_version,from_status,to_status,actor,reason,correlation_id) SELECT ?,?,?,?,?,?,? WHERE changes()=1`).bind(id,expectedVersion,expectedStatus,toStatus,safeActor,safeReason,safeCorrelation);
+  const result=await env.DB.batch([update,audit]);
+  const changed=Number(result?.[0]?.meta?.changes??result?.[0]?.changes??0);
+  return changed===1?{id,version:expectedVersion,fromStatus:expectedStatus,toStatus}:null;
 }
 
 export function validateDecisionContent(record,{at=new Date()}={}){
