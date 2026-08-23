@@ -42,7 +42,7 @@ concurrency:
 
 jobs:
   preview:
-    if: ${{ github.event_name == 'push' || inputs.confirm == 'BUILD_ISOLATED_PREVIEW' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' || inputs.confirm == 'BUILD_ISOLATED_PREVIEW' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
