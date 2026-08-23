@@ -30,7 +30,7 @@ try{
   if(await page.getByRole('link',{name:/Find my treatment route/i}).count())pass('Homepage has one dominant route CTA');else fail('Homepage route CTA missing');
   await page.getByRole('link',{name:/Find my treatment route/i}).first().click();await pause(page);await screen(page,'02-route-start');
   await page.getByRole('button',{name:/Yes, I’m 18 or over/}).click();await page.getByRole('button',{name:'Continue'}).click();
-  await page.getByLabel('Centimetres').selectOption('175');await page.getByLabel('Kilograms').selectOption('105');await page.getByRole('button',{name:'Continue'}).click();
+  await page.locator('select[name="heightCm"]').selectOption('175');await page.locator('select[name="weightKg"]').selectOption('105');await page.getByRole('button',{name:'Continue'}).click();
   await page.getByRole('button',{name:'No →',exact:true}).click();await page.getByRole('button',{name:'Continue'}).click();
   await page.getByRole('button',{name:'No →',exact:true}).click();await page.getByRole('button',{name:'Continue'}).click();
   await page.getByRole('button',{name:/Open to either/}).click();await page.getByRole('button',{name:/Show my routes/}).click();await page.getByRole('heading',{name:/Your answers point here/}).waitFor();await pause(page);await screen(page,'03-catalogue-results');await zeroOverflow(page,'Route results');await compactPage(page,'Route results',3800);
