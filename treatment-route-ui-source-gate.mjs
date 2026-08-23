@@ -7,12 +7,12 @@ const options=fs.readFileSync(new URL('./frontend/member/treatment-options-v1.js
 const product=fs.readFileSync(new URL('./frontend/member/treatment-product-v1.js',import.meta.url),'utf8');
 const homepage=fs.readFileSync(new URL('./frontend/member/public-home-v1.html',import.meta.url),'utf8');
 const checks={
-  oneSection:/steps=\['adult','measurements','condition_pathway','treatment_history','previous_treatment_detail','preference','result'\]/.test(js),
+  oneSection:/steps=\['preference','treatment_history','previous_treatment_detail','result'\]/.test(js),
   noContactGate:!/email|phone/.test(js),
   savedProgress:/sessionStorage/.test(js)&&/pageshow/.test(js),
   expiringProgress:/PROGRESS_TTL/.test(js)&&/sessionStorage\.removeItem/.test(js),
   immediateResult:/state\.step==='result'/.test(js)&&/Your answers point here/.test(js),
-  structuredMeasurements:/name="heightUnit"/.test(js)&&/Feet and inches/.test(js)&&/name="weightUnit"/.test(js)&&/Stone and pounds/.test(js)&&!/inputmode=/.test(js),
+  shortestResponsiblePath:/Two quick choices/.test(homepage)&&!/step:'adult'|state\.step==='measurements'|state\.step==='condition_pathway'/.test(js),
   clinicalQualifier:/qualified clinician would need to review a full assessment/.test(js),
   governedTreatmentHistory:/Previous medicine/.test(js)&&/formulation\.strengths/.test(js)&&/does not recommend a medicine or dose/.test(js),
   noBrandNameLeak:!/Mounjaro|Wegovy|Ozempic/i.test(js+html),
