@@ -26,7 +26,7 @@ export function groupTreatmentCatalogue(rows=[]){
     const familyKey=safeKey(row.family_key),formulationKey=safeKey(row.formulation_key);if(!familyKey||!formulationKey)continue;
     const family=families.get(familyKey)||{key:familyKey,name:familyKey==='tirzepatide'?'Tirzepatide':familyKey==='semaglutide'?'Semaglutide':familyKey,governanceState:row.family_governance_state,formulations:new Map()};
     const formulation=family.formulations.get(formulationKey)||{key:formulationKey,label:formulationKey==='daily_tablet'?'Daily tablet':'Weekly injection',route:row.route,routine:row.routine,governanceState:row.formulation_governance_state,strengths:[]};
-    formulation.strengths.push({id:Number(row.id),label:String(row.strength_label),proposedPricePence:Number(row.proposed_price_pence),priceStatus:'proposed',costStatus:row.cost_status,stockState:row.stock_state,claimsState:row.claims_state,ctaState:'blocked',offers:String(row.offers||'').split('|').filter(Boolean).map(item=>{const [type,availability,commercial]=item.split(':');return{type,availability,commercialState:commercial}})});
+    formulation.strengths.push({id:Number(row.id),label:String(row.strength_label),priceStatus:'unpublished',costStatus:'unpublished',stockState:'unpublished',claimsState:'unpublished',ctaState:'blocked',offers:String(row.offers||'').split('|').filter(Boolean).map(item=>({type:item.split(':')[0],availability:'unpublished',commercialState:'blocked'}))});
     family.formulations.set(formulationKey,formulation);families.set(familyKey,family);
   }
   return [...families.values()].map(family=>({...family,formulations:[...family.formulations.values()]}));
@@ -35,7 +35,7 @@ export function groupTreatmentCatalogue(rows=[]){
 async function catalogue(env){
   const result=await env.DB.prepare(`SELECT ts.id,tf.family_key,tf.governance_state family_governance_state,
     tfo.formulation_key,tfo.route,tfo.routine,tfo.governance_state formulation_governance_state,
-    ts.strength_label,ts.proposed_price_pence,ts.cost_status,ts.stock_state,ts.claims_state,ts.cta_state,
+    ts.strength_label,ts.cost_status,ts.stock_state,ts.claims_state,ts.cta_state,
     GROUP_CONCAT(o.offer_type||':'||o.availability_state||':'||o.commercial_state,'|') offers
     FROM treatment_strengths ts JOIN treatment_formulations tfo ON tfo.id=ts.formulation_id
     JOIN treatment_families tf ON tf.id=tfo.family_id LEFT JOIN treatment_offers o ON o.strength_id=ts.id
@@ -48,11 +48,11 @@ export async function treatmentPathwayRoutes(request,env){
   if(path==='/v1/treatment/pathway/start'&&request.method==='POST'){
     const value=token(),digest=await sha256(value),expires=new Date(Date.now()+PATHWAY_TTL_SECONDS*1000).toISOString();
     await env.DB.prepare('INSERT INTO treatment_pathway_sessions(token_hash,expires_at) VALUES(?,?)').bind(digest,expires).run();
-    return json({ok:true,pathway:'treatment_information',expiresAt:expires,authority:'Shift HQ treatment catalogue',priceStatus:'proposed',saleState:'blocked',clinicalAssessmentRequired:true,families:await catalogue(env)},200,{'Set-Cookie':setCookie(value)});
+    return json({ok:true,pathway:'treatment_information',expiresAt:expires,authority:'Shift HQ treatment catalogue',priceStatus:'unpublished',saleState:'blocked',clinicalAssessmentRequired:true,families:await catalogue(env)},200,{'Set-Cookie':setCookie(value)});
   }
   if(path==='/v1/treatment/catalogue'&&request.method==='GET'){
     if(!await authorisePathway(request,env))return json({ok:false,error:'treatment_pathway_required',message:'Start with the treatment route so information appears in the correct governed journey.'},403);
-    return json({ok:true,authority:'Shift HQ treatment catalogue',priceStatus:'proposed',saleState:'blocked',clinicalAssessmentRequired:true,families:await catalogue(env)});
+    return json({ok:true,authority:'Shift HQ treatment catalogue',priceStatus:'unpublished',saleState:'blocked',clinicalAssessmentRequired:true,families:await catalogue(env)});
   }
   return json({ok:false,error:'method_not_allowed'},405);
 }

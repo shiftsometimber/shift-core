@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {selectDecisionOutcome,validateDecisionContent,resolveGovernedDecisionOutcome} from '../decision-content-v1.js';
+
+const NOW='2026-08-23T12:00:00.000Z';
+const base=()=>({id:7,decision_key:'weight-route',version:2,title:'Find the useful next step',channel:'treatment_pathway',destination:'/treatments/results',status:'approved',effective_at:'2026-08-01T00:00:00.000Z',review_due_at:'2026-10-01T00:00:00.000Z',content:{questions:[{key:'preference',prompt:'Which routine suits you?'}],outcomes:[{key:'tablet',title:'A daily routine may suit',summary:'Read the governed comparison.',when:[{field:'preference',operator:'equals',value:'daily'}],claim_keys:['tablet-routine'],next_action:{type:'education',href:'/treatments/tablets'}},{key:'compare',title:'Compare the routes',summary:'See both governed routes.',default:true,claim_keys:[],next_action:{type:'route_finder',href:'/treatments'}}]},evidence:[{source:'NICE:TA-1',verified_at:'2026-08-20T00:00:00.000Z',owner:'clinical-content'}],review:{status:'approved',reviewed_by:'clinical-reviewer',reviewed_at:'2026-08-20T00:00:00.000Z'}});
+
+test('approved, current, evidenced content is publishable',()=>assert.deepEqual(validateDecisionContent(base(),{at:NOW}).errors,[]));
+test('stale review fails closed',()=>{const x=base();x.review_due_at='2026-08-22T00:00:00.000Z';assert.equal(validateDecisionContent(x,{at:NOW}).ok,false)});
+test('unapproved and evidence-free content fails closed',()=>{const x=base();x.status='draft';x.evidence=[];assert.deepEqual(validateDecisionContent(x,{at:NOW}).errors.sort(),['approval_required','verified_evidence_required'])});
+test('commercial outcome actions are forbidden',()=>{const x=base();x.content.outcomes[0].next_action={type:'purchase',href:'/checkout'};assert.equal(validateDecisionContent(x,{at:NOW}).errors.includes('safe_next_action_required'),true)});
+test('outcome selection uses conditions then safe default',()=>{const x=base();assert.equal(selectDecisionOutcome(x.content,{preference:'daily'}).key,'tablet');assert.equal(selectDecisionOutcome(x.content,{preference:'weekly'}).key,'compare')});
+
+function envFor(rows){const audit=[];return{audit,DB:{batch:async()=>{},prepare(sql){return{bind(...args){return{all:async()=>({results:rows}),run:async()=>{audit.push({sql,args});return{success:true}}}},all:async()=>({results:rows})}}}}}
+test('resolver emits governed outcome and audit only when every claim resolves',async()=>{const env=envFor([base()]);const result=await resolveGovernedDecisionOutcome(env,{decisionKey:'weight-route',channel:'treatment_pathway',destination:'/treatments/results',answers:{preference:'daily'},correlationId:'corr-1',at:NOW,claimResolver:async()=>({key:'tablet-routine',version:3,wording:'A governed claim.'})});assert.equal(result.outcome.key,'tablet');assert.equal(result.outcome.claims.length,1);assert.equal(env.audit.length,1)});
+test('missing governed claim fails closed without outcome audit',async()=>{const env=envFor([base()]);const result=await resolveGovernedDecisionOutcome(env,{decisionKey:'weight-route',channel:'treatment_pathway',destination:'/treatments/results',answers:{preference:'daily'},correlationId:'corr-2',at:NOW,claimResolver:async()=>null});assert.equal(result,null);assert.equal(env.audit.length,0)});

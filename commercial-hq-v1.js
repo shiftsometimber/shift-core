@@ -1,5 +1,5 @@
 import {ensureCommercialCatalogueSchema,evaluateCommercialGate} from './commercial-catalogue-v1.js';
-import {ensureTreatmentCatalogueSchema} from './treatment-catalogue-v1.js';
+import {ensureTreatmentCatalogueSchema,evaluateTreatmentReadiness} from './treatment-catalogue-v1.js';
 
 const HQ_ORIGINS=new Set(['https://hq.shiftsometimber.co.uk']);
 const EDITABLE_FIELDS=new Set([
@@ -10,6 +10,9 @@ const EDITABLE_FIELDS=new Set([
   'approver','effective_at','next_review_at'
 ]);
 const INTEGER_FIELDS=new Set(['supplier_id','actual_cost_pence','p_and_p_cost_pence','payment_cost_pence','expected_refund_decline_cost_pence','direct_support_cost_pence','lead_time_min_days','lead_time_max_days','target_gm_bps','minimum_contribution_pence']);
+const TREATMENT_FIELDS=new Set(['selling_price_pence','target_gm_bps','actual_cost_pence','cost_status','stock_state','stock_source','stock_confirmed_at','content_version','clinical_review_date','claims_state']);
+const TREATMENT_INTEGER_FIELDS=new Set(['selling_price_pence','target_gm_bps','actual_cost_pence']);
+const TREATMENT_ENUMS={cost_status:new Set(['tbc','proposed','confirmed']),stock_state:new Set(['tbc','review','confirmed','unavailable']),claims_state:new Set(['tbc','review','approved','rejected'])};
 
 function json(data,status=200,headers={}){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}})}
 function cors(request){const origin=request.headers.get('Origin')||'';return HQ_ORIGINS.has(origin)?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, PATCH, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Admin-Key','Vary':'Origin'}:{}}
@@ -42,12 +45,45 @@ async function listPhysical(env){
 async function listTreatments(env){
   const {results}=await env.DB.prepare(`SELECT ts.id,tf.family_key family,tfo.formulation_key formulation,tfo.route,tfo.routine,
     ts.strength_label,ts.proposed_price_pence,ts.selling_price_pence,ts.target_gm_bps,ts.actual_cost_pence,ts.cost_status,
-    ts.stock_state,ts.stock_source,ts.stock_confirmed_at,ts.claims_state,ts.cta_state,
+    ts.stock_state,ts.stock_source,ts.stock_confirmed_at,ts.content_version,ts.clinical_review_date,ts.claims_state,ts.cta_state,
+    MAX(o.partner_id) partner_id,MAX(s.status) supplier_status,
+    MAX(o.availability_state) availability_state,MAX(o.commercial_state) commercial_state,
     GROUP_CONCAT(o.offer_type||':'||o.availability_state||':'||o.commercial_state,'|') offers
     FROM treatment_strengths ts JOIN treatment_formulations tfo ON tfo.id=ts.formulation_id
     JOIN treatment_families tf ON tf.id=tfo.family_id LEFT JOIN treatment_offers o ON o.strength_id=ts.id
+    LEFT JOIN catalogue_suppliers s ON s.id=o.partner_id
     GROUP BY ts.id ORDER BY tf.family_key,tfo.formulation_key,ts.id`).all();
-  return results||[];
+  return (results||[]).map(row=>({...row,gate:evaluateTreatmentReadiness(row),purchase_state:'blocked'}));
+}
+
+export function treatmentHqSummary(rows=[]){
+  const blocked=rows.filter(row=>row.purchase_state==='blocked'||row.gate?.purchaseState==='blocked');
+  const blockerCounts={};for(const row of blocked)for(const blocker of row.gate?.blockers||[])blockerCounts[blocker]=(blockerCounts[blocker]||0)+1;
+  return {total:rows.length,purchaseEnabled:0,purchaseBlocked:rows.length,allPurchasePathsLocked:true,blockerCounts};
+}
+
+async function updateTreatment(request,env,strengthId){
+  const input=await body(request);if(!input||typeof input.changes!=='object'||Array.isArray(input.changes))return json({ok:false,error:'invalid_body'},400,cors(request));
+  const current=await env.DB.prepare('SELECT * FROM treatment_strengths WHERE id=?').bind(strengthId).first();
+  if(!current)return json({ok:false,error:'treatment_strength_not_found'},404,cors(request));
+  const entries=Object.entries(input.changes);if(!entries.length||entries.some(([key])=>!TREATMENT_FIELDS.has(key)))return json({ok:false,error:'invalid_change_set',message:'Purchase, supplier and offer activation fields are not editable on this endpoint.'},400,cors(request));
+  for(const [key,value] of entries){
+    if(TREATMENT_INTEGER_FIELDS.has(key)&&value!==null&&(!Number.isInteger(value)||value<0))return json({ok:false,error:'invalid_value',field:key},400,cors(request));
+    if(TREATMENT_ENUMS[key]&&!TREATMENT_ENUMS[key].has(value))return json({ok:false,error:'invalid_value',field:key},400,cors(request));
+  }
+  const proposed={...current,...input.changes};
+  if(proposed.cost_status==='confirmed'&&(proposed.actual_cost_pence===null||proposed.actual_cost_pence===undefined))return json({ok:false,error:'evidence_required',field:'actual_cost_pence'},409,cors(request));
+  if(proposed.stock_state==='confirmed'&&(!proposed.stock_source||!proposed.stock_confirmed_at))return json({ok:false,error:'evidence_required',field:'stock_source'},409,cors(request));
+  if(proposed.claims_state==='approved'&&(!proposed.content_version||!proposed.clinical_review_date))return json({ok:false,error:'evidence_required',field:'clinical_review_date'},409,cors(request));
+  const requestId=crypto.randomUUID(),actor=String(input.actor||'HQ operator').trim().slice(0,120);
+  const assignments=entries.map(([key])=>`${key}=?`).join(',');
+  await env.DB.batch([
+    env.DB.prepare(`UPDATE treatment_strengths SET ${assignments},cta_state='blocked',updated_at=CURRENT_TIMESTAMP WHERE id=?`).bind(...entries.map(([,value])=>value),strengthId),
+    env.DB.prepare(`UPDATE treatment_offers SET commercial_state='blocked',availability_state=CASE WHEN availability_state='available' THEN 'review' ELSE availability_state END,updated_at=CURRENT_TIMESTAMP WHERE strength_id=?`).bind(strengthId),
+    env.DB.prepare(`INSERT INTO catalogue_audit_events(treatment_strength_id,action,actor,request_id,before_json,after_json) VALUES(?,'treatment_evidence_update',?,?,?,?)`).bind(strengthId,actor,requestId,JSON.stringify(current),JSON.stringify(input.changes))
+  ]);
+  const treatment=(await listTreatments(env)).find(row=>Number(row.id)===strengthId);
+  return json({ok:true,requestId,treatment,safety:{purchaseState:'blocked',ctaState:'blocked',commercialState:'blocked'}},200,cors(request));
 }
 
 async function updatePhysical(request,env,productId){
@@ -78,7 +114,11 @@ export async function commercialHqRoutes(request,env){
   if(!HQ_ORIGINS.has(request.headers.get('Origin')||''))return json({ok:false,error:'origin_not_allowed'},403,cors(request));
   if(!await authorised(request,env))return json({ok:false,error:'unauthorised'},401,cors(request));
   await ensure(env);
-  if(request.method==='GET'&&path==='/v1/hq/catalogue')return json({ok:true,physical:await listPhysical(env),treatments:await listTreatments(env)},200,cors(request));
+  if(request.method==='GET'&&path==='/v1/hq/catalogue'){
+    const physical=await listPhysical(env),treatments=await listTreatments(env);
+    return json({ok:true,safety:{medicinePurchaseEnabled:false,allTreatmentPurchasePathsLocked:true},summary:treatmentHqSummary(treatments),physical,treatments},200,cors(request));
+  }
   const match=path.match(/^\/v1\/hq\/catalogue\/physical\/(\d+)$/);if(request.method==='PATCH'&&match)return updatePhysical(request,env,Number(match[1]));
+  const treatmentMatch=path.match(/^\/v1\/hq\/catalogue\/treatments\/(\d+)$/);if(request.method==='PATCH'&&treatmentMatch)return updateTreatment(request,env,Number(treatmentMatch[1]));
   return json({ok:false,error:'not_found'},404,cors(request));
 }

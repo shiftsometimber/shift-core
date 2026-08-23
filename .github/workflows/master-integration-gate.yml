@@ -114,6 +114,10 @@ jobs:
         run: node gate5-probe-history-gate.mjs
       - name: Adversarial break/security state transitions
         run: node adversarial-commissioning-v1.mjs
+      - name: Phase 7 operational status and fail-closed release scenarios
+        run: node --test tests/release-operational-status-v1.test.mjs && node release-operational-status-gate.mjs
+      - name: Phase 6 governed decision content and outcomes
+        run: node --test tests/decision-content-v1.test.mjs && node decision-content-source-gate.mjs
       - name: Longitudinal cross-system adversarial commissioning
         run: node adversarial-longitudinal-v2.mjs
       - name: Structured content 10k load benchmark

@@ -26,17 +26,17 @@ export async function ensureTreatmentCatalogueSchema(env){
       proposed_price_pence INTEGER NOT NULL CHECK(proposed_price_pence>0), selling_price_pence INTEGER,
       target_gm_bps INTEGER NOT NULL DEFAULT 6000 CHECK(target_gm_bps BETWEEN 0 AND 10000),
       actual_cost_pence INTEGER, cost_status TEXT NOT NULL DEFAULT 'tbc' CHECK(cost_status IN ('tbc','proposed','confirmed')),
-      stock_state TEXT NOT NULL DEFAULT 'tbc', stock_source TEXT, stock_confirmed_at TEXT,
-      content_version TEXT, clinical_review_date TEXT, claims_state TEXT NOT NULL DEFAULT 'tbc',
+      stock_state TEXT NOT NULL DEFAULT 'tbc' CHECK(stock_state IN ('tbc','review','confirmed','unavailable')), stock_source TEXT, stock_confirmed_at TEXT,
+      content_version TEXT, clinical_review_date TEXT, claims_state TEXT NOT NULL DEFAULT 'tbc' CHECK(claims_state IN ('tbc','review','approved','rejected')),
       cta_state TEXT NOT NULL DEFAULT 'blocked' CHECK(cta_state IN ('blocked','information_only','enabled')),
       created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(formulation_id,strength_label), FOREIGN KEY(formulation_id) REFERENCES treatment_formulations(id))`),
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS treatment_offers (
       id INTEGER PRIMARY KEY AUTOINCREMENT, strength_id INTEGER NOT NULL, offer_type TEXT NOT NULL,
-      availability_state TEXT NOT NULL DEFAULT 'tbc', switching_requirements TEXT, evidence_requirements TEXT,
+      availability_state TEXT NOT NULL DEFAULT 'tbc' CHECK(availability_state IN ('tbc','review','available','unavailable')), switching_requirements TEXT, evidence_requirements TEXT,
       included_services TEXT, partner_id INTEGER, dispensing_cost_pence INTEGER, delivery_cost_pence INTEGER,
       payment_cost_pence INTEGER, expected_refund_decline_cost_pence INTEGER, direct_support_cost_pence INTEGER,
-      minimum_contribution_pence INTEGER, commercial_state TEXT NOT NULL DEFAULT 'blocked',
+      minimum_contribution_pence INTEGER, commercial_state TEXT NOT NULL DEFAULT 'blocked' CHECK(commercial_state IN ('blocked','review','approved','suspended')),
       created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(strength_id,offer_type), FOREIGN KEY(strength_id) REFERENCES treatment_strengths(id),
       FOREIGN KEY(partner_id) REFERENCES catalogue_suppliers(id))`)
@@ -45,4 +45,16 @@ export async function ensureTreatmentCatalogueSchema(env){
 
 export function medicineRegisterSummary(){
   return PROPOSED_TREATMENT_STRENGTHS.map(([family,formulation,strength,proposedPricePence])=>({family,formulation,strength,proposedPricePence,targetGmBps:6000,costStatus:'tbc',supplierStatus:'tbc',leadTimeStatus:'tbc',pAndPStatus:'tbc',ctaState:'blocked'}));
+}
+
+export function evaluateTreatmentReadiness(row={}){
+  const blockers=[];
+  if(row.cost_status!=='confirmed'||row.actual_cost_pence===null||row.actual_cost_pence===undefined)blockers.push('cost_unconfirmed');
+  if(row.stock_state!=='confirmed'||!row.stock_source||!row.stock_confirmed_at)blockers.push('stock_unconfirmed');
+  if(row.claims_state!=='approved'||!row.content_version||!row.clinical_review_date)blockers.push('claims_unapproved');
+  if(!row.partner_id||row.supplier_status!=='approved')blockers.push('supplier_unapproved');
+  if(row.availability_state!=='available')blockers.push('availability_unconfirmed');
+  if(row.commercial_state!=='approved')blockers.push('commercial_not_approved');
+  if(row.cta_state!=='enabled')blockers.push('purchase_disabled');
+  return {ok:blockers.length===0,blockers,purchaseState:blockers.length?'blocked':'enabled'};
 }
