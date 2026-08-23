@@ -6,6 +6,7 @@ const home=read('./frontend/member/public-home-v1.html');
 const route=read('./frontend/member/treatment-route-v1.js');
 const options=read('./frontend/member/treatment-options-v1.js');
 const product=read('./frontend/member/treatment-product-v1.js');
+const treatmentStyles=read('./frontend/member/treatment-pathway-v2.css');
 const catalogue=read('./treatment-catalogue-v1.js');
 const claims=read('./claims-library-v1.js');
 const surface=[home,route,options,product].join('\n');
@@ -16,6 +17,7 @@ const checks={
   noConsumerCheckout:!/checkout|buy now|add to basket|place order/i.test(surface),
   accessExplicitlyClosed:/Treatment access is not open yet/.test(home)&&/Treatment access closed/.test(options)&&/Treatment access closed/.test(product),
   noInternalLaunchPlaceholders:!/\bTBC\b|proposed price|supplier tbc/i.test(surface),
+  treatmentVisualDebtClosed:/\.tp-back\{[^}]*color:var\(--black\)/.test(treatmentStyles)&&/button\[aria-pressed="true"\]/.test(treatmentStyles),
   catalogueDefaultsClosed:/cta_state TEXT NOT NULL DEFAULT 'blocked'/.test(catalogue)&&/stock_state TEXT NOT NULL DEFAULT 'tbc'/.test(catalogue)&&/commercial_state TEXT NOT NULL DEFAULT 'blocked'/.test(catalogue),
   claimsFailClosed:/claim\.state!=='approved'/.test(claims)&&/review_at/.test(claims)&&/expires_at/.test(claims)&&/return null/.test(claims),
   noUngovernedNumericClaim:!/4½ stone|4\.5 stone|lost \d/i.test(home),
