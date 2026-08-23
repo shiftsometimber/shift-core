@@ -13,6 +13,8 @@ on:
       - 'member-daily-v2.js'
       - 'shift-brain-v1.js'
       - 'frontend/member/**'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
     inputs:
       confirm:
