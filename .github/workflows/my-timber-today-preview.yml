@@ -228,6 +228,9 @@ jobs:
             const alternative=await alternativeResponse;
             const alternativeBody=await alternative.text();
             if(!alternative.ok()||!alternativeBody.includes('fakeaway'))throw new Error(`fakeaway endpoint ${alternative.status()}: ${alternativeBody}`);
+            const alternativeData=JSON.parse(alternativeBody);
+            await page.getByText(alternativeData.rebuild.next.action,{exact:true}).waitFor({state:'visible'});
+            await page.locator('.mt-feedback summary').first().click();
             const feedbackResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/feedback')&&response.request().method()==='POST');
             await page.getByRole('button',{name:'Love this'}).first().click();
             const feedback=await feedbackResponse;
