@@ -187,11 +187,20 @@ jobs:
             if(!working.ok())throw new Error(`working-late endpoint ${working.status()}: ${workingBody}`);
             try{await page.locator('.mt-rebuilt').waitFor({state:'visible'})}catch(error){throw new Error(`working-late did not render; response=${workingBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
             await page.locator('[data-change]').click();
+            const chaosResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
             await page.locator('[data-rebuild="chaos"]').click();
-            await page.locator('.mt-rebuilt').waitFor({state:'visible'});
+            const chaos=await chaosResponse;
+            if(!chaos.ok())throw new Error(`chaos endpoint ${chaos.status()}: ${await chaos.text()}`);
+            await page.getByRole('heading',{name:'Your next three hours are sorted.'}).waitFor({state:'visible'});
+            const alternativeResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild/alternative')&&response.request().method()==='POST');
             await page.locator('[data-alternative="fakeaway"]').click();
-            await page.getByText('Fakeaway',{exact:false}).first().waitFor({state:'visible'});
+            const alternative=await alternativeResponse;
+            const alternativeBody=await alternative.text();
+            if(!alternative.ok()||!alternativeBody.includes('fakeaway'))throw new Error(`fakeaway endpoint ${alternative.status()}: ${alternativeBody}`);
+            const completionResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/complete')&&response.request().method()==='POST');
             await page.locator('[data-complete-shifted]').click();
+            const completion=await completionResponse;
+            if(!completion.ok())throw new Error(`completion endpoint ${completion.status()}: ${await completion.text()}`);
             await page.locator('.mt-completed').waitFor({state:'visible'});
             const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
             if(overflow)throw new Error('horizontal overflow detected');
