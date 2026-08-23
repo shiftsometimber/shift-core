@@ -41,18 +41,6 @@ export async function ensureTreatmentCatalogueSchema(env){
       UNIQUE(strength_id,offer_type), FOREIGN KEY(strength_id) REFERENCES treatment_strengths(id),
       FOREIGN KEY(partner_id) REFERENCES catalogue_suppliers(id))`)
   ]);
-  for(const [family,formulation,strength,price] of PROPOSED_TREATMENT_STRENGTHS){
-    await env.DB.prepare(`INSERT OR IGNORE INTO treatment_families(family_key,active_ingredient) VALUES(?,?)`).bind(family,family).run();
-    const familyRow=await env.DB.prepare('SELECT id FROM treatment_families WHERE family_key=?').bind(family).first();
-    const route=formulation==='daily_tablet'?'oral':'injection',routine=formulation==='daily_tablet'?'daily':'weekly';
-    await env.DB.prepare(`INSERT OR IGNORE INTO treatment_formulations(family_id,formulation_key,route,routine) VALUES(?,?,?,?)`).bind(familyRow.id,formulation,route,routine).run();
-    const formulationRow=await env.DB.prepare('SELECT id FROM treatment_formulations WHERE family_id=? AND formulation_key=?').bind(familyRow.id,formulation).first();
-    await env.DB.prepare(`INSERT INTO treatment_strengths(formulation_id,strength_label,proposed_price_pence,target_gm_bps,cost_status,stock_state,claims_state,cta_state)
-      VALUES(?,?,?,6000,'tbc','tbc','tbc','blocked')
-      ON CONFLICT(formulation_id,strength_label) DO UPDATE SET proposed_price_pence=excluded.proposed_price_pence,target_gm_bps=6000,updated_at=CURRENT_TIMESTAMP`).bind(formulationRow.id,strength,price).run();
-    const strengthRow=await env.DB.prepare('SELECT id FROM treatment_strengths WHERE formulation_id=? AND strength_label=?').bind(formulationRow.id,strength).first();
-    for(const offer of ['new_customer','switcher','continuation_only'])await env.DB.prepare(`INSERT OR IGNORE INTO treatment_offers(strength_id,offer_type,availability_state,commercial_state) VALUES(?,?,'tbc','blocked')`).bind(strengthRow.id,offer).run();
-  }
 }
 
 export function medicineRegisterSummary(){

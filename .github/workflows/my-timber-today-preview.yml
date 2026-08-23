@@ -83,6 +83,7 @@ jobs:
           npx wrangler d1 execute DB --remote --file migrations/007_treatment_catalogue.sql --config "$PREVIEW_CONFIG"
           npx wrangler d1 execute DB --remote --file migrations/008_claims_library.sql --config "$PREVIEW_CONFIG"
           npx wrangler d1 execute DB --remote --file migrations/009_my_timber_learning.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --file migrations/010_treatment_catalogue_seed.sql --config "$PREVIEW_CONFIG"
 
       - name: Keep preview browser calls on the preview origin
         run: |
