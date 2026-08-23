@@ -274,7 +274,7 @@ jobs:
             if(!feedback.ok())throw new Error(`preference feedback endpoint ${feedback.status()}: ${await feedback.text()}`);
             await page.getByText(/more likely to appear when it fits/i).waitFor();
             const persistedLearning=await page.evaluate(async()=>{const response=await fetch('/v1/shift/today',{headers:{'X-Shift-Local-Date':'2026-08-21'}});return response.json()});
-            if(!(persistedLearning.today?.learning?.statements||[]).some(line=>/good fit/i.test(line)))throw new Error('preference learning did not persist to the next Today read');
+            if(!(persistedLearning.today?.learning?.statements||[]).some(line=>/earned a place in reserve because you liked it/i.test(line)))throw new Error('preference learning did not persist to the next Today read');
             await page.waitForTimeout(1200);
             const completionResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/complete')&&response.request().method()==='POST');
             await page.locator('[data-complete-shifted]').click();
