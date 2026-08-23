@@ -176,8 +176,12 @@ jobs:
             await page.getByRole('button',{name:'Create preview account'}).click();
             await page.locator('[data-change]').waitFor({state:'visible',timeout:15000});
             await page.locator('[data-change]').click();
+            const workingResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
             await page.locator('[data-rebuild="working_late"]').click();
-            await page.locator('.mt-rebuilt').waitFor({state:'visible'});
+            const working=await workingResponse;
+            const workingBody=await working.text();
+            if(!working.ok())throw new Error(`working-late endpoint ${working.status()}: ${workingBody}`);
+            try{await page.locator('.mt-rebuilt').waitFor({state:'visible'})}catch(error){throw new Error(`working-late did not render; response=${workingBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
             await page.locator('[data-change]').click();
             await page.locator('[data-rebuild="chaos"]').click();
             await page.locator('.mt-rebuilt').waitFor({state:'visible'});
