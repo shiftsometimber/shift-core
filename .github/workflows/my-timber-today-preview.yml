@@ -2,6 +2,8 @@ name: My Timber Today Hosted Preview
 # Recovery candidate only: exercise remembered meal decisions before production sign-off.
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [feat/real-daily-shift-recovery, codex/my-timber-adaptive-day-v1, feat/adaptive-today-phase-1-2]
     paths:
@@ -24,6 +26,7 @@ on:
       - 'product-analytics-v1.js'
       - 'daily-shift-frontdoor-gate.mjs'
       - 'my-timber-9-contract-gate.mjs'
+      - 'my-timber-preview-iphone-safari.mjs'
       - 'frontend/member/**'
   workflow_dispatch:
     inputs:
@@ -194,6 +197,28 @@ jobs:
           grep -Fq 'member-today-premium-v1.css?v=daily-shift-v2' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
 
+      - name: Install iPhone Safari acceptance browser
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps webkit
+
+      - name: Record and prove the consumer journey in iPhone WebKit
+        env:
+          PREVIEW_EVIDENCE_DIR: preview-consumer-evidence
+        run: node my-timber-preview-iphone-safari.mjs
+
+      - name: Package the recording for iPhone playback
+        run: ffmpeg -y -i preview-consumer-evidence/shift-consumer-preview-iphone-safari.webm -movflags +faststart -pix_fmt yuv420p preview-consumer-evidence/shift-consumer-preview-iphone-safari.mp4
+
+      - name: Upload genuine iPhone Safari preview evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-consumer-preview-iphone-safari
+          path: preview-consumer-evidence
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Publish review instructions
         run: |
           {
@@ -224,6 +249,8 @@ jobs:
           - a blank treatment account was not assigned a medicine or dose
 
           **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
+
+          [Open the scrutinised preview run and iPhone Safari recording]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)
 
           Use a fresh test email. Production routes and live customer data were not touched."
           else
