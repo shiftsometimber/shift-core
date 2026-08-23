@@ -148,6 +148,49 @@ jobs:
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
           grep -Fq 'What do you need help sorting?' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
+          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.css?v=r3-1" | grep -Eqi '^content-type:.*text/css'
+          curl -fsSI "$PREVIEW_URL/member-today-premium-v1.js?v=r3-1" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
+
+      - name: Install iPhone-format browser acceptance tool
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps webkit
+
+      - name: Prove every R3 tap works in iPhone-format WebKit
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const { webkit, devices } = require('playwright');
+          (async()=>{
+            const browser=await webkit.launch();
+            const context=await browser.newContext({...devices['iPhone 13']});
+            const page=await context.newPage();
+            const errors=[];
+            page.on('pageerror',error=>errors.push(error.message));
+            const email=`r3-tap-${Date.now()}@example.test`;
+            await page.goto(`${process.env.PREVIEW_URL}/member/dashboard#today`,{waitUntil:'domcontentloaded'});
+            await page.getByLabel('First name').fill('Matt');
+            await page.getByLabel('Email').fill(email);
+            await page.getByLabel('Password').fill('PreviewOnly-4827');
+            await page.getByRole('button',{name:'Create preview account'}).click();
+            await page.locator('[data-change]').waitFor({state:'visible',timeout:15000});
+            await page.locator('[data-change]').click();
+            await page.locator('[data-rebuild="working_late"]').click();
+            await page.locator('.mt-rebuilt').waitFor({state:'visible'});
+            await page.locator('[data-change]').click();
+            await page.locator('[data-rebuild="chaos"]').click();
+            await page.locator('.mt-rebuilt').waitFor({state:'visible'});
+            await page.locator('[data-alternative="fakeaway"]').click();
+            await page.getByText('Fakeaway',{exact:false}).first().waitFor({state:'visible'});
+            await page.locator('[data-complete-shifted]').click();
+            await page.locator('.mt-completed').waitFor({state:'visible'});
+            const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
+            if(overflow)throw new Error('horizontal overflow detected');
+            if(errors.length)throw new Error(`page errors: ${errors.join(' | ')}`);
+            await browser.close();
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE
 
       - name: Publish review instructions
         run: |
@@ -195,7 +238,3 @@ jobs:
           else
             gh pr comment 436 --body "$body" >/dev/null
           fi
-
-# R3 isolated preview trigger: 2026-08-23
-
-# Allowlisted isolated preview run
