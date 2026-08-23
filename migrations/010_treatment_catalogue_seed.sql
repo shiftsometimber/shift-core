@@ -1,5 +1,13 @@
 -- R1 Foundation: idempotent proposed treatment ladder.
 -- Deployment-owned seed: request handlers must never write or re-price this catalogue.
+CREATE TABLE IF NOT EXISTS treatment_pathway_sessions (
+  token_hash TEXT PRIMARY KEY,
+  started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  expires_at TEXT NOT NULL,
+  last_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_treatment_pathway_expiry ON treatment_pathway_sessions(expires_at);
+
 INSERT OR IGNORE INTO treatment_families(family_key,active_ingredient) VALUES
   ('tirzepatide','tirzepatide'),
   ('semaglutide','semaglutide');

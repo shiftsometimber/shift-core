@@ -1,5 +1,3 @@
-import {ensureTreatmentCatalogueSchema} from './treatment-catalogue-v1.js';
-
 const PATHWAY_COOKIE='sst_treatment_pathway';
 const PATHWAY_TTL_SECONDS=2*60*60;
 const ROUTES=new Set(['/v1/treatment/pathway/start','/v1/treatment/catalogue']);
@@ -13,15 +11,6 @@ async function sha256(value){return hex(new Uint8Array(await crypto.subtle.diges
 function token(){const bytes=new Uint8Array(32);crypto.getRandomValues(bytes);return hex(bytes)}
 function cookies(request){return Object.fromEntries(String(request.headers.get('cookie')||'').split(';').map(item=>item.trim().split(/=(.*)/s)).filter(pair=>pair[0]).map(([key,value])=>[key,value]))}
 function setCookie(value){return `${PATHWAY_COOKIE}=${value}; Max-Age=${PATHWAY_TTL_SECONDS}; Path=/; HttpOnly; Secure; SameSite=Lax`}
-
-async function ensurePathwaySchema(env){
-  await env.DB.prepare(`CREATE TABLE IF NOT EXISTS treatment_pathway_sessions (
-    token_hash TEXT PRIMARY KEY, started_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    expires_at TEXT NOT NULL, last_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-  )`).run();
-  await env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_treatment_pathway_expiry ON treatment_pathway_sessions(expires_at)').run();
-  await ensureTreatmentCatalogueSchema(env);
-}
 
 async function authorisePathway(request,env){
   const supplied=cookies(request)[PATHWAY_COOKIE];if(!supplied||!/^[a-f0-9]{64}$/.test(supplied))return false;
@@ -56,7 +45,6 @@ async function catalogue(env){
 
 export async function treatmentPathwayRoutes(request,env){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';if(!ROUTES.has(path))return null;
-  await ensurePathwaySchema(env);
   if(path==='/v1/treatment/pathway/start'&&request.method==='POST'){
     const value=token(),digest=await sha256(value),expires=new Date(Date.now()+PATHWAY_TTL_SECONDS*1000).toISOString();
     await env.DB.prepare('INSERT INTO treatment_pathway_sessions(token_hash,expires_at) VALUES(?,?)').bind(digest,expires).run();
