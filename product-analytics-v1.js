@@ -5,7 +5,9 @@ const ALLOWED_EVENTS=new Set([
   'today_viewed','today_action_opened','grub_plan_generated','grub_feedback','fit_plan_generated','fit_feedback',
   'hydration_logged','progress_logged','progress_picture_saved','progress_picture_deleted','shift_ai_message',
   'plan_viewed','error_presented','feature_completed','treatment_checkin','member_returned',
-  'daily_shift_rebuilt','daily_recovery_completed','daily_meal_accepted','daily_meal_swapped','daily_meal_rejected','daily_recommendation_feedback'
+  'daily_shift_rebuilt','daily_recovery_completed','daily_meal_accepted','daily_meal_swapped','daily_meal_rejected','daily_recommendation_feedback',
+  'fit_push_enabled','fit_push_disabled','fit_reminder_preferences_saved','fit_reminder_opted_out',
+  'daily_shift_morning_reminder_sent','daily_shift_morning_push_sent','daily_shift_evening_nudge_sent','daily_shift_evening_push_sent','fit_weekly_reflection_sent','fit_weekly_push_sent'
 ]);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 
