@@ -6,9 +6,9 @@ const checks={
   strengthNotSelfSelected:/not a menu/.test(pathway)&&/clinical_review_required/.test(pathway),
   switchingBoundary:/Do not overlap, replace or switch/.test(pathway),
   missedDoseBoundary:/Do not double a dose/.test(pathway),
-  resultExplainsTablet:/daily routine/.test(route)&&/Explore how the route works/.test(route),
+  resultExplainsTablet:/daily-routine preference/.test(route)&&/governed strength ladder/.test(route),
   productHasTabletDepth:/DAILY TABLET ROUTE/.test(product)&&/Starting or switching/.test(product)&&/If a dose is missed/.test(product),
-  comparePageHasTabletBoundary:/Tablet route:/.test(options)&&/daily does not mean self-selected/.test(options),
+  comparePageHasTabletBoundary:/Daily tablet:/.test(options)&&/clinical decisions/.test(options),
   hqTabletSummary:/tabletRouteHqSummary/.test(hq)&&/clinicalSelectionRequired:true/.test(hq)&&/switchingReviewRequired:true/.test(hq),
   mobileBoundariesCollapse:/tp-boundaries/.test(css)&&/@media\(max-width:720px\)/.test(css),
   noPublicProposedPrices:!/proposedPricePence|proposed_price_pence|selling_price_pence/.test(route+product+options)

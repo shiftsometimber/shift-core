@@ -16,6 +16,7 @@
     "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
     "PUBLIC_SITE_URL": "https://shift-core-my-timber-preview.workers.dev",
     "STRIPE_MODE": "test",
+    "PHYSICAL_IPHONE_SIGNOFF_ENABLED": "true",
     "SHIFT_ENVIRONMENT": "my-timber-preview"
   },
   "ai": {"binding": "AI"},

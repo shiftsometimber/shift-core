@@ -1,5 +1,6 @@
 import {ensureCommercialCatalogueSchema,evaluateCommercialGate} from './commercial-catalogue-v1.js';
 import {ensureTreatmentCatalogueSchema,evaluateTreatmentReadiness} from './treatment-catalogue-v1.js';
+import {ensureTreatmentIntakeSchema,prepareTreatmentIntake,applyTreatmentIntake,rollbackTreatmentIntake} from './treatment-catalogue-intake-v1.js';
 
 const HQ_ORIGINS=new Set(['https://hq.shiftsometimber.co.uk']);
 const EDITABLE_FIELDS=new Set([
@@ -15,11 +16,11 @@ const TREATMENT_INTEGER_FIELDS=new Set(['selling_price_pence','target_gm_bps','a
 const TREATMENT_ENUMS={cost_status:new Set(['tbc','proposed','confirmed']),stock_state:new Set(['tbc','review','confirmed','unavailable']),claims_state:new Set(['tbc','review','approved','rejected'])};
 
 function json(data,status=200,headers={}){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}})}
-function cors(request){const origin=request.headers.get('Origin')||'';return HQ_ORIGINS.has(origin)?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, PATCH, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Admin-Key','Vary':'Origin'}:{}}
+function cors(request){const origin=request.headers.get('Origin')||'';return HQ_ORIGINS.has(origin)?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Admin-Key, Idempotency-Key','Vary':'Origin'}:{}}
 async function digest(value){return new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(value))))}
 async function sameSecret(a,b){const [left,right]=await Promise.all([digest(a),digest(b)]);let diff=left.length^right.length;for(let i=0;i<Math.max(left.length,right.length);i++)diff|=(left[i%left.length]??0)^(right[i%right.length]??0);return diff===0}
 async function authorised(request,env){const expected=String(env.ADMIN_API_KEY||''),supplied=String(request.headers.get('x-shift-admin-key')||'');return Boolean(expected&&supplied&&await sameSecret(expected,supplied))}
-async function body(request){const declared=Number(request.headers.get('content-length')||0);if(declared>32768)return null;const text=await request.text();if(new TextEncoder().encode(text).length>32768)return null;try{return JSON.parse(text)}catch{return null}}
+async function body(request){const limit=524288,declared=Number(request.headers.get('content-length')||0);if(declared>limit)return null;const text=await request.text();if(new TextEncoder().encode(text).length>limit)return null;try{return JSON.parse(text)}catch{return null}}
 
 async function ensureAuditSchema(env){
   await env.DB.prepare(`CREATE TABLE IF NOT EXISTS catalogue_audit_events (
@@ -28,7 +29,7 @@ async function ensureAuditSchema(env){
     before_json TEXT, after_json TEXT, occurred_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(product_id) REFERENCES products(id), FOREIGN KEY(treatment_strength_id) REFERENCES treatment_strengths(id))`).run();
 }
-async function ensure(env){await ensureCommercialCatalogueSchema(env);await ensureTreatmentCatalogueSchema(env);await ensureAuditSchema(env)}
+async function ensure(env){await ensureCommercialCatalogueSchema(env);await ensureTreatmentCatalogueSchema(env);await ensureAuditSchema(env);await ensureTreatmentIntakeSchema(env)}
 
 async function listPhysical(env){
   const {results}=await env.DB.prepare(`SELECT p.id,p.sku,p.name,p.price_pence,p.status,
@@ -123,6 +124,21 @@ export async function commercialHqRoutes(request,env){
   if(request.method==='GET'&&path==='/v1/hq/catalogue'){
     const physical=await listPhysical(env),treatments=await listTreatments(env);
     return json({ok:true,safety:{medicinePurchaseEnabled:false,allTreatmentPurchasePathsLocked:true},summary:treatmentHqSummary(treatments),routeDepth:{dailyTablet:tabletRouteHqSummary(treatments)},physical,treatments},200,cors(request));
+  }
+  if(request.method==='POST'&&path==='/v1/hq/catalogue/intake/dry-run'){
+    const input=await body(request);if(!input)return json({ok:false,error:'invalid_or_oversize_body'},400,cors(request));
+    const result=await prepareTreatmentIntake(env,input);return json(result,result.ok?200:422,cors(request));
+  }
+  if(request.method==='POST'&&path==='/v1/hq/catalogue/intake/apply'){
+    const input=await body(request);if(!input)return json({ok:false,error:'invalid_or_oversize_body'},400,cors(request));
+    const result=await applyTreatmentIntake(env,input,{idempotencyKey:request.headers.get('idempotency-key'),actor:input.actor});return json(result,result.status||200,cors(request));
+  }
+  if(request.method==='GET'&&path==='/v1/hq/catalogue/intake/revisions'){
+    const revisions=(await env.DB.prepare(`SELECT id,status,actor,source_reference,row_count,created_at,rolled_back_at FROM catalogue_intake_revisions ORDER BY id DESC LIMIT 100`).all()).results||[];
+    return json({ok:true,revisions,safety:{medicinePurchaseEnabled:false}},200,cors(request));
+  }
+  const rollbackMatch=path.match(/^\/v1\/hq\/catalogue\/intake\/(\d+)\/rollback$/);if(request.method==='POST'&&rollbackMatch){
+    const input=await body(request)||{};const result=await rollbackTreatmentIntake(env,Number(rollbackMatch[1]),{actor:input.actor});return json(result,result.status||200,cors(request));
   }
   const match=path.match(/^\/v1\/hq\/catalogue\/physical\/(\d+)$/);if(request.method==='PATCH'&&match)return updatePhysical(request,env,Number(match[1]));
   const treatmentMatch=path.match(/^\/v1\/hq\/catalogue\/treatments\/(\d+)$/);if(request.method==='PATCH'&&treatmentMatch)return updateTreatment(request,env,Number(treatmentMatch[1]));

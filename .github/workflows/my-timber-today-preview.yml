@@ -16,6 +16,9 @@ on:
       - 'commercial-catalogue-v1.js'
       - 'commercial-hq-v1.js'
       - 'treatment-catalogue-v1.js'
+      - 'treatment-catalogue-intake-v1.js'
+      - 'treatment-catalogue-intake-source-gate.mjs'
+      - 'tests/treatment-catalogue-intake-v1.test.mjs'
       - 'treatment-pathway-v1.js'
       - 'treatment-operations-v1.js'
       - 'claims-library-v1.js'
@@ -27,6 +30,10 @@ on:
       - 'daily-shift-frontdoor-gate.mjs'
       - 'my-timber-9-contract-gate.mjs'
       - 'my-timber-preview-iphone-safari.mjs'
+      - 'physical-iphone-signoff-v1.js'
+      - 'physical-iphone-signoff-source-gate.mjs'
+      - 'tests/physical-iphone-signoff-v1.test.mjs'
+      - 'frontend/member/physical-iphone-signoff.html'
       - 'production-candidate-gate.mjs'
       - 'frontend/member/**'
   workflow_dispatch:
@@ -198,6 +205,15 @@ jobs:
           grep -Fq 'member-today-premium-v1.css?v=daily-shift-v2' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
 
+      - name: Prove the physical iPhone sign-off contract
+        run: |
+          node --test tests/physical-iphone-signoff-v1.test.mjs
+          node physical-iphone-signoff-source-gate.mjs
+          curl -fsS "$PREVIEW_URL/physical-iphone-signoff" -o /tmp/physical-signoff.html
+          grep -Fq 'Submit physical iPhone sign-off' /tmp/physical-signoff.html
+          test "$(curl -sS -o /tmp/non-iphone-signoff.json -w '%{http_code}' -H 'content-type: application/json' -X POST -d '{}' "$PREVIEW_URL/v1/preview/physical-iphone-signoff")" = 422
+          jq -e '.error=="reviewer_name_required"' /tmp/non-iphone-signoff.json
+
       - name: Install iPhone Safari acceptance browser
         run: |
           npm install --no-save --ignore-scripts playwright
@@ -265,6 +281,8 @@ jobs:
           **Open the public journey:** $PREVIEW_URL/
 
           **Open My Timber:** $PREVIEW_URL/member/dashboard#today
+
+          **Complete physical iPhone Safari sign-off:** $PREVIEW_URL/physical-iphone-signoff
 
           [Open the scrutinised preview run and iPhone Safari recording]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)
 

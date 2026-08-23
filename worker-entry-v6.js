@@ -32,6 +32,7 @@ import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {commercialHqRoutes} from './commercial-hq-v1.js';
 import {treatmentPathwayRoutes} from './treatment-pathway-v1.js';
 import {treatmentOperationsRoutes} from './treatment-operations-v1.js';
+import {physicalIphoneSignoffRoutes} from './physical-iphone-signoff-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -114,6 +115,14 @@ export default {
       if(!env.MEMBER_ASSETS)return new Response('Homepage unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/public-home-v1',request.url),request));
     }
+    if((request.method==='GET'||request.method==='HEAD')&&path==='/physical-iphone-signoff'){
+      if(env.SHIFT_ENVIRONMENT!=='my-timber-preview'||env.PHYSICAL_IPHONE_SIGNOFF_ENABLED!=='true'||!env.MEMBER_ASSETS)return new Response('Not found',{status:404});
+      return env.MEMBER_ASSETS.fetch(new Request(new URL('/physical-iphone-signoff.html',request.url),request));
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&/^\/physical-iphone-signoff\/proof\/[a-f0-9-]{36}\.json$/.test(path)){
+      const evidenceId=path.split('/').pop().replace('.json','');
+      return physicalIphoneSignoffRoutes(new Request(new URL(`/v1/preview/physical-iphone-signoff/${evidenceId}`,request.url),request),env);
+    }
     if((request.method==='GET'||request.method==='HEAD')&&path==='/my-timber/today')return Response.redirect(new URL('/member/dashboard?entry=morning#today',request.url),302);
     if((request.method==='GET'||request.method==='HEAD')&&path==='/treatment-options'){
       if(!env.MEMBER_ASSETS)return new Response('Treatment options unavailable',{status:503});
@@ -142,6 +151,7 @@ export default {
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
     const treatmentPathway=await treatmentPathwayRoutes(request,env);if(treatmentPathway)return treatmentPathway;
     const treatmentOperations=await treatmentOperationsRoutes(request,env);if(treatmentOperations)return treatmentOperations;
+    const physicalSignoff=await physicalIphoneSignoffRoutes(request,env);if(physicalSignoff)return physicalSignoff;
     const commercialHq=await commercialHqRoutes(request,env);if(commercialHq)return commercialHq;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});

@@ -218,3 +218,14 @@ CREATE TABLE IF NOT EXISTS treatment_pathway_sessions (
   last_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_treatment_pathway_expiry ON treatment_pathway_sessions(expires_at);
+
+CREATE TABLE IF NOT EXISTS physical_iphone_signoffs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  evidence_id TEXT NOT NULL UNIQUE,
+  reviewer_name TEXT NOT NULL,
+  confirmed_at TEXT NOT NULL,
+  device_user_agent TEXT NOT NULL,
+  checks_json TEXT NOT NULL,
+  notes TEXT NOT NULL DEFAULT '',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
