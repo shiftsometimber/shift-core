@@ -1,4 +1,0 @@
-node_modules/
-.wrangler/
-wrangler.my-timber-preview.generated.jsonc
-artifacts/
