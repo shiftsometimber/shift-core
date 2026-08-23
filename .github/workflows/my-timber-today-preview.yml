@@ -178,7 +178,8 @@ jobs:
           curl -fsS -c /tmp/pathway.cookies -X POST "$PREVIEW_URL/v1/treatment/pathway/start" >/tmp/pathway.json
           curl -fsS -b /tmp/pathway.cookies "$PREVIEW_URL/v1/treatment/catalogue" >/tmp/catalogue.json
           jq -e '.saleState=="blocked" and .priceStatus=="proposed" and ([.families[].formulations[].strengths[]]|length)==15 and ([.families[].formulations[].strengths[]|select(.ctaState!="blocked")]|length)==0' /tmp/catalogue.json
-          curl -fsS -H 'Origin: https://hq.shiftsometimber.co.uk' -H 'X-Shift-Admin-Key: definitely-wrong' "$PREVIEW_URL/v1/hq/catalogue" -o /tmp/hq-denied.json -w '%{http_code}' | grep -Fq '401'
+          status=$(curl -sS -H 'Origin: https://hq.shiftsometimber.co.uk' -H 'X-Shift-Admin-Key: definitely-wrong' "$PREVIEW_URL/v1/hq/catalogue" -o /tmp/hq-denied.json -w '%{http_code}')
+          test "$status" = '401'
 
       - name: Install iPhone-format browser acceptance tool
         run: |
