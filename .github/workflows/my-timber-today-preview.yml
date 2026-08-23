@@ -193,9 +193,10 @@ jobs:
           set -euo pipefail
           node - <<'NODE'
           const { webkit, devices } = require('playwright');
+          const fs=require('fs');fs.mkdirSync('artifacts',{recursive:true});
           (async()=>{
             const browser=await webkit.launch();
-            const context=await browser.newContext({...devices['iPhone 13']});
+            const context=await browser.newContext({...devices['iPhone 13'],recordVideo:{dir:'artifacts',size:{width:390,height:844}}});
             const page=await context.newPage();
             const errors=[];
             page.on('pageerror',error=>errors.push(error.message));
@@ -247,6 +248,14 @@ jobs:
             await browser.close();
           })().catch(error=>{console.error(error);process.exit(1)});
           NODE
+
+      - name: Upload iPhone-format R3 walkthrough
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-r3-iphone-webkit-walkthrough
+          path: artifacts/*.webm
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Prove homepage to governed product on iPhone-format WebKit
         shell: bash
