@@ -33,7 +33,7 @@ const checks=[
  ['no fake placeholder person',creator.includes('Your bloke starts here.')&&!creator.includes('placeholder-avatar')],
  ['privacy and non-clinical copy',creatorLower.includes('not retained')&&creatorLower.includes('not a body scan')&&creatorLower.includes('health assessment')],
  ['premium mobile layout',creatorCss.includes('@media(max-width:640px)')&&creatorCss.includes('.sm-actions{grid-template-columns:1fr}')],
- ['forest/cream constitution',creatorCss.includes('--sm-forest:#09271d')&&creatorCss.includes('--sm-cream:#f4f1e8')],
+ ['three-colour constitution',creatorCss.includes('--sm-forest:#050505')&&creatorCss.includes('--sm-cream:#E7E3DA')&&creatorCss.includes('--sm-green:#707762')],
  ['adult character guard',route.includes('ADULT UK bloke aged 35 to 55')&&route.includes('child/baby proportions')&&route.includes('oversized head')],
  ['four directed views',route.includes("view:['Front','Left side','Back','Right side']")&&creator.includes("view:['Front','Left side','Back','Right side']")],
  ['canonical routes publish creator assets on both hosts',['shift-me-api-v1.js','member-shift-me-premium-v1.js','member-shift-me-premium-v1.css'].every(a=>canonicalConfig.includes(`shiftsometimber.co.uk/${a}*`)&&canonicalConfig.includes(`www.shiftsometimber.co.uk/${a}*`))]
