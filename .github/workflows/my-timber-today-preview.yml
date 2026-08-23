@@ -211,19 +211,24 @@ jobs:
             const todayBody=await today.text();
             if(!today.ok())throw new Error(`today endpoint ${today.status()}: ${todayBody}`);
             try{await page.locator('[data-change]').waitFor({state:'visible',timeout:15000})}catch(error){throw new Error(`today did not render; response=${todayBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
+            await page.waitForTimeout(900);
             await page.locator('[data-change]').click();
+            await page.waitForTimeout(700);
             const workingResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
             await page.locator('[data-rebuild="working_late"]').click();
             const working=await workingResponse;
             const workingBody=await working.text();
             if(!working.ok())throw new Error(`working-late endpoint ${working.status()}: ${workingBody}`);
             try{await page.locator('.mt-rebuilt').waitFor({state:'visible'})}catch(error){throw new Error(`working-late did not render; response=${workingBody}; page=${(await page.locator('body').innerText()).slice(0,1200)}; errors=${errors.join(' | ')}`)}
+            await page.waitForTimeout(1500);
             await page.locator('[data-change]').click();
+            await page.waitForTimeout(700);
             const chaosResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild')&&response.request().method()==='POST');
             await page.locator('[data-rebuild="chaos"]').click();
             const chaos=await chaosResponse;
             if(!chaos.ok())throw new Error(`chaos endpoint ${chaos.status()}: ${await chaos.text()}`);
             await page.getByRole('heading',{name:'Your next three hours are sorted.'}).waitFor({state:'visible'});
+            await page.waitForTimeout(1500);
             const alternativeResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/rebuild/alternative')&&response.request().method()==='POST');
             await page.locator('[data-alternative="fakeaway"]').click();
             const alternative=await alternativeResponse;
@@ -231,17 +236,20 @@ jobs:
             if(!alternative.ok()||!alternativeBody.includes('fakeaway'))throw new Error(`fakeaway endpoint ${alternative.status()}: ${alternativeBody}`);
             const alternativeData=JSON.parse(alternativeBody);
             await page.getByText(alternativeData.rebuild.next.action,{exact:true}).waitFor({state:'visible'});
+            await page.waitForTimeout(1500);
             await page.locator('.mt-feedback summary').first().click();
             const feedbackResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/feedback')&&response.request().method()==='POST');
             await page.getByRole('button',{name:'Love this'}).first().click();
             const feedback=await feedbackResponse;
             if(!feedback.ok())throw new Error(`preference feedback endpoint ${feedback.status()}: ${await feedback.text()}`);
             await page.getByText(/more likely to appear when it fits/i).waitFor();
+            await page.waitForTimeout(1200);
             const completionResponse=page.waitForResponse(response=>response.url().endsWith('/v1/shift/today/complete')&&response.request().method()==='POST');
             await page.locator('[data-complete-shifted]').click();
             const completion=await completionResponse;
             if(!completion.ok())throw new Error(`completion endpoint ${completion.status()}: ${await completion.text()}`);
             await page.locator('.mt-completed').waitFor({state:'visible'});
+            await page.waitForTimeout(1800);
             const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
             if(overflow)throw new Error('horizontal overflow detected');
             if(errors.length)throw new Error(`page errors: ${errors.join(' | ')}`);
