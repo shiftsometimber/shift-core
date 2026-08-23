@@ -123,6 +123,17 @@ jobs:
             --command "SELECT domain,json_extract(choice_json,'$.name') AS name,json_extract(choice_json,'$.minutes') AS minutes FROM shift_today_choices WHERE user_id=(SELECT id FROM users WHERE email='$email') ORDER BY domain" > /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "grub" and .name == "Scrambled eggs on toast")] | length == 1' /tmp/persisted.json
           jq -e '[.. | objects | select(.domain? == "move" and .name == "Easy walk" and .minutes == 10)] | length == 1' /tmp/persisted.json
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d '{"mode":"working_late"}' "$PREVIEW_URL/v1/shift/today/rebuild" > /tmp/rebuild.json
+          jq -e '.rebuild.now.domain=="hydration" and .rebuild.next.domain=="food" and .rebuild.later.domain=="movement" and (.rebuild.id>0)' /tmp/rebuild.json
+          rebuild_id=$(jq -r '.rebuild.id' /tmp/rebuild.json)
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d "{\"rebuildId\":$rebuild_id,\"alternativeKey\":\"fakeaway\"}" "$PREVIEW_URL/v1/shift/today/rebuild/alternative" > /tmp/alternative.json
+          jq -e '.rebuild.alternative.key=="fakeaway" and .rebuild.next.domain=="food" and .rebuild.later.domain=="movement" and (.rebuild.id>0)' /tmp/alternative.json
+          alternative_id=$(jq -r '.rebuild.id' /tmp/alternative.json)
+          curl -fsS "${auth[@]}" -H 'content-type: application/json' -H 'X-Shift-Local-Date: 2026-08-21' \
+            -d "{\"rebuildId\":$alternative_id}" "$PREVIEW_URL/v1/shift/today/complete" > /tmp/complete.json
+          jq -e '.completion.headline=="Today shifted."' /tmp/complete.json
 
       - name: Prove the actual member page is served
         shell: bash
@@ -162,6 +173,8 @@ jobs:
           - a named dinner was saved as **Scrambled eggs on toast**
           - movement was saved as **Easy walk · 10 min**
           - a blank treatment account was not assigned a medicine or dose
+          - Working Late rebuilt Now / Next / Later through the live endpoint
+          - Fakeaway recalculated the rebuilt day and Today Shifted completed
 
           **Open the one-thumb review:** $PREVIEW_URL/member/dashboard#today
 

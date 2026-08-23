@@ -2,20 +2,24 @@ import core from './worker.js';
 import {memberDailyV2Routes} from './member-daily-v2.js';
 import {buildShiftBrainContext} from './shift-brain-v1.js';
 import {recordProductEvent} from './product-analytics-v1.js';
+import {applyRebuildAlternative,rebuildDay} from './my-timber-rebuild-v1.js';
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
-const CHECKIN='/v1/shift/today/check-in',GRUB='/v1/shift/today/grub',MOVE='/v1/shift/today/move',TREATMENT='/v1/shift/today/treatment',CONTEXT='/v1/shift/treatment-context',HELP='/v1/shift/today/help';
+const CHECKIN='/v1/shift/today/check-in',GRUB='/v1/shift/today/grub',MOVE='/v1/shift/today/move',TREATMENT='/v1/shift/today/treatment',CONTEXT='/v1/shift/treatment-context',HELP='/v1/shift/today/help',REBUILD='/v1/shift/today/rebuild',REBUILD_ALT='/v1/shift/today/rebuild/alternative',COMPLETE='/v1/shift/today/complete';
 const clean=(v,n=500)=>String(v??'').trim().slice(0,n),parse=v=>{try{return JSON.parse(v||'{}')}catch{return{}}};
 const dateOf=request=>clean(request.headers.get('X-Shift-Local-Date'),10)||new Date().toISOString().slice(0,10);
 
 export async function memberDailyV3Routes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',method=request.method.toUpperCase();
-  if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT,HELP].includes(path))return memberDailyV2Routes(request,env,ctx);
+  if(!['/v1/shift/today',CHECKIN,GRUB,MOVE,TREATMENT,CONTEXT,HELP,REBUILD,REBUILD_ALT,COMPLETE].includes(path))return memberDailyV2Routes(request,env,ctx);
   if(method==='OPTIONS')return new Response(null,{status:204,headers:cors(request)});
   const auth=await authenticate(request,env,ctx);if(auth.response)return withCors(auth.response,request);
   const uid=Number(auth.user.id);await ensureTodaySchema(env.DB);
   if(path===HELP&&method==='GET')return getImmediateHelp(request,env,uid);
   if(path===HELP&&method==='POST')return saveImmediateHelp(request,env,ctx,uid);
+  if(path===REBUILD&&method==='POST')return saveRebuild(request,env,ctx,uid);
+  if(path===REBUILD_ALT&&method==='POST')return saveRebuildAlternative(request,env,ctx,uid);
+  if(path===COMPLETE&&method==='POST')return completeShiftedDay(request,env,ctx,uid);
   if(path==='/v1/shift/today'&&method==='GET')return getToday(request,env,ctx,uid,auth.user);
   if(path===CHECKIN&&method==='POST')return saveCheckIn(request,env,ctx,uid);
   if(path===GRUB&&method==='POST')return saveGrub(request,env,ctx,uid);
@@ -30,7 +34,42 @@ export async function ensureTodaySchema(DB){await DB.batch([
   DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_choices (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,domain TEXT NOT NULL,choice_key TEXT NOT NULL,choice_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(user_id,local_date,domain))`),
   DB.prepare(`CREATE TABLE IF NOT EXISTS shift_treatment_context (user_id INTEGER PRIMARY KEY,medicine TEXT NOT NULL,route TEXT NOT NULL,dose TEXT NOT NULL,week_number INTEGER,next_dose_on TEXT,next_delivery_on TEXT,status TEXT NOT NULL DEFAULT 'active',updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
   DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_today_choices_user_date ON shift_today_choices(user_id,local_date)`)
+  ,DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_rebuilds (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,mode TEXT NOT NULL,rebuild_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`)
+  ,DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_today_rebuilds_user_date ON shift_today_rebuilds(user_id,local_date,created_at)`)
+  ,DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_completions (user_id INTEGER NOT NULL,local_date TEXT NOT NULL,completion_type TEXT NOT NULL,observation TEXT NOT NULL,rebuild_id INTEGER,completed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(user_id,local_date))`)
 ]);}
+
+async function saveRebuild(request,env,ctx,uid){
+  const input=await request.json().catch(()=>({})),mode=clean(input.mode,40),date=dateOf(request);
+  const choices=(await env.DB.prepare(`SELECT domain,choice_json FROM shift_today_choices WHERE user_id=? AND local_date=?`).bind(uid,date).all()).results||[];
+  const saved=Object.fromEntries(choices.map(row=>[row.domain,parse(row.choice_json)]));
+  const rejected=(await env.DB.prepare(`SELECT choice_key FROM shift_today_choices WHERE user_id=? AND domain='meal_rejection' ORDER BY updated_at DESC LIMIT 20`).bind(uid).all()).results||[];
+  const rebuilt=rebuildDay(mode,{savedMeal:saved.grub,savedMove:saved.move,rejectedMealKeys:rejected.map(row=>row.choice_key)});
+  if(!rebuilt)return respond({ok:false,error:'invalid_rebuild_mode'},400,request);
+  const inserted=await env.DB.prepare(`INSERT INTO shift_today_rebuilds(user_id,local_date,mode,rebuild_json) VALUES(?,?,?,?)`).bind(uid,date,mode,JSON.stringify(rebuilt)).run();rebuilt.id=Number(inserted.meta?.last_row_id||0);
+  defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_day_rebuilt',surface:'my_timber_today',source:'server',properties:{date,mode,nowDomain:rebuilt.now.domain}}));
+  return respond({ok:true,rebuild:rebuilt},200,request);
+}
+
+async function saveRebuildAlternative(request,env,ctx,uid){
+  const input=await request.json().catch(()=>({})),key=clean(input.alternativeKey||input.key,40),date=dateOf(request),requestedId=Number(input.rebuildId||0);
+  const row=requestedId?await env.DB.prepare(`SELECT * FROM shift_today_rebuilds WHERE id=? AND user_id=? AND local_date=?`).bind(requestedId,uid,date).first():await env.DB.prepare(`SELECT * FROM shift_today_rebuilds WHERE user_id=? AND local_date=? ORDER BY id DESC LIMIT 1`).bind(uid,date).first();
+  if(!row)return respond({ok:false,error:'rebuild_not_found'},404,request);
+  const changed=applyRebuildAlternative(parse(row.rebuild_json),key);if(!changed)return respond({ok:false,error:'invalid_alternative'},400,request);
+  const inserted=await env.DB.prepare(`INSERT INTO shift_today_rebuilds(user_id,local_date,mode,rebuild_json) VALUES(?,?,?,?)`).bind(uid,date,`${row.mode}:alternative:${key}`,JSON.stringify(changed)).run();changed.id=Number(inserted.meta?.last_row_id||0);
+  defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_alternative_applied',surface:'my_timber_today',source:'server',properties:{date,key,mode:row.mode}}));
+  return respond({ok:true,rebuild:changed},200,request);
+}
+
+async function completeShiftedDay(request,env,ctx,uid){
+  const input=await request.json().catch(()=>({})),date=dateOf(request),rebuildId=Number(input.rebuildId||0);
+  const latest=await env.DB.prepare(`SELECT id,mode,rebuild_json FROM shift_today_rebuilds WHERE user_id=? AND local_date=? ${rebuildId?'AND id=?':''} ORDER BY id DESC LIMIT 1`).bind(...(rebuildId?[uid,date,rebuildId]:[uid,date])).first();
+  if(rebuildId&&!latest)return respond({ok:false,error:'rebuild_not_found'},404,request);
+  const observation=latest?'You did not follow the original plan—you made the changed day work. That counts.':'You made the useful decisions for the day you actually had. That counts.';
+  await env.DB.prepare(`INSERT INTO shift_today_completions(user_id,local_date,completion_type,observation,rebuild_id) VALUES(?,?,'today_shifted',?,?) ON CONFLICT(user_id,local_date) DO UPDATE SET completion_type='today_shifted',observation=excluded.observation,rebuild_id=excluded.rebuild_id,completed_at=CURRENT_TIMESTAMP`).bind(uid,date,observation,latest?.id||null).run();
+  defer(ctx,recordProductEvent(env,{userId:uid,eventName:'my_timber_today_shifted',surface:'my_timber_today',source:'server',properties:{date,mode:latest?.mode||'original'}}));
+  return respond({ok:true,completion:{headline:'Today shifted.',message:observation,observation:latest?'The useful win was adapting early instead of abandoning the evening.':'The useful win was finishing with a clear next step.'}},200,request);
+}
 
 async function getToday(request,env,ctx,uid,user){
   const date=dateOf(request),[checkin,choices,treatment,progress,yesterday,brain,canonicalResponse]=await Promise.all([
