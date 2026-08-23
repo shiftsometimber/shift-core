@@ -40,6 +40,23 @@ test('external evidence requires a reference, timestamp and freshness',()=>{
   assert.equal(status.medicinePurchase.state,'blocked');
 });
 
+test('every external domain independently keeps commercial release and medicine purchase blocked',()=>{
+  for(const key of EXTERNAL_EVIDENCE){
+    const incomplete={...external,[key]:{state:'tbc'}};
+    const status=buildOperationalStatus({now:NOW,engineering,external:incomplete,approvals,releaseControl,productionAuthorization:'SHIFT_PRODUCTION_DEPLOY_ENABLE',releaseAuthorization:'SHIFT_MEDICINE_SALE_ENABLE'});
+    assert.equal(status.external.evidence[key],'blocked',key);
+    assert.equal(status.release.commercial,'blocked',key);
+    assert.equal(status.medicinePurchase.state,'blocked',key);
+  }
+});
+
+test('future-dated external evidence fails closed',()=>{
+  const future={...external,stock:{state:'verified',reference:'stock:future',verifiedAt:'2026-08-24T10:00:00.000Z'}};
+  const status=buildOperationalStatus({now:NOW,engineering,external:future,approvals,releaseControl,productionAuthorization:'SHIFT_PRODUCTION_DEPLOY_ENABLE',releaseAuthorization:'SHIFT_MEDICINE_SALE_ENABLE'});
+  assert.equal(status.external.evidence.stock,'blocked');
+  assert.equal(status.medicinePurchase.state,'blocked');
+});
+
 test('complete current evidence, bound separated approvals and rollback still require explicit production and sale authorisation',()=>{
   const status=buildOperationalStatus({now:NOW,engineering,external,approvals,releaseControl});
   assert.equal(status.release.candidate,'ready');
