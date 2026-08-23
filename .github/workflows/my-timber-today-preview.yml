@@ -197,3 +197,5 @@ jobs:
           fi
 
 # R3 isolated preview trigger: 2026-08-23
+
+# Allowlisted isolated preview run
