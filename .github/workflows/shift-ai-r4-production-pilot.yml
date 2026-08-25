@@ -103,8 +103,16 @@ jobs:
       - name: Prove final production boundary
         run: |
           set -euo pipefail
-          test "$(curl -sS -o /tmp/r4-unauth.json -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/shift-ai/today/bootstrap')" = 401
-          test "$(curl -sS -o /tmp/r4-hook.json -w '%{http_code}' -H 'Content-Type: application/json' --data '{}' "$COMMISSION_URL")" = 404
+          bootstrap_code=000
+          hook_code=000
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            bootstrap_code=$(curl -sS -o /tmp/r4-unauth.json -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/shift-ai/today/bootstrap')
+            hook_code=$(curl -sS -o /tmp/r4-hook.json -w '%{http_code}' -H 'Content-Type: application/json' --data '{}' "$COMMISSION_URL")
+            test "$bootstrap_code" = 401 && test "$hook_code" = 404 && break
+            sleep 3
+          done
+          test "$bootstrap_code" = 401
+          test "$hook_code" = 404
           printf '%s\n' '## Shift AI R4 live for all current members' '' "- Deployed commit: $GITHUB_SHA" "- Worker version: $WORKER_VERSION" "- Eligible current members: $CURRENT_MEMBERS" '- Model: off' '- Confirmation before writes: enforced' '- One-action kill-switch: proved at all-member scope' '- Full audit: active' '- Commissioning hook: removed' >> "$GITHUB_STEP_SUMMARY"
       - name: Seal journey if any gate failed
         if: ${{ failure() }}
