@@ -80,7 +80,10 @@ jobs:
         run: |
           set -euo pipefail
           sed "s/__PREVIEW_D1_DATABASE_ID__/247b065f-fea4-4891-945b-b707f2417656/" wrangler.my-timber-preview.template.jsonc > /tmp/r4-preview.jsonc
-          npx wrangler d1 execute DB --remote --config /tmp/r4-preview.jsonc --json --command "SELECT u.email,u.first_name,a.password_hash FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id JOIN user_auth a ON a.user_id=u.id WHERE pa.status='active' AND pa.cohort=1 AND pa.consented_at IS NOT NULL AND pa.consent_evidence_ref IS NOT NULL ORDER BY u.id" > /tmp/r4-preview-accounts.json
+          if ! npx wrangler d1 execute DB --remote --config /tmp/r4-preview.jsonc --json --command "SELECT u.email,u.first_name,a.password_hash FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id JOIN user_auth a ON a.user_id=u.id WHERE pa.status='active' AND pa.cohort=1 AND pa.consented_at IS NOT NULL AND pa.consent_evidence_ref IS NOT NULL ORDER BY u.id" > /tmp/r4-preview-accounts.json; then
+            jq -r '..|objects|(.error? // .message? // empty)' /tmp/r4-preview-accounts.json | head -n3
+            exit 1
+          fi
           candidates=$(jq -r '[..|objects|select(.results?!=null)|.results][0]|length' /tmp/r4-preview-accounts.json)
           slots=$(jq -r '[..|objects|select(.results?!=null)|.results][0]|[.[].first_name|ascii_downcase]|unique|length' /tmp/r4-preview-accounts.json)
           echo "Preview transfer guard: candidates=$candidates slots=$slots"
