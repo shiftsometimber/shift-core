@@ -99,7 +99,7 @@ export default {
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/'))){
       if(!env.MEMBER_ASSETS)return new Response('Tap Room unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
       const session=await authenticateTapRoomPage(request,env);if(session)return session;
-      const response=await env.MEMBER_ASSETS.fetch(new Request(new URL('/tap-room.html',request.url),request));const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('X-Robots-Tag','noindex, nofollow, noarchive, nosnippet');return new Response(response.body,{status:response.status,headers});
+      const response=await env.MEMBER_ASSETS.fetch(new Request(new URL('/tap-room-shell.txt',request.url),request));const headers=new Headers(response.headers);headers.set('Content-Type','text/html; charset=utf-8');headers.set('Cache-Control','no-store, private');headers.set('X-Robots-Tag','noindex, nofollow, noarchive, nosnippet');return new Response(response.body,{status:response.status,headers});
     }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/grub'||path==='/member/grub.html'||path==='/member-grub')){
       if(!env.MEMBER_ASSETS)return new Response('Grub unavailable',{status:503});
