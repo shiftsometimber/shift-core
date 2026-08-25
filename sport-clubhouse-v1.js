@@ -1,5 +1,5 @@
-const SPORTS={football:'Soccer',rugby:'Rugby',cricket:'Cricket',golf:'Golf',boxing:'Fighting',formula1:'Motorsport',tennis:'Tennis',darts:'Darts'};
-const BBC_FEEDS={football:'football',rugby:'rugby-union',cricket:'cricket',golf:'golf',boxing:'boxing',formula1:'formula1',tennis:'tennis',darts:'darts'};
+const SPORTS={football:'Soccer',rugby:'Rugby',cricket:'Cricket',golf:'Golf',boxing:'Fighting',formula1:'Motorsport',tennis:'Tennis',darts:'Darts',racing:'Horse Racing',snooker:'Snooker'};
+const BBC_FEEDS={football:'football',rugby:'rugby-union',cricket:'cricket',golf:'golf',boxing:'boxing',formula1:'formula1',tennis:'tennis',darts:'darts',racing:'horse-racing',snooker:'snooker'};
 const FOOTBALL_NEWS=[
  {source:'BBC Sport',url:'https://feeds.bbci.co.uk/sport/football/rss.xml',hosts:['www.bbc.co.uk','www.bbc.com']},
  {source:'The Guardian',url:'https://www.theguardian.com/football/rss',hosts:['www.theguardian.com']},
@@ -30,8 +30,18 @@ async function tableFeed(key,league,season){
 }
 const FOOTBALL_COUNTRIES=['England','Scotland','Wales','Northern Ireland','Ireland'];
 async function footballLeagues(key){
- const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}));
- const seen=new Set();return lists.flat().filter(x=>x.idLeague&&x.idCup!=='1'&&!seen.has(x.idLeague)&&seen.add(x.idLeague)).map(x=>({id:clean(x.idLeague,12),name:clean(x.strLeague,90),country:clean(x.strCountry,30),division:Number(x.intDivision||99),season:clean(x.strCurrentSeason,20)})).sort((a,b)=>FOOTBALL_COUNTRIES.indexOf(a.country)-FOOTBALL_COUNTRIES.indexOf(b.country)||a.division-b.division||a.name.localeCompare(b.name));
+ const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{try{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}catch{return[]}}));
+ const season=`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`;
+ const pinned=[
+  {idLeague:'4328',strLeague:'English Premier League',strCountry:'England',intDivision:1,strCurrentSeason:season},
+  {idLeague:'4329',strLeague:'English League Championship',strCountry:'England',intDivision:2,strCurrentSeason:season},
+  {idLeague:'4396',strLeague:'English League 1',strCountry:'England',intDivision:3,strCurrentSeason:season},
+  {idLeague:'4397',strLeague:'English League 2',strCountry:'England',intDivision:4,strCurrentSeason:season},
+  {idLeague:'4590',strLeague:'English National League',strCountry:'England',intDivision:5,strCurrentSeason:'2025-2026'},
+  {idLeague:'4681',strLeague:'English National League North',strCountry:'England',intDivision:6,strCurrentSeason:'2025-2026'},
+  {idLeague:'4682',strLeague:'English National League South',strCountry:'England',intDivision:6,strCurrentSeason:'2025-2026'}
+ ];
+ const seen=new Set();return [...pinned,...lists.flat()].filter(x=>x.idLeague&&x.idCup!=='1'&&!seen.has(x.idLeague)&&seen.add(x.idLeague)).map(x=>({id:clean(x.idLeague,12),name:clean(x.strLeague,90),country:clean(x.strCountry,30),division:Number(x.intDivision||99),season:clean(x.strCurrentSeason,20)})).sort((a,b)=>FOOTBALL_COUNTRIES.indexOf(a.country)-FOOTBALL_COUNTRIES.indexOf(b.country)||a.division-b.division||a.name.localeCompare(b.name));
 }
 
 async function dayFeed(key,sport,date){
@@ -47,7 +57,7 @@ async function leagueFeed(key,id,sport,endpoint){
 }
 
 async function footballFeed(key,date,league){
-  const [today,next,recent]=await Promise.all([dayFeed(key,'football',date),leagueFeed(key,league,'football','eventsnextleague'),leagueFeed(key,league,'football','eventspastleague')]);
+  const [today,next,recent]=await Promise.all([dayFeed(key,'football',date).catch(()=>[]),leagueFeed(key,league,'football','eventsnextleague').catch(()=>[]),leagueFeed(key,league,'football','eventspastleague').catch(()=>[])]);
   const leagueName=next[0]?.league||recent[0]?.league||'';const seen=new Set();return ukFirst([...today.filter(x=>String(x.league).toLowerCase()===String(leagueName).toLowerCase()),...next,...recent]).filter(event=>ukScore(event)&&event.id&&!seen.has(event.id)&&seen.add(event.id)).slice(0,30);
 }
 
@@ -61,7 +71,7 @@ export async function sportClubhouseRoutes(request,env){
     const key=env.SPORTSDB_API_KEY||'123';
     const leagues=sport==='football'?await footballLeagues(key):[];
     const requestedLeague=clean(url.searchParams.get('league')||'4328',12),selected=leagues.find(x=>x.id===requestedLeague)||leagues.find(x=>x.id==='4328')||leagues[0];
-    const events=sport==='football'&&selected?await footballFeed(key,date,selected.id):await dayFeed(key,sport,date);
+    const events=sport==='football'&&selected?await footballFeed(key,date,selected.id):await dayFeed(key,sport,date).catch(()=>[]);
     const [stories,table]=await Promise.all([storyFeed(sport).catch(()=>[]),sport==='football'&&selected?tableFeed(key,selected.id,selected.season||`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`).catch(()=>[]):Promise.resolve([])]);
     return json({ok:true,source:'TheSportsDB + BBC Sport',sport,date,updated_at:new Date().toISOString(),coverage:'uk_and_ireland_multi_league_clubhouse',selected_league:selected||null,leagues,events,stories,table});
   }catch(error){

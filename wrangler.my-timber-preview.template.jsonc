@@ -16,7 +16,11 @@
     "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
     "PUBLIC_SITE_URL": "https://shift-core-my-timber-preview.workers.dev",
     "STRIPE_MODE": "test",
-    "SHIFT_ENVIRONMENT": "my-timber-preview"
+    "SHIFT_ENVIRONMENT": "my-timber-preview",
+    "TAP_ROOM_DEMO": "true",
+    "TAP_ROOM_MODERATION_OWNER": "Matt O'Brien",
+    "TAP_ROOM_MODERATION_BACKUP": "Linda O'Brien",
+    "TAP_ROOM_P0_EMAIL": "hello@shiftsometimber.co.uk"
   },
   "ai": {"binding": "AI"},
   "d1_databases": [{
