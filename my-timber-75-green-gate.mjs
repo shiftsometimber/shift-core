@@ -33,4 +33,6 @@ green('10. Failures remain visible and retryable',/That did not save\. Try once 
 
 green('11. Every Grub taste path reaches exact or nearest safe choices',/nearest_safe/.test(read('member-product-v7.js'))&&/recipeTasteMatch/.test(read('member-product-v7.js'))&&/sg-recovery/.test(grub)&&/Clear and start again/.test(grub)&&/data-recovery="cancel"/.test(grub));
 
+green('12. Fit movement visuals open full-size accessibly',/data-fit-visual/.test(fit)&&/showModal/.test(fit)&&/data-fit-visual-close/.test(fit)&&/Tap to enlarge/.test(fit)&&/sf-visual-dialog/.test(read('frontend/member/member-fit-programme-v1.css')));
+
 console.log(JSON.stringify({proof:'MY_TIMBER_75_GREEN',status:'PASS',green:`${pass.length}/${pass.length}`,checks:pass},null,2));
