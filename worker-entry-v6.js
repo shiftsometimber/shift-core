@@ -29,6 +29,7 @@ import {commerceStripeRoutes} from './commerce-stripe-v1.js';
 import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
+import {tapRoomRoutes} from './tap-room-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -58,9 +59,11 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-medicines-watch-v1.js','application/javascript; charset=utf-8'],
   ['/member-medicines-watch-v1.css','text/css; charset=utf-8'],
   ['/member-sport-v1.js','application/javascript; charset=utf-8'],
-  ['/member-sport-v1.css','text/css; charset=utf-8']
+  ['/member-sport-v1.css','text/css; charset=utf-8'],
+  ['/tap-room-v1.js','application/javascript; charset=utf-8'],
+  ['/tap-room-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
+function isMemberProductPath(path){return path.startsWith('/v1/tap-room')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
@@ -93,6 +96,11 @@ async function coreAuthFetch(request,env,ctx){
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/'))){
+      if(!env.MEMBER_ASSETS)return new Response('Tap Room unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
+      const session=await authenticateTapRoomPage(request,env);if(session)return session;
+      const response=await env.MEMBER_ASSETS.fetch(new Request(new URL('/tap-room.html',request.url),request));const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('X-Robots-Tag','noindex, nofollow, noarchive, nosnippet');return new Response(response.body,{status:response.status,headers});
+    }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/grub'||path==='/member/grub.html'||path==='/member-grub')){
       if(!env.MEMBER_ASSETS)return new Response('Grub unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/member-grub',request.url),request));
@@ -134,6 +142,7 @@ export default {
 
     const fastMemberState=await fastMemberStateRoute(request,env);if(fastMemberState)return withMemberCors(fastMemberState,request);
     const fitReminders=await fitReminderRoutes(request,env,ctx);if(fitReminders)return withMemberCors(fitReminders,request);
+    const tapRoom=await tapRoomRoutes(request,env,ctx);if(tapRoom)return withMemberCors(tapRoom,request);
     const healthErasure=await privacyHealthErasureRoute(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));if(healthErasure)return withMemberCors(healthErasure,request);
     const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const sportClubhouse=await sportClubhouseRoutes(request,env);if(sportClubhouse)return withMemberCors(sportClubhouse,request);
@@ -161,6 +170,13 @@ export default {
     if(ctx?.waitUntil)ctx.waitUntil(job); else await job;
   }
 };
+
+async function authenticateTapRoomPage(request,env){
+  const raw=((request.headers.get('Cookie')||'').match(/(?:^|;\s*)sst_session=([^;]+)/)||[])[1];if(!raw)return Response.redirect(new URL('/member-login?returnTo=%2Ftap-room',request.url),302);
+  const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(decodeURIComponent(raw)))),hash=[...digest].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const member=await env.DB.prepare(`SELECT a.email_verified,ms.user_id profile_id FROM user_sessions s JOIN user_auth a ON a.user_id=s.user_id LEFT JOIN member_state ms ON ms.user_id=s.user_id WHERE s.token_hash=? AND s.revoked_at IS NULL AND s.expires_at>?`).bind(hash,new Date().toISOString()).first();
+  if(!Number(member?.email_verified)||!member?.profile_id)return Response.redirect(new URL('/member/dashboard?tapRoom=verified-member-required',request.url),302);return null;
+}
 
 async function recordFinalLogin(request,response,env){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';if(request.method!=='POST'||path!=='/v1/auth/login')return;

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /tap-room
+Disallow: /v1/tap-room
