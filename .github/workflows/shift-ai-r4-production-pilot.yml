@@ -72,7 +72,12 @@ jobs:
       - name: Prove full-scale kill switch and audit
         run: |
           set -euo pipefail
-          code=$(curl -sS -o /tmp/r4-expand.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"expand_all_current_members","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$COMMISSION_URL")
+          code=000
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            code=$(curl -sS -o /tmp/r4-expand.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"expand_all_current_members","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$COMMISSION_URL")
+            test "$code" = 200 && break
+            sleep 3
+          done
           jq . /tmp/r4-expand.json
           test "$code" = 200
           jq -e '.ok==true and .proof=="SHIFT_AI_R4_ALL_CURRENT_MEMBERS_LIVE_V1" and .kill_switch_proved==true and .current_members>=1 and .audit_active==true and .expansion_audits>=1 and .enabled==1 and .master_enabled==false and .model_enabled==false and .audience=="all_current_members"' /tmp/r4-expand.json
