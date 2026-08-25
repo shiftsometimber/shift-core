@@ -81,6 +81,9 @@
     "PUBLIC_SITE_URL": "https://shiftsometimber.co.uk",
     "AUTH_EMAIL_FROM": "welcome@shiftsometimber.co.uk",
     "ORDER_NOTIFICATION_EMAIL": "orders@shiftsometimber.co.uk",
+    "TAP_ROOM_MODERATION_OWNER": "Matt O'Brien",
+    "TAP_ROOM_MODERATION_BACKUP": "Linda O'Brien",
+    "TAP_ROOM_P0_EMAIL": "hello@shiftsometimber.co.uk",
     "STRIPE_MODE": "test"
   },
   "ai": {"binding": "AI"},

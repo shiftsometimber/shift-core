@@ -54,6 +54,18 @@ Matt does not pretend to be a clinician or therapist. He talks as the founder an
 
 Invite 3-5 verified members only. A suitable host is already constructive, replies without preaching, can disagree without becoming a weapon, respects treatment boundaries, and is comfortable contributing twice a week for six weeks. No payment, follower-count requirement or invented activity. Each invite is personal and opt-in.
 
+### Locked Phase 1 cohort carried across from Shift AI
+
+- Matt O'Brien - founder presence and primary moderation owner
+- Linda O'Brien - early host, moderation backup and out-of-hours/kill authority
+- Ava O'Brien - early host
+- Isla O'Brien - early host
+- Finley O'Brien - early host
+
+Access and host status remain consent-first. A named person is not enabled or represented as participating until their individual consent is recorded against their verified Shift account. No replacement or additional host is added during Phase 1 without an explicit governance decision.
+
+P0/safeguarding notifications route to `hello@shiftsometimber.co.uk`, owned by Matt with Linda as the out-of-hours backup. The Tap Room remains closed if email delivery, the named ownership variables or moderator authentication are absent.
+
 Host invitation:
 
 > Hi [name] - I am opening a small private members' area inside Shift called the Tap Room. It is meant to feel like a decent table in the pub: sport, food, treatment experiences and normal life, without judgement or polished nonsense. You came to mind because you talk like a real person and do not preach. Would you be willing to help us set the tone for the first six weeks by joining a few conversations and replying when you genuinely have something useful to add? It is not paid, there is no script and I do not want fake activity. A straight no is completely fine. - Matt
