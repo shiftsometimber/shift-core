@@ -32,7 +32,15 @@ const FOOTBALL_COUNTRIES=['England','Scotland','Wales','Northern Ireland','Irela
 async function footballLeagues(key){
  const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}));
  const season=`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`;
- const pinned=[{idLeague:'4328',strLeague:'English Premier League',strCountry:'England',intDivision:1,strCurrentSeason:season}];
+ const pinned=[
+  {idLeague:'4328',strLeague:'English Premier League',strCountry:'England',intDivision:1,strCurrentSeason:season},
+  {idLeague:'4329',strLeague:'English League Championship',strCountry:'England',intDivision:2,strCurrentSeason:season},
+  {idLeague:'4396',strLeague:'English League 1',strCountry:'England',intDivision:3,strCurrentSeason:season},
+  {idLeague:'4397',strLeague:'English League 2',strCountry:'England',intDivision:4,strCurrentSeason:season},
+  {idLeague:'4590',strLeague:'English National League',strCountry:'England',intDivision:5,strCurrentSeason:'2025-2026'},
+  {idLeague:'4681',strLeague:'English National League North',strCountry:'England',intDivision:6,strCurrentSeason:'2025-2026'},
+  {idLeague:'4682',strLeague:'English National League South',strCountry:'England',intDivision:6,strCurrentSeason:'2025-2026'}
+ ];
  const seen=new Set();return [...pinned,...lists.flat()].filter(x=>x.idLeague&&x.idCup!=='1'&&!seen.has(x.idLeague)&&seen.add(x.idLeague)).map(x=>({id:clean(x.idLeague,12),name:clean(x.strLeague,90),country:clean(x.strCountry,30),division:Number(x.intDivision||99),season:clean(x.strCurrentSeason,20)})).sort((a,b)=>FOOTBALL_COUNTRIES.indexOf(a.country)-FOOTBALL_COUNTRIES.indexOf(b.country)||a.division-b.division||a.name.localeCompare(b.name));
 }
 
