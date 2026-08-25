@@ -88,7 +88,12 @@ jobs:
           fs.writeFileSync(file,JSON.stringify(config,null,2));
           NODE
           npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/r4-preview-bridge.txt 2>&1
-          export_code=$(curl -sS -o /tmp/r4-preview-export.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"export_accounts","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$PREVIEW_COMMISSION_URL")
+          export_code=000
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            export_code=$(curl -sS -o /tmp/r4-preview-export.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"export_accounts","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$PREVIEW_COMMISSION_URL")
+            test "$export_code" = 200 && break
+            sleep 3
+          done
           if test "$export_code" != 200; then
             jq '{ok,error,export_accounts,export_slots}' /tmp/r4-preview-export.json
             exit 1
