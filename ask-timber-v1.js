@@ -43,7 +43,7 @@ export async function askTimberRoutes(request,env){
   const messages=[
     {role:'system',content:systemPrompt()},
     ...history,
-    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\\n')}\n\nREVIEWED EVIDENCE:\n${context}\n\nReturn valid JSON only.`}
+    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context}\n\nReturn valid JSON only.`}
   ];
   try{
     const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:900,temperature:0.2});
