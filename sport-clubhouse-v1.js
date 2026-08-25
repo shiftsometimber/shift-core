@@ -57,7 +57,7 @@ async function leagueFeed(key,id,sport,endpoint){
 }
 
 async function footballFeed(key,date,league){
-  const [today,next,recent]=await Promise.all([dayFeed(key,'football',date),leagueFeed(key,league,'football','eventsnextleague'),leagueFeed(key,league,'football','eventspastleague')]);
+  const [today,next,recent]=await Promise.all([dayFeed(key,'football',date).catch(()=>[]),leagueFeed(key,league,'football','eventsnextleague').catch(()=>[]),leagueFeed(key,league,'football','eventspastleague').catch(()=>[])]);
   const leagueName=next[0]?.league||recent[0]?.league||'';const seen=new Set();return ukFirst([...today.filter(x=>String(x.league).toLowerCase()===String(leagueName).toLowerCase()),...next,...recent]).filter(event=>ukScore(event)&&event.id&&!seen.has(event.id)&&seen.add(event.id)).slice(0,30);
 }
 
