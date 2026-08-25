@@ -1,5 +1,5 @@
-const SPORTS={football:'Soccer',rugby:'Rugby',cricket:'Cricket',golf:'Golf',boxing:'Fighting',formula1:'Motorsport',tennis:'Tennis',darts:'Darts'};
-const BBC_FEEDS={football:'football',rugby:'rugby-union',cricket:'cricket',golf:'golf',boxing:'boxing',formula1:'formula1',tennis:'tennis',darts:'darts'};
+const SPORTS={football:'Soccer',rugby:'Rugby',cricket:'Cricket',golf:'Golf',boxing:'Fighting',formula1:'Motorsport',tennis:'Tennis',darts:'Darts',racing:'Horse Racing',snooker:'Snooker'};
+const BBC_FEEDS={football:'football',rugby:'rugby-union',cricket:'cricket',golf:'golf',boxing:'boxing',formula1:'formula1',tennis:'tennis',darts:'darts',racing:'horse-racing',snooker:'snooker'};
 const FOOTBALL_NEWS=[
  {source:'BBC Sport',url:'https://feeds.bbci.co.uk/sport/football/rss.xml',hosts:['www.bbc.co.uk','www.bbc.com']},
  {source:'The Guardian',url:'https://www.theguardian.com/football/rss',hosts:['www.theguardian.com']},
