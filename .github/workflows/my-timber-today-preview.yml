@@ -133,7 +133,7 @@ jobs:
           curl -fsS "$PREVIEW_URL/tap-room-landing.webp" -o /tmp/tap-room-landing.webp
           test "$(wc -c < /tmp/tap-room-landing.webp)" -gt 100000
           for room_asset in sport travel food-table food-conversation treatment confidence general; do
-            curl -fsS "$PREVIEW_URL/tap-room-$room_asset.webp" -o "/tmp/tap-room-$room_asset.webp"
+            curl --retry 5 --retry-delay 3 --retry-all-errors -fsS "$PREVIEW_URL/tap-room-$room_asset.webp" -o "/tmp/tap-room-$room_asset.webp"
             test "$(wc -c < "/tmp/tap-room-$room_asset.webp")" -gt 100000
           done
           grep -Fq 'LATEST AT THE BAR' /tmp/tap-room-client.js
