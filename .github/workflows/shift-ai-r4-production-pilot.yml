@@ -5,10 +5,12 @@ on:
     branches: [codex/my-timber-adaptive-day-v1]
     paths:
       - '.github/workflows/shift-ai-r4-production-pilot.yml'
-      - 'frontend/member/member-my-timber-problem-v1.js'
+      - 'commissioning-identity-v1.js'
+      - 'commissioning-ops-v1.js'
 
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: shift-ai-r4-production-pilot
@@ -23,6 +25,7 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       PRODUCTION_CONFIG: wrangler.shift-ai-r4-production.generated.jsonc
       PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
+      COMMISSION_URL: https://api.shiftsometimber.co.uk/v1/commissioning/shift-ai-r4-pilot
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,29 +33,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-
-      - name: Fail closed without production authority
-        run: test -n "$CLOUDFLARE_API_TOKEN"
-
+      - name: Require production authority
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+          test -n "$ACTIONS_ID_TOKEN_REQUEST_URL"
       - name: Install exact toolchain
         run: npm install --no-audit --no-fund
-
-      - name: Prove the sealed R4 runtime and locked surfaces
-        shell: bash
+      - name: Prove sealed R4 and locked surfaces
         run: |
           set -euo pipefail
           node --check worker-entry-v6.js
           node --check shift-ai-live-today-v1.js
-          node --check frontend/member/member-my-timber-problem-v1.js
+          node --check commissioning-identity-v1.js
+          node --check commissioning-ops-v1.js
           npm run test:shift-ai-live-today
           node tests/adaptive-today-source-gate.mjs
-          git diff --exit-code 181baa5 -- \
-            shift-ai-live-today-v1.js worker-entry-v6.js member-product-v8.js \
-            frontend/member/api-adapter-v33d.js
+          git diff --exit-code 181baa5 -- shift-ai-live-today-v1.js worker-entry-v6.js member-product-v8.js frontend/member/api-adapter-v33d.js
           test "$(git diff --name-only 181baa5 -- migrations | wc -l)" -eq 0
-
-      - name: Bind exact production Worker and D1 with model locked off
-        shell: bash
+      - name: Bind production Worker and D1 dark
         run: |
           set -euo pipefail
           node - <<'NODE'
@@ -60,123 +59,76 @@ jobs:
           const config=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8').replace(/^\s*\/\/.*$/gm,''));
           const db=config.d1_databases?.find(item=>item.binding==='DB');
           if(config.name!=='shift-core'||db?.database_id!==process.env.PRODUCTION_D1_ID)throw new Error('production binding mismatch');
-          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'true',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
           fs.writeFileSync(process.env.PRODUCTION_CONFIG,JSON.stringify(config,null,2));
           NODE
-          jq -e '.name=="shift-core" and .vars.SHIFT_AI_R4_PILOT_ENABLED=="true" and .vars.SHIFT_TODAY_MODEL_ENABLED=="false" and (.d1_databases[]|select(.binding=="DB")|.database_id)==env.PRODUCTION_D1_ID' "$PRODUCTION_CONFIG"
-
-      - name: Deploy exact controlled candidate dark to production
-        shell: bash
+          jq -e '.name=="shift-core" and .vars.SHIFT_AI_R4_PILOT_ENABLED=="false" and .vars.SHIFT_TODAY_MODEL_ENABLED=="false" and (.d1_databases[]|select(.binding=="DB")|.database_id)==env.PRODUCTION_D1_ID' "$PRODUCTION_CONFIG"
+      - name: Deploy authenticated commissioning bridge dark
         run: |
           set -euo pipefail
-          npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-deploy.txt
-          grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("true")' /tmp/r4-production-deploy.txt
-          grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-production-deploy.txt
-          version=$(grep -F 'Current Version ID:' /tmp/r4-production-deploy.txt | tail -n1 | sed 's/.*Current Version ID: //')
+          npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-dark.txt
+          grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("false")' /tmp/r4-production-dark.txt
+          grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-production-dark.txt
+      - name: Obtain repository OIDC identity
+        run: |
+          set -euo pipefail
+          response=$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(jq -er '.value' <<<"$response")
+          test -n "$token"
+          echo "COMMISSION_OIDC=$token" >> "$GITHUB_ENV"
+      - name: Commission D1 and activate exactly five
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/r4-production-commission.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"activate","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$COMMISSION_URL")
+          jq . /tmp/r4-production-commission.json
+          test "$code" = 200
+          jq -e '.ok==true and .proof=="SHIFT_AI_R4_PRODUCTION_ACTIVATED_V1" and .kill_switch_proved==true and .enabled==1 and .phase==1 and .max_members==5 and .active_members==5 and .valid_consents==5 and .non_cohort_access==0 and .activation_audits>=5 and .master_enabled==false and .model_enabled==false' /tmp/r4-production-commission.json
+      - name: Prove master switch dark independently
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/r4-production-status.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"status","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$COMMISSION_URL")
+          jq . /tmp/r4-production-status.json
+          test "$code" = 200
+          jq -e '.ok==true and .enabled==1 and .active_members==5 and .valid_consents==5 and .non_cohort_access==0 and .master_enabled==false and .model_enabled==false' /tmp/r4-production-status.json
+      - name: Remove bridge and enable sealed pilot
+        run: |
+          set -euo pipefail
+          git show 181baa5:commissioning-identity-v1.js > commissioning-identity-v1.js
+          git show 181baa5:commissioning-ops-v1.js > commissioning-ops-v1.js
+          node - <<'NODE'
+          const fs=require('fs'),file=process.env.PRODUCTION_CONFIG;
+          const config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'true',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-final.txt
+          grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("true")' /tmp/r4-production-final.txt
+          grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-production-final.txt
+          version=$(grep -F 'Current Version ID:' /tmp/r4-production-final.txt | tail -n1 | sed 's/.*Current Version ID: //')
           test -n "$version"
           echo "WORKER_VERSION=$version" >> "$GITHUB_ENV"
-
-      - name: Initialise additive pilot controls with access dark
-        shell: bash
+      - name: Prove final boundary
         run: |
           set -euo pipefail
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --command "
-          CREATE TABLE IF NOT EXISTS shift_ai_today_proposals (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',classification TEXT NOT NULL,route TEXT,source TEXT NOT NULL,request_json TEXT NOT NULL,context_json TEXT NOT NULL,proposal_json TEXT NOT NULL,catalogue_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,expires_at TEXT NOT NULL,confirmed_at TEXT);
-          CREATE INDEX IF NOT EXISTS idx_shift_ai_today_proposals_user ON shift_ai_today_proposals(user_id,local_date,status,created_at);
-          CREATE TABLE IF NOT EXISTS shift_ai_today_audit (id INTEGER PRIMARY KEY AUTOINCREMENT,proposal_id TEXT,user_id INTEGER NOT NULL,event_name TEXT NOT NULL,outcome TEXT NOT NULL,local_date TEXT NOT NULL,request_json TEXT NOT NULL DEFAULT '{}',result_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
-          CREATE INDEX IF NOT EXISTS idx_shift_ai_today_audit_user ON shift_ai_today_audit(user_id,created_at);
-          CREATE TABLE IF NOT EXISTS shift_today_choices (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,domain TEXT NOT NULL,choice_key TEXT NOT NULL,choice_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(user_id,local_date,domain));
-          CREATE TABLE IF NOT EXISTS shift_ai_pilot_control (id INTEGER PRIMARY KEY CHECK(id=1),enabled INTEGER NOT NULL DEFAULT 0 CHECK(enabled IN (0,1)),phase INTEGER NOT NULL DEFAULT 1 CHECK(phase IN (1,2)),max_members INTEGER NOT NULL DEFAULT 5 CHECK(max_members BETWEEN 1 AND 10),consent_version TEXT NOT NULL DEFAULT 'shift-ai-r4-pilot-consent-v1',starts_at TEXT,ends_at TEXT,stopped_at TEXT,stop_reason TEXT,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
-          INSERT OR IGNORE INTO shift_ai_pilot_control(id,enabled,phase,max_members,consent_version) VALUES(1,0,1,5,'shift-ai-r4-pilot-consent-v1');
-          CREATE TABLE IF NOT EXISTS shift_ai_pilot_access (user_id INTEGER PRIMARY KEY,status TEXT NOT NULL CHECK(status IN ('invited','active','revoked')),cohort INTEGER NOT NULL CHECK(cohort IN (1,2)),consent_version TEXT,consented_at TEXT,consent_evidence_ref TEXT,starts_at TEXT NOT NULL,ends_at TEXT NOT NULL,activated_by TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
-          CREATE INDEX IF NOT EXISTS idx_shift_ai_pilot_access_status ON shift_ai_pilot_access(status,cohort,starts_at,ends_at);
-          UPDATE shift_ai_pilot_control SET enabled=0,phase=1,max_members=5,stopped_at=CURRENT_TIMESTAMP,stop_reason='PRODUCTION_PRE_ACTIVATION_LOCK',updated_at=CURRENT_TIMESTAMP WHERE id=1;
-          UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE status='active';" >/tmp/r4-production-schema.txt
-
-      - name: Prove one-action production kill-switch
-        shell: bash
-        run: |
-          set -euo pipefail
-          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          end=$(date -u -d '+14 days' +%Y-%m-%dT%H:%M:%SZ)
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --command "UPDATE shift_ai_pilot_control SET enabled=1,starts_at='$now',ends_at='$end',stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1;" >/tmp/r4-production-kill-arm.txt
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --command "UPDATE shift_ai_pilot_control SET enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='PRODUCTION_KILL_PROOF',updated_at=CURRENT_TIMESTAMP WHERE id=1 AND enabled=1;" >/tmp/r4-production-kill.txt
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --json --command "SELECT enabled,stop_reason,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active') AS active_members FROM shift_ai_pilot_control WHERE id=1;" | tee /tmp/r4-production-kill-proof.json
-          jq -e '[..|objects|select(.enabled==0 and .stop_reason=="PRODUCTION_KILL_PROOF" and .active_members==0)]|length==1' /tmp/r4-production-kill-proof.json
-
-      - name: Resolve exactly the five consented live accounts
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --json --command "
-          SELECT COUNT(*) AS target_accounts,COUNT(DISTINCT lower(hex(lower(trim(first_name))))) AS target_slots,
-            (SELECT COUNT(*) FROM users WHERE lower(hex(lower(trim(first_name)))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579') AND lower(hex(lower(trim(last_name))))='6f27627269656e') AS exact_name_matches
-          FROM users u JOIN member_status ms ON ms.user_id=u.id
-          WHERE lower(hex(lower(trim(u.first_name)))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579')
-            AND lower(hex(lower(trim(u.last_name))))='6f27627269656e'
-            AND ms.membership_status='member';" | tee /tmp/r4-production-target-guard.json
-          jq -e '[..|objects|select(.target_accounts==5 and .target_slots==5 and .exact_name_matches==5)]|length==1' /tmp/r4-production-target-guard.json
-
-      - name: Activate only the consented phase-one cohort
-        shell: bash
-        run: |
-          set -euo pipefail
-          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          end=$(date -u -d '+14 days' +%Y-%m-%dT%H:%M:%SZ)
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --command "
-          INSERT INTO shift_ai_pilot_access(user_id,status,cohort,consent_version,consented_at,consent_evidence_ref,starts_at,ends_at,activated_by,updated_at)
-          SELECT u.id,'active',1,'shift-ai-r4-pilot-consent-v1','$now',
-            'SST-R4-LIVE-CONSENT-SLOT-' || CASE lower(hex(lower(trim(u.first_name)))) WHEN '6d617474' THEN 1 WHEN '6c696e6461' THEN 2 WHEN '617661' THEN 3 WHEN '69736c61' THEN 4 WHEN '66696e6c6579' THEN 5 END,
-            '$now','$end','controlled-production-activation',CURRENT_TIMESTAMP
-          FROM users u JOIN member_status ms ON ms.user_id=u.id
-          WHERE lower(hex(lower(trim(u.first_name)))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579')
-            AND lower(hex(lower(trim(u.last_name))))='6f27627269656e' AND ms.membership_status='member'
-          ON CONFLICT(user_id) DO UPDATE SET status='active',cohort=1,consent_version=excluded.consent_version,consented_at=excluded.consented_at,consent_evidence_ref=excluded.consent_evidence_ref,starts_at=excluded.starts_at,ends_at=excluded.ends_at,activated_by=excluded.activated_by,updated_at=CURRENT_TIMESTAMP;
-          UPDATE shift_ai_pilot_control SET enabled=1,phase=1,max_members=5,consent_version='shift-ai-r4-pilot-consent-v1',starts_at='$now',ends_at='$end',stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1;
-          INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata)
-          SELECT user_id,'shift_ai_r4_pilot_activated','shift_ai_pilot_access',CAST(user_id AS TEXT),json_object('cohort',1,'consent_ref',consent_evidence_ref,'model_enabled',0,'environment','production')
-          FROM shift_ai_pilot_access WHERE status='active' AND activated_by='controlled-production-activation';" >/tmp/r4-production-activation.txt
-
-      - name: Prove production access boundary and full audit
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --json --command "
-          SELECT enabled,phase,max_members,
-            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active') AS active_members,
-            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND consent_version='shift-ai-r4-pilot-consent-v1' AND consented_at IS NOT NULL AND consent_evidence_ref IS NOT NULL AND activated_by='controlled-production-activation') AS valid_consents,
-            (SELECT COUNT(*) FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id WHERE pa.status='active' AND NOT(lower(hex(lower(trim(u.first_name)))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579') AND lower(hex(lower(trim(u.last_name))))='6f27627269656e')) AS non_cohort_access,
-            (SELECT COUNT(*) FROM audit_log WHERE action='shift_ai_r4_pilot_activated' AND json_extract(metadata,'$.environment')='production') AS activation_audits
-          FROM shift_ai_pilot_control WHERE id=1;" | tee /tmp/r4-production-final-proof.json
-          jq -e '[..|objects|select(.enabled==1 and .phase==1 and .max_members==5 and .active_members==5 and .valid_consents==5 and .non_cohort_access==0 and .activation_audits>=5)]|length==1' /tmp/r4-production-final-proof.json
           code=$(curl -sS -o /tmp/r4-production-unauth.json -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/shift-ai/today/bootstrap')
           test "$code" = 401
-          {
-            echo '## R4 controlled production pilot ready'
-            echo ''
-            echo "- Deployed commit: $GITHUB_SHA"
-            echo "- Worker version: $WORKER_VERSION"
-            echo '- Production D1: bound and verified'
-            echo '- Five consented members: active'
-            echo '- All other members: default off'
-            echo '- Model: off'
-            echo '- One-action kill-switch: proved'
-            echo '- Proposal, confirmation, write and fail-closed audit tables: active'
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Seal pilot if any launch gate failed
+          hook_code=$(curl -sS -o /tmp/r4-production-hook.json -w '%{http_code}' -H 'Content-Type: application/json' --data '{}' "$COMMISSION_URL")
+          test "$hook_code" = 404
+          printf '%s\n' '## R4 controlled production pilot live' '' "- Deployed commit: $GITHUB_SHA" "- Worker version: $WORKER_VERSION" '- Production D1: bound and verified' '- Five consented members: active' '- All other members: default off' '- Model: off' '- One-action kill-switch: proved' '- Full audit: active' '- Commissioning hook: removed' >> "$GITHUB_STEP_SUMMARY"
+      - name: Seal pilot if any gate failed
         if: ${{ failure() }}
-        shell: bash
         run: |
           set -euo pipefail
-          node - <<'NODE'
-          const fs=require('fs');
-          const file=process.env.PRODUCTION_CONFIG;
+          if test -f "$PRODUCTION_CONFIG"; then
+            git show 181baa5:commissioning-identity-v1.js > commissioning-identity-v1.js
+            git show 181baa5:commissioning-ops-v1.js > commissioning-ops-v1.js
+            node - <<'NODE'
+          const fs=require('fs'),file=process.env.PRODUCTION_CONFIG;
           const config=JSON.parse(fs.readFileSync(file,'utf8'));
           config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
           fs.writeFileSync(file,JSON.stringify(config,null,2));
           NODE
-          npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-sealed.txt
-          grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("false")' /tmp/r4-production-sealed.txt
-          grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-production-sealed.txt
-          echo 'Launch gate failed; production pilot master flag was returned to off.' >> "$GITHUB_STEP_SUMMARY"
+            npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-sealed.txt
+            grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("false")' /tmp/r4-production-sealed.txt
+          fi
+          echo 'Launch gate failed; production master flag returned to off.' >> "$GITHUB_STEP_SUMMARY"

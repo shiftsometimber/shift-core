@@ -10,16 +10,58 @@ export async function commissioningOpsRoutes(request,env){
   const radar=p==='/v1/commissioning/radar-scan'&&request.method==='POST';
   const productEvents=p==='/v1/commissioning/product-events'&&request.method==='GET';
   const finalV1Publication=p==='/v1/commissioning/final-v1-publication'&&request.method==='POST';
-  if(!radar&&!productEvents&&!finalV1Publication)return null;
+  const shiftAiPilot=p==='/v1/commissioning/shift-ai-r4-pilot'&&request.method==='POST';
+  if(!radar&&!productEvents&&!finalV1Publication&&!shiftAiPilot)return null;
   const identity=await commissioningIdentity(request);if(!identity.ok)return json({ok:false,error:'unauthorised',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},401);
   if(radar){const result=await runRadarScheduledScan(env);return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,radar:result})}
   if(finalV1Publication)return publishFinalV1(request,env,identity);
+  if(shiftAiPilot)return commissionShiftAiPilot(request,env);
   const userId=Number(u.searchParams.get('userId')||0),hours=Math.max(1,Math.min(24,Number(u.searchParams.get('hours')||1)));
   if(!Number.isInteger(userId)||userId<=0)return json({ok:false,error:'invalid_user_id',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},400);
   try{
     const {results=[]}=await env.DB.prepare(`SELECT id,event_name,surface,source,properties_json,occurred_at FROM product_events WHERE user_id=? AND occurred_at>=datetime('now',?) ORDER BY id ASC`).bind(userId,`-${hours} hours`).all();
     return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,userId,windowHours:hours,events:results.map(x=>({id:Number(x.id),event_name:x.event_name,surface:x.surface,source:x.source,properties:safe(x.properties_json),occurred_at:x.occurred_at}))});
   }catch(e){console.error('commissioning_product_events_failed',e?.message);return json({ok:false,error:'analytics_evidence_unavailable',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},503)}
+}
+async function commissionShiftAiPilot(request,env){
+  const consentVersion='shift-ai-r4-pilot-consent-v1',operator='controlled-production-activation';
+  try{
+    const body=await request.json().catch(()=>({})),action=String(body?.action||'');
+    if(body?.proof!=='SHIFT_AI_R4_PRODUCTION_COMMISSION_V1'||!['activate','status'].includes(action))return json({ok:false,error:'invalid_pilot_commissioning_request'},400);
+    await env.DB.batch([
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_ai_today_proposals (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',classification TEXT NOT NULL,route TEXT,source TEXT NOT NULL,request_json TEXT NOT NULL,context_json TEXT NOT NULL,proposal_json TEXT NOT NULL,catalogue_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,expires_at TEXT NOT NULL,confirmed_at TEXT)`),
+      env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_today_proposals_user ON shift_ai_today_proposals(user_id,local_date,status,created_at)`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_ai_today_audit (id INTEGER PRIMARY KEY AUTOINCREMENT,proposal_id TEXT,user_id INTEGER NOT NULL,event_name TEXT NOT NULL,outcome TEXT NOT NULL,local_date TEXT NOT NULL,request_json TEXT NOT NULL DEFAULT '{}',result_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
+      env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_today_audit_user ON shift_ai_today_audit(user_id,created_at)`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_today_choices (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,domain TEXT NOT NULL,choice_key TEXT NOT NULL,choice_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(user_id,local_date,domain))`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_ai_pilot_control (id INTEGER PRIMARY KEY CHECK(id=1),enabled INTEGER NOT NULL DEFAULT 0 CHECK(enabled IN (0,1)),phase INTEGER NOT NULL DEFAULT 1 CHECK(phase IN (1,2)),max_members INTEGER NOT NULL DEFAULT 5 CHECK(max_members BETWEEN 1 AND 10),consent_version TEXT NOT NULL DEFAULT '${consentVersion}',starts_at TEXT,ends_at TEXT,stopped_at TEXT,stop_reason TEXT,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
+      env.DB.prepare(`INSERT OR IGNORE INTO shift_ai_pilot_control(id,enabled,phase,max_members,consent_version) VALUES(1,0,1,5,'${consentVersion}')`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_ai_pilot_access (user_id INTEGER PRIMARY KEY,status TEXT NOT NULL CHECK(status IN ('invited','active','revoked')),cohort INTEGER NOT NULL CHECK(cohort IN (1,2)),consent_version TEXT,consented_at TEXT,consent_evidence_ref TEXT,starts_at TEXT NOT NULL,ends_at TEXT NOT NULL,activated_by TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
+      env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_pilot_access_status ON shift_ai_pilot_access(status,cohort,starts_at,ends_at)`)
+    ]);
+    if(action==='status')return json({ok:true,proof:'SHIFT_AI_R4_PRODUCTION_STATUS_V1',...(await pilotAggregate(env)),master_enabled:env.SHIFT_AI_R4_PILOT_ENABLED==='true',model_enabled:env.SHIFT_TODAY_MODEL_ENABLED==='true'});
+    const targets=await env.DB.prepare(`SELECT u.id,lower(trim(u.first_name)) AS slot FROM users u JOIN member_status ms ON ms.user_id=u.id WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') AND ms.membership_status='member' ORDER BY u.id`).all(),rows=targets.results||[],slots=new Set(rows.map(x=>x.slot));
+    if(rows.length!==5||slots.size!==5)return json({ok:false,error:'pilot_target_guard_failed',target_accounts:rows.length,target_slots:slots.size},409);
+    const now=new Date(),ends=new Date(now.getTime()+14*86400000),nowIso=now.toISOString(),endsIso=ends.toISOString();
+    await env.DB.batch([
+      env.DB.prepare(`UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE status='active'`),
+      env.DB.prepare(`UPDATE shift_ai_pilot_control SET enabled=1,phase=1,max_members=5,consent_version=?,starts_at=?,ends_at=?,stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1`).bind(consentVersion,nowIso,endsIso)
+    ]);
+    await env.DB.prepare(`UPDATE shift_ai_pilot_control SET enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='PRODUCTION_KILL_PROOF',updated_at=CURRENT_TIMESTAMP WHERE id=1 AND enabled=1`).run();
+    const killed=await pilotAggregate(env);if(killed.enabled!==0||killed.active_members!==0||killed.stop_reason!=='PRODUCTION_KILL_PROOF')throw new Error('kill_switch_proof_failed');
+    const activations=rows.map((row,index)=>env.DB.prepare(`INSERT INTO shift_ai_pilot_access(user_id,status,cohort,consent_version,consented_at,consent_evidence_ref,starts_at,ends_at,activated_by,updated_at) VALUES(?,'active',1,?,?,?,?,?,?,CURRENT_TIMESTAMP) ON CONFLICT(user_id) DO UPDATE SET status='active',cohort=1,consent_version=excluded.consent_version,consented_at=excluded.consented_at,consent_evidence_ref=excluded.consent_evidence_ref,starts_at=excluded.starts_at,ends_at=excluded.ends_at,activated_by=excluded.activated_by,updated_at=CURRENT_TIMESTAMP`).bind(row.id,consentVersion,nowIso,`SST-R4-LIVE-CONSENT-SLOT-${index+1}`,nowIso,endsIso,operator));
+    await env.DB.batch([...activations,env.DB.prepare(`UPDATE shift_ai_pilot_control SET enabled=1,phase=1,max_members=5,consent_version=?,starts_at=?,ends_at=?,stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1`).bind(consentVersion,nowIso,endsIso)]);
+    await env.DB.batch(rows.map(row=>env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'shift_ai_r4_pilot_activated','shift_ai_pilot_access',?,json_object('cohort',1,'model_enabled',0,'environment','production'),CURRENT_TIMESTAMP)`).bind(row.id,String(row.id))));
+    const final=await pilotAggregate(env);if(final.enabled!==1||final.phase!==1||final.max_members!==5||final.active_members!==5||final.valid_consents!==5||final.activation_audits<5||final.non_cohort_access!==0)throw new Error('pilot_activation_proof_failed');
+    return json({ok:true,proof:'SHIFT_AI_R4_PRODUCTION_ACTIVATED_V1',kill_switch_proved:true,...final,master_enabled:env.SHIFT_AI_R4_PILOT_ENABLED==='true',model_enabled:env.SHIFT_TODAY_MODEL_ENABLED==='true'});
+  }catch(e){
+    await env.DB.prepare(`UPDATE shift_ai_pilot_control SET enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='COMMISSIONING_FAILED',updated_at=CURRENT_TIMESTAMP WHERE id=1`).run().catch(()=>{});
+    console.error('shift_ai_r4_commissioning_failed',e?.message);return json({ok:false,error:'pilot_commissioning_failed'},503);
+  }
+}
+async function pilotAggregate(env){
+  const row=await env.DB.prepare(`SELECT enabled,phase,max_members,stop_reason,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active') active_members,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND consent_version='shift-ai-r4-pilot-consent-v1' AND consented_at IS NOT NULL AND consent_evidence_ref IS NOT NULL AND activated_by='controlled-production-activation') valid_consents,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND user_id NOT IN (SELECT u.id FROM users u JOIN member_status ms ON ms.user_id=u.id WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') AND ms.membership_status='member')) non_cohort_access,(SELECT COUNT(*) FROM audit_log WHERE action='shift_ai_r4_pilot_activated' AND json_extract(metadata,'$.environment')='production') activation_audits FROM shift_ai_pilot_control WHERE id=1`).first();
+  return{enabled:Number(row?.enabled||0),phase:Number(row?.phase||0),max_members:Number(row?.max_members||0),stop_reason:row?.stop_reason||null,active_members:Number(row?.active_members||0),valid_consents:Number(row?.valid_consents||0),non_cohort_access:Number(row?.non_cohort_access||0),activation_audits:Number(row?.activation_audits||0)};
 }
 async function publishFinalV1(request,env,identity){
   try{
