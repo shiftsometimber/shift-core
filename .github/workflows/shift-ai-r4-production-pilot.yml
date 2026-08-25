@@ -163,3 +163,20 @@ jobs:
             echo '- One-action kill-switch: proved'
             echo '- Proposal, confirmation, write and fail-closed audit tables: active'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Seal pilot if any launch gate failed
+        if: ${{ failure() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const file=process.env.PRODUCTION_CONFIG;
+          const config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-sealed.txt
+          grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("false")' /tmp/r4-production-sealed.txt
+          grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-production-sealed.txt
+          echo 'Launch gate failed; production pilot master flag was returned to off.' >> "$GITHUB_STEP_SUMMARY"
