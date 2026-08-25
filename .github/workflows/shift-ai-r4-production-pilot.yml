@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/shift-ai-r4-production-pilot.yml'
       - 'shift-ai-live-today-v1.js'
+      - 'frontend/member/member-my-timber-problem-v1.js'
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
 
