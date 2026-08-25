@@ -122,6 +122,8 @@ jobs:
         run: node runtime-auth-abuse-v1.mjs
       - name: Dave progressive journey
         run: node dave-journey-v1.mjs
+      - name: Ask Timber multi-intent regression contract
+        run: node --test ask-timber-multi-intent-gate.mjs
       - name: Syntax checks
         run: |
           set -e

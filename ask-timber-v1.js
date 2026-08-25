@@ -21,7 +21,8 @@ export async function askTimberRoutes(request,env){
     console.log('ask_timber_safe_redirect',JSON.stringify({requestId,category:urgent.category}));
     return json({ok:true,requestId,mode:'safety',...urgent},200,request);
   }
-  const evidence=await retrieveUnifiedKnowledge(env.DB,message,8);
+  const requestParts=splitRequestParts(message);
+  const evidence=await retrieveForParts(env.DB,message,requestParts);
   if(!evidence.length){
     console.log('ask_timber_insufficient_evidence',JSON.stringify({requestId}));
     return json({
@@ -42,7 +43,7 @@ export async function askTimberRoutes(request,env){
   const messages=[
     {role:'system',content:systemPrompt()},
     ...history,
-    {role:'user',content:`QUESTION:\n${message}\n\nREVIEWED EVIDENCE:\n${context}\n\nReturn valid JSON only.`}
+    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context}\n\nReturn valid JSON only.`}
   ];
   try{
     const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:900,temperature:0.2});
@@ -96,6 +97,22 @@ function urgentResponse(message){
     keyPoints:['Ask Timber cannot safely assess an emergency.'],nextSteps:['Call 999 now for immediate danger.','For urgent but non-life-threatening help, use NHS 111.'],followUps:[],sources:[],limitations:'This response is emergency signposting, not a diagnosis.'
   };
   return null;
+}
+export function splitRequestParts(message){
+  const original=clean(message,MAX_MESSAGE);
+  if(!original)return[];
+  const parts=original.split(/\s+(?:and|but)\s+(?=(?:i|i'm|i’ve|i've|my|we|can|could|what|how)\b)|[;]+\s*/i).map(x=>clean(x,420)).filter(x=>x.length>=3);
+  return parts.length>1?parts.slice(0,4):[original];
+}
+async function retrieveForParts(db,message,parts){
+  const queries=[...new Set([message,...parts])];
+  const batches=await Promise.all(queries.map((query,index)=>retrieveUnifiedKnowledge(db,query,index===0?8:5)));
+  const seen=new Set(),merged=[];
+  for(const item of batches.flat()){
+    const key=String(item?.citation||item?.title||'')+'|'+clean(item?.content,240);
+    if(seen.has(key))continue;seen.add(key);merged.push(item);
+  }
+  return merged.slice(0,12);
 }
 function normaliseHistory(value){if(!Array.isArray(value))return[];return value.slice(-MAX_HISTORY).map(x=>({role:x?.role==='assistant'?'assistant':'user',content:clean(x?.content,500)})).filter(x=>x.content);}
 function parseAnswer(raw){const stripped=raw.trim().replace(/^\`\`\`(?:json)?/i,'').replace(/\`\`\`$/,'').trim();try{return JSON.parse(stripped)}catch{const a=stripped.indexOf('{'),b=stripped.lastIndexOf('}');if(a>=0&&b>a)return JSON.parse(stripped.slice(a,b+1));return null}}
