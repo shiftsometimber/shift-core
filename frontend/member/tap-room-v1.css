@@ -18,3 +18,6 @@ header,.hero,.hero::before,.rooms::after,.room,.room-title-ticket,.middle-board,
 .board-card::before{background:#e7e3dacc}
 .room:not(.room--sport-banter) .room-detail,.room--sport-banter .room-detail,.board-rule{background:#7077622e}
 .text-button,.secondary{background:#e7e3da;color:#050505}
+
+/* Real cork is the wall material; brand colours govern every interface surface. */
+body{background-color:#9b7048;background-image:url('/tap-room-cork.webp');background-repeat:repeat;background-size:800px auto;background-attachment:fixed}
