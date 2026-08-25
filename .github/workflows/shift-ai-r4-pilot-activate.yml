@@ -1,5 +1,5 @@
 name: Shift AI R4 Pilot Phase 1 Activation
-# Final activation deployment retry after Cloudflare's transient asset-upload failure.
+# Pilot UI-only redeploy: correct the first-load desktop container width.
 
 on:
   push:
