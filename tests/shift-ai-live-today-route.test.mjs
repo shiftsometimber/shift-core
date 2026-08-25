@@ -23,6 +23,7 @@ async function fixture({AI=null,model=false}={}){
   const DB=new D1(),session='route-test-session',hash=await tokenHash(session),expires=new Date(Date.now()+86400000).toISOString();
   await DB.exec(`
     CREATE TABLE users(id INTEGER PRIMARY KEY,email TEXT,first_name TEXT,last_name TEXT,date_of_birth TEXT,postcode TEXT);
+    CREATE TABLE user_auth(user_id INTEGER PRIMARY KEY,email_verified INTEGER NOT NULL DEFAULT 0);
     CREATE TABLE user_sessions(id INTEGER PRIMARY KEY,user_id INTEGER,token_hash TEXT,expires_at TEXT,revoked_at TEXT,last_used_at TEXT);
     CREATE TABLE member_status(user_id INTEGER PRIMARY KEY,lifecycle_stage TEXT,membership_status TEXT,source TEXT,last_activity_at TEXT);
     CREATE TABLE member_state(user_id INTEGER PRIMARY KEY,my_why TEXT,roadmap TEXT,treatment_finder TEXT,decision_readiness TEXT,preferences TEXT);
@@ -36,6 +37,7 @@ async function fixture({AI=null,model=false}={}){
     CREATE TABLE shift_ai_pilot_access(user_id INTEGER PRIMARY KEY,status TEXT,cohort INTEGER,consent_version TEXT,consented_at TEXT,consent_evidence_ref TEXT,starts_at TEXT,ends_at TEXT,activated_by TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT DEFAULT CURRENT_TIMESTAMP);
   `);
   DB.db.prepare('INSERT INTO users VALUES(1,?,?,?,?,?)').run('member@example.test','Billy','Timber','1980-01-01','M1');
+  DB.db.prepare('INSERT INTO user_auth VALUES(1,1)').run();
   DB.db.prepare('INSERT INTO user_sessions VALUES(1,1,?,?,NULL,NULL)').run(hash,expires);
   DB.db.prepare('INSERT INTO member_status VALUES(1,?,?,?,?)').run('active','member','direct',new Date().toISOString());
   DB.db.prepare('INSERT INTO member_state VALUES(1,?,?,?,?,?)').run(JSON.stringify({text:'Get life back'}),JSON.stringify({protein_target:120}),JSON.stringify({}),JSON.stringify({stage:'ready'}),JSON.stringify({food:{quick:true},lifeBack:{priorities:['family time'],entries:[{date:'2026-08-16',scores:{energy:2}},{date:'2026-08-24',scores:{energy:3}}]}}));
@@ -67,7 +69,7 @@ test('all-current-members audience admits a current member without an invite row
 test('all-current-members audience blocks non-members and audits the denial',async()=>{
   const {env,headers}=await fixture();
   env.SHIFT_AI_R4_AUDIENCE='all_current_members';
-  env.DB.db.prepare("UPDATE member_status SET membership_status='none' WHERE user_id=1").run();
+  env.DB.db.prepare("UPDATE user_auth SET email_verified=0 WHERE user_id=1").run();
   const response=await shiftAiLiveTodayRoutes(req('/v1/shift-ai/today/bootstrap',{headers}),env),result=await response.json();
   assert.equal(response.status,403);assert.equal(result.error,'current_membership_required');
   assert.equal(env.DB.db.prepare("SELECT COUNT(*) c FROM shift_ai_today_audit WHERE outcome='current_membership_required'").get().c,1);

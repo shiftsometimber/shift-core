@@ -42,14 +42,14 @@ async function commissionShiftAiPilot(request,env){
     if(action==='status')return json({ok:true,proof:'SHIFT_AI_R4_PRODUCTION_STATUS_V1',...(await pilotAggregate(env)),master_enabled:env.SHIFT_AI_R4_PILOT_ENABLED==='true',model_enabled:env.SHIFT_TODAY_MODEL_ENABLED==='true'});
     if(action==='expand_all_current_members'){
       if(env.SHIFT_TODAY_MODEL_ENABLED==='true'||env.SHIFT_AI_R4_AUDIENCE!=='all_current_members')throw new Error('all_members_locked_configuration_invalid');
-      const members=await env.DB.prepare(`SELECT COUNT(*) AS count FROM member_status WHERE lower(trim(membership_status))='member'`).first();
+      const members=await env.DB.prepare(`SELECT COUNT(*) AS count,MIN(user_id) AS audit_user_id FROM user_auth WHERE email_verified=1`).first();
       const auditTable=await env.DB.prepare(`SELECT COUNT(*) AS count FROM sqlite_master WHERE type='table' AND name='shift_ai_today_audit'`).first();
       if(Number(members?.count||0)<1||Number(auditTable?.count||0)!==1)throw new Error('all_members_proof_incomplete');
       await env.DB.prepare(`UPDATE shift_ai_pilot_control SET enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='ALL_MEMBERS_KILL_PROOF',updated_at=CURRENT_TIMESTAMP WHERE id=1`).run();
       const killed=await pilotAggregate(env);if(killed.enabled!==0||killed.stop_reason!=='ALL_MEMBERS_KILL_PROOF')throw new Error('all_members_kill_switch_proof_failed');
       await env.DB.batch([
         env.DB.prepare(`UPDATE shift_ai_pilot_control SET enabled=1,stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1`),
-        env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(NULL,'shift_ai_r4_all_current_members_enabled','shift_ai_pilot_control','1',json_object('audience','all_current_members','model_enabled',0,'environment','production'),CURRENT_TIMESTAMP)`)
+        env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'shift_ai_r4_all_current_members_enabled','shift_ai_pilot_control','1',json_object('audience','all_current_members','model_enabled',0,'environment','production'),CURRENT_TIMESTAMP)`).bind(Number(members.audit_user_id))
       ]);
       const final=await pilotAggregate(env),expansionAudit=await env.DB.prepare(`SELECT COUNT(*) AS count FROM audit_log WHERE action='shift_ai_r4_all_current_members_enabled'`).first();
       if(final.enabled!==1||Number(expansionAudit?.count||0)<1)throw new Error('all_members_rearm_failed');
