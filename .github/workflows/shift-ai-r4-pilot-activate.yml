@@ -74,14 +74,11 @@ jobs:
             AND lower(u.email) NOT LIKE '%@example.test';" | tee /tmp/r4-target-guard.json
           jq -e '[.. | objects | select(.member_count>=5 and .slot_count==5)] | length==1' /tmp/r4-target-guard.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "
-          CREATE TEMP TABLE r4_expected(name_hex TEXT PRIMARY KEY,slot INTEGER UNIQUE);
-          INSERT INTO r4_expected VALUES
-            ('6d617474',1),
-            ('6c696e6461',2),
-            ('617661',3),
-            ('69736c61',4),
-            ('66696e6c6579',5);
-          CREATE TEMP TABLE r4_targets AS
+          UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE status='active';
+          INSERT INTO shift_ai_pilot_access(
+            user_id,status,cohort,consent_version,consented_at,consent_evidence_ref,
+            starts_at,ends_at,activated_by,updated_at
+          )
           WITH ranked AS (
             SELECT u.id,lower(hex(lower(trim(u.first_name)))) AS name_hex,
               ROW_NUMBER() OVER (
@@ -93,19 +90,13 @@ jobs:
             WHERE lower(hex(lower(trim(u.first_name)))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579')
               AND lower(u.email) NOT LIKE '%@example.test'
           )
-          SELECT r.id,e.slot
-          FROM ranked r
-          JOIN r4_expected e ON e.name_hex=r.name_hex
-          WHERE r.choice_rank=1;
-          UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE status='active';
-          INSERT INTO shift_ai_pilot_access(
-            user_id,status,cohort,consent_version,consented_at,consent_evidence_ref,
-            starts_at,ends_at,activated_by,updated_at
-          )
           SELECT id,'active',1,'shift-ai-r4-pilot-consent-v1','$now',
-            'SST-R4-CONSENT-20260825-SLOT-' || slot,'$now','$end',
+            'SST-R4-CONSENT-20260825-SLOT-' ||
+              CASE name_hex WHEN '6d617474' THEN 1 WHEN '6c696e6461' THEN 2
+                WHEN '617661' THEN 3 WHEN '69736c61' THEN 4 WHEN '66696e6c6579' THEN 5 END,
+            '$now','$end',
             'controlled-preview-activation',CURRENT_TIMESTAMP
-          FROM r4_targets
+          FROM ranked WHERE choice_rank=1
           ON CONFLICT(user_id) DO UPDATE SET
             status='active',cohort=1,consent_version=excluded.consent_version,
             consented_at=excluded.consented_at,consent_evidence_ref=excluded.consent_evidence_ref,
@@ -118,9 +109,10 @@ jobs:
             updated_at=CURRENT_TIMESTAMP
           WHERE id=1;
           INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata)
-          SELECT id,'shift_ai_r4_pilot_activated','shift_ai_pilot_access',CAST(id AS TEXT),
-            json_object('cohort',1,'consent_ref','SST-R4-CONSENT-20260825-SLOT-' || slot,'model_enabled',0)
-          FROM r4_targets;" >/tmp/r4-activation.txt
+          SELECT user_id,'shift_ai_r4_pilot_activated','shift_ai_pilot_access',CAST(user_id AS TEXT),
+            json_object('cohort',1,'consent_ref',consent_evidence_ref,'model_enabled',0)
+          FROM shift_ai_pilot_access
+          WHERE status='active' AND cohort=1 AND activated_by='controlled-preview-activation';" >/tmp/r4-activation.txt
 
       - name: Verify cohort controls and audit without exposing identities
         shell: bash
