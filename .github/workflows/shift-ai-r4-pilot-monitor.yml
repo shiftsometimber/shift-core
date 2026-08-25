@@ -22,9 +22,9 @@ jobs:
     timeout-minutes: 8
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
-      PREVIEW_CONFIG: wrangler.shift-ai-r4-monitor.generated.jsonc
-      PREVIEW_D1_ID: 247b065f-fea4-4891-945b-b707f2417656
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PRODUCTION_CONFIG: wrangler.shift-ai-r4-production-monitor.generated.jsonc
+      PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,19 +37,26 @@ jobs:
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
 
-      - name: Bind only the isolated candidate D1
+      - name: Bind only the production D1
         run: |
-          sed "s/__PREVIEW_D1_DATABASE_ID__/$PREVIEW_D1_ID/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
+          node - <<'NODE'
+          const fs=require('fs');
+          const config=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8').replace(/^\s*\/\/.*$/gm,''));
+          const db=config.d1_databases?.find(item=>item.binding==='DB');
+          if(config.name!=='shift-core'||db?.database_id!==process.env.PRODUCTION_D1_ID)throw new Error('production monitor binding mismatch');
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(process.env.PRODUCTION_CONFIG,JSON.stringify(config,null,2));
+          NODE
+          jq -e '.name=="shift-core" and (.d1_databases[]|select(.binding=="DB")|.database_id)==env.PRODUCTION_D1_ID' "$PRODUCTION_CONFIG"
 
       - name: Read aggregate usage and hard-stop invariants
         shell: bash
         run: |
           set -euo pipefail
-          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "
+          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --json --command "
           SELECT
-            c.enabled,c.phase,c.max_members,c.starts_at,c.ends_at,c.stop_reason,
-            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND cohort<=c.phase) AS active_members,
-            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND cohort<=c.phase AND consented_at IS NOT NULL AND consent_evidence_ref IS NOT NULL AND activated_by IS NOT NULL) AS valid_consents,
+            c.enabled,c.starts_at,c.ends_at,c.stop_reason,
+            (SELECT COUNT(*) FROM user_auth WHERE email_verified=1) AS eligible_accounts,
             (SELECT COUNT(DISTINCT user_id) FROM shift_ai_today_audit WHERE created_at>=c.starts_at) AS members_engaged,
             (SELECT COUNT(*) FROM shift_ai_today_audit WHERE event_name='live_today_bootstrap_read' AND created_at>=c.starts_at) AS bootstraps,
             (SELECT COUNT(*) FROM shift_ai_today_audit WHERE event_name='rebuild_proposed' AND created_at>=c.starts_at) AS proposals,
@@ -81,18 +88,17 @@ jobs:
                    AND json_extract(ch.choice_json,'$.proposal_id')=p.id
                ))
               +
-              CASE WHEN c.phase!=1 OR c.max_members!=5 OR c.consent_version!='shift-ai-r4-pilot-consent-v1' THEN 1 ELSE 0 END
-              +
-              CASE WHEN (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND cohort<=c.phase)>c.max_members THEN 1 ELSE 0 END
-              +
               (SELECT COUNT(*) FROM shift_ai_today_audit
                WHERE event_name='pilot_gate_failed_closed'
                  AND outcome IN ('pilot_model_lock','pilot_control_invalid','pilot_cohort_limit')
                  AND created_at>=datetime('now','-20 minutes'))
+              +
+              (SELECT COUNT(*) FROM shift_ai_today_proposals
+               WHERE classification IN ('urgent','clinical'))
             ) AS hard_anomalies
           FROM shift_ai_pilot_control c WHERE c.id=1;" | tee /tmp/r4-monitor.json
 
-          jq -e '[.. | objects | select(.active_members? != null)] | length==1' /tmp/r4-monitor.json
+          jq -e '[.. | objects | select(.eligible_accounts? != null)] | length==1' /tmp/r4-monitor.json
           enabled=$(jq -r '.. | objects | .enabled? // empty' /tmp/r4-monitor.json | head -n1)
           anomalies=$(jq -r '.. | objects | .hard_anomalies? // empty' /tmp/r4-monitor.json | head -n1)
           test -n "$enabled" && test -n "$anomalies"
@@ -104,8 +110,8 @@ jobs:
             echo ''
             echo 'Aggregate only; no names, emails, messages or member IDs are published.'
             echo ''
-            jq -r '.. | objects | select(.active_members? != null) |
-              "- Pilot enabled: \(.enabled)\n- Active members: \(.active_members)\n- Valid consents: \(.valid_consents)\n- Members engaged: \(.members_engaged)\n- Bootstraps: \(.bootstraps)\n- Proposals: \(.proposals)\n- Confirmed rebuilds: \(.confirmed_rebuilds)\n- Repeat users: \(.repeat_users)\n- Incomplete-context exits: \(.incomplete_context_exits)\n- Deterministic clinical/urgent blocks: \(.safety_blocks)\n- Hard anomalies: \(.hard_anomalies)"' /tmp/r4-monitor.json
+            jq -r '.. | objects | select(.eligible_accounts? != null) |
+              "- Pilot enabled: \(.enabled)\n- Eligible verified accounts: \(.eligible_accounts)\n- Members engaged: \(.members_engaged)\n- Bootstraps: \(.bootstraps)\n- Proposals: \(.proposals)\n- Confirmed rebuilds: \(.confirmed_rebuilds)\n- Repeat users: \(.repeat_users)\n- Incomplete-context exits: \(.incomplete_context_exits)\n- Deterministic clinical/urgent blocks: \(.safety_blocks)\n- Hard anomalies: \(.hard_anomalies)"' /tmp/r4-monitor.json
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Execute immediate kill on a detectable hard breach
@@ -113,7 +119,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "
+          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --command "
           UPDATE shift_ai_pilot_control
           SET enabled=0,stopped_at=CURRENT_TIMESTAMP,
             stop_reason='AUTOMATED_MONITOR_HARD_STOP',updated_at=CURRENT_TIMESTAMP
@@ -127,7 +133,7 @@ jobs:
           echo 'Pilot is stopped; review stop_reason before any reactivation.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
-      - name: Record evidence-led expansion signal
+      - name: Record evidence-led commercial signal
         if: ${{ env.HARD_ANOMALIES == '0' && env.PILOT_ENABLED == '1' }}
         shell: bash
         run: |
@@ -135,7 +141,7 @@ jobs:
           confirmed=$(jq -r '.. | objects | .confirmed_rebuilds? // empty' /tmp/r4-monitor.json | head -n1)
           repeats=$(jq -r '.. | objects | .repeat_users? // empty' /tmp/r4-monitor.json | head -n1)
           if [ "$engaged" -ge 3 ] && [ "$confirmed" -ge 2 ] && [ "$repeats" -ge 2 ]; then
-            echo 'Expansion evidence threshold reached. Commercial review is permitted; phase 2 remains locked.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Usage evidence threshold reached. Commercial review is permitted; model activation and every locked surface remain closed.' >> "$GITHUB_STEP_SUMMARY"
           else
-            echo 'Expansion evidence threshold not yet reached. Continue observing real use; phase 2 remains locked.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Usage evidence threshold not yet reached. Continue observing real use; model activation and every locked surface remain closed.' >> "$GITHUB_STEP_SUMMARY"
           fi
