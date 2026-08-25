@@ -128,6 +128,8 @@ jobs:
           curl -fsS "$PREVIEW_URL/tap-room-v1.js" -o /tmp/tap-room-client.js
           curl -fsS "$PREVIEW_URL/tap-room-cork.webp" -o /tmp/tap-room-cork.webp
           test "$(wc -c < /tmp/tap-room-cork.webp)" -gt 100000
+          curl -fsS "$PREVIEW_URL/tap-room-paper.webp" -o /tmp/tap-room-paper.webp
+          test "$(wc -c < /tmp/tap-room-paper.webp)" -gt 100000
           grep -Fq 'LATEST AT THE BAR' /tmp/tap-room-client.js
           grep -Fq 'scrollIntoView' /tmp/tap-room-client.js
           grep -Fq '/v1/sport/clubhouse' /tmp/tap-room-client.js
