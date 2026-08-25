@@ -70,7 +70,7 @@
   const bar=document.createElement('div');bar.className='mp-ask-pad-bar';bar.innerHTML='<span>ASK TIMBER · YOUR QUIET NOTEPAD</span><button type="button" class="mp-ask-close" aria-label="Close Ask Timber">Close</button>';
   const paper=document.createElement('div');paper.className='mp-ask-paper';while(panel.firstChild)paper.appendChild(panel.firstChild);surface.append(bar,paper);pad.append(trigger,surface);document.body.appendChild(pad);
   let returnFocus=null;
-  const setOpen=(open,focus=true)=>{pad.dataset.open=String(open);trigger.setAttribute('aria-expanded',String(open));surface.setAttribute('aria-hidden',String(!open));if(open){returnFocus=document.activeElement;requestAnimationFrame(()=>{surface.scrollTop=0;if(focus)aiInput?.focus()})}else{returnFocus?.focus?.()};
+  const setOpen=(open,focus=true)=>{pad.dataset.open=String(open);trigger.setAttribute('aria-expanded',String(open));surface.setAttribute('aria-hidden',String(!open));if(open){returnFocus=document.activeElement;requestAnimationFrame(()=>{surface.scrollTop=0;if(focus)aiInput?.focus()})}else{returnFocus?.focus?.()}};
   trigger.onclick=()=>setOpen(pad.dataset.open!=='true');bar.querySelector('.mp-ask-close').onclick=()=>setOpen(false);
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&pad.dataset.open==='true')setOpen(false)});
   document.querySelectorAll('.mp-tab[data-panel="ai"]').forEach(tab=>tab.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();setOpen(true)},{capture:true}));
