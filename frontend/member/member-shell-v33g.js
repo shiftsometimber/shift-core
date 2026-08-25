@@ -54,3 +54,28 @@
   async function boot(){ensureMemberAssets();restoreRequestedPanel();window.addEventListener('hashchange',restoreRequestedPanel);if(!await waitForApi()){notice('Shift Core could not be loaded. Please refresh the page.');return}try{const r=await SST_API.getMe();clearNotice();window.SST_MEMBER=r.user;authenticatedNav();accountBar(r.user);ordersNav();if(location.hash==='#orders')await showOrders();await profilePanel()}catch(err){if(err.status===401){location.replace('/member-login?next='+encodeURIComponent(location.pathname+location.hash));return}notice(err.message||'We could not verify your Shift session. Please try again.')}}
   if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
+
+
+(function mountAskTimberEdgeNotepad(){
+ 'use strict';
+ let attempts=0;
+ const find=()=>{
+  const aiForm=document.getElementById('shiftAiForm'),aiInput=document.getElementById('shiftAiInput');
+  if(!aiForm){if(++attempts<160)setTimeout(find,100);return}
+  if(document.getElementById('shiftAskNotepad'))return;
+  const panel=aiForm.closest('.mp-panel'),pad=document.createElement('aside');if(!panel)return;
+  pad.id='shiftAskNotepad';pad.className='mp-ask-pad';pad.dataset.open='false';pad.setAttribute('aria-label','Ask Timber');
+  const trigger=document.createElement('button');trigger.type='button';trigger.className='mp-ask-edge';trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls','shiftAskSurface');trigger.innerHTML='<span>ASK TIMBER</span><b>Got a question?</b>';
+  const surface=document.createElement('div');surface.id='shiftAskSurface';surface.className='mp-ask-surface';surface.setAttribute('aria-hidden','true');
+  const bar=document.createElement('div');bar.className='mp-ask-pad-bar';bar.innerHTML='<span>ASK TIMBER · YOUR QUIET NOTEPAD</span><button type="button" class="mp-ask-close" aria-label="Close Ask Timber">Close</button>';
+  const paper=document.createElement('div');paper.className='mp-ask-paper';while(panel.firstChild)paper.appendChild(panel.firstChild);surface.append(bar,paper);pad.append(trigger,surface);document.body.appendChild(pad);
+  let returnFocus=null;
+  const setOpen=(open,focus=true)=>{pad.dataset.open=String(open);trigger.setAttribute('aria-expanded',String(open));surface.setAttribute('aria-hidden',String(!open));if(open){returnFocus=document.activeElement;requestAnimationFrame(()=>{surface.scrollTop=0;if(focus)aiInput?.focus()})}else{returnFocus?.focus?.()}};
+  trigger.onclick=()=>setOpen(pad.dataset.open!=='true');bar.querySelector('.mp-ask-close').onclick=()=>setOpen(false);
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&pad.dataset.open==='true')setOpen(false)});
+  document.querySelectorAll('.mp-tab[data-panel="ai"]').forEach(tab=>tab.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();setOpen(true)},{capture:true}));
+  const grow=()=>{aiInput.style.height='auto';aiInput.style.height=Math.min(260,Math.max(130,aiInput.scrollHeight))+'px'};aiInput.addEventListener('input',grow);grow();
+  if(location.hash==='#ai')setOpen(true,false);
+ };
+ find();
+})();
