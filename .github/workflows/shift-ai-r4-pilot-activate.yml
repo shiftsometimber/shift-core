@@ -1,5 +1,5 @@
 name: Shift AI R4 Pilot Phase 1 Activation
-# Pilot UI-only redeploy: correct the first-load desktop container width.
+# Final pilot reactivation after the standard frontend commissioning cycle.
 
 on:
   push:
