@@ -62,11 +62,15 @@ jobs:
           now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
           end=$(date -u -d '+7 days' +%Y-%m-%dT%H:%M:%SZ)
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "
-          SELECT COUNT(*) AS member_count,COUNT(DISTINCT lower(hex(trim(first_name)))) AS slot_count
+          SELECT
+            COUNT(*) AS member_count,
+            COUNT(DISTINCT lower(hex(trim(first_name)))) AS slot_count,
+            (SELECT COUNT(*) FROM users WHERE lower(hex(trim(first_name))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579') AND lower(email) NOT LIKE '%@example.test') AS first_name_matches,
+            (SELECT COUNT(*) FROM users WHERE lower(email) NOT LIKE '%@example.test') AS nonsynthetic_accounts
           FROM users
           WHERE lower(hex(trim(first_name))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579')
             AND lower(replace(replace(replace(trim(last_name),char(39),''),char(8217),''),' ',''))=CAST(X'6f627269656e' AS TEXT)
-            AND lower(email) NOT LIKE '%@example.test';" >/tmp/r4-target-guard.json
+            AND lower(email) NOT LIKE '%@example.test';" | tee /tmp/r4-target-guard.json
           jq -e '[.. | objects | select(.member_count==5 and .slot_count==5)] | length==1' /tmp/r4-target-guard.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "
           CREATE TEMP TABLE r4_expected(name_hex TEXT PRIMARY KEY,slot INTEGER UNIQUE);
