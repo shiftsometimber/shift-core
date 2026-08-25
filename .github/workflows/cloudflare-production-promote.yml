@@ -8,6 +8,8 @@ on:
       - 'wrangler.jsonc'
       - 'worker-entry-v6.js'
       - 'worker.js'
+      - 'ask-timber-v1.js'
+      - 'ask-timber-multi-intent-gate.mjs'
       - 'commerce-stripe-v1.js'
       - 'migrations/**'
       - 'shift-me-3d-proof-v1.js'
@@ -107,6 +109,8 @@ jobs:
         run: node my-timber-75-green-gate.mjs
       - name: Prove the My Timber production candidate is complete
         run: node my-timber-final-source-gate.mjs
+      - name: Prove Ask Timber handles every explicit request part
+        run: node --test ask-timber-multi-intent-gate.mjs
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
