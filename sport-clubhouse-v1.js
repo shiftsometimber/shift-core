@@ -30,7 +30,7 @@ async function tableFeed(key,league,season){
 }
 const FOOTBALL_COUNTRIES=['England','Scotland','Wales','Northern Ireland','Ireland'];
 async function footballLeagues(key){
- const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}));
+ const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{try{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}catch{return[]}}));
  const season=`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`;
  const pinned=[
   {idLeague:'4328',strLeague:'English Premier League',strCountry:'England',intDivision:1,strCurrentSeason:season},
