@@ -101,7 +101,7 @@ function urgentResponse(message){
 export function splitRequestParts(message){
   const original=clean(message,MAX_MESSAGE);
   if(!original)return[];
-  const parts=original.split(/\\s+(?:and|but)\\s+(?=(?:i|i'm|i’ve|i've|my|we|can|could|what|how)\\b)|[;]+\\s*/i).map(x=>clean(x,420)).filter(x=>x.length>=3);
+  const parts=original.split(/\s+(?:and|but)\s+(?=(?:i|i'm|i’ve|i've|my|we|can|could|what|how)\b)|[;]+\s*/i).map(x=>clean(x,420)).filter(x=>x.length>=3);
   return parts.length>1?parts.slice(0,4):[original];
 }
 async function retrieveForParts(db,message,parts){
