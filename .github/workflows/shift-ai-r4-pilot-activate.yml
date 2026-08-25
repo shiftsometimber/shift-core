@@ -1,5 +1,5 @@
 name: Shift AI R4 Pilot Phase 1 Activation
-# Final activation retry after the five isolated preview registrations were confirmed.
+# Final activation deployment retry after Cloudflare's transient asset-upload failure.
 
 on:
   push:
