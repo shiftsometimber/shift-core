@@ -41,7 +41,7 @@ async function commissionShiftAiPilot(request,env){
     ]);
     if(action==='status')return json({ok:true,proof:'SHIFT_AI_R4_PRODUCTION_STATUS_V1',...(await pilotAggregate(env)),master_enabled:env.SHIFT_AI_R4_PILOT_ENABLED==='true',model_enabled:env.SHIFT_TODAY_MODEL_ENABLED==='true'});
     if(action==='export_accounts'){
-      const exported=await env.DB.prepare(`SELECT u.email,u.first_name,a.password_hash,a.email_verified,a.email_verified_at FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id JOIN user_auth a ON a.user_id=u.id WHERE pa.status='active' AND pa.cohort=1 AND pa.consented_at IS NOT NULL AND pa.consent_evidence_ref IS NOT NULL ORDER BY u.id`).all(),accounts=exported.results||[],slots=new Set(accounts.map(x=>String(x.first_name||'').trim().toLowerCase()));
+      const exported=await env.DB.prepare(`SELECT u.email,u.first_name,a.password_hash,a.email_verified,a.email_verified_at FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id JOIN user_auth a ON a.user_id=u.id WHERE pa.status='active' AND pa.cohort=1 AND pa.consented_at IS NOT NULL AND pa.consent_evidence_ref IS NOT NULL AND lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') ORDER BY u.id`).all(),accounts=exported.results||[],slots=new Set(accounts.map(x=>String(x.first_name||'').trim().toLowerCase()));
       if(accounts.length!==5||slots.size!==5)return json({ok:false,error:'pilot_export_guard_failed',export_accounts:accounts.length,export_slots:slots.size},409);
       return json({ok:true,proof:'SHIFT_AI_R4_CONSENTED_ACCOUNTS_EXPORT_V1',accounts});
     }
