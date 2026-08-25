@@ -255,7 +255,13 @@ jobs:
           config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
           fs.writeFileSync(file,JSON.stringify(config,null,2));
           NODE
-          npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/pilot-sealed-deploy.txt
+          npx wrangler deploy --config "$PREVIEW_CONFIG" | tee /tmp/pilot-sealed-deploy.txt
+          jq -e '.vars.SHIFT_AI_R4_PILOT_ENABLED=="false" and .vars.SHIFT_TODAY_MODEL_ENABLED=="false"' "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "SELECT enabled,stop_reason FROM shift_ai_pilot_control WHERE id=1; SELECT COUNT(*) AS active_synthetic_access FROM shift_ai_pilot_access WHERE status='active' AND consent_evidence_ref LIKE 'synthetic-r4-proof-%'; SELECT COUNT(*) AS canonical_audits FROM shift_ai_today_audit WHERE event_name='rebuild_confirmed' AND outcome='written_to_my_timber' AND json_extract(result_json,'$.canonical_today')=1; SELECT COUNT(*) AS killed_audits FROM shift_ai_today_audit WHERE event_name='pilot_gate_failed_closed' AND outcome='pilot_off' AND json_extract(result_json,'$.written')=0;" | tee /tmp/r4-final-sealed-state.json
+          jq -e '[.. | objects | select(.enabled? == 0)] | length >= 1' /tmp/r4-final-sealed-state.json
+          jq -e '[.. | objects | select(.active_synthetic_access? == 0)] | length >= 1' /tmp/r4-final-sealed-state.json
+          jq -e '[.. | objects | select(.canonical_audits? >= 1)] | length >= 1' /tmp/r4-final-sealed-state.json
+          jq -e '[.. | objects | select(.killed_audits? >= 3)] | length >= 1' /tmp/r4-final-sealed-state.json
 
       - name: Publish review instructions
         run: |
