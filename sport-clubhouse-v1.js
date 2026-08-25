@@ -31,7 +31,9 @@ async function tableFeed(key,league,season){
 const FOOTBALL_COUNTRIES=['England','Scotland','Wales','Northern Ireland','Ireland'];
 async function footballLeagues(key){
  const lists=await Promise.all(FOOTBALL_COUNTRIES.map(async country=>{const response=await fetch(`https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(key)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=Soccer`,{headers:{Accept:'application/json','User-Agent':'Shift-Some-Timber-Sport/1.0'}});if(!response.ok)return[];const body=await response.json();return body.countries||[]}));
- const seen=new Set();return lists.flat().filter(x=>x.idLeague&&x.idCup!=='1'&&!seen.has(x.idLeague)&&seen.add(x.idLeague)).map(x=>({id:clean(x.idLeague,12),name:clean(x.strLeague,90),country:clean(x.strCountry,30),division:Number(x.intDivision||99),season:clean(x.strCurrentSeason,20)})).sort((a,b)=>FOOTBALL_COUNTRIES.indexOf(a.country)-FOOTBALL_COUNTRIES.indexOf(b.country)||a.division-b.division||a.name.localeCompare(b.name));
+ const season=`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`;
+ const pinned=[{idLeague:'4328',strLeague:'English Premier League',strCountry:'England',intDivision:1,strCurrentSeason:season}];
+ const seen=new Set();return [...pinned,...lists.flat()].filter(x=>x.idLeague&&x.idCup!=='1'&&!seen.has(x.idLeague)&&seen.add(x.idLeague)).map(x=>({id:clean(x.idLeague,12),name:clean(x.strLeague,90),country:clean(x.strCountry,30),division:Number(x.intDivision||99),season:clean(x.strCurrentSeason,20)})).sort((a,b)=>FOOTBALL_COUNTRIES.indexOf(a.country)-FOOTBALL_COUNTRIES.indexOf(b.country)||a.division-b.division||a.name.localeCompare(b.name));
 }
 
 async function dayFeed(key,sport,date){

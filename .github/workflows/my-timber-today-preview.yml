@@ -19,6 +19,7 @@ on:
       - 'my-timber-9-contract-gate.mjs'
       - 'frontend/member/**'
       - 'tap-room-v1.js'
+      - 'sport-clubhouse-v1.js'
       - 'migrations/007_tap_room_phase1.sql'
       - 'preview/tap-room-seed.sql'
   workflow_dispatch:
