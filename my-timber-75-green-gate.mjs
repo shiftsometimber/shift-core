@@ -31,4 +31,6 @@ green('8. Reminder consent, suppression and single-delivery controls remain inta
 green('9. Mobile presentation retains one-thumb horizontal containment',/scroll-snap-type:x mandatory/.test(css)&&/@media\(max-width:760px\)/.test(css)&&/width:100%;min-width:0/.test(css));
 green('10. Failures remain visible and retryable',/That did not save\. Try once more\./.test(today)&&/Try again/.test(today)&&/Could not build today’s Fit session/.test(fit)&&/Could not build your week/.test(grub));
 
+green('11. Every Grub taste path reaches exact or nearest safe choices',/nearest_safe/.test(read('member-product-v7.js'))&&/recipeTasteMatch/.test(read('member-product-v7.js'))&&/sg-recovery/.test(grub)&&/Clear and start again/.test(grub)&&/data-recovery="cancel"/.test(grub));
+
 console.log(JSON.stringify({proof:'MY_TIMBER_75_GREEN',status:'PASS',green:`${pass.length}/${pass.length}`,checks:pass},null,2));

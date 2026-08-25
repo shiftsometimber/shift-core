@@ -40,17 +40,27 @@ export async function memberProductV7Routes(request,env,ctx){
 async function structuredGrubPlan(request,env,userId,body,payload,nays){
   const allPublished=await listPublishedContent(env.DB,'recipe',{limit:2500}),authority=finalV1Authority(allPublished,'recipe');
   if(authority.incomplete)return incompleteFinalV1(request,'grub',authority);
-  const published=authority.rows.filter(credibleRecipe),prefs=preferenceText(body),recent=await recentGrubIds(env.DB,userId),blocked=new Set([...nays,...recent]);let structuredServed=0;
+  const published=authority.rows.filter(credibleRecipe),prefs=preferenceText(body),likes=preferenceLikes(body),recent=await recentGrubIds(env.DB,userId),hardBlocked=new Set(nays),blocked=new Set([...nays,...recent]);let structuredServed=0,nearestServed=0;
   const globallyUsed=new Set(),familyCounts=new Map();
   for(const day of payload.plan?.days||[]){
     const used=new Set((day.meals||[]).map(x=>x.id));
     for(let i=0;i<(day.meals||[]).length;i++){
       const current=day.meals[i],type=String(current.type||current.meal_type||'');
-      let options=published.filter(x=>x.data?.meal_type===type&&!blocked.has(x.id)&&!used.has(x.id)&&!globallyUsed.has(x.id)&&recipeAllowed(x,prefs)&&withinTime(x,body.max_minutes)&&(familyCounts.get(mealFamily(x.title))||0)<2);
+      let nearestReason='',options=published.filter(x=>x.data?.meal_type===type&&!blocked.has(x.id)&&!used.has(x.id)&&!globallyUsed.has(x.id)&&recipeAllowed(x,prefs)&&withinTime(x,body.max_minutes)&&(familyCounts.get(mealFamily(x.title))||0)<2);
       if(!options.length)options=published.filter(x=>x.data?.meal_type===type&&!blocked.has(x.id)&&!used.has(x.id)&&recipeAllowed(x,prefs)&&withinTime(x,body.max_minutes));
-      if(!options.length)return json({ok:false,error:'no_safe_recipe_match',message:`Shift could not safely build a ${type} within those requirements. Change the profile only if the requirement itself has changed.`},409,request);
-      options=rankRecipes(options,preferenceLikes(body));
-      const preferredWindow=Math.min(options.length,Math.max(8,Math.ceil(options.length*.2))),chosen=toRecipe(options[stableIndex(preferredWindow,userId,day.day,i)]);
+      // Never weaken allergies, intolerances, diets or explicit Nays. We may relax
+      // recency and cooking-time preferences so a valid selection always leads somewhere.
+      if(!options.length){
+        options=published.filter(x=>x.data?.meal_type===type&&!hardBlocked.has(x.id)&&recipeAllowed(x,prefs));
+        if(options.length)nearestReason=`Nothing safe matched every preference within ${Math.max(1,Number(body.max_minutes)||30)} minutes, so this is the closest safe ${type}.`;
+      }
+      if(!options.length)return json({ok:false,error:'no_safe_recipe_match',message:`We could not find a safe ${type} without breaking an allergy, intolerance, diet or explicit exclusion. Review those safety settings or choose another meal type.`,recovery:{kind:'safety_settings',actions:['review_settings','clear_taste_choices','cancel']}},409,request);
+      options=rankRecipes(options,likes);
+      const preferredWindow=Math.min(options.length,Math.max(8,Math.ceil(options.length*.2))),source=options[stableIndex(preferredWindow,userId,day.day,i)],chosen=toRecipe(source),taste=recipeTasteMatch(source,likes);
+      if(nearestReason||taste.matched<taste.total){
+        chosen.preference_match={kind:nearestReason?'nearest_safe':taste.matched?'partial':'nearest',matched:taste.matched,total:taste.total,message:nearestReason||(taste.matched?`This matches ${taste.matched} of your ${taste.total} taste choices. It is the closest safe fit for the rest.`:`We do not have that exact combination yet. This is the closest safe ${type} from the reviewed catalogue.`)};
+        nearestServed++;
+      }else if(taste.total)chosen.preference_match={kind:'exact',matched:taste.matched,total:taste.total};
       day.meals[i]=chosen;used.add(chosen.id);globallyUsed.add(chosen.id);const family=mealFamily(chosen.name);familyCounts.set(family,(familyCounts.get(family)||0)+1);structuredServed++;
     }
     day.totals={kcal:(day.meals||[]).reduce((a,m)=>a+Number(m.kcal||m.nutrition?.kcal||0),0),protein_g:(day.meals||[]).reduce((a,m)=>a+Number(m.protein||m.nutrition?.protein_g||0),0)};
@@ -58,7 +68,7 @@ async function structuredGrubPlan(request,env,userId,body,payload,nays){
   const totalItems=(payload.plan?.days||[]).reduce((a,d)=>a+(d.meals||[]).length,0),legacyItems=Math.max(0,totalItems-structuredServed);
   payload.plan.kind='shift_grub_plan_v7';
   payload.plan.catalogue=catalogueMeta(authority,allPublished.length,structuredServed,totalItems,legacyItems);
-  payload.plan.personalisation={taste_profile_applied:Boolean(prefs),historical_nays_applied:nays.length,recent_meals_cooled_off:recent.length,exact_repeats_in_plan:totalItems-globallyUsed.size,household_size:Math.max(1,Number(body.household_size)||1),catalogue_target:2500,catalogue_target_is_not_live_count:true};
+  payload.plan.personalisation={taste_profile_applied:Boolean(prefs),historical_nays_applied:nays.length,recent_meals_cooled_off:recent.length,exact_repeats_in_plan:totalItems-globallyUsed.size,nearest_safe_items:nearestServed,exact_or_standard_items:Math.max(0,totalItems-nearestServed),household_size:Math.max(1,Number(body.household_size)||1),catalogue_target:2500,catalogue_target_is_not_live_count:true};
   const quality=assessMemberOutput('grub',payload,body);payload.qualityCommissioning=quality;
   if(!quality.ok)return qualityFailure(quality,request);
   if(structuredServed)await replaceLatestPlan(env.DB,userId,'grub',payload.plan);
@@ -132,7 +142,8 @@ const UK_TASTE_ALIASES={
   'kebab-shop style':['kebab','shawarma','gyros','flatbread'],
   'pub classics':['pub','pie','burger','roast','sausage','mash','fish and chips']
 };
-function rankRecipes(rows,likes){if(!likes.length)return rows;return rows.map((row,index)=>{const haystack=`${row.title} ${(row.data?.tags||[]).join(' ')} ${(row.data?.ingredients||[]).map(x=>x.item).join(' ')}`.toLowerCase();return{row,index,score:likes.reduce((n,x)=>{const terms=UK_TASTE_ALIASES[x]||[x];return n+(terms.some(term=>haystack.includes(term))?3:0)},0)}}).sort((a,b)=>b.score-a.score||a.index-b.index).map(x=>x.row)}
+function recipeTasteMatch(row,likes){if(!likes.length)return{matched:0,total:0};const haystack=`${row.title} ${(row.data?.tags||[]).join(' ')} ${(row.data?.ingredients||[]).map(x=>x.item).join(' ')}`.toLowerCase();return{matched:likes.reduce((n,x)=>n+((UK_TASTE_ALIASES[x]||[x]).some(term=>haystack.includes(term))?1:0),0),total:likes.length}}
+function rankRecipes(rows,likes){if(!likes.length)return rows;return rows.map((row,index)=>({row,index,score:recipeTasteMatch(row,likes).matched})).sort((a,b)=>b.score-a.score||a.index-b.index).map(x=>x.row)}
 function withinTime(row,maxMinutes){const max=Number(maxMinutes||0);return !max||(Number(row.data?.prep_minutes||0)+Number(row.data?.cook_minutes||0))<=max}
 function credibleRecipe(row){const title=String(row?.title||'').toLowerCase();if(!title)return false;if(/(?:bbq|barbecue).*(?:ham|turkey).*(?:buttie|sandwich)|(?:ham|turkey).*(?:bbq|barbecue).*(?:buttie|sandwich)/.test(title))return false;if(/industrial-|test recipe|placeholder|recipe \d+$/.test(title))return false;return true}
 function mealFamily(value){const title=String(value||'').toLowerCase();for(const family of ['buttie','sandwich','wrap','pasta','curry','traybake','stir-fry','salad','rice','potato','omelette','oats','yoghurt','soup'])if(title.includes(family))return family;return title.split(/\s+/).slice(-2).join('-')}
