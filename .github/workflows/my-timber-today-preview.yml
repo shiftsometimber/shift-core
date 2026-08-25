@@ -72,6 +72,7 @@ jobs:
           test -n "$db_id" && test "$db_id" != "null"
           sed "s/__PREVIEW_D1_DATABASE_ID__/$db_id/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
           echo "Isolated D1 resolved: $PREVIEW_DB_NAME"
+          echo "PREVIEW_D1_ID=$db_id" >> "$GITHUB_ENV"
 
       - name: Initialise preview-only schema
         run: npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
@@ -172,6 +173,88 @@ jobs:
           grep -Fq 'Sign in to preview' /tmp/member-dashboard.html
           grep -Fq 'member-today-premium-v1.css?v=daily-shift-v2' /tmp/member-dashboard.html
           curl -fsSI "$PREVIEW_URL/member-my-timber-problem-v1.js?v=2" | grep -Eqi '^content-type:.*(javascript|ecmascript)'
+
+      - name: Enable deterministic pilot proof only
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const file=process.env.PREVIEW_CONFIG;
+          const config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'true',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/pilot-proof-deploy.txt
+
+      - name: Prove R4 proposal confirm audit and one-action kill
+        shell: bash
+        run: |
+          set -euo pipefail
+          suffix=$(date +%s%N)
+          email="r4-pilot-proof-$suffix@example.test"
+          token="r4-pilot-proof-$suffix"
+          token_hash=$(printf '%s' "$token" | sha256sum | cut -d' ' -f1)
+          expires=$(date -u -d '+1 day' +%Y-%m-%dT%H:%M:%SZ)
+          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          local_date=$(date -u +%F)
+          pilot_start=$(date -u -d '-1 minute' +%Y-%m-%dT%H:%M:%SZ)
+          pilot_end=$(date -u -d '+7 day' +%Y-%m-%dT%H:%M:%SZ)
+          recipe_id="pilot-proof-recipe-$suffix"
+          exercise_id="pilot-proof-exercise-$suffix"
+
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "INSERT INTO users(email,first_name,last_name,date_of_birth,postcode) VALUES('$email','Pilot','Proof','1980-01-01','M1'); INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) SELECT id,'preview-only',1,'$now' FROM users WHERE email='$email'; INSERT INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) SELECT id,'active','member','r4_pilot_proof','$now' FROM users WHERE email='$email'; INSERT INTO member_state(user_id,my_why,roadmap,treatment_finder,decision_readiness,preferences) SELECT id,'{\"text\":\"Get life back\"}','{\"protein_target\":120}','{}','{\"stage\":\"ready\"}','{\"food\":{\"quick\":true},\"lifeBack\":{\"priorities\":[\"family time\"]}}' FROM users WHERE email='$email'; INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT id,'$token_hash','$expires','$now','$now' FROM users WHERE email='$email';" >/tmp/r4-user-seed.txt
+
+          auth=(-H "Cookie: sst_session=$token" -H 'Content-Type: application/json' -H "X-Shift-Local-Date: $local_date" -H 'X-Shift-Local-Hour: 18')
+          initial_status=$(curl -sS -o /tmp/r4-initial-off.json -w '%{http_code}' "${auth[@]}" "$PREVIEW_URL/v1/shift-ai/today/bootstrap")
+          test "$initial_status" = 404
+
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "SELECT id AS user_id FROM users WHERE email='$email'" >/tmp/r4-user-id.json
+          uid=$(jq -r '.. | objects | .user_id? // empty' /tmp/r4-user-id.json | head -n1)
+          test -n "$uid"
+
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "CREATE TABLE IF NOT EXISTS shift_personal_state(user_id INTEGER PRIMARY KEY,profile_json TEXT NOT NULL DEFAULT '{}',inventory_json TEXT NOT NULL DEFAULT '[]',updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); INSERT INTO shift_personal_state(user_id,profile_json,inventory_json) VALUES($uid,'{\"routine\":{\"late_finish\":true}}','[]') ON CONFLICT(user_id) DO UPDATE SET profile_json=excluded.profile_json,inventory_json=excluded.inventory_json,updated_at=CURRENT_TIMESTAMP; INSERT INTO progress_entries(user_id,recorded_on,weight_kg,waist_cm,steps,protein_g,sleep_hours,mood_score,source) VALUES($uid,'$local_date',101,110,5000,90,6,3,'r4_pilot_proof'); INSERT INTO shift_today_checkins(user_id,local_date,mood,guts,energy) VALUES($uid,'$local_date','okay','fine','good') ON CONFLICT(user_id,local_date) DO UPDATE SET mood=excluded.mood,guts=excluded.guts,energy=excluded.energy,updated_at=CURRENT_TIMESTAMP; INSERT INTO structured_content(id,content_type,title,version,status,data_json,review_json) VALUES('$recipe_id','recipe','Chicken wrap',1,'published','{\"provenance\":{\"final_v1_acceptance\":{\"accepted\":true}},\"meal_type\":\"dinner\",\"prep_minutes\":5,\"cook_minutes\":7,\"tags\":[\"quick\"],\"ingredients\":[{\"item\":\"chicken\"}],\"nutrition\":{\"status\":\"validated\"}}','{\"status\":\"approved\",\"final_v1\":true}'); INSERT INTO structured_content(id,content_type,title,version,status,data_json,review_json) VALUES('$exercise_id','exercise','Ten-minute walk',1,'published','{\"provenance\":{\"final_v1_acceptance\":{\"accepted\":true}},\"minutes\":10,\"movement_group\":\"walking\",\"serving_groups\":[\"walking\"],\"visual\":{\"status\":\"approved\"}}','{\"status\":\"approved\",\"final_v1\":true}'); INSERT INTO shift_plans(user_id,plan_type,starts_on,status,plan_json) VALUES($uid,'grub','$local_date','active','{\"days\":[{\"meals\":[{\"id\":\"$recipe_id\",\"name\":\"Chicken wrap\"}]}]}'); INSERT INTO shift_plans(user_id,plan_type,starts_on,status,plan_json) VALUES($uid,'fit','$local_date','active','{\"sessions\":[{\"exercises\":[{\"id\":\"$exercise_id\",\"name\":\"Ten-minute walk\"}]}]}'); UPDATE shift_ai_pilot_control SET enabled=1,phase=1,max_members=5,consent_version='shift-ai-r4-pilot-consent-v1',starts_at='$pilot_start',ends_at='$pilot_end',stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1; INSERT INTO shift_ai_pilot_access(user_id,status,cohort,consent_version,consented_at,consent_evidence_ref,starts_at,ends_at,activated_by) VALUES($uid,'active',1,'shift-ai-r4-pilot-consent-v1','$now','synthetic-r4-proof-$suffix','$pilot_start','$pilot_end','github-actions-r4-proof');" >/tmp/r4-context-seed.txt
+
+          curl -fsS "${auth[@]}" "$PREVIEW_URL/v1/shift-ai/today/bootstrap" >/tmp/r4-bootstrap.json
+          jq -e '.ok==true and .feature.model_enabled==false and (.recognition_starts|length)==5' /tmp/r4-bootstrap.json
+
+          curl -fsS "${auth[@]}" -X POST -d '{"message":"I am working late","requested_route":"working-late","available_minutes":15}' "$PREVIEW_URL/v1/shift-ai/today/rebuild/propose" >/tmp/r4-proposal-one.json
+          p1=$(jq -r '.proposal_id' /tmp/r4-proposal-one.json)
+          test -n "$p1" && test "$p1" != null
+          curl -fsS "${auth[@]}" -X POST -d "{\"proposal_id\":\"$p1\",\"confirmed\":true}" "$PREVIEW_URL/v1/shift-ai/today/rebuild/confirm" >/tmp/r4-confirm-one.json
+          jq -e '.written==true and .canonical_today==true and .proposal_id=="'"$p1"'"' /tmp/r4-confirm-one.json
+
+          curl -fsS "${auth[@]}" -X POST -d '{"message":"I am working late","requested_route":"working-late","available_minutes":10}' "$PREVIEW_URL/v1/shift-ai/today/rebuild/propose" >/tmp/r4-proposal-two.json
+          p2=$(jq -r '.proposal_id' /tmp/r4-proposal-two.json)
+          test -n "$p2" && test "$p2" != null && test "$p2" != "$p1"
+
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "UPDATE shift_ai_pilot_control SET enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='R4_CANDIDATE_KILL_PROOF',updated_at=CURRENT_TIMESTAMP WHERE id=1;" >/tmp/r4-kill.txt
+
+          confirm_status=$(curl -sS -o /tmp/r4-post-kill-confirm.json -w '%{http_code}' "${auth[@]}" -X POST -d "{\"proposal_id\":\"$p2\",\"confirmed\":true}" "$PREVIEW_URL/v1/shift-ai/today/rebuild/confirm")
+          bootstrap_status=$(curl -sS -o /tmp/r4-post-kill-bootstrap.json -w '%{http_code}' "${auth[@]}" "$PREVIEW_URL/v1/shift-ai/today/bootstrap")
+          propose_status=$(curl -sS -o /tmp/r4-post-kill-propose.json -w '%{http_code}' "${auth[@]}" -X POST -d '{"message":"I am working late"}' "$PREVIEW_URL/v1/shift-ai/today/rebuild/propose")
+          test "$confirm_status" = 404 && test "$bootstrap_status" = 404 && test "$propose_status" = 404
+
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "SELECT (SELECT COUNT(*) FROM shift_ai_today_audit WHERE user_id=$uid AND event_name='rebuild_proposed') AS proposed_audits,(SELECT COUNT(*) FROM shift_ai_today_audit WHERE user_id=$uid AND event_name='rebuild_confirmed' AND outcome='written_to_my_timber' AND json_extract(result_json,'$.canonical_today')=1) AS confirmed_audits,(SELECT COUNT(*) FROM shift_ai_today_audit WHERE user_id=$uid AND event_name='pilot_gate_failed_closed' AND outcome='pilot_off' AND json_extract(result_json,'$.written')=0) AS killed_audits,(SELECT json_extract(choice_json,'$.proposal_id') FROM shift_today_choices WHERE user_id=$uid AND local_date='$local_date' AND domain='ai_rebuild') AS canonical_proposal,(SELECT COUNT(*) FROM shift_ai_today_proposals WHERE id='$p2' AND confirmed_at IS NOT NULL) AS killed_proposal_writes;" >/tmp/r4-audit-proof.json
+          jq -e '[.. | objects | select(.proposed_audits? >= 2 and .confirmed_audits == 1 and .killed_audits >= 3 and .canonical_proposal == "'"$p1"'" and .killed_proposal_writes == 0)] | length == 1' /tmp/r4-audit-proof.json
+
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE user_id=$uid; UPDATE shift_ai_pilot_control SET enabled=0,updated_at=CURRENT_TIMESTAMP WHERE id=1;" >/tmp/r4-proof-sealed.txt
+          echo "R4 pilot proof passed on D1 $PREVIEW_D1_ID" >> "$GITHUB_STEP_SUMMARY"
+          echo "One-action kill blocked bootstrap, proposal and pending confirmation; full audit and canonical write were proved." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Return pilot master flag to off
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const file=process.env.PREVIEW_CONFIG;
+          const config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/pilot-sealed-deploy.txt
 
       - name: Publish review instructions
         run: |
