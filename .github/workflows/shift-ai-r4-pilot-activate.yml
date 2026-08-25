@@ -67,10 +67,10 @@ jobs:
             COUNT(DISTINCT lower(hex(trim(first_name)))) AS slot_count,
             (SELECT COUNT(*) FROM users WHERE lower(hex(trim(first_name))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579') AND lower(email) NOT LIKE '%@example.test') AS first_name_matches,
             (SELECT COUNT(*) FROM users WHERE lower(email) NOT LIKE '%@example.test') AS nonsynthetic_accounts
-          FROM users
-          WHERE lower(hex(trim(first_name))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579')
-            AND lower(replace(replace(replace(trim(last_name),char(39),''),char(8217),''),' ',''))=CAST(X'6f627269656e' AS TEXT)
-            AND lower(email) NOT LIKE '%@example.test';" | tee /tmp/r4-target-guard.json
+          FROM users u
+          JOIN member_status ms ON ms.user_id=u.id AND ms.source='my-timber-hosted-preview'
+          WHERE lower(hex(trim(u.first_name))) IN ('6d617474','6c696e6461','617661','69736c61','66696e6c6579')
+            AND lower(u.email) NOT LIKE '%@example.test';" | tee /tmp/r4-target-guard.json
           jq -e '[.. | objects | select(.member_count==5 and .slot_count==5)] | length==1' /tmp/r4-target-guard.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "
           CREATE TEMP TABLE r4_expected(name_hex TEXT PRIMARY KEY,slot INTEGER UNIQUE);
@@ -84,7 +84,8 @@ jobs:
           SELECT u.id,e.slot
           FROM users u
           JOIN r4_expected e ON lower(hex(trim(u.first_name)))=e.name_hex
-          WHERE lower(replace(replace(replace(trim(u.last_name),char(39),''),char(8217),''),' ',''))=CAST(X'6f627269656e' AS TEXT)
+          JOIN member_status ms ON ms.user_id=u.id AND ms.source='my-timber-hosted-preview'
+          WHERE 1=1
             AND lower(u.email) NOT LIKE '%@example.test';
           UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE status='active';
           INSERT INTO shift_ai_pilot_access(
