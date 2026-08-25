@@ -17,7 +17,17 @@ export async function memberProductV7Routes(request,env,ctx){
   if(request.method==='OPTIONS')return memberProductV6Routes(request,env,ctx);
   const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
   const body=await readClone(request);
-  const base=await memberProductV6Routes(request,env,ctx,{deferQuality:true});
+  let base=await memberProductV6Routes(request,env,ctx,{deferQuality:true});
+  // Taste choices are ranking signals, not safety exclusions. If the legacy seed layer
+  // cannot interpret a taste-only combination, retry the seed without those ranking
+  // terms so the reviewed structured catalogue below can still build the real plan.
+  const tasteOnlyPreferences=path==='/v1/grub/plan'&&Array.isArray(body.likes)&&body.likes.length>0&&
+    String(body.preferences||'').trim().toLowerCase()===body.likes.join(', ').trim().toLowerCase();
+  if(!base?.ok&&tasteOnlyPreferences){
+    const seedBody={...body};delete seedBody.likes;delete seedBody.preferences;
+    const seedRequest=new Request(request.url,{method:'POST',headers:request.headers,body:JSON.stringify(seedBody)});
+    base=await memberProductV6Routes(seedRequest,env,ctx,{deferQuality:true});
+  }
   if(!base?.ok)return withCors(base,request);
   const payload=await base.clone().json().catch(()=>null);if(!payload)return withCors(base,request);
   const nays=await negativeIds(env.DB,auth.user.id,path.startsWith('/v1/grub')?'grub':'fit');
