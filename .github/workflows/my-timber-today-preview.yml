@@ -127,6 +127,10 @@ jobs:
           curl -fsS "$PREVIEW_URL/tap-room-v1.js" -o /tmp/tap-room-client.js
           grep -Fq 'LATEST AT THE BAR' /tmp/tap-room-client.js
           grep -Fq 'scrollIntoView' /tmp/tap-room-client.js
+          grep -Fq '/v1/sport/clubhouse' /tmp/tap-room-client.js
+          grep -Fq "'fixtures','results','tables','news','rumours','conversation'" /tmp/tap-room-client.js
+          curl -fsS -b /tmp/tap-cookie.txt "$PREVIEW_URL/v1/sport/clubhouse?sport=football&league=4328" > /tmp/tap-sport.json
+          jq -e '.ok==true and .source!=null and (.events|type)=="array" and (.stories|type)=="array" and (.table|type)=="array"' /tmp/tap-sport.json
           curl -fsS -b /tmp/tap-cookie.txt "$PREVIEW_URL/v1/tap-room/rooms/general-life/posts" > /tmp/tap-active-room.json
           jq -e '.posts[0].body|startswith("Staging example:")' /tmp/tap-active-room.json
           jq -e '.posts[0].last_activity_at!=null' /tmp/tap-active-room.json
