@@ -24,8 +24,10 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       PRODUCTION_CONFIG: wrangler.shift-ai-r4-production.generated.jsonc
+      PREVIEW_CONFIG: wrangler.shift-ai-r4-transfer-preview.generated.jsonc
       PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
       COMMISSION_URL: https://api.shiftsometimber.co.uk/v1/commissioning/shift-ai-r4-pilot
+      PREVIEW_COMMISSION_URL: https://shift-core-my-timber-preview.matobrien.workers.dev/v1/commissioning/shift-ai-r4-pilot
     steps:
       - uses: actions/checkout@v4
         with:
@@ -79,18 +81,19 @@ jobs:
       - name: Commission D1 and activate exactly five
         run: |
           set -euo pipefail
-          sed "s/__PREVIEW_D1_DATABASE_ID__/247b065f-fea4-4891-945b-b707f2417656/" wrangler.my-timber-preview.template.jsonc > /tmp/r4-preview.jsonc
-          if ! npx wrangler d1 execute DB --remote --config /tmp/r4-preview.jsonc --json --command "SELECT u.email,u.first_name,a.password_hash FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id JOIN user_auth a ON a.user_id=u.id WHERE pa.status='active' AND pa.cohort=1 AND pa.consented_at IS NOT NULL AND pa.consent_evidence_ref IS NOT NULL ORDER BY u.id" > /tmp/r4-preview-accounts.json; then
-            jq -r '..|objects|(.error? // .message? // empty)' /tmp/r4-preview-accounts.json | head -n3
-            exit 1
-          fi
-          candidates=$(jq -r '[..|objects|select(.results?!=null)|.results][0]|length' /tmp/r4-preview-accounts.json)
-          slots=$(jq -r '[..|objects|select(.results?!=null)|.results][0]|[.[].first_name|ascii_downcase]|unique|length' /tmp/r4-preview-accounts.json)
-          echo "Preview transfer guard: candidates=$candidates slots=$slots"
-          jq -e '[..|objects|select(.results?!=null)|.results][0] | length==5 and ([.[].first_name|ascii_downcase]|unique|length)==5' /tmp/r4-preview-accounts.json
-          jq -n --argjson accounts "$(jq -c '[..|objects|select(.results?!=null)|.results][0]' /tmp/r4-preview-accounts.json)" '{action:"import_activate",proof:"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1",accounts:$accounts}' > /tmp/r4-production-request.json
+          sed "s/__PREVIEW_D1_DATABASE_ID__/247b065f-fea4-4891-945b-b707f2417656/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
+          node - <<'NODE'
+          const fs=require('fs'),file=process.env.PREVIEW_CONFIG,config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/r4-preview-bridge.txt 2>&1
+          export_code=$(curl -sS -o /tmp/r4-preview-export.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"export_accounts","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$PREVIEW_COMMISSION_URL")
+          test "$export_code" = 200
+          jq -e '.ok==true and .proof=="SHIFT_AI_R4_CONSENTED_ACCOUNTS_EXPORT_V1" and (.accounts|length)==5 and ([.accounts[].first_name|ascii_downcase]|unique|length)==5' /tmp/r4-preview-export.json
+          jq '{action:"import_activate",proof:"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1",accounts:.accounts}' /tmp/r4-preview-export.json > /tmp/r4-production-request.json
           code=$(curl -sS -o /tmp/r4-production-commission.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data-binary @/tmp/r4-production-request.json "$COMMISSION_URL")
-          rm -f /tmp/r4-preview-accounts.json /tmp/r4-production-request.json
+          rm -f /tmp/r4-preview-export.json /tmp/r4-production-request.json
           jq . /tmp/r4-production-commission.json
           test "$code" = 200
           jq -e '.ok==true and .proof=="SHIFT_AI_R4_PRODUCTION_ACTIVATED_V1" and .kill_switch_proved==true and .enabled==1 and .phase==1 and .max_members==5 and .active_members==5 and .valid_consents==5 and .non_cohort_access==0 and .activation_audits>=5 and .master_enabled==false and .model_enabled==false' /tmp/r4-production-commission.json
@@ -112,6 +115,12 @@ jobs:
           config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'true',SHIFT_TODAY_MODEL_ENABLED:'false'};
           fs.writeFileSync(file,JSON.stringify(config,null,2));
           NODE
+          node - <<'NODE'
+          const fs=require('fs'),file=process.env.PREVIEW_CONFIG,config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/r4-preview-sealed.txt 2>&1
           npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-final.txt
           grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("true")' /tmp/r4-production-final.txt
           grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-production-final.txt
@@ -141,5 +150,8 @@ jobs:
           NODE
             npx wrangler deploy --config "$PRODUCTION_CONFIG" 2>&1 | tee /tmp/r4-production-sealed.txt
             grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("false")' /tmp/r4-production-sealed.txt
+          fi
+          if test -f "$PREVIEW_CONFIG"; then
+            npx wrangler deploy --config "$PREVIEW_CONFIG" >/tmp/r4-preview-sealed.txt 2>&1
           fi
           echo 'Launch gate failed; production master flag returned to off.' >> "$GITHUB_STEP_SUMMARY"

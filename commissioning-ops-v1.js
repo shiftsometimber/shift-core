@@ -27,7 +27,7 @@ async function commissionShiftAiPilot(request,env){
   const consentVersion='shift-ai-r4-pilot-consent-v1',operator='controlled-production-activation';
   try{
     const body=await request.json().catch(()=>({})),action=String(body?.action||'');
-    if(body?.proof!=='SHIFT_AI_R4_PRODUCTION_COMMISSION_V1'||!['activate','import_activate','status'].includes(action))return json({ok:false,error:'invalid_pilot_commissioning_request'},400);
+    if(body?.proof!=='SHIFT_AI_R4_PRODUCTION_COMMISSION_V1'||!['activate','import_activate','export_accounts','status'].includes(action))return json({ok:false,error:'invalid_pilot_commissioning_request'},400);
     await env.DB.batch([
       env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_ai_today_proposals (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',classification TEXT NOT NULL,route TEXT,source TEXT NOT NULL,request_json TEXT NOT NULL,context_json TEXT NOT NULL,proposal_json TEXT NOT NULL,catalogue_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,expires_at TEXT NOT NULL,confirmed_at TEXT)`),
       env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_today_proposals_user ON shift_ai_today_proposals(user_id,local_date,status,created_at)`),
@@ -40,6 +40,11 @@ async function commissionShiftAiPilot(request,env){
       env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_pilot_access_status ON shift_ai_pilot_access(status,cohort,starts_at,ends_at)`)
     ]);
     if(action==='status')return json({ok:true,proof:'SHIFT_AI_R4_PRODUCTION_STATUS_V1',...(await pilotAggregate(env)),master_enabled:env.SHIFT_AI_R4_PILOT_ENABLED==='true',model_enabled:env.SHIFT_TODAY_MODEL_ENABLED==='true'});
+    if(action==='export_accounts'){
+      const exported=await env.DB.prepare(`SELECT u.email,u.first_name,a.password_hash,a.email_verified,a.email_verified_at FROM shift_ai_pilot_access pa JOIN users u ON u.id=pa.user_id JOIN user_auth a ON a.user_id=u.id WHERE pa.status='active' AND pa.cohort=1 AND pa.consented_at IS NOT NULL AND pa.consent_evidence_ref IS NOT NULL ORDER BY u.id`).all(),accounts=exported.results||[],slots=new Set(accounts.map(x=>String(x.first_name||'').trim().toLowerCase()));
+      if(accounts.length!==5||slots.size!==5)return json({ok:false,error:'pilot_export_guard_failed',export_accounts:accounts.length,export_slots:slots.size},409);
+      return json({ok:true,proof:'SHIFT_AI_R4_CONSENTED_ACCOUNTS_EXPORT_V1',accounts});
+    }
     let imported=null;
     if(action==='import_activate'){
       imported=await importPilotAccounts(env,body?.accounts);
