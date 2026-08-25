@@ -268,24 +268,6 @@ window.addEventListener('DOMContentLoaded',()=>{
  $('#waterGenerate').onclick=e=>run(e.currentTarget,()=>SST_API.generateHydration({}),'#waterStatus','#waterOutput','Refreshing your hydration guide'); $('#drinkLog').onclick=logDrink; loadHydration();
  $('#conundrumGo').onclick=e=>{const items=$('#conundrumItems').value.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean);run(e.currentTarget,()=>SST_API.conundrum({items}),'#conundrumStatus','#conundrumOutput','Checking what you’ve got')};
  const aiForm=$('#shiftAiForm'),aiInput=$('#shiftAiInput'),aiThread=$('#shiftAiThread'),aiSend=$('#shiftAiSend');
- function mountAskTimberNotepad(){
-  if(!aiForm||$('#shiftAskNotepad'))return;
-  const panel=aiForm.closest('.mp-panel'),pad=document.createElement('aside');
-  if(!panel)return;
-  pad.id='shiftAskNotepad';pad.className='mp-ask-pad';pad.dataset.open='false';pad.setAttribute('aria-label','Ask Timber');
-  const trigger=document.createElement('button');trigger.type='button';trigger.className='mp-ask-edge';trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls','shiftAskSurface');trigger.innerHTML='<span>ASK TIMBER</span><b>Got a question?</b>';
-  const surface=document.createElement('div');surface.id='shiftAskSurface';surface.className='mp-ask-surface';surface.setAttribute('aria-hidden','true');
-  const bar=document.createElement('div');bar.className='mp-ask-pad-bar';bar.innerHTML='<span>ASK TIMBER · YOUR QUIET NOTEPAD</span><button type="button" class="mp-ask-close" aria-label="Close Ask Timber">Close</button>';
-  const paper=document.createElement('div');paper.className='mp-ask-paper';while(panel.firstChild)paper.appendChild(panel.firstChild);surface.append(bar,paper);pad.append(trigger,surface);document.body.appendChild(pad);
-  let returnFocus=null;
-  const setOpen=(open,focus=true)=>{pad.dataset.open=String(open);trigger.setAttribute('aria-expanded',String(open));surface.setAttribute('aria-hidden',String(!open));if(open){returnFocus=document.activeElement;requestAnimationFrame(()=>{surface.scrollTop=0;if(focus)aiInput?.focus()})}else{returnFocus?.focus?.()};
-  trigger.onclick=()=>setOpen(pad.dataset.open!=='true');bar.querySelector('.mp-ask-close').onclick=()=>setOpen(false);
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&pad.dataset.open==='true')setOpen(false)});
-  $('.mp-tab[data-panel="ai"]').forEach(tab=>tab.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();setOpen(true)},{capture:true}));
-  const grow=()=>{if(!aiInput)return;aiInput.style.height='auto';aiInput.style.height=Math.min(260,Math.max(130,aiInput.scrollHeight))+'px'};
-  aiInput?.addEventListener('input',grow);grow();if(location.hash==='#ai')setOpen(true,false);
- }
- mountAskTimberNotepad();
  function aiMessage(role,text){const row=document.createElement('div');row.className='mp-ai-message '+role;row.innerHTML=`<strong>${role==='user'?'You':'Shift'}</strong><p>${esc(text)}</p>`;aiThread.appendChild(row);row.scrollIntoView({block:'nearest',behavior:'smooth'})}
  if(aiForm)aiForm.onsubmit=async e=>{e.preventDefault();const message=aiInput.value.trim();if(!message)return;aiMessage('user',message);aiInput.value='';aiSend.disabled=true;status('#shiftAiStatus','Shift is thinking…');try{const r=await SST_API.askShiftAI({message});aiMessage('assistant',r.answer||r.message||'I could not form a useful answer just then.');status('#shiftAiStatus',r.sources?.length?`Answered using ${r.sources.length} reviewed Shift source${r.sources.length===1?'':'s'}.`:'Answered from your current Shift context.')}catch(err){if(err.status===401){location.replace('/member-login?next='+encodeURIComponent('/member/dashboard#ai'));return}aiMessage('assistant',err.message||'I could not answer just then. Please try again.');status('#shiftAiStatus','Shift AI is unavailable just now.',true)}finally{aiSend.disabled=false;aiInput.focus()}};
  $('#shiftAiClear')?.addEventListener('click',()=>{aiThread.innerHTML='<div class="mp-ai-message assistant"><strong>Shift</strong><p>What would be useful right now?</p></div>';status('#shiftAiStatus','Cleared from this screen. Your saved Shift context is unchanged.')});
