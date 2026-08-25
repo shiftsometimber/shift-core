@@ -27,7 +27,7 @@ async function commissionShiftAiPilot(request,env){
   const consentVersion='shift-ai-r4-pilot-consent-v1',operator='controlled-production-activation';
   try{
     const body=await request.json().catch(()=>({})),action=String(body?.action||'');
-    if(body?.proof!=='SHIFT_AI_R4_PRODUCTION_COMMISSION_V1'||!['activate','status'].includes(action))return json({ok:false,error:'invalid_pilot_commissioning_request'},400);
+    if(body?.proof!=='SHIFT_AI_R4_PRODUCTION_COMMISSION_V1'||!['activate','import_activate','status'].includes(action))return json({ok:false,error:'invalid_pilot_commissioning_request'},400);
     await env.DB.batch([
       env.DB.prepare(`CREATE TABLE IF NOT EXISTS shift_ai_today_proposals (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL,local_date TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',classification TEXT NOT NULL,route TEXT,source TEXT NOT NULL,request_json TEXT NOT NULL,context_json TEXT NOT NULL,proposal_json TEXT NOT NULL,catalogue_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,expires_at TEXT NOT NULL,confirmed_at TEXT)`),
       env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_today_proposals_user ON shift_ai_today_proposals(user_id,local_date,status,created_at)`),
@@ -40,7 +40,12 @@ async function commissionShiftAiPilot(request,env){
       env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_shift_ai_pilot_access_status ON shift_ai_pilot_access(status,cohort,starts_at,ends_at)`)
     ]);
     if(action==='status')return json({ok:true,proof:'SHIFT_AI_R4_PRODUCTION_STATUS_V1',...(await pilotAggregate(env)),master_enabled:env.SHIFT_AI_R4_PILOT_ENABLED==='true',model_enabled:env.SHIFT_TODAY_MODEL_ENABLED==='true'});
-    const targets=await env.DB.prepare(`SELECT u.id,lower(trim(u.first_name)) AS slot FROM users u JOIN member_status ms ON ms.user_id=u.id WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') AND ms.membership_status='member' ORDER BY u.id`).all(),rows=targets.results||[],slots=new Set(rows.map(x=>x.slot));
+    let imported=null;
+    if(action==='import_activate'){
+      imported=await importPilotAccounts(env,body?.accounts);
+      if(!imported.ok)return json(imported,409);
+    }
+    const targets=imported?await env.DB.prepare(`SELECT id,lower(trim(first_name)) AS slot FROM users WHERE id IN (?,?,?,?,?) ORDER BY id`).bind(...imported.userIds).all():await env.DB.prepare(`SELECT u.id,lower(trim(u.first_name)) AS slot FROM users u WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') ORDER BY u.id`).all(),rows=targets.results||[],slots=new Set(rows.map(x=>x.slot));
     if(rows.length!==5||slots.size!==5)return json({ok:false,error:'pilot_target_guard_failed',target_accounts:rows.length,target_slots:slots.size},409);
     const now=new Date(),ends=new Date(now.getTime()+14*86400000),nowIso=now.toISOString(),endsIso=ends.toISOString();
     await env.DB.batch([
@@ -59,8 +64,31 @@ async function commissionShiftAiPilot(request,env){
     console.error('shift_ai_r4_commissioning_failed',e?.message);return json({ok:false,error:'pilot_commissioning_failed'},503);
   }
 }
+async function importPilotAccounts(env,value){
+  const accounts=Array.isArray(value)?value:[],required=new Set(['matt','linda','ava','isla','finley']),slots=new Set(accounts.map(x=>String(x?.first_name||'').trim().toLowerCase()));
+  if(accounts.length!==5||slots.size!==5||[...slots].some(x=>!required.has(x)))return{ok:false,error:'pilot_import_guard_failed',import_accounts:accounts.length,import_slots:slots.size};
+  const userIds=[];
+  for(const account of accounts){
+    const email=String(account?.email||'').trim().toLowerCase(),first=String(account?.first_name||'').trim(),last=String(account?.last_name||'').trim(),passwordHash=String(account?.password_hash||'');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||!/^pbkdf2\$/.test(passwordHash))return{ok:false,error:'pilot_import_record_invalid'};
+    let user=await env.DB.prepare(`SELECT id FROM users WHERE lower(email)=?`).bind(email).first();
+    if(!user){const inserted=await env.DB.prepare(`INSERT INTO users(email,first_name,last_name,phone,date_of_birth,postcode) VALUES(?,?,?,?,?,?)`).bind(email,first,last||null,account?.phone||null,account?.date_of_birth||null,account?.postcode||null).run();user={id:Number(inserted?.meta?.last_row_id||0)}}
+    if(!Number(user?.id))throw new Error('pilot_import_user_id_missing');
+    userIds.push(Number(user.id));
+    const existingAuth=await env.DB.prepare(`SELECT user_id FROM user_auth WHERE user_id=?`).bind(user.id).first();
+    if(!existingAuth)await env.DB.prepare(`INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at) VALUES(?,?,?,?)`).bind(user.id,passwordHash,account?.email_verified?1:0,account?.email_verified_at||null).run();
+    await env.DB.batch([
+      env.DB.prepare(`UPDATE users SET first_name=?,last_name=COALESCE(NULLIF(?,''),last_name),updated_at=CURRENT_TIMESTAMP WHERE id=?`).bind(first,last,user.id),
+      env.DB.prepare(`INSERT OR IGNORE INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) VALUES(?,'registered','none','shift-ai-r4-pilot-transfer',CURRENT_TIMESTAMP)`).bind(user.id),
+      env.DB.prepare(`INSERT INTO member_state(user_id,my_why,roadmap,treatment_finder,decision_readiness,preferences,updated_at) VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP) ON CONFLICT(user_id) DO NOTHING`).bind(user.id,account?.my_why||'{}',account?.roadmap||'{}',account?.treatment_finder||'{}',account?.decision_readiness||'{}',account?.preferences||'{}'),
+      env.DB.prepare(`INSERT INTO shift_personal_state(user_id,profile_json,inventory_json,updated_at) VALUES(?,?,?,CURRENT_TIMESTAMP) ON CONFLICT(user_id) DO NOTHING`).bind(user.id,account?.profile_json||'{}',account?.inventory_json||'[]'),
+      env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'shift_ai_r4_pilot_account_transferred','user',?,json_object('source','consented_preview','sessions_transferred',0,'commercial_status_changed',0),CURRENT_TIMESTAMP)`).bind(user.id,String(user.id))
+    ]);
+  }
+  return{ok:true,import_accounts:5,import_slots:5,userIds};
+}
 async function pilotAggregate(env){
-  const row=await env.DB.prepare(`SELECT enabled,phase,max_members,stop_reason,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active') active_members,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND consent_version='shift-ai-r4-pilot-consent-v1' AND consented_at IS NOT NULL AND consent_evidence_ref IS NOT NULL AND activated_by='controlled-production-activation') valid_consents,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND user_id NOT IN (SELECT u.id FROM users u JOIN member_status ms ON ms.user_id=u.id WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') AND ms.membership_status='member')) non_cohort_access,(SELECT COUNT(*) FROM audit_log WHERE action='shift_ai_r4_pilot_activated' AND json_extract(metadata,'$.environment')='production') activation_audits FROM shift_ai_pilot_control WHERE id=1`).first();
+  const row=await env.DB.prepare(`SELECT enabled,phase,max_members,stop_reason,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active') active_members,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND consent_version='shift-ai-r4-pilot-consent-v1' AND consented_at IS NOT NULL AND consent_evidence_ref IS NOT NULL AND activated_by='controlled-production-activation') valid_consents,(SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND user_id NOT IN (SELECT u.id FROM users u WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley'))) non_cohort_access,(SELECT COUNT(*) FROM audit_log WHERE action='shift_ai_r4_pilot_activated' AND json_extract(metadata,'$.environment')='production') activation_audits FROM shift_ai_pilot_control WHERE id=1`).first();
   return{enabled:Number(row?.enabled||0),phase:Number(row?.phase||0),max_members:Number(row?.max_members||0),stop_reason:row?.stop_reason||null,active_members:Number(row?.active_members||0),valid_consents:Number(row?.valid_consents||0),non_cohort_access:Number(row?.non_cohort_access||0),activation_audits:Number(row?.activation_audits||0)};
 }
 async function publishFinalV1(request,env,identity){

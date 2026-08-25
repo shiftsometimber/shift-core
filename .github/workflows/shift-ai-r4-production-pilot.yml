@@ -79,7 +79,12 @@ jobs:
       - name: Commission D1 and activate exactly five
         run: |
           set -euo pipefail
-          code=$(curl -sS -o /tmp/r4-production-commission.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data '{"action":"activate","proof":"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1"}' "$COMMISSION_URL")
+          sed "s/__PREVIEW_D1_DATABASE_ID__/247b065f-fea4-4891-945b-b707f2417656/" wrangler.my-timber-preview.template.jsonc > /tmp/r4-preview.jsonc
+          npx wrangler d1 execute DB --remote --config /tmp/r4-preview.jsonc --json --command "SELECT u.email,u.first_name,u.last_name,u.phone,u.date_of_birth,u.postcode,a.password_hash,a.email_verified,a.email_verified_at,s.my_why,s.roadmap,s.treatment_finder,s.decision_readiness,s.preferences,p.profile_json,p.inventory_json FROM users u JOIN user_auth a ON a.user_id=u.id LEFT JOIN member_state s ON s.user_id=u.id LEFT JOIN shift_personal_state p ON p.user_id=u.id WHERE lower(trim(u.first_name)) IN ('matt','linda','ava','isla','finley') ORDER BY u.id" > /tmp/r4-preview-accounts.json
+          jq -e '[..|objects|select(.results?!=null)|.results][0] | length==5 and ([.[].first_name|ascii_downcase]|unique|length)==5' /tmp/r4-preview-accounts.json
+          jq -n --argjson accounts "$(jq -c '[..|objects|select(.results?!=null)|.results][0]' /tmp/r4-preview-accounts.json)" '{action:"import_activate",proof:"SHIFT_AI_R4_PRODUCTION_COMMISSION_V1",accounts:$accounts}' > /tmp/r4-production-request.json
+          code=$(curl -sS -o /tmp/r4-production-commission.json -w '%{http_code}' -H "X-Shift-Commissioning-OIDC: $COMMISSION_OIDC" -H 'Content-Type: application/json' --data-binary @/tmp/r4-production-request.json "$COMMISSION_URL")
+          rm -f /tmp/r4-preview-accounts.json /tmp/r4-production-request.json
           jq . /tmp/r4-production-commission.json
           test "$code" = 200
           jq -e '.ok==true and .proof=="SHIFT_AI_R4_PRODUCTION_ACTIVATED_V1" and .kill_switch_proved==true and .enabled==1 and .phase==1 and .max_members==5 and .active_members==5 and .valid_consents==5 and .non_cohort_access==0 and .activation_audits>=5 and .master_enabled==false and .model_enabled==false' /tmp/r4-production-commission.json
