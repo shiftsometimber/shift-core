@@ -124,6 +124,12 @@ jobs:
           jq -e '.demo==true and (.rooms|length)==6 and (.member.displayName|startswith("Matt"))' /tmp/tap-home.json
           curl -fsS -b /tmp/tap-cookie.txt "$PREVIEW_URL/tap-room" -o /tmp/tap-room.html
           grep -Fq '<title>The Tap Room | Shift Some Timber</title>' /tmp/tap-room.html
+          curl -fsS "$PREVIEW_URL/tap-room-v1.js" -o /tmp/tap-room-client.js
+          grep -Fq 'LATEST AT THE BAR' /tmp/tap-room-client.js
+          grep -Fq 'scrollIntoView' /tmp/tap-room-client.js
+          curl -fsS -b /tmp/tap-cookie.txt "$PREVIEW_URL/v1/tap-room/rooms/general-life/posts" > /tmp/tap-active-room.json
+          jq -e '.posts[0].body|startswith("Staging example:")' /tmp/tap-active-room.json
+          jq -e '.posts[0].last_activity_at!=null' /tmp/tap-active-room.json
           npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "SELECT COUNT(*) founding FROM tap_room_posts WHERE is_founder_prompt=1 AND status='visible'" > /tmp/tap-count.json
           jq -e '[..|objects|select(.founding?==18)]|length==1' /tmp/tap-count.json
           curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{}' "$PREVIEW_URL/v1/tap-room/acknowledgements/treatment-experiences" >/tmp/tap-ack.json
@@ -135,6 +141,7 @@ jobs:
           jq -e '.status=="held" and .flagged==true' /tmp/tap-sale.json
           curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{"body":"I want to end my life."}' "$PREVIEW_URL/v1/tap-room/rooms/treatment-experiences/posts" >/tmp/tap-crisis.json
           jq -e '.status=="held" and .flagged==true and (.crisisSupport|contains("116 123"))' /tmp/tap-crisis.json
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "DELETE FROM tap_room_reports WHERE post_id IN (SELECT id FROM tap_room_posts WHERE body IN ('I felt sick for two days after mine, then it settled.','You should skip your next dose.','DM me to buy Mounjaro without a prescription.','I want to end my life.')); DELETE FROM tap_room_posts WHERE body IN ('I felt sick for two days after mine, then it settled.','You should skip your next dose.','DM me to buy Mounjaro without a prescription.','I want to end my life.');"
           {
             echo ''
             echo '### Tap Room Phase 1 staging'
