@@ -9,3 +9,12 @@ body{background-color:#aa7a4c;background-image:radial-gradient(circle at 12% 18%
 @media(max-width:1220px){.hero{width:min(720px,100%)}.hero::before,.rooms::after,.board-side-note{display:none}}
 @media(max-width:760px){main{padding-inline:14px}.hero{margin-top:18px;padding-inline:18px}.rooms{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.room{min-height:180px;padding-inline:13px}.room h2{font-size:1.05rem}.middle-board{margin-inline:0;padding:31px 16px 18px}.middle-panel{grid-template-columns:1fr}.middle-tabs button{flex:0 0 auto}.room-title-ticket{padding-inline:16px}.sport-live-layer{margin-inline:0}}
 @media(max-width:500px){.rooms{grid-template-columns:1fr}.room{min-height:165px}.hero h1{font-size:3.2rem}.room-title-ticket h2{font-size:2.35rem}.middle-board>header h3{font-size:2.15rem}}
+
+/* Non-negotiable brand lock: texture may vary, colours may not. */
+:root{--paper:#e7e3da;--paper-soft:#e7e3da;--muted:#707762}
+body{background-color:#707762;background-image:radial-gradient(circle at 12% 18%,#05050524 0 1px,transparent 2px),radial-gradient(circle at 72% 61%,#e7e3da30 0 1px,transparent 2px),radial-gradient(circle at 34% 82%,#05050518 0 1.5px,transparent 2.5px),linear-gradient(115deg,#707762,#707762)}
+header,.hero,.hero::before,.rooms::after,.room,.room-title-ticket,.middle-board,.board-side-note,.board-card,.room-live,.post,.notice,.room-notice,.conversation form,.sport-live-layer,.sport-event,.sport-story{background:#e7e3da;color:#050505}
+.sport-league select,.conversation textarea,textarea{background:#e7e3da;color:#050505}
+.board-card::before{background:#e7e3dacc}
+.room:not(.room--sport-banter) .room-detail,.room--sport-banter .room-detail,.board-rule{background:#7077622e}
+.text-button,.secondary{background:#e7e3da;color:#050505}
