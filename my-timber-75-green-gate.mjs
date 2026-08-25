@@ -35,4 +35,6 @@ green('11. Every Grub taste path reaches exact or nearest safe choices',/nearest
 
 green('12. Fit movement visuals open full-size accessibly',/data-fit-visual/.test(fit)&&/showModal/.test(fit)&&/data-fit-visual-close/.test(fit)&&/Tap to enlarge/.test(fit)&&/sf-visual-dialog/.test(read('frontend/member/member-fit-programme-v1.css')));
 
+green('13. Ask Timber stays secondary but permanently discoverable',/mountAskTimberNotepad/.test(shell)&&/mp-ask-edge/.test(shell)&&/aria-expanded/.test(shell)&&/shiftAiInput/.test(shell)&&/Escape/.test(shell)&&/mp-ask-pad/.test(read('frontend/member/member-p0-v1.css'))&&/prefers-reduced-motion/.test(read('frontend/member/member-p0-v1.css')));
+
 console.log(JSON.stringify({proof:'MY_TIMBER_75_GREEN',status:'PASS',green:`${pass.length}/${pass.length}`,checks:pass},null,2));
