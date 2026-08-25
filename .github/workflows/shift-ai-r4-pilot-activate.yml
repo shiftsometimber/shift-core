@@ -1,0 +1,139 @@
+name: Shift AI R4 Pilot Phase 1 Activation
+
+on:
+  push:
+    branches: [codex/my-timber-adaptive-day-v1]
+    paths:
+      - '.github/workflows/shift-ai-r4-pilot-activate.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shift-ai-r4-pilot-activation
+  cancel-in-progress: false
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      PREVIEW_DB_NAME: shift-core-my-timber-preview-db
+      PREVIEW_CONFIG: wrangler.shift-ai-r4-pilot.generated.jsonc
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed without candidate credentials
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
+
+      - name: Resolve the isolated candidate D1
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 list --json > /tmp/d1-list.json
+          db_id=$(jq -r --arg name "$PREVIEW_DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          test "$db_id" = '247b065f-fea4-4891-945b-b707f2417656'
+          sed "s/__PREVIEW_D1_DATABASE_ID__/$db_id/" wrangler.my-timber-preview.template.jsonc > "$PREVIEW_CONFIG"
+          echo "PREVIEW_D1_ID=$db_id" >> "$GITHUB_ENV"
+
+      - name: Lock runtime to pilot on and model off
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const file=process.env.PREVIEW_CONFIG;
+          const config=JSON.parse(fs.readFileSync(file,'utf8'));
+          config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'true',SHIFT_TODAY_MODEL_ENABLED:'false'};
+          fs.writeFileSync(file,JSON.stringify(config,null,2));
+          NODE
+          jq -e '.vars.SHIFT_AI_R4_PILOT_ENABLED=="true" and .vars.SHIFT_TODAY_MODEL_ENABLED=="false"' "$PREVIEW_CONFIG"
+
+      - name: Resolve exactly five consented members and activate atomically
+        shell: bash
+        run: |
+          set -euo pipefail
+          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          end=$(date -u -d '+7 days' +%Y-%m-%dT%H:%M:%SZ)
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "
+          BEGIN IMMEDIATE;
+          CREATE TEMP TABLE r4_expected(name_hex TEXT PRIMARY KEY,slot INTEGER UNIQUE);
+          INSERT INTO r4_expected VALUES
+            ('6d617474',1),
+            ('6c696e6461',2),
+            ('617661',3),
+            ('69736c61',4),
+            ('66696e6c6579',5);
+          CREATE TEMP TABLE r4_targets AS
+          SELECT u.id,e.slot
+          FROM users u
+          JOIN r4_expected e ON lower(hex(trim(u.first_name)))=e.name_hex
+          WHERE lower(replace(replace(replace(trim(u.last_name),char(39),''),char(8217),''),' ',''))=CAST(X'6f627269656e' AS TEXT)
+            AND lower(u.email) NOT LIKE '%@example.test';
+          CREATE TEMP TABLE r4_guard(member_count INTEGER CHECK(member_count=5),slot_count INTEGER CHECK(slot_count=5));
+          INSERT INTO r4_guard
+          SELECT COUNT(*),COUNT(DISTINCT slot) FROM r4_targets;
+          UPDATE shift_ai_pilot_access SET status='revoked',updated_at=CURRENT_TIMESTAMP WHERE status='active';
+          INSERT INTO shift_ai_pilot_access(
+            user_id,status,cohort,consent_version,consented_at,consent_evidence_ref,
+            starts_at,ends_at,activated_by,updated_at
+          )
+          SELECT id,'active',1,'shift-ai-r4-pilot-consent-v1','$now',
+            'SST-R4-CONSENT-20260825-SLOT-' || slot,'$now','$end',
+            'controlled-preview-activation',CURRENT_TIMESTAMP
+          FROM r4_targets
+          ON CONFLICT(user_id) DO UPDATE SET
+            status='active',cohort=1,consent_version=excluded.consent_version,
+            consented_at=excluded.consented_at,consent_evidence_ref=excluded.consent_evidence_ref,
+            starts_at=excluded.starts_at,ends_at=excluded.ends_at,
+            activated_by=excluded.activated_by,updated_at=CURRENT_TIMESTAMP;
+          UPDATE shift_ai_pilot_control
+          SET enabled=1,phase=1,max_members=5,
+            consent_version='shift-ai-r4-pilot-consent-v1',
+            starts_at='$now',ends_at='$end',stopped_at=NULL,stop_reason=NULL,
+            updated_at=CURRENT_TIMESTAMP
+          WHERE id=1;
+          INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata)
+          SELECT id,'shift_ai_r4_pilot_activated','shift_ai_pilot_access',CAST(id AS TEXT),
+            json_object('cohort',1,'consent_ref','SST-R4-CONSENT-20260825-SLOT-' || slot,'model_enabled',0)
+          FROM r4_targets;
+          COMMIT;" >/tmp/r4-activation.txt
+
+      - name: Verify cohort controls and audit without exposing identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "
+          SELECT enabled,phase,max_members,consent_version,
+            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND cohort=1) AS active_members,
+            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND consent_version='shift-ai-r4-pilot-consent-v1' AND consented_at IS NOT NULL AND consent_evidence_ref IS NOT NULL AND activated_by IS NOT NULL) AS valid_consents,
+            (SELECT COUNT(*) FROM audit_log WHERE action='shift_ai_r4_pilot_activated') AS activation_audits,
+            (SELECT COUNT(*) FROM shift_ai_pilot_access WHERE status='active' AND consent_evidence_ref LIKE 'synthetic-r4-proof-%') AS active_synthetic
+          FROM shift_ai_pilot_control WHERE id=1;" | tee /tmp/r4-activation-proof.json
+          jq -e '[.. | objects | select(.enabled==1 and .phase==1 and .max_members==5 and .active_members==5 and .valid_consents==5 and .activation_audits>=5 and .active_synthetic==0)] | length==1' /tmp/r4-activation-proof.json
+
+      - name: Deploy exact candidate runtime to isolated preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$PREVIEW_CONFIG" 2>&1 | tee /tmp/r4-activation-deploy.txt
+          grep -F 'env.SHIFT_AI_R4_PILOT_ENABLED ("true")' /tmp/r4-activation-deploy.txt
+          grep -F 'env.SHIFT_TODAY_MODEL_ENABLED ("false")' /tmp/r4-activation-deploy.txt
+          grep -F 'https://shift-core-my-timber-preview.matobrien.workers.dev' /tmp/r4-activation-deploy.txt
+          version=$(grep -F 'Current Version ID:' /tmp/r4-activation-deploy.txt | tail -n1 | sed 's/.*Current Version ID: //')
+          test -n "$version"
+          {
+            echo '## Shift AI R4 phase-one pilot activated'
+            echo ''
+            echo '- Five consented internal members: active'
+            echo '- Candidate D1: 247b065f-fea4-4891-945b-b707f2417656'
+            echo '- Model: off'
+            echo '- One-action D1 kill-switch: live'
+            echo "- Worker version: $version"
+          } >> "$GITHUB_STEP_SUMMARY"
