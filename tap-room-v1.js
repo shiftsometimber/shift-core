@@ -16,9 +16,9 @@ export const REPORT_CATEGORIES=Object.freeze({
   crisis:{label:'Crisis / self-harm language',priority:'P0'},
   other:{label:'Other',priority:'P2'}
 });
-const DOSE_PATTERNS=[/\b(skip|miss|double|halve|increase|decrease|raise|lower|change|stop|start)\b.{0,35}\b(dose|dosage|mg|regimen|injection|tablet)s?\b/i,/\byou should\b.{0,45}\b(take|inject|stop|start|skip|double|increase|decrease)\b/i,/\b(take|inject)\b.{0,20}\b\d+(?:\.\d+)?\s*mg\b/i];
+const DOSE_PATTERNS=[/\b(skip|miss|double|halve|increase|decrease|raise|lower|change|stop|start)\b.{0,35}\b(dose|dosage|mg|regimen|injection|tablet)s?\b/i,/\b(you|he|she|they)\s+(should|need to|must|ought to|could just)\b.{0,45}\b(take|inject|stop|start|skip|miss|double|halve|increase|decrease|come off|go up|go down|move up|drop down)\b/i,/\b(take|inject|go up to|go down to|move up to|drop down to|switch to)\b.{0,20}\b(half|\d+(?:\.\d+)?\s*mg)\b/i,/\bjust\s+(skip|miss|double|halve|stop|start|increase|decrease|come off|go up|go down|move up|drop down)\b/i];
 const SALES_PATTERNS=[/\b(buy|sell|supplier|source|telegram|whatsapp|dm me)\b.{0,45}\b(mounjaro|wegovy|ozempic|semaglutide|tirzepatide|reta|retatrutide|peptide|pen|vial|medication)\b/i,/\b(unlicensed|research[- ]?grade|no prescription)\b/i];
-const CRISIS_PATTERNS=[/\b(kill myself|end my life|suicid(?:e|al)|self[- ]?harm|not worth living|better off dead)\b/i];
+const CRISIS_PATTERNS=[/\b(kill myself|end my life|suicid(?:e|al)|self[- ]?harm(?:ing|ed)?|not worth living|better off dead)\b/i];
 const SCHEMA=[
 `CREATE TABLE IF NOT EXISTS tap_room_profiles (user_id INTEGER PRIMARY KEY,display_name TEXT NOT NULL,bio TEXT,joined_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,treatment_rules_ack_at TEXT,privacy_prompt_seen_at TEXT,status TEXT NOT NULL DEFAULT 'active',updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
 `CREATE TABLE IF NOT EXISTS tap_room_posts (id INTEGER PRIMARY KEY AUTOINCREMENT,room_slug TEXT NOT NULL,user_id INTEGER,parent_id INTEGER,body TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'visible',is_founder_prompt INTEGER NOT NULL DEFAULT 0,risk_flags_json TEXT NOT NULL DEFAULT '[]',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,deleted_at TEXT,deleted_by INTEGER)`,
