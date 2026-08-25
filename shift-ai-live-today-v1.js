@@ -85,6 +85,11 @@ async function pilotAccessGate(request,env,userId){
   const control=await requiredFirst(env.DB,`SELECT * FROM shift_ai_pilot_control WHERE id=1`),now=Date.now();
   if(!control||control.enabled!==1)return deny('pilot_off',404,'This pilot is not available right now.');
   if(env.SHIFT_TODAY_MODEL_ENABLED==='true')return deny('pilot_model_lock',503,'The pilot has stopped because a locked setting changed. Nothing has been written.');
+  if(env.SHIFT_AI_R4_AUDIENCE==='all_current_members'){
+    const member=await requiredFirst(env.DB,`SELECT membership_status FROM member_status WHERE user_id=?`,[userId]);
+    if(String(member?.membership_status||'').toLowerCase()!=='member')return deny('current_membership_required',403,'This journey is available to current Shift members.');
+    return null;
+  }
   if(control.consent_version!==PILOT_CONSENT_VERSION||![1,2].includes(Number(control.phase))||Number(control.max_members)!==(Number(control.phase)===1?5:10))return deny('pilot_control_invalid',503,'The pilot controls are incomplete. Nothing has been written.');
   if(!control.starts_at||!control.ends_at||!Number.isFinite(Date.parse(control.starts_at))||!Number.isFinite(Date.parse(control.ends_at))||now<Date.parse(control.starts_at)||now>=Date.parse(control.ends_at)||Date.parse(control.ends_at)-Date.parse(control.starts_at)>14*86400000)return deny('pilot_window_closed',403,'This pilot is not available right now.');
   const active=await requiredFirst(env.DB,`SELECT COUNT(*) AS count FROM shift_ai_pilot_access WHERE status='active' AND cohort<=? AND starts_at<=? AND ends_at>?`,[control.phase,new Date(now).toISOString(),new Date(now).toISOString()]);

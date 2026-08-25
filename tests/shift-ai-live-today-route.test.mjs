@@ -56,6 +56,30 @@ test('master environment flag keeps the pilot dark by default',async()=>{
   const {env,headers}=await fixture();delete env.SHIFT_AI_R4_PILOT_ENABLED;const response=await shiftAiLiveTodayRoutes(req('/v1/shift-ai/today/bootstrap',{headers}),env);assert.equal(response.status,404);assert.equal(env.DB.db.prepare('SELECT COUNT(*) c FROM shift_ai_today_proposals').get().c,0);
 });
 
+test('all-current-members audience admits a current member without an invite row',async()=>{
+  const {env,headers}=await fixture();
+  env.SHIFT_AI_R4_AUDIENCE='all_current_members';
+  env.DB.db.prepare('DELETE FROM shift_ai_pilot_access WHERE user_id=1').run();
+  const response=await shiftAiLiveTodayRoutes(req('/v1/shift-ai/today/bootstrap',{headers}),env),result=await response.json();
+  assert.equal(response.status,200);assert.equal(result.ok,true);
+});
+
+test('all-current-members audience blocks non-members and audits the denial',async()=>{
+  const {env,headers}=await fixture();
+  env.SHIFT_AI_R4_AUDIENCE='all_current_members';
+  env.DB.db.prepare("UPDATE member_status SET membership_status='none' WHERE user_id=1").run();
+  const response=await shiftAiLiveTodayRoutes(req('/v1/shift-ai/today/bootstrap',{headers}),env),result=await response.json();
+  assert.equal(response.status,403);assert.equal(result.error,'current_membership_required');
+  assert.equal(env.DB.db.prepare("SELECT COUNT(*) c FROM shift_ai_today_audit WHERE outcome='current_membership_required'").get().c,1);
+});
+
+test('global kill switch stops the all-current-members audience',async()=>{
+  const {env,headers}=await fixture();env.SHIFT_AI_R4_AUDIENCE='all_current_members';
+  env.DB.db.prepare("UPDATE shift_ai_pilot_control SET enabled=0,stop_reason='all_members_kill_test' WHERE id=1").run();
+  const response=await shiftAiLiveTodayRoutes(req('/v1/shift-ai/today/bootstrap',{headers}),env),result=await response.json();
+  assert.equal(response.status,404);assert.equal(result.error,'pilot_off');
+});
+
 test('one control-table update kills bootstrap, proposal and pending confirmation',async()=>{
   const {env,headers}=await fixture(),proposed=await (await shiftAiLiveTodayRoutes(req('/v1/shift-ai/today/rebuild/propose',{method:'POST',headers,body:{message:'I am working late'}}),env)).json();assert.ok(proposed.proposal_id);env.DB.db.prepare("UPDATE shift_ai_pilot_control SET enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='operator_test' WHERE id=1").run();for(const [path,options] of [['/v1/shift-ai/today/bootstrap',{headers}],['/v1/shift-ai/today/rebuild/propose',{method:'POST',headers,body:{message:'I am working late'}}],['/v1/shift-ai/today/rebuild/confirm',{method:'POST',headers,body:{proposal_id:proposed.proposal_id,confirmed:true}}]]){const response=await shiftAiLiveTodayRoutes(req(path,options),env);assert.equal(response.status,404)}assert.equal(env.DB.db.prepare("SELECT COUNT(*) c FROM shift_today_choices WHERE domain='ai_rebuild'").get().c,0);
 });

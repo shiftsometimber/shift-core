@@ -17,6 +17,8 @@ for(const required of [
   'pilot_model_lock',
   'pilot_cohort_limit',
   'pilot_gate_failed_closed',
+  'all_current_members',
+  'current_membership_required',
   "classification.classification!=='practical'",
   "status='published'",
   "final_v1_acceptance?.accepted===true",
