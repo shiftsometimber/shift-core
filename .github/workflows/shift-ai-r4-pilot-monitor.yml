@@ -5,7 +5,7 @@ on:
     - cron: '*/15 * * * *'
   workflow_dispatch:
   push:
-    branches: [codex/my-timber-adaptive-day-v1]
+    branches: [main, codex/my-timber-adaptive-day-v1]
     paths:
       - '.github/workflows/shift-ai-r4-pilot-monitor.yml'
 
