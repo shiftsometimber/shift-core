@@ -71,7 +71,7 @@ export async function sportClubhouseRoutes(request,env){
     const key=env.SPORTSDB_API_KEY||'123';
     const leagues=sport==='football'?await footballLeagues(key):[];
     const requestedLeague=clean(url.searchParams.get('league')||'4328',12),selected=leagues.find(x=>x.id===requestedLeague)||leagues.find(x=>x.id==='4328')||leagues[0];
-    const events=sport==='football'&&selected?await footballFeed(key,date,selected.id):await dayFeed(key,sport,date);
+    const events=sport==='football'&&selected?await footballFeed(key,date,selected.id):await dayFeed(key,sport,date).catch(()=>[]);
     const [stories,table]=await Promise.all([storyFeed(sport).catch(()=>[]),sport==='football'&&selected?tableFeed(key,selected.id,selected.season||`${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`).catch(()=>[]):Promise.resolve([])]);
     return json({ok:true,source:'TheSportsDB + BBC Sport',sport,date,updated_at:new Date().toISOString(),coverage:'uk_and_ireland_multi_league_clubhouse',selected_league:selected||null,leagues,events,stories,table});
   }catch(error){
