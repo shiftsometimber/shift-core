@@ -13,7 +13,8 @@
     "check": "node --check worker.js && node m04-route-readiness-gate.mjs && node m04-commissioning-ops-source-gate.mjs && node g5-012-login-fastpath-gate.mjs && node production-commissioning-independence-gate.mjs",
     "check:toolchain": "node toolchain-source-gate.mjs",
     "test:commerce": "node --test tests/commerce-stripe-v1.test.mjs",
-    "test:adaptive-today": "node --test tests/adaptive-today-v1.test.mjs && node tests/adaptive-today-source-gate.mjs"
+    "test:adaptive-today": "node --test tests/adaptive-today-v1.test.mjs && node tests/adaptive-today-source-gate.mjs",
+    "test:shift-ai-live-today": "node --test tests/shift-ai-live-today-v1.test.mjs tests/shift-ai-live-today-route.test.mjs && node tests/shift-ai-live-today-source-gate.mjs"
   },
   "devDependencies": {
     "wrangler": "4.112.0"

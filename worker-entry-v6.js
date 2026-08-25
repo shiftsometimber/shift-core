@@ -29,6 +29,7 @@ import {commerceStripeRoutes} from './commerce-stripe-v1.js';
 import {fastMemberStateRoute} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
+import {shiftAiLiveTodayRoutes} from './shift-ai-live-today-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -60,7 +61,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-sport-v1.js','application/javascript; charset=utf-8'],
   ['/member-sport-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
+function isMemberProductPath(path){return path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-ai/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
@@ -145,6 +146,7 @@ export default {
     const knowledge=await knowledgeRoutes(request,env,ctx); if(knowledge)return isMemberProductPath(path)?withMemberCors(knowledge,request):knowledge;
     const daily=await memberDailyV3Routes(request,env,ctx); if(daily)return withMemberCors(daily,request);
     const practical=await memberPracticalRoutes(request,env,ctx); if(practical)return withMemberCors(practical,request);
+    const shiftAiToday=await shiftAiLiveTodayRoutes(request,env,ctx); if(shiftAiToday)return withMemberCors(shiftAiToday,request);
     const memberV8=await memberProductV8Routes(request,env,ctx); if(memberV8)return withMemberCors(memberV8,request);
     const personal=await personalRoutes(request,env,ctx); if(personal)return withMemberCors(personal,request);
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
