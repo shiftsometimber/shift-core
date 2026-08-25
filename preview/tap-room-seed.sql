@@ -40,4 +40,13 @@ INSERT INTO tap_room_posts(room_slug,user_id,body,status,created_at,updated_at) 
 ('general-life',(SELECT id FROM users WHERE email='taproom-ava@example.test'),'Staging example: Nobody warned me that choosing what everyone eats every night would become a full-time management role.','visible',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 INSERT INTO tap_room_posts(room_slug,user_id,parent_id,body,status,created_at,updated_at)
-SELECT room_slug,(SELECT id FROM users WHERE email='taproom-review@example.test'),id,'Staging reply from Matt: That is exactly the sort of honest answer this place needs. No lecture, no pretending — just what actually happened.', 'visible',datetime('now','+1 minute'),CURRENT_TIMESTAMP FROM tap_room_posts WHERE body LIKE 'Staging example:%';
+SELECT room_slug,(SELECT id FROM users WHERE email='taproom-review@example.test'),id,
+CASE room_slug
+ WHEN 'sport-banter' THEN 'Staging reply from Matt: That is football all over. Eight goals, and your brain brings the one miss home in the car.'
+ WHEN 'treatment-experiences' THEN 'Staging reply from Matt: Useful, that. Your own experience, one ordinary change, and no pretending it will be the same for everybody.'
+ WHEN 'food-everyday' THEN 'Staging reply from Matt: Wraps and a no-complaints policy. That is Tuesday sorted without anybody needing to become a chef.'
+ WHEN 'confidence-setbacks' THEN 'Staging reply from Matt: Starting again at the next meal is a much better shout than writing the whole week off. Quiet progress still counts.'
+ WHEN 'travel-breaks' THEN 'Staging reply from Matt: The cheap flight stops being cheap once the whole family wants compensation for being awake at three.'
+ ELSE 'Staging reply from Matt: Apparently adulthood is mostly deciding what is for tea and finding out nobody else has an opinion until you choose.'
+END,
+'visible',datetime('now','+1 minute'),CURRENT_TIMESTAMP FROM tap_room_posts WHERE body LIKE 'Staging example:%';
