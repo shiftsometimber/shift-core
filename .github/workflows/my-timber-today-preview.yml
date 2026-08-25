@@ -130,6 +130,8 @@ jobs:
           test "$(wc -c < /tmp/tap-room-cork.webp)" -gt 100000
           curl -fsS "$PREVIEW_URL/tap-room-paper.webp" -o /tmp/tap-room-paper.webp
           test "$(wc -c < /tmp/tap-room-paper.webp)" -gt 100000
+          curl -fsS "$PREVIEW_URL/tap-room-landing.webp" -o /tmp/tap-room-landing.webp
+          test "$(wc -c < /tmp/tap-room-landing.webp)" -gt 100000
           grep -Fq 'LATEST AT THE BAR' /tmp/tap-room-client.js
           grep -Fq 'scrollIntoView' /tmp/tap-room-client.js
           grep -Fq '/v1/sport/clubhouse' /tmp/tap-room-client.js
