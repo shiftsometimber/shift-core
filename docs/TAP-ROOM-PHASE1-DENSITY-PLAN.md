@@ -62,7 +62,7 @@ Invite 3-5 verified members only. A suitable host is already constructive, repli
 - Isla O'Brien - early host
 - Finley O'Brien - early host
 
-Access and host status remain consent-first. A named person is not enabled or represented as participating until their individual consent is recorded against their verified Shift account. No replacement or additional host is added during Phase 1 without an explicit governance decision.
+Consent was confirmed on 25 August 2026 for Matt O'Brien, Linda O'Brien, Ava O'Brien, Isla O'Brien and Finley O'Brien to act as the Phase 1 early-host cohort. Host access still requires each person's verified Shift account. No replacement or additional host is added during Phase 1 without an explicit governance decision.
 
 P0/safeguarding notifications route to `hello@shiftsometimber.co.uk`, owned by Matt with Linda as the out-of-hours backup. The Tap Room remains closed if email delivery, the named ownership variables or moderator authentication are absent.
 

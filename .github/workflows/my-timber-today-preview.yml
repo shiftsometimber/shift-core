@@ -3,7 +3,7 @@ name: My Timber Today Hosted Preview
 
 on:
   push:
-    branches: [feat/real-daily-shift-recovery, codex/my-timber-adaptive-day-v1, feat/adaptive-today-phase-1-2]
+    branches: [feat/real-daily-shift-recovery, codex/my-timber-adaptive-day-v1, feat/adaptive-today-phase-1-2, feature/tap-room-phase1]
     paths:
       - '.github/workflows/my-timber-today-preview.yml'
       - 'preview/**'
@@ -18,6 +18,9 @@ on:
       - 'daily-shift-frontdoor-gate.mjs'
       - 'my-timber-9-contract-gate.mjs'
       - 'frontend/member/**'
+      - 'tap-room-v1.js'
+      - 'migrations/007_tap_room_phase1.sql'
+      - 'preview/tap-room-seed.sql'
   workflow_dispatch:
     inputs:
       confirm:
@@ -76,6 +79,11 @@ jobs:
       - name: Initialise preview-only schema
         run: npx wrangler d1 execute DB --remote --file preview/bootstrap.sql --config "$PREVIEW_CONFIG"
 
+      - name: Initialise isolated Tap Room schema
+        run: |
+          npx wrangler d1 execute DB --remote --file migrations/007_tap_room_phase1.sql --config "$PREVIEW_CONFIG"
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --command "DELETE FROM user_sessions WHERE user_id IN (SELECT id FROM users WHERE email='taproom-review@example.test'); DELETE FROM member_state WHERE user_id IN (SELECT id FROM users WHERE email='taproom-review@example.test'); DELETE FROM member_status WHERE user_id IN (SELECT id FROM users WHERE email='taproom-review@example.test'); DELETE FROM user_auth WHERE user_id IN (SELECT id FROM users WHERE email='taproom-review@example.test'); DELETE FROM users WHERE email='taproom-review@example.test';"
+
       - name: Keep preview browser calls on the preview origin
         run: |
           node - <<'NODE'
@@ -97,6 +105,46 @@ jobs:
           echo "PREVIEW_URL=$preview_url" >> "$GITHUB_ENV"
           echo "### My Timber Today preview" >> "$GITHUB_STEP_SUMMARY"
           echo "[$preview_url/member/dashboard#today]($preview_url/member/dashboard#today)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Load consented Tap Room staging demonstration
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS -c /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST \
+            -d '{"email":"taproom-review@example.test","password":"TapRoomReview!2026","firstName":"Matt","lastName":"OBrien"}' \
+            "$PREVIEW_URL/v1/auth/register" > /tmp/tap-register.json
+          jq -e '.ok==true and .emailVerified==true' /tmp/tap-register.json
+          npx wrangler d1 execute DB --remote --file preview/tap-room-seed.sql --config "$PREVIEW_CONFIG"
+
+      - name: Prove Tap Room content and live safety behaviour
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS -b /tmp/tap-cookie.txt "$PREVIEW_URL/v1/tap-room" > /tmp/tap-home.json
+          jq -e '.demo==true and (.rooms|length)==6 and (.member.displayName|startswith("Matt"))' /tmp/tap-home.json
+          curl -fsS -b /tmp/tap-cookie.txt "$PREVIEW_URL/tap-room" -o /tmp/tap-room.html
+          grep -Fq '<title>The Tap Room | Shift Some Timber</title>' /tmp/tap-room.html
+          npx wrangler d1 execute DB --remote --config "$PREVIEW_CONFIG" --json --command "SELECT COUNT(*) founding FROM tap_room_posts WHERE is_founder_prompt=1 AND status='visible'" > /tmp/tap-count.json
+          jq -e '[..|objects|select(.founding?==18)]|length==1' /tmp/tap-count.json
+          curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{}' "$PREVIEW_URL/v1/tap-room/acknowledgements/treatment-experiences" >/tmp/tap-ack.json
+          curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{"body":"I felt sick for two days after mine, then it settled."}' "$PREVIEW_URL/v1/tap-room/rooms/treatment-experiences/posts" >/tmp/tap-allowed.json
+          jq -e '.status=="visible" and .flagged==false' /tmp/tap-allowed.json
+          curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{"body":"You should skip your next dose."}' "$PREVIEW_URL/v1/tap-room/rooms/treatment-experiences/posts" >/tmp/tap-dose.json
+          jq -e '.status=="held" and .flagged==true and (.reviewMessage|contains("not been published"))' /tmp/tap-dose.json
+          curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{"body":"DM me to buy Mounjaro without a prescription."}' "$PREVIEW_URL/v1/tap-room/rooms/treatment-experiences/posts" >/tmp/tap-sale.json
+          jq -e '.status=="held" and .flagged==true' /tmp/tap-sale.json
+          curl -fsS -b /tmp/tap-cookie.txt -H 'content-type: application/json' -X POST -d '{"body":"I want to end my life."}' "$PREVIEW_URL/v1/tap-room/rooms/treatment-experiences/posts" >/tmp/tap-crisis.json
+          jq -e '.status=="held" and .flagged==true and (.crisisSupport|contains("116 123"))' /tmp/tap-crisis.json
+          {
+            echo ''
+            echo '### Tap Room Phase 1 staging'
+            echo "[$PREVIEW_URL/tap-room]($PREVIEW_URL/tap-room)"
+            echo ''
+            echo 'Review login: `taproom-review@example.test` / `TapRoomReview!2026`'
+            echo ''
+            echo 'Loaded: 18 founding prompts, six consented-host demonstration posts and six Matt replies.'
+            echo 'Safety proof: ordinary experience visible; dose instruction, selling and crisis language held.'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Prove joined Grub and Fit day rebuilds when work changes
         shell: bash
