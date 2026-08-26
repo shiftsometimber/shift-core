@@ -1,0 +1,177 @@
+name: Evidence Desk R1.2 Non-Production D1 Commission
+# Trigger the real non-production persistence commission.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/evidence-desk-r12-nonprod.yml'
+      - 'evidence-adapter-mhra-glp1-v1.js'
+      - 'evidence-desk-v1.js'
+      - 'evidence-desk-r12-entry.js'
+      - 'migrations/007_shift_evidence_desk.sql'
+      - 'preview/evidence-r12-reset.sql'
+      - 'wrangler.evidence-desk-r12.template.jsonc'
+  push:
+    branches: [main, agent/shift-evidence-desk-foundation-r1]
+    paths:
+      - '.github/workflows/evidence-desk-r12-nonprod.yml'
+      - 'evidence-adapter-mhra-glp1-v1.js'
+      - 'evidence-desk-v1.js'
+      - 'evidence-desk-r12-entry.js'
+      - 'migrations/007_shift_evidence_desk.sql'
+      - 'preview/evidence-r12-reset.sql'
+      - 'wrangler.evidence-desk-r12.template.jsonc'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evidence-desk-r12-nonprod
+  cancel-in-progress: false
+
+jobs:
+  commission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      DB_NAME: shift-evidence-desk-r12-nonprod-db
+      WORKER_NAME: shift-evidence-desk-r12-nonprod
+      CONFIG: wrangler.evidence-desk-r12.generated.jsonc
+      PRODUCTION_DB_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed without isolated deployment credentials
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+
+      - name: Install exact toolchain and run regressions
+        run: |
+          npm install --no-audit --no-fund
+          node --test tests/*.test.mjs
+          node tests/evidence-desk-source-gate.mjs
+
+      - name: Resolve or create the dedicated non-production D1
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 list --json > /tmp/r12-d1-list.json
+          db_id=$(jq -r --arg name "$DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/r12-d1-list.json | head -n1)
+          if [ -z "$db_id" ]; then
+            npx wrangler d1 create "$DB_NAME" --location weur >/tmp/r12-d1-create.txt
+            npx wrangler d1 list --json > /tmp/r12-d1-list.json
+            db_id=$(jq -r --arg name "$DB_NAME" '.[] | select(.name==$name) | (.uuid // .database_id // .id)' /tmp/r12-d1-list.json | head -n1)
+          fi
+          test -n "$db_id"
+          test "$db_id" != '__EVIDENCE_R12_D1_DATABASE_ID__'
+          test "$db_id" != "$PRODUCTION_DB_ID"
+          sed "s/__EVIDENCE_R12_D1_DATABASE_ID__/$db_id/" wrangler.evidence-desk-r12.template.jsonc > "$CONFIG"
+          jq -e --arg id "$db_id" '.name=="shift-evidence-desk-r12-nonprod" and .vars.EVIDENCE_DESK_ENV=="non-production" and .d1_databases[0].database_id==$id and (.ai|not)' "$CONFIG"
+          echo "R12_D1_ID=$db_id" >> "$GITHUB_ENV"
+          echo "R12_URL=https://$WORKER_NAME.matobrien.workers.dev" >> "$GITHUB_ENV"
+
+      - name: Apply schema and prove initial locks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --file migrations/007_shift_evidence_desk.sql >/tmp/r12-migration.txt
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --file preview/evidence-r12-reset.sql >/tmp/r12-reset.txt
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled FROM evidence_desk_control WHERE id=1;" | tee /tmp/r12-initial-locks.json
+          jq -e '[.. | objects | select(.enabled==0 and .ingestion_enabled==0 and .decision_email_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)] | length==1' /tmp/r12-initial-locks.json
+
+      - name: Deploy exact candidate with a one-run commission capability
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$CONFIG" 2>&1 | tee /tmp/r12-deploy.txt
+          grep -F "$R12_URL" /tmp/r12-deploy.txt
+          version=$(grep -F 'Current Version ID:' /tmp/r12-deploy.txt | tail -n1 | sed 's/.*Current Version ID: //')
+          test -n "$version"
+          echo "R12_VERSION=$version" >> "$GITHUB_ENV"
+          token=$(openssl rand -hex 32)
+          printf '%s' "$token" | npx wrangler secret put EVIDENCE_DESK_COMMISSION_TOKEN --config "$CONFIG" >/tmp/r12-secret.txt
+          echo "R12_TOKEN=$token" >> "$GITHUB_ENV"
+
+      - name: Commission and persist the documented baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R12_TOKEN"
+          curl --fail-with-body --retry 5 --retry-all-errors -sS -X POST -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/commission" | tee /tmp/r12-commission.json
+          jq -e '.ok==true and .publication.website==false and .publication.newsletter==false and .publication.social==false' /tmp/r12-commission.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/baseline" | tee /tmp/r12-baseline.json
+          jq -e '.ok==true and .materialState=="baseline_recorded" and .event==null' /tmp/r12-baseline.json
+
+      - name: Fetch the genuine current MHRA state and prove persistence
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R12_TOKEN"
+          curl --fail-with-body -sS -X POST -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/fetch" | tee /tmp/r12-first-fetch.json
+          jq -e '.ok==true and .state=="material_change" and .eventId!=null and .packageId!=null' /tmp/r12-first-fetch.json
+          curl --fail-with-body -sS -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/inbox" | tee /tmp/r12-inbox-first.json
+          jq -e '.ok==true and .mode=="read_only" and .claim.page_path=="/glp1-knowledge-centre.html" and .claim.content_key=="mhra-glp1-latest-safety-update" and (.packages|length)==1 and .packages[0].risk_lane=="red" and .packages[0].communication_class=="clinical_safety" and .packages[0].qualified_review_required==1 and .packages[0].communications_review_required==1 and .packages[0].web_eligible==0 and .packages[0].newsletter_eligible==0 and .packages[0].social_eligible==0 and .capabilities.compose==false and .capabilities.approve==false and .capabilities.publish==false and .capabilities.social==false and .capabilities.model==false' /tmp/r12-inbox-first.json
+
+      - name: Replay again and prove no duplicate live work
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R12_TOKEN"
+          curl --fail-with-body -sS -X POST -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/fetch" | tee /tmp/r12-second-fetch.json
+          jq -e '.ok==true and .state=="no_material_change" and .eventId==null and .packageId==null' /tmp/r12-second-fetch.json
+          curl --fail-with-body -sS -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/inbox" | tee /tmp/r12-inbox-second.json
+          jq -e '(.events|length)==1 and (.packages|length)==1 and .notification.total==1 and .notification.queued==1' /tmp/r12-inbox-second.json
+
+      - name: Execute shutdown and prove no later fetch or mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R12_TOKEN"
+          before=$(jq -c '{snapshots:(.snapshots|length),events:(.events|length),packages:(.packages|length),notifications:.notification.total}' /tmp/r12-inbox-second.json)
+          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data '{"reason":"R1.2 persisted shutdown proof complete"}' "$R12_URL/v1/evidence-desk/r1-2/stop" | tee /tmp/r12-stop.json
+          jq -e '.ok==true and .state=="sealed" and .allDestinationsLocked==true' /tmp/r12-stop.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/fetch" | tee /tmp/r12-post-stop-fetch.json
+          jq -e '.ok==true and .state=="sealed" and .sourcesChecked==0' /tmp/r12-post-stop-fetch.json
+          curl --fail-with-body -sS -H "$auth" "$R12_URL/v1/evidence-desk/r1-2/inbox" | tee /tmp/r12-inbox-final.json
+          after=$(jq -c '{snapshots:(.snapshots|length),events:(.events|length),packages:(.packages|length),notifications:.notification.total}' /tmp/r12-inbox-final.json)
+          test "$before" = "$after"
+          jq -e '.control.enabled==0 and .control.ingestion_enabled==0 and .control.decision_email_enabled==0 and .control.website_publish_enabled==0 and .control.newsletter_enabled==0 and .control.social_enabled==0 and .control.stop_reason=="R1.2 persisted shutdown proof complete" and ([.audit[]|select(.decision=="global_kill_switch")]|length)==1' /tmp/r12-inbox-final.json
+
+      - name: Persist direct D1 acceptance evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT (SELECT COUNT(*) FROM evidence_desk_snapshots WHERE source_id='mhra-glp1-guidance-r11') AS snapshots,(SELECT COUNT(*) FROM evidence_desk_events WHERE source_id='mhra-glp1-guidance-r11') AS events,(SELECT COUNT(*) FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id WHERE e.source_id='mhra-glp1-guidance-r11') AS packages,(SELECT COUNT(*) FROM evidence_desk_notifications) AS notifications,(SELECT COUNT(*) FROM evidence_desk_decisions WHERE decision='global_kill_switch') AS shutdown_audits,(SELECT enabled FROM evidence_desk_control WHERE id=1) AS enabled,(SELECT ingestion_enabled FROM evidence_desk_control WHERE id=1) AS ingestion_enabled,(SELECT website_publish_enabled FROM evidence_desk_control WHERE id=1) AS website_publish_enabled,(SELECT newsletter_enabled FROM evidence_desk_control WHERE id=1) AS newsletter_enabled,(SELECT social_enabled FROM evidence_desk_control WHERE id=1) AS social_enabled;" | tee /tmp/r12-d1-final.json
+          jq -e '[.. | objects | select(.snapshots==3 and .events==1 and .packages==1 and .notifications==1 and .shutdown_audits==1 and .enabled==0 and .ingestion_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)] | length==1' /tmp/r12-d1-final.json
+
+      - name: Publish evidence bundle and acceptance summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence-r12
+          cp /tmp/r12-{initial-locks,commission,baseline,first-fetch,inbox-first,second-fetch,inbox-second,stop,post-stop-fetch,inbox-final,d1-final}.json evidence-r12/
+          printf '%s\n' "commit=$GITHUB_SHA" "worker=$WORKER_NAME" "url=$R12_URL" "database_name=$DB_NAME" "database_id=$R12_D1_ID" "worker_version=$R12_VERSION" > evidence-r12/deployment.txt
+          {
+            echo '## Shift Evidence Desk R1.2 — PASS'
+            echo ''
+            echo "- Exact commit: \`$GITHUB_SHA\`"
+            echo "- Worker: \`$WORKER_NAME\`"
+            echo "- Non-production D1: \`$DB_NAME\` / \`$R12_D1_ID\`"
+            echo '- Persisted snapshots: 3; events: 1; packages: 1; notifications: 1'
+            echo '- Inbox: read-only'
+            echo '- Shutdown: proven; final state sealed'
+            echo '- Model, publication, newsletter and social: off'
+            echo '- Production: untouched'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shift-evidence-desk-r12-proof
+          path: evidence-r12
+          retention-days: 30
