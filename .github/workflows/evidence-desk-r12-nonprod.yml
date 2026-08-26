@@ -3,6 +3,8 @@ name: Evidence Desk R1.2 Non-Production D1 Commission
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
   pull_request:
     branches: [main]
     paths:
