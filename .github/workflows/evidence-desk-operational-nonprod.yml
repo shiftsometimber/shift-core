@@ -1,0 +1,196 @@
+name: Evidence Desk Operational Non-Production Commission
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [agent/evidence-desk-operational-r2, main]
+    paths:
+      - '.github/workflows/evidence-desk-operational-nonprod.yml'
+      - 'evidence-desk-operational-*.js'
+      - 'evidence-desk-staging-publisher-entry.js'
+      - 'evidence-desk-v1.js'
+      - 'migrations/010_evidence_desk_operational.sql'
+      - 'migrations/011_evidence_desk_staging_publisher.sql'
+      - 'wrangler.evidence-desk-*.jsonc'
+      - 'tests/evidence-desk-*.test.mjs'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evidence-desk-operational-nonprod
+  cancel-in-progress: false
+
+jobs:
+  commission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      NONPROD_D1_ID: 8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3
+      PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
+      DB_NAME: shift-evidence-desk-r12-nonprod-db
+      WORKER_NAME: shift-evidence-desk-operational
+      WORKER_URL: https://shift-evidence-desk-operational.matobrien.workers.dev
+      PUBLISHER_NAME: shift-evidence-desk-staging-publisher
+      PUBLISHER_URL: https://shift-evidence-desk-staging-publisher.matobrien.workers.dev
+      DISTRIBUTOR_URL: https://shift-evidence-desk-staging-distributor.matobrien.workers.dev
+      CONFIG: wrangler.evidence-desk-operational.generated.jsonc
+      PUBLISHER_CONFIG: wrangler.evidence-desk-staging-publisher.generated.jsonc
+      DISTRIBUTOR_CONFIG: wrangler.evidence-desk-staging-distributor.generated.jsonc
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed on environment boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test "$NONPROD_D1_ID" != "$PRODUCTION_D1_ID"
+          npx --yes wrangler@4.112.0 d1 list --json > /tmp/d1-list.json
+          jq -e --arg id "$NONPROD_D1_ID" --arg name "$DB_NAME" '.[] | select((.uuid // .database_id // .id)==$id and .name==$name)' /tmp/d1-list.json
+          sed "s/__EVIDENCE_D1_DATABASE_ID__/$NONPROD_D1_ID/" wrangler.evidence-desk-operational.template.jsonc > "$CONFIG"
+          sed "s/__EVIDENCE_D1_DATABASE_ID__/$NONPROD_D1_ID/" wrangler.evidence-desk-staging-publisher.template.jsonc > "$PUBLISHER_CONFIG"
+          sed "s/__EVIDENCE_D1_DATABASE_ID__/$NONPROD_D1_ID/" wrangler.evidence-desk-staging-distributor.template.jsonc > "$DISTRIBUTOR_CONFIG"
+          jq -e --arg id "$NONPROD_D1_ID" '.vars.EVIDENCE_DESK_ENV=="non-production-operational" and .d1_databases[0].database_id==$id and .ai.binding=="AI" and .triggers.crons==["*/30 * * * *"] and ([.services[].binding]|sort)==["NEWSLETTER_PUBLISHER","SOCIAL_PUBLISHER","WEBSITE_PUBLISHER"]' "$CONFIG"
+          jq -e --arg id "$NONPROD_D1_ID" '.vars.EVIDENCE_DESK_ENV=="staging-only" and .d1_databases[0].database_id==$id and (.ai|not) and (.triggers|not)' "$PUBLISHER_CONFIG"
+          jq -e --arg id "$NONPROD_D1_ID" '.vars.EVIDENCE_DESK_ENV=="staging-only" and .d1_databases[0].database_id==$id and (.ai|not) and (.triggers|not)' "$DISTRIBUTOR_CONFIG"
+
+      - name: Run all regressions
+        run: |
+          npm install --no-audit --no-fund
+          node --check evidence-desk-operational-v1.js
+          node --check evidence-desk-operational-entry.js
+          node --check evidence-desk-staging-publisher-entry.js
+          node --check evidence-desk-staging-distributor-entry.js
+          node --test tests/*.test.mjs
+          node tests/evidence-desk-source-gate.mjs
+          node evidence/evidence-desk/demo/build-demo.mjs
+
+      - name: Apply non-production schemas
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --file migrations/010_evidence_desk_operational.sql
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --file migrations/011_evidence_desk_staging_publisher.sql
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --file migrations/012_evidence_desk_staging_distribution.sql
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --command "UPDATE evidence_desk_operational_control SET monitoring_enabled=0,drafting_enabled=0,website_enabled=0,newsletter_enabled=0,social_enabled=0,staging_publication_enabled=0,production_authority_enabled=0,control_epoch=control_epoch+1,shutdown_reason='Commission preflight seal',updated_at=CURRENT_TIMESTAMP WHERE id=1; UPDATE evidence_desk_control SET enabled=0,ingestion_enabled=0,decision_email_enabled=0,website_publish_enabled=0,newsletter_enabled=0,social_enabled=0,stopped_at=CURRENT_TIMESTAMP,stop_reason='Commission preflight seal',updated_at=CURRENT_TIMESTAMP WHERE id=1;"
+
+      - name: Deploy staging publisher and operational worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          shared_token=$(openssl rand -hex 32)
+          distribution_token=$(openssl rand -hex 32)
+          operator_token=$(openssl rand -hex 32)
+          authority_token=$(openssl rand -hex 32)
+          npx wrangler deploy --config "$PUBLISHER_CONFIG" | tee /tmp/publisher-deploy.txt
+          printf '%s' "$shared_token" | npx wrangler secret put STAGING_PUBLISH_TOKEN --config "$PUBLISHER_CONFIG"
+          npx wrangler deploy --config "$DISTRIBUTOR_CONFIG" | tee /tmp/distributor-deploy.txt
+          printf '%s' "$distribution_token" | npx wrangler secret put STAGING_DISTRIBUTION_TOKEN --config "$DISTRIBUTOR_CONFIG"
+          npx wrangler deploy --config "$CONFIG" | tee /tmp/operational-deploy.txt
+          printf '%s' "$shared_token" | npx wrangler secret put STAGING_PUBLISH_TOKEN --config "$CONFIG"
+          printf '%s' "$distribution_token" | npx wrangler secret put STAGING_DISTRIBUTION_TOKEN --config "$CONFIG"
+          printf '%s' "$operator_token" | npx wrangler secret put EVIDENCE_DESK_OPERATOR_TOKEN --config "$CONFIG"
+          printf '%s' "$authority_token" | npx wrangler secret put EVIDENCE_PUBLICATION_AUTHORITY_TOKEN --config "$CONFIG"
+          echo "OPERATOR_TOKEN=$operator_token" >> "$GITHUB_ENV"
+          echo "AUTHORITY_TOKEN=$authority_token" >> "$GITHUB_ENV"
+          npx wrangler secret list --config "$CONFIG" --format json > /tmp/operational-secrets.json
+          jq -e '([.[]|select(.name=="EVIDENCE_CLINICAL_APPROVAL_TOKEN" or .name=="EVIDENCE_COMMS_APPROVAL_TOKEN")]|length)==0' /tmp/operational-secrets.json
+
+      - name: Deploy the seven finished Phase 3 staging pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config wrangler.evidence-desk-demo.staging.jsonc | tee /tmp/phase3-deploy.txt
+          base=https://shift-evidence-desk-r1x-demo.matobrien.workers.dev
+          for page in men-over-40 practical-glp1 muscle-protein plateaus-stopping nhs-explainers tools life-back; do
+            curl --fail-with-body --retry 8 --retry-all-errors -sS "$base/phase-3/$page.html" | tee "/tmp/phase3-$page.html"
+            grep -F 'Writer/researcher: Matt O’Brien' "/tmp/phase3-$page.html"
+          done
+
+      - name: Enable scheduled monitoring, automatic drafting and staging publisher
+        shell: bash
+        run: |
+          set -euo pipefail
+          activated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          sql="UPDATE evidence_desk_operational_control SET monitoring_enabled=1,drafting_enabled=1,website_enabled=1,newsletter_enabled=0,social_enabled=0,staging_publication_enabled=1,production_authority_enabled=0,control_epoch=control_epoch+1,shutdown_reason=NULL,updated_at='$activated_at' WHERE id=1; UPDATE evidence_desk_control SET enabled=1,ingestion_enabled=1,decision_email_enabled=0,website_publish_enabled=1,newsletter_enabled=0,social_enabled=0,stopped_at=NULL,stop_reason=NULL,updated_at='$activated_at' WHERE id=1; UPDATE evidence_desk_sources SET cadence_minutes=30,last_checked_at=NULL,updated_at='$activated_at' WHERE id='mhra-glp1-guidance-r11'; INSERT OR IGNORE INTO evidence_desk_sources(id,family,name,canonical_url,authority_name,extraction_method,status,trust_tier,cadence_minutes,allowed_hosts_json,config_json) VALUES('operational-commissioning-fixture','internal','Operational commissioning fixture','https://example.invalid/evidence-desk-proof','Shift Evidence Desk','structured_json','active',1,10080,'[]','{}'); INSERT INTO evidence_desk_events(source_id,snapshot_id,status,materiality,risk_lane,headline,change_json,impacted_claims_json,created_at,updated_at) SELECT 'operational-commissioning-fixture',0,'awaiting_decision','mapped_material_change','amber','Non-clinical staging publication proof','{}','[]','$activated_at','$activated_at' WHERE NOT EXISTS(SELECT 1 FROM evidence_desk_events WHERE headline='Non-clinical staging publication proof'); INSERT INTO evidence_desk_packages(event_id,status,title,summary,proposed_changes_json,evidence_json,risk_lane,communication_class,web_eligible,newsletter_eligible,social_eligible,qualified_review_required,communications_review_required,created_at,updated_at) SELECT id,'awaiting_decision','Evidence Desk staging publication proof','Neutral non-clinical commissioning copy.','[{\"pagePath\":\"/evidence-desk-commissioning-proof\",\"contentKey\":\"body\",\"instruction\":\"Draft one sentence confirming this is a non-production Evidence Desk commissioning proof.\"}]','[{\"source\":\"commissioning contract\",\"statement\":\"This is a non-production technical proof, not health advice.\"}]','amber','general_information',0,0,0,0,0,'$activated_at','$activated_at' FROM evidence_desk_events WHERE headline='Non-clinical staging publication proof' AND NOT EXISTS(SELECT 1 FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof');"
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --command "$sql"
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --command "DELETE FROM evidence_desk_distribution_job_approvals WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_distribution_approvals WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_distribution_jobs WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_drafts WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_page_baselines WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_publication_authority WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_publications WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_staging_versions WHERE package_id IN (SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof'); DELETE FROM evidence_desk_staging_pages WHERE page_path='/evidence-desk-commissioning-proof'; DELETE FROM evidence_desk_staging_deliveries WHERE idempotency_key LIKE 'distribution:%'; UPDATE evidence_desk_packages SET status='awaiting_decision',web_eligible=0,newsletter_eligible=0,social_eligible=0,editorial_reviewer=NULL,editorial_reviewed_at=NULL,updated_at=CURRENT_TIMESTAMP WHERE title='Evidence Desk staging publication proof';"
+          auth="Authorization: Bearer $OPERATOR_TOKEN"
+          curl --fail-with-body --retry 8 --retry-all-errors -sS -X POST -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/run" | tee /tmp/operational-run.json
+          jq -e '.ok==true and .sourcesChecked==1 and ([.drafts[]|select(.status=="awaiting_editorial_review")]|length)>=1' /tmp/operational-run.json
+
+      - name: Prove red package remains blocked
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_id=$(npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT id FROM evidence_desk_packages WHERE risk_lane='red' ORDER BY id LIMIT 1;" | jq -r '[..|objects|select(has("id"))][0].id')
+          test "$package_id" -gt 0
+          auth="Authorization: Bearer $OPERATOR_TOKEN"
+          curl --fail-with-body -sS -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/preflight/$package_id" | tee /tmp/red-preflight.json
+          jq -e '.ready==false and (.blockers|index("qualified_clinical_review"))!=null and (.blockers|index("medicines_communications_review"))!=null' /tmp/red-preflight.json
+
+      - name: Publish and roll back one neutral staging package
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_id=$(npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT id FROM evidence_desk_packages WHERE title='Evidence Desk staging publication proof' ORDER BY id DESC LIMIT 1;" | jq -r '[..|objects|select(has("id"))][0].id')
+          auth="Authorization: Bearer $OPERATOR_TOKEN"
+          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data '{"note":"Matt O’Brien authorised this neutral non-clinical staging proof only."}' "$WORKER_URL/v1/evidence-desk/operational/editorial/$package_id" | tee /tmp/editorial.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/baseline/$package_id" | tee /tmp/baseline.json
+          copy_sha=$(curl --fail-with-body -sS -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/preflight/$package_id" | jq -r .copySha256)
+          authority="Authorization: Bearer $AUTHORITY_TOKEN"
+          curl --fail-with-body -sS -X POST -H "$authority" -H 'Content-Type: application/json' --data "{\"copySha256\":\"$copy_sha\",\"authorityRef\":\"USER-AUTHORISED-STAGING-$GITHUB_SHA\"}" "$WORKER_URL/v1/evidence-desk/operational/authority/$package_id" | tee /tmp/authority.json
+          curl --fail-with-body -sS -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/preflight/$package_id" | tee /tmp/staging-preflight.json
+          jq -e '.ready==true and .reviews.editorial==true and .reviews.qualifiedClinical==false and .reviews.medicinesCommunications==false and .baseline.verifiedByConnector==true' /tmp/staging-preflight.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/publish/$package_id" | tee /tmp/publish.json
+          preview=$(jq -r .remoteRef /tmp/publish.json)
+          curl --fail-with-body -sS "$preview" | tee /tmp/staging-preview.html
+          grep -F 'NON-PRODUCTION STAGING' /tmp/staging-preview.html
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --command "UPDATE evidence_desk_operational_control SET newsletter_enabled=1,social_enabled=1,control_epoch=control_epoch+1,updated_at=CURRENT_TIMESTAMP WHERE id=1; UPDATE evidence_desk_control SET newsletter_enabled=1,social_enabled=1,updated_at=CURRENT_TIMESTAMP WHERE id=1;"
+          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data '{"destinations":["newsletter","facebook"]}' "$WORKER_URL/v1/evidence-desk/operational/distribution-prepare/$package_id" | tee /tmp/distribution-prepare.json
+          newsletter_hash=$(jq -r '.jobs[]|select(.destination=="newsletter")|.payloadSha256' /tmp/distribution-prepare.json)
+          facebook_hash=$(jq -r '.jobs[]|select(.destination=="facebook")|.payloadSha256' /tmp/distribution-prepare.json)
+          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "{\"copySha256\":\"$copy_sha\",\"authorityRef\":\"USER-AUTHORISED-STAGING-DISTRIBUTION-$GITHUB_SHA\",\"destinations\":[\"newsletter\",\"facebook\"],\"payloadHashes\":{\"newsletter\":\"$newsletter_hash\",\"facebook\":\"$facebook_hash\"}}" "$WORKER_URL/v1/evidence-desk/operational/distribution/$package_id" | tee /tmp/distribution-approval.json
+          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "{\"packageId\":$package_id}" "$WORKER_URL/v1/evidence-desk/operational/distribution-deliver" | tee /tmp/distribution-delivery.json
+          jq -e '.ok==true and .delivered==2 and .failed==0' /tmp/distribution-delivery.json
+          for url in $(jq -r '.jobs[].remoteRef' /tmp/distribution-delivery.json); do curl --fail-with-body -sS "$url" | grep -F 'NON-PRODUCTION'; done
+          curl --fail-with-body -sS -X POST -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/rollback/$package_id" | tee /tmp/rollback.json
+          jq -e '.ok==true and .rolledBack==true' /tmp/rollback.json
+
+      - name: Prove shutdown, restore guarded non-production operation, and close out
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $OPERATOR_TOKEN"
+          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data '{"reason":"Operational shutdown proof"}' "$WORKER_URL/v1/evidence-desk/operational/stop" | tee /tmp/stop.json
+          jq -e '.state=="sealed"' /tmp/stop.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/run" | tee /tmp/post-stop-run.json
+          jq -e '.state=="sealed" and .sourcesChecked==0' /tmp/post-stop-run.json
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --command "UPDATE evidence_desk_operational_control SET monitoring_enabled=1,drafting_enabled=1,website_enabled=1,newsletter_enabled=1,social_enabled=1,staging_publication_enabled=1,production_authority_enabled=0,control_epoch=control_epoch+1,shutdown_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1; UPDATE evidence_desk_control SET enabled=1,ingestion_enabled=1,website_publish_enabled=1,newsletter_enabled=1,social_enabled=1,stopped_at=NULL,stop_reason=NULL,updated_at=CURRENT_TIMESTAMP WHERE id=1;"
+          curl --fail-with-body -sS -H "$auth" "$WORKER_URL/v1/evidence-desk/operational/status" | tee /tmp/final-status.json
+          jq -e '.environment=="non-production-operational" and .production==false and .control.monitoring_enabled==1 and .control.drafting_enabled==1 and .control.website_enabled==1 and .control.staging_publication_enabled==1 and .control.production_authority_enabled==0 and .control.newsletter_enabled==1 and .control.social_enabled==1 and .capabilities.website==true and .capabilities.newsletter==true and .capabilities.social==true' /tmp/final-status.json
+          mkdir -p evidence-operational-proof
+          cp /tmp/{operational-run,red-preflight,editorial,baseline,authority,staging-preflight,publish,distribution-prepare,distribution-approval,distribution-delivery,rollback,stop,post-stop-run,final-status}.json evidence-operational-proof/
+          cp /tmp/staging-preview.html evidence-operational-proof/
+          printf '%s\n' "commit=$GITHUB_SHA" "d1=$NONPROD_D1_ID" "operational_worker=$WORKER_URL" "staging_publisher=$PUBLISHER_URL" "staging_distributor=$DISTRIBUTOR_URL" > evidence-operational-proof/manifest.txt
+          {
+            echo '### Evidence Desk operational non-production proof'
+            echo '- 30-minute monitoring: enabled'
+            echo '- Automatic evidence-bound drafting: enabled'
+            echo '- Neutral staging publish + newsletter/social distribution + rollback: passed'
+            echo '- Red safety package: blocked on real specialist reviews'
+            echo '- Staging newsletter/social connectors: active; official-account connectors still absent'
+            echo '- Production authority: disabled; production D1 untouched'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shift-evidence-desk-operational-proof
+          path: evidence-operational-proof
+          retention-days: 30

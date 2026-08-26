@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shift-evidence-desk-staging-publisher",
+  "main": "evidence-desk-staging-publisher-entry.js",
+  "compatibility_date": "2026-08-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "vars": {"EVIDENCE_DESK_ENV": "staging-only"},
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "shift-evidence-desk-r12-nonprod-db",
+    "database_id": "__EVIDENCE_D1_DATABASE_ID__"
+  }],
+  "observability": {"enabled": true,"logs": {"enabled": true,"head_sampling_rate": 1}}
+}
