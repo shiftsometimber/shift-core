@@ -88,9 +88,9 @@ jobs:
           set -euo pipefail
           auth="Authorization: Bearer $R13_TOKEN"
           body='{"decision":"amend","attestation":"human_editorial_review","note":"Exact proposed page wording is missing; return the package before either specialist review."}'
-          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "$body" "$R13_URL/v1/evidence-desk/r1-3/review" | tee /tmp/r13-review.json
+          curl --fail-with-body --retry 6 --retry-all-errors -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "$body" "$R13_URL/v1/evidence-desk/r1-3/review" | tee /tmp/r13-review.json
           jq -e '.ok==true and .decision=="amend" and .state=="changes_required" and .publication.web=="locked" and .publication.newsletter=="locked" and .publication.social=="locked"' /tmp/r13-review.json
-          curl --fail-with-body -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "$body" "$R13_URL/v1/evidence-desk/r1-3/review" | tee /tmp/r13-review-replay.json
+          curl --fail-with-body --retry 6 --retry-all-errors -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "$body" "$R13_URL/v1/evidence-desk/r1-3/review" | tee /tmp/r13-review-replay.json
           jq -e '.ok==true and .idempotent==true and .state=="changes_required"' /tmp/r13-review-replay.json
 
       - name: Prove persisted decision, consistent state and continuing shutdown
