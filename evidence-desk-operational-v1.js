@@ -10,7 +10,7 @@ const actor=(name,role)=>({name:clean(name,200),role});
 
 export async function ensureOperationalSchema(DB){
   await ensureEvidenceDeskSchema(DB);
-  await DB.exec(`
+  const schema=`
     CREATE TABLE IF NOT EXISTS evidence_desk_operational_control(
       id INTEGER PRIMARY KEY CHECK(id=1),monitoring_enabled INTEGER NOT NULL DEFAULT 0,
       drafting_enabled INTEGER NOT NULL DEFAULT 0,website_enabled INTEGER NOT NULL DEFAULT 0,
@@ -65,7 +65,10 @@ export async function ensureOperationalSchema(DB){
     );
     CREATE INDEX IF NOT EXISTS idx_evidence_distribution_jobs_status
       ON evidence_desk_distribution_jobs(status,destination,created_at);
-  `);
+  `;
+  const statements=schema.split(';').map(statement=>statement.trim()).filter(Boolean);
+  if(typeof DB.batch==='function')await DB.batch(statements.map(statement=>DB.prepare(statement)));
+  else for(const statement of statements)await DB.prepare(statement).run();
 }
 
 async function packageState(DB,packageId){
