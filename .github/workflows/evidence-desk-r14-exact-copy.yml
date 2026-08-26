@@ -2,8 +2,6 @@ name: Evidence Desk R1.4 Non-Production Exact Copy
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/5 * * * *'
 
 permissions:
   contents: read
@@ -26,8 +24,6 @@ jobs:
       R14_URL: https://shift-evidence-desk-r12-nonprod.matobrien.workers.dev
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: agent/shift-evidence-desk-r14-exact-copy
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
