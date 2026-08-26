@@ -12,7 +12,7 @@ function secure(request,secret){
 }
 
 async function schema(DB){
-  await DB.exec(`
+  const sql=`
     CREATE TABLE IF NOT EXISTS evidence_desk_staging_pages(
       page_path TEXT PRIMARY KEY,current_html TEXT NOT NULL DEFAULT '',current_sha256 TEXT NOT NULL,
       updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -24,7 +24,10 @@ async function schema(DB){
       candidate_sha256 TEXT NOT NULL,idempotency_key TEXT NOT NULL UNIQUE,status TEXT NOT NULL,
       created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,rolled_back_at TEXT
     );
-  `);
+  `;
+  const statements=sql.split(';').map(statement=>statement.trim()).filter(Boolean);
+  if(typeof DB.batch==='function')await DB.batch(statements.map(statement=>DB.prepare(statement)));
+  else for(const statement of statements)await DB.prepare(statement).run();
 }
 
 function candidateHtml(payload){

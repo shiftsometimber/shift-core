@@ -5,7 +5,7 @@ const sha=value=>createHash('sha256').update(String(value)).digest('hex');
 const json=(value,status=200)=>Response.json(value,{status,headers:{'cache-control':'no-store','x-content-type-options':'nosniff'}});
 const bearer=request=>(request.headers.get('authorization')||'').replace(/^Bearer\s+/i,'');
 function secure(request,secret){const a=Buffer.from(bearer(request)),b=Buffer.from(String(secret||''));return b.length>31&&a.length===b.length&&timingSafeEqual(a,b)}
-async function schema(DB){await DB.exec(`CREATE TABLE IF NOT EXISTS evidence_desk_staging_deliveries(id INTEGER PRIMARY KEY AUTOINCREMENT,destination TEXT NOT NULL,copy_sha256 TEXT NOT NULL,payload_sha256 TEXT NOT NULL,payload_json TEXT NOT NULL,idempotency_key TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'published',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);`)}
+async function schema(DB){await DB.prepare(`CREATE TABLE IF NOT EXISTS evidence_desk_staging_deliveries(id INTEGER PRIMARY KEY AUTOINCREMENT,destination TEXT NOT NULL,copy_sha256 TEXT NOT NULL,payload_sha256 TEXT NOT NULL,payload_json TEXT NOT NULL,idempotency_key TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'published',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`).run()}
 
 export default{async fetch(request,env){
   try{
