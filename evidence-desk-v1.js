@@ -295,8 +295,8 @@ export async function runEvidenceDeskScheduled(env){
   return{ok:adapter.ok!==false,state:adapter.ok===false?'failed_closed':'controlled',sourcesChecked:Number(adapter.sourcesChecked||0),adapter,emailsSent:Number(email.sent||0),publication:{website:false,newsletter:false,social:false}};
 }
 
-export async function commissionMhraGlp1R11(DB,actor={}){
-  await ensureEvidenceDeskSchema(DB);
+export async function commissionMhraGlp1R11(DB,actor={},options={}){
+  if(options.ensureSchema!==false)await ensureEvidenceDeskSchema(DB);
   const source=await upsertEvidenceSource(DB,{id:MHRA_GLP1_R11.sourceId,family:'mhra',name:'MHRA GLP-1 medicines safety guidance',canonicalUrl:`https://www.gov.uk${MHRA_GLP1_R11.basePath}`,authorityName:'Medicines and Healthcare products Regulatory Agency',extractionMethod:'structured_json',status:'active',cadenceMinutes:1440,config:{adapter:'mhra_glp1_guidance_r11',apiUrl:MHRA_GLP1_R11.apiUrl,contentId:MHRA_GLP1_R11.contentId}},{ensureSchema:false});
   if(!source.ok)return source;
   const claim=await upsertEvidenceClaim(DB,{id:'mhra-glp1-latest-safety-guidance',claimText:'The latest MHRA safety update affecting GLP-1 medicines is accurately reflected on Shift.',riskLane:'red',communicationClass:'clinical_safety',owner:'Evidence Desk',freshnessDays:1,dependencies:[{sourceId:MHRA_GLP1_R11.sourceId,factKey:'latest_update'}],pages:[{pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey}]},{ensureSchema:false});
@@ -306,8 +306,8 @@ export async function commissionMhraGlp1R11(DB,actor={}){
   return{ok:true,status:200,sourceId:source.id,claimId:claim.id,pagePath:MHRA_GLP1_R11.pagePath,publication:{website:false,newsletter:false,social:false}};
 }
 
-export async function runMhraGlp1R11(env,{fetchImpl=fetch,force=false}={}){
-  await ensureEvidenceDeskSchema(env.DB);
+export async function runMhraGlp1R11(env,{fetchImpl=fetch,force=false,ensureSchema=true}={}){
+  if(ensureSchema)await ensureEvidenceDeskSchema(env.DB);
   const source=await env.DB.prepare(`SELECT * FROM evidence_desk_sources WHERE id=? AND status='active'`).bind(MHRA_GLP1_R11.sourceId).first();
   if(!source)return{ok:true,state:'not_commissioned',sourcesChecked:0};
   if(!force&&source.last_checked_at&&Date.now()-Date.parse(source.last_checked_at)<Number(source.cadence_minutes||1440)*60000)return{ok:true,state:'not_due',sourcesChecked:0};
@@ -354,15 +354,15 @@ async function evidenceR12CommissionRoute(request,env,path,method){
   const actor={name:'R1.2 commissioning operator',role:'owner'};
   if(method==='GET'&&path==='/v1/evidence-desk/r1-2/inbox')return json(await evidenceInbox(env.DB));
   if(method!=='POST')return json({ok:false,error:'method_not_allowed'},405);
-  if(path==='/v1/evidence-desk/r1-2/commission')return json(await commissionMhraGlp1R11(env.DB,actor));
+  if(path==='/v1/evidence-desk/r1-2/commission')return json(await commissionMhraGlp1R11(env.DB,actor,{ensureSchema:false}));
   if(path==='/v1/evidence-desk/r1-2/baseline'){
     const existing=await env.DB.prepare(`SELECT COUNT(*) total FROM evidence_desk_snapshots WHERE source_id=?`).bind(MHRA_GLP1_R11.sourceId).first();if(Number(existing?.total))return json({ok:false,error:'baseline_requires_empty_source'},409);
-    const result=await recordEvidenceObservation(env.DB,MHRA_GLP1_R11.sourceId,{facts:{guidance_identity:{contentId:MHRA_GLP1_R11.contentId,basePath:MHRA_GLP1_R11.basePath},guidance_summary:'Guidance on the safe and effective use of GLP-1 medicines for weight loss and diabetes.',latest_update:{publicTimestamp:'2026-01-29T14:20:34Z',note:"Updated attachment with new documents 'MHRA urges public to avoid illegal online weight-loss medicines this New Year' AND 'DSU: GLP-1 receptor agonists and dual GLP-1/ GIP receptor agonists: strengthened warnings on acute pancreatitis, including necrotising and fatal cases'"}},sourcePublishedAt:'2026-01-29T14:20:34Z',contentHash:'documented-official-state-2026-01-29'});
+    const result=await recordEvidenceObservation(env.DB,MHRA_GLP1_R11.sourceId,{facts:{guidance_identity:{contentId:MHRA_GLP1_R11.contentId,basePath:MHRA_GLP1_R11.basePath},guidance_summary:'Guidance on the safe and effective use of GLP-1 medicines for weight loss and diabetes.',latest_update:{publicTimestamp:'2026-01-29T14:20:34Z',note:"Updated attachment with new documents 'MHRA urges public to avoid illegal online weight-loss medicines this New Year' AND 'DSU: GLP-1 receptor agonists and dual GLP-1/ GIP receptor agonists: strengthened warnings on acute pancreatitis, including necrotising and fatal cases'"}},sourcePublishedAt:'2026-01-29T14:20:34Z',contentHash:'documented-official-state-2026-01-29'},{ensureSchema:false});
     if(result.ok)await auditDecision(env.DB,{decision:'r1_2_persisted_baseline',actor,detail:{sourceId:MHRA_GLP1_R11.sourceId,snapshotId:result.snapshotId,materialState:result.materialState}});return json(result,result.status||200);
   }
   if(path==='/v1/evidence-desk/r1-2/fetch'){
     const control=await env.DB.prepare(`SELECT enabled,ingestion_enabled FROM evidence_desk_control WHERE id=1`).first();if(!Number(control?.enabled)||!Number(control?.ingestion_enabled))return json({ok:true,state:'sealed',sourcesChecked:0});
-    return json(await runMhraGlp1R11(env,{force:true}));
+    return json(await runMhraGlp1R11(env,{force:true,ensureSchema:false}));
   }
   if(path==='/v1/evidence-desk/r1-2/stop'){const body=await readJson(request),reason=clean(body.reason,1000);if(!reason)return json({ok:false,error:'stop_reason_required'},400);return json(await stopEvidenceDesk(env.DB,reason,actor))}
   return json({ok:false,error:'not_found'},404);
