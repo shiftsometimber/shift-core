@@ -6,7 +6,8 @@
   "workers_dev": true,
   "preview_urls": true,
   "vars": {
-    "EVIDENCE_DESK_ENV": "non-production"
+    "EVIDENCE_DESK_ENV": "non-production",
+    "EVIDENCE_DESK_R13_REVIEWER_NAME": "Matt O'Brien"
   },
   "d1_databases": [{
     "binding": "DB",

@@ -1,0 +1,137 @@
+name: Evidence Desk R1.3 Non-Production Human Review
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/evidence-desk-r13-nonprod-review.yml'
+      - 'SHIFT-EVIDENCE-DESK-R1.3-HUMAN-REVIEW-COMMISSION.md'
+      - 'evidence-desk-v1.js'
+      - 'evidence-desk-r12-entry.js'
+      - 'tests/evidence-desk-v1.test.mjs'
+      - 'tests/evidence-desk-source-gate.mjs'
+      - 'wrangler.evidence-desk-r12.template.jsonc'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evidence-desk-r13-nonprod-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      R13_D1_ID: 8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3
+      PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
+      DB_NAME: shift-evidence-desk-r12-nonprod-db
+      WORKER_NAME: shift-evidence-desk-r12-nonprod
+      CONFIG: wrangler.evidence-desk-r13.generated.jsonc
+      R13_URL: https://shift-evidence-desk-r12-nonprod.matobrien.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed without the exact isolated binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test "$R13_D1_ID" != "$PRODUCTION_D1_ID"
+          npx --yes wrangler@4.112.0 d1 list --json >/tmp/r13-d1-list.json
+          jq -e --arg id "$R13_D1_ID" --arg name "$DB_NAME" '.[] | select((.uuid // .database_id // .id)==$id and .name==$name)' /tmp/r13-d1-list.json
+          sed "s/__EVIDENCE_R12_D1_DATABASE_ID__/$R13_D1_ID/" wrangler.evidence-desk-r12.template.jsonc > "$CONFIG"
+          jq -e --arg id "$R13_D1_ID" '.name=="shift-evidence-desk-r12-nonprod" and .vars.EVIDENCE_DESK_ENV=="non-production" and .vars.EVIDENCE_DESK_R13_REVIEWER_NAME=="Matt O'"'"'Brien" and .d1_databases[0].database_id==$id and (.ai|not)' "$CONFIG"
+
+      - name: Run all regressions and governance gates
+        run: |
+          npm install --no-audit --no-fund
+          node --test tests/*.test.mjs
+          node tests/evidence-desk-source-gate.mjs
+
+      - name: Prove inherited package and sealed controls in D1
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT p.id,p.status,p.risk_lane,p.communication_class,p.web_eligible,p.newsletter_eligible,p.social_eligible,e.status AS event_status,p.qualified_review_required,p.communications_review_required FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id ORDER BY p.id DESC LIMIT 1; SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled FROM evidence_desk_control WHERE id=1;" | tee /tmp/r13-inherited.json
+          jq -e '[.. | objects | select(.risk_lane=="red" and .communication_class=="clinical_safety" and .web_eligible==0 and .newsletter_eligible==0 and .social_eligible==0 and .qualified_review_required==1 and .communications_review_required==1)] | length==1' /tmp/r13-inherited.json
+          jq -e '[.. | objects | select(.enabled==0 and .ingestion_enabled==0 and .decision_email_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)] | length==1' /tmp/r13-inherited.json
+
+      - name: Deploy the review-only candidate and rotate its commission token
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$CONFIG" 2>&1 | tee /tmp/r13-deploy.txt
+          grep -F "$R13_URL" /tmp/r13-deploy.txt
+          token=$(openssl rand -hex 32)
+          printf '%s' "$token" | npx wrangler secret put EVIDENCE_DESK_COMMISSION_TOKEN --config "$CONFIG" >/tmp/r13-secret.txt
+          echo "R13_TOKEN=$token" >> "$GITHUB_ENV"
+
+      - name: Prove the honest pre-review checklist
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R13_TOKEN"
+          curl --fail-with-body --retry 6 --retry-all-errors -sS -H "$auth" "$R13_URL/v1/evidence-desk/r1-3/checklist" | tee /tmp/r13-checklist-before.json
+          jq -e '.ok==true and .mode=="read_only_review" and .package.riskLane=="red" and .package.communicationClass=="clinical_safety" and .package.pagePath=="/glp1-knowledge-centre.html" and .complete==false and .missing==["exact_proposed_page_copy"] and .recommendedDecision=="amend" and ([.checks[]|select(.pass==true)]|length)==7 and .capabilities.qualifiedApproval==false and .capabilities.communicationsApproval==false and .capabilities.publish==false and .capabilities.compose==false and .capabilities.social==false and .capabilities.model==false' /tmp/r13-checklist-before.json
+
+      - name: Record the authorised human editorial outcome
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R13_TOKEN"
+          body='{"decision":"amend","attestation":"human_editorial_review","note":"Exact proposed page wording is missing; return the package before either specialist review."}'
+          curl --fail-with-body --retry 6 --retry-all-errors -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "$body" "$R13_URL/v1/evidence-desk/r1-3/review" | tee /tmp/r13-review.json
+          jq -e '.ok==true and .decision=="amend" and .state=="changes_required" and .publication.web=="locked" and .publication.newsletter=="locked" and .publication.social=="locked"' /tmp/r13-review.json
+          curl --fail-with-body --retry 6 --retry-all-errors -sS -X POST -H "$auth" -H 'Content-Type: application/json' --data "$body" "$R13_URL/v1/evidence-desk/r1-3/review" | tee /tmp/r13-review-replay.json
+          jq -e '.ok==true and .idempotent==true and .state=="changes_required"' /tmp/r13-review-replay.json
+
+      - name: Prove persisted decision, consistent state and continuing shutdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R13_TOKEN"
+          curl --fail-with-body -sS -H "$auth" "$R13_URL/v1/evidence-desk/r1-3/checklist" | tee /tmp/r13-checklist-after.json
+          jq -e '.package.status=="changes_required" and .package.eventStatus=="changes_required" and .complete==false and .recommendedDecision=="amend" and .controls.enabled==false and .controls.ingestionEnabled==false' /tmp/r13-checklist-after.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$R13_URL/v1/evidence-desk/r1-2/fetch" | tee /tmp/r13-post-review-fetch.json
+          jq -e '.ok==true and .state=="sealed" and .sourcesChecked==0' /tmp/r13-post-review-fetch.json
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT p.status AS package_status,e.status AS event_status,p.web_eligible,p.newsletter_eligible,p.social_eligible FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id ORDER BY p.id DESC LIMIT 1; SELECT decision,actor_name,actor_role,authority_ref,COUNT(*) AS total FROM evidence_desk_decisions WHERE decision IN ('r1_3_review_checklist','amend','qualified_review_approved','communications_approved') GROUP BY decision,actor_name,actor_role,authority_ref ORDER BY decision; SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled FROM evidence_desk_control WHERE id=1;" | tee /tmp/r13-d1-final.json
+          jq -e '[.. | objects | select(.package_status=="changes_required" and .event_status=="changes_required" and .web_eligible==0 and .newsletter_eligible==0 and .social_eligible==0)] | length==1' /tmp/r13-d1-final.json
+          jq -e '[.. | objects | select(.decision=="amend" and .actor_name=="Matt O'"'"'Brien" and .actor_role=="owner" and .authority_ref=="R1.3-EDITORIAL-REVIEW" and .total==1)] | length==1' /tmp/r13-d1-final.json
+          jq -e '[.. | objects | select(.decision=="r1_3_review_checklist" and .actor_name=="Matt O'"'"'Brien" and .authority_ref=="R1.3-EDITORIAL-REVIEW" and .total==1)] | length==1' /tmp/r13-d1-final.json
+          jq -e '[.. | objects | select(.decision=="qualified_review_approved" or .decision=="communications_approved")] | length==0' /tmp/r13-d1-final.json
+          jq -e '[.. | objects | select(.enabled==0 and .ingestion_enabled==0 and .decision_email_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)] | length==1' /tmp/r13-d1-final.json
+
+      - name: Publish sealed R1.3 proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence-r13
+          cp /tmp/r13-{inherited,checklist-before,review,review-replay,checklist-after,post-review-fetch,d1-final}.json evidence-r13/
+          printf '%s\n' "commit=$GITHUB_SHA" "worker=$WORKER_NAME" "database_name=$DB_NAME" "database_id=$R13_D1_ID" "reviewer=Matt O'Brien" "outcome=amend" > evidence-r13/deployment.txt
+          {
+            echo '## Shift Evidence Desk R1.3 — PASS'
+            echo ''
+            echo "- Exact commit: \`$GITHUB_SHA\`"
+            echo "- Non-production D1: \`$DB_NAME\` / \`$R13_D1_ID\`"
+            echo '- Human editorial outcome: amend'
+            echo '- Honest gap: exact proposed page copy is missing'
+            echo '- Package and event: changes_required'
+            echo '- Specialist approvals: absent and locked'
+            echo '- Model, composer and all destinations: off'
+            echo '- Post-review fetch: sealed, zero sources checked'
+            echo '- Production: untouched'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shift-evidence-desk-r13-proof
+          path: evidence-r13
+          retention-days: 30

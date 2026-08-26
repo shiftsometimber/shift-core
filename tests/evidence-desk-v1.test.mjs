@@ -4,7 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {
   ensureEvidenceDeskSchema,upsertEvidenceSource,upsertEvidenceClaim,recordEvidenceObservation,
   createEvidencePackage,decideEvidencePackage,deliverEvidenceDecisionEmails,runEvidenceDeskScheduled
-  ,commissionMhraGlp1R11,runMhraGlp1R11,evidenceDeskRoutes
+  ,commissionMhraGlp1R11,runMhraGlp1R11,evidenceDeskRoutes,MHRA_NAION_R14_REPLACEMENT
 } from '../evidence-desk-v1.js';
 import {extractMhraGlp1GuidanceFacts,MHRA_GLP1_R11} from '../evidence-adapter-mhra-glp1-v1.js';
 
@@ -149,7 +149,7 @@ test('the one-action stop prevents the commissioned adapter from fetching',async
 });
 
 test('R1.2 commissioning route is non-production only, token protected and exposes a read-only inbox',async()=>{
-  const DB=new D1(),ctx={};
+  const DB=new D1(),ctx={};await ensureEvidenceDeskSchema(DB);
   let response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/commission',{method:'POST',headers:{Authorization:'Bearer exact-token'}}),{DB,EVIDENCE_DESK_ENV:'production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token'},ctx);assert.equal(response.status,409);
   const env={DB,EVIDENCE_DESK_ENV:'non-production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token'};
   response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/commission',{method:'POST',headers:{Authorization:'Bearer wrong-token'}}),env,ctx);assert.equal(response.status,401);
@@ -158,4 +158,37 @@ test('R1.2 commissioning route is non-production only, token protected and expos
   response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/inbox',{headers:{Authorization:'Bearer exact-token'}}),env,ctx);const inbox=await response.json();assert.equal(inbox.mode,'read_only');assert.deepEqual(inbox.capabilities,{compose:false,approve:false,publish:false,newsletter:false,social:false,model:false});assert.equal(inbox.claim.page_path,'/glp1-knowledge-centre.html');
   response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/stop',{method:'POST',headers:{Authorization:'Bearer exact-token','Content-Type':'application/json'},body:JSON.stringify({reason:'Unit stop proof'})}),env,ctx);assert.equal((await response.json()).state,'sealed');
   response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/fetch',{method:'POST',headers:{Authorization:'Bearer exact-token'}}),env,ctx);assert.deepEqual(await response.json(),{ok:true,state:'sealed',sourcesChecked:0});
+});
+
+test('R1.3 records an honest human amend outcome while every destination stays sealed',async()=>{
+  const DB=new D1(),ctx={};await ensureEvidenceDeskSchema(DB);
+  const env={DB,EVIDENCE_DESK_ENV:'non-production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token',EVIDENCE_DESK_R13_REVIEWER_NAME:"Matt O'Brien"};
+  const headers={Authorization:'Bearer exact-token'};
+  let response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/commission',{method:'POST',headers}),env,ctx);assert.equal(response.status,200);
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/baseline',{method:'POST',headers}),env,ctx);assert.equal(response.status,200);
+  const observed=await runMhraGlp1R11(env,{force:true,ensureSchema:false,fetchImpl:jsonFetch(mhraContent('Updated pregnancy, contraception and acute pancreatitis safety guidance.'))});assert.equal(observed.state,'material_change');
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/stop',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({reason:'R1.3 review remains sealed'})}),env,ctx);assert.equal(response.status,200);
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-3/checklist',{headers}),env,ctx);let checklist=await response.json();assert.equal(checklist.complete,false);assert.deepEqual(checklist.missing,['exact_proposed_page_copy']);assert.equal(checklist.recommendedDecision,'amend');assert.equal(checklist.controls.website,false);
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-3/review',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({decision:'amend',attestation:'human_editorial_review',note:'Exact proposed page wording is missing; return the package before either specialist review.'})}),env,ctx);const review=await response.json();assert.equal(review.state,'changes_required');assert.deepEqual(review.publication,{web:'locked',newsletter:'locked',social:'locked'});
+  const states=DB.db.prepare(`SELECT p.status package_status,e.status event_status,p.web_eligible,p.newsletter_eligible,p.social_eligible FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id`).get();assert.equal(states.package_status,'changes_required');assert.equal(states.event_status,'changes_required');assert.equal(states.web_eligible,0);assert.equal(states.newsletter_eligible,0);assert.equal(states.social_eligible,0);
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-3/review',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({decision:'amend',attestation:'human_editorial_review',note:'Exact proposed page wording is missing; return the package before either specialist review.'})}),env,ctx);assert.equal((await response.json()).idempotent,true);
+  const decisions=DB.db.prepare(`SELECT decision,actor_name,authority_ref FROM evidence_desk_decisions WHERE decision IN ('r1_3_review_checklist','amend') ORDER BY id`).all().map(row=>({...row}));assert.deepEqual(decisions,[{decision:'r1_3_review_checklist',actor_name:"Matt O'Brien",authority_ref:'R1.3-EDITORIAL-REVIEW'},{decision:'amend',actor_name:"Matt O'Brien",authority_ref:'R1.3-EDITORIAL-REVIEW'}]);
+});
+
+test('R1.4 attaches one exact evidenced revision and prepares a locked specialist packet',async()=>{
+  const DB=new D1(),ctx={};await ensureEvidenceDeskSchema(DB);
+  const env={DB,EVIDENCE_DESK_ENV:'non-production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token',EVIDENCE_DESK_R13_REVIEWER_NAME:"Matt O'Brien"};
+  const headers={Authorization:'Bearer exact-token'};
+  await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/commission',{method:'POST',headers}),env,ctx);
+  await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/baseline',{method:'POST',headers}),env,ctx);
+  const observed=await runMhraGlp1R11(env,{force:true,ensureSchema:false,fetchImpl:jsonFetch(mhraContent(MHRA_NAION_R14_REPLACEMENT.sourceChangeNote,MHRA_NAION_R14_REPLACEMENT.sourcePublishedAt))});assert.equal(observed.state,'material_change');
+  await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/stop',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({reason:'R1.4 remains sealed'})}),env,ctx);
+  await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-3/review',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({decision:'amend',attestation:'human_editorial_review',note:'Exact proposed page wording is missing; return the package before either specialist review.'})}),env,ctx);
+  let response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-4/replacement',{method:'POST',headers}),env,ctx);const attached=await response.json();assert.equal(attached.state,'awaiting_specialist_review');assert.equal(attached.revision.revisionId,'R1.4-MHRA-NAION-2026-02-05-V1');assert.ok(attached.revision.copyHash);assert.equal(attached.revision.proposedText,MHRA_NAION_R14_REPLACEMENT.proposedText);assert.deepEqual(attached.locks,{qualifiedReview:true,communicationsReview:true,website:true,newsletter:true,social:true,model:true});
+  assert.match(attached.revision.proposedText,/semaglutide \(Wegovy, Ozempic and Rybelsus\)/);assert.match(attached.revision.proposedText,/very rare reports/);assert.match(attached.revision.proposedText,/warning is specific to semaglutide/);assert.doesNotMatch(attached.revision.proposedText,/GLP-1 medicines have.*NAION/i);
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-4/replacement',{method:'POST',headers}),env,ctx);assert.equal((await response.json()).idempotent,true);
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-3/checklist',{headers}),env,ctx);const checklist=await response.json();assert.equal(checklist.complete,true,JSON.stringify(checklist));assert.deepEqual(checklist.missing,[]);assert.equal(checklist.recommendedDecision,'send_for_qualified_review');
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-4/review-packet',{headers}),env,ctx);const packet=await response.json();assert.equal(packet.mode,'specialist_review_packet');assert.equal(packet.integrity.exactRevision,true);assert.equal(packet.specialistReviews.qualifiedClinical.approved,false);assert.equal(packet.specialistReviews.medicinesCommunications.approved,false);assert.deepEqual(packet.distribution,{web:'locked',newsletter:'locked',social:'locked'});assert.deepEqual(packet.preflight.blockers,['qualified_clinical_review','medicines_communications_review','page_baseline_and_rollback_capture','publication_authority_disabled']);assert.equal(packet.capabilities.publish,false);
+  const state=DB.db.prepare(`SELECT p.status package_status,e.status event_status,p.web_eligible,p.newsletter_eligible,p.social_eligible,p.qualified_review_ref,p.communications_review_ref FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id`).get();assert.equal(state.package_status,'awaiting_specialist_review');assert.equal(state.event_status,'awaiting_specialist_review');assert.equal(state.web_eligible,0);assert.equal(state.newsletter_eligible,0);assert.equal(state.social_eligible,0);assert.equal(state.qualified_review_ref,null);assert.equal(state.communications_review_ref,null);
+  assert.equal(DB.db.prepare("SELECT COUNT(*) c FROM evidence_desk_decisions WHERE decision='exact_replacement_attached'").get().c,1);
 });

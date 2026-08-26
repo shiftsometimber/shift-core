@@ -34,7 +34,8 @@ export function extractMhraGlp1GuidanceFacts(content={}){
 export async function fetchMhraGlp1Guidance({fetchImpl=fetch,timeoutMs=10000}={}){
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort('mhra_adapter_timeout'),timeoutMs);
   try{
-    const response=await fetchImpl(API_URL,{method:'GET',headers:{Accept:'application/json','User-Agent':'Shift-Evidence-Desk/1.1 (+https://shiftsometimber.co.uk)'},redirect:'error',signal:controller.signal});
+    const response=await fetchImpl(API_URL,{method:'GET',headers:{Accept:'application/json','User-Agent':'Shift-Evidence-Desk/1.1 (+https://shiftsometimber.co.uk)'},redirect:'manual',signal:controller.signal});
+    if(response.status>=300&&response.status<400)throw new Error('mhra_adapter_redirect_rejected');
     if(!response.ok)throw new Error(`mhra_adapter_http_${response.status}`);
     const type=String(response.headers.get('content-type')||'').toLowerCase();if(!type.includes('application/json'))throw new Error('mhra_adapter_unexpected_content_type');
     const content=await readJsonBounded(response);
