@@ -32,6 +32,16 @@ test('automatic drafting creates a SHA-locked revision but grants no authority',
   const pkg=DB.db.prepare('SELECT qualified_review_ref,communications_review_ref,web_eligible FROM evidence_desk_packages WHERE id=1').get();assert.equal(pkg.qualified_review_ref,null);assert.equal(pkg.communications_review_ref,null);assert.equal(pkg.web_eligible,0);
 });
 
+test('automatic drafting fails closed when evidence is absent or required copy drifts',async()=>{
+  const {DB,env}=await fixture({red:false,exact:false});
+  DB.db.prepare(`UPDATE evidence_desk_packages SET evidence_json='[]' WHERE id=1`).run();
+  assert.equal((await draftEvidencePackage(env,1)).error,'source_evidence_required');
+  DB.db.prepare(`UPDATE evidence_desk_packages SET evidence_json='[{"source":"official"}]',proposed_changes_json=? WHERE id=1`).run(JSON.stringify([{pagePath:'/page',contentKey:'section',requiredText:'Evidence-locked sentence.'}]));
+  assert.equal((await draftEvidencePackage(env,1)).error,'model_copy_not_evidence_locked');
+  env.AI.run=async()=>({response:{pagePath:'/page',contentKey:'section',proposedText:'Evidence-locked sentence.'}});
+  assert.equal((await draftEvidencePackage(env,1)).ok,true);
+});
+
 test('red preflight remains blocked until two exact human reviews, rollback and authority',async()=>{
   const {DB}=await fixture();let p=await evidencePublicationPreflight(DB,1);
   assert.deepEqual(p.blockers,['qualified_clinical_review','medicines_communications_review','editorial_approval','page_baseline_and_rollback_capture','publication_authority']);
