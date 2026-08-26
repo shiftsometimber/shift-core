@@ -76,6 +76,12 @@ on:
       - 'reconcile-final-v1-gate2-board.mjs'
       - 'reconcile-final-v1-recovery-pointers.mjs'
       - '.github/workflows/final-v1-production-publication.yml'
+  # Repository changes made through the connected GitHub integration do not
+  # emit a normal push event. A merged same-repository PR is therefore also a
+  # governed production promotion signal; the job still checks current main.
+  pull_request:
+    branches: [main]
+    types: [closed]
   workflow_dispatch:
     inputs:
       confirm:
@@ -92,7 +98,7 @@ concurrency:
 
 jobs:
   promote:
-    if: ${{ github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
+    if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.head.repo.full_name == github.repository) || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
