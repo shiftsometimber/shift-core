@@ -1,0 +1,29 @@
+{
+  "proof": "SHIFT_EVIDENCE_DESK_R17_REVERSIBLE_PATCH",
+  "revisionId": "R1.4-MHRA-NAION-2026-02-05-V1",
+  "pagePath": "/glp1-knowledge-centre.html",
+  "sourceBaseline": "/workspace/scratch/6c32b6986ed0/seo-phase3-wave2-v152-reconciled-site/glp1-knowledge-centre.html",
+  "baselineSha256": "773b67fed65c5ef4f13be58248118c9abc6f7792acf35b84752a9e7d0da035d7",
+  "candidateSha256": "a00ff939edddb532a671562a86cf2b647445e216e13f6a8693f8cfa132be4475",
+  "rollbackSha256": "773b67fed65c5ef4f13be58248118c9abc6f7792acf35b84752a9e7d0da035d7",
+  "rollbackByteExact": true,
+  "placement": {
+    "operation": "insert_after",
+    "anchor": "section[data-section=\"07\"] .qa-scroll-table-v2224"
+  },
+  "specialistApprovals": {
+    "qualifiedClinical": false,
+    "medicinesCommunications": false
+  },
+  "publication": {
+    "authorised": false,
+    "performed": false
+  },
+  "destinations": {
+    "web": false,
+    "newsletter": false,
+    "social": false
+  },
+  "model": false,
+  "productionTouched": false
+}
