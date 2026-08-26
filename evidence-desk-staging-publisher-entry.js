@@ -45,14 +45,15 @@ async function publish(request,env){
   const base=await env.DB.prepare(`SELECT enabled,website_publish_enabled FROM evidence_desk_control WHERE id=1`).first();
   if(!Number(base?.enabled)||!Number(base?.website_publish_enabled)||!Number(controls?.website_enabled)||!Number(controls?.staging_publication_enabled)||Number(controls?.production_authority_enabled)||Number(controls?.control_epoch)!==controlEpoch)return json({ok:false,error:'publisher_control_closed'},409);
   const existing=await env.DB.prepare(`SELECT * FROM evidence_desk_staging_versions WHERE idempotency_key=?`).bind(key).first();
-  if(existing)return json({published:existing.status==='published',idempotent:true,versionId:String(existing.id),url:`${new URL(request.url).origin}/preview/${existing.id}`,copySha256:existing.copy_sha256,payloadSha256:existing.payload_sha256,baselineSha256:existing.baseline_sha256});
+  const publicOrigin=clean(env.STAGING_PUBLISHER_PUBLIC_URL,500)||new URL(request.url).origin;
+  if(existing)return json({published:existing.status==='published',idempotent:true,versionId:String(existing.id),url:`${publicOrigin}/preview/${existing.id}`,copySha256:existing.copy_sha256,payloadSha256:existing.payload_sha256,baselineSha256:existing.baseline_sha256});
   const page=await env.DB.prepare(`SELECT * FROM evidence_desk_staging_pages WHERE page_path=?`).bind(pagePath).first();
   const currentSha=page?.current_sha256||sha('');
   if(currentSha!==baselineSha)return json({ok:false,error:'stale_baseline',currentSha256:currentSha},409);
   const html=candidateHtml({packageId,pagePath,contentKey,proposedText:text,copySha256:copySha}),candidateSha=sha(html),at=now();
   const row=await env.DB.prepare(`INSERT INTO evidence_desk_staging_versions(package_id,page_path,content_key,copy_sha256,payload_sha256,baseline_sha256,rollback_locator,candidate_html,candidate_sha256,idempotency_key,status,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,'published',?) RETURNING id`).bind(packageId,pagePath,contentKey,copySha,payloadSha,baselineSha,rollback,html,candidateSha,key,at).first();
   await env.DB.prepare(`INSERT INTO evidence_desk_staging_pages(page_path,current_html,current_sha256,updated_at) VALUES(?,?,?,?) ON CONFLICT(page_path) DO UPDATE SET current_html=excluded.current_html,current_sha256=excluded.current_sha256,updated_at=excluded.updated_at`).bind(pagePath,html,candidateSha,at).run();
-  return json({published:true,versionId:String(row.id),url:`${new URL(request.url).origin}/preview/${row.id}`,copySha256:copySha,payloadSha256:payloadSha,baselineSha256:baselineSha,candidateSha256:candidateSha});
+  return json({published:true,versionId:String(row.id),url:`${publicOrigin}/preview/${row.id}`,copySha256:copySha,payloadSha256:payloadSha,baselineSha256:baselineSha,candidateSha256:candidateSha});
 }
 
 async function baseline(request,env){

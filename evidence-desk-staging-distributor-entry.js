@@ -20,7 +20,7 @@ export default{async fetch(request,env){
     if(!/^[a-f0-9]{64}$/.test(copySha)||!key||clean(request.headers.get('x-payload-sha256'),64)!==payloadSha)return json({ok:false,error:'distribution_contract_invalid'},400);
     const existing=await env.DB.prepare(`SELECT * FROM evidence_desk_staging_deliveries WHERE idempotency_key=?`).bind(key).first();
     const row=existing||await env.DB.prepare(`INSERT INTO evidence_desk_staging_deliveries(destination,copy_sha256,payload_sha256,payload_json,idempotency_key) VALUES(?,?,?,?,?) RETURNING *`).bind(destination,copySha,payloadSha,raw,key).first();
-    const ref=`${url.origin}/preview/${row.id}`;
+    const ref=`${clean(env.STAGING_DISTRIBUTOR_PUBLIC_URL,500)||url.origin}/preview/${row.id}`;
     return json({published:true,idempotent:!!existing,url:ref,messageId:String(row.id),postId:String(row.id),copySha256:copySha,payloadSha256:payloadSha});
   }catch(error){console.error(JSON.stringify({event:'staging_distribution_failed',error:String(error?.message||error)}));return json({ok:false,error:'failed_closed'},500)}
 }};

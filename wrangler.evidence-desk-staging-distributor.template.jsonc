@@ -6,7 +6,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": true,
-  "vars": {"EVIDENCE_DESK_ENV": "staging-only"},
+  "vars": {"EVIDENCE_DESK_ENV": "staging-only", "STAGING_DISTRIBUTOR_PUBLIC_URL": "https://shift-evidence-desk-staging-distributor.matobrien.workers.dev"},
   "d1_databases": [{"binding": "DB", "database_name": "shift-evidence-desk-r12-nonprod-db", "database_id": "__EVIDENCE_D1_DATABASE_ID__"}],
   "observability": {"enabled": true,"logs": {"enabled": true,"head_sampling_rate": 1}}
 }
