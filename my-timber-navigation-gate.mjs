@@ -1,5 +1,8 @@
 import fs from 'node:fs';
 
+// V11 production promotion: this gate is the release proof for the native
+// black, cream and ash-green My Timber surfaces on current main.
+
 const need=(ok,message)=>{if(!ok)throw new Error(message)};
 const shell=fs.readFileSync('frontend/member/my-timber-preview.html','utf8');
 const grub=fs.readFileSync('frontend/member/member-grub.html','utf8');
