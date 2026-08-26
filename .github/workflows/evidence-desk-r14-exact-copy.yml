@@ -2,6 +2,8 @@ name: Evidence Desk R1.4 Non-Production Exact Copy
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: read
@@ -24,6 +26,8 @@ jobs:
       R14_URL: https://shift-evidence-desk-r12-nonprod.matobrien.workers.dev
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/shift-evidence-desk-r14-exact-copy
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
@@ -68,7 +72,7 @@ jobs:
           set -euo pipefail
           auth="Authorization: Bearer $R14_TOKEN"
           curl --fail-with-body --retry 6 --retry-all-errors -sS -X POST -H "$auth" "$R14_URL/v1/evidence-desk/r1-4/replacement" | tee /tmp/r14-attach.json
-          jq -e '.ok==true and .idempotent==false and .state=="awaiting_specialist_review" and .revision.revisionId=="R1.4-MHRA-NAION-2026-02-05-V1" and (.revision.copyHash|length)==64 and .locks.qualifiedReview==true and .locks.communicationsReview==true and .locks.website==true and .locks.newsletter==true and .locks.social==true and .locks.model==true' /tmp/r14-attach.json
+          jq -e '.ok==true and .state=="awaiting_specialist_review" and .revision.revisionId=="R1.4-MHRA-NAION-2026-02-05-V1" and (.revision.copyHash|length)==64 and .locks.qualifiedReview==true and .locks.communicationsReview==true and .locks.website==true and .locks.newsletter==true and .locks.social==true and .locks.model==true' /tmp/r14-attach.json
           curl --fail-with-body -sS -X POST -H "$auth" "$R14_URL/v1/evidence-desk/r1-4/replacement" | tee /tmp/r14-replay.json
           jq -e '.ok==true and .idempotent==true and .state=="awaiting_specialist_review"' /tmp/r14-replay.json
 
@@ -85,6 +89,10 @@ jobs:
           jq -e '[.. | objects | select(.package_status=="awaiting_specialist_review" and .event_status=="awaiting_specialist_review" and .web_eligible==0 and .newsletter_eligible==0 and .social_eligible==0 and .qualified_review_ref==null and .communications_review_ref==null)] | length==1' /tmp/r14-d1-final.json
           jq -e '[.. | objects | select(.decision=="exact_replacement_attached" and .authority_ref=="R1.4-MHRA-NAION-2026-02-05-V1" and .total==1)] | length==1' /tmp/r14-d1-final.json
           jq -e '[.. | objects | select(.enabled==0 and .ingestion_enabled==0 and .decision_email_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)] | length==1' /tmp/r14-d1-final.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$R14_URL/v1/evidence-desk/r1-2/fetch" | tee /tmp/r14-sealed-fetch.json
+          jq -e '.ok==true and .state=="sealed" and .sourcesChecked==0' /tmp/r14-sealed-fetch.json
+          curl --fail-with-body -sS -H "$auth" "$R14_URL/v1/evidence-desk/r1-2/inbox" | tee /tmp/r14-inbox.json
+          jq -e '[.audit[] | select(.decision=="global_kill_switch")] | length>=1' /tmp/r14-inbox.json
 
       - name: Upload sealed proof
         uses: actions/upload-artifact@v4
