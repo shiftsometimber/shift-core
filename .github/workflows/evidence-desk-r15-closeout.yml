@@ -71,7 +71,7 @@ jobs:
         run: |
           set -euo pipefail
           auth="Authorization: Bearer $R15_TOKEN"
-          curl --fail-with-body -sS -X POST -H "$auth" "$R15_URL/v1/evidence-desk/r1-5/closeout" | tee /tmp/r15-closeout.json
+          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS -X POST -H "$auth" "$R15_URL/v1/evidence-desk/r1-5/closeout" | tee /tmp/r15-closeout.json
           jq -e '.ok==true and .mode=="sealed_closeout" and (.red|length)==4 and ([.red[]|select((.packageId!=null and .state=="awaiting_specialist_review") or (.packageId==null and .state=="locked" and (.lockedReason|length)>0))]|length)==4 and .preflight.ready==false and .preflight.blockers==["qualified_clinical_review","medicines_communications_review","page_baseline_and_rollback_capture","publication_authority_disabled"] and ([.controls[]]|all(.==false))' /tmp/r15-closeout.json
           curl --fail-with-body -sS -X POST -H "$auth" "$R15_URL/v1/evidence-desk/r1-5/closeout" | tee /tmp/r15-closeout-replay.json
           jq -e '.ok==true and .idempotent==true' /tmp/r15-closeout-replay.json
