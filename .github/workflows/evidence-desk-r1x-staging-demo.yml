@@ -1,0 +1,89 @@
+name: Evidence Desk R1.x Sealed Staging Demo
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evidence-desk-r1x-staging-demo
+  cancel-in-progress: false
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      NONPROD_D1_ID: 8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3
+      PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
+      DB_NAME: shift-evidence-desk-r12-nonprod-db
+      CONFIG: wrangler.evidence-desk-r1x.generated.jsonc
+      DEMO_CONFIG: wrangler.evidence-desk-demo.staging.jsonc
+      DEMO_URL: https://shift-evidence-desk-r1x-demo.matobrien.workers.dev
+      R1X_BRANCH: agent/shift-evidence-desk-r1x-staging-demo
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.R1X_BRANCH }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed on bindings and capability surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test "$NONPROD_D1_ID" != "$PRODUCTION_D1_ID"
+          sed "s/__EVIDENCE_R12_D1_DATABASE_ID__/$NONPROD_D1_ID/" wrangler.evidence-desk-r12.template.jsonc > "$CONFIG"
+          jq -e --arg id "$NONPROD_D1_ID" '.vars.EVIDENCE_DESK_ENV=="non-production" and .d1_databases[0].database_id==$id and (.ai|not) and (.triggers|not)' "$CONFIG"
+          jq -e '.vars.EVIDENCE_DESK_ENV=="non-production-staging" and .vars.PUBLICATION_ENABLED=="false" and .vars.MODEL_ENABLED=="false" and .vars.LIVE_POLLING_ENABLED=="false" and (.d1_databases|not) and (.ai|not) and (.triggers|not)' "$DEMO_CONFIG"
+
+      - name: Run repository and reversible-patch gates
+        run: |
+          npm install --no-audit --no-fund
+          node --test tests/*.test.mjs
+          node tests/evidence-desk-source-gate.mjs
+          node evidence/evidence-desk/demo/build-demo.mjs
+
+      - name: Prove persisted package and fail-closed preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT p.id,p.status,p.risk_lane,c.page_path,c.copy_sha256,p.web_eligible,p.newsletter_eligible,p.social_eligible,p.qualified_review_ref,p.communications_review_ref FROM evidence_desk_packages p JOIN evidence_desk_copy_controls c ON c.package_id=p.id WHERE p.id=1; SELECT claim_id,package_id,revision_id,page_path,copy_sha256,state,qualified_review_required,communications_review_required,baseline_rollback_required,publication_authority FROM evidence_desk_copy_controls ORDER BY claim_id; SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled,stopped_at,stop_reason FROM evidence_desk_control WHERE id=1; SELECT decision,authority_ref,note,created_at FROM evidence_desk_decisions WHERE decision IN ('global_kill_switch','r1_5_closeout') ORDER BY id;" | tee /tmp/r1x-d1.json
+          jq -e '[..|objects|select(.id==1 and .risk_lane=="red" and .page_path=="/glp1-knowledge-centre.html" and .copy_sha256=="c219e05c948e2d89bfe42d5b4b13f06b4d92d406d82043fd4fbbb561e6680452" and .web_eligible==0 and .newsletter_eligible==0 and .social_eligible==0 and .qualified_review_ref==null and .communications_review_ref==null)]|length==1' /tmp/r1x-d1.json
+          jq -e '[..|objects|select(has("enabled") and .enabled==0 and .ingestion_enabled==0 and .decision_email_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)]|length==1' /tmp/r1x-d1.json
+          jq -e '([..|objects|select(.decision=="global_kill_switch")]|length)>=1' /tmp/r1x-d1.json
+          jq -e '[..|objects|select(has("claim_id") and .qualified_review_required==1 and .communications_review_required==1 and .baseline_rollback_required==1 and .publication_authority==0)]|length>=4' /tmp/r1x-d1.json
+
+      - name: Deploy read-only staging demonstration
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$DEMO_CONFIG" | tee /tmp/r1x-deploy.txt
+          grep -F "$DEMO_URL" /tmp/r1x-deploy.txt
+          for path in / /preview/ /rollback/ /phase-3/ /phase-3/men-over-40.html /phase-3/practical-glp1.html /phase-3/muscle-protein.html /phase-3/plateaus-stopping.html /phase-3/nhs-explainers.html /phase-3/tools.html /phase-3/life-back.html; do
+            curl --fail-with-body -sS -D /tmp/r1x-headers.txt "$DEMO_URL$path" -o /tmp/r1x-page.html
+            grep -qi '^x-shift-environment: non-production-staging' /tmp/r1x-headers.txt
+            grep -qi '^x-shift-publication: disabled' /tmp/r1x-headers.txt
+            grep -q 'noindex,nofollow' /tmp/r1x-page.html
+          done
+          curl --fail-with-body -sS -X POST "$DEMO_URL/" -o /tmp/r1x-post.txt || test "$?" -eq 22
+          grep -q 'Staging demo is read-only' /tmp/r1x-post.txt
+          curl --fail-with-body -sS "$DEMO_URL/preview/" | grep -q 'Not clinically reviewed'
+          curl --fail-with-body -sS "$DEMO_URL/rollback/" | grep -q 'Rollback is byte-exact'
+
+      - name: Upload sealed demonstration proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-evidence-desk-r1x-staging-demo-proof
+          path: |
+            /tmp/r1x-d1.json
+            /tmp/r1x-deploy.txt
+            /tmp/r1x-headers.txt
+            evidence/evidence-desk/r17/r17-manifest.json
+            evidence/seo-authority/phase3-keyword-url-map-r1.md
+          retention-days: 30
