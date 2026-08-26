@@ -26,7 +26,7 @@ import {shiftMe3DProofRoutes} from './shift-me-3d-proof-v1.js';
 import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
 import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
-import {fastMemberStateRoute} from './member-state-fast-v1.js';
+import {fastMemberStateRoute,authenticateMember} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {tapRoomRoutes} from './tap-room-v1.js';
@@ -51,6 +51,20 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-today-premium-v1.css','text/css; charset=utf-8'],
   ['/member-today-final-v1.css','text/css; charset=utf-8'],
   ['/member-my-timber-problem-v1.js','application/javascript; charset=utf-8'],
+  ['/my-timber-locked-surface-v1.css','text/css; charset=utf-8'],
+  ['/my-timber-locked-surface-v1.js','application/javascript; charset=utf-8'],
+  ['/my-timber-programme-surface-v1.css','text/css; charset=utf-8'],
+  ['/my-timber-programme-surface-v1.js','application/javascript; charset=utf-8'],
+  ['/assets/my-timber-today-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-header-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-hero-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-now-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-next-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-later-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-tonight-locked.jpg','image/jpeg'],
+  ['/assets/my-timber-fluids-locked.jpg','image/jpeg'],
+  ['/assets/shift-grub-locked.jpg','image/jpeg'],
+  ['/assets/shift-fit-locked.jpg','image/jpeg'],
   ['/shift-me-api-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.css','text/css; charset=utf-8'],
@@ -119,7 +133,7 @@ export default {
       if(!env.MEMBER_ASSETS)return new Response('Fit unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/member-fit',request.url),request));
     }
-    if((request.method==='GET'||request.method==='HEAD')&&(path==='/'||path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-register'||path==='/my-timber-preview')){
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/'||path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-login.html'||path==='/member-register'||path==='/member-register.html'||path==='/my-timber-preview')){
       if(!env.MEMBER_ASSETS)return new Response('preview shell unavailable',{status:503});
       return env.MEMBER_ASSETS.fetch(new Request(new URL('/my-timber-preview',request.url),request));
     }
@@ -182,9 +196,8 @@ export default {
 };
 
 async function authenticateTapRoomPage(request,env){
-  const raw=((request.headers.get('Cookie')||'').match(/(?:^|;\s*)sst_session=([^;]+)/)||[])[1];if(!raw)return Response.redirect(new URL('/member-login?returnTo=%2Ftap-room',request.url),302);
-  const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(decodeURIComponent(raw)))),hash=[...digest].map(x=>x.toString(16).padStart(2,'0')).join('');
-  const member=await env.DB.prepare(`SELECT a.email_verified,ms.user_id profile_id FROM user_sessions s JOIN user_auth a ON a.user_id=s.user_id LEFT JOIN member_state ms ON ms.user_id=s.user_id WHERE s.token_hash=? AND s.revoked_at IS NULL AND s.expires_at>?`).bind(hash,new Date().toISOString()).first();
+  const auth=await authenticateMember(request,env);if(auth.response)return Response.redirect(new URL('/member-login?returnTo=%2Ftap-room',request.url),302);
+  const member=await env.DB.prepare(`SELECT a.email_verified,ms.user_id profile_id FROM user_auth a LEFT JOIN member_state ms ON ms.user_id=a.user_id WHERE a.user_id=?`).bind(auth.userId).first();
   if(!Number(member?.email_verified)||!member?.profile_id)return Response.redirect(new URL('/member/dashboard?tapRoom=verified-member-required',request.url),302);return null;
 }
 
