@@ -88,6 +88,10 @@ jobs:
           distribution_token=$(openssl rand -hex 32)
           operator_token=$(openssl rand -hex 32)
           authority_token=$(openssl rand -hex 32)
+          echo "::add-mask::$shared_token"
+          echo "::add-mask::$distribution_token"
+          echo "::add-mask::$operator_token"
+          echo "::add-mask::$authority_token"
           npx wrangler deploy --config "$PUBLISHER_CONFIG" | tee /tmp/publisher-deploy.txt
           printf '%s' "$shared_token" | npx wrangler secret put STAGING_PUBLISH_TOKEN --config "$PUBLISHER_CONFIG"
           npx wrangler deploy --config "$DISTRIBUTOR_CONFIG" | tee /tmp/distributor-deploy.txt

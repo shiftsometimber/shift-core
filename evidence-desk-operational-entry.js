@@ -40,7 +40,12 @@ async function reviewRoute(request,env){
 
 export default{
   async fetch(request,env,ctx){
-    try{return await reviewRoute(request,env)||await routes(request,env)||await evidenceDeskRoutes(request,env,ctx)||response({ok:false,error:'not_found'},404)}catch(error){console.error(JSON.stringify({event:'evidence_desk_operational_error',error:String(error?.message||error)}));return response({ok:false,error:'failed_closed'},500)}
+    try{return await reviewRoute(request,env)||await routes(request,env)||await evidenceDeskRoutes(request,env,ctx)||response({ok:false,error:'not_found'},404)}catch(error){
+      const message=String(error?.message||error);
+      console.error(JSON.stringify({event:'evidence_desk_operational_error',error:message}));
+      const diagnostic=env.EVIDENCE_DESK_ENV==='non-production-operational'?message.slice(0,500):undefined;
+      return response({ok:false,error:'failed_closed',...(diagnostic?{diagnostic}:{})},500)
+    }
   },
   async scheduled(controller,env,ctx){ctx.waitUntil(runOperationalSchedule(env).then(result=>console.log(JSON.stringify({event:'evidence_desk_operational_schedule',...result}))).catch(error=>console.error(JSON.stringify({event:'evidence_desk_operational_schedule_failed',error:String(error?.message||error)}))))}
 };
