@@ -141,8 +141,8 @@ export async function seedEvidenceDeskSources(DB){
   return{ok:true,seeded};
 }
 
-export async function upsertEvidenceSource(DB,input={}){
-  await ensureEvidenceDeskSchema(DB);
+export async function upsertEvidenceSource(DB,input={},options={}){
+  if(options.ensureSchema!==false)await ensureEvidenceDeskSchema(DB);
   const family=clean(input.family,40).toLowerCase(),method=clean(input.extractionMethod||input.extraction_method,40).toLowerCase();
   const allowedHosts=Array.isArray(input.allowedHosts)?input.allowedHosts.map(x=>clean(x,200).toLowerCase()).filter(Boolean):[];
   if(!SOURCE_FAMILIES.has(family))return{ok:false,status:400,error:'invalid_source_family'};
@@ -156,8 +156,8 @@ export async function upsertEvidenceSource(DB,input={}){
   return{ok:true,status:200,id};
 }
 
-export async function upsertEvidenceClaim(DB,input={}){
-  await ensureEvidenceDeskSchema(DB);
+export async function upsertEvidenceClaim(DB,input={},options={}){
+  if(options.ensureSchema!==false)await ensureEvidenceDeskSchema(DB);
   const id=slug(input.id),riskLane=clean(input.riskLane||input.risk_lane,20).toLowerCase(),communicationClass=clean(input.communicationClass||input.communication_class,50).toLowerCase();
   if(!id||!clean(input.claimText||input.claim_text,5000))return{ok:false,status:400,error:'claim_identity_required'};
   if(!RISK_LANES.has(riskLane))return{ok:false,status:400,error:'invalid_risk_lane'};
@@ -179,8 +179,8 @@ function deltaFacts(previous,current){
   return changes;
 }
 
-export async function recordEvidenceObservation(DB,sourceId,input={}){
-  await ensureEvidenceDeskSchema(DB);
+export async function recordEvidenceObservation(DB,sourceId,input={},options={}){
+  if(options.ensureSchema!==false)await ensureEvidenceDeskSchema(DB);
   const source=await DB.prepare(`SELECT * FROM evidence_desk_sources WHERE id=?`).bind(clean(sourceId,120)).first();
   if(!source)return{ok:false,status:404,error:'source_not_found'};
   if(source.status!=='active'&&!bool(input.allowDraft))return{ok:false,status:409,error:'source_not_active'};
@@ -210,8 +210,8 @@ export async function recordEvidenceObservation(DB,sourceId,input={}){
   return{ok:true,status:201,sourceId:source.id,snapshotId,materialState,event:{id:eventId,status:eventStatus,materiality,riskLane,impactedClaims:impacted,changes}};
 }
 
-export async function createEvidencePackage(DB,eventId,input={},actor={}){
-  await ensureEvidenceDeskSchema(DB);
+export async function createEvidencePackage(DB,eventId,input={},actor={},options={}){
+  if(options.ensureSchema!==false)await ensureEvidenceDeskSchema(DB);
   const event=await DB.prepare(`SELECT * FROM evidence_desk_events WHERE id=?`).bind(Number(eventId)).first();if(!event)return{ok:false,status:404,error:'evidence_event_not_found'};
   if(event.materiality!=='mapped_material_change')return{ok:false,status:409,error:'claim_mapping_required'};
   const existing=await DB.prepare(`SELECT id,status FROM evidence_desk_packages WHERE event_id=?`).bind(Number(eventId)).first();
@@ -297,9 +297,9 @@ export async function runEvidenceDeskScheduled(env){
 
 export async function commissionMhraGlp1R11(DB,actor={}){
   await ensureEvidenceDeskSchema(DB);
-  const source=await upsertEvidenceSource(DB,{id:MHRA_GLP1_R11.sourceId,family:'mhra',name:'MHRA GLP-1 medicines safety guidance',canonicalUrl:`https://www.gov.uk${MHRA_GLP1_R11.basePath}`,authorityName:'Medicines and Healthcare products Regulatory Agency',extractionMethod:'structured_json',status:'active',cadenceMinutes:1440,config:{adapter:'mhra_glp1_guidance_r11',apiUrl:MHRA_GLP1_R11.apiUrl,contentId:MHRA_GLP1_R11.contentId}});
+  const source=await upsertEvidenceSource(DB,{id:MHRA_GLP1_R11.sourceId,family:'mhra',name:'MHRA GLP-1 medicines safety guidance',canonicalUrl:`https://www.gov.uk${MHRA_GLP1_R11.basePath}`,authorityName:'Medicines and Healthcare products Regulatory Agency',extractionMethod:'structured_json',status:'active',cadenceMinutes:1440,config:{adapter:'mhra_glp1_guidance_r11',apiUrl:MHRA_GLP1_R11.apiUrl,contentId:MHRA_GLP1_R11.contentId}},{ensureSchema:false});
   if(!source.ok)return source;
-  const claim=await upsertEvidenceClaim(DB,{id:'mhra-glp1-latest-safety-guidance',claimText:'The latest MHRA safety update affecting GLP-1 medicines is accurately reflected on Shift.',riskLane:'red',communicationClass:'clinical_safety',owner:'Evidence Desk',freshnessDays:1,dependencies:[{sourceId:MHRA_GLP1_R11.sourceId,factKey:'latest_update'}],pages:[{pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey}]});
+  const claim=await upsertEvidenceClaim(DB,{id:'mhra-glp1-latest-safety-guidance',claimText:'The latest MHRA safety update affecting GLP-1 medicines is accurately reflected on Shift.',riskLane:'red',communicationClass:'clinical_safety',owner:'Evidence Desk',freshnessDays:1,dependencies:[{sourceId:MHRA_GLP1_R11.sourceId,factKey:'latest_update'}],pages:[{pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey}]},{ensureSchema:false});
   if(!claim.ok)return claim;
   await DB.prepare(`UPDATE evidence_desk_control SET enabled=1,ingestion_enabled=1,decision_email_enabled=0,website_publish_enabled=0,newsletter_enabled=0,social_enabled=0,stopped_at=NULL,stop_reason=NULL,updated_at=? WHERE id=1`).bind(now()).run();
   await auditDecision(DB,{decision:'mhra_glp1_r11_commissioned',actor,note:'One non-production structured adapter commissioned; every publication destination remains locked.',detail:{sourceId:source.id,claimId:claim.id,pagePath:MHRA_GLP1_R11.pagePath}});
@@ -313,12 +313,12 @@ export async function runMhraGlp1R11(env,{fetchImpl=fetch,force=false}={}){
   if(!force&&source.last_checked_at&&Date.now()-Date.parse(source.last_checked_at)<Number(source.cadence_minutes||1440)*60000)return{ok:true,state:'not_due',sourcesChecked:0};
   try{
     const fetched=await fetchMhraGlp1Guidance({fetchImpl});
-    const observation=await recordEvidenceObservation(env.DB,source.id,{facts:fetched.facts,fetchedAt:fetched.fetchedAt,sourcePublishedAt:fetched.sourcePublishedAt,contentHash:fetched.contentHash,rawLocator:fetched.apiUrl});
+    const observation=await recordEvidenceObservation(env.DB,source.id,{facts:fetched.facts,fetchedAt:fetched.fetchedAt,sourcePublishedAt:fetched.sourcePublishedAt,contentHash:fetched.contentHash,rawLocator:fetched.apiUrl},{ensureSchema:false});
     if(!observation.ok)throw new Error(`mhra_adapter_observation_${observation.error||'failed'}`);
     let packageResult=null;
     if(observation.event){
       const latest=fetched.facts.latest_update;
-      packageResult=await createEvidencePackage(env.DB,observation.event.id,{title:'MHRA GLP-1 safety guidance changed',summary:`MHRA recorded a new GLP-1 guidance update: ${latest.note}`,proposedChanges:[{claimId:'mhra-glp1-latest-safety-guidance',pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey,instruction:'Review the exact MHRA change and draft the smallest evidenced correction. Do not publish.'}],evidence:[{sourceId:source.id,snapshotId:observation.snapshotId,sourcePublishedAt:fetched.sourcePublishedAt,apiUrl:fetched.apiUrl}]},{name:'Shift Evidence Desk',role:'system'});
+      packageResult=await createEvidencePackage(env.DB,observation.event.id,{title:'MHRA GLP-1 safety guidance changed',summary:`MHRA recorded a new GLP-1 guidance update: ${latest.note}`,proposedChanges:[{claimId:'mhra-glp1-latest-safety-guidance',pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey,instruction:'Review the exact MHRA change and draft the smallest evidenced correction. Do not publish.'}],evidence:[{sourceId:source.id,snapshotId:observation.snapshotId,sourcePublishedAt:fetched.sourcePublishedAt,apiUrl:fetched.apiUrl}]},{name:'Shift Evidence Desk',role:'system'},{ensureSchema:false});
       if(!packageResult.ok)throw new Error(`mhra_adapter_package_${packageResult.error||'failed'}`);
     }
     console.log(JSON.stringify({event:'evidence_adapter_run',adapter:'mhra_glp1_guidance_r11',state:observation.materialState,eventCreated:!!observation.event,packageCreated:!!packageResult?.ok}));
@@ -351,7 +351,7 @@ async function evidenceR12CommissionRoute(request,env,path,method){
   if(clean(env.EVIDENCE_DESK_ENV,50)!=='non-production')return json({ok:false,error:'non_production_commissioning_only'},409);
   const expected=clean(env.EVIDENCE_DESK_COMMISSION_TOKEN,500),provided=clean(request.headers.get('Authorization'),600).replace(/^Bearer\s+/i,'');
   if(!expected||!provided||!await secureEqual(provided,expected))return json({ok:false,error:'unauthorised'},401);
-  await ensureEvidenceDeskSchema(env.DB);const actor={name:'R1.2 commissioning operator',role:'owner'};
+  const actor={name:'R1.2 commissioning operator',role:'owner'};
   if(method==='GET'&&path==='/v1/evidence-desk/r1-2/inbox')return json(await evidenceInbox(env.DB));
   if(method!=='POST')return json({ok:false,error:'method_not_allowed'},405);
   if(path==='/v1/evidence-desk/r1-2/commission')return json(await commissionMhraGlp1R11(env.DB,actor));
