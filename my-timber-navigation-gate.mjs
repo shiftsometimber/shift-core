@@ -9,7 +9,7 @@ need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timbe
 for(const asset of [
   '/my-timber-locked-surface-v1.css','/my-timber-locked-surface-v1.js',
   '/my-timber-programme-surface-v1.css','/my-timber-programme-surface-v1.js',
-  '/assets/my-timber-today-locked.jpg','/assets/shift-grub-locked.jpg','/assets/shift-fit-locked.jpg'
+  '/assets/my-timber-today-locked.jpg','/assets/shift-grub-locked.jpg','/assets/shift-fit-locked.jpg','/assets/sst-s-official.png'
 ])need(worker.includes(`['${asset}'`),`locked artwork asset is not routed: ${asset}`);
 for(const marker of [
   'aria-label="Main website navigation"',
