@@ -146,6 +146,3 @@ jobs:
           else
             echo 'Usage evidence threshold not yet reached. Continue observing real use; model activation and every locked surface remain closed.' >> "$GITHUB_STEP_SUMMARY"
           fi
-  evidence_desk_r12_commission:
-    uses: ./.github/workflows/evidence-desk-r12-nonprod.yml
-    secrets: inherit
