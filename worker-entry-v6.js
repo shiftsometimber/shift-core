@@ -65,6 +65,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/assets/my-timber-fluids-locked.jpg','image/jpeg'],
   ['/assets/shift-grub-locked.jpg','image/jpeg'],
   ['/assets/shift-fit-locked.jpg','image/jpeg'],
+  ['/assets/sst-s-official.png','image/png'],
   ['/shift-me-api-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-shift-me-premium-v1.css','text/css; charset=utf-8'],
