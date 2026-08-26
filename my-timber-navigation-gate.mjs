@@ -14,10 +14,10 @@ for(const asset of [
 ])need(worker.includes(`['${asset}'`),`locked artwork asset is not routed: ${asset}`);
 for(const marker of [
   'aria-label="Main website navigation"',
-  'href="/start-here.html"',
-  'href="/treatment-centre.html"',
-  'href="/explore-knowledge.html"',
-  'href="/timber-mill.html"',
+  'href="https://shiftsometimber.co.uk/start-here.html"',
+  'href="https://shiftsometimber.co.uk/treatment-centre.html"',
+  'href="https://shiftsometimber.co.uk/explore-knowledge.html"',
+  'href="https://shiftsometimber.co.uk/timber-mill.html"',
   'href="/tap-room"',
   'data-mt-site-menu',
   'src="/assets/sst-logo-official.png"',
