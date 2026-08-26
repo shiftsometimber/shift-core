@@ -6,6 +6,11 @@ const worker=fs.readFileSync('worker-entry-v6.js','utf8');
 const config=fs.readFileSync('wrangler.jsonc','utf8');
 
 need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
+for(const asset of [
+  '/my-timber-locked-surface-v1.css','/my-timber-locked-surface-v1.js',
+  '/my-timber-programme-surface-v1.css','/my-timber-programme-surface-v1.js',
+  '/assets/my-timber-today-locked.jpg','/assets/shift-grub-locked.jpg','/assets/shift-fit-locked.jpg'
+])need(worker.includes(`['${asset}'`),`locked artwork asset is not routed: ${asset}`);
 for(const marker of [
   'aria-label="Main website navigation"',
   'href="/start-here.html"',
