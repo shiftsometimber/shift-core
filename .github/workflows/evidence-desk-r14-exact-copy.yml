@@ -54,7 +54,7 @@ jobs:
         run: |
           set -euo pipefail
           npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT p.id,p.status AS package_status,e.status AS event_status,p.risk_lane,p.communication_class,p.web_eligible,p.newsletter_eligible,p.social_eligible,p.qualified_review_ref,p.communications_review_ref FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id ORDER BY p.id DESC LIMIT 1;" | tee /tmp/r14-before.json
-          jq -e '[.. | objects | select(.package_status=="changes_required" and .event_status=="changes_required" and .risk_lane=="red" and .communication_class=="clinical_safety" and .web_eligible==0 and .newsletter_eligible==0 and .social_eligible==0 and .qualified_review_ref==null and .communications_review_ref==null)] | length==1' /tmp/r14-before.json
+          jq -e '[.. | objects | select((.package_status=="changes_required" or .package_status=="awaiting_specialist_review") and (.event_status=="changes_required" or .event_status=="awaiting_specialist_review") and .risk_lane=="red" and .communication_class=="clinical_safety" and .web_eligible==0 and .newsletter_eligible==0 and .social_eligible==0 and .qualified_review_ref==null and .communications_review_ref==null)] | length==1' /tmp/r14-before.json
 
       - name: Deploy review-only candidate and rotate token
         shell: bash
