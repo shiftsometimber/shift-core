@@ -313,6 +313,8 @@ export async function runMhraGlp1R11(env,{fetchImpl=fetch,force=false,ensureSche
   if(!force&&source.last_checked_at&&Date.now()-Date.parse(source.last_checked_at)<Number(source.cadence_minutes||1440)*60000)return{ok:true,state:'not_due',sourcesChecked:0};
   try{
     const fetched=await fetchMhraGlp1Guidance({fetchImpl});
+    const liveControl=await env.DB.prepare(`SELECT enabled,ingestion_enabled FROM evidence_desk_control WHERE id=1`).first();
+    if(!Number(liveControl?.enabled)||!Number(liveControl?.ingestion_enabled))return{ok:true,state:'sealed_during_fetch',sourcesChecked:1,eventId:null,packageId:null};
     const observation=await recordEvidenceObservation(env.DB,source.id,{facts:fetched.facts,fetchedAt:fetched.fetchedAt,sourcePublishedAt:fetched.sourcePublishedAt,contentHash:fetched.contentHash,rawLocator:fetched.apiUrl},{ensureSchema:false});
     if(!observation.ok)throw new Error(`mhra_adapter_observation_${observation.error||'failed'}`);
     let packageResult=null;
