@@ -66,15 +66,15 @@ jobs:
           npx wrangler deploy --config "$DEMO_CONFIG" | tee /tmp/r1x-deploy.txt
           grep -F "$DEMO_URL" /tmp/r1x-deploy.txt
           for path in / /preview/ /rollback/ /phase-3/ /phase-3/men-over-40.html /phase-3/practical-glp1.html /phase-3/muscle-protein.html /phase-3/plateaus-stopping.html /phase-3/nhs-explainers.html /phase-3/tools.html /phase-3/life-back.html; do
-            curl --fail-with-body -sS -D /tmp/r1x-headers.txt "$DEMO_URL$path" -o /tmp/r1x-page.html
+            curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS -D /tmp/r1x-headers.txt "$DEMO_URL$path" -o /tmp/r1x-page.html
             grep -qi '^x-shift-environment: non-production-staging' /tmp/r1x-headers.txt
             grep -qi '^x-shift-publication: disabled' /tmp/r1x-headers.txt
             grep -q 'noindex,nofollow' /tmp/r1x-page.html
           done
-          curl --fail-with-body -sS -X POST "$DEMO_URL/" -o /tmp/r1x-post.txt || test "$?" -eq 22
+          curl --fail-with-body --retry 3 --retry-delay 1 -sS -X POST "$DEMO_URL/" -o /tmp/r1x-post.txt || test "$?" -eq 22
           grep -q 'Staging demo is read-only' /tmp/r1x-post.txt
-          curl --fail-with-body -sS "$DEMO_URL/preview/" | grep -q 'Not clinically reviewed'
-          curl --fail-with-body -sS "$DEMO_URL/rollback/" | grep -q 'Rollback is byte-exact'
+          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS "$DEMO_URL/preview/" | grep -q 'Not clinically reviewed'
+          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS "$DEMO_URL/rollback/" | grep -q 'Rollback is byte-exact'
 
       - name: Upload sealed demonstration proof
         uses: actions/upload-artifact@v4
