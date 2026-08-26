@@ -2,16 +2,6 @@ name: Evidence Desk R1.3 Non-Production Human Review
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/evidence-desk-r13-nonprod-review.yml'
-      - 'SHIFT-EVIDENCE-DESK-R1.3-HUMAN-REVIEW-COMMISSION.md'
-      - 'evidence-desk-v1.js'
-      - 'evidence-desk-r12-entry.js'
-      - 'tests/evidence-desk-v1.test.mjs'
-      - 'tests/evidence-desk-source-gate.mjs'
-      - 'wrangler.evidence-desk-r12.template.jsonc'
 
 permissions:
   contents: read
