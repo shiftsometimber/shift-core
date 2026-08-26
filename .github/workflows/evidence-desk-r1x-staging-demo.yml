@@ -73,8 +73,10 @@ jobs:
           done
           curl --fail-with-body --retry 3 --retry-delay 1 -sS -X POST "$DEMO_URL/" -o /tmp/r1x-post.txt || test "$?" -eq 22
           grep -q 'Staging demo is read-only' /tmp/r1x-post.txt
-          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS "$DEMO_URL/preview/" | grep -q 'Not clinically reviewed'
-          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS "$DEMO_URL/rollback/" | grep -q 'Rollback is byte-exact'
+          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS "$DEMO_URL/preview/" -o /tmp/r1x-preview.html
+          grep -q 'Not clinically reviewed' /tmp/r1x-preview.html
+          curl --fail-with-body --retry 8 --retry-delay 2 --retry-all-errors -sS "$DEMO_URL/rollback/" -o /tmp/r1x-rollback.html
+          grep -q 'Rollback is byte-exact' /tmp/r1x-rollback.html
 
       - name: Upload sealed demonstration proof
         uses: actions/upload-artifact@v4
