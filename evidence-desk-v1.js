@@ -234,8 +234,8 @@ async function auditDecision(DB,{packageId=null,eventId=null,decision,actor={},n
 }
 async function queueDecisionNotification(DB,{packageId,eventId,riskLane,title}){const key=`package:${packageId}:decision`;await DB.prepare(`INSERT OR IGNORE INTO evidence_desk_notifications(package_id,event_id,notification_type,status,dedupe_key) VALUES(?,?,'decision_required','queued',?)`).bind(packageId,eventId,key).run();return{queued:true,riskLane,title}}
 
-export async function decideEvidencePackage(DB,packageId,input={},actor={}){
-  await ensureEvidenceDeskSchema(DB);
+export async function decideEvidencePackage(DB,packageId,input={},actor={},options={}){
+  if(options.ensureSchema!==false)await ensureEvidenceDeskSchema(DB);
   const row=await DB.prepare(`SELECT * FROM evidence_desk_packages WHERE id=?`).bind(Number(packageId)).first();if(!row)return{ok:false,status:404,error:'evidence_package_not_found'};
   const decision=clean(input.decision,60).toLowerCase();if(!DECISIONS.has(decision))return{ok:false,status:400,error:'invalid_evidence_decision'};
   if(['approved_web_pending_publish','closed_no_publication','rejected'].includes(row.status))return{ok:false,status:409,error:'evidence_package_finalised',state:row.status};
@@ -342,16 +342,52 @@ async function evidenceInbox(DB){
   return{ok:true,mode:'read_only',source,claim,snapshots:snapshots.map(row=>({...row,change:safe(row.change_json,{})})),events:events.map(row=>({...row,impactedClaims:safe(row.impacted_claims_json,[])})),packages,notification,audit:audit.map(row=>({...row,detail:safe(row.detail_json,{})})),control,capabilities:{compose:false,approve:false,publish:false,newsletter:false,social:false,model:false}};
 }
 
+async function evidenceReviewChecklist(DB){
+  const control=await DB.prepare(`SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled,stopped_at,stop_reason FROM evidence_desk_control WHERE id=1`).first();
+  const row=await DB.prepare(`SELECT p.*,e.source_id,e.snapshot_id,e.status event_status,e.materiality,e.impacted_claims_json,s.authority_name,s.canonical_url,ss.source_published_at,ss.change_json FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id JOIN evidence_desk_sources s ON s.id=e.source_id JOIN evidence_desk_snapshots ss ON ss.id=e.snapshot_id WHERE e.source_id=? ORDER BY p.id DESC LIMIT 1`).bind(MHRA_GLP1_R11.sourceId).first();
+  if(!row)return{ok:false,status:404,error:'r1_3_package_not_found'};
+  const proposed=safe(row.proposed_changes_json,[]),evidence=safe(row.evidence_json,[]),impacted=safe(row.impacted_claims_json,[]),change=safe(row.change_json,{});
+  const target=proposed.find(item=>item?.claimId==='mhra-glp1-latest-safety-guidance'&&item?.pagePath===MHRA_GLP1_R11.pagePath&&item?.contentKey===MHRA_GLP1_R11.contentKey);
+  const mapped=impacted.some(item=>item?.id==='mhra-glp1-latest-safety-guidance'&&item?.pages?.some(page=>page?.page_path===MHRA_GLP1_R11.pagePath&&page?.content_key===MHRA_GLP1_R11.contentKey));
+  const trace=evidence.some(item=>item?.sourceId===MHRA_GLP1_R11.sourceId&&Number(item?.snapshotId)===Number(row.snapshot_id)&&item?.sourcePublishedAt&&item?.apiUrl===MHRA_GLP1_R11.apiUrl);
+  const destinationsLocked=Number(row.web_eligible)===0&&Number(row.newsletter_eligible)===0&&Number(row.social_eligible)===0&&Number(control?.website_publish_enabled)===0&&Number(control?.newsletter_enabled)===0&&Number(control?.social_enabled)===0;
+  const checks=[
+    {id:'authoritative_source',pass:row.authority_name==='Medicines and Healthcare products Regulatory Agency'&&row.canonical_url===`https://www.gov.uk${MHRA_GLP1_R11.basePath}`},
+    {id:'structured_material_change',pass:row.materiality==='mapped_material_change'&&change?.changes?.some(item=>item?.factKey==='latest_update')},
+    {id:'exact_claim_page_dependency',pass:mapped},
+    {id:'red_clinical_safety_lane',pass:row.risk_lane==='red'&&row.communication_class==='clinical_safety'},
+    {id:'evidence_trace_complete',pass:!!trace},
+    {id:'qualified_and_communications_gates',pass:Number(row.qualified_review_required)===1&&Number(row.communications_review_required)===1},
+    {id:'all_destinations_locked',pass:destinationsLocked},
+    {id:'exact_proposed_page_copy',pass:!!target&&!!clean(target.proposedText||target.replacementText,10000)}
+  ];
+  const missing=checks.filter(item=>!item.pass).map(item=>item.id),recommendedDecision=missing.length?'amend':'send_for_qualified_review';
+  return{ok:true,status:200,mode:'read_only_review',package:{id:Number(row.id),status:row.status,eventId:Number(row.event_id),eventStatus:row.event_status,riskLane:row.risk_lane,communicationClass:row.communication_class,pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey,sourcePublishedAt:row.source_published_at},checks,complete:missing.length===0,missing,recommendedDecision,controls:{enabled:Number(control?.enabled)===1,ingestionEnabled:Number(control?.ingestion_enabled)===1,website:false,newsletter:false,social:false,model:false},capabilities:{reviewOutcomes:['amend','no_publication_justified'],qualifiedApproval:false,communicationsApproval:false,publish:false,compose:false,social:false,model:false}};
+}
+
 async function stopEvidenceDesk(DB,reason,actor){
   const stoppedAt=now();await DB.prepare(`UPDATE evidence_desk_control SET enabled=0,ingestion_enabled=0,decision_email_enabled=0,website_publish_enabled=0,newsletter_enabled=0,social_enabled=0,stopped_at=?,stop_reason=?,updated_at=? WHERE id=1`).bind(stoppedAt,reason,stoppedAt).run();await auditDecision(DB,{decision:'global_kill_switch',actor,note:reason,detail:{allDestinationsLocked:true}});return{ok:true,state:'sealed',allDestinationsLocked:true,stoppedAt};
 }
 
 async function evidenceR12CommissionRoute(request,env,path,method){
-  if(!path.startsWith('/v1/evidence-desk/r1-2'))return null;
+  if(!path.startsWith('/v1/evidence-desk/r1-2')&&!path.startsWith('/v1/evidence-desk/r1-3'))return null;
   if(clean(env.EVIDENCE_DESK_ENV,50)!=='non-production')return json({ok:false,error:'non_production_commissioning_only'},409);
   const expected=clean(env.EVIDENCE_DESK_COMMISSION_TOKEN,500),provided=clean(request.headers.get('Authorization'),600).replace(/^Bearer\s+/i,'');
   if(!expected||!provided||!await secureEqual(provided,expected))return json({ok:false,error:'unauthorised'},401);
   const actor={name:'R1.2 commissioning operator',role:'owner'};
+  if(path==='/v1/evidence-desk/r1-3/checklist'&&method==='GET')return json(await evidenceReviewChecklist(env.DB));
+  if(path==='/v1/evidence-desk/r1-3/review'&&method==='POST'){
+    const body=await readJson(request),checklist=await evidenceReviewChecklist(env.DB);if(!checklist.ok)return json(checklist,checklist.status||409);
+    const decision=clean(body.decision,60).toLowerCase(),note=clean(body.note,5000),attestation=clean(body.attestation,100);
+    if(!['amend','no_publication_justified'].includes(decision))return json({ok:false,error:'r1_3_decision_not_permitted'},403);
+    if(attestation!=='human_editorial_review'||note.length<30)return json({ok:false,error:'recorded_human_review_required'},400);
+    if(checklist.missing.length&&decision!=='amend')return json({ok:false,error:'r1_3_amend_required',missing:checklist.missing},409);
+    const reviewer={name:clean(env.EVIDENCE_DESK_R13_REVIEWER_NAME,200)||"Matt O'Brien",role:'owner'};
+    const existing=await env.DB.prepare(`SELECT id FROM evidence_desk_decisions WHERE package_id=? AND decision=? AND authority_ref='R1.3-EDITORIAL-REVIEW' LIMIT 1`).bind(checklist.package.id,decision).first();
+    if(existing)return json({ok:true,status:200,packageId:checklist.package.id,decision,state:checklist.package.status,idempotent:true,publication:{web:'locked',newsletter:'locked',social:'locked'}});
+    await auditDecision(env.DB,{packageId:checklist.package.id,eventId:checklist.package.eventId,decision:'r1_3_review_checklist',actor:reviewer,note:'R1.3 human editorial review recorded against the persisted package.',authorityRef:'R1.3-EDITORIAL-REVIEW',detail:{checks:checklist.checks,missing:checklist.missing,recommendedDecision:checklist.recommendedDecision}});
+    return json(await decideEvidencePackage(env.DB,checklist.package.id,{decision,note,authorityRef:'R1.3-EDITORIAL-REVIEW'},reviewer,{ensureSchema:false}));
+  }
   if(method==='GET'&&path==='/v1/evidence-desk/r1-2/inbox')return json(await evidenceInbox(env.DB));
   if(method!=='POST')return json({ok:false,error:'method_not_allowed'},405);
   if(path==='/v1/evidence-desk/r1-2/commission')return json(await commissionMhraGlp1R11(env.DB,actor,{ensureSchema:false}));
