@@ -14,7 +14,10 @@
     "check:toolchain": "node toolchain-source-gate.mjs",
     "test:commerce": "node --test tests/commerce-stripe-v1.test.mjs",
     "test:adaptive-today": "node --test tests/adaptive-today-v1.test.mjs && node tests/adaptive-today-source-gate.mjs",
-    "test:tap-room": "node --test tests/tap-room-phase1.test.mjs && node tap-room-phase1-source-gate.mjs"
+    "test:tap-room": "node --test tests/tap-room-phase1.test.mjs && node tap-room-phase1-source-gate.mjs",
+    "test:my-journey": "node my-journey-integration-gate.mjs",
+    "test:my-journey:phase1": "node --test tests/my-journey-v1.test.mjs",
+    "test:my-journey:observations": "node --test tests/my-journey-observation-v1.test.mjs"
   },
   "devDependencies": {
     "wrangler": "4.112.0"
