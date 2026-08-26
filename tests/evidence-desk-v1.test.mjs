@@ -149,7 +149,7 @@ test('the one-action stop prevents the commissioned adapter from fetching',async
 });
 
 test('R1.2 commissioning route is non-production only, token protected and exposes a read-only inbox',async()=>{
-  const DB=new D1(),ctx={};
+  const DB=new D1(),ctx={};await ensureEvidenceDeskSchema(DB);
   let response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/commission',{method:'POST',headers:{Authorization:'Bearer exact-token'}}),{DB,EVIDENCE_DESK_ENV:'production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token'},ctx);assert.equal(response.status,409);
   const env={DB,EVIDENCE_DESK_ENV:'non-production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token'};
   response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/commission',{method:'POST',headers:{Authorization:'Bearer wrong-token'}}),env,ctx);assert.equal(response.status,401);
