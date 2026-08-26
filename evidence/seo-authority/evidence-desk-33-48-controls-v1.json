@@ -1,0 +1,113 @@
+{
+  "control_id": "EVIDENCE-DESK-33-48-CLOSEOUT-V1",
+  "scope": "non-production Evidence Desk only",
+  "released_at": "2026-08-26T00:00:00Z",
+  "owner": "Matt O'Brien",
+  "locks": {
+    "production": true,
+    "website_publish": true,
+    "newsletter": true,
+    "social": true,
+    "model": true,
+    "outbound": true,
+    "wave_3": true
+  },
+  "ticket_33_silence_on_no_change": {
+    "input": "unchanged structured facts",
+    "result": "no_material_change",
+    "package_count": 0,
+    "notification_count": 0
+  },
+  "ticket_34_unsent_amber_package": {
+    "risk_lane": "amber",
+    "package_status": "awaiting_decision",
+    "notification_status": "queued",
+    "sent_at": null,
+    "destinations": {"web": false, "newsletter": false, "social": false}
+  },
+  "ticket_35_stale_authority": {
+    "action": "list_only",
+    "rewrite": false,
+    "fields": ["claim_id", "source_id", "last_checked_at", "freshness_days", "stale_at", "reason"]
+  },
+  "ticket_36_outbound_kill_switch": {
+    "enabled": false,
+    "ingestion_enabled": false,
+    "decision_email_enabled": false,
+    "website_publish_enabled": false,
+    "newsletter_enabled": false,
+    "social_enabled": false
+  },
+  "ticket_37_email_dry_run": {
+    "recipient": "evidence-desk-sink@example.test",
+    "forbidden_recipient": "Matt",
+    "mode": "local_fake_provider",
+    "external_delivery": false
+  },
+  "ticket_38_qualified_review_lock": {
+    "red_requires": ["qualified_clinical_review", "medicines_communications_review"],
+    "web_eligible_before_both": false
+  },
+  "ticket_39_claim_versioning": {
+    "identity": ["claim_id", "version"],
+    "required": ["claim_text_hash", "source_dependencies_hash", "page_dependencies_hash", "recorded_at", "recorded_by"],
+    "mutation": "append_only"
+  },
+  "ticket_40_daily_engine": {
+    "input_only": true,
+    "publish_nothing_is_valid": true,
+    "destinations": {"web": false, "newsletter": false, "social": false}
+  },
+  "ticket_41_emc_watch_list": {
+    "host": "medicines.org.uk",
+    "fetch_enabled": false,
+    "items": []
+  },
+  "ticket_42_price_ladders": {
+    "classification": "commercial",
+    "clinical": false,
+    "fetch_enabled": false,
+    "items": []
+  },
+  "ticket_43_rollback_record": {
+    "required": ["record_id", "package_id", "page_path", "baseline_hash", "candidate_hash", "release_id", "rollback_target", "captured_at", "captured_by"],
+    "publication_authority": false
+  },
+  "ticket_44_stop_conditions": [
+    "source_identity_drift",
+    "source_not_allowlisted",
+    "fetch_budget_exhausted",
+    "structured_extraction_failure",
+    "unmapped_material_change",
+    "claim_conflict",
+    "missing_exact_page_copy",
+    "missing_qualified_review",
+    "missing_communications_review",
+    "production_environment_detected"
+  ],
+  "ticket_45_worker_dry_run": {
+    "deployment": false,
+    "outbound_requests": 0,
+    "required_command": "wrangler deploy --dry-run"
+  },
+  "ticket_46_inbox_ranking": [
+    {"lane": "red", "rank": 1},
+    {"lane": "amber", "rank": 2},
+    {"lane": "green", "rank": 3}
+  ],
+  "ticket_47_package_deep_link": {
+    "read_only": true,
+    "publish_capability": false,
+    "decision_endpoint_is_not_publish_endpoint": true
+  },
+  "ticket_48_production_attestation": {
+    "database_name": "shift-evidence-desk-r12-nonprod-db",
+    "database_id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3",
+    "remote_import_queries": 87,
+    "remote_import_rows_written": 180,
+    "remote_import_bookmark": "0000000c-00000010-000050d3-f2b72c7b919e04ba3437591a29f1de46",
+    "production_database_touched": false,
+    "production_worker_deployed": false,
+    "production_site_deployed": false
+  }
+}

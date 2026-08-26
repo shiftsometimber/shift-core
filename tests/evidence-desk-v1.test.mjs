@@ -4,7 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {
   ensureEvidenceDeskSchema,upsertEvidenceSource,upsertEvidenceClaim,recordEvidenceObservation,
   createEvidencePackage,decideEvidencePackage,deliverEvidenceDecisionEmails,runEvidenceDeskScheduled
-  ,commissionMhraGlp1R11,runMhraGlp1R11,evidenceDeskRoutes,MHRA_NAION_R14_REPLACEMENT
+  ,commissionMhraGlp1R11,runMhraGlp1R11,evidenceDeskRoutes,MHRA_NAION_R14_REPLACEMENT,WAVE2_RED_COPY_REVISIONS
 } from '../evidence-desk-v1.js';
 import {extractMhraGlp1GuidanceFacts,MHRA_GLP1_R11} from '../evidence-adapter-mhra-glp1-v1.js';
 
@@ -191,4 +191,22 @@ test('R1.4 attaches one exact evidenced revision and prepares a locked specialis
   response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-4/review-packet',{headers}),env,ctx);const packet=await response.json();assert.equal(packet.mode,'specialist_review_packet');assert.equal(packet.integrity.exactRevision,true);assert.equal(packet.specialistReviews.qualifiedClinical.approved,false);assert.equal(packet.specialistReviews.medicinesCommunications.approved,false);assert.deepEqual(packet.distribution,{web:'locked',newsletter:'locked',social:'locked'});assert.deepEqual(packet.preflight.blockers,['qualified_clinical_review','medicines_communications_review','page_baseline_and_rollback_capture','publication_authority_disabled']);assert.equal(packet.capabilities.publish,false);
   const state=DB.db.prepare(`SELECT p.status package_status,e.status event_status,p.web_eligible,p.newsletter_eligible,p.social_eligible,p.qualified_review_ref,p.communications_review_ref FROM evidence_desk_packages p JOIN evidence_desk_events e ON e.id=p.event_id`).get();assert.equal(state.package_status,'awaiting_specialist_review');assert.equal(state.event_status,'awaiting_specialist_review');assert.equal(state.web_eligible,0);assert.equal(state.newsletter_eligible,0);assert.equal(state.social_eligible,0);assert.equal(state.qualified_review_ref,null);assert.equal(state.communications_review_ref,null);
   assert.equal(DB.db.prepare("SELECT COUNT(*) c FROM evidence_desk_decisions WHERE decision='exact_replacement_attached'").get().c,1);
+});
+
+test('R1.5 exposes only a SHA-bound NAION packet and closes out existing Wave 2 packages without creating any',async()=>{
+  const DB=new D1(),ctx={};await ensureEvidenceDeskSchema(DB);
+  const env={DB,EVIDENCE_DESK_ENV:'non-production',EVIDENCE_DESK_COMMISSION_TOKEN:'exact-token'};const headers={Authorization:'Bearer exact-token'};
+  await commissionMhraGlp1R11(DB,matt);await recordEvidenceObservation(DB,MHRA_GLP1_R11.sourceId,{facts:{guidance_identity:{contentId:MHRA_GLP1_R11.contentId,basePath:MHRA_GLP1_R11.basePath},guidance_summary:'Guidance',latest_update:{publicTimestamp:'2026-01-29T14:20:34Z',note:'Baseline'}},sourcePublishedAt:'2026-01-29T14:20:34Z',contentHash:'baseline'},{ensureSchema:false});
+  const observed=await recordEvidenceObservation(DB,MHRA_GLP1_R11.sourceId,{facts:{guidance_identity:{contentId:MHRA_GLP1_R11.contentId,basePath:MHRA_GLP1_R11.basePath},guidance_summary:'Guidance',latest_update:{publicTimestamp:MHRA_NAION_R14_REPLACEMENT.sourcePublishedAt,note:MHRA_NAION_R14_REPLACEMENT.sourceChangeNote}},sourcePublishedAt:MHRA_NAION_R14_REPLACEMENT.sourcePublishedAt,contentHash:'naion'},{ensureSchema:false});
+  await createEvidencePackage(DB,observed.event.id,{title:'NAION',summary:'Review',proposedChanges:[{claimId:'mhra-glp1-latest-safety-guidance',pagePath:MHRA_GLP1_R11.pagePath,contentKey:MHRA_GLP1_R11.contentKey,instruction:'Draft exact copy'}]},matt,{ensureSchema:false});
+  DB.db.prepare("UPDATE evidence_desk_packages SET status='changes_required'").run();DB.db.prepare("UPDATE evidence_desk_events SET status='changes_required'").run();
+  await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-4/replacement',{method:'POST',headers}),env,ctx);
+  await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-2/stop',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({reason:'R1.5 closeout remains sealed'})}),env,ctx);
+  let response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-5/review-packet',{headers}),env,ctx),packet=await response.json();
+  assert.equal(packet.mode,'read_only_specialist_review_packet');assert.equal(packet.readOnly,true);assert.equal(packet.reviewBinding.copySha256,packet.integrity.copyHash);assert.equal(packet.capabilities.decide,false);assert.equal(packet.capabilities.publish,false);
+  const before=DB.db.prepare('SELECT COUNT(*) n FROM evidence_desk_packages').get().n;
+  response=await evidenceDeskRoutes(new Request('https://candidate.test/v1/evidence-desk/r1-5/closeout',{method:'POST',headers}),env,ctx);const closeout=await response.json();
+  assert.equal(closeout.ok,true);assert.equal(closeout.red.length,4);assert.ok(closeout.red.every(item=>item.packageId===null&&item.state==='locked'&&item.lockedReason));assert.deepEqual(closeout.preflight.blockers,['qualified_clinical_review','medicines_communications_review','page_baseline_and_rollback_capture','publication_authority_disabled']);
+  assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM evidence_desk_packages').get().n,before);assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM evidence_desk_copy_controls').get().n,4);
+  for(const revision of WAVE2_RED_COPY_REVISIONS){const row=DB.db.prepare('SELECT * FROM evidence_desk_copy_controls WHERE claim_id=?').get(revision.claimId);assert.equal(row.state,'locked');assert.equal(row.copy_sha256.length,64);assert.equal(row.publication_authority,0)}
 });

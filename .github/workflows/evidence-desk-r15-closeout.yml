@@ -1,0 +1,103 @@
+name: Evidence Desk R1.5 Sealed Closeout
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evidence-desk-r15-closeout
+  cancel-in-progress: false
+
+jobs:
+  closeout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      R15_D1_ID: 8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3
+      PRODUCTION_D1_ID: 88f40aed-cb23-4372-8c94-8a73f48bc847
+      DB_NAME: shift-evidence-desk-r12-nonprod-db
+      CONFIG: wrangler.evidence-desk-r15.generated.jsonc
+      R15_URL: https://shift-evidence-desk-r12-nonprod.matobrien.workers.dev
+      R15_BRANCH: agent/shift-evidence-desk-r14-exact-copy
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.R15_BRANCH }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Fail closed on environment and bindings
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test "$R15_D1_ID" != "$PRODUCTION_D1_ID"
+          npx --yes wrangler@4.112.0 d1 list --json >/tmp/r15-d1-list.json
+          jq -e --arg id "$R15_D1_ID" --arg name "$DB_NAME" '.[] | select((.uuid // .database_id // .id)==$id and .name==$name)' /tmp/r15-d1-list.json
+          sed "s/__EVIDENCE_R12_D1_DATABASE_ID__/$R15_D1_ID/" wrangler.evidence-desk-r12.template.jsonc > "$CONFIG"
+          jq -e --arg id "$R15_D1_ID" '.vars.EVIDENCE_DESK_ENV=="non-production" and .d1_databases[0].database_id==$id and (.ai|not) and (.triggers|not)' "$CONFIG"
+
+      - name: Run all repository gates
+        run: |
+          npm install --no-audit --no-fund
+          node --test tests/*.test.mjs
+          node tests/evidence-desk-source-gate.mjs
+
+      - name: Apply control schema without creating packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT COUNT(*) AS total FROM evidence_desk_packages;" | tee /tmp/r15-package-count-before.json
+          jq -r '[.. | objects | select(has("total"))][0].total' /tmp/r15-package-count-before.json > /tmp/r15-package-count-before.txt
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --file migrations/009_evidence_desk_r15_closeout.sql
+
+      - name: Deploy read-only review surface and rotate token
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config "$CONFIG" >/tmp/r15-deploy.txt 2>&1
+          grep -F "$R15_URL" /tmp/r15-deploy.txt
+          token=$(openssl rand -hex 32)
+          printf '%s' "$token" | npx wrangler secret put EVIDENCE_DESK_COMMISSION_TOKEN --config "$CONFIG" >/tmp/r15-secret.txt
+          echo "R15_TOKEN=$token" >> "$GITHUB_ENV"
+
+      - name: Seal closeout and prove idempotency
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R15_TOKEN"
+          curl --fail-with-body -sS -X POST -H "$auth" "$R15_URL/v1/evidence-desk/r1-5/closeout" | tee /tmp/r15-closeout.json
+          jq -e '.ok==true and .mode=="sealed_closeout" and (.red|length)==4 and ([.red[]|select((.packageId!=null and .state=="awaiting_specialist_review") or (.packageId==null and .state=="locked" and (.lockedReason|length)>0))]|length)==4 and .preflight.ready==false and .preflight.blockers==["qualified_clinical_review","medicines_communications_review","page_baseline_and_rollback_capture","publication_authority_disabled"] and ([.controls[]]|all(.==false))' /tmp/r15-closeout.json
+          curl --fail-with-body -sS -X POST -H "$auth" "$R15_URL/v1/evidence-desk/r1-5/closeout" | tee /tmp/r15-closeout-replay.json
+          jq -e '.ok==true and .idempotent==true' /tmp/r15-closeout-replay.json
+
+      - name: Prove R1.5 packet and database locks
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth="Authorization: Bearer $R15_TOKEN"
+          curl --fail-with-body -sS -H "$auth" "$R15_URL/v1/evidence-desk/r1-5/review-packet" | tee /tmp/r15-review-packet.json
+          jq -e '.mode=="read_only_specialist_review_packet" and .readOnly==true and .integrity.exactRevision==true and .reviewBinding.copySha256==.integrity.copyHash and .specialistReviews.qualifiedClinical.approved==false and .specialistReviews.medicinesCommunications.approved==false and .preflight.ready==false and .preflight.blockers==["qualified_clinical_review","medicines_communications_review","page_baseline_and_rollback_capture","publication_authority_disabled"] and ([.capabilities[]]|all(.==false))' /tmp/r15-review-packet.json
+          npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT claim_id,package_id,revision_id,page_path,content_key,copy_sha256,state,locked_reason,qualified_review_required,communications_review_required,baseline_rollback_required,publication_authority FROM evidence_desk_copy_controls ORDER BY claim_id; SELECT id,status,risk_lane,web_eligible,newsletter_eligible,social_eligible,qualified_review_ref,communications_review_ref FROM evidence_desk_packages ORDER BY id; SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled,stopped_at,stop_reason FROM evidence_desk_control WHERE id=1; SELECT decision,authority_ref,note,detail_json,created_at FROM evidence_desk_decisions WHERE decision IN ('global_kill_switch','r1_5_closeout') ORDER BY id;" | tee /tmp/r15-d1-final.json
+          jq -e '[.. | objects | select(has("claim_id") and (.claim_id|startswith("w2-")) and (.copy_sha256|length)==64 and .qualified_review_required==1 and .communications_review_required==1 and .baseline_rollback_required==1 and .publication_authority==0 and ((.package_id!=null and .state=="awaiting_specialist_review") or (.package_id==null and .state=="locked" and (.locked_reason|length)>0)))] | length==4' /tmp/r15-d1-final.json
+          jq -e '[.. | objects | select(.risk_lane=="amber" and .status!="copy_required" and .web_eligible==0)] | length==0' /tmp/r15-d1-final.json
+          jq -e '[.. | objects | select(.risk_lane=="red" and (.web_eligible!=0 or .newsletter_eligible!=0 or .social_eligible!=0 or .qualified_review_ref!=null or .communications_review_ref!=null))] | length==0' /tmp/r15-d1-final.json
+          jq -e '[.. | objects | select(has("enabled") and .enabled==0 and .ingestion_enabled==0 and .decision_email_enabled==0 and .website_publish_enabled==0 and .newsletter_enabled==0 and .social_enabled==0)] | length==1' /tmp/r15-d1-final.json
+          jq -e '([.. | objects | select(.decision=="global_kill_switch")] | length)>=1 and ([.. | objects | select(.decision=="r1_5_closeout" and .authority_ref=="R1.5-SEALED-CLOSEOUT")] | length)==1' /tmp/r15-d1-final.json
+          before=$(cat /tmp/r15-package-count-before.txt)
+          after=$(npx wrangler d1 execute DB --remote --config "$CONFIG" --json --command "SELECT COUNT(*) AS total FROM evidence_desk_packages;" | jq -r '[.. | objects | select(has("total"))][0].total')
+          test "$before" = "$after"
+          curl --fail-with-body -sS -X POST -H "$auth" "$R15_URL/v1/evidence-desk/r1-2/fetch" | tee /tmp/r15-sealed-fetch.json
+          jq -e '.ok==true and .state=="sealed" and .sourcesChecked==0' /tmp/r15-sealed-fetch.json
+
+      - name: Upload sealed proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-evidence-desk-r15-closeout-proof
+          path: /tmp/r15-*.json
+          retention-days: 30

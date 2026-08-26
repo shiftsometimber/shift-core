@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shift-evidence-desk-r12-nonprod",
+  "main": "evidence-desk-r12-entry.js",
+  "compatibility_date": "2026-08-26",
+  "workers_dev": true,
+  "preview_urls": true,
+  "vars": {
+    "EVIDENCE_DESK_ENV": "non-production"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "shift-evidence-desk-r12-nonprod-db",
+    "database_id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3"
+  }],
+  "observability": {
+    "enabled": true,
+    "logs": {"enabled": true, "head_sampling_rate": 1}
+  }
+}

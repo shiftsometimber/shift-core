@@ -30,6 +30,13 @@ export const MHRA_NAION_R14_REPLACEMENT={
   editorialNote:'Exact proposed replacement wording for specialist review. Not approved and not publishable.'
 };
 
+export const WAVE2_RED_COPY_REVISIONS=[
+  {revisionId:'R1.5-W2-BMI-RED-001-V1',claimId:'w2-bmi-red-001',pagePath:'/tools/bmi',contentKey:'result:W2-BMI-RED-001',proposedText:'BMI is a screening measure, not a diagnosis. This result does not determine whether you have a health condition, whether you can access NHS care, or whether a treatment is suitable for you.',sourceUrl:'https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity'},
+  {revisionId:'R1.5-W2-WHR-RED-001-V1',claimId:'w2-whr-red-001',pagePath:'/tools/waist-height',contentKey:'result:W2-WHR-RED-001',proposedText:'Waist-to-height ratio is a screening measure of central adiposity, not a diagnosis. This result does not decide whether you have a health condition or whether a treatment is suitable for you.',sourceUrl:'https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity'},
+  {revisionId:'R1.5-W2-PRO-RED-001-V1',claimId:'w2-pro-red-001',pagePath:'/tools/protein',contentKey:'result:W2-PRO-RED-001',proposedText:'This result is a planning estimate based on the grams-per-kilogram level you selected. It is not an individual clinical prescription or a universally suitable target.',sourceUrl:'https://www.gov.uk/government/publications/sacn-statement-on-expressing-fat-and-carbohydrate-recommendations/sacn-statement-on-expressing-energy-fat-and-carbohydrate-intakes-and-recommendations'},
+  {revisionId:'R1.5-W2-CAL-RED-001-V1',claimId:'w2-cal-red-001',pagePath:'/tools/calories',contentKey:'result:W2-CAL-RED-001',proposedText:'This result is an estimate based on the information and activity level you entered. It is not a prescribed intake, a guaranteed calorie deficit or a treatment target.',sourceUrl:'https://pubmed.ncbi.nlm.nih.gov/2305711/'}
+];
+
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:JSON_HEADERS});
 const now=()=>new Date().toISOString();
 const safe=(value,fallback={})=>{try{return typeof value==='string'?JSON.parse(value):value??fallback}catch{return fallback}};
@@ -411,12 +418,50 @@ async function r14ReviewPacket(DB){
   return{ok:true,status:200,mode:'specialist_review_packet',package:{...checklist.package},revision,integrity:{exactRevision,copyHash,sourceDateMatches:revision?.sourcePublishedAt===MHRA_NAION_R14_REPLACEMENT.sourcePublishedAt,claimAndPlacementMatch:revision?.claimId===MHRA_NAION_R14_REPLACEMENT.claimId&&revision?.pagePath===MHRA_NAION_R14_REPLACEMENT.pagePath&&revision?.contentKey===MHRA_NAION_R14_REPLACEMENT.contentKey},specialistReviews:{qualifiedClinical:{required:true,approved:qualifiedApproved,reviewer:row?.qualified_reviewer||null,authorityRef:row?.qualified_review_ref||null},medicinesCommunications:{required:true,approved:communicationsApproved,reviewer:row?.communications_reviewer||null,authorityRef:row?.communications_review_ref||null}},distribution:{web:Number(row?.web_eligible)===1?'eligible':'locked',newsletter:Number(row?.newsletter_eligible)===1?'eligible':'locked',social:Number(row?.social_eligible)===1?'eligible':'locked'},preflight:{ready:false,blockers},capabilities:{attachCopy:false,qualifiedApproval:false,communicationsApproval:false,publish:false,rollback:false,newsletter:false,social:false,model:false}};
 }
 
+async function r15ReviewPacket(DB){
+  const packet=await r14ReviewPacket(DB);if(!packet.ok)return packet;
+  return{...packet,mode:'read_only_specialist_review_packet',release:'R1.5',readOnly:true,
+    reviewBinding:{revisionId:packet.revision?.revisionId||null,copySha256:packet.integrity.copyHash||null,exactPagePath:packet.revision?.pagePath||null,exactContentKey:packet.revision?.contentKey||null},
+    humanRequirements:{qualifiedClinical:'A real qualified clinician must review this exact SHA-locked wording.',medicinesCommunications:'A real medicines-communications reviewer must review this exact SHA-locked wording and destination context.'},
+    capabilities:{attachCopy:false,decide:false,qualifiedApproval:false,communicationsApproval:false,publish:false,rollback:false,newsletter:false,social:false,model:false}};
+}
+
+async function r15Closeout(DB,actor){
+  const control=await DB.prepare(`SELECT enabled,ingestion_enabled,decision_email_enabled,website_publish_enabled,newsletter_enabled,social_enabled FROM evidence_desk_control WHERE id=1`).first();
+  if(!control||Object.values(control).some(value=>Number(value)!==0))return{ok:false,status:409,error:'closeout_requires_all_controls_off'};
+  await DB.exec(`CREATE TABLE IF NOT EXISTS evidence_desk_copy_controls (claim_id TEXT PRIMARY KEY,package_id INTEGER,revision_id TEXT,page_path TEXT NOT NULL,content_key TEXT NOT NULL,proposed_text TEXT,copy_sha256 TEXT,state TEXT NOT NULL,locked_reason TEXT,source_url TEXT NOT NULL,qualified_review_required INTEGER NOT NULL DEFAULT 1,communications_review_required INTEGER NOT NULL DEFAULT 1,baseline_rollback_required INTEGER NOT NULL DEFAULT 1,publication_authority INTEGER NOT NULL DEFAULT 0,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); CREATE INDEX IF NOT EXISTS idx_evidence_copy_controls_package ON evidence_desk_copy_controls(package_id);`);
+  const {results:packages=[]}=await DB.prepare(`SELECT id,event_id,risk_lane,status,proposed_changes_json FROM evidence_desk_packages ORDER BY id`).all();
+  const red=[];
+  for(const revision of WAVE2_RED_COPY_REVISIONS){
+    const copyHash=await sha256(revision.proposedText),matches=packages.filter(row=>safe(row.proposed_changes_json,[]).some(item=>item?.claimId===revision.claimId));
+    if(matches.length>1)return{ok:false,status:409,error:'multiple_existing_packages_for_claim',claimId:revision.claimId,packageIds:matches.map(row=>Number(row.id))};
+    const match=matches[0]||null;
+    if(match){
+      const proposed=safe(match.proposed_changes_json,[]),next=proposed.filter(item=>item?.claimId!==revision.claimId);
+      next.push({...revision,copyHash,editorialNote:'Exact proposed page wording for specialist review. Not approved and not publishable.'});
+      await DB.prepare(`UPDATE evidence_desk_packages SET proposed_changes_json=?,status='awaiting_specialist_review',web_eligible=0,newsletter_eligible=0,social_eligible=0,qualified_review_required=1,communications_review_required=1,qualified_reviewer=NULL,qualified_review_ref=NULL,qualified_reviewed_at=NULL,communications_reviewer=NULL,communications_review_ref=NULL,communications_reviewed_at=NULL,updated_at=? WHERE id=?`).bind(JSON.stringify(next),now(),match.id).run();
+    }
+    const state=match?'awaiting_specialist_review':'locked',lockedReason=match?null:'no_existing_wave2_package; package creation is outside R1.5 closeout authority';
+    await DB.prepare(`INSERT INTO evidence_desk_copy_controls(claim_id,package_id,revision_id,page_path,content_key,proposed_text,copy_sha256,state,locked_reason,source_url,qualified_review_required,communications_review_required,baseline_rollback_required,publication_authority,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,1,1,1,0,?) ON CONFLICT(claim_id) DO UPDATE SET package_id=excluded.package_id,revision_id=excluded.revision_id,page_path=excluded.page_path,content_key=excluded.content_key,proposed_text=excluded.proposed_text,copy_sha256=excluded.copy_sha256,state=excluded.state,locked_reason=excluded.locked_reason,source_url=excluded.source_url,qualified_review_required=1,communications_review_required=1,baseline_rollback_required=1,publication_authority=0,updated_at=excluded.updated_at`).bind(revision.claimId,match?.id||null,revision.revisionId,revision.pagePath,revision.contentKey,revision.proposedText,copyHash,state,lockedReason,revision.sourceUrl,now()).run();
+    red.push({claimId:revision.claimId,packageId:match?Number(match.id):null,revisionId:revision.revisionId,copyHash,state,lockedReason});
+  }
+  const amber=[];
+  for(const row of packages.filter(item=>item.risk_lane==='amber')){
+    const proposed=safe(row.proposed_changes_json,[]),hasExact=proposed.some(item=>clean(item?.proposedText||item?.replacementText,10000)&&clean(item?.copyHash,100).length===64);
+    if(!hasExact&&row.status!=='copy_required')await DB.prepare(`UPDATE evidence_desk_packages SET status='copy_required',web_eligible=0,newsletter_eligible=0,social_eligible=0,updated_at=? WHERE id=?`).bind(now(),row.id).run();
+    if(!hasExact)amber.push({packageId:Number(row.id),state:'copy_required'});
+  }
+  const authorityRef='R1.5-SEALED-CLOSEOUT',prior=await DB.prepare(`SELECT id FROM evidence_desk_decisions WHERE decision='r1_5_closeout' AND authority_ref=? LIMIT 1`).bind(authorityRef).first();
+  if(!prior)await auditDecision(DB,{decision:'r1_5_closeout',actor,note:'Read-only R1.5 packet sealed; Wave 2 copy controls recorded without creating packages or granting approval/publication authority.',authorityRef,detail:{red,amber,allControlsOff:true,r2:false,wave3:false,phase3:false,livePolling:false,pr:false}});
+  return{ok:true,status:200,mode:'sealed_closeout',idempotent:!!prior,red,amber,preflight:{ready:false,blockers:['qualified_clinical_review','medicines_communications_review','page_baseline_and_rollback_capture','publication_authority_disabled']},controls:{production:false,publish:false,newsletter:false,social:false,model:false,r2:false,wave3:false,phase3:false,livePolling:false,pr:false}};
+}
+
 async function stopEvidenceDesk(DB,reason,actor){
   const stoppedAt=now();await DB.prepare(`UPDATE evidence_desk_control SET enabled=0,ingestion_enabled=0,decision_email_enabled=0,website_publish_enabled=0,newsletter_enabled=0,social_enabled=0,stopped_at=?,stop_reason=?,updated_at=? WHERE id=1`).bind(stoppedAt,reason,stoppedAt).run();await auditDecision(DB,{decision:'global_kill_switch',actor,note:reason,detail:{allDestinationsLocked:true}});return{ok:true,state:'sealed',allDestinationsLocked:true,stoppedAt};
 }
 
 async function evidenceR12CommissionRoute(request,env,path,method){
-  if(!path.startsWith('/v1/evidence-desk/r1-2')&&!path.startsWith('/v1/evidence-desk/r1-3')&&!path.startsWith('/v1/evidence-desk/r1-4'))return null;
+  if(!path.startsWith('/v1/evidence-desk/r1-2')&&!path.startsWith('/v1/evidence-desk/r1-3')&&!path.startsWith('/v1/evidence-desk/r1-4')&&!path.startsWith('/v1/evidence-desk/r1-5'))return null;
   if(clean(env.EVIDENCE_DESK_ENV,50)!=='non-production')return json({ok:false,error:'non_production_commissioning_only'},409);
   const expected=clean(env.EVIDENCE_DESK_COMMISSION_TOKEN,500),provided=clean(request.headers.get('Authorization'),600).replace(/^Bearer\s+/i,'');
   if(!expected||!provided||!await secureEqual(provided,expected))return json({ok:false,error:'unauthorised'},401);
@@ -436,6 +481,8 @@ async function evidenceR12CommissionRoute(request,env,path,method){
   }
   if(path==='/v1/evidence-desk/r1-4/replacement'&&method==='POST')return json(await attachR14Replacement(env.DB,{name:'Shift Evidence Desk',role:'system'}));
   if(path==='/v1/evidence-desk/r1-4/review-packet'&&method==='GET')return json(await r14ReviewPacket(env.DB));
+  if(path==='/v1/evidence-desk/r1-5/review-packet'&&method==='GET')return json(await r15ReviewPacket(env.DB));
+  if(path==='/v1/evidence-desk/r1-5/closeout'&&method==='POST')return json(await r15Closeout(env.DB,{name:'Shift Evidence Desk',role:'system'}));
   if(method==='GET'&&path==='/v1/evidence-desk/r1-2/inbox')return json(await evidenceInbox(env.DB));
   if(method!=='POST')return json({ok:false,error:'method_not_allowed'},405);
   if(path==='/v1/evidence-desk/r1-2/commission')return json(await commissionMhraGlp1R11(env.DB,actor,{ensureSchema:false}));

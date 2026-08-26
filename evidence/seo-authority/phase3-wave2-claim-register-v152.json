@@ -1,0 +1,203 @@
+{
+  "release": "SEO-PHASE-3-WAVE-2-V1.5",
+  "generated": "2026-08-26",
+  "policy": {
+    "default": "refresh_existing_owner",
+    "new_urls": 0,
+    "amber_owner": "Matt O’Brien",
+    "red": "locked; human evidence/governance decision required",
+    "publication_rule": "every material owner/tool claim is registered before release",
+    "evidence_desk_adapter": "future; register is read-only release input"
+  },
+  "owners": [
+    "/articles/waist-size-men",
+    "/articles/protein-for-men-weight-management",
+    "/articles/exercise-on-glp1",
+    "/articles/eating-out-weight-management-men",
+    "/articles/mens-mental-health-and-weight"
+  ],
+  "tools": [
+    "/tools/bmi",
+    "/tools/waist-height",
+    "/tools/protein",
+    "/tools/calories"
+  ],
+  "claims": [
+    {
+      "id": "W2-OWNER-WAIST-001",
+      "url": "/articles/waist-size-men",
+      "surface": "owner",
+      "claim": "For adults with BMI below 35, waist-to-height ratio can add a practical estimate of central adiposity alongside BMI.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-OWNER-PROTEIN-001",
+      "url": "/articles/protein-for-men-weight-management",
+      "surface": "owner",
+      "claim": "Protein requirements are expressed relative to body weight, while individual context can change what intake is appropriate.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.gov.uk/government/publications/sacn-statement-on-expressing-fat-and-carbohydrate-recommendations/sacn-statement-on-expressing-energy-fat-and-carbohydrate-intakes-and-recommendations",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-OWNER-EXERCISE-001",
+      "url": "/articles/exercise-on-glp1",
+      "surface": "owner",
+      "claim": "Walking and suitable strengthening activity can support health and function; activity should be built progressively and adapted to health and treatment effects.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-OWNER-EATING-001",
+      "url": "/articles/eating-out-weight-management-men",
+      "surface": "owner",
+      "claim": "Energy intake across the wider eating pattern matters for weight management; one meal does not independently establish success or failure.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nhs.uk/better-health/lose-weight/calorie-counting/",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-OWNER-CONFIDENCE-001",
+      "url": "/articles/mens-mental-health-and-weight",
+      "surface": "owner",
+      "claim": "Weight, confidence and mental health can interact, but a webpage cannot diagnose causation or an individual mental-health condition.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nhs.uk/every-mind-matters/",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-BMI-001",
+      "url": "/tools/bmi",
+      "surface": "calculation",
+      "claim": "BMI equals weight in kilograms divided by height in metres squared.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-BMI-002",
+      "url": "/tools/bmi",
+      "surface": "result",
+      "claim": "Adult BMI reference bands are 18.5–24.9, 25–29.9, 30–34.9, 35–39.9 and 40 or more.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-BMI-RED-001",
+      "url": "/tools/bmi",
+      "surface": "result",
+      "claim": "A BMI result diagnoses disease, determines NHS access or establishes treatment eligibility.",
+      "risk": "red",
+      "status": "locked_prohibited",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Evidence Desk",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-WHR-001",
+      "url": "/tools/waist-height",
+      "surface": "calculation",
+      "claim": "Waist-to-height ratio equals waist circumference divided by height in the same units.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-WHR-002",
+      "url": "/tools/waist-height",
+      "surface": "result",
+      "claim": "For adults with BMI below 35, NICE bands are 0.4–0.49, 0.5–0.59 and 0.6 or more.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-WHR-RED-001",
+      "url": "/tools/waist-height",
+      "surface": "result",
+      "claim": "Waist-to-height ratio diagnoses a condition or decides treatment eligibility.",
+      "risk": "red",
+      "status": "locked_prohibited",
+      "source": "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity",
+      "owner": "Evidence Desk",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-PRO-001",
+      "url": "/tools/protein",
+      "surface": "calculation",
+      "claim": "The output is body weight multiplied by the user-selected grams-per-kilogram planning level.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.gov.uk/government/publications/sacn-statement-on-expressing-fat-and-carbohydrate-recommendations/sacn-statement-on-expressing-energy-fat-and-carbohydrate-intakes-and-recommendations",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-PRO-RED-001",
+      "url": "/tools/protein",
+      "surface": "result",
+      "claim": "The output is an individual clinical prescription or universally appropriate target.",
+      "risk": "red",
+      "status": "locked_prohibited",
+      "source": "https://www.gov.uk/government/publications/sacn-statement-on-expressing-fat-and-carbohydrate-recommendations/sacn-statement-on-expressing-energy-fat-and-carbohydrate-intakes-and-recommendations",
+      "owner": "Evidence Desk",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-CAL-001",
+      "url": "/tools/calories",
+      "surface": "calculation",
+      "claim": "The tool uses the Mifflin–St Jeor equation for adult men and a selected activity multiplier.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/2305711/",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-CAL-002",
+      "url": "/tools/calories",
+      "surface": "guidance",
+      "claim": "NHS Better Health describes reducing intake by around 600 kcal/day as a general starting point for weight loss.",
+      "risk": "amber",
+      "status": "approved_editorial",
+      "source": "https://www.nhs.uk/better-health/lose-weight/calorie-counting/",
+      "owner": "Matt O’Brien",
+      "evidence_checked": "2026-08-26"
+    },
+    {
+      "id": "W2-CAL-RED-001",
+      "url": "/tools/calories",
+      "surface": "result",
+      "claim": "The estimate is a prescribed intake, guaranteed deficit or treatment target.",
+      "risk": "red",
+      "status": "locked_prohibited",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/2305711/",
+      "owner": "Evidence Desk",
+      "evidence_checked": "2026-08-26"
+    }
+  ]
+}
