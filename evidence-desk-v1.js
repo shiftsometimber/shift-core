@@ -49,7 +49,7 @@ function sourceHostAllowed(family,url,extraHosts=[]){
 async function readJson(request){try{return await request.json()}catch{return{}}}
 
 export async function ensureEvidenceDeskSchema(DB){
-  await DB.exec(`
+  const schema=`
     CREATE TABLE IF NOT EXISTS evidence_desk_control (
       id INTEGER PRIMARY KEY CHECK(id=1),enabled INTEGER NOT NULL DEFAULT 0,ingestion_enabled INTEGER NOT NULL DEFAULT 0,
       decision_email_enabled INTEGER NOT NULL DEFAULT 0,website_publish_enabled INTEGER NOT NULL DEFAULT 0,
@@ -122,7 +122,10 @@ export async function ensureEvidenceDeskSchema(DB){
     CREATE INDEX IF NOT EXISTS idx_evidence_events_queue ON evidence_desk_events(status,risk_lane,id DESC);
     CREATE INDEX IF NOT EXISTS idx_evidence_packages_queue ON evidence_desk_packages(status,risk_lane,id DESC);
     CREATE INDEX IF NOT EXISTS idx_evidence_notifications_queue ON evidence_desk_notifications(status,id);
-  `);
+  `;
+  const statements=schema.split(';').map(statement=>statement.trim()).filter(Boolean);
+  if(typeof DB.batch==='function')await DB.batch(statements.map(statement=>DB.prepare(statement)));
+  else for(const statement of statements)await DB.prepare(statement).run();
 }
 
 const DEFAULT_SOURCES=[
