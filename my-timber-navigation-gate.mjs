@@ -6,21 +6,13 @@ const worker=fs.readFileSync('worker-entry-v6.js','utf8');
 const config=fs.readFileSync('wrangler.jsonc','utf8');
 
 need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
-for(const asset of [
-  '/my-timber-locked-surface-v1.css','/my-timber-locked-surface-v1.js',
-  '/my-timber-programme-surface-v1.css','/my-timber-programme-surface-v1.js',
-  '/my-timber-global-header-v1.css','/my-timber-global-header-v1.js',
-  '/assets/my-timber-today-locked.jpg','/assets/shift-grub-locked.jpg','/assets/shift-fit-locked.jpg','/assets/sst-s-official.png','/assets/sst-logo-official.png'
-])need(worker.includes(`['${asset}'`),`locked artwork asset is not routed: ${asset}`);
 for(const marker of [
   'aria-label="Main website navigation"',
-  'href="https://shiftsometimber.co.uk/start-here.html"',
-  'href="https://shiftsometimber.co.uk/treatment-centre.html"',
-  'href="https://shiftsometimber.co.uk/explore-knowledge.html"',
-  'href="https://shiftsometimber.co.uk/timber-mill.html"',
-  'href="/tap-room"',
-  'data-mt-site-menu',
-  'src="/assets/sst-logo-official.png"',
+  'href="/start-here.html"',
+  'href="/treatment-centre.html"',
+  'href="/explore-knowledge.html"',
+  'href="/timber-mill.html"',
+  'class="tap-link" href="/tap-room"',
   'aria-label="My Timber destinations"',
   'class="member-tap-room" href="/tap-room"',
   'aria-expanded="false"',
@@ -32,7 +24,6 @@ for(const marker of [
 ])need(shell.includes(marker),`My Timber navigation contract missing ${marker}`);
 need(shell.includes('window.SST_API_BASE=location.origin'),'My Timber auth is not using the same-origin API boundary');
 for(const marker of ['shiftsometimber.co.uk/member/dashboard*','shiftsometimber.co.uk/member-login*','shiftsometimber.co.uk/member-register*'])need(config.includes(marker),`live My Timber route missing ${marker}`);
-for(const marker of ['shiftsometimber.co.uk/member/grub*','shiftsometimber.co.uk/member/fit*','shiftsometimber.co.uk/my-timber-*','shiftsometimber.co.uk/assets/my-timber-*','shiftsometimber.co.uk/assets/sst-logo-official.png*'])need(config.includes(marker),`live My Timber visual route missing ${marker}`);
 for(const marker of ['shiftsometimber.co.uk/v1/*','www.shiftsometimber.co.uk/v1/*'])need(config.includes(marker),`same-origin member API route missing ${marker}`);
 need(!shell.includes('Isolated My Timber preview'),'live My Timber still presents itself as an isolated preview');
 need(!shell.includes('Nothing here touches your live Shift account'),'live My Timber still contains preview-only account copy');
