@@ -6,6 +6,14 @@ const clean=(value,max=5000)=>String(value??'').trim().slice(0,max);
 const sha256=value=>createHash('sha256').update(String(value)).digest('hex');
 const now=()=>new Date().toISOString();
 const parse=value=>{try{return JSON.parse(value||'null')}catch{return null}};
+function parseModelObject(value,max=40000){
+  if(value&&typeof value==='object'&&!Array.isArray(value))return value;
+  const text=clean(value,max).replace(/^```(?:json)?\s*|\s*```$/gi,'');
+  const direct=parse(text);if(direct&&typeof direct==='object'&&!Array.isArray(direct))return direct;
+  const start=text.indexOf('{'),end=text.lastIndexOf('}');
+  if(start>=0&&end>start){const embedded=parse(text.slice(start,end+1));if(embedded&&typeof embedded==='object'&&!Array.isArray(embedded))return embedded}
+  return null;
+}
 const actor=(name,role)=>({name:clean(name,200),role});
 
 export async function ensureOperationalSchema(DB){
@@ -110,9 +118,8 @@ export async function draftEvidencePackage(env,packageId,{model='@cf/meta/llama-
   const evidence=parse(state.row.evidence_json)||[],changes=parse(state.row.proposed_changes_json)||[];
   const prompt=`You are the Shift Evidence Desk drafting assistant. Return JSON only with keys pagePath, contentKey, proposedText. Draft the smallest exact replacement wording supported only by the supplied authoritative evidence. Do not invent facts, diagnose, prescribe, imply clinical review or add promotional language. Preserve risk qualifiers and urgent instructions. Package risk: ${state.row.risk_lane}. Communications class: ${state.row.communication_class}. Evidence: ${JSON.stringify(evidence)}. Change instructions: ${JSON.stringify(changes)}.`;
   const generated=await env.AI.run(model,{messages:[{role:'system',content:'Evidence-bound UK health editor. JSON only.'},{role:'user',content:prompt}],temperature:0.1,max_tokens:900});
-  const raw=clean(generated?.response||generated?.result?.response,20000).replace(/^```json\s*|\s*```$/g,'');
-  const output=parse(raw),pagePath=clean(output?.pagePath,500),contentKey=clean(output?.contentKey,500),proposedText=clean(output?.proposedText,15000);
-  if(!pagePath||!contentKey||!proposedText)return{ok:false,status:422,error:'model_output_invalid'};
+  const modelResponse=generated?.response??generated?.result?.response,output=parseModelObject(modelResponse,20000),pagePath=clean(output?.pagePath,500),contentKey=clean(output?.contentKey,500),proposedText=clean(output?.proposedText,15000);
+  if(!pagePath||!contentKey||!proposedText)return{ok:false,status:422,error:'model_output_invalid',...(env.EVIDENCE_DESK_ENV==='non-production-operational'?{diagnostic:clean(typeof modelResponse==='string'?modelResponse:JSON.stringify(modelResponse),1000)}:{})};
   const mappedTargets=changes.filter(change=>change?.pagePath&&change?.contentKey).map(change=>`${clean(change.pagePath,500)}\n${clean(change.contentKey,500)}`);
   if(!mappedTargets.includes(`${pagePath}\n${contentKey}`))return{ok:false,status:422,error:'model_target_not_mapped'};
   const finalControls=await controls(env.DB);
@@ -278,8 +285,7 @@ export async function prepareDistributionJobs(env,packageId,{destinations=null,m
   const jobs=[];
   for(const destination of requested){
     const generated=await env.AI.run(model,{messages:[{role:'system',content:'Evidence-bound UK health distribution editor. JSON only.'},{role:'user',content:distributionPrompt(state,destination,publication)}],temperature:0.1,max_tokens:1200});
-    const raw=clean(generated?.response||generated?.result?.response,40000).replace(/^```json\s*|\s*```$/g,'');
-    const output=parse(raw);if(!validDistributionPayload(destination,output))return{ok:false,status:422,error:'distribution_model_output_invalid',destination};
+    const output=parseModelObject(generated?.response??generated?.result?.response,40000);if(!validDistributionPayload(destination,output))return{ok:false,status:422,error:'distribution_model_output_invalid',destination};
     const payload={destination,sourceUrl:publication.remote_ref,sourceCopySha256:state.copySha256,...output};
     const finalControls=await controls(env.DB);
     if(!Number(finalControls.base?.enabled)||!distributionControlEnabled(finalControls.operational,destination)||(destination==='newsletter'?!Number(finalControls.base?.newsletter_enabled):!Number(finalControls.base?.social_enabled))||Number(finalControls.operational?.control_epoch)!==Number(initialControls.operational?.control_epoch))return{ok:false,status:409,error:'shutdown_during_distribution_draft'};
