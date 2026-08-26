@@ -3,6 +3,8 @@
 (function(){
   'use strict';
   if(location.pathname!=='/member/dashboard'&&location.pathname!=='/member/dashboard.html')return;
+  if(!document.querySelector('link[data-journey-checkin]')){const l=document.createElement('link');l.rel='stylesheet';l.href='/member-my-journey-checkin-v1.css?v=1';l.dataset.journeyCheckin='v1';document.head.appendChild(l)}
+  if(!document.querySelector('script[data-journey-checkin]')){const s=document.createElement('script');s.src='/member-my-journey-checkin-v1.js?v=1';s.dataset.journeyCheckin='v1';document.head.appendChild(s)}
 
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const cleanNumber=v=>Number.isFinite(Number(v))?Number(v):null;

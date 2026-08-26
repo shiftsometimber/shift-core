@@ -30,6 +30,8 @@ import {fastMemberStateRoute,authenticateMember} from './member-state-fast-v1.js
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {tapRoomRoutes} from './tap-room-v1.js';
+import {myJourneyRoutes} from './my-journey-v1.js';
+import {myJourneyCheckInRoutes,myJourneyTrendRoutes} from './my-journey-checkin-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -56,6 +58,8 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-shift-me-premium-v1.css','text/css; charset=utf-8'],
   ['/member-life-back-v1.js','application/javascript; charset=utf-8'],
   ['/member-life-back-v1.css','text/css; charset=utf-8'],
+  ['/member-my-journey-v1.js','application/javascript; charset=utf-8'],
+  ['/member-my-journey-v1.css','text/css; charset=utf-8'],
   ['/member-medicines-watch-v1.js','application/javascript; charset=utf-8'],
   ['/member-medicines-watch-v1.css','text/css; charset=utf-8'],
   ['/member-sport-v1.js','application/javascript; charset=utf-8'],
@@ -72,8 +76,10 @@ const GIT_MEMBER_ASSETS=new Map([
   ,['/tap-room-treatment.webp','image/webp']
   ,['/tap-room-confidence.webp','image/webp']
   ,['/tap-room-general.webp','image/webp']
+  ,['/member-my-journey-checkin-v1.js','application/javascript; charset=utf-8']
+  ,['/member-my-journey-checkin-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path.startsWith('/v1/tap-room')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
+function isMemberProductPath(path){return path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/tap-room')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
@@ -151,8 +157,11 @@ export default {
     if(authRecovery)return withMemberCors(authRecovery,request);
 
     const fastMemberState=await fastMemberStateRoute(request,env);if(fastMemberState)return withMemberCors(fastMemberState,request);
+    const myJourney=await myJourneyRoutes(request,env);if(myJourney)return withMemberCors(myJourney,request);
     const fitReminders=await fitReminderRoutes(request,env,ctx);if(fitReminders)return withMemberCors(fitReminders,request);
     const tapRoom=await tapRoomRoutes(request,env,ctx);if(tapRoom)return withMemberCors(tapRoom,request);
+    const journeyCheckIn=await myJourneyCheckInRoutes(request,env,ctx);if(journeyCheckIn)return withMemberCors(journeyCheckIn,request);
+    const journeyTrends=await myJourneyTrendRoutes(request,env);if(journeyTrends)return withMemberCors(journeyTrends,request);
     const healthErasure=await privacyHealthErasureRoute(request,env,ctx,(req,e,c)=>hq.fetch(req,e,c));if(healthErasure)return withMemberCors(healthErasure,request);
     const shiftMe=await shiftMeRoutes(request,env,ctx);if(shiftMe)return withMemberCors(shiftMe,request);
     const sportClubhouse=await sportClubhouseRoutes(request,env);if(sportClubhouse)return withMemberCors(sportClubhouse,request);
