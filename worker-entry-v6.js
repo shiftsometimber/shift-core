@@ -26,7 +26,7 @@ import {shiftMe3DProofRoutes} from './shift-me-3d-proof-v1.js';
 import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
 import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
-import {fastMemberStateRoute} from './member-state-fast-v1.js';
+import {fastMemberStateRoute,authenticateMember} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {tapRoomRoutes} from './tap-room-v1.js';
@@ -182,9 +182,8 @@ export default {
 };
 
 async function authenticateTapRoomPage(request,env){
-  const raw=((request.headers.get('Cookie')||'').match(/(?:^|;\s*)sst_session=([^;]+)/)||[])[1];if(!raw)return Response.redirect(new URL('/member-login?returnTo=%2Ftap-room',request.url),302);
-  const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(decodeURIComponent(raw)))),hash=[...digest].map(x=>x.toString(16).padStart(2,'0')).join('');
-  const member=await env.DB.prepare(`SELECT a.email_verified,ms.user_id profile_id FROM user_sessions s JOIN user_auth a ON a.user_id=s.user_id LEFT JOIN member_state ms ON ms.user_id=s.user_id WHERE s.token_hash=? AND s.revoked_at IS NULL AND s.expires_at>?`).bind(hash,new Date().toISOString()).first();
+  const auth=await authenticateMember(request,env);if(auth.response)return Response.redirect(new URL('/member-login?returnTo=%2Ftap-room',request.url),302);
+  const member=await env.DB.prepare(`SELECT a.email_verified,ms.user_id profile_id FROM user_auth a LEFT JOIN member_state ms ON ms.user_id=a.user_id WHERE a.user_id=?`).bind(auth.userId).first();
   if(!Number(member?.email_verified)||!member?.profile_id)return Response.redirect(new URL('/member/dashboard?tapRoom=verified-member-required',request.url),302);return null;
 }
 
