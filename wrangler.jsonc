@@ -10,6 +10,12 @@
 
   "routes": [
     {"pattern": "api.shiftsometimber.co.uk","custom_domain": true},
+    {"pattern": "shiftsometimber.co.uk/member/dashboard*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member/dashboard*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-login*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-login*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-register*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-register*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/shift-me-3d-proof*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "www.shiftsometimber.co.uk/shift-me-3d-proof*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/shift-me*","zone_name": "shiftsometimber.co.uk"},

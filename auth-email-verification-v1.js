@@ -3,7 +3,6 @@ import {recordAuthDelivery} from './auth-delivery-v1.js';
 const VERIFY_TTL_MS=24*60*60*1000;
 const DEFAULT_FROM='welcome@shiftsometimber.co.uk';
 const DEFAULT_SITE='https://shiftsometimber.co.uk';
-const CLEAR_SESSION='sst_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax';
 
 export async function handleEmailVerification(request,env,ctx,next){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
@@ -29,7 +28,7 @@ async function registerWithVerification(request,env,ctx,next){
   const delivery=await issueVerification(env,{userId,email,firstName:data?.user?.firstName||data?.user?.first_name||supplied.firstName},new URL(request.url).origin);
   await recordAudit(env.DB,userId,'auth.email_verification_required',{delivery});
 
-  const headers=new Headers(response.headers);headers.set('Set-Cookie',CLEAR_SESSION);headers.set('Cache-Control','no-store');
+  const headers=new Headers(response.headers);headers.set('Set-Cookie',clearSessionCookie(request));appendLegacyHostCookieClear(headers,request);headers.set('Cache-Control','no-store');
   return new Response(JSON.stringify({...data,emailVerified:false,verificationRequired:true,verificationDelivery:delivery,message:'Check your email and verify your address before signing in.'}),{status:response.status,headers:{...Object.fromEntries(headers),'Content-Type':'application/json; charset=utf-8'}});
 }
 
@@ -40,7 +39,7 @@ async function loginWithVerification(request,env,ctx,next){
   if(data.emailVerified!==false)return response;
   const userId=Number(data?.user?.id||0),stamp=new Date().toISOString();
   if(userId)await env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL').bind(stamp,userId).run();
-  const headers=new Headers(response.headers);headers.set('Set-Cookie',CLEAR_SESSION);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');
+  const headers=new Headers(response.headers);headers.set('Set-Cookie',clearSessionCookie(request));appendLegacyHostCookieClear(headers,request);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');
   return new Response(JSON.stringify({ok:false,error:'email_verification_required',emailVerified:false,verificationRequired:true,message:'Verify your email address before signing in.'}),{status:403,headers});
 }
 
@@ -100,6 +99,8 @@ async function sendWelcome(env,user){
 }
 
 function verificationFailure(request,env,error,message){if(request.method==='GET')return Response.redirect(`${siteUrl(env)}/member-login.html?verification=${encodeURIComponent(error)}`,302);return json({ok:false,error,message},400)}
+function clearSessionCookie(request){const host=new URL(request.url).hostname,domain=host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk')?'; Domain=.shiftsometimber.co.uk':'';return `sst_session=; Path=/${domain}; Max-Age=0; HttpOnly; Secure; SameSite=Lax`}
+function appendLegacyHostCookieClear(headers,request){const host=new URL(request.url).hostname;if(host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk'))headers.append('Set-Cookie','sst_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax')}
 async function recordAudit(DB,userId,action,metadata){try{await DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,action,'user',String(userId),JSON.stringify(metadata||{})).run()}catch(e){console.warn('auth_verification_audit_warning',e?.message)}}
 function siteUrl(env){return String(env.PUBLIC_SITE_URL||DEFAULT_SITE).replace(/\/$/,'')}
 function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||''))}

@@ -14,7 +14,8 @@ export async function fastMemberRegister(request,env){
 
   const firstName=clean(body.firstName,100),lastName=clean(body.lastName,100),phone=clean(body.phone,50),dateOfBirth=clean(body.dateOfBirth,20),postcode=clean(body.postcode,20),source=clean(body.source,100)||'website';
   const autoVerify=String(env.AUTO_VERIFY_EMAIL||'true').toLowerCase()==='true';
-  const now=new Date().toISOString(),expires=new Date(Date.now()+30*24*60*60*1000).toISOString();
+  const rememberMe=body?.rememberMe===true,ttlMs=rememberMe?90*24*60*60*1000:12*60*60*1000;
+  const now=new Date().toISOString(),expires=new Date(Date.now()+ttlMs).toISOString();
   const token=randomToken(32),ip=request.headers.get('CF-Connecting-IP')||'';
 
   // CPU security work overlaps the one duplicate/orphan lookup. Password strength
@@ -47,7 +48,7 @@ export async function fastMemberRegister(request,env){
       env.DB.prepare(`INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)`).bind(user.id,sessionHash,expires,now,now)
     );
     await env.DB.batch(ops);
-    return json({ok:true,user:publicUser(user),emailVerified:autoVerify},201,{'Set-Cookie':sessionCookie(token,expires),'X-Shift-Register-Path':'fast-v2'});
+    const response=json({ok:true,user:publicUser(user),emailVerified:autoVerify,remembered:rememberMe},201,{'Set-Cookie':sessionCookie(token,expires,request,rememberMe),'X-Shift-Register-Path':'fast-v2'});clearLegacyHostCookie(response,request);return response;
   }catch(e){
     console.warn('fast_member_register_fallback',String(e?.message||e).slice(0,240));
     return null;
@@ -58,7 +59,8 @@ function publicUser(u){return{id:u.id,email:u.email,firstName:u.first_name,lastN
 function clean(v,max=500){const s=String(v??'').trim();return s?s.slice(0,max):null}
 function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||''))}
 function json(data,status=200,extra={}){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...extra}})}
-function sessionCookie(token,expires){return `sst_session=${encodeURIComponent(token)}; Path=/; Expires=${new Date(expires).toUTCString()}; HttpOnly; Secure; SameSite=Lax`}
+function sessionCookie(token,expires,request,rememberMe){const host=new URL(request.url).hostname,domain=host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk')?'; Domain=.shiftsometimber.co.uk':'';const persistence=rememberMe?`; Expires=${new Date(expires).toUTCString()}; Max-Age=${Math.max(0,Math.floor((Date.parse(expires)-Date.now())/1000))}`:'';return `sst_session=${encodeURIComponent(token)}; Path=/${domain}${persistence}; HttpOnly; Secure; SameSite=Lax`}
+function clearLegacyHostCookie(response,request){const host=new URL(request.url).hostname;if(host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk'))response.headers.append('Set-Cookie','sst_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax')}
 async function hashPassword(password){const iterations=100000,salt=crypto.getRandomValues(new Uint8Array(16)),key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']),bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations},key,256);return `pbkdf2$${iterations}$${base64url(salt)}$${base64url(new Uint8Array(bits))}`}
 async function sha256Hex(value){const data=new TextEncoder().encode(String(value)),digest=new Uint8Array(await crypto.subtle.digest('SHA-256',data));return[...digest].map(b=>b.toString(16).padStart(2,'0')).join('')}
 function randomToken(bytes=32){return base64url(crypto.getRandomValues(new Uint8Array(bytes)))}

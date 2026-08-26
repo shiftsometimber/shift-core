@@ -168,8 +168,8 @@ async function register(request, env) {
     }
 
     await audit(env, user.id, 'auth.register', 'user', String(user.id), request);
-    const session = await createSession(env, user.id, request);
-    return json({ ok: true, user: publicUser(user), emailVerified: autoVerify }, 201, { 'Set-Cookie': session.cookie });
+    const session = await createSession(env,user.id,request,body.rememberMe===true);
+    const response=json({ ok: true, user: publicUser(user), emailVerified: autoVerify }, 201, { 'Set-Cookie': session.cookie });appendLegacyHostCookieClear(response,request);return response;
   } catch (e) {
     console.error('register_error', e?.message, e?.stack);
     return json({ ok: false, error: 'registration_failed', message: 'We could not create your account. Please try again.' }, 500);
@@ -203,8 +203,8 @@ async function login(request, env) {
     env.DB.prepare('UPDATE member_status SET last_activity_at=?, updated_at=? WHERE user_id=?').bind(isoNow(), isoNow(), row.id)
   ]);
   await audit(env, row.id, 'auth.login', 'user', String(row.id), request);
-  const session = await createSession(env, row.id, request);
-  return json({ ok: true, user: publicUser(row), emailVerified: !!row.email_verified }, 200, { 'Set-Cookie': session.cookie });
+  const session = await createSession(env,row.id,request,body.rememberMe===true);
+  const response=json({ ok: true, user: publicUser(row), emailVerified: !!row.email_verified }, 200, { 'Set-Cookie': session.cookie });appendLegacyHostCookieClear(response,request);return response;
 }
 
 async function logout(request, env) {
@@ -213,7 +213,7 @@ async function logout(request, env) {
     const hash = await sha256Hex(token);
     await env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE token_hash=? AND revoked_at IS NULL').bind(isoNow(), hash).run();
   }
-  return json({ ok: true }, 200, { 'Set-Cookie': clearSessionCookie() });
+  const response=json({ ok: true }, 200, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;
 }
 
 async function requestPasswordReset(request, env) {
@@ -464,7 +464,7 @@ async function privacyDeleteRequest(request, env) {
   await env.DB.prepare(`INSERT INTO data_requests(user_id,request_type,status,received_at) VALUES(?,?,?,?)`).bind(auth.user.id,'deletion','received',isoNow()).run();
   await env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL').bind(isoNow(), auth.user.id).run();
   await audit(env, auth.user.id, 'privacy.deletion_requested', 'user', String(auth.user.id), request);
-  return json({ ok:true, status:'received' }, 202, { 'Set-Cookie': clearSessionCookie() });
+  const response=json({ ok:true, status:'received' }, 202, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;
 }
 
 
@@ -1399,17 +1399,17 @@ async function requireUser(request, env) {
   if (!token) return { response: json({ ok:false, error:'authentication_required' }, 401) };
   const hash = await sha256Hex(token);
   const row = await env.DB.prepare(`SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?`).bind(hash).first();
-  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return { response: json({ok:false,error:'session_expired'},401,{ 'Set-Cookie':clearSessionCookie() }) };
+  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return { response: json({ok:false,error:'session_expired'},401,{ 'Set-Cookie':clearSessionCookie(request) }) };
   await env.DB.prepare('UPDATE user_sessions SET last_used_at=? WHERE id=?').bind(isoNow(),row.session_id).run();
   return { user: row };
 }
 
-async function createSession(env, userId, request) {
+async function createSession(env,userId,request,rememberMe=false) {
   const token = randomToken(32);
   const hash = await sha256Hex(token);
-  const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+  const expires = new Date(Date.now() + (rememberMe?90*24*60*60*1000:12*60*60*1000)).toISOString();
   await env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)').bind(userId,hash,expires,isoNow(),isoNow()).run();
-  return { token, cookie: sessionCookie(token, expires) };
+  return { token, cookie: sessionCookie(token,expires,request,rememberMe) };
 }
 
 async function userWithStatus(env, userId) {
@@ -1610,10 +1610,13 @@ function sessionTokenFromRequest(request) {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
-function sessionCookie(token, expires) {
-  return `sst_session=${encodeURIComponent(token)}; Path=/; Expires=${new Date(expires).toUTCString()}; HttpOnly; Secure; SameSite=Lax`;
+function sessionCookie(token,expires,request,rememberMe) {
+  const host=new URL(request.url).hostname,domain=host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk')?'; Domain=.shiftsometimber.co.uk':'';
+  const persistence=rememberMe?`; Expires=${new Date(expires).toUTCString()}; Max-Age=${Math.max(0,Math.floor((Date.parse(expires)-Date.now())/1000))}`:'';
+  return `sst_session=${encodeURIComponent(token)}; Path=/${domain}${persistence}; HttpOnly; Secure; SameSite=Lax`;
 }
-function clearSessionCookie() { return 'sst_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax'; }
+function clearSessionCookie(request) { const host=new URL(request.url).hostname,domain=host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk')?'; Domain=.shiftsometimber.co.uk':'';return `sst_session=; Path=/${domain}; Max-Age=0; HttpOnly; Secure; SameSite=Lax`; }
+function appendLegacyHostCookieClear(response,request){const host=new URL(request.url).hostname;if(host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk'))response.headers.append('Set-Cookie','sst_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax')}
 
 async function hashPassword(password) {
   const iterations = 100000;

@@ -8,6 +8,9 @@ need(login.includes("hash:'SHA-256'")&&login.includes("scheme!==PBKDF2_SCHEME"),
 need(login.includes('constantTimeEqual'),'password hash comparison is not constant-time');
 need(login.includes('const LOCK_AFTER=8')&&login.includes('15*60*1000'),'existing 8-attempt/15-minute lockout contract weakened');
 need(login.includes("HttpOnly; Secure; SameSite=Lax"),'session cookie security contract weakened');
+need(login.includes('REMEMBER_DAYS=90')&&login.includes('STANDARD_HOURS=12'),'remembered and standard session lifetimes are not bounded');
+need(login.includes('body?.rememberMe===true')&&login.includes('Domain=.shiftsometimber.co.uk')&&login.includes('Max-Age='),'remember-me cookie does not persist safely across the site and API subdomain');
+need(login.includes('clearLegacyHostCookie(response,request)'),'login does not remove the superseded API-only cookie after creating the shared-site cookie');
 need(login.includes('crypto.getRandomValues')&&login.includes("token_hash"),'session entropy/hash contract weakened');
 need(login.includes('await env.DB.batch([')&&login.includes("'auth.login'")&&login.includes("INSERT INTO user_sessions"),'successful post-password mutations are not collapsed into one D1 batch');
 need(login.includes("error:'email_verification_required'")&&login.includes('verificationRequired:true'),'fast login no longer blocks unverified accounts');
@@ -18,4 +21,4 @@ need(entry.includes('function deferAnalytics(ctx,work,label)')&&entry.includes('
 need(entry.includes("deferAnalytics(ctx,()=>recordFinalLogin(loginAnalyticsRequest,responseCopy,env),'analytics_login')"),'fast login bypasses deferred product analytics login/return evidence');
 need(!entry.includes('if(fastLogin){await recordFinalLogin'),'fast login analytics returned to the member response critical path');
 if(fail.length){console.error(JSON.stringify({proof:'G5_012_LOGIN_FASTPATH_SOURCE',status:'FAIL',fail},null,2));process.exit(1)}
-console.log(JSON.stringify({proof:'G5_012_LOGIN_FASTPATH_SOURCE',status:'PASS',checks:14,boundary:'same PBKDF2, lockout, verified-email and session-cookie security; successful post-password mutations remain batched; analytics is retained asynchronously after the auth response'},null,2));
+console.log(JSON.stringify({proof:'G5_012_LOGIN_FASTPATH_SOURCE',status:'PASS',checks:17,boundary:'same PBKDF2, lockout, verified-email and session-cookie security; successful post-password mutations remain batched; analytics is retained asynchronously after the auth response'},null,2));

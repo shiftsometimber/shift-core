@@ -3,7 +3,8 @@
 // post-password D1 mutations into one batch instead of three serial round trips.
 const LOGIN_PATH='/v1/auth/login';
 const PBKDF2_SCHEME='pbkdf2';
-const SESSION_DAYS=30;
+const REMEMBER_DAYS=90;
+const STANDARD_HOURS=12;
 const LOCK_AFTER=8;
 const LOCK_MS=15*60*1000;
 
@@ -27,7 +28,8 @@ export async function fastMemberLogin(request,env){
     await env.DB.prepare('UPDATE user_auth SET failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(now,row.id).run();
     return json({ok:false,error:'email_verification_required',emailVerified:false,verificationRequired:true,message:'Verify your email address before signing in.'},403);
   }
-  const now=new Date().toISOString(),expires=new Date(Date.now()+SESSION_DAYS*24*60*60*1000).toISOString();
+  const rememberMe=body?.rememberMe===true,ttlMs=rememberMe?REMEMBER_DAYS*24*60*60*1000:STANDARD_HOURS*60*60*1000;
+  const now=new Date().toISOString(),expires=new Date(Date.now()+ttlMs).toISOString();
   const token=randomToken(32),tokenHash=await sha256Hex(token),ip=request.headers.get('CF-Connecting-IP')||'',ipHash=ip?`sha256:${await sha256Hex(ip)}`:null;
   await env.DB.batch([
     env.DB.prepare('UPDATE user_auth SET failed_login_attempts=0,locked_until=NULL,last_login_at=?,updated_at=? WHERE user_id=?').bind(now,now,row.id),
@@ -35,7 +37,7 @@ export async function fastMemberLogin(request,env){
     env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)').bind(row.id,'auth.login','user',String(row.id),'{}',ipHash,now),
     env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)').bind(row.id,tokenHash,expires,now,now)
   ]);
-  return json({ok:true,user:publicUser(row),emailVerified:true},200,{'Set-Cookie':sessionCookie(token,expires)});
+  const response=json({ok:true,user:publicUser(row),emailVerified:true,remembered:rememberMe},200,{'Set-Cookie':sessionCookie(token,expires,request,rememberMe)});clearLegacyHostCookie(response,request);return response;
 }
 
 async function verifyPassword(password,stored){
@@ -50,7 +52,8 @@ async function verifyPassword(password,stored){
 }
 function constantTimeEqual(a,b){if(a.length!==b.length)return false;let diff=0;for(let i=0;i<a.length;i++)diff|=a[i]^b[i];return diff===0}
 function publicUser(u){return{id:u.id,email:u.email,firstName:u.first_name,lastName:u.last_name,phone:u.phone,dateOfBirth:u.date_of_birth,postcode:u.postcode,createdAt:u.created_at}}
-function sessionCookie(token,expires){return `sst_session=${encodeURIComponent(token)}; Path=/; Expires=${new Date(expires).toUTCString()}; HttpOnly; Secure; SameSite=Lax`}
+function sessionCookie(token,expires,request,rememberMe){const host=new URL(request.url).hostname,domain=host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk')?'; Domain=.shiftsometimber.co.uk':'';const persistence=rememberMe?`; Expires=${new Date(expires).toUTCString()}; Max-Age=${Math.max(0,Math.floor((Date.parse(expires)-Date.now())/1000))}`:'';return `sst_session=${encodeURIComponent(token)}; Path=/${domain}${persistence}; HttpOnly; Secure; SameSite=Lax`}
+function clearLegacyHostCookie(response,request){const host=new URL(request.url).hostname;if(host==='shiftsometimber.co.uk'||host.endsWith('.shiftsometimber.co.uk'))response.headers.append('Set-Cookie','sst_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax')}
 function randomToken(bytes){const a=crypto.getRandomValues(new Uint8Array(bytes));return base64url(a)}
 async function sha256Hex(value){const bytes=typeof value==='string'?new TextEncoder().encode(value):value;const hash=new Uint8Array(await crypto.subtle.digest('SHA-256',bytes));return [...hash].map(b=>b.toString(16).padStart(2,'0')).join('')}
 function base64url(bytes){let s='';for(const b of bytes)s+=String.fromCharCode(b);return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}

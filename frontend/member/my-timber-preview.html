@@ -4,30 +4,50 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <title>My Timber Today — isolated preview</title>
+  <title>My Timber | Shift Some Timber</title>
   <link rel="stylesheet" href="/member-p0-v1.css?v=7">
   <link rel="stylesheet" href="/member-today-premium-v1.css?v=daily-shift-v2">
   <style>
-    :root{color-scheme:dark;--ink:#e9e5dc;--muted:#a9ad9f;--sage:#89927a;--panel:#151715}*{box-sizing:border-box}body{margin:0;background:#050505;color:var(--ink);font-family:Arial,sans-serif}.preview-head{padding:18px 20px;border-bottom:1px solid #707762;display:flex;justify-content:space-between;gap:16px;align-items:center}.preview-head strong{letter-spacing:.08em}.preview-head span,.muted{color:var(--muted)}.preview-wrap{width:min(390px,100%);margin:auto;padding:16px 10px 64px}.preview-auth{background:#171a17;border:1px solid #707762;border-radius:20px;padding:22px}.preview-auth[hidden]{display:none}.preview-auth h1,.preview-member h1{font-size:clamp(34px,10vw,56px);line-height:1.02;margin:0 0 12px}.preview-auth p{color:#c5c2b9;line-height:1.55}.preview-auth form{display:grid;gap:12px;margin-top:22px}.preview-auth label{display:grid;gap:6px;font-weight:700}.preview-auth input{width:100%;min-height:50px;padding:12px 14px;border:1px solid #707762;border-radius:12px;background:#050505;color:var(--ink);font:inherit}.preview-auth button,.mt-button{min-height:52px;border:1px solid #89927a;border-radius:16px;padding:13px 16px;background:var(--sage);color:#050505;font-weight:900;font-size:16px;text-align:left}.preview-auth button{border-radius:999px;text-align:center}.preview-auth button:disabled,.mt-button:disabled{opacity:.55}.preview-status{min-height:24px}.preview-note,.eyebrow{font-size:13px;color:var(--muted);letter-spacing:.12em;font-weight:800}.preview-member{display:none}.preview-member.is-ready{display:block}#panel-today{display:block!important}#todayActions{min-height:280px}.mt-grid,.mt-actions{display:grid;gap:12px;margin-top:22px}.mt-button.secondary{background:var(--panel);color:var(--ink)}.mt-card{border:1px solid #727a67;border-radius:18px;padding:18px;background:var(--panel)}.mt-card h2{font-size:23px;margin:0 0 8px}.mt-card p{margin:6px 0;line-height:1.45}.mt-why{border-left:3px solid var(--sage);padding-left:12px;color:#c9c7bf;margin:18px 0}.mt-back{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;padding:14px 0}.mt-saved{background:var(--sage);color:#050505;border-radius:18px;padding:18px}.mt-saved h2{margin:0 0 8px}.mt-error{border:1px solid #a97770;padding:16px;border-radius:14px}#panel-today.mt-frontdoor-on{margin:0;padding:0}.mt-arrival{grid-template-columns:1fr;min-height:300px;padding:26px 22px}.mt-arrival h2{font-size:3.65rem}.mt-live-mark{display:flex;width:max-content;min-width:0;padding:10px 13px;align-items:center}.mt-live-mark b{font-size:1rem}.mt-now{grid-template-columns:1fr;gap:17px;margin:10px 0;padding:24px 20px}.mt-now h3{font-size:2.4rem}.mt-now-action{width:100%;min-width:0}.mt-real-plan{display:flex;gap:10px;overflow-x:auto;padding-right:34px;scroll-snap-type:x mandatory}.mt-real-card{flex:0 0 86%;min-height:220px;padding:22px;scroll-snap-align:start}.mt-real-card h3{font-size:2rem}.mt-change{grid-template-columns:1fr;padding:20px}.mt-change>div:last-child{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.mt-change button{flex:0 0 auto}.mt-today-footer{align-items:flex-start;flex-direction:column}
+    :root{color-scheme:dark;--ink:#e9e5dc;--muted:#a9ad9f;--sage:#89927a;--panel:#151715}*{box-sizing:border-box}body{margin:0;background:#050505;color:var(--ink);font-family:Arial,sans-serif}.preview-head{position:sticky;top:0;z-index:50;padding:12px max(18px,4vw);border-bottom:1px solid #707762;display:flex;justify-content:space-between;gap:16px;align-items:center;background:#e7e3da;color:#050505}.preview-brand{color:#050505;text-decoration:none;font-weight:950;letter-spacing:.08em;white-space:nowrap}.preview-menu-button{display:none;min-height:44px;padding:8px 14px;border:1px solid #050505;border-radius:999px;background:#050505;color:#e7e3da;font:inherit;font-weight:900}.preview-site-nav{display:flex;align-items:center;justify-content:flex-end;gap:6px}.preview-site-nav a{min-height:42px;display:flex;align-items:center;padding:8px 11px;border-radius:999px;color:#050505;text-decoration:none;font-size:14px;font-weight:800}.preview-site-nav a:hover,.preview-site-nav a:focus-visible{background:#707762;color:#050505}.preview-site-nav .tap-link{border:1px solid #707762;background:#707762;color:#050505}.preview-wrap{width:min(760px,100%);margin:auto;padding:22px 14px 72px}.preview-auth{max-width:440px;margin:auto;background:#171a17;border:1px solid #707762;border-radius:20px;padding:22px}.preview-auth[hidden]{display:none}.preview-auth h1,.preview-member h1{font-size:clamp(34px,8vw,56px);line-height:1.02;margin:0 0 12px}.preview-auth p{color:#c5c2b9;line-height:1.55}.preview-auth form{display:grid;gap:12px;margin-top:22px}.preview-auth label{display:grid;gap:6px;font-weight:700}.preview-auth input{width:100%;min-height:50px;padding:12px 14px;border:1px solid #707762;border-radius:12px;background:#050505;color:var(--ink);font:inherit}.preview-auth button,.mt-button{min-height:52px;border:1px solid #89927a;border-radius:16px;padding:13px 16px;background:var(--sage);color:#050505;font-weight:900;font-size:16px;text-align:left}.preview-auth button{border-radius:999px;text-align:center}.preview-auth button:disabled,.mt-button:disabled{opacity:.55}.preview-status{min-height:24px}.preview-note,.eyebrow{font-size:13px;color:var(--muted);letter-spacing:.12em;font-weight:800}.preview-member{display:none}.preview-member.is-ready{display:block}.member-quick-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0 0 18px}.member-quick-nav a{min-height:54px;display:flex;align-items:center;justify-content:center;padding:11px 12px;border:1px solid #707762;border-radius:14px;background:#151715;color:#e9e5dc;text-align:center;text-decoration:none;font-weight:900}.member-quick-nav a:hover,.member-quick-nav a:focus-visible{background:#707762;color:#050505}.member-quick-nav .member-tap-room{background:#707762;color:#050505}#panel-today{display:block!important}#todayActions{min-height:280px}.mt-grid,.mt-actions{display:grid;gap:12px;margin-top:22px}.mt-button.secondary{background:var(--panel);color:var(--ink)}.mt-card{border:1px solid #727a67;border-radius:18px;padding:18px;background:var(--panel)}.mt-card h2{font-size:23px;margin:0 0 8px}.mt-card p{margin:6px 0;line-height:1.45}.mt-why{border-left:3px solid var(--sage);padding-left:12px;color:#c9c7bf;margin:18px 0}.mt-back{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;padding:14px 0}.mt-saved{background:var(--sage);color:#050505;border-radius:18px;padding:18px}.mt-saved h2{margin:0 0 8px}.mt-error{border:1px solid #a97770;padding:16px;border-radius:14px}#panel-today.mt-frontdoor-on{margin:0;padding:0}.mt-arrival{grid-template-columns:1fr;min-height:300px;padding:26px 22px}.mt-arrival h2{font-size:3.65rem}.mt-live-mark{display:flex;width:max-content;min-width:0;padding:10px 13px;align-items:center}.mt-live-mark b{font-size:1rem}.mt-now{grid-template-columns:1fr;gap:17px;margin:10px 0;padding:24px 20px}.mt-now h3{font-size:2.4rem}.mt-now-action{width:100%;min-width:0}.mt-real-plan{display:flex;gap:10px;overflow-x:auto;padding-right:34px;scroll-snap-type:x mandatory}.mt-real-card{flex:0 0 86%;min-height:220px;padding:22px;scroll-snap-align:start}.mt-real-card h3{font-size:2rem}.mt-change{grid-template-columns:1fr;padding:20px}.mt-change>div:last-child{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.mt-change button{flex:0 0 auto}.mt-today-footer{align-items:flex-start;flex-direction:column}@media(max-width:900px){.preview-menu-button{display:block}.preview-site-nav{position:absolute;top:100%;left:0;right:0;display:none;padding:10px 14px 14px;background:#e7e3da;border-bottom:1px solid #707762;box-shadow:0 12px 22px rgba(5,5,5,.22)}.preview-site-nav[data-open="true"]{display:grid;grid-template-columns:1fr 1fr}.preview-site-nav a{justify-content:center;border:1px solid rgba(112,119,98,.45)}}@media(max-width:560px){.preview-head{padding:10px 12px}.preview-brand{font-size:14px}.preview-site-nav[data-open="true"]{grid-template-columns:1fr}.preview-wrap{padding:14px 10px 68px}.member-quick-nav{grid-template-columns:1fr 1fr}.mt-arrival h2{font-size:3rem}}
+    .preview-auth .remember-choice{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer}.preview-auth .remember-choice input{width:22px;height:22px;min-height:22px;padding:0;accent-color:#89927a}
   </style>
 </head>
 <body>
-  <header class="preview-head"><strong>SHIFT SOME TIMBER</strong><span>Isolated My Timber preview</span></header>
+  <header class="preview-head">
+    <a class="preview-brand" href="/" aria-label="Shift Some Timber home">SHIFT SOME TIMBER</a>
+    <button class="preview-menu-button" id="previewMenuButton" type="button" aria-expanded="false" aria-controls="previewSiteNav">Menu</button>
+    <nav class="preview-site-nav" id="previewSiteNav" aria-label="Main website navigation">
+      <a href="/start-here.html">Start Here</a>
+      <a href="/treatment-centre.html">Treatment Centre</a>
+      <a href="/explore-knowledge.html">Knowledge</a>
+      <a href="/timber-mill.html">Timber Mill</a>
+      <a class="tap-link" href="/tap-room">Tap Room</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
   <main class="preview-wrap">
     <section class="preview-auth" id="previewAuth">
-      <p class="preview-note">PREVIEW ACCOUNT</p>
+      <p class="preview-note">MY TIMBER</p>
       <h1>Open My Timber.</h1>
-      <p>Create a disposable preview account or sign back into one you already made. Nothing here touches your live Shift account.</p>
+      <p>Sign in to your private Shift account, or create one if you are new here.</p>
       <form id="previewRegister">
         <label>First name<input name="firstName" autocomplete="given-name" value="Matt" required></label>
         <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
         <label>Password<input name="password" type="password" autocomplete="new-password" minlength="10" placeholder="At least 10 characters" required></label>
-        <button type="submit" data-auth="register">Create preview account</button>
-        <button type="button" data-auth="login">Sign in to preview</button>
+        <label class="remember-choice"><input name="rememberMe" type="checkbox" checked><span>Keep me signed in on this device</span></label>
+        <button type="submit" data-auth="register">Create account</button>
+        <button type="button" data-auth="login">Sign in</button>
         <p class="preview-status" id="previewStatus" role="status" aria-live="polite"></p>
       </form>
     </section>
     <section class="preview-member" id="previewMember">
+      <nav class="member-quick-nav" aria-label="My Timber destinations">
+        <a href="/member/dashboard">Today</a>
+        <a href="/member/grub">Grub</a>
+        <a href="/member/fit">Fit</a>
+        <a class="member-tap-room" href="/tap-room">Tap Room</a>
+      </nav>
       <section class="mp-panel" id="panel-today" aria-labelledby="todayTitle">
         <p class="preview-note">MY TIMBER · TODAY</p>
         <h1 id="todayTitle">What do you need help sorting?</h1>
@@ -35,14 +55,18 @@
       </section>
     </section>
   </main>
-  <script>window.SST_API_BASE=window.location.origin;</script>
+  <script>window.SST_API_BASE=location.hostname==='shiftsometimber.co.uk'||location.hostname.endsWith('.shiftsometimber.co.uk')?'https://api.shiftsometimber.co.uk':location.origin;</script>
   <script src="/api-adapter-v33d.js?v=preview-1"></script>
   <script>
     (function(){
+      const menuButton=document.getElementById('previewMenuButton'),siteNav=document.getElementById('previewSiteNav');
+      menuButton.addEventListener('click',()=>{const open=siteNav.dataset.open!=='true';siteNav.dataset.open=String(open);menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'Close':'Menu'});
+      siteNav.addEventListener('click',()=>{siteNav.dataset.open='false';menuButton.setAttribute('aria-expanded','false');menuButton.textContent='Menu'});
       const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus'),buttons=[...form.querySelectorAll('button[data-auth]')];
-      async function showMember(){auth.hidden=true;member.classList.add('is-ready');try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}const s=document.createElement('script');s.src='/member-my-timber-problem-v1.js?v=daily-shift-v2';document.body.appendChild(s)}
+      function requestedDestination(){const params=new URLSearchParams(location.search),raw=params.get('returnTo')||params.get('next')||'';return /^\/(?!\/)/.test(raw)&&!raw.startsWith('/member-login')?raw:''}
+      async function showMember(){const destination=requestedDestination();if(destination){location.replace(destination);return}auth.hidden=true;member.classList.add('is-ready');try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}const s=document.createElement('script');s.src='/member-my-timber-problem-v1.js?v=daily-shift-v2';document.body.appendChild(s)}
       async function existing(){try{await SST_API.getMe();showMember()}catch{auth.hidden=false}}
-      async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating isolated preview account…';try{const data=Object.fromEntries(new FormData(form).entries());data.source='my-timber-hosted-preview';await SST_API[mode](data);showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in to preview”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
+      async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating your account…';try{const data=Object.fromEntries(new FormData(form).entries());data.rememberMe=form.elements.rememberMe.checked;data.source='my-timber';await SST_API[mode](data);showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
       form.addEventListener('submit',event=>{event.preventDefault();authenticate('register')});
       form.querySelector('[data-auth="login"]').addEventListener('click',()=>authenticate('login'));
       existing();
