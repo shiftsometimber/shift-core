@@ -2,19 +2,21 @@ import fs from 'node:fs';
 
 const need=(ok,message)=>{if(!ok)throw new Error(message)};
 const shell=fs.readFileSync('frontend/member/my-timber-preview.html','utf8');
+const grub=fs.readFileSync('frontend/member/member-grub.html','utf8');
+const fit=fs.readFileSync('frontend/member/member-fit.html','utf8');
+const visual=fs.readFileSync('frontend/member/my-timber-v11.css','utf8');
 const worker=fs.readFileSync('worker-entry-v6.js','utf8');
 const config=fs.readFileSync('wrangler.jsonc','utf8');
 
 need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
 for(const marker of [
   'aria-label="Main website navigation"',
-  'href="/start-here.html"',
-  'href="/treatment-centre.html"',
-  'href="/explore-knowledge.html"',
-  'href="/timber-mill.html"',
-  'class="tap-link" href="/tap-room"',
+  'href="https://shiftsometimber.co.uk/start-here.html"',
+  'href="https://shiftsometimber.co.uk/treatment-centre.html"',
+  'href="https://shiftsometimber.co.uk/explore-knowledge.html"',
+  'href="https://shiftsometimber.co.uk/timber-mill.html"',
   'aria-label="My Timber destinations"',
-  'class="member-tap-room" href="/tap-room"',
+  '<a href="/tap-room">TAP ROOM</a>',
   'aria-expanded="false"',
   'min-height:44px',
   'name="rememberMe" type="checkbox" checked',
@@ -22,6 +24,12 @@ for(const marker of [
   'data.rememberMe=form.elements.rememberMe.checked',
   "params.get('returnTo')"
 ])need(shell.includes(marker),`My Timber navigation contract missing ${marker}`);
+for(const [name,page,current] of [['Today',shell,'/member/dashboard'],['Grub',grub,'/member/grub'],['Fit',fit,'/member/fit']]){
+  for(const marker of ['/member/dashboard','/member/grub','/member/fit','/tap-room','/my-timber-v11.css','/my-timber-v11.js','/sst-logo-official.png'])need(page.includes(marker),`${name} V11 contract missing ${marker}`);
+  need(page.includes(`href="${current}" aria-current="page"`),`${name} current navigation state missing`);
+}
+for(const marker of ['background:var(--sst-black)','background:var(--sst-cream)','background:var(--sst-green)','font-family:Arial'])need(visual.includes(marker),`V11 visual contract missing ${marker}`);
+for(const marker of ["['/my-timber-v11.css'","['/my-timber-v11.js'","['/sst-logo-official.png'"])need(worker.includes(marker),`V11 Worker asset missing ${marker}`);
 need(shell.includes('window.SST_API_BASE=location.origin'),'My Timber auth is not using the same-origin API boundary');
 for(const marker of ['shiftsometimber.co.uk/member/dashboard*','shiftsometimber.co.uk/member-login*','shiftsometimber.co.uk/member-register*'])need(config.includes(marker),`live My Timber route missing ${marker}`);
 for(const marker of ['shiftsometimber.co.uk/v1/*','www.shiftsometimber.co.uk/v1/*'])need(config.includes(marker),`same-origin member API route missing ${marker}`);
