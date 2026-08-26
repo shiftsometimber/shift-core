@@ -9,7 +9,8 @@ need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timbe
 for(const asset of [
   '/my-timber-locked-surface-v1.css','/my-timber-locked-surface-v1.js',
   '/my-timber-programme-surface-v1.css','/my-timber-programme-surface-v1.js',
-  '/assets/my-timber-today-locked.jpg','/assets/shift-grub-locked.jpg','/assets/shift-fit-locked.jpg','/assets/sst-s-official.png'
+  '/my-timber-global-header-v1.css','/my-timber-global-header-v1.js',
+  '/assets/my-timber-today-locked.jpg','/assets/shift-grub-locked.jpg','/assets/shift-fit-locked.jpg','/assets/sst-s-official.png','/assets/sst-logo-official.png'
 ])need(worker.includes(`['${asset}'`),`locked artwork asset is not routed: ${asset}`);
 for(const marker of [
   'aria-label="Main website navigation"',
@@ -17,7 +18,9 @@ for(const marker of [
   'href="/treatment-centre.html"',
   'href="/explore-knowledge.html"',
   'href="/timber-mill.html"',
-  'class="tap-link" href="/tap-room"',
+  'href="/tap-room"',
+  'data-mt-site-menu',
+  'src="/assets/sst-logo-official.png"',
   'aria-label="My Timber destinations"',
   'class="member-tap-room" href="/tap-room"',
   'aria-expanded="false"',

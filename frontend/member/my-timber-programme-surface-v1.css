@@ -1,8 +1,8 @@
 :root{--mt-black:#050505;--mt-cream:#e7e3da;--mt-green:#707762;color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--mt-cream)!important;color:var(--mt-black)!important;font-family:Arial,sans-serif}
+body{margin:0;background:var(--mt-black)!important;color:var(--mt-cream)!important;font-family:Arial,sans-serif}
 .sg-page-head,.sf-page-head{display:none!important}
-.mt-programme-board{position:relative;width:min(100%,1168px);margin:0 auto;background:var(--mt-cream)}
+.mt-programme-board{position:relative;width:min(calc(100% - 48px),1168px);margin:28px auto 52px;background:var(--mt-cream);box-shadow:0 22px 70px rgba(5,5,5,.45)}
 .mt-programme-board>img:first-child{display:block;width:100%;height:auto}
 .mt-official-badge{position:absolute;z-index:4;display:block;width:auto;height:auto;margin:0;border-radius:50%}
 .mt-official-badge-grub{left:1.9%;top:1.15%;width:6.8%}
@@ -19,4 +19,4 @@ body{margin:0;background:var(--mt-cream)!important;color:var(--mt-black)!importa
 .mt-programme-live .sg-card,.mt-programme-live .sf-card,.mt-programme-live .sg-meal,.mt-programme-live .sf-session,.mt-programme-live .sg-utility,.mt-programme-live .sf-push,.mt-programme-live .sg-daily-grid article,.mt-programme-live .sf-daily-grid article{background:var(--mt-cream)!important;color:var(--mt-black)!important;border-color:var(--mt-green)!important}
 .mt-programme-live .sg-primary,.mt-programme-live .sf-primary{background:var(--mt-green)!important;color:var(--mt-black)!important}
 .mt-programme-live input,.mt-programme-live textarea,.mt-programme-live select{background:var(--mt-cream)!important;color:var(--mt-black)!important;border-color:var(--mt-green)!important}
-@media(max-width:700px){.mt-programme-board{min-height:100dvh;display:grid;align-content:start}.mt-programme-board>img:first-child{width:100%;margin-top:8px}.mt-programme-live{width:100vw;height:100dvh;max-height:none;border:0;border-radius:0}.mt-programme-live .sg-page-main,.mt-programme-live .sf-page-main{padding:10px!important}}
+@media(max-width:700px){.mt-programme-board{width:calc(100% - 16px);min-height:0;display:grid;align-content:start;margin:12px auto 28px}.mt-programme-board>img:first-child{width:100%;margin-top:0}.mt-programme-live{width:100vw;height:100dvh;max-height:none;border:0;border-radius:0}.mt-programme-live .sg-page-main,.mt-programme-live .sf-page-main{padding:10px!important}}
