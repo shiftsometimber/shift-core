@@ -14,7 +14,7 @@ on:
       - 'preview/evidence-r12-reset.sql'
       - 'wrangler.evidence-desk-r12.template.jsonc'
   push:
-    branches: [agent/shift-evidence-desk-foundation-r1]
+    branches: [main, agent/shift-evidence-desk-foundation-r1]
     paths:
       - '.github/workflows/evidence-desk-r12-nonprod.yml'
       - 'evidence-adapter-mhra-glp1-v1.js'
