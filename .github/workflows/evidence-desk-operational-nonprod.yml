@@ -111,7 +111,7 @@ jobs:
           for page in men-over-40 practical-glp1 muscle-protein plateaus-stopping nhs-explainers tools life-back; do
             ready=0
             for attempt in $(seq 1 12); do
-              curl --fail-with-body --retry 3 --retry-all-errors -sS "$base/phase-3/$page.html?proof=$GITHUB_SHA-$attempt" -o "/tmp/phase3-$page.html"
+              curl --fail-with-body --location --retry 3 --retry-all-errors -sS "$base/phase-3/$page.html?proof=$GITHUB_SHA-$attempt" -o "/tmp/phase3-$page.html"
               if grep -Fq 'Staging / not published.' "/tmp/phase3-$page.html" && grep -Fq 'Material claims remain governed by the Evidence Desk.' "/tmp/phase3-$page.html"; then ready=1; break; fi
               sleep 5
             done
