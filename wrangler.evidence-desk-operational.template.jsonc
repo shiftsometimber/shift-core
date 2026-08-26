@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shift-evidence-desk-operational",
+  "main": "evidence-desk-operational-entry.js",
+  "compatibility_date": "2026-08-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "vars": {
+    "EVIDENCE_DESK_ENV": "non-production-operational",
+    "EVIDENCE_DESK_OPERATOR_NAME": "Matt O'Brien",
+    "EVIDENCE_DESK_AI_MODEL": "@cf/meta/llama-3.1-8b-instruct-fast"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "shift-evidence-desk-r12-nonprod-db",
+    "database_id": "__EVIDENCE_D1_DATABASE_ID__"
+  }],
+  "services": [
+    {"binding": "WEBSITE_PUBLISHER", "service": "shift-evidence-desk-staging-publisher"},
+    {"binding": "NEWSLETTER_PUBLISHER", "service": "shift-evidence-desk-staging-distributor"},
+    {"binding": "SOCIAL_PUBLISHER", "service": "shift-evidence-desk-staging-distributor"}
+  ],
+  "ai": {"binding": "AI"},
+  "triggers": {"crons": ["*/30 * * * *"]},
+  "observability": {"enabled": true,"logs": {"enabled": true,"head_sampling_rate": 1}}
+}
