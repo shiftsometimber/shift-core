@@ -27,6 +27,30 @@ test('remembered check-in and coming-off support persist to member state and ret
   assert.match(js,/Support plan active/);
 });
 
+test('Today consumes recent support state without silently rewriting the day',()=>{
+  assert.match(js,/renderTodayContext\(loops\)/);
+  assert.match(js,/recent\(entry\.at,36\)/);
+  assert.match(js,/recent\(fridge\.at,24\)/);
+  assert.match(js,/That does not automatically rewrite your day/);
+  assert.match(js,/Rebuild today around this/);
+  assert.match(js,/adjustDailyShift\(\{scenario\}\)/);
+  assert.match(js,/knackered/);
+  assert.match(js,/feeling_rough/);
+});
+
+test('Today keeps coming-off support practical and medicine decisions with the prescriber',()=>{
+  assert.match(js,/Coming-off support is active/);
+  assert.match(js,/medicine and dose decisions stay with your prescriber/);
+  assert.match(js,/\/member\/grub/);
+  assert.match(js,/\/member\/fit\?minutes=20/);
+  assert.match(js,/mens-mental-health\.html/);
+});
+
+test('Today does not blindly reuse stale fridge contents',()=>{
+  assert.match(js,/Confirm what is still there before using it again/);
+  assert.match(js,/Check my fridge/);
+});
+
 test('coming-off loop retains clinical boundary and human route',()=>{
   assert.match(js,/medicineBoundary:'prescriber'/);
   assert.match(js,/contact\.html/);
