@@ -55,13 +55,15 @@ for (const marker of [
 for (const marker of [
   'Starting weight',
   'Current weight',
-  'LOST',
+  'JOURNEY PROGRESS',
   'YOUR TARGET',
   'BMI',
   'Waist',
   'How are you feeling now?',
   'Life Back',
   'CLOTHES',
+  'What matters most right now?',
+  'reviewCadence',
 ]) has(client, marker, `Phase 1 member story missing “${marker}”`);
 
 // Phase 2: one weekly check-in, adapted to route and carrying context.
