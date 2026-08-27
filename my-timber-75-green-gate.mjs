@@ -29,7 +29,7 @@ const reminderMessage=buildDailyReminderMessage({daily_output:late});
 green('7. Morning plan is opt-in, editable and Today-led',/Morning plan reminder/.test(today)&&/getFitReminder/.test(api)&&/saveFitReminder/.test(api)&&/member\/dashboard#today/.test(reminders)&&reminderMessage.next.kind==='meal'&&/Quick chicken/.test(reminderMessage.decision));
 green('8. Reminder consent, suppression and single-delivery controls remain intact',/email_verified=1/.test(reminders)&&/completed_today/.test(reminders)&&/UNIQUE\(user_id,local_date,channel\)/.test(reminders)&&/withdrawn_at/.test(reminders));
 green('9. Mobile presentation retains one-thumb horizontal containment',/scroll-snap-type:x mandatory/.test(css)&&/@media\(max-width:760px\)/.test(css)&&/width:100%;min-width:0/.test(css));
-green('10. Failures remain visible and retryable',/That did not save\. Try once more\./.test(today)&&/Try again/.test(today)&&/Could not build today’s Fit session/.test(fit)&&/Could not build your week/.test(grub));
+green('10. Failures remain visible or fail into a safe fallback',/That did not save\. Try once more\./.test(today)&&/Try again/.test(today)&&/fallbackFitPlan/.test(fit)&&/built-in 20-minute knee-friendly session is ready/.test(fit)&&/Could not build your week/.test(grub));
 
 green('11. Every Grub taste path reaches exact or nearest safe choices',/nearest_safe/.test(read('member-product-v7.js'))&&/recipeTasteMatch/.test(read('member-product-v7.js'))&&/sg-recovery/.test(grub)&&/Clear and start again/.test(grub)&&/data-recovery="cancel"/.test(grub));
 
