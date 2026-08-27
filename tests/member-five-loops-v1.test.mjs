@@ -6,19 +6,24 @@ const js=await readFile(new URL('../frontend/member/member-five-loops-v1.js',imp
 const grub=await readFile(new URL('../frontend/member/member-grub.html',import.meta.url),'utf8');
 const fit=await readFile(new URL('../frontend/member/member-fit.html',import.meta.url),'utf8');
 
-test('five member loops are present',()=>{
-  for(const phrase of ['Use what I’ve actually got.','Give me 20 useful minutes.','Remember where I’m at.','Software not enough?','Keep the basics joined up.'])assert.match(js,new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
+test('five member loops are present as native My Timber support',()=>{
+  for(const phrase of ['MY TIMBER · SUPPORT','Use what I’ve actually got.','Give me 20 useful minutes.','Remember where I’m at.','Software not enough?','Keep the basics joined up.'])assert.match(js,new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
+  assert.doesNotMatch(js,/MEMBER EXTRAS/);
 });
 
-test('fridge loop uses governed conundrum endpoint',()=>{
+test('fridge loop uses governed conundrum endpoint and persists its last usable result',()=>{
   assert.match(js,/\.conundrum\(/);
   assert.match(js,/allow_pantry_staples:true/);
+  assert.match(js,/lastFridge/);
+  assert.match(js,/Use this in Grub/);
 });
 
 test('remembered check-in and coming-off support persist to member state',()=>{
   assert.match(js,/lastCheckIn/);
   assert.match(js,/comingOffPlan/);
   assert.match(js,/saveMemberState/);
+  assert.match(js,/Use this in Today/);
+  assert.match(js,/Support plan active/);
 });
 
 test('coming-off loop retains clinical boundary and human route',()=>{
