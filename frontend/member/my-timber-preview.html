@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <title>My Timber | Shift Some Timber</title>
+  <title>My Timber | Shift Some Timber</title>\n  <script src="/analytics-bootstrap-v1.js"></script>
   <link rel="stylesheet" href="/member-p0-v1.css?v=7">
   <link rel="stylesheet" href="/member-today-premium-v1.css?v=daily-shift-v2">
   <link rel="stylesheet" href="/my-timber-v11.css?v=1">
@@ -75,12 +75,12 @@
       function requestedDestination(){const params=new URLSearchParams(location.search),raw=params.get('returnTo')||params.get('next')||'';return /^\/(?!\/)/.test(raw)&&!raw.startsWith('/member-login')?raw:''}
       async function showMember(){const destination=requestedDestination();if(destination){location.replace(destination);return}auth.hidden=true;member.classList.add('is-ready');try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}for(const src of ['/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-journey-v1.js?v=1','/member-my-journey-checkin-v1.js?v=1']){const script=document.createElement('script');script.src=src;document.body.appendChild(script)}}
       async function existing(){try{await SST_API.getMe();showMember()}catch{auth.hidden=false}}
-      async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating your account…';try{const data=Object.fromEntries(new FormData(form).entries());data.rememberMe=form.elements.rememberMe.checked;data.source='my-timber';await SST_API[mode](data);showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
+      async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating your account…';try{const data=Object.fromEntries(new FormData(form).entries());data.rememberMe=form.elements.rememberMe.checked;data.source='my-timber';await SST_API[mode](data);if(window.SSTAnalytics&&typeof window.SSTAnalytics.track==='function')window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website'});await new Promise(resolve=>setTimeout(resolve,150));showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
       form.addEventListener('submit',event=>{event.preventDefault();authenticate('register')});
       form.querySelector('[data-auth="login"]').addEventListener('click',()=>authenticate('login'));
       existing();
     })();
   </script>
-  <script src="/my-timber-v11.js?v=1"></script>
+  <script src="/my-timber-v11.js?v=1"></script>\n  <script defer src="/consent-v4a.js"></script>\n  <script defer src="/analytics-events-v31a.js"></script>
 </body>
 </html>
