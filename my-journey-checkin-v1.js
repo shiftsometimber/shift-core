@@ -2,8 +2,8 @@ import {authenticateMember} from './member-state-fast-v1.js';
 import {recordProductEvent} from './product-analytics-v1.js';
 import {buildJourneyObservation,journeyExport} from './my-journey-observation-v1.js';
 
-const FEELING=['rough','difficult','mixed','alright','good','great'];
-const SCALE=['very_low','low','mixed','steady','good','very_good'];
+const FEELING=['rough','difficult','mixed','alright','good','great','0','20','40','60','80','100'];
+const SCALE=['very_low','low','mixed','steady','good','very_good','0','20','40','60','80','100'];
 const CLOTHES=['tighter','same','a_bit_looser','much_looser','dropped_size','fits_again'];
 const DISRUPTIONS=['illness','holiday','meals_out','work_pressure','stress','poor_sleep','injury','routine_changed','other'];
 const ROUTES=['injection','tablet','lifestyle','maintenance'];
@@ -47,7 +47,7 @@ async function getWeekly(request,env,uid){
   const route=ROUTES.includes(setup.route)?setup.route:inferRoute(treatment);
   const prefill=buildPrefill({progress,checkins,choices,hydration,fitEvents,treatment});
   prefill.missedWeek=latestWeekly?daysBetween(latestWeekly.week_ending,weekEnding)>7:false;
-  return respond({ok:true,week:{start,ending:weekEnding},route,review_day:setup.reviewDay??dayName(weekEnding),reason:route==='injection'?'Your jab-day check-in':route==='tablet'?'Your weekly tablet-route review':'Your weekly Journey check-in',prefill,saved:saved?deserialize(saved):null,confirmation_required:true,clinical_boundary:'Treatment and symptoms are recorded as context only. My Journey does not assess dose, suitability or treatment effectiveness.'},200,request);
+  return respond({ok:true,week:{start,ending:weekEnding},route,units:['stone_lb','kg','lb'].includes(setup.units)?setup.units:'stone_lb',review_day:setup.reviewDay??dayName(weekEnding),reason:route==='injection'?'Your jab-day check-in':route==='tablet'?'Your weekly tablet-route review':'Your weekly Journey check-in',prefill,saved:saved?deserialize(saved):null,confirmation_required:true,clinical_boundary:'Treatment and symptoms are recorded as context only. My Journey does not assess dose, suitability or treatment effectiveness.'},200,request);
 }
 
 async function saveWeekly(request,env,ctx,uid){
