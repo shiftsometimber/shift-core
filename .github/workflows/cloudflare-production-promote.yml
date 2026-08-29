@@ -19,6 +19,8 @@ on:
       - 'daily-reminder-copy-v1.js'
       - 'fit-reminders-source-gate.mjs'
       - 'frontend/member/member-fit.html'
+      - 'frontend/member/member-grub.html'
+      - 'frontend/member/my-timber-v11.css'
       - 'frontend/member/member-fit-programme-v1.js'
       - 'frontend/member/member-fit-programme-v1.css'
       - 'frontend/member/member-grub-programme-v1.js'
@@ -61,6 +63,15 @@ on:
       - 'frontend/member/member-today-final-v1.css'
       - 'frontend/member/member-life-back-v1.js'
       - 'frontend/member/member-life-back-v1.css'
+      - 'frontend/member/member-my-journey-v1.js'
+      - 'frontend/member/member-my-journey-v1.css'
+      - 'frontend/member/member-my-journey-checkin-v1.js'
+      - 'frontend/member/member-my-journey-checkin-v1.css'
+      - 'my-journey-v1.js'
+      - 'my-journey-checkin-v1.js'
+      - 'my-journey-observation-v1.js'
+      - 'my-journey-integration-gate.mjs'
+      - 'tests/my-journey-*.test.mjs'
       - 'frontend/member/member-medicines-watch-v1.js'
       - 'frontend/member/member-medicines-watch-v1.css'
       - 'frontend/member/member-sport-v1.js'
@@ -128,6 +139,10 @@ jobs:
         run: node g5-012-login-fastpath-gate.mjs
       - name: Prove Ask Timber handles every explicit request part
         run: node --test ask-timber-multi-intent-gate.mjs
+      - name: Prove My Journey end to end before promotion
+        run: |
+          node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs
+          node my-journey-integration-gate.mjs
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
