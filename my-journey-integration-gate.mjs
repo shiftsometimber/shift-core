@@ -16,6 +16,7 @@ const css = [read('frontend/member/member-my-journey-v1.css'), read('frontend/me
 const adapter = read('frontend/member/api-adapter-v33d.js');
 const worker = read('worker-entry-v6.js');
 const config = read('wrangler.jsonc');
+const productionWorkflow = read('.github/workflows/cloudflare-production-promote.yml');
 
 // One coherent destination in the canonical live shell.
 for (const marker of [
@@ -26,6 +27,8 @@ for (const marker of [
   'id="panel-journey"',
   'aria-labelledby="journeyTitle"',
   'id="journeyTitle"',
+  'data-portal-panel="journey"',
+  '>MY JOURNEY<',
 ]) has(shell, marker);
 need((shell.match(/data-panel="journey"/g) || []).length === 1,
   'the shell must expose exactly one My Journey destination');
@@ -108,6 +111,8 @@ has(adapter, 'deleteMyJourney');
 has(adapter, 'getJourneyExport');
 has(worker, 'myJourneyRoutes');
 for (const marker of ['env.DB.batch', "source='my_journey_weekly'", 'shift_progress_photos_v2']) has(read('my-journey-v1.js'), marker);
+need(!client.includes('new MutationObserver'), 'weekly check-in must not race and duplicate during Journey rendering');
+for (const marker of ["'my-journey-v1.js'","'my-journey-checkin-v1.js'",'node my-journey-integration-gate.mjs']) has(productionWorkflow, marker, `production Worker coordination missing “${marker}”`);
 
 // Accessibility and resilient interaction contracts.
 for (const marker of [
