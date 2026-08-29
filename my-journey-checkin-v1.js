@@ -20,19 +20,24 @@ export async function myJourneyCheckInRoutes(request,env,ctx){
 
 export async function myJourneyTrendRoutes(request,env){
   const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';
-  if(path!=='/v1/journey/trends'||request.method!=='GET')return null;
+  if(!['/v1/journey/trends','/v1/journey/export'].includes(path)||request.method!=='GET')return null;
   const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
   await ensureSchema(env.DB);
-  const rows=await safeAll(env.DB,`SELECT * FROM my_journey_weekly_checkins WHERE user_id=? AND confirmed_at IS NOT NULL ORDER BY week_ending DESC LIMIT 52`,[auth.user.id]);
+  if(path==='/v1/journey/export'){
+    const [state,weekly,photos]=await Promise.all([safeFirst(env.DB,`SELECT preferences FROM member_state WHERE user_id=?`,[auth.user.id]),safeAll(env.DB,`SELECT * FROM my_journey_weekly_checkins WHERE user_id=? ORDER BY week_ending`,[auth.user.id]),safeAll(env.DB,`SELECT id,captured_at,weight_kg,waist_cm,source,created_at FROM shift_progress_photos_v2 WHERE user_id=? AND source='my_journey_weekly' AND deleted_at IS NULL ORDER BY captured_at,id`,[auth.user.id])]);
+    const preferences=parse(state?.preferences);
+    return respond({ok:true,private:true,analyticsIdentifiers:false,exportedAt:new Date().toISOString(),journey:preferences.myJourney||null,weekly:weekly.map(deserialize),photos:photos.map(p=>({...p,downloadUrl:`/v1/shift/progress-photo/${p.id}/image`}))},200,request);
+  }
+  const [rows,state]=await Promise.all([safeAll(env.DB,`SELECT * FROM my_journey_weekly_checkins WHERE user_id=? AND confirmed_at IS NOT NULL ORDER BY week_ending DESC LIMIT 52`,[auth.user.id]),safeFirst(env.DB,`SELECT preferences FROM member_state WHERE user_id=?`,[auth.user.id])]);
   const records=rows.reverse().map(trendRecord),mode=records.at(-1)?.route==='maintenance'?'maintenance':'loss';
   const weeks=Math.max(1,Math.min(12,Number(url.searchParams.get('weeks'))||12));
-  const observation=buildJourneyObservation(records,{mode});
-  return respond({ok:true,private:true,confirmed_weeks:records.length,observation,export:journeyExport(records,{weeks,mode}),message:observation?'Your confirmed Journey pattern is ready.':'There is not enough confirmed information to show a trend yet. Keep checking in and My Journey will build the picture.'},200,request);
+  const preferences=parse(state?.preferences),units=['stone_lb','kg','lb'].includes(preferences?.myJourney?.setup?.units)?preferences.myJourney.setup.units:'stone_lb',observation=buildJourneyObservation(records,{mode});
+  return respond({ok:true,private:true,units,confirmed_weeks:records.length,observation,export:journeyExport(records,{weeks,mode}),message:observation?'Your confirmed Journey pattern is ready.':'There is not enough confirmed information to show a trend yet. Keep checking in and My Journey will build the picture.'},200,request);
 }
 
 async function getWeekly(request,env,uid){
-  const url=new URL(request.url),weekEnding=validDate(url.searchParams.get('date'))||localDate(request),start=addDays(weekEnding,-6);
-  const [saved,latestWeekly,treatment,progress,checkins,choices,hydration,fitEvents,memberState]=await Promise.all([
+  const url=new URL(request.url),requestedDate=validDate(url.searchParams.get('date'))||localDate(request),memberState=await safeFirst(env.DB,`SELECT preferences FROM member_state WHERE user_id=?`,[uid]),preferences=parse(memberState?.preferences),configured=preferences?.myJourney||{},setup=configured.setup||{},reviewDay=Number.isInteger(Number(setup.reviewDay))?Number(setup.reviewDay):dayNumber(requestedDate),weekEnding=reviewEnding(requestedDate,reviewDay),start=addDays(weekEnding,-6);
+  const [saved,latestWeekly,treatment,progress,checkins,choices,hydration,fitEvents]=await Promise.all([
     safeFirst(env.DB,`SELECT * FROM my_journey_weekly_checkins WHERE user_id=? AND week_ending=?`,[uid,weekEnding]),
     safeFirst(env.DB,`SELECT week_ending FROM my_journey_weekly_checkins WHERE user_id=? AND week_ending<? ORDER BY week_ending DESC LIMIT 1`,[uid,weekEnding]),
     safeFirst(env.DB,`SELECT medicine,dose,next_dose_on,status FROM shift_treatment_context WHERE user_id=?`,[uid]),
@@ -40,14 +45,12 @@ async function getWeekly(request,env,uid){
     safeAll(env.DB,`SELECT local_date,mood,guts,energy FROM shift_today_checkins WHERE user_id=? AND local_date BETWEEN ? AND ? ORDER BY local_date`,[uid,start,weekEnding]),
     safeAll(env.DB,`SELECT local_date,domain,choice_key,choice_json FROM shift_today_choices WHERE user_id=? AND local_date BETWEEN ? AND ? ORDER BY local_date`,[uid,start,weekEnding]),
     safeFirst(env.DB,`SELECT COALESCE(SUM(contribution_ml),0) total_ml,COUNT(DISTINCT substr(logged_at,1,10)) days FROM hydration_log WHERE user_id=? AND substr(logged_at,1,10) BETWEEN ? AND ?`,[uid,start,weekEnding]),
-    safeAll(env.DB,`SELECT occurred_at,properties_json FROM product_events WHERE user_id=? AND event_name='fit_session_completed' AND substr(occurred_at,1,10) BETWEEN ? AND ?`,[uid,start,weekEnding]),
-    safeFirst(env.DB,`SELECT preferences FROM member_state WHERE user_id=?`,[uid])
+    safeAll(env.DB,`SELECT occurred_at,properties_json FROM product_events WHERE user_id=? AND event_name='fit_session_completed' AND substr(occurred_at,1,10) BETWEEN ? AND ?`,[uid,start,weekEnding])
   ]);
-  const preferences=parse(memberState?.preferences),configured=preferences?.myJourney||{},setup=configured.setup||{};
   const route=ROUTES.includes(setup.route)?setup.route:inferRoute(treatment);
   const prefill=buildPrefill({progress,checkins,choices,hydration,fitEvents,treatment});
   prefill.missedWeek=latestWeekly?daysBetween(latestWeekly.week_ending,weekEnding)>7:false;
-  return respond({ok:true,week:{start,ending:weekEnding},route,units:['stone_lb','kg','lb'].includes(setup.units)?setup.units:'stone_lb',review_day:setup.reviewDay??dayName(weekEnding),reason:route==='injection'?'Your jab-day check-in':route==='tablet'?'Your weekly tablet-route review':'Your weekly Journey check-in',prefill,saved:saved?deserialize(saved):null,confirmation_required:true,clinical_boundary:'Treatment and symptoms are recorded as context only. My Journey does not assess dose, suitability or treatment effectiveness.'},200,request);
+  return respond({ok:true,week:{start,ending:weekEnding},route,units:['stone_lb','kg','lb'].includes(setup.units)?setup.units:'stone_lb',review_day:dayName(weekEnding),paused:Boolean(setup.paused),reason:route==='injection'?'Your jab-day check-in':route==='tablet'?'Your weekly tablet-route review':'Your weekly Journey check-in',prefill,saved:saved?deserialize(saved):null,confirmation_required:true,clinical_boundary:'Treatment and symptoms are recorded as context only. My Journey does not assess dose, suitability or treatment effectiveness.'},200,request);
 }
 
 async function saveWeekly(request,env,ctx,uid){
@@ -78,7 +81,7 @@ function inferRoute(t){const m=String(t?.medicine||'').toLowerCase();if(!m)retur
 function redFlagText(v){return /(?:chest pain|cannot breathe|can’t breathe|severe abdominal pain|vomit(?:ing)? blood|black stools?|faint(?:ed|ing)?|suicid(?:e|al)|anaphylaxis|face swelling)/i.test(String(v||''))}
 function score(v){return{very_low:1,low:3,mixed:5,steady:6,good:8,very_good:10}[v]||null}
 function clean(v,n){const s=String(v??'').trim();return s?s.slice(0,n):null}function safeObject(v){return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}function parse(v){try{return JSON.parse(v||'{}')}catch{return{}}}function json(v){return JSON.stringify(v||{})}function num(v){return Number.isFinite(Number(v))?Number(v):null}
-function validDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(String(v||''))?String(v):null}function localDate(r){return validDate(r.headers.get('X-Shift-Local-Date'))||new Date().toISOString().slice(0,10)}function addDays(d,n){const x=new Date(`${d}T12:00:00Z`);x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)}function daysBetween(a,b){return Math.round((new Date(`${b}T12:00:00Z`)-new Date(`${a}T12:00:00Z`))/86400000)}function dayName(d){return new Intl.DateTimeFormat('en-GB',{weekday:'long',timeZone:'UTC'}).format(new Date(`${d}T12:00:00Z`))}
+function validDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(String(v||''))?String(v):null}function localDate(r){return validDate(r.headers.get('X-Shift-Local-Date'))||new Date().toISOString().slice(0,10)}function addDays(d,n){const x=new Date(`${d}T12:00:00Z`);x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)}function daysBetween(a,b){return Math.round((new Date(`${b}T12:00:00Z`)-new Date(`${a}T12:00:00Z`))/86400000)}function dayNumber(d){return new Date(`${d}T12:00:00Z`).getUTCDay()}function reviewEnding(d,reviewDay){return addDays(d,(Number(reviewDay)-dayNumber(d)+7)%7)}function dayName(d){return new Intl.DateTimeFormat('en-GB',{weekday:'long',timeZone:'UTC'}).format(new Date(`${d}T12:00:00Z`))}
 async function safeFirst(DB,sql,args=[]){try{return await DB.prepare(sql).bind(...args).first()}catch{return null}}async function safeAll(DB,sql,args=[]){try{return(await DB.prepare(sql).bind(...args).all()).results||[]}catch{return[]}}
 function respond(body,status,request){const origin=request.headers.get('Origin')||'',h={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'};if(origin)h['Access-Control-Allow-Origin']=origin;return new Response(JSON.stringify(body),{status,headers:h})}
 async function ensureSchema(DB){await DB.prepare(`CREATE TABLE IF NOT EXISTS my_journey_weekly_checkins (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,week_ending TEXT NOT NULL,route TEXT NOT NULL,weight_kg REAL,waist_cm REAL,overall_feeling TEXT NOT NULL,mood TEXT,energy TEXT,confidence TEXT,sleep TEXT,appetite TEXT,physical_comfort TEXT,gut_symptoms TEXT,treatment_on_schedule INTEGER,treatment_context_json TEXT NOT NULL DEFAULT '{}',food_context_json TEXT NOT NULL DEFAULT '{}',movement_context_json TEXT NOT NULL DEFAULT '{}',hydration_context_json TEXT NOT NULL DEFAULT '{}',clothes_fit TEXT NOT NULL,clothes_detail_json TEXT NOT NULL DEFAULT '{}',life_back_json TEXT NOT NULL DEFAULT '{}',disruptions_json TEXT NOT NULL DEFAULT '[]',note TEXT,confirmed_at TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(user_id,week_ending))`).run();await DB.prepare(`CREATE INDEX IF NOT EXISTS idx_journey_weekly_user_date ON my_journey_weekly_checkins(user_id,week_ending)`).run()}

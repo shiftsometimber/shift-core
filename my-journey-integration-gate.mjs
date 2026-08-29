@@ -95,6 +95,20 @@ for (const marker of [
   'next_move',
 ]) has(client, marker, `Phase 3 observation contract missing “${marker}”`);
 
+// Member-owned lifecycle controls must be visible from the Journey itself.
+for (const marker of [
+  'data-mj-pause',
+  'Export my member data',
+  'Reset Journey setup',
+  'Delete My Journey',
+  'maintenanceLowKg',
+  'reviewDay',
+]) has(client + adapter, marker, `Journey lifecycle control missing “${marker}”`);
+has(adapter, 'deleteMyJourney');
+has(adapter, 'getJourneyExport');
+has(worker, 'myJourneyRoutes');
+for (const marker of ['env.DB.batch', "source='my_journey_weekly'", 'shift_progress_photos_v2']) has(read('my-journey-v1.js'), marker);
+
 // Accessibility and resilient interaction contracts.
 for (const marker of [
   'role="status"',
