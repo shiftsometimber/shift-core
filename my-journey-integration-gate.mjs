@@ -17,6 +17,7 @@ const adapter = read('frontend/member/api-adapter-v33d.js');
 const worker = read('worker-entry-v6.js');
 const config = read('wrangler.jsonc');
 const productionWorkflow = read('.github/workflows/cloudflare-production-promote.yml');
+const weeklyClient = read('frontend/member/member-my-journey-checkin-v1.js');
 
 // One coherent destination in the canonical live shell.
 for (const marker of [
@@ -86,6 +87,19 @@ for (const marker of [
   'Anything changed around you?',
   'Confirm my week',
 ]) has(client, marker, `Phase 2 check-in missing “${marker}”`);
+need(!weeklyClient.includes('type="number"'), 'weekly Journey must not ask members to type weight, dimensions or tracked numbers into blank boxes');
+for (const marker of [
+  "numberSelect('weightStone'",
+  "numberSelect('weightPounds'",
+  "numberSelect('weightValue'",
+  "numberSelect('waistCm'",
+  "numberSelect('mealDays'",
+  "numberSelect('proteinG'",
+  "numberSelect('steps'",
+  "numberSelect('sessions'",
+  "numberSelect('waterDays'",
+  'You will never be asked to type your weight or measurements into a blank box.',
+]) has(weeklyClient, marker, `respectful selector contract missing “${marker}”`);
 
 // Phase 3: restrained longitudinal interpretation, including explicit limits.
 for (const marker of [
