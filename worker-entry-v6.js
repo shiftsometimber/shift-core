@@ -32,6 +32,7 @@ import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {tapRoomRoutes} from './tap-room-v1.js';
 import {myJourneyRoutes} from './my-journey-v1.js';
 import {myJourneyCheckInRoutes,myJourneyTrendRoutes} from './my-journey-checkin-v1.js';
+import {hqCommerceContentRoutes} from './hq-commerce-content-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const GIT_MEMBER_ASSETS=new Map([
@@ -116,7 +117,6 @@ export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/progress'||path==='/member/progress.html'||path==='/member/health-mot'||path==='/member/health-mot.html'))return Response.redirect(new URL('/member/dashboard#journey',request.url),301);
-    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/tap-room'||path==='/member/tap-room.html'))return Response.redirect(new URL('/tap-room',request.url),302);
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/'))){
       if(!env.MEMBER_ASSETS)return new Response('Tap Room unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
       const session=await authenticateTapRoomPage(request,env);if(session)return session;
@@ -138,6 +138,7 @@ export default {
     const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
+    const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return hqCommerceContent;
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
