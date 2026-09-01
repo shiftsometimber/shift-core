@@ -116,6 +116,7 @@ export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/progress'||path==='/member/progress.html'||path==='/member/health-mot'||path==='/member/health-mot.html'))return Response.redirect(new URL('/member/dashboard#journey',request.url),301);
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/tap-room'||path==='/member/tap-room.html'))return Response.redirect(new URL('/tap-room',request.url),302);
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/'))){
       if(!env.MEMBER_ASSETS)return new Response('Tap Room unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
       const session=await authenticateTapRoomPage(request,env);if(session)return session;

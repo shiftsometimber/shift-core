@@ -43,6 +43,8 @@ for(const marker of ["['/my-timber-v11.css'","['/my-timber-v11.js'","['/sst-logo
 need(shell.includes('window.SST_API_BASE=location.origin'),'My Timber auth is not using the same-origin API boundary');
 for(const marker of ['shiftsometimber.co.uk/member/dashboard*','shiftsometimber.co.uk/member-login*','shiftsometimber.co.uk/member-register*'])need(config.includes(marker),`live My Timber route missing ${marker}`);
 for(const marker of ['shiftsometimber.co.uk/v1/*','www.shiftsometimber.co.uk/v1/*'])need(config.includes(marker),`same-origin member API route missing ${marker}`);
+for(const marker of ['shiftsometimber.co.uk/member/tap-room*','www.shiftsometimber.co.uk/member/tap-room*'])need(config.includes(marker),`legacy Tap Room redirect route missing ${marker}`);
+need(worker.includes("new URL('/tap-room',request.url),302"),'legacy Tap Room route is not redirected to the canonical member journey');
 need(!shell.includes('Isolated My Timber preview'),'live My Timber still presents itself as an isolated preview');
 need(!shell.includes('Nothing here touches your live Shift account'),'live My Timber still contains preview-only account copy');
 const login=fs.readFileSync('member-login-fastpath-v1.js','utf8');
