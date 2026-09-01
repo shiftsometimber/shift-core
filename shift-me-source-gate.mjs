@@ -19,6 +19,7 @@ const checks=[
  ['private generated image',route.includes("'Cache-Control':'private, no-store'")],
  ['creator endpoint exists without requiring photo',route.includes("'/v1/shift-me/create'")&&route.includes("'creator-default'")&&route.includes("if(inputBytes?.length)modelForm.append('input_image_0'")],
  ['generated references stay within FLUX rerender dimensions',route.includes('const OUTPUT_SIZE=448')&&route.includes("modelForm.append('width',String(OUTPUT_SIZE))")&&route.includes('dimensions.width>=512||dimensions.height>=512')],
+ ['generated image MIME is detected from returned bytes',route.includes('const outputMime=detectImageMime(base64ToBytes(b64))')&&route.includes("return'image/jpeg'")&&route.includes('imageDimensions(inputBytes)')],
  ['member source photos are reduced for the FLUX reference contract',browser.includes('async function modelReadyImage')&&browser.includes('limit=448')],
  ['creator endpoint applies safe default appearance',route.includes("safeAppearance(JSON.stringify(body?.appearance||{}),true)")&&route.includes("build:'Average'")],
  ['rerender exists and requires existing Shift Me',route.includes("'/v1/shift-me/rerender'")&&route.includes('shift_me_required')],

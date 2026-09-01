@@ -49,7 +49,7 @@ async function rerenderShiftMe(request,env,user){
   const row=await env.DB.prepare(`SELECT mime_type,image_base64,appearance_json FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();
   if(!row||!row.image_base64)return json({ok:false,error:'shift_me_required',message:'Create your Shift Me first.'},409,request);
   const inputBytes=base64ToBytes(row.image_base64);
-  const dimensions=pngDimensions(inputBytes);
+  const dimensions=imageDimensions(inputBytes);
   if(dimensions&&(dimensions.width>=512||dimensions.height>=512))return json({ok:false,error:'shift_me_recreate_required',message:'This saved Shift Me uses the earlier image format. Delete it and create a fresh version once; future changes will then work normally.'},409,request);
   return await generateAndPersist(request,env,user,inputBytes,row.mime_type||'image/png',appearance,'existing-shift-me',parseJson(row.appearance_json));
 }
@@ -67,8 +67,9 @@ async function generateAndPersist(request,env,user,inputBytes,inputType,appearan
   const formResponse=new Response(modelForm);
   const result=await env.AI.run(MODEL,{multipart:{body:formResponse.body,contentType:formResponse.headers.get('content-type')}});
   const b64=result?.image;if(!b64)return json({ok:false,error:'generation_failed'},502,request);
+  const outputMime=detectImageMime(base64ToBytes(b64));
   const id=crypto.randomUUID(),now=new Date().toISOString();
-  await env.DB.prepare(`INSERT INTO shift_me_v1(id,user_id,mime_type,image_base64,appearance_json,model,created_at,updated_at,deleted_at) VALUES(?,?,?,?,?,?,?, ?,NULL) ON CONFLICT(user_id) DO UPDATE SET id=excluded.id,mime_type=excluded.mime_type,image_base64=excluded.image_base64,appearance_json=excluded.appearance_json,model=excluded.model,updated_at=excluded.updated_at,deleted_at=NULL`).bind(id,user.id,'image/png',b64,JSON.stringify(appearance.data),MODEL,now,now).run();
+  await env.DB.prepare(`INSERT INTO shift_me_v1(id,user_id,mime_type,image_base64,appearance_json,model,created_at,updated_at,deleted_at) VALUES(?,?,?,?,?,?,?, ?,NULL) ON CONFLICT(user_id) DO UPDATE SET id=excluded.id,mime_type=excluded.mime_type,image_base64=excluded.image_base64,appearance_json=excluded.appearance_json,model=excluded.model,updated_at=excluded.updated_at,deleted_at=NULL`).bind(id,user.id,outputMime,b64,JSON.stringify(appearance.data),MODEL,now,now).run();
   try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_me_generated',?,?)`).bind(`user:${user.id}`,JSON.stringify({shiftMeId:id,model:MODEL,sourceStored:false,generatedStored:true,sourceKind,appearance:appearance.data})).run();}catch{}
   return json({ok:true,shiftMe:{id,imageUrl:'/v1/shift-me/image',appearance:appearance.data,updatedAt:now},sourcePhotoStored:false,sourceKind,disclaimer:'Shift Me is an AI-generated visual likeness or character for Shift experiences. It is not identity verification, a body scan, a health assessment, a fit guarantee or a prediction of future appearance.'},201,request);
 }
@@ -125,12 +126,32 @@ function safeAppearance(raw,withDefaults=false){
 }
 function validateImage(image){if(!(image instanceof File))return{status:400,body:{ok:false,error:'image_required'}};if(!ALLOWED.has(image.type))return{status:415,body:{ok:false,error:'unsupported_image_type'}};if(image.size<=0||image.size>MAX_BYTES)return{status:413,body:{ok:false,error:'image_too_large',maxBytes:MAX_BYTES}};return null;}
 function base64ToBytes(s){const bin=atob(String(s||'')),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out;}
-function pngDimensions(bytes){
+function detectImageMime(bytes){
+  if(bytes?.[0]===0xff&&bytes?.[1]===0xd8&&bytes?.[2]===0xff)return'image/jpeg';
+  if(bytes?.[0]===0x89&&bytes?.[1]===0x50&&bytes?.[2]===0x4e&&bytes?.[3]===0x47)return'image/png';
+  if(bytes?.length>=12&&String.fromCharCode(...bytes.slice(0,4))==='RIFF'&&String.fromCharCode(...bytes.slice(8,12))==='WEBP')return'image/webp';
+  return'application/octet-stream';
+}
+function imageDimensions(bytes){
   if(!(bytes instanceof Uint8Array)||bytes.length<24)return null;
   const signature=[137,80,78,71,13,10,26,10];
-  if(!signature.every((value,index)=>bytes[index]===value))return null;
   const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
-  return{width:view.getUint32(16),height:view.getUint32(20)};
+  if(signature.every((value,index)=>bytes[index]===value))return{width:view.getUint32(16),height:view.getUint32(20)};
+  if(bytes[0]!==0xff||bytes[1]!==0xd8)return null;
+  const startOfFrame=new Set([0xc0,0xc1,0xc2,0xc3,0xc5,0xc6,0xc7,0xc9,0xca,0xcb,0xcd,0xce,0xcf]);
+  let offset=2;
+  while(offset+8<bytes.length){
+    if(bytes[offset++]!==0xff)continue;
+    while(bytes[offset]===0xff)offset++;
+    const marker=bytes[offset++];
+    if(marker===0xd8||marker===0xd9)continue;
+    if(offset+1>=bytes.length)return null;
+    const length=view.getUint16(offset);
+    if(length<2||offset+length>bytes.length)return null;
+    if(startOfFrame.has(marker)&&length>=7)return{width:view.getUint16(offset+5),height:view.getUint16(offset+3)};
+    offset+=length;
+  }
+  return null;
 }
 function parseJson(s){try{return JSON.parse(s||'{}')}catch{return{}}}
 async function ensureSchema(db){if(schemaReady)return;await db.exec(`CREATE TABLE IF NOT EXISTS shift_me_v1 (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL UNIQUE,mime_type TEXT NOT NULL,image_base64 TEXT NOT NULL,appearance_json TEXT NOT NULL DEFAULT '{}',model TEXT NOT NULL,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,deleted_at TEXT);CREATE INDEX IF NOT EXISTS idx_shift_me_v1_user ON shift_me_v1(user_id,deleted_at);`);schemaReady=true;}
