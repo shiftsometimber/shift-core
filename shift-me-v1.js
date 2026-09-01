@@ -2,6 +2,9 @@ import core from './worker.js';
 
 const MODEL='@cf/black-forest-labs/flux-2-klein-9b';
 const MAX_BYTES=3_000_000;
+// FLUX.2 reference images must be smaller than 512x512. Keeping persisted output
+// below that ceiling means the saved character can be used for the next edit.
+const OUTPUT_SIZE=480;
 const ALLOWED=new Set(['image/jpeg','image/png','image/webp']);
 let schemaReady=false;
 
@@ -45,7 +48,10 @@ async function rerenderShiftMe(request,env,user){
   const appearance=safeAppearance(JSON.stringify(body?.appearance||{}),true);
   const row=await env.DB.prepare(`SELECT mime_type,image_base64,appearance_json FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();
   if(!row||!row.image_base64)return json({ok:false,error:'shift_me_required',message:'Create your Shift Me first.'},409,request);
-  return await generateAndPersist(request,env,user,base64ToBytes(row.image_base64),row.mime_type||'image/png',appearance,'existing-shift-me',parseJson(row.appearance_json));
+  const inputBytes=base64ToBytes(row.image_base64);
+  const dimensions=pngDimensions(inputBytes);
+  if(dimensions&&(dimensions.width>=512||dimensions.height>=512))return json({ok:false,error:'shift_me_recreate_required',message:'This saved Shift Me uses the earlier image format. Delete it and create a fresh version once; future changes will then work normally.'},409,request);
+  return await generateAndPersist(request,env,user,inputBytes,row.mime_type||'image/png',appearance,'existing-shift-me',parseJson(row.appearance_json));
 }
 
 async function generateAndPersist(request,env,user,inputBytes,inputType,appearance,sourceKind,previousAppearance={}){
@@ -57,7 +63,7 @@ async function generateAndPersist(request,env,user,inputBytes,inputType,appearan
   const modelForm=new FormData();
   modelForm.append('prompt',prompt);
   if(inputBytes?.length)modelForm.append('input_image_0',new File([inputBytes],'shift-me-input',{type:inputType||'image/png'}));
-  modelForm.append('width','768');modelForm.append('height','1024');modelForm.append('guidance','4.5');
+  modelForm.append('width',String(OUTPUT_SIZE));modelForm.append('height',String(OUTPUT_SIZE));modelForm.append('guidance','4.5');
   const formResponse=new Response(modelForm);
   const result=await env.AI.run(MODEL,{multipart:{body:formResponse.body,contentType:formResponse.headers.get('content-type')}});
   const b64=result?.image;if(!b64)return json({ok:false,error:'generation_failed'},502,request);
@@ -119,6 +125,13 @@ function safeAppearance(raw,withDefaults=false){
 }
 function validateImage(image){if(!(image instanceof File))return{status:400,body:{ok:false,error:'image_required'}};if(!ALLOWED.has(image.type))return{status:415,body:{ok:false,error:'unsupported_image_type'}};if(image.size<=0||image.size>MAX_BYTES)return{status:413,body:{ok:false,error:'image_too_large',maxBytes:MAX_BYTES}};return null;}
 function base64ToBytes(s){const bin=atob(String(s||'')),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out;}
+function pngDimensions(bytes){
+  if(!(bytes instanceof Uint8Array)||bytes.length<24)return null;
+  const signature=[137,80,78,71,13,10,26,10];
+  if(!signature.every((value,index)=>bytes[index]===value))return null;
+  const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
+  return{width:view.getUint32(16),height:view.getUint32(20)};
+}
 function parseJson(s){try{return JSON.parse(s||'{}')}catch{return{}}}
 async function ensureSchema(db){if(schemaReady)return;await db.exec(`CREATE TABLE IF NOT EXISTS shift_me_v1 (id TEXT PRIMARY KEY,user_id INTEGER NOT NULL UNIQUE,mime_type TEXT NOT NULL,image_base64 TEXT NOT NULL,appearance_json TEXT NOT NULL DEFAULT '{}',model TEXT NOT NULL,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,deleted_at TEXT);CREATE INDEX IF NOT EXISTS idx_shift_me_v1_user ON shift_me_v1(user_id,deleted_at);`);schemaReady=true;}
 async function auth(request,env,ctx){const r=await core.fetch(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!r.ok)return{response:r};return{user:(await r.json()).user};}
