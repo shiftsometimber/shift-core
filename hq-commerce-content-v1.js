@@ -8,6 +8,11 @@ const canWrite=u=>['owner','admin','marketing','content','operations'].includes(
 const canCommerce=u=>['owner','admin','operations'].includes(u?.role);
 const products=v=>{const a=Array.isArray(v)?v:[];return [...new Set(a.map(x=>clean(x,80)).filter(Boolean))].slice(0,50)};
 export function calculateDiscount(row,subtotal){const raw=row.discount_type==='percent'?Math.round(subtotal*Number(row.discount_value)/100):Number(row.discount_value),discountPence=Math.max(0,Math.min(subtotal,raw));return{discountPence,totalPence:subtotal-discountPence}}
+async function ensureSchema(DB){await DB.batch([
+  DB.prepare(`CREATE TABLE IF NOT EXISTS commerce_discount_codes (id INTEGER PRIMARY KEY AUTOINCREMENT,code TEXT NOT NULL UNIQUE COLLATE NOCASE,label TEXT NOT NULL,discount_type TEXT NOT NULL CHECK(discount_type IN ('percent','fixed')),discount_value INTEGER NOT NULL,active INTEGER NOT NULL DEFAULT 0,starts_at TEXT,ends_at TEXT,usage_limit INTEGER,usage_count INTEGER NOT NULL DEFAULT 0,minimum_subtotal_pence INTEGER NOT NULL DEFAULT 0,eligible_products_json TEXT NOT NULL DEFAULT '[]',created_by INTEGER,updated_by INTEGER,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
+  DB.prepare(`CREATE TABLE IF NOT EXISTS site_content_overrides (id INTEGER PRIMARY KEY AUTOINCREMENT,page_path TEXT NOT NULL,content_key TEXT NOT NULL UNIQUE,css_selector TEXT NOT NULL,label TEXT NOT NULL,draft_text TEXT NOT NULL,published_text TEXT,status TEXT NOT NULL DEFAULT 'draft' CHECK(status IN ('draft','published','paused')),version INTEGER NOT NULL DEFAULT 1,created_by INTEGER,updated_by INTEGER,published_by INTEGER,published_at TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
+  DB.prepare(`CREATE TABLE IF NOT EXISTS site_content_versions (id INTEGER PRIMARY KEY AUTOINCREMENT,content_override_id INTEGER NOT NULL,version INTEGER NOT NULL,text_value TEXT NOT NULL,action TEXT NOT NULL,actor_id INTEGER,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(content_override_id) REFERENCES site_content_overrides(id))`)
+]);await DB.prepare(`INSERT OR IGNORE INTO commerce_discount_codes(code,label,discount_type,discount_value,active,minimum_subtotal_pence,eligible_products_json) VALUES('NEWSHIFT25','New Shift launch offer','percent',25,1,0,'[]')`).run()}
 async function audit(env,user,action,type,id,meta={}){try{await env.DB.prepare('INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)').bind(user?.id||null,action,type,String(id||''),JSON.stringify(meta),now()).run()}catch{}}
 
 async function validateDiscount(request,env){
@@ -29,6 +34,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 
 export async function hqCommerceContentRoutes(request,env,ctx){
   const u=new URL(request.url),path=u.pathname.replace(/\/+$/,'')||'/',method=request.method;
+  if(path==='/v1/commerce/discounts/validate'||path==='/v1/site-content'||path.startsWith('/v1/hq/discounts')||path.startsWith('/v1/hq/site-content'))await ensureSchema(env.DB);
   if(method==='GET'&&path==='/v1/commerce/discounts/validate')return validateDiscount(request,env);
   if(method==='GET'&&path==='/v1/site-content')return publicContent(request,env);
   if(method==='GET'&&path==='/hq/commerce-content-controls')return portal();
