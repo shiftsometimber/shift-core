@@ -9,7 +9,7 @@
   async function createShiftMe(appearance={}){return withTimeout(async signal=>{const res=await fetch(ROOT+'/create',{method:'POST',credentials:'include',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({appearance:appearance||{}}),signal});const body=await res.json();if(!res.ok)throw apiError(body,res.status);return body})}
   async function modelReadyImage(file){
     if(!file||typeof createImageBitmap!=='function')return file;
-    const bitmap=await createImageBitmap(file),limit=480,scale=Math.min(1,limit/bitmap.width,limit/bitmap.height);
+    const bitmap=await createImageBitmap(file),limit=448,scale=Math.min(1,limit/bitmap.width,limit/bitmap.height);
     if(scale===1){bitmap.close?.();return file}
     const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
     canvas.getContext('2d',{alpha:false}).drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();

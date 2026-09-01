@@ -4,7 +4,7 @@ const MODEL='@cf/black-forest-labs/flux-2-klein-9b';
 const MAX_BYTES=3_000_000;
 // FLUX.2 reference images must be smaller than 512x512. Keeping persisted output
 // below that ceiling means the saved character can be used for the next edit.
-const OUTPUT_SIZE=480;
+const OUTPUT_SIZE=448;
 const ALLOWED=new Set(['image/jpeg','image/png','image/webp']);
 let schemaReady=false;
 
