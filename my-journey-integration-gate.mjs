@@ -18,6 +18,7 @@ const worker = read('worker-entry-v6.js');
 const config = read('wrangler.jsonc');
 const productionWorkflow = read('.github/workflows/cloudflare-production-promote.yml');
 const weeklyClient = read('frontend/member/member-my-journey-checkin-v1.js');
+const journeyClient = read('frontend/member/member-my-journey-v1.js');
 
 // One coherent destination in the canonical live shell.
 for (const marker of [
@@ -100,6 +101,19 @@ for (const marker of [
   "numberSelect('waterDays'",
   'You will never be asked to type your weight or measurements into a blank box.',
 ]) has(weeklyClient, marker, `respectful selector contract missing “${marker}”`);
+for (const marker of [
+  'Nobody has to type their weight or measurements.',
+  'measurementSelect=(name,current,kind)',
+  'startKg:w.startKg',
+  'currentKg:w.currentKg',
+  'targetKg:w.targetKg',
+  'maintenanceLowKg:w.maintenanceLowKg',
+  'maintenanceHighKg:w.maintenanceHighKg',
+  'startCm:wa.startCm',
+  'currentCm:wa.currentCm',
+  'weightLabel',
+  'waistLabel',
+]) has(journeyClient, marker, `Journey setup selector contract missing “${marker}”`);
 
 // Phase 3: restrained longitudinal interpretation, including explicit limits.
 for (const marker of [
