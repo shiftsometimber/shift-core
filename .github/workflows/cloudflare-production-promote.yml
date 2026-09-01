@@ -144,8 +144,6 @@ jobs:
         run: |
           node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs
           node my-journey-integration-gate.mjs
-      - name: Apply additive D1 migrations
-        run: npx wrangler d1 migrations apply shift-core-db --remote --config wrangler.jsonc
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
