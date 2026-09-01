@@ -7,7 +7,7 @@ body{margin:0;background:var(--sst-black)!important;color:var(--sst-cream);font-
 .sst-menu-button:hover,.sst-menu-button:focus-visible{background:var(--sst-green);color:var(--sst-black)}
 .sst-global-menu{position:fixed;top:96px;right:max(22px,5vw);z-index:79;display:grid;width:min(760px,92vw);grid-template-columns:1fr 1fr;padding:12px;border-top:8px solid var(--sst-green);background:var(--sst-cream);box-shadow:0 24px 70px rgba(0,0,0,.55)}
 .sst-global-menu[hidden]{display:none}.sst-global-menu a{min-height:48px;padding:15px;color:var(--sst-black);border-bottom:1px solid rgba(5,5,5,.2);text-decoration:none;font-weight:900}.sst-global-menu a:hover,.sst-global-menu a:focus-visible{background:var(--sst-green)}
-.sst-portal-tabs{display:grid;width:min(1450px,100%);grid-template-columns:repeat(5,1fr);margin:24px auto 0;padding:0 24px}
+.sst-portal-tabs{display:grid;width:min(1450px,100%);grid-template-columns:repeat(6,1fr);margin:24px auto 0;padding:0 24px}
 .sst-portal-tabs a{min-height:52px;display:grid;place-items:center;padding:14px 8px;border-bottom:1px solid var(--sst-green);color:var(--sst-cream);text-align:center;text-decoration:none;font-size:12px;font-weight:900;letter-spacing:.14em}
 .sst-portal-tabs a[aria-current=page]{background:var(--sst-green);color:var(--sst-black)}
 

@@ -6,6 +6,10 @@ const browser=fs.readFileSync('frontend/member/shift-me-api-v1.js','utf8');
 const creator=fs.readFileSync('frontend/member/member-shift-me-premium-v1.js','utf8');
 const creatorCss=fs.readFileSync('frontend/member/member-shift-me-premium-v1.css','utf8');
 const shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
+const dashboard=fs.readFileSync('frontend/member/my-timber-preview.html','utf8');
+const grub=fs.readFileSync('frontend/member/member-grub.html','utf8');
+const fit=fs.readFileSync('frontend/member/member-fit.html','utf8');
+const memberCss=fs.readFileSync('frontend/member/my-timber-v11.css','utf8');
 const creatorLower=creator.toLowerCase();
 const checks=[
  ['consent required for photo render',route.includes('consent_required')],
@@ -33,6 +37,11 @@ const checks=[
  ['creator performs controlled rerender',creator.includes('rerenderShiftMe(appearance())')],
  ['creator reloads persisted record',creator.includes('getShiftMe()')&&creator.includes('shiftMeImageUrl')],
  ['creator exposes deletion',creator.includes('deleteShiftMe()')&&creator.includes('Delete my Shift Me')],
+ ['dashboard primary navigation exposes Shift Me',dashboard.includes('href="/member/dashboard#shiftme" data-portal-panel="shiftme">SHIFT ME</a>')],
+ ['Grub primary navigation exposes Shift Me',grub.includes('href="/member/dashboard#shiftme">SHIFT ME</a>')],
+ ['Fit primary navigation exposes Shift Me',fit.includes('href="/member/dashboard#shiftme">SHIFT ME</a>')],
+ ['member destination navigation supports six tabs',memberCss.includes('grid-template-columns:repeat(6,1fr)')],
+ ['Shift Me activates its primary destination tab',creator.includes('data-portal-panel="shiftme"')&&creator.includes("x.dataset.portalPanel==='shiftme'")],
  ['no fake placeholder person',creator.includes('Your bloke starts here.')&&!creator.includes('placeholder-avatar')],
  ['privacy and non-clinical copy',creatorLower.includes('not retained')&&creatorLower.includes('not a body scan')&&creatorLower.includes('health assessment')],
  ['premium mobile layout',creatorCss.includes('@media(max-width:640px)')&&creatorCss.includes('.sm-actions{grid-template-columns:1fr}')],

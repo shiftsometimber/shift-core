@@ -56,9 +56,9 @@
           <p class="sm-fine">Your Shift Me is a character for your member journey—not a body scan, health assessment, fit guarantee or prediction of future appearance.</p>
         </div>
       </div>`;
-    existing.parentNode.append(panel);tab.onclick=()=>activate();bind(panel);renderState(panel);ensureNavLink();if(location.hash==='#shiftme'||sessionStorage.getItem('sst-open-shiftme')==='1'){sessionStorage.removeItem('sst-open-shiftme');activate()}load(panel);return true;
+    existing.parentNode.append(panel);tab.onclick=()=>activate();const portalTab=$('[data-portal-panel="shiftme"]');if(portalTab)portalTab.onclick=e=>{e.preventDefault();activate()};bind(panel);renderState(panel);ensureNavLink();if(location.hash==='#shiftme'||sessionStorage.getItem('sst-open-shiftme')==='1'){sessionStorage.removeItem('sst-open-shiftme');activate()}load(panel);return true;
   }
-  function activate(){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel==='shiftme'));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-shiftme'));history.replaceState(null,'','#shiftme')}
+  function activate(){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel==='shiftme'));$$('[data-portal-panel]').forEach(x=>{const on=x.dataset.portalPanel==='shiftme';on?x.setAttribute('aria-current','page'):x.removeAttribute('aria-current')});$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-shiftme'));history.replaceState(null,'','#shiftme')}
   function appearance(){return {...state}}
   function setAppearance(panel,data){for(const key of Object.keys(state))if(controls[key]?.includes(data?.[key]))state[key]=data[key];renderState(panel)}
   function renderState(panel){
