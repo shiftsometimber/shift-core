@@ -10,6 +10,7 @@ const fit=fs.readFileSync('frontend/member/member-fit.html','utf8');
 const visual=fs.readFileSync('frontend/member/my-timber-v11.css','utf8');
 const worker=fs.readFileSync('worker-entry-v6.js','utf8');
 const config=fs.readFileSync('wrangler.jsonc','utf8');
+const extension=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
 
 need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
 for(const marker of [
@@ -47,6 +48,7 @@ for(const marker of ['shiftsometimber.co.uk/member/tap-room*','www.shiftsometimb
 need(worker.includes("new URL('/tap-room',request.url),302"),'legacy Tap Room route is not redirected to the canonical member journey');
 need(!shell.includes('Isolated My Timber preview'),'live My Timber still presents itself as an isolated preview');
 need(!shell.includes('Nothing here touches your live Shift account'),'live My Timber still contains preview-only account copy');
+for(const marker of ['.sst-coming-plan b,.sst-coming-plan span{display:block}', '.sst-coming-plan span{margin-top:4px'])need(extension.includes(marker),`coming-off plan sentence spacing missing ${marker}`);
 const login=fs.readFileSync('member-login-fastpath-v1.js','utf8');
 for(const marker of ['body?.rememberMe===true','Domain=.shiftsometimber.co.uk','Max-Age=','REMEMBER_DAYS=90','STANDARD_HOURS=12'])need(login.includes(marker),`remember-me contract missing ${marker}`);
 const state=fs.readFileSync('member-state-fast-v1.js','utf8');
