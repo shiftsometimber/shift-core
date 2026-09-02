@@ -11,4 +11,7 @@ test('Ask Timber permits credentialed requests from the public site',()=>{
   assert.match(source,/articles\/glp1-side-effects/);
   assert.match(source,/articles\/stopping-glp1/);
   assert.match(source,/reviewedSiteEvidence\(message\)/);
+  assert.match(source,/mode:'reviewed_direct'/);
+  assert.match(source,/direct extract from reviewed Shift information/);
+  assert.doesNotMatch(source,/error:'answer_unavailable'/);
 });

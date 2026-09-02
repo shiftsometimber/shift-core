@@ -70,7 +70,15 @@ export async function askTimberRoutes(request,env){
     },200,request);
   }catch(error){
     console.error('ask_timber_generation_failed',JSON.stringify({requestId,error:String(error?.message||error).slice(0,160)}));
-    return json({ok:false,error:'answer_unavailable',requestId,message:'Ask Timber is temporarily unavailable. Please try again shortly.'},503,request);
+    const direct=evidence[0];
+    return json({
+      ok:true,requestId,mode:'reviewed_direct',confidence:'medium',
+      answer:`${clean(direct.content,2200)} [1]`,
+      keyPoints:[],
+      nextSteps:['Open the reviewed source for the full context.','Speak to the treating service, a pharmacist, GP or NHS 111 if symptoms are severe, persistent or worrying.'],
+      followUps:[],sources:sources.slice(0,1),
+      limitations:'This is a direct extract from reviewed Shift information, not an individual assessment or a diagnosis.'
+    },200,request);
   }
 }
 
