@@ -60,18 +60,31 @@ async function generateAndPersist(request,env,user,inputBytes,inputType,appearan
     : `Create the SAME premium rounded 3D Shift Me adult character from the supplied image. Identity lock is the highest priority: preserve recognisable adult facial identity, apparent age, ethnicity, eye identity and distinguishing facial proportions while translating him into the approved polished Shift character style.`;
   const explicitControls=renderDirectives(appearance.data),changes=changedDirectives(appearance.data,previousAppearance);
   const prompt=`EDIT PRIORITY — MEMBER CHANGES: ${changes} These changes are mandatory and must be immediately obvious in the returned image. ${identityPrompt} He must remain an ordinary adult bloke, not a fashion model or fitness model. Apply every member-selected appearance control visibly and literally while keeping him recognisably the same character on subsequent rerenders. ${appearance.prompt} EXACT VISUAL SPECIFICATION: ${explicitControls} The supplied image is identity reference only: it must never override a newly selected hair, facial-hair, face-shape, eye-colour, skin-tone, clothing, accessory, build or camera-view instruction. Use ordinary adult proportions, substantial formed limbs, clean healthy skin material and a relaxed upright stance. Do not beautify, slim, muscularise, de-age or alter height unless that specific member control requests it. Premium deep forest Shift studio with muted gold rim light and a subtle round display plinth. Full body must remain visible from hair to trainers with generous clear space around him. Camera angle MUST match the selected view exactly: Front = straight-on; Left side = exact left profile; Back = exact rear view; Right side = exact right profile. Clothing must match the selected garment and use only a subtle left-chest circular Shift S badge equivalent to 28–30mm on apparel; the badge must not appear in a back view. Do not invent tattoos or jewellery. The selected controls MUST cause obvious visual differences between renders without changing identity. Exclude identity drift, foetal or ultrasound appearance, incomplete or translucent skin, child/baby proportions, oversized head, bodybuilder or six-pack physique, superhero styling, glamour retouching, distorted hands, extra fingers, text, watermark, unrelated brands, LEGO bricks or minifigure anatomy, Funko proportions, mannequin or faceless-avatar styling.`;
-  const modelForm=new FormData();
-  modelForm.append('prompt',prompt);
-  if(inputBytes?.length)modelForm.append('input_image_0',new File([inputBytes],'shift-me-input',{type:inputType||'image/png'}));
-  modelForm.append('width',String(OUTPUT_SIZE));modelForm.append('height',String(OUTPUT_SIZE));modelForm.append('guidance','4.5');
-  const formResponse=new Response(modelForm);
-  const result=await env.AI.run(MODEL,{multipart:{body:formResponse.body,contentType:formResponse.headers.get('content-type')}});
+  const result=await runImageModel(env,prompt,inputBytes,inputType);
   const b64=result?.image;if(!b64)return json({ok:false,error:'generation_failed'},502,request);
   const outputMime=detectImageMime(base64ToBytes(b64));
   const id=crypto.randomUUID(),now=new Date().toISOString();
   await env.DB.prepare(`INSERT INTO shift_me_v1(id,user_id,mime_type,image_base64,appearance_json,model,created_at,updated_at,deleted_at) VALUES(?,?,?,?,?,?,?, ?,NULL) ON CONFLICT(user_id) DO UPDATE SET id=excluded.id,mime_type=excluded.mime_type,image_base64=excluded.image_base64,appearance_json=excluded.appearance_json,model=excluded.model,updated_at=excluded.updated_at,deleted_at=NULL`).bind(id,user.id,outputMime,b64,JSON.stringify(appearance.data),MODEL,now,now).run();
   try{await env.DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'shift_me_generated',?,?)`).bind(`user:${user.id}`,JSON.stringify({shiftMeId:id,model:MODEL,sourceStored:false,generatedStored:true,sourceKind,appearance:appearance.data})).run();}catch{}
   return json({ok:true,shiftMe:{id,imageUrl:'/v1/shift-me/image',appearance:appearance.data,updatedAt:now},sourcePhotoStored:false,sourceKind,disclaimer:'Shift Me is an AI-generated visual likeness or character for Shift experiences. It is not identity verification, a body scan, a health assessment, a fit guarantee or a prediction of future appearance.'},201,request);
+}
+
+async function runImageModel(env,prompt,inputBytes,inputType){
+  let lastError=null;
+  for(let attempt=0;attempt<2;attempt++){
+    try{
+      const modelForm=new FormData();
+      modelForm.append('prompt',prompt);
+      if(inputBytes?.length)modelForm.append('input_image_0',new File([inputBytes],'shift-me-input',{type:inputType||'image/png'}));
+      modelForm.append('width',String(OUTPUT_SIZE));modelForm.append('height',String(OUTPUT_SIZE));modelForm.append('guidance','4.5');
+      const formResponse=new Response(modelForm);
+      const result=await env.AI.run(MODEL,{multipart:{body:formResponse.body,contentType:formResponse.headers.get('content-type')}});
+      if(result?.image)return result;
+      lastError=new Error('Shift Me model returned no image.');
+    }catch(error){lastError=error}
+    if(attempt===0)await new Promise(resolve=>setTimeout(resolve,300));
+  }
+  throw lastError||new Error('Shift Me model failed.');
 }
 
 async function getShiftMe(request,env,user){const row=await env.DB.prepare(`SELECT id,appearance_json,model,created_at,updated_at FROM shift_me_v1 WHERE user_id=? AND deleted_at IS NULL LIMIT 1`).bind(user.id).first();if(!row)return json({ok:true,shiftMe:null},200,request);return json({ok:true,shiftMe:{id:row.id,imageUrl:'/v1/shift-me/image',appearance:parseJson(row.appearance_json),model:row.model,createdAt:row.created_at,updatedAt:row.updated_at}},200,request);}
