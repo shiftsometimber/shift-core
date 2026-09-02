@@ -27,12 +27,12 @@ assert.equal(before.ages.scan,null);
 assert.ok(before.reasons.some(x=>x.code==='scan_stale'));
 
 const oldFetch=globalThis.fetch;
-globalThis.fetch=async url=>new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative GLP-1 weight-management medicine update</title><link href="${url}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update concerning obesity treatment.</summary></entry></feed>`,{status:200});
+globalThis.fetch=async url=>{const value=String(url);if(value.includes('esearch.fcgi'))return Response.json({esearchresult:{idlist:['42673585']}});if(value.includes('esummary.fcgi'))return Response.json({result:{'42673585':{uid:'42673585',title:'Peer-reviewed GLP-1 and retatrutide weight-loss review',pubdate:'2026 Sep 1',sorttitle:'GLP-1 weight loss',fulljournalname:'Annals of Internal Medicine'}}});return new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative GLP-1 weight-management medicine update</title><link href="${url}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update concerning obesity treatment.</summary></entry></feed>`,{status:200})};
 try {
   const result=await runRadarScheduledScan({DB});
   assert.equal(result.scan.ok,true);
-  assert.equal(result.scan.sources.length,3);
-  assert.equal(result.scan.newEvents,3);
+  assert.equal(result.scan.sources.length,4);
+  assert.equal(result.scan.newEvents,4);
   assert.equal(result.freshness.freshnessDue,0);
 
   const scan=await DB.prepare(`SELECT * FROM radar_audit WHERE action='scan' ORDER BY id DESC LIMIT 1`).first();
@@ -40,10 +40,10 @@ try {
   assert.equal(scan.actor,'radar_scanner');
   const detail=JSON.parse(scan.detail_json);
   assert.equal(detail.authoritative,true);
-  assert.equal(detail.sources.length,3);
+  assert.equal(detail.sources.length,4);
 
   const events=await DB.prepare(`SELECT COUNT(*) c FROM radar_events`).first();
-  assert.equal(Number(events.c),3);
+  assert.equal(Number(events.c),4);
   const after=await readRadarFreshness(DB);
   assert.equal(after.status,'GREEN');
   assert.equal(after.current,true);
