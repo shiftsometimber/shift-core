@@ -7,6 +7,7 @@ const memberSport=fs.readFileSync('frontend/member/member-sport-v1.js','utf8');
 const progress=fs.readFileSync('frontend/member/member-progress-v1.js','utf8');
 const progressPicturePremium=fs.readFileSync('frontend/member/member-progress-picture-premium-v1.js','utf8');
 const preview=fs.readFileSync('frontend/member/my-timber-preview.html','utf8');
+const timberV11=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
 const plansPremium=fs.readFileSync('frontend/member/member-plans-premium-v1.js','utf8');
 const plansPremiumCss=fs.readFileSync('frontend/member/member-plans-premium-v1.css','utf8');
 const workerEntry=fs.readFileSync('worker-entry-v6.js','utf8');
@@ -22,6 +23,7 @@ need(/member-product-v33d\.js/.test(preview)&&/member-progress-picture-premium-v
 need(/member-product-v33d\.js\?v=vision-3/.test(preview)&&/member-my-journey-v1\.js\?v=3/.test(preview),'production member entry does not force corrected Journey and product clients past stale browser caches');
 need(/body:not\(\.member-ready\) \.sst-portal-tabs,body:not\(\.member-ready\) \.sst-portal-tools\{visibility:hidden\}/.test(preview)&&/document\.body\.classList\.add\('member-ready'\)/.test(preview),'public portal controls can be activated before the authenticated member surface is ready');
 need(/data-portal-panel="plans"/.test(preview)&&/id="panel-plans"/.test(preview)&&/id="activePlans"/.test(preview),'My Plans is not visibly reachable from the production member dashboard');
+need(/closest\('\[data-portal-panel\]'\)/.test(timberV11)&&/\.mp-tab\[data-panel=/.test(timberV11),'visible member controls do not deterministically activate their product panels');
 need(/member-shift-me-premium-v1\.js/.test(preview),'production My Timber shell does not load Shift Me');
 need(!/\\n\s*<(?:link|script)/.test(preview),'production My Timber shell contains escaped newline text between asset elements');
 need(!/type="number"[^>]*(?:weight|waist)|(?:weight|waist)[\s\S]{0,100}type="number"/i.test(preview),'production My Timber asks members to type weight or waist measurements');
