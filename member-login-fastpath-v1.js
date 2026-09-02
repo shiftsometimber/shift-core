@@ -37,7 +37,7 @@ export async function fastMemberLogin(request,env){
     env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)').bind(row.id,'auth.login','user',String(row.id),'{}',ipHash,now),
     env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)').bind(row.id,tokenHash,expires,now,now)
   ]);
-  const response=json({ok:true,user:publicUser(row),emailVerified:true,remembered:rememberMe},200,{'Set-Cookie':sessionCookie(token,expires,request,rememberMe)});clearLegacyHostCookie(response,request);return response;
+  const response=json({ok:true,user:publicUser(row),emailVerified:true,remembered:rememberMe},200);clearLegacyHostCookie(response,request);response.headers.append('Set-Cookie',sessionCookie(token,expires,request,rememberMe));return response;
 }
 
 async function verifyPassword(password,stored){
