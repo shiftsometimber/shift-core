@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import test from 'node:test';
+import {medicineCommerceRoutes} from '../medicine-commerce-v1.js';
+
+test('public medicine catalogue remains harmless without a database',async()=>{
+  const response=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/catalogue/medicines'),{},{});
+  assert.equal(response.status,200);
+  assert.deepEqual((await response.json()).products,[]);
+});
+
+test('medicine checkout requires a signed-in member before touching Stripe',async()=>{
+  const response=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/commerce/medicine-checkout',{method:'POST',headers:{Origin:'https://shiftsometimber.co.uk','content-type':'application/json'},body:JSON.stringify({variantId:1})}),{DB:{}},{});
+  assert.equal(response.status,401);
+  assert.equal((await response.json()).error,'account_required');
+});
+
+test('stock is a server-side quantity and zero never reaches Stripe',async()=>{
+  const source=await readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8');
+  assert.match(source,/stock_on_hand-reserved>0/);
+  assert.match(source,/UPDATE medicine_inventory SET reserved=reserved\+1/);
+  assert.match(source,/stock_on_hand=MAX\(0,stock_on_hand-1\)/);
+  assert.match(source,/error:\s*["']out_of_stock["']/);
+  assert.match(source,/https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
+});
+
+test('the public order page consumes the governed catalogue and checkout',async()=>{
+  const source=await readFile(new URL('../../pages-commercial-final/treatment-order-prototype-v1.js',import.meta.url),'utf8');
+  assert.match(source,/\/v1\/catalogue\/medicines/);
+  assert.match(source,/\/v1\/commerce\/medicine-checkout/);
+  assert.match(source,/variantId:\s*variant\.id/);
+  assert.match(source,/Currently out of stock/);
+});
