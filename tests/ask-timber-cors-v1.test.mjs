@@ -7,4 +7,8 @@ test('Ask Timber permits credentialed requests from the public site',()=>{
   assert.match(source,/'Access-Control-Allow-Credentials':'true'/);
   assert.match(source,/ORIGINS\.has\(origin\)/);
   assert.match(source,/'Access-Control-Allow-Origin'/);
+  assert.match(source,/REVIEWED_SITE_EVIDENCE/);
+  assert.match(source,/articles\/glp1-side-effects/);
+  assert.match(source,/articles\/stopping-glp1/);
+  assert.match(source,/reviewedSiteEvidence\(message\)/);
 });
