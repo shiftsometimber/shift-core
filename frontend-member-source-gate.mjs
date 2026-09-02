@@ -14,6 +14,8 @@ const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 const fail=[];
 const need=(ok,msg)=>{if(!ok)fail.push(msg)};
 need(/class="mp-tab" data-panel="visualise"/.test(preview)&&/id="panel-visualise"/.test(preview),'production My Timber shell does not expose the Progress Picture tab and panel');
+need(/class="mp-tab" href="\/member\/dashboard#visualise" data-panel="visualise" data-portal-panel="visualise"/.test(preview),'visible My Shift navigation does not expose Progress Picture');
+need(/async function session\(\)[\s\S]*fetch\('\/v1\/me',[\s\S]*response\.ok/.test(preview),'member entry shell does not recover after a slow initial authenticated session probe');
 need(/member-product-v33d\.js/.test(preview)&&/member-progress-picture-premium-v1\.js/.test(preview),'production My Timber shell does not load Progress Picture persistence and presentation');
 need(/member-shift-me-premium-v1\.js/.test(preview),'production My Timber shell does not load Shift Me');
 need(!/\\n\s*<(?:link|script)/.test(preview),'production My Timber shell contains escaped newline text between asset elements');
@@ -33,7 +35,7 @@ need(/@media\(max-width:1000px\)\{[\s\S]*\.member-shell\{[\s\S]*grid-template-co
 need(/function ensureP0\(\)/.test(shell)&&/MutationObserver\(ensureMemberAssets\)/.test(shell),'member shell does not retain canonical P0/member assets through member-surface head mutations');
 need(/link\[rel=\"stylesheet\"\]\[href\*=\"member-p0-v1\.css\"\]/.test(shell)&&/if\(link!==p0\)link\.remove\(\)/.test(shell),'member shell does not remove stale duplicate P0 stylesheet versions');
 need(/pointer-events:none/.test(shell),'member notice can still intercept pointer events');
-need(/function clearNotice\(\)/.test(shell)&&/getMe\(\);clearNotice\(\)/.test(shell),'member notice is not cleared after successful session verification');
+need(/function clearNotice\(\)/.test(shell)&&/verifiedSession\(\);clearNotice\(\)/.test(shell),'member notice is not cleared after successful session verification');
 need(/function authenticatedNav\(\)/.test(shell)&&/replace\('\/member\/dashboard\.html','\/member\/dashboard'\)/.test(shell),'member dashboard .html routes are not normalised to the live extensionless route');
 need(/function restoreRequestedPanel\(\)/.test(shell)&&/addEventListener\('hashchange',restoreRequestedPanel\)/.test(shell)&&/document\.readyState==='loading'[\s\S]*else boot\(\)/.test(shell),'direct member panel links are not restored at late boot or after in-page navigation');
 need(/function waitForApi\(\)/.test(shell)&&/if\(!await waitForApi\(\)\)/.test(shell),'late-loaded member API adapter is not awaited before session verification');
@@ -58,6 +60,7 @@ need(/SST_API\.getProgressSummary\(\)/.test(progress),'Progress UI is not driven
 need(/#panel-visualise/.test(progress)&&/shiftProgressStory/.test(progress),'Progress story is not integrated into the existing Progress Picture surface');
 need(/\.shift-progress-story/.test(css)&&/\.shift-progress-grid/.test(css),'Progress story premium/mobile styles are missing');
 need(/PICTURE_PREMIUM_SRC='\/member-progress-picture-premium-v1\.js\?v=1'/.test(shell)&&/function ensureProgressPicturePremium\(\)/.test(shell),'member shell does not load the bounded premium Progress Picture layer');
+need(/async function verifiedSession\(\)[\s\S]*fetch\('\/v1\/me',[\s\S]*response\.ok/.test(shell),'authenticated member shell does not recover after a slow initial session probe');
 need(/G2-014-PREMIUM-PROGRESS-PICTURE/.test(progressPicturePremium)&&/data-g2014-intro/.test(progressPicturePremium)&&/data-photo-id/.test(progressPicturePremium)&&/data-photo-delete/.test(progressPicturePremium),'premium Progress Picture layer does not preserve the commissioned photo lifecycle selectors');
 need(/G2-014-PREMIUM-PROGRESS-PICTURE/.test(css)&&/\.mp-picture-intro/.test(css)&&/\.mp-progress-photo-history/.test(css)&&/\.mp-progress-photo-image/.test(css),'premium Progress Picture forest/cream hierarchy is missing');
 need(/PLANS_PREMIUM_SRC='\/member-plans-premium-v1\.js\?v=1'/.test(shell)&&/PLANS_PREMIUM_CSS='\/member-plans-premium-v1\.css\?v=1'/.test(shell)&&/function ensurePlansPremium\(\)/.test(shell),'member shell does not load the bounded premium My Plans layer');
