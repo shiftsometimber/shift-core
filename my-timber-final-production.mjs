@@ -27,6 +27,9 @@ const context=await browser.newContext({viewport:{width:390,height:844},deviceSc
 const page=await context.newPage();
 try{
   await login(page);
+  // Leave the signed-out document before attaching strict listeners: Chromium can
+  // otherwise deliver its already-buffered, expected /v1/me 401 after login.
+  await page.goto('about:blank');
   // The signed-out login page legitimately probes /v1/me and receives 401 before
   // authentication. Start strict browser-error capture only after login succeeds.
   page.on('pageerror',error=>fail('page error',clean(error.message)));
