@@ -17,5 +17,6 @@ test('published HQ wording is never served from stale public cache',()=>{
   const source=fs.readFileSync(new URL('../hq-commerce-content-v1.js',import.meta.url),'utf8');
   assert.match(source,/response\.headers\.set\('cache-control','no-store'\)/);
   assert.match(source,/withSession\('first-primary'\)/);
+  assert.match(source,/Allow up to six minutes for a change to update globally\./);
   assert.doesNotMatch(source,/public,max-age=60/);
 });
