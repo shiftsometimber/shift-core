@@ -25,10 +25,12 @@ await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 const page=await context.newPage();
-page.on('pageerror',error=>fail('page error',clean(error.message)));
-page.on('console',message=>{if(message.type()==='error')fail('console error',clean(message.text()))});
 try{
   await login(page);
+  // The signed-out login page legitimately probes /v1/me and receives 401 before
+  // authentication. Start strict browser-error capture only after login succeeds.
+  page.on('pageerror',error=>fail('page error',clean(error.message)));
+  page.on('console',message=>{if(message.type()==='error')fail('console error',clean(message.text()))});
   const todayHeaders={Origin:SITE,'X-Shift-Local-Date':new Date().toISOString().slice(0,10),'X-Shift-Local-Hour':'18'};
   const grubResponse=await context.request.post(`${API}/v1/grub/plan`,{headers:todayHeaders,data:{days:7,calories:2000,protein_g:120,preferences:'UK family food, healthy fakeaways, no mushrooms',max_minutes:60,household_size:2}}),grub=await grubResponse.json().catch(()=>({}));
   if(!grubResponse.ok())throw new Error(`Grub seed ${grubResponse.status()} ${JSON.stringify(grub)}`);
