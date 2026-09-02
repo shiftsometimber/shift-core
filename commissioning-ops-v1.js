@@ -15,7 +15,7 @@ export async function commissioningOpsRoutes(request,env){
   const identity=await commissioningIdentity(request);if(!identity.ok)return json({ok:false,error:'unauthorised',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},401);
   if(radar){const result=await runRadarScheduledScan(env);return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,radar:result})}
   if(finalV1Publication)return publishFinalV1(request,env,identity);
-  if(syntheticSafety)return syntheticSafetyDrill(request,env,identity);
+  if(syntheticSafety){try{return await syntheticSafetyDrill(request,env,identity)}catch(e){console.error('synthetic_safety_drill_failed',e?.message);return json({ok:false,error:'synthetic_safety_drill_failed',detail:String(e?.message||e).slice(0,240)},503)}}
   const userId=Number(u.searchParams.get('userId')||0),hours=Math.max(1,Math.min(24,Number(u.searchParams.get('hours')||1)));
   if(!Number.isInteger(userId)||userId<=0)return json({ok:false,error:'invalid_user_id',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},400);
   try{
