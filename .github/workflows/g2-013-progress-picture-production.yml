@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'frontend/member/my-timber-preview.html'
       - 'frontend/member/member-product-v33d.js'
       - 'frontend/member/member-shell-v33g.js'
       - 'frontend/member/member-p0-v1.css'
