@@ -100,14 +100,28 @@ jobs:
           test "$publish" = "200"
           jq -e '.status=="published"' /tmp/publish.json
 
-          public=$(curl -sS -o /tmp/public.json -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout')
-          test "$public" = "200"
-          jq -e --arg key "$marker" '.overrides[]|select(.content_key==$key and .published_text=="SYNTHETIC HQ CONTENT DELIVERY PASS")' /tmp/public.json
+          published_visible=false
+          for attempt in {1..12}; do
+            if curl -fsSL 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout' -o /tmp/public.json && jq -e --arg key "$marker" '.overrides[]|select(.content_key==$key and .published_text=="SYNTHETIC HQ CONTENT DELIVERY PASS")' /tmp/public.json >/dev/null; then
+              published_visible=true
+              break
+            fi
+            sleep 10
+          done
+          test "$published_visible" = "true"
 
           pause=$(curl -sS -o /tmp/pause.json -w '%{http_code}' -H "Cookie: $cookie" -H 'Content-Type: application/json' -X PATCH "https://api.shiftsometimber.co.uk/v1/hq/site-content/$content_id" --data '{"action":"pause"}')
           test "$pause" = "200"
           jq -e '.status=="paused"' /tmp/pause.json
-          curl -fsSL "https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout&state=paused-$GITHUB_RUN_ATTEMPT" | jq -e '.overrides|length==0'
+          paused_visible=false
+          for attempt in {1..12}; do
+            if curl -fsSL 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout' | jq -e '.overrides|length==0' >/dev/null; then
+              paused_visible=true
+              break
+            fi
+            sleep 10
+          done
+          test "$paused_visible" = "true"
 
           jq -n --arg proof 'HQ_CONTROLS_PRODUCTION_CLOSEOUT_2026_09_02' --argjson contentId "$content_id" '{proof:$proof,status:"PASS",portal:true,ownerRoleEnforced:true,newshift25:{active:true,percent:25,subtotalPence:16900,discountPence:4225,totalPence:12675},content:{draftCreated:true,published:true,publiclyDelivered:true,paused:true,contentId:$contentId},realCustomerContentChanged:false}' | tee hq-controls-closeout-evidence/summary.json
           cp /tmp/validate.json /tmp/public.json /tmp/publish.json /tmp/pause.json hq-controls-closeout-evidence/
