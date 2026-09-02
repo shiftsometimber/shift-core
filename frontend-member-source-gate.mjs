@@ -20,8 +20,8 @@ need(/async function session\(\)[\s\S]*fetch\('\/v1\/me',[\s\S]*response\.ok/.te
 need(/async function existing\(\)\{for\(let attempt=0;attempt<30;attempt\+\+\)/.test(preview),'member entry gives up before an authenticated cross-host cookie can settle');
 need(/member-product-v33d\.js/.test(preview)&&/member-progress-picture-premium-v1\.js/.test(preview),'production My Timber shell does not load Progress Picture persistence and presentation');
 need(/member-product-v33d\.js\?v=vision-3/.test(preview)&&/member-my-journey-v1\.js\?v=3/.test(preview),'production member entry does not force corrected Journey and product clients past stale browser caches');
-need(/body:not\(\.member-ready\) \.sst-portal-tabs\{visibility:hidden\}/.test(preview)&&/document\.body\.classList\.add\('member-ready'\)/.test(preview),'public portal controls can be activated before the authenticated member surface is ready');
-need(/data-panel="plans"/.test(preview)&&/id="panel-plans"/.test(preview)&&/id="activePlans"/.test(preview),'My Plans is not reachable from the production member dashboard');
+need(/body:not\(\.member-ready\) \.sst-portal-tabs,body:not\(\.member-ready\) \.sst-portal-tools\{visibility:hidden\}/.test(preview)&&/document\.body\.classList\.add\('member-ready'\)/.test(preview),'public portal controls can be activated before the authenticated member surface is ready');
+need(/data-portal-panel="plans"/.test(preview)&&/id="panel-plans"/.test(preview)&&/id="activePlans"/.test(preview),'My Plans is not visibly reachable from the production member dashboard');
 need(/member-shift-me-premium-v1\.js/.test(preview),'production My Timber shell does not load Shift Me');
 need(!/\\n\s*<(?:link|script)/.test(preview),'production My Timber shell contains escaped newline text between asset elements');
 need(!/type="number"[^>]*(?:weight|waist)|(?:weight|waist)[\s\S]{0,100}type="number"/i.test(preview),'production My Timber asks members to type weight or waist measurements');
