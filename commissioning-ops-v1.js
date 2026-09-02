@@ -27,13 +27,13 @@ async function syntheticSafetyDrill(request,env,identity){
   const body=await request.json().catch(()=>({})),action=String(body.action||''),userId=Number(body.userId||0),postId=Number(body.postId||0),actor="Matt O'Brien";
   const commissioned=async id=>{if(!Number.isInteger(id)||id<=0)return false;const row=await env.DB.prepare("SELECT id FROM audit_log WHERE user_id=? AND action='auth.commissioning_identity_verified' LIMIT 1").bind(id).first();return !!row?.id};
   if(action==='cleanup_previous'){
-    const {results=[]}=await env.DB.prepare("SELECT p.id,p.user_id FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN audit_log a ON a.user_id=p.user_id AND a.action='auth.commissioning_identity_verified' WHERE p.body LIKE 'TEST INCIDENT — synthetic safeguarding delivery drill only.%' AND p.status='held' AND r.priority='P0' AND r.status='open' GROUP BY p.id,p.user_id").all();
+    const {results=[]}=await env.DB.prepare("SELECT p.id,p.user_id FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN audit_log a ON a.user_id=p.user_id AND a.action='auth.commissioning_identity_verified' WHERE substr(p.body,1,59)='TEST INCIDENT — synthetic safeguarding delivery drill only.' AND p.status='held' AND r.priority='P0' AND r.status='open' GROUP BY p.id,p.user_id").all();
     for(const row of results)await closeSyntheticTap(env,Number(row.id),Number(row.user_id),actor,'Recovered authorised TEST INCIDENT after proof-run interruption');
     return json({ok:true,action,closed:results.length,commissioningIdentity:'github_actions_oidc'});
   }
   if(!await commissioned(userId))return json({ok:false,error:'synthetic_commissioning_member_required'},403);
   if(action==='inspect_and_close_tap'){
-    const row=await env.DB.prepare("SELECT p.id,p.user_id,p.body,p.status,p.risk_flags_json,r.id report_id,r.priority,r.status report_status FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id WHERE p.id=? AND p.user_id=? AND p.body LIKE 'TEST INCIDENT — synthetic safeguarding delivery drill only.%' AND r.priority='P0' AND r.status='open' LIMIT 1").bind(postId,userId).first();
+    const row=await env.DB.prepare("SELECT p.id,p.user_id,p.body,p.status,p.risk_flags_json,r.id report_id,r.priority,r.status report_status FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id WHERE p.id=? AND p.user_id=? AND substr(p.body,1,59)='TEST INCIDENT — synthetic safeguarding delivery drill only.' AND r.priority='P0' AND r.status='open' LIMIT 1").bind(postId,userId).first();
     if(!row||row.status!=='held'||!String(row.risk_flags_json||'').includes('crisis'))return json({ok:false,error:'synthetic_p0_queue_proof_failed'},409);
     await closeSyntheticTap(env,postId,userId,actor,'Authorised TEST INCIDENT production drill');
     const closed=await env.DB.prepare("SELECT p.id,p.body,p.status,r.priority,r.status report_status,r.reviewed_by,r.outcome,a.action,a.actor FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN tap_room_moderation_audit a ON a.content_id=p.id WHERE p.id=? ORDER BY a.id DESC LIMIT 1").bind(postId).first();
