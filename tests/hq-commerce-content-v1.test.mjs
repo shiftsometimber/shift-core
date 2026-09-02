@@ -13,15 +13,18 @@ test('fixed discounts cannot create a negative total',()=>{
 });
 
 
-test('published HQ wording is never served from stale public cache',()=>{
+test('published HQ wording uses strong durable delivery and no-store responses',()=>{
   const source=fs.readFileSync(new URL('../hq-commerce-content-v1.js',import.meta.url),'utf8');
-  assert.match(source,/response\.headers\.set\('cache-control','no-store'\)/);
-  assert.match(source,/withSession\('first-primary'\)/);
+  assert.match(source,/'cache-control':'no-store'/);
+  assert.match(source,/SITE_CONTENT_STATE/);
+  assert.match(source,/contentStateCall\(env,'\/read'/);
+  assert.match(source,/contentStateCall\(env,'\/publish'/);
+  assert.match(source,/contentStateCall\(env,'\/pause'/);
   assert.match(source,/Changes appear on the next page load\./);
   assert.match(source,/path\.startsWith\('\/v1\/site-content\/'\)/);
   assert.match(source,/content_state_not_committed/);
+  assert.match(source,/content_delivery_not_committed/);
   assert.match(source,/request\.method==='POST'/);
-  assert.match(source,/UPDATE site_content_overrides SET status=status WHERE 0/);
   assert.doesNotMatch(source,/public,max-age=60/);
 });
 

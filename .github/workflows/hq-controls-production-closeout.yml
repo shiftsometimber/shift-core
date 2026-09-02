@@ -7,6 +7,10 @@ on:
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
       - 'hq-commerce-content-v1.js'
+      - 'site-content-state-v1.js'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
+      - 'tests/site-content-state-v1.test.mjs'
       - 'my-timber-final-production.mjs'
       - '.github/workflows/hq-controls-production-closeout.yml'
   pull_request:
@@ -14,6 +18,10 @@ on:
       - 'commissioning-identity-v1.js'
       - 'commissioning-ops-v1.js'
       - 'hq-commerce-content-v1.js'
+      - 'site-content-state-v1.js'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
+      - 'tests/site-content-state-v1.test.mjs'
       - 'my-timber-final-production.mjs'
       - '.github/workflows/hq-controls-production-closeout.yml'
   workflow_dispatch:
@@ -34,8 +42,9 @@ jobs:
           node --check commissioning-identity-v1.js
           node --check commissioning-ops-v1.js
           node --check hq-commerce-content-v1.js
+          node --check site-content-state-v1.js
           node --check my-timber-final-production.mjs
-          node --test tests/hq-commerce-content-v1.test.mjs
+          node --test tests/hq-commerce-content-v1.test.mjs tests/site-content-state-v1.test.mjs
 
   production:
     if: github.event_name != 'pull_request'
