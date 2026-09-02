@@ -48,7 +48,7 @@ export async function fastMemberRegister(request,env){
       env.DB.prepare(`INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)`).bind(user.id,sessionHash,expires,now,now)
     );
     await env.DB.batch(ops);
-    const response=json({ok:true,user:publicUser(user),emailVerified:autoVerify,remembered:rememberMe},201,{'Set-Cookie':sessionCookie(token,expires,request,rememberMe),'X-Shift-Register-Path':'fast-v2'});clearLegacyHostCookie(response,request);return response;
+    const response=json({ok:true,user:publicUser(user),emailVerified:autoVerify,remembered:rememberMe},201,{'X-Shift-Register-Path':'fast-v2'});clearLegacyHostCookie(response,request);response.headers.append('Set-Cookie',sessionCookie(token,expires,request,rememberMe));return response;
   }catch(e){
     console.warn('fast_member_register_fallback',String(e?.message||e).slice(0,240));
     return null;
