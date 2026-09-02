@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {calculateDiscount} from '../hq-commerce-content-v1.js';
 
 test('NEWSHIFT25 calculates 25 percent once in integer pence',()=>{
@@ -9,4 +10,11 @@ test('NEWSHIFT25 calculates 25 percent once in integer pence',()=>{
 
 test('fixed discounts cannot create a negative total',()=>{
   assert.deepEqual(calculateDiscount({discount_type:'fixed',discount_value:20000},9900),{discountPence:9900,totalPence:0});
+});
+
+
+test('published HQ wording is never served from stale public cache',()=>{
+  const source=fs.readFileSync(new URL('../hq-commerce-content-v1.js',import.meta.url),'utf8');
+  assert.match(source,/response\.headers\.set\('cache-control','no-store'\)/);
+  assert.doesNotMatch(source,/public,max-age=60/);
 });
