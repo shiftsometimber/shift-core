@@ -24,6 +24,10 @@ test('published HQ wording uses strong durable delivery and no-store responses',
   assert.match(source,/path\.startsWith\('\/v1\/site-content\/'\)/);
   assert.match(source,/content_state_not_committed/);
   assert.match(source,/content_delivery_not_committed/);
+  assert.match(source,/action==='preview'/);
+  assert.match(source,/action==='rollback'/);
+  assert.match(source,/site_content\.rolled_back/);
+  assert.match(source,/rolledBack:true/);
   assert.match(source,/request\.method==='POST'/);
   assert.doesNotMatch(source,/public,max-age=60/);
 });
