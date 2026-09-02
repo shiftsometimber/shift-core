@@ -11,11 +11,13 @@ export async function commissioningOpsRoutes(request,env){
   const productEvents=p==='/v1/commissioning/product-events'&&request.method==='GET';
   const finalV1Publication=p==='/v1/commissioning/final-v1-publication'&&request.method==='POST';
   const syntheticSafety=p==='/v1/commissioning/synthetic-safety-drill'&&request.method==='POST';
-  if(!radar&&!productEvents&&!finalV1Publication&&!syntheticSafety)return null;
+  const hqCloseout=p==='/v1/commissioning/hq-controls-closeout'&&request.method==='POST';
+  if(!radar&&!productEvents&&!finalV1Publication&&!syntheticSafety&&!hqCloseout)return null;
   const identity=await commissioningIdentity(request);if(!identity.ok)return json({ok:false,error:'unauthorised',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},401);
   if(radar){const result=await runRadarScheduledScan(env);return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,radar:result})}
   if(finalV1Publication)return publishFinalV1(request,env,identity);
   if(syntheticSafety){try{return await syntheticSafetyDrill(request,env,identity)}catch(e){console.error('synthetic_safety_drill_failed',e?.message);return json({ok:false,error:'synthetic_safety_drill_failed',detail:String(e?.message||e).slice(0,240)},503)}}
+  if(hqCloseout){try{return await hqControlsCloseout(request,env,identity)}catch(e){console.error('hq_controls_closeout_failed',e?.message);return json({ok:false,error:'hq_controls_closeout_failed',detail:String(e?.message||e).slice(0,240)},503)}}
   const userId=Number(u.searchParams.get('userId')||0),hours=Math.max(1,Math.min(24,Number(u.searchParams.get('hours')||1)));
   if(!Number.isInteger(userId)||userId<=0)return json({ok:false,error:'invalid_user_id',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},400);
   try{
@@ -23,6 +25,32 @@ export async function commissioningOpsRoutes(request,env){
     return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,userId,windowHours:hours,events:results.map(x=>({id:Number(x.id),event_name:x.event_name,surface:x.surface,source:x.source,properties:safe(x.properties_json),occurred_at:x.occurred_at}))});
   }catch(e){console.error('commissioning_product_events_failed',e?.message);return json({ok:false,error:'analytics_evidence_unavailable',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},503)}
 }
+async function hqControlsCloseout(request,env,identity){
+  const body=await request.json().catch(()=>({})),action=String(body.action||''),runId=String(body.runId||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);
+  if(!runId)return json({ok:false,error:'run_id_required'},400);
+  const marker=`hq-closeout-${runId}`,email=`${marker}@shift.test`,stamp=new Date().toISOString();
+  if(action==='setup'){
+    const sessionToken=`hq_closeout_${crypto.randomUUID()}_${crypto.randomUUID()}`,tokenHash=await sha256(sessionToken),expires=new Date(Date.now()+30*60*1000).toISOString();
+    let user=await env.DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();
+    if(!user){const result=await env.DB.prepare("INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled,created_at,updated_at) VALUES(?,?,?,'owner','active',0,?,?)").bind(email,'Synthetic HQ Closeout','commissioning_oidc_only',stamp,stamp).run();user={id:Number(result.meta?.last_row_id)}}
+    await env.DB.prepare("UPDATE hq_users SET role='owner',status='active',updated_at=? WHERE id=?").bind(stamp,user.id).run();
+    await env.DB.prepare('INSERT INTO hq_sessions(hq_user_id,token_hash,expires_at,created_at,last_used_at) VALUES(?,?,?,?,?)').bind(user.id,tokenHash,expires,stamp,stamp).run();
+    await env.DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'hq.synthetic_closeout_started','hq_user',?,?,?)").bind(user.id,String(user.id),JSON.stringify({runId,workflowRef:identity.claims?.workflow_ref||''}),stamp).run();
+    return json({ok:true,action,runId,hqUserId:Number(user.id),sessionToken,expiresAt:expires,commissioningIdentity:'github_actions_oidc'});
+  }
+  if(action==='cleanup'){
+    const user=await env.DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();if(!user)return json({ok:true,action,runId,alreadyClean:true});
+    const {results=[]}=await env.DB.prepare("SELECT id FROM site_content_overrides WHERE content_key=?").bind(marker).all();
+    for(const row of results){await env.DB.prepare('DELETE FROM site_content_versions WHERE content_override_id=?').bind(row.id).run();await env.DB.prepare('DELETE FROM site_content_overrides WHERE id=?').bind(row.id).run()}
+    await env.DB.prepare('UPDATE hq_sessions SET revoked_at=? WHERE hq_user_id=? AND revoked_at IS NULL').bind(stamp,user.id).run();
+    await env.DB.prepare("UPDATE hq_users SET status='disabled',updated_at=? WHERE id=?").bind(stamp,user.id).run();
+    await env.DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'hq.synthetic_closeout_completed','hq_user',?,?,?)").bind(user.id,String(user.id),JSON.stringify({runId,contentRowsRemoved:results.length}),stamp).run();
+    return json({ok:true,action,runId,hqUserId:Number(user.id),contentRowsRemoved:results.length,sessionRevoked:true,userDisabled:true,commissioningIdentity:'github_actions_oidc'});
+  }
+  return json({ok:false,error:'invalid_hq_closeout_action'},400);
+}
+async function sha256(value){const bytes=new TextEncoder().encode(String(value)),hash=await crypto.subtle.digest('SHA-256',bytes);return[...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+
 async function syntheticSafetyDrill(request,env,identity){
   const body=await request.json().catch(()=>({})),action=String(body.action||''),userId=Number(body.userId||0),postId=Number(body.postId||0),actor="Matt O'Brien";
   const commissioned=async id=>{if(!Number.isInteger(id)||id<=0)return false;const row=await env.DB.prepare("SELECT id FROM audit_log WHERE user_id=? AND action='auth.commissioning_identity_verified' LIMIT 1").bind(id).first();return !!row?.id};
