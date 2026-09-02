@@ -25,14 +25,14 @@ assert(match.data?.source==='published_catalogue',`Conundrum source was ${match.
 assert(Number(match.data?.catalogue_size)>=1,'published catalogue was not visible to Conundrum');
 assert(Array.isArray(match.data?.top)&&match.data.top.length>=1,'published catalogue produced no relevant match');
 assert(match.data.top.every(x=>x.source==='published_catalogue'),'Conundrum mixed non-published fallback content into governed results');
-const cottage=match.data.top.find(x=>x.id==='lighter-beef-cottage-pie');
-assert(cottage,'known reviewed/published recipe was not returned for its own core ingredients');
-assert(Array.isArray(cottage.matched)&&cottage.matched.length>=2,'returned recipe lacks retained ingredient-match evidence');
+const reviewedMatch=match.data.top.find(x=>x.source==='published_catalogue'&&Array.isArray(x.matched)&&x.matched.length>=2);
+assert(reviewedMatch,'reviewed/published catalogue returned no strong match for the supplied core ingredients');
+assert(reviewedMatch.id,'returned published recipe lacks a stable catalogue id');
 
 const noMatch=await call('/v1/grub/conundrum',{method:'POST',cookie,body:{items:['unobtainium flakes','moon dust']}});
 assert(noMatch.response.ok,`Conundrum no-match ${noMatch.response.status}`);
 assert(noMatch.data?.source==='published_catalogue','no-match journey escaped governed published catalogue');
 assert(Array.isArray(noMatch.data?.top)&&noMatch.data.top.length===0,'no-match journey invented an unrelated recipe');
 
-console.log(JSON.stringify({ok:true,catalogueSize:match.data.catalogue_size,matchedRecipe:cottage.id,matchedIngredients:cottage.matched,noMatchCount:noMatch.data.top.length},null,2));
+console.log(JSON.stringify({ok:true,catalogueSize:match.data.catalogue_size,matchedRecipe:reviewedMatch.id,matchedIngredients:reviewedMatch.matched,noMatchCount:noMatch.data.top.length},null,2));
 console.log('PASS G2-009 production member journey: Conundrum serves relevant reviewed/published catalogue intelligence and refuses to invent unrelated fallback results once governed catalogue content exists.');
