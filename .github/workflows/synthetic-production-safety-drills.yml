@@ -5,11 +5,13 @@ on:
     paths:
       - '.github/workflows/synthetic-production-safety-drills.yml'
       - 'commissioning-identity-v1.js'
+      - 'commissioning-ops-v1.js'
   push:
     branches: [main]
     paths:
       - '.github/workflows/synthetic-production-safety-drills.yml'
       - 'commissioning-identity-v1.js'
+      - 'commissioning-ops-v1.js'
   workflow_dispatch:
 
 permissions:
@@ -80,6 +82,17 @@ jobs:
           echo "cookie=$cookie" >> "$GITHUB_OUTPUT"
           jq '{status:201,userId:(.user.id|tonumber),synthetic:true}' /tmp/register.json > synthetic-production-drill-evidence/registration.json
 
+      - name: Recover any interrupted prior labelled drill
+        shell: bash
+        env:
+          OIDC: ${{ steps.oidc.outputs.token }}
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/prior-cleanup.json -w '%{http_code}' -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST "$API/v1/commissioning/synthetic-safety-drill" --data '{"action":"cleanup_previous"}')
+          test "$status" = "200"
+          jq -e '.ok==true' /tmp/prior-cleanup.json
+          jq . /tmp/prior-cleanup.json > synthetic-production-drill-evidence/prior-cleanup.json
+
       - name: Trigger labelled Tap Room P0 incident
         id: tap
         shell: bash
@@ -100,55 +113,44 @@ jobs:
       - name: Prove P0 queue then sanitise and close test incident
         shell: bash
         env:
+          OIDC: ${{ steps.oidc.outputs.token }}
           USER_ID: ${{ steps.member.outputs.user_id }}
           POST_ID: ${{ steps.tap.outputs.post_id }}
         run: |
           set -euo pipefail
-          test "$USER_ID" -gt 0
-          test "$POST_ID" -gt 0
-          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
-            "SELECT p.id,p.status,p.risk_flags_json,r.id report_id,r.priority,r.status report_status FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id WHERE p.id=$POST_ID AND p.user_id=$USER_ID;" \
-            | tee synthetic-production-drill-evidence/tap-queue-before.json
-          jq -e '[..|objects|select(.id=='"$POST_ID"' and .status=="held" and .priority=="P0" and .report_status=="open" and (.risk_flags_json|contains("crisis")))]|length==1' synthetic-production-drill-evidence/tap-queue-before.json
-          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
-            "UPDATE tap_room_posts SET body='[TEST INCIDENT CLOSED]',status='hidden_by_moderator',deleted_at=CURRENT_TIMESTAMP,updated_at=CURRENT_TIMESTAMP WHERE id=$POST_ID AND user_id=$USER_ID; UPDATE tap_room_reports SET status='reviewed',reviewed_at=CURRENT_TIMESTAMP,reviewed_by='Matt O''Brien',outcome='synthetic_drill_closed' WHERE post_id=$POST_ID AND status='open'; INSERT INTO tap_room_moderation_audit(actor,action,reason,content_id,affected_user_id,metadata_json,created_at) VALUES('Matt O''Brien','synthetic_p0_drill_close','Authorised TEST INCIDENT production drill',$POST_ID,$USER_ID,'{\"synthetic\":true,\"realHealthData\":false}',CURRENT_TIMESTAMP);" \
-            > synthetic-production-drill-evidence/tap-close-command.json
-          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
-            "SELECT p.id,p.body,p.status,r.priority,r.status report_status,r.reviewed_by,r.outcome,a.action,a.actor FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN tap_room_moderation_audit a ON a.content_id=p.id WHERE p.id=$POST_ID ORDER BY a.id DESC LIMIT 1;" \
-            | tee synthetic-production-drill-evidence/tap-closure.json
-          jq -e '[..|objects|select(.id=='"$POST_ID"' and .body=="[TEST INCIDENT CLOSED]" and .status=="hidden_by_moderator" and .priority=="P0" and .report_status=="reviewed" and .reviewed_by=="Matt O'\"'\"'Brien" and .outcome=="synthetic_drill_closed" and .action=="synthetic_p0_drill_close")]|length==1' synthetic-production-drill-evidence/tap-closure.json
+          status=$(curl -sS -o /tmp/tap-close.json -w '%{http_code}' -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST "$API/v1/commissioning/synthetic-safety-drill" --data "$(jq -nc --argjson userId "$USER_ID" --argjson postId "$POST_ID" '{action:"inspect_and_close_tap",userId:$userId,postId:$postId}')")
+          test "$status" = "200"
+          jq -e '.ok==true and .before.status=="held" and .before.priority=="P0" and .before.reportStatus=="open" and .after.body=="[TEST INCIDENT CLOSED]" and .after.status=="hidden_by_moderator" and .after.report_status=="reviewed" and .after.outcome=="synthetic_drill_closed" and .after.action=="synthetic_p0_drill_close"' /tmp/tap-close.json
+          jq . /tmp/tap-close.json > synthetic-production-drill-evidence/tap-closure.json
 
       - name: Seed synthetic optional health rows
         shell: bash
         env:
+          OIDC: ${{ steps.oidc.outputs.token }}
           USER_ID: ${{ steps.member.outputs.user_id }}
         run: |
           set -euo pipefail
-          today=$(date -u +%F)
-          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
-            "INSERT INTO progress_entries(user_id,recorded_on,weight_kg,waist_cm,notes,source) VALUES($USER_ID,'$today',99.9,99.9,'SYNTHETIC ERASURE DRILL','commissioning'); INSERT INTO check_ins(user_id,weight,waist,wellbeing_score,notes) VALUES($USER_ID,99.9,99.9,5,'SYNTHETIC ERASURE DRILL');" \
-            > synthetic-production-drill-evidence/health-seed-command.json
-          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
-            "SELECT (SELECT COUNT(*) FROM progress_entries WHERE user_id=$USER_ID AND notes='SYNTHETIC ERASURE DRILL') progress_rows,(SELECT COUNT(*) FROM check_ins WHERE user_id=$USER_ID AND notes='SYNTHETIC ERASURE DRILL') checkin_rows;" \
-            | tee synthetic-production-drill-evidence/health-before.json
-          jq -e '[..|objects|select(.progress_rows==1 and .checkin_rows==1)]|length==1' synthetic-production-drill-evidence/health-before.json
+          status=$(curl -sS -o /tmp/health-seed.json -w '%{http_code}' -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST "$API/v1/commissioning/synthetic-safety-drill" --data "$(jq -nc --argjson userId "$USER_ID" '{action:"seed_health",userId:$userId}')")
+          test "$status" = "200"
+          jq -e '.ok==true and .progressRows==1 and .checkInRows==1' /tmp/health-seed.json
+          jq . /tmp/health-seed.json > synthetic-production-drill-evidence/health-before.json
 
       - name: Exercise authenticated health-tracking erasure
         shell: bash
         env:
+          OIDC: ${{ steps.oidc.outputs.token }}
           COOKIE: ${{ steps.member.outputs.cookie }}
           USER_ID: ${{ steps.member.outputs.user_id }}
         run: |
           set -euo pipefail
-          status=$(curl -sS -o /tmp/health-erasure.json -w '%{http_code}' \
-            -H "Origin: $SITE" -H "Cookie: $COOKIE" -X DELETE "$API/v1/privacy/health-tracking")
+          status=$(curl -sS -o /tmp/health-erasure.json -w '%{http_code}' -H "Origin: $SITE" -H "Cookie: $COOKIE" -X DELETE "$API/v1/privacy/health-tracking")
           test "$status" = "200"
           jq -e '.ok==true and .consentWithdrawn==true and (.deleted|map(.table)|index("progress_entries")!=null) and (.deleted|map(.table)|index("check_ins")!=null)' /tmp/health-erasure.json
           jq '{httpStatus:200,ok,erasedAt,deleted,consentWithdrawn,synthetic:true}' /tmp/health-erasure.json > synthetic-production-drill-evidence/health-erasure-response.json
-          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
-            "SELECT (SELECT COUNT(*) FROM progress_entries WHERE user_id=$USER_ID) progress_rows,(SELECT COUNT(*) FROM check_ins WHERE user_id=$USER_ID) checkin_rows,(SELECT COUNT(*) FROM consents WHERE user_id=$USER_ID AND consent_type='my_shift_health_tracking' AND granted=0) withdrawal_rows,(SELECT COUNT(*) FROM audit_log WHERE user_id=$USER_ID AND action='privacy.health_tracking_erased') audit_rows;" \
-            | tee synthetic-production-drill-evidence/health-after.json
-          jq -e '[..|objects|select(.progress_rows==0 and .checkin_rows==0 and .withdrawal_rows>=1 and .audit_rows>=1)]|length==1' synthetic-production-drill-evidence/health-after.json
+          verify=$(curl -sS -o /tmp/health-after.json -w '%{http_code}' -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST "$API/v1/commissioning/synthetic-safety-drill" --data "$(jq -nc --argjson userId "$USER_ID" '{action:"verify_health_erasure",userId:$userId}')")
+          test "$verify" = "200"
+          jq -e '.ok==true and .progressRows==0 and .checkInRows==0 and .withdrawalRows>=1 and .auditRows>=1' /tmp/health-after.json
+          jq . /tmp/health-after.json > synthetic-production-drill-evidence/health-after.json
 
       - name: Write combined proof summary
         shell: bash
