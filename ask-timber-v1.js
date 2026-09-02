@@ -28,6 +28,8 @@ export async function askTimberRoutes(request,env){
     console.log('ask_timber_safe_redirect',JSON.stringify({requestId,category:urgent.category}));
     return json({ok:true,requestId,mode:'safety',...urgent},200,request);
   }
+  const reviewedDirect=directReviewedAnswer(message);
+  if(reviewedDirect)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
   const evidence=await retrieveForParts(env.DB,message,requestParts);
   if(!evidence.length){
@@ -80,6 +82,20 @@ export async function askTimberRoutes(request,env){
       limitations:'This is a direct extract from reviewed Shift information, not an individual assessment or a diagnosis.'
     },200,request);
   }
+}
+
+function directReviewedAnswer(message){
+  const q=message.toLowerCase();
+  if(!/\b(eggy|sulphur|sulfur)\b/.test(q)||!/\b(burp|burps|breath)\b/.test(q))return null;
+  const source=REVIEWED_SITE_EVIDENCE[0];
+  return{
+    answer:`${source.content} [1]`,
+    keyPoints:['Smaller portions and slower eating may help.','Keep fluids going and notice whether fatty or heavy meals make it worse.','Stay upright after eating rather than lying down.'],
+    nextSteps:['Read the reviewed side-effects guide for the full context.','Contact the treating service, a pharmacist, GP or NHS 111 if symptoms are severe, persistent or worrying.'],
+    followUps:[],
+    sources:[{id:1,title:source.title,url:source.url,authority:90,reviewState:'approved',citation:source.url}],
+    limitations:'General reviewed information only; this is not an individual assessment or diagnosis.'
+  };
 }
 
 function systemPrompt(){return `You are Ask Timber, the evidence-led information assistant for Shift Some Timber, a UK men's health and weight-management service.
