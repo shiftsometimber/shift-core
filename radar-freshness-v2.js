@@ -8,6 +8,8 @@ export function radarFreshnessState({lastScan,lastEvent,lastPublication,lastTick
  // evidence/observability, but it must not make Radar stale by itself: otherwise quiet upstream feeds
  // create a false outage. Scan freshness is the liveness SLO; publication/ticker ages still protect
  // stale member-facing output when such output exists.
+ if(ages.publication===null)reasons.push({code:'publication_never_completed',level:'RED'});
+ if(ages.ticker===null)reasons.push({code:'ticker_never_published',level:'RED'});
  if(ages.publication!==null&&ages.publication>RADAR_SLO.publicationHours)reasons.push({code:'publication_stale',level:'AMBER',ageHours:ages.publication});
  if(ages.ticker!==null&&ages.ticker>RADAR_SLO.tickerHours)reasons.push({code:'ticker_stale',level:'AMBER',ageHours:ages.ticker});
  const status=reasons.some(x=>x.level==='RED')?'RED':reasons.length?'AMBER':'GREEN';return{status,current:status==='GREEN',ages,sloHours:RADAR_SLO,reasons};
