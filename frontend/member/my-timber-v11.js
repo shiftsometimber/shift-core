@@ -1,6 +1,14 @@
 (function(){
   const button=document.querySelector('.sst-menu-button'),menu=document.querySelector('.sst-global-menu');
   if(button&&menu){const close=()=>{menu.hidden=true;button.setAttribute('aria-expanded','false')};button.addEventListener('click',()=>{const open=menu.hidden;menu.hidden=!open;button.setAttribute('aria-expanded',String(open))});menu.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&e.target!==button)close()});}
+  document.addEventListener('click',event=>{
+    const link=event.target.closest('[data-portal-panel]');if(!link)return;
+    const name=link.dataset.portalPanel,target=document.querySelector(`.mp-tab[data-panel="${CSS.escape(name)}"]`),panel=document.getElementById(`panel-${name}`);if(!target&&!panel)return;
+    event.preventDefault();
+    if(target){target.click()}else{document.querySelectorAll('.mp-panel').forEach(x=>x.classList.toggle('active',x===panel))}
+    document.querySelectorAll('[data-portal-panel]').forEach(x=>x.dataset.portalPanel===name?x.setAttribute('aria-current','page'):x.removeAttribute('aria-current'));
+    history.replaceState(null,'',`#${name}`);
+  });
 })();
 
 (function(){
