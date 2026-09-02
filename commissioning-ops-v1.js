@@ -25,11 +25,18 @@ export async function commissioningOpsRoutes(request,env){
     return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,userId,windowHours:hours,events:results.map(x=>({id:Number(x.id),event_name:x.event_name,surface:x.surface,source:x.source,properties:safe(x.properties_json),occurred_at:x.occurred_at}))});
   }catch(e){console.error('commissioning_product_events_failed',e?.message);return json({ok:false,error:'analytics_evidence_unavailable',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},503)}
 }
+async function resetSyntheticContentState(env){
+  if(!env.SITE_CONTENT_STATE)return;
+  const stub=env.SITE_CONTENT_STATE.get(env.SITE_CONTENT_STATE.idFromName('global'));
+  const response=await stub.fetch('https://site-content-state/reset-synthetic',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+  if(!response.ok)throw new Error('synthetic_content_state_reset_failed');
+}
 async function hqControlsCloseout(request,env,identity){
   const body=await request.json().catch(()=>({})),action=String(body.action||''),runId=String(body.runId||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);
   if(!runId)return json({ok:false,error:'run_id_required'},400);
   const DB=typeof env.DB.withSession==='function'?env.DB.withSession('first-primary'):env.DB,marker=`hq-closeout-${runId}`,email=`${marker}@shift.test`,stamp=new Date().toISOString();
   if(action==='setup'){
+    await resetSyntheticContentState(env);
     const sessionToken=`hq_closeout_${crypto.randomUUID()}_${crypto.randomUUID()}`,tokenHash=await sha256(sessionToken),expires=new Date(Date.now()+30*60*1000).toISOString();
     let user=await DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();
     if(!user){const result=await DB.prepare("INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled,created_at,updated_at) VALUES(?,?,?,'owner','active',0,?,?)").bind(email,'Synthetic HQ Closeout','commissioning_oidc_only',stamp,stamp).run();user={id:Number(result.meta?.last_row_id)}}
@@ -39,6 +46,7 @@ async function hqControlsCloseout(request,env,identity){
     return json({ok:true,action,runId,hqUserId:Number(user.id),sessionToken,expiresAt:expires,commissioningIdentity:'github_actions_oidc'});
   }
   if(action==='cleanup'){
+    await resetSyntheticContentState(env);
     const user=await DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();if(!user)return json({ok:true,action,runId,alreadyClean:true});
     const {results=[]}=await DB.prepare("SELECT id FROM site_content_overrides WHERE content_key LIKE 'hq-closeout-%'").all();
     for(const row of results){await DB.prepare('DELETE FROM site_content_versions WHERE content_override_id=?').bind(row.id).run();await DB.prepare('DELETE FROM site_content_overrides WHERE id=?').bind(row.id).run()}
