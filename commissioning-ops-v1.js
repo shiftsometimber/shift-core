@@ -28,7 +28,7 @@ export async function commissioningOpsRoutes(request,env){
 async function hqControlsCloseout(request,env,identity){
   const body=await request.json().catch(()=>({})),action=String(body.action||''),runId=String(body.runId||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);
   if(!runId)return json({ok:false,error:'run_id_required'},400);
-  const DB=typeof DB.withSession==='function'?DB.withSession('first-primary'):DB,marker=`hq-closeout-${runId}`,email=`${marker}@shift.test`,stamp=new Date().toISOString();
+  const DB=typeof env.DB.withSession==='function'?env.DB.withSession('first-primary'):env.DB,marker=`hq-closeout-${runId}`,email=`${marker}@shift.test`,stamp=new Date().toISOString();
   if(action==='setup'){
     const sessionToken=`hq_closeout_${crypto.randomUUID()}_${crypto.randomUUID()}`,tokenHash=await sha256(sessionToken),expires=new Date(Date.now()+30*60*1000).toISOString();
     let user=await DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();
