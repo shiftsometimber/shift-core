@@ -89,9 +89,9 @@ jobs:
         run: |
           set -euo pipefail
           status=$(curl -sS -o /tmp/prior-cleanup.json -w '%{http_code}' -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST "$API/v1/commissioning/synthetic-safety-drill" --data '{"action":"cleanup_previous"}')
+          jq . /tmp/prior-cleanup.json | tee synthetic-production-drill-evidence/prior-cleanup.json
           test "$status" = "200"
           jq -e '.ok==true' /tmp/prior-cleanup.json
-          jq . /tmp/prior-cleanup.json > synthetic-production-drill-evidence/prior-cleanup.json
 
       - name: Trigger labelled Tap Room P0 incident
         id: tap
