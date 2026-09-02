@@ -15,6 +15,7 @@ console.log('Gate 2 daily source gate passed: Today V3 Brain wrapper preserves T
 // contract and is published by the same Git-authoritative member runtime rather than a parallel dashboard.
 await import('./g2-001-today-premium-source-gate.mjs');
 
-// G2-012 is a bounded deployed-client defect. Keep its exact production proof inside the
-// existing trusted Gate 2 lane so a stale Pages origin or missing Worker patch fails closed.
-await import('./g2-012-production-proof.mjs');
+// G2-012 compares Git source with the deployed Worker. A pull request must validate source
+// before it can be deployed; the production promotion workflow runs the exact live hash proof.
+if(process.env.GITHUB_EVENT_NAME!=='pull_request')await import('./g2-012-production-proof.mjs');
+else console.log('G2-012 live hash proof is deferred to post-deployment production promotion.');

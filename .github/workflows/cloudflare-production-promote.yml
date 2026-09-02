@@ -148,6 +148,8 @@ jobs:
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Prove deployed Progress client matches current Git authority
+        run: node g2-012-production-proof.mjs
       - name: Prove newer restricted routes are on live traffic
         shell: bash
         run: |
