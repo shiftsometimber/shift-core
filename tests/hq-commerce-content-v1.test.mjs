@@ -16,5 +16,6 @@ test('fixed discounts cannot create a negative total',()=>{
 test('published HQ wording is never served from stale public cache',()=>{
   const source=fs.readFileSync(new URL('../hq-commerce-content-v1.js',import.meta.url),'utf8');
   assert.match(source,/response\.headers\.set\('cache-control','no-store'\)/);
+  assert.match(source,/withSession\('first-primary'\)/);
   assert.doesNotMatch(source,/public,max-age=60/);
 });
