@@ -17,6 +17,7 @@ need(/class="mp-tab" data-panel="visualise"/.test(preview)&&/id="panel-visualise
 need(/class="mp-tab" href="\/member\/dashboard#visualise" data-panel="visualise" data-portal-panel="visualise"/.test(preview),'visible My Shift navigation does not expose Progress Picture');
 need(/async function session\(\)[\s\S]*fetch\('\/v1\/me',[\s\S]*response\.ok/.test(preview),'member entry shell does not recover after a slow initial authenticated session probe');
 need(/member-product-v33d\.js/.test(preview)&&/member-progress-picture-premium-v1\.js/.test(preview),'production My Timber shell does not load Progress Picture persistence and presentation');
+need(/member-product-v33d\.js\?v=vision-3/.test(preview)&&/member-my-journey-v1\.js\?v=3/.test(preview),'production member entry does not force corrected Journey and product clients past stale browser caches');
 need(/member-shift-me-premium-v1\.js/.test(preview),'production My Timber shell does not load Shift Me');
 need(!/\\n\s*<(?:link|script)/.test(preview),'production My Timber shell contains escaped newline text between asset elements');
 need(!/type="number"[^>]*(?:weight|waist)|(?:weight|waist)[\s\S]{0,100}type="number"/i.test(preview),'production My Timber asks members to type weight or waist measurements');
@@ -62,6 +63,7 @@ need(/\.shift-progress-story/.test(css)&&/\.shift-progress-grid/.test(css),'Prog
 need(/PICTURE_PREMIUM_SRC='\/member-progress-picture-premium-v1\.js\?v=1'/.test(shell)&&/function ensureProgressPicturePremium\(\)/.test(shell),'member shell does not load the bounded premium Progress Picture layer');
 need(/async function verifiedSession\(\)[\s\S]*fetch\('\/v1\/me',[\s\S]*response\.ok/.test(shell),'authenticated member shell does not recover after a slow initial session probe');
 need(/const requested=location\.hash\.slice\(1\);if\(\['journey','lifeback','progress'\]\.includes\(requested\)\)activate\('journey'\);else if\(!\['today','visualise','shiftme'/.test(fs.readFileSync('frontend/member/member-my-journey-v1.js','utf8')),'late My Journey boot can overwrite the requested Progress or Shift Me panel');
+need(/MY_JOURNEY_SRC='\/member-my-journey-v1\.js\?v=3'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');
 need(!/\$\('#(?:grubGenerate|fitGenerate|waterGenerate|drinkLog|conundrumGo)'\)\.onclick/.test(memberProduct),'reduced production dashboard can crash while binding absent full-dashboard controls');
 need(/GITHUB_EVENT_NAME!==['"]pull_request['"]/.test(fs.readFileSync('gate2-daily-source-gate.mjs','utf8'))&&/node g2-012-production-proof\.mjs/.test(fs.readFileSync('.github\/workflows\/cloudflare-production-promote.yml','utf8')),'deployed member-client authority proof is not sequenced after production promotion');
 need(/G2-014-PREMIUM-PROGRESS-PICTURE/.test(progressPicturePremium)&&/data-g2014-intro/.test(progressPicturePremium)&&/data-photo-id/.test(progressPicturePremium)&&/data-photo-delete/.test(progressPicturePremium),'premium Progress Picture layer does not preserve the commissioned photo lifecycle selectors');
