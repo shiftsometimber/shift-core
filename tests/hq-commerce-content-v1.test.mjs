@@ -19,6 +19,7 @@ test('published HQ wording is never served from stale public cache',()=>{
   assert.match(source,/withSession\('first-primary'\)/);
   assert.match(source,/Changes appear on the next page load\./);
   assert.match(source,/path\.startsWith\('\/v1\/site-content\/'\)/);
+  assert.match(source,/content_state_not_committed/);
   assert.doesNotMatch(source,/public,max-age=60/);
 });
 
