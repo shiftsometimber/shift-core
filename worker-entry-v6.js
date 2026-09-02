@@ -27,6 +27,7 @@ import {shiftMe3DProofRoutes} from './shift-me-3d-proof-v1.js';
 import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
 import {privacyHealthErasureRoute} from './privacy-health-erasure-route-v1.js';
 import {commerceStripeRoutes} from './commerce-stripe-v1.js';
+import {medicineCommerceRoutes} from './medicine-commerce-v1.js';
 import {fastMemberStateRoute,authenticateMember} from './member-state-fast-v1.js';
 import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
@@ -144,6 +145,7 @@ export default {
     const hqCatalogue=await hqCatalogueRoutes(request,env,ctx);if(hqCatalogue)return hqCatalogue;
     const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return hqCommerceContent;
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
+    const medicineCommerce=await medicineCommerceRoutes(request,env,ctx);if(medicineCommerce)return medicineCommerce;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
 
