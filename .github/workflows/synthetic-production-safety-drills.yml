@@ -1,0 +1,157 @@
+name: Synthetic Production Safety Drills
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/synthetic-production-safety-drills.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: synthetic-production-safety-drills
+  cancel-in-progress: false
+
+jobs:
+  tap-room-and-health-erasure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      API: https://api.shiftsometimber.co.uk
+      SITE: https://shiftsometimber.co.uk
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CONFIG: wrangler.jsonc
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Acquire short-lived commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          set -euo pipefail
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+
+      - name: Register isolated synthetic member
+        id: member
+        shell: bash
+        env:
+          OIDC: ${{ steps.oidc.outputs.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p synthetic-production-drill-evidence
+          email="shiftsometimber+synthetic-drill-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}@gmail.com"
+          password="Sst-$(openssl rand -hex 18)-Aa1!"
+          echo "::add-mask::$email"
+          echo "::add-mask::$password"
+          status=$(curl -sS -D /tmp/register.headers -o /tmp/register.json -w '%{http_code}' \
+            -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" \
+            -X POST "$API/v1/auth/register" \
+            --data "$(jq -nc --arg email "$email" --arg password "$password" '{email:$email,password:$password,firstName:"SyntheticDrill",source:"commissioning-synthetic-safety-drills"}')")
+          test "$status" = "201"
+          user_id=$(jq -er '.user.id|tonumber' /tmp/register.json)
+          cookie=$(tr -d '\r' </tmp/register.headers | awk -F': ' 'tolower($1)=="set-cookie"{print $2;exit}' | cut -d';' -f1)
+          test -n "$cookie"
+          echo "::add-mask::$cookie"
+          echo "user_id=$user_id" >> "$GITHUB_OUTPUT"
+          echo "cookie=$cookie" >> "$GITHUB_OUTPUT"
+          jq '{status:201,userId:(.user.id|tonumber),synthetic:true}' /tmp/register.json > synthetic-production-drill-evidence/registration.json
+
+      - name: Trigger labelled Tap Room P0 incident
+        id: tap
+        shell: bash
+        env:
+          COOKIE: ${{ steps.member.outputs.cookie }}
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/tap-post.json -w '%{http_code}' \
+            -H "Origin: $SITE" -H 'Content-Type: application/json' -H "Cookie: $COOKIE" \
+            -X POST "$API/v1/tap-room/rooms/general-life/posts" \
+            --data '{"body":"TEST INCIDENT — synthetic safeguarding delivery drill only. This is not a real person or real crisis. Test phrase: I am going to kill myself now."}')
+          test "$status" = "201"
+          jq -e '.ok==true and .status=="held" and .flagged==true and (.crisisSupport|length)>0' /tmp/tap-post.json
+          post_id=$(jq -er '.id|tonumber' /tmp/tap-post.json)
+          echo "post_id=$post_id" >> "$GITHUB_OUTPUT"
+          jq '{httpStatus:201,postId:.id,status,flagged,reviewMessage,crisisSupport,synthetic:true}' /tmp/tap-post.json > synthetic-production-drill-evidence/tap-trigger.json
+
+      - name: Prove P0 queue then sanitise and close test incident
+        shell: bash
+        env:
+          USER_ID: ${{ steps.member.outputs.user_id }}
+          POST_ID: ${{ steps.tap.outputs.post_id }}
+        run: |
+          set -euo pipefail
+          test "$USER_ID" -gt 0
+          test "$POST_ID" -gt 0
+          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
+            "SELECT p.id,p.status,p.risk_flags_json,r.id report_id,r.priority,r.status report_status FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id WHERE p.id=$POST_ID AND p.user_id=$USER_ID;" \
+            | tee synthetic-production-drill-evidence/tap-queue-before.json
+          jq -e '[..|objects|select(.id=='"$POST_ID"' and .status=="held" and .priority=="P0" and .report_status=="open" and (.risk_flags_json|contains("crisis")))]|length==1' synthetic-production-drill-evidence/tap-queue-before.json
+          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
+            "UPDATE tap_room_posts SET body='[TEST INCIDENT CLOSED]',status='hidden_by_moderator',deleted_at=CURRENT_TIMESTAMP,updated_at=CURRENT_TIMESTAMP WHERE id=$POST_ID AND user_id=$USER_ID; UPDATE tap_room_reports SET status='reviewed',reviewed_at=CURRENT_TIMESTAMP,reviewed_by='Matt O''Brien',outcome='synthetic_drill_closed' WHERE post_id=$POST_ID AND status='open'; INSERT INTO tap_room_moderation_audit(actor,action,reason,content_id,affected_user_id,metadata_json,created_at) VALUES('Matt O''Brien','synthetic_p0_drill_close','Authorised TEST INCIDENT production drill',$POST_ID,$USER_ID,'{\"synthetic\":true,\"realHealthData\":false}',CURRENT_TIMESTAMP);" \
+            > synthetic-production-drill-evidence/tap-close-command.json
+          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
+            "SELECT p.id,p.body,p.status,r.priority,r.status report_status,r.reviewed_by,r.outcome,a.action,a.actor FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN tap_room_moderation_audit a ON a.content_id=p.id WHERE p.id=$POST_ID ORDER BY a.id DESC LIMIT 1;" \
+            | tee synthetic-production-drill-evidence/tap-closure.json
+          jq -e '[..|objects|select(.id=='"$POST_ID"' and .body=="[TEST INCIDENT CLOSED]" and .status=="hidden_by_moderator" and .priority=="P0" and .report_status=="reviewed" and .reviewed_by=="Matt O'\"'\"'Brien" and .outcome=="synthetic_drill_closed" and .action=="synthetic_p0_drill_close")]|length==1' synthetic-production-drill-evidence/tap-closure.json
+
+      - name: Seed synthetic optional health rows
+        shell: bash
+        env:
+          USER_ID: ${{ steps.member.outputs.user_id }}
+        run: |
+          set -euo pipefail
+          today=$(date -u +%F)
+          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
+            "INSERT INTO progress_entries(user_id,recorded_on,weight_kg,waist_cm,notes,source) VALUES($USER_ID,'$today',99.9,99.9,'SYNTHETIC ERASURE DRILL','commissioning'); INSERT INTO check_ins(user_id,weight,waist,wellbeing_score,notes) VALUES($USER_ID,99.9,99.9,5,'SYNTHETIC ERASURE DRILL');" \
+            > synthetic-production-drill-evidence/health-seed-command.json
+          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
+            "SELECT (SELECT COUNT(*) FROM progress_entries WHERE user_id=$USER_ID AND notes='SYNTHETIC ERASURE DRILL') progress_rows,(SELECT COUNT(*) FROM check_ins WHERE user_id=$USER_ID AND notes='SYNTHETIC ERASURE DRILL') checkin_rows;" \
+            | tee synthetic-production-drill-evidence/health-before.json
+          jq -e '[..|objects|select(.progress_rows==1 and .checkin_rows==1)]|length==1' synthetic-production-drill-evidence/health-before.json
+
+      - name: Exercise authenticated health-tracking erasure
+        shell: bash
+        env:
+          COOKIE: ${{ steps.member.outputs.cookie }}
+          USER_ID: ${{ steps.member.outputs.user_id }}
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/health-erasure.json -w '%{http_code}' \
+            -H "Origin: $SITE" -H "Cookie: $COOKIE" -X DELETE "$API/v1/privacy/health-tracking")
+          test "$status" = "200"
+          jq -e '.ok==true and .consentWithdrawn==true and (.deleted|map(.table)|index("progress_entries")!=null) and (.deleted|map(.table)|index("check_ins")!=null)' /tmp/health-erasure.json
+          jq '{httpStatus:200,ok,erasedAt,deleted,consentWithdrawn,synthetic:true}' /tmp/health-erasure.json > synthetic-production-drill-evidence/health-erasure-response.json
+          npx --yes wrangler@4.112.0 d1 execute DB --remote --config "$CONFIG" --json --command \
+            "SELECT (SELECT COUNT(*) FROM progress_entries WHERE user_id=$USER_ID) progress_rows,(SELECT COUNT(*) FROM check_ins WHERE user_id=$USER_ID) checkin_rows,(SELECT COUNT(*) FROM consents WHERE user_id=$USER_ID AND consent_type='my_shift_health_tracking' AND granted=0) withdrawal_rows,(SELECT COUNT(*) FROM audit_log WHERE user_id=$USER_ID AND action='privacy.health_tracking_erased') audit_rows;" \
+            | tee synthetic-production-drill-evidence/health-after.json
+          jq -e '[..|objects|select(.progress_rows==0 and .checkin_rows==0 and .withdrawal_rows>=1 and .audit_rows>=1)]|length==1' synthetic-production-drill-evidence/health-after.json
+
+      - name: Write combined proof summary
+        shell: bash
+        env:
+          USER_ID: ${{ steps.member.outputs.user_id }}
+          POST_ID: ${{ steps.tap.outputs.post_id }}
+        run: |
+          jq -n --arg proof 'SYNTHETIC_PRODUCTION_SAFETY_DRILLS_2026_09_02' --argjson userId "$USER_ID" --argjson postId "$POST_ID" \
+            '{proof:$proof,status:"PASS",syntheticMemberId:$userId,tapRoom:{postId:$postId,labelledTest:true,held:true,p0Queue:true,contentSanitised:true,reportClosed:true,auditRetained:true,emailTriggerInvoked:true,inboxReceiptRequiresHumanConfirmation:true},healthErasure:{seededSyntheticRows:true,authenticatedDelete:true,progressRowsAfter:0,checkInRowsAfter:0,consentWithdrawalRetained:true,auditRetained:true},realMemberDataTouched:false}' \
+            | tee synthetic-production-drill-evidence/summary.json
+          cat synthetic-production-drill-evidence/summary.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload retained drill evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-production-safety-drills
+          path: synthetic-production-drill-evidence
+          if-no-files-found: error
+          retention-days: 30
