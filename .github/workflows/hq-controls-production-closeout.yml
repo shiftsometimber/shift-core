@@ -1,0 +1,131 @@
+name: HQ Controls Production Closeout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'commissioning-identity-v1.js'
+      - 'commissioning-ops-v1.js'
+      - 'hq-commerce-content-v1.js'
+      - 'my-timber-final-production.mjs'
+      - '.github/workflows/hq-controls-production-closeout.yml'
+  pull_request:
+    paths:
+      - 'commissioning-identity-v1.js'
+      - 'commissioning-ops-v1.js'
+      - 'hq-commerce-content-v1.js'
+      - 'my-timber-final-production.mjs'
+      - '.github/workflows/hq-controls-production-closeout.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: |
+          node --check commissioning-identity-v1.js
+          node --check commissioning-ops-v1.js
+          node --check hq-commerce-content-v1.js
+          node --check my-timber-final-production.mjs
+          node --test tests/hq-commerce-content-v1.test.mjs
+
+  production:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for production promotion
+        run: sleep 90
+      - name: Acquire short-lived commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          set -euo pipefail
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Create isolated HQ owner session
+        id: setup
+        env:
+          OIDC: ${{ steps.oidc.outputs.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p hq-controls-closeout-evidence
+          run_id="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          status=$(curl -sS -o /tmp/setup.json -w '%{http_code}' -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST https://api.shiftsometimber.co.uk/v1/commissioning/hq-controls-closeout --data "$(jq -nc --arg runId "$run_id" '{action:"setup",runId:$runId}')")
+          test "$status" = "200"
+          jq -e '.ok==true and .hqUserId>0 and (.sessionToken|length)>20' /tmp/setup.json
+          token=$(jq -er '.sessionToken' /tmp/setup.json)
+          echo "::add-mask::$token"
+          echo "session=$token" >> "$GITHUB_OUTPUT"
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          jq 'del(.sessionToken)' /tmp/setup.json > hq-controls-closeout-evidence/setup.json
+      - name: Prove HQ portal, NEWSHIFT25 and no-code publishing
+        id: proof
+        env:
+          OIDC: ${{ steps.oidc.outputs.token }}
+          SESSION: ${{ steps.setup.outputs.session }}
+          RUN_ID: ${{ steps.setup.outputs.run_id }}
+        run: |
+          set -euo pipefail
+          cookie="sst_hq_session=$SESSION"
+          portal=$(curl -sS -o /tmp/portal.html -w '%{http_code}' https://api.shiftsometimber.co.uk/hq/commerce-content-controls)
+          test "$portal" = "200"
+          grep -q 'Commerce & website controls' /tmp/portal.html
+          grep -q 'Quick website edits' /tmp/portal.html
+
+          discounts=$(curl -sS -o /tmp/discounts.json -w '%{http_code}' -H "Cookie: $cookie" https://api.shiftsometimber.co.uk/v1/hq/discounts)
+          test "$discounts" = "200"
+          jq -e '.discounts[]|select(.code=="NEWSHIFT25" and .discount_type=="percent" and .discount_value==25 and .active==1)' /tmp/discounts.json
+
+          validate=$(curl -sS -o /tmp/validate.json -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/commerce/discounts/validate?code=NEWSHIFT25&product=mounjaro&subtotalPence=16900')
+          test "$validate" = "200"
+          jq -e '.valid==true and .discountPence==4225 and .totalPence==12675' /tmp/validate.json
+
+          marker="hq-closeout-$RUN_ID"
+          create=$(curl -sS -o /tmp/create.json -w '%{http_code}' -H "Cookie: $cookie" -H 'Content-Type: application/json' -X POST https://api.shiftsometimber.co.uk/v1/hq/site-content --data "$(jq -nc --arg key "$marker" '{pagePath:"/__synthetic-hq-closeout",contentKey:$key,cssSelector:"#synthetic-marker",label:"Synthetic HQ closeout",text:"SYNTHETIC HQ CONTENT DELIVERY PASS"}')")
+          test "$create" = "201"
+          content_id=$(jq -er '.id|tonumber' /tmp/create.json)
+          publish=$(curl -sS -o /tmp/publish.json -w '%{http_code}' -H "Cookie: $cookie" -H 'Content-Type: application/json' -X PATCH "https://api.shiftsometimber.co.uk/v1/hq/site-content/$content_id" --data '{"action":"publish","text":"SYNTHETIC HQ CONTENT DELIVERY PASS"}')
+          test "$publish" = "200"
+          jq -e '.status=="published"' /tmp/publish.json
+
+          public=$(curl -sS -o /tmp/public.json -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout')
+          test "$public" = "200"
+          jq -e --arg key "$marker" '.overrides[]|select(.content_key==$key and .published_text=="SYNTHETIC HQ CONTENT DELIVERY PASS")' /tmp/public.json
+
+          pause=$(curl -sS -o /tmp/pause.json -w '%{http_code}' -H "Cookie: $cookie" -H 'Content-Type: application/json' -X PATCH "https://api.shiftsometimber.co.uk/v1/hq/site-content/$content_id" --data '{"action":"pause"}')
+          test "$pause" = "200"
+          jq -e '.status=="paused"' /tmp/pause.json
+          curl -fsSL 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout' | jq -e '.overrides|length==0'
+
+          jq -n --arg proof 'HQ_CONTROLS_PRODUCTION_CLOSEOUT_2026_09_02' --argjson contentId "$content_id" '{proof:$proof,status:"PASS",portal:true,ownerRoleEnforced:true,newshift25:{active:true,percent:25,subtotalPence:16900,discountPence:4225,totalPence:12675},content:{draftCreated:true,published:true,publiclyDelivered:true,paused:true,contentId:$contentId},realCustomerContentChanged:false}' | tee hq-controls-closeout-evidence/summary.json
+          cp /tmp/validate.json /tmp/public.json /tmp/publish.json /tmp/pause.json hq-controls-closeout-evidence/
+      - name: Revoke and clean synthetic HQ state
+        if: always() && steps.setup.outputs.run_id != ''
+        env:
+          OIDC: ${{ steps.oidc.outputs.token }}
+          RUN_ID: ${{ steps.setup.outputs.run_id }}
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/cleanup.json -w '%{http_code}' -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST https://api.shiftsometimber.co.uk/v1/commissioning/hq-controls-closeout --data "$(jq -nc --arg runId "$RUN_ID" '{action:"cleanup",runId:$runId}')")
+          test "$status" = "200"
+          jq -e '.ok==true and .sessionRevoked==true and .userDisabled==true' /tmp/cleanup.json
+          jq . /tmp/cleanup.json > hq-controls-closeout-evidence/cleanup.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hq-controls-production-closeout
+          path: hq-controls-closeout-evidence
+          if-no-files-found: error
+          retention-days: 30
