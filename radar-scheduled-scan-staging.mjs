@@ -27,7 +27,7 @@ assert.equal(before.ages.scan,null);
 assert.ok(before.reasons.some(x=>x.code==='scan_stale'));
 
 const oldFetch=globalThis.fetch;
-globalThis.fetch=async url=>new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative medicine update</title><link href="${url}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update.</summary></entry></feed>`,{status:200});
+globalThis.fetch=async url=>new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative GLP-1 weight-management medicine update</title><link href="${url}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update concerning obesity treatment.</summary></entry></feed>`,{status:200});
 try {
   const result=await runRadarScheduledScan({DB});
   assert.equal(result.scan.ok,true);
