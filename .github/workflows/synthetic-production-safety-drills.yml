@@ -119,6 +119,7 @@ jobs:
         run: |
           set -euo pipefail
           status=$(curl -sS -o /tmp/tap-close.json -w '%{http_code}' -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" -X POST "$API/v1/commissioning/synthetic-safety-drill" --data "$(jq -nc --argjson userId "$USER_ID" --argjson postId "$POST_ID" '{action:"inspect_and_close_tap",userId:$userId,postId:$postId}')")
+          jq . /tmp/tap-close.json | tee synthetic-production-drill-evidence/tap-closure-response.json
           test "$status" = "200"
           jq -e '.ok==true and .before.status=="held" and .before.priority=="P0" and .before.reportStatus=="open" and .after.body=="[TEST INCIDENT CLOSED]" and .after.status=="hidden_by_moderator" and .after.report_status=="reviewed" and .after.outcome=="synthetic_drill_closed" and .after.action=="synthetic_p0_drill_close"' /tmp/tap-close.json
           jq . /tmp/tap-close.json > synthetic-production-drill-evidence/tap-closure.json
