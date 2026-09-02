@@ -418,7 +418,11 @@ export async function hqCatalogueRoutes(request, env, ctx) {
         400,
       );
     const effective =
-        stock > 0 && status === "available" ? "available" : "out_of_stock",
+        status === "archived"
+          ? "archived"
+          : stock > 0 && status === "available"
+            ? "available"
+            : "out_of_stock",
       stamp = now();
     await env.DB.batch([
       env.DB.prepare(
