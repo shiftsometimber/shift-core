@@ -117,5 +117,7 @@
   "ai": {"binding": "AI"},
   "send_email": [{"name": "EMAIL"}],
   "d1_databases": [{"binding": "DB","database_name": "shift-core-db","database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"}],
+  "durable_objects": {"bindings": [{"name": "SITE_CONTENT_STATE","class_name": "SiteContentState"}]},
+  "migrations": [{"tag": "v1-site-content-state","new_sqlite_classes": ["SiteContentState"]}],
   "observability": {"enabled": true,"logs": {"enabled": true}}
 }
