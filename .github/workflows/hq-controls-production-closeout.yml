@@ -40,7 +40,7 @@ jobs:
   production:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Wait for production promotion
@@ -101,7 +101,7 @@ jobs:
           jq -e '.status=="published"' /tmp/publish.json
 
           published_visible=false
-          for attempt in {1..12}; do
+          for attempt in {1..18}; do
             if curl -fsSL 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout' -o /tmp/public.json && jq -e --arg key "$marker" '.overrides[]|select(.content_key==$key and .published_text=="SYNTHETIC HQ CONTENT DELIVERY PASS")' /tmp/public.json >/dev/null; then
               published_visible=true
               break
@@ -114,7 +114,7 @@ jobs:
           test "$pause" = "200"
           jq -e '.status=="paused"' /tmp/pause.json
           paused_visible=false
-          for attempt in {1..12}; do
+          for attempt in {1..18}; do
             if curl -fsSL 'https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout' | jq -e '.overrides|length==0' >/dev/null; then
               paused_visible=true
               break
