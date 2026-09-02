@@ -4,6 +4,13 @@ const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometim
 const MODEL_FALLBACK='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 const MAX_MESSAGE=900;
 const MAX_HISTORY=6;
+const REVIEWED_SITE_EVIDENCE=[
+  {terms:['eggy','burp','burps','sulphur','sulfur','nausea','side effect'],title:'GLP-1 side effects: what actually helps',url:'https://shiftsometimber.co.uk/articles/glp1-side-effects',content:'Eggy or sulphur burps can happen when digestion is slowed and richer meals sit around for longer. Practical steps already reviewed on Shift include smaller portions, eating more slowly, keeping fluids going, noticing whether fatty or heavy meals make it worse, and staying upright after eating. Repeated vomiting, severe or persistent pain, a swollen abdomen, or being unable to keep fluids down needs proper medical help. This is general information, not a diagnosis.'},
+  {terms:['missed dose','late dose','forgot dose'],title:'Missed-dose rules by medicine',url:'https://shiftsometimber.co.uk/articles/glp1-side-effects',content:'Use the current UK patient leaflet and the treating service for missed-dose decisions. The reviewed Shift guide records: Mounjaro weekly can be taken up to four days late, otherwise skip it, with at least three days between doses; Wegovy weekly injection can be taken up to five days late, otherwise skip it; Wegovy tablets are skipped and the normal dose is taken the next day. Never double up.'},
+  {terms:['stop','stopping','coming off','taper','clinic gone quiet'],title:'Stopping GLP-1 treatment',url:'https://shiftsometimber.co.uk/articles/stopping-glp1',content:'Coming off treatment should be treated as a landing plan, not a last injection. Do not invent a taper or change prescribed treatment without the treating service. Appetite can return and regain is common in follow-up research; that is biology, not weak character. If the clinic has gone quiet, keep a record of treatment, changes, symptoms and questions, contact the prescribing or dispensing service, and use an NHS route if you cannot reach them.'},
+  {terms:['plateau','scales','scale','waist','jeans'],title:'Weight-loss plateau: scale, waist and strength',url:'https://shiftsometimber.co.uk/articles/weight-loss-plateau-men',content:'A plateau is better judged across weeks and more than one signal: comparable weigh-ins, waist or clothes, and strength or movement. A flat scale alongside a smaller waist or an easier session is not automatically failure. Medicine dose changes belong with the prescriber.'},
+  {terms:['muscle','strength','walking','protein'],title:'Muscle loss on GLP-1 treatment',url:'https://shiftsometimber.co.uk/articles/muscle-on-glp1',content:'Some lean-mass loss can occur during weight loss. The reviewed Shift guide recommends making protein practical when appetite is low and doing two suitable strength sessions a week; walking is useful but does not fully replace resistance work. Track a lift, sit-to-stand or walking pace as well as body weight, and adapt activity to health and ability.'}
+];
 
 export async function askTimberRoutes(request,env){
   const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';
@@ -112,8 +119,10 @@ async function retrieveForParts(db,message,parts){
     const key=String(item?.citation||item?.title||'')+'|'+clean(item?.content,240);
     if(seen.has(key))continue;seen.add(key);merged.push(item);
   }
+  if(!merged.length)merged.push(...reviewedSiteEvidence(message));
   return merged.slice(0,12);
 }
+function reviewedSiteEvidence(query){const q=String(query||'').toLowerCase();return REVIEWED_SITE_EVIDENCE.filter(item=>item.terms.some(term=>q.includes(term))).map(item=>({title:item.title,content:item.content,authority:75,reviewState:'verified',citation:item.url,provenance:[{ref:item.url}]}));}
 function normaliseHistory(value){if(!Array.isArray(value))return[];return value.slice(-MAX_HISTORY).map(x=>({role:x?.role==='assistant'?'assistant':'user',content:clean(x?.content,500)})).filter(x=>x.content);}
 function parseAnswer(raw){const stripped=raw.trim().replace(/^\`\`\`(?:json)?/i,'').replace(/\`\`\`$/,'').trim();try{return JSON.parse(stripped)}catch{const a=stripped.indexOf('{'),b=stripped.lastIndexOf('}');if(a>=0&&b>a)return JSON.parse(stripped.slice(a,b+1));return null}}
 function confidenceFor(items,claimed){const top=Math.max(...items.map(x=>Number(x.authority||0)));const verified=items.some(x=>x.reviewState==='verified'||x.reviewState==='approved');const ceiling=verified&&top>=70?'high':verified?'medium':'low';return claimed==='low'?'low':claimed==='medium'||ceiling==='medium'?'medium':ceiling;}
