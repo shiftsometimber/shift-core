@@ -6,12 +6,18 @@ const memberProduct=fs.readFileSync('frontend/member/member-product-v33d.js','ut
 const memberSport=fs.readFileSync('frontend/member/member-sport-v1.js','utf8');
 const progress=fs.readFileSync('frontend/member/member-progress-v1.js','utf8');
 const progressPicturePremium=fs.readFileSync('frontend/member/member-progress-picture-premium-v1.js','utf8');
+const preview=fs.readFileSync('frontend/member/my-timber-preview.html','utf8');
 const plansPremium=fs.readFileSync('frontend/member/member-plans-premium-v1.js','utf8');
 const plansPremiumCss=fs.readFileSync('frontend/member/member-plans-premium-v1.css','utf8');
 const workerEntry=fs.readFileSync('worker-entry-v6.js','utf8');
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 const fail=[];
 const need=(ok,msg)=>{if(!ok)fail.push(msg)};
+need(/class="mp-tab" data-panel="visualise"/.test(preview)&&/id="panel-visualise"/.test(preview),'production My Timber shell does not expose the Progress Picture tab and panel');
+need(/member-product-v33d\.js/.test(preview)&&/member-progress-picture-premium-v1\.js/.test(preview),'production My Timber shell does not load Progress Picture persistence and presentation');
+need(/member-shift-me-premium-v1\.js/.test(preview),'production My Timber shell does not load Shift Me');
+need(!/\\n\s*<(?:link|script)/.test(preview),'production My Timber shell contains escaped newline text between asset elements');
+need(!/type="number"[^>]*(?:weight|waist)|(?:weight|waist)[\s\S]{0,100}type="number"/i.test(preview),'production My Timber asks members to type weight or waist measurements');
 need(adapter.includes('memberStateInFlight')&&adapter.includes('memberStateCachedAt'), 'member-state reads are not deduplicated across concurrently loading member products');
 need(/memberStateCachedAt<10000/.test(adapter), 'member-state initialization cache is too short to protect the first visible save action');
 need(/\.ask-drawer\{[\s\S]*display:none!important;[\s\S]*visibility:hidden!important;[\s\S]*pointer-events:none!important;[\s\S]*contain:layout paint!important/.test(css),'closed Ask Timber drawer still contributes layout/scroll geometry');
