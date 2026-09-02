@@ -112,7 +112,7 @@
     (function(){
       const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),msg=document.getElementById('previewStatus'),buttons=[...form.querySelectorAll('button[data-auth]')];
       function requestedDestination(){const params=new URLSearchParams(location.search),raw=params.get('returnTo')||params.get('next')||'';return /^\/(?!\/)/.test(raw)&&!raw.startsWith('/member-login')?raw:''}
-      async function showMember(){const destination=requestedDestination();if(destination){location.replace(destination);return}auth.hidden=true;member.classList.add('is-ready');const preview=new URLSearchParams(location.search).get('preview')==='billy'&&/^(localhost|127\.0\.0\.1)$/.test(location.hostname);if(preview&&typeof SST_API.seedPreviewBilly==='function'){try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}}for(const src of ['/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-journey-v1.js?v=2','/member-my-journey-checkin-v1.js?v=1']){const script=document.createElement('script');script.src=src;document.body.appendChild(script)}}
+      async function showMember(){const destination=requestedDestination();if(destination){location.replace(destination);return}auth.hidden=true;member.classList.add('is-ready');const preview=new URLSearchParams(location.search).get('preview')==='billy'&&/^(localhost|127\.0\.0\.1)$/.test(location.hostname);if(preview&&typeof SST_API.seedPreviewBilly==='function'){try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}}for(const src of ['/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-journey-v1.js?v=3','/member-my-journey-checkin-v1.js?v=1']){const script=document.createElement('script');script.src=src;document.body.appendChild(script)}}
       async function session(){try{return await SST_API.getMe()}catch(first){try{const response=await fetch('/v1/me',{credentials:'include',cache:'no-store'});if(response.ok)return await response.json()}catch{}throw first}}
       async function existing(){try{await session();showMember()}catch{auth.hidden=false}}
       async function authenticate(mode){buttons.forEach(button=>button.disabled=true);msg.textContent=mode==='login'?'Signing in…':'Creating your account…';try{const data=Object.fromEntries(new FormData(form).entries());data.rememberMe=form.elements.rememberMe.checked;data.source='my-timber';await SST_API[mode](data);if(window.SSTAnalytics&&typeof window.SSTAnalytics.track==='function')window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website'});await new Promise(resolve=>setTimeout(resolve,150));showMember()}catch(error){msg.textContent=error.code==='email_in_use'?'That account already exists. Tap “Sign in”.':error.message||'That did not work. Check the details and try again.';buttons.forEach(button=>button.disabled=false)}}
@@ -122,7 +122,7 @@
     })();
   </script>
   <script src="/my-timber-v11.js?v=1"></script>
-  <script src="/member-product-v33d.js?v=vision-2"></script>
+  <script src="/member-product-v33d.js?v=vision-3"></script>
   <script src="/member-shell-v33g.js?v=picture-2"></script>
   <script src="/member-progress-picture-premium-v1.js?v=2"></script>
   <script src="/shift-me-api-v1.js?v=1"></script>
