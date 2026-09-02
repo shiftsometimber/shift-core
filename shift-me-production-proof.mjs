@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 
 const BASE=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const ORIGIN='https://shiftsometimber.co.uk';
+const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
 const OUT=process.env.SHIFT_ME_EVIDENCE_DIR||'shift-me-production-evidence';
 const password='Shift-Commissioning-2026!';
 const nonce=`finish-shiftme-${Date.now()}`;
@@ -10,6 +11,7 @@ const nonce=`finish-shiftme-${Date.now()}`;
 // (missing JPEG EOI), so it exercised image-decoder failure rather than Shift Me behaviour.
 const SOURCE_B64='iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACLklEQVR42u3doVLDQBRG4XQnHs2zYfGIKgwCg4rAV2AwaN4JzRsgmOlAS5nSlN27ud9RFcnO7X/27qaEpqvXl6cB7SgiIIAAEEAACCAABBAAAggAAQSgDmN3FV8O778f8DZcEFA79EMHx5cxLin6Q6dH1jAuNfpeNIzLjj6+hpIk/Wrjd9wB1aIJ1QolW/rRWqHkTD+Og5I2/SAOSub0I9RQkqffvBJ/jMu6B0S7Hm9VT5F+26osQfmWoJjTv1VtOiBZB0Se/k0q1AGZOiD+9K9fpw7I+kEMtQX0sv5UrjboTfmr2+nzxfPDOtpoy1+CtnntvI4w2vIF7Gc0J7XzjtaxgL42gJo1uwqyBH1nf5+cs3Oed7QsHfA1o/l5nXe0s7Oq87COHveAoco/b9kDLEEEgAACQAABfV/PdVqzDrAEEYAUAvraBqpVqwMsQQRYhRrWGb0DpmkzTZtWpy9QQPwmqFzhqv7T0/96c2Y7hdfr6/8+q76AEn+KbRM8fjHpJf02HTCcdIdyJ/0fkz3mGAJOd3B8E5wQfav9adXwFzTm3Kn/0cRpube9OujvoX3zs/ZJONwlacNKStp3HqSGkvz9N58BJfMKEKH/mm3CN3fhvivxeL9O2gGZIYAAAkAAASCAABBAAAggAAQQAAIIAAEEgAACQAABIIAAEEAACCAABBAAAggAAQSAAAJAAAEggAAQQAAIIAAEEAACCAABBIAAAkAAAThAy4d3YxiGD56Ll6KDQGCiAAAAAElFTkSuQmCC';
 fs.mkdirSync(OUT,{recursive:true});
+if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 
 const assert=(c,m)=>{if(!c)throw new Error(m)};
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
