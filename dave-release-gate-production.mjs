@@ -22,6 +22,7 @@ try{
   await run('authenticated-isolation-onboarding-today-progress-retention','./finish-authenticated-production.mjs');
   await run('grub-fit-learning-and-leave-return','./finish-longitudinal-products-production.mjs');
   await run('hydration-plans-today-progress-safe-state','./finish-member-products-production.mjs');
+  await run('my-journey-setup-weekly-trends-edit-export-cleanup','./my-journey-production-acceptance.mjs');
   await run('progress-picture-shift-ai-provenance-return-and-clinical-boundary','./finish-b03-final3-production.mjs');
   const report={
     proof:'G1_012_DAVE_SYNTHETIC_RELEASE_GATE_PRODUCTION_V1',
