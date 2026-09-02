@@ -30,6 +30,7 @@ const checks=[
  ['rerender exists and requires existing Shift Me',route.includes("'/v1/shift-me/rerender'")&&route.includes('shift_me_required')],
  ['browser keeps authenticated cookies and timeout',browser.includes("credentials:'include'")&&browser.includes('180000')&&browser.includes('AbortController')],
  ['production proof establishes authorised verified commissioning session',productionProof.includes("const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC")&&productionProof.includes("'X-Shift-Commissioning-OIDC':OIDC")],
+ ['production proof selects the non-empty session from multiple Set-Cookie headers',productionProof.includes('headers.getSetCookie')&&productionProof.includes('matchAll(/(?:^|,\\s*)sst_session=')],
  ['browser exposes create and rerender',browser.includes('createShiftMe')&&browser.includes('rerenderShiftMe')],
  ['canonical worker dispatches Shift Me',canonicalEntry.includes("import {shiftMeRoutes} from './shift-me-v1.js'")&&canonicalEntry.includes('await shiftMeRoutes(request,env,ctx)')],
  ['canonical worker serves creator assets',['/shift-me-api-v1.js','/member-shift-me-premium-v1.js','/member-shift-me-premium-v1.css'].every(x=>canonicalEntry.includes(x))],
