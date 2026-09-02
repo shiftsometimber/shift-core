@@ -10,6 +10,7 @@ const dashboard=fs.readFileSync('frontend/member/my-timber-preview.html','utf8')
 const grub=fs.readFileSync('frontend/member/member-grub.html','utf8');
 const fit=fs.readFileSync('frontend/member/member-fit.html','utf8');
 const memberCss=fs.readFileSync('frontend/member/my-timber-v11.css','utf8');
+const productionProof=fs.readFileSync('shift-me-production-proof.mjs','utf8');
 const creatorLower=creator.toLowerCase();
 const checks=[
  ['consent required for photo render',route.includes('consent_required')],
@@ -28,6 +29,7 @@ const checks=[
  ['creator endpoint applies safe default appearance',route.includes("safeAppearance(JSON.stringify(body?.appearance||{}),true)")&&route.includes("build:'Average'")],
  ['rerender exists and requires existing Shift Me',route.includes("'/v1/shift-me/rerender'")&&route.includes('shift_me_required')],
  ['browser keeps authenticated cookies and timeout',browser.includes("credentials:'include'")&&browser.includes('180000')&&browser.includes('AbortController')],
+ ['production proof establishes authorised verified commissioning session',productionProof.includes("'X-Shift-Commissioning-OIDC':OIDC")],
  ['browser exposes create and rerender',browser.includes('createShiftMe')&&browser.includes('rerenderShiftMe')],
  ['canonical worker dispatches Shift Me',canonicalEntry.includes("import {shiftMeRoutes} from './shift-me-v1.js'")&&canonicalEntry.includes('await shiftMeRoutes(request,env,ctx)')],
  ['canonical worker serves creator assets',['/shift-me-api-v1.js','/member-shift-me-premium-v1.js','/member-shift-me-premium-v1.css'].every(x=>canonicalEntry.includes(x))],
