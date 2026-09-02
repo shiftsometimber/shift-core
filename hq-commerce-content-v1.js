@@ -39,7 +39,7 @@ export async function hqCommerceContentRoutes(request,env,ctx){
   if(path==='/v1/commerce/discounts/validate'||path==='/v1/site-content'||path.startsWith('/v1/site-content/')||path.startsWith('/v1/hq/discounts')||path.startsWith('/v1/hq/site-content'))await ensureSchema(env.DB);
   if(method==='GET'&&path==='/v1/commerce/discounts/validate')return validateDiscount(request,env);
   if((method==='GET'||method==='POST')&&(path==='/v1/site-content'||path.startsWith('/v1/site-content/')))return publicContent(request,env);
-  if(method==='GET'&&path==='/hq/commerce-content-controls')return portal();
+  if(method==='GET'&&path==='/hq/commerce-content-controls'){const response=portal(),html=await response.text(),linked=html.replace('</h1><p>Owner/admin controls','</h1><p><a href="/hq/catalogue-controls" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800">Products, images &amp; medicines</a></p><p>Owner/admin controls');return new Response(linked,{headers:response.headers})}
   if(!path.startsWith('/v1/hq/discounts')&&!path.startsWith('/v1/hq/site-content'))return null;
   const a=await actor(request,env,ctx);if(a.response)return a.response;
   if(path.startsWith('/v1/hq/discounts')){
