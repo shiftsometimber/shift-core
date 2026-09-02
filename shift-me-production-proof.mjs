@@ -15,6 +15,7 @@ if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 
 const assert=(c,m)=>{if(!c)throw new Error(m)};
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+function sessionCookie(headers){const values=typeof headers.getSetCookie==='function'?headers.getSetCookie():[headers.get('set-cookie')||''];for(const value of values)for(const match of value.matchAll(/(?:^|,\s*)sst_session=([^;,\s]+)/g))if(match[1])return `sst_session=${match[1]}`;return''}
 
 async function jsonCall(path,{method='GET',body,cookie,extraHeaders={}}={}){
   const h={Origin:ORIGIN,...extraHeaders};
@@ -26,7 +27,7 @@ async function jsonCall(path,{method='GET',body,cookie,extraHeaders={}}={}){
   }
   const r=await fetch(BASE+path,{method,headers:h,body:payload});
   let data=null; try{data=await r.json()}catch{}
-  return {r,data,cookie:(r.headers.get('set-cookie')||'').split(';')[0]};
+  return {r,data,cookie:sessionCookie(r.headers)};
 }
 async function register(label){
   const email=`shiftsometimber+${nonce}-${label.toLowerCase()}@gmail.com`;
