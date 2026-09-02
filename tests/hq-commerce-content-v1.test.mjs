@@ -21,3 +21,10 @@ test('published HQ wording is never served from stale public cache',()=>{
   assert.match(source,/path\.startsWith\('\/v1\/site-content\/'\)/);
   assert.doesNotMatch(source,/public,max-age=60/);
 });
+
+
+test('synthetic HQ cleanup reads primary and removes interrupted-run rows',()=>{
+  const source=fs.readFileSync(new URL('../commissioning-ops-v1.js',import.meta.url),'utf8');
+  assert.match(source,/withSession\('first-primary'\)/);
+  assert.match(source,/content_key LIKE 'hq-closeout-%'/);
+});
