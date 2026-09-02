@@ -28,23 +28,23 @@ export async function commissioningOpsRoutes(request,env){
 async function hqControlsCloseout(request,env,identity){
   const body=await request.json().catch(()=>({})),action=String(body.action||''),runId=String(body.runId||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);
   if(!runId)return json({ok:false,error:'run_id_required'},400);
-  const marker=`hq-closeout-${runId}`,email=`${marker}@shift.test`,stamp=new Date().toISOString();
+  const DB=typeof DB.withSession==='function'?DB.withSession('first-primary'):DB,marker=`hq-closeout-${runId}`,email=`${marker}@shift.test`,stamp=new Date().toISOString();
   if(action==='setup'){
     const sessionToken=`hq_closeout_${crypto.randomUUID()}_${crypto.randomUUID()}`,tokenHash=await sha256(sessionToken),expires=new Date(Date.now()+30*60*1000).toISOString();
-    let user=await env.DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();
-    if(!user){const result=await env.DB.prepare("INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled,created_at,updated_at) VALUES(?,?,?,'owner','active',0,?,?)").bind(email,'Synthetic HQ Closeout','commissioning_oidc_only',stamp,stamp).run();user={id:Number(result.meta?.last_row_id)}}
-    await env.DB.prepare("UPDATE hq_users SET role='owner',status='active',updated_at=? WHERE id=?").bind(stamp,user.id).run();
-    await env.DB.prepare('INSERT INTO hq_sessions(hq_user_id,token_hash,expires_at,created_at,last_used_at) VALUES(?,?,?,?,?)').bind(user.id,tokenHash,expires,stamp,stamp).run();
-    await env.DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'hq.synthetic_closeout_started','hq_user',?,?,?)").bind(user.id,String(user.id),JSON.stringify({runId,workflowRef:identity.claims?.workflow_ref||''}),stamp).run();
+    let user=await DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();
+    if(!user){const result=await DB.prepare("INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled,created_at,updated_at) VALUES(?,?,?,'owner','active',0,?,?)").bind(email,'Synthetic HQ Closeout','commissioning_oidc_only',stamp,stamp).run();user={id:Number(result.meta?.last_row_id)}}
+    await DB.prepare("UPDATE hq_users SET role='owner',status='active',updated_at=? WHERE id=?").bind(stamp,user.id).run();
+    await DB.prepare('INSERT INTO hq_sessions(hq_user_id,token_hash,expires_at,created_at,last_used_at) VALUES(?,?,?,?,?)').bind(user.id,tokenHash,expires,stamp,stamp).run();
+    await DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'hq.synthetic_closeout_started','hq_user',?,?,?)").bind(user.id,String(user.id),JSON.stringify({runId,workflowRef:identity.claims?.workflow_ref||''}),stamp).run();
     return json({ok:true,action,runId,hqUserId:Number(user.id),sessionToken,expiresAt:expires,commissioningIdentity:'github_actions_oidc'});
   }
   if(action==='cleanup'){
-    const user=await env.DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();if(!user)return json({ok:true,action,runId,alreadyClean:true});
-    const {results=[]}=await env.DB.prepare("SELECT id FROM site_content_overrides WHERE content_key=?").bind(marker).all();
-    for(const row of results){await env.DB.prepare('DELETE FROM site_content_versions WHERE content_override_id=?').bind(row.id).run();await env.DB.prepare('DELETE FROM site_content_overrides WHERE id=?').bind(row.id).run()}
-    await env.DB.prepare('UPDATE hq_sessions SET revoked_at=? WHERE hq_user_id=? AND revoked_at IS NULL').bind(stamp,user.id).run();
-    await env.DB.prepare("UPDATE hq_users SET status='disabled',updated_at=? WHERE id=?").bind(stamp,user.id).run();
-    await env.DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'hq.synthetic_closeout_completed','hq_user',?,?,?)").bind(user.id,String(user.id),JSON.stringify({runId,contentRowsRemoved:results.length}),stamp).run();
+    const user=await DB.prepare('SELECT id FROM hq_users WHERE email=?').bind(email).first();if(!user)return json({ok:true,action,runId,alreadyClean:true});
+    const {results=[]}=await DB.prepare("SELECT id FROM site_content_overrides WHERE content_key LIKE 'hq-closeout-%'").all();
+    for(const row of results){await DB.prepare('DELETE FROM site_content_versions WHERE content_override_id=?').bind(row.id).run();await DB.prepare('DELETE FROM site_content_overrides WHERE id=?').bind(row.id).run()}
+    await DB.prepare('UPDATE hq_sessions SET revoked_at=? WHERE hq_user_id=? AND revoked_at IS NULL').bind(stamp,user.id).run();
+    await DB.prepare("UPDATE hq_users SET status='disabled',updated_at=? WHERE id=?").bind(stamp,user.id).run();
+    await DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,'hq.synthetic_closeout_completed','hq_user',?,?,?)").bind(user.id,String(user.id),JSON.stringify({runId,contentRowsRemoved:results.length}),stamp).run();
     return json({ok:true,action,runId,hqUserId:Number(user.id),contentRowsRemoved:results.length,sessionRevoked:true,userDisabled:true,commissioningIdentity:'github_actions_oidc'});
   }
   return json({ok:false,error:'invalid_hq_closeout_action'},400);
