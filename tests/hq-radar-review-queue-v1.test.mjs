@@ -11,7 +11,12 @@ test('hourly Radar prepares relevant verified events for Matt review',()=>{
   assert.match(integration,/status='ready_for_review'/);
   assert.match(integration,/\/hq\/radar-controls/);
   assert.match(integration,/Nothing publishes from here until you approve it/);
+  assert.match(integration,/\/v1\/hq\/radar\/intake/);
+  assert.match(integration,/Add an update you have found/);
+  assert.match(integration,/Peer-reviewed journal via DOI/);
   assert.match(scanner,/relevantItems/);
+  assert.match(scanner,/eutils\.ncbi\.nlm\.nih\.gov/);
+  assert.match(scanner,/peer_reviewed_research/);
   for(const term of ['semaglutide','tirzepatide','retatrutide','cagrisema'])assert.ok(scanner.includes(term));
 });
 
