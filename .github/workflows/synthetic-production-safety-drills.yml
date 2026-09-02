@@ -4,6 +4,12 @@ on:
   pull_request:
     paths:
       - '.github/workflows/synthetic-production-safety-drills.yml'
+      - 'commissioning-identity-v1.js'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/synthetic-production-safety-drills.yml'
+      - 'commissioning-identity-v1.js'
   workflow_dispatch:
 
 permissions:
@@ -16,6 +22,7 @@ concurrency:
 
 jobs:
   tap-room-and-health-erasure:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -49,14 +56,21 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p synthetic-production-drill-evidence
-          email="shiftsometimber+synthetic-drill-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}@gmail.com"
+          email="shiftsometimber+safety-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}@gmail.com"
           password="Sst-$(openssl rand -hex 18)-Aa1!"
           echo "::add-mask::$email"
           echo "::add-mask::$password"
-          status=$(curl -sS -D /tmp/register.headers -o /tmp/register.json -w '%{http_code}' \
-            -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" \
-            -X POST "$API/v1/auth/register" \
-            --data "$(jq -nc --arg email "$email" --arg password "$password" '{email:$email,password:$password,firstName:"SyntheticDrill",source:"commissioning-synthetic-safety-drills"}')")
+          status=0
+          for attempt in $(seq 1 18); do
+            status=$(curl -sS -D /tmp/register.headers -o /tmp/register.json -w '%{http_code}' \
+              -H "Origin: $SITE" -H 'Content-Type: application/json' -H "X-Shift-Commissioning-OIDC: $OIDC" \
+              -X POST "$API/v1/auth/register" \
+              --data "$(jq -nc --arg email "$email" --arg password "$password" '{email:$email,password:$password,firstName:"SyntheticDrill",source:"commissioning-synthetic-safety-drills"}')")
+            if [ "$status" = "201" ]; then break; fi
+            if [ "$status" != "403" ]; then break; fi
+            sleep 20
+          done
+          jq -n --argjson status "$status" --arg error "$(jq -r '.error // "none"' /tmp/register.json 2>/dev/null || echo unreadable)" '{httpStatus:$status,error:$error}' > synthetic-production-drill-evidence/registration-attempt.json
           test "$status" = "201"
           user_id=$(jq -er '.user.id|tonumber' /tmp/register.json)
           cookie=$(tr -d '\r' </tmp/register.headers | awk -F': ' 'tolower($1)=="set-cookie"{print $2;exit}' | cut -d';' -f1)
