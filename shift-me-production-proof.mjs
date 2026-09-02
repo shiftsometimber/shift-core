@@ -14,8 +14,8 @@ fs.mkdirSync(OUT,{recursive:true});
 const assert=(c,m)=>{if(!c)throw new Error(m)};
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 
-async function jsonCall(path,{method='GET',body,cookie}={}){
-  const h={Origin:ORIGIN};
+async function jsonCall(path,{method='GET',body,cookie,extraHeaders={}}={}){
+  const h={Origin:ORIGIN,...extraHeaders};
   if(cookie)h.Cookie=cookie;
   let payload;
   if(body!==undefined){
@@ -28,7 +28,7 @@ async function jsonCall(path,{method='GET',body,cookie}={}){
 }
 async function register(label){
   const email=`shiftsometimber+${nonce}-${label.toLowerCase()}@gmail.com`;
-  const x=await jsonCall('/v1/auth/register',{method:'POST',body:{email,password,firstName:`ShiftMe${label}`,source:'commissioning'}});
+  const x=await jsonCall('/v1/auth/register',{method:'POST',body:{email,password,firstName:`ShiftMe${label}`,source:'commissioning'},extraHeaders:{'X-Shift-Commissioning-OIDC':OIDC}});
   assert(x.r.status===201,`register ${label} failed: ${x.r.status} ${JSON.stringify(x.data)}`);
   assert(x.cookie,`register ${label} missing session`);
   return {email,cookie:x.cookie};
