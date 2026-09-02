@@ -107,8 +107,6 @@ jobs:
           pause=$(curl -sS -o /tmp/pause.json -w '%{http_code}' -H "Cookie: $cookie" -H 'Content-Type: application/json' -X PATCH "https://api.shiftsometimber.co.uk/v1/hq/site-content/$content_id" --data '{"action":"pause"}')
           test "$pause" = "200"
           jq -e '.status=="paused"' /tmp/pause.json
-          # Public wording is deliberately cached for 60 seconds by path.
-          sleep 65
           curl -fsSL "https://api.shiftsometimber.co.uk/v1/site-content?path=%2F__synthetic-hq-closeout&state=paused-$GITHUB_RUN_ATTEMPT" | jq -e '.overrides|length==0'
 
           jq -n --arg proof 'HQ_CONTROLS_PRODUCTION_CLOSEOUT_2026_09_02' --argjson contentId "$content_id" '{proof:$proof,status:"PASS",portal:true,ownerRoleEnforced:true,newshift25:{active:true,percent:25,subtotalPence:16900,discountPence:4225,totalPence:12675},content:{draftCreated:true,published:true,publiclyDelivered:true,paused:true,contentId:$contentId},realCustomerContentChanged:false}' | tee hq-controls-closeout-evidence/summary.json
