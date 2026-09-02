@@ -10,10 +10,12 @@ export async function commissioningOpsRoutes(request,env){
   const radar=p==='/v1/commissioning/radar-scan'&&request.method==='POST';
   const productEvents=p==='/v1/commissioning/product-events'&&request.method==='GET';
   const finalV1Publication=p==='/v1/commissioning/final-v1-publication'&&request.method==='POST';
-  if(!radar&&!productEvents&&!finalV1Publication)return null;
+  const syntheticSafety=p==='/v1/commissioning/synthetic-safety-drill'&&request.method==='POST';
+  if(!radar&&!productEvents&&!finalV1Publication&&!syntheticSafety)return null;
   const identity=await commissioningIdentity(request);if(!identity.ok)return json({ok:false,error:'unauthorised',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},401);
   if(radar){const result=await runRadarScheduledScan(env);return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,radar:result})}
   if(finalV1Publication)return publishFinalV1(request,env,identity);
+  if(syntheticSafety)return syntheticSafetyDrill(request,env,identity);
   const userId=Number(u.searchParams.get('userId')||0),hours=Math.max(1,Math.min(24,Number(u.searchParams.get('hours')||1)));
   if(!Number.isInteger(userId)||userId<=0)return json({ok:false,error:'invalid_user_id',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},400);
   try{
@@ -21,6 +23,36 @@ export async function commissioningOpsRoutes(request,env){
     return json({ok:true,commissioningIdentity:'github_actions_oidc',commissioningOpsVersion:COMMISSIONING_OPS_VERSION,userId,windowHours:hours,events:results.map(x=>({id:Number(x.id),event_name:x.event_name,surface:x.surface,source:x.source,properties:safe(x.properties_json),occurred_at:x.occurred_at}))});
   }catch(e){console.error('commissioning_product_events_failed',e?.message);return json({ok:false,error:'analytics_evidence_unavailable',commissioningOpsVersion:COMMISSIONING_OPS_VERSION},503)}
 }
+async function syntheticSafetyDrill(request,env,identity){
+  const body=await request.json().catch(()=>({})),action=String(body.action||''),userId=Number(body.userId||0),postId=Number(body.postId||0),actor="Matt O'Brien";
+  const commissioned=async id=>{if(!Number.isInteger(id)||id<=0)return false;const row=await env.DB.prepare("SELECT id FROM audit_log WHERE user_id=? AND action='auth.commissioning_identity_verified' LIMIT 1").bind(id).first();return !!row?.id};
+  if(action==='cleanup_previous'){
+    const {results=[]}=await env.DB.prepare("SELECT p.id,p.user_id FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN audit_log a ON a.user_id=p.user_id AND a.action='auth.commissioning_identity_verified' WHERE p.body LIKE 'TEST INCIDENT — synthetic safeguarding delivery drill only.%' AND p.status='held' AND r.priority='P0' AND r.status='open' GROUP BY p.id,p.user_id").all();
+    for(const row of results)await closeSyntheticTap(env,Number(row.id),Number(row.user_id),actor,'Recovered authorised TEST INCIDENT after proof-run interruption');
+    return json({ok:true,action,closed:results.length,commissioningIdentity:'github_actions_oidc'});
+  }
+  if(!await commissioned(userId))return json({ok:false,error:'synthetic_commissioning_member_required'},403);
+  if(action==='inspect_and_close_tap'){
+    const row=await env.DB.prepare("SELECT p.id,p.user_id,p.body,p.status,p.risk_flags_json,r.id report_id,r.priority,r.status report_status FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id WHERE p.id=? AND p.user_id=? AND p.body LIKE 'TEST INCIDENT — synthetic safeguarding delivery drill only.%' AND r.priority='P0' AND r.status='open' LIMIT 1").bind(postId,userId).first();
+    if(!row||row.status!=='held'||!String(row.risk_flags_json||'').includes('crisis'))return json({ok:false,error:'synthetic_p0_queue_proof_failed'},409);
+    await closeSyntheticTap(env,postId,userId,actor,'Authorised TEST INCIDENT production drill');
+    const closed=await env.DB.prepare("SELECT p.id,p.body,p.status,r.priority,r.status report_status,r.reviewed_by,r.outcome,a.action,a.actor FROM tap_room_posts p JOIN tap_room_reports r ON r.post_id=p.id JOIN tap_room_moderation_audit a ON a.content_id=p.id WHERE p.id=? ORDER BY a.id DESC LIMIT 1").bind(postId).first();
+    return json({ok:true,action,before:{postId,status:row.status,priority:row.priority,reportStatus:row.report_status,riskFlags:safe(row.risk_flags_json)},after:closed,commissioningIdentity:'github_actions_oidc'});
+  }
+  if(action==='seed_health'){
+    const today=new Date().toISOString().slice(0,10);
+    await env.DB.batch([env.DB.prepare("INSERT INTO progress_entries(user_id,recorded_on,weight_kg,waist_cm,notes,source) VALUES(?,?,?,?,?,?)").bind(userId,today,99.9,99.9,'SYNTHETIC ERASURE DRILL','commissioning'),env.DB.prepare("INSERT INTO check_ins(user_id,weight,waist,wellbeing_score,notes) VALUES(?,?,?,?,?)").bind(userId,99.9,99.9,5,'SYNTHETIC ERASURE DRILL')]);
+    const counts=await syntheticHealthCounts(env,userId);return json({ok:counts.progressRows===1&&counts.checkInRows===1,action,...counts,commissioningIdentity:'github_actions_oidc'});
+  }
+  if(action==='verify_health_erasure'){
+    const counts=await syntheticHealthCounts(env,userId),withdrawal=await env.DB.prepare("SELECT COUNT(*) n FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' AND granted=0").bind(userId).first(),audit=await env.DB.prepare("SELECT COUNT(*) n FROM audit_log WHERE user_id=? AND action='privacy.health_tracking_erased'").bind(userId).first();
+    const result={...counts,withdrawalRows:Number(withdrawal?.n||0),auditRows:Number(audit?.n||0)};return json({ok:result.progressRows===0&&result.checkInRows===0&&result.withdrawalRows>=1&&result.auditRows>=1,action,...result,commissioningIdentity:'github_actions_oidc'});
+  }
+  return json({ok:false,error:'invalid_synthetic_drill_action'},400);
+}
+async function closeSyntheticTap(env,postId,userId,actor,reason){const at=new Date().toISOString();await env.DB.batch([env.DB.prepare("UPDATE tap_room_posts SET body='[TEST INCIDENT CLOSED]',status='hidden_by_moderator',deleted_at=?,updated_at=? WHERE id=? AND user_id=?").bind(at,at,postId,userId),env.DB.prepare("UPDATE tap_room_reports SET status='reviewed',reviewed_at=?,reviewed_by=?,outcome='synthetic_drill_closed' WHERE post_id=? AND status='open'").bind(at,actor,postId),env.DB.prepare("INSERT INTO tap_room_moderation_audit(actor,action,reason,content_id,affected_user_id,metadata_json,created_at) VALUES(?,?,?,?,?,?,?)").bind(actor,'synthetic_p0_drill_close',reason,postId,userId,JSON.stringify({synthetic:true,realHealthData:false}),at)]);}
+async function syntheticHealthCounts(env,userId){const p=await env.DB.prepare("SELECT COUNT(*) n FROM progress_entries WHERE user_id=? AND notes='SYNTHETIC ERASURE DRILL'").bind(userId).first(),c=await env.DB.prepare("SELECT COUNT(*) n FROM check_ins WHERE user_id=? AND notes='SYNTHETIC ERASURE DRILL'").bind(userId).first();return{progressRows:Number(p?.n||0),checkInRows:Number(c?.n||0)}}
+
 async function publishFinalV1(request,env,identity){
   try{
     const body=await request.json();
