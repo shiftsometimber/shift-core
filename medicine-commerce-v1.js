@@ -155,6 +155,17 @@ async function catalogue(env) {
     ).results || [];
   const products = [];
   for (const row of rows) {
+    const medicineName = String(row.name || "").trim().toLowerCase();
+    const originalLabel = String(row.strength_label || "").trim();
+    if (
+      medicineName === "liraglutide" &&
+      /^(?:0\.6|1\.2|3)(?:\s*mg)?$/i.test(originalLabel)
+    )
+      continue;
+    const strengthLabel =
+      medicineName === "orlistat" && /^\d+$/.test(originalLabel)
+        ? `120 mg · ${originalLabel} capsules`
+        : originalLabel;
     let product = products.find((x) => x.id === row.medicine_id);
     if (!product) {
       product = {
@@ -172,9 +183,13 @@ async function catalogue(env) {
       0,
       Number(row.stock_on_hand) - Number(row.reserved),
     );
+    const duplicate = product.variants.find(
+      (variant) => variant.strengthLabel.toLowerCase() === strengthLabel.toLowerCase(),
+    );
+    if (duplicate) continue;
     product.variants.push({
       id: row.variant_id,
-      strengthLabel: row.strength_label,
+      strengthLabel,
       pricePence: Number(row.selling_price_pence),
       status:
         remaining > 0 &&
