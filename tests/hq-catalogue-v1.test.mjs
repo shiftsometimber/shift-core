@@ -23,6 +23,9 @@ test('HQ browser preflights are answered before session checks',()=>{
   const preflight=entry.indexOf("request.method==='OPTIONS'&&path.startsWith('/v1/hq/')");
   const catalogue=entry.indexOf('hqCatalogueRoutes(request');
   assert.ok(preflight>0&&preflight<catalogue);
+  assert.match(entry,/withHqCors\(hqCatalogue,request\)/);
+  assert.match(entry,/withHqCors\(hqCommerceContent,request\)/);
+  assert.match(entry,/withHqCors\(radar,request\)/);
 });
 
 test('HQ catalogue is wired before the legacy Worker fallback',()=>{

@@ -38,6 +38,7 @@ import {hqCommerceContentRoutes} from './hq-commerce-content-v1.js';
 import {hqCatalogueRoutes} from './hq-catalogue-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
+const HQ_ORIGINS=new Set(['https://hq.shiftsometimber.co.uk']);
 const GIT_MEMBER_ASSETS=new Map([
   ['/api-adapter-v33d.js','application/javascript; charset=utf-8'],
   ['/member-product-v33d.js','application/javascript; charset=utf-8'],
@@ -89,6 +90,7 @@ const GIT_MEMBER_ASSETS=new Map([
 function isMemberProductPath(path){return path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/tap-room')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
+function withHqCors(response,request){const origin=request.headers.get('Origin')||'';if(!HQ_ORIGINS.has(origin))return response;const headers=new Headers(response.headers);headers.set('Access-Control-Allow-Origin',origin);headers.set('Access-Control-Allow-Credentials','true');headers.set('Vary','Origin');headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 async function gitMemberAsset(path,env){
   const contentType=GIT_MEMBER_ASSETS.get(path)||(/^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)?'image/svg+xml; charset=utf-8':null);if(!env.MEMBER_ASSETS||!contentType)return null;
   const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
@@ -145,8 +147,8 @@ export default {
     const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
-    const hqCatalogue=await hqCatalogueRoutes(request,env,ctx);if(hqCatalogue)return hqCatalogue;
-    const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return hqCommerceContent;
+    const hqCatalogue=await hqCatalogueRoutes(request,env,ctx);if(hqCatalogue)return withHqCors(hqCatalogue,request);
+    const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return withHqCors(hqCommerceContent,request);
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
     const medicineCommerce=await medicineCommerceRoutes(request,env,ctx);if(medicineCommerce)return medicineCommerce;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
@@ -191,7 +193,7 @@ export default {
     const memberV8=await memberProductV8Routes(request,env,ctx); if(memberV8)return withMemberCors(memberV8,request);
     const personal=await personalRoutes(request,env,ctx); if(personal)return withMemberCors(personal,request);
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
-    const radar=await radarRoutes(request,env,ctx); if(radar)return radar;
+    const radar=await radarRoutes(request,env,ctx); if(radar)return path.startsWith('/v1/hq/')?withHqCors(radar,request):radar;
     const legacyBody=(request.method==='PATCH'&&path==='/v1/member-state')?await request.clone().json().catch(()=>({})):null;
     const fallback=await hq.fetch(request,env,ctx);
     if(fallback.ok&&(path==='/v1/member-state'||path==='/v1/progress'))await recordLegacyJourneyEvent(request,env,ctx,path,legacyBody);
