@@ -203,6 +203,7 @@ function stripeForm(order, item, user, env) {
   const form = new URLSearchParams(),
     put = (k, v) => form.append(k, String(v));
   put("mode", "payment");
+  put("managed_payments[enabled]", "false");
   put("payment_method_types[0]", "card");
   put(
     "success_url",
@@ -210,6 +211,7 @@ function stripeForm(order, item, user, env) {
   );
   put("cancel_url", `${siteUrl(env)}/treatment-order?checkout=cancelled`);
   put("client_reference_id", order.orderNumber);
+  put("customer_creation", "always");
   put("customer_email", user.email);
   put("billing_address_collection", "required");
   put("metadata[order_number]", order.orderNumber);
