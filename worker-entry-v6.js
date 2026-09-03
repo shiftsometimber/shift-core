@@ -148,7 +148,7 @@ export default {
     const gitAsset=await gitMemberAsset(path,env);if(gitAsset)return gitAsset;
     const contrast=await memberContrastStatic(request,env);if(contrast)return contrast;
     const hqCatalogue=await hqCatalogueRoutes(request,env,ctx);if(hqCatalogue)return withHqCors(hqCatalogue,request);
-    const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return withHqCors(hqCommerceContent,request);
+    const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return path==='/v1/site-content'||path.startsWith('/v1/site-content/')?withMemberCors(hqCommerceContent,request):withHqCors(hqCommerceContent,request);
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
     const medicineCommerce=await medicineCommerceRoutes(request,env,ctx);if(medicineCommerce)return medicineCommerce;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
