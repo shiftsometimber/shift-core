@@ -47,7 +47,7 @@ async function ensureSchema(DB) {
   await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='liraglutide') AND lower(strength_label) LIKE '%pen pack%'`).run();
   await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='wegovy injection') AND trim(lower(strength_label)) IN ('7.2','7.2 mg')`).run();
   await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='orlistat') AND trim(lower(strength_label)) IN ('42','84')`).run();
-  await DB.prepare(`UPDATE medicine_variants SET strength_label='120 mg · 168 capsules',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='orlistat') AND trim(lower(strength_label))='168'`).run();
+  // Legacy bare pack-size rows duplicate the labelled catalogue rows. Archive\n  // them instead of renaming: renaming `168` can collide with the existing\n  // `120 mg · 168 capsules` UNIQUE(medicine_id,strength_label) row and abort\n  // every HQ catalogue request before it can return a CORS-wrapped response.\n  await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='orlistat') AND trim(lower(strength_label)) IN ('168','168 capsules')`).run();
 }
 async function actor(request, env, ctx) {
   const response = await hq.fetch(
