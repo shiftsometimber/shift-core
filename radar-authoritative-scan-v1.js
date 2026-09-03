@@ -5,7 +5,9 @@ const SOURCES=[
 ];
 const PUBMED={id:'pubmed-obesity',authority:'PubMed / NLM',region:'GLOBAL',url:'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi',eventType:'peer_reviewed_research'};
 const iso=()=>new Date().toISOString();
-const RELEVANT=/\b(obesity|overweight|weight[- ]?loss|weight management|glp[- ]?1|gip|semaglutide|tirzepatide|liraglutide|orlistat|retatrutide|cagrisema|mounjaro|wegovy|saxenda|foundayo|metabolic|men'?s health)\b/i;
+// Keep the automated desk deliberately narrow. Generic terms such as "metabolic"
+// and "men's health" pulled unrelated devices and recalls into Matt's review queue.
+const RELEVANT=/\b(obesity|overweight|weight[- ]?loss|weight management|anti-obesity|glp[- ]?1|glucagon-like peptide[- ]?1|semaglutide|tirzepatide|liraglutide|orlistat|retatrutide|orforglipron|cagrisema|cagrilintide|mounjaro|wegovy|saxenda|foundayo)\b/i;
 async function hash(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 const clean=s=>String(s||'').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/\s+/g,' ').trim();
 function tag(block,name){const m=block.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${name}>`,'i'));return m?clean(m[1]):''}

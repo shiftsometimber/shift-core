@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {isRelevantRadarRow} from '../radar-integration-v1.js';
 
 test('hourly Radar prepares relevant verified events for Matt review',()=>{
   const scheduled=fs.readFileSync(new URL('../radar-scheduled-scan-v1.js',import.meta.url),'utf8');
@@ -18,6 +19,21 @@ test('hourly Radar prepares relevant verified events for Matt review',()=>{
   assert.match(scanner,/eutils\.ncbi\.nlm\.nih\.gov/);
   assert.match(scanner,/peer_reviewed_research/);
   for(const term of ['semaglutide','tirzepatide','retatrutide','cagrisema'])assert.ok(scanner.includes(term));
+});
+
+test('Radar queue excludes unrelated medical-device and general-health notices',()=>{
+  for(const headline of [
+    'Parenteral nutrition filters: field safety notice',
+    'Hip replacement system recall',
+    'Rectal catheter device alert',
+    "General men's health update"
+  ])assert.equal(isRelevantRadarRow({headline}),false,headline);
+  for(const headline of [
+    'MHRA updates GLP-1 medicines safety advice',
+    'Orforglipron obesity study reports results',
+    'Retatrutide Phase 3 weight-loss development',
+    'CagriSema and semaglutide update'
+  ])assert.equal(isRelevantRadarRow({headline}),true,headline);
 });
 
 test('commerce controls link to all owner management surfaces',()=>{
