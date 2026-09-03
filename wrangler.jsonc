@@ -101,17 +101,20 @@
   ],
 
   "assets": {"directory": "./frontend/member","binding": "MEMBER_ASSETS","run_worker_first": true},
-  "triggers": {"crons": ["0 * * * *"]},
+  "triggers": {"crons": ["*/15 * * * *"]},
   "vars": {
     "AUTO_VERIFY_EMAIL": "false",
     "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com,https://hq.shiftsometimber.co.uk,https://v23.projectshift.pages.dev,https://23v.projectshift.pages.dev",
     "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
     "PUBLIC_SITE_URL": "https://shiftsometimber.co.uk",
     "AUTH_EMAIL_FROM": "welcome@shiftsometimber.co.uk",
-    "ORDER_NOTIFICATION_EMAIL": "orders@shiftsometimber.co.uk",
+    "ADMIN_NOTIFICATION_EMAIL": "shiftsometimber@gmail.com",
+    "ORDER_NOTIFICATION_EMAIL": "shiftsometimber@gmail.com",
+    "RADAR_ALERT_TO": "shiftsometimber@gmail.com",
+    "EVIDENCE_DESK_ALERT_TO": "shiftsometimber@gmail.com",
     "TAP_ROOM_MODERATION_OWNER": "Matt O'Brien",
     "TAP_ROOM_MODERATION_BACKUP": "Linda O'Brien",
-    "TAP_ROOM_P0_EMAIL": "hello@shiftsometimber.co.uk",
+    "TAP_ROOM_P0_EMAIL": "shiftsometimber@gmail.com",
     "STRIPE_MODE": "test"
   },
   "ai": {"binding": "AI"},

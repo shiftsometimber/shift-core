@@ -1,3 +1,5 @@
+import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+
 const ALLOWED_ORIGINS = new Set([
   "https://shiftsometimber.co.uk",
   "https://www.shiftsometimber.co.uk",
@@ -84,9 +86,6 @@ async function body(request) {
     return null;
   }
 }
-function orderNumber() {
-  return `SST-MED-${crypto.randomUUID().replaceAll("-", "").slice(0, 12).toUpperCase()}`;
-}
 function hex(value) {
   return /^[a-f0-9]{64}$/i.test(value)
     ? Uint8Array.from(value.match(/.{2}/g), (x) => Number.parseInt(x, 16))
@@ -136,6 +135,9 @@ async function schema(env) {
       `CREATE TABLE IF NOT EXISTS medicine_inventory (variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER NOT NULL DEFAULT 0,reserved INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(variant_id) REFERENCES medicine_variants(id))`,
     ),
     env.DB.prepare(
+      `CREATE TABLE IF NOT EXISTS medicine_product_images (medicine_id INTEGER PRIMARY KEY,mime_type TEXT NOT NULL,image_base64 TEXT NOT NULL,alt_text TEXT NOT NULL,updated_by INTEGER,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(medicine_id) REFERENCES medicine_products(id))`,
+    ),
+    env.DB.prepare(
       `CREATE TABLE IF NOT EXISTS medicine_orders (id INTEGER PRIMARY KEY AUTOINCREMENT,order_number TEXT NOT NULL UNIQUE,user_id INTEGER NOT NULL,email TEXT NOT NULL,medicine_id INTEGER NOT NULL,variant_id INTEGER NOT NULL,medicine_name TEXT NOT NULL,strength_label TEXT NOT NULL,unit_price_pence INTEGER NOT NULL,discount_code TEXT,discount_pence INTEGER NOT NULL DEFAULT 0,total_pence INTEGER NOT NULL,currency TEXT NOT NULL DEFAULT 'GBP',status TEXT NOT NULL DEFAULT 'pending',stripe_checkout_session_id TEXT UNIQUE,stripe_payment_intent_id TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
     ),
     env.DB.prepare(
@@ -145,12 +147,32 @@ async function schema(env) {
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN stripe_error_json TEXT`).run().catch(()=>{});
 }
 
+async function reconcileExpiredReservations(env) {
+  const cutoff = new Date(Date.now() - 40 * 60 * 1000).toISOString();
+  const { results = [] } = await env.DB.prepare(
+    `SELECT id,order_number,variant_id FROM medicine_orders WHERE status IN ('pending','checkout_open') AND created_at<? ORDER BY id LIMIT 100`,
+  ).bind(cutoff).all();
+  for (const order of results) {
+    const expired = await env.DB.prepare(
+      `UPDATE medicine_orders SET status='expired',updated_at=? WHERE id=? AND status IN ('pending','checkout_open')`,
+    ).bind(now(), order.id).run();
+    if (Number(expired.meta?.changes || 0) === 1) {
+      await updateOrderReferenceStatus(env.DB,order.order_number,'expired');
+      await env.DB.prepare(
+        `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`,
+      ).bind(now(), order.variant_id).run();
+    }
+  }
+  return results.length;
+}
+
 async function catalogue(env) {
   await schema(env);
+  await reconcileExpiredReservations(env);
   const rows =
     (
       await env.DB.prepare(
-        `SELECT m.id medicine_id,m.name,m.active_ingredient,m.form,m.description,m.status medicine_status,v.id variant_id,v.strength_label,v.selling_price_pence,v.status variant_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_products m JOIN medicine_variants v ON v.medicine_id=m.id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE m.status NOT IN ('draft','archived') AND v.status!='archived' ORDER BY m.sort_order,m.name,v.sort_order,v.id`,
+        `SELECT m.id medicine_id,m.name,m.active_ingredient,m.form,m.description,m.status medicine_status,mi.alt_text image_alt,mi.updated_at image_updated_at,CASE WHEN mi.medicine_id IS NULL THEN 0 ELSE 1 END has_image,v.id variant_id,v.strength_label,v.selling_price_pence,v.status variant_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_products m JOIN medicine_variants v ON v.medicine_id=m.id LEFT JOIN medicine_inventory i ON i.variant_id=v.id LEFT JOIN medicine_product_images mi ON mi.medicine_id=m.id WHERE m.status NOT IN ('draft','archived') AND v.status!='archived' ORDER BY m.sort_order,m.name,v.sort_order,v.id`,
       ).all()
     ).results || [];
   const products = [];
@@ -173,6 +195,8 @@ async function catalogue(env) {
         form: row.form,
         description: row.description,
         status: row.medicine_status,
+        imageUrl: row.has_image ? `/v1/catalogue/medicine-images/${row.medicine_id}?v=${encodeURIComponent(row.image_updated_at || "")}` : "",
+        imageAlt: row.image_alt || "",
         variants: [],
       };
       products.push(product);
@@ -229,6 +253,7 @@ function stripeForm(order, item, user, env) {
   const form = new URLSearchParams(),
     put = (k, v) => form.append(k, String(v));
   put("mode", "payment");
+  put("expires_at", Math.floor(Date.now() / 1000) + 30 * 60);
   put("payment_method_types[0]", "card");
   put(
     "success_url",
@@ -294,6 +319,7 @@ async function checkout(request, env) {
       cors(request),
     );
   await schema(env);
+  await reconcileExpiredReservations(env);
   const input = await body(request),
     variantId = Number(input?.variantId);
   if (!Number.isInteger(variantId) || variantId < 1)
@@ -341,8 +367,14 @@ async function checkout(request, env) {
       cors(request),
     );
   }
+  let reference;
+  try{reference=await reserveOrderReference(env.DB,{channel:'medicine',userId:user.id})}catch(error){
+    await env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`).bind(now(),variantId).run();
+    console.error('order_reference_reservation_failed',{channel:'medicine',message:error?.message});
+    return json({ok:false,error:'order_reference_unavailable'},503,cors(request));
+  }
   const order = {
-    orderNumber: orderNumber(),
+    orderNumber: reference,
     totalPence: Number(item.selling_price_pence) - Number(offer?.amount || 0),
   };
   const stamp = now();
@@ -365,6 +397,7 @@ async function checkout(request, env) {
       stamp,
     )
     .run();
+  await attachOrderReference(env.DB,order.orderNumber,{sourceTable:'medicine_orders',sourceId:inserted.meta.last_row_id,status:'pending'});
   const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
       headers: {
@@ -387,6 +420,7 @@ async function checkout(request, env) {
     const stripeError={status:response.status,type:clean(session?.error?.type||'unknown',100),code:clean(session?.error?.code||'',100),param:clean(session?.error?.param||'',160),message:clean(session?.error?.message||'Stripe did not create a checkout session.',300),keyMode:key.startsWith('sk_live_')?'live':key.startsWith('sk_test_')?'test':'invalid'};
     console.error('medicine_stripe_checkout_create_failed',{orderNumber:order.orderNumber,...stripeError});
     await env.DB.prepare(`UPDATE medicine_orders SET stripe_error_json=?,updated_at=? WHERE id=?`).bind(JSON.stringify(stripeError),now(),inserted.meta.last_row_id).run().catch(()=>{});
+    await updateOrderReferenceStatus(env.DB,order.orderNumber,'failed');
     return json(
       { ok: false, error: "checkout_unavailable",...(mode==='test'?{diagnostic:stripeError}:{}) },
       502,
@@ -394,10 +428,11 @@ async function checkout(request, env) {
     );
   }
   await env.DB.prepare(
-    `UPDATE medicine_orders SET stripe_checkout_session_id=?,updated_at=? WHERE id=?`,
+    `UPDATE medicine_orders SET stripe_checkout_session_id=?,status='checkout_open',updated_at=? WHERE id=?`,
   )
     .bind(session.id, now(), inserted.meta.last_row_id)
     .run();
+  await updateOrderReferenceStatus(env.DB,order.orderNumber,'checkout_open');
   return json(
     {
       ok: true,
@@ -458,6 +493,7 @@ async function webhook(request, env, ctx) {
           `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),stock_on_hand=MAX(0,stock_on_hand-1),updated_at=? WHERE variant_id=?`,
         ).bind(now(), order.variant_id),
       ]);
+      await updateOrderReferenceStatus(env.DB,number,'paid');
     } else if (
       [
         "checkout.session.expired",
@@ -473,6 +509,7 @@ async function webhook(request, env, ctx) {
           `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`,
         ).bind(now(), order.variant_id),
       ]);
+      await updateOrderReferenceStatus(env.DB,number,'failed');
     }
     await env.DB.prepare(
       "UPDATE medicine_stripe_events SET processed_at=? WHERE stripe_event_id=?",

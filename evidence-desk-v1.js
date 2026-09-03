@@ -271,14 +271,14 @@ export async function deliverEvidenceDecisionEmails(env){
   await ensureEvidenceDeskSchema(env.DB);
   const control=await env.DB.prepare(`SELECT * FROM evidence_desk_control WHERE id=1`).first();
   if(!Number(control?.enabled)||!Number(control?.decision_email_enabled))return{ok:true,sent:0,reason:'evidence_desk_email_off'};
-  const recipients=String(env.EVIDENCE_DESK_ALERT_TO||'').split(',').map(x=>x.trim()).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x));
+  const recipients=String(env.EVIDENCE_DESK_ALERT_TO||env.ADMIN_NOTIFICATION_EMAIL||'shiftsometimber@gmail.com').split(',').map(x=>x.trim()).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x));
   const {results:pending=[]}=await env.DB.prepare(`SELECT n.*,p.title,p.summary,p.risk_lane FROM evidence_desk_notifications n JOIN evidence_desk_packages p ON p.id=n.package_id WHERE n.status='queued' ORDER BY CASE p.risk_lane WHEN 'red' THEN 1 WHEN 'amber' THEN 2 ELSE 3 END,n.id LIMIT 25`).all();
   if(!pending.length)return{ok:true,sent:0,reason:'nothing_needs_decision'};
   if(!env.EMAIL||!recipients.length){for(const item of pending)await env.DB.prepare(`UPDATE evidence_desk_notifications SET error_code=? WHERE id=?`).bind(!env.EMAIL?'email_binding_missing':'recipient_missing',item.id).run();return{ok:false,sent:0,reason:!env.EMAIL?'email_binding_missing':'recipient_missing'};}
   let sent=0;
   for(const item of pending){
     try{
-      const subject=`Shift Evidence Desk — ${String(item.risk_lane).toUpperCase()} decision required`;
+      const subject=`ST INTERNAL — SIGN OFF — Evidence Desk: ${String(item.risk_lane).toUpperCase()}`;
       const text=`${item.title}\n\n${item.summary}\n\nOpen Shift HQ to approve web only, hold, return, reject or record that no publication is justified. Social and newsletter distribution remain locked.`;
       const result=await env.EMAIL.send({from:{email:String(env.EVIDENCE_DESK_EMAIL_FROM||'evidence@shiftsometimber.co.uk'),name:'Shift Evidence Desk'},to:recipients[0],subject,text,html:`<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;background:#050505;color:#E7E3DA;padding:32px"><p style="color:#707762;font-weight:800">SHIFT EVIDENCE DESK · ${clean(item.risk_lane,20).toUpperCase()}</p><h1>${escapeHtml(item.title)}</h1><p>${escapeHtml(item.summary)}</p><p><strong>Decision required in Shift HQ.</strong></p><p>Website, newsletter and social publishing remain locked until the recorded gates are complete.</p></div>`});
       await env.DB.prepare(`UPDATE evidence_desk_notifications SET status='sent',recipient=?,provider_id=?,sent_at=? WHERE id=?`).bind(recipients[0],clean(result?.id||result?.messageId,500)||null,now(),item.id).run();sent++;

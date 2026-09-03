@@ -1,3 +1,5 @@
+import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+
 const APP_NAME = 'Shift Core';
 const API_VERSION = '4.0-hq-v1-section13-deploy';
 const DEFAULT_ALLOWED_ORIGINS = [
@@ -1310,6 +1312,7 @@ async function adminRoutes(request, env, path, method) {
     if(!order)return json({ok:false,error:'order_not_found'},404);
     const tracking=clean(b.trackingReference,200),carrier=clean(b.carrier,100),existing=parseJsonObject(order.notes),notes=JSON.stringify({...existing,trackingReference:tracking||existing.trackingReference||'',carrier:carrier||existing.carrier||'',fulfilmentUpdatedBy:hqActor.email,fulfilmentUpdatedAt:isoNow()});
     await env.DB.prepare('UPDATE orders SET status=?,notes=?,updated_at=? WHERE id=?').bind(status,notes,isoNow(),id).run();
+    await updateOrderReferenceStatus(env.DB,order.order_number,status);
     await hqAudit(env,hqActor,'commerce.order_status_updated','order',String(id),{orderNumber:order.order_number,status,trackingReference:tracking,carrier});
     if(status==='dispatched'&&order.customer_email&&env.EMAIL)await sendDispatchEmail(env,{...order,trackingReference:tracking,carrier}).catch(e=>console.warn('dispatch_email_failed',e?.message));
     return json({ok:true,orderNumber:order.order_number,status});
@@ -1324,6 +1327,7 @@ async function adminRoutes(request, env, path, method) {
     const response=await fetch('https://api.stripe.com/v1/refunds',{method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/x-www-form-urlencoded','Idempotency-Key':`hq-refund-${order.order_number}`},body:form}),refund=await response.json().catch(()=>null);
     if(!response.ok||!refund?.id)return json({ok:false,error:'stripe_refund_failed',message:clean(refund?.error?.message||'Stripe did not accept the refund.',300)},502);
     await env.DB.batch([env.DB.prepare(`INSERT OR IGNORE INTO commerce_refunds(order_id,stripe_refund_id,amount_pence,reason,environment,created_by,created_at) VALUES(?,?,?,?,?,?,?)`).bind(id,refund.id,Number(refund.amount||order.total_pence),reason,mode,hqActor.email,isoNow()),env.DB.prepare(`UPDATE orders SET status='refunded',payment_status='refunded',updated_at=? WHERE id=?`).bind(isoNow(),id)]);
+    await updateOrderReferenceStatus(env.DB,order.order_number,'refunded');
     const amountPence=Number(refund.amount||order.total_pence);let refundEmailSent=false;
     if(order.customer_email&&env.EMAIL){try{await sendRefundEmail(env,{...order,amountPence,environment:mode});refundEmailSent=true}catch(e){console.warn('refund_email_failed',e?.message)}}
     await hqAudit(env,hqActor,'commerce.order_refunded','order',String(id),{orderNumber:order.order_number,refundId:refund.id,amountPence,environment:mode,refundEmailSent});return json({ok:true,orderNumber:order.order_number,refundId:refund.id,amountPence,environment:mode,refundEmailSent});
@@ -1343,10 +1347,10 @@ async function adminRoutes(request, env, path, method) {
     if(productId&&!product) return json({ok:false,error:'product_not_found'},404);
     const status=clean(b.status,30)||'new', paymentStatus=clean(b.paymentStatus,30)||'pending';
     if(!['new','paid','processing','dispatched','fulfilled','refunded','cancelled'].includes(status)||!['pending','paid','failed','refunded'].includes(paymentStatus)) return json({ok:false,error:'invalid_status'},400);
-    const last=await env.DB.prepare('SELECT id FROM orders ORDER BY id DESC LIMIT 1').first(); const next=Number(last?.id||0)+1;
-    const number=`SST-${String(next).padStart(6,'0')}`; const unit=Number(product?.price_pence||0); const total=unit*qty;
-    await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+    const number=await reserveOrderReference(env.DB,{channel:product?.product_type==='service'?'service':'apparel',userId:Number(b.userId||0)||null}); const unit=Number(product?.price_pence||0); const total=unit*qty;
+    const inserted=await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
       .bind(number,Number(b.userId||0)||null,clean(b.customerEmail,320),clean(b.customerName,200),productId||null,qty,total,total,'GBP',status,paymentStatus,clean(b.notes,5000),isoNow(),isoNow()).run();
+    await attachOrderReference(env.DB,number,{sourceTable:'orders',sourceId:inserted.meta.last_row_id,status});
     return json({ok:true,orderNumber:number},201);
   }
 

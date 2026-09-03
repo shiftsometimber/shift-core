@@ -42,6 +42,9 @@ async function ensureSchema(DB) {
     DB.prepare(
       `CREATE TABLE IF NOT EXISTS medicine_inventory (variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER NOT NULL DEFAULT 0,reserved INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(variant_id) REFERENCES medicine_variants(id))`,
     ),
+    DB.prepare(
+      `CREATE TABLE IF NOT EXISTS medicine_product_images (medicine_id INTEGER PRIMARY KEY,mime_type TEXT NOT NULL,image_base64 TEXT NOT NULL,alt_text TEXT NOT NULL,updated_by INTEGER,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(medicine_id) REFERENCES medicine_products(id))`,
+    ),
   ]);
   await DB.prepare(`UPDATE medicine_variants SET status='out_of_stock',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='liraglutide') AND trim(lower(strength_label)) IN ('0.6','0.6 mg','1.2','1.2 mg','1.8','1.8 mg','2.4','2.4 mg','3','3 mg','3.0 mg')`).run();
   await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='liraglutide') AND lower(strength_label) LIKE '%pen pack%'`).run();
@@ -103,7 +106,8 @@ export async function hqCatalogueRoutes(request, env, ctx) {
     !path.startsWith("/v1/hq/catalogue") &&
     !path.startsWith("/v1/hq/medicines") &&
     !path.startsWith("/v1/hq/medicine-variants") &&
-    !path.startsWith("/v1/catalogue/product-images")
+    !path.startsWith("/v1/catalogue/product-images") &&
+    !path.startsWith("/v1/catalogue/medicine-images")
   )
     return null;
   await ensureSchema(env.DB);
@@ -126,6 +130,15 @@ export async function hqCatalogueRoutes(request, env, ctx) {
         etag: `"${row.updated_at}"`,
       },
     });
+  }
+  const publicMedicineImage = path.match(/^\/v1\/catalogue\/medicine-images\/(\d+)$/);
+  if (method === "GET" && publicMedicineImage) {
+    const row = await env.DB.prepare(
+      "SELECT mime_type,image_base64,updated_at FROM medicine_product_images WHERE medicine_id=?",
+    ).bind(Number(publicMedicineImage[1])).first();
+    if (!row) return new Response("Not found", { status: 404 });
+    const bytes = Uint8Array.from(atob(row.image_base64), (c) => c.charCodeAt(0));
+    return new Response(bytes, { headers: { "content-type": row.mime_type, "cache-control": "public, max-age=300, must-revalidate", "x-content-type-options": "nosniff", etag: `"${row.updated_at}"` } });
   }
   const auth = await actor(request, env, ctx);
   if (auth.response) return auth.response;
@@ -198,7 +211,7 @@ export async function hqCatalogueRoutes(request, env, ctx) {
     const medicines =
         (
           await env.DB.prepare(
-            "SELECT * FROM medicine_products ORDER BY sort_order,name",
+            `SELECT m.*,i.alt_text image_alt,i.updated_at image_updated_at,CASE WHEN i.medicine_id IS NULL THEN 0 ELSE 1 END has_image FROM medicine_products m LEFT JOIN medicine_product_images i ON i.medicine_id=m.id ORDER BY m.sort_order,m.name`,
           ).all()
         ).results || [],
       variants =
@@ -212,6 +225,10 @@ export async function hqCatalogueRoutes(request, env, ctx) {
       medicines: medicines.map((m) => ({
         ...m,
         activeIngredient: m.active_ingredient,
+        hasImage: Boolean(m.has_image),
+        imageAlt: m.image_alt || "",
+        imageUpdatedAt: m.image_updated_at || "",
+        imageUrl: m.has_image ? `/v1/catalogue/medicine-images/${m.id}` : "",
         variants: variants
           .filter((v) => v.medicine_id === m.id && v.status !== "archived")
           .map((v) => ({
@@ -226,6 +243,24 @@ export async function hqCatalogueRoutes(request, env, ctx) {
           })),
       })),
     });
+  }
+  const medicineImage = path.match(/^\/v1\/hq\/medicines\/(\d+)\/image$/);
+  if (medicineImage && method === "PUT") {
+    const b = await request.json().catch(() => ({})), mime = clean(b.mimeType, 80), base64 = String(b.imageBase64 || "").trim(), alt = clean(b.altText, 180);
+    if (!["image/jpeg", "image/png", "image/webp"].includes(mime) || !alt || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64) || base64.length > 2097152)
+      return json({ ok: false, error: "invalid_medicine_image", message: "Use a JPG, PNG or WebP no larger than 1.5 MB and provide alt text." }, 400);
+    const medicine = await env.DB.prepare("SELECT id FROM medicine_products WHERE id=?").bind(Number(medicineImage[1])).first();
+    if (!medicine) return json({ ok: false, error: "medicine_not_found" }, 404);
+    await env.DB.prepare(`INSERT INTO medicine_product_images(medicine_id,mime_type,image_base64,alt_text,updated_by,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(medicine_id) DO UPDATE SET mime_type=excluded.mime_type,image_base64=excluded.image_base64,alt_text=excluded.alt_text,updated_by=excluded.updated_by,updated_at=excluded.updated_at`).bind(medicine.id,mime,base64,alt,auth.user.id,now()).run();
+    await audit(env,auth.user,"medicine.image_updated","medicine",medicine.id,{mime,alt});
+    return json({ok:true,imageUrl:`/v1/catalogue/medicine-images/${medicine.id}`});
+  }
+  if (medicineImage && method === "DELETE") {
+    const medicine = await env.DB.prepare("SELECT id FROM medicine_products WHERE id=?").bind(Number(medicineImage[1])).first();
+    if (!medicine) return json({ok:false,error:"medicine_not_found"},404);
+    await env.DB.prepare("DELETE FROM medicine_product_images WHERE medicine_id=?").bind(medicine.id).run();
+    await audit(env,auth.user,"medicine.image_removed","medicine",medicine.id);
+    return json({ok:true});
   }
   if (method === "POST" && path === "/v1/hq/medicines") {
     const b = await request.json().catch(() => ({})),

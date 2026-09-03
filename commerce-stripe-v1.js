@@ -1,3 +1,5 @@
+import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+
 const ALLOWED_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const APPAREL_SIZES=['XS','S','M','L','XL','XXL','3XL','4XL','5XL'];
 const SIZES=new Set(APPAREL_SIZES);
@@ -36,7 +38,6 @@ function corsHeaders(request){
 
 function clean(value,max=300){return String(value??'').trim().slice(0,max)}
 function now(){return new Date().toISOString()}
-function orderNumber(){return `SST-${crypto.randomUUID().replaceAll('-','').slice(0,12).toUpperCase()}`}
 function siteUrl(env){return String(env.PUBLIC_SITE_URL||'https://shiftsometimber.co.uk').replace(/\/$/,'')}
 function sessionToken(request){const match=(request.headers.get('Cookie')||'').match(/(?:^|;\s*)sst_session=([^;]+)/);return match?decodeURIComponent(match[1]):null}
 async function sha256(value){const bytes=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(value))));return [...bytes].map(byte=>byte.toString(16).padStart(2,'0')).join('')}
@@ -223,11 +224,18 @@ async function createCheckout(request,env){
     }
     reserved.push(item);
   }
-  const createdAt=now(),number=orderNumber(),subtotal=items.reduce((sum,item)=>sum+Number(item.price_pence)*item.quantity,0),total=subtotal+DELIVERY_PRICE,totalQuantity=items.reduce((sum,item)=>sum+item.quantity,0),first=items[0];
+  let number;
+  try{number=await reserveOrderReference(env.DB,{channel:'apparel',userId:member.id})}catch(error){
+    await Promise.all(reserved.map(item=>releaseStock(env,item.id,item.inventoryKey,item.quantity)));
+    console.error('order_reference_reservation_failed',{channel:'apparel',message:error?.message});
+    return json({ok:false,error:'order_reference_unavailable'},503,corsHeaders(request));
+  }
+  const createdAt=now(),subtotal=items.reduce((sum,item)=>sum+Number(item.price_pence)*item.quantity,0),total=subtotal+DELIVERY_PRICE,totalQuantity=items.reduce((sum,item)=>sum+item.quantity,0),first=items[0];
   const memberName=clean([member.first_name,member.last_name].filter(Boolean).join(' '),200);
   const inserted=await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,'GBP','new','pending',?,?,?)`)
     .bind(number,member.id,member.email,memberName,first.id,totalQuantity,subtotal,total,JSON.stringify({channel:'stripe_checkout',itemCount:items.length}),createdAt,createdAt).run();
   const orderId=inserted.meta.last_row_id;
+  await attachOrderReference(env.DB,number,{sourceTable:'orders',sourceId:orderId,status:'pending'});
   await env.DB.prepare(`INSERT INTO commerce_order_details(order_id,size,delivery_pence,created_at,updated_at) VALUES(?,?,?,?,?)`)
     .bind(orderId,items.length===1?first.size:'Multiple',DELIVERY_PRICE,createdAt,createdAt).run();
   await env.DB.batch(items.map(item=>env.DB.prepare(`INSERT INTO commerce_order_items(order_id,product_id,sku,product_name,colour,size,quantity,unit_price_pence,created_at) VALUES(?,?,?,?,?,?,?,?,?)`).bind(orderId,item.id,item.sku,item.name,item.colour,item.size,item.quantity,item.price_pence,createdAt)));
@@ -241,6 +249,7 @@ async function createCheckout(request,env){
   if(!response.ok||!session?.id||!session?.url){
     await Promise.all(items.map(item=>releaseStock(env,item.id,item.inventoryKey,item.quantity)));
     await env.DB.prepare(`UPDATE orders SET status='cancelled',payment_status='failed',updated_at=? WHERE id=?`).bind(now(),orderId).run();
+    await updateOrderReferenceStatus(env.DB,number,'failed');
     console.error('stripe_checkout_create_failed',{orderNumber:number,status:response.status,type:session?.error?.type||'unknown'});
     const diagnostic=stripeMode==='test'?{stripeCode:clean(session?.error?.code||session?.error?.type,100),stripeParam:clean(session?.error?.param,160),stripeMessage:clean(session?.error?.message,300)}:undefined;
     return json({ok:false,error:'checkout_unavailable',...(diagnostic?{diagnostic}:{})},502,corsHeaders(request));
@@ -281,6 +290,7 @@ async function completeOrder(env,session,eventType,ctx){
     env.DB.prepare(`UPDATE orders SET customer_email=?,customer_name=?,status='paid',payment_status='paid',updated_at=? WHERE id=?`).bind(email,name,updatedAt,order.id),
     env.DB.prepare(`UPDATE commerce_order_details SET stripe_payment_intent_id=?,shipping_name=?,shipping_address_json=?,stripe_payment_status='paid',last_stripe_event_type=?,updated_at=? WHERE order_id=?`).bind(clean(session.payment_intent,200),clean(shipping.name||name,200),JSON.stringify(shipping.address||details.address||{}),eventType,updatedAt,order.id)
   ]);
+  await updateOrderReferenceStatus(env.DB,number,'paid');
   const {results:items}=await env.DB.prepare(`SELECT product_id,sku,product_name,colour,size,quantity,unit_price_pence FROM commerce_order_items WHERE order_id=? ORDER BY id`).bind(order.id).all();
   if(items?.length){
     await Promise.all(items.map(item=>commitStock(env,item.product_id,item.sku===SHIRT_SKU?item.size:`${item.size}|${item.colour}`,Number(item.quantity||1))));
@@ -301,6 +311,7 @@ async function failOrder(env,event,eventType){
   }
   const status=eventType==='checkout.session.expired'?'cancelled':'new';
   await env.DB.prepare(`UPDATE orders SET status=?,payment_status='failed',updated_at=? WHERE order_number=? AND payment_status<>'paid'`).bind(status,now(),number).run();
+  await updateOrderReferenceStatus(env.DB,number,status);
 }
 
 async function webhook(request,env,ctx){
@@ -355,7 +366,7 @@ function escapeHtml(value){return clean(value,500).replace(/[&<>"']/g,char=>({'&
 
 async function sendOrderEmails(env,order){
   if(!env.EMAIL)return;
-  const admin=String(env.ORDER_NOTIFICATION_EMAIL||'orders@shiftsometimber.co.uk');
+  const admin=String(env.ORDER_NOTIFICATION_EMAIL||env.ADMIN_NOTIFICATION_EMAIL||'shiftsometimber@gmail.com');
   const customer=order.customer_email;
   const summary=`${order.product_name} · Size ${order.size} · Quantity ${order.quantity} · £${(order.total_pence/100).toFixed(2)}`;
   const customerFrom={email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'};
@@ -368,7 +379,7 @@ async function sendOrderEmails(env,order){
     work.push(env.EMAIL.send({from:customerFrom,to:customer,subject:`Your Shift order is confirmed · ${order.order_number}`,html:shell(`Payment confirmed for ${order.order_number}`,'Nice one. Your order is confirmed.',body),text:`Shift Some Timber order confirmation\n\nOrder ${order.order_number}\n${summary}\n\nPayment confirmed. We will email you again when your order is dispatched.\n\nQuestions: orders@shiftsometimber.co.uk\nShift Some Timber Ltd · Company no. 17393135`}));
   }
   const adminBody=`<div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><p style="margin:0 0 12px;color:#E7E3DA;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><p style="margin:0 0 18px;color:#E7E3DA;line-height:1.7">${escapeHtml(summary)}</p><p style="margin:0;color:#E7E3DA;line-height:1.7">Customer: ${escapeHtml(order.customer_name)}<br>${escapeHtml(customer)}</p></div>`;
-  work.push(env.EMAIL.send({from:adminFrom,to:admin,subject:`Paid shop order · ${order.order_number}`,html:shell(`New paid shop order ${order.order_number}`,'New paid order.',adminBody),text:`New paid Shift shop order\n\n${order.order_number}\n${summary}\nCustomer: ${order.customer_name} · ${customer}` }));
+  work.push(env.EMAIL.send({from:adminFrom,to:admin,subject:`ST INTERNAL — NEW ORDER — ${order.order_number}`,html:shell(`New paid shop order ${order.order_number}`,'New paid order.',adminBody),text:`New paid Shift shop order\n\n${order.order_number}\n${summary}\nCustomer: ${order.customer_name} · ${customer}` }));
   await Promise.all(work);
 }
 

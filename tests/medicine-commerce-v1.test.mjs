@@ -33,6 +33,12 @@ test('stock is a server-side quantity and zero never reaches Stripe',async()=>{
   assert.doesNotMatch(source,/managed_payments/);
   assert.match(source,/medicineName === "liraglutide"/);
   assert.match(source,/"3\.0 mg"/);
+  assert.match(source,/reconcileExpiredReservations/);
+  assert.match(source,/status='expired'/);
+  assert.match(source,/expires_at/);
+  assert.match(source,/status='checkout_open'/);
+  assert.match(source,/medicine_product_images/);
+  assert.match(source,/imageUrl/);
 });
 
 test('the public order page consumes the governed catalogue and checkout',async()=>{
@@ -41,4 +47,5 @@ test('the public order page consumes the governed catalogue and checkout',async(
   assert.match(source,/\/v1\/commerce\/medicine-checkout/);
   assert.match(source,/variantId:\s*variant\.id/);
   assert.match(source,/Currently out of stock/);
+  assert.match(source,/op-live-product-image/);
 });
