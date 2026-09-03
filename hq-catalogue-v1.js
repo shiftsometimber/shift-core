@@ -213,7 +213,7 @@ export async function hqCatalogueRoutes(request, env, ctx) {
         ...m,
         activeIngredient: m.active_ingredient,
         variants: variants
-          .filter((v) => v.medicine_id === m.id)
+          .filter((v) => v.medicine_id === m.id && v.status !== "archived")
           .map((v) => ({
             id: v.id,
             strengthLabel: v.strength_label,
