@@ -43,7 +43,9 @@ async function ensureSchema(DB) {
       `CREATE TABLE IF NOT EXISTS medicine_inventory (variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER NOT NULL DEFAULT 0,reserved INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(variant_id) REFERENCES medicine_variants(id))`,
     ),
   ]);
-  await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='liraglutide') AND trim(lower(strength_label)) IN ('0.6','1.2','1.8','2.4','3')`).run();
+  await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='liraglutide') AND trim(lower(strength_label)) IN ('0.6','0.6 mg','1.2','1.2 mg','1.8','2.4','3','3 mg')`).run();
+  await DB.prepare(`UPDATE medicine_variants SET status='archived',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='orlistat') AND trim(lower(strength_label)) IN ('42','84')`).run();
+  await DB.prepare(`UPDATE medicine_variants SET strength_label='120 mg · 168 capsules',updated_at=CURRENT_TIMESTAMP WHERE medicine_id IN (SELECT id FROM medicine_products WHERE lower(name)='orlistat') AND trim(lower(strength_label))='168'`).run();
 }
 async function actor(request, env, ctx) {
   const response = await hq.fetch(
