@@ -157,15 +157,13 @@ async function catalogue(env) {
   for (const row of rows) {
     const medicineName = String(row.name || "").trim().toLowerCase();
     const originalLabel = String(row.strength_label || "").trim();
-    if (
-      medicineName === "liraglutide" &&
-      /^(?:0\.6|1\.2|3)(?:\s*mg)?$/i.test(originalLabel)
-    )
-      continue;
-    const strengthLabel =
-      medicineName === "orlistat" && /^\d+$/.test(originalLabel)
-        ? `120 mg · ${originalLabel} capsules`
-        : originalLabel;
+    const strengthLabel = medicineName === "orlistat" && /^\d+$/.test(originalLabel)
+      ? `120 mg · ${originalLabel} capsules`
+      : medicineName === "liraglutide" && /^3(?:\.0)?(?:\s*mg)?$/i.test(originalLabel)
+        ? "3.0 mg"
+        : medicineName === "liraglutide" && /^\d(?:\.\d)?(?:\s*mg)?$/i.test(originalLabel)
+          ? `${originalLabel.replace(/\s*mg$/i, "")} mg`
+          : originalLabel;
     let product = products.find((x) => x.id === row.medicine_id);
     if (!product) {
       product = {
