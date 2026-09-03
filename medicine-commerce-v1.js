@@ -129,6 +129,7 @@ async function schema(env) {
       `CREATE TABLE IF NOT EXISTS medicine_stripe_events (stripe_event_id TEXT PRIMARY KEY,event_type TEXT NOT NULL,received_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,processed_at TEXT,processing_error TEXT)`,
     ),
   ]);
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN stripe_error_json TEXT`).run().catch(()=>{});
 }
 
 async function catalogue(env) {
@@ -356,8 +357,11 @@ async function checkout(request, env) {
         `UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=?`,
       ).bind(now(), inserted.meta.last_row_id),
     ]);
+    const stripeError={status:response.status,type:clean(session?.error?.type||'unknown',100),code:clean(session?.error?.code||'',100),param:clean(session?.error?.param||'',160),message:clean(session?.error?.message||'Stripe did not create a checkout session.',300),keyMode:key.startsWith('sk_live_')?'live':key.startsWith('sk_test_')?'test':'invalid'};
+    console.error('medicine_stripe_checkout_create_failed',{orderNumber:order.orderNumber,...stripeError});
+    await env.DB.prepare(`UPDATE medicine_orders SET stripe_error_json=?,updated_at=? WHERE id=?`).bind(JSON.stringify(stripeError),now(),inserted.meta.last_row_id).run().catch(()=>{});
     return json(
-      { ok: false, error: "checkout_unavailable" },
+      { ok: false, error: "checkout_unavailable",...(mode==='test'?{diagnostic:stripeError}:{}) },
       502,
       cors(request),
     );

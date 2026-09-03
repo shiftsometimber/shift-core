@@ -13,6 +13,11 @@ export class SiteContentState {
       const overrides=await this.storage.get(pageKey(path))||[];
       return json({ok:true,path,overrides});
     }
+    if(route==='/read-all'){
+      const rows=await this.storage.list({prefix:'page:'}),overrides=[];
+      for(const [key,value] of rows.entries())for(const item of value||[])overrides.push({...item,page_path:key.slice(5)});
+      return json({ok:true,overrides});
+    }
     if(route==='/publish'){
       const path=clean(body.pagePath,240),contentKey=clean(body.contentKey,100);
       if(!path.startsWith('/')||!contentKey)return json({ok:false,error:'invalid_content'},400);
