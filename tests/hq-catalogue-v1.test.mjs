@@ -13,6 +13,16 @@ test('HQ exposes controlled product images and medicine variants',()=>{
   assert.match(source,/image\/(jpeg|png|webp)/);
   assert.match(source,/base64\.length\s*>\s*2097152/);
   assert.match(source,/out_of_stock/);
+  assert.match(source,/lower\(name\)='liraglutide'/);
+  assert.match(source,/lower\(name\)='wegovy injection'/);
+  assert.match(source,/7\.2 mg/);
+});
+
+test('HQ browser preflights are answered before session checks',()=>{
+  const entry=fs.readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');
+  const preflight=entry.indexOf("request.method==='OPTIONS'&&path.startsWith('/v1/hq/')");
+  const catalogue=entry.indexOf('hqCatalogueRoutes(request');
+  assert.ok(preflight>0&&preflight<catalogue);
 });
 
 test('HQ catalogue is wired before the legacy Worker fallback',()=>{

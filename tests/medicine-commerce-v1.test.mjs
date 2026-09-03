@@ -31,6 +31,8 @@ test('stock is a server-side quantity and zero never reaches Stripe',async()=>{
   assert.match(source,/error:\s*["']out_of_stock["']/);
   assert.match(source,/https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
   assert.doesNotMatch(source,/managed_payments/);
+  assert.match(source,/medicineName === "liraglutide"/);
+  assert.match(source,/"3\.0 mg"/);
 });
 
 test('the public order page consumes the governed catalogue and checkout',async()=>{
