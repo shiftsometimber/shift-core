@@ -30,6 +30,28 @@ test('stock is a server-side quantity and zero never reaches Stripe',async()=>{
   assert.match(source,/stock_on_hand=MAX\(0,stock_on_hand-1\)/);
   assert.match(source,/error:\s*["']out_of_stock["']/);
   assert.match(source,/https:\/\/api\.stripe\.com\/v1\/checkout\/sessions/);
+  assert.match(source,/reconcileExpiredReservations/);
+  assert.match(source,/status='expired'/);
+  assert.match(source,/expires_at/);
+  assert.match(source,/status='checkout_open'/);
+  assert.match(source,/medicine_product_images/);
+  assert.match(source,/imageUrl/);
+});
+
+test('the public catalogue removes malformed medicine variants and normalises pack labels',async()=>{
+  const rows=[
+    {medicine_id:4,name:'Orlistat',active_ingredient:'orlistat',form:'capsule',description:'',medicine_status:'out_of_stock',variant_id:7,strength_label:'120 mg · 42 capsules',selling_price_pence:5900,variant_status:'out_of_stock',stock_on_hand:0,reserved:0},
+    {medicine_id:4,name:'Orlistat',active_ingredient:'orlistat',form:'capsule',description:'',medicine_status:'out_of_stock',variant_id:29,strength_label:'42',selling_price_pence:5900,variant_status:'out_of_stock',stock_on_hand:0,reserved:0},
+    {medicine_id:4,name:'Orlistat',active_ingredient:'orlistat',form:'capsule',description:'',medicine_status:'out_of_stock',variant_id:30,strength_label:'168',selling_price_pence:12900,variant_status:'out_of_stock',stock_on_hand:0,reserved:0},
+    {medicine_id:6,name:'Liraglutide',active_ingredient:'liraglutide',form:'injection',description:'',medicine_status:'out_of_stock',variant_id:26,strength_label:'1.2 mg',selling_price_pence:19900,variant_status:'out_of_stock',stock_on_hand:0,reserved:0},
+    {medicine_id:6,name:'Liraglutide',active_ingredient:'liraglutide',form:'injection',description:'',medicine_status:'out_of_stock',variant_id:13,strength_label:'1.8 mg — 3-pen pack',selling_price_pence:19900,variant_status:'out_of_stock',stock_on_hand:0,reserved:0},
+  ];
+  const statement={bind(){return this},run:async()=>({}),all:async()=>({results:rows})};
+  const DB={batch:async()=>[],prepare(){return statement}};
+  const response=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/catalogue/medicines'),{DB},{});
+  const products=(await response.json()).products;
+  assert.deepEqual(products.find(x=>x.name==='Orlistat').variants.map(x=>x.strengthLabel),['120 mg · 42 capsules','120 mg · 168 capsules']);
+  assert.deepEqual(products.find(x=>x.name==='Liraglutide').variants.map(x=>x.strengthLabel),['1.8 mg — 3-pen pack']);
 });
 
 test('the public order page consumes the governed catalogue and checkout',async()=>{
@@ -38,4 +60,5 @@ test('the public order page consumes the governed catalogue and checkout',async(
   assert.match(source,/\/v1\/commerce\/medicine-checkout/);
   assert.match(source,/variantId:\s*variant\.id/);
   assert.match(source,/Currently out of stock/);
+  assert.match(source,/op-live-product-image/);
 });
