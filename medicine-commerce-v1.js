@@ -38,11 +38,17 @@ function siteUrl(env) {
     "",
   );
 }
-function sessionToken(request) {
-  const match = (request.headers.get("Cookie") || "").match(
-    /(?:^|;\s*)sst_session=([^;]+)/,
-  );
-  return match ? decodeURIComponent(match[1]) : null;
+function sessionTokens(request) {
+  const tokens = [];
+  for (const match of (request.headers.get("Cookie") || "").matchAll(
+    /(?:^|;\s*)sst_session=([^;]+)/g,
+  )) {
+    try {
+      const token = decodeURIComponent(match[1]);
+      if (token && !tokens.includes(token)) tokens.push(token);
+    } catch {}
+  }
+  return tokens.slice(0, 4);
 }
 async function sha256(value) {
   const bytes = new Uint8Array(
@@ -54,13 +60,20 @@ async function sha256(value) {
   return [...bytes].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 async function member(request, env) {
-  const token = sessionToken(request);
-  if (!token) return null;
-  return env.DB.prepare(
-    `SELECT u.id,u.email,u.first_name,u.last_name,a.email_verified,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id LEFT JOIN user_auth a ON a.user_id=u.id WHERE s.token_hash=?`,
-  )
-    .bind(await sha256(token))
-    .first();
+  for (const token of sessionTokens(request)) {
+    const row = await env.DB.prepare(
+      `SELECT u.id,u.email,u.first_name,u.last_name,a.email_verified,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id LEFT JOIN user_auth a ON a.user_id=u.id WHERE s.token_hash=?`,
+    )
+      .bind(await sha256(token))
+      .first();
+    if (
+      row &&
+      !row.revoked_at &&
+      Date.parse(row.expires_at) > Date.now()
+    )
+      return row;
+  }
+  return null;
 }
 async function body(request) {
   const text = await request.text();

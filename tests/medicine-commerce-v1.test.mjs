@@ -15,6 +15,14 @@ test('medicine checkout requires a signed-in member before touching Stripe',asyn
   assert.equal((await response.json()).error,'account_required');
 });
 
+test('a stale host cookie cannot hide a valid shared member session at checkout',async()=>{
+  const validHash=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('valid-token'))).toString('hex');
+  const DB={prepare(){return{args:[],bind(...args){this.args=args;return this},async first(){return this.args[0]===validHash?{id:42,email:'member@example.test',first_name:'Member',last_name:'Test',email_verified:1,expires_at:'2099-01-01T00:00:00.000Z',revoked_at:null}:null}}}};
+  const response=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/commerce/medicine-checkout',{method:'POST',headers:{Origin:'https://shiftsometimber.co.uk','content-type':'application/json',Cookie:'sst_session=stale-host-token; sst_session=valid-token'},body:JSON.stringify({variantId:1})}),{DB},{});
+  assert.equal(response.status,503);
+  assert.equal((await response.json()).error,'payments_not_configured');
+});
+
 test('stock is a server-side quantity and zero never reaches Stripe',async()=>{
   const source=await readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8');
   assert.match(source,/stock_on_hand-reserved>0/);
