@@ -1,15 +1,43 @@
-// Shift Medicines & Peptides Watch V2 — governed UK Radar presentation.
-(function(){
- 'use strict';if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
- const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)],esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const API=(window.SST_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
- const state=s=>/available|authorised/i.test(s||'')&&!/not /i.test(s||'')?'available':/not authorised|not available/i.test(s||'')?'unavailable':'watch';
- function activate(){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel==='medicines'));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-medicines'));history.replaceState(null,'','#medicines')}
- function nav(){const side=$('.member-side')||$('main aside');if(!side||$('[data-medicines-watch-nav]',side))return;const a=document.createElement('a');a.href='/member/dashboard#medicines';a.dataset.medicinesWatchNav='v2';a.textContent='Medicines Watch';a.onclick=e=>{e.preventDefault();activate()};side.appendChild(a)}
- function source(x){return x.provenance?.authority||x.provenance?.source||'Governed Shift Radar registry'}
- function featured(x){return `<article class="mw2-feature"><div class="mw2-top"><span class="mw2-status is-${state(x.uk_regulatory_status)}">${esc(x.uk_regulatory_status||'UK status tracked')}</span><span>${esc(x.formulation||'Formulation tracked')}</span></div><div class="mw2-title"><div><p>${esc(x.generic_name||'')}</p><h3>${esc(x.brand||x.generic_name||'Medicine')}</h3></div><b>${Number(x.radar_score)||'—'}<small>RADAR</small></b></div><div class="mw2-detail"><section><h4>How it could help</h4><p>${esc(x.latest_update_text||'Shift is monitoring verified access and evidence milestones.')}</p></section><section><h4>What makes it different</h4><p>${esc([x.formulation,...(x.mechanism||[])].filter(Boolean).join(' · ')||'Difference under governed review.')}</p></section><section><h4>UK position</h4><p>${esc([x.uk_regulatory_status,x.uk_commercial_status,x.nice_status,x.nhs_status].filter(Boolean).join(' · ')||'No confirmed UK access position is ready.')}</p></section><section><h4>Trade-offs and unknowns</h4><p>Status, price, availability and NHS access can change independently. Shift will not turn emerging evidence into a recommendation.</p></section></div><details><summary>Evidence and review record</summary><dl><div><dt>Developer</dt><dd>${esc(x.developer||'Not recorded')}</dd></div><div><dt>Global stage</dt><dd>${esc(x.global_stage||'Tracked')}</dd></div><div><dt>Authority</dt><dd>${esc(source(x))}</dd></div><div><dt>Last verified</dt><dd>${esc(x.last_verified_at||'Not recorded')}</dd></div></dl></details></article>`}
- function compact(x){return `<article class="mw2-compact"><div><span class="mw2-status is-${state(x.uk_regulatory_status)}">${esc(x.uk_regulatory_status||'Tracked')}</span><small>${esc(x.formulation||'')}</small></div><h3>${esc(x.brand||x.generic_name||'Medicine')}</h3><p>${esc(x.latest_update_text||'No newer governed update is ready.')}</p><details><summary>View position</summary><p><strong>UK:</strong> ${esc([x.uk_commercial_status,x.nice_status,x.nhs_status].filter(Boolean).join(' · ')||'No confirmed access position.')}</p><p><strong>Evidence:</strong> ${esc(source(x))} · checked ${esc(x.last_verified_at||'not recorded')}</p></details></article>`}
- function render(panel,cards,ticker){const current=ticker?.current===true,dates=cards.map(x=>x.last_verified_at).filter(Boolean).sort(),reviewed=dates.at(-1)||'Not recorded';panel.innerHTML=`<div class="mw2-hero"><div><p class="mw2-kicker">SHIFT RADAR</p><h2>Medicines &<br>Peptides Watch</h2><p>What is available, what is emerging and what is still hype—kept separate for the UK.</p></div><div class="mw2-fresh ${current?'current':'stale'}"><strong>${current?'CURRENT':'REVIEW DUE'}</strong><span>Last governed review: ${esc(reviewed)}</span></div></div><div class="mw2-body"><div class="mw2-strip"><span>UK REGULATORY STATUS</span><strong>Status is not a recommendation.</strong><span>Evidence and access are tracked separately.</span></div>${cards.length?featured(cards[0]):'<p class="mw2-empty">No governed medicine cards are available. Nothing unverified has been substituted.</p>'}<section class="mw2-more"><div><p class="mw2-kicker">ALSO ON THE RADAR</p><h3>Additional medicines and peptides</h3></div><div class="mw2-grid">${cards.slice(1,12).map(compact).join('')}</div></section><p class="mw2-fine">General information only. UK authorisation, commercial availability, NICE guidance and NHS access are different questions. Shift does not sell unlicensed medicines or direct members to source them.</p></div>`}
- async function load(panel){panel.innerHTML='<div class="mw2-loading"><strong>Checking Shift Radar…</strong><span>Loading the last governed UK position.</span></div>';try{const [a,b]=await Promise.all([fetch(API+'/v1/radar/cards',{cache:'no-store'}),fetch(API+'/v1/radar/ticker',{cache:'no-store'})]);if(!a.ok)throw new Error();const cards=(await a.json()).cards||[],ticker=b.ok?await b.json():{current:false};render(panel,cards,ticker)}catch{panel.innerHTML='<div class="mw2-loading error"><strong>Medicines Watch could not refresh.</strong><span>No unverified replacement has been shown. Try again shortly.</span></div>'}}
- function ensure(){if($('#panel-medicines')){nav();return true}const tabs=$('.mp-tabs'),first=$('.mp-panel');if(!tabs||!first)return false;const tab=document.createElement('button');tab.type='button';tab.className='mp-tab';tab.dataset.panel='medicines';tab.textContent='Medicines';tabs.appendChild(tab);const panel=document.createElement('section');panel.id='panel-medicines';panel.className='mp-panel';panel.dataset.medicinesWatchV1='v2';first.parentNode.appendChild(panel);tab.onclick=activate;nav();if(location.hash==='#medicines')activate();load(panel);return true}function boot(){if(!ensure())setTimeout(boot,100)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+(()=>{
+  'use strict';
+  if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
+  const getItems=async()=>{
+    try{
+      const response=await fetch('https://api.shiftsometimber.co.uk/v1/radar/ticker',{headers:{accept:'application/json'},cache:'no-store'});
+      if(response.ok){const payload=await response.json();if(payload?.current&&Array.isArray(payload.items)&&payload.items.some(x=>x?.headline))return payload.items.filter(x=>x?.headline)}
+    }catch{}
+    try{
+      const response=await fetch('/medicine-news',{headers:{accept:'text/html'},cache:'no-store'});
+      if(!response.ok)return[];
+      const copy=new DOMParser().parseFromString(await response.text(),'text/html');
+      return [...copy.querySelectorAll('.news-grid>article')].map(card=>({headline:card.querySelector('h2')?.textContent?.trim()||'',url:`/medicine-news${card.id?`#${encodeURIComponent(card.id)}`:''}`,publishedAt:card.querySelector('time[datetime]')?.getAttribute('datetime')||''})).filter(x=>x.headline).sort((a,b)=>(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0));
+    }catch{return[]}
+  };
+  const ensurePanel=()=>{
+    let panel=document.getElementById('panel-medicines');
+    if(!panel){
+      const host=document.querySelector('.member-product');
+      if(!host)return null;
+      panel=document.createElement('section');panel.className='mp-panel';panel.id='panel-medicines';host.append(panel);
+      const tabs=document.querySelector('.mp-tabs');
+      if(tabs&&!tabs.querySelector('[data-panel="medicines"]')){const button=document.createElement('button');button.className='mp-tab';button.dataset.panel='medicines';button.textContent='Medicines Watch';tabs.append(button)}
+    }
+    return panel;
+  };
+  const render=(panel,items)=>{
+    panel.innerHTML='<div class="ma34-med-head"><div><p class="ma34-kicker">SHIFT AI Newsroom</p><h2>Medicines Watch</h2><p>The same full approved wire shown across Shift. No separate member edition.</p></div></div><section class="medicine-ticker-v138" aria-label="Full approved wire from SHIFT AI Newsroom"><div class="site-wrap"><strong>SHIFT AI Newsroom</strong><span data-ticker-track></span></div></section><p><a class="ma34-btn" href="/medicine-news">Open SHIFT AI Newsroom →</a></p><p class="ma34-disclaimer">General information only. Medicine and dose decisions belong with an appropriately qualified prescriber.</p>';
+    const track=panel.querySelector('[data-ticker-track]');
+    const addGroup=clone=>{const group=document.createElement('span');group.dataset.tickerGroup='';if(clone)group.setAttribute('aria-hidden','true');items.forEach(item=>{const a=document.createElement('a');a.href=item.url||'/medicine-news';a.textContent=`${item.headline} →`;a.dataset.tickerHeadline='';if(clone)a.tabIndex=-1;group.append(a)});track.append(group);return group};
+    const first=addGroup(false);addGroup(true);
+    let offset=0,last=0,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const frame=time=>{if(!last)last=time;if(!paused){offset-=24*Math.min((time-last)/1000,.05);const width=first.getBoundingClientRect().width+32;if(width&&-offset>=width)offset+=width;track.style.transform=`translate3d(${offset}px,0,0)`}last=time;requestAnimationFrame(frame)};
+    const ticker=panel.querySelector('.medicine-ticker-v138');ticker.onmouseenter=()=>paused=true;ticker.onmouseleave=()=>paused=false;ticker.onfocusin=()=>paused=true;ticker.onfocusout=()=>paused=false;requestAnimationFrame(frame);
+  };
+  const start=async()=>{
+    let panel=ensurePanel();
+    if(!panel){const observer=new MutationObserver(()=>{panel=ensurePanel();if(panel){observer.disconnect();start()}});observer.observe(document.body,{childList:true,subtree:true});setTimeout(()=>observer.disconnect(),8000);return}
+    const items=await getItems();
+    if(items.length)render(panel,items);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(start,400));else setTimeout(start,400);
 })();
