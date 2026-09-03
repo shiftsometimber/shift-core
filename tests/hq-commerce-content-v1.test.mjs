@@ -30,6 +30,9 @@ test('published HQ wording uses strong durable delivery and no-store responses',
   assert.match(source,/rolledBack:true/);
   assert.match(source,/data-preview=/);
   assert.match(source,/Preview only — nothing published/);
+  assert.match(source,/portalWithLifecycleStatus/);
+  assert.match(source,/Website action committed/);
+  assert.match(source,/Website action failed/);
   assert.match(source,/data-rollback=/);
   assert.match(source,/request\.method==='POST'/);
   assert.doesNotMatch(source,/public,max-age=60/);

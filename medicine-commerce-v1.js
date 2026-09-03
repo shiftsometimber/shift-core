@@ -231,7 +231,6 @@ function stripeForm(order, item, user, env) {
   const form = new URLSearchParams(),
     put = (k, v) => form.append(k, String(v));
   put("mode", "payment");
-  put("managed_payments[enabled]", "false");
   put("payment_method_types[0]", "card");
   put(
     "success_url",
