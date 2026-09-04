@@ -1,20 +1,10 @@
 name: Rendered Member Production Acceptance
 
 on:
-  push:
+  workflow_run:
+    workflows: ['Cloudflare Production Promote']
+    types: [completed]
     branches: [main]
-    paths:
-      - 'frontend/member/**'
-      - 'member-login-fastpath-v1.js'
-      - 'member-register-fastpath-v2.js'
-      - 'worker-entry-v6.js'
-      - 'wrangler.jsonc'
-      - 'commissioning-identity-v1.js'
-      - 'g2-011-progress-story-production.mjs'
-      - 'g2-013-progress-picture-rendered-production.mjs'
-      - 'g2-014-progress-picture-premium-production.mjs'
-      - 'g2-015-plan-manager-production.mjs'
-      - '.github/workflows/rendered-member-production-acceptance.yml'
   workflow_dispatch:
 
 permissions:
@@ -27,6 +17,7 @@ concurrency:
 
 jobs:
   rendered-member-production-acceptance:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -42,8 +33,6 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Wait for production propagation
-        run: sleep 30
       - name: Install Chromium once
         run: |
           npm install --no-save --ignore-scripts playwright
