@@ -133,7 +133,8 @@
     (function(){
       const auth=document.getElementById('previewAuth'),member=document.getElementById('previewMember'),form=document.getElementById('previewRegister'),resetForm=document.getElementById('previewReset'),msg=document.getElementById('previewStatus'),submit=form.querySelector('[data-auth-submit]'),modeButtons=[...auth.querySelectorAll('[data-auth-mode]')];let authMode='login';
       function requestedDestination(){const params=new URLSearchParams(location.search),raw=params.get('returnTo')||params.get('next')||'';return /^\/(?!\/)/.test(raw)&&!raw.startsWith('/member-login')?raw:''}
-      async function showMember(){const destination=requestedDestination();if(destination){location.replace(destination);return}auth.hidden=true;member.classList.add('is-ready');document.body.classList.add('member-ready');const preview=new URLSearchParams(location.search).get('preview')==='billy'&&/^(localhost|127\.0\.0\.1)$/.test(location.hostname);if(preview&&typeof SST_API.seedPreviewBilly==='function'){try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}}for(const src of ['/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-journey-v1.js?v=3','/member-my-journey-checkin-v1.js?v=1']){const script=document.createElement('script');script.src=src;document.body.appendChild(script)}}
+      let memberShown=false;
+      async function showMember(){if(memberShown)return;memberShown=true;const destination=requestedDestination();if(destination){location.replace(destination);return}auth.hidden=true;member.classList.add('is-ready');document.body.classList.add('member-ready');const preview=new URLSearchParams(location.search).get('preview')==='billy'&&/^(localhost|127\.0\.0\.1)$/.test(location.hostname);if(preview&&typeof SST_API.seedPreviewBilly==='function'){try{await SST_API.seedPreviewBilly()}catch(error){console.warn('preview seed unavailable',error)}}for(const src of ['/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-journey-v1.js?v=3','/member-my-journey-checkin-v1.js?v=2']){const script=document.createElement('script');script.src=src;document.body.appendChild(script)}}
       async function session(){try{return await SST_API.getMe()}catch(first){try{const response=await fetch('/v1/me',{credentials:'include',cache:'no-store'});if(response.ok)return await response.json()}catch{}throw first}}
       async function existing(){for(let attempt=0;attempt<30;attempt++){try{await session();showMember();return}catch{if(attempt<29)await new Promise(resolve=>setTimeout(resolve,100))}}auth.hidden=false}
       function setMode(mode){authMode=mode;const registering=mode==='register',first=form.elements.firstName;modeButtons.forEach(button=>button.setAttribute('aria-selected',String(button.dataset.authMode===mode)));auth.querySelector('[data-registration-field]').hidden=!registering;first.required=registering;form.elements.password.autocomplete=registering?'new-password':'current-password';submit.textContent=registering?'Create account':'Sign in';document.getElementById('authIntro').textContent=registering?'Create your private Shift account. We’ll email you a verification link.':'Sign in to your private Shift account.';form.querySelector('[data-forgot-password]').hidden=registering;msg.textContent=''}
@@ -150,7 +151,7 @@
     })();
   </script>
   <script src="/my-timber-v11.js?v=2"></script>
-  <script src="/member-product-v33d.js?v=vision-3"></script>
+  <script src="/member-product-v33d.js?v=vision-4"></script>
   <script src="/member-shell-v33g.js?v=picture-2"></script>
   <script src="/member-progress-picture-premium-v1.js?v=2"></script>
   <script src="/shift-me-api-v1.js?v=1"></script>
