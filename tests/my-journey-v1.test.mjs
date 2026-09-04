@@ -47,6 +47,19 @@ test('review preferences and pause state survive normalisation',()=>{
   assert.equal(journey.setup.paused,true);
 });
 
+test('member personalisation is controlled, optional and health-context consent is explicit',()=>{
+  const journey=myJourneyInternals.normalise({personalisation:{footballTeam:'macclesfield',boxer:'tyson_fury',activityLevel:'active',favouriteFood:'curry',favouriteDrink:'tea',apparelBrand:'adidas',injuries:['knee','bad value!'],illnesses:['blood_pressure'],healthContextConsent:true}});
+  assert.equal(journey.personalisation.footballTeam,'macclesfield');
+  assert.deepEqual(journey.personalisation.injuries,['knee']);
+  assert.deepEqual(journey.personalisation.illnesses,['blood_pressure']);
+  assert.equal(journey.personalisation.healthContextConsent,true);
+  const preserved=myJourneyInternals.normalise({setup:{}},journey);
+  assert.equal(preserved.personalisation.favouriteFood,'curry');
+  const withheld=myJourneyInternals.normalise({personalisation:{injuries:['knee'],illnesses:['blood_pressure'],healthContextConsent:false}});
+  assert.deepEqual(withheld.personalisation.injuries,[]);
+  assert.deepEqual(withheld.personalisation.illnesses,[]);
+});
+
 test('legacy complete flag is repaired on read migration',()=>{
   const journey=myJourneyInternals.migrate({myJourney:{setup:{complete:true,targetMode:'loss'},weight:{}}});
   assert.equal(journey.setup.complete,false);
