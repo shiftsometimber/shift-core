@@ -38,6 +38,8 @@ need((shell.match(/data-panel="journey"/g) || []).length === 1,
 has(shell, 'if(memberShown)return;memberShown=true', 'member authentication may mount Journey scripts only once');
 has(memberProduct, "['today','journey'", 'the initial dashboard hash must retain the Journey destination');
 has(weeklyClient, "host.dataset.mjWeeklyBooting==='true'", 'weekly Journey requires an in-flight mount lock');
+has(journeyClient, "new CustomEvent('sst:journey-rendered')", 'the main Journey render must announce completion');
+has(weeklyClient, "document.addEventListener('sst:journey-rendered',boot)", 'weekly Journey must remount after the main Journey render');
 
 // The worker must serve the assets and the authenticated journey API.
 for (const marker of [
