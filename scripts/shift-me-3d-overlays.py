@@ -9,6 +9,7 @@ OUT.mkdir(parents=True,exist_ok=True)
 DARK=np.array([23,22,20,255],dtype=np.uint8)
 BLACK=np.array([12,16,14,255],dtype=np.uint8)
 GREEN=np.array([83,108,86,255],dtype=np.uint8)
+CREAM=np.array([231,227,218,255],dtype=np.uint8)
 
 
 def paint(mesh, rgba):
@@ -62,7 +63,20 @@ full.apply_scale([0.90,0.78,0.62]);full.apply_translation([0,1.525,0.10])
 export_scene('beard-full',[paint(full,DARK)])
 
 # KIT - garment shells intentionally sit outside the body and are split from it.
-def tee(colour):
+def shift_mark(colour):
+    # Raised, high-contrast circled-S mark on the wearer's left chest.
+    ring=trimesh.creation.torus(major_radius=0.045,minor_radius=0.006,major_sections=32,minor_sections=8)
+    ring.apply_scale([1.0,1.15,1.0]);ring.apply_translation([-0.105,1.29,0.190])
+    strokes=[]
+    for x,y,w,angle in ((-0.105,1.320,0.045,0),(-0.105,1.290,0.052,-0.48),(-0.105,1.260,0.045,0)):
+        stroke=trimesh.creation.box(extents=[w,0.010,0.010])
+        stroke.apply_transform(trimesh.transformations.rotation_matrix(angle,[0,0,1]))
+        stroke.apply_translation([x,y,0.190])
+        strokes.append(paint(stroke,colour))
+    return [paint(ring,colour),*strokes]
+
+
+def tee(colour,mark_colour):
     torso=trimesh.creation.cylinder(radius=0.255,height=0.48,sections=32)
     torso.apply_scale([1.0,1.0,0.72]);torso.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[1,0,0]));torso.apply_translation([0,1.20,0])
     sleeves=[]
@@ -70,12 +84,12 @@ def tee(colour):
         sl=trimesh.creation.cylinder(radius=0.095,height=0.28,sections=20)
         sl.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[0,1,0]));sl.apply_translation([side*0.27,1.31,0])
         sleeves.append(paint(sl,colour))
-    return [paint(torso,colour),*sleeves]
+    return [paint(torso,colour),*sleeves,*shift_mark(mark_colour)]
 
-export_scene('kit-shift-tee-black',tee(BLACK))
-export_scene('kit-shift-tee-green',tee(GREEN))
+export_scene('kit-shift-tee-black',tee(BLACK,CREAM))
+export_scene('kit-shift-tee-green',tee(GREEN,CREAM))
 
-hood=tee(BLACK)
+hood=tee(BLACK,CREAM)
 hoodie=trimesh.creation.icosphere(subdivisions=2,radius=0.19);hoodie.apply_scale([0.95,0.75,0.75]);hoodie.apply_translation([0,1.43,-0.04])
 export_scene('kit-shift-hoodie-black',[*hood,paint(hoodie,BLACK)])
 
