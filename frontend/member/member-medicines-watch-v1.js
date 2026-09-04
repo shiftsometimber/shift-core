@@ -29,7 +29,7 @@
     const track=panel.querySelector('[data-ticker-track]');
     const addGroup=clone=>{const group=document.createElement('span');group.dataset.tickerGroup='';if(clone)group.setAttribute('aria-hidden','true');items.forEach(item=>{const a=document.createElement('a');a.href=item.url||'/medicine-news';a.textContent=`${item.headline} →`;a.dataset.tickerHeadline='';if(clone)a.tabIndex=-1;group.append(a)});track.append(group);return group};
     const first=addGroup(false);addGroup(true);
-    let offset=0,last=0,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let offset=0,last=0,paused=false;
     const frame=time=>{if(!last)last=time;if(!paused){offset-=24*Math.min((time-last)/1000,.05);const width=first.getBoundingClientRect().width+32;if(width&&-offset>=width)offset+=width;track.style.transform=`translate3d(${offset}px,0,0)`}last=time;requestAnimationFrame(frame)};
     const ticker=panel.querySelector('.medicine-ticker-v138');ticker.onmouseenter=()=>paused=true;ticker.onmouseleave=()=>paused=false;ticker.onfocusin=()=>paused=true;ticker.onfocusout=()=>paused=false;requestAnimationFrame(frame);
   };
