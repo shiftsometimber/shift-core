@@ -6,6 +6,28 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 const CURRENCY = "gbp";
 const DELIVERY_PENCE = 0;
+const CLINICAL_STATES = new Set([
+  "assessment_pending",
+  "more_information_required",
+  "approved",
+  "declined",
+  "refund_pending",
+  "refunded",
+  "dispensing",
+  "dispatched",
+  "fulfilled",
+]);
+const CLINICAL_TRANSITIONS = Object.freeze({
+  assessment_pending: new Set(["more_information_required", "approved", "declined"]),
+  more_information_required: new Set(["assessment_pending", "approved", "declined"]),
+  approved: new Set(["dispensing", "declined", "refund_pending"]),
+  declined: new Set(["refund_pending", "refunded"]),
+  refund_pending: new Set(["refunded"]),
+  dispensing: new Set(["dispatched", "refund_pending"]),
+  dispatched: new Set(["fulfilled"]),
+  fulfilled: new Set([]),
+  refunded: new Set([]),
+});
 
 const clean = (value, max = 300) =>
   String(value ?? "")
@@ -145,6 +167,58 @@ async function schema(env) {
     ),
   ]);
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN stripe_error_json TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_status TEXT NOT NULL DEFAULT 'not_started'`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_reason_code TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_updated_at TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN journey_setup_required INTEGER NOT NULL DEFAULT 0`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN journey_setup_completed_at TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN reorder_of_order_id INTEGER`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN reorder_eligible_at TEXT`).run().catch(()=>{});
+}
+
+function journeyComplete(preferences) {
+  let journey = {};
+  try { journey = JSON.parse(preferences || "{}").myJourney || {}; } catch {}
+  const setup = journey.setup || {}, weight = journey.weight || {};
+  const direction = setup.targetMode === "maintenance"
+    ? Number(weight.maintenanceLowKg) >= 25 && Number(weight.maintenanceHighKg) >= Number(weight.maintenanceLowKg)
+    : Number(weight.targetKg) >= 25;
+  return Boolean(/^\d{4}-\d{2}-\d{2}$/.test(String(setup.startDate || "")) && Number(weight.startKg) >= 25 && Number(weight.currentKg) >= 25 && direction);
+}
+
+function memberTreatmentView(order, setupComplete) {
+  const clinicalStatus = order.clinical_status || "not_started";
+  const setupRequired = Boolean(Number(order.journey_setup_required)) && ["approved", "dispensing", "dispatched", "fulfilled"].includes(clinicalStatus) && !setupComplete;
+  const copy = {
+    not_started: ["Payment not confirmed", "Your clinical assessment starts after payment is confirmed."],
+    assessment_pending: ["Clinical assessment in progress", "The clinical team is reviewing your information. My Timber will show the outcome here."],
+    more_information_required: ["The clinical team needs more information", "Use the secure pharmacy route sent to you. Shift does not collect clinical answers in ordinary messages."],
+    approved: setupRequired ? ["Approved — set up My Journey", "Take two minutes to set your starting point before ongoing support and reordering open."] : ["Treatment approved", "Weekly support is ready in My Timber."],
+    declined: ["Treatment not approved", "The clinical team decided this treatment is not suitable. Refund progress will appear here."],
+    refund_pending: ["Refund being processed", "The payment is being returned through the original payment method."],
+    refunded: ["Refund completed", "The payment has been returned through the original payment method."],
+    dispensing: ["Approved and being prepared", "The pharmacy is preparing your treatment."],
+    dispatched: ["Treatment dispatched", "Your treatment is on the way."],
+    fulfilled: ["Treatment delivered", "Keep the weekly My Journey check-in going; reorder opens only when eligible."],
+  }[clinicalStatus] || ["Treatment update", "Your latest treatment status is shown here."];
+  return {
+    orderNumber: order.order_number,
+    medicineName: order.medicine_name,
+    strengthLabel: order.strength_label,
+    totalPence: Number(order.total_pence),
+    currency: order.currency,
+    paymentStatus: order.status,
+    clinicalStatus,
+    headline: copy[0],
+    message: copy[1],
+    reasonCode: order.clinical_reason_code || null,
+    journeySetupRequired: setupRequired,
+    journeySetupComplete: setupComplete,
+    reorderEligibleAt: order.reorder_eligible_at || null,
+    canReorder: setupComplete && clinicalStatus === "fulfilled" && (!order.reorder_eligible_at || Date.parse(order.reorder_eligible_at) <= Date.now()),
+    createdAt: order.created_at,
+    updatedAt: order.updated_at,
+  };
 }
 
 async function reconcileExpiredReservations(env) {
@@ -257,7 +331,7 @@ function stripeForm(order, item, user, env) {
   put("payment_method_types[0]", "card");
   put(
     "success_url",
-    `${siteUrl(env)}/order-success.html?medicine=1&session_id={CHECKOUT_SESSION_ID}`,
+    `${siteUrl(env)}/member/dashboard?treatment=paid&session_id={CHECKOUT_SESSION_ID}#today`,
   );
   put("cancel_url", `${siteUrl(env)}/treatment-order?checkout=cancelled`);
   put("client_reference_id", order.orderNumber);
@@ -324,6 +398,17 @@ async function checkout(request, env) {
     variantId = Number(input?.variantId);
   if (!Number.isInteger(variantId) || variantId < 1)
     return json({ ok: false, error: "invalid_variant" }, 400, cors(request));
+  let reorderOf = null;
+  const reorderNumber = clean(input?.reorderOfOrderNumber, 80);
+  if (reorderNumber) {
+    reorderOf = await env.DB.prepare(
+      `SELECT id,variant_id,clinical_status,reorder_eligible_at FROM medicine_orders WHERE order_number=? AND user_id=?`,
+    ).bind(reorderNumber, user.id).first();
+    if (!reorderOf || reorderOf.clinical_status !== "fulfilled" || (reorderOf.reorder_eligible_at && Date.parse(reorderOf.reorder_eligible_at) > Date.now()))
+      return json({ ok: false, error: "reorder_not_eligible" }, 409, cors(request));
+    if (Number(reorderOf.variant_id) !== variantId)
+      return json({ ok: false, error: "reorder_variant_mismatch" }, 400, cors(request));
+  }
   const item = await env.DB.prepare(
     `SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,m.name,m.status medicine_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,
   )
@@ -379,7 +464,7 @@ async function checkout(request, env) {
   };
   const stamp = now();
   const inserted = await env.DB.prepare(
-    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
   )
     .bind(
       order.orderNumber,
@@ -393,6 +478,7 @@ async function checkout(request, env) {
       offer?.code || null,
       offer?.amount || 0,
       order.totalPence,
+      reorderOf?.id || null,
       stamp,
       stamp,
     )
@@ -487,8 +573,8 @@ async function webhook(request, env, ctx) {
     ) {
       await env.DB.batch([
         env.DB.prepare(
-          `UPDATE medicine_orders SET status='paid',stripe_payment_intent_id=?,updated_at=? WHERE id=?`,
-        ).bind(clean(session.payment_intent, 200), now(), order.id),
+          `UPDATE medicine_orders SET status='paid',clinical_status='assessment_pending',clinical_updated_at=?,stripe_payment_intent_id=?,updated_at=? WHERE id=?`,
+        ).bind(now(), clean(session.payment_intent, 200), now(), order.id),
         env.DB.prepare(
           `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),stock_on_hand=MAX(0,stock_on_hand-1),updated_at=? WHERE variant_id=?`,
         ).bind(now(), order.variant_id),
@@ -546,6 +632,57 @@ async function orderStatus(request, env) {
     : json({ ok: false, error: "order_not_found" }, 404, cors(request));
 }
 
+async function treatmentOrders(request, env) {
+  const user = await member(request, env);
+  if (!user) return json({ ok: false, error: "unauthorised" }, 401, cors(request));
+  await schema(env);
+  const state = await env.DB.prepare(`SELECT preferences FROM member_state WHERE user_id=?`).bind(user.id).first().catch(() => null);
+  const setupComplete = journeyComplete(state?.preferences);
+  if (setupComplete) {
+    await env.DB.prepare(`UPDATE medicine_orders SET journey_setup_completed_at=COALESCE(journey_setup_completed_at,?),updated_at=updated_at WHERE user_id=? AND clinical_status='approved' AND journey_setup_required=1`).bind(now(), user.id).run();
+  }
+  const { results = [] } = await env.DB.prepare(
+    `SELECT * FROM medicine_orders WHERE user_id=? AND status NOT IN ('pending','checkout_open','expired','failed') ORDER BY created_at DESC,id DESC LIMIT 50`,
+  ).bind(user.id).all();
+  return json({ ok: true, setupComplete, orders: results.map((row) => memberTreatmentView(row, setupComplete)) }, 200, cors(request));
+}
+
+async function confirmJourneySetup(request, env) {
+  const user = await member(request, env);
+  if (!user) return json({ ok: false, error: "unauthorised" }, 401, cors(request));
+  await schema(env);
+  const state = await env.DB.prepare(`SELECT preferences FROM member_state WHERE user_id=?`).bind(user.id).first().catch(() => null);
+  if (!journeyComplete(state?.preferences)) return json({ ok: false, error: "journey_setup_incomplete", message: "Finish the required My Journey starting point first." }, 409, cors(request));
+  const stamp = now();
+  const result = await env.DB.prepare(`UPDATE medicine_orders SET journey_setup_completed_at=COALESCE(journey_setup_completed_at,?),updated_at=? WHERE user_id=? AND clinical_status='approved' AND journey_setup_required=1`).bind(stamp, stamp, user.id).run();
+  return json({ ok: true, completed: Number(result.meta?.changes || 0) }, 200, cors(request));
+}
+
+async function pharmacyStatus(request, env) {
+  if (!env.PHARMACY_INTEGRATION_SECRET) return json({ ok: false, error: "integration_not_configured" }, 503);
+  const supplied = String(request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
+  const [a, b] = await Promise.all([sha256(supplied), sha256(String(env.PHARMACY_INTEGRATION_SECRET))]);
+  if (!supplied || a !== b) return json({ ok: false, error: "unauthorised" }, 401);
+  await schema(env);
+  const input = await body(request), orderNumber = clean(input?.orderNumber, 80), next = clean(input?.status, 60);
+  const reasonCode = clean(input?.reasonCode, 60);
+  if (!orderNumber || !CLINICAL_STATES.has(next) || (reasonCode && !/^[a-z0-9_:-]+$/i.test(reasonCode)))
+    return json({ ok: false, error: "invalid_status_update" }, 400);
+  const order = await env.DB.prepare(`SELECT * FROM medicine_orders WHERE order_number=?`).bind(orderNumber).first();
+  if (!order) return json({ ok: false, error: "order_not_found" }, 404);
+  const current = order.clinical_status || "not_started";
+  if (current !== next && !CLINICAL_TRANSITIONS[current]?.has(next))
+    return json({ ok: false, error: "invalid_status_transition", current, requested: next }, 409);
+  const stamp = now(), journeyRequired = next === "approved" ? 1 : Number(order.journey_setup_required || 0);
+  const reorderAt = next === "fulfilled" ? clean(input?.reorderEligibleAt, 40) || null : order.reorder_eligible_at;
+  if (reorderAt && !/^\d{4}-\d{2}-\d{2}T/.test(reorderAt)) return json({ ok: false, error: "invalid_reorder_date" }, 400);
+  const paymentStatus = next === "refunded" ? "refunded" : order.status;
+  await env.DB.prepare(`UPDATE medicine_orders SET clinical_status=?,clinical_reason_code=?,clinical_updated_at=?,journey_setup_required=?,reorder_eligible_at=?,status=?,updated_at=? WHERE id=?`).bind(next, reasonCode || null, stamp, journeyRequired, reorderAt, paymentStatus, stamp, order.id).run();
+  await updateOrderReferenceStatus(env.DB, orderNumber, next);
+  await env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`).bind(order.user_id, "medicine.clinical_status", "medicine_order", String(order.id), JSON.stringify({ from: current, to: next, reasonCode: reasonCode || null }), stamp).run().catch(() => null);
+  return json({ ok: true, orderNumber, previousStatus: current, status: next, journeySetupRequired: Boolean(journeyRequired), reorderEligibleAt: reorderAt });
+}
+
 export async function medicineCommerceRoutes(request, env, ctx) {
   const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
   if (request.method === "OPTIONS" && path === "/v1/commerce/medicine-checkout")
@@ -560,9 +697,16 @@ export async function medicineCommerceRoutes(request, env, ctx) {
   }
   if (request.method === "GET" && path === "/v1/commerce/medicine-order-status")
     return orderStatus(request, env);
+  if (request.method === "GET" && path === "/v1/treatment/orders")
+    return treatmentOrders(request, env);
+  if (request.method === "POST" && path === "/v1/treatment/journey-setup-complete")
+    return confirmJourneySetup(request, env);
+  if (request.method === "POST" && path === "/v1/integrations/pharmacy/treatment-status")
+    return pharmacyStatus(request, env);
   if (request.method === "POST" && path === "/v1/commerce/medicine-checkout")
     return checkout(request, env);
   if (request.method === "POST" && path === "/v1/commerce/stripe/webhook")
     return webhook(request, env, ctx);
   return null;
 }
+export const medicineCommerceInternals = { journeyComplete, memberTreatmentView, clinicalTransitions: CLINICAL_TRANSITIONS };
