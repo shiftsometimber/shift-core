@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {isRelevantRadarRow} from '../radar-integration-v1.js';
+import {hqRadarReviewUrl,isRelevantRadarRow} from '../radar-integration-v1.js';
 import {parseAuthoritativeFeed,parseRelevantHtmlLinks} from '../radar-authoritative-scan-v1.js';
 import {sortPublishedEvents} from '../radar-public-v1.js';
 
@@ -119,8 +119,9 @@ test('48-hour editorial cadence fails quiet without credible unused evidence',()
 
 test('approval email deep-links to one exact HQ decision',()=>{
   const integration=fs.readFileSync(new URL('../radar-integration-v1.js',import.meta.url),'utf8');
-  assert.match(integration,/radar-controls\?event=\$\{event.id\}/);
-  assert.match(integration,/radarPortalForRequest\(request\)/);
-  assert.match(integration,/Decision required: accept, modify or decline this exact update/);
-  assert.match(integration,/Save modifications/);
+  assert.equal(hqRadarReviewUrl({},180),'https://hq.shiftsometimber.co.uk/?view=radar&event=180');
+  assert.equal(hqRadarReviewUrl({HQ_PUBLIC_URL:'https://hq.example.test/'},'a/b'),'https://hq.example.test/?view=radar&event=a%2Fb');
+  assert.doesNotMatch(integration,/HQ_API_URL\|\|'https:\/\/api\.shiftsometimber\.co\.uk'/);
+  assert.match(integration,/Review this exact item/);
+  assert.match(integration,/Response\.redirect\(hqRadarReviewUrl/);
 });
