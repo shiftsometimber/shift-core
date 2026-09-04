@@ -75,6 +75,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-sport-v1.css','text/css; charset=utf-8'],
   ['/tap-room-v1.js','application/javascript; charset=utf-8'],
   ['/tap-room-v1.css','text/css; charset=utf-8'],
+  ['/lounge-nav-v1.css','text/css; charset=utf-8'],
   ['/tap-room-cork.webp','image/webp'],
   ['/tap-room-paper.webp','image/webp']
   ,['/tap-room-landing.webp','image/webp']
@@ -104,6 +105,19 @@ function deferAnalytics(ctx,work,label){
   const task=Promise.resolve().then(work).catch(e=>console.warn(`${label}_failed`,e?.message));
   if(ctx?.waitUntil)ctx.waitUntil(task);
   return task;
+}
+async function rewritePublicLoungeChrome(response){
+  const type=String(response.headers.get('Content-Type')||'').toLowerCase();
+  if(!response.ok||!type.includes('text/html'))return response;
+  const source=await response.text(),body=source
+    .replaceAll('href="/tap-room"','href="/lounge"')
+    .replaceAll('href="/tap-room.html"','href="/lounge"')
+    .replaceAll('>The Tap Room<','>The Lounge<')
+    .replaceAll('>Tap Room<','>The Lounge<')
+    .replaceAll('>TAP ROOM<','>THE LOUNGE<');
+  const headers=new Headers(response.headers);headers.delete('Content-Length');
+  if(body!==source)headers.set('X-Shift-Lounge-Chrome','v1');
+  return new Response(body,{status:response.status,statusText:response.statusText,headers});
 }
 async function coreAuthFetch(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',registration=request.method==='POST'&&path==='/v1/auth/register',startedAt=registration?new Date().toISOString():null;
@@ -196,7 +210,7 @@ export default {
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
     const radar=await radarRoutes(request,env,ctx); if(radar)return path.startsWith('/v1/hq/')?withHqCors(radar,request):radar;
     const legacyBody=(request.method==='PATCH'&&path==='/v1/member-state')?await request.clone().json().catch(()=>({})):null;
-    const fallback=await hq.fetch(request,env,ctx);
+    const fallback=await rewritePublicLoungeChrome(await hq.fetch(request,env,ctx));
     if(fallback.ok&&(path==='/v1/member-state'||path==='/v1/progress'))await recordLegacyJourneyEvent(request,env,ctx,path,legacyBody);
     return isMemberProductPath(path)?withMemberCors(fallback,request):fallback;
   },
