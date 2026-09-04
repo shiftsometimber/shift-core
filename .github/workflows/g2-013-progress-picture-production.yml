@@ -1,26 +1,9 @@
 name: G2-013 Progress Picture Production Acceptance
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/member/my-timber-preview.html'
-      - 'member-login-fastpath-v1.js'
-      - 'member-register-fastpath-v2.js'
-      - 'frontend/member/member-product-v33d.js'
-      - 'frontend/member/member-shell-v33g.js'
-      - 'frontend/member/member-p0-v1.css'
-      - 'frontend/member/member-progress-picture-premium-v1.js'
-      - 'worker-entry-v6.js'
-      - 'wrangler.jsonc'
-      - 'commissioning-identity-v1.js'
-      - 'g2-013-progress-picture-rendered-production.mjs'
-      - '.github/workflows/g2-013-progress-picture-production.yml'
+  workflow_dispatch:
 permissions:
   contents: read
   id-token: write
-concurrency:
-  group: rendered-member-production-acceptance
-  cancel-in-progress: false
 jobs:
   g2-013-progress-picture-rendered-production:
     runs-on: ubuntu-latest
