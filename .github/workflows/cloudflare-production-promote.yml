@@ -138,7 +138,7 @@ jobs:
         run: node my-timber-75-green-gate.mjs
       - name: Prove the My Timber production candidate is complete
         run: node my-timber-final-source-gate.mjs
-      - name: Prove signed-in members can reach the site and Tap Room
+      - name: Prove signed-in members can reach the site and The Lounge
         run: node my-timber-navigation-gate.mjs
       - name: Prove persistent member login remains secure
         run: node g5-012-login-fastpath-gate.mjs
