@@ -119,6 +119,14 @@ async function rewritePublicLoungeChrome(response){
   if(body!==source)headers.set('X-Shift-Lounge-Chrome','v1');
   return new Response(body,{status:response.status,statusText:response.statusText,headers});
 }
+const PUBLIC_CHROME_PATCH=`;(()=>{const rename=()=>{for(const link of document.querySelectorAll('a[href]')){let path='';try{path=new URL(link.href,location.href).pathname.replace(/\\/+$/,'')||'/'}catch{}if(path==='/tap-room'||path==='/tap-room.html'){link.href='/lounge';const label=(link.textContent||'').trim();if(/^(?:the )?tap room$/i.test(label))link.textContent='The Lounge'}}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rename,{once:true});else rename()})();`;
+async function publicSiteConfigWithLoungeChrome(request){
+  const upstream=new URL(request.url);upstream.protocol='https:';upstream.hostname='projectshift.pages.dev';upstream.port='';
+  const response=await fetch(new Request(upstream,request));
+  if(!response.ok)return response;
+  const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Shift-Lounge-Chrome','v2');
+  return new Response(`${await response.text()}\n${PUBLIC_CHROME_PATCH}\n`,{status:response.status,statusText:response.statusText,headers});
+}
 async function coreAuthFetch(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',registration=request.method==='POST'&&path==='/v1/auth/register',startedAt=registration?new Date().toISOString():null;
   const fast=await fastMemberRegister(request,env);const response=fast||await hq.fetch(request,env,ctx);
@@ -136,6 +144,7 @@ async function coreAuthFetch(request,env,ctx){
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+    if(path==='/site-config-v3a.js'&&(request.method==='GET'||request.method==='HEAD'))return publicSiteConfigWithLoungeChrome(request);
     // Let Shift Core answer HQ browser preflights before feature modules apply
     // session checks. A preflight has no session cookie by design.
     if(request.method==='OPTIONS'&&path.startsWith('/v1/hq/'))return withHqCors(await hq.fetch(request,env,ctx),request);
