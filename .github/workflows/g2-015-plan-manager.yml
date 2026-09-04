@@ -1,23 +1,9 @@
 name: G2-015 My Plans Premium Manager Production Acceptance
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/member/member-plans-premium-v1.js'
-      - 'frontend/member/member-plans-premium-v1.css'
-      - 'frontend/member/member-shell-v33g.js'
-      - 'worker-entry-v6.js'
-      - 'wrangler.jsonc'
-      - 'commissioning-identity-v1.js'
-      - 'g2-015-plan-manager-production.mjs'
-      - '.github/workflows/g2-015-plan-manager.yml'
   workflow_dispatch:
 permissions:
   contents: read
   id-token: write
-concurrency:
-  group: rendered-member-production-acceptance
-  cancel-in-progress: false
 jobs:
   g2-015-plan-manager-production:
     runs-on: ubuntu-latest

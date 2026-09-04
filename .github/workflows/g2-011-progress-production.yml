@@ -1,22 +1,9 @@
 name: G2-011 Progress Production Acceptance
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/member/member-progress-v1.js'
-      - 'frontend/member/member-shell-v33g.js'
-      - 'frontend/member/member-p0-v1.css'
-      - 'worker-entry-v6.js'
-      - 'wrangler.jsonc'
-      - 'commissioning-identity-v1.js'
-      - 'g2-011-progress-story-production.mjs'
-      - '.github/workflows/g2-011-progress-production.yml'
+  workflow_dispatch:
 permissions:
   contents: read
   id-token: write
-concurrency:
-  group: rendered-member-production-acceptance
-  cancel-in-progress: false
 jobs:
   g2-011-progress-rendered-production:
     runs-on: ubuntu-latest
