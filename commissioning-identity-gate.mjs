@@ -10,6 +10,7 @@ const valid=await jwt();assert.equal((await verifyGithubOidc(valid)).ok,true);
 const shiftMeValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/shift-me-gate.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(shiftMeValid)).ok,true,'dedicated Shift Me commissioning workflow not authorised');
 const myTimberValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/my-timber-final-production.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(myTimberValid)).ok,true,'dedicated My Timber final workflow not authorised');
 const progressUnitsValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/g2-012-progress-units.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(progressUnitsValid)).ok,true,'dedicated G2-012 Progress units workflow not authorised');
+const renderedMemberValid=await jwt({...base,workflow_ref:'shiftsometimber/shift-core/.github/workflows/rendered-member-production-acceptance.yml@refs/heads/main'});assert.equal((await verifyGithubOidc(renderedMemberValid)).ok,true,'serial rendered member production workflow not authorised');
 assert.equal((await verifyGithubOidc(await jwt({...base,actor_id:'999'}))).ok,false,'wrong actor accepted');
 assert.equal((await verifyGithubOidc(await jwt({...base,aud:'wrong'}))).ok,false,'wrong audience accepted');
 assert.equal((await verifyGithubOidc(await jwt({...base,repository:'evil/fork'}))).ok,false,'wrong repository accepted');
