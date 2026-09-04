@@ -1,0 +1,111 @@
+name: Rendered Member Production Acceptance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/member/**'
+      - 'member-login-fastpath-v1.js'
+      - 'member-register-fastpath-v2.js'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
+      - 'commissioning-identity-v1.js'
+      - 'g2-011-progress-story-production.mjs'
+      - 'g2-013-progress-picture-rendered-production.mjs'
+      - 'g2-014-progress-picture-premium-production.mjs'
+      - 'g2-015-plan-manager-production.mjs'
+      - '.github/workflows/rendered-member-production-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: rendered-member-production-acceptance-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rendered-member-production-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Acquire short-lived Shift commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Wait for production propagation
+        run: sleep 30
+      - name: Install Chromium once
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Run G2-011 Progress acceptance
+        id: g2_011
+        continue-on-error: true
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G2_011_EVIDENCE_DIR: g2-011-progress-story-evidence
+        run: node g2-011-progress-story-production.mjs
+      - name: Run G2-013 Progress Picture acceptance
+        id: g2_013
+        continue-on-error: true
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G2_013_EVIDENCE_DIR: g2-013-progress-picture-evidence
+        run: node g2-013-progress-picture-rendered-production.mjs
+      - name: Run G2-014 premium Progress Picture acceptance
+        id: g2_014
+        continue-on-error: true
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G2_014_EVIDENCE_DIR: g2-014-progress-picture-premium-evidence
+        run: node g2-014-progress-picture-premium-production.mjs
+      - name: Run G2-015 premium My Plans acceptance
+        id: g2_015
+        continue-on-error: true
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          G2_015_EVIDENCE_DIR: g2-015-plan-manager-evidence
+        run: node g2-015-plan-manager-production.mjs
+      - name: Upload rendered member evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-member-production-evidence
+          path: |
+            g2-011-progress-story-evidence
+            g2-013-progress-picture-evidence
+            g2-014-progress-picture-premium-evidence
+            g2-015-plan-manager-evidence
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Enforce all four acceptance results
+        if: always()
+        env:
+          G2_011_OUTCOME: ${{ steps.g2_011.outcome }}
+          G2_013_OUTCOME: ${{ steps.g2_013.outcome }}
+          G2_014_OUTCOME: ${{ steps.g2_014.outcome }}
+          G2_015_OUTCOME: ${{ steps.g2_015.outcome }}
+        run: |
+          printf 'G2-011=%s G2-013=%s G2-014=%s G2-015=%s\n' "$G2_011_OUTCOME" "$G2_013_OUTCOME" "$G2_014_OUTCOME" "$G2_015_OUTCOME"
+          test "$G2_011_OUTCOME" = success
+          test "$G2_013_OUTCOME" = success
+          test "$G2_014_OUTCOME" = success
+          test "$G2_015_OUTCOME" = success
