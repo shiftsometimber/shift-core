@@ -11,6 +11,7 @@ test('member entry defaults to sign-in without requiring a first name',()=>{
   assert.doesNotMatch(html,/name="firstName"[^>]*required/);
   assert.match(html,/first\.required=registering/);
   assert.match(html,/autocomplete="current-password" minlength="12"/);
+  assert.match(html,/\.preview-auth \[hidden\]\{display:none!important\}/);
 });
 
 test('member entry exposes password reset and verification recovery',()=>{
