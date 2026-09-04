@@ -1,19 +1,26 @@
 const BASE=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
 const ORIGIN='https://shiftsometimber.co.uk';
+const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC||'').trim();
 const nonce=`journey-weekly-${Date.now()}`;
 const email=`shiftsometimber+structured-${nonce}@gmail.com`;
 const password=`Sst!Journey-${nonce}`;
 const assert=(condition,message)=>{if(!condition)throw new Error(message)};
+function sessionCookie(headers){
+  const values=typeof headers.getSetCookie==='function'?headers.getSetCookie():[headers.get('set-cookie')||''];
+  for(const value of values)for(const match of value.matchAll(/(?:^|,\s*)sst_session=([^;,\s]+)/g))if(match[1])return `sst_session=${match[1]}`;
+  return'';
+}
 
 async function call(path,{method='GET',body,cookie}={}){
-  const headers={Origin:ORIGIN,'X-Shift-Local-Date':'2026-08-30'};
+  const headers={Origin:ORIGIN,'X-Shift-Local-Date':'2026-08-30',...(OIDC?{'X-Shift-Commissioning-OIDC':OIDC}:{})};
   if(body!==undefined)headers['Content-Type']='application/json';
   if(cookie)headers.Cookie=cookie;
   const response=await fetch(BASE+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body)});
   let data=null;try{data=await response.json()}catch{}
-  return{response,data,cookie:(response.headers.get('set-cookie')||'').split(';')[0]};
+  return{response,data,cookie:sessionCookie(response.headers)};
 }
 
+assert(OIDC,'SHIFT_COMMISSIONING_OIDC required for verified synthetic production acceptance');
 const registration=await call('/v1/auth/register',{method:'POST',body:{email,firstName:'DaveJourney',password,source:'commissioning'}});
 assert(registration.response.status===201,`register ${registration.response.status} ${JSON.stringify(registration.data)}`);
 assert(registration.cookie,'registration session cookie missing');
@@ -21,7 +28,7 @@ const cookie=registration.cookie;
 
 const setup={setup:{startDate:'2026-08-01',heightCm:175,route:'lifestyle',units:'stone_lb',targetMode:'loss',reviewDay:0,focus:'clothes',reviewCadence:'weekly',why:'Synthetic Journey acceptance only',paused:false},weight:{startKg:105,currentKg:103,targetKg:90},waist:{startCm:112,currentCm:109},clothes:{startTop:'XXL',currentTop:'XL',startTrouserWaist:'42',currentTrouserWaist:'40',beltNotchChange:1,milestone:'Old shirt fits'},wellbeing:{baseline:40,latest:60,note:'Synthetic acceptance'},lifeBack:{priority:'confidence'}};
 let result=await call('/v1/journey',{method:'PATCH',cookie,body:{journey:setup}});
-assert(result.response.ok&&result.data?.journey?.setup?.complete===true,'Journey setup did not complete');
+assert(result.response.ok&&result.data?.journey?.setup?.complete===true,`Journey setup did not complete: HTTP ${result.response.status} ${JSON.stringify(result.data)}`);
 
 const weekOne={weekEnding:'2026-08-23',route:'lifestyle',weightKg:102.5,waistCm:108,overallFeeling:'alright',mood:'steady',energy:'mixed',confidence:'steady',sleep:'mixed',appetite:'steady',physicalComfort:'steady',gutSymptoms:'',clothesFit:'a_bit_looser',clothesDetail:{top:'XL'},lifeBack:{status:'win',note:'Walked further'},disruptions:['work_pressure'],note:'Synthetic week one'};
 const weekTwo={weekEnding:'2026-08-30',route:'lifestyle',weightKg:101.8,waistCm:107,overallFeeling:'good',mood:'good',energy:'good',confidence:'good',sleep:'steady',appetite:'steady',physicalComfort:'good',gutSymptoms:'',clothesFit:'dropped_size',clothesDetail:{trouserWaist:'38'},lifeBack:{status:'win',note:'Old jeans fit'},disruptions:[],note:'Synthetic week two'};
