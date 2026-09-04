@@ -88,7 +88,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ,['/member-my-journey-checkin-v1.js','application/javascript; charset=utf-8']
   ,['/member-my-journey-checkin-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/treatment/')||path.startsWith('/v1/tap-room')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
+function isMemberProductPath(path){return path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/treatment/')||path.startsWith('/v1/tap-room')||path.startsWith('/v1/lounge')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 function withHqCors(response,request){const origin=request.headers.get('Origin')||'';if(!HQ_ORIGINS.has(origin))return response;const headers=new Headers(response.headers);headers.set('Access-Control-Allow-Origin',origin);headers.set('Access-Control-Allow-Credentials','true');headers.set('Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE, OPTIONS');headers.set('Access-Control-Allow-Headers','Content-Type');headers.set('Vary','Origin');headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
@@ -126,9 +126,9 @@ export default {
     // session checks. A preflight has no session cookie by design.
     if(request.method==='OPTIONS'&&path.startsWith('/v1/hq/'))return withHqCors(await hq.fetch(request,env,ctx),request);
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/progress'||path==='/member/progress.html'||path==='/member/health-mot'||path==='/member/health-mot.html'))return Response.redirect(new URL('/member/dashboard#journey',request.url),301);
-    if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/tap-room'||path==='/member/tap-room.html'))return Response.redirect(new URL('/tap-room',request.url),302);
-    if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/'))){
-      if(!env.MEMBER_ASSETS)return new Response('Tap Room unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/')||path==='/member/tap-room'||path==='/member/tap-room.html'))return Response.redirect(new URL('/lounge',request.url),301);
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/lounge'||path==='/lounge.html'||path.startsWith('/lounge/'))){
+      if(!env.MEMBER_ASSETS)return new Response('The Lounge is unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
       const session=await authenticateTapRoomPage(request,env);if(session)return session;
       const response=await env.MEMBER_ASSETS.fetch(new Request(new URL('/tap-room-shell.txt',request.url),request));const headers=new Headers(response.headers);headers.set('Content-Type','text/html; charset=utf-8');headers.set('Cache-Control','no-store, private');headers.set('X-Robots-Tag','noindex, nofollow, noarchive, nosnippet');return new Response(response.body,{status:response.status,headers});
     }
@@ -209,9 +209,9 @@ export default {
 };
 
 async function authenticateTapRoomPage(request,env){
-  const auth=await authenticateMember(request,env);if(auth.response)return Response.redirect(new URL('/member-login?returnTo=%2Ftap-room',request.url),302);
+  const auth=await authenticateMember(request,env);if(auth.response)return Response.redirect(new URL('/member-login?returnTo=%2Flounge',request.url),302);
   const member=await env.DB.prepare(`SELECT a.email_verified,ms.user_id profile_id FROM user_auth a LEFT JOIN member_state ms ON ms.user_id=a.user_id WHERE a.user_id=?`).bind(auth.userId).first();
-  if(!Number(member?.email_verified)||!member?.profile_id)return Response.redirect(new URL('/member/dashboard?tapRoom=verified-member-required',request.url),302);return null;
+  if(!Number(member?.email_verified)||!member?.profile_id)return Response.redirect(new URL('/member/dashboard?lounge=verified-member-required',request.url),302);return null;
 }
 
 async function recordFinalLogin(request,response,env){
