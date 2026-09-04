@@ -20,13 +20,13 @@ for(const marker of [
   'href="https://shiftsometimber.co.uk/explore-knowledge"',
   'href="https://shiftsometimber.co.uk/tools"',
   'href="https://shiftsometimber.co.uk/mens-mental-health">Good to Talk</a>',
-  'href="https://shiftsometimber.co.uk/tap-room"',
+  'href="https://shiftsometimber.co.uk/lounge"',
   'href="https://shiftsometimber.co.uk/shop"',
   'href="https://shiftsometimber.co.uk/ask-timber"',
   'href="https://shiftsometimber.co.uk/programme"',
   'aria-label="Primary website navigation"',
   'aria-label="My Timber destinations"',
-  '<a href="/tap-room">TAP ROOM</a>',
+  '<a href="/lounge">THE LOUNGE</a>',
   'member-tap-room',
   'aria-expanded="false"',
   'min-height:44px',
@@ -36,7 +36,7 @@ for(const marker of [
   "params.get('returnTo')"
 ])need(shell.includes(marker),`My Timber navigation contract missing ${marker}`);
 for(const [name,page,current] of [['Today',shell,'/member/dashboard'],['Grub',grub,'/member/grub'],['Fit',fit,'/member/fit']]){
-  for(const marker of ['/member/dashboard','/member/grub','/member/fit','/tap-room','/my-timber-v11.css','/my-timber-v11.js','/sst-logo-official.png'])need(page.includes(marker),`${name} V11 contract missing ${marker}`);
+  for(const marker of ['/member/dashboard','/member/grub','/member/fit','/lounge','/my-timber-v11.css','/my-timber-v11.js','/sst-logo-official.png'])need(page.includes(marker),`${name} V11 contract missing ${marker}`);
   need(page.includes(`href="${current}" aria-current="page"`),`${name} current navigation state missing`);
 }
 for(const marker of ['background:var(--sst-black)','background:var(--sst-cream)','background:var(--sst-green)','font-family:Arial'])need(visual.includes(marker),`V11 visual contract missing ${marker}`);
@@ -44,8 +44,8 @@ for(const marker of ["['/my-timber-v11.css'","['/my-timber-v11.js'","['/sst-logo
 need(shell.includes('window.SST_API_BASE=location.origin'),'My Timber auth is not using the same-origin API boundary');
 for(const marker of ['shiftsometimber.co.uk/member/dashboard*','shiftsometimber.co.uk/member-login*','shiftsometimber.co.uk/member-register*'])need(config.includes(marker),`live My Timber route missing ${marker}`);
 for(const marker of ['shiftsometimber.co.uk/v1/*','www.shiftsometimber.co.uk/v1/*'])need(config.includes(marker),`same-origin member API route missing ${marker}`);
-for(const marker of ['shiftsometimber.co.uk/member/tap-room*','www.shiftsometimber.co.uk/member/tap-room*'])need(config.includes(marker),`legacy Tap Room redirect route missing ${marker}`);
-need(worker.includes("new URL('/tap-room',request.url),302"),'legacy Tap Room route is not redirected to the canonical member journey');
+for(const marker of ['shiftsometimber.co.uk/lounge*','www.shiftsometimber.co.uk/lounge*'])need(config.includes(marker),`live Lounge route missing ${marker}`);
+need(worker.includes("new URL('/lounge',request.url),301"),'legacy Tap Room route is not permanently redirected to The Lounge');
 need(!shell.includes('Isolated My Timber preview'),'live My Timber still presents itself as an isolated preview');
 need(!shell.includes('Nothing here touches your live Shift account'),'live My Timber still contains preview-only account copy');
 for(const marker of ['.sst-coming-plan b,.sst-coming-plan span{display:block}', '.sst-coming-plan span{margin-top:4px'])need(extension.includes(marker),`coming-off plan sentence spacing missing ${marker}`);
@@ -53,6 +53,6 @@ const login=fs.readFileSync('member-login-fastpath-v1.js','utf8');
 for(const marker of ['body?.rememberMe===true','Domain=.shiftsometimber.co.uk','Max-Age=','REMEMBER_DAYS=90','STANDARD_HOURS=12'])need(login.includes(marker),`remember-me contract missing ${marker}`);
 const state=fs.readFileSync('member-state-fast-v1.js','utf8');
 for(const marker of ['matchAll','values.slice(0,4)','for(const raw of candidates)'])need(state.includes(marker),`duplicate-cookie recovery contract missing ${marker}`);
-need(worker.includes('authenticateMember(request,env)'),'Tap Room page gate is not using duplicate-cookie-safe member authentication');
+need(worker.includes('authenticateMember(request,env)'),'Lounge page gate is not using duplicate-cookie-safe member authentication');
 
 console.log('My Timber navigation gate: PASS');
