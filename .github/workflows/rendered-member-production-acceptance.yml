@@ -33,8 +33,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Acquire short-lived Shift commissioning identity
-        id: oidc
+      - name: Acquire G2-011 commissioning identity
+        id: oidc_011
         shell: bash
         run: |
           raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
@@ -51,34 +51,58 @@ jobs:
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_011.outputs.token }}
           G2_011_EVIDENCE_DIR: g2-011-progress-story-evidence
         run: node g2-011-progress-story-production.mjs
+      - name: Acquire G2-013 commissioning identity
+        id: oidc_013
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Run G2-013 Progress Picture acceptance
         id: g2_013
         continue-on-error: true
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_013.outputs.token }}
           G2_013_EVIDENCE_DIR: g2-013-progress-picture-evidence
         run: node g2-013-progress-picture-rendered-production.mjs
+      - name: Acquire G2-014 commissioning identity
+        id: oidc_014
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Run G2-014 premium Progress Picture acceptance
         id: g2_014
         continue-on-error: true
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_014.outputs.token }}
           G2_014_EVIDENCE_DIR: g2-014-progress-picture-premium-evidence
         run: node g2-014-progress-picture-premium-production.mjs
+      - name: Acquire G2-015 commissioning identity
+        id: oidc_015
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Run G2-015 premium My Plans acceptance
         id: g2_015
         continue-on-error: true
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_015.outputs.token }}
           G2_015_EVIDENCE_DIR: g2-015-plan-manager-evidence
         run: node g2-015-plan-manager-production.mjs
       - name: Upload rendered member evidence
