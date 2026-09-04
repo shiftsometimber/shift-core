@@ -15,6 +15,9 @@ on:
 permissions:
   contents: read
   id-token: write
+concurrency:
+  group: rendered-member-production-acceptance
+  cancel-in-progress: false
 jobs:
   g2-015-plan-manager-production:
     runs-on: ubuntu-latest

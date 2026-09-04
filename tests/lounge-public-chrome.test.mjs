@@ -16,3 +16,17 @@ test('public chrome patch replaces the retired Tap Room destination and label',(
   assert.match(worker,/link\.href='\/lounge'/);
   assert.match(worker,/link\.textContent='The Lounge'/);
 });
+
+test('Knowledge and Treatment Centre receive the same uncapped approved wire',()=>{
+  assert.match(worker,/\['\/explore-knowledge','\/treatment-centre'\]/);
+  assert.match(worker,/fetch\('\/v1\/radar\/public'/);
+  assert.match(worker,/lines\.join\('   •   '\)/);
+  assert.doesNotMatch(worker,/items\.slice\(/);
+  assert.match(worker,/prefers-reduced-motion:reduce/);
+});
+
+test('sitemap restores only the six reviewed mental-health leaves',()=>{
+  assert.match(wrangler,/shiftsometimber\.co\.uk\/sitemap\.xml\*/);
+  for(const path of ['/mental-health/confidence-self-worth','/mental-health/sleep-mental-health','/mental-health/mental-health-and-weight','/mental-health/talking-about-it','/mental-health/myths-men-mental-health','/mental-health/when-to-get-help']) assert.match(worker,new RegExp(path));
+  assert.match(worker,/X-Shift-Sitemap-Authority','reviewed-mental-health-v1/);
+});
