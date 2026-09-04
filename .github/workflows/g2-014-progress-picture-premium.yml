@@ -1,25 +1,9 @@
 name: G2-014 Progress Picture Premium Production Acceptance
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/member/my-timber-preview.html'
-      - 'member-login-fastpath-v1.js'
-      - 'member-register-fastpath-v2.js'
-      - 'frontend/member/member-progress-picture-premium-v1.js'
-      - 'frontend/member/member-shell-v33g.js'
-      - 'frontend/member/member-p0-v1.css'
-      - 'worker-entry-v6.js'
-      - 'wrangler.jsonc'
-      - 'commissioning-identity-v1.js'
-      - 'g2-014-progress-picture-premium-production.mjs'
-      - '.github/workflows/g2-014-progress-picture-premium.yml'
+  workflow_dispatch:
 permissions:
   contents: read
   id-token: write
-concurrency:
-  group: rendered-member-production-acceptance
-  cancel-in-progress: false
 jobs:
   g2-014-progress-picture-premium-production:
     runs-on: ubuntu-latest
