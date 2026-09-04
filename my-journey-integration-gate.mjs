@@ -19,6 +19,7 @@ const config = read('wrangler.jsonc');
 const productionWorkflow = read('.github/workflows/cloudflare-production-promote.yml');
 const weeklyClient = read('frontend/member/member-my-journey-checkin-v1.js');
 const journeyClient = read('frontend/member/member-my-journey-v1.js');
+const memberProduct = read('frontend/member/member-product-v33d.js');
 
 // One coherent destination in the canonical live shell.
 for (const marker of [
@@ -34,6 +35,9 @@ for (const marker of [
 ]) has(shell, marker);
 need((shell.match(/data-panel="journey"/g) || []).length === 1,
   'the shell must expose exactly one My Journey destination');
+has(shell, 'if(memberShown)return;memberShown=true', 'member authentication may mount Journey scripts only once');
+has(memberProduct, "['today','journey'", 'the initial dashboard hash must retain the Journey destination');
+has(weeklyClient, "host.dataset.mjWeeklyBooting==='true'", 'weekly Journey requires an in-flight mount lock');
 
 // The worker must serve the assets and the authenticated journey API.
 for (const marker of [
