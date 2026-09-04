@@ -15,7 +15,7 @@ on:
       - 'migrations/**'
       - 'shift-me-3d-proof-v1.js'
       - 'public/shift-me-3d/**'
-      - 'frontend/member/assets/fit/premium/**'
+      - 'frontend/member/**'
       - 'fit-reminders-v1.js'
       - 'daily-reminder-copy-v1.js'
       - 'fit-reminders-source-gate.mjs'
