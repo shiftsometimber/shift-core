@@ -45,7 +45,7 @@ const checks=[
  ['dashboard primary navigation exposes Shift Me',dashboard.includes('href="/member/dashboard#shiftme" data-portal-panel="shiftme">SHIFT ME</a>')],
  ['Grub primary navigation exposes Shift Me',grub.includes('href="/member/dashboard#shiftme">SHIFT ME</a>')],
  ['Fit primary navigation exposes Shift Me',fit.includes('href="/member/dashboard#shiftme">SHIFT ME</a>')],
- ['member destination navigation supports seven named tabs',memberCss.includes('grid-template-columns:repeat(7,1fr)')&&['TODAY','MY JOURNEY','PROGRESS','SHIFT ME','GRUB','FIT','TAP ROOM'].every(label=>dashboard.includes(`>${label}<`))],
+ ['member destination navigation supports the current eight named destinations',memberCss.includes('grid-template-columns:repeat(8,1fr)')&&['TODAY','MY JOURNEY','PROGRESS','SHIFT ME','CLINIC GONE QUIET / COMING OFF','GRUB','FIT','THE LOUNGE'].every(label=>dashboard.includes(`>${label}<`))],
  ['Shift Me activates its primary destination tab',creator.includes('data-portal-panel="shiftme"')&&creator.includes("x.dataset.portalPanel==='shiftme'")],
  ['no fake placeholder person',creator.includes('Your bloke starts here.')&&!creator.includes('placeholder-avatar')],
  ['privacy and non-clinical copy',creatorLower.includes('not retained')&&creatorLower.includes('not a body scan')&&creatorLower.includes('health assessment')],

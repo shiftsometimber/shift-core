@@ -7,6 +7,23 @@ Static authority: V1.31 HQ Commerce Content SEO Closeout
 
 This supersedes V5 where later account-side evidence is recorded below.
 
+## 4 September 2026 engineering reconciliation
+
+Current authority is `shift-core` main plus live production responses; older ZIP, route-count and PASS claims do not override a newer red production run.
+
+| Area | Current state |
+|---|---|
+| Pharmacy and commercial launch | **PAUSED BY OWNER** — keep stock and checkout closed; do not progress partner, catalogue, margin or live-Stripe work in this closeout. |
+| Human and operational sign-off | **PAUSED BY OWNER** — retain the requirements without presenting them as completed. |
+| Deferred growth work | **DEFERRED BY OWNER** — paid acquisition, apparel expansion and partner outreach remain outside the active batch. |
+| Lounge public chrome | **ENGINEERING FIX IN CLOSEOUT** — `/lounge` is the sole destination; `/tap-room` redirects; public runtime chrome replaces the retired label without creating a second surface. |
+| Member rendered acceptance | **RED UNTIL NEW SERIAL RUNS PASS** — G2-011, G2-013, G2-014 and G2-015 last failed under concurrent production execution. The four workflows now share one non-cancelling concurrency group and must earn fresh production evidence. |
+| Shift Me source gate | **FIXED IN CLOSEOUT; PRODUCTION RERUN REQUIRED** — navigation authority is eight current destinations including Clinic Gone Quiet / Coming Off and The Lounge, not the retired seven-tab/Tap Room assertion. |
+| SHIFT AI wire | **FIXED IN CLOSEOUT; LIVE RENDER REQUIRED** — Knowledge and Treatment Centre use the same complete approved public wire; homepage remains ticker-free and no shortened edition is permitted. |
+| Mental-health sitemap | **FIXED IN CLOSEOUT; LIVE FETCH REQUIRED** — restore exactly six reviewed leaves; keep the other 96 outside pending review. Expected sitemap total is 252 URLs while the upstream remains 246. |
+| Clinic Gone Quiet schema | **LIVE PASS** — Article headline matches the current H1 and public positioning on `/articles/stopping-glp1`. |
+| My Journey controlled inputs | **SOURCE PASS** — measurements and optional personalisation use dropdowns; health context is consent-controlled and excluded when consent is off. Rendered member acceptance remains tied to the production closeout above. |
+
 ## Newly closed and corrected
 
 | ID/area | Status and retained evidence |
