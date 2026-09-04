@@ -22,7 +22,8 @@ jobs:
           set -euo pipefail
           mkdir -p medicines-watch-production-evidence
           curl -fsSL 'https://shiftsometimber.co.uk/member-medicines-watch-v1.js?v=1' -o /tmp/watch.js
-          grep -q 'Medicines & Peptides Watch' /tmp/watch.js
+          grep -q 'SHIFT AI Newsroom' /tmp/watch.js
+          grep -q 'same full approved wire shown across Shift' /tmp/watch.js
           curl -fsSL 'https://api.shiftsometimber.co.uk/v1/radar/cards' -o /tmp/cards.json
           curl -fsSL 'https://api.shiftsometimber.co.uk/v1/radar/ticker' -o /tmp/ticker.json
           node - <<'NODE'
