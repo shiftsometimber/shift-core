@@ -68,6 +68,7 @@ on:
       - 'frontend/member/member-my-journey-v1.css'
       - 'frontend/member/member-my-journey-checkin-v1.js'
       - 'frontend/member/member-my-journey-checkin-v1.css'
+      - 'frontend/member/member-treatment-journey-v1.js'
       - 'my-journey-v1.js'
       - 'my-journey-checkin-v1.js'
       - 'my-journey-observation-v1.js'
