@@ -13,8 +13,9 @@ test('rendered production harnesses let Playwright retain the login response coo
   for(const file of harnesses){
     const source=fs.readFileSync(file,'utf8');
     assert.match(source,/p\.context\(\)\.request\.post/,`${file} must log in through the browser context cookie jar`);
-    assert.match(source,/p\.context\(\)\.cookies\(\[SITE,API\]\)/,`${file} must verify the retained live-host cookie`);
-    assert.doesNotMatch(source,/addCookies\(/,`${file} must not reconstruct a server cookie`);
+    assert.match(source,/p\.context\(\)\.cookies\(API\)/,`${file} must read the server-parsed API cookie`);
+    assert.match(source,/p\.context\(\)\.cookies\(SITE\)/,`${file} must verify the public host can see the session`);
+    assert.match(source,/value:session\.value,url:SITE/,`${file} must bridge the parsed token to the public host only when required`);
     assert.doesNotMatch(source,/domain:'\.shiftsometimber\.co\.uk'/,`${file} must not depend on parent-domain interpretation`);
   }
 });
