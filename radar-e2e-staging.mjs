@@ -35,7 +35,7 @@ const sitePublishes=[];
 const searchRefreshes=[];
 const brainIngests=[];
 const medicinePatch={medicine_id:'stage-medicine',brand:'Stage Medicine',generic_name:'stagegeneric',developer:'Stage Labs',mechanism:['test pathway'],formulation:'injection',global_stage:'US regulator approved in staged evidence',uk_regulatory_status:'Not established by staged evidence',uk_commercial_status:'Not established by staged evidence',nice_status:'Not established by staged evidence',nhs_status:'Not established by staged evidence',latest_update_text:'Stage Medicine received a test-only US regulatory update.',radar_score:86,regions:['US'],unknowns:['UK position'],review_flags:[]};
-const contentPackage={headline:'Stage Medicine: test-only regulatory update',standfirst:'A staged Radar package used only to commission the Shift publication chain.',what_changed:'A test-only US regulator update was detected and verified.',why_it_matters_to_uk:'It does not establish UK approval, availability, NICE guidance or NHS access.',known_facts:[{claim:'A test-only US regulatory update exists.',source_url:'https://regulator.test/stage-medicine'}],unknowns:['UK regulatory position','UK commercial availability'],article_markdown:'# Stage Medicine\n\nThis is staging-only content.',existing_page_updates:[{content_key:'medicines.stage-medicine',change:'Refresh related medicine card and dossier.'}],faqs:[{q:'Is this available in the UK?',a:'The staged evidence does not establish UK availability.'}],comparisons:[{with:'current-options',note:'Staging related-content hook only.'}],seo:{title:'Stage Medicine test update',description:'Staging-only Radar commissioning page.',slug:'knowledge-hub/stage-medicine-test',keywords:['stage medicine']},social:{facebook:'Staging only',instagram:'Staging only',x:'Staging only'},shift_brain:{summary:'Staging-only verified Radar update for Stage Medicine.',facts:[{fact:'Test-only US regulatory update.',source_url:'https://regulator.test/stage-medicine'}]},review_flags:[]};
+const contentPackage={headline:'Stage Medicine: test-only regulatory update',standfirst:'A staged Radar package used only to commission the Shift publication chain.',what_changed:'A test-only US regulator update was detected and verified.',why_it_matters_to_uk:'It does not establish UK approval, availability, NICE guidance or NHS access.',known_facts:[{claim:'A test-only US regulatory update exists.',source_url:'https://regulator.test/stage-medicine'}],unknowns:['UK regulatory position','UK commercial availability'],article_markdown:'# Stage Medicine\n\nThis is staging-only content.',destinations:['medicine_news','dossier','ticker_knowledge','knowledge_links','search','sitemap'],existing_page_updates:[{content_key:'medicines.stage-medicine',change:'Refresh related medicine card and dossier.'}],faqs:[{q:'Is this available in the UK?',a:'The staged evidence does not establish UK availability.'}],comparisons:[{with:'current-options',note:'Staging related-content hook only.'}],seo:{title:'Stage Medicine test update',description:'Staging-only Radar commissioning page.',slug:'knowledge-hub/stage-medicine-test',keywords:['stage medicine']},social:{facebook:'Staging only',instagram:'Staging only',x:'Staging only'},shift_brain:{summary:'Staging-only verified Radar update for Stage Medicine.',facts:[{fact:'Test-only US regulatory update.',source_url:'https://regulator.test/stage-medicine'}]},review_flags:[]};
 let aiCalls=0;
 const env={
   DB,
@@ -81,13 +81,9 @@ try {
   // 2) PACKAGE via the authenticated HQ review route.
   r=await radarRoutes(request(`/v1/hq/radar/events/${eventId}/process`,{method:'POST',headers:hqHeaders,body:'{}'}),env,{});assert.equal(r.status,200);d=await body(r);assert.equal(d.status,'ready_for_review');assert.equal(aiCalls,2);assert.equal(d.medicinePatch.medicine_id,'stage-medicine');
 
-  // 3) HUMAN APPROVAL creates registry, graph, freshness and publication job.
+  // 3) HUMAN APPROVAL records governed destinations and creates the publication job.
   r=await radarRoutes(request(`/v1/hq/radar/events/${eventId}/approve`,{method:'POST',headers:hqHeaders,body:JSON.stringify({note:'Staging E2E approval'})}),env,{});assert.equal(r.status,200);d=await body(r);assert.equal(d.status,'approved');assert.ok(d.publicationJob?.id);
   assert.equal((await DB.prepare('SELECT status FROM radar_events WHERE id=?').bind(eventId).first()).status,'approved');
-  assert.equal((await DB.prepare('SELECT id FROM radar_medicines WHERE id=?').bind('stage-medicine').first()).id,'stage-medicine');
-  assert.ok(Number((await DB.prepare('SELECT COUNT(*) c FROM radar_freshness_claims WHERE event_id=? AND status=?').bind(eventId,'active').first()).c)>=1);
-  assert.ok(await DB.prepare('SELECT id FROM shift_knowledge_nodes WHERE id=?').bind(`radar:${eventId}`).first());
-  assert.ok(await DB.prepare('SELECT id FROM shift_knowledge_nodes WHERE id=?').bind('medicine:stage-medicine').first());
 
   // 4) PUBLICATION to safe staging adapters only.
   r=await radarRoutes(request(`/v1/hq/radar/events/${eventId}/publish`,{method:'POST',headers:hqHeaders,body:'{}'}),env,{});assert.equal(r.status,200);d=await body(r);assert.equal(d.status,'published');
@@ -97,6 +93,10 @@ try {
   assert.ok(await DB.prepare('SELECT id FROM ai_knowledge_documents WHERE source_uri=?').bind(`radar://event/${eventId}`).first());
   assert.equal((await DB.prepare('SELECT status FROM radar_publication_jobs WHERE event_id=? ORDER BY id DESC LIMIT 1').bind(eventId).first()).status,'complete');
   assert.equal((await DB.prepare('SELECT status FROM radar_events WHERE id=?').bind(eventId).first()).status,'published');
+  assert.equal((await DB.prepare('SELECT id FROM radar_medicines WHERE id=?').bind('stage-medicine').first()).id,'stage-medicine');
+  assert.ok(Number((await DB.prepare('SELECT COUNT(*) c FROM radar_freshness_claims WHERE event_id=? AND status=?').bind(eventId,'active').first()).c)>=1);
+  assert.ok(await DB.prepare('SELECT id FROM shift_knowledge_nodes WHERE id=?').bind(`radar:${eventId}`).first());
+  assert.ok(await DB.prepare('SELECT id FROM shift_knowledge_nodes WHERE id=?').bind('medicine:stage-medicine').first());
 
   // 5) Public/mobile products reflect the approved/published living data.
   r=await radarPublicRoutes(request('/v1/radar/cards'),env);assert.equal(r.headers.get('access-control-allow-origin'),'*');d=await body(r);assert.ok(d.cards.some(x=>x.id==='stage-medicine'));
