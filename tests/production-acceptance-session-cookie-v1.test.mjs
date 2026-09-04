@@ -9,12 +9,12 @@ const harnesses=[
   'g2-015-plan-manager-production.mjs'
 ];
 
-test('rendered production harnesses bind the disposable session to both live hosts',()=>{
+test('rendered production harnesses let Playwright retain the login response cookie',()=>{
   for(const file of harnesses){
     const source=fs.readFileSync(file,'utf8');
-    assert.match(source,/url:SITE/,`${file} must seed the public-site cookie`);
-    assert.match(source,/url:API/,`${file} must seed the API-host cookie`);
+    assert.match(source,/p\.context\(\)\.request\.post/,`${file} must log in through the browser context cookie jar`);
+    assert.match(source,/p\.context\(\)\.cookies\(\[SITE,API\]\)/,`${file} must verify the retained live-host cookie`);
+    assert.doesNotMatch(source,/addCookies\(/,`${file} must not reconstruct a server cookie`);
     assert.doesNotMatch(source,/domain:'\.shiftsometimber\.co\.uk'/,`${file} must not depend on parent-domain interpretation`);
-    assert.match(source,/\(\?:\^\|,\\s\*\)sst_session/,`${file} must parse combined Set-Cookie headers`);
   }
 });
