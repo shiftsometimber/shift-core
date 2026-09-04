@@ -24,8 +24,11 @@ export async function radarPublicRoutes(request,env){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';if(request.method!=='GET'||!path.startsWith('/v1/radar/'))return null;
  if(path==='/v1/radar/news'){const rows=await publishedEvents(env.DB,200);return json({ok:true,items:rows.filter(row=>hasDestination(row,'medicine_news')).map(publicEvent)});}
  if(path==='/v1/radar/ticker'){
-  const freshness=await readRadarFreshness(env.DB),surface=url.searchParams.get('surface')==='treatments'?'ticker_treatments':'ticker_knowledge',rows=await publishedEvents(env.DB,50);
-  const items=rows.filter(row=>hasDestination(row,surface)).slice(0,12).map(row=>{const item=publicEvent(row);return{id:item.id,headline:item.ticker_line,story_headline:item.headline,source_published_at:item.source_published_at,published_at:item.published_at,url:item.metadata?.slug?`/${String(item.metadata.slug).replace(/^\//,'')}`:'/medicine-news'}});
+  const freshness=await readRadarFreshness(env.DB),rows=await publishedEvents(env.DB,200);
+  // One approved wire everywhere the ticker is allowed. A surface may choose
+  // whether to show the ticker, but it must not silently publish a shorter or
+  // different edition once it does.
+  const items=rows.filter(row=>hasDestination(row,'ticker_knowledge')||hasDestination(row,'ticker_treatments')).map(row=>{const item=publicEvent(row);return{id:item.id,headline:item.ticker_line,story_headline:item.headline,source_published_at:item.source_published_at,published_at:item.published_at,url:item.metadata?.slug?`/${String(item.metadata.slug).replace(/^\//,'')}`:'/medicine-news'}});
   return json({ok:true,current:freshness.current,status:freshness.status,freshness,message:freshness.current?(items.length?null:'No approved current SHIFT AI headlines.'):'SHIFT AI wire is not current; headlines are temporarily withheld.',items:freshness.current?items:[]});
  }
  if(path==='/v1/radar/cards'){await ensureMedicineRegistry(env.DB);const {results=[]}=await env.DB.prepare(`SELECT id,brand,generic_name,developer,formulation,global_stage,uk_regulatory_status,uk_commercial_status,nice_status,nhs_status,latest_update_text,radar_score,mechanism_json,regions_json,last_verified_at,provenance_json FROM radar_medicines ORDER BY radar_score DESC,brand ASC LIMIT 200`).all();return json({ok:true,cards:results.map(medicine)});}
