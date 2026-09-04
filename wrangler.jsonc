@@ -86,6 +86,8 @@
     {"pattern": "www.shiftsometimber.co.uk/member-my-journey-checkin-v1.js*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/member-my-journey-checkin-v1.css*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "www.shiftsometimber.co.uk/member-my-journey-checkin-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/member-treatment-journey-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/member-treatment-journey-v1.js*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/member-medicines-watch-v1.js*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "www.shiftsometimber.co.uk/member-medicines-watch-v1.js*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/member-medicines-watch-v1.css*","zone_name": "shiftsometimber.co.uk"},

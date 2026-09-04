@@ -52,6 +52,7 @@ for (const marker of [
   'shiftsometimber.co.uk/member-my-journey-v1.css*',
   'shiftsometimber.co.uk/member-my-journey-checkin-v1.js*',
   'shiftsometimber.co.uk/member-my-journey-checkin-v1.css*',
+  'shiftsometimber.co.uk/member-treatment-journey-v1.js*',
 ]) has(config, marker);
 
 // The browser adapter exposes one modular API surface rather than reviving
