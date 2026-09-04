@@ -29,6 +29,8 @@ CREATE TABLE cases (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,referen
 CREATE TABLE pharmacy_orders (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,case_id INTEGER,status TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE shift_plans (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,plan_type TEXT NOT NULL,starts_on TEXT,ends_on TEXT,status TEXT NOT NULL DEFAULT 'active',plan_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE radar_audit (id INTEGER PRIMARY KEY AUTOINCREMENT,action TEXT NOT NULL,detail_json TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE radar_events (id INTEGER PRIMARY KEY AUTOINCREMENT,event_key TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'detected',headline TEXT NOT NULL,reviewed_at TEXT,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE radar_publication_jobs (id INTEGER PRIMARY KEY AUTOINCREMENT,event_id INTEGER NOT NULL,status TEXT NOT NULL DEFAULT 'queued',error_text TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,completed_at TEXT);
 `);
 const env={DB,ADMIN_API_KEY:'b06-commissioning-admin-key',AI:{},EMAIL:{}};
 const origin='https://hq.shiftsometimber.co.uk';
@@ -48,6 +50,8 @@ try{
   // Exercise the real additive Core schema before HQ bootstrap.
   let x=await call('/health');assert.equal(x.response.status,200);
   await DB.prepare(`INSERT INTO radar_audit(action,created_at) VALUES('scan',CURRENT_TIMESTAMP)`).run();
+  const radarSeed=await DB.prepare(`INSERT INTO radar_events(event_key,status,headline,reviewed_at) VALUES('b06-healthy-baseline','published','B06 healthy baseline',CURRENT_TIMESTAMP)`).run();
+  await DB.prepare(`INSERT INTO radar_publication_jobs(event_id,status,completed_at) VALUES(?,'complete',CURRENT_TIMESTAMP)`).bind(radarSeed.meta.last_row_id).run();
 
   // Anonymous visitors cannot inspect operational attention.
   x=await call('/v1/hq/attention');assert.equal(x.response.status,401);assert.equal(x.body.ok,false);
