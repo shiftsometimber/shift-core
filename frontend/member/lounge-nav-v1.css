@@ -1,0 +1,10 @@
+.site-head{display:flex;grid-template-columns:none;justify-content:space-between;padding:0 max(18px,calc((100vw - 1180px)/2))}
+.brand{grid-column:auto}
+.menu-button{min-height:42px;padding:8px 16px;border:1px solid var(--green);border-radius:999px;background:transparent;color:var(--cream);font:900 .78rem Arial;letter-spacing:.1em}
+.site-menu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:14px max(18px,calc((100vw - 1180px)/2));border-bottom:1px solid var(--green);background:#111210}
+.site-menu[hidden]{display:none}
+.site-menu a,.member-bar a{padding:11px 12px;border-radius:9px;text-decoration:none;font-weight:800}
+.site-menu a:hover,.site-menu a:focus-visible,.site-menu a[aria-current=page],.member-bar a[aria-current=page]{background:var(--green);color:var(--black)}
+.member-bar{display:flex;gap:6px;overflow-x:auto;padding:9px max(12px,calc((100vw - 780px)/2));border-bottom:1px solid rgba(112,119,98,.55);scrollbar-width:none}
+.member-bar a{flex:0 0 auto;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+@media(max-width:620px){.site-menu{grid-template-columns:1fr 1fr;padding:10px 12px}}
