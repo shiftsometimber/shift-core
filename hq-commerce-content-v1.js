@@ -14,7 +14,8 @@ export function calculateDiscount(row,subtotal){const raw=row.discount_type==='p
 async function ensureSchema(DB){await DB.batch([
   DB.prepare(`CREATE TABLE IF NOT EXISTS commerce_discount_codes (id INTEGER PRIMARY KEY AUTOINCREMENT,code TEXT NOT NULL UNIQUE COLLATE NOCASE,label TEXT NOT NULL,discount_type TEXT NOT NULL CHECK(discount_type IN ('percent','fixed')),discount_value INTEGER NOT NULL,active INTEGER NOT NULL DEFAULT 0,starts_at TEXT,ends_at TEXT,usage_limit INTEGER,usage_count INTEGER NOT NULL DEFAULT 0,minimum_subtotal_pence INTEGER NOT NULL DEFAULT 0,eligible_products_json TEXT NOT NULL DEFAULT '[]',created_by INTEGER,updated_by INTEGER,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
   DB.prepare(`CREATE TABLE IF NOT EXISTS site_content_overrides (id INTEGER PRIMARY KEY AUTOINCREMENT,page_path TEXT NOT NULL,content_key TEXT NOT NULL UNIQUE,css_selector TEXT NOT NULL,label TEXT NOT NULL,draft_text TEXT NOT NULL,published_text TEXT,status TEXT NOT NULL DEFAULT 'draft' CHECK(status IN ('draft','published','paused')),version INTEGER NOT NULL DEFAULT 1,created_by INTEGER,updated_by INTEGER,published_by INTEGER,published_at TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`),
-  DB.prepare(`CREATE TABLE IF NOT EXISTS site_content_versions (id INTEGER PRIMARY KEY AUTOINCREMENT,content_override_id INTEGER NOT NULL,version INTEGER NOT NULL,text_value TEXT NOT NULL,action TEXT NOT NULL,actor_id INTEGER,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(content_override_id) REFERENCES site_content_overrides(id))`)
+  DB.prepare(`CREATE TABLE IF NOT EXISTS site_content_versions (id INTEGER PRIMARY KEY AUTOINCREMENT,content_override_id INTEGER NOT NULL,version INTEGER NOT NULL,text_value TEXT NOT NULL,action TEXT NOT NULL,actor_id INTEGER,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(content_override_id) REFERENCES site_content_overrides(id))`),
+  DB.prepare(`CREATE TABLE IF NOT EXISTS continuity_interest (id INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT NOT NULL UNIQUE COLLATE NOCASE,first_name TEXT,intent TEXT NOT NULL DEFAULT 'unspecified',source TEXT NOT NULL DEFAULT 'unknown',consent_version TEXT NOT NULL,consented_at TEXT NOT NULL,active INTEGER NOT NULL DEFAULT 1,withdrawn_at TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`)
 ]);await DB.prepare(`INSERT OR IGNORE INTO commerce_discount_codes(code,label,discount_type,discount_value,active,minimum_subtotal_pence,eligible_products_json) VALUES('NEWSHIFT25','New Shift launch offer','percent',25,1,0,'[]')`).run()}
 async function audit(env,user,action,type,id,meta={}){try{await env.DB.prepare('INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)').bind(user?.id||null,action,type,String(id||''),JSON.stringify(meta),now()).run()}catch{}}
 
@@ -64,12 +65,12 @@ async function portalWithLifecycleStatus(){const response=portal(),html=await re
 
 export async function hqCommerceContentRoutes(request,env,ctx){
   const u=new URL(request.url),path=u.pathname.replace(/\/+$/,'')||'/',method=request.method;
-  if(path==='/v1/commerce/discounts/validate'||path==='/v1/site-content'||path.startsWith('/v1/site-content/')||path.startsWith('/v1/hq/discounts')||path.startsWith('/v1/hq/site-content'))await ensureSchema(env.DB);
+  if(path==='/v1/commerce/discounts/validate'||path==='/v1/site-content'||path.startsWith('/v1/site-content/')||path.startsWith('/v1/hq/discounts')||path.startsWith('/v1/hq/site-content')||path==='/v1/hq/continuity-interest')await ensureSchema(env.DB);
   if(method==='GET'&&path==='/v1/commerce/discounts/validate')return validateDiscount(request,env);
   if((method==='GET'||method==='POST')&&(path==='/v1/site-content'||path.startsWith('/v1/site-content/')))return publicContent(request,env);
   if(method==='GET'&&path==='/hq/commerce-content-controls'){const response=await portalWithLifecycleStatus(),html=await response.text(),linked=html.replace('</h1><p>Owner/admin controls','</h1><p><a href="/hq/order-register" style="display:inline-block;background:#e7e3da;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">Order register</a><a href="/hq/catalogue-controls" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">Products, images &amp; medicines</a><a href="/hq/radar-controls" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">SHIFT AI desk</a><a href="/hq/radar-social" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">Social distribution</a><a href="/hq/admin-email-test" style="display:inline-block;background:#e7e3da;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800">Test admin email</a></p><p>Owner/admin controls');return new Response(linked,{headers:response.headers})}
   if(method==='GET'&&path==='/hq/order-register')return orderRegistryPortal();
-  if(!path.startsWith('/v1/hq/discounts')&&!path.startsWith('/v1/hq/site-content')&&path!=='/v1/hq/order-registry'&&path!=='/hq/admin-email-test')return null;
+  if(!path.startsWith('/v1/hq/discounts')&&!path.startsWith('/v1/hq/site-content')&&path!=='/v1/hq/order-registry'&&path!=='/v1/hq/continuity-interest'&&path!=='/hq/admin-email-test')return null;
   const a=await actor(request,env,ctx);if(a.response)return a.response;
   if(path==='/hq/admin-email-test'&&(method==='GET'||method==='POST')){
     if(!['owner','admin'].includes(a.user?.role))return json({ok:false,error:'hq_forbidden'},403);
@@ -82,6 +83,11 @@ export async function hqCommerceContentRoutes(request,env,ctx){
   if(method==='GET'&&path==='/v1/hq/order-registry'){
     if(!canCommerce(a.user))return json({ok:false,error:'forbidden'},403);
     return json({ok:true,orders:await orderRegistry(env,u.searchParams.get('q')||'')});
+  }
+  if(method==='GET'&&path==='/v1/hq/continuity-interest'){
+    if(!canCommerce(a.user))return json({ok:false,error:'forbidden'},403);
+    const {results=[]}=await env.DB.prepare(`SELECT id,email,first_name,intent,source,consent_version,consented_at,active,withdrawn_at,created_at,updated_at FROM continuity_interest ORDER BY updated_at DESC LIMIT 2000`).all();
+    return json({ok:true,activeCount:results.filter(x=>Number(x.active)===1).length,interest:results});
   }
   if(path.startsWith('/v1/hq/discounts')){
     if(!canCommerce(a.user))return json({ok:false,error:'forbidden'},403);

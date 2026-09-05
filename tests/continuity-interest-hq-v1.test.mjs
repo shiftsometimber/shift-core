@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const hq=fs.readFileSync(new URL('../hq-commerce-content-v1.js',import.meta.url),'utf8'),worker=fs.readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');
+test('HQ can inspect the consent register but only through authenticated commerce authority',()=>{assert.match(hq,/path==='\/v1\/hq\/continuity-interest'/);assert.match(hq,/if\(!canCommerce\(a\.user\)\)/);assert.match(hq,/consent_version,consented_at,active,withdrawn_at/)});
+test('public capture is CORS-wrapped for the official site and never marked as checkout',()=>{assert.match(worker,/continuityInterestRoutes/);assert.match(worker,/withMemberCors\(continuityInterest,request\)/);assert.match(worker,/path==='\/v1\/continuity-interest'/)});
