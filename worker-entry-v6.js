@@ -37,6 +37,7 @@ import {penDayRoutes} from './pen-day-v1.js';
 import {myJourneyCheckInRoutes,myJourneyTrendRoutes} from './my-journey-checkin-v1.js';
 import {hqCommerceContentRoutes} from './hq-commerce-content-v1.js';
 import {hqCatalogueRoutes} from './hq-catalogue-v1.js';
+import {continuityInterestRoutes} from './continuity-interest-v1.js';
 
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const HQ_ORIGINS=new Set(['https://hq.shiftsometimber.co.uk']);
@@ -91,7 +92,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ,['/member-my-journey-checkin-v1.js','application/javascript; charset=utf-8']
   ,['/member-my-journey-checkin-v1.css','text/css; charset=utf-8']
 ]);
-function isMemberProductPath(path){return path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/treatment/')||path.startsWith('/v1/tap-room')||path.startsWith('/v1/lounge')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
+function isMemberProductPath(path){return path==='/v1/continuity-interest'||path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/treatment/')||path.startsWith('/v1/tap-room')||path.startsWith('/v1/lounge')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 function withHqCors(response,request){const origin=request.headers.get('Origin')||'';if(!HQ_ORIGINS.has(origin))return response;const headers=new Headers(response.headers);headers.set('Access-Control-Allow-Origin',origin);headers.set('Access-Control-Allow-Credentials','true');headers.set('Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE, OPTIONS');headers.set('Access-Control-Allow-Headers','Content-Type');headers.set('Vary','Origin');headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
@@ -186,6 +187,7 @@ export default {
     const hqCatalogue=await hqCatalogueRoutes(request,env,ctx);if(hqCatalogue)return withHqCors(hqCatalogue,request);
     const hqCommerceContent=await hqCommerceContentRoutes(request,env,ctx);if(hqCommerceContent)return path==='/v1/site-content'||path.startsWith('/v1/site-content/')?withMemberCors(hqCommerceContent,request):withHqCors(hqCommerceContent,request);
     const askTimber=await askTimberRoutes(request,env);if(askTimber)return askTimber;
+    const continuityInterest=await continuityInterestRoutes(request,env);if(continuityInterest)return withMemberCors(continuityInterest,request);
     const medicineCommerce=await medicineCommerceRoutes(request,env,ctx);if(medicineCommerce)return medicineCommerce;
     const commerce=await commerceStripeRoutes(request,env,ctx);if(commerce)return commerce;
     if(request.method==='OPTIONS'&&isMemberProductPath(path))return new Response(null,{status:204,headers:memberCorsHeaders(request)});
