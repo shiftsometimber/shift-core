@@ -33,6 +33,7 @@ import {askTimberRoutes} from './ask-timber-v1.js';
 import {fitReminderRoutes,runFitMorningReminders} from './fit-reminders-v1.js';
 import {tapRoomRoutes} from './tap-room-v1.js';
 import {myJourneyRoutes} from './my-journey-v1.js';
+import {penDayRoutes} from './pen-day-v1.js';
 import {myJourneyCheckInRoutes,myJourneyTrendRoutes} from './my-journey-checkin-v1.js';
 import {hqCommerceContentRoutes} from './hq-commerce-content-v1.js';
 import {hqCatalogueRoutes} from './hq-catalogue-v1.js';
@@ -71,6 +72,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-medicines-watch-v1.js','application/javascript; charset=utf-8'],
   ['/member-medicines-watch-v1.css','text/css; charset=utf-8'],
   ['/member-treatment-journey-v1.js','application/javascript; charset=utf-8'],
+  ['/member-pen-day-v1.js','application/javascript; charset=utf-8'],
   ['/member-sport-v1.js','application/javascript; charset=utf-8'],
   ['/member-sport-v1.css','text/css; charset=utf-8'],
   ['/tap-room-v1.js','application/javascript; charset=utf-8'],
@@ -209,6 +211,7 @@ export default {
 
     const fastMemberState=await fastMemberStateRoute(request,env);if(fastMemberState)return withMemberCors(fastMemberState,request);
     const myJourney=await myJourneyRoutes(request,env);if(myJourney)return withMemberCors(myJourney,request);
+    const penDay=await penDayRoutes(request,env);if(penDay)return withMemberCors(penDay,request);
     const fitReminders=await fitReminderRoutes(request,env,ctx);if(fitReminders)return withMemberCors(fitReminders,request);
     const tapRoom=await tapRoomRoutes(request,env,ctx);if(tapRoom)return withMemberCors(tapRoom,request);
     const journeyCheckIn=await myJourneyCheckInRoutes(request,env,ctx);if(journeyCheckIn)return withMemberCors(journeyCheckIn,request);
