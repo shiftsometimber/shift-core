@@ -77,6 +77,7 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/member-sport-v1.css','text/css; charset=utf-8'],
   ['/tap-room-v1.js','application/javascript; charset=utf-8'],
   ['/tap-room-v1.css','text/css; charset=utf-8'],
+  ['/lounge-nav-v1.css','text/css; charset=utf-8'],
   ['/tap-room-cork.webp','image/webp'],
   ['/tap-room-paper.webp','image/webp']
   ,['/tap-room-landing.webp','image/webp']
@@ -107,6 +108,36 @@ function deferAnalytics(ctx,work,label){
   if(ctx?.waitUntil)ctx.waitUntil(task);
   return task;
 }
+async function rewritePublicLoungeChrome(response){
+  const type=String(response.headers.get('Content-Type')||'').toLowerCase();
+  if(!response.ok||!type.includes('text/html'))return response;
+  const source=await response.text(),body=source
+    .replaceAll('href="/tap-room"','href="/lounge"')
+    .replaceAll('href="/tap-room.html"','href="/lounge"')
+    .replaceAll('>The Tap Room<','>The Lounge<')
+    .replaceAll('>Tap Room<','>The Lounge<')
+    .replaceAll('>TAP ROOM<','>THE LOUNGE<');
+  const headers=new Headers(response.headers);headers.delete('Content-Length');
+  if(body!==source)headers.set('X-Shift-Lounge-Chrome','v1');
+  return new Response(body,{status:response.status,statusText:response.statusText,headers});
+}
+const PUBLIC_CHROME_PATCH=`;(()=>{const rename=()=>{for(const link of document.querySelectorAll('a[href]')){let path='';try{path=new URL(link.href,location.href).pathname.replace(/\\/+$/,'')||'/'}catch{}if(path==='/tap-room'||path==='/tap-room.html'){link.href='/lounge';const label=(link.textContent||'').trim();if(/^(?:the )?tap room$/i.test(label))link.textContent='The Lounge'}}};const fullWire=async()=>{const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!['/explore-knowledge','/treatment-centre'].includes(path)||document.querySelector('[data-shift-ai-full-wire]'))return;const strip=document.createElement('section');strip.className='medicine-ticker-v138';strip.dataset.shiftAiFullWire='v1';strip.setAttribute('aria-label','Full approved wire from SHIFT AI Newsroom');strip.innerHTML='<strong>SHIFT AI Newsroom</strong><span data-shift-ai-wire-track>Loading approved medicines wire…</span>';const style=document.createElement('style');style.textContent='[data-shift-ai-full-wire]{display:flex;gap:18px;align-items:center;overflow:hidden;padding:11px max(18px,4vw);background:#707762;color:#050505;border-block:1px solid #050505;font:900 14px/1.35 Arial,sans-serif}[data-shift-ai-full-wire]>strong{flex:0 0 auto;letter-spacing:.04em}[data-shift-ai-wire-track]{display:block;min-width:max-content;white-space:nowrap;animation:sstFullWire 42s linear infinite}[data-shift-ai-full-wire]:hover [data-shift-ai-wire-track],[data-shift-ai-full-wire]:focus-within [data-shift-ai-wire-track]{animation-play-state:paused}@keyframes sstFullWire{from{transform:translateX(30vw)}to{transform:translateX(-100%)}}@media(prefers-reduced-motion:reduce){[data-shift-ai-wire-track]{animation:none;min-width:0;white-space:normal}}';document.head.appendChild(style);const anchor=document.querySelector('header');if(anchor)anchor.insertAdjacentElement('afterend',strip);else document.body.prepend(strip);try{const response=await fetch('/v1/radar/ticker',{credentials:'omit',cache:'no-store'}),body=await response.json();const items=Array.isArray(body.items)?body.items:[],lines=items.map(item=>String(item.ticker_line||item.headline||'').trim()).filter(Boolean);if(!response.ok||!body.current||!lines.length){strip.remove();style.remove();return}strip.querySelector('[data-shift-ai-wire-track]').textContent=lines.join('   •   ')}catch{strip.remove();style.remove()}};const start=()=>{rename();fullWire()};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
+async function publicSiteConfigWithLoungeChrome(request){
+  const upstream=new URL(request.url);upstream.protocol='https:';upstream.hostname='projectshift.pages.dev';upstream.port='';
+  const response=await fetch(new Request(upstream,request));
+  if(!response.ok)return response;
+  const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Shift-Lounge-Chrome','v2');
+  return new Response(`${await response.text()}\n${PUBLIC_CHROME_PATCH}\n`,{status:response.status,statusText:response.statusText,headers});
+}
+const REVIEWED_MENTAL_HEALTH_PATHS=['/mental-health/confidence-self-worth','/mental-health/sleep-mental-health','/mental-health/mental-health-and-weight','/mental-health/talking-about-it','/mental-health/myths-men-mental-health','/mental-health/when-to-get-help'];
+async function publicSitemapWithReviewedMentalHealth(request){
+  const upstream=new URL(request.url);upstream.protocol='https:';upstream.hostname='projectshift.pages.dev';upstream.port='';
+  const response=await fetch(new Request(upstream,{method:'GET',headers:request.headers}));if(!response.ok)return response;
+  let xml=await response.text();const additions=REVIEWED_MENTAL_HEALTH_PATHS.filter(path=>!xml.includes(`<loc>https://shiftsometimber.co.uk${path}</loc>`)).map(path=>`<url><loc>https://shiftsometimber.co.uk${path}</loc><lastmod>2026-09-03</lastmod></url>`).join('');
+  if(additions&&xml.includes('</urlset>'))xml=xml.replace('</urlset>',`${additions}</urlset>`);
+  const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Content-Type','application/xml; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Shift-Sitemap-Authority','reviewed-mental-health-v1');
+  return new Response(request.method==='HEAD'?null:xml,{status:response.status,statusText:response.statusText,headers});
+}
 async function coreAuthFetch(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',registration=request.method==='POST'&&path==='/v1/auth/register',startedAt=registration?new Date().toISOString():null;
   const fast=await fastMemberRegister(request,env);const response=fast||await hq.fetch(request,env,ctx);
@@ -124,6 +155,8 @@ async function coreAuthFetch(request,env,ctx){
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+    if(path==='/sitemap.xml'&&(request.method==='GET'||request.method==='HEAD'))return publicSitemapWithReviewedMentalHealth(request);
+    if(path==='/site-config-v3a.js'&&(request.method==='GET'||request.method==='HEAD'))return publicSiteConfigWithLoungeChrome(request);
     // Let Shift Core answer HQ browser preflights before feature modules apply
     // session checks. A preflight has no session cookie by design.
     if(request.method==='OPTIONS'&&path.startsWith('/v1/hq/'))return withHqCors(await hq.fetch(request,env,ctx),request);
@@ -199,7 +232,7 @@ export default {
     const radarPublic=await radarPublicRoutes(request,env); if(radarPublic)return radarPublic;
     const radar=await radarRoutes(request,env,ctx); if(radar)return path.startsWith('/v1/hq/')?withHqCors(radar,request):radar;
     const legacyBody=(request.method==='PATCH'&&path==='/v1/member-state')?await request.clone().json().catch(()=>({})):null;
-    const fallback=await hq.fetch(request,env,ctx);
+    const fallback=await rewritePublicLoungeChrome(await hq.fetch(request,env,ctx));
     if(fallback.ok&&(path==='/v1/member-state'||path==='/v1/progress'))await recordLegacyJourneyEvent(request,env,ctx,path,legacyBody);
     return isMemberProductPath(path)?withMemberCors(fallback,request):fallback;
   },
