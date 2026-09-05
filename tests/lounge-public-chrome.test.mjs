@@ -19,9 +19,10 @@ test('public chrome patch replaces the retired Tap Room destination and label',(
 
 test('Knowledge and Treatment Centre receive the same uncapped approved wire',()=>{
   assert.match(worker,/\['\/explore-knowledge','\/treatment-centre'\]/);
-  assert.match(worker,/fetch\('\/v1\/radar\/public'/);
+  assert.match(worker,/fetch\('\/v1\/radar\/ticker'/);
   assert.match(worker,/lines\.join\('   •   '\)/);
   assert.doesNotMatch(worker,/items\.slice\(/);
+  assert.match(worker,/!body\.current\|\|!lines\.length\)\{strip\.remove\(\);style\.remove\(\);return\}/);
   assert.match(worker,/prefers-reduced-motion:reduce/);
 });
 
