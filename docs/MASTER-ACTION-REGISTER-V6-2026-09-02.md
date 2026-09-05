@@ -3,7 +3,7 @@
 Authority date: 2 September 2026  
 Owner: Matt O'Brien  
 Repository authority: `shift-core` main at or after `cc241f908adf1198e820911d3361f421ac66ae11`  
-Static authority: V1.31 HQ Commerce Content SEO Closeout
+Static deployment candidate: V1.44 Lounge Source Closeout (based on V1.43 Launch Measurement)
 
 This supersedes V5 where later account-side evidence is recorded below.
 
@@ -16,7 +16,7 @@ Current authority is `shift-core` main plus live production responses; older ZIP
 | Pharmacy and commercial launch | **PAUSED BY OWNER** — keep stock and checkout closed; do not progress partner, catalogue, margin or live-Stripe work in this closeout. |
 | Human and operational sign-off | **PAUSED BY OWNER** — retain the requirements without presenting them as completed. |
 | Deferred growth work | **DEFERRED BY OWNER** — paid acquisition, apparel expansion and partner outreach remain outside the active batch. |
-| Lounge public chrome | **LIVE SOURCE PASS** — `/lounge` is the sole destination; `/tap-room` redirects; deployed public runtime chrome v2 replaces the retired label without creating a second surface. Human visual sign-off remains paused. |
+| Lounge public chrome | **PACKAGE READY; DEPLOYMENT REQUIRED** — V1.44 removes the retired Tap Room label and links from all 451 source HTML files, makes `/lounge` the sole destination, retains explicit legacy redirects, and leaves the homepage ticker-free. Human visual sign-off remains paused. Package SHA-256: `7febe92db37ae14256d582238dce5bcf19d4d4ebe657a68f0914b3ba062abc91`. |
 | Member rendered acceptance | **LIVE PASS — ALL FOUR LANES** — after a clean production Worker redeploy, run `33936036592` attempt 2 passed G2-011 Progress, G2-013 private photo lifecycle, G2-014 premium Progress Picture and G2-015 My Plans at desktop and 390px, then passed final all-four enforcement. Job `101263010863`, evidence artifact `9964593781`, digest `sha256:95cc811fe4a0fac47cea65a4ad06256c12ce55b5c81e5b5c780bcbdbc41c3418`. Each lane used a fresh restricted OIDC identity. |
 | Shift Me source gate | **LIVE PASS** — navigation authority is eight current destinations including Clinic Gone Quiet / Coming Off and The Lounge, not the retired seven-tab/Tap Room assertion. Production run `33935206117` passed both jobs; technical job `101221679193`, evidence artifact `9959931000`, digest `sha256:3a35bbe0e8bd07b5d9f5d9e36d2e06d09ae381a542d05ab1917122a7c5acc98a`. |
 | SHIFT AI wire | **LIVE PASS — FAIL-CLOSED** — deployed Knowledge and Treatment Centre chrome uses canonical `/v1/radar/ticker`, renders the full approved wire with no item cap, and removes the strip when the desk reports non-current or empty. Production is correctly RED/empty today, so no ticker appears. Homepage remains ticker-free. |
@@ -28,11 +28,11 @@ Current authority is `shift-core` main plus live production responses; older ZIP
 
 | ID/area | Status and retained evidence |
 |---|---|
-| Tap Room treatment-language control | **CLOSED** — plain-language dose directives added to the held-treatment classifier; all 51 treatment-language cases pass with zero false positives/negatives; whole-estate and master-integration gates passed; PR #522 squash-merged as `cc241f908adf1198e820911d3361f421ac66ae11`. |
+| The Lounge treatment-language control | **CLOSED** — plain-language dose directives added to the held-treatment classifier; all 51 treatment-language cases pass with zero false positives/negatives; whole-estate and master-integration gates passed; PR #522 squash-merged as `cc241f908adf1198e820911d3361f421ac66ae11`. |
 | Contact-page concern | **CLOSED AS OBSOLETE** — V1.31 contains no sensitive GET message form. Live authority presents phone, mailto partnership/general routes and the support route. No static patch is required. |
-| A-01 Search Console property/sitemap | **CLOSED** — connected property `sc-domain:shiftsometimber.co.uk`; sitemap `https://shiftsometimber.co.uk/sitemap.xml` submitted 26 August, downloaded 1 September, 347 URLs, zero sitemap errors and warnings. |
+| A-01 Search Console property/sitemap | **RECONCILIATION REQUIRED** — historical proof recorded 347 URLs, but V1.44 and the live Worker now deliberately expose 252 canonical sitemap URLs. V1.43 evidence records `/articles/stopping-glp1` as submitted/indexed and `/medicine-news` as live/indexable but unknown to Google on 4 September. A fresh account-side read and reinspection are blocked because the connected GSC Wizard subscription is inactive. |
 | A-01 priority indexing proof | **CLOSED** — 2 September URL Inspection returned PASS / Submitted and indexed / INDEXING_ALLOWED for homepage, Start Here, Explore Knowledge, Treatment Centre, GLP-1 Knowledge Centre, Men’s Mental Health, Tools, Shop, About and Contact. |
-| Search indexing monitoring | **COMMISSIONED** — all 347 sitemap URLs added to active tracker `453d7058-86d9-4efd-98f1-6b9aaa6340fd`; email digest enabled; initial state zero errors/warnings with remaining URLs pending scheduled inspection. |
+| Search indexing monitoring | **TRACKER RECONCILIATION REQUIRED** — V1.44's static sitemap and the live Worker are aligned at 252 URLs. The historical 347-URL tracker must be reconciled to that canonical set when GSC Wizard access is restored; do not retain deleted URLs merely to preserve the old count. |
 | Search baseline | **RECORDED** — last 28 days: 486 impressions, 0 clicks, average position 65.22. Sitemap aggregate indexed count was stale because direct inspection proved ten priority URLs indexed. |
 
 ## Remaining actions that require account configuration or human/external evidence
@@ -41,10 +41,10 @@ Current authority is `shift-core` main plus live production responses; older ZIP
 |---|---|---|
 | A-02 | Bing Webmaster proof | Bing API key is not configured in the connected service. Add the site/API key, then submit/read the sitemap and retain feed/crawl proof. |
 | A-03 | GA4 Realtime/DebugView and consent evidence | Search Console account is connected but Google Analytics permission is not. Grant the Analytics scope, link the correct GA4 property, then retain consent-denied/consent-granted event evidence. |
-| A-04 | Physical-device full journey | Matt must complete one clean iPhone Safari and desktop pass through visitor, account, Today, Journey, Grub, Fit, Tap Room, Ask Timber, support and logout. Automated/source evidence cannot substitute for physical-device judgement. |
+| A-04 | Physical-device full journey | Matt must complete one clean iPhone Safari and desktop pass through visitor, account, Today, Journey, Grub, Fit, The Lounge, Ask Timber, support and logout. Automated/source evidence cannot substitute for physical-device judgement. |
 | A-05 | My Journey weekly acceptance | A real member must complete and later review a weekly cycle; remove test data afterwards. |
 | A-06 | Shift Me visual acceptance | Technical render/rerender/isolation/persistence/deletion is production-proven. A human must judge likeness and requested-change credibility. |
-| A-07 | Tap Room P0 drill | Requires a synthetic incident that deliberately triggers notification/queue activity. Run only as a labelled test and retain delivery, acknowledgement, audit and closure evidence. |
+| A-07 | The Lounge P0 drill | Requires a synthetic incident that deliberately triggers notification/queue activity. Run only as a labelled test and retain delivery, acknowledgement, audit and closure evidence. |
 | A-08 | Legal/claims approval | Routes and current wording are technically checked. Competent legal and, where applicable, regulated clinical/medicines review cannot be self-certified by engineering. |
 | A-09 | Evidence Desk environment | Source/tests are fail-closed and the R1.5 sealed-closeout workflow defines the correct non-production proof. Account-side run and retained artifact are still required before calling the environment commissioned. Publication remains disabled. |
 | A-10 | Health-data erasure drill | Route is authenticated, scoped, audited and fail-closed. A synthetic production deletion must be run and evidenced; no real member record may be used. |
