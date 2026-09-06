@@ -6,6 +6,9 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 const CURRENCY = "gbp";
 const DELIVERY_PENCE = 0;
+const CLINICAL_CONSENT_VERSION = "medicine-clinical-intake-v1-2026-09-06";
+const MAX_CLINICAL_FILE_BYTES = 8 * 1024 * 1024;
+const CLINICAL_FILE_TYPES = new Set(["image/jpeg", "image/png", "image/heic", "image/heif"]);
 const CLINICAL_STATES = new Set([
   "assessment_pending",
   "more_information_required",
@@ -165,6 +168,12 @@ async function schema(env) {
     env.DB.prepare(
       `CREATE TABLE IF NOT EXISTS medicine_stripe_events (stripe_event_id TEXT PRIMARY KEY,event_type TEXT NOT NULL,received_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,processed_at TEXT,processing_error TEXT)`,
     ),
+    env.DB.prepare(
+      `CREATE TABLE IF NOT EXISTS medicine_prepay_verifications (token_hash TEXT PRIMARY KEY,user_id INTEGER NOT NULL,variant_id INTEGER NOT NULL,partner_reference TEXT NOT NULL,expires_at TEXT NOT NULL,used_at TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    ),
+    env.DB.prepare(
+      `CREATE TABLE IF NOT EXISTS medicine_clinical_intakes (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,variant_id INTEGER NOT NULL,public_reference TEXT NOT NULL UNIQUE,partner_reference TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'submitted',gp_contact_consent INTEGER NOT NULL,consent_version TEXT NOT NULL,evidence_manifest_json TEXT NOT NULL,verification_issued_at TEXT,submitted_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    ),
   ]);
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN stripe_error_json TEXT`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_status TEXT NOT NULL DEFAULT 'not_started'`).run().catch(()=>{});
@@ -174,6 +183,103 @@ async function schema(env) {
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN journey_setup_completed_at TEXT`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN reorder_of_order_id INTEGER`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN reorder_eligible_at TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_clinical_intakes ADD COLUMN public_reference TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_clinical_intakes ADD COLUMN verification_issued_at TEXT`).run().catch(()=>{});
+}
+
+function formText(form, key, max = 1000) {
+  return clean(form.get(key), max);
+}
+function clinicalFile(form, key) {
+  const file = form.get(key);
+  return file instanceof File && file.size > 0 ? file : null;
+}
+function validateClinicalFile(file, label) {
+  if (!file) return `${label} is required.`;
+  if (!CLINICAL_FILE_TYPES.has(String(file.type || "").toLowerCase())) return `${label} must be a JPEG, PNG or HEIC image.`;
+  if (file.size > MAX_CLINICAL_FILE_BYTES) return `${label} must be smaller than 8 MB.`;
+  return null;
+}
+async function clinicalIntake(request, env) {
+  const user = await member(request, env);
+  if (!user) return json({ok:false,error:"account_required"},401,cors(request));
+  if (Number(user.email_verified || 0) !== 1) return json({ok:false,error:"email_verification_required"},403,cors(request));
+  if (!env.PHARMACY_CLINICAL_INTAKE_URL || !env.PHARMACY_INTEGRATION_SECRET)
+    return json({ok:false,error:"clinical_intake_not_configured",message:"Clinical assessment is not open yet."},503,cors(request));
+  await schema(env);
+  let form;
+  try { form = await request.formData(); } catch { return json({ok:false,error:"invalid_clinical_form"},400,cors(request)); }
+  const variantId = Number(form.get("variantId"));
+  const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first() : null;
+  if (!item) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
+  const required = ["dateOfBirth","heightCm","weightKg","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
+  if (required.some((key) => !formText(form,key))) return json({ok:false,error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."},400,cors(request));
+  const gpConsent = form.get("gpContactConsent") === "on";
+  const accuracyConsent = form.get("answersConfirmed") === "on";
+  const imageConsent = form.get("imageConsent") === "on";
+  if (!gpConsent || !accuracyConsent || !imageConsent) return json({ok:false,error:"consent_required",message:"All clinical confirmations are required before submission."},400,cors(request));
+  const files = {photoId:clinicalFile(form,"photoId"),bodyFront:clinicalFile(form,"bodyFront"),bodySide:clinicalFile(form,"bodySide")};
+  for (const [key,label] of [["photoId","Photo ID"],["bodyFront","Front image"],["bodySide","Side image"]]) {
+    const error = validateClinicalFile(files[key],label); if (error) return json({ok:false,error:"invalid_evidence",message:error},400,cors(request));
+  }
+  const partnerForm = new FormData();
+  partnerForm.set("memberReference",String(user.id)); partnerForm.set("variantId",String(variantId));
+  for (const key of ["dateOfBirth","heightCm","weightKg","conditions","medicines","previousTreatment","previousMedicine","previousDose","lastDoseDate","gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber"]) partnerForm.set(key,formText(form,key));
+  partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION);
+  for (const [key,file] of Object.entries(files)) partnerForm.set(key,file,file.name);
+  const partnerResponse = await fetch(String(env.PHARMACY_CLINICAL_INTAKE_URL),{method:"POST",headers:{authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:partnerForm});
+  const partner = await partnerResponse.json().catch(()=>({}));
+  if (!partnerResponse.ok || !partner.reference) return json({ok:false,error:"clinical_submission_failed",message:clean(partner.message,200)||"The clinical service could not accept the assessment."},502,cors(request));
+  const partnerStatus = clean(partner.status,60) || "submitted";
+  const publicReference=`SCI-${crypto.randomUUID()}`;
+  await env.DB.prepare(`INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,submitted_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(user.id,variantId,publicReference,clean(partner.reference,160),partnerStatus,1,CLINICAL_CONSENT_VERSION,JSON.stringify({photoId:true,bodyFront:true,bodySide:true}),now(),now()).run();
+  if (partner.verified !== true) return json({ok:true,verified:false,intakeReference:publicReference,status:partnerStatus,nextStep:clean(partner.nextStep,80)||"clinical_review"},202,cors(request));
+  const token=crypto.randomUUID()+crypto.randomUUID(),tokenHash=await sha256(token),expiresAt=new Date(Date.now()+30*60*1000).toISOString();
+  await env.DB.prepare(`INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at,created_at) VALUES(?,?,?,?,?,?)`).bind(tokenHash,user.id,variantId,clean(partner.reference,160),expiresAt,now()).run();
+  return json({ok:true,verified:true,verificationToken:token,partnerReference:clean(partner.reference,160),expiresAt},200,cors(request));
+}
+
+async function clinicalIntakeStatus(request, env) {
+  const user=await member(request,env);if(!user)return json({ok:false,error:"unauthorised"},401,cors(request));
+  await schema(env);const reference=clean(new URL(request.url).searchParams.get("reference"),80);
+  const intake=await env.DB.prepare(`SELECT * FROM medicine_clinical_intakes WHERE public_reference=? AND user_id=?`).bind(reference,user.id).first();
+  if(!intake)return json({ok:false,error:"intake_not_found"},404,cors(request));
+  if(intake.status!=="verified")return json({ok:true,verified:false,status:intake.status},200,cors(request));
+  const token=crypto.randomUUID()+crypto.randomUUID(),tokenHash=await sha256(token),expiresAt=new Date(Date.now()+30*60*1000).toISOString(),stamp=now();
+  await env.DB.batch([env.DB.prepare(`INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at,created_at) VALUES(?,?,?,?,?,?)`).bind(tokenHash,user.id,intake.variant_id,intake.partner_reference,expiresAt,stamp),env.DB.prepare(`UPDATE medicine_clinical_intakes SET verification_issued_at=?,updated_at=? WHERE id=?`).bind(stamp,stamp,intake.id)]);
+  return json({ok:true,verified:true,verificationToken:token,variantId:Number(intake.variant_id),expiresAt},200,cors(request));
+}
+
+async function pharmacyClinicalIntakeStatus(request,env){
+  if(!env.PHARMACY_INTEGRATION_SECRET)return json({ok:false,error:"integration_not_configured"},503);
+  const supplied=String(request.headers.get("authorization")||"").replace(/^Bearer\s+/i,"");
+  if(!supplied||(await sha256(supplied))!==(await sha256(String(env.PHARMACY_INTEGRATION_SECRET))))return json({ok:false,error:"unauthorised"},401);
+  await schema(env);const input=await body(request),partnerReference=clean(input?.partnerReference,160),status=clean(input?.status,60);
+  if(!partnerReference||!["submitted","more_information_required","verified","declined"].includes(status))return json({ok:false,error:"invalid_intake_status"},400);
+  const stamp=now(),result=await env.DB.prepare(`UPDATE medicine_clinical_intakes SET status=?,updated_at=? WHERE partner_reference=?`).bind(status,stamp,partnerReference).run();
+  return Number(result.meta?.changes||0)===1?json({ok:true,status}):json({ok:false,error:"intake_not_found"},404);
+}
+
+async function prepayVerification(request, env) {
+  const user = await member(request, env);
+  if (!user) return json({ok:false,error:"account_required"},401,cors(request));
+  if (Number(user.email_verified || 0) !== 1)
+    return json({ok:false,error:"email_verification_required"},403,cors(request));
+  if (!env.PHARMACY_PREPAY_VERIFICATION_URL || !env.PHARMACY_INTEGRATION_SECRET)
+    return json({ok:false,error:"verification_not_configured",message:"Clinical verification is not open yet."},503,cors(request));
+  await schema(env);
+  const input=await body(request),variantId=Number(input?.variantId);
+  if (!Number.isInteger(variantId)||variantId<1||!input?.assessment)
+    return json({ok:false,error:"invalid_verification_request"},400,cors(request));
+  const item=await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first();
+  if (!item) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
+  const partnerResponse=await fetch(String(env.PHARMACY_PREPAY_VERIFICATION_URL),{method:"POST",headers:{"content-type":"application/json",authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:JSON.stringify({memberReference:String(user.id),variantId,assessment:input.assessment})});
+  const partner=await partnerResponse.json().catch(()=>({}));
+  if (!partnerResponse.ok||partner.verified!==true||!partner.reference)
+    return json({ok:false,error:"verification_incomplete",nextStep:clean(partner.nextStep,80)||"clinical_review"},422,cors(request));
+  const token=crypto.randomUUID()+crypto.randomUUID(),tokenHash=await sha256(token),expiresAt=new Date(Date.now()+30*60*1000).toISOString();
+  await env.DB.prepare(`INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at,created_at) VALUES(?,?,?,?,?,?)`).bind(tokenHash,user.id,variantId,clean(partner.reference,160),expiresAt,now()).run();
+  return json({ok:true,verificationToken:token,expiresAt},200,cors(request));
 }
 
 function journeyComplete(preferences) {
@@ -398,6 +504,12 @@ async function checkout(request, env) {
     variantId = Number(input?.variantId);
   if (!Number.isInteger(variantId) || variantId < 1)
     return json({ ok: false, error: "invalid_variant" }, 400, cors(request));
+  let verification=null;
+  if (String(env.MEDICINE_PREPAY_VERIFICATION_REQUIRED||"").toLowerCase()==="true") {
+    const token=clean(input?.verificationToken,200);
+    verification=token?await env.DB.prepare(`SELECT token_hash FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?`).bind(await sha256(token),user.id,variantId,now()).first():null;
+    if (!verification) return json({ok:false,error:"prepay_verification_required"},403,cors(request));
+  }
   let reorderOf = null;
   const reorderNumber = clean(input?.reorderOfOrderNumber, 80);
   if (reorderNumber) {
@@ -518,6 +630,7 @@ async function checkout(request, env) {
   )
     .bind(session.id, now(), inserted.meta.last_row_id)
     .run();
+  if (verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=? WHERE token_hash=?`).bind(now(),verification.token_hash).run();
   await updateOrderReferenceStatus(env.DB,order.orderNumber,'checkout_open');
   return json(
     {
@@ -685,7 +798,7 @@ async function pharmacyStatus(request, env) {
 
 export async function medicineCommerceRoutes(request, env, ctx) {
   const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
-  if (request.method === "OPTIONS" && path === "/v1/commerce/medicine-checkout")
+  if (request.method === "OPTIONS" && ["/v1/commerce/medicine-checkout","/v1/commerce/medicine-prepay-verification","/v1/commerce/medicine-clinical-intake"].includes(path))
     return new Response(null, { status: 204, headers: cors(request) });
   if (request.method === "GET" && path === "/v1/catalogue/medicines") {
     if (!env.DB) return json({ ok: true, products: [] }, 200, cors(request));
@@ -697,14 +810,22 @@ export async function medicineCommerceRoutes(request, env, ctx) {
   }
   if (request.method === "GET" && path === "/v1/commerce/medicine-order-status")
     return orderStatus(request, env);
+  if (request.method === "GET" && path === "/v1/commerce/medicine-clinical-intake-status")
+    return clinicalIntakeStatus(request, env);
   if (request.method === "GET" && path === "/v1/treatment/orders")
     return treatmentOrders(request, env);
   if (request.method === "POST" && path === "/v1/treatment/journey-setup-complete")
     return confirmJourneySetup(request, env);
   if (request.method === "POST" && path === "/v1/integrations/pharmacy/treatment-status")
     return pharmacyStatus(request, env);
+  if (request.method === "POST" && path === "/v1/integrations/pharmacy/clinical-intake-status")
+    return pharmacyClinicalIntakeStatus(request, env);
   if (request.method === "POST" && path === "/v1/commerce/medicine-checkout")
     return checkout(request, env);
+  if (request.method === "POST" && path === "/v1/commerce/medicine-prepay-verification")
+    return prepayVerification(request, env);
+  if (request.method === "POST" && path === "/v1/commerce/medicine-clinical-intake")
+    return clinicalIntake(request, env);
   if (request.method === "POST" && path === "/v1/commerce/stripe/webhook")
     return webhook(request, env, ctx);
   return null;

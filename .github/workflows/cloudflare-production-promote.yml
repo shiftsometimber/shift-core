@@ -11,6 +11,11 @@ on:
       - 'ask-timber-v1.js'
       - 'ask-timber-multi-intent-gate.mjs'
       - 'commerce-stripe-v1.js'
+      - 'medicine-commerce-v1.js'
+      - 'hq-catalogue-v1.js'
+      - 'frontend/medicine-front-door/**'
+      - 'tests/medicine-commerce-v1.test.mjs'
+      - 'tests/medicine-front-door-v1.test.mjs'
       - 'hq-commerce-content-v1.js'
       - 'migrations/**'
       - 'shift-me-3d-proof-v1.js'
@@ -148,6 +153,12 @@ jobs:
         run: |
           node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs
           node my-journey-integration-gate.mjs
+      - name: Prove medicine front door and clinical handoff
+        run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs
+      - name: Apply pharmacy-readiness database additions
+        run: |
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/017_medicine_clinical_intake.sql
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/018_foundayo_launch_ready.sql
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
