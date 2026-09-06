@@ -13,6 +13,7 @@
     const e=new Error((body&&body.message)||messages[code]||`Shift Core returned ${status}.`);e.status=status;e.code=code;e.body=body;return e;
   }
   async function request(path,options={}){
+    if(options.method==='POST'&&options.body&&window.SSTTurnstile){try{const data=JSON.parse(options.body);options={...options,body:JSON.stringify(await window.SSTTurnstile.protect(path,data))}}catch(error){if(error instanceof SyntaxError){}else throw error}}
     const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),options.timeout||DEFAULT_TIMEOUT);
     const headers=new Headers(options.headers||{});if(options.body!==undefined&&!headers.has('Content-Type'))headers.set('Content-Type','application/json');
     try{

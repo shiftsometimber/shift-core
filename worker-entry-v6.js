@@ -22,6 +22,7 @@ import {handleAuthRecovery} from './auth-recovery-v1.js';
 import {memberContrastStatic} from './member-contrast-static-v1.js';
 import {fastMemberRegister} from './member-register-fastpath-v2.js';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
+import {publicTurnstileConfig,turnstileGuard} from './turnstile-auth-v1.js';
 import {shiftMeRoutes} from './shift-me-v1.js';
 import {shiftMe3DProofRoutes} from './shift-me-3d-proof-v1.js';
 import {sportClubhouseRoutes} from './sport-clubhouse-v1.js';
@@ -42,6 +43,7 @@ import {continuityInterestRoutes} from './continuity-interest-v1.js';
 const MEMBER_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const HQ_ORIGINS=new Set(['https://hq.shiftsometimber.co.uk']);
 const GIT_MEMBER_ASSETS=new Map([
+  ['/turnstile-auth-v1.js','application/javascript; charset=utf-8'],
   ['/api-adapter-v33d.js','application/javascript; charset=utf-8'],
   ['/member-product-v33d.js','application/javascript; charset=utf-8'],
   ['/member-grub-programme-v1.js','application/javascript; charset=utf-8'],
@@ -157,6 +159,11 @@ async function coreAuthFetch(request,env,ctx){
 export default {
   async fetch(request,env,ctx){
     const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
+    if(request.method==='GET'&&path==='/v1/auth/turnstile-config'){
+      const response=new Response(JSON.stringify(publicTurnstileConfig(env)),{status:200,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}});
+      return HQ_ORIGINS.has(request.headers.get('Origin')||'')?withHqCors(response,request):withMemberCors(response,request);
+    }
+    const turnstileBlock=await turnstileGuard(request,env);if(turnstileBlock)return path.startsWith('/v1/hq/')?withHqCors(turnstileBlock,request):withMemberCors(turnstileBlock,request);
     if(path==='/sitemap.xml'&&(request.method==='GET'||request.method==='HEAD'))return publicSitemapWithReviewedMentalHealth(request);
     if(path==='/site-config-v3a.js'&&(request.method==='GET'||request.method==='HEAD'))return publicSiteConfigWithLoungeChrome(request);
     // Let Shift Core answer HQ browser preflights before feature modules apply
