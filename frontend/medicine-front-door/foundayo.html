@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Medicine information · Shift Some Timber</title>
+  <link rel="stylesheet" href="./medicine-front-door.css">
+</head>
+<body>
+  <header class="site-head"><a href="/" class="brand">SHIFT SOME TIMBER</a><a href="/member/dashboard">My Shift</a></header>
+  <main id="product" aria-live="polite">
+    <section class="hero">
+      <div><p class="eyebrow" id="routeType"></p><h1 id="medicineName">Loading medicine…</h1><p class="lede" id="summary"></p><div class="trust"><span>UK clinical assessment</span><span>Stock shown honestly</span><span>Price from Shift HQ</span></div></div>
+      <figure><img id="heroImage" src="./weekly-pen-guide.svg" alt=""><figcaption id="imageCaption"></figcaption></figure>
+    </section>
+
+    <section class="buy-box" aria-labelledby="choose-title">
+      <div><p class="eyebrow">CURRENT SUPPLY</p><h2 id="choose-title">Choose a dose</h2><p id="stockMessage">Checking live supply status…</p></div>
+      <label>Dose or pack<select id="variant" disabled><option>Loading…</option></select></label>
+      <div><span class="from">Your price</span><strong id="price">—</strong></div>
+      <button id="continue" type="button" disabled>Currently unavailable</button>
+      <p class="fine">No card is charged here. Suitability and dose must be confirmed by the prescribing service.</p>
+    </section>
+
+    <nav class="jump" aria-label="Medicine page sections"><a href="#how">How it works</a><a href="#dose">Dose route</a><a href="#eligibility">Eligibility</a><a href="#downsides">Downsides</a><a href="#process">What happens next</a></nav>
+
+    <section class="story" id="how"><div><p class="eyebrow">01 · UNDERSTAND IT</p><h2 id="howTitle"></h2><p id="howCopy"></p></div><img src="./how-it-works.svg" alt="Diagram showing appetite, portions and weight-management support"></section>
+    <section id="dose"><p class="eyebrow">02 · THE DOSE ROUTE</p><h2>Know the route before you choose.</h2><div class="dose-grid" id="doseGrid"></div><p class="fine">This is an overview, not a dosing instruction. Never change dose without the prescribing clinician.</p></section>
+    <section class="eligibility" id="eligibility"><div><p class="eyebrow">03 · ELIGIBILITY</p><h2>BMI is a gate, not the whole decision.</h2><p>Many weight-management medicines are considered from BMI 30, or from a lower BMI where qualifying weight-related conditions apply. Thresholds can differ by medicine and individual circumstances.</p><a href="/tools/bmi-calculator">Check my BMI</a></div><img src="./bmi-guide.svg" alt="Simple eligibility diagram showing BMI as one part of a wider clinical review"></section>
+    <section id="downsides"><p class="eyebrow">04 · THE BITS SALES PAGES HIDE</p><h2>Reasons this may not suit you.</h2><div class="negative-grid" id="negativeGrid"></div><p class="warning">Urgent or severe symptoms need medical help, not a website. Read the patient leaflet and follow the clinician’s advice.</p></section>
+    <section id="process"><p class="eyebrow">05 · FROM CHOICE TO SUPPORT</p><h2>Win the order. Verify safely. Then stay with you.</h2><ol class="steps"><li><b>Choose</b><span>See the dose, live price and honest stock.</span></li><li><b>Assess</b><span>Complete the focused clinical questions.</span></li><li><b>Verify</b><span>Confirm identity and required evidence before payment.</span></li><li><b>Pay</b><span>Only when the route is open and supply is available.</span></li><li><b>Track</b><span>See assessment, approval and dispatch status.</span></li><li><b>Journey</b><span>After approval, a light setup unlocks ongoing support.</span></li></ol></section>
+    <section class="source"><h2>Check the official information</h2><p>Medicine information changes. The current patient leaflet and product information take precedence.</p><a id="officialLink" rel="external">Open official UK product information</a></section>
+  </main>
+  <script src="./medicine-front-door.js" defer></script>
+</body>
+</html>

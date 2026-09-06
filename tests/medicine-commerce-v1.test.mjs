@@ -41,13 +41,48 @@ test('stock is a server-side quantity and zero never reaches Stripe',async()=>{
   assert.match(source,/imageUrl/);
 });
 
+test('public catalogue query cannot expose medicine cost or target margin',async()=>{
+  const source=await readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8');
+  const query=source.match(/SELECT m\.id medicine_id[\s\S]*?ORDER BY m\.sort_order,m\.name,v\.sort_order,v\.id/)?.[0]||'';
+  assert.ok(query);
+  assert.doesNotMatch(query,/cost_pence|target_margin_bps|SELECT\s+v\.\*/i);
+  assert.match(query,/v\.selling_price_pence/);
+});
+
+test('pre-pay verification is partner-backed, expiring and feature-gated at checkout',async()=>{
+  const source=await readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8');
+  assert.match(source,/PHARMACY_PREPAY_VERIFICATION_URL/);
+  assert.match(source,/medicine_prepay_verifications/);
+  assert.match(source,/MEDICINE_PREPAY_VERIFICATION_REQUIRED/);
+  assert.match(source,/prepay_verification_required/);
+  assert.match(source,/Date\.now\(\)\+30\*60\*1000/);
+  assert.doesNotMatch(source,/JSON\.stringify\(input\.assessment\).*INSERT/i);
+});
+
+test('clinical intake is complete, partner-owned and fail-closed',async()=>{
+  const [server,page,client]=await Promise.all([
+    readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8'),
+    readFile(new URL('../frontend/medicine-front-door/treatment-assessment.html',import.meta.url),'utf8'),
+    readFile(new URL('../frontend/medicine-front-door/treatment-assessment.js',import.meta.url),'utf8'),
+  ]);
+  for(const field of ['photoId','bodyFront','bodySide','gpName','gpPractice','gpAddress','gpPostcode','gpContactConsent','imageConsent'])assert.match(page,new RegExp(`name="${field}"`));
+  assert.match(server,/PHARMACY_CLINICAL_INTAKE_URL/);
+  assert.match(server,/medicine_clinical_intakes/);
+  assert.match(server,/MAX_CLINICAL_FILE_BYTES/);
+  assert.match(server,/consentVersion/);
+  assert.doesNotMatch(server,/image_base64.*medicine_clinical_intakes/i);
+  assert.match(client,/new FormData\(form\)/);
+  assert.match(client,/\/medicine-clinical-intake/);
+  assert.match(client,/if\(!result\.verified\)return waitForReview/);
+});
+
 test('the public order page consumes the governed catalogue and checkout',async()=>{
-  const source=await readFile(new URL('../../pages-commercial-final/treatment-order-prototype-v1.js',import.meta.url),'utf8');
+  const source=await readFile(new URL('../frontend/medicine-front-door/medicine-front-door.js',import.meta.url),'utf8');
   assert.match(source,/\/v1\/catalogue\/medicines/);
-  assert.match(source,/\/v1\/commerce\/medicine-checkout/);
-  assert.match(source,/variantId:\s*variant\.id/);
+  assert.match(source,/treatment-assessment/);
   assert.match(source,/Currently out of stock/);
-  assert.match(source,/op-live-product-image/);
+  assert.match(source,/Supply status unavailable—ordering remains closed/);
+  assert.doesNotMatch(source,/costPence|grossMarginPercent|target_margin_bps/);
 });
 
 test('payment hands medicine orders into clinical assessment and never straight to fulfilment',async()=>{
