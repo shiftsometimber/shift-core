@@ -28,7 +28,9 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
-      - name: Create or rotate the production authentication widget
+      - name: Deploy the checked-in Worker version before attaching secrets
+        run: npx wrangler deploy --config wrangler.jsonc
+      - name: Create the production authentication widget and attach its secrets
         shell: bash
         run: |
           set -euo pipefail
