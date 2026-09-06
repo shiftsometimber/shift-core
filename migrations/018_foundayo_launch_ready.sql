@@ -10,7 +10,7 @@ WHERE lower(name)='foundayo';
 
 WITH ranked_base AS (
   SELECT v.cost_pence,COALESCE(v.target_margin_bps,6000) margin_bps,
-         ROW_NUMBER() OVER (ORDER BY v.sort_order,v.id)-1 AS ladder_index
+         ROW_NUMBER() OVER (ORDER BY v.cost_pence,v.selling_price_pence,v.id)-1 AS ladder_index
   FROM medicine_variants v JOIN medicine_products p ON p.id=v.medicine_id
   WHERE lower(p.name) LIKE 'wegovy%' AND p.form='tablet' AND v.cost_pence>0 AND v.status!='archived'
 ), desired(strength_label,sort_order,ladder_index) AS (
