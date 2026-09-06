@@ -1,0 +1,82 @@
+name: Configure Turnstile Production
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/configure-turnstile-production.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: configure-turnstile-production
+  cancel-in-progress: false
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
+      - name: Create or rotate the production authentication widget
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          widgets_file=$(mktemp)
+          curl --fail-with-body --silent --show-error \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets" \
+            --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" > "$widgets_file"
+          sitekey=$(jq -r '.result[] | select(.name == "Shift authentication — production") | .sitekey' "$widgets_file" | head -1)
+          if [ -z "$sitekey" ]; then
+            widget_file=$(mktemp)
+            curl --fail-with-body --silent --show-error \
+              "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets" \
+              --request POST \
+              --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              --header 'Content-Type: application/json' \
+              --data '{"domains":["shiftsometimber.co.uk","www.shiftsometimber.co.uk","hq.shiftsometimber.co.uk"],"mode":"managed","name":"Shift authentication — production"}' > "$widget_file"
+            sitekey=$(jq -r '.result.sitekey // empty' "$widget_file")
+            secret=$(jq -r '.result.secret // empty' "$widget_file")
+          else
+            secret_file=$(mktemp)
+            curl --fail-with-body --silent --show-error \
+              "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets/${sitekey}/rotate_secret" \
+              --request POST \
+              --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              --header 'Content-Type: application/json' \
+              --data '{"invalidate_immediately":true}' > "$secret_file"
+            secret=$(jq -r '.result.secret // empty' "$secret_file")
+          fi
+          test -n "$sitekey"
+          test -n "$secret"
+          echo "::add-mask::$sitekey"
+          echo "::add-mask::$secret"
+          printf '%s' "$sitekey" | npx wrangler secret put TURNSTILE_SITE_KEY --config wrangler.jsonc
+          printf '%s' "$secret" | npx wrangler secret put TURNSTILE_SECRET_KEY --config wrangler.jsonc
+          printf '%s' 'shiftsometimber.co.uk,www.shiftsometimber.co.uk,hq.shiftsometimber.co.uk' | npx wrangler secret put TURNSTILE_ALLOWED_HOSTNAMES --config wrangler.jsonc
+          printf '%s' 'true' | npx wrangler secret put TURNSTILE_REQUIRED --config wrangler.jsonc
+      - name: Verify the live public configuration is enabled
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            config=$(curl --fail --silent --show-error https://api.shiftsometimber.co.uk/v1/auth/turnstile-config)
+            if [ "$(printf '%s' "$config" | jq -r '.enabled')" = 'true' ] && [ "$(printf '%s' "$config" | jq -r '.required')" = 'true' ]; then
+              echo 'Turnstile is required and enabled.'
+              exit 0
+            fi
+            sleep 5
+          done
+          echo 'Turnstile did not become live.'
+          exit 1
