@@ -93,6 +93,9 @@ const GIT_MEMBER_ASSETS=new Map([
   ,['/tap-room-general.webp','image/webp']
   ,['/member-my-journey-checkin-v1.js','application/javascript; charset=utf-8']
   ,['/member-my-journey-checkin-v1.css','text/css; charset=utf-8']
+  ,['/treatment-assessment.html','text/html; charset=utf-8']
+  ,['/treatment-assessment.js','application/javascript; charset=utf-8']
+  ,['/clinical-intake-v1.css','text/css; charset=utf-8']
 ]);
 function isMemberProductPath(path){return path==='/v1/continuity-interest'||path==='/v1/journey'||path.startsWith('/v1/journey/')||path==='/v1/my-journey'||path.startsWith('/v1/treatment/')||path.startsWith('/v1/tap-room')||path.startsWith('/v1/lounge')||path.startsWith('/v1/shift/')||path.startsWith('/v1/shift-me')||path.startsWith('/v1/sport/')||path.startsWith('/v1/grub/')||path.startsWith('/v1/fit/')||path.startsWith('/v1/hydration/')||path.startsWith('/v1/plan/')||path.startsWith('/v1/progress/')||path==='/v1/progress'||path==='/v1/member-state'||path.startsWith('/v1/auth/')||path.startsWith('/v1/privacy/')||path==='/v1/events';}
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
@@ -184,6 +187,10 @@ export default {
     // session checks. A preflight has no session cookie by design.
     if(request.method==='OPTIONS'&&path.startsWith('/v1/hq/'))return withHqCors(await hq.fetch(request,env,ctx),request);
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/progress'||path==='/member/progress.html'||path==='/member/health-mot'||path==='/member/health-mot.html'))return Response.redirect(new URL('/member/dashboard#journey',request.url),301);
+    if((request.method==='GET'||request.method==='HEAD')&&(path==='/treatment-assessment'||path==='/treatment-assessment.html')){
+      const response=await gitMemberAsset('/treatment-assessment.html',env);
+      return response?privatePageHeaders(response):new Response('Clinical verification unavailable',{status:503,headers:{'Cache-Control':'no-store'}});
+    }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/tap-room'||path==='/tap-room.html'||path.startsWith('/tap-room/')||path==='/member/tap-room'||path==='/member/tap-room.html'))return Response.redirect(new URL('/lounge',request.url),301);
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/lounge'||path==='/lounge.html'||path.startsWith('/lounge/'))){
       if(!env.MEMBER_ASSETS)return new Response('The Lounge is unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
