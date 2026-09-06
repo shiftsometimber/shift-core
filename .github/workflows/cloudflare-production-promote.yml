@@ -158,6 +158,10 @@ jobs:
       - name: Apply pharmacy-readiness database additions
         run: |
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/017_medicine_clinical_intake.sql
+          column_json=$(npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "PRAGMA table_info(medicine_variants)")
+          if ! printf '%s' "$column_json" | grep -q 'target_margin_bps'; then
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --command "ALTER TABLE medicine_variants ADD COLUMN target_margin_bps INTEGER NOT NULL DEFAULT 6000"
+          fi
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/018_foundayo_launch_ready.sql
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
