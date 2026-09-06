@@ -143,7 +143,9 @@ async function publicSiteConfigWithLoungeChrome(request){
   const response=await fetch(new Request(upstream,request));
   if(!response.ok)return response;
   const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Shift-Lounge-Chrome','v2');
-  return new Response(`${await response.text()}\n${PUBLIC_CHROME_PATCH}\n`,{status:response.status,statusText:response.statusText,headers});
+  const source=await response.text();
+  const constrained=source.replace("['/explore-knowledge','/knowledge','/treatment-centre','/treatment-order','/medicine-news','/glp1-knowledge-centre','/mounjaro','/wegovy','/foundayo','/member/dashboard']","['/explore-knowledge','/knowledge','/treatment-centre','/medicine-news']");
+  return new Response(`${constrained}\n${PUBLIC_CHROME_PATCH}\n`,{status:response.status,statusText:response.statusText,headers});
 }
 const REVIEWED_MENTAL_HEALTH_PATHS=['/mental-health/confidence-self-worth','/mental-health/sleep-mental-health','/mental-health/mental-health-and-weight','/mental-health/talking-about-it','/mental-health/myths-men-mental-health','/mental-health/when-to-get-help'];
 async function publicSitemapWithReviewedMentalHealth(request){
