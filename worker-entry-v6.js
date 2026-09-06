@@ -98,6 +98,18 @@ function isMemberProductPath(path){return path==='/v1/continuity-interest'||path
 function memberCorsHeaders(request){const origin=request.headers.get('Origin')||'';const h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, PATCH, DELETE, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour','Vary':'Origin'};if(MEMBER_ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h;}
 function withMemberCors(response,request){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(memberCorsHeaders(request)))headers.set(k,v);if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 function withHqCors(response,request){const origin=request.headers.get('Origin')||'';if(!HQ_ORIGINS.has(origin))return response;const headers=new Headers(response.headers);headers.set('Access-Control-Allow-Origin',origin);headers.set('Access-Control-Allow-Credentials','true');headers.set('Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE, OPTIONS');headers.set('Access-Control-Allow-Headers','Content-Type');headers.set('Vary','Origin');headers.set('Cache-Control','no-store');headers.set('X-Content-Type-Options','nosniff');if(!headers.has('X-Shift-Request-Id'))headers.set('X-Shift-Request-Id',crypto.randomUUID());return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
+function privatePageHeaders(response){
+  const headers=new Headers(response.headers);
+  headers.set('Cache-Control','no-store, private');
+  headers.set('Strict-Transport-Security','max-age=31536000; includeSubDomains; preload');
+  headers.set('Referrer-Policy','strict-origin-when-cross-origin');
+  headers.set('Permissions-Policy','camera=(self), microphone=(), geolocation=(), payment=(self)');
+  headers.set('X-Content-Type-Options','nosniff');
+  headers.set('X-Frame-Options','DENY');
+  headers.set('Cross-Origin-Opener-Policy','same-origin');
+  headers.set('X-Robots-Tag','noindex, nofollow, noarchive, nosnippet');
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+}
 async function gitMemberAsset(path,env){
   const contentType=GIT_MEMBER_ASSETS.get(path)||(/^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)?'image/svg+xml; charset=utf-8':null);if(!env.MEMBER_ASSETS||!contentType)return null;
   const asset=await env.MEMBER_ASSETS.fetch(new Request(`https://member-assets.local${path}`,{method:'GET'}));
@@ -131,7 +143,7 @@ async function publicSiteConfigWithLoungeChrome(request){
   const response=await fetch(new Request(upstream,request));
   if(!response.ok)return response;
   const headers=new Headers(response.headers);headers.delete('Content-Length');headers.set('Content-Type','application/javascript; charset=utf-8');headers.set('Cache-Control','public, max-age=300, must-revalidate');headers.set('X-Shift-Lounge-Chrome','v2');
-  return new Response(`${await response.text()}\n${PUBLIC_CHROME_PATCH}\n${PUBLIC_MEDICINE_TICKER_PATCH}\n`,{status:response.status,statusText:response.statusText,headers});
+  return new Response(`${await response.text()}\n${PUBLIC_CHROME_PATCH}\n`,{status:response.status,statusText:response.statusText,headers});
 }
 const REVIEWED_MENTAL_HEALTH_PATHS=['/mental-health/confidence-self-worth','/mental-health/sleep-mental-health','/mental-health/mental-health-and-weight','/mental-health/talking-about-it','/mental-health/myths-men-mental-health','/mental-health/when-to-get-help'];
 async function publicSitemapWithReviewedMentalHealth(request){
@@ -174,19 +186,19 @@ export default {
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/lounge'||path==='/lounge.html'||path.startsWith('/lounge/'))){
       if(!env.MEMBER_ASSETS)return new Response('The Lounge is unavailable',{status:503,headers:{'X-Robots-Tag':'noindex, nofollow'}});
       const session=await authenticateTapRoomPage(request,env);if(session)return session;
-      const response=await env.MEMBER_ASSETS.fetch(new Request(new URL('/tap-room-shell.txt',request.url),request));const headers=new Headers(response.headers);headers.set('Content-Type','text/html; charset=utf-8');headers.set('Cache-Control','no-store, private');headers.set('X-Robots-Tag','noindex, nofollow, noarchive, nosnippet');return new Response(response.body,{status:response.status,headers});
+      const response=await env.MEMBER_ASSETS.fetch(new Request(new URL('/tap-room-shell.txt',request.url),request));const headers=new Headers(response.headers);headers.set('Content-Type','text/html; charset=utf-8');return privatePageHeaders(new Response(response.body,{status:response.status,headers}));
     }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/grub'||path==='/member/grub.html'||path==='/member-grub')){
       if(!env.MEMBER_ASSETS)return new Response('Grub unavailable',{status:503});
-      return env.MEMBER_ASSETS.fetch(new Request(new URL('/member-grub',request.url),request));
+      return privatePageHeaders(await env.MEMBER_ASSETS.fetch(new Request(new URL('/member-grub',request.url),request)));
     }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/fit'||path==='/member/fit.html'||path==='/member-fit')){
       if(!env.MEMBER_ASSETS)return new Response('Fit unavailable',{status:503});
-      return env.MEMBER_ASSETS.fetch(new Request(new URL('/member-fit',request.url),request));
+      return privatePageHeaders(await env.MEMBER_ASSETS.fetch(new Request(new URL('/member-fit',request.url),request)));
     }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/'||path==='/member/dashboard'||path==='/member/dashboard.html'||path==='/member-login'||path==='/member-login.html'||path==='/member-register'||path==='/member-register.html'||path==='/my-timber-preview')){
       if(!env.MEMBER_ASSETS)return new Response('preview shell unavailable',{status:503});
-      return env.MEMBER_ASSETS.fetch(new Request(new URL('/my-timber-preview',request.url),request));
+      return privatePageHeaders(await env.MEMBER_ASSETS.fetch(new Request(new URL('/my-timber-preview',request.url),request)));
     }
     if((request.method==='GET'||request.method==='HEAD')&&path==='/shift-me')return Response.redirect(new URL('/member/dashboard#shiftme',request.url),302);
     const shiftMe3DProof=await shiftMe3DProofRoutes(request);if(shiftMe3DProof)return shiftMe3DProof;
