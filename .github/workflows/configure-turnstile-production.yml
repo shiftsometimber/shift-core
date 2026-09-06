@@ -53,10 +53,15 @@ jobs:
           test -n "$secret"
           echo "::add-mask::$sitekey"
           echo "::add-mask::$secret"
-          printf '%s' "$sitekey" | npx wrangler secret put TURNSTILE_SITE_KEY --config wrangler.jsonc
-          printf '%s' "$secret" | npx wrangler secret put TURNSTILE_SECRET_KEY --config wrangler.jsonc
-          printf '%s' 'shiftsometimber.co.uk,www.shiftsometimber.co.uk,hq.shiftsometimber.co.uk' | npx wrangler secret put TURNSTILE_ALLOWED_HOSTNAMES --config wrangler.jsonc
-          printf '%s' 'true' | npx wrangler secret put TURNSTILE_REQUIRED --config wrangler.jsonc
+          secrets_file=$(mktemp)
+          jq -n \
+            --arg sitekey "$sitekey" \
+            --arg secret "$secret" \
+            --arg hostnames 'shiftsometimber.co.uk,www.shiftsometimber.co.uk,hq.shiftsometimber.co.uk' \
+            '{TURNSTILE_SITE_KEY:$sitekey,TURNSTILE_SECRET_KEY:$secret,TURNSTILE_ALLOWED_HOSTNAMES:$hostnames,TURNSTILE_REQUIRED:"true"}' \
+            > "$secrets_file"
+          npx wrangler secret bulk "$secrets_file" --config wrangler.jsonc
+          rm -f "$secrets_file" "$widget_file"
       - name: Verify the live public configuration is enabled
         shell: bash
         run: |
