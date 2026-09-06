@@ -49,14 +49,11 @@ test('public catalogue query cannot expose medicine cost or target margin',async
   assert.match(query,/v\.selling_price_pence/);
 });
 
-test('pre-pay verification is partner-backed, expiring and feature-gated at checkout',async()=>{
+test('checkout is payment-first while stock remains server-gated',async()=>{
   const source=await readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8');
-  assert.match(source,/PHARMACY_PREPAY_VERIFICATION_URL/);
-  assert.match(source,/medicine_prepay_verifications/);
-  assert.match(source,/MEDICINE_PREPAY_VERIFICATION_REQUIRED/);
-  assert.match(source,/prepay_verification_required/);
-  assert.match(source,/Date\.now\(\)\+30\*60\*1000/);
-  assert.doesNotMatch(source,/JSON\.stringify\(input\.assessment\).*INSERT/i);
+  assert.match(source,/order-success\?session_id=\{CHECKOUT_SESSION_ID\}/);
+  assert.doesNotMatch(source,/MEDICINE_PREPAY_VERIFICATION_REQUIRED/);
+  assert.match(source,/stock_on_hand-reserved>0/);
 });
 
 test('clinical intake is complete, partner-owned and fail-closed',async()=>{
@@ -65,7 +62,7 @@ test('clinical intake is complete, partner-owned and fail-closed',async()=>{
     readFile(new URL('../frontend/medicine-front-door/treatment-assessment.html',import.meta.url),'utf8'),
     readFile(new URL('../frontend/medicine-front-door/treatment-assessment.js',import.meta.url),'utf8'),
   ]);
-  for(const field of ['photoId','bodyFront','bodySide','gpName','gpPractice','gpAddress','gpPostcode','gpContactConsent','imageConsent'])assert.match(page,new RegExp(`name="${field}"`));
+  for(const field of ['orderNumber','photoId','bodyFront','bodySide','gpName','gpPractice','gpAddress','gpPostcode','gpContactConsent','imageConsent'])assert.match(page,new RegExp(`name="${field}"`));
   assert.match(server,/PHARMACY_CLINICAL_INTAKE_URL/);
   assert.match(server,/medicine_clinical_intakes/);
   assert.match(server,/MAX_CLINICAL_FILE_BYTES/);
@@ -73,13 +70,13 @@ test('clinical intake is complete, partner-owned and fail-closed',async()=>{
   assert.doesNotMatch(server,/image_base64.*medicine_clinical_intakes/i);
   assert.match(client,/new FormData\(form\)/);
   assert.match(client,/\/medicine-clinical-intake/);
-  assert.match(client,/if\(!result\.verified\)return waitForReview/);
+  assert.match(server,/paid_order_required/);
 });
 
 test('the public order page consumes the governed catalogue and checkout',async()=>{
   const source=await readFile(new URL('../frontend/medicine-front-door/medicine-front-door.js',import.meta.url),'utf8');
   assert.match(source,/\/v1\/catalogue\/medicines/);
-  assert.match(source,/treatment-assessment/);
+  assert.match(source,/\/v1\/commerce\/medicine-checkout/);
   assert.match(source,/Currently out of stock/);
   assert.match(source,/Supply status unavailable—ordering remains closed/);
   assert.doesNotMatch(source,/costPence|grossMarginPercent|target_margin_bps/);
@@ -92,14 +89,16 @@ test('payment hands medicine orders into clinical assessment and never straight 
   assert.match(source,/invalid_status_transition/);
   assert.match(source,/journey_setup_required/);
   assert.match(source,/reorder_not_eligible/);
-  assert.match(source,/\/member\/dashboard\?treatment=paid&session_id=\{CHECKOUT_SESSION_ID\}#today/);
+  assert.match(source,/\/order-success\?session_id=\{CHECKOUT_SESSION_ID\}/);
 });
 
 test('approved treatment requires a complete Journey before support and reorder',()=>{
   const complete=JSON.stringify({myJourney:{setup:{startDate:'2026-09-04',targetMode:'loss'},weight:{startKg:100,currentKg:95,targetKg:80}}});
   assert.equal(medicineCommerceInternals.journeyComplete(complete),true);
   assert.equal(medicineCommerceInternals.journeyComplete('{}'),false);
-  const blocked=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'approved',journey_setup_required:1},false);
+  const intake=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',variant_id:1,medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'assessment_pending',journey_setup_required:0},false);
+  assert.equal(intake.clinicalIntakeRequired,true);
+  const blocked=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',variant_id:1,medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'approved',journey_setup_required:1},false);
   assert.equal(blocked.journeySetupRequired,true);
   assert.equal(blocked.canReorder,false);
   const reorder=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'fulfilled',journey_setup_required:1},true);
@@ -121,7 +120,8 @@ test('member treatment UI and preference intake use controlled choices',async()=
     readFile(new URL('../frontend/member/api-adapter-v33d.js',import.meta.url),'utf8'),
   ]);
   assert.match(ui,/Payment<\/span><span>Clinical checks/);
-  assert.match(ui,/Complete the two-minute setup/);
+  assert.match(ui,/Complete mandatory My Journey setup/);
+  assert.match(ui,/Complete required clinical checks/);
   assert.match(adapter,/getTreatmentOrders/);
   for(const field of ['footballTeam','boxer','f1Driver','rugbyTeam','activityLevel','favouriteFood','favouriteDrink','apparelBrand','injury','illness'])assert.match(journey,new RegExp(`select name="${field}"`));
   assert.match(journey,/Not applicable \/ no preference/);

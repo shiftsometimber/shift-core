@@ -30,10 +30,9 @@ test('Foundayo is launch-ready but cannot open the till without HQ supply',async
   assert.doesNotMatch(js,/if\(slug==='foundayo'\).*return/);
 });
 
-test('the assessment verifies with the clinical partner before checkout',async()=>{
+test('the paid order hands off to compulsory clinical assessment',async()=>{
   const source=await readFile(new URL('treatment-assessment.js',root),'utf8');
   assert.match(source,/\/v1\/commerce\/medicine-clinical-intake/);
-  assert.match(source,/if\(!result\.verified\)return waitForReview/);
-  assert.match(source,/verificationToken:token/);
+  assert.match(source,/orderNumber/);
   assert.match(source,/new FormData\(form\)/);
 });
