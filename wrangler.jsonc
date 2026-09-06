@@ -104,6 +104,8 @@
     {"pattern": "www.shiftsometimber.co.uk/member-sport-v1.css*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "www.shiftsometimber.co.uk/member-p0-v1.css*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "shiftsometimber.co.uk/turnstile-auth-v1.js*","zone_name": "shiftsometimber.co.uk"},
+    {"pattern": "www.shiftsometimber.co.uk/turnstile-auth-v1.js*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/treatment-assessment*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "www.shiftsometimber.co.uk/treatment-assessment*","zone_name": "shiftsometimber.co.uk"},
     {"pattern": "shiftsometimber.co.uk/clinical-intake-v1.css*","zone_name": "shiftsometimber.co.uk"},
