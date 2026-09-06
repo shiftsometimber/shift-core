@@ -179,6 +179,7 @@ async function schema(env) {
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_status TEXT NOT NULL DEFAULT 'not_started'`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_reason_code TEXT`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_updated_at TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_intake_submitted_at TEXT`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN journey_setup_required INTEGER NOT NULL DEFAULT 0`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN journey_setup_completed_at TEXT`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN reorder_of_order_id INTEGER`).run().catch(()=>{});
@@ -233,7 +234,8 @@ async function clinicalIntake(request, env) {
   if (!partnerResponse.ok || !partner.reference) return json({ok:false,error:"clinical_submission_failed",message:clean(partner.message,200)||"The clinical service could not accept the assessment."},502,cors(request));
   const partnerStatus = clean(partner.status,60) || "submitted";
   const publicReference=`SCI-${crypto.randomUUID()}`;
-  await env.DB.batch([env.DB.prepare(`INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,submitted_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(user.id,variantId,publicReference,clean(partner.reference,160),partnerStatus,1,CLINICAL_CONSENT_VERSION,JSON.stringify({photoId:true,bodyFront:true,bodySide:true}),now(),now()),env.DB.prepare(`UPDATE medicine_orders SET clinical_updated_at=?,updated_at=? WHERE id=?`).bind(now(),now(),order.id)]);
+  const submittedAt=now();
+  await env.DB.batch([env.DB.prepare(`INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,submitted_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(user.id,variantId,publicReference,clean(partner.reference,160),partnerStatus,1,CLINICAL_CONSENT_VERSION,JSON.stringify({photoId:true,bodyFront:true,bodySide:true}),submittedAt,submittedAt),env.DB.prepare(`UPDATE medicine_orders SET clinical_intake_submitted_at=?,clinical_updated_at=?,updated_at=? WHERE id=?`).bind(submittedAt,submittedAt,submittedAt,order.id)]);
   return json({ok:true,accepted:true,intakeReference:publicReference,partnerReference:clean(partner.reference,160),status:partnerStatus,nextStep:clean(partner.nextStep,80)||"prescriber_review"},partner.verified===true?200:202,cors(request));
 }
 
@@ -292,10 +294,11 @@ function journeyComplete(preferences) {
 
 function memberTreatmentView(order, setupComplete) {
   const clinicalStatus = order.clinical_status || "not_started";
+  const clinicalIntakeRequired = order.status === "paid" && (clinicalStatus === "more_information_required" || (clinicalStatus === "assessment_pending" && !order.clinical_intake_submitted_at));
   const setupRequired = Boolean(Number(order.journey_setup_required)) && ["approved", "dispensing", "dispatched", "fulfilled"].includes(clinicalStatus) && !setupComplete;
   const copy = {
     not_started: ["Payment not confirmed", "Your clinical assessment starts after payment is confirmed."],
-    assessment_pending: ["Clinical assessment in progress", "The clinical team is reviewing your information. My Timber will show the outcome here."],
+    assessment_pending: clinicalIntakeRequired ? ["Clinical checks required", "Complete the compulsory health, GP, ID and body-image checks so the pharmacy partner can review your order."] : ["Clinical assessment in progress", "The pharmacy partner has your information and is reviewing it. My Shift will show the outcome here."],
     more_information_required: ["The clinical team needs more information", "Use the secure pharmacy route sent to you. Shift does not collect clinical answers in ordinary messages."],
     approved: setupRequired ? ["Approved — set up My Journey", "Take two minutes to set your starting point before ongoing support and reordering open."] : ["Treatment approved", "Weekly support is ready in My Timber."],
     declined: ["Treatment not approved", "The clinical team decided this treatment is not suitable. Refund progress will appear here."],
@@ -318,7 +321,7 @@ function memberTreatmentView(order, setupComplete) {
     message: copy[1],
     reasonCode: order.clinical_reason_code || null,
     journeySetupRequired: setupRequired,
-    clinicalIntakeRequired: order.status === "paid" && ["assessment_pending", "more_information_required"].includes(clinicalStatus),
+    clinicalIntakeRequired,
     journeySetupComplete: setupComplete,
     reorderEligibleAt: order.reorder_eligible_at || null,
     canReorder: setupComplete && clinicalStatus === "fulfilled" && (!order.reorder_eligible_at || Date.parse(order.reorder_eligible_at) <= Date.now()),

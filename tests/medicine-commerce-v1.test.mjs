@@ -96,8 +96,11 @@ test('approved treatment requires a complete Journey before support and reorder'
   const complete=JSON.stringify({myJourney:{setup:{startDate:'2026-09-04',targetMode:'loss'},weight:{startKg:100,currentKg:95,targetKg:80}}});
   assert.equal(medicineCommerceInternals.journeyComplete(complete),true);
   assert.equal(medicineCommerceInternals.journeyComplete('{}'),false);
-  const intake=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',variant_id:1,medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'assessment_pending',journey_setup_required:0},false);
+  const intake=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',variant_id:1,medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'assessment_pending',clinical_intake_submitted_at:null,journey_setup_required:0},false);
   assert.equal(intake.clinicalIntakeRequired,true);
+  const reviewing=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',variant_id:1,medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'assessment_pending',clinical_intake_submitted_at:'2026-09-06T17:00:00Z',journey_setup_required:0},false);
+  assert.equal(reviewing.clinicalIntakeRequired,false);
+  assert.match(reviewing.headline,/in progress/);
   const blocked=medicineCommerceInternals.memberTreatmentView({order_number:'SST-1',variant_id:1,medicine_name:'Mounjaro',strength_label:'2.5 mg',total_pence:16900,currency:'GBP',status:'paid',clinical_status:'approved',journey_setup_required:1},false);
   assert.equal(blocked.journeySetupRequired,true);
   assert.equal(blocked.canReorder,false);
