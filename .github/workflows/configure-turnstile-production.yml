@@ -33,31 +33,15 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$CLOUDFLARE_API_TOKEN"
-          widgets_file=$(mktemp)
+          widget_file=$(mktemp)
           curl --fail-with-body --silent --show-error \
             "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets" \
-            --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" > "$widgets_file"
-          sitekey=$(jq -r '.result[] | select(.name == "Shift authentication — production") | .sitekey' "$widgets_file" | head -1)
-          if [ -z "$sitekey" ]; then
-            widget_file=$(mktemp)
-            curl --fail-with-body --silent --show-error \
-              "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets" \
-              --request POST \
-              --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-              --header 'Content-Type: application/json' \
-              --data '{"domains":["shiftsometimber.co.uk","www.shiftsometimber.co.uk","hq.shiftsometimber.co.uk"],"mode":"managed","name":"Shift authentication — production"}' > "$widget_file"
-            sitekey=$(jq -r '.result.sitekey // empty' "$widget_file")
-            secret=$(jq -r '.result.secret // empty' "$widget_file")
-          else
-            secret_file=$(mktemp)
-            curl --fail-with-body --silent --show-error \
-              "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets/${sitekey}/rotate_secret" \
-              --request POST \
-              --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-              --header 'Content-Type: application/json' \
-              --data '{"invalidate_immediately":true}' > "$secret_file"
-            secret=$(jq -r '.result.secret // empty' "$secret_file")
-          fi
+            --request POST \
+            --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            --header 'Content-Type: application/json' \
+            --data '{"domains":["shiftsometimber.co.uk","www.shiftsometimber.co.uk","hq.shiftsometimber.co.uk"],"mode":"managed","name":"Shift authentication — production"}' > "$widget_file"
+          sitekey=$(jq -r '.result.sitekey // empty' "$widget_file")
+          secret=$(jq -r '.result.secret // empty' "$widget_file")
           test -n "$sitekey"
           test -n "$secret"
           echo "::add-mask::$sitekey"
