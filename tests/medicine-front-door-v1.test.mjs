@@ -25,8 +25,12 @@ test('prices and stock come only from the governed catalogue',async()=>{
 
 test('Foundayo is launch-ready but cannot open the till without HQ supply',async()=>{
   const js=await readFile(new URL('medicine-front-door.js',root),'utf8');
-  assert.match(js,/foundayo:\{match:'foundayo',type:'ONCE-DAILY TABLET · SUPPLY LOCKED'/);
+  const page=await readFile(new URL('foundayo.html',root),'utf8');
+  assert.match(js,/foundayo:\{match:'foundayo',type:'ONCE-DAILY TABLET · SUPPLY PENDING'/);
   assert.match(js,/Formulary and partner supply not yet confirmed/);
+  assert.match(js,/ordering remains locked until partner supply is confirmed/);
+  assert.match(page,/foundayo-editorial-status\.svg/);
+  assert.doesNotMatch(page,/weekly-pen-guide\.svg/);
   assert.doesNotMatch(js,/if\(slug==='foundayo'\).*return/);
 });
 
