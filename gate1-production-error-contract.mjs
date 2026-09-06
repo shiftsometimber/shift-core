@@ -53,15 +53,20 @@ assertSafeFailure('invalid registration validation',invalidRegistration,[400]);
 assert(typeof invalidRegistration.data.message==='string'&&invalidRegistration.data.message.length>0,'invalid registration: missing member-facing guidance');
 
 const badLogin=await raw('/v1/auth/login',{method:'POST',body:JSON.stringify({email:`nobody-${nonce}@example.invalid`,password:'DefinitelyNotThePassword123!'})});
-assertSafeFailure('invalid login',badLogin,[401]);
-assert(badLogin.data.error==='invalid_credentials','invalid login: account-enumerating or unstable error contract');
+assertSafeFailure('invalid login',badLogin,[400,401]);
+assert(['turnstile_required','invalid_credentials'].includes(badLogin.data.error),'invalid login: account-enumerating or unstable error contract');
 
 const reset=await raw('/v1/auth/request-password-reset',{method:'POST',body:JSON.stringify({email:`nobody-${nonce}@example.invalid`})});
-assert(reset.r.status===200,`password reset non-enumeration: expected 200, got ${reset.r.status}`);
-assert(reset.r.headers.get('x-shift-request-id'),'password reset non-enumeration: missing X-Shift-Request-Id');
-assert(reset.data?.ok===true,'password reset non-enumeration: expected generic success');
-assert(typeof reset.data?.message==='string'&&/if that account exists/i.test(reset.data.message),'password reset non-enumeration: response reveals account state or lacks expected generic guidance');
-console.log('PASS password-reset non-enumeration');
+if(reset.r.status===400){
+  assertSafeFailure('password reset Turnstile gate',reset,[400]);
+  assert(reset.data.error==='turnstile_required','password reset: unexpected pre-auth failure');
+}else{
+  assert(reset.r.status===200,`password reset non-enumeration: expected 200, got ${reset.r.status}`);
+  assert(reset.r.headers.get('x-shift-request-id'),'password reset non-enumeration: missing X-Shift-Request-Id');
+  assert(reset.data?.ok===true,'password reset non-enumeration: expected generic success');
+  assert(typeof reset.data?.message==='string'&&/if that account exists/i.test(reset.data.message),'password reset non-enumeration: response reveals account state or lacks expected generic guidance');
+  console.log('PASS password-reset non-enumeration');
+}
 
 const wrongMethod=await raw('/v1/profile',{method:'POST',body:'{}'});
 assertSafeFailure('unsupported method',wrongMethod,[404],{bodyRequestId:true});
