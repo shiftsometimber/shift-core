@@ -34,12 +34,17 @@ jobs:
           set -euo pipefail
           test -n "$CLOUDFLARE_API_TOKEN"
           widget_file=$(mktemp)
-          curl --fail-with-body --silent --show-error \
+          http_code=$(curl --silent --show-error \
             "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/challenges/widgets" \
             --request POST \
             --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             --header 'Content-Type: application/json' \
-            --data '{"domains":["shiftsometimber.co.uk","www.shiftsometimber.co.uk","hq.shiftsometimber.co.uk"],"mode":"managed","name":"Shift authentication — production"}' > "$widget_file"
+            --data '{"domains":["shiftsometimber.co.uk","www.shiftsometimber.co.uk","hq.shiftsometimber.co.uk"],"mode":"managed","name":"Shift authentication — production"}' \
+            --output "$widget_file" --write-out '%{http_code}')
+          if [ "$http_code" != '200' ]; then
+            jq '{success,errors}' "$widget_file"
+            exit 1
+          fi
           sitekey=$(jq -r '.result.sitekey // empty' "$widget_file")
           secret=$(jq -r '.result.secret // empty' "$widget_file")
           test -n "$sitekey"
