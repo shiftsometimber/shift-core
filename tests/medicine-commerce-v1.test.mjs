@@ -56,6 +56,11 @@ test('checkout is verification-first while stock remains server-gated',async()=>
   assert.match(source,/verificationToken/);
   assert.match(source,/medicine_prepay_verifications/);
   assert.match(source,/stock_on_hand-reserved>0/);
+  assert.doesNotMatch(source,/MEDICINE_PREPAY_VERIFICATION_REQUIRED/);
+  assert.match(source,/invalid_or_expired_verification/);
+  assert.match(source,/verification_already_used/);
+  assert.match(source,/Date\.now\(\)\+30\*60\*1000/);
+  assert.doesNotMatch(source,/JSON\.stringify\(input\.assessment\).*INSERT/i);
 });
 
 test('clinical intake is complete, partner-owned and fail-closed',async()=>{
