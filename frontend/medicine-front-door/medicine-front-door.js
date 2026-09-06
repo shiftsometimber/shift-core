@@ -10,5 +10,38 @@ const slug=(new URLSearchParams(location.search).get('medicine')||location.pathn
 const config=routes[slug]||routes.mounjaro;
 const $=id=>document.getElementById(id), money=p=>'£'+(Number(p)/100).toFixed(2);
 function renderCopy(){document.title=`${config.match.replace(/\b\w/g,x=>x.toUpperCase())} · Shift Some Timber`;$('routeType').textContent=config.type;$('medicineName').textContent=config.match.replace(/\b\w/g,x=>x.toUpperCase());$('summary').textContent=config.summary;$('howTitle').textContent=config.howTitle;$('howCopy').textContent=config.howCopy;$('doseGrid').innerHTML=config.doses.map((x,i)=>`<article class="dose ${i?'':'current'}"><b>${x}</b></article>`).join('');$('negativeGrid').innerHTML=config.negatives.map(x=>`<article class="negative">${x}</article>`).join('');$('officialLink').href=config.official;$('imageCaption').textContent=slug==='foundayo'?'Representative tablet format; exact pack photography follows confirmed supply.':'Original Shift explainer—not a substitute for the manufacturer leaflet.'}
-async function loadCatalogue(){const select=$('variant'),button=$('continue');try{const r=await fetch(`${API}/v1/catalogue/medicines`,{credentials:'include'}),b=await r.json();const product=(b.products||[]).find(x=>String(x.name).toLowerCase()===config.match);if(!product)throw Error('not-listed');select.innerHTML=product.variants.map(v=>`<option value="${v.id}" data-price="${v.pricePence}" data-status="${v.status}">${v.strengthLabel} · ${money(v.pricePence)} · ${v.status==='available'?'In stock':'Out of stock'}</option>`).join('')||'<option>No current variants</option>';select.disabled=!product.variants.length;const sync=()=>{const o=select.selectedOptions[0],available=o?.dataset.status==='available';$('price').textContent=o?.dataset.price?money(o.dataset.price):'—';$('stockMessage').textContent=available?'Available to order':slug==='foundayo'?'Launch-ready · partner supply not yet confirmed':'Currently out of stock';button.disabled=!available;button.textContent=available?'Continue to secure payment':'Currently unavailable'};select.onchange=sync;sync();button.onclick=async()=>{button.disabled=true;try{const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:Number(select.value)})}),result=await response.json();if(!response.ok||!result.checkoutUrl)throw Error(result.message||result.error||'Checkout could not be opened');location.assign(result.checkoutUrl)}catch(error){$('stockMessage').textContent=error.message;button.disabled=false}}}catch{$('stockMessage').textContent='Supply status unavailable—ordering remains closed';select.innerHTML='<option>Check again later</option>';button.disabled=true}}
+async function loadCatalogue(){
+  const select=$('variant'),button=$('continue');
+  try{
+    const r=await fetch(`${API}/v1/catalogue/medicines`,{credentials:'include'}),b=await r.json();
+    const product=(b.products||[]).find(x=>String(x.name).toLowerCase()===config.match);
+    if(!product)throw Error('not-listed');
+    select.innerHTML=product.variants.map(v=>`<option value="${v.id}" data-price="${v.pricePence}" data-status="${v.status}">${v.strengthLabel} · ${money(v.pricePence)} · ${v.status==='available'?'In stock':'Out of stock'}</option>`).join('')||'<option>No current variants</option>';
+    select.disabled=!product.variants.length;
+    const sync=()=>{
+      const o=select.selectedOptions[0],available=o?.dataset.status==='available';
+      let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${o?.value}`)||'null')}catch{}
+      const verified=verification?.token&&Date.parse(verification.expiresAt)>Date.now();
+      $('price').textContent=o?.dataset.price?money(o.dataset.price):'—';
+      $('stockMessage').textContent=available?(verified?'Verification accepted · payment ready':'Available · verification required before payment'):slug==='foundayo'?'Formulary and partner supply not yet confirmed':'Currently out of stock';
+      button.disabled=!available;
+      button.textContent=!available?'Currently unavailable':verified?'Continue to secure payment':'Continue to verification';
+    };
+    select.onchange=sync;sync();
+    button.onclick=async()=>{
+      const variantId=Number(select.value);
+      let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${variantId}`)||'null')}catch{}
+      if(!verification?.token||Date.parse(verification.expiresAt)<=Date.now()){
+        location.assign(`/treatment-assessment?variant=${encodeURIComponent(variantId)}&returnTo=${encodeURIComponent(location.pathname+location.search)}`);
+        return;
+      }
+      button.disabled=true;
+      try{
+        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,verificationToken:verification.token})}),result=await response.json();
+        if(!response.ok||!result.checkoutUrl)throw Error(result.message||result.error||'Checkout could not be opened');
+        location.assign(result.checkoutUrl);
+      }catch(error){$('stockMessage').textContent=error.message;button.disabled=false}
+    };
+  }catch{$('stockMessage').textContent='Supply status unavailable—ordering remains closed';select.innerHTML='<option>Check again later</option>';button.disabled=true}
+}
 renderCopy();loadCatalogue();

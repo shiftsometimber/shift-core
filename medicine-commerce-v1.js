@@ -210,10 +210,9 @@ async function clinicalIntake(request, env) {
   await schema(env);
   let form;
   try { form = await request.formData(); } catch { return json({ok:false,error:"invalid_clinical_form"},400,cors(request)); }
-  const variantId = Number(form.get("variantId")), orderNumber=clean(form.get("orderNumber"),80);
-  const order = Number.isInteger(variantId) && variantId > 0 && orderNumber ? await env.DB.prepare(`SELECT id,variant_id,status,clinical_status FROM medicine_orders WHERE order_number=? AND user_id=?`).bind(orderNumber,user.id).first() : null;
-  if (!order || Number(order.variant_id)!==variantId || order.status!=='paid') return json({ok:false,error:"paid_order_required",message:"These checks must be linked to your paid treatment order."},409,cors(request));
-  if (!['assessment_pending','more_information_required'].includes(order.clinical_status)) return json({ok:false,error:"clinical_intake_not_required",message:"This order is not waiting for clinical information."},409,cors(request));
+  const variantId = Number(form.get("variantId"));
+  const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first() : null;
+  if (!item) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
   const required = ["dateOfBirth","heightCm","weightKg","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
   if (required.some((key) => !formText(form,key))) return json({ok:false,error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."},400,cors(request));
   const gpConsent = form.get("gpContactConsent") === "on";
@@ -225,7 +224,7 @@ async function clinicalIntake(request, env) {
     const error = validateClinicalFile(files[key],label); if (error) return json({ok:false,error:"invalid_evidence",message:error},400,cors(request));
   }
   const partnerForm = new FormData();
-  partnerForm.set("memberReference",String(user.id)); partnerForm.set("variantId",String(variantId)); partnerForm.set("orderNumber",orderNumber);
+  partnerForm.set("memberReference",String(user.id)); partnerForm.set("variantId",String(variantId)); partnerForm.set("journeyStage","prepay_verification");
   for (const key of ["dateOfBirth","heightCm","weightKg","conditions","medicines","previousTreatment","previousMedicine","previousDose","lastDoseDate","gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber"]) partnerForm.set(key,formText(form,key));
   partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION);
   for (const [key,file] of Object.entries(files)) partnerForm.set(key,file,file.name);
@@ -234,9 +233,14 @@ async function clinicalIntake(request, env) {
   if (!partnerResponse.ok || !partner.reference) return json({ok:false,error:"clinical_submission_failed",message:clean(partner.message,200)||"The clinical service could not accept the assessment."},502,cors(request));
   const partnerStatus = clean(partner.status,60) || "submitted";
   const publicReference=`SCI-${crypto.randomUUID()}`;
-  const submittedAt=now();
-  await env.DB.batch([env.DB.prepare(`INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,submitted_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(user.id,variantId,publicReference,clean(partner.reference,160),partnerStatus,1,CLINICAL_CONSENT_VERSION,JSON.stringify({photoId:true,bodyFront:true,bodySide:true}),submittedAt,submittedAt),env.DB.prepare(`UPDATE medicine_orders SET clinical_intake_submitted_at=?,clinical_updated_at=?,updated_at=? WHERE id=?`).bind(submittedAt,submittedAt,submittedAt,order.id)]);
-  return json({ok:true,accepted:true,intakeReference:publicReference,partnerReference:clean(partner.reference,160),status:partnerStatus,nextStep:clean(partner.nextStep,80)||"prescriber_review"},partner.verified===true?200:202,cors(request));
+  const submittedAt=now(), partnerReference=clean(partner.reference,160);
+  await env.DB.prepare(`INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,submitted_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(user.id,variantId,publicReference,partnerReference,partner.verified===true?'verified':partnerStatus,1,CLINICAL_CONSENT_VERSION,JSON.stringify({photoId:true,bodyFront:true,bodySide:true}),submittedAt,submittedAt).run();
+  if (partner.verified === true) {
+    const token=crypto.randomUUID()+crypto.randomUUID(),expiresAt=new Date(Date.now()+30*60*1000).toISOString();
+    await env.DB.batch([env.DB.prepare(`INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at,created_at) VALUES(?,?,?,?,?,?)`).bind(await sha256(token),user.id,variantId,partnerReference,expiresAt,submittedAt),env.DB.prepare(`UPDATE medicine_clinical_intakes SET verification_issued_at=?,updated_at=? WHERE public_reference=?`).bind(submittedAt,submittedAt,publicReference)]);
+    return json({ok:true,accepted:true,verified:true,intakeReference:publicReference,verificationToken:token,variantId,expiresAt,nextStep:"payment"},200,cors(request));
+  }
+  return json({ok:true,accepted:true,verified:false,intakeReference:publicReference,status:partnerStatus,nextStep:clean(partner.nextStep,80)||"verification_review"},202,cors(request));
 }
 
 async function clinicalIntakeStatus(request, env) {
@@ -518,6 +522,14 @@ async function checkout(request, env) {
     if (Number(reorderOf.variant_id) !== variantId)
       return json({ ok: false, error: "reorder_variant_mismatch" }, 400, cors(request));
   }
+  const verificationToken=clean(input?.verificationToken,160);
+  let verification=null,verificationHash='';
+  if (!reorderOf) {
+    if (!verificationToken) return json({ok:false,error:"prepay_verification_required",message:"Complete verification before payment."},409,cors(request));
+    verificationHash=await sha256(verificationToken);
+    verification=await env.DB.prepare(`SELECT token_hash,partner_reference,expires_at FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?`).bind(verificationHash,user.id,variantId,now()).first();
+    if (!verification) return json({ok:false,error:"invalid_or_expired_verification",message:"Verification has expired or does not match this treatment. Complete it again before payment."},409,cors(request));
+  }
   const item = await env.DB.prepare(
     `SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,m.name,m.status medicine_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,
   )
@@ -544,6 +556,14 @@ async function checkout(request, env) {
       409,
       cors(request),
     );
+  const verificationClaimedAt=verification?now():'';
+  if (verification) {
+    const claimed=await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=? WHERE token_hash=? AND used_at IS NULL AND expires_at>?`).bind(verificationClaimedAt,verificationHash,verificationClaimedAt).run();
+    if (Number(claimed.meta?.changes||0)!==1) {
+      await env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`).bind(now(),variantId).run();
+      return json({ok:false,error:"verification_already_used",message:"This verification has already been used."},409,cors(request));
+    }
+  }
   const offer = await discount(
     env,
     input?.discountCode,
@@ -555,6 +575,7 @@ async function checkout(request, env) {
     )
       .bind(now(), variantId)
       .run();
+    if(verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?`).bind(verificationHash,verificationClaimedAt).run();
     return json(
       { ok: false, error: "invalid_discount_code" },
       400,
@@ -564,6 +585,7 @@ async function checkout(request, env) {
   let reference;
   try{reference=await reserveOrderReference(env.DB,{channel:'medicine',userId:user.id})}catch(error){
     await env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`).bind(now(),variantId).run();
+    if(verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?`).bind(verificationHash,verificationClaimedAt).run();
     console.error('order_reference_reservation_failed',{channel:'medicine',message:error?.message});
     return json({ok:false,error:'order_reference_unavailable'},503,cors(request));
   }
@@ -573,7 +595,7 @@ async function checkout(request, env) {
   };
   const stamp = now();
   const inserted = await env.DB.prepare(
-    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
   )
     .bind(
       order.orderNumber,
@@ -588,6 +610,7 @@ async function checkout(request, env) {
       offer?.amount || 0,
       order.totalPence,
       reorderOf?.id || null,
+      verification ? stamp : null,
       stamp,
       stamp,
     )
@@ -612,6 +635,7 @@ async function checkout(request, env) {
         `UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=?`,
       ).bind(now(), inserted.meta.last_row_id),
     ]);
+    if(verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?`).bind(verificationHash,verificationClaimedAt).run();
     const stripeError={status:response.status,type:clean(session?.error?.type||'unknown',100),code:clean(session?.error?.code||'',100),param:clean(session?.error?.param||'',160),message:clean(session?.error?.message||'Stripe did not create a checkout session.',300),keyMode:key.startsWith('sk_live_')?'live':key.startsWith('sk_test_')?'test':'invalid'};
     console.error('medicine_stripe_checkout_create_failed',{orderNumber:order.orderNumber,...stripeError});
     await env.DB.prepare(`UPDATE medicine_orders SET stripe_error_json=?,updated_at=? WHERE id=?`).bind(JSON.stringify(stripeError),now(),inserted.meta.last_row_id).run().catch(()=>{});

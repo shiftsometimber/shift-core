@@ -49,10 +49,12 @@ test('public catalogue query cannot expose medicine cost or target margin',async
   assert.match(query,/v\.selling_price_pence/);
 });
 
-test('checkout is payment-first while stock remains server-gated',async()=>{
+test('checkout is verification-first while stock remains server-gated',async()=>{
   const source=await readFile(new URL('../medicine-commerce-v1.js',import.meta.url),'utf8');
   assert.match(source,/order-success\?session_id=\{CHECKOUT_SESSION_ID\}/);
-  assert.doesNotMatch(source,/MEDICINE_PREPAY_VERIFICATION_REQUIRED/);
+  assert.match(source,/prepay_verification_required/);
+  assert.match(source,/verificationToken/);
+  assert.match(source,/medicine_prepay_verifications/);
   assert.match(source,/stock_on_hand-reserved>0/);
 });
 
@@ -62,7 +64,7 @@ test('clinical intake is complete, partner-owned and fail-closed',async()=>{
     readFile(new URL('../frontend/medicine-front-door/treatment-assessment.html',import.meta.url),'utf8'),
     readFile(new URL('../frontend/medicine-front-door/treatment-assessment.js',import.meta.url),'utf8'),
   ]);
-  for(const field of ['orderNumber','photoId','bodyFront','bodySide','gpName','gpPractice','gpAddress','gpPostcode','gpContactConsent','imageConsent'])assert.match(page,new RegExp(`name="${field}"`));
+  for(const field of ['photoId','bodyFront','bodySide','gpName','gpPractice','gpAddress','gpPostcode','gpContactConsent','imageConsent'])assert.match(page,new RegExp(`name="${field}"`));
   assert.match(server,/PHARMACY_CLINICAL_INTAKE_URL/);
   assert.match(server,/medicine_clinical_intakes/);
   assert.match(server,/MAX_CLINICAL_FILE_BYTES/);
@@ -70,13 +72,15 @@ test('clinical intake is complete, partner-owned and fail-closed',async()=>{
   assert.doesNotMatch(server,/image_base64.*medicine_clinical_intakes/i);
   assert.match(client,/new FormData\(form\)/);
   assert.match(client,/\/medicine-clinical-intake/);
-  assert.match(server,/paid_order_required/);
+  assert.match(server,/journeyStage","prepay_verification/);
+  assert.doesNotMatch(server,/paid_order_required/);
 });
 
 test('the public order page consumes the governed catalogue and checkout',async()=>{
   const source=await readFile(new URL('../frontend/medicine-front-door/medicine-front-door.js',import.meta.url),'utf8');
   assert.match(source,/\/v1\/catalogue\/medicines/);
   assert.match(source,/\/v1\/commerce\/medicine-checkout/);
+  assert.match(source,/verificationToken/);
   assert.match(source,/Currently out of stock/);
   assert.match(source,/Supply status unavailable—ordering remains closed/);
   assert.doesNotMatch(source,/costPence|grossMarginPercent|target_margin_bps/);

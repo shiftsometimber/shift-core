@@ -26,13 +26,14 @@ test('prices and stock come only from the governed catalogue',async()=>{
 test('Foundayo is launch-ready but cannot open the till without HQ supply',async()=>{
   const js=await readFile(new URL('medicine-front-door.js',root),'utf8');
   assert.match(js,/foundayo:\{match:'foundayo',type:'ONCE-DAILY TABLET · SUPPLY LOCKED'/);
-  assert.match(js,/Launch-ready · partner supply not yet confirmed/);
+  assert.match(js,/Formulary and partner supply not yet confirmed/);
   assert.doesNotMatch(js,/if\(slug==='foundayo'\).*return/);
 });
 
-test('the paid order hands off to compulsory clinical assessment',async()=>{
+test('verification is compulsory before payment',async()=>{
   const source=await readFile(new URL('treatment-assessment.js',root),'utf8');
   assert.match(source,/\/v1\/commerce\/medicine-clinical-intake/);
-  assert.match(source,/orderNumber/);
+  assert.match(source,/sst-medicine-verification/);
+  assert.match(source,/verificationToken/);
   assert.match(source,/new FormData\(form\)/);
 });
