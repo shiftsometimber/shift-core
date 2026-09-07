@@ -9,10 +9,11 @@ const grub=fs.readFileSync('frontend/member/member-grub.html','utf8');
 const fit=fs.readFileSync('frontend/member/member-fit.html','utf8');
 const visual=fs.readFileSync('frontend/member/my-timber-v11.css','utf8');
 const worker=fs.readFileSync('worker-entry-v6.js','utf8');
+const workerCompact=worker.replace(/"/g,"'").replace(/\s+/g,'');
 const config=fs.readFileSync('wrangler.jsonc','utf8');
 const extension=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
 
-need(worker.includes("new URL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
+need(workerCompact.includes("newURL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
 for(const marker of [
   'aria-label="Main website navigation"',
   'href="https://shiftsometimber.co.uk/start-here"',
@@ -40,12 +41,12 @@ for(const [name,page,current] of [['Today',shell,'/member/dashboard'],['Grub',gr
   need(page.includes(`href="${current}" aria-current="page"`),`${name} current navigation state missing`);
 }
 for(const marker of ['background:var(--sst-black)','background:var(--sst-cream)','background:var(--sst-green)','font-family:Arial'])need(visual.includes(marker),`V11 visual contract missing ${marker}`);
-for(const marker of ["['/my-timber-v11.css'","['/my-timber-v11.js'","['/sst-logo-official.png'"])need(worker.includes(marker),`V11 Worker asset missing ${marker}`);
+for(const marker of ["['/my-timber-v11.css'","['/my-timber-v11.js'","['/sst-logo-official.png'"])need(workerCompact.includes(marker),`V11 Worker asset missing ${marker}`);
 need(shell.includes('window.SST_API_BASE=location.origin'),'My Timber auth is not using the same-origin API boundary');
 for(const marker of ['shiftsometimber.co.uk/member/dashboard*','shiftsometimber.co.uk/member-login*','shiftsometimber.co.uk/member-register*'])need(config.includes(marker),`live My Timber route missing ${marker}`);
 for(const marker of ['shiftsometimber.co.uk/v1/*','www.shiftsometimber.co.uk/v1/*'])need(config.includes(marker),`same-origin member API route missing ${marker}`);
 for(const marker of ['shiftsometimber.co.uk/lounge*','www.shiftsometimber.co.uk/lounge*'])need(config.includes(marker),`live Lounge route missing ${marker}`);
-need(worker.includes("new URL('/lounge',request.url),301"),'legacy Tap Room route is not permanently redirected to The Lounge');
+need(workerCompact.includes("newURL('/lounge',request.url),301"),'legacy Tap Room route is not permanently redirected to The Lounge');
 need(!shell.includes('Isolated My Timber preview'),'live My Timber still presents itself as an isolated preview');
 need(!shell.includes('Nothing here touches your live Shift account'),'live My Timber still contains preview-only account copy');
 for(const marker of ['.sst-coming-plan b,.sst-coming-plan span{display:block}', '.sst-coming-plan span{margin-top:4px'])need(extension.includes(marker),`coming-off plan sentence spacing missing ${marker}`);
@@ -53,6 +54,6 @@ const login=fs.readFileSync('member-login-fastpath-v1.js','utf8');
 for(const marker of ['body?.rememberMe===true','Domain=.shiftsometimber.co.uk','Max-Age=','REMEMBER_DAYS=90','STANDARD_HOURS=12'])need(login.includes(marker),`remember-me contract missing ${marker}`);
 const state=fs.readFileSync('member-state-fast-v1.js','utf8');
 for(const marker of ['matchAll','values.slice(0,4)','for(const raw of candidates)'])need(state.includes(marker),`duplicate-cookie recovery contract missing ${marker}`);
-need(worker.includes('authenticateMember(request,env)'),'Lounge page gate is not using duplicate-cookie-safe member authentication');
+need(workerCompact.includes('authenticateMember(request,env)'),'Lounge page gate is not using duplicate-cookie-safe member authentication');
 
 console.log('My Timber navigation gate: PASS');

@@ -15,6 +15,7 @@ const client = [read('frontend/member/member-my-journey-v1.js'), read('frontend/
 const css = [read('frontend/member/member-my-journey-v1.css'), read('frontend/member/member-my-journey-checkin-v1.css'), shell].join('\n');
 const adapter = read('frontend/member/api-adapter-v33d.js');
 const worker = read('worker-entry-v6.js');
+const workerNormalised = worker.replace(/"/g, "'").replace(/\s+/g, '');
 const config = read('wrangler.jsonc');
 const productionWorkflow = read('.github/workflows/cloudflare-production-promote.yml');
 const weeklyClient = read('frontend/member/member-my-journey-checkin-v1.js');
@@ -46,7 +47,7 @@ for (const marker of [
   "'/member-my-journey-v1.js'",
   "'/member-my-journey-v1.css'",
   "path.startsWith('/v1/journey/')",
-]) has(worker, marker);
+]) has(workerNormalised, marker.replace(/\s+/g, ''));
 for (const marker of [
   'shiftsometimber.co.uk/member-my-journey-v1.js*',
   'shiftsometimber.co.uk/member-my-journey-v1.css*',
