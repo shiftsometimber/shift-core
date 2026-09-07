@@ -6,6 +6,7 @@ const source = await readFile(new URL('../frontend/member/whole-man-intent-os-v1
 const journey = await readFile(new URL('../frontend/member/whole-man-journey-modes-v1.js', import.meta.url), 'utf8');
 const setup = await readFile(new URL('../frontend/member/member-my-journey-v1.js', import.meta.url), 'utf8');
 const workerConfig = await readFile(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
+const workerEntry = await readFile(new URL('../worker-entry-v6.js', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -119,4 +120,6 @@ test('production routes publish both LTV runtime assets on apex and www', () => 
     assert.ok(workerConfig.includes(`${host}/whole-man-intent-os-v1.js*`));
     assert.ok(workerConfig.includes(`${host}/whole-man-journey-modes-v1.js*`));
   }
+  assert.ok(workerEntry.includes("['/whole-man-intent-os-v1.js','application/javascript; charset=utf-8']"));
+  assert.ok(workerEntry.includes("['/whole-man-journey-modes-v1.js','application/javascript; charset=utf-8']"));
 });
