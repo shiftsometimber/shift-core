@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const source = await readFile(new URL('../frontend/member/whole-man-intent-os-v1.js', import.meta.url), 'utf8');
 const journey = await readFile(new URL('../frontend/member/whole-man-journey-modes-v1.js', import.meta.url), 'utf8');
+const setup = await readFile(new URL('../frontend/member/member-my-journey-v1.js', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -32,9 +33,11 @@ test('Whole-Man OS keeps one Next Shift and avoids product-wall language', () =>
   assert.ok(!source.includes('Add to basket'));
 });
 
-test('initial Next Shift CTA opens Sort rather than a dead hash', () => {
-  assert.ok(source.includes("card.href==='#sort'"));
-  assert.ok(source.includes('event.preventDefault();openSort();return'));
+test('initial Next Shift CTA is a real button rather than a dead hash', () => {
+  assert.ok(source.includes("action:'sort'"));
+  assert.ok(source.includes('data-next-action="sort"'));
+  assert.ok(source.includes("if(card.action==='sort'){event.preventDefault();openSort();return}"));
+  assert.ok(!source.includes("href:'#sort'"));
 });
 
 test('skipping Sort does not invent doing_alright intent', () => {
@@ -76,13 +79,31 @@ test('Life Back uses one or two priorities, never leaderboard theatre', () => {
   assert.ok(!journey.toLowerCase().includes('leaderboard'));
 });
 
-test('scalable routing does not depend on Message Matt or Lounge', () => {
-  assert.ok(!source.includes('Message Matt'));
-  assert.ok(!journey.includes('Message Matt'));
-  assert.ok(!source.includes('The Lounge'));
-  assert.ok(!journey.includes('The Lounge'));
-  assert.ok(journey.includes('Contact support'));
-  assert.ok(journey.includes('Ask Timber'));
+test('ContinuityStay keeps Journey, CGQ, Lounge and human support without becoming a product', () => {
+  for (const phrase of ['CONTINUITYSTAY','Clinic Gone Quiet','Open The Lounge','Message SHIFT']) assert.ok(journey.includes(phrase));
+  for (const state of ['stopped','stranded','elsewhere','doing_alright']) assert.ok(journey.includes(state));
+  assert.ok(journey.includes('billing stays off'));
+  assert.ok(!journey.includes('SHIFT Continuity'));
+});
+
+test('Next Shift priority rules put safety and active journey work before Sort', () => {
+  for (const priority of ['safety','continuity','journey_setup','clinical_checks','open_order']) assert.ok(source.includes(`priority:'${priority}'`));
+});
+
+test('One Shift Brain fields and analytics events use the locked names', () => {
+  for (const field of ['intent_sort_current','intent_sort_history','journey_mode','next_shift_intent','next_shift_updated_at','life_back_priorities','life_back_reflections','mot_state','continuity_stay_active']) {
+    assert.ok(source.includes(field) || journey.includes(field), `missing field: ${field}`);
+  }
+  for (const event of ['intent_sort_selected','next_shift_shown','next_shift_completed','journey_mode_changed','life_back_weekly_reflection','continuity_stay_selected']) {
+    assert.ok(source.includes(event) || journey.includes(event), `missing event: ${event}`);
+  }
+});
+
+test('mandatory Journey setup includes one or two Life Back priorities', () => {
+  assert.ok(setup.includes('Life Back — why this stays'));
+  assert.ok(setup.includes('lifeBack:{...(panel._journey.lifeBack||{}),priorities:lifeBackPriorities}'));
+  assert.ok(setup.includes('life_back_setup_completed'));
+  assert.ok(setup.includes('Choose at least one Life Back priority'));
 });
 
 test('mobile Sort collapses to one column and actions remain full-width', () => {

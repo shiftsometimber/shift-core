@@ -287,13 +287,14 @@ async function prepayVerification(request, env) {
 }
 
 function journeyComplete(preferences) {
-  let journey = {};
-  try { journey = JSON.parse(preferences || "{}").myJourney || {}; } catch {}
+  let parsed = {}, journey = {}, wholeMan = {};
+  try { parsed = JSON.parse(preferences || "{}"); journey = parsed.myJourney || {}; wholeMan = parsed.wholeMan || {}; } catch {}
   const setup = journey.setup || {}, weight = journey.weight || {};
+  const priorities = journey.lifeBack?.priorities || wholeMan.lifeBackPriorities || wholeMan.life_back_priorities || [];
   const direction = setup.targetMode === "maintenance"
     ? Number(weight.maintenanceLowKg) >= 25 && Number(weight.maintenanceHighKg) >= Number(weight.maintenanceLowKg)
     : Number(weight.targetKg) >= 25;
-  return Boolean(/^\d{4}-\d{2}-\d{2}$/.test(String(setup.startDate || "")) && Number(weight.startKg) >= 25 && Number(weight.currentKg) >= 25 && direction);
+  return Boolean(/^\d{4}-\d{2}-\d{2}$/.test(String(setup.startDate || "")) && Number(weight.startKg) >= 25 && Number(weight.currentKg) >= 25 && direction && Array.isArray(priorities) && priorities.length >= 1 && priorities.length <= 2);
 }
 
 function memberTreatmentView(order, setupComplete) {
@@ -787,7 +788,7 @@ async function confirmJourneySetup(request, env) {
   if (!user) return json({ ok: false, error: "unauthorised" }, 401, cors(request));
   await schema(env);
   const state = await env.DB.prepare(`SELECT preferences FROM member_state WHERE user_id=?`).bind(user.id).first().catch(() => null);
-  if (!journeyComplete(state?.preferences)) return json({ ok: false, error: "journey_setup_incomplete", message: "Finish the required My Journey starting point first." }, 409, cors(request));
+  if (!journeyComplete(state?.preferences)) return json({ ok: false, error: "journey_setup_incomplete", message: "Finish the required My Journey starting point and choose what you want your Life Back for." }, 409, cors(request));
   const stamp = now();
   const result = await env.DB.prepare(`UPDATE medicine_orders SET journey_setup_completed_at=COALESCE(journey_setup_completed_at,?),updated_at=? WHERE user_id=? AND clinical_status='approved' AND journey_setup_required=1`).bind(stamp, stamp, user.id).run();
   return json({ ok: true, completed: Number(result.meta?.changes || 0) }, 200, cors(request));
