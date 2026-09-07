@@ -70,3 +70,14 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
+
+// Whole-Man Intent OS loader. Kept outside treatment/auth files so Track S stays untouched.
+(function(){
+  'use strict';
+  if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
+  if(document.querySelector('script[data-whole-man-intent-os]'))return;
+  const script=document.createElement('script');
+  script.dataset.wholeManIntentOs='v1';
+  script.src='/whole-man-intent-os-v1.js?v=1';
+  document.body.appendChild(script);
+})();
