@@ -137,7 +137,12 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.equal(tracker.orders[0].journeySetupRequired,true);
     assert.equal(tracker.orders[0].canReorder,false);
 
-    const journey=JSON.stringify({myJourney:{setup:{startDate:'2026-09-06',targetMode:'loss'},weight:{startKg:92.4,currentKg:92.4,targetKg:80}}});
+    const incompleteJourney=JSON.stringify({myJourney:{setup:{startDate:'2026-09-06',targetMode:'loss'},weight:{startKg:92.4,currentKg:92.4,targetKg:80}}});
+    await DB.prepare('UPDATE member_state SET preferences=? WHERE user_id=42').bind(incompleteJourney).run();
+    const blockedJourney=await medicineCommerceRoutes(memberRequest('/v1/treatment/journey-setup-complete',{method:'POST'}),env,{});
+    assert.equal(blockedJourney.status,409);
+
+    const journey=JSON.stringify({myJourney:{setup:{startDate:'2026-09-06',targetMode:'loss'},weight:{startKg:92.4,currentKg:92.4,targetKg:80},lifeBack:{priorities:['energy']}}});
     await DB.prepare('UPDATE member_state SET preferences=? WHERE user_id=42').bind(journey).run();
     const journeyComplete=await medicineCommerceRoutes(memberRequest('/v1/treatment/journey-setup-complete',{method:'POST'}),env,{});
     assert.equal(journeyComplete.status,200);
