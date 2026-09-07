@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 const source = await readFile(new URL('../frontend/member/whole-man-intent-os-v1.js', import.meta.url), 'utf8');
 const journey = await readFile(new URL('../frontend/member/whole-man-journey-modes-v1.js', import.meta.url), 'utf8');
 const setup = await readFile(new URL('../frontend/member/member-my-journey-v1.js', import.meta.url), 'utf8');
+const workerConfig = await readFile(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -111,4 +112,11 @@ test('mobile Sort collapses to one column and actions remain full-width', () => 
   assert.ok(source.includes('.wm-sort-grid{grid-template-columns:1fr}'));
   assert.ok(source.includes('.wm-next a,.wm-next button{width:100%;text-align:center}'));
   assert.ok(journey.includes('@media(max-width:600px)'));
+});
+
+test('production routes publish both LTV runtime assets on apex and www', () => {
+  for (const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']) {
+    assert.ok(workerConfig.includes(`${host}/whole-man-intent-os-v1.js*`));
+    assert.ok(workerConfig.includes(`${host}/whole-man-journey-modes-v1.js*`));
+  }
 });
