@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const source = await readFile(new URL('../frontend/member/whole-man-intent-os-v1.js', import.meta.url), 'utf8');
+const journey = await readFile(new URL('../frontend/member/whole-man-journey-modes-v1.js', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -49,4 +50,27 @@ test('regulated routes carry explicit partner gates', () => {
   assert.ok(source.includes("gate:'pharmacy'"));
   assert.ok(source.includes("gate:'diagnostics'"));
   assert.ok(source.includes("gate:'clinical'"));
+});
+
+test('Journey modes stay inside one Journey and include the locked wider-health states', () => {
+  for (const phrase of ['KEEP IT OFF','CONTINUITY','How’s the engine?','Private men’s health check-in','Lose timber. Keep strength.']) {
+    assert.ok(journey.includes(phrase), `missing Journey mode copy: ${phrase}`);
+  }
+  assert.ok(journey.includes("document.getElementById('panel-journey')"));
+  assert.ok(!journey.includes('Coming Soon'));
+  assert.ok(!journey.includes('Add to basket'));
+  assert.ok(!journey.includes('LOW T? BUY TRT'));
+});
+
+test('MOT remains framing-only and mens check-in rejects symptom-to-TRT shortcut', () => {
+  assert.ok(journey.includes("motState:'intake_started'"));
+  assert.ok(journey.includes('no payment or fake test has been created'));
+  assert.ok(journey.includes('Symptoms alone do not diagnose low testosterone'));
+  assert.ok(journey.includes('diagnostics + clinical governance are live'));
+});
+
+test('Life Back uses one or two priorities, never leaderboard theatre', () => {
+  assert.ok(journey.includes('What do you want back?'));
+  assert.ok(journey.includes('selected.length<2'));
+  assert.ok(!journey.includes('leaderboard'));
 });
