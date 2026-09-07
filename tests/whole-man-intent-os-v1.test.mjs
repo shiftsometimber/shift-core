@@ -31,6 +31,11 @@ test('Whole-Man OS keeps one Next Shift and avoids product-wall language', () =>
   assert.ok(!source.includes('Add to basket'));
 });
 
+test('initial Next Shift CTA opens Sort rather than a dead hash', () => {
+  assert.ok(source.includes("card.href==='#sort'"));
+  assert.ok(source.includes('event.preventDefault();openSort();return'));
+});
+
 test('skipping Sort does not invent doing_alright intent', () => {
   const skipStart = source.indexOf('async function skipCheckin');
   assert.notEqual(skipStart, -1);
