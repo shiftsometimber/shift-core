@@ -8,6 +8,8 @@ const setup = await readFile(new URL('../frontend/member/member-my-journey-v1.js
 const workerConfig = await readFile(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
 const workerEntry = await readFile(new URL('../worker-entry-v6.js', import.meta.url), 'utf8');
 const shiftHealth = await readFile(new URL('../frontend/member/shift-health.html', import.meta.url), 'utf8');
+const shiftHealthProduct = await readFile(new URL('../frontend/member/shift-health-product.html', import.meta.url), 'utf8');
+const shiftHealthCatalogue = await readFile(new URL('../frontend/member/shift-health-catalogue-v1.js', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -140,4 +142,17 @@ test('SHIFT Health ships in desktop, mobile, footer and shared public chrome', (
   assert.ok(workerConfig.includes('www.shiftsometimber.co.uk/shift-health*'));
   assert.ok(workerEntry.includes("['/shift-health.html','text/html; charset=utf-8']"));
   assert.ok(workerEntry.includes('SHIFT_HEALTH_CHROME_PATCH'));
+});
+
+test('SHIFT Health matches medicine-page depth while remaining honestly out of stock', () => {
+  for (const code of ['SH-MOT','SH-TE','SH-BP','SH-SCALE','SH-BANDS','SH-MEASURE','SH-ED','SH-HAIR','SH-NRT','SH-SLEEP']) assert.ok(shiftHealthCatalogue.includes(code));
+  for (const section of ['The positives','The honest negatives','THE POTENTIAL','Who it’s for','Who it’s not for','HOW IT WORKS','USEFUL QUESTIONS','WHERE IT FITS','MY NEXT SHIFT']) assert.ok(shiftHealthCatalogue.includes(section));
+  assert.ok(shiftHealthCatalogue.includes('Currently out of stock'));
+  assert.ok(shiftHealthCatalogue.includes('Tell me when it’s back.'));
+  assert.ok(!/partner|formulary|not contracted|coming soon/i.test(shiftHealthCatalogue));
+  assert.ok(!/partner|formulary|not contracted|coming soon/i.test(shiftHealth));
+  assert.ok(shiftHealthProduct.includes('data-product'));
+  assert.ok(workerEntry.includes("['/shift-health-product.html','text/html; charset=utf-8']"));
+  assert.ok(workerEntry.includes("['/shift-health-catalogue-v1.js','application/javascript; charset=utf-8']"));
+  assert.ok(workerEntry.includes("path.startsWith('/shift-health/')"));
 });

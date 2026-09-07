@@ -62,6 +62,8 @@ const GIT_MEMBER_ASSETS=new Map([
   ['/whole-man-intent-os-v1.js','application/javascript; charset=utf-8'],
   ['/whole-man-journey-modes-v1.js','application/javascript; charset=utf-8'],
   ['/shift-health.html','text/html; charset=utf-8'],
+  ['/shift-health-product.html','text/html; charset=utf-8'],
+  ['/shift-health-catalogue-v1.js','application/javascript; charset=utf-8'],
   ['/member-plans-premium-v1.js','application/javascript; charset=utf-8'],
   ['/member-plans-premium-v1.css','text/css; charset=utf-8'],
   ['/member-today-premium-v1.js','application/javascript; charset=utf-8'],
@@ -193,6 +195,10 @@ export default {
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/member/progress'||path==='/member/progress.html'||path==='/member/health-mot'||path==='/member/health-mot.html'))return Response.redirect(new URL('/member/dashboard#journey',request.url),301);
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/shift-health'||path==='/shift-health.html')){
       const response=await gitMemberAsset('/shift-health.html',env);
+      return response||new Response('SHIFT Health unavailable',{status:503,headers:{'Cache-Control':'no-store'}});
+    }
+    if((request.method==='GET'||request.method==='HEAD')&&path.startsWith('/shift-health/')&&path.split('/').filter(Boolean).length===2){
+      const response=await gitMemberAsset('/shift-health-product.html',env);
       return response||new Response('SHIFT Health unavailable',{status:503,headers:{'Cache-Control':'no-store'}});
     }
     if((request.method==='GET'||request.method==='HEAD')&&(path==='/treatment-assessment'||path==='/treatment-assessment.html')){
