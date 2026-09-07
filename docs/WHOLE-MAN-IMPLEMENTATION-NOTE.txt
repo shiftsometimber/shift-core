@@ -1,1 +1,0 @@
-Whole-Man Intent OS is built on branch whole-man-intent-os under PR #648. Track S remains merge-priority. This note exists only to make the implementation boundary explicit for future contributors.
