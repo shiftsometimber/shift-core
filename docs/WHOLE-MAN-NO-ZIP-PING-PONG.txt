@@ -1,0 +1,1 @@
+Ship Whole-Man as one coherent regression-tested batch. Do not fragment it into competing deployment ZIPs. Track S remains higher priority on conflict.
