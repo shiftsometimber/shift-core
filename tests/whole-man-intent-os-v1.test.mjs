@@ -50,6 +50,7 @@ test('regulated routes carry explicit partner gates', () => {
   assert.ok(source.includes("gate:'pharmacy'"));
   assert.ok(source.includes("gate:'diagnostics'"));
   assert.ok(source.includes("gate:'clinical'"));
+  assert.ok(source.includes('partner, stock and governance gates'));
 });
 
 test('Journey modes stay inside one Journey and include the locked wider-health states', () => {
@@ -72,5 +73,21 @@ test('MOT remains framing-only and mens check-in rejects symptom-to-TRT shortcut
 test('Life Back uses one or two priorities, never leaderboard theatre', () => {
   assert.ok(journey.includes('What do you want back?'));
   assert.ok(journey.includes('selected.length<2'));
-  assert.ok(!journey.includes('leaderboard'));
+  assert.ok(!journey.toLowerCase().includes('leaderboard'));
+});
+
+test('scalable routing does not depend on Message Matt or Lounge', () => {
+  assert.ok(!source.includes('Message Matt'));
+  assert.ok(!journey.includes('Message Matt'));
+  assert.ok(!source.includes('The Lounge'));
+  assert.ok(!journey.includes('The Lounge'));
+  assert.ok(journey.includes('Contact support'));
+  assert.ok(journey.includes('Ask Timber'));
+});
+
+test('mobile Sort collapses to one column and actions remain full-width', () => {
+  assert.ok(source.includes('@media(max-width:560px)'));
+  assert.ok(source.includes('.wm-sort-grid{grid-template-columns:1fr}'));
+  assert.ok(source.includes('.wm-next a,.wm-next button{width:100%;text-align:center}'));
+  assert.ok(journey.includes('@media(max-width:600px)'));
 });
