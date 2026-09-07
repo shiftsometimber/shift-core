@@ -7,6 +7,7 @@ const journey = await readFile(new URL('../frontend/member/whole-man-journey-mod
 const setup = await readFile(new URL('../frontend/member/member-my-journey-v1.js', import.meta.url), 'utf8');
 const workerConfig = await readFile(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
 const workerEntry = await readFile(new URL('../worker-entry-v6.js', import.meta.url), 'utf8');
+const shiftHealth = await readFile(new URL('../frontend/member/shift-health.html', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -122,4 +123,21 @@ test('production routes publish both LTV runtime assets on apex and www', () => 
   }
   assert.ok(workerEntry.includes("['/whole-man-intent-os-v1.js','application/javascript; charset=utf-8']"));
   assert.ok(workerEntry.includes("['/whole-man-journey-modes-v1.js','application/javascript; charset=utf-8']"));
+});
+
+test('SHIFT Health is the locked non-weight problem-led public doorway', () => {
+  for (const label of ['My energy or sleep','My heart and metabolic health','My sex life or confidence','My hair','Testosterone concerns','My head or stress','Drinking or smoking','Give me a health MOT']) assert.ok(shiftHealth.includes(label));
+  assert.ok(shiftHealth.includes('Here about weight? Start Here'));
+  assert.ok(!shiftHealth.includes('My weight'));
+  assert.ok(!shiftHealth.includes('Coming Soon'));
+  assert.ok(!shiftHealth.includes('Add to basket'));
+  assert.ok(!shiftHealth.includes('Buy TRT'));
+});
+
+test('SHIFT Health ships in desktop, mobile, footer and shared public chrome', () => {
+  for (const label of ['Start Here','The Programme','SHIFT Health','Knowledge','About','My Timber']) assert.ok(shiftHealth.includes(label));
+  assert.ok(workerConfig.includes('shiftsometimber.co.uk/shift-health*'));
+  assert.ok(workerConfig.includes('www.shiftsometimber.co.uk/shift-health*'));
+  assert.ok(workerEntry.includes("['/shift-health.html','text/html; charset=utf-8']"));
+  assert.ok(workerEntry.includes('SHIFT_HEALTH_CHROME_PATCH'));
 });
