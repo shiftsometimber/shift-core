@@ -22,5 +22,7 @@ Implementation rules:
 - Message Matt is not a required clinical route; scalable routes are Ask Timber / Support / governed clinical escalation.
 - Lounge is not unveil-critical.
 - Journey modes live inside Journey, not as top-level clinic departments.
+- Ship Whole-Man as one coherent regression-tested batch; do not fragment it into competing deployment ZIPs.
 
+Current implementation branch: `whole-man-intent-os` / PR #648.
 See issues #637–#647 for build tickets and acceptance criteria.
