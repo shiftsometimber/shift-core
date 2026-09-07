@@ -22,6 +22,7 @@ const workerEntry = await readFile(
   new URL("../worker-entry-v6.js", import.meta.url),
   "utf8",
 );
+const workerCompact = workerEntry.replace(/\s+/g, "").replace(/"/g, "'");
 const shiftHealth = await readFile(
   new URL("../frontend/member/shift-health.html", import.meta.url),
   "utf8",
@@ -211,13 +212,13 @@ test("production routes publish both LTV runtime assets on apex and www", () => 
     assert.ok(workerConfig.includes(`${host}/whole-man-journey-modes-v1.js*`));
   }
   assert.ok(
-    workerEntry.includes(
-      "['/whole-man-intent-os-v1.js','application/javascript; charset=utf-8']",
+    workerCompact.includes(
+      "['/whole-man-intent-os-v1.js','application/javascript;charset=utf-8']",
     ),
   );
   assert.ok(
-    workerEntry.includes(
-      "['/whole-man-journey-modes-v1.js','application/javascript; charset=utf-8']",
+    workerCompact.includes(
+      "['/whole-man-journey-modes-v1.js','application/javascript;charset=utf-8']",
     ),
   );
 });
@@ -254,7 +255,7 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   assert.ok(workerConfig.includes("shiftsometimber.co.uk/shift-health*"));
   assert.ok(workerConfig.includes("www.shiftsometimber.co.uk/shift-health*"));
   assert.ok(
-    workerEntry.includes("['/shift-health.html','text/html; charset=utf-8']"),
+    workerCompact.includes("['/shift-health.html','text/html;charset=utf-8']"),
   );
   assert.ok(workerEntry.includes("SHIFT_HEALTH_CHROME_PATCH"));
 });
@@ -290,20 +291,49 @@ test("SHIFT Health matches medicine-page depth while remaining honestly out of s
     assert.ok(shiftHealthCatalogue.includes(section));
   assert.ok(shiftHealthCatalogue.includes("Currently out of stock"));
   assert.ok(shiftHealthCatalogue.includes("Tell me when it’s back"));
+  for (const slug of [
+    "health-mot",
+    "testosterone-energy",
+    "blood-pressure-monitor",
+    "digital-scales",
+    "resistance-bands",
+    "shift-measure",
+    "erectile-dysfunction",
+    "hair-loss",
+    "stop-smoking",
+    "sleep-apnoea",
+  ]) {
+    assert.ok(
+      shiftHealthCatalogue.includes(`/assets/shift-health/${slug}.webp`) ||
+        shiftHealthCatalogue.includes("`/assets/shift-health/${key}.webp`"),
+    );
+    assert.ok(
+      workerCompact.includes(
+        `['/assets/shift-health/${slug}.webp','image/webp']`,
+      ),
+    );
+  }
+  for (const authority of [
+    "NHS",
+    "NICE",
+    "BIHS",
+    "UK physical activity guidelines",
+  ])
+    assert.ok(shiftHealthCatalogue.includes(authority));
   assert.ok(
     !/partner|formulary|not contracted|coming soon/i.test(shiftHealthCatalogue),
   );
   assert.ok(!/partner|formulary|not contracted|coming soon/i.test(shiftHealth));
   assert.ok(shiftHealthProduct.includes("data-product"));
   assert.ok(
-    workerEntry.includes(
-      "['/shift-health-product.html','text/html; charset=utf-8']",
+    workerCompact.includes(
+      "['/shift-health-product.html','text/html;charset=utf-8']",
     ),
   );
   assert.ok(
-    workerEntry.includes(
-      "['/shift-health-catalogue-v1.js','application/javascript; charset=utf-8']",
+    workerCompact.includes(
+      "['/shift-health-catalogue-v1.js','application/javascript;charset=utf-8']",
     ),
   );
-  assert.ok(workerEntry.includes("path.startsWith('/shift-health/')"));
+  assert.ok(workerCompact.includes("path.startsWith('/shift-health/')"));
 });

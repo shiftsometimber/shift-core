@@ -437,6 +437,151 @@ const FAQ = {
     ],
   ],
 };
+const MEDIA = Object.fromEntries(
+  Object.keys(PRODUCTS).map((key) => [key, `/assets/shift-health/${key}.webp`]),
+);
+const EVIDENCE = {
+  "health-mot": [
+    [
+      "Risk works as a picture",
+      "The NHS Health Check combines measurements and questions to estimate cardiovascular risk; no single blood marker tells the whole story.",
+      "NHS Health Check",
+      "https://www.nhs.uk/conditions/nhs-health-check/what-is-an-nhs-health-check-new/",
+    ],
+    [
+      "Silent problems are real",
+      "High blood pressure and early kidney disease can exist without obvious symptoms, which is why appropriate measurement and follow-up matter.",
+      "NHS: chronic kidney disease",
+      "https://www.nhs.uk/conditions/kidney-disease/",
+    ],
+  ],
+  "testosterone-energy": [
+    [
+      "Symptoms overlap",
+      "The NHS notes that low mood, poor sleep, diet, exercise, alcohol and other health issues can produce symptoms sometimes blamed on a ‘male menopause’.",
+      "NHS: the ‘male menopause’",
+      "https://www.nhs.uk/conditions/male-menopause/",
+    ],
+    [
+      "One result is not the finish line",
+      "A testosterone result needs symptoms, timing, medical history and—where appropriate—confirmation to be interpreted properly.",
+      "Society for Endocrinology",
+      "https://www.endocrinology.org/clinical-practice/clinical-guidance/",
+    ],
+  ],
+  "blood-pressure-monitor": [
+    [
+      "Use a proper home series",
+      "NICE recommends two consecutive seated measurements, twice daily, for at least 4 days and ideally 7 when home monitoring is used to confirm hypertension.",
+      "NICE NG136",
+      "https://www.nice.org.uk/guidance/ng136/chapter/recommendations",
+    ],
+    [
+      "Validation matters",
+      "The British and Irish Hypertension Society maintains a list of monitors independently validated for accuracy.",
+      "BIHS validated monitors",
+      "https://bihs.org.uk/bp-monitors/",
+    ],
+  ],
+  "digital-scales": [
+    [
+      "Follow the trend",
+      "Body weight naturally fluctuates. A consistent method and repeatable interval make the trend more useful than reacting to one reading.",
+      "NHS Better Health",
+      "https://www.nhs.uk/better-health/lose-weight/",
+    ],
+    [
+      "Weight is not the whole picture",
+      "NICE recommends considering waist-to-height ratio alongside BMI in adults with BMI below 35 kg/m².",
+      "NICE NG246",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Recommendations",
+    ],
+  ],
+  "resistance-bands": [
+    [
+      "Strength belongs in the week",
+      "UK Chief Medical Officers advise adults to do activities that develop or maintain strength on at least 2 days each week.",
+      "UK physical activity guidelines",
+      "https://www.gov.uk/government/publications/physical-activity-guidelines-uk-chief-medical-officers-report",
+    ],
+    [
+      "Start from your actual level",
+      "The same guidance stresses building activity gradually and adapting it to ability and health.",
+      "UK Chief Medical Officers",
+      "https://www.gov.uk/government/publications/physical-activity-guidelines-uk-chief-medical-officers-report",
+    ],
+  ],
+  "shift-measure": [
+    [
+      "A simple useful target",
+      "NICE advises adults to try to keep their waist to less than half their height, while recognising that measurements are part of a wider assessment.",
+      "NICE NG246",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Recommendations",
+    ],
+    [
+      "Use it with BMI, not instead of everything",
+      "Waist-to-height ratio helps estimate central adiposity; it does not diagnose a disease or replace clinical judgement.",
+      "NICE NG246",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Recommendations",
+    ],
+  ],
+  "erectile-dysfunction": [
+    [
+      "It can be a wider-health signal",
+      "Persistent erection problems can be associated with high blood pressure, high cholesterol, diabetes, anxiety, hormone problems or medicines.",
+      "NHS: erection problems",
+      "https://www.nhs.uk/conditions/erection-problems-erectile-dysfunction/",
+    ],
+    [
+      "Assessment comes before tablets",
+      "Treatment choice depends on the likely cause, other medicines and cardiovascular safety—not simply which tablet is cheapest.",
+      "NHS: erection problems",
+      "https://www.nhs.uk/conditions/erection-problems-erectile-dysfunction/",
+    ],
+  ],
+  "hair-loss": [
+    [
+      "Recognised options have limits",
+      "The NHS identifies finasteride and minoxidil as the main treatments for male-pattern baldness, but says they do not work for everyone.",
+      "NHS: hair loss",
+      "https://www.nhs.uk/symptoms/hair-loss/",
+    ],
+    [
+      "Ongoing means ongoing",
+      "The NHS states these treatments only work for as long as they are used—important context before anybody starts.",
+      "NHS: hair loss",
+      "https://www.nhs.uk/symptoms/hair-loss/",
+    ],
+  ],
+  "stop-smoking": [
+    [
+      "Licensed help, not wellness theatre",
+      "NICE NG209 covers behavioural support and licensed stop-smoking interventions, including nicotine replacement therapy.",
+      "NICE NG209",
+      "https://www.nice.org.uk/guidance/ng209",
+    ],
+    [
+      "Match support to the person",
+      "NHS guidance explains that NRT comes in different forms and can be used to manage cravings as part of a quit attempt.",
+      "NHS Better Health: NRT",
+      "https://www.nhs.uk/better-health/quit-smoking/ready-to-quit-smoking/quit-with-nicotine-replacement-therapies-nrt/",
+    ],
+  ],
+  "sleep-apnoea": [
+    [
+      "A questionnaire is not a diagnosis",
+      "NICE recommends respiratory polygraphy—at home or in hospital—for people with suspected obstructive sleep apnoea/hypopnoea syndrome.",
+      "NICE NG202",
+      "https://www.nice.org.uk/guidance/ng202/chapter/1-Obstructive-sleep-apnoeahypopnoea-syndrome",
+    ],
+    [
+      "Sleepiness has immediate consequences",
+      "NICE assessment considers excessive sleepiness and safety-critical work because untreated symptoms can affect driving and workplace safety.",
+      "NICE NG202",
+      "https://www.nice.org.uk/guidance/ng202",
+    ],
+  ],
+};
 const DETAILS = {
   "health-mot": {
     understand:
@@ -655,20 +800,22 @@ const esc = (s) =>
 if (item) {
   const journey = JOURNEY[slug],
     faq = FAQ[slug],
-    detail = DETAILS[slug];
+    detail = DETAILS[slug],
+    evidence = EVIDENCE[slug];
   document.title = `${item.name} | SHIFT Health`;
   document.querySelector("[data-product]").innerHTML =
     `<a class="back" href="/shift-health">← SHIFT Health</a>
-    <section class="productHero"><div><small>${esc(item.family)} · ${esc(item.code)}</small><h1>${esc(item.name)}</h1><p class="job">${esc(item.job)}</p><p>${esc(item.intro)}</p><div class="availability"><span>AVAILABILITY</span><strong>Currently out of stock</strong><span>Leave your details once and we’ll tell you when it returns.</span></div><div class="actions"><a class="btn" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}">Tell me when it’s back</a><a class="btn alt" href="/member/dashboard#journey">Add this to My Timber</a></div></div><div class="visual"><b>SHIFT</b><span>${esc(item.family)}</span><em>${esc(item.code)}</em><ul><li>Clear purpose</li><li>Honest limitations</li><li>Connected follow-up</li></ul></div></section>
-    <nav class="jump" aria-label="On this page"><a href="#understand">What it is</a><a href="#included">What you get</a><a href="#decide">Is it right?</a><a href="#journey">Your Journey</a><a href="#process">What happens</a><a href="#questions">Questions</a></nav>
+    <section class="productHero"><div><small>${esc(item.family)} · ${esc(item.code)}</small><h1>${esc(item.name)}</h1><p class="job">${esc(item.job)}</p><p>${esc(item.intro)}</p><div class="availability"><span>AVAILABILITY</span><strong>Currently out of stock</strong><span>Leave your details once and we’ll tell you when it returns.</span></div><div class="actions"><a class="btn" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}">Tell me when it’s back</a><a class="btn alt" href="/member/dashboard#journey">Add this to My Timber</a></div></div><figure class="visual"><img src="${MEDIA[slug]}" alt="Editorial illustration for ${esc(item.name)}" width="1200" height="800"><figcaption>Editorial image · exact supplied item confirmed when stocked</figcaption></figure></section>
+    <nav class="jump" aria-label="On this page"><a href="#understand">What it is</a><a href="#included">What you get</a><a href="#decide">Is it right?</a><a href="#evidence">Evidence</a><a href="#journey">Your Journey</a><a href="#process">What happens</a><a href="#questions">Questions</a></nav>
     <section id="understand"><small>01 · UNDERSTAND IT</small><h2>Know what you’re choosing.</h2><p class="sectionCopy">${esc(detail.understand)}</p></section>
     <section id="included"><small>02 · WHAT YOU GET</small><h2>More than an item in a box.</h2><div class="detailGrid"><article class="detailCard"><b>Included in the route</b><ul>${detail.included.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></article><article class="detailCard"><b>How to get a useful result</b><ul>${detail.choices.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></article></div></section>
     <section id="decide"><small>03 · MAKE THE DECISION</small><h2>Useful for the right bloke. Not magic.</h2><p class="sectionCopy">${esc(detail.decision)}</p><div class="decisionGrid"><article><h3>Who it’s for</h3><p>${esc(item.for)}</p><h3>The positives</h3><ul>${item.positives.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></article><article><h3>Who it’s not for</h3><p>${esc(item.not)}</p><h3>The honest negatives</h3><ul>${item.negatives.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></article></div></section>
     <section class="redflags"><small>DON’T WAIT ON A WEBSITE</small><h2>When this is not the next step.</h2><p>${esc(detail.redFlags)}</p></section>
+    <section id="evidence"><small>04 · WHY SHIFT HAS INCLUDED THIS</small><h2>Evidence before shelf space.</h2><p class="sectionCopy">This route earns its place by solving a defined health problem. These are the standards and public-health sources behind the decision.</p><div class="evidenceGrid">${evidence.map(([title, copy, source, href]) => `<article class="evidenceCard"><strong>${esc(title)}</strong><p>${esc(copy)}</p><a href="${href}" rel="external">Read ${esc(source)} ↗</a></article>`).join("")}</div><p class="reviewed">Evidence checked 7 September 2026. Sources can change; the latest linked guidance takes precedence.</p></section>
     <section class="potential"><small>THE POTENTIAL</small><h2>${esc(item.potential)}</h2></section>
-    <section class="journey" id="journey"><small>04 · WHERE IT FITS</small><h2>${esc(journey[0])}</h2><div class="journeyGrid"><div><b>What My Timber keeps</b><p>${esc(journey[1])}</p></div><div><b>Your Next Shift</b><p>${esc(journey[2])}</p></div></div></section>
-    <section id="process"><small>05 · WHAT HAPPENS NEXT</small><h2>One clear route. No mystery hand-offs.</h2><ol class="steps">${item.steps.map((x, i) => `<li><b>0${i + 1}</b><span>${esc(x)}</span></li>`).join("")}</ol></section>
-    <section id="questions"><small>06 · USEFUL QUESTIONS</small><h2>Before you decide.</h2><div class="faqs">${faq.map((x) => `<details><summary>${esc(x[0])}</summary><p>${esc(x[1])}</p></details>`).join("")}</div></section>
+    <section class="journey" id="journey"><small>05 · WHERE IT FITS</small><h2>${esc(journey[0])}</h2><div class="journeyGrid"><div><b>What My Timber keeps</b><p>${esc(journey[1])}</p></div><div><b>Your Next Shift</b><p>${esc(journey[2])}</p></div></div></section>
+    <section id="process"><small>06 · WHAT HAPPENS NEXT</small><h2>One clear route. No mystery hand-offs.</h2><ol class="steps">${item.steps.map((x, i) => `<li><b>0${i + 1}</b><span>${esc(x)}</span></li>`).join("")}</ol></section>
+    <section id="questions"><small>07 · USEFUL QUESTIONS</small><h2>Before you decide.</h2><div class="faqs">${faq.map((x) => `<details><summary>${esc(x[0])}</summary><p>${esc(x[1])}</p></details>`).join("")}</div></section>
     <section class="next"><small>MY NEXT SHIFT</small><h2>Keep it connected to the reason you started.</h2><p>My Timber keeps the result, your priorities and one useful next step together. It becomes part of your Journey—not another purchase you forget about in a drawer.</p><div class="actions"><a class="btn" href="/member/dashboard#journey">Open My Timber</a><a class="btn alt" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}">Tell me when it’s back</a></div></section>`;
 } else
   document.querySelector("[data-product]").innerHTML =

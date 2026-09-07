@@ -97,6 +97,24 @@
         align-items: center;
         color: #050505;
         box-shadow: 0 30px 70px #000;
+        overflow: hidden;
+        position: relative;
+      }
+      .visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .visual figcaption {
+        position: absolute;
+        inset: auto 14px 14px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        background: #050505dd;
+        color: var(--c);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 800;
       }
       .visual b {
         font-size: clamp(46px, 7vw, 78px);
@@ -339,6 +357,29 @@
       .redflags h2 {
         font-size: clamp(26px, 4vw, 40px);
       }
+      .evidenceGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .evidenceCard {
+        padding: 22px;
+        border-top: 5px solid var(--l);
+        border-radius: 16px;
+        background: #11130f;
+      }
+      .evidenceCard strong {
+        display: block;
+        font-size: 21px;
+        line-height: 1.2;
+      }
+      .evidenceCard a {
+        font-weight: 900;
+      }
+      .reviewed {
+        color: #aaa69d;
+        font-size: 13px;
+      }
       .visual ul {
         width: calc(100% - 40px);
         margin: 24px 20px 0;
@@ -355,6 +396,9 @@
         .journeyGrid,
         .detailGrid,
         .decisionGrid {
+          grid-template-columns: 1fr;
+        }
+        .evidenceGrid {
           grid-template-columns: 1fr;
         }
       }
