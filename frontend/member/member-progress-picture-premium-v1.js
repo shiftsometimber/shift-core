@@ -70,3 +70,12 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
+
+// Whole-Man loaders. Kept outside treatment/auth files so Track S stays untouched.
+(function(){
+  'use strict';
+  if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
+  const load=(marker,src)=>{if(document.querySelector(`script[${marker}]`))return;const script=document.createElement('script');script.setAttribute(marker,'v1');script.src=src;document.body.appendChild(script)};
+  load('data-whole-man-intent-os','/whole-man-intent-os-v1.js?v=2');
+  load('data-whole-man-journey-modes','/whole-man-journey-modes-v1.js?v=1');
+})();
