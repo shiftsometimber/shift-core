@@ -1,5 +1,5 @@
 name: V1.37 Production Acceptance
-# Technical 9 closeout evidence refresh: 2026-09-08
+# Technical 9 closeout evidence refresh: 2026-09-08 20:04 BST
 on:
   pull_request:
     paths:
