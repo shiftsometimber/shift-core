@@ -267,6 +267,9 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   assert.ok(workerEntry.includes("SHIFT_HEALTH_CHROME_PATCH"));
   assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_ENFORCER"));
   assert.ok(workerEntry.includes("setTimeout(run,150)"));
+  assert.ok(
+    workerEntry.includes('"Cache-Control", "no-store, must-revalidate"'),
+  );
   assert.ok(shiftHealthProduct.includes('nav aria-label="Footer"'));
   assert.ok(shiftHealthProduct.includes('href="/shift-health"'));
   assert.ok(shiftHealthProduct.includes(".head nav"));

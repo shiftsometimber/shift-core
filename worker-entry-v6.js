@@ -297,7 +297,7 @@ async function publicSiteConfigWithLoungeChrome(request) {
   const headers = new Headers(response.headers);
   headers.delete("Content-Length");
   headers.set("Content-Type", "application/javascript; charset=utf-8");
-  headers.set("Cache-Control", "public, max-age=300, must-revalidate");
+  headers.set("Cache-Control", "no-store, must-revalidate");
   headers.set("X-Shift-Lounge-Chrome", "v2");
   const source = await response.text();
   const constrained = source.replace(
