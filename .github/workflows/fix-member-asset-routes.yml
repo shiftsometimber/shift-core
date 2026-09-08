@@ -1,0 +1,43 @@
+name: Fix Member Asset Routes
+
+on:
+  push:
+    branches: ['fix/member-asset-routes']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/member-asset-routes
+      - name: Patch missing member asset routes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('wrangler.jsonc')
+          s=p.read_text()
+          anchor='''    {\n      "pattern": "shiftsometimber.co.uk/member-plans-premium-v1.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },'''
+          if 'shiftsometimber.co.uk/member-grub-programme-v1.js*' not in s:
+              insert='''    {\n      "pattern": "shiftsometimber.co.uk/member-grub-programme-v1.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/member-grub-programme-v1.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "shiftsometimber.co.uk/member-grub-programme-v1.css*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/member-grub-programme-v1.css*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "shiftsometimber.co.uk/member-pen-day-v1.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/member-pen-day-v1.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
+              if anchor not in s: raise SystemExit('route anchor missing')
+              s=s.replace(anchor,insert+anchor,1)
+              p.write_text(s)
+          PY
+          grep -q 'member-grub-programme-v1.js' wrangler.jsonc
+          grep -q 'member-grub-programme-v1.css' wrangler.jsonc
+          grep -q 'member-pen-day-v1.js' wrangler.jsonc
+      - name: Commit route repair
+        shell: bash
+        run: |
+          if git diff --quiet -- wrangler.jsonc; then exit 0; fi
+          git config user.name 'shift-technical-nine'
+          git config user.email 'actions@users.noreply.github.com'
+          git add wrangler.jsonc
+          git commit -m 'Route Grub and Pen Day assets through Worker'
+          git push origin HEAD:fix/member-asset-routes
