@@ -1,0 +1,66 @@
+name: Technical 9 commerce authority patch
+
+on:
+  push:
+    branches: [technical9-final-commerce-authority]
+    paths:
+      - '.github/workflows/technical9-commerce-authority.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: technical9-final-commerce-authority
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Patch medicine commerce to HQ authority
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p=Path('medicine-commerce-v1.js')
+          s=p.read_text()
+          marker="import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';"
+          if marker not in s:
+              s=s.replace("import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';", "import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';\n"+marker)
+          s=s.replace("async function schema(env) {\n  await env.DB.batch([", "async function schema(env) {\n  await ensurePurchaseabilitySchema(env.DB);\n  await env.DB.batch([")
+          old="const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first() : null;\n  if (!item) return json({ok:false,error:\"out_of_stock\",message:\"Currently out of stock. No clinical evidence has been sent.\"},409,cors(request));"
+          new="const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first() : null;\n  const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;\n  if (!itemTruth?.canBuy) return json({ok:false,error:\"out_of_stock\",message:\"Currently out of stock. No clinical evidence has been sent.\"},409,cors(request));"
+          s=s.replace(old,new)
+          old="const item=await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first();\n  if (!item) return json({ok:false,error:\"out_of_stock\",message:\"Currently out of stock.\"},409,cors(request));"
+          new="const item=await env.DB.prepare(`SELECT v.id,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();\n  const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;\n  if (!itemTruth?.canBuy) return json({ok:false,error:\"out_of_stock\",message:\"Currently out of stock.\"},409,cors(request));"
+          s=s.replace(old,new)
+          old="`SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,m.name,m.status medicine_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,"
+          new="`SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.name,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,"
+          s=s.replace(old,new)
+          old="if (\n    !item ||\n    item.medicine_status !== \"available\" ||\n    item.variant_status !== \"available\"\n  )"
+          new="const checkoutTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;\n  if (!checkoutTruth?.canBuy)"
+          s=s.replace(old,new)
+          old="`SELECT m.id medicine_id,m.name,m.active_ingredient,m.form,m.description,m.status medicine_status,mi.alt_text image_alt,mi.updated_at image_updated_at,CASE WHEN mi.medicine_id IS NULL THEN 0 ELSE 1 END has_image,v.id variant_id,v.strength_label,v.selling_price_pence,v.status variant_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_products m JOIN medicine_variants v ON v.medicine_id=m.id LEFT JOIN medicine_inventory i ON i.variant_id=v.id LEFT JOIN medicine_product_images mi ON mi.medicine_id=m.id WHERE m.status NOT IN ('draft','archived') AND v.status!='archived' ORDER BY m.sort_order,m.name,v.sort_order,v.id`,"
+          new="`SELECT m.id medicine_id,m.name,m.active_ingredient,m.form,m.description,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,mi.alt_text image_alt,mi.updated_at image_updated_at,CASE WHEN mi.medicine_id IS NULL THEN 0 ELSE 1 END has_image,v.id variant_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_products m JOIN medicine_variants v ON v.medicine_id=m.id LEFT JOIN medicine_inventory i ON i.variant_id=v.id LEFT JOIN medicine_product_images mi ON mi.medicine_id=m.id WHERE m.status NOT IN ('draft','archived') AND v.status!='archived' ORDER BY m.sort_order,m.name,v.sort_order,v.id`,"
+          s=s.replace(old,new)
+          old="status:\n        remaining > 0 &&\n        row.medicine_status === \"available\" &&\n        row.variant_status === \"available\"\n          ? \"available\"\n          : \"out_of_stock\","
+          new="status: authoritativePurchaseability({product:{status:row.medicine_status,sellable:row.medicine_sellable,partner:row.medicine_partner,availability_state:row.medicine_availability},variant:{status:row.variant_status,sellable:row.variant_sellable,partner:row.variant_partner,availability_state:row.variant_availability},inventory:{stock_on_hand:row.stock_on_hand,reserved:row.reserved}}).canBuy ? \"available\" : \"out_of_stock\","
+          s=s.replace(old,new)
+          p.write_text(s)
+          assert marker in s
+          assert 'checkoutTruth?.canBuy' in s
+          assert 'itemTruth?.canBuy' in s
+          assert 'variant_availability' in s
+      - name: Run Technical 9 contract tests
+        run: node --test tests/technical-9-closeout.test.mjs
+      - name: Commit patched commerce rail
+        run: |
+          if git diff --quiet; then echo 'No patch required'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add medicine-commerce-v1.js
+          git commit -m 'Wire medicine commerce to authoritative HQ purchaseability'
+          git push origin HEAD:technical9-final-commerce-authority
