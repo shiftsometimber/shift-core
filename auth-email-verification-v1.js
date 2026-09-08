@@ -1,7 +1,7 @@
 import {recordAuthDelivery} from './auth-delivery-v1.js';
 
 const VERIFY_TTL_MS=24*60*60*1000;
-const DEFAULT_FROM='welcome@shiftsometimber.co.uk';
+const DEFAULT_FROM='hello@shiftsometimber.co.uk';
 const DEFAULT_SITE='https://shiftsometimber.co.uk';
 
 export async function handleEmailVerification(request,env,ctx,next){
