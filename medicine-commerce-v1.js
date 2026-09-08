@@ -1,4 +1,5 @@
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
 
 const ALLOWED_ORIGINS = new Set([
   "https://shiftsometimber.co.uk",
@@ -155,6 +156,7 @@ async function validSignature(payload, header, secret) {
 }
 
 async function schema(env) {
+  await ensurePurchaseabilitySchema(env.DB);
   await env.DB.batch([
     env.DB.prepare(
       `CREATE TABLE IF NOT EXISTS medicine_inventory (variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER NOT NULL DEFAULT 0,reserved INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(variant_id) REFERENCES medicine_variants(id))`,
@@ -211,8 +213,9 @@ async function clinicalIntake(request, env) {
   let form;
   try { form = await request.formData(); } catch { return json({ok:false,error:"invalid_clinical_form"},400,cors(request)); }
   const variantId = Number(form.get("variantId"));
-  const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first() : null;
-  if (!item) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
+  const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first() : null;
+  const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+  if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
   const required = ["dateOfBirth","heightCm","weightKg","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
   if (required.some((key) => !formText(form,key))) return json({ok:false,error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."},400,cors(request));
   const gpConsent = form.get("gpContactConsent") === "on";
@@ -275,8 +278,9 @@ async function prepayVerification(request, env) {
   const input=await body(request),variantId=Number(input?.variantId);
   if (!Number.isInteger(variantId)||variantId<1||!input?.assessment)
     return json({ok:false,error:"invalid_verification_request"},400,cors(request));
-  const item=await env.DB.prepare(`SELECT v.id FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=? AND v.status='available' AND m.status='available' AND i.stock_on_hand-i.reserved>0`).bind(variantId).first();
-  if (!item) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
+  const item=await env.DB.prepare(`SELECT v.id,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();
+  const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+  if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
   const partnerResponse=await fetch(String(env.PHARMACY_PREPAY_VERIFICATION_URL),{method:"POST",headers:{"content-type":"application/json",authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:JSON.stringify({memberReference:String(user.id),variantId,assessment:input.assessment})});
   const partner=await partnerResponse.json().catch(()=>({}));
   if (!partnerResponse.ok||partner.verified!==true||!partner.reference)
@@ -360,7 +364,7 @@ async function catalogue(env) {
   const rows =
     (
       await env.DB.prepare(
-        `SELECT m.id medicine_id,m.name,m.active_ingredient,m.form,m.description,m.status medicine_status,mi.alt_text image_alt,mi.updated_at image_updated_at,CASE WHEN mi.medicine_id IS NULL THEN 0 ELSE 1 END has_image,v.id variant_id,v.strength_label,v.selling_price_pence,v.status variant_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_products m JOIN medicine_variants v ON v.medicine_id=m.id LEFT JOIN medicine_inventory i ON i.variant_id=v.id LEFT JOIN medicine_product_images mi ON mi.medicine_id=m.id WHERE m.status NOT IN ('draft','archived') AND v.status!='archived' ORDER BY m.sort_order,m.name,v.sort_order,v.id`,
+        `SELECT m.id medicine_id,m.name,m.active_ingredient,m.form,m.description,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,mi.alt_text image_alt,mi.updated_at image_updated_at,CASE WHEN mi.medicine_id IS NULL THEN 0 ELSE 1 END has_image,v.id variant_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_products m JOIN medicine_variants v ON v.medicine_id=m.id LEFT JOIN medicine_inventory i ON i.variant_id=v.id LEFT JOIN medicine_product_images mi ON mi.medicine_id=m.id WHERE m.status NOT IN ('draft','archived') AND v.status!='archived' ORDER BY m.sort_order,m.name,v.sort_order,v.id`,
       ).all()
     ).results || [];
   const products = [];
@@ -401,12 +405,7 @@ async function catalogue(env) {
       id: row.variant_id,
       strengthLabel,
       pricePence: Number(row.selling_price_pence),
-      status:
-        remaining > 0 &&
-        row.medicine_status === "available" &&
-        row.variant_status === "available"
-          ? "available"
-          : "out_of_stock",
+      status: authoritativePurchaseability({product:{status:row.medicine_status,sellable:row.medicine_sellable,partner:row.medicine_partner,availability_state:row.medicine_availability},variant:{status:row.variant_status,sellable:row.variant_sellable,partner:row.variant_partner,availability_state:row.variant_availability},inventory:{stock_on_hand:row.stock_on_hand,reserved:row.reserved}}).canBuy ? "available" : "out_of_stock",
       remaining,
     });
   }
@@ -532,15 +531,12 @@ async function checkout(request, env) {
     if (!verification) return json({ok:false,error:"invalid_or_expired_verification",message:"Verification has expired or does not match this treatment. Complete it again before payment."},409,cors(request));
   }
   const item = await env.DB.prepare(
-    `SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,m.name,m.status medicine_status,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,
+    `SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.name,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,
   )
     .bind(variantId)
     .first();
-  if (
-    !item ||
-    item.medicine_status !== "available" ||
-    item.variant_status !== "available"
-  )
+  const checkoutTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+  if (!checkoutTruth?.canBuy)
     return json(
       { ok: false, error: "out_of_stock", message: "Currently out of stock." },
       409,
