@@ -18,11 +18,6 @@ export function publicTurnstileConfig(env){
 export async function turnstileGuard(request,env){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',expectedAction=PROTECTED_ACTIONS.get(path);
   if(request.method!=='POST'||!expectedAction||!truthy(env.TURNSTILE_REQUIRED))return null;
-  // Production commissioning uses a GitHub Actions OIDC identity. Let only the
-  // registration request carrying that identity reach handleCommissioningIdentity,
-  // which verifies issuer/audience/repository/actor/workflow before core registration.
-  // A forged or invalid header is rejected there and never reaches core auth.
-  if(path==='/v1/auth/register'&&clean(request.headers.get('x-shift-commissioning-oidc')))return null;
   const secret=clean(env.TURNSTILE_SECRET_KEY),siteKey=clean(env.TURNSTILE_SITE_KEY);
   if(!secret||!siteKey)return json({ok:false,error:'turnstile_not_configured',message:'Secure sign-in is temporarily unavailable.'},503);
   let body={};try{body=await request.clone().json()}catch{}
