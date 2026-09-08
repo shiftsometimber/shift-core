@@ -271,7 +271,7 @@ export async function deliverEvidenceDecisionEmails(env){
   await ensureEvidenceDeskSchema(env.DB);
   const control=await env.DB.prepare(`SELECT * FROM evidence_desk_control WHERE id=1`).first();
   if(!Number(control?.enabled)||!Number(control?.decision_email_enabled))return{ok:true,sent:0,reason:'evidence_desk_email_off'};
-  const recipients=String(env.EVIDENCE_DESK_ALERT_TO||env.ADMIN_NOTIFICATION_EMAIL||'shiftsometimber@gmail.com').split(',').map(x=>x.trim()).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x));
+  const recipients=String(env.EVIDENCE_DESK_ALERT_TO||env.ADMIN_NOTIFICATION_EMAIL||'hq@shiftsometimber.co.uk').split(',').map(x=>x.trim()).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x));
   const {results:pending=[]}=await env.DB.prepare(`SELECT n.*,p.title,p.summary,p.risk_lane FROM evidence_desk_notifications n JOIN evidence_desk_packages p ON p.id=n.package_id WHERE n.status='queued' ORDER BY CASE p.risk_lane WHEN 'red' THEN 1 WHEN 'amber' THEN 2 ELSE 3 END,n.id LIMIT 25`).all();
   if(!pending.length)return{ok:true,sent:0,reason:'nothing_needs_decision'};
   if(!env.EMAIL||!recipients.length){for(const item of pending)await env.DB.prepare(`UPDATE evidence_desk_notifications SET error_code=? WHERE id=?`).bind(!env.EMAIL?'email_binding_missing':'recipient_missing',item.id).run();return{ok:false,sent:0,reason:!env.EMAIL?'email_binding_missing':'recipient_missing'};}

@@ -20,8 +20,8 @@
     "TAP_ROOM_DEMO": "true",
     "TAP_ROOM_MODERATION_OWNER": "Matt O'Brien",
     "TAP_ROOM_MODERATION_BACKUP": "Linda O'Brien",
-    "ADMIN_NOTIFICATION_EMAIL": "shiftsometimber@gmail.com",
-    "TAP_ROOM_P0_EMAIL": "shiftsometimber@gmail.com"
+    "ADMIN_NOTIFICATION_EMAIL": "hq@shiftsometimber.co.uk",
+    "TAP_ROOM_P0_EMAIL": "hq@shiftsometimber.co.uk"
   },
   "ai": {"binding": "AI"},
   "d1_databases": [{

@@ -11,7 +11,10 @@ export const SHIFT_MAILBOXES=Object.freeze({
   partners:'partners@shiftsometimber.co.uk',
   press:'press@shiftsometimber.co.uk',
   finance:'finance@shiftsometimber.co.uk',
-  accounts:'accounts@shiftsometimber.co.uk'
+  accounts:'accounts@shiftsometimber.co.uk',
+  feedback:'feedback@shiftsometimber.co.uk',
+  hq:'hq@shiftsometimber.co.uk',
+  it:'it@shiftsometimber.co.uk'
 });
 
 const DEFAULT_FROM=SHIFT_MAILBOXES.hello;
@@ -25,7 +28,10 @@ const ROUTING=Object.freeze({
   partner:[SHIFT_MAILBOXES.partners],
   press:[SHIFT_MAILBOXES.press],
   finance:[SHIFT_MAILBOXES.finance],
-  accounts:[SHIFT_MAILBOXES.accounts]
+  accounts:[SHIFT_MAILBOXES.accounts],
+  feedback:[SHIFT_MAILBOXES.feedback],
+  hq:[SHIFT_MAILBOXES.hq],
+  it:[SHIFT_MAILBOXES.it]
 });
 
 function internalRecipients(eventType,includeMatt=false){

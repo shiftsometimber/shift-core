@@ -366,7 +366,7 @@ function escapeHtml(value){return clean(value,500).replace(/[&<>"']/g,char=>({'&
 
 async function sendOrderEmails(env,order){
   if(!env.EMAIL)return;
-  const admin=String(env.ORDER_NOTIFICATION_EMAIL||env.ADMIN_NOTIFICATION_EMAIL||'shiftsometimber@gmail.com');
+  const admin=String(env.ORDER_NOTIFICATION_EMAIL||env.ADMIN_NOTIFICATION_EMAIL||'orders@shiftsometimber.co.uk');
   const customer=order.customer_email;
   const summary=`${order.product_name} · Size ${order.size} · Quantity ${order.quantity} · £${(order.total_pence/100).toFixed(2)}`;
   const customerFrom={email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'};

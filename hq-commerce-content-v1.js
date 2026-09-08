@@ -74,7 +74,7 @@ export async function hqCommerceContentRoutes(request,env,ctx){
   const a=await actor(request,env,ctx);if(a.response)return a.response;
   if(path==='/hq/admin-email-test'&&(method==='GET'||method==='POST')){
     if(!['owner','admin'].includes(a.user?.role))return json({ok:false,error:'hq_forbidden'},403);
-    const recipient=clean(env.ADMIN_NOTIFICATION_EMAIL||'shiftsometimber@gmail.com',254);
+    const recipient=clean(env.ADMIN_NOTIFICATION_EMAIL||'hq@shiftsometimber.co.uk',254);
     if(method==='GET')return adminEmailTestPortal(recipient);
     if(!env.EMAIL)return adminEmailTestPortal(recipient,'FAILED — Cloudflare email binding is not configured.');
     const stamp=now(),subject='ST INTERNAL — TEST — HQ: Admin email route';
