@@ -266,6 +266,8 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   );
   assert.ok(workerEntry.includes("SHIFT_HEALTH_CHROME_PATCH"));
   assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_ENFORCER"));
+  assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_GUARD"));
+  assert.ok(workerEntry.includes("new MutationObserver"));
   assert.ok(workerEntry.includes("setTimeout(run,150)"));
   assert.ok(
     workerEntry.includes('"Cache-Control", "no-store, must-revalidate"'),
