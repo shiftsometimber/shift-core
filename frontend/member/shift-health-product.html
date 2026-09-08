@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SHIFT Health</title>
+    <meta
+      name="description"
+      content="Straight-talking wider men’s health from SHIFT."
+    />
+    <link rel="canonical" href="https://shiftsometimber.co.uk/shift-health" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Shift Some Timber" />
+    <meta property="og:title" content="SHIFT Health" />
+    <meta property="og:description" content="Straight-talking wider men’s health from SHIFT." />
+    <meta property="og:url" content="https://shiftsometimber.co.uk/shift-health" />
+    <meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SHIFT Health" />
+    <meta name="twitter:description" content="Straight-talking wider men’s health from SHIFT." />
+    <meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg" />
+    <style>
+      :root {
+        --b: #050505;
+        --c: #e7e3da;
+        --g: #707762;
+        --l: #a7af94;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--b);
+        color: var(--c);
+        font:
+          16px/1.55 Arial,
+          sans-serif;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        width: min(1160px, calc(100% - 36px));
+        margin: auto;
+      }
+      .head {
+        border-bottom: 1px solid var(--g);
+      }
+      .headin {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        font-size: 20px;
+        font-weight: 1000;
+        text-decoration: none;
+      }
+      .brand span,
+      small {
+        color: var(--l);
+      }
+      nav {
+        display: flex;
+        gap: 18px;
+      }
+      .menuButton,
+      .mobileNav {
+        display: none;
+      }
+      nav a {
+        text-decoration: none;
+        font-weight: 850;
+      }
+      .back {
+        display: inline-block;
+        margin: 28px 0;
+        text-decoration: none;
+        font-weight: 900;
+      }
+      .productHero {
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 40px;
+        align-items: center;
+        padding: 35px 0 65px;
+        border-bottom: 1px solid #292c27;
+      }
+      .productHero h1 {
+        margin: 8px 0 15px;
+        font-size: clamp(48px, 7vw, 85px);
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+      .job {
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 900;
+      }
+      .productHero p:not(.job) {
+        color: #cbc7bd;
+        max-width: 720px;
+      }
+      .visual {
+        aspect-ratio: 4/5;
+        border-radius: 26px;
+        background: linear-gradient(145deg, #8c947c, #505646);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #050505;
+        box-shadow: 0 30px 70px #000;
+        overflow: hidden;
+        position: relative;
+      }
+      .visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .visual figcaption {
+        position: absolute;
+        inset: auto 14px 14px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        background: #050505dd;
+        color: var(--c);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 800;
+      }
+      .visual b {
+        font-size: clamp(46px, 7vw, 78px);
+        line-height: 0.8;
+      }
+      .visual span {
+        margin-top: 18px;
+        font-weight: 900;
+      }
+      .visual em {
+        margin-top: 7px;
+      }
+      .availability {
+        margin-top: 24px;
+        padding: 17px;
+        border-left: 4px solid var(--l);
+        background: #121410;
+        display: grid;
+      }
+      .availability span {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #bdb9b0;
+      }
+      .availability strong {
+        font-size: 21px;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 11px 18px;
+        border: 1px solid var(--c);
+        border-radius: 999px;
+        background: var(--c);
+        color: #050505;
+        font-weight: 1000;
+        text-decoration: none;
+      }
+      .btn.alt {
+        background: transparent;
+        color: var(--c);
+      }
+      main > section,
+      main > .two {
+        margin: 0 auto;
+        padding: 58px 0;
+        width: min(1160px, calc(100% - 36px));
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .two article {
+        padding: 25px;
+        border: 1px solid var(--g);
+        border-radius: 20px;
+        background: #11130f;
+      }
+      .two h2,
+      section > h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        line-height: 1;
+        margin: 5px 0 20px;
+      }
+      .two li {
+        margin: 10px 0;
+      }
+      .potential {
+        border-top: 1px solid #292c27;
+        border-bottom: 1px solid #292c27;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        padding: 0;
+        list-style: none;
+      }
+      .steps li {
+        padding: 18px;
+        border: 1px solid var(--g);
+        border-radius: 18px;
+      }
+      .steps b {
+        display: block;
+        font-size: 28px;
+        color: var(--l);
+      }
+      .next {
+        margin-bottom: 65px !important;
+        border-radius: 24px;
+        background: var(--g);
+        color: #050505;
+      }
+      .next small {
+        color: #171915;
+      }
+      .next p {
+        max-width: 760px;
+      }
+      .footer {
+        padding: 35px 0;
+        border-top: 1px solid var(--g);
+      }
+      .footer nav {
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .footer p {
+        margin: 0;
+        color: #cbc7bd;
+      }
+      @media (max-width: 760px) {
+        .head nav {
+          display: none;
+        }
+        .menuButton {
+          display: inline-flex;
+          min-height: 44px;
+          align-items: center;
+          padding: 9px 14px;
+          border: 1px solid var(--g);
+          border-radius: 999px;
+          background: transparent;
+          color: var(--c);
+          font: inherit;
+          font-weight: 900;
+        }
+        .mobileNav[aria-hidden="false"] {
+          display: grid;
+          gap: 0;
+          padding: 0 18px 16px;
+          border-bottom: 1px solid var(--g);
+          background: var(--b);
+        }
+        .mobileNav a {
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #292c27;
+          text-decoration: none;
+          font-weight: 850;
+        }
+        .productHero,
+        .two {
+          grid-template-columns: 1fr;
+        }
+        .visual {
+          max-width: 330px;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .productHero h1 {
+          font-size: 50px;
+        }
+      }
+      @media (max-width: 420px) {
+        .wrap,
+        main > section,
+        main > .two {
+          width: calc(100% - 28px);
+        }
+        .actions {
+          display: grid;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+    <style>
+      .journey {
+        border-bottom: 1px solid #292c27;
+      }
+      .journeyGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .journeyGrid > div {
+        padding: 22px;
+        border-left: 4px solid var(--l);
+        background: #11130f;
+      }
+      .journeyGrid b {
+        font-size: 19px;
+      }
+      .faqs {
+        display: grid;
+        gap: 10px;
+      }
+      .faqs details {
+        padding: 18px;
+        border: 1px solid var(--g);
+        border-radius: 16px;
+        background: #11130f;
+      }
+      .faqs summary {
+        cursor: pointer;
+        font-weight: 900;
+        font-size: 18px;
+      }
+      .faqs p {
+        color: #cbc7bd;
+      }
+      .jump {
+        position: sticky;
+        top: 0;
+        z-index: 8;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 12px 0;
+        background: var(--b);
+        border-bottom: 1px solid #292c27;
+      }
+      .jump a {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        border: 1px solid var(--g);
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 900;
+      }
+      .detailGrid,
+      .decisionGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .detailCard,
+      .decisionGrid > article {
+        padding: 22px;
+        border: 1px solid var(--g);
+        border-radius: 18px;
+        background: #11130f;
+      }
+      .detailCard b {
+        font-size: 19px;
+      }
+      .sectionCopy {
+        max-width: 780px;
+        color: #cbc7bd;
+        font-size: 18px;
+      }
+      .detailGrid ul,
+      .decisionGrid ul {
+        padding-left: 20px;
+      }
+      .detailGrid li,
+      .decisionGrid li {
+        margin: 9px 0;
+      }
+      .redflags {
+        padding: 24px !important;
+        border: 1px solid #a97770;
+        border-radius: 18px;
+        background: #17110f;
+      }
+      .redflags h2 {
+        font-size: clamp(26px, 4vw, 40px);
+      }
+      .evidenceGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .evidenceCard {
+        padding: 22px;
+        border-top: 5px solid var(--l);
+        border-radius: 16px;
+        background: #11130f;
+      }
+      .evidenceCard strong {
+        display: block;
+        font-size: 21px;
+        line-height: 1.2;
+      }
+      .evidenceCard a {
+        font-weight: 900;
+      }
+      .reviewed {
+        color: #aaa69d;
+        font-size: 13px;
+      }
+      .visual ul {
+        width: calc(100% - 40px);
+        margin: 24px 20px 0;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+      }
+      .visual li {
+        padding: 7px 0;
+        border-top: 1px solid #05050555;
+        font-weight: 800;
+      }
+      @media (max-width: 760px) {
+        .journeyGrid,
+        .detailGrid,
+        .decisionGrid {
+          grid-template-columns: 1fr;
+        }
+        .evidenceGrid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="head">
+      <div class="wrap headin">
+        <a class="brand" href="/">SHIFT <span>SOME</span> TIMBER</a>
+        <nav>
+          <a href="/start-here">Start Here</a
+          ><a href="/programme">The Programme</a
+          ><a href="/shift-health">SHIFT Health</a
+          ><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a
+          ><a href="/member/dashboard">My Timber</a>
+        </nav>
+        <button class="menuButton" type="button" aria-expanded="false" aria-controls="shiftHealthMobileMenu">Menu</button>
+      </div>
+    </header>
+    <nav class="mobileNav" id="shiftHealthMobileMenu" aria-label="Mobile primary" aria-hidden="true">
+      <a href="/start-here">Start Here</a>
+      <a href="/programme">The Programme</a>
+      <a href="/shift-health">SHIFT Health</a>
+      <a href="/explore-knowledge">Knowledge</a>
+      <a href="/about">About</a>
+      <a href="/member/dashboard">My Timber</a>
+    </nav>
+    <main class="wrap" data-product></main>
+    <footer class="footer">
+      <div class="wrap">
+        <nav aria-label="Footer">
+          <a href="/start-here">Start Here</a>
+          <a href="/programme">The Programme</a>
+          <a href="/shift-health">SHIFT Health</a>
+          <a href="/explore-knowledge">Knowledge</a>
+          <a href="/about">About</a>
+          <a href="/member/dashboard">My Timber</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/contact">Contact</a>
+        </nav>
+        <p>
+          General information—not individual medical advice. Call 999 in an
+          emergency or use NHS 111 for urgent advice.
+        </p>
+      </div>
+    </footer>
+    <script src="/shift-health-catalogue-v1.js?v=2"></script>
+    <script>
+      (function () {
+        const button = document.querySelector('.menuButton');
+        const menu = document.getElementById('shiftHealthMobileMenu');
+        if (!button || !menu) return;
+        button.addEventListener('click', function () {
+          const open = button.getAttribute('aria-expanded') !== 'true';
+          button.setAttribute('aria-expanded', String(open));
+          button.textContent = open ? 'Close' : 'Menu';
+          menu.setAttribute('aria-hidden', String(!open));
+        });
+      })();
+    </script>
+  </body>
+</html>

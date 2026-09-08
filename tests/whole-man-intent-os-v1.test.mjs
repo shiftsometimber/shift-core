@@ -5,6 +5,11 @@ import { readFile } from 'node:fs/promises';
 const source = await readFile(new URL('../frontend/member/whole-man-intent-os-v1.js', import.meta.url), 'utf8');
 const journey = await readFile(new URL('../frontend/member/whole-man-journey-modes-v1.js', import.meta.url), 'utf8');
 const setup = await readFile(new URL('../frontend/member/member-my-journey-v1.js', import.meta.url), 'utf8');
+const workerConfig = await readFile(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
+const workerEntry = await readFile(new URL('../worker-entry-v6.js', import.meta.url), 'utf8');
+const shiftHealth = await readFile(new URL('../frontend/member/shift-health.html', import.meta.url), 'utf8');
+const shiftHealthProduct = await readFile(new URL('../frontend/member/shift-health-product.html', import.meta.url), 'utf8');
+const shiftHealthCatalogue = await readFile(new URL('../frontend/member/shift-health-catalogue-v1.js', import.meta.url), 'utf8');
 
 const lockedLabels = [
   'My weight',
@@ -111,4 +116,43 @@ test('mobile Sort collapses to one column and actions remain full-width', () => 
   assert.ok(source.includes('.wm-sort-grid{grid-template-columns:1fr}'));
   assert.ok(source.includes('.wm-next a,.wm-next button{width:100%;text-align:center}'));
   assert.ok(journey.includes('@media(max-width:600px)'));
+});
+
+test('production routes publish both LTV runtime assets on apex and www', () => {
+  for (const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']) {
+    assert.ok(workerConfig.includes(`${host}/whole-man-intent-os-v1.js*`));
+    assert.ok(workerConfig.includes(`${host}/whole-man-journey-modes-v1.js*`));
+  }
+  assert.ok(workerEntry.includes("['/whole-man-intent-os-v1.js','application/javascript; charset=utf-8']"));
+  assert.ok(workerEntry.includes("['/whole-man-journey-modes-v1.js','application/javascript; charset=utf-8']"));
+});
+
+test('SHIFT Health is the locked non-weight problem-led public doorway', () => {
+  for (const label of ['My energy or sleep','My heart and metabolic health','My sex life or confidence','My hair','Testosterone concerns','My head or stress','Drinking or smoking','Give me a health MOT']) assert.ok(shiftHealth.includes(label));
+  assert.ok(shiftHealth.includes('Here about weight? Start Here'));
+  assert.ok(!shiftHealth.includes('My weight'));
+  assert.ok(!shiftHealth.includes('Coming Soon'));
+  assert.ok(!shiftHealth.includes('Add to basket'));
+  assert.ok(!shiftHealth.includes('Buy TRT'));
+});
+
+test('SHIFT Health ships in desktop, mobile, footer and shared public chrome', () => {
+  for (const label of ['Start Here','The Programme','SHIFT Health','Knowledge','About','My Timber']) assert.ok(shiftHealth.includes(label));
+  assert.ok(workerConfig.includes('shiftsometimber.co.uk/shift-health*'));
+  assert.ok(workerConfig.includes('www.shiftsometimber.co.uk/shift-health*'));
+  assert.ok(workerEntry.includes("['/shift-health.html','text/html; charset=utf-8']"));
+  assert.ok(workerEntry.includes('SHIFT_HEALTH_CHROME_PATCH'));
+});
+
+test('SHIFT Health matches medicine-page depth while remaining honestly out of stock', () => {
+  for (const code of ['SH-MOT','SH-TE','SH-BP','SH-SCALE','SH-BANDS','SH-MEASURE','SH-ED','SH-HAIR','SH-NRT','SH-SLEEP']) assert.ok(shiftHealthCatalogue.includes(code));
+  for (const section of ['The positives','The honest negatives','THE POTENTIAL','Who it’s for','Who it’s not for','HOW IT WORKS','USEFUL QUESTIONS','WHERE IT FITS','MY NEXT SHIFT']) assert.ok(shiftHealthCatalogue.includes(section));
+  assert.ok(shiftHealthCatalogue.includes('Currently out of stock'));
+  assert.ok(shiftHealthCatalogue.includes('Tell me when it’s back.'));
+  assert.ok(!/partner|formulary|not contracted|coming soon/i.test(shiftHealthCatalogue));
+  assert.ok(!/partner|formulary|not contracted|coming soon/i.test(shiftHealth));
+  assert.ok(shiftHealthProduct.includes('data-product'));
+  assert.ok(workerEntry.includes("['/shift-health-product.html','text/html; charset=utf-8']"));
+  assert.ok(workerEntry.includes("['/shift-health-catalogue-v1.js','application/javascript; charset=utf-8']"));
+  assert.ok(workerEntry.includes("path.startsWith('/shift-health/')"));
 });
