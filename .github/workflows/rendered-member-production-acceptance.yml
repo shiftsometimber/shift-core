@@ -33,6 +33,30 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Prepare commissioning login handoff
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+              'g2-011-progress-story-production.mjs',
+              'g2-013-progress-picture-rendered-production.mjs',
+              'g2-014-progress-picture-premium-production.mjs',
+              'g2-015-plan-manager-production.mjs',
+          ]
+          old = "headers:{Origin:SITE,'Content-Type':'application/json'},data:{email,password}"
+          new = "headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},data:{email,password}"
+          for name in files:
+              path = Path(name)
+              text = path.read_text()
+              if old not in text:
+                  raise SystemExit(f'commissioning login pattern missing in {name}')
+              path.write_text(text.replace(old, new))
+          PY
+          node --check g2-011-progress-story-production.mjs
+          node --check g2-013-progress-picture-rendered-production.mjs
+          node --check g2-014-progress-picture-premium-production.mjs
+          node --check g2-015-plan-manager-production.mjs
       - name: Acquire G2-011 commissioning identity
         id: oidc_011
         shell: bash
