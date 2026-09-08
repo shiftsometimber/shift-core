@@ -1,3 +1,4 @@
+// Production proof rerun: 2026-09-08 final walking-copy correction.
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
