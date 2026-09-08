@@ -75,7 +75,7 @@ jobs:
           p.write_text(s)
           PY
           node --check hq-catalogue-v1.js
-          node --test hq-purchaseability-v1.test.js
+          node -e "import('./hq-purchaseability-v1.js').then(({authoritativePurchaseability})=>{const no=authoritativePurchaseability({product:{status:'available',sellable:1,partner:'P'},variant:{status:'available',sellable:1,availability_state:'available'},inventory:{stock_on_hand:0,reserved:0}});const yes=authoritativePurchaseability({product:{status:'available',sellable:1,partner:'P'},variant:{status:'available',sellable:1,availability_state:'available'},inventory:{stock_on_hand:1,reserved:0}});if(no.canBuy||!yes.canBuy)process.exit(1)})"
           grep -q 'Purchase authority' hq-catalogue-v1.js
           grep -q 'availability_state' hq-catalogue-v1.js
           grep -q 'ensurePurchaseabilitySchema' hq-catalogue-v1.js
