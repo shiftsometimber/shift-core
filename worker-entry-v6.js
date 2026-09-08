@@ -326,6 +326,20 @@ const REVIEWED_MENTAL_HEALTH_PATHS = [
   "/mental-health/myths-men-mental-health",
   "/mental-health/when-to-get-help",
 ];
+const PRIORITY_PUBLIC_PATHS = [
+  "/medicine-news",
+  "/shift-health",
+  "/shift-health/health-mot",
+  "/shift-health/testosterone-energy",
+  "/shift-health/blood-pressure-monitor",
+  "/shift-health/digital-scales",
+  "/shift-health/resistance-bands",
+  "/shift-health/shift-measure",
+  "/shift-health/erectile-dysfunction",
+  "/shift-health/hair-loss",
+  "/shift-health/stop-smoking",
+  "/shift-health/sleep-apnoea",
+];
 async function publicSitemapWithReviewedMentalHealth(request) {
   const upstream = new URL(request.url);
   upstream.protocol = "https:";
@@ -336,12 +350,12 @@ async function publicSitemapWithReviewedMentalHealth(request) {
   );
   if (!response.ok) return response;
   let xml = await response.text();
-  const additions = REVIEWED_MENTAL_HEALTH_PATHS.filter(
+  const additions = [...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS].filter(
     (path) => !xml.includes(`<loc>https://shiftsometimber.co.uk${path}</loc>`),
   )
     .map(
       (path) =>
-        `<url><loc>https://shiftsometimber.co.uk${path}</loc><lastmod>2026-09-03</lastmod></url>`,
+        `<url><loc>https://shiftsometimber.co.uk${path}</loc><lastmod>2026-09-08</lastmod></url>`,
     )
     .join("");
   if (additions && xml.includes("</urlset>"))
@@ -350,7 +364,7 @@ async function publicSitemapWithReviewedMentalHealth(request) {
   headers.delete("Content-Length");
   headers.set("Content-Type", "application/xml; charset=utf-8");
   headers.set("Cache-Control", "public, max-age=300, must-revalidate");
-  headers.set("X-Shift-Sitemap-Authority", "reviewed-mental-health-v1");
+  headers.set("X-Shift-Sitemap-Authority", "reviewed-health-estate-v2");
   return new Response(request.method === "HEAD" ? null : xml, {
     status: response.status,
     statusText: response.statusText,

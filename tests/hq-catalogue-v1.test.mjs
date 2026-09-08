@@ -20,16 +20,16 @@ test('HQ exposes controlled product images and medicine variants',()=>{
 
 test('HQ browser preflights are answered before session checks',()=>{
   const entry=fs.readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');
-  const preflight=entry.indexOf("request.method==='OPTIONS'&&path.startsWith('/v1/hq/')");
+  const preflight=entry.search(/request\.method\s*===\s*["']OPTIONS["']\s*&&\s*path\.startsWith\(["']\/v1\/hq\/["']\)/);
   const catalogue=entry.indexOf('hqCatalogueRoutes(request');
   assert.ok(preflight>0&&preflight<catalogue);
-  assert.match(entry,/withHqCors\(hqCatalogue,request\)/);
-  assert.match(entry,/withHqCors\(hqCommerceContent,request\)/);
-  assert.match(entry,/withHqCors\(radar,request\)/);
+  assert.match(entry,/withHqCors\(hqCatalogue\s*,\s*request\)/);
+  assert.match(entry,/withHqCors\(hqCommerceContent\s*,\s*request\)/);
+  assert.match(entry,/withHqCors\(radar\s*,\s*request\)/);
 });
 
 test('HQ catalogue is wired before the legacy Worker fallback',()=>{
   const entry=fs.readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');
-  assert.match(entry,/import \{hqCatalogueRoutes\}/);
+  assert.match(entry,/import\s*\{\s*hqCatalogueRoutes\s*\}/);
   assert.ok(entry.indexOf('hqCatalogueRoutes(request')<entry.indexOf('hqCommerceContentRoutes(request'));
 });

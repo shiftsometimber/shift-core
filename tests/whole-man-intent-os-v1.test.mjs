@@ -129,9 +129,9 @@ test("Life Back uses one or two priorities, never leaderboard theatre", () => {
   assert.ok(!journey.toLowerCase().includes("leaderboard"));
 });
 
-test("ContinuityStay keeps Journey, CGQ, Lounge and human support without becoming a product", () => {
+test("continuity support keeps Journey, CGQ, Lounge and human support without becoming a product", () => {
   for (const phrase of [
-    "CONTINUITYSTAY",
+    "KEEP YOUR PROGRESS",
     "Clinic Gone Quiet",
     "Open The Lounge",
     "Message SHIFT",
@@ -139,7 +139,7 @@ test("ContinuityStay keeps Journey, CGQ, Lounge and human support without becomi
     assert.ok(journey.includes(phrase));
   for (const state of ["stopped", "stranded", "elsewhere", "doing_alright"])
     assert.ok(journey.includes(state));
-  assert.ok(journey.includes("billing stays off"));
+  assert.ok(journey.includes("Your Journey stays with you"));
   assert.ok(!journey.includes("SHIFT Continuity"));
 });
 
@@ -280,6 +280,28 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   assert.ok(shiftHealthProduct.includes('nav aria-label="Footer"'));
   assert.ok(shiftHealthProduct.includes('href="/shift-health"'));
   assert.ok(shiftHealthProduct.includes(".head nav"));
+  for (const asset of [
+    "/analytics-bootstrap-v1.js?v=52",
+    "/consent-v4a.js?v=52",
+    "/analytics-events-v31b.js?v=52",
+  ]) {
+    assert.ok(shiftHealth.includes(asset));
+    assert.ok(shiftHealthProduct.includes(asset));
+  }
+  for (const path of [
+    "/medicine-news",
+    "/shift-health",
+    "/shift-health/health-mot",
+    "/shift-health/testosterone-energy",
+    "/shift-health/blood-pressure-monitor",
+    "/shift-health/digital-scales",
+    "/shift-health/resistance-bands",
+    "/shift-health/shift-measure",
+    "/shift-health/erectile-dysfunction",
+    "/shift-health/hair-loss",
+    "/shift-health/stop-smoking",
+    "/shift-health/sleep-apnoea",
+  ]) assert.ok(workerEntry.includes(`"${path}"`));
 });
 
 test("SHIFT Health matches medicine-page depth while remaining honestly out of stock", () => {
