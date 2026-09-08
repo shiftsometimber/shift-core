@@ -270,6 +270,8 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_ROOT_GUARD"));
   assert.ok(workerEntry.includes("document.documentElement"));
   assert.ok(workerEntry.includes("subtree:true"));
+  assert.ok(workerEntry.includes('upstreamHeaders.delete("If-None-Match")'));
+  assert.ok(workerEntry.includes('headers.delete("ETag")'));
   assert.ok(workerEntry.includes("new MutationObserver"));
   assert.ok(workerEntry.includes("setTimeout(run,150)"));
   assert.ok(

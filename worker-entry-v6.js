@@ -294,10 +294,17 @@ async function publicSiteConfigWithLoungeChrome(request) {
   upstream.protocol = "https:";
   upstream.hostname = "projectshift.pages.dev";
   upstream.port = "";
-  const response = await fetch(new Request(upstream, request));
+  const upstreamHeaders = new Headers(request.headers);
+  upstreamHeaders.delete("If-None-Match");
+  upstreamHeaders.delete("If-Modified-Since");
+  const response = await fetch(
+    new Request(upstream, { method: request.method, headers: upstreamHeaders }),
+  );
   if (!response.ok) return response;
   const headers = new Headers(response.headers);
   headers.delete("Content-Length");
+  headers.delete("ETag");
+  headers.delete("Last-Modified");
   headers.set("Content-Type", "application/javascript; charset=utf-8");
   headers.set("Cache-Control", "no-store, must-revalidate");
   headers.set("X-Shift-Lounge-Chrome", "v2");
