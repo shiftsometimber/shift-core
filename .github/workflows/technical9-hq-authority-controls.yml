@@ -1,0 +1,90 @@
+name: Technical 9 HQ Authority Controls
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/technical9-hq-authority-controls.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Add HQ purchase-authority edit surface
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('hq-catalogue-v1.js')
+          s=p.read_text()
+          def one(old,new,label):
+              global s
+              if old not in s:
+                  raise SystemExit('missing anchor: '+label)
+              s=s.replace(old,new,1)
+
+          one('import hq from "./hq-ai-v2.js";',
+              'import hq from "./hq-ai-v2.js";\nimport { ensurePurchaseabilitySchema, normaliseAvailability } from "./hq-purchaseability-v1.js";',
+              'import')
+          one('  await ensureSchema(env.DB);',
+              '  await ensureSchema(env.DB);\n  await ensurePurchaseabilitySchema(env.DB);',
+              'schema')
+
+          one('<p id="medicineStatus" role="status"></p><div id="medicineList"></div></section></main><script>',
+              '<p id="medicineStatus" role="status"></p><div id="medicineList"></div></section><section class="panel"><h2>Purchase authority</h2><p class="muted">Fail-closed control. A medicine can only be bought when HQ explicitly sets a partner, marks both medicine and strength sellable, sets availability to Available, keeps both catalogue statuses Available, and real stock is above zero.</p><div id="authorityList"></div></section></main><script>',
+              'authority panel')
+
+          one("async function medicines(){const b=await api('/v1/hq/medicines'),h=document.querySelector('#medicineList');",
+              "async function authority(){const b=await api('/v1/hq/medicines'),h=document.querySelector('#authorityList');const opts=v=>['unavailable','out_of_stock','available','suspended','draft','archived'].map(x=>'<option value=\"'+x+'\"'+sel(v,x)+'>'+esc(x.replaceAll('_',' '))+'</option>').join('');h.innerHTML=b.medicines.map(m=>'<article class=\"item\"><h3>'+esc(m.name)+'</h3><form class=\"authority-medicine grid\" data-id=\"'+m.id+'\"><label>Partner<input name=\"partner\" value=\"'+esc(m.partner||'')+'\" placeholder=\"Pharmacy / clinical partner\"></label><label>Availability<select name=\"availabilityState\">'+opts(m.availabilityState)+'</select></label><label>Sellable<input name=\"sellable\" type=\"checkbox\" value=\"1\"'+(m.sellable?' checked':'')+'></label><div><button>Save medicine authority</button></div><p class=\"saved\" role=\"status\"></p></form>'+m.variants.map(v=>'<form class=\"authority-variant grid\" data-id=\"'+v.id+'\"><label>Strength<input value=\"'+esc(v.strengthLabel)+'\" disabled></label><label>Partner<input name=\"partner\" value=\"'+esc(v.partner||'')+'\" placeholder=\"Optional; medicine partner can be inherited\"></label><label>Availability<select name=\"availabilityState\">'+opts(v.availabilityState)+'</select></label><label>Sellable<input name=\"sellable\" type=\"checkbox\" value=\"1\"'+(v.sellable?' checked':'')+'></label><div><button>Save strength authority</button></div><p class=\"saved\" role=\"status\"></p></form>').join('')+'</article>').join('');h.querySelectorAll('.authority-medicine').forEach(f=>f.onsubmit=async e=>{e.preventDefault();const d=new FormData(f);await api('/v1/hq/medicines/'+f.dataset.id,{method:'PATCH',body:JSON.stringify({partner:d.get('partner'),availabilityState:d.get('availabilityState'),sellable:f.elements.sellable.checked})});f.querySelector('[role=status]').textContent='Authority saved.';await authority()});h.querySelectorAll('.authority-variant').forEach(f=>f.onsubmit=async e=>{e.preventDefault();const d=new FormData(f);await api('/v1/hq/medicine-variants/'+f.dataset.id,{method:'PATCH',body:JSON.stringify({partner:d.get('partner'),availabilityState:d.get('availabilityState'),sellable:f.elements.sellable.checked})});f.querySelector('[role=status]').textContent='Authority saved.';await authority()})}async function medicines(){const b=await api('/v1/hq/medicines'),h=document.querySelector('#medicineList');",
+              'authority js')
+          one("Promise.all([products(),medicines()]).catch",
+              "Promise.all([products(),medicines(),authority()]).catch",
+              'authority load')
+
+          one('        activeIngredient: m.active_ingredient,\n        hasImage:',
+              '        activeIngredient: m.active_ingredient,\n        partner: m.partner || "",\n        sellable: Number(m.sellable || 0) === 1,\n        availabilityState: m.availability_state || "unavailable",\n        hasImage:',
+              'medicine response')
+          one('            status: v.status,\n            stockOnHand:',
+              '            status: v.status,\n            partner: v.partner || "",\n            sellable: Number(v.sellable || 0) === 1,\n            availabilityState: v.availability_state || "unavailable",\n            stockOnHand:',
+              'variant response')
+
+          one('      form = clean(b.form ?? current.form, 30),\n      status = clean(b.status ?? current.status, 30);',
+              '      form = clean(b.form ?? current.form, 30),\n      status = clean(b.status ?? current.status, 30),\n      partner = clean(b.partner ?? current.partner, 160),\n      sellable = b.sellable === undefined ? Number(current.sellable || 0) : (b.sellable === true || b.sellable === 1 || b.sellable === "1" ? 1 : 0),\n      availability = normaliseAvailability(b.availabilityState ?? current.availability_state);',
+              'medicine vars')
+          one('"UPDATE medicine_products SET name=?,active_ingredient=?,form=?,status=?,description=?,updated_by=?,updated_at=? WHERE id=?",',
+              '"UPDATE medicine_products SET name=?,active_ingredient=?,form=?,status=?,description=?,partner=?,sellable=?,availability_state=?,updated_by=?,updated_at=? WHERE id=?",',
+              'medicine sql')
+          one('        clean(b.description ?? current.description, 5000),\n        auth.user.id,\n        now(),\n        current.id,',
+              '        clean(b.description ?? current.description, 5000),\n        partner || null,\n        sellable,\n        availability,\n        auth.user.id,\n        now(),\n        current.id,',
+              'medicine bind')
+
+          one('      status = clean(b.status ?? current.status, 30),\n      stock = Math.round(Number(b.stockOnHand ?? 0));',
+              '      status = clean(b.status ?? current.status, 30),\n      stock = Math.round(Number(b.stockOnHand ?? 0)),\n      partner = clean(b.partner ?? current.partner, 160),\n      sellable = b.sellable === undefined ? Number(current.sellable || 0) : (b.sellable === true || b.sellable === 1 || b.sellable === "1" ? 1 : 0),\n      availability = normaliseAvailability(b.availabilityState ?? current.availability_state);',
+              'variant vars')
+          one('"UPDATE medicine_variants SET cost_pence=?,selling_price_pence=?,target_margin_bps=?,status=?,updated_at=? WHERE id=?",\n      ).bind(cost, selling, targetMarginBps, effective, stamp, id),',
+              '"UPDATE medicine_variants SET cost_pence=?,selling_price_pence=?,target_margin_bps=?,status=?,partner=?,sellable=?,availability_state=?,updated_at=? WHERE id=?",\n      ).bind(cost, selling, targetMarginBps, effective, partner || null, sellable, availability, stamp, id),',
+              'variant sql')
+
+          p.write_text(s)
+          PY
+          node --check hq-catalogue-v1.js
+          node --test hq-purchaseability-v1.test.js
+          grep -q 'Purchase authority' hq-catalogue-v1.js
+          grep -q 'availability_state' hq-catalogue-v1.js
+          grep -q 'ensurePurchaseabilitySchema' hq-catalogue-v1.js
+      - name: Commit and self-remove
+        shell: bash
+        run: |
+          rm .github/workflows/technical9-hq-authority-controls.yml
+          git config user.name 'shift-technical9-bot'
+          git config user.email 'technical9@users.noreply.github.com'
+          git add hq-catalogue-v1.js .github/workflows/technical9-hq-authority-controls.yml
+          git commit -m 'Expose HQ purchase authority controls'
+          git push origin HEAD:main
