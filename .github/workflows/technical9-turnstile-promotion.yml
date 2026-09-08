@@ -1,0 +1,38 @@
+name: Technical 9 Turnstile promotion trigger
+
+on:
+  push:
+    branches: [technical9-turnstile-promotion]
+    paths:
+      - '.github/workflows/technical9-turnstile-promotion.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  touch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: technical9-turnstile-promotion
+          fetch-depth: 0
+      - name: Add deployment marker to commissioning authority
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('commissioning-identity-v1.js')
+          s=p.read_text()
+          marker='// Technical 9 deployment marker: Turnstile commissioning handoff promoted.'
+          if marker not in s:
+              p.write_text(marker+'\n'+s)
+      - name: Run Turnstile regression tests
+        run: node --test tests/turnstile-auth-v1.test.mjs
+      - name: Commit promotion marker
+        run: |
+          if git diff --quiet; then echo 'No change required'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add commissioning-identity-v1.js
+          git commit -m 'Promote Turnstile commissioning handoff'
+          git push origin HEAD:technical9-turnstile-promotion
