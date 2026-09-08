@@ -150,6 +150,8 @@ jobs:
         run: node g5-012-login-fastpath-gate.mjs
       - name: Prove Ask Timber handles every explicit request part
         run: node --test ask-timber-multi-intent-gate.mjs
+      - name: Block SEO deployment regressions
+        run: node --test tests/seo-release-integrity.test.mjs
       - name: Prove My Journey end to end before promotion
         run: |
           node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs
