@@ -802,10 +802,47 @@ if (item) {
     faq = FAQ[slug],
     detail = DETAILS[slug],
     evidence = EVIDENCE[slug];
-  document.title = `${item.name} | SHIFT Health`;
+  const pageUrl = `https://shiftsometimber.co.uk/shift-health/${slug}`;
+  const pageTitle = `${item.name} | SHIFT Health`;
+  const pageDescription = item.intro;
+  const pageImage = "https:" + "//shiftsometimber.co.uk" + MEDIA[slug];
+  const setMeta = (selector, attribute, value) => {
+    let node = document.head.querySelector(selector);
+    if (!node) {
+      node = document.createElement("meta");
+      const match = selector.match(/meta\[(name|property)="([^"]+)"\]/);
+      if (match) node.setAttribute(match[1], match[2]);
+      document.head.appendChild(node);
+    }
+    node.setAttribute(attribute, value);
+  };
+  document.title = pageTitle;
+  document.querySelector('link[rel="canonical"]').href = pageUrl;
+  setMeta('meta[name="description"]', "content", pageDescription);
+  setMeta('meta[property="og:title"]', "content", pageTitle);
+  setMeta('meta[property="og:description"]', "content", pageDescription);
+  setMeta('meta[property="og:url"]', "content", pageUrl);
+  setMeta('meta[property="og:image"]', "content", pageImage);
+  setMeta('meta[name="twitter:title"]', "content", pageTitle);
+  setMeta('meta[name="twitter:description"]', "content", pageDescription);
+  setMeta('meta[name="twitter:image"]', "content", pageImage);
+  const schema = document.createElement("script");
+  schema.type = "application/ld+json";
+  schema.dataset.shiftHealthSchema = "v1";
+  schema.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: item.name,
+    description: pageDescription,
+    url: pageUrl,
+    image: pageImage,
+    isPartOf: { "@id": "https://shiftsometimber.co.uk/#website" },
+    publisher: { "@id": "https://shiftsometimber.co.uk/#organization" },
+  });
+  document.head.appendChild(schema);
   document.querySelector("[data-product]").innerHTML =
     `<a class="back" href="/shift-health">← SHIFT Health</a>
-    <section class="productHero"><div><small>${esc(item.family)} · ${esc(item.code)}</small><h1>${esc(item.name)}</h1><p class="job">${esc(item.job)}</p><p>${esc(item.intro)}</p><div class="availability"><span>AVAILABILITY</span><strong>Currently out of stock</strong><span>Leave your details once and we’ll tell you when it returns.</span></div><div class="actions"><a class="btn" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}">Tell me when it’s back</a><a class="btn alt" href="/member/dashboard#journey">Add this to My Timber</a></div></div><figure class="visual"><img src="${MEDIA[slug]}" alt="Editorial illustration for ${esc(item.name)}" width="1200" height="800"><figcaption>Editorial image · exact supplied item confirmed when stocked</figcaption></figure></section>
+    <section class="productHero"><div><small>${esc(item.family)} · ${esc(item.code)}</small><h1>${esc(item.name)}</h1><p class="job">${esc(item.job)}</p><p>${esc(item.intro)}</p><div class="availability"><span>AVAILABILITY</span><strong>Currently out of stock</strong><span>Leave your details once and we’ll tell you when it returns.</span></div><div class="actions"><a class="btn" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}&name=${encodeURIComponent(item.name)}">Tell me when it’s back</a><a class="btn alt" data-save-shift-health href="/member/dashboard?shift_health=${encodeURIComponent(slug)}#journey">Add this to My Timber</a></div></div><figure class="visual"><img src="${MEDIA[slug]}" alt="${esc(item.name)}" width="1200" height="800"></figure></section>
     <nav class="jump" aria-label="On this page"><a href="#understand">What it is</a><a href="#included">What you get</a><a href="#decide">Is it right?</a><a href="#evidence">Evidence</a><a href="#journey">Your Journey</a><a href="#process">What happens</a><a href="#questions">Questions</a></nav>
     <section id="understand"><small>01 · UNDERSTAND IT</small><h2>Know what you’re choosing.</h2><p class="sectionCopy">${esc(detail.understand)}</p></section>
     <section id="included"><small>02 · WHAT YOU GET</small><h2>More than an item in a box.</h2><div class="detailGrid"><article class="detailCard"><b>Included in the route</b><ul>${detail.included.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></article><article class="detailCard"><b>How to get a useful result</b><ul>${detail.choices.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></article></div></section>
@@ -816,7 +853,15 @@ if (item) {
     <section class="journey" id="journey"><small>05 · WHERE IT FITS</small><h2>${esc(journey[0])}</h2><div class="journeyGrid"><div><b>What My Timber keeps</b><p>${esc(journey[1])}</p></div><div><b>Your Next Shift</b><p>${esc(journey[2])}</p></div></div></section>
     <section id="process"><small>06 · WHAT HAPPENS NEXT</small><h2>One clear route. No mystery hand-offs.</h2><ol class="steps">${item.steps.map((x, i) => `<li><b>0${i + 1}</b><span>${esc(x)}</span></li>`).join("")}</ol></section>
     <section id="questions"><small>07 · USEFUL QUESTIONS</small><h2>Before you decide.</h2><div class="faqs">${faq.map((x) => `<details><summary>${esc(x[0])}</summary><p>${esc(x[1])}</p></details>`).join("")}</div></section>
-    <section class="next"><small>MY NEXT SHIFT</small><h2>Keep it connected to the reason you started.</h2><p>My Timber keeps the result, your priorities and one useful next step together. It becomes part of your Journey—not another purchase you forget about in a drawer.</p><div class="actions"><a class="btn" href="/member/dashboard#journey">Open My Timber</a><a class="btn alt" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}">Tell me when it’s back</a></div></section>`;
+    <section class="next"><small>MY NEXT SHIFT</small><h2>Keep it connected to the reason you started.</h2><p>My Timber keeps the result, your priorities and one useful next step together. It becomes part of your Journey—not another purchase you forget about in a drawer.</p><div class="actions"><a class="btn" data-save-shift-health href="/member/dashboard?shift_health=${encodeURIComponent(slug)}#journey">Open My Timber</a><a class="btn alt" href="/contact?type=Stock%20update&product=${encodeURIComponent(item.code)}&name=${encodeURIComponent(item.name)}">Tell me when it’s back</a></div></section>`;
+  document.querySelectorAll("[data-save-shift-health]").forEach((link) =>
+    link.addEventListener("click", () => {
+      localStorage.setItem(
+        "sst_shift_health_interest_v1",
+        JSON.stringify({ slug, code: item.code, name: item.name, savedAt: new Date().toISOString() }),
+      );
+    }),
+  );
 } else
   document.querySelector("[data-product]").innerHTML =
     '<h1>That SHIFT Health route could not be found.</h1><a class="btn" href="/shift-health">Back to SHIFT Health</a>';
