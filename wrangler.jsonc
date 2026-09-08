@@ -9,7 +9,7 @@
   "preview_urls": false,
 
   "routes": [
-    { "pattern": "api.shiftsometimber.co.uk", "custom_domain": true },
+    { "pattern": "api.shiftsometimber.co.uk", "custom_domain": true },\n    {\n      "pattern": "shiftsometimber.co.uk/faq/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/faq/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },
     {
       "pattern": "shiftsometimber.co.uk/v1/*",
       "zone_name": "shiftsometimber.co.uk",
