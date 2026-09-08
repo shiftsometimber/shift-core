@@ -19,6 +19,14 @@
       "zone_name": "shiftsometimber.co.uk",
     },
     {
+      "pattern": "shiftsometimber.co.uk/tools/*",
+      "zone_name": "shiftsometimber.co.uk",
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/tools/*",
+      "zone_name": "shiftsometimber.co.uk",
+    },
+    {
       "pattern": "shiftsometimber.co.uk/member/dashboard*",
       "zone_name": "shiftsometimber.co.uk",
     },
