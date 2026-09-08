@@ -1,5 +1,6 @@
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
+import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';
 
 const ALLOWED_ORIGINS = new Set([
   "https://shiftsometimber.co.uk",
@@ -710,6 +711,9 @@ async function webhook(request, env, ctx) {
         ).bind(now(), order.variant_id),
       ]);
       await updateOrderReferenceStatus(env.DB,number,'paid');
+      const mail=medicineEmailTemplates.orderConfirmation({orderNumber:number});
+      const delivery=sendTransactionalEmail(env,{to:order.email,userId:order.user_id,internalNotify:true,includeMatt:true,...mail});
+      if(ctx?.waitUntil) ctx.waitUntil(delivery); else await delivery;
     } else if (
       [
         "checkout.session.expired",
@@ -812,6 +816,8 @@ async function pharmacyStatus(request, env) {
   await env.DB.prepare(`UPDATE medicine_orders SET clinical_status=?,clinical_reason_code=?,clinical_updated_at=?,journey_setup_required=?,reorder_eligible_at=?,status=?,updated_at=? WHERE id=?`).bind(next, reasonCode || null, stamp, journeyRequired, reorderAt, paymentStatus, stamp, order.id).run();
   await updateOrderReferenceStatus(env.DB, orderNumber, next);
   await env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`).bind(order.user_id, "medicine.clinical_status", "medicine_order", String(order.id), JSON.stringify({ from: current, to: next, reasonCode: reasonCode || null }), stamp).run().catch(() => null);
+  const mail=medicineEmailTemplates.clinicalStatus({status:next});
+  await sendTransactionalEmail(env,{to:order.email,userId:order.user_id,internalNotify:true,includeMatt:true,...mail});
   return json({ ok: true, orderNumber, previousStatus: current, status: next, journeySetupRequired: Boolean(journeyRequired), reorderEligibleAt: reorderAt });
 }
 
