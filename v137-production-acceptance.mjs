@@ -1,3 +1,4 @@
+// Final production proof rerun after zero-residue copy deployment.
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
