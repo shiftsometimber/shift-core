@@ -271,7 +271,7 @@ async function rewritePublicLoungeChrome(response) {
     body = source
       .replaceAll(
         "recommended of moderate activity per week",
-        "recommended 150 minutes of moderate activity per week",
+        "recommended 150 minutes of moderate-intensity exercise per week",
       )
       .replaceAll('href="/tap-room"', 'href="/lounge"')
       .replaceAll('href="/tap-room.html"', 'href="/lounge"')
