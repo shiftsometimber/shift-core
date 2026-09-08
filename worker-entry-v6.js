@@ -413,7 +413,7 @@ export default {
     )
       return publicSitemapWithReviewedMentalHealth(request);
     if (
-      path === "/site-config-v3a.js" &&
+      (path === "/site-config-v3a.js" || path === "/authority-menu-v35.js") &&
       (request.method === "GET" || request.method === "HEAD")
     )
       return publicSiteConfigWithLoungeChrome(request);

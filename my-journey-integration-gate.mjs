@@ -18,6 +18,7 @@ const worker = read('worker-entry-v6.js');
 const workerNormalised = worker.replace(/"/g, "'").replace(/\s+/g, '');
 const config = read('wrangler.jsonc');
 const productionWorkflow = read('.github/workflows/cloudflare-production-promote.yml');
+const productionWorkflowNormalised = productionWorkflow.replace(/"/g, "'");
 const weeklyClient = read('frontend/member/member-my-journey-checkin-v1.js');
 const journeyClient = read('frontend/member/member-my-journey-v1.js');
 const memberProduct = read('frontend/member/member-product-v33d.js');
@@ -148,7 +149,7 @@ has(adapter, 'getJourneyExport');
 has(worker, 'myJourneyRoutes');
 for (const marker of ['env.DB.batch', "source='my_journey_weekly'", 'shift_progress_photos_v2']) has(read('my-journey-v1.js'), marker);
 need(!client.includes('new MutationObserver'), 'weekly check-in must not race and duplicate during Journey rendering');
-for (const marker of ["'my-journey-v1.js'","'my-journey-checkin-v1.js'",'node my-journey-integration-gate.mjs']) has(productionWorkflow, marker, `production Worker coordination missing “${marker}”`);
+for (const marker of ["'my-journey-v1.js'","'my-journey-checkin-v1.js'",'node my-journey-integration-gate.mjs']) has(productionWorkflowNormalised, marker, `production Worker coordination missing “${marker}”`);
 
 // Accessibility and resilient interaction contracts.
 for (const marker of [

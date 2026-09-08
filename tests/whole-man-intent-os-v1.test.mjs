@@ -255,6 +255,13 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   assert.ok(workerConfig.includes("shiftsometimber.co.uk/shift-health*"));
   assert.ok(workerConfig.includes("www.shiftsometimber.co.uk/shift-health*"));
   assert.ok(
+    workerConfig.includes("shiftsometimber.co.uk/authority-menu-v35.js*"),
+  );
+  assert.ok(
+    workerConfig.includes("shiftsometimber.co.uk/assets/shift-health/*"),
+  );
+  assert.ok(workerCompact.includes("path==='/authority-menu-v35.js'"));
+  assert.ok(
     workerCompact.includes("['/shift-health.html','text/html;charset=utf-8']"),
   );
   assert.ok(workerEntry.includes("SHIFT_HEALTH_CHROME_PATCH"));

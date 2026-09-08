@@ -4,100 +4,100 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/cloudflare-production-promote.yml'
-      - 'wrangler.jsonc'
-      - 'worker-entry-v6.js'
-      - 'worker.js'
-      - 'ask-timber-v1.js'
-      - 'ask-timber-multi-intent-gate.mjs'
-      - 'commerce-stripe-v1.js'
-      - 'medicine-commerce-v1.js'
-      - 'hq-catalogue-v1.js'
-      - 'frontend/medicine-front-door/**'
-      - 'tests/medicine-commerce-v1.test.mjs'
-      - 'tests/medicine-front-door-v1.test.mjs'
-      - 'tests/medicine-purchase-e2e.test.mjs'
-      - 'hq-commerce-content-v1.js'
-      - 'migrations/**'
-      - 'shift-me-3d-proof-v1.js'
-      - 'public/shift-me-3d/**'
-      - 'frontend/member/**'
-      - 'fit-reminders-v1.js'
-      - 'daily-reminder-copy-v1.js'
-      - 'fit-reminders-source-gate.mjs'
-      - 'frontend/member/member-fit.html'
-      - 'frontend/member/member-grub.html'
-      - 'frontend/member/my-timber-v11.css'
-      - 'frontend/member/member-fit-programme-v1.js'
-      - 'frontend/member/member-fit-programme-v1.css'
-      - 'frontend/member/member-grub-programme-v1.js'
-      - 'frontend/member/member-grub-programme-v1.css'
-      - 'member-daily-v3.js'
-      - 'shift-fit-uk-programme-gate.mjs'
-      - 'frontend/member/shift-push-sw-v1.js'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'structured-content-v1.js'
-      - 'member-product-v7.js'
-      - 'member-product-v8.js'
-      - 'daily-shift-frontdoor-gate.mjs'
-      - 'my-timber-75-green-gate.mjs'
-      - 'my-timber-final-source-gate.mjs'
-      - 'my-timber-final-production.mjs'
-      - '.github/workflows/my-timber-final-production.yml'
-      - 'member-quality-v1.js'
-      - 'commissioning-identity-v1.js'
-      - 'commissioning-ops-v1.js'
-      - 'shift-me-v1.js'
-      - 'frontend/member/shift-me-api-v1.js'
-      - 'frontend/member/member-shift-me-premium-v1.js'
-      - 'frontend/member/member-shift-me-premium-v1.css'
-      - 'frontend/member/member-product-v33d.js'
-      - 'frontend/member/api-adapter-v33d.js'
-      - 'frontend/member/member-shell-v33g.js'
-      - 'frontend/member/member-progress-v1.js'
-      - 'frontend/member/member-p0-v1.css'
-      - 'frontend/member/member-today-premium-v1.js'
-      - 'frontend/member/member-my-timber-problem-v1.js'
-      - 'frontend/member/my-timber-preview.html'
-      - 'my-timber-navigation-gate.mjs'
-      - 'member-login-fastpath-v1.js'
-      - 'member-register-fastpath-v2.js'
-      - 'member-state-fast-v1.js'
-      - 'auth-email-verification-v1.js'
-      - 'g5-012-login-fastpath-gate.mjs'
-      - 'frontend/member/member-today-premium-v1.css'
-      - 'frontend/member/member-today-final-v1.css'
-      - 'frontend/member/member-life-back-v1.js'
-      - 'frontend/member/member-life-back-v1.css'
-      - 'frontend/member/member-my-journey-v1.js'
-      - 'frontend/member/member-my-journey-v1.css'
-      - 'frontend/member/member-my-journey-checkin-v1.js'
-      - 'frontend/member/member-my-journey-checkin-v1.css'
-      - 'frontend/member/member-treatment-journey-v1.js'
-      - 'my-journey-v1.js'
-      - 'my-journey-checkin-v1.js'
-      - 'my-journey-observation-v1.js'
-      - 'my-journey-integration-gate.mjs'
-      - 'tests/my-journey-*.test.mjs'
-      - 'frontend/member/member-medicines-watch-v1.js'
-      - 'frontend/member/member-medicines-watch-v1.css'
-      - 'frontend/member/member-sport-v1.js'
-      - 'frontend/member/member-sport-v1.css'
-      - 'radar-public-v1.js'
-      - 'radar-medicine-seed-v1.js'
-      - 'radar-integration-v1.js'
-      - 'radar-authoritative-scan-v1.js'
-      - 'radar-scheduled-scan-v1.js'
-      - 'sport-clubhouse-v1.js'
-      - 'personal-platform-v1.js'
-      - 'fit-canonical-guidance-v1.mjs'
-      - 'final-v1-production-serving.mjs'
-      - 'final-v1-worker-publication-payload.mjs'
-      - 'finish-line-gate.mjs'
-      - 'reconcile-final-v1-gate2-board.mjs'
-      - 'reconcile-final-v1-recovery-pointers.mjs'
-      - '.github/workflows/final-v1-production-publication.yml'
+      - ".github/workflows/cloudflare-production-promote.yml"
+      - "wrangler.jsonc"
+      - "worker-entry-v6.js"
+      - "worker.js"
+      - "ask-timber-v1.js"
+      - "ask-timber-multi-intent-gate.mjs"
+      - "commerce-stripe-v1.js"
+      - "medicine-commerce-v1.js"
+      - "hq-catalogue-v1.js"
+      - "frontend/medicine-front-door/**"
+      - "tests/medicine-commerce-v1.test.mjs"
+      - "tests/medicine-front-door-v1.test.mjs"
+      - "tests/medicine-purchase-e2e.test.mjs"
+      - "hq-commerce-content-v1.js"
+      - "migrations/**"
+      - "shift-me-3d-proof-v1.js"
+      - "public/shift-me-3d/**"
+      - "frontend/member/**"
+      - "fit-reminders-v1.js"
+      - "daily-reminder-copy-v1.js"
+      - "fit-reminders-source-gate.mjs"
+      - "frontend/member/member-fit.html"
+      - "frontend/member/member-grub.html"
+      - "frontend/member/my-timber-v11.css"
+      - "frontend/member/member-fit-programme-v1.js"
+      - "frontend/member/member-fit-programme-v1.css"
+      - "frontend/member/member-grub-programme-v1.js"
+      - "frontend/member/member-grub-programme-v1.css"
+      - "member-daily-v3.js"
+      - "shift-fit-uk-programme-gate.mjs"
+      - "frontend/member/shift-push-sw-v1.js"
+      - "package.json"
+      - "package-lock.json"
+      - "structured-content-v1.js"
+      - "member-product-v7.js"
+      - "member-product-v8.js"
+      - "daily-shift-frontdoor-gate.mjs"
+      - "my-timber-75-green-gate.mjs"
+      - "my-timber-final-source-gate.mjs"
+      - "my-timber-final-production.mjs"
+      - ".github/workflows/my-timber-final-production.yml"
+      - "member-quality-v1.js"
+      - "commissioning-identity-v1.js"
+      - "commissioning-ops-v1.js"
+      - "shift-me-v1.js"
+      - "frontend/member/shift-me-api-v1.js"
+      - "frontend/member/member-shift-me-premium-v1.js"
+      - "frontend/member/member-shift-me-premium-v1.css"
+      - "frontend/member/member-product-v33d.js"
+      - "frontend/member/api-adapter-v33d.js"
+      - "frontend/member/member-shell-v33g.js"
+      - "frontend/member/member-progress-v1.js"
+      - "frontend/member/member-p0-v1.css"
+      - "frontend/member/member-today-premium-v1.js"
+      - "frontend/member/member-my-timber-problem-v1.js"
+      - "frontend/member/my-timber-preview.html"
+      - "my-timber-navigation-gate.mjs"
+      - "member-login-fastpath-v1.js"
+      - "member-register-fastpath-v2.js"
+      - "member-state-fast-v1.js"
+      - "auth-email-verification-v1.js"
+      - "g5-012-login-fastpath-gate.mjs"
+      - "frontend/member/member-today-premium-v1.css"
+      - "frontend/member/member-today-final-v1.css"
+      - "frontend/member/member-life-back-v1.js"
+      - "frontend/member/member-life-back-v1.css"
+      - "frontend/member/member-my-journey-v1.js"
+      - "frontend/member/member-my-journey-v1.css"
+      - "frontend/member/member-my-journey-checkin-v1.js"
+      - "frontend/member/member-my-journey-checkin-v1.css"
+      - "frontend/member/member-treatment-journey-v1.js"
+      - "my-journey-v1.js"
+      - "my-journey-checkin-v1.js"
+      - "my-journey-observation-v1.js"
+      - "my-journey-integration-gate.mjs"
+      - "tests/my-journey-*.test.mjs"
+      - "frontend/member/member-medicines-watch-v1.js"
+      - "frontend/member/member-medicines-watch-v1.css"
+      - "frontend/member/member-sport-v1.js"
+      - "frontend/member/member-sport-v1.css"
+      - "radar-public-v1.js"
+      - "radar-medicine-seed-v1.js"
+      - "radar-integration-v1.js"
+      - "radar-authoritative-scan-v1.js"
+      - "radar-scheduled-scan-v1.js"
+      - "sport-clubhouse-v1.js"
+      - "personal-platform-v1.js"
+      - "fit-canonical-guidance-v1.mjs"
+      - "final-v1-production-serving.mjs"
+      - "final-v1-worker-publication-payload.mjs"
+      - "finish-line-gate.mjs"
+      - "reconcile-final-v1-gate2-board.mjs"
+      - "reconcile-final-v1-recovery-pointers.mjs"
+      - ".github/workflows/final-v1-production-publication.yml"
   # Repository changes made through the connected GitHub integration do not
   # emit a normal push event. A merged same-repository PR is therefore also a
   # governed production promotion signal; the job still checks current main.
@@ -107,7 +107,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: 'Type PROMOTE_CURRENT_MAIN to deploy current main to production'
+        description: "Type PROMOTE_CURRENT_MAIN to deploy current main to production"
         required: true
         type: string
 
@@ -132,7 +132,7 @@ jobs:
           ref: main
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
@@ -205,3 +205,15 @@ jobs:
           [[ "$js_type" == *javascript* ]] || { echo 'Shift Me JS is not published with JavaScript MIME'; exit 1; }
           [[ "$css_type" == text/css* ]] || { echo 'Shift Me CSS is not published with CSS MIME'; exit 1; }
           echo 'Shift Me premium static assets are published with correct MIME types.'
+      - name: Prove SHIFT Health editorial imagery is actually published
+        shell: bash
+        run: |
+          set -euo pipefail
+          for image in health-mot testosterone-energy blood-pressure-monitor digital-scales resistance-bands shift-measure erectile-dysfunction hair-loss stop-smoking sleep-apnoea; do
+            code=$(curl -sS -o /tmp/shift-health-image -w '%{http_code}' "https://shiftsometimber.co.uk/assets/shift-health/${image}.webp")
+            type=$(file --brief --mime-type /tmp/shift-health-image)
+            echo "${image}.webp -> HTTP ${code}; ${type}"
+            [ "$code" = "200" ] || exit 1
+            [ "$type" = "image/webp" ] || exit 1
+          done
+          echo 'All SHIFT Health editorial images are published as WebP assets.'
