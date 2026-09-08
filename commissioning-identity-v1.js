@@ -1,3 +1,4 @@
+// Technical 9 deployment marker: Turnstile commissioning handoff promoted.
 const AUDIENCE='shift-production-commissioning';
 const ISSUER='https://token.actions.githubusercontent.com';
 const REPOSITORY='shiftsometimber/shift-core';
