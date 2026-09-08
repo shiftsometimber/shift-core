@@ -1,0 +1,27 @@
+name: SHIFT Contact Email Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/contact-email-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find website email references and mail routing
+        shell: bash
+        run: |
+          echo '=== SHIFT DOMAIN EMAIL REFERENCES ==='
+          git grep -nEi '[A-Za-z0-9._%+-]+@shiftsometimber\.co\.uk' -- ':!*.md' ':!*.txt' ':!.github/**' || true
+          echo '=== MAILTO REFERENCES ==='
+          git grep -nEi 'mailto:' -- ':!*.md' ':!*.txt' ':!.github/**' || true
+          echo '=== LEGACY PUBLIC EMAIL REFERENCES ==='
+          git grep -nEi '(gmail\.com|hotmail\.co\.uk|outlook\.com)' -- ':!*.md' ':!*.txt' ':!.github/**' || true
+          echo '=== MAIL SEND/BINDING REFERENCES ==='
+          git grep -nEi '(EMAIL\.send|sendEmail|send_email|transactional|order confirmation|clinical status|notify)' -- '*.js' '*.mjs' '*.ts' '*.html' || true
