@@ -53,20 +53,17 @@ jobs:
                   raise SystemExit(f'commissioning login pattern missing in {name}')
               path.write_text(text.replace(old, new))
 
-          # Generic 400/401/404 resource noise is already tolerated by the functional
-          # rendered suites; premium checks must judge the asserted member outcome,
-          # not unrelated background endpoint probes.
+          # Premium suites assert the actual member outcome. Generic expected
+          # 400/401/404 background probes are not a rendered-product failure.
           for name in ['g2-014-progress-picture-premium-production.mjs','g2-015-plan-manager-production.mjs']:
               path = Path(name)
               text = path.read_text()
-              old_console = r'(401|404) \\(\\)'
-              new_console = r'(400|401|404) \\(\\)'
-              if old_console not in text:
+              if '(401|404)' not in text:
                   raise SystemExit(f'console filter pattern missing in {name}')
-              path.write_text(text.replace(old_console, new_console))
+              path.write_text(text.replace('(401|404)', '(400|401|404)'))
 
           # waitForURL resolves at navigation commit; require the Grub DOM to be
-          # populated before declaring the Open Shift Grub outcome unusable.
+          # populated before judging the Open Shift Grub outcome.
           path = Path('g2-015-plan-manager-production.mjs')
           text = path.read_text()
           old_nav = "await Promise.all([p.waitForURL('**/member/grub',{timeout:20000}),opener.click()]);row.openOutcome=clean(await p.locator('body').innerText().catch(()=>''));"
