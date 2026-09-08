@@ -1,0 +1,46 @@
+name: Technical 9 commissioning pre-Turnstile
+
+on:
+  push:
+    branches: [technical9-commissioning-preturnstile]
+    paths:
+      - '.github/workflows/technical9-commissioning-preturnstile.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: technical9-commissioning-preturnstile
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Patch Worker auth order
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('worker-entry-v6.js')
+          s=p.read_text()
+          anchor='''    const turnstileBlock = await turnstileGuard(request, env);\n    if (turnstileBlock)\n      return path.startsWith("/v1/hq/")\n        ? withHqCors(turnstileBlock, request)\n        : withMemberCors(turnstileBlock, request);'''
+          replacement='''    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");\n    if (\n      commissioningOidc &&\n      request.method === "POST" &&\n      (path === "/v1/auth/register" || path === "/v1/auth/login")\n    ) {\n      const commissioningAuth = await handleCommissioningIdentity(\n        request,\n        env,\n        ctx,\n        coreAuthFetch,\n      );\n      if (commissioningAuth)\n        return withMemberCors(commissioningAuth, request);\n    }\n    const turnstileBlock = await turnstileGuard(request, env);\n    if (turnstileBlock)\n      return path.startsWith("/v1/hq/")\n        ? withHqCors(turnstileBlock, request)\n        : withMemberCors(turnstileBlock, request);'''
+          if 'const commissioningOidc = request.headers.get("x-shift-commissioning-oidc")' not in s:
+              assert anchor in s
+              s=s.replace(anchor,replacement,1)
+          p.write_text(s)
+          assert 'const commissioningOidc = request.headers.get("x-shift-commissioning-oidc")' in s
+          assert s.index('const commissioningOidc = request.headers.get("x-shift-commissioning-oidc")') < s.index('const turnstileBlock = await turnstileGuard(request, env);')
+      - name: Run auth regression tests
+        run: node --test tests/turnstile-auth-v1.test.mjs
+      - name: Commit Worker auth ordering
+        run: |
+          if git diff --quiet; then echo 'No patch required'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add worker-entry-v6.js
+          git commit -m 'Verify commissioning auth before Turnstile'
+          git push origin HEAD:technical9-commissioning-preturnstile
