@@ -1,3 +1,5 @@
+import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';
+
 const PATH='/v1/continuity-interest';
 const ALLOWED_INTENTS=new Set(['considering','using','disrupted','stopping','unspecified']);
 const ALLOWED_SOURCES=new Set(['home','start-here','programme','programme-benefits','treatment-centre','clinic-gone-quiet','founding-members','unknown']);
@@ -34,5 +36,7 @@ export async function continuityInterestRoutes(request,env){
   if(body.consent!==true)return json({ok:false,error:'consent_required',message:'Please confirm that Shift may email you about supply and continuity updates.'},400);
   const stamp=new Date().toISOString();
   await env.DB.prepare(`INSERT INTO continuity_interest(email,first_name,intent,source,consent_version,consented_at,active,withdrawn_at,created_at,updated_at) VALUES(?,?,?,?,?,?,1,NULL,?,?) ON CONFLICT(email) DO UPDATE SET first_name=COALESCE(NULLIF(excluded.first_name,''),continuity_interest.first_name),intent=excluded.intent,source=excluded.source,consent_version=excluded.consent_version,consented_at=excluded.consented_at,active=1,withdrawn_at=NULL,updated_at=excluded.updated_at`).bind(email,firstName,intent,source,'continuity-interest-v1',stamp,stamp,stamp).run();
+  const mail=medicineEmailTemplates.interestNotify({});
+  await sendTransactionalEmail(env,{to:email,eventType:mail.eventType,internalNotify:true,includeMatt:true,subject:mail.subject,text:mail.text,html:mail.html});
   return json({ok:true,status:'registered',message:'You are on the updates list. No purchase, stock or treatment eligibility is promised.'},201);
 }
