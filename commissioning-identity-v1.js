@@ -12,7 +12,7 @@ const elapsed=start=>Math.max(0,Math.round(performance.now()-start));
 
 export async function handleCommissioningIdentity(request,env,ctx,next){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
-  if(request.method!=='POST'||p!=='/v1/auth/register')return null;
+  if(request.method!=='POST'||(p!=='/v1/auth/register'&&p!=='/v1/auth/login'))return null;
   const token=String(request.headers.get('x-shift-commissioning-oidc')||'').trim();
   if(!token)return null;
   const body=await readJson(request.clone()),email=String(body.email||'').trim().toLowerCase();
@@ -23,16 +23,24 @@ export async function handleCommissioningIdentity(request,env,ctx,next){
   if(!identity.ok)return json({ok:false,error:'commissioning_identity_rejected'},403);
   const coreStarted=performance.now();
   const response=await next(request,env,ctx);
-  const coreRegisterMs=elapsed(coreStarted);
-  if(!response.ok)return withTiming(response,{verifyMs,coreRegisterMs,postVerifyMs:0});
-  let data={};try{data=await response.clone().json()}catch{return withTiming(response,{verifyMs,coreRegisterMs,postVerifyMs:0})}
-  const userId=Number(data?.user?.id||0);if(!userId)return withTiming(response,{verifyMs,coreRegisterMs,postVerifyMs:0});
+  const coreAuthMs=elapsed(coreStarted);
+  if(p==='/v1/auth/login'){
+    const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('X-Shift-Commissioning-OIDC-Ms',String(verifyMs));headers.set('X-Shift-Core-Auth-Ms',String(coreAuthMs));headers.set('Server-Timing',`shift_oidc;dur=${verifyMs}, shift_auth_core;dur=${coreAuthMs}`);
+    if(response.ok){
+      const data=await response.clone().json().catch(()=>null),userId=Number(data?.user?.id||0);
+      if(userId)await env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,'auth.commissioning_login_verified','user',String(userId),JSON.stringify({issuer:identity.claims.iss,repository:identity.claims.repository,workflow_ref:identity.claims.workflow_ref,actor_id:identity.claims.actor_id})).run().catch(()=>{});
+    }
+    return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+  }
+  if(!response.ok)return withTiming(response,{verifyMs,coreRegisterMs:coreAuthMs,postVerifyMs:0});
+  let data={};try{data=await response.clone().json()}catch{return withTiming(response,{verifyMs,coreRegisterMs:coreAuthMs,postVerifyMs:0})}
+  const userId=Number(data?.user?.id||0);if(!userId)return withTiming(response,{verifyMs,coreRegisterMs:coreAuthMs,postVerifyMs:0});
   const stamp=new Date().toISOString();
   const ops=[env.DB.prepare('UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=?').bind(stamp,stamp,userId),env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)').bind(userId,'auth.commissioning_identity_verified','user',String(userId),JSON.stringify({issuer:identity.claims.iss,repository:identity.claims.repository,workflow_ref:identity.claims.workflow_ref,actor_id:identity.claims.actor_id}))];
   const postStarted=performance.now();
   try{if(typeof env.DB.batch==='function')await env.DB.batch(ops);else for(const op of ops)await op.run()}catch(e){console.warn('commissioning_identity_post_verify_warning',e?.message)}
   const postVerifyMs=elapsed(postStarted);
-  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');setTiming(headers,{verifyMs,coreRegisterMs,postVerifyMs});
+  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store');headers.set('Content-Type','application/json; charset=utf-8');setTiming(headers,{verifyMs,coreRegisterMs:coreAuthMs,postVerifyMs});
   return new Response(JSON.stringify({...data,emailVerified:true,verificationRequired:false,commissioningIdentity:'github_actions_oidc'}),{status:response.status,headers});
 }
 function setTiming(headers,{verifyMs,coreRegisterMs,postVerifyMs}){headers.set('X-Shift-Commissioning-OIDC-Ms',String(verifyMs));headers.set('X-Shift-Core-Register-Ms',String(coreRegisterMs));headers.set('X-Shift-Commissioning-Postverify-Ms',String(postVerifyMs));headers.set('Server-Timing',`shift_oidc;dur=${verifyMs}, shift_register_core;dur=${coreRegisterMs}, shift_commissioning_postverify;dur=${postVerifyMs}`)}
