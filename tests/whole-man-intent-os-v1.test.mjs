@@ -265,6 +265,11 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
     workerCompact.includes("['/shift-health.html','text/html;charset=utf-8']"),
   );
   assert.ok(workerEntry.includes("SHIFT_HEALTH_CHROME_PATCH"));
+  assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_ENFORCER"));
+  assert.ok(workerEntry.includes("setTimeout(run,150)"));
+  assert.ok(shiftHealthProduct.includes('nav aria-label="Footer"'));
+  assert.ok(shiftHealthProduct.includes('href="/shift-health"'));
+  assert.ok(shiftHealthProduct.includes(".head nav"));
 });
 
 test("SHIFT Health matches medicine-page depth while remaining honestly out of stock", () => {

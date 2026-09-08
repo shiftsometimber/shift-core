@@ -229,8 +229,16 @@
         padding: 35px 0;
         border-top: 1px solid var(--g);
       }
+      .footer nav {
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .footer p {
+        margin: 0;
+        color: #cbc7bd;
+      }
       @media (max-width: 760px) {
-        nav {
+        .head nav {
           display: none;
         }
         .productHero,
@@ -420,7 +428,16 @@
     <main class="wrap" data-product></main>
     <footer class="footer">
       <div class="wrap">
-        <strong>SHIFT Health</strong>
+        <nav aria-label="Footer">
+          <a href="/start-here">Start Here</a>
+          <a href="/programme">The Programme</a>
+          <a href="/shift-health">SHIFT Health</a>
+          <a href="/explore-knowledge">Knowledge</a>
+          <a href="/about">About</a>
+          <a href="/member/dashboard">My Timber</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/contact">Contact</a>
+        </nav>
         <p>
           General information—not individual medical advice. Call 999 in an
           emergency or use NHS 111 for urgent advice.
