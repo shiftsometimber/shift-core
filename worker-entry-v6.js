@@ -529,6 +529,12 @@ export default {
       );
     if (
       (request.method === "GET" || request.method === "HEAD") &&
+      (path === "/programme" || path === "/programme.html")
+    ) {
+      return rewritePublicLoungeChrome(await act2bPagesContent(request));
+    }
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
       (path === "/shift-health" || path === "/shift-health.html")
     ) {
       const response = await gitMemberAsset("/shift-health.html", env);
