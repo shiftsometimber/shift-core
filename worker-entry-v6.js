@@ -501,6 +501,21 @@ export default {
         ? withHqCors(response, request)
         : withMemberCors(response, request);
     }
+    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");
+    if (
+      commissioningOidc &&
+      request.method === "POST" &&
+      (path === "/v1/auth/register" || path === "/v1/auth/login")
+    ) {
+      const commissioningAuth = await handleCommissioningIdentity(
+        request,
+        env,
+        ctx,
+        coreAuthFetch,
+      );
+      if (commissioningAuth)
+        return withMemberCors(commissioningAuth, request);
+    }
     const turnstileBlock = await turnstileGuard(request, env);
     if (turnstileBlock)
       return path.startsWith("/v1/hq/")
