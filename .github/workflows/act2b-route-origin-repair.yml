@@ -1,0 +1,62 @@
+name: Act2B Route Origin Repair
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Diagnose Pages origin for FAQ and tools
+        id: origin
+        shell: bash
+        run: |
+          set -euo pipefail
+          faq=$(curl -sS -o /tmp/faq -w '%{http_code}' 'https://projectshift.pages.dev/faq/are-carbs-bad')
+          tool=$(curl -sS -o /tmp/tool -w '%{http_code}' 'https://projectshift.pages.dev/tools/bmi')
+          echo "Pages FAQ=$faq tools=$tool"
+          echo "faq=$faq" >> "$GITHUB_OUTPUT"
+          echo "tool=$tool" >> "$GITHUB_OUTPUT"
+      - name: Install safe Pages fallthrough when origin owns these routes
+        if: steps.origin.outputs.faq == '200' && steps.origin.outputs.tool == '200'
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('worker-entry-v6.js'); s=p.read_text()
+          # The public FAQ/tools routes are Pages content. If the Worker has no concrete response,
+          # fall through to the canonical Pages origin instead of manufacturing a 404.
+          if 'ACT2B_PAGES_CONTENT_FALLTHROUGH' not in s:
+              marker='async function publicSiteConfigWithLoungeChrome(request) {'
+              helper='''// ACT2B_PAGES_CONTENT_FALLTHROUGH\nasync function act2bPagesContent(request) {\n  const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';\n  return fetch(new Request(u,request));\n}\n'''
+              s=s.replace(marker,helper+marker)
+          # Put the fallthrough before the worker's generic terminal routing. This applies only
+          # to GET FAQ/tools and preserves dedicated worker responses handled earlier.
+          terminal='return new Response("Not found", { status: 404 });'
+          guard='''if (request.method === "GET" && (url.pathname.startsWith("/faq/") || url.pathname.startsWith("/tools/"))) {\n        return act2bPagesContent(request);\n      }\n      '''
+          if guard.strip() not in s and terminal in s:
+              s=s.replace(terminal,guard+terminal,1)
+          p.write_text(s)
+          PY
+          node --check worker-entry-v6.js
+          grep -q ACT2B_PAGES_CONTENT_FALLTHROUGH worker-entry-v6.js
+          git config user.name 'shift-act2b-bot'
+          git config user.email 'it@shiftsometimber.co.uk'
+          git add worker-entry-v6.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Act2B restore FAQ and tools Pages fallthrough'
+          git push origin HEAD:main
+      - name: Fail honestly when origin itself is missing content
+        if: steps.origin.outputs.faq != '200' || steps.origin.outputs.tool != '200'
+        shell: bash
+        run: |
+          echo 'Pages origin itself does not have all sampled FAQ/tools routes. No redirect or fake content was invented.'
+          exit 1
