@@ -304,6 +304,11 @@ async function act2bPagesFallthrough(request) {
   const r=await fetch(new Request(u,request));
   return r;
 }
+// ACT2B_PAGES_CONTENT_FALLTHROUGH
+async function act2bPagesContent(request) {
+  const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
+  return fetch(new Request(u,request));
+}
 async function publicSiteConfigWithLoungeChrome(request) {
   const upstream = new URL(request.url);
   upstream.protocol = "https:";
