@@ -15,6 +15,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Recover full Worker authority if a stub was committed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! grep -q 'const GIT_MEMBER_ASSETS = new Map' worker-entry-v6.js; then
+            echo 'Worker entry is truncated; restoring last full authority before b32db622.'
+            git show 2b32552ce5e9697e8933ce08644ad07fd194161e:worker-entry-v6.js > worker-entry-v6.js
+          fi
+          grep -q 'const GIT_MEMBER_ASSETS = new Map' worker-entry-v6.js
+          grep -q 'X-Shift-Frontend-Authority' worker-entry-v6.js
+          node --check worker-entry-v6.js
       - name: Establish one server-side public authority
         shell: bash
         run: |
@@ -43,12 +54,14 @@ jobs:
           grep -q '38\\s+Rugby\\s+Drive' worker-entry-v6.js
           grep -q 'const publicHost' worker-entry-v6.js
           grep -q '"pattern": "shiftsometimber.co.uk/\*"' wrangler.jsonc
-      - name: Commit public authority fix
+      - name: Prove member frontend authority before commit
+        run: node frontend-member-source-gate.mjs
+      - name: Commit recovered authority
         shell: bash
         run: |
           git config user.name 'shift-act2b-bot'
           git config user.email 'it@shiftsometimber.co.uk'
           git add worker-entry-v6.js wrangler.jsonc
           git diff --cached --quiet && exit 0
-          git commit -m 'Act2B unify public serving authority'
+          git commit -m 'Restore full Worker and member frontend authority'
           git push origin HEAD:main
