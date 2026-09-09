@@ -132,7 +132,6 @@ const GIT_MEMBER_ASSETS = new Map([
 function isMemberProductPath(path) {
   return (
     path === "/v1/continuity-interest" ||
-    path === "/v1/contact" ||
     path === "/v1/journey" ||
     path.startsWith("/v1/journey/") ||
     path === "/v1/my-journey" ||
@@ -264,26 +263,23 @@ async function publicPagesAsset(request, targetPath) {
   upstream.hostname = "projectshift.pages.dev";
   upstream.port = "";
   if (targetPath) upstream.pathname = targetPath;
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.delete("Host");
-  requestHeaders.delete("If-None-Match");
-  requestHeaders.delete("If-Modified-Since");
+  const headers = new Headers(request.headers);
+  headers.delete("Host");
+  headers.delete("If-None-Match");
+  headers.delete("If-Modified-Since");
   const response = await fetch(
-    new Request(upstream, { method: request.method, headers: requestHeaders }),
+    new Request(upstream, { method: request.method, headers }),
   );
-  const headers = new Headers(response.headers);
-  headers.delete("Content-Length");
-  headers.delete("ETag");
-  headers.delete("Last-Modified");
-  headers.set("Cache-Control", "no-store, must-revalidate");
-  headers.set(
-    "X-Shift-Frontend-Authority",
-    "pages:cos-live-recovery-20260909-r2",
-  );
+  const responseHeaders = new Headers(response.headers);
+  responseHeaders.delete("Content-Length");
+  responseHeaders.delete("ETag");
+  responseHeaders.delete("Last-Modified");
+  responseHeaders.set("Cache-Control", "no-store, must-revalidate");
+  responseHeaders.set("X-Shift-Frontend-Authority", "pages:cos-live-recovery-20260909-r2");
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
-    headers,
+    headers: responseHeaders,
   });
 }
 function deferAnalytics(ctx, work, label) {
@@ -293,15 +289,59 @@ function deferAnalytics(ctx, work, label) {
   if (ctx?.waitUntil) ctx.waitUntil(task);
   return task;
 }
-async function act2bPagesFallthrough(request) {
-  const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
-  const r=await fetch(new Request(u,request));
-  return r;
+async function rewritePublicLoungeChrome(response) {
+  const type = String(response.headers.get("Content-Type") || "").toLowerCase();
+  if (!response.ok || !type.includes("text/html")) return response;
+  const source = await response.text(),
+    body = source
+      .replaceAll('href="/tap-room"', 'href="/lounge"')
+      .replaceAll('href="/tap-room.html"', 'href="/lounge"')
+      .replaceAll(">The Tap Room<", ">The Lounge<")
+      .replaceAll(">Tap Room<", ">The Lounge<")
+      .replaceAll(">TAP ROOM<", ">THE LOUNGE<");
+  const headers = new Headers(response.headers);
+  headers.delete("Content-Length");
+  if (body !== source) headers.set("X-Shift-Lounge-Chrome", "v1");
+  return new Response(body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
-// ACT2B_PAGES_CONTENT_FALLTHROUGH
-async function act2bPagesContent(request) {
-  const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
-  return fetch(new Request(u,request));
+const PUBLIC_CHROME_PATCH = `;(()=>{const rename=()=>{for(const link of document.querySelectorAll('a[href]')){let path='';try{path=new URL(link.href,location.href).pathname.replace(/\\/+$/,'')||'/'}catch{}if(path==='/tap-room'||path==='/tap-room.html'){link.href='/lounge';const label=(link.textContent||'').trim();if(/^(?:the )?tap room$/i.test(label))link.textContent='The Lounge'}}};const fullWire=async()=>{const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!['/explore-knowledge','/treatment-centre'].includes(path)||document.querySelector('[data-shift-ai-full-wire]'))return;const strip=document.createElement('section');strip.className='medicine-ticker-v138';strip.dataset.shiftAiFullWire='v1';strip.setAttribute('aria-label','Full approved wire from SHIFT AI Newsroom');strip.innerHTML='<strong>SHIFT AI Newsroom</strong><span data-shift-ai-wire-track>Loading approved medicines wire…</span>';const style=document.createElement('style');style.textContent='[data-shift-ai-full-wire]{display:flex;gap:18px;align-items:center;overflow:hidden;padding:11px max(18px,4vw);background:#707762;color:#050505;border-block:1px solid #050505;font:900 14px/1.35 Arial,sans-serif}[data-shift-ai-full-wire]>strong{flex:0 0 auto;letter-spacing:.04em}[data-shift-ai-wire-track]{display:block;min-width:max-content;white-space:nowrap;animation:sstFullWire 42s linear infinite}[data-shift-ai-full-wire]:hover [data-shift-ai-wire-track],[data-shift-ai-full-wire]:focus-within [data-shift-ai-wire-track]{animation-play-state:paused}@keyframes sstFullWire{from{transform:translateX(30vw)}to{transform:translateX(-100%)}}@media(prefers-reduced-motion:reduce){[data-shift-ai-wire-track]{animation:none;min-width:0;white-space:normal}}';document.head.appendChild(style);const anchor=document.querySelector('header');if(anchor)anchor.insertAdjacentElement('afterend',strip);else document.body.prepend(strip);try{const response=await fetch('/v1/radar/ticker',{credentials:'omit',cache:'no-store'}),body=await response.json();const items=Array.isArray(body.items)?body.items:[],lines=items.map(item=>String(item.ticker_line||item.headline||'').trim()).filter(Boolean);if(!response.ok||!body.current||!lines.length){strip.remove();style.remove();return}strip.querySelector('[data-shift-ai-wire-track]').textContent=lines.join('   •   ')}catch{strip.remove();style.remove()}};const start=()=>{rename();fullWire()};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
+const PUBLIC_MEDICINE_TICKER_PATCH = `;(()=>{const run=async()=>{const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!['/start-here','/treatment-order'].includes(path)||document.querySelector('[data-shift-ai-full-wire]'))return;const strip=document.createElement('section');strip.className='medicine-ticker-v138';strip.dataset.shiftAiFullWire='v1';strip.setAttribute('aria-label','Live approved updates from SHIFT AI Newsroom');strip.innerHTML='<strong>SHIFT AI Newsroom</strong><span class="shift-ai-wire-window"><span data-shift-ai-wire-track>Loading approved medicine updates…</span></span>';const style=document.createElement('style');style.textContent='[data-shift-ai-full-wire]{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;overflow:hidden;padding:10px max(18px,4vw);background:#707762;color:#050505;border-block:1px solid #050505;font:900 14px/1.35 Arial,sans-serif}[data-shift-ai-full-wire]>strong{position:relative;z-index:2;white-space:nowrap;letter-spacing:.04em;background:#707762}.shift-ai-wire-window{min-width:0;overflow:hidden}[data-shift-ai-wire-track]{display:flex;width:max-content;white-space:nowrap;animation:sstMedicineWire 48s linear infinite}[data-shift-ai-wire-track] a{color:#050505;text-decoration:none}[data-shift-ai-wire-track] a:hover,[data-shift-ai-wire-track] a:focus{text-decoration:underline}[data-shift-ai-full-wire]:hover [data-shift-ai-wire-track],[data-shift-ai-full-wire]:focus-within [data-shift-ai-wire-track]{animation-play-state:paused}@keyframes sstMedicineWire{from{transform:translateX(100%)}to{transform:translateX(-100%)}}@media(max-width:560px){[data-shift-ai-full-wire]{grid-template-columns:1fr;gap:5px}[data-shift-ai-full-wire]>strong{font-size:12px}}@media(prefers-reduced-motion:reduce){[data-shift-ai-wire-track]{width:auto;white-space:normal;animation:none}}';document.head.appendChild(style);const anchor=document.querySelector('header');if(anchor)anchor.insertAdjacentElement('afterend',strip);else document.body.prepend(strip);try{const response=await fetch('/v1/radar/ticker',{credentials:'omit',cache:'no-store'}),body=await response.json(),items=Array.isArray(body.items)?body.items:[];if(!response.ok||!body.current||!items.length)throw Error('empty');const track=strip.querySelector('[data-shift-ai-wire-track]');track.replaceChildren(...items.flatMap((item,index)=>{const a=document.createElement('a');a.href=item.url||'/medicine-news';a.textContent=String(item.ticker_line||item.headline||'').trim();if(!a.textContent)return[];return index?[document.createTextNode('   •   '),a]:[a]}))}catch{strip.remove();style.remove()}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run()})();`;
+const SHIFT_HEALTH_CHROME_PATCH = `;(()=>{const links=[['/start-here','Start Here'],['/programme','The Programme'],['/shift-health','SHIFT Health'],['/explore-knowledge','Knowledge'],['/about','About'],['/member/dashboard','My Timber']];const fill=nav=>{if(!nav)return;nav.replaceChildren(...links.map(([href,label])=>{const a=document.createElement('a');a.href=href;a.textContent=label;if(location.pathname.replace(/\\.html$/,'')===href)a.setAttribute('aria-current','page');return a}))};const run=()=>{fill(document.querySelector('nav.desktop-nav'));fill(document.querySelector('aside.site-drawer nav'));const footer=document.querySelector('.site-footer .footer-grid');if(footer&&!footer.querySelector('a[href="/shift-health"]')){const area=[...footer.querySelectorAll('section')].find(x=>/Explore|Start/i.test(x.querySelector('h2')?.textContent||''))||footer.querySelector('section');const a=document.createElement('a');a.href='/shift-health';a.textContent='SHIFT Health';area?.appendChild(a)}const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';const eligible=path==='/'||path==='/programme'||path==='/mens-mental-health'||path.startsWith('/articles/');if(eligible&&!document.querySelector('[data-shift-health-door]')){const door=document.createElement('section');door.dataset.shiftHealthDoor='v1';door.innerHTML='<div><small>SHIFT HEALTH</small><strong>Weight is the front door. What else would you like to sort?</strong><a href="/shift-health">Explore wider men’s health →</a></div>';const style=document.createElement('style');style.textContent='[data-shift-health-door]{margin:36px auto;padding:0 max(18px,4vw);max-width:1200px}[data-shift-health-door]>div{display:grid;gap:9px;padding:22px;border:1px solid #707762;border-radius:18px;background:#11130f;color:#e7e3da}[data-shift-health-door] small{color:#a7af94;font-weight:900;letter-spacing:.12em}[data-shift-health-door] strong{font-size:clamp(22px,3vw,34px);line-height:1.08}[data-shift-health-door] a{color:#e7e3da;font-weight:900}';document.head.appendChild(style);document.querySelector('footer')?.before(door)}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run()})();`;
+const SHIFT_HEALTH_NAV_ENFORCER = `;(()=>{const links=[['/start-here','Start Here'],['/programme','The Programme'],['/shift-health','SHIFT Health'],['/explore-knowledge','Knowledge'],['/about','About'],['/member/dashboard','My Timber']];const fill=nav=>{if(!nav)return;nav.replaceChildren(...links.map(([href,label])=>{const a=document.createElement('a');a.href=href;a.textContent=label;if((location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/')===href)a.setAttribute('aria-current','page');return a}))};const run=()=>{fill(document.querySelector('nav.desktop-nav'));fill(document.querySelector('aside.site-drawer nav'))};const settle=()=>{run();setTimeout(run,0);setTimeout(run,150)};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',settle,{once:true});else settle()})();`;
+const SHIFT_HEALTH_NAV_GUARD = `;(()=>{const links=[['/start-here','Start Here'],['/programme','The Programme'],['/shift-health','SHIFT Health'],['/explore-knowledge','Knowledge'],['/about','About'],['/member/dashboard','My Timber']],signature=nav=>[...nav.querySelectorAll(':scope>a')].map(a=>a.getAttribute('href')+'|'+a.textContent.trim()).join('~'),wanted=links.map(([href,label])=>href+'|'+label).join('~'),fill=nav=>{if(!nav||signature(nav)===wanted)return;nav.replaceChildren(...links.map(([href,label])=>{const a=document.createElement('a');a.href=href;a.textContent=label;if((location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/')===href)a.setAttribute('aria-current','page');return a}))},start=()=>{for(const nav of [document.querySelector('nav.desktop-nav'),document.querySelector('aside.site-drawer nav')]){if(!nav)continue;fill(nav);new MutationObserver(()=>fill(nav)).observe(nav,{childList:true})}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
+const SHIFT_HEALTH_NAV_ROOT_GUARD = `;(()=>{const links=[['/start-here','Start Here'],['/programme','The Programme'],['/shift-health','SHIFT Health'],['/explore-knowledge','Knowledge'],['/about','About'],['/member/dashboard','My Timber']],wanted=links.map(([href,label])=>href+'|'+label).join('~'),signature=nav=>nav?[...nav.querySelectorAll(':scope>a')].map(a=>a.getAttribute('href')+'|'+a.textContent.trim()).join('~'):'',fill=nav=>{if(!nav||signature(nav)===wanted)return;nav.replaceChildren(...links.map(([href,label])=>{const a=document.createElement('a');a.href=href;a.textContent=label;if((location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/')===href)a.setAttribute('aria-current','page');return a}))},fix=()=>{fill(document.querySelector('nav.desktop-nav'));fill(document.querySelector('aside.site-drawer nav'))},start=()=>{fix();let queued=false;new MutationObserver(()=>{if(queued)return;queued=true;queueMicrotask(()=>{queued=false;fix()})}).observe(document.documentElement,{childList:true,subtree:true})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
+async function publicSiteConfigWithLoungeChrome(request) {
+  const upstream = new URL(request.url);
+  upstream.protocol = "https:";
+  upstream.hostname = "projectshift.pages.dev";
+  upstream.port = "";
+  const upstreamHeaders = new Headers(request.headers);
+  upstreamHeaders.delete("If-None-Match");
+  upstreamHeaders.delete("If-Modified-Since");
+  const response = await fetch(
+    new Request(upstream, { method: request.method, headers: upstreamHeaders }),
+  );
+  if (!response.ok) return response;
+  const headers = new Headers(response.headers);
+  headers.delete("Content-Length");
+  headers.delete("ETag");
+  headers.delete("Last-Modified");
+  headers.set("Content-Type", "application/javascript; charset=utf-8");
+  headers.set("Cache-Control", "no-store, must-revalidate");
+  headers.set("X-Shift-Lounge-Chrome", "v2");
+  const source = await response.text();
+  const constrained = source.replace(
+    "['/explore-knowledge','/knowledge','/treatment-centre','/treatment-order','/medicine-news','/glp1-knowledge-centre','/mounjaro','/wegovy','/foundayo','/member/dashboard']",
+    "['/explore-knowledge','/knowledge','/treatment-centre','/medicine-news']",
+  );
+  return new Response(
+    `${constrained}\n${PUBLIC_CHROME_PATCH}\n`,
+    { status: response.status, statusText: response.statusText, headers },
+  );
 }
 const REVIEWED_MENTAL_HEALTH_PATHS = [
   "/mental-health/confidence-self-worth",
@@ -315,7 +355,7 @@ const SHIFT_HEALTH_SEO = {
   "health-mot": ["SHIFT Health MOT | Men’s Home Health Check", "Understand the health markers that matter with a plain-English home-testing route and a clear next step."],
   "testosterone-energy": ["Testosterone & Energy Check | SHIFT Health", "Explore persistent energy, mood, strength or libido concerns with appropriate testing and proper clinical context."],
   "blood-pressure-monitor": ["Blood Pressure Monitor for Men | SHIFT Health", "Choose and use a validated upper-arm blood pressure monitor, build a reliable home record and know when to seek help."],
-  "digital-scales": ["Reliable Digital Scales | SHIFT Health", "Track your weekly weight consistently and focus on the trend rather than one reading."],
+  "digital-scales": ["Reliable Digital Scales | SHIFT Health", "Track your weekly weight consistently with straightforward digital scales and focus on the trend rather than one reading."],
   "resistance-bands": ["Resistance Bands for Men | SHIFT Health", "Start approachable strength work at home or away with practical resistance bands and simple movement guidance."],
   "shift-measure": ["The SHIFT Measure | Waist & Health Tracking", "Measure waist progress consistently and connect it with weight, blood pressure, energy and sleep in My Timber."],
   "erectile-dysfunction": ["Erection & Confidence Support | SHIFT Health", "Understand erection difficulties, their wider health context and the appropriate route to assessment and treatment."],
@@ -323,42 +363,36 @@ const SHIFT_HEALTH_SEO = {
   "stop-smoking": ["Stop Smoking Support for Men | SHIFT Health", "Build a realistic stop-smoking plan around your pattern, proven support options and practical craving check-ins."],
   "sleep-apnoea": ["Sleep Apnoea Assessment | SHIFT Health", "Understand sleep apnoea warning signs, driving-safety advice and when a proper sleep assessment is the next step."],
 };
-function seoEscape(value) {
+function htmlEscape(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 }
-async function shiftHealthWithServerSeo(response, request, slug = "") {
-  if (!response?.ok) return response;
-  const leaf = SHIFT_HEALTH_SEO[slug];
-  const canonical = leaf ? `https://shiftsometimber.co.uk/shift-health/${slug}` : "https://shiftsometimber.co.uk/shift-health";
-  const title = leaf?.[0] || "SHIFT Health | Wider Men’s Health";
-  const description = leaf?.[1] || "Straight-talking guidance and practical next steps for men’s wider health.";
-  const schema = JSON.stringify({ "@context": "https://schema.org", "@graph": [
-    { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: title, description },
-    { "@type": "Organization", "@id": "https://shiftsometimber.co.uk/#organization", name: "Shift Some Timber", url: "https://shiftsometimber.co.uk/", logo: { "@type": "ImageObject", url: "https://shiftsometimber.co.uk/assets/shift-wordmark.png" } },
-  ] });
+async function shiftHealthProductWithSeo(response, request, slug) {
+  const seo = SHIFT_HEALTH_SEO[slug];
+  if (!response?.ok || !seo) return response;
+  const canonical = `https://shiftsometimber.co.uk/shift-health/${slug}`;
+  const [title, description] = seo;
+  const schema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: title, description, isPartOf: { "@id": "https://shiftsometimber.co.uk/#website" } },
+      { "@type": "Organization", "@id": "https://shiftsometimber.co.uk/#organization", name: "Shift Some Timber", url: "https://shiftsometimber.co.uk/", logo: { "@type": "ImageObject", url: "https://shiftsometimber.co.uk/assets/shift-wordmark.png" } },
+    ],
+  });
   let html = await response.text();
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${seoEscape(title)}</title>`)
-    .replace(/<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${seoEscape(description)}">`)
-    .replace(/<link\s+rel="canonical"[^>]*>/gi, "").replace(/<meta\s+(?:property|name)="(?:og:|twitter:)[^"]+"[^>]*>/gi, "").replace(/<script[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi, "")
-    .replace("</head>", `<link rel="canonical" href="${canonical}"><meta property="og:title" content="${seoEscape(title)}"><meta property="og:description" content="${seoEscape(description)}"><meta property="og:type" content="website"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${seoEscape(title)}"><meta name="twitter:description" content="${seoEscape(description)}"><meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><script type="application/ld+json">${schema}</script></head>`);
-  if (leaf) html = html.replace('<main class="wrap" data-product></main>', `<main class="wrap" data-product><a class="back" href="/shift-health">← SHIFT Health</a><section class="productHero"><div><small>SHIFT HEALTH</small><h1>${seoEscape(title.replace(/ \|.*$/, ""))}</h1><p class="job">${seoEscape(description)}</p><p>General information—not individual medical advice. The complete interactive route loads below.</p></div></section></main>`);
-  const headers = new Headers(response.headers); headers.delete("Content-Length"); headers.set("X-Shift-SEO-Authority", "unified-estate-v1");
+  html = html
+    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${htmlEscape(title)}</title>`)
+    .replace(/<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${htmlEscape(description)}">`)
+    .replace(/<link\s+rel=["']canonical["'][^>]*>/gi, "")
+    .replace(/<meta\s+(?:property|name)=["'](?:og:|twitter:)[^"']+["'][^>]*>/gi, "")
+    .replace(/<script[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace("</head>", `<link rel="canonical" href="${canonical}"><meta property="og:title" content="${htmlEscape(title)}"><meta property="og:description" content="${htmlEscape(description)}"><meta property="og:type" content="website"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${htmlEscape(title)}"><meta name="twitter:description" content="${htmlEscape(description)}"><meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><script type="application/ld+json">${schema}</script></head>`)
+    .replace('<main class="wrap" data-product></main>', `<main class="wrap" data-product><a class="back" href="/shift-health">← SHIFT Health</a><section class="productHero"><div><small>SHIFT HEALTH</small><h1>${htmlEscape(title.replace(/ \|.*$/, ""))}</h1><p class="job">${htmlEscape(description)}</p><p>This page contains general information, not individual medical advice. The complete interactive route loads below.</p></div></section></main>`);
+  const headers = new Headers(response.headers);
+  headers.delete("Content-Length");
+  headers.set("Cache-Control", "public, max-age=300, must-revalidate");
+  headers.set("X-Shift-SEO-Authority", "unified-estate-v1");
   return new Response(request.method === "HEAD" ? null : html, { status: response.status, statusText: response.statusText, headers });
 }
-const PRIORITY_PUBLIC_PATHS = [
-  "/medicine-news",
-  "/shift-health",
-  "/shift-health/health-mot",
-  "/shift-health/testosterone-energy",
-  "/shift-health/blood-pressure-monitor",
-  "/shift-health/digital-scales",
-  "/shift-health/resistance-bands",
-  "/shift-health/shift-measure",
-  "/shift-health/erectile-dysfunction",
-  "/shift-health/hair-loss",
-  "/shift-health/stop-smoking",
-  "/shift-health/sleep-apnoea",
-];
 async function publicSitemapWithReviewedMentalHealth(request) {
   const upstream = new URL(request.url);
   upstream.protocol = "https:";
@@ -369,12 +403,13 @@ async function publicSitemapWithReviewedMentalHealth(request) {
   );
   if (!response.ok) return response;
   let xml = await response.text();
-  const additions = [...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS].filter(
+  const requiredPaths = [...REVIEWED_MENTAL_HEALTH_PATHS, "/medicine-news", "/shift-health", ...Object.keys(SHIFT_HEALTH_SEO).map((slug) => `/shift-health/${slug}`)];
+  const additions = requiredPaths.filter(
     (path) => !xml.includes(`<loc>https://shiftsometimber.co.uk${path}</loc>`),
   )
     .map(
       (path) =>
-        `<url><loc>https://shiftsometimber.co.uk${path}</loc><lastmod>2026-09-08</lastmod></url>`,
+        `<url><loc>https://shiftsometimber.co.uk${path}</loc><lastmod>2026-09-03</lastmod></url>`,
     )
     .join("");
   if (additions && xml.includes("</urlset>"))
@@ -383,7 +418,7 @@ async function publicSitemapWithReviewedMentalHealth(request) {
   headers.delete("Content-Length");
   headers.set("Content-Type", "application/xml; charset=utf-8");
   headers.set("Cache-Control", "public, max-age=300, must-revalidate");
-  headers.set("X-Shift-Sitemap-Authority", "reviewed-health-estate-v2");
+  headers.set("X-Shift-Sitemap-Authority", "unified-estate-v1-no-removals");
   return new Response(request.method === "HEAD" ? null : xml, {
     status: response.status,
     statusText: response.statusText,
@@ -429,10 +464,15 @@ async function coreAuthFetch(request, env, ctx) {
 
 export default {
   async fetch(request, env, ctx) {
-    const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
+    const requestUrl = new URL(request.url);
+    if (requestUrl.protocol === "http:") {
+      requestUrl.protocol = "https:";
+      return Response.redirect(requestUrl, 301);
+    }
+    const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
     if (request.method === "GET" && path === "/v1/auth/turnstile-config") {
       const response = new Response(
-        JSON.stringify(publicTurnstileConfig(env, request)),
+        JSON.stringify(publicTurnstileConfig(env)),
         {
           status: 200,
           headers: {
@@ -444,21 +484,6 @@ export default {
       return HQ_ORIGINS.has(request.headers.get("Origin") || "")
         ? withHqCors(response, request)
         : withMemberCors(response, request);
-    }
-    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");
-    if (
-      commissioningOidc &&
-      request.method === "POST" &&
-      (path === "/v1/auth/register" || path === "/v1/auth/login")
-    ) {
-      const commissioningAuth = await handleCommissioningIdentity(
-        request,
-        env,
-        ctx,
-        coreAuthFetch,
-      );
-      if (commissioningAuth)
-        return withMemberCors(commissioningAuth, request);
     }
     const turnstileBlock = await turnstileGuard(request, env);
     if (turnstileBlock)
@@ -474,13 +499,11 @@ export default {
       (path === "/site-config-v3a.js" || path === "/authority-menu-v35.js") &&
       (request.method === "GET" || request.method === "HEAD")
     )
-      return act2bPagesContent(request);
+      return publicSiteConfigWithLoungeChrome(request);
     // Let Shift Core answer HQ browser preflights before feature modules apply
     // session checks. A preflight has no session cookie by design.
     if (request.method === "OPTIONS" && path.startsWith("/v1/hq/"))
       return withHqCors(await hq.fetch(request, env, ctx), request);
-    if ((request.method === "GET" || request.method === "HEAD") && (path === "/member/today" || path === "/member/today.html"))
-      return Response.redirect(new URL("/member/dashboard#today", request.url), 301);
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/member/progress" ||
@@ -494,12 +517,6 @@ export default {
       );
     if (
       (request.method === "GET" || request.method === "HEAD") &&
-      (path === "/programme" || path === "/programme.html")
-    ) {
-      return act2bPagesContent(request);
-    }
-    if (
-      (request.method === "GET" || request.method === "HEAD") &&
       (path === "/shift-health" || path === "/shift-health.html")
     )
       return publicPagesAsset(request, "/shift-health");
@@ -507,8 +524,12 @@ export default {
       (request.method === "GET" || request.method === "HEAD") &&
       path.startsWith("/shift-health/") &&
       path.split("/").filter(Boolean).length === 2
-    )
-      return publicPagesAsset(request, "/shift-health-product.html");
+    ) {
+      const slug = path.split("/").filter(Boolean)[1];
+      const response = await publicPagesAsset(request, path);
+      return shiftHealthProductWithSeo(response, request, slug);
+    }
+
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       path === "/grub"
@@ -527,7 +548,10 @@ export default {
       "/faq/what-is-a-healthy-blood-pressure": "/guides/blood-pressure-guide",
       "/faq/what-is-a-healthy-bmi": "/tools/bmi",
     };
-    if ((request.method === "GET" || request.method === "HEAD") && legacyFaqRedirects[path])
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      legacyFaqRedirects[path]
+    )
       return Response.redirect(new URL(legacyFaqRedirects[path], request.url), 301);
     if (
       (request.method === "GET" || request.method === "HEAD") &&
@@ -558,6 +582,7 @@ export default {
         path.startsWith("/lounge/"))
     )
       return publicPagesAsset(request, "/lounge");
+
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       [
@@ -604,7 +629,8 @@ export default {
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
-      (path === "/member/dashboard" ||
+      (path === "/" ||
+        path === "/member/dashboard" ||
         path === "/member/dashboard.html" ||
         path === "/member-login" ||
         path === "/member-login.html" ||
@@ -771,11 +797,9 @@ export default {
             .json()
             .catch(() => ({}))
         : null;
-    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);
-    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return act2bPagesContent(request);
-    }
-    const fallback = await hq.fetch(request, env, ctx);
+    const fallback = await rewritePublicLoungeChrome(
+      await hq.fetch(request, env, ctx),
+    );
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)
