@@ -1,5 +1,5 @@
 name: Cloudflare Production Promote
-# Act2B Programme route authority promotion
+# Act2B unified public authority production promotion
 
 on:
   push:
