@@ -54,6 +54,20 @@ jobs:
           grep -q '38\\s+Rugby\\s+Drive' worker-entry-v6.js
           grep -q 'const publicHost' worker-entry-v6.js
           grep -q '"pattern": "shiftsometimber.co.uk/\*"' wrangler.jsonc
+      - name: Repair brittle member source assertions
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('frontend-member-source-gate.mjs'); s=p.read_text()
+          s=s.replace("need(/MY_JOURNEY_SRC='\\/member-my-journey-v1\\.js\\?v=3'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');",
+                    "need(/MY_JOURNEY_SRC='\\/member-my-journey-v1\\.js\\?v=(?:[3-9]|[1-9][0-9]+)'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');")
+          s=s.replace("for(const asset of ['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js','/member-progress-v1.js','/member-progress-picture-premium-v1.js','/member-plans-premium-v1.js','/member-plans-premium-v1.css'])need(workerEntry.includes(`[\'${asset}\'`),`${asset} is not explicitly served as a Git-authoritative member asset`);",
+                    "for(const asset of ['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js','/member-progress-v1.js','/member-progress-picture-premium-v1.js','/member-plans-premium-v1.js','/member-plans-premium-v1.css'])need(workerEntry.includes(asset)&&workerEntry.includes('GIT_MEMBER_ASSETS'),`${asset} is not explicitly served as a Git-authoritative member asset`);")
+          s=s.replace("need(/path==='\\/shift-me'/.test(workerEntry)&&/\\/member\\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');",
+                    "need(/path\\s*===\\s*[\"']\\/shift-me[\"']/.test(workerEntry)&&/\\/member\\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');")
+          p.write_text(s)
+          PY
       - name: Prove member frontend authority before commit
         run: node frontend-member-source-gate.mjs
       - name: Commit recovered authority
@@ -61,7 +75,7 @@ jobs:
         run: |
           git config user.name 'shift-act2b-bot'
           git config user.email 'it@shiftsometimber.co.uk'
-          git add worker-entry-v6.js wrangler.jsonc
+          git add worker-entry-v6.js wrangler.jsonc frontend-member-source-gate.mjs
           git diff --cached --quiet && exit 0
           git commit -m 'Restore full Worker and member frontend authority'
           git push origin HEAD:main
