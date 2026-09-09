@@ -1,0 +1,73 @@
+name: Act2B Live Serving Closeout
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  closeout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Neutralise legacy live v42 chrome writer and repair routed fallthrough
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          w=Path('worker-entry-v6.js')
+          s=w.read_text()
+          # Serve v42 through Worker, stripping only the legacy enclosure nav IIFE.
+          if 'async function act2bSanitisedV42' not in s:
+              marker='async function publicSiteConfigWithLoungeChrome(request) {'
+              fn=r'''async function act2bSanitisedV42(request) {
+            const upstream = await fetch('https://projectshift.pages.dev/assets/v42.js', {headers:{'cache-control':'no-cache'}});
+            if (!upstream.ok) return upstream;
+            const source = await upstream.text();
+            const body = source.replace(/\/\/ SST_ENCLOSURE_NAV_V1[^\n]*\n\(\(\)=>\{[\s\S]*?\n\}\)\(\);?\n?/, '');
+            const headers = new Headers(upstream.headers);
+            headers.delete('content-length'); headers.delete('etag'); headers.delete('last-modified');
+            headers.set('content-type','application/javascript; charset=utf-8');
+            headers.set('cache-control','no-store, must-revalidate');
+            headers.set('x-shift-act2b-v42','legacy-nav-removed');
+            return new Response(body,{status:upstream.status,statusText:upstream.statusText,headers});
+          }
+          async function act2bPagesFallthrough(request) {
+            const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
+            const r=await fetch(new Request(u,request));
+            return r;
+          }
+          '''
+              if marker not in s: raise SystemExit('marker missing')
+              s=s.replace(marker,fn+marker)
+          # Intercept public v42 before generic routing.
+          needle='const url = new URL(request.url);'
+          if "url.pathname === '/assets/v42.js'" not in s:
+              # insert after first URL construction inside fetch handler
+              s=s.replace(needle,needle+"\n      if (request.method === 'GET' && url.pathname === '/assets/v42.js') return act2bSanitisedV42(request);",1)
+          w.write_text(s)
+
+          p=Path('wrangler.jsonc'); c=p.read_text()
+          route='''    {\n      "pattern": "shiftsometimber.co.uk/assets/v42.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/assets/v42.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
+          if 'shiftsometimber.co.uk/assets/v42.js*' not in c:
+              c=c.replace('  "routes": [\n','  "routes": [\n'+route,1)
+          p.write_text(c)
+          PY
+          node --check worker-entry-v6.js
+          grep -q 'assets/v42.js' wrangler.jsonc
+          grep -q 'act2bSanitisedV42' worker-entry-v6.js
+      - name: Commit serving fix
+        shell: bash
+        run: |
+          git config user.name 'shift-act2b-bot'
+          git config user.email 'it@shiftsometimber.co.uk'
+          git add worker-entry-v6.js wrangler.jsonc
+          git diff --cached --quiet && exit 0
+          git commit -m 'Act2B remove live enclosure nav writer'
+          git push origin HEAD:main
