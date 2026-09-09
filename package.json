@@ -27,5 +27,6 @@
   },
   "dependencies": {
     "@block65/webcrypto-web-push": "1.0.2"
-  }
+  },
+  "shiftReleaseMarker": "act2b-canonical-html-2026-09-09"
 }
