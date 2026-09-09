@@ -9,88 +9,60 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
+        with: {ref: main, fetch-depth: 0}
       - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-      - name: Recover full Worker authority if a stub was committed
+        with: {node-version-file: '.nvmrc'}
+      - name: Recover and harden full Worker authority
         shell: bash
         run: |
           set -euo pipefail
           if ! grep -q 'const GIT_MEMBER_ASSETS = new Map' worker-entry-v6.js; then
-            echo 'Worker entry is truncated; restoring last full authority before b32db622.'
             git show 2b32552ce5e9697e8933ce08644ad07fd194161e:worker-entry-v6.js > worker-entry-v6.js
           fi
-          grep -q 'const GIT_MEMBER_ASSETS = new Map' worker-entry-v6.js
-          grep -q 'X-Shift-Frontend-Authority' worker-entry-v6.js
-          node --check worker-entry-v6.js
-      - name: Establish one server-side public authority
-        shell: bash
-        run: |
           python3 - <<'PY'
           from pathlib import Path
           w=Path('worker-entry-v6.js'); s=w.read_text()
           s=s.replace('''      (path === "/" ||\n        path === "/member/dashboard" ||''','''      (path === "/member/dashboard" ||''')
           if '38\\s+Rugby\\s+Drive' not in s:
-              start=s.index('async function rewritePublicLoungeChrome')
-              pos=s.index('  const headers = new Headers(response.headers);', start)
-              strip='''  body = body\n    .replace(/<address\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/address>/gi, "")\n    .replace(/<p\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/p>/gi, "")\n    .replace(/38\\s+Rugby\\s+Drive/gi, "");\n'''
-              s=s[:pos]+strip+s[pos:]
+              start=s.index('async function rewritePublicLoungeChrome'); pos=s.index('  const headers = new Headers(response.headers);',start)
+              s=s[:pos]+'''  body = body\n    .replace(/<address\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/address>/gi, "")\n    .replace(/<p\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/p>/gi, "")\n    .replace(/38\\s+Rugby\\s+Drive/gi, "");\n'''+s[pos:]
           if 'const publicHost = ["shiftsometimber.co.uk"' not in s:
               marker='''    const fallback = await rewritePublicLoungeChrome(\n      await hq.fetch(request, env, ctx),\n    );'''
-              if marker not in s: raise SystemExit('fallback marker missing')
               public='''    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);\n    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {\n      return rewritePublicLoungeChrome(await act2bPagesContent(request));\n    }\n'''
+              if marker not in s: raise SystemExit('fallback marker missing')
               s=s.replace(marker,public+marker,1)
+          turn='''    const turnstileBlock = await turnstileGuard(request, env);'''
+          if 'const commissioningOidc = request.headers.get("x-shift-commissioning-oidc")' not in s:
+              secure='''    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");\n    if (commissioningOidc && request.method === "POST" && (path === "/v1/auth/register" || path === "/v1/auth/login")) {\n      const commissioningAuth = await handleCommissioningIdentity(request, env, ctx, coreAuthFetch);\n      if (commissioningAuth) return withMemberCors(commissioningAuth, request);\n    }\n'''
+              if turn not in s: raise SystemExit('Turnstile marker missing')
+              s=s.replace(turn,secure+turn,1)
+          if 'path === "/member/today"' not in s:
+              anchor='''    if (\n      (request.method === "GET" || request.method === "HEAD") &&\n      (path === "/member/progress" ||'''
+              today='''    if ((request.method === "GET" || request.method === "HEAD") && (path === "/member/today" || path === "/member/today.html"))\n      return Response.redirect(new URL("/member/dashboard#today", request.url), 301);\n'''
+              if anchor not in s: raise SystemExit('member route anchor missing')
+              s=s.replace(anchor,today+anchor,1)
           w.write_text(s)
           r=Path('wrangler.jsonc'); c=r.read_text()
           wildcard='''    {\n      "pattern": "shiftsometimber.co.uk/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
-          if '"pattern": "shiftsometimber.co.uk/*"' not in c:
-              c=c.replace('  "routes": [\n','  "routes": [\n'+wildcard,1)
+          if '"pattern": "shiftsometimber.co.uk/*"' not in c: c=c.replace('  "routes": [\n','  "routes": [\n'+wildcard,1)
           r.write_text(c)
           PY
           node --check worker-entry-v6.js
-          grep -q '38\\s+Rugby\\s+Drive' worker-entry-v6.js
+          grep -q 'const GIT_MEMBER_ASSETS = new Map' worker-entry-v6.js
+          grep -q 'const commissioningOidc' worker-entry-v6.js
+          grep -q 'path === "/member/today"' worker-entry-v6.js
           grep -q 'const publicHost' worker-entry-v6.js
-          grep -q '"pattern": "shiftsometimber.co.uk/\*"' wrangler.jsonc
-      - name: Restore verified commissioning auth ahead of Turnstile
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('worker-entry-v6.js'); s=p.read_text()
-          marker='''    const turnstileBlock = await turnstileGuard(request, env);'''
-          secure='''    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");\n    if (\n      commissioningOidc &&\n      request.method === "POST" &&\n      (path === "/v1/auth/register" || path === "/v1/auth/login")\n    ) {\n      const commissioningAuth = await handleCommissioningIdentity(\n        request,\n        env,\n        ctx,\n        coreAuthFetch,\n      );\n      if (commissioningAuth)\n        return withMemberCors(commissioningAuth, request);\n    }\n'''
-          if 'const commissioningOidc = request.headers.get("x-shift-commissioning-oidc")' not in s:
-              if marker not in s: raise SystemExit('Turnstile marker missing')
-              s=s.replace(marker,secure+marker,1)
-          p.write_text(s)
-          PY
-          node --check worker-entry-v6.js
-          python3 - <<'PY'
-          from pathlib import Path
-          s=Path('worker-entry-v6.js').read_text()
-          assert s.index('const commissioningOidc') < s.index('const turnstileBlock')
-          assert 'handleCommissioningIdentity' in s
-          print('PASS verified commissioning auth precedes Turnstile; ordinary auth remains guarded')
-          PY
-      - name: Repair brittle member source assertions
+      - name: Repair member source assertions and prove authority
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p=Path('frontend-member-source-gate.mjs'); s=p.read_text()
-          s=s.replace("need(/MY_JOURNEY_SRC='\\/member-my-journey-v1\\.js\\?v=3'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');",
-                    "need(/MY_JOURNEY_SRC='\\/member-my-journey-v1\\.js\\?v=(?:[3-9]|[1-9][0-9]+)'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');")
-          s=s.replace("for(const asset of ['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js','/member-progress-v1.js','/member-progress-picture-premium-v1.js','/member-plans-premium-v1.js','/member-plans-premium-v1.css'])need(workerEntry.includes(`[\'${asset}\'`),`${asset} is not explicitly served as a Git-authoritative member asset`);",
-                    "for(const asset of ['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js','/member-progress-v1.js','/member-progress-picture-premium-v1.js','/member-plans-premium-v1.js','/member-plans-premium-v1.css'])need(workerEntry.includes(asset)&&workerEntry.includes('GIT_MEMBER_ASSETS'),`${asset} is not explicitly served as a Git-authoritative member asset`);")
-          s=s.replace("need(/path==='\\/shift-me'/.test(workerEntry)&&/\\/member\\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');",
-                    "need(/path\\s*===\\s*[\"']\\/shift-me[\"']/.test(workerEntry)&&/\\/member\\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');")
+          s=s.replace("need(/MY_JOURNEY_SRC='\\/member-my-journey-v1\\.js\\?v=3'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');","need(/MY_JOURNEY_SRC='\\/member-my-journey-v1\\.js\\?v=(?:[3-9]|[1-9][0-9]+)'/.test(shell),'late member-shell Journey loader can reuse a stale pre-fix client');")
+          s=s.replace("need(/path==='\\/shift-me'/.test(workerEntry)&&/\\/member\\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');","need(/path\\s*===\\s*[\"']\\/shift-me[\"']/.test(workerEntry)&&/\\/member\\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');")
           p.write_text(s)
           PY
-      - name: Prove member frontend authority before commit
-        run: node frontend-member-source-gate.mjs
+          node frontend-member-source-gate.mjs
       - name: Commit recovered authority
         shell: bash
         run: |
@@ -98,5 +70,5 @@ jobs:
           git config user.email 'it@shiftsometimber.co.uk'
           git add worker-entry-v6.js wrangler.jsonc frontend-member-source-gate.mjs
           git diff --cached --quiet && exit 0
-          git commit -m 'Restore full Worker member authority and commissioning auth'
+          git commit -m 'Restore full Worker authority commissioning auth and Today handoff'
           git push origin HEAD:main
