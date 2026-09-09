@@ -20,7 +20,24 @@ if 'ACT2B_CONTACT_DIRECT_SUBMIT' not in s:
     s=s.replace(marker,direct+marker)
 if '${ACT2B_CONTACT_DIRECT_SUBMIT}' not in s:
     s=s.replace('${PUBLIC_CHROME_PATCH}\\n','${PUBLIC_CHROME_PATCH}\\n${ACT2B_CONTACT_DIRECT_SUBMIT}\\n')
+
+# Take authority over the Pages v42 asset and DELETE only SST_ENCLOSURE_NAV_V1.
+if 'async function act2bV42Asset' not in s:
+    helper='''\nasync function act2bV42Asset(request) {\n  const upstream = await fetch("https://projectshift.pages.dev/assets/v42.js", { headers: { "Cache-Control": "no-cache" } });\n  if (!upstream.ok) return new Response("v42 unavailable", { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });\n  const source = await upstream.text();\n  const cleaned = source.replace(/\\n?\\/\\/ SST_ENCLOSURE_NAV_V1[^\\n]*\\n\\(\\(\\)=>\\{[\\s\\S]*?\\n\\}\\)\\(\\);\\n?/, "\\n");\n  if (cleaned.includes("SST_ENCLOSURE_NAV_V1")) return new Response("v42 enclosure cleanup failed closed", { status: 503, headers: { "Cache-Control": "no-store" } });\n  const headers = new Headers(upstream.headers);\n  headers.set("Content-Type", "application/javascript; charset=utf-8");\n  headers.set("Cache-Control", "no-store, must-revalidate");\n  headers.set("X-Shift-Act2B-Chrome", "v42-enclosure-deleted");\n  headers.delete("Content-Length");\n  return new Response(request.method === "HEAD" ? null : cleaned, { status: 200, headers });\n}\n'''
+    anchor='const REVIEWED_MENTAL_HEALTH_PATHS = ['
+    s=s.replace(anchor,helper+'\n'+anchor)
+if 'path === "/assets/v42.js"' not in s:
+    route='''    if ((request.method === "GET" || request.method === "HEAD") && path === "/assets/v42.js")\n      return act2bV42Asset(request);\n'''
+    s=s.replace('    const shiftMe3DProof = await shiftMe3DProofRoutes(request);',route+'    const shiftMe3DProof = await shiftMe3DProofRoutes(request);')
 worker.write_text(s)
+
+# Route only v42 through Worker so the deleted writer can never reach browsers.
+wp=root/'wrangler.jsonc'
+wcfg=wp.read_text()
+if 'shiftsometimber.co.uk/assets/v42.js*' not in wcfg:
+    insertion='''    {\n      "pattern": "shiftsometimber.co.uk/assets/v42.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/assets/v42.js*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
+    wcfg=wcfg.replace('  "routes": [\n', '  "routes": [\n'+insertion,1)
+wp.write_text(wcfg)
 
 hp=root/'frontend/member/shift-health.html'
 h=hp.read_text()
@@ -47,5 +64,7 @@ w=worker.read_text()
 if re.search(r'SHIFT_HEALTH_(?:CHROME_PATCH|NAV_ENFORCER|NAV_GUARD|NAV_ROOT_GUARD)',w):
     raise SystemExit('Act2B fail: runtime nav writer remains')
 if 'ACT2B_CONTACT_DIRECT_SUBMIT' not in w: raise SystemExit('Act2B fail: direct submit missing')
+if 'act2bV42Asset' not in w or 'v42-enclosure-deleted' not in w: raise SystemExit('Act2B fail: v42 authority missing')
+if 'shiftsometimber.co.uk/assets/v42.js*' not in wp.read_text(): raise SystemExit('Act2B fail: v42 route missing')
 if 'site-header' not in hp.read_text() or 'site-footer' not in hp.read_text(): raise SystemExit('Act2B fail: SHIFT Health chrome mismatch')
 print('Act2B cleanup complete')
