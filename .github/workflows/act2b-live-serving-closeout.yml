@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Route Programme through canonical raw HTML authority
+      - name: Establish one server-side public authority
         shell: bash
         run: |
           python3 - <<'PY'
@@ -23,31 +23,45 @@ jobs:
 
           w=Path('worker-entry-v6.js')
           s=w.read_text()
-          handler='''    if (\n      (request.method === "GET" || request.method === "HEAD") &&\n      (path === "/programme" || path === "/programme.html")\n    ) {\n      return rewritePublicLoungeChrome(await act2bPagesContent(request));\n    }\n'''
-          anchor='''    if (\n      (request.method === "GET" || request.method === "HEAD") &&\n      (path === "/shift-health" || path === "/shift-health.html")\n    ) {\n'''
-          if '(path === "/programme" || path === "/programme.html")' not in s:
-              if anchor not in s: raise SystemExit('programme handler anchor missing')
-              s=s.replace(anchor,handler+anchor,1)
+
+          # Remove the accidental public-root capture by the private member shell.
+          s=s.replace('''      (path === "/" ||\n        path === "/member/dashboard" ||''','''      (path === "/member/dashboard" ||''')
+
+          # Strip the stale public postal address server-side, as part of the canonical HTML rewrite.
+          old='''  body = body.replace(/<nav[^>]*class="[^\\"]*desktop-nav[^\\"]*"[^>]*>[\\s\\S]*?<\\/nav>/i, nav);\n  body = body.replace(/(<[^>]*class="[^\\"]*site-drawer[^\\"]*"[^>]*>[\\s\\S]*?)<nav[^>]*>[\\s\\S]*?<\\/nav>/i, '$1'+drawer);'''
+          new='''  body = body.replace(/<nav[^>]*class="[^\\"]*desktop-nav[^\\"]*"[^>]*>[\\s\\S]*?<\\/nav>/i, nav);\n  body = body.replace(/(<[^>]*class="[^\\"]*site-drawer[^\\"]*"[^>]*>[\\s\\S]*?)<nav[^>]*>[\\s\\S]*?<\\/nav>/i, '$1'+drawer);\n  body = body\n    .replace(/<address\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/address>/gi, "")\n    .replace(/<p\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/p>/gi, "")\n    .replace(/38\\s+Rugby\\s+Drive/gi, "");'''
+          if '38\\s+Rugby\\s+Drive' not in s:
+              if old not in s: raise SystemExit('canonical rewrite anchor missing')
+              s=s.replace(old,new,1)
+
+          # One public fallback: after all API/member/special routes, public GET/HEAD comes from Pages
+          # and is normalised server-side before the browser sees it.
+          old_fallback='''    const fallback = await rewritePublicLoungeChrome(\n      await hq.fetch(request, env, ctx),\n    );\n    if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))\n      await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);\n    return isMemberProductPath(path)\n      ? withMemberCors(fallback, request)\n      : fallback;'''
+          new_fallback='''    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);\n    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {\n      return rewritePublicLoungeChrome(await act2bPagesContent(request));\n    }\n    const fallback = await rewritePublicLoungeChrome(\n      await hq.fetch(request, env, ctx),\n    );\n    if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))\n      await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);\n    return isMemberProductPath(path)\n      ? withMemberCors(fallback, request)\n      : fallback;'''
+          if 'const publicHost = ["shiftsometimber.co.uk"' not in s:
+              if old_fallback not in s: raise SystemExit('public fallback anchor missing')
+              s=s.replace(old_fallback,new_fallback,1)
           w.write_text(s)
 
           r=Path('wrangler.jsonc')
           c=r.read_text()
-          routes='''    {\n      "pattern": "shiftsometimber.co.uk/programme*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/programme*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
-          if 'shiftsometimber.co.uk/programme*' not in c:
+          wildcard='''    {\n      "pattern": "shiftsometimber.co.uk/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
+          if '"pattern": "shiftsometimber.co.uk/*"' not in c:
               marker='  "routes": [\n'
               if marker not in c: raise SystemExit('wrangler routes anchor missing')
-              c=c.replace(marker,marker+routes,1)
+              c=c.replace(marker,marker+wildcard,1)
           r.write_text(c)
           PY
           node --check worker-entry-v6.js
-          grep -q 'path === "/programme"' worker-entry-v6.js
-          grep -q 'shiftsometimber.co.uk/programme\*' wrangler.jsonc
-      - name: Commit Programme route authority
+          grep -q '38\\s+Rugby\\s+Drive' worker-entry-v6.js
+          grep -q 'const publicHost' worker-entry-v6.js
+          grep -q '"pattern": "shiftsometimber.co.uk/\*"' wrangler.jsonc
+      - name: Commit public authority fix
         shell: bash
         run: |
           git config user.name 'shift-act2b-bot'
           git config user.email 'it@shiftsometimber.co.uk'
           git add worker-entry-v6.js wrangler.jsonc
           git diff --cached --quiet && exit 0
-          git commit -m 'Act2B route Programme through canonical HTML authority'
+          git commit -m 'Act2B unify public serving authority'
           git push origin HEAD:main
