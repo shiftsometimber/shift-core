@@ -298,7 +298,7 @@ async function rewritePublicLoungeChrome(response) {
   if (!response.ok || !type.includes("text/html")) return response;
   const source = await response.text();
   const nav = '<nav class="desktop-nav" aria-label="Primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a></nav>';
-  const drawer = '<nav aria-label="Mobile primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a></nav>';
+  const drawer = '<nav aria-label="Mobile primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a><a href="/ask-timber">Ask Timber</a><a href="/contact">Contact</a><a href="/how-are-you-feeling">How are you feeling?</a><a href="/lounge">The Lounge</a><a href="/help">Help</a><a href="/work-with-us">Work With Us</a></nav>';
   let body = source
     .replaceAll('href="/tap-room"', 'href="/lounge"')
     .replaceAll('href="/tap-room.html"', 'href="/lounge"')
