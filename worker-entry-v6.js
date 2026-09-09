@@ -280,11 +280,11 @@ async function publicPagesAsset(request, targetPath) {
     "X-Shift-Frontend-Authority",
     "pages:cos-live-recovery-20260909-r2",
   );
-  return withCosTickerLock(new Response(response.body, {
+  return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
     headers,
-  }), request);
+  });
 }
 function deferAnalytics(ctx, work, label) {
   const task = Promise.resolve()
@@ -292,77 +292,6 @@ function deferAnalytics(ctx, work, label) {
     .catch((e) => console.warn(`${label}_failed`, e?.message));
   if (ctx?.waitUntil) ctx.waitUntil(task);
   return task;
-}
-async function rewritePublicLoungeChrome(response) {
-  const type = String(response.headers.get("Content-Type") || "").toLowerCase();
-  if (!response.ok || !type.includes("text/html")) return response;
-  const source = await response.text();
-  const nav = '<nav class="desktop-nav" aria-label="Primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a></nav>';
-  const drawer = '<nav aria-label="Mobile primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a><a href="/ask-timber">Ask Timber</a><a href="/contact">Contact</a><a href="/how-are-you-feeling">How are you feeling?</a><a href="/lounge">The Lounge</a><a href="/help">Help</a><a href="/work-with-us">Work With Us</a></nav>';
-  let body = source
-    .replaceAll('href="/tap-room"', 'href="/lounge"')
-    .replaceAll('href="/tap-room.html"', 'href="/lounge"')
-    .replaceAll(">The Tap Room<", ">The Lounge<")
-    .replaceAll(">Tap Room<", ">The Lounge<")
-    .replaceAll(">TAP ROOM<", ">THE LOUNGE<");
-  body = body.replace(/<nav[^>]*class="[^"]*desktop-nav[^"]*"[^>]*>[\s\S]*?<\/nav>/i, nav);
-  body = body.replace(/(<[^>]*class="[^"]*site-drawer[^"]*"[^>]*>[\s\S]*?)<nav[^>]*>[\s\S]*?<\/nav>/i, '$1'+drawer);
-  body = body
-    .replace(/<address\b[^>]*>[\s\S]*?38\s+Rugby\s+Drive[\s\S]*?<\/address>/gi, "")
-    .replace(/<p\b[^>]*>[\s\S]*?38\s+Rugby\s+Drive[\s\S]*?<\/p>/gi, "")
-    .replace(/38\s+Rugby\s+Drive/gi, "");
-  const headers = new Headers(response.headers);
-  headers.delete("Content-Length"); headers.delete("ETag"); headers.delete("Last-Modified");
-  headers.set("Cache-Control", "no-store, must-revalidate");
-  headers.set("X-Shift-HTML-Chrome", "act2b-canonical-v1");
-  return new Response(body, { status: response.status, statusText: response.statusText, headers });
-}
-
-const PUBLIC_CHROME_PATCH = `;(()=>{const rename=()=>{for(const link of document.querySelectorAll('a[href]')){let path='';try{path=new URL(link.href,location.href).pathname.replace(/\\/+$/,'')||'/'}catch{}if(path==='/tap-room'||path==='/tap-room.html'){link.href='/lounge';const label=(link.textContent||'').trim();if(/^(?:the )?tap room$/i.test(label))link.textContent='The Lounge'}}};const fullWire=async()=>{const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!['/explore-knowledge','/treatment-centre'].includes(path)||document.querySelector('[data-shift-ai-full-wire]'))return;const strip=document.createElement('section');strip.className='medicine-ticker-v138';strip.dataset.shiftAiFullWire='v1';strip.setAttribute('aria-label','Full approved wire from SHIFT AI Newsroom');strip.innerHTML='<strong>SHIFT AI Newsroom</strong><span data-shift-ai-wire-track>Loading approved medicines wire…</span>';const style=document.createElement('style');style.textContent='[data-shift-ai-full-wire]{display:flex;gap:18px;align-items:center;overflow:hidden;padding:11px max(18px,4vw);background:#707762;color:#050505;border-block:1px solid #050505;font:900 14px/1.35 Arial,sans-serif}[data-shift-ai-full-wire]>strong{flex:0 0 auto;letter-spacing:.04em}[data-shift-ai-wire-track]{display:block;min-width:max-content;white-space:nowrap;animation:sstFullWire 42s linear infinite}[data-shift-ai-full-wire]:hover [data-shift-ai-wire-track],[data-shift-ai-full-wire]:focus-within [data-shift-ai-wire-track]{animation-play-state:paused}@keyframes sstFullWire{from{transform:translateX(30vw)}to{transform:translateX(-100%)}}@media(prefers-reduced-motion:reduce){[data-shift-ai-wire-track]{animation:none;min-width:0;white-space:normal}}';document.head.appendChild(style);const anchor=document.querySelector('header');if(anchor)anchor.insertAdjacentElement('afterend',strip);else document.body.prepend(strip);try{const response=await fetch('/v1/radar/ticker',{credentials:'omit',cache:'no-store'}),body=await response.json();const items=Array.isArray(body.items)?body.items:[],lines=items.map(item=>String(item.ticker_line||item.headline||'').trim()).filter(Boolean);if(!response.ok||!body.current||!lines.length){strip.remove();style.remove();return}strip.querySelector('[data-shift-ai-wire-track]').textContent=lines.join('   •   ')}catch{strip.remove();style.remove()}};const start=()=>{rename();fullWire()};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
-const COS_CANONICAL_CHROME_LOCK = `;(()=>{const desktop=[['/start-here','Start Here'],['/programme','The Programme'],['/shift-health','SHIFT Health'],['/explore-knowledge','Knowledge'],['/about','About'],['/member/dashboard','My Timber']],drawer=[...desktop,['/ask-timber','Ask Timber'],['/contact','Contact'],['/how-are-you-feeling','How are you feeling?'],['/lounge','The Lounge'],['/help','Help'],['/work-with-us','Work With Us']],signature=nav=>nav?[...nav.querySelectorAll(':scope>a')].map(a=>(a.getAttribute('href')||'')+'|'+(a.textContent||'').trim()).join('~'):'',wanted=links=>links.map(([href,label])=>href+'|'+label).join('~'),fill=(nav,links)=>{if(!nav||signature(nav)===wanted(links))return;nav.replaceChildren(...links.map(([href,label])=>{const a=document.createElement('a');a.href=href;a.textContent=label;const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(path===href)a.setAttribute('aria-current','page');return a}))},fix=()=>{fill(document.querySelector('nav.desktop-nav'),desktop);fill(document.querySelector('aside.site-drawer nav'),drawer)},start=()=>{fix();let queued=false;new MutationObserver(()=>{if(queued)return;queued=true;queueMicrotask(()=>{queued=false;fix()})}).observe(document.documentElement,{childList:true,subtree:true})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
-const COS_TICKER_LOCK = `;(()=>{const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(path==='/'||path==='/start-here'||path==='/lounge')return;const fallback=[['Approved medicine news and practical context','/medicine-news'],['When the clinic goes quiet, Shift stays on','/articles/stopping-glp1'],['Compare treatment routes and honest availability','/treatment-centre']],nodes=items=>items.flatMap((item,index)=>{const a=document.createElement('a');a.href=item.url||'/medicine-news';a.textContent=String(item.ticker_line||item.headline||item[0]||'').trim();if(Array.isArray(item))a.href=item[1];if(!a.textContent)return[];return index?[document.createTextNode('   •   '),a]:[a]}),start=async()=>{let strip=document.querySelector('[data-shift-ai-full-wire],.medicine-ticker-v138');if(!strip){strip=document.createElement('section');strip.className='medicine-ticker-v138';strip.dataset.shiftAiFullWire='cos-v1';strip.setAttribute('aria-label','Approved updates from SHIFT AI Newsroom');strip.innerHTML='<strong>SHIFT AI Newsroom</strong><span class="shift-ai-wire-window"><span data-shift-ai-wire-track></span></span>';const header=document.querySelector('header');if(header)header.insertAdjacentElement('afterend',strip);else document.body.prepend(strip)}let track=strip.querySelector('[data-shift-ai-wire-track]');if(!track){const windowEl=document.createElement('span');windowEl.className='shift-ai-wire-window';track=document.createElement('span');track.dataset.shiftAiWireTrack='';windowEl.append(track);strip.append(windowEl)}if(!track.textContent.trim()||/Loading approved/i.test(track.textContent))track.replaceChildren(...nodes(fallback));if(!document.querySelector('style[data-cos-ticker-lock]')){const style=document.createElement('style');style.dataset.cosTickerLock='v1';style.textContent='.medicine-ticker-v138{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;gap:16px!important;align-items:center!important;overflow:hidden!important;padding:10px max(18px,4vw)!important;background:#707762!important;color:#050505!important;border-block:1px solid #050505!important;font:900 14px/1.35 Arial,sans-serif!important}.medicine-ticker-v138>strong{position:relative;z-index:2;white-space:nowrap;background:#707762;color:#050505!important}.shift-ai-wire-window{min-width:0;overflow:hidden}.medicine-ticker-v138 [data-shift-ai-wire-track]{display:flex!important;width:max-content;white-space:nowrap;animation:cosShiftTicker 32s linear infinite}.medicine-ticker-v138 a{color:#050505!important;text-decoration:none!important;font-weight:900!important}@keyframes cosShiftTicker{from{transform:translateX(100%)}to{transform:translateX(-100%)}}@media(max-width:560px) and (orientation:portrait){.medicine-ticker-v138{grid-template-columns:1fr!important;gap:4px!important;padding-block:7px!important}.medicine-ticker-v138>strong,.medicine-ticker-v138 [data-shift-ai-wire-track]{font-size:12px!important}}@media(prefers-reduced-motion:reduce){.medicine-ticker-v138 [data-shift-ai-wire-track]{width:auto;white-space:normal;animation:none}}';document.head.append(style)}try{const response=await fetch('/v1/radar/ticker',{credentials:'omit',cache:'no-store'}),body=await response.json(),items=Array.isArray(body.items)?body.items:[];if(response.ok&&body.current&&items.length)track.replaceChildren(...nodes(items))}catch{}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();`;
-async function withCosTickerLock(response, request) {
-  const type = String(response.headers.get("Content-Type") || "").toLowerCase();
-  if (!response.ok || !type.includes("text/html")) return response;
-  const source = await response.text();
-  const path = new URL(request.url).pathname
-    .replace(/\.html$/, "")
-    .replace(/\/+$/, "") || "/";
-  const excluded = path === "/" || path === "/start-here" || path === "/lounge";
-  const body = excluded
-    ? source
-        .replace(/<section[^>]*(?:data-shift-ai-full-wire|class=["'][^"']*medicine-ticker-v138[^"']*["'])[^>]*>[\s\S]*?<\/section>/gi, "")
-        .replace(/<script[^>]*src=["'][^"']*newsroom-ticker[^"']*["'][^>]*><\/script>/gi, "")
-    : source.replace(
-        /<\/body>/i,
-        `<script data-cos-ticker-lock="v1">${COS_TICKER_LOCK}<\/script></body>`,
-      );
-  const headers = new Headers(response.headers);
-  headers.delete("Content-Length");
-  headers.delete("ETag");
-  headers.delete("Last-Modified");
-  headers.set("Cache-Control", "no-store, must-revalidate");
-  if (excluded) headers.delete("X-Shift-Ticker-Authority");
-  else headers.set("X-Shift-Ticker-Authority", "cos-worker-v1");
-  return new Response(request.method === "HEAD" ? null : body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
-}
-const ACT2B_CONTACT_DIRECT_SUBMIT = `;(()=>{const paths=new Set(['/contact','/work-with-us','/partner-with-us','/advertise-with-us']);const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!paths.has(path))return;const val=(form,names,sel='')=>{for(const n of names){const e=form.elements?.namedItem?.(n);if(e&&String(e.value||'').trim())return String(e.value).trim()}const e=sel?form.querySelector(sel):null;return String(e?.value||'').trim()};const infer=()=>{const q=new URLSearchParams(location.search).get('type');if(q)return q;return path.includes('partner')||path.includes('work-with')||path.includes('advertise')?'partner':'general'};document.addEventListener('submit',async e=>{const form=e.target;if(!(form instanceof HTMLFormElement))return;e.preventDefault();e.stopImmediatePropagation();const email=val(form,['email','Email'],'input[type=email]'),name=val(form,['name','Name','full_name','first_name'],'input[type=text]'),message=val(form,['message','Message','enquiry'],'textarea'),type=val(form,['type','enquiry_type','subject'],'select')||infer(),consent=!!form.querySelector('input[type=checkbox]:checked');const button=form.querySelector('button[type=submit],input[type=submit]');const old=button?.textContent||button?.value||'Send message';if(button){button.disabled=true;if(button.tagName==='BUTTON')button.textContent='Sending…';else button.value='Sending…'}let status=form.querySelector('[data-shift-contact-status]');if(!status){status=document.createElement('p');status.dataset.shiftContactStatus='1';status.setAttribute('role','status');form.append(status)}try{const r=await fetch('/v1/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name,email,type,message,consent})}),b=await r.json().catch(()=>({}));if(!r.ok)throw Error(b.message||'We could not send that.');status.textContent=b.message||'Message sent. Shift has it.';status.dataset.state='success';form.reset()}catch(err){status.textContent=err.message||'We could not send that. Please try again.';status.dataset.state='error'}finally{if(button){button.disabled=false;if(button.tagName==='BUTTON')button.textContent=old;else button.value=old}}},true)})();`;
-const PUBLIC_MEDICINE_TICKER_PATCH = `;(()=>{const run=async()=>{const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!['/start-here','/treatment-order'].includes(path)||document.querySelector('[data-shift-ai-full-wire]'))return;const strip=document.createElement('section');strip.className='medicine-ticker-v138';strip.dataset.shiftAiFullWire='v1';strip.setAttribute('aria-label','Live approved updates from SHIFT AI Newsroom');strip.innerHTML='<strong>SHIFT AI Newsroom</strong><span class="shift-ai-wire-window"><span data-shift-ai-wire-track>Loading approved medicine updates…</span></span>';const style=document.createElement('style');style.textContent='[data-shift-ai-full-wire]{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;overflow:hidden;padding:10px max(18px,4vw);background:#707762;color:#050505;border-block:1px solid #050505;font:900 14px/1.35 Arial,sans-serif}[data-shift-ai-full-wire]>strong{position:relative;z-index:2;white-space:nowrap;letter-spacing:.04em;background:#707762}.shift-ai-wire-window{min-width:0;overflow:hidden}[data-shift-ai-wire-track]{display:flex;width:max-content;white-space:nowrap;animation:sstMedicineWire 48s linear infinite}[data-shift-ai-wire-track] a{color:#050505;text-decoration:none}[data-shift-ai-wire-track] a:hover,[data-shift-ai-wire-track] a:focus{text-decoration:underline}[data-shift-ai-full-wire]:hover [data-shift-ai-wire-track],[data-shift-ai-full-wire]:focus-within [data-shift-ai-wire-track]{animation-play-state:paused}@keyframes sstMedicineWire{from{transform:translateX(100%)}to{transform:translateX(-100%)}}@media(max-width:560px){[data-shift-ai-full-wire]{grid-template-columns:1fr;gap:5px}[data-shift-ai-full-wire]>strong{font-size:12px}}@media(prefers-reduced-motion:reduce){[data-shift-ai-wire-track]{width:auto;white-space:normal;animation:none}}';document.head.appendChild(style);const anchor=document.querySelector('header');if(anchor)anchor.insertAdjacentElement('afterend',strip);else document.body.prepend(strip);try{const response=await fetch('/v1/radar/ticker',{credentials:'omit',cache:'no-store'}),body=await response.json(),items=Array.isArray(body.items)?body.items:[];if(!response.ok||!body.current||!items.length)throw Error('empty');const track=strip.querySelector('[data-shift-ai-wire-track]');track.replaceChildren(...items.flatMap((item,index)=>{const a=document.createElement('a');a.href=item.url||'/medicine-news';a.textContent=String(item.ticker_line||item.headline||'').trim();if(!a.textContent)return[];return index?[document.createTextNode('   •   '),a]:[a]}))}catch{strip.remove();style.remove()}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run()})();`;
-async function act2bSanitisedV42(request) {
-  const upstream = await fetch('https://projectshift.pages.dev/assets/v42.js', {headers:{'cache-control':'no-cache'}});
-  if (!upstream.ok) return upstream;
-  const source = await upstream.text();
-  const body = source.replace(/\/\/ SST_ENCLOSURE_NAV_V1[^\n]*\n\(\(\)=>\{[\s\S]*?\n\}\)\(\);?\n?/, '');
-  const headers = new Headers(upstream.headers);
-  headers.delete('content-length'); headers.delete('etag'); headers.delete('last-modified');
-  headers.set('content-type','application/javascript; charset=utf-8');
-  headers.set('cache-control','no-store, must-revalidate');
-  headers.set('x-shift-act2b-v42','legacy-nav-removed');
-  return new Response(body,{status:upstream.status,statusText:upstream.statusText,headers});
 }
 async function act2bPagesFallthrough(request) {
   const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
@@ -374,50 +303,6 @@ async function act2bPagesContent(request) {
   const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
   return fetch(new Request(u,request));
 }
-async function publicSiteConfigWithLoungeChrome(request) {
-  const upstream = new URL(request.url);
-  upstream.protocol = "https:";
-  upstream.hostname = "projectshift.pages.dev";
-  upstream.port = "";
-  const upstreamHeaders = new Headers(request.headers);
-  upstreamHeaders.delete("If-None-Match");
-  upstreamHeaders.delete("If-Modified-Since");
-  const response = await fetch(
-    new Request(upstream, { method: request.method, headers: upstreamHeaders }),
-  );
-  if (!response.ok) return response;
-  const headers = new Headers(response.headers);
-  headers.delete("Content-Length");
-  headers.delete("ETag");
-  headers.delete("Last-Modified");
-  headers.set("Content-Type", "application/javascript; charset=utf-8");
-  headers.set("Cache-Control", "no-store, must-revalidate");
-  headers.set("X-Shift-Lounge-Chrome", "v2");
-  const source = await response.text();
-  const constrained = source.replace(
-    "['/explore-knowledge','/knowledge','/treatment-centre','/treatment-order','/medicine-news','/glp1-knowledge-centre','/mounjaro','/wegovy','/foundayo','/member/dashboard']",
-    "['/explore-knowledge','/knowledge','/treatment-centre','/medicine-news']",
-  );
-  return new Response(
-    `${constrained}\n${PUBLIC_CHROME_PATCH}\n${COS_CANONICAL_CHROME_LOCK}\n${COS_TICKER_LOCK}\n${ACT2B_CONTACT_DIRECT_SUBMIT}\n\n\n\n\n`,
-    { status: response.status, statusText: response.statusText, headers },
-  );
-}
-
-async function act2bV42Asset(request) {
-  const upstream = await fetch("https://projectshift.pages.dev/assets/v42.js", { headers: { "Cache-Control": "no-cache" } });
-  if (!upstream.ok) return new Response("v42 unavailable", { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
-  const source = await upstream.text();
-  const cleaned = source.replace(/\n?\/\/ SST_ENCLOSURE_NAV_V1[^\n]*\n\(\(\)=>\{[\s\S]*?\n\}\)\(\);\n?/, "\n");
-  if (cleaned.includes("SST_ENCLOSURE_NAV_V1")) return new Response("v42 enclosure cleanup failed closed", { status: 503, headers: { "Cache-Control": "no-store" } });
-  const headers = new Headers(upstream.headers);
-  headers.set("Content-Type", "application/javascript; charset=utf-8");
-  headers.set("Cache-Control", "no-store, must-revalidate");
-  headers.set("X-Shift-Act2B-Chrome", "v42-enclosure-deleted");
-  headers.delete("Content-Length");
-  return new Response(request.method === "HEAD" ? null : cleaned, { status: 200, headers });
-}
-
 const REVIEWED_MENTAL_HEALTH_PATHS = [
   "/mental-health/confidence-self-worth",
   "/mental-health/sleep-mental-health",
@@ -589,7 +474,7 @@ export default {
       (path === "/site-config-v3a.js" || path === "/authority-menu-v35.js") &&
       (request.method === "GET" || request.method === "HEAD")
     )
-      return publicSiteConfigWithLoungeChrome(request);
+      return act2bPagesContent(request);
     // Let Shift Core answer HQ browser preflights before feature modules apply
     // session checks. A preflight has no session cookie by design.
     if (request.method === "OPTIONS" && path.startsWith("/v1/hq/"))
@@ -611,7 +496,7 @@ export default {
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/programme" || path === "/programme.html")
     ) {
-      return rewritePublicLoungeChrome(await act2bPagesContent(request));
+      return act2bPagesContent(request);
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
@@ -743,8 +628,6 @@ export default {
         new URL("/member/dashboard#shiftme", request.url),
         302,
       );
-    if ((request.method === "GET" || request.method === "HEAD") && path === "/assets/v42.js")
-      return act2bV42Asset(request);
     const shiftMe3DProof = await shiftMe3DProofRoutes(request);
     if (shiftMe3DProof) return shiftMe3DProof;
     const gitAsset = await gitMemberAsset(path, env);
@@ -890,11 +773,9 @@ export default {
         : null;
     const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return rewritePublicLoungeChrome(await act2bPagesContent(request));
+      return act2bPagesContent(request);
     }
-    const fallback = await rewritePublicLoungeChrome(
-      await hq.fetch(request, env, ctx),
-    );
+    const fallback = await hq.fetch(request, env, ctx);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)
