@@ -9,6 +9,14 @@
   "preview_urls": false,
 
   "routes": [
+    {
+      "pattern": "shiftsometimber.co.uk/assets/v42.js*",
+      "zone_name": "shiftsometimber.co.uk",
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/assets/v42.js*",
+      "zone_name": "shiftsometimber.co.uk",
+    },
     { "pattern": "api.shiftsometimber.co.uk", "custom_domain": true },
     {
       "pattern": "shiftsometimber.co.uk/faq/*",
