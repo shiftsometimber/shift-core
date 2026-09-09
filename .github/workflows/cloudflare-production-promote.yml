@@ -98,9 +98,6 @@ on:
       - "reconcile-final-v1-gate2-board.mjs"
       - "reconcile-final-v1-recovery-pointers.mjs"
       - ".github/workflows/final-v1-production-publication.yml"
-  # Repository changes made through the connected GitHub integration do not
-  # emit a normal push event. A merged same-repository PR is therefore also a
-  # governed production promotion signal; the job still checks current main.
   pull_request:
     branches: [main]
     types: [closed]
@@ -159,14 +156,33 @@ jobs:
       - name: Prove medicine front door, commercial safety and full purchase lifecycle
         run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
       - name: Apply pharmacy-readiness database additions
+        shell: bash
         run: |
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/017_medicine_clinical_intake.sql
+          set -euo pipefail
+          run_d1_file() {
+            local file="$1" out code attempt
+            for attempt in 1 2 3; do
+              set +e
+              out=$(npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$file" 2>&1)
+              code=$?
+              set -e
+              printf '%s\n' "$out"
+              if [ "$code" -eq 0 ]; then return 0; fi
+              if printf '%s' "$out" | grep -q 'Not currently importing anything' && [ "$attempt" -lt 3 ]; then
+                echo "Transient D1 import-state response for $file; retrying (${attempt}/3)..."
+                sleep 5
+                continue
+              fi
+              return "$code"
+            done
+          }
+          run_d1_file migrations/017_medicine_clinical_intake.sql
           column_json=$(npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "PRAGMA table_info(medicine_variants)")
           if ! printf '%s' "$column_json" | grep -q 'target_margin_bps'; then
             npx wrangler d1 execute DB --remote --config wrangler.jsonc --command "ALTER TABLE medicine_variants ADD COLUMN target_margin_bps INTEGER NOT NULL DEFAULT 6000"
           fi
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/018_foundayo_launch_ready.sql
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file migrations/019_foundayo_option_stock_lock.sql
+          run_d1_file migrations/018_foundayo_launch_ready.sql
+          run_d1_file migrations/019_foundayo_option_stock_lock.sql
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
