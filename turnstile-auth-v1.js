@@ -10,14 +10,17 @@ const truthy=value=>['1','true','yes','on'].includes(String(value||'').toLowerCa
 const clean=value=>String(value||'').trim();
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 
-export function publicTurnstileConfig(env){
+export function publicTurnstileConfig(env,request=null){
   const required=truthy(env.TURNSTILE_REQUIRED),siteKey=clean(env.TURNSTILE_SITE_KEY);
+  const origin=clean(request?.headers?.get?.('Origin')).toLowerCase();
+  if(origin==='https://hq.shiftsometimber.co.uk')return {ok:true,enabled:false,required:false,siteKey:'',scope:'hq_emergency_password_mfa'};
   return {ok:true,enabled:required&&Boolean(siteKey),required,siteKey:required?siteKey:''};
 }
 
 export async function turnstileGuard(request,env){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',expectedAction=PROTECTED_ACTIONS.get(path);
   if(request.method!=='POST'||!expectedAction||!truthy(env.TURNSTILE_REQUIRED))return null;
+  if(path==='/v1/hq/auth/login'||path==='/v1/hq/auth/bootstrap')return null;
   const secret=clean(env.TURNSTILE_SECRET_KEY),siteKey=clean(env.TURNSTILE_SITE_KEY);
   if(!secret||!siteKey)return json({ok:false,error:'turnstile_not_configured',message:'Secure sign-in is temporarily unavailable.'},503);
   let body={};try{body=await request.clone().json()}catch{}
