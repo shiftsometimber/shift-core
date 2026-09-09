@@ -592,7 +592,7 @@ export default {
       path.startsWith("/shift-health/") &&
       path.split("/").filter(Boolean).length === 2
     )
-      return publicPagesAsset(request, path);
+      return publicPagesAsset(request, "/shift-health-product.html");
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       path === "/grub"
