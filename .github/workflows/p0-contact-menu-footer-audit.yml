@@ -1,0 +1,17 @@
+name: P0 Contact Menu Footer Audit
+on:
+  push:
+    branches: [main]
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate regressions
+        run: |
+          echo '=== CONTACT MAIL APP COPY ==='
+          git grep -n -E 'Pressing send opens your email app|Shift enquiry|mailto:.*shiftsometimber\.co\.uk' -- '*.html' '*.js' '*.mjs' || true
+          echo '=== PARTNER CONTACT PAGES ==='
+          git grep -n -E 'partner|press|contact|complaint|privacy|support' -- '*.html' | head -n 250 || true
+          echo '=== HEADER MENU FOOTER SOURCES ==='
+          git grep -n -E 'site-footer|footer-grid|authority-menu|global.*menu|Menu</|>Menu<' -- '*.html' '*.js' '*.mjs' | head -n 300 || true
