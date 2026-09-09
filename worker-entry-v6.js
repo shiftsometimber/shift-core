@@ -316,6 +316,21 @@ async function publicSiteConfigWithLoungeChrome(request) {
     { status: response.status, statusText: response.statusText, headers },
   );
 }
+
+async function act2bV42Asset(request) {
+  const upstream = await fetch("https://projectshift.pages.dev/assets/v42.js", { headers: { "Cache-Control": "no-cache" } });
+  if (!upstream.ok) return new Response("v42 unavailable", { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
+  const source = await upstream.text();
+  const cleaned = source.replace(/\n?\/\/ SST_ENCLOSURE_NAV_V1[^\n]*\n\(\(\)=>\{[\s\S]*?\n\}\)\(\);\n?/, "\n");
+  if (cleaned.includes("SST_ENCLOSURE_NAV_V1")) return new Response("v42 enclosure cleanup failed closed", { status: 503, headers: { "Cache-Control": "no-store" } });
+  const headers = new Headers(upstream.headers);
+  headers.set("Content-Type", "application/javascript; charset=utf-8");
+  headers.set("Cache-Control", "no-store, must-revalidate");
+  headers.set("X-Shift-Act2B-Chrome", "v42-enclosure-deleted");
+  headers.delete("Content-Length");
+  return new Response(request.method === "HEAD" ? null : cleaned, { status: 200, headers });
+}
+
 const REVIEWED_MENTAL_HEALTH_PATHS = [
   "/mental-health/confidence-self-worth",
   "/mental-health/sleep-mental-health",
@@ -624,6 +639,8 @@ export default {
         new URL("/member/dashboard#shiftme", request.url),
         302,
       );
+    if ((request.method === "GET" || request.method === "HEAD") && path === "/assets/v42.js")
+      return act2bV42Asset(request);
     const shiftMe3DProof = await shiftMe3DProofRoutes(request);
     if (shiftMe3DProof) return shiftMe3DProof;
     const gitAsset = await gitMemberAsset(path, env);
