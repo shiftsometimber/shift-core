@@ -20,36 +20,23 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-
-          w=Path('worker-entry-v6.js')
-          s=w.read_text()
-
-          # Remove the accidental public-root capture by the private member shell.
+          w=Path('worker-entry-v6.js'); s=w.read_text()
           s=s.replace('''      (path === "/" ||\n        path === "/member/dashboard" ||''','''      (path === "/member/dashboard" ||''')
-
-          # Strip the stale public postal address server-side, as part of the canonical HTML rewrite.
-          old='''  body = body.replace(/<nav[^>]*class="[^\\"]*desktop-nav[^\\"]*"[^>]*>[\\s\\S]*?<\\/nav>/i, nav);\n  body = body.replace(/(<[^>]*class="[^\\"]*site-drawer[^\\"]*"[^>]*>[\\s\\S]*?)<nav[^>]*>[\\s\\S]*?<\\/nav>/i, '$1'+drawer);'''
-          new='''  body = body.replace(/<nav[^>]*class="[^\\"]*desktop-nav[^\\"]*"[^>]*>[\\s\\S]*?<\\/nav>/i, nav);\n  body = body.replace(/(<[^>]*class="[^\\"]*site-drawer[^\\"]*"[^>]*>[\\s\\S]*?)<nav[^>]*>[\\s\\S]*?<\\/nav>/i, '$1'+drawer);\n  body = body\n    .replace(/<address\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/address>/gi, "")\n    .replace(/<p\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/p>/gi, "")\n    .replace(/38\\s+Rugby\\s+Drive/gi, "");'''
           if '38\\s+Rugby\\s+Drive' not in s:
-              if old not in s: raise SystemExit('canonical rewrite anchor missing')
-              s=s.replace(old,new,1)
-
-          # One public fallback: after all API/member/special routes, public GET/HEAD comes from Pages
-          # and is normalised server-side before the browser sees it.
-          old_fallback='''    const fallback = await rewritePublicLoungeChrome(\n      await hq.fetch(request, env, ctx),\n    );\n    if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))\n      await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);\n    return isMemberProductPath(path)\n      ? withMemberCors(fallback, request)\n      : fallback;'''
-          new_fallback='''    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);\n    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {\n      return rewritePublicLoungeChrome(await act2bPagesContent(request));\n    }\n    const fallback = await rewritePublicLoungeChrome(\n      await hq.fetch(request, env, ctx),\n    );\n    if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))\n      await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);\n    return isMemberProductPath(path)\n      ? withMemberCors(fallback, request)\n      : fallback;'''
+              start=s.index('async function rewritePublicLoungeChrome')
+              pos=s.index('  const headers = new Headers(response.headers);', start)
+              strip='''  body = body\n    .replace(/<address\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/address>/gi, "")\n    .replace(/<p\\b[^>]*>[\\s\\S]*?38\\s+Rugby\\s+Drive[\\s\\S]*?<\\/p>/gi, "")\n    .replace(/38\\s+Rugby\\s+Drive/gi, "");\n'''
+              s=s[:pos]+strip+s[pos:]
           if 'const publicHost = ["shiftsometimber.co.uk"' not in s:
-              if old_fallback not in s: raise SystemExit('public fallback anchor missing')
-              s=s.replace(old_fallback,new_fallback,1)
+              marker='''    const fallback = await rewritePublicLoungeChrome(\n      await hq.fetch(request, env, ctx),\n    );'''
+              if marker not in s: raise SystemExit('fallback marker missing')
+              public='''    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);\n    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {\n      return rewritePublicLoungeChrome(await act2bPagesContent(request));\n    }\n'''
+              s=s.replace(marker,public+marker,1)
           w.write_text(s)
-
-          r=Path('wrangler.jsonc')
-          c=r.read_text()
+          r=Path('wrangler.jsonc'); c=r.read_text()
           wildcard='''    {\n      "pattern": "shiftsometimber.co.uk/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
           if '"pattern": "shiftsometimber.co.uk/*"' not in c:
-              marker='  "routes": [\n'
-              if marker not in c: raise SystemExit('wrangler routes anchor missing')
-              c=c.replace(marker,marker+wildcard,1)
+              c=c.replace('  "routes": [\n','  "routes": [\n'+wildcard,1)
           r.write_text(c)
           PY
           node --check worker-entry-v6.js
