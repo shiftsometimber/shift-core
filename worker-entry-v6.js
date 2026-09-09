@@ -535,6 +535,8 @@ export default {
     // session checks. A preflight has no session cookie by design.
     if (request.method === "OPTIONS" && path.startsWith("/v1/hq/"))
       return withHqCors(await hq.fetch(request, env, ctx), request);
+    if ((request.method === "GET" || request.method === "HEAD") && (path === "/member/today" || path === "/member/today.html"))
+      return Response.redirect(new URL("/member/dashboard#today", request.url), 301);
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/member/progress" ||
