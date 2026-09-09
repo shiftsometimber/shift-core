@@ -54,6 +54,27 @@ jobs:
           grep -q '38\\s+Rugby\\s+Drive' worker-entry-v6.js
           grep -q 'const publicHost' worker-entry-v6.js
           grep -q '"pattern": "shiftsometimber.co.uk/\*"' wrangler.jsonc
+      - name: Restore verified commissioning auth ahead of Turnstile
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('worker-entry-v6.js'); s=p.read_text()
+          marker='''    const turnstileBlock = await turnstileGuard(request, env);'''
+          secure='''    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");\n    if (\n      commissioningOidc &&\n      request.method === "POST" &&\n      (path === "/v1/auth/register" || path === "/v1/auth/login")\n    ) {\n      const commissioningAuth = await handleCommissioningIdentity(\n        request,\n        env,\n        ctx,\n        coreAuthFetch,\n      );\n      if (commissioningAuth)\n        return withMemberCors(commissioningAuth, request);\n    }\n'''
+          if 'const commissioningOidc = request.headers.get("x-shift-commissioning-oidc")' not in s:
+              if marker not in s: raise SystemExit('Turnstile marker missing')
+              s=s.replace(marker,secure+marker,1)
+          p.write_text(s)
+          PY
+          node --check worker-entry-v6.js
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('worker-entry-v6.js').read_text()
+          assert s.index('const commissioningOidc') < s.index('const turnstileBlock')
+          assert 'handleCommissioningIdentity' in s
+          print('PASS verified commissioning auth precedes Turnstile; ordinary auth remains guarded')
+          PY
       - name: Repair brittle member source assertions
         shell: bash
         run: |
@@ -77,5 +98,5 @@ jobs:
           git config user.email 'it@shiftsometimber.co.uk'
           git add worker-entry-v6.js wrangler.jsonc frontend-member-source-gate.mjs
           git diff --cached --quiet && exit 0
-          git commit -m 'Restore full Worker and member frontend authority'
+          git commit -m 'Restore full Worker member authority and commissioning auth'
           git push origin HEAD:main
