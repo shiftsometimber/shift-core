@@ -1,17 +1,16 @@
 name: Act2B One Shot Chrome Cleanup
 on:
-  pull_request:
+  push:
     branches: [main]
 permissions:
   contents: write
 jobs:
   cleanup:
-    if: github.head_ref == 'act2b-chrome-cleanup'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: act2b-chrome-cleanup
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -22,34 +21,22 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import re
-
           root=Path('.')
           worker=root/'worker-entry-v6.js'
           s=worker.read_text()
-
-          # DELETE the four SHIFT Health nav writers/observers. Keep content/ticker helpers only.
           for name in ['SHIFT_HEALTH_CHROME_PATCH','SHIFT_HEALTH_NAV_ENFORCER','SHIFT_HEALTH_NAV_GUARD','SHIFT_HEALTH_NAV_ROOT_GUARD']:
               s,n=re.subn(rf"\nconst {name} = `.*?`;\n",'\n',s,flags=re.S)
               print('deleted',name,n)
-          s=re.sub(r"\n?\$\{SHIFT_HEALTH_CHROME_PATCH\}","",s)
-          s=re.sub(r"\n?\$\{SHIFT_HEALTH_NAV_ENFORCER\}","",s)
-          s=re.sub(r"\n?\$\{SHIFT_HEALTH_NAV_GUARD\}","",s)
-          s=re.sub(r"\n?\$\{SHIFT_HEALTH_NAV_ROOT_GUARD\}","",s)
-
-          # Make the public contact route part of the normal member/API path contract.
+          for name in ['SHIFT_HEALTH_CHROME_PATCH','SHIFT_HEALTH_NAV_ENFORCER','SHIFT_HEALTH_NAV_GUARD','SHIFT_HEALTH_NAV_ROOT_GUARD']:
+              s=re.sub(rf"\n?\$\{{{name}\}}",'',s)
           s=s.replace('path === "/v1/continuity-interest" ||','path === "/v1/continuity-interest" ||\n    path === "/v1/contact" ||')
-
-          # Direct-submit capture lives in the shared public config, not another nav writer.
           marker='const PUBLIC_MEDICINE_TICKER_PATCH = `'
           if 'ACT2B_CONTACT_DIRECT_SUBMIT' not in s:
-              direct=r'''const ACT2B_CONTACT_DIRECT_SUBMIT = `;(()=>{const paths=new Set(['/contact','/work-with-us','/partner-with-us','/advertise-with-us']);const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!paths.has(path))return;const val=(form,names,sel='')=>{for(const n of names){const e=form.elements?.namedItem?.(n);if(e&&String(e.value||'').trim())return String(e.value).trim()}const e=sel?form.querySelector(sel):null;return String(e?.value||'').trim()};const infer=()=>{const q=new URLSearchParams(location.search).get('type');if(q)return q;return path.includes('partner')||path.includes('work-with')?'partner':path.includes('advertise')?'partner':'general'};document.addEventListener('submit',async e=>{const form=e.target;if(!(form instanceof HTMLFormElement))return;e.preventDefault();e.stopImmediatePropagation();const email=val(form,['email','Email'], 'input[type=email]'),name=val(form,['name','Name','full_name','first_name'],'input[type=text]'),message=val(form,['message','Message','enquiry'],'textarea'),type=val(form,['type','enquiry_type','subject'],'select')||infer(),consent=!!form.querySelector('input[type=checkbox]:checked');const button=form.querySelector('button[type=submit],input[type=submit]');const old=button?.textContent||button?.value||'Send message';if(button){button.disabled=true;if(button.tagName==='BUTTON')button.textContent='Sending…';else button.value='Sending…'}let status=form.querySelector('[data-shift-contact-status]');if(!status){status=document.createElement('p');status.dataset.shiftContactStatus='1';status.setAttribute('role','status');form.append(status)}try{const r=await fetch('/v1/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name,email,type,message,consent})}),b=await r.json().catch(()=>({}));if(!r.ok)throw Error(b.message||'We could not send that.');status.textContent=b.message||'Message sent. Shift has it.';status.dataset.state='success';if(r.ok)form.reset()}catch(err){status.textContent=err.message||'We could not send that. Please try again.';status.dataset.state='error'}finally{if(button){button.disabled=false;if(button.tagName==='BUTTON')button.textContent=old;else button.value=old}}},true)})();`;
+              direct=r'''const ACT2B_CONTACT_DIRECT_SUBMIT = `;(()=>{const paths=new Set(['/contact','/work-with-us','/partner-with-us','/advertise-with-us']);const path=location.pathname.replace(/\\.html$/,'').replace(/\\/+$/,'')||'/';if(!paths.has(path))return;const val=(form,names,sel='')=>{for(const n of names){const e=form.elements?.namedItem?.(n);if(e&&String(e.value||'').trim())return String(e.value).trim()}const e=sel?form.querySelector(sel):null;return String(e?.value||'').trim()};const infer=()=>{const q=new URLSearchParams(location.search).get('type');if(q)return q;return path.includes('partner')||path.includes('work-with')?'partner':path.includes('advertise')?'partner':'general'};document.addEventListener('submit',async e=>{const form=e.target;if(!(form instanceof HTMLFormElement))return;e.preventDefault();e.stopImmediatePropagation();const email=val(form,['email','Email'],'input[type=email]'),name=val(form,['name','Name','full_name','first_name'],'input[type=text]'),message=val(form,['message','Message','enquiry'],'textarea'),type=val(form,['type','enquiry_type','subject'],'select')||infer(),consent=!!form.querySelector('input[type=checkbox]:checked');const button=form.querySelector('button[type=submit],input[type=submit]');const old=button?.textContent||button?.value||'Send message';if(button){button.disabled=true;if(button.tagName==='BUTTON')button.textContent='Sending…';else button.value='Sending…'}let status=form.querySelector('[data-shift-contact-status]');if(!status){status=document.createElement('p');status.dataset.shiftContactStatus='1';status.setAttribute('role','status');form.append(status)}try{const r=await fetch('/v1/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name,email,type,message,consent})}),b=await r.json().catch(()=>({}));if(!r.ok)throw Error(b.message||'We could not send that.');status.textContent=b.message||'Message sent. Shift has it.';status.dataset.state='success';if(r.ok)form.reset()}catch(err){status.textContent=err.message||'We could not send that. Please try again.';status.dataset.state='error'}finally{if(button){button.disabled=false;if(button.tagName==='BUTTON')button.textContent=old;else button.value=old}}},true)})();`;
 '''
               s=s.replace(marker,direct+marker)
-          # Append only behaviour, never a nav rewrite.
-          s=s.replace('${PUBLIC_CHROME_PATCH}\\n', '${PUBLIC_CHROME_PATCH}\\n${ACT2B_CONTACT_DIRECT_SUBMIT}\\n')
+          s=s.replace('${PUBLIC_CHROME_PATCH}\\n','${PUBLIC_CHROME_PATCH}\\n${ACT2B_CONTACT_DIRECT_SUBMIT}\\n')
           worker.write_text(s)
-
-          # SHIFT Health: same canonical chrome class contract; JS only opens/closes drawer.
           hp=root/'frontend/member/shift-health.html'
           h=hp.read_text()
           h=h.replace('<header class="head">','<header class="head site-header">')
@@ -57,47 +44,35 @@ jobs:
           h=h.replace('<nav class="desktop" aria-label="Primary">','<nav class="desktop desktop-nav" aria-label="Primary">')
           h=h.replace('<nav class="mobile" aria-label="Mobile primary"','<nav class="mobile site-drawer" aria-label="Mobile primary"')
           hp.write_text(h)
-
-          # Partner/press/support email CTAs must enter the site form, not launch Mail.
           alias_type={'partners':'partner','press':'press','support':'support','clinical':'clinical','orders':'orders','complaints':'complaint','privacy':'privacy','accounts':'accounts','finance':'finance','feedback':'feedback','hello':'general','matt':'general'}
-          text_ext={'.html','.js','.mjs'}
           for p in root.rglob('*'):
-              if not p.is_file() or p.suffix.lower() not in text_ext or '.git' in p.parts: continue
-              try: x=p.read_text()
-              except UnicodeDecodeError: continue
+              if not p.is_file() or p.suffix.lower() not in {'.html','.js','.mjs'} or '.git' in p.parts: continue
+              try:x=p.read_text()
+              except UnicodeDecodeError:continue
               before=x
               for alias,t in alias_type.items():
                   x=re.sub(rf"mailto:{alias}@shiftsometimber\.co\.uk(?:\?[^\"'<> ]*)?",f"/contact?type={t}",x,flags=re.I)
-              # House address lock: remove from served source, not merely hide it.
               x=re.sub(r'(?i)(?:registered office\s*[:–-]?\s*)?38\s+Rugby\s+Drive[^<\n\r]*','',x)
-              if x!=before: p.write_text(x)
-
-          # Fail if the known runtime nav-police patterns remain in Worker authority.
+              if x!=before:p.write_text(x)
           w=worker.read_text()
-          forbidden=['SHIFT_HEALTH_NAV_ENFORCER','SHIFT_HEALTH_NAV_GUARD','SHIFT_HEALTH_NAV_ROOT_GUARD']
-          for f in forbidden:
-              if f in w: raise SystemExit(f'Act2B fail: nav writer still present: {f}')
+          for f in ['SHIFT_HEALTH_NAV_ENFORCER','SHIFT_HEALTH_NAV_GUARD','SHIFT_HEALTH_NAV_ROOT_GUARD']:
+              if f in w: raise SystemExit(f'Act2B fail: nav writer remains: {f}')
           if 'path === "/v1/contact"' not in w: raise SystemExit('Act2B fail: contact path not wired')
           if 'ACT2B_CONTACT_DIRECT_SUBMIT' not in w: raise SystemExit('Act2B fail: direct-submit client missing')
           sh=hp.read_text()
-          if 'site-header' not in sh or 'site-footer' not in sh: raise SystemExit('Act2B fail: SHIFT Health not on shared chrome contract')
+          if 'site-header' not in sh or 'site-footer' not in sh: raise SystemExit('Act2B fail: SHIFT Health shell not canonical')
           print('Act2B source cleanup applied.')
           PY
-
           node --check worker-entry-v6.js
           node --check continuity-interest-v1.js
-          if git grep -n -E '38[[:space:]]+Rugby[[:space:]]+Drive' -- '*.html' '*.js' '*.mjs'; then
-            echo 'Act2B fail: Rugby Drive still present in served source'; exit 1
-          fi
-          if git grep -n -E 'mailto:(hello|matt|support|orders|clinical|complaints|privacy|partners|press|finance|accounts|feedback)@shiftsometimber\.co\.uk' -- '*.html' '*.js' '*.mjs'; then
-            echo 'Act2B fail: public SHIFT mailto remains'; exit 1
-          fi
-      - name: Commit one-shot cleanup back to branch
+          if git grep -n -E '38[[:space:]]+Rugby[[:space:]]+Drive' -- '*.html' '*.js' '*.mjs'; then echo 'Act2B fail: Rugby Drive remains'; exit 1; fi
+          if git grep -n -E 'mailto:(hello|matt|support|orders|clinical|complaints|privacy|partners|press|finance|accounts|feedback)@shiftsometimber\.co\.uk' -- '*.html' '*.js' '*.mjs'; then echo 'Act2B fail: SHIFT mailto remains'; exit 1; fi
+      - name: Commit consolidated cleanup to main
         shell: bash
         run: |
           git config user.name 'shift-act2b-bot'
           git config user.email 'it@shiftsometimber.co.uk'
-          git add worker-entry-v6.js continuity-interest-v1.js frontend/member/shift-health.html '*.js' '*.mjs' '*.html' || true
+          git add -A
           git diff --cached --quiet && exit 0
           git commit -m 'Act2B consolidate chrome and direct enquiries'
-          git push origin HEAD:act2b-chrome-cleanup
+          git push origin HEAD:main
