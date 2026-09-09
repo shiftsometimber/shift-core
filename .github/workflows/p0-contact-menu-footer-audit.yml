@@ -40,3 +40,13 @@ jobs:
           grep -q 'site-header' frontend/member/shift-health.html
           grep -q 'site-footer' frontend/member/shift-health.html
           echo 'Act2B source locks green.'
+      - name: Inspect live v42 enclosure writer
+        shell: bash
+        run: |
+          curl -fsSL 'https://projectshift.pages.dev/assets/v42.js' -o /tmp/v42.js
+          echo "v42 bytes: $(wc -c </tmp/v42.js)"
+          if grep -n -C 12 'SST_ENCLOSURE_NAV_V1' /tmp/v42.js; then
+            echo 'v42 enclosure writer confirmed'
+          else
+            echo 'SST_ENCLOSURE_NAV_V1 not present on Pages origin'
+          fi
