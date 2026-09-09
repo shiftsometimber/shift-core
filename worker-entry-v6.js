@@ -279,6 +279,10 @@ async function rewritePublicLoungeChrome(response) {
     .replaceAll(">TAP ROOM<", ">THE LOUNGE<");
   body = body.replace(/<nav[^>]*class="[^"]*desktop-nav[^"]*"[^>]*>[\s\S]*?<\/nav>/i, nav);
   body = body.replace(/(<[^>]*class="[^"]*site-drawer[^"]*"[^>]*>[\s\S]*?)<nav[^>]*>[\s\S]*?<\/nav>/i, '$1'+drawer);
+  body = body
+    .replace(/<address\b[^>]*>[\s\S]*?38\s+Rugby\s+Drive[\s\S]*?<\/address>/gi, "")
+    .replace(/<p\b[^>]*>[\s\S]*?38\s+Rugby\s+Drive[\s\S]*?<\/p>/gi, "")
+    .replace(/38\s+Rugby\s+Drive/gi, "");
   const headers = new Headers(response.headers);
   headers.delete("Content-Length"); headers.delete("ETag"); headers.delete("Last-Modified");
   headers.set("Cache-Control", "no-store, must-revalidate");
@@ -644,8 +648,7 @@ export default {
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
-      (path === "/" ||
-        path === "/member/dashboard" ||
+      (path === "/member/dashboard" ||
         path === "/member/dashboard.html" ||
         path === "/member-login" ||
         path === "/member-login.html" ||
@@ -814,6 +817,10 @@ export default {
             .json()
             .catch(() => ({}))
         : null;
+    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);
+    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
+      return rewritePublicLoungeChrome(await act2bPagesContent(request));
+    }
     const fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
     );

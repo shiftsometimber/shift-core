@@ -10,6 +10,14 @@
 
   "routes": [
     {
+      "pattern": "shiftsometimber.co.uk/*",
+      "zone_name": "shiftsometimber.co.uk",
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/*",
+      "zone_name": "shiftsometimber.co.uk",
+    },
+    {
       "pattern": "shiftsometimber.co.uk/programme*",
       "zone_name": "shiftsometimber.co.uk",
     },
