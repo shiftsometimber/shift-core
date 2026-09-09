@@ -258,6 +258,34 @@ async function gitMemberAsset(path, env) {
     headers,
   });
 }
+async function publicPagesAsset(request, targetPath) {
+  const upstream = new URL(request.url);
+  upstream.protocol = "https:";
+  upstream.hostname = "projectshift.pages.dev";
+  upstream.port = "";
+  if (targetPath) upstream.pathname = targetPath;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.delete("Host");
+  requestHeaders.delete("If-None-Match");
+  requestHeaders.delete("If-Modified-Since");
+  const response = await fetch(
+    new Request(upstream, { method: request.method, headers: requestHeaders }),
+  );
+  const headers = new Headers(response.headers);
+  headers.delete("Content-Length");
+  headers.delete("ETag");
+  headers.delete("Last-Modified");
+  headers.set("Cache-Control", "no-store, must-revalidate");
+  headers.set(
+    "X-Shift-Frontend-Authority",
+    "pages:cos-live-recovery-20260909-r2",
+  );
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 function deferAnalytics(ctx, work, label) {
   const task = Promise.resolve()
     .then(work)
@@ -557,30 +585,24 @@ export default {
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/shift-health" || path === "/shift-health.html")
-    ) {
-      const response = await gitMemberAsset("/shift-health.html", env);
-      return (
-        (response && (await shiftHealthWithServerSeo(response, request))) ||
-        new Response("SHIFT Health unavailable", {
-          status: 503,
-          headers: { "Cache-Control": "no-store" },
-        })
-      );
-    }
+    )
+      return publicPagesAsset(request, "/shift-health");
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       path.startsWith("/shift-health/") &&
       path.split("/").filter(Boolean).length === 2
-    ) {
-      const response = await gitMemberAsset("/shift-health-product.html", env);
-      return (
-        (response && (await shiftHealthWithServerSeo(response, request, path.split("/").filter(Boolean)[1]))) ||
-        new Response("SHIFT Health unavailable", {
-          status: 503,
-          headers: { "Cache-Control": "no-store" },
-        })
-      );
-    }
+    )
+      return publicPagesAsset(request, path);
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      path === "/grub"
+    )
+      return Response.redirect(new URL("/member/grub", request.url), 301);
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      path === "/fit"
+    )
+      return Response.redirect(new URL("/member/fit", request.url), 301);
     const legacyFaqRedirects = {
       "/faq/why-do-i-have-no-motivation": "/articles/motivation-vs-routine-men",
       "/faq/why-do-i-feel-tired-all-the-time": "/shift-health/testosterone-energy",
@@ -618,23 +640,24 @@ export default {
       (path === "/lounge" ||
         path === "/lounge.html" ||
         path.startsWith("/lounge/"))
-    ) {
-      if (!env.MEMBER_ASSETS)
-        return new Response("The Lounge is unavailable", {
-          status: 503,
-          headers: { "X-Robots-Tag": "noindex, nofollow" },
-        });
-      const session = await authenticateTapRoomPage(request, env);
-      if (session) return session;
-      const response = await env.MEMBER_ASSETS.fetch(
-        new Request(new URL("/tap-room-shell.txt", request.url), request),
-      );
-      const headers = new Headers(response.headers);
-      headers.set("Content-Type", "text/html; charset=utf-8");
-      return privatePageHeaders(
-        new Response(response.body, { status: response.status, headers }),
-      );
-    }
+    )
+      return publicPagesAsset(request, "/lounge");
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      [
+        "/member/dashboard",
+        "/member/dashboard.html",
+        "/member/journey",
+        "/member/journey.html",
+        "/member/grub",
+        "/member/grub.html",
+        "/member/fit",
+        "/member/fit.html",
+        "/member/check-in",
+        "/member/check-in.html",
+      ].includes(path)
+    )
+      return publicPagesAsset(request, path.replace(/\.html$/, ""));
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/member/grub" ||
