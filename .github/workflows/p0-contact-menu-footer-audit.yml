@@ -40,8 +40,57 @@ jobs:
           grep -q 'site-header' frontend/member/shift-health.html
           grep -q 'site-footer' frontend/member/shift-health.html
           echo 'Act2B source locks green.'
-      - name: Capture live v42 enclosure block
+      - name: Prove live v42 writer is deleted
         shell: bash
         run: |
-          curl -fsSL 'https://projectshift.pages.dev/assets/v42.js' -o /tmp/v42.js
-          nl -ba /tmp/v42.js | sed -n '15,75p'
+          set -euo pipefail
+          curl -fsS -D /tmp/v42.headers 'https://shiftsometimber.co.uk/assets/v42.js?act2b=1' -o /tmp/v42.live.js
+          ! grep -q 'SST_ENCLOSURE_NAV_V1' /tmp/v42.live.js
+          grep -qi '^x-shift-act2b-chrome: v42-enclosure-deleted' /tmp/v42.headers
+          echo 'PASS live v42 enclosure writer deleted.'
+      - name: Prove locked menu exists without JavaScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in /programme /shift-health; do
+            curl -fsSL "https://shiftsometimber.co.uk${path}?act2b=1" -o /tmp/page.html
+            for label in 'Start Here' 'The Programme' 'SHIFT Health' 'Knowledge' 'About' 'My Timber'; do
+              grep -Fq "$label" /tmp/page.html || { echo "$path missing static menu label: $label"; exit 1; }
+            done
+            grep -Eq 'site-footer|class="footer site-footer"' /tmp/page.html || { echo "$path missing static footer"; exit 1; }
+            echo "PASS static chrome $path"
+          done
+      - name: Prove customer contact route is server-side
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker="ACT2B-LIVE-$(date +%s)"
+          printf '%s' "$marker" > /tmp/contact-marker
+          body=$(printf '{"name":"Act2B Website Test","email":"hello@shiftsometimber.co.uk","type":"general","message":"%s","consent":true}' "$marker")
+          code=$(curl -sS -o /tmp/contact-response -w '%{http_code}' -X POST -H 'content-type: application/json' --data "$body" 'https://shiftsometimber.co.uk/v1/contact')
+          cat /tmp/contact-response
+          [ "$code" = "201" ]
+          grep -q '"status":"sent"' /tmp/contact-response
+          echo "CONTACT_MARKER=$marker"
+          echo 'PASS website contact route accepted direct submission.'
+      - name: Prove Rugby Drive is absent across sitemap estate
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL 'https://shiftsometimber.co.uk/sitemap.xml' -o /tmp/sitemap.xml
+          grep -oE '<loc>[^<]+' /tmp/sitemap.xml | sed 's#<loc>##' > /tmp/urls
+          count=$(wc -l < /tmp/urls)
+          echo "Crawling $count sitemap URLs"
+          : > /tmp/address_hits
+          while IFS= read -r url; do
+            html=$(curl -fsSL --max-time 20 "$url" || true)
+            if printf '%s' "$html" | grep -qiE '38[[:space:]]+Rugby[[:space:]]+Drive'; then
+              echo "$url" >> /tmp/address_hits
+            fi
+          done < /tmp/urls
+          if [ -s /tmp/address_hits ]; then
+            echo 'Rugby Drive still present:'
+            cat /tmp/address_hits
+            exit 1
+          fi
+          echo 'PASS Rugby Drive absent across sitemap estate.'
