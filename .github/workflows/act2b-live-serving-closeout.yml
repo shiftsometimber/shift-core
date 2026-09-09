@@ -15,49 +15,39 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Canonicalise raw public HTML chrome and keep v42 neutralised
+      - name: Route Programme through canonical raw HTML authority
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
+
           w=Path('worker-entry-v6.js')
           s=w.read_text()
-          start=s.index('async function rewritePublicLoungeChrome(response) {')
-          end=s.index('\nconst PUBLIC_CHROME_PATCH', start)
-          fn=r'''async function rewritePublicLoungeChrome(response) {
-            const type = String(response.headers.get("Content-Type") || "").toLowerCase();
-            if (!response.ok || !type.includes("text/html")) return response;
-            const source = await response.text();
-            const nav = '<nav class="desktop-nav" aria-label="Primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a></nav>';
-            const drawer = '<nav aria-label="Mobile primary"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/explore-knowledge">Knowledge</a><a href="/about">About</a><a href="/member/dashboard">My Timber</a></nav>';
-            let body = source
-              .replaceAll('href="/tap-room"', 'href="/lounge"')
-              .replaceAll('href="/tap-room.html"', 'href="/lounge"')
-              .replaceAll(">The Tap Room<", ">The Lounge<")
-              .replaceAll(">Tap Room<", ">The Lounge<")
-              .replaceAll(">TAP ROOM<", ">THE LOUNGE<");
-            body = body.replace(/<nav[^>]*class="[^"]*desktop-nav[^"]*"[^>]*>[\s\S]*?<\/nav>/i, nav);
-            body = body.replace(/(<[^>]*class="[^"]*site-drawer[^"]*"[^>]*>[\s\S]*?)<nav[^>]*>[\s\S]*?<\/nav>/i, '$1'+drawer);
-            const headers = new Headers(response.headers);
-            headers.delete("Content-Length"); headers.delete("ETag"); headers.delete("Last-Modified");
-            headers.set("Cache-Control", "no-store, must-revalidate");
-            headers.set("X-Shift-HTML-Chrome", "act2b-canonical-v1");
-            return new Response(body, { status: response.status, statusText: response.statusText, headers });
-          }
-          '''
-          s=s[:start]+fn+s[end:]
+          handler='''    if (\n      (request.method === "GET" || request.method === "HEAD") &&\n      (path === "/programme" || path === "/programme.html")\n    ) {\n      return rewritePublicLoungeChrome(await act2bPagesContent(request));\n    }\n'''
+          anchor='''    if (\n      (request.method === "GET" || request.method === "HEAD") &&\n      (path === "/shift-health" || path === "/shift-health.html")\n    ) {\n'''
+          if '(path === "/programme" || path === "/programme.html")' not in s:
+              if anchor not in s: raise SystemExit('programme handler anchor missing')
+              s=s.replace(anchor,handler+anchor,1)
           w.write_text(s)
+
+          r=Path('wrangler.jsonc')
+          c=r.read_text()
+          routes='''    {\n      "pattern": "shiftsometimber.co.uk/programme*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n    {\n      "pattern": "www.shiftsometimber.co.uk/programme*",\n      "zone_name": "shiftsometimber.co.uk",\n    },\n'''
+          if 'shiftsometimber.co.uk/programme*' not in c:
+              marker='  "routes": [\n'
+              if marker not in c: raise SystemExit('wrangler routes anchor missing')
+              c=c.replace(marker,marker+routes,1)
+          r.write_text(c)
           PY
           node --check worker-entry-v6.js
-          grep -q 'act2b-canonical-v1' worker-entry-v6.js
-          grep -q 'The Programme' worker-entry-v6.js
-      - name: Commit canonical raw HTML fix
+          grep -q 'path === "/programme"' worker-entry-v6.js
+          grep -q 'shiftsometimber.co.uk/programme\*' wrangler.jsonc
+      - name: Commit Programme route authority
         shell: bash
         run: |
           git config user.name 'shift-act2b-bot'
           git config user.email 'it@shiftsometimber.co.uk'
-          git add worker-entry-v6.js
+          git add worker-entry-v6.js wrangler.jsonc
           git diff --cached --quiet && exit 0
-          git commit -m 'Act2B canonical raw HTML navigation'
+          git commit -m 'Act2B route Programme through canonical HTML authority'
           git push origin HEAD:main
