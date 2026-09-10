@@ -644,6 +644,18 @@ export default {
         "/member/fit.html",
         "/member/check-in",
         "/member/check-in.html",
+        "/member/ask-timber",
+        "/member/ask-timber.html",
+        "/member/plans",
+        "/member/plans.html",
+        "/member/my-target",
+        "/member/my-target.html",
+        "/member/my-why",
+        "/member/my-why.html",
+        "/member/saved",
+        "/member/saved.html",
+        "/member/settings",
+        "/member/settings.html",
       ].includes(path)
     )
       return publicPagesAsset(request, path.replace(/\.html$/, ""));

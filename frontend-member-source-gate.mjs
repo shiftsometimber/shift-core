@@ -14,6 +14,7 @@ const workerEntry=fs.readFileSync('worker-entry-v6.js','utf8');
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 const fail=[];
 const need=(ok,msg)=>{if(!ok)fail.push(msg)};
+for(const path of ['/member/ask-timber','/member/plans','/member/my-target','/member/my-why','/member/saved','/member/settings'])need(workerEntry.includes(`"${path}"`)&&workerEntry.includes(`"${path}.html"`),`production Worker does not publish existing member page ${path}`);
 need(/class="mp-tab" data-panel="visualise"/.test(preview)&&/id="panel-visualise"/.test(preview),'production My Timber shell does not expose the Progress Picture tab and panel');
 need(/href="\/member\/dashboard#visualise" data-portal-panel="visualise"/.test(preview),'visible My Shift navigation does not expose Progress Picture');
 need(!/class="mp-tab"[^>]+data-portal-panel="visualise"/.test(preview),'public Progress destination is incorrectly competing with the authenticated product tab');
