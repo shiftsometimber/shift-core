@@ -13,6 +13,7 @@ import { knowledgeEditorialRoutes } from "./knowledge-editorial-v1.js";
 import { shiftBrainRoutes } from "./shift-brain-v1.js";
 import { analyticsRoutes, recordProductEvent } from "./product-analytics-v1.js";
 import { radarPublicRoutes } from "./radar-public-v1.js";
+import { radarNewsPageRoutes } from "./radar-news-pages-v1.js";
 import { radarRoutes } from "./radar-integration-v1.js";
 import { runRadarScheduledScan } from "./radar-scheduled-scan-v1.js";
 import { commissioningOpsRoutes } from "./commissioning-ops-v1.js";
@@ -838,6 +839,8 @@ export default {
             .catch(() => ({}))
         : null;
     const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);
+    const newsroomPage = await radarNewsPageRoutes(request, env);
+    if (newsroomPage) return newsroomPage;
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
       return rewritePublicLoungeChrome(await act2bPagesContent(request));
     }
