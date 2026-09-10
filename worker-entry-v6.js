@@ -435,8 +435,9 @@ async function publicSitemapWithReviewedMentalHealth(request, env) {
   const newsroomPaths = publishedNews.flatMap((row) => {
     let content = {}; try { content = JSON.parse(row.content_package_json || "{}"); } catch {}
     const destinations = Array.isArray(content.destinations) ? content.destinations : [];
-    const slug = String(content.seo?.slug || "").replace(/^\\/+|\\/+$/g, "");
-    return destinations.includes("medicine_news") && /^medicine-news\\/[a-z0-9][a-z0-9-]+$/.test(slug) ? ["/" + slug] : [];
+    const slug = String(content.seo?.slug || "").split("/").filter(Boolean).join("/");
+    const child = slug.startsWith("medicine-news/") ? slug.slice("medicine-news/".length) : "";
+    return destinations.includes("medicine_news") && /^[a-z0-9][a-z0-9-]+$/.test(child) ? ["/" + slug] : [];
   });
   const requiredPaths = [...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS, ...newsroomPaths];
   const additions = requiredPaths.filter(
