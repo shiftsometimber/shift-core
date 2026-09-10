@@ -50,6 +50,7 @@ import { hqCommerceContentRoutes } from "./hq-commerce-content-v1.js";
 import { hqCatalogueRoutes } from "./hq-catalogue-v1.js";
 import { continuityInterestRoutes } from "./continuity-interest-v1.js";
 
+
 const MEMBER_ORIGINS = new Set([
   "https://shiftsometimber.co.uk",
   "https://www.shiftsometimber.co.uk",
@@ -352,6 +353,7 @@ async function publicSiteConfigWithLoungeChrome(request) {
   );
 }
 
+
 async function act2bV42Asset(request) {
   const upstream = await fetch("https://projectshift.pages.dev/assets/v42.js", { headers: { "Cache-Control": "no-cache" } });
   if (!upstream.ok) return new Response("v42 unavailable", { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
@@ -365,6 +367,7 @@ async function act2bV42Asset(request) {
   headers.delete("Content-Length");
   return new Response(request.method === "HEAD" ? null : cleaned, { status: 200, headers });
 }
+
 
 const REVIEWED_MENTAL_HEALTH_PATHS = [
   "/mental-health/confidence-self-worth",
@@ -498,6 +501,7 @@ async function coreAuthFetch(request, env, ctx) {
   return response;
 }
 
+
 export default {
   async fetch(request, env, ctx) {
     const requestUrl = new URL(request.url);
@@ -578,6 +582,7 @@ export default {
       return shiftHealthWithServerSeo(response, request, slug);
     }
 
+
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       path === "/grub"
@@ -631,6 +636,7 @@ export default {
     )
       return publicPagesAsset(request, "/lounge");
 
+
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       [
@@ -656,6 +662,10 @@ export default {
         "/member/saved.html",
         "/member/settings",
         "/member/settings.html",
+        "/member/timber-circle",
+        "/member/timber-circle.html",
+        "/member/achievements",
+        "/member/achievements.html",
       ].includes(path)
     )
       return publicPagesAsset(request, path.replace(/\.html$/, ""));
@@ -742,6 +752,7 @@ export default {
         headers: memberCorsHeaders(request),
       });
 
+
     const loginAnalyticsRequest =
       request.method === "POST" && path === "/v1/auth/login"
         ? request.clone()
@@ -769,6 +780,7 @@ export default {
     if (commissioningIdentity)
       return withMemberCors(commissioningIdentity, request);
 
+
     const emailVerification = await handleEmailVerification(
       request,
       env,
@@ -787,6 +799,7 @@ export default {
       return withMemberCors(emailVerification, request);
     }
 
+
     const authRecovery = await handleAuthRecovery(
       request,
       env,
@@ -794,6 +807,7 @@ export default {
       (req, e, c) => hq.fetch(req, e, c),
     );
     if (authRecovery) return withMemberCors(authRecovery, request);
+
 
     const fastMemberState = await fastMemberStateRoute(request, env);
     if (fastMemberState) return withMemberCors(fastMemberState, request);
@@ -891,6 +905,7 @@ export default {
   },
 };
 
+
 async function authenticateTapRoomPage(request, env) {
   const auth = await authenticateMember(request, env);
   if (auth.response)
@@ -910,6 +925,7 @@ async function authenticateTapRoomPage(request, env) {
     );
   return null;
 }
+
 
 async function recordFinalLogin(request, response, env) {
   const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
