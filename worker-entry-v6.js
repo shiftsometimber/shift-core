@@ -421,7 +421,7 @@ const PRIORITY_PUBLIC_PATHS = [
   "/shift-health",
   ...Object.keys(SHIFT_HEALTH_SEO).map((slug) => `/shift-health/${slug}`),
 ];
-async function publicSitemapWithReviewedMentalHealth(request) {
+async function publicSitemapWithReviewedMentalHealth(request, env) {
   const upstream = new URL(request.url);
   upstream.protocol = "https:";
   upstream.hostname = "projectshift.pages.dev";
@@ -431,7 +431,14 @@ async function publicSitemapWithReviewedMentalHealth(request) {
   );
   if (!response.ok) return response;
   let xml = await response.text();
-  const requiredPaths = [...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS];
+  const { results: publishedNews = [] } = await env.DB.prepare("SELECT content_package_json FROM radar_events WHERE status='published' ORDER BY id DESC LIMIT 500").all();
+  const newsroomPaths = publishedNews.flatMap((row) => {
+    let content = {}; try { content = JSON.parse(row.content_package_json || "{}"); } catch {}
+    const destinations = Array.isArray(content.destinations) ? content.destinations : [];
+    const slug = String(content.seo?.slug || "").replace(/^\\/+|\\/+$/g, "");
+    return destinations.includes("medicine_news") && /^medicine-news\\/[a-z0-9][a-z0-9-]+$/.test(slug) ? ["/" + slug] : [];
+  });
+  const requiredPaths = [...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS, ...newsroomPaths];
   const additions = requiredPaths.filter(
     (path) => !xml.includes(`<loc>https://shiftsometimber.co.uk${path}</loc>`),
   )
@@ -527,7 +534,7 @@ export default {
       path === "/sitemap.xml" &&
       (request.method === "GET" || request.method === "HEAD")
     )
-      return publicSitemapWithReviewedMentalHealth(request);
+      return publicSitemapWithReviewedMentalHealth(request, env);
     if (
       (path === "/site-config-v3a.js" || path === "/authority-menu-v35.js") &&
       (request.method === "GET" || request.method === "HEAD")
