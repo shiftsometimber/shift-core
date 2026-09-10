@@ -18,10 +18,12 @@ for(const ex of exercises){assert.equal(ex.data.visual.status,'approved');assert
 const v7=fs.readFileSync('member-product-v7.js','utf8');
 const v8=fs.readFileSync('member-product-v8.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
+const compact=value=>value.replace(/"/g,"'").replace(/\s+/g,'');
+const v8Compact=compact(v8),entryCompact=compact(entry);
 for(const marker of ['listPublishedContent','negativeIds','structured_published_preferred','legacy_fallback','shift_grub_plan_v7','shift_fit_plan_v7','structured_items_served'])assert.ok(v7.includes(marker),`runtime contract missing ${marker}`);
-assert.ok(v8.includes("import {memberProductV7Routes} from './member-product-v7.js'"),'V8 must preserve V7 structured authority');
-assert.ok(v8.includes('memberProductV7Routes(request,env,ctx)'),'V8 must delegate through V7 before duration composition');
-assert.ok(entry.includes("import {memberProductV8Routes} from './member-product-v8.js'"),'production entrypoint must import V8');
-assert.ok(entry.includes('await memberProductV8Routes'),'production entrypoint must route member product through V8');
+assert.ok(v8Compact.includes("import{memberProductV7Routes}from'./member-product-v7.js'"),'V8 must preserve V7 structured authority');
+assert.ok(v8Compact.includes('memberProductV7Routes(request,env,ctx)'),'V8 must delegate through V7 before duration composition');
+assert.ok(entryCompact.includes("import{memberProductV8Routes}from'./member-product-v8.js'"),'production entrypoint must import V8');
+assert.ok(entryCompact.includes('awaitmemberProductV8Routes'),'production entrypoint must route member product through V8');
 console.log(JSON.stringify({published:{recipes:recipes.length,exercises:exercises.length},recipe:{id:recipe.id,nutrition:recipe.data.nutrition.status,dataset:recipe.data.nutrition.dataset_version},exerciseIds:exercises.map(x=>x.id),runtime:{durationAwareV8:true,structuredV7Preserved:true,structuredPreferred:true,legacyFallbackControlled:true,naysPreserved:true}},null,2));
 console.log('PASS M07 commissioning-floor structured content is review-gated, publishable, queryable and preserved as preferred Grub/Fit authority through the V8 duration-aware member runtime with controlled legacy fallback.');
