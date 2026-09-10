@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 const route=fs.readFileSync('shift-me-v1.js','utf8');
 const canonicalEntry=fs.readFileSync('worker-entry-v6.js','utf8');
+const canonicalEntryCompact=canonicalEntry.replace(/"/g,"'").replace(/\s+/g,'');
 const canonicalConfig=fs.readFileSync('wrangler.jsonc','utf8');
 const browser=fs.readFileSync('frontend/member/shift-me-api-v1.js','utf8');
 const creator=fs.readFileSync('frontend/member/member-shift-me-premium-v1.js','utf8');
@@ -32,9 +33,9 @@ const checks=[
  ['production proof establishes authorised verified commissioning session',productionProof.includes("const OIDC=String(process.env.SHIFT_COMMISSIONING_OIDC")&&productionProof.includes("'X-Shift-Commissioning-OIDC':OIDC")],
  ['production proof selects the non-empty session from multiple Set-Cookie headers',productionProof.includes('headers.getSetCookie')&&productionProof.includes('matchAll(/(?:^|,\\s*)sst_session=')],
  ['browser exposes create and rerender',browser.includes('createShiftMe')&&browser.includes('rerenderShiftMe')],
- ['canonical worker dispatches Shift Me',canonicalEntry.includes("import {shiftMeRoutes} from './shift-me-v1.js'")&&canonicalEntry.includes('await shiftMeRoutes(request,env,ctx)')],
+ ['canonical worker dispatches Shift Me',canonicalEntryCompact.includes("import{shiftMeRoutes}from'./shift-me-v1.js'")&&canonicalEntryCompact.includes('awaitshiftMeRoutes(request,env,ctx)')],
  ['canonical worker serves creator assets',['/shift-me-api-v1.js','/member-shift-me-premium-v1.js','/member-shift-me-premium-v1.css'].every(x=>canonicalEntry.includes(x))],
- ['canonical CORS includes Shift Me',canonicalEntry.includes("path.startsWith('/v1/shift-me')")],
+ ['canonical CORS includes Shift Me',canonicalEntryCompact.includes("path.startsWith('/v1/shift-me')")],
  ['member shell loads creator',shell.includes("SHIFT_ME_API_SRC='/shift-me-api-v1.js?v=2'")&&shell.includes("SHIFT_ME_PREMIUM_SRC='/member-shift-me-premium-v1.js?v=2'")&&shell.includes("SHIFT_ME_PREMIUM_CSS='/member-shift-me-premium-v1.css?v=2'")&&shell.includes('ensureShiftMePremium()')],
  ['live dashboard loads complete Shift Me dependency chain',dashboard.includes('href="/member-shift-me-premium-v1.css?v=2"')&&dashboard.includes('src="/shift-me-api-v1.js?v=1"')&&dashboard.includes('src="/member-shift-me-premium-v1.js?v=2"')],
  ['transient model failures receive bounded retry and supported fallback',route.includes('async function runImageModel')&&route.includes('attempt<2')&&route.includes('setTimeout(resolve,300)')&&route.includes("flux-2-klein-4b")&&route.includes('for(const model of [MODEL,FALLBACK_MODEL])')],

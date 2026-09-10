@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 const module=fs.readFileSync('knowledge-editorial-v1.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
+const entryCompact=entry.replace(/"/g,"'").replace(/\s+/g,'');
 const staging=fs.readFileSync('g3-006-knowledge-editorial-staging.mjs','utf8');
 const fail=[];const need=(ok,msg)=>{if(!ok)fail.push(msg)};
 need(/knowledge_article_reviews/.test(module),'retained review table missing');
@@ -11,7 +12,7 @@ need(/changes_requested/.test(module)&&/approved/.test(module),'review decisions
 need(module.includes("const publishMatch=p.match(/^\\/v1\\/hq\\/articles\\/(\\d+)\\/publish$/)"),'explicit reviewed publish action missing');
 need(/status:'published'/.test(module)&&/review:approval\.row/.test(module),'explicit publish does not return retained review provenance');
 need(staging.includes('/publish')&&staging.includes('explicit_publish_blocked_without_review')&&staging.includes('explicit_publish'),'staging journey does not exercise the same explicit publish action as HQ');
-need(/import \{knowledgeEditorialRoutes\} from '\.\/knowledge-editorial-v1\.js'/.test(entry),'editorial route not imported by production entry');
-need(entry.indexOf('knowledgeEditorialRoutes(request,env,ctx)')<entry.indexOf('memberCommissioningRoute(request,env,ctx)'),'editorial route does not intercept legacy HQ article route before fallback');
+need(entryCompact.includes("import{knowledgeEditorialRoutes}from'./knowledge-editorial-v1.js'"),'editorial route not imported by production entry');
+need(entryCompact.indexOf('knowledgeEditorialRoutes(request,env,ctx)')<entryCompact.indexOf('memberCommissioningRoute(request,env,ctx)'),'editorial route does not intercept legacy HQ article route before fallback');
 if(fail.length){console.error(JSON.stringify({proof:'G3-006_EDITORIAL_SOURCE',fail},null,2));process.exit(1)}
 console.log(JSON.stringify({proof:'G3-006_EDITORIAL_SOURCE',status:'PASS',checks:['retained review state','content-write role boundary','both publish paths require approval','named reviewer provenance','approve/changes-requested decisions','explicit HQ publish action returns review provenance','staging exercises HQ publish action','production route wired before legacy fallback']},null,2));
