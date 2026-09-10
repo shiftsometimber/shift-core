@@ -26,6 +26,7 @@ function responseFrom(base,body,status=200){
  return new Response(body,{status,headers});
 }
 function replaceMain(html,main){return html.replace(/<main\b[\s\S]*?<\/main>/i,main)}
+function withoutTicker(html){return html.replace(/<section\s+class=["']medicine-ticker-v138["'][\s\S]*?<\/section>/i,"")}
 function newsUrl(row){const slug=articleSlug(row);return slug.startsWith("medicine-news/")?"/"+slug:slug?"/"+slug:"/medicine-news"}
 function indexMain(rows){
  const cards=rows.map(row=>{const content=parse(row.content_package_json,{}),seo=content.seo||{},date=publishedAt(row).slice(0,10);return '<article class="radar-news-card"><p class="eyebrow">'+esc(row.regulator||row.event_type||"Medicines update")+'</p><h2><a href="'+esc(newsUrl(row))+'">'+esc(content.headline||row.headline)+'</a></h2><p>'+esc(content.standfirst||seo.description||content.what_changed||"")+'</p><p class="radar-news-meta">'+esc(date)+'</p><p><a href="'+esc(newsUrl(row))+'">Read the evidence-led update →</a></p></article>'}).join("");
@@ -51,5 +52,5 @@ export async function radarNewsPageRoutes(request,env){
  html=html.replace("</head>",newsroomStyle+"</head>");
  if(path==="/medicine-news")return responseFrom(base,request.method==="HEAD"?"":replaceMain(html,indexMain(rows)));
  const slug=cleanSlug(path),row=rows.find(item=>articleSlug(item)===slug);if(!row)return responseFrom(base,request.method==="HEAD"?"":replaceMain(html,'<main id="main-content"><section class="content"><div class="wrap prose"><h1>Update not found</h1><p><a href="/medicine-news">Back to SHIFT AI Newsroom</a></p></div></section></main>'),404);
- html=detailHead(html,row,request);html=replaceMain(html,detailMain(row));return responseFrom(base,request.method==="HEAD"?"":html);
+ html=withoutTicker(html);html=detailHead(html,row,request);html=replaceMain(html,detailMain(row));return responseFrom(base,request.method==="HEAD"?"":html);
 }
