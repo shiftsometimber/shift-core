@@ -300,6 +300,10 @@ async function rewritePublicLoungeChrome(response) {
       .replaceAll(">The Tap Room<", ">The Lounge<")
       .replaceAll(">Tap Room<", ">The Lounge<")
       .replaceAll(">TAP ROOM<", ">THE LOUNGE<");
+  body = body
+    .replace(/<address\b[^>]*>[\s\S]*?38\s+Rugby\s+Drive[\s\S]*?<\/address>/gi, "")
+    .replace(/<p\b[^>]*>[\s\S]*?38\s+Rugby\s+Drive[\s\S]*?<\/p>/gi, "")
+    .replace(/38\s+Rugby\s+Drive/gi, "");
   const headers = new Headers(response.headers);
   headers.delete("Content-Length");
   if (body !== source) headers.set("X-Shift-Lounge-Chrome", "v1");
@@ -508,6 +512,11 @@ export default {
         ? withHqCors(response, request)
         : withMemberCors(response, request);
     }
+    const commissioningOidc = request.headers.get("x-shift-commissioning-oidc");
+    if (commissioningOidc && request.method === "POST" && (path === "/v1/auth/register" || path === "/v1/auth/login")) {
+      const commissioningAuth = await handleCommissioningIdentity(request, env, ctx, coreAuthFetch);
+      if (commissioningAuth) return withMemberCors(commissioningAuth, request);
+    }
     const turnstileBlock = await turnstileGuard(request, env);
     if (turnstileBlock)
       return path.startsWith("/v1/hq/")
@@ -527,6 +536,8 @@ export default {
     // session checks. A preflight has no session cookie by design.
     if (request.method === "OPTIONS" && path.startsWith("/v1/hq/"))
       return withHqCors(await hq.fetch(request, env, ctx), request);
+    if ((request.method === "GET" || request.method === "HEAD") && (path === "/member/today" || path === "/member/today.html"))
+      return Response.redirect(new URL("/member/dashboard#today", request.url), 301);
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/member/progress" ||
@@ -657,8 +668,7 @@ export default {
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
-      (path === "/" ||
-        path === "/member/dashboard" ||
+      (path === "/member/dashboard" ||
         path === "/member/dashboard.html" ||
         path === "/member-login" ||
         path === "/member-login.html" ||
@@ -827,6 +837,10 @@ export default {
             .json()
             .catch(() => ({}))
         : null;
+    const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);
+    if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
+      return rewritePublicLoungeChrome(await act2bPagesContent(request));
+    }
     const fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
     );
