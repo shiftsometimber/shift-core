@@ -544,7 +544,12 @@ export default {
       path.split("/").filter(Boolean).length === 2
     ) {
       const slug = path.split("/").filter(Boolean)[1];
-      const response = await publicPagesAsset(request, path);
+      // Fetch the concrete shared product template. Pages has no physical
+      // file at the public child URL; client-side routing fills that route.
+      const response = await publicPagesAsset(
+        request,
+        "/shift-health-product-v2",
+      );
       return shiftHealthWithServerSeo(response, request, slug);
     }
 
