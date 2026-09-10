@@ -499,7 +499,7 @@ export default {
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
     if (request.method === "GET" && path === "/v1/auth/turnstile-config") {
       const response = new Response(
-        JSON.stringify(publicTurnstileConfig(env)),
+        JSON.stringify(publicTurnstileConfig(env, request)),
         {
           status: 200,
           headers: {
