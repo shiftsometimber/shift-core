@@ -7,6 +7,7 @@ const read=p=>fs.readFileSync(p,'utf8');
 
 const worker=read('worker.js');
 const entry=read('worker-entry-v6.js');
+const entryCompact=entry.replace(/"/g,"'").replace(/\s+/g,'');
 const security=read('security-privacy-v1.js');
 const analytics=read('product-analytics-v1.js');
 const identity=read('commissioning-identity-v1.js');
@@ -16,7 +17,7 @@ const requireText=(src,text,label)=>src.includes(text)?ok(label):fail(`${label}:
 const forbid=(src,re,label)=>re.test(src)?fail(label):ok(label);
 
 for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Control', 'no-store')","headers.set('X-Content-Type-Options', 'nosniff')"]) requireText(worker,marker,`core response envelope ${marker}`);
-for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Control','no-store')","headers.set('X-Content-Type-Options','nosniff')"]) requireText(entry,marker,`member response envelope ${marker}`);
+for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Control','no-store')","headers.set('X-Content-Type-Options','nosniff')"]) requireText(entryCompact,marker.replace(/\s+/g,''),`member response envelope ${marker}`);
 
 for(const marker of ["if (method === 'POST' && path === '/v1/privacy/export')","if (method === 'DELETE' && path === '/v1/privacy/account')","const auth = await requireUser(request, env)","UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL"]) requireText(worker,marker,`privacy boundary ${marker}`);
 
