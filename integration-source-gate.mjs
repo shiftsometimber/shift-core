@@ -12,6 +12,7 @@ const radarScheduled=fs.readFileSync('radar-scheduled-scan-v1.js','utf8');
 const e2e=fs.readFileSync('radar-e2e-staging.mjs','utf8');
 const ai=fs.readFileSync('shift-ai-v3.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
+const entryCompact=entry.replace(/"/g,"'").replace(/\s+/g,'');
 const authRecovery=fs.readFileSync('auth-recovery-v1.js','utf8');
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 const migration=fs.readFileSync('migrations/002_personal_knowledge_radar.sql','utf8');
@@ -26,8 +27,8 @@ for(const x of ['https://staging.test/site-publish','https://staging.test/brain-
 for(const x of ['https://www.gov.uk/drug-safety-update.atom','https://www.gov.uk/drug-device-alerts.atom','https://www.ema.europa.eu/en/news.xml','tier:1','source_tier:tier','runAuthoritativeRadarScan'])if(!radarAuthoritative.includes(x)){console.error('Authoritative Radar scanner contract missing:',x);failed=true}
 if(!radarScheduled.includes('runAuthoritativeRadarScan')||!radarScheduled.includes('runRadarFreshness')){console.error('Scheduled Radar authoritative scan/freshness chain is not wired');failed=true}
 if(!entry.includes('memberCommissioningRoute')||!entry.includes('personalRoutes')||!entry.includes('knowledgeRoutes')||!entry.includes('radarPublicRoutes')||!entry.includes('radarRoutes')||!entry.includes('runRadarScheduledScan')){console.error('Production entry point is not fully wired');failed=true}
-if(entry.indexOf('const knowledge=await knowledgeRoutes')>entry.indexOf('const personal=await personalRoutes')){console.error('Knowledge Graph routes must run before Personal Engine catch-all routing');failed=true}
-if(!entry.includes("import {handleAuthRecovery} from './auth-recovery-v1.js'")||!entry.includes('await handleAuthRecovery(request,env,ctx')){console.error('Authoritative auth recovery is not wired into production entry point');failed=true}
+if(entryCompact.indexOf('constknowledge=awaitknowledgeRoutes')>entryCompact.indexOf('constpersonal=awaitpersonalRoutes')){console.error('Knowledge Graph routes must run before Personal Engine catch-all routing');failed=true}
+if(!entryCompact.includes("import{handleAuthRecovery}from'./auth-recovery-v1.js'")||!entryCompact.includes('awaithandleAuthRecovery(request,env,ctx')){console.error('Authoritative auth recovery is not wired into production entry point');failed=true}
 for(const x of ['/v1/auth/request-password-reset','/v1/auth/reset-password','/v1/auth/change-password','sendWelcomeEmail','env.EMAIL.send'])if(!authRecovery.includes(x)){console.error('Incomplete auth recovery contract:',x);failed=true}
 if(!wrangler.includes('"send_email"')||!wrangler.includes('"name": "EMAIL"')||!wrangler.includes('"AUTH_EMAIL_FROM": "hello@shiftsometimber.co.uk"')){console.error('Email Service binding/config is not deployment-persistent');failed=true}
 if(!ai.includes('ACTIVE SHIFT PLANS')||!ai.includes("FROM shift_plans WHERE user_id=? AND status='active'")){console.error('Shift AI is not connected to active plans');failed=true}

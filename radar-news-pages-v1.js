@@ -26,6 +26,7 @@ function responseFrom(base,body,status=200){
  return new Response(body,{status,headers});
 }
 function replaceMain(html,main){return html.replace(/<main\b[\s\S]*?<\/main>/i,main)}
+function withoutTicker(html){return html.replace(/<section\s+class=["']medicine-ticker-v138["'][\s\S]*?<\/section>/i,"")}
 function newsUrl(row){const slug=articleSlug(row);return slug.startsWith("medicine-news/")?"/"+slug:slug?"/"+slug:"/medicine-news"}
 function indexMain(rows){
  const cards=rows.map(row=>{const content=parse(row.content_package_json,{}),seo=content.seo||{},date=publishedAt(row).slice(0,10);return '<article class="radar-news-card"><p class="eyebrow">'+esc(row.regulator||row.event_type||"Medicines update")+'</p><h2><a href="'+esc(newsUrl(row))+'">'+esc(content.headline||row.headline)+'</a></h2><p>'+esc(content.standfirst||seo.description||content.what_changed||"")+'</p><p class="radar-news-meta">'+esc(date)+'</p><p><a href="'+esc(newsUrl(row))+'">Read the evidence-led update →</a></p></article>'}).join("");
@@ -47,9 +48,9 @@ function detailHead(html,row,request){
 export async function radarNewsPageRoutes(request,env){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,"")||"/";if(request.method!=="GET"&&request.method!=="HEAD")return null;if(!["shiftsometimber.co.uk","www.shiftsometimber.co.uk"].includes(url.hostname))return null;if(path!=="/medicine-news"&&!path.startsWith("/medicine-news/"))return null;
  const base=await shell(request);if(!base.ok)return base;let html=await base.text();
- const {results=[]}=await env.DB.prepare("SELECT id,headline,region,regulator,event_type,content_package_json,source_evidence_json,reviewed_at,updated_at,created_at FROM radar_events WHERE status='published' ORDER BY COALESCE(reviewed_at,updated_at) DESC,id DESC LIMIT 250").all(),rows=results.filter(row=>parse(row.content_package_json,{}).destinations?.includes("medicine_news"));
+ const {results=[]}=await env.DB.prepare("SELECT id,headline,region,regulator,event_type,content_package_json,source_evidence_json,reviewed_at,updated_at,created_at FROM radar_events WHERE status='published' ORDER BY COALESCE(reviewed_at,updated_at) DESC,id DESC LIMIT 250").all(),rows=results.filter(row=>parse(row.content_package_json,{}).destinations?.includes("medicine_news")).filter((row,index,list)=>articleSlug(row)&&list.findIndex(item=>articleSlug(item)===articleSlug(row))===index);
  html=html.replace("</head>",newsroomStyle+"</head>");
  if(path==="/medicine-news")return responseFrom(base,request.method==="HEAD"?"":replaceMain(html,indexMain(rows)));
  const slug=cleanSlug(path),row=rows.find(item=>articleSlug(item)===slug);if(!row)return responseFrom(base,request.method==="HEAD"?"":replaceMain(html,'<main id="main-content"><section class="content"><div class="wrap prose"><h1>Update not found</h1><p><a href="/medicine-news">Back to SHIFT AI Newsroom</a></p></div></section></main>'),404);
- html=detailHead(html,row,request);html=replaceMain(html,detailMain(row));return responseFrom(base,request.method==="HEAD"?"":html);
+ html=withoutTicker(html);html=detailHead(html,row,request);html=replaceMain(html,detailMain(row));return responseFrom(base,request.method==="HEAD"?"":html);
 }

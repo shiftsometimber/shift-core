@@ -439,7 +439,7 @@ async function publicSitemapWithReviewedMentalHealth(request, env) {
     const child = slug.startsWith("medicine-news/") ? slug.slice("medicine-news/".length) : "";
     return destinations.includes("medicine_news") && /^[a-z0-9][a-z0-9-]+$/.test(child) ? ["/" + slug] : [];
   });
-  const requiredPaths = [...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS, ...newsroomPaths];
+  const requiredPaths = [...new Set([...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS, ...newsroomPaths])];
   const additions = requiredPaths.filter(
     (path) => !xml.includes(`<loc>https://shiftsometimber.co.uk${path}</loc>`),
   )
@@ -644,6 +644,18 @@ export default {
         "/member/fit.html",
         "/member/check-in",
         "/member/check-in.html",
+        "/member/ask-timber",
+        "/member/ask-timber.html",
+        "/member/plans",
+        "/member/plans.html",
+        "/member/my-target",
+        "/member/my-target.html",
+        "/member/my-why",
+        "/member/my-why.html",
+        "/member/saved",
+        "/member/saved.html",
+        "/member/settings",
+        "/member/settings.html",
       ].includes(path)
     )
       return publicPagesAsset(request, path.replace(/\.html$/, ""));

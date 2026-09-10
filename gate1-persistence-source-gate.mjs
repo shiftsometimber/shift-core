@@ -4,6 +4,7 @@ let failed=false;
 const fail=(m)=>{console.error(m);failed=true};
 const worker=fs.readFileSync('worker.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
+const entryCompact=entry.replace(/\s+/g,'');
 
 for(const route of ["/v1/profile","/v1/member-state","/v1/auth/login","/v1/auth/logout"]){
   if(!worker.includes(route)) fail(`Missing Gate 1 persistence/auth route: ${route}`);
@@ -14,8 +15,8 @@ if(!worker.includes("headers.set('X-Shift-Request-Id', requestId)")) fail('Core 
 if(!worker.includes("error: 'internal_error', requestId")) fail('Unhandled Core errors must expose a safe requestId');
 if(!worker.includes("error: 'not_found', requestId")) fail('404 responses must expose a requestId');
 
-const authIndex=entry.indexOf('const authRecovery=await handleAuthRecovery');
-const productIndex=entry.indexOf('const commissioning=await memberCommissioningRoute');
+const authIndex=entryCompact.indexOf('constauthRecovery=awaithandleAuthRecovery');
+const productIndex=entryCompact.indexOf('constcommissioning=awaitmemberCommissioningRoute');
 if(authIndex<0||productIndex<0||authIndex>productIndex) fail('Authoritative auth recovery must execute before member/product fallbacks');
 
 if(failed) process.exit(1);
