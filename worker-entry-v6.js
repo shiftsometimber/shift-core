@@ -293,8 +293,8 @@ function deferAnalytics(ctx, work, label) {
 async function rewritePublicLoungeChrome(response) {
   const type = String(response.headers.get("Content-Type") || "").toLowerCase();
   if (!response.ok || !type.includes("text/html")) return response;
-  const source = await response.text(),
-    body = source
+  const source = await response.text();
+  let body = source
       .replaceAll('href="/tap-room"', 'href="/lounge"')
       .replaceAll('href="/tap-room.html"', 'href="/lounge"')
       .replaceAll(">The Tap Room<", ">The Lounge<")
