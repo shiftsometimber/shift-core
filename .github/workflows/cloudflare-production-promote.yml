@@ -184,6 +184,7 @@ jobs:
           fi
           run_d1_file migrations/018_foundayo_launch_ready.sql
           run_d1_file migrations/019_foundayo_option_stock_lock.sql
+          run_d1_file migrations/020_radar_duplicate_cleanup.sql
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
