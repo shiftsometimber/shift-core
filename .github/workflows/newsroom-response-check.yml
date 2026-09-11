@@ -39,7 +39,7 @@ jobs:
         working-directory: worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: python3 ../control/release/newsroom-response-20260911/inspect.py
+        run: python3 ../control/release/newsroom-response-20260911/verify-version.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

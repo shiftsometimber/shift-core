@@ -6,7 +6,9 @@ candidate=source.read_bytes()
 before=subprocess.check_output(['git','show','39cd8fa9d3694867ced4acb6012775c25a84709d:radar-public-v1.js'])
 changes=subprocess.check_output(['git','diff','--name-only','39cd8fa9d3694867ced4acb6012775c25a84709d','HEAD']).decode().splitlines()
 assert changes==['radar-public-v1.js'],changes
-assert hashlib.sha256(before).hexdigest()=='4cd96f5c4e05c8604106ba93fbc36dc1f9e45e888de4c4eb494e1d3fbfede2ce'
+git_blob=lambda b:hashlib.sha1(b'blob '+str(len(b)).encode()+b'\x00'+b).hexdigest()
+assert git_blob(before)=='e9ec390dcb51d3ca736297d700606a9e0a4dd807','Baseline Git blob changed'
+assert git_blob(candidate)=='0aa32066730b2b6ac6eb6f61ef5a5b9b1967ce50','Candidate Git blob changed'
 try:
  for label,content in [('baseline',before),('candidate',candidate)]:
   source.write_bytes(content)
