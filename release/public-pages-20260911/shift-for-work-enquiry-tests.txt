@@ -1,0 +1,18 @@
+✔ business enquiry uses the existing partner route and drops unsolicited health and employee fields (1.599872ms)
+✔ consent, valid contact details and recognised business choices are required (0.323017ms)
+✔ header-like newlines are removed from business fields (0.177317ms)
+✔ preview and untrusted hosts cannot send or pretend to send (0.231289ms)
+✔ success requires the live API sent contract and posts no data to a third-party host (2.726741ms)
+✔ HTTP and application failures cannot become a false success (1.483077ms)
+✔ rate limits and uncertain timeout have useful, truthful recovery messages (5.296977ms)
+✔ actual existing contact module routes a simulated employer enquiry to partners and the enquirer only (4.265953ms)
+✔ actual contact module rejects absent consent without calling the simulated mail provider (1.135943ms)
+✔ missing production mail binding is surfaced by the actual contact module (1.149403ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.828746

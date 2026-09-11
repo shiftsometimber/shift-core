@@ -1,5 +1,5 @@
 """Materialise only the exact locally reviewed Pages bytes; never accept a stale file."""
-import concurrent.futures, gzip, hashlib, json, os, pathlib, subprocess, urllib.error, urllib.parse, urllib.request
+import base64, concurrent.futures, gzip, hashlib, json, os, pathlib, subprocess, urllib.error, urllib.parse, urllib.request
 
 HERE = pathlib.Path(__file__).resolve().parent
 control = json.loads((HERE / 'control.json').read_text())
@@ -42,6 +42,10 @@ release = pathlib.Path(os.environ['RUNNER_TEMP']) / 'sst-pages-release'
 release.mkdir()
 entries = payload['files']
 overrides = payload['overrides']
+binary_overrides = payload.get('binary_overrides', {})
+assert isinstance(binary_overrides, dict), 'invalid binary overrides'
+assert not set(overrides).intersection(binary_overrides), 'ambiguous source override'
+assert set(binary_overrides).issubset({entry['path'] for entry in entries}), 'untracked binary override'
 failures = []
 
 def materialise(entry):
@@ -50,6 +54,8 @@ def materialise(entry):
     assert not parts.is_absolute() and '..' not in parts.parts, 'invalid source path'
     if name in overrides:
         data = overrides[name].encode('utf-8')
+    elif name in binary_overrides:
+        data = base64.b64decode(binary_overrides[name], validate=True)
     else:
         # This is a byte cache only. The local master SHA decides whether it is usable.
         url = origin.rstrip('/') + '/' + urllib.parse.quote(name, safe='/')
