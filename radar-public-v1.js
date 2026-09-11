@@ -36,22 +36,33 @@ async function ensureMedicineRegistry(DB){
  const now=new Date().toISOString();
  await DB.batch(RADAR_MEDICINE_SEED.map(x=>DB.prepare(`INSERT OR IGNORE INTO radar_medicines (id,brand,generic_name,developer,mechanism_json,formulation,global_stage,uk_regulatory_status,uk_commercial_status,nice_status,nhs_status,latest_update_text,radar_score,regions_json,last_verified_at,provenance_json,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(x.id,x.brand,x.generic_name,x.developer,JSON.stringify(x.mechanism||[]),x.formulation,x.global_stage,x.uk_regulatory_status||null,null,x.nice_status||null,x.nhs_status||null,x.latest_update_text,x.radar_score,JSON.stringify(x.regions||[]),x.verified_at,JSON.stringify({authority:x.authority,registry:'radar-medicine-seed-v1'}),now)));
 }
+// Deduplicate only the public response, after destination approval is checked.
+export function uniquePublishedArticles(rows=[]){
+ const seen=new Set();
+ return rows.filter(row=>{
+  const slug=String(contentFor(row).seo?.slug||'').trim().replace(/^\/+|\/+$/g,'');
+  if(!slug)return true;
+  if(seen.has(slug))return false;
+  seen.add(slug);return true;
+ });
+}
 export function sortPublishedEvents(rows=[]){return [...rows].sort((a,b)=>String(publishedAt(b)).localeCompare(String(publishedAt(a)))||String(evidenceDate(b)||'').localeCompare(String(evidenceDate(a)||''))||Number(b.id)-Number(a.id))}
 async function publishedEvents(DB,limit=100){const {results=[]}=await DB.prepare(`SELECT id,headline,region,event_type,urgency_score,medicine_patch_json,content_package_json,source_evidence_json,reviewed_at,updated_at FROM radar_events WHERE status='published' ORDER BY COALESCE(reviewed_at,updated_at) DESC, id DESC LIMIT ?`).bind(limit).all();return sortPublishedEvents(results)}
 
 export async function radarPublicRoutes(request,env){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';if(request.method!=='GET'||!path.startsWith('/v1/radar/'))return null;
  await ensureWegovyTabletPublication(env.DB);
- if(path==='/v1/radar/news'){const rows=await publishedEvents(env.DB,200);return json({ok:true,items:rows.filter(row=>hasDestination(row,'medicine_news')).map(publicEvent)});}
+ if(path==='/v1/radar/news'){const rows=await publishedEvents(env.DB,200);return json({ok:true,items:uniquePublishedArticles(rows.filter(row=>hasDestination(row,'medicine_news'))).map(publicEvent)});}
  if(path==='/v1/radar/ticker'){
   const freshness=await readRadarFreshness(env.DB),rows=await publishedEvents(env.DB,200);
   // One approved wire everywhere the ticker is allowed. A surface may choose
   // whether to show the ticker, but it must not silently publish a shorter or
   // different edition once it does.
-  const items=rows.filter(row=>hasDestination(row,'ticker_knowledge')||hasDestination(row,'ticker_treatments')).map(row=>{const item=publicEvent(row);return{id:item.id,headline:item.ticker_line,story_headline:item.headline,source_published_at:item.source_published_at,published_at:item.published_at,url:item.metadata?.slug?`/${String(item.metadata.slug).replace(/^\//,'')}`:'/medicine-news'}});
+  const items=uniquePublishedArticles(rows.filter(row=>hasDestination(row,'ticker_knowledge')||hasDestination(row,'ticker_treatments'))).map(row=>{const item=publicEvent(row);return{id:item.id,headline:item.ticker_line,story_headline:item.headline,source_published_at:item.source_published_at,published_at:item.published_at,url:item.metadata?.slug?`/${String(item.metadata.slug).replace(/^\//,'')}`:'/medicine-news'}});
   return json({ok:true,current:Boolean(freshness.current&&items.length),status:freshness.status,serving:'governed_published_wire',freshness,message:items.length?null:'No governed published ticker items.',items});
  }
  if(path==='/v1/radar/cards'){await ensureMedicineRegistry(env.DB);const {results=[]}=await env.DB.prepare(`SELECT id,brand,generic_name,developer,formulation,global_stage,uk_regulatory_status,uk_commercial_status,nice_status,nhs_status,latest_update_text,radar_score,mechanism_json,regions_json,last_verified_at,provenance_json FROM radar_medicines ORDER BY radar_score DESC,brand ASC LIMIT 200`).all();return json({ok:true,cards:results.map(medicine)});}
  const match=path.match(/^\/v1\/radar\/medicines\/([a-z0-9-]+)$/i);if(match){await ensureMedicineRegistry(env.DB);const id=match[1].toLowerCase(),row=await env.DB.prepare(`SELECT * FROM radar_medicines WHERE id=?`).bind(id).first();if(!row)return json({ok:false,error:'medicine_not_found'},404);const updates=(await publishedEvents(env.DB,200)).filter(event=>String(safe(event.medicine_patch_json,{}).medicine_id||'').toLowerCase()===id).filter(event=>hasDestination(event,'dossier')).map(publicEvent);return json({ok:true,dossier:medicine(row),updates});}
  return null;
 }
+
