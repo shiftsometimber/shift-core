@@ -4,6 +4,26 @@
 
 The approved spec remains SHIFT-Programme-Implementation-Brief-V1.md. The supplied standalone HTML is reference only. It was not copied into a production page or shared script.
 
+## Current continuation checkpoint — 11 September 2026
+
+This entry supersedes the engineering counts below; historical results and limitations remain visible.
+
+- 84 focused tests pass. Five new deferred-response regression tests fail on the unchanged starting client and pass after correction. Initial read, save, preview and existing-record responses cannot repopulate a cleared private view; session expiry clears pending work and offers sign-in.
+- Journey purpose/status, valid Life Back dates and confirmed weekly check-in counts/dates now connect through a read-only owner-scoped adapter. Measurements and unrelated notes are omitted. Missing optional storage is reported as unavailable, not zero. No automatic plan import or inferred Programme completion.
+- First-month organisational prompts use saved dates, preserve missing reports and never invent completion. An existing review and a return after a gap take precedence. Legacy records without a joining date receive a neutral saved-routine prompt.
+- Operator-only account routines verify the existing member, require accountable inputs and finite new access grants, refuse overwrite and guard concurrent updates. Expiry is resolved on each read/write without deleting records. Authenticated JSON export is read-only and works after service expiry.
+- Seven local workerd/D1 contract cases pass again. Six further checks exercise the complete 1,295,954-byte Wrangler bundle on actual local workerd, with separate fictional D1 bindings and unchanged compatibility date. Full-bundle SHA-256: `92759075abc7a3270ea74c9544ba73d85c58c326cbbe199bca6b4f67462c3200`. The production content path correctly has zero approved recipes.
+- All 871 protected Pages files match in source and build. The two permitted added assets match the candidate. Root Worker entry, root configuration, shared authentication and unrelated site files are unchanged in this continuation.
+
+### Open work stays explicit
+
+D3-01 remote commissioning remains OPEN. Local full-Worker checks reduce the engineering uncertainty but do not prove remote D1 scheduling, remote bindings or hosted sessions. The initial local binary was too old; using the already-installed 11 September binary retained the required compatibility date. Full-bundle tests first hit module-discovery/path errors; the final harness supplies the exact bundle as an explicit ES module with its own module root. It supplies no substitute crypto implementation and enables no new compatibility flags. The existing web-push Node fallback still produces a bundler warning; the native Workers crypto path passed the full local runtime test, not the unexercised web-push function.
+
+D3-02 remains BLOCKED: the supported browser again rejected the retained preview under URL policy. No alternate browser route was used. No new screenshot, full sign-in journey, browser back/forward/bfcache, keyboard/visual acceptance or Safari pass is claimed.
+
+D3-03 remains OPEN for real members: the six recipes are unreviewed fixtures. Reviewed Fit/away-from-home content and accountable sample review are still absent. See CONTENT-REVIEW.md. Service-owner/operator execution, retention/deletion handling and long-term capacity measurements remain to be commissioned; see OPERATIONS.md. No production migration, provisioning, release, stock/payment action or participant contact occurred.
+
+
 ## Source and scope
 
 Backend parent: `0a667f2953e943665d2d9313d80ff0d4801e14fd`, the recorded deployed Worker source including the Newsroom correction. Do not substitute main.

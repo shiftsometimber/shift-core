@@ -1,12 +1,14 @@
+import {resolvedEntitlement} from './entitlement.mjs';
+import {firstMonth} from './journey-sequence.mjs';
 import {RECIPES,suitable,CONTENT_VERSION} from './content.mjs';
 import {clone,dateAdd,weekStart,planningStart,periodStart,evaluate,previewChange,shopping,planConditions} from './engine.mjs';
 export class ProgrammeError extends Error{constructor(message,status=400){super(message);this.status=status}}
 const insist=(condition,message,status=400)=>{if(!condition)throw new ProgrammeError(message,status)};
 export function currentState(state,options={}){
- if(options.fixtureMode)return state;
+ if(options.fixtureMode)return {...state,entitlement:resolvedEntitlement(state.entitlement,options.now||state.clock+'T12:00:00Z')};
  const clock=options.today||new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
  const elapsed=Math.floor((Date.parse(clock+'T12:00:00Z')-Date.parse(state.anchor+'T12:00:00Z'))/86400000);
- return {...state,clock,cycle:Math.max(0,Math.floor(elapsed/7))};
+ return {...state,clock,cycle:Math.max(0,Math.floor(elapsed/7)),entitlement:resolvedEntitlement(state.entitlement,options.now||(options.today?clock+'T12:00:00Z':new Date().toISOString()))};
 }
 const text=(s,n=500)=>String(s??'').trim().slice(0,n);
 export function emptyState(clock){return {schemaVersion:1,revision:0,clock,cycle:0,anchor:clock,name:'',preferences:{allergies:'unknown',diet:'unknown',equipment:[],activityLimitations:'unknown'},goal:'',focus:'food',track:'everyday',measures:[],slots:[],reports:[],requests:[],freezes:{},acquired:{},manualItems:[],reviews:[],decisions:[],operations:[],setup:false,entitlement:{active:false},review:null}}
@@ -17,9 +19,9 @@ function cleanPreferences(p){
  return {allergies:clone(p.allergies),diet:p.diet,equipment:Array.isArray(p.equipment)?p.equipment.filter(e=>['hob'].includes(e)):[],activityLimitations:text(p.activityLimitations||'unknown'),time:text(p.time,100),household:text(p.household,100),spending:text(p.spending,100),workPattern:['alternating','fixed'].includes(p.workPattern)?p.workPattern:'fixed',reviewDay:Number.isInteger(p.reviewDay)&&p.reviewDay>=0&&p.reviewDay<=6?p.reviewDay:0,firstShift:['early','late','day','off'].includes(p.firstShift)?p.firstShift:'day',shiftAnchor:/^\d{4}-\d{2}-\d{2}$/.test(p.shiftAnchor||'')&&weekStart(p.shiftAnchor)===p.shiftAnchor?p.shiftAnchor:null};
 }
 export function publicState(state,{fixtureMode=false}={}){
- const s=clone(state);delete s.operations;
+ const s=clone(state);delete s.operations;delete s.serviceEvents;
  const start=planningStart(state);
- return {...s,conditions:planConditions(state,{fixtureMode}),contentVersion:CONTENT_VERSION,catalogue:Object.values(RECIPES).filter(r=>suitable(r,state.preferences,{fixtureMode})),lists:[shopping(state,start,dateAdd(start,6)),shopping(state,dateAdd(start,7),dateAdd(start,13))],fixtureMode};
+ return {...s,sequence:firstMonth(state),conditions:planConditions(state,{fixtureMode}),contentVersion:CONTENT_VERSION,catalogue:Object.values(RECIPES).filter(r=>suitable(r,state.preferences,{fixtureMode})),lists:[shopping(state,start,dateAdd(start,6)),shopping(state,dateAdd(start,7),dateAdd(start,13))],fixtureMode};
 }
 function rolledSlots(state,start){
  const templates=new Map();for(const s of [...state.slots].sort((a,b)=>a.date.localeCompare(b.date)))templates.set(s.slotKey,s);
@@ -37,7 +39,7 @@ export function mutate(state,action,{fixtureMode=false}={}){
   next.slots=action.choices.map((c,i)=>{insist(Number.isInteger(c.day)&&c.day>=0&&c.day<7,'Choose a valid day.');const date=dateAdd(start,(c.day-(new Date(start+'T12:00:00Z').getUTCDay()+6)%7+7)%7),slotKey=['mon','tue','wed','thu','fri','sat','sun'][c.day]+'-'+(c.kind==='meal'?'dinner':'walk');
    if(c.kind==='meal'){insist(suitable(RECIPES[c.recipeId],preferences,{fixtureMode}),'Please confirm food restrictions before choosing a compatible meal.');insist(Number.isFinite(c.servings)&&c.servings>=1&&c.servings<=12,'Choose 1–12 portions.');return{id:`${date}:${slotKey}`,slotKey,date,kind:'meal',recipeId:c.recipeId,recipeVersion:RECIPES[c.recipeId].version,servings:c.servings,completed:false}}
    insist(c.kind==='move'&&preferences.activityLimitations==='none','This prototype cannot select movement around an unknown or stated limitation. Keep using your existing chosen guidance.');insist(Number.isInteger(c.minutes)&&c.minutes>=1&&c.minutes<=180,'Choose a valid walking duration.');return{id:`${date}:${slotKey}`,slotKey,date,kind:'move',label:'Your chosen walk',minutes:c.minutes,completed:false};
-  });insist(new Set(next.slots.map(s=>s.id)).size===next.slots.length,'Choose different days for duplicate meal or walking slots.');next.setup=true;
+  });insist(new Set(next.slots.map(s=>s.id)).size===next.slots.length,'Choose different days for duplicate meal or walking slots.');next.setup=true;next.startedOn=state.clock;
  }else if(type==='preferences'){
   next.preferences=cleanPreferences(action.preferences);if(state.setup)insist(next.preferences.reviewDay===(state.preferences.reviewDay??0),'The saved review day is fixed for this test. Your plan is unchanged.');
   next.review=null;

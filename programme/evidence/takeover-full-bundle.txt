@@ -1,0 +1,39 @@
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.112.0
+────────────────────
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe package "node:crypto" wasn't found on the file system but is built into node.[0m
+
+  Your Worker may throw errors at runtime unless you enable the "nodejs_compat" compatibility flag. Refer to [4mhttps://developers.cloudflare.com/workers/runtime-apis/nodejs/[0m for more details. Imported from:
+   - node_modules/@block65/webcrypto-web-push/dist/lib/isomorphic-crypto.js
+
+
+✨ Read 137 files from the assets directory /workspace/scratch/c41c73708c39/programme-v1/core/frontend/member
+Total Upload: 1265.58 KiB / gzip: 311.28 KiB
+Your Worker has access to the following bindings:
+Binding                                                                          Resource                  
+env.SITE_CONTENT_STATE (SiteContentState)                                        Durable Object            
+env.EMAIL (unrestricted)                                                         Send Email                
+env.DB (shift-core-db)                                                           D1 Database               
+env.AI                                                                           AI                        
+env.MEMBER_ASSETS                                                                Assets                    
+env.AUTO_VERIFY_EMAIL ("false")                                                  Environment Variable      
+env.ALLOWED_ORIGINS ("https://shiftsometimber.co.uk,https:/...")                 Environment Variable      
+env.SHIFT_AI_MODEL ("@cf/meta/llama-3.3-70b-instruct-fp8-f...")                  Environment Variable      
+env.PUBLIC_SITE_URL ("https://shiftsometimber.co.uk")                            Environment Variable      
+env.AUTH_EMAIL_FROM ("hello@shiftsometimber.co.uk")                              Environment Variable      
+env.ADMIN_EMAIL_FROM ("hq@shiftsometimber.co.uk")                                Environment Variable      
+env.ADMIN_NOTIFICATION_EMAIL ("hq@shiftsometimber.co.uk")                        Environment Variable      
+env.ORDER_NOTIFICATION_EMAIL ("orders@shiftsometimber.co.uk")                    Environment Variable      
+env.RADAR_ALERT_TO ("hq@shiftsometimber.co.uk")                                  Environment Variable      
+env.EVIDENCE_DESK_ALERT_TO ("hq@shiftsometimber.co.uk")                          Environment Variable      
+env.TAP_ROOM_MODERATION_OWNER ("Matt O'Brien")                                   Environment Variable      
+env.TAP_ROOM_MODERATION_BACKUP ("Linda O'Brien")                                 Environment Variable      
+env.TAP_ROOM_P0_EMAIL ("hq@shiftsometimber.co.uk")                               Environment Variable      
+env.STRIPE_MODE ("test")                                                         Environment Variable      
+
+--dry-run: exiting now.
+
+Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md

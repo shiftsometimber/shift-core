@@ -6,7 +6,7 @@ const source=readFileSync(new URL('../../frontend/member/assets/programme-v1/pro
 test('Private-view cleanup removes the account name, status, tabs, body and preview as well as the stored state',()=>{
  const node=()=>({textContent:'Fictional private information',replaceChildren(){this.textContent=''}});
  const nodes=Object.fromEntries(['#sp-name','#sp-entitlement','#sp-tabs'].map(k=>[k,node()])),view=node(),status=node();
- const ctx={state:{name:'Fictional member'},preview:{recipe:'Fictional private choice'},toolsContext:{grub:{savedRecipes:['Fictional private recipe']}},root:{querySelector:k=>nodes[k]},view,status};
+ const ctx={privateGeneration:0,pendingRequests:new Set(),setupDraft:{goal:'Private draft'},busy:true,state:{name:'Fictional member'},preview:{recipe:'Fictional private choice'},toolsContext:{grub:{savedRecipes:['Fictional private recipe']}},root:{querySelector:k=>nodes[k]},view,status};
  vm.createContext(ctx);
  const cleanup=source.slice(source.indexOf('function clearPrivateView(){'),source.indexOf('\nasync function api'));
  vm.runInContext(cleanup+';clearPrivateView();',ctx);

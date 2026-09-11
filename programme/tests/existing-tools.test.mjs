@@ -51,3 +51,22 @@ test('The pinned dashboard preserves the fixed Programme destination through its
  assert.equal(vm.runInContext('requestedDestination()',ctx),'/member/programme');
  ctx.location.search='?returnTo=https%3A%2F%2Fevil.invalid';assert.equal(vm.runInContext('requestedDestination()',ctx),'');
 });
+test('Journey purpose and recorded dates connect without copying measurements, notes or another account',async()=>{
+ const {db,store,env,deps,request}=await setup();
+ db.sqlite.exec('CREATE TABLE my_journey_weekly_checkins(user_id INTEGER,week_ending TEXT,confirmed_at TEXT,note TEXT);');
+ for(const [id,date,confirmed] of [[1,'2026-09-06','2026-09-06T12:00:00Z'],[1,'2026-09-13',null],[2,'2026-09-20','2026-09-20T12:00:00Z'],[1,'2026-02-30','2026-03-02T12:00:00Z']])db.sqlite.prepare('INSERT INTO my_journey_weekly_checkins VALUES(?,?,?,?)').run(id,date,confirmed,'PRIVATE-CHECKIN-NOTE');
+ const p=JSON.parse(db.sqlite.prepare('SELECT preferences FROM member_state WHERE user_id=1').get().preferences);
+ p.myJourney={setup:{why:'Have energy for football',paused:true,startDate:'2026-08-31'},weight:{currentKg:94.7},wellbeing:{note:'PRIVATE-WELLBEING'},lifeBack:{entries:[{date:'2026-09-01',scores:{energy:50},note:'PRIVATE-LIFE-NOTE'},{date:'2026-09-01'},{date:'invalid'}]}};
+ db.sqlite.prepare('UPDATE member_state SET preferences=? WHERE user_id=1').run(JSON.stringify(p));
+ const before=db.sqlite.prepare('SELECT * FROM member_state ORDER BY user_id').all(),beforeWeekly=db.sqlite.prepare('SELECT * FROM my_journey_weekly_checkins').all(),plan=await store.get(1);
+ const r=await programmeRoutes(request(1,'GET','?userId=2'),env,deps),body=await r.json();assert.equal(r.status,200);
+ assert.equal(body.journey.purpose,'Have energy for football');assert.equal(body.journey.paused,true);assert.equal(body.journey.startDate,'2026-08-31');
+ assert.equal(body.lifeBack.count,1);assert.equal(body.lifeBack.latestDate,'2026-09-01');assert.equal(body.weekly.count,1);assert.equal(body.weekly.latestDate,'2026-09-06');
+ assert.doesNotMatch(JSON.stringify(body),/94\.7|PRIVATE-|currentKg|scores|2026-09-20|Gaz/);
+ assert.deepEqual(db.sqlite.prepare('SELECT * FROM member_state ORDER BY user_id').all(),before);assert.deepEqual(db.sqlite.prepare('SELECT * FROM my_journey_weekly_checkins').all(),beforeWeekly);assert.deepEqual(await store.get(1),plan);
+});
+test('Absent weekly storage is unknown, and legacy Life Back dates are kept',async()=>{
+ const {db}=await setup();const p={lifeBack:{entries:[{date:'2026-09-03',note:'OMIT'}]}};
+ db.sqlite.prepare('UPDATE member_state SET preferences=? WHERE user_id=1').run(JSON.stringify(p));
+ const result=await existingTools(db,1);assert.equal(result.weekly.available,false);assert.equal(result.weekly.count,null);assert.equal(result.lifeBack.latestDate,'2026-09-03');assert.equal(result.journey.purpose,null);
+});

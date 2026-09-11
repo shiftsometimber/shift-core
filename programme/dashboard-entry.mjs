@@ -1,3 +1,4 @@
+import {resolvedEntitlement} from './entitlement.mjs';
 import {PRIVATE_HEADERS} from './routes.mjs';
 import {ProgrammeStore} from './store.mjs';
 export const DASHBOARD_ANCHOR='<section class="preview-member" id="previewMember" hidden>';
@@ -8,6 +9,7 @@ export async function programmeDashboardEntry(request,env,response,{authenticate
  if(request.method!=='GET'||!['/member/dashboard','/member/dashboard.html'].includes(path)||env.PROGRAMME_V1_ENABLED!=='true'||!env.PROGRAMME_DB||!response.ok||!response.headers.get('Content-Type')?.includes('text/html'))return response;
  let state;try{const auth=await authenticate(request,env);if(auth.response)return response;state=await new ProgrammeStore(env.PROGRAMME_DB).get(auth.userId)}catch{return response}
  if(!state)return response;
+ state.entitlement=resolvedEntitlement(state.entitlement);
  const original=response.clone(),html=await response.text();
  if(!html.includes(DASHBOARD_ANCHOR)||html.includes('id="sstProgrammeEntry"'))return original;
  const entry=`<section class="mt-card" id="sstProgrammeEntry" aria-labelledby="sstProgrammeEntryTitle"><h2 id="sstProgrammeEntryTitle">Your Programme</h2><p>${state.entitlement.active?'Your saved plans, weekly review and the changes you choose.':'Return to your saved plans, shopping lists and review history. Manual choices remain available.'}</p><a class="mt-button" href="/member/programme">${state.entitlement.active?'Open my Programme':'Open my saved Programme'}</a></section>`;
