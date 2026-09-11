@@ -5,11 +5,15 @@ account=os.environ['CLOUDFLARE_ACCOUNT_ID']
 base='https://api.cloudflare.com/client/v4/accounts/'+account
 headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN'],'Content-Type':'application/json'}
 def api(path,body=None,method='GET'):
-    request=urllib.request.Request(base+path,headers=headers,method=method,data=None if body is None else json.dumps(body).encode())
+    request_headers=dict(headers)
+    if method=='PATCH': request_headers['Content-Type']='application/merge-patch+json'
+    request=urllib.request.Request(base+path,headers=request_headers,method=method,data=None if body is None else json.dumps(body).encode())
     try:
         with urllib.request.urlopen(request,timeout=35) as response: result=json.load(response)
     except urllib.error.HTTPError as error:
-        raise SystemExit('Cloudflare request failed: HTTP '+str(error.code)) from None
+        try: codes=[e.get('code') for e in json.load(error).get('errors',[])]
+        except Exception: codes=[]
+        raise SystemExit('Cloudflare request failed: HTTP '+str(error.code)+'; codes='+json.dumps(codes)+'; endpoint='+path) from None
     if not result.get('success'): raise SystemExit('Cloudflare request did not succeed')
     return result['result']
 
@@ -45,9 +49,22 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
     # The key exists only in process memory and the encrypted Cloudflare binding.
     # No secret value is printed, committed, returned or saved as an artifact.
     value=random_secrets.token_urlsafe(48)
-    result=api('/workers/scripts/shift-core/secrets',{'name':'HQ_MFA_ENCRYPTION_KEY','text':value,'type':'secret_text'},'PUT')
+    # Same version-secret operation used by Cloudflare's official Wrangler.
+    result=api('/workers/workers/shift-core/versions/latest',{'env':{'HQ_MFA_ENCRYPTION_KEY':{'text':value,'type':'secret_text'}},'annotations':{'workers/message':'Add missing HQ MFA encryption key; preserve live code'}},'PATCH')
     del value
-    assert result.get('name')=='HQ_MFA_ENCRYPTION_KEY', 'Secret update was not confirmed'
+    candidate_id=result.get('id')
+    assert candidate_id, 'Candidate version was not returned'
+    candidate=api('/workers/scripts/shift-core/versions/'+candidate_id)
+    identity=runtime_identity(candidate)
+    bindings=identity['bindings']
+    assert isinstance(bindings,list), 'Unexpected binding representation'
+    new_binding=[b for b in bindings if b.get('name')=='HQ_MFA_ENCRYPTION_KEY']
+    assert len(new_binding)==1 and new_binding[0].get('type')=='secret_text', 'Encrypted secret binding missing'
+    identity['bindings']=[b for b in bindings if b.get('name')!='HQ_MFA_ENCRYPTION_KEY']
+    assert identity==runtime_identity(before), 'Candidate differs beyond the MFA secret; no deployment'
+    still_live=api('/workers/scripts/shift-core/deployments')['deployments'][0]
+    assert still_live['versions']==latest['versions'], 'Production moved during preparation; no deployment'
+    api('/workers/scripts/shift-core/deployments',{'strategy':'percentage','versions':[{'version_id':candidate_id,'percentage':100}],'annotations':{'workers/message':'Enable HQ MFA configuration with unchanged Worker code'}},'POST')
     after_deployment=api('/workers/scripts/shift-core/deployments')['deployments'][0]
     assert len(after_deployment['versions'])==1 and after_deployment['versions'][0]['percentage']==100, 'Unexpected traffic split after secret update'
     after_id=after_deployment['versions'][0]['version_id']
