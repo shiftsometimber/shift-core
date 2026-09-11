@@ -44,6 +44,14 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
         return {'etag':resources['script'].get('etag'),'runtime':resources.get('script_runtime'),'bindings':sorted([b for b in resources.get('bindings',[]) if b.get('name')!='HQ_MFA_ENCRYPTION_KEY'],key=lambda b:b['name'])}
     equivalent=runtime_identity(before)==runtime_identity(newest)
     print(json.dumps({'active_version':expected,'latest_upload':newest_id,'identical_code_runtime_bindings':equivalent},sort_keys=True))
+    if not equivalent:
+        old_identity=runtime_identity(before);new_identity=runtime_identity(newest)
+        binding_changes=[]
+        old_bindings={b['name']:b for b in old_identity['bindings']};new_bindings={b['name']:b for b in new_identity['bindings']}
+        for name in sorted(set(old_bindings)|set(new_bindings)):
+            old_binding=old_bindings.get(name,{});new_binding=new_bindings.get(name,{})
+            if old_binding!=new_binding: binding_changes.append({'name':name,'changed_fields':[k for k in set(old_binding)|set(new_binding) if old_binding.get(k)!=new_binding.get(k)]})
+        print(json.dumps({'code_equal':old_identity['etag']==new_identity['etag'],'runtime_equal':old_identity['runtime']==new_identity['runtime'],'binding_changes':binding_changes,'old_script_etag':old_identity['etag'],'new_script_etag':new_identity['etag']},sort_keys=True))
     assert equivalent, 'Latest upload differs from the active Worker; refuse accidental promotion'
     etag=before['resources']['script']['etag']
     assert etag, 'Cannot establish current script identity'
