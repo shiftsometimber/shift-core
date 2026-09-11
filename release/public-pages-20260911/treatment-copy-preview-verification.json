@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-11",
+  "preview_url": "https://2026045b.projectshift.pages.dev/treatment-centre",
+  "preview_commit": "41814b995f3a82ade6b352ec02ad87a94c812778",
+  "workflow_run": 34655714509,
+  "source_fingerprint": "bea98002e376482eb5111d6d1d9ad5e1708c3e893c777749f740b6ea172b9a59",
+  "checks": {
+    "page_ready_state": "complete",
+    "browse_every_treatment_expands": true,
+    "rendered_sentence": "Compare treatment options and doses here; Shift currently provides information and decision support and does not supply medication.",
+    "old_order_promise_absent": true,
+    "no_horizontal_overflow": true,
+    "preview_fingerprint_matches": true,
+    "initial_html_and_inline_script_both_corrected": true,
+    "all_other_public_page_contents_unchanged": true,
+    "release_fingerprint_check": "pass",
+    "seo_integrity_check": "pass"
+  }
+}
