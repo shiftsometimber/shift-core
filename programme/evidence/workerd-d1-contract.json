@@ -63,6 +63,17 @@
       }
     },
     {
+      "name": "Existing Grub and Fit data across separate D1 bindings",
+      "result": "PASS",
+      "details": {
+        "read": 200,
+        "write": 405,
+        "ownerScoped": true,
+        "unrelatedNotesOmitted": true,
+        "existingRecordsUnchanged": true
+      }
+    },
+    {
       "name": "Real session expiry in workerd",
       "result": "PASS",
       "details": {

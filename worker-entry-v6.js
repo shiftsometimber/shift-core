@@ -1,5 +1,6 @@
 import { programmeRoutes } from "./programme/routes.mjs";
 import { programmeHTML } from "./programme/screen.mjs";
+import { programmeDashboardEntry } from "./programme/dashboard-entry.mjs";
 export { SiteContentState } from "./site-content-state-v1.js";
 import hq from "./hq-ai-v2.js";
 import { runScheduledIntelligence } from "./scheduled-intelligence.js";
@@ -674,7 +675,10 @@ export default {
         "/member/achievements.html",
       ].includes(path)
     )
-      return publicPagesAsset(request, path.replace(/\.html$/, ""));
+    {
+      const response = await publicPagesAsset(request, path.replace(/\.html$/, ""));
+      return programmeDashboardEntry(request, env, response, {authenticate: authenticateMember});
+    }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/member/grub" ||

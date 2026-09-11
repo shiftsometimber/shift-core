@@ -1,5 +1,5 @@
 {
-  "passed": 6,
+  "passed": 7,
   "results": [
     {
       "name": "Twelve concurrent writes across two authenticated sessions",
@@ -58,6 +58,17 @@
       "details": {
         "foreignIdIgnored": true,
         "otherAccountRevision": 0
+      }
+    },
+    {
+      "name": "Existing Grub and Fit data across separate D1 bindings",
+      "result": "PASS",
+      "details": {
+        "read": 200,
+        "write": 405,
+        "ownerScoped": true,
+        "unrelatedNotesOmitted": true,
+        "existingRecordsUnchanged": true
       }
     },
     {

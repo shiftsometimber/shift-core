@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-11",
+  "previewStartup": "PASS after containing-root mount correction",
+  "browserReload": "BLOCKED by browser URL policy",
+  "browserMessage": "The browser URL policy blocks this action. Cloud browser cannot visit the requested page because its URL is blocked by the Cloud browser URL policy.",
+  "workaroundAttempted": false,
+  "currentMemberUIRendering": "NOT VERIFIED",
+  "dashboardProof": "Response transform and pinned return-function unit contracts only; fixture harness does not render existing dashboard.",
+  "safari": "NOT VERIFIED",
+  "logoutBrowserHistory": "NOT VERIFIED"
+}

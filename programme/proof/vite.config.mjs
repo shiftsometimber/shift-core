@@ -8,9 +8,9 @@ import {programmeRoutes,PRIVATE_HEADERS} from '../routes.mjs';
 import {programmeHTML} from '../screen.mjs';
 import {authenticateMember} from '../../member-state-fast-v1.js';
 import {fixture} from '../test-support/fixtures.mjs';
-const root=resolve(import.meta.dirname,'../..');const pagesRoot=process.env.SHIFT_PAGES_ROOT;if(!pagesRoot)throw new Error('Set SHIFT_PAGES_ROOT to the verified e5f8927 Pages source.');mkdirSync(resolve(root,'programme/proof/data'),{recursive:true});
+const root=resolve(import.meta.dirname,'../..');const pagesRoot=process.env.SHIFT_PAGES_ROOT||resolve(root,'../pages');if(!existsSync(resolve(pagesRoot,'member/dashboard.html')))throw new Error('Provide the verified e5f8927 Pages source alongside the core checkout or through SHIFT_PAGES_ROOT.');mkdirSync(resolve(root,'programme/proof/data'),{recursive:true});
 const db=sqliteAdapter(resolve(root,'programme/proof/data/fictional.sqlite'));
-db.sqlite.exec(SCHEMA+`CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY,first_name TEXT);CREATE TABLE IF NOT EXISTS user_sessions(id INTEGER PRIMARY KEY, user_id INTEGER, token_hash TEXT UNIQUE, expires_at TEXT, revoked_at TEXT,last_used_at TEXT);`);
+db.sqlite.exec(SCHEMA+`CREATE TABLE IF NOT EXISTS member_state(user_id INTEGER PRIMARY KEY,preferences TEXT);CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY,first_name TEXT);CREATE TABLE IF NOT EXISTS user_sessions(id INTEGER PRIMARY KEY, user_id INTEGER, token_hash TEXT UNIQUE, expires_at TEXT, revoked_at TEXT,last_used_at TEXT);`);
 const env={DB:db,PROGRAMME_DB:db,PROGRAMME_V1_ENABLED:'true'},store=new ProgrammeStore(db);
 const toolbar='<div class="sp-fixture-bar"><span>ISOLATED TEST · Fictional accounts · 13 Sep 2026</span><a href="/__fixtures/dave">Dave</a><a href="/__fixtures/dave-fresh">Dave fresh review</a><a href="/__fixtures/gaz">Gaz</a><a href="/__fixtures/new">New member</a><a href="/__fixtures/constraint">Constraint check</a><a href="/__fixtures/expiry">Simulate expiry</a><a href="/__fixtures/logout">End fixture session</a><a href="/__qa">Responsive checks</a></div>';
 const html=programmeHTML.replace('<body class="sp-shell">','<body class="sp-shell">'+toolbar);
@@ -25,7 +25,7 @@ export default defineConfig({root,publicDir:false,server:{host:'0.0.0.0',allowed
   if(key==='logout'){res.setHeader('Set-Cookie','sst_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0');res.statusCode=303;res.setHeader('Location','/');res.end();return}
   if(key==='expiry'){const request=new Request(url,{headers:req.headers});const auth=await authenticateMember(request,env);if(auth.userId){const s=await store.get(auth.userId);s.entitlement.active=false;await store.save(auth.userId,s.revision,s)}res.statusCode=303;res.setHeader('Location','/member/programme');res.end();return}
   const name={dave:'Dave','dave-fresh':'Dave',gaz:'Gaz',new:'New member',constraint:'Constraint check'}[key];if(!name){res.statusCode=404;res.end();return}
-  const id={dave:101,'dave-fresh':104,gaz:102,new:103,constraint:105}[key];db.sqlite.prepare('INSERT OR IGNORE INTO users(id,first_name) VALUES(?,?)').run(id,name);await store.create(id,fixture(name));
+  const id={dave:101,'dave-fresh':104,gaz:102,new:103,constraint:105}[key];db.sqlite.prepare('INSERT OR IGNORE INTO users(id,first_name) VALUES(?,?)').run(id,name);await store.create(id,fixture(name));db.sqlite.prepare('INSERT OR IGNORE INTO member_state(user_id,preferences) VALUES(?,?)').run(id,JSON.stringify({grub:{savedRecipes:['Fictional saved chilli'],weekMeals:['Fictional Friday meal']},fitJourney:{entries:{one:{status:'done'},two:{status:'skipped'}},sessionReviews:{one:{recordedOn:'2026-09-10'}}}}));
   const token=randomBytes(32).toString('hex');db.sqlite.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at) VALUES(?,?,?)').run(id,hash(token),'2027-01-01T00:00:00Z');
   res.setHeader('Set-Cookie',`sst_session=${token}; Path=/; HttpOnly; SameSite=Strict`);res.setHeader('Cache-Control','no-store');res.statusCode=303;res.setHeader('Location','/member/programme');res.end();return;
  }

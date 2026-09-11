@@ -1,13 +1,14 @@
 import {ProgrammeStore} from './store.mjs';
 import {execute,publicState,ProgrammeError,currentState} from './service.mjs';
 import {previewChange} from './engine.mjs';
+import {existingTools} from './existing-tools.mjs';
 export const PRIVATE_HEADERS={'Cache-Control':'no-store, private, max-age=0','Pragma':'no-cache','Vary':'Cookie','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'same-origin'};
 export const json=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{...PRIVATE_HEADERS,'Content-Type':'application/json; charset=utf-8'}});
 // authenticate is the unchanged authenticateMember from the pinned core source.
 // The feature is dark by default. FixtureMode is never derived from a request.
 export async function programmeRoutes(request,env,{authenticate,html,fixtureMode=false}={}){
  const url=new URL(request.url),path=url.pathname;
- if(!['/v1/programme','/v1/programme/preview','/member/programme'].includes(path))return null;
+ if(!['/v1/programme','/v1/programme/preview','/v1/programme/existing-tools','/member/programme'].includes(path))return null;
  if(env.PROGRAMME_V1_ENABLED!=='true')return json({error:'Programme is unavailable.'},404);
  const auth=await authenticate(request,env);
  if(auth.response){
@@ -21,6 +22,10 @@ export async function programmeRoutes(request,env,{authenticate,html,fixtureMode
   return new Response(html,{headers:{...PRIVATE_HEADERS,'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"}});
  }
  try{
+  if(path==='/v1/programme/existing-tools'){
+   if(request.method!=='GET')return json({error:'Method not allowed'},405);
+   try{return json(await existingTools(env.DB,auth.userId))}catch{return json({error:'Existing tool records are temporarily unavailable. Your saved records are unchanged.'},503)}
+  }
   const stored=await store.get(auth.userId);if(!stored)return json({error:'Programme access has not been provisioned.'},403);const state=currentState(stored,{fixtureMode});
   if(request.method==='GET'&&path==='/v1/programme')return json(publicState(state,{fixtureMode}));
   if(request.method!=='POST')return json({error:'Method not allowed'},405);
