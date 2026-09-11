@@ -35,7 +35,7 @@ jobs:
       - name: Build current and proposed Worker without uploading
         working-directory: worker
         run: python3 ../control/release/newsroom-response-20260911/build.py
-      - name: Reconcile active code and settings without changing production
+      - name: Reconcile active code and prepare a version while retaining all assets and bindings
         working-directory: worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
