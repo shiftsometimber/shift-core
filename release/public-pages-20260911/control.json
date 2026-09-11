@@ -1,6 +1,6 @@
 {
-  "expected_live_fingerprint": "5d7007a2eb1b7b8adf84609ceb6e0134b316240271c6511054d0aa1a7af56887",
   "mode": "preview",
-  "payload_sha256": "d2c6faa6e980b6e18fcf0ce7a3231f35236d03728d590cf6de25b58d945f1c5e",
-  "source_fingerprint": "93028d83330e73dca515c6e50bb29fa630ffaf238d1d89b3df1adc1a9622e14c"
+  "source_fingerprint": "bea98002e376482eb5111d6d1d9ad5e1708c3e893c777749f740b6ea172b9a59",
+  "expected_live_fingerprint": "5d7007a2eb1b7b8adf84609ceb6e0134b316240271c6511054d0aa1a7af56887",
+  "payload_sha256": "558ec246ecc30622dc1bf2be753b2cceab478b8b382e22e429a017955d75b311"
 }
