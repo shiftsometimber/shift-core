@@ -31,8 +31,15 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
     expected='9c3cd9d1-deb2-4fc8-8973-0616915e84a5'
     assert latest['versions']==[{'percentage':100,'version_id':expected}], 'Active Worker version changed'
     versions=api('/workers/scripts/shift-core/versions')
-    assert versions['items'][0]['id']==expected, 'A newer Worker upload exists; refuse accidental promotion'
     before=api('/workers/scripts/shift-core/versions/'+expected)
+    newest_id=versions['items'][0]['id']
+    newest=api('/workers/scripts/shift-core/versions/'+newest_id)
+    def runtime_identity(version):
+        resources=version['resources']
+        return {'etag':resources['script'].get('etag'),'runtime':resources.get('script_runtime'),'bindings':resources.get('bindings')}
+    equivalent=runtime_identity(before)==runtime_identity(newest)
+    print(json.dumps({'active_version':expected,'latest_upload':newest_id,'identical_code_runtime_bindings':equivalent},sort_keys=True))
+    assert equivalent, 'Latest upload differs from the active Worker; refuse accidental promotion'
     etag=before['resources']['script']['etag']
     assert etag, 'Cannot establish current script identity'
     # The key exists only in process memory and the encrypted Cloudflare binding.
