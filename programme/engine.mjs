@@ -1,5 +1,5 @@
-import {RECIPES,suitable} from './content.mjs';
-export const RULE_VERSION='programme-rules-1.0.1';
+import {RECIPES,suitable,suitabilityReasons} from './content.mjs';
+export const RULE_VERSION='programme-rules-1.0.2';
 export const clone=x=>structuredClone(x);
 export const dateAdd=(day,n)=>{const d=new Date(day+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
 export const weekStart=day=>{const d=new Date(day+'T12:00:00Z');return dateAdd(day,-((d.getUTCDay()+6)%7))};
@@ -33,7 +33,18 @@ export function shopping(state,start,end){
  for(const [key,x] of Object.entries(state.acquired[periodKey]||{})){if(needs[key]||!x.quantity)continue;const i=Object.values(RECIPES).flatMap(r=>r.ingredients).find(i=>i.id+'|'+i.unit===key);if(i)needs[key]={...i,key,quantity:0,noLongerNeeded:true}}
  return {start,end,items:Object.values(needs).sort((a,b)=>a.name.localeCompare(b.name)).map(i=>{const x=state.acquired[periodKey]?.[i.key]||{status:'unknown',quantity:0};return {...i,status:x.status,acquired:x.quantity,remaining:Math.max(0,i.quantity-x.quantity)}}),manual:state.manualItems.filter(i=>i.period===periodKey)};
 }
+// Current saved-plan conditions are uncapped and never subject to proposal/decline gates.
+// Keep every saved occurrence intact. A condition is not consent to substitute a meal.
+export function planConditions(state,{fixtureMode=false,now=state.clock}={}){
+ return state.slots.filter(s=>s.date>=now&&['meal','leftovers'].includes(s.kind)).flatMap(slot=>{
+  const source=slot.kind==='leftovers'?state.slots.find(s=>s.id===slot.sourceId&&s.kind==='meal'):slot;
+  const recipe=RECIPES[source?.recipeId],reasons=suitabilityReasons(recipe,state.preferences,{fixtureMode});
+  if(recipe&&source.recipeVersion!==recipe.version)reasons.push({code:'recipe-version',text:'The saved recipe version needs checking against the current content record.'});
+  return reasons.length?[{id:`condition:${slot.id}`,slotId:slot.id,slotKey:slot.slotKey,date:slot.date,recipeId:source?.recipeId||null,recipeName:recipe?.name||'Unavailable recipe',sourceId:source?.id||null,reasons}]:[];
+ }).sort((a,b)=>a.date.localeCompare(b.date)||a.slotId.localeCompare(b.slotId));
+}
 export function evaluate(state,{fixtureMode=false,now=state.clock}={}){
+ const conditions=planConditions(state,{fixtureMode,now}),blockedKeys=new Set(conditions.map(c=>c.slotKey));
  const trace=[],suppressed=[],candidates=[],periods=[...new Set(state.reports.map(r=>r.period).filter(p=>p<=now))].sort().slice(-2);
  const current=periods.at(-1),latest=state.reports.filter(r=>r.period===current),future=state.slots.filter(s=>s.date>now);
  const keys=[...new Set([...future.map(s=>s.slotKey),...(state.requests||[]).map(r=>r.slotKey)])];
@@ -49,13 +60,12 @@ export function evaluate(state,{fixtureMode=false,now=state.clock}={}){
   const requested=pendingRequests.filter(r=>!freeze||r.date>freeze.evidenceAt).reverse().sort((a,b)=>b.date.localeCompare(a.date))[0];
   if(pendingRequests.length&&!requested&&freeze)suppressed.push({slotKey:key,rule:'R8',reason:'No new member request since the decline.'});
   const slot=future.find(s=>s.slotKey===key);if(!slot)continue;
-  const mismatch=slot.kind==='meal'&&state.preferences.allergies!=='unknown'&&state.preferences.diet!=='unknown'&&!suitable(RECIPES[slot.recipeId],state.preferences,{fixtureMode});
-  if(!recurring&&!requested&&!mismatch){if(observed.filter(r=>r?.status==='missed').length===1)suppressed.push({slotKey:key,rule:'R3',reason:'One explicit miss is not a pattern.'});continue;}
+  if(blockedKeys.has(key)&&!requested&&conditions.some(c=>c.slotKey===key&&c.reasons.some(r=>!['allergies-unknown','diet-unknown','preferences-unknown'].includes(r.code)))){suppressed.push({slotKey:key,rule:'R9',reason:'Saved-plan condition shown separately before proposal ranking; no automatic change.'});continue;}
+  if(!recurring&&!requested){if(observed.filter(r=>r?.status==='missed').length===1)suppressed.push({slotKey:key,rule:'R3',reason:'One explicit miss is not a pattern.'});continue;}
   const evidenceAt=requested?.date||observed.filter(Boolean).map(r=>r.date).sort().at(-1)||now;
   if(freeze&&(state.cycle<=freeze.throughCycle || evidenceAt<=freeze.evidenceAt)){suppressed.push({slotKey:key,rule:'R8',reason:'Decline freeze or no new evidence since decline.'});continue;}
-  let text,priority=requested?0:mismatch?1:2;
+  let text,priority=requested?0:2;
   if(requested)text=`You asked to look again at ${dayLabel(key)}${requested.reason?`: “${requested.reason}”`:'.'} Please confirm the practical details before choosing a change. Your saved plan stays in place.`;
-  else if(mismatch)text=`The saved ${dayLabel(key)} meal needs checking against your stated preferences. Keep your record while you review the options.`;
   else {
    const matchingReason=observed[0].reason&&observed[0].reason===observed[1].reason;
    text=`Two planned ${slot.kind==='meal'?'cooks':'activities'} in the ${dayLabel(key)} slot did not happen.`;
@@ -69,9 +79,9 @@ export function evaluate(state,{fixtureMode=false,now=state.clock}={}){
  }
  candidates.sort((a,b)=>a.priority-b.priority||b.evidenceAt.localeCompare(a.evidenceAt)||a.slotKey.localeCompare(b.slotKey));
  const proposals=candidates.slice(0,3);for(const p of candidates.slice(3))suppressed.push({slotKey:p.slotKey,rule:'R10',reason:'Beyond the cap of three.'});
- trace.push({rule:'R2',result:`${candidates.filter(p=>p.priority===2).length} recurring difficulties eligible.`},{rule:'R3',result:`${suppressed.filter(p=>p.rule==='R3').length} isolated misses kept out of member copy.`},{rule:'R4',result:'No new recurring commitments are generated; swaps require acceptance.'},{rule:'R7',result:'Explicit reports only; no causes inferred.'},{rule:'R8',result:`${suppressed.filter(p=>p.rule==='R8').length} declined items suppressed.`},{rule:'R9',result:'Unknown restrictions block alternatives; quantities checked before acceptance.'},{rule:'R10',result:`${candidates.length} eligible; ${proposals.length} shown; member request, constraint, recurrence, date, slot.`});
- const summary=good?`You completed the planned meals and activities and said they felt manageable. Same again?`:[doneMeals?`${doneMeals} planned ${doneMeals===1?'meal':'meals'} completed.`:'',doneMoves?`${doneMoves} chosen ${doneMoves===1?'activity':'activities'} completed.`:''].filter(Boolean).join(' ')||'Keep your saved plan, or tell us what you would like to change.';
- return {ruleVersion:RULE_VERSION,cycle:state.cycle,inputRevision:state.revision,created:now,kind:proposals.length?'proposal':good?'same-again':'keep',summary,proposals,suppressed,trace,inputSnapshot:{reports:clone(state.reports),preferences:clone(state.preferences),requests:clone(state.requests),freezes:clone(state.freezes)}};
+ trace.push({rule:'R2',result:`${candidates.filter(p=>p.priority===2).length} recurring difficulties eligible.`},{rule:'R3',result:`${suppressed.filter(p=>p.rule==='R3').length} isolated misses kept out of member copy.`},{rule:'R4',result:'No new recurring commitments are generated; swaps require acceptance.'},{rule:'R7',result:'Explicit reports only; no causes inferred.'},{rule:'R8',result:`${suppressed.filter(p=>p.rule==='R8').length} declined items suppressed.`},{rule:'R9',result:`${conditions.length} saved occurrences need checking outside the cap and decline gates; no automatic change.`},{rule:'R10',result:`${candidates.length} discretionary candidates; ${proposals.length} shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped.`});
+ const summary=conditions.length?'Check the flagged saved meals before using or repeating them. Your record has been kept.':good?`You completed the planned meals and activities and said they felt manageable. Same again?`:[doneMeals?`${doneMeals} planned ${doneMeals===1?'meal':'meals'} completed.`:'',doneMoves?`${doneMoves} chosen ${doneMoves===1?'activity':'activities'} completed.`:''].filter(Boolean).join(' ')||'Keep your saved plan, or tell us what you would like to change.';
+ return {ruleVersion:RULE_VERSION,cycle:state.cycle,inputRevision:state.revision,created:now,kind:conditions.length?'requires-review':proposals.length?'proposal':good?'same-again':'keep',summary,conditions,proposals,suppressed,trace,inputSnapshot:{slots:clone(state.slots),reports:clone(state.reports),preferences:clone(state.preferences),requests:clone(state.requests),freezes:clone(state.freezes)}};
 }
 export function previewChange(state,review,proposalId,recipeId,{fixtureMode=false}={}){
  const p=review.proposals.find(p=>p.id===proposalId);if(!p||!p.options.some(o=>o.recipeId===recipeId))throw new Error('That option is no longer available. Refresh the review.');

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {emptyState} from '../service.mjs';
-import {evaluate,dateAdd} from '../engine.mjs';
+import {evaluate,dateAdd,RULE_VERSION} from '../engine.mjs';
 const input=readFileSync(new URL('independent-histories.json',import.meta.url));
 const cases=JSON.parse(input),expected=JSON.parse(readFileSync(new URL('independent-expected.json',import.meta.url)));
 assert.equal(createHash('sha256').update(input).digest('hex'),expected.input_sha256);
@@ -15,5 +15,5 @@ for(const c of cases)test(`${c.id}: independently written history remains factua
  s.requests=c.memberRequests.map(r=>({...r,date:s.clock}));
  const r=evaluate(s,{fixtureMode:true});assert.deepEqual(r.proposals.map(p=>p.slotKey),expected.expected[c.id]);assert.notEqual(r.kind,'same-again');assert(r.proposals.every(p=>p.priority===0&&p.options.length===0));assert.doesNotMatch(r.summary,/log|miss|fail|zero/i);
  results.push({id:c.id,result:'PASS',inputHash:expected.input_sha256,output:r});
- writeFileSync(new URL('../evidence/independent-results.json',import.meta.url),JSON.stringify({method:expected.method,results},null,2));
+ writeFileSync(new URL(`../evidence/independent-results-${RULE_VERSION}.json`,import.meta.url),JSON.stringify({method:expected.method,results},null,2));
 });

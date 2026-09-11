@@ -9,18 +9,22 @@ export const RECIPES = {
  wraps:meal('wraps','Chicken and salad wraps',10,['wheat','egg'],false,[['wraps','Wheat tortilla wraps',8,'whole'],['chicken','Ready-to-eat cooked chicken',300,'g'],['salad','Ready-to-eat washed salad',120,'g'],['mayo','Mayonnaise',3,'tbsp'],['cucumber','Cucumber',1,'whole']],['Use ready-to-eat cooked chicken and washed salad; check their storage and use-by instructions.','Slice cucumber. Divide all ingredients between the wraps and fold.'],true),
  beanSalad:meal('beanSalad','Bean and cucumber bowl',10,[],true,[['beans','Drained kidney beans',480,'g'],['sweetcorn','Drained sweetcorn',320,'g'],['cucumber','Cucumber',1,'whole'],['oil','Olive oil',2,'tbsp']],['Use ready-to-eat tinned beans and sweetcorn; drain them.','Wash and chop the cucumber. Combine with beans, sweetcorn and oil.'],true)
 };
-export function suitable(recipe,preferences,{fixtureMode=false}={}) {
- if(!recipe || !['test-fixture','approved'].includes(recipe.reviewStatus)) return false;
- if(recipe.reviewStatus!=='approved' && !fixtureMode) return false;
+export function suitabilityReasons(recipe,preferences,{fixtureMode=false}={}) {
+ const reasons=[],add=(code,text)=>reasons.push({code,text});
+ if(!recipe)return [{code:'missing-content',text:'The saved recipe is unavailable and needs a content review.'}];
+ if(!['test-fixture','approved'].includes(recipe.reviewStatus))add('content-unavailable','This recipe is withdrawn or has no usable review status.');
+ if(recipe.reviewStatus!=='approved' && !fixtureMode)add('content-unreviewed','This recipe has no recorded production content approval.');
  if(recipe.reviewStatus==='approved'){
   const date=recipe.reviewDate,validDate=typeof date==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(date)&&Number.isFinite(Date.parse(date+'T12:00:00Z'))&&new Date(date+'T12:00:00Z').toISOString().slice(0,10)===date;
-  if(!validDate||typeof recipe.reviewerId!=='string'||!recipe.reviewerId.trim()||recipe.reviewedVersion!==recipe.version)return false;
+  if(!validDate||typeof recipe.reviewerId!=='string'||!recipe.reviewerId.trim()||recipe.reviewedVersion!==recipe.version)add('content-provenance','The recipe review record needs a reviewer, a valid date and a matching version.');
  }
- if(!preferences || preferences.allergies==='unknown' || preferences.diet==='unknown') return false;
- if(preferences.allergies!=='none' && !Array.isArray(preferences.allergies)) return false;
- if(Array.isArray(preferences.allergies) && preferences.allergies.some(a=>recipe.allergens.includes(a))) return false;
- if(preferences.diet==='vegetarian' && !recipe.vegetarian) return false;
- if(!['any','vegetarian'].includes(preferences.diet)) return false;
- if(preferences.equipment && recipe.equipment.some(e=>!preferences.equipment.includes(e))) return false;
- return recipe.ingredients.length>0 && recipe.ingredients.every(i=>Number.isFinite(i.quantity)&&i.quantity>0&&i.unit);
+ if(!preferences)return [...reasons,{code:'preferences-unknown',text:'Food preferences have not been confirmed.'}];
+ if(preferences.allergies!=='none' && !Array.isArray(preferences.allergies))add('allergies-unknown','Allergy information has not been confirmed; compatibility is unknown.');
+ if(Array.isArray(preferences.allergies))for(const a of preferences.allergies.filter(a=>recipe.allergens.includes(a)))add('excluded-allergen',`The recipe lists ${a}, which you have excluded.`);
+ if(preferences.diet==='vegetarian' && !recipe.vegetarian)add('diet-conflict','This recipe does not match your vegetarian preference.');
+ if(!['any','vegetarian'].includes(preferences.diet))add('diet-unknown','Food preferences have not been confirmed.');
+ if(!Array.isArray(preferences.equipment)||recipe.equipment.some(e=>!preferences.equipment.includes(e)))add('equipment-unavailable','The required cooking equipment has not been confirmed available.');
+ if(!recipe.ingredients.length||!recipe.ingredients.every(i=>Number.isFinite(i.quantity)&&i.quantity>0&&i.unit))add('incomplete-quantities','The recipe needs complete ingredient quantities before use.');
+ return reasons;
 }
+export const suitable=(recipe,preferences,options)=>suitabilityReasons(recipe,preferences,options).length===0;

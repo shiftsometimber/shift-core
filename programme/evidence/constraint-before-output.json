@@ -1,0 +1,271 @@
+{
+  "ruleVersion": "programme-rules-1.0.1",
+  "cycle": 2,
+  "inputRevision": 0,
+  "created": "2026-09-13",
+  "kind": "proposal",
+  "summary": "You completed the planned meals and activities and said they felt manageable. Same again?",
+  "proposals": [
+    {
+      "id": "2:mon-dinner",
+      "slotKey": "mon-dinner",
+      "kind": "meal",
+      "priority": 0,
+      "evidenceAt": "2026-09-13",
+      "text": "You asked to look again at Monday: “Revisit this item” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+      "options": [],
+      "restrictionUnknown": false,
+      "targetIds": [
+        "2026-09-14:mon-dinner",
+        "2026-09-21:mon-dinner"
+      ]
+    },
+    {
+      "id": "2:sat-walk",
+      "slotKey": "sat-walk",
+      "kind": "move",
+      "priority": 0,
+      "evidenceAt": "2026-09-13",
+      "text": "You asked to look again at Saturday: “Revisit this item” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+      "options": [],
+      "restrictionUnknown": false,
+      "targetIds": [
+        "2026-09-19:sat-walk",
+        "2026-09-26:sat-walk"
+      ]
+    },
+    {
+      "id": "2:sun-dinner",
+      "slotKey": "sun-dinner",
+      "kind": "meal",
+      "priority": 0,
+      "evidenceAt": "2026-09-13",
+      "text": "You asked to look again at Sunday: “Revisit this item” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+      "options": [],
+      "restrictionUnknown": false,
+      "targetIds": [
+        "2026-09-20:sun-dinner",
+        "2026-09-27:sun-dinner"
+      ]
+    }
+  ],
+  "suppressed": [
+    {
+      "slotKey": "thu-dinner",
+      "rule": "R10",
+      "reason": "Beyond the cap of three."
+    }
+  ],
+  "trace": [
+    {
+      "rule": "R1",
+      "result": "Successful items are preserved in every draft."
+    },
+    {
+      "rule": "R5",
+      "result": "No optional measure frequency used or mentioned."
+    },
+    {
+      "rule": "R6",
+      "result": "Complete, manageable week; no escalation."
+    },
+    {
+      "rule": "R2",
+      "result": "0 recurring difficulties eligible."
+    },
+    {
+      "rule": "R3",
+      "result": "0 isolated misses kept out of member copy."
+    },
+    {
+      "rule": "R4",
+      "result": "No new recurring commitments are generated; swaps require acceptance."
+    },
+    {
+      "rule": "R7",
+      "result": "Explicit reports only; no causes inferred."
+    },
+    {
+      "rule": "R8",
+      "result": "0 declined items suppressed."
+    },
+    {
+      "rule": "R9",
+      "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+    },
+    {
+      "rule": "R10",
+      "result": "4 eligible; 3 shown; member request, constraint, recurrence, date, slot."
+    }
+  ],
+  "inputSnapshot": {
+    "reports": [
+      {
+        "slotKey": "mon-dinner",
+        "kind": "meal",
+        "date": "2026-08-31",
+        "period": "2026-08-31",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "date": "2026-09-03",
+        "period": "2026-08-31",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "sun-dinner",
+        "kind": "meal",
+        "date": "2026-09-06",
+        "period": "2026-08-31",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "tue-walk",
+        "kind": "move",
+        "date": "2026-09-01",
+        "period": "2026-08-31",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "thu-walk",
+        "kind": "move",
+        "date": "2026-09-03",
+        "period": "2026-08-31",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "sat-walk",
+        "kind": "move",
+        "date": "2026-09-05",
+        "period": "2026-08-31",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "mon-dinner",
+        "kind": "meal",
+        "date": "2026-09-07",
+        "period": "2026-09-07",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "date": "2026-09-10",
+        "period": "2026-09-07",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "sun-dinner",
+        "kind": "meal",
+        "date": "2026-09-13",
+        "period": "2026-09-07",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "tue-walk",
+        "kind": "move",
+        "date": "2026-09-08",
+        "period": "2026-09-07",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "thu-walk",
+        "kind": "move",
+        "date": "2026-09-10",
+        "period": "2026-09-07",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      },
+      {
+        "slotKey": "sat-walk",
+        "kind": "move",
+        "date": "2026-09-12",
+        "period": "2026-09-07",
+        "shift": "day",
+        "status": "done",
+        "fit": "manageable",
+        "reason": "",
+        "note": ""
+      }
+    ],
+    "preferences": {
+      "allergies": [
+        "fish"
+      ],
+      "diet": "any",
+      "equipment": [
+        "hob"
+      ],
+      "activityLimitations": "none",
+      "time": "20 minutes after work",
+      "household": "Two adults and two children",
+      "spending": "Keep waste down",
+      "workPattern": "fixed",
+      "firstShift": "early",
+      "shiftAnchor": "2026-08-31"
+    },
+    "requests": [
+      {
+        "slotKey": "mon-dinner",
+        "date": "2026-09-13",
+        "reason": "Revisit this item"
+      },
+      {
+        "slotKey": "sun-dinner",
+        "date": "2026-09-13",
+        "reason": "Revisit this item"
+      },
+      {
+        "slotKey": "sat-walk",
+        "date": "2026-09-13",
+        "reason": "Revisit this item"
+      }
+    ],
+    "freezes": {}
+  }
+}

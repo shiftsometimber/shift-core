@@ -23,3 +23,6 @@
 /* The inherited stylesheet sets a black text-fill independently of color. */
 #programme.sp :is(input,select,textarea,option){-webkit-text-fill-color:#E7E3DA!important;caret-color:#E7E3DA!important}
 #programme.sp option{background:#050505!important;color:#E7E3DA!important}
+
+#programme .sp-condition { border: 2px solid #9a7434; }
+#programme .sp-condition li { margin-block: .75rem; }

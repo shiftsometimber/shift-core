@@ -1,0 +1,1168 @@
+{
+  "method": "Targeted one-report counterfactual of blind case 03; not a blind result.",
+  "originalInputSHA256": "bb9f3fe5dcb20f1ea951fdee8cbc7b4fc8db8b9ff858d91740abbf96aa696f65",
+  "ruleVersion": "programme-rules-1.0.2",
+  "review": {
+    "ruleVersion": "programme-rules-1.0.2",
+    "cycle": 2,
+    "inputRevision": 0,
+    "created": "2026-09-13",
+    "kind": "proposal",
+    "summary": "2 planned meals completed. 1 chosen activity completed.",
+    "conditions": [],
+    "proposals": [
+      {
+        "id": "2:thu-dinner",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "priority": 2,
+        "evidenceAt": "2026-09-10",
+        "text": "Two planned cooks in the Thursday slot did not happen. Those weeks had different shift patterns. That does not tell us why.",
+        "options": [
+          {
+            "recipeId": "tuna",
+            "label": "15-minute meal"
+          },
+          {
+            "recipeId": "beanSalad",
+            "label": "No cooking"
+          }
+        ],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-17:thu-dinner",
+          "2026-09-24:thu-dinner"
+        ]
+      }
+    ],
+    "suppressed": [],
+    "trace": [
+      {
+        "rule": "R1",
+        "result": "Successful items are preserved in every draft."
+      },
+      {
+        "rule": "R5",
+        "result": "No optional measure frequency used or mentioned."
+      },
+      {
+        "rule": "R6",
+        "result": "Not enough evidence for a wholly manageable week."
+      },
+      {
+        "rule": "R2",
+        "result": "1 recurring difficulties eligible."
+      },
+      {
+        "rule": "R3",
+        "result": "0 isolated misses kept out of member copy."
+      },
+      {
+        "rule": "R4",
+        "result": "No new recurring commitments are generated; swaps require acceptance."
+      },
+      {
+        "rule": "R7",
+        "result": "Explicit reports only; no causes inferred."
+      },
+      {
+        "rule": "R8",
+        "result": "0 declined items suppressed."
+      },
+      {
+        "rule": "R9",
+        "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+      },
+      {
+        "rule": "R10",
+        "result": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+      }
+    ],
+    "inputSnapshot": {
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "date": "2026-08-31",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-walk",
+          "date": "2026-09-02",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-dinner",
+          "date": "2026-09-03",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-lunch",
+          "date": "2026-09-04",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-03:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-dinner",
+          "date": "2026-09-05",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-walk",
+          "date": "2026-09-06",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "date": "2026-09-07",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-walk",
+          "date": "2026-09-09",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-dinner",
+          "date": "2026-09-10",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-lunch",
+          "date": "2026-09-11",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-10:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-dinner",
+          "date": "2026-09-12",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-walk",
+          "date": "2026-09-13",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "date": "2026-09-14",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-walk",
+          "date": "2026-09-16",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-dinner",
+          "date": "2026-09-17",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-lunch",
+          "date": "2026-09-18",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-17:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-dinner",
+          "date": "2026-09-19",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-walk",
+          "date": "2026-09-20",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "date": "2026-09-21",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-walk",
+          "date": "2026-09-23",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-dinner",
+          "date": "2026-09-24",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-lunch",
+          "date": "2026-09-25",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-24:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-dinner",
+          "date": "2026-09-26",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-walk",
+          "date": "2026-09-27",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-08-31",
+          "shift": "Usual office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We both got home at about six.",
+          "note": "The pasta was quick enough."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Office day",
+          "status": "unknown",
+          "fit": "unknown",
+          "reason": "I cannot remember whether I did the loop or came straight home.",
+          "note": "I did not write it down at the time."
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-03",
+          "shift": "Office day with a late train",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "The planned cook did not happen",
+          "note": "Targeted counterfactual, not part of the authored history."
+        },
+        {
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "period": "2026-08-31",
+          "date": "2026-09-04",
+          "shift": "Office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "Lunch was packed already.",
+          "note": "We each took one of Thursday's portions."
+        },
+        {
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Sunday at home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We went after breakfast.",
+          "note": "We were happy with the route."
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-07",
+          "shift": "Usual office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "The ingredients were ready to use.",
+          "note": "We made wraps when we got in."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I had no appointment after work.",
+          "note": "I took the loop before heading home."
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-10",
+          "shift": "Office day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I know we did not cook it, but I cannot remember what changed first.",
+          "note": "We ate separately that evening; I do not want to guess the reason."
+        },
+        {
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday with errands",
+          "status": "done",
+          "fit": "unknown",
+          "reason": "We definitely cooked the ragù.",
+          "note": "I cannot really say whether it fitted the day well."
+        }
+      ],
+      "preferences": {
+        "allergies": "none",
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "Usually 30 to 45 minutes for an evening meal, but the train home is unpredictable.",
+        "household": "Two adults; we like taking lunch from a previous dinner when it happens.",
+        "spending": "We have around £40 for these meals, though I have not counted everything in the cupboard."
+      },
+      "requests": [],
+      "freezes": {}
+    },
+    "id": "cfdc4c4d-b6b3-443d-893f-dd59a153dc1e",
+    "version": 1,
+    "previousVersions": [],
+    "baseRevision": 1
+  },
+  "preview": {
+    "proposalId": "2:thu-dinner",
+    "recipe": {
+      "id": "tuna",
+      "version": 1,
+      "name": "Tuna and sweetcorn pasta",
+      "minutes": 15,
+      "serves": 4,
+      "allergens": [
+        "fish",
+        "wheat"
+      ],
+      "vegetarian": false,
+      "noCook": false,
+      "equipment": [
+        "hob"
+      ],
+      "reviewStatus": "test-fixture",
+      "reviewDate": null,
+      "reviewerId": null,
+      "reviewedVersion": null,
+      "ingredients": [
+        {
+          "id": "tuna",
+          "name": "Drained tuna",
+          "quantity": 220,
+          "unit": "g"
+        },
+        {
+          "id": "sweetcorn",
+          "name": "Drained sweetcorn",
+          "quantity": 160,
+          "unit": "g"
+        },
+        {
+          "id": "tomatoes",
+          "name": "Chopped tomatoes",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "id": "pasta",
+          "name": "Dry wheat pasta",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "id": "oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp"
+        }
+      ],
+      "steps": [
+        "Cook the pasta according to its packet.",
+        "Heat tomatoes, tuna, sweetcorn and oil in a separate pan until hot throughout.",
+        "Drain the pasta and combine."
+      ],
+      "substitutions": "No substitutions are pre-approved. Check every product label."
+    },
+    "target": [
+      {
+        "id": "2026-09-17:thu-dinner",
+        "date": "2026-09-17",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "recipeId": "chilli",
+        "recipeVersion": 1,
+        "servings": 4,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-24:thu-dinner",
+        "date": "2026-09-24",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "recipeId": "chilli",
+        "recipeVersion": 1,
+        "servings": 4,
+        "serveNow": 2,
+        "completed": false
+      }
+    ],
+    "dependentLeftovers": [
+      {
+        "id": "2026-09-18:fri-lunch",
+        "date": "2026-09-18",
+        "slotKey": "fri-lunch",
+        "kind": "leftovers",
+        "servings": 2,
+        "sourceId": "2026-09-17:thu-dinner",
+        "completed": false
+      },
+      {
+        "id": "2026-09-25:fri-lunch",
+        "date": "2026-09-25",
+        "slotKey": "fri-lunch",
+        "kind": "leftovers",
+        "servings": 2,
+        "sourceId": "2026-09-24:thu-dinner",
+        "completed": false
+      }
+    ],
+    "slots": [
+      {
+        "id": "2026-08-31:mon-dinner",
+        "date": "2026-08-31",
+        "slotKey": "mon-dinner",
+        "kind": "meal",
+        "recipeId": "tuna",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-02:wed-walk",
+        "date": "2026-09-02",
+        "slotKey": "wed-walk",
+        "kind": "move",
+        "label": "Station neighbourhood loop",
+        "minutes": 20,
+        "completed": false
+      },
+      {
+        "id": "2026-09-03:thu-dinner",
+        "date": "2026-09-03",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "recipeId": "chilli",
+        "recipeVersion": 1,
+        "servings": 4,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-04:fri-lunch",
+        "date": "2026-09-04",
+        "slotKey": "fri-lunch",
+        "kind": "leftovers",
+        "servings": 2,
+        "sourceId": "2026-09-03:thu-dinner",
+        "completed": false
+      },
+      {
+        "id": "2026-09-05:sat-dinner",
+        "date": "2026-09-05",
+        "slotKey": "sat-dinner",
+        "kind": "meal",
+        "recipeId": "wraps",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-06:sun-walk",
+        "date": "2026-09-06",
+        "slotKey": "sun-walk",
+        "kind": "move",
+        "label": "Walk around the common",
+        "minutes": 25,
+        "completed": false
+      },
+      {
+        "id": "2026-09-07:mon-dinner",
+        "date": "2026-09-07",
+        "slotKey": "mon-dinner",
+        "kind": "meal",
+        "recipeId": "wraps",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-09:wed-walk",
+        "date": "2026-09-09",
+        "slotKey": "wed-walk",
+        "kind": "move",
+        "label": "Station neighbourhood loop",
+        "minutes": 20,
+        "completed": false
+      },
+      {
+        "id": "2026-09-10:thu-dinner",
+        "date": "2026-09-10",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "recipeId": "chilli",
+        "recipeVersion": 1,
+        "servings": 4,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-11:fri-lunch",
+        "date": "2026-09-11",
+        "slotKey": "fri-lunch",
+        "kind": "leftovers",
+        "servings": 2,
+        "sourceId": "2026-09-10:thu-dinner",
+        "completed": false
+      },
+      {
+        "id": "2026-09-12:sat-dinner",
+        "date": "2026-09-12",
+        "slotKey": "sat-dinner",
+        "kind": "meal",
+        "recipeId": "ragu",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-13:sun-walk",
+        "date": "2026-09-13",
+        "slotKey": "sun-walk",
+        "kind": "move",
+        "label": "Walk around the common",
+        "minutes": 25,
+        "completed": false
+      },
+      {
+        "id": "2026-09-14:mon-dinner",
+        "date": "2026-09-14",
+        "slotKey": "mon-dinner",
+        "kind": "meal",
+        "recipeId": "tuna",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-16:wed-walk",
+        "date": "2026-09-16",
+        "slotKey": "wed-walk",
+        "kind": "move",
+        "label": "Station neighbourhood loop",
+        "minutes": 20,
+        "completed": false
+      },
+      {
+        "id": "2026-09-17:thu-dinner",
+        "date": "2026-09-17",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "recipeId": "tuna",
+        "recipeVersion": 1,
+        "servings": 4,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-18:fri-lunch",
+        "date": "2026-09-18",
+        "slotKey": "fri-lunch",
+        "kind": "leftovers",
+        "servings": 2,
+        "sourceId": "2026-09-17:thu-dinner",
+        "completed": false
+      },
+      {
+        "id": "2026-09-19:sat-dinner",
+        "date": "2026-09-19",
+        "slotKey": "sat-dinner",
+        "kind": "meal",
+        "recipeId": "wraps",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-20:sun-walk",
+        "date": "2026-09-20",
+        "slotKey": "sun-walk",
+        "kind": "move",
+        "label": "Walk around the common",
+        "minutes": 25,
+        "completed": false
+      },
+      {
+        "id": "2026-09-21:mon-dinner",
+        "date": "2026-09-21",
+        "slotKey": "mon-dinner",
+        "kind": "meal",
+        "recipeId": "tuna",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-23:wed-walk",
+        "date": "2026-09-23",
+        "slotKey": "wed-walk",
+        "kind": "move",
+        "label": "Station neighbourhood loop",
+        "minutes": 20,
+        "completed": false
+      },
+      {
+        "id": "2026-09-24:thu-dinner",
+        "date": "2026-09-24",
+        "slotKey": "thu-dinner",
+        "kind": "meal",
+        "recipeId": "tuna",
+        "recipeVersion": 1,
+        "servings": 4,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-25:fri-lunch",
+        "date": "2026-09-25",
+        "slotKey": "fri-lunch",
+        "kind": "leftovers",
+        "servings": 2,
+        "sourceId": "2026-09-24:thu-dinner",
+        "completed": false
+      },
+      {
+        "id": "2026-09-26:sat-dinner",
+        "date": "2026-09-26",
+        "slotKey": "sat-dinner",
+        "kind": "meal",
+        "recipeId": "chickpea",
+        "recipeVersion": 1,
+        "servings": 2,
+        "serveNow": 2,
+        "completed": false
+      },
+      {
+        "id": "2026-09-27:sun-walk",
+        "date": "2026-09-27",
+        "slotKey": "sun-walk",
+        "kind": "move",
+        "label": "Walk around the common",
+        "minutes": 25,
+        "completed": false
+      }
+    ],
+    "periods": [
+      {
+        "start": "2026-09-14",
+        "end": "2026-09-20",
+        "delta": [
+          {
+            "key": "beans|g",
+            "id": "beans",
+            "name": "Drained kidney beans",
+            "unit": "g",
+            "quantity": 240,
+            "before": 240,
+            "after": 0
+          },
+          {
+            "key": "cumin|tsp",
+            "id": "cumin",
+            "name": "Ground cumin",
+            "unit": "tsp",
+            "quantity": 2,
+            "before": 2,
+            "after": 0
+          },
+          {
+            "key": "mince|g",
+            "id": "mince",
+            "name": "Beef mince",
+            "unit": "g",
+            "quantity": 500,
+            "before": 500,
+            "after": 0
+          },
+          {
+            "key": "onion|whole",
+            "id": "onion",
+            "name": "Onion",
+            "unit": "whole",
+            "quantity": 1,
+            "before": 1,
+            "after": 0
+          },
+          {
+            "key": "pasta|g",
+            "id": "pasta",
+            "name": "Dry wheat pasta",
+            "unit": "g",
+            "quantity": 600,
+            "before": 200,
+            "after": 600
+          },
+          {
+            "key": "rice|g",
+            "id": "rice",
+            "name": "Dry rice",
+            "unit": "g",
+            "quantity": 300,
+            "before": 300,
+            "after": 0
+          },
+          {
+            "key": "sweetcorn|g",
+            "id": "sweetcorn",
+            "name": "Drained sweetcorn",
+            "unit": "g",
+            "quantity": 240,
+            "before": 80,
+            "after": 240
+          },
+          {
+            "key": "tuna|g",
+            "id": "tuna",
+            "name": "Drained tuna",
+            "unit": "g",
+            "quantity": 330,
+            "before": 110,
+            "after": 330
+          }
+        ]
+      },
+      {
+        "start": "2026-09-21",
+        "end": "2026-09-27",
+        "delta": [
+          {
+            "key": "beans|g",
+            "id": "beans",
+            "name": "Drained kidney beans",
+            "unit": "g",
+            "quantity": 240,
+            "before": 240,
+            "after": 0
+          },
+          {
+            "key": "cumin|tsp",
+            "id": "cumin",
+            "name": "Ground cumin",
+            "unit": "tsp",
+            "quantity": 1,
+            "before": 3,
+            "after": 1
+          },
+          {
+            "key": "mince|g",
+            "id": "mince",
+            "name": "Beef mince",
+            "unit": "g",
+            "quantity": 500,
+            "before": 500,
+            "after": 0
+          },
+          {
+            "key": "onion|whole",
+            "id": "onion",
+            "name": "Onion",
+            "unit": "whole",
+            "quantity": 0.5,
+            "before": 1.5,
+            "after": 0.5
+          },
+          {
+            "key": "pasta|g",
+            "id": "pasta",
+            "name": "Dry wheat pasta",
+            "unit": "g",
+            "quantity": 600,
+            "before": 200,
+            "after": 600
+          },
+          {
+            "key": "rice|g",
+            "id": "rice",
+            "name": "Dry rice",
+            "unit": "g",
+            "quantity": 150,
+            "before": 450,
+            "after": 150
+          },
+          {
+            "key": "sweetcorn|g",
+            "id": "sweetcorn",
+            "name": "Drained sweetcorn",
+            "unit": "g",
+            "quantity": 240,
+            "before": 80,
+            "after": 240
+          },
+          {
+            "key": "tuna|g",
+            "id": "tuna",
+            "name": "Drained tuna",
+            "unit": "g",
+            "quantity": 330,
+            "before": 110,
+            "after": 330
+          }
+        ]
+      }
+    ],
+    "baseRevision": 1
+  },
+  "afterLists": [
+    {
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "items": [
+        {
+          "key": "tomatoes|g",
+          "id": "tomatoes",
+          "name": "Chopped tomatoes",
+          "unit": "g",
+          "quantity": 600,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 600
+        },
+        {
+          "key": "cucumber|whole",
+          "id": "cucumber",
+          "name": "Cucumber",
+          "unit": "whole",
+          "quantity": 0.5,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 0.5
+        },
+        {
+          "id": "beans",
+          "name": "Drained kidney beans",
+          "quantity": 0,
+          "unit": "g",
+          "key": "beans|g",
+          "noLongerNeeded": true,
+          "status": "have",
+          "acquired": 240,
+          "remaining": 0
+        },
+        {
+          "key": "sweetcorn|g",
+          "id": "sweetcorn",
+          "name": "Drained sweetcorn",
+          "unit": "g",
+          "quantity": 240,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 240
+        },
+        {
+          "key": "tuna|g",
+          "id": "tuna",
+          "name": "Drained tuna",
+          "unit": "g",
+          "quantity": 330,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 330
+        },
+        {
+          "key": "pasta|g",
+          "id": "pasta",
+          "name": "Dry wheat pasta",
+          "unit": "g",
+          "quantity": 600,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 600
+        },
+        {
+          "key": "mayo|tbsp",
+          "id": "mayo",
+          "name": "Mayonnaise",
+          "unit": "tbsp",
+          "quantity": 1.5,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 1.5
+        },
+        {
+          "key": "oil|tbsp",
+          "id": "oil",
+          "name": "Olive oil",
+          "unit": "tbsp",
+          "quantity": 1.5,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 1.5
+        },
+        {
+          "key": "chicken|g",
+          "id": "chicken",
+          "name": "Ready-to-eat cooked chicken",
+          "unit": "g",
+          "quantity": 150,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 150
+        },
+        {
+          "key": "salad|g",
+          "id": "salad",
+          "name": "Ready-to-eat washed salad",
+          "unit": "g",
+          "quantity": 60,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 60
+        },
+        {
+          "key": "wraps|whole",
+          "id": "wraps",
+          "name": "Wheat tortilla wraps",
+          "unit": "whole",
+          "quantity": 4,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 4
+        }
+      ],
+      "manual": []
+    },
+    {
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "items": [
+        {
+          "key": "tomatoes|g",
+          "id": "tomatoes",
+          "name": "Chopped tomatoes",
+          "unit": "g",
+          "quantity": 800,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 800
+        },
+        {
+          "key": "chickpeas|g",
+          "id": "chickpeas",
+          "name": "Drained chickpeas",
+          "unit": "g",
+          "quantity": 240,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 240
+        },
+        {
+          "key": "sweetcorn|g",
+          "id": "sweetcorn",
+          "name": "Drained sweetcorn",
+          "unit": "g",
+          "quantity": 240,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 240
+        },
+        {
+          "key": "tuna|g",
+          "id": "tuna",
+          "name": "Drained tuna",
+          "unit": "g",
+          "quantity": 330,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 330
+        },
+        {
+          "key": "rice|g",
+          "id": "rice",
+          "name": "Dry rice",
+          "unit": "g",
+          "quantity": 150,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 150
+        },
+        {
+          "key": "pasta|g",
+          "id": "pasta",
+          "name": "Dry wheat pasta",
+          "unit": "g",
+          "quantity": 600,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 600
+        },
+        {
+          "key": "cumin|tsp",
+          "id": "cumin",
+          "name": "Ground cumin",
+          "unit": "tsp",
+          "quantity": 1,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 1
+        },
+        {
+          "key": "oil|tbsp",
+          "id": "oil",
+          "name": "Olive oil",
+          "unit": "tbsp",
+          "quantity": 2,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 2
+        },
+        {
+          "key": "onion|whole",
+          "id": "onion",
+          "name": "Onion",
+          "unit": "whole",
+          "quantity": 0.5,
+          "status": "unknown",
+          "acquired": 0,
+          "remaining": 0.5
+        }
+      ],
+      "manual": []
+    }
+  ],
+  "result": "PASS"
+}

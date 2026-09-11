@@ -1,0 +1,3028 @@
+{
+  "inputSHA256": "bb9f3fe5dcb20f1ea951fdee8cbc7b4fc8db8b9ff858d91740abbf96aa696f65",
+  "expectationsSHA256": "5b0e6f4bce4ddcc9372ce13a67fb7170b4a83548392c83341b570ecb920faefc",
+  "ruleVersion": "programme-rules-1.0.2",
+  "method": "Authored full inputs locked before evaluator execution. Reviewer read inputs and wrote this expectation file before the first run. Cases 07 and 08 withheld from the first evaluator run; not hidden from the reviewer. No case contains two explicit misses of one slot, so R2 requires separately labelled targeted coverage. No assertion of blind R2 coverage. Expected condition lists include cooking occurrences; any dependent leftovers must also be checked.",
+  "results": [
+    {
+      "id": "case-01",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "proposal",
+        "summary": "2 planned meals completed. 1 chosen activity completed.",
+        "conditions": [],
+        "proposals": [
+          {
+            "id": "2:mon-dinner",
+            "slotKey": "mon-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-12",
+            "text": "You asked to look again at Monday: “I'm closing again next Monday; could we revisit that dinner?” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-14:mon-dinner",
+              "2026-09-21:mon-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "tue-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "sun-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "2 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 750,
+              "status": "bought",
+              "acquired": 500,
+              "remaining": 250
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 150,
+              "status": "have",
+              "acquired": 450,
+              "remaining": 0
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 400,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 400
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 500,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 500
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 150,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 150
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 60,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 60
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 4,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 4
+            }
+          ],
+          "manual": [
+            {
+              "id": "mira-washing-up",
+              "name": "Washing-up liquid",
+              "period": "2026-09-14..2026-09-20"
+            }
+          ]
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 500,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 500
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 400,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 400
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 240,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 240
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 150,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 150
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 60,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 60
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 4,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 4
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-02",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "keep",
+        "summary": "3 planned meals completed. 2 chosen activities completed.",
+        "conditions": [],
+        "proposals": [],
+        "suppressed": [],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "0 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "0 discretionary candidates; 0 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 400,
+              "status": "bought",
+              "acquired": 400,
+              "remaining": 0
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.25
+            },
+            {
+              "key": "chickpeas|g",
+              "id": "chickpeas",
+              "name": "Drained chickpeas",
+              "unit": "g",
+              "quantity": 480,
+              "status": "have",
+              "acquired": 480,
+              "remaining": 0
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 300,
+              "status": "have",
+              "acquired": 300,
+              "remaining": 0
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            }
+          ],
+          "manual": []
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.25
+            },
+            {
+              "key": "chickpeas|g",
+              "id": "chickpeas",
+              "name": "Drained chickpeas",
+              "unit": "g",
+              "quantity": 360,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 360
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 225,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 225
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.25
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-03",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "keep",
+        "summary": "2 planned meals completed. 1 chosen activity completed.",
+        "conditions": [],
+        "proposals": [],
+        "suppressed": [
+          {
+            "slotKey": "thu-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "0 discretionary candidates; 0 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 500,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 500
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 600,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 600
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 240,
+              "status": "have",
+              "acquired": 240,
+              "remaining": 0
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "tuna|g",
+              "id": "tuna",
+              "name": "Drained tuna",
+              "unit": "g",
+              "quantity": 110,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 110
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 150,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 150
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 60,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 60
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 4,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 4
+            }
+          ],
+          "manual": []
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 500,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 500
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 800,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 800
+            },
+            {
+              "key": "chickpeas|g",
+              "id": "chickpeas",
+              "name": "Drained chickpeas",
+              "unit": "g",
+              "quantity": 240,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 240
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 240,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 240
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "tuna|g",
+              "id": "tuna",
+              "name": "Drained tuna",
+              "unit": "g",
+              "quantity": 110,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 110
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 450,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 450
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 3,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 3
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-04",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "requires-review",
+        "summary": "Check the flagged saved meals before using or repeating them. Your record has been kept.",
+        "conditions": [
+          {
+            "id": "condition:2026-09-13:sun-lunch",
+            "slotId": "2026-09-13:sun-lunch",
+            "slotKey": "sun-lunch",
+            "date": "2026-09-13",
+            "recipeId": "ragu",
+            "recipeName": "Beef ragù",
+            "sourceId": "2026-09-12:sat-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-15:tue-dinner",
+            "slotId": "2026-09-15:tue-dinner",
+            "slotKey": "tue-dinner",
+            "date": "2026-09-15",
+            "recipeId": "tuna",
+            "recipeName": "Tuna and sweetcorn pasta",
+            "sourceId": "2026-09-15:tue-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-17:thu-dinner",
+            "slotId": "2026-09-17:thu-dinner",
+            "slotKey": "thu-dinner",
+            "date": "2026-09-17",
+            "recipeId": "beanSalad",
+            "recipeName": "Bean and cucumber bowl",
+            "sourceId": "2026-09-17:thu-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-19:sat-dinner",
+            "slotId": "2026-09-19:sat-dinner",
+            "slotKey": "sat-dinner",
+            "date": "2026-09-19",
+            "recipeId": "ragu",
+            "recipeName": "Beef ragù",
+            "sourceId": "2026-09-19:sat-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-20:sun-lunch",
+            "slotId": "2026-09-20:sun-lunch",
+            "slotKey": "sun-lunch",
+            "date": "2026-09-20",
+            "recipeId": "ragu",
+            "recipeName": "Beef ragù",
+            "sourceId": "2026-09-19:sat-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-22:tue-dinner",
+            "slotId": "2026-09-22:tue-dinner",
+            "slotKey": "tue-dinner",
+            "date": "2026-09-22",
+            "recipeId": "wraps",
+            "recipeName": "Chicken and salad wraps",
+            "sourceId": "2026-09-22:tue-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-24:thu-dinner",
+            "slotId": "2026-09-24:thu-dinner",
+            "slotKey": "thu-dinner",
+            "date": "2026-09-24",
+            "recipeId": "beanSalad",
+            "recipeName": "Bean and cucumber bowl",
+            "sourceId": "2026-09-24:thu-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-26:sat-dinner",
+            "slotId": "2026-09-26:sat-dinner",
+            "slotKey": "sat-dinner",
+            "date": "2026-09-26",
+            "recipeId": "ragu",
+            "recipeName": "Beef ragù",
+            "sourceId": "2026-09-26:sat-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-27:sun-lunch",
+            "slotId": "2026-09-27:sun-lunch",
+            "slotKey": "sun-lunch",
+            "date": "2026-09-27",
+            "recipeId": "ragu",
+            "recipeName": "Beef ragù",
+            "sourceId": "2026-09-26:sat-dinner",
+            "reasons": [
+              {
+                "code": "allergies-unknown",
+                "text": "Allergy information has not been confirmed; compatibility is unknown."
+              }
+            ]
+          }
+        ],
+        "proposals": [],
+        "suppressed": [],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "0 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "9 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "0 discretionary candidates; 0 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 250,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 250
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 100,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 100
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.25
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "tuna|g",
+              "id": "tuna",
+              "name": "Drained tuna",
+              "unit": "g",
+              "quantity": 55,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 55
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.25
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 250,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 250
+            }
+          ],
+          "manual": []
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 250,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 250
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 250,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 250
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 75
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 30,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 30
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-05",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "requires-review",
+        "summary": "Check the flagged saved meals before using or repeating them. Your record has been kept.",
+        "conditions": [
+          {
+            "id": "condition:2026-09-16:wed-dinner",
+            "slotId": "2026-09-16:wed-dinner",
+            "slotKey": "wed-dinner",
+            "date": "2026-09-16",
+            "recipeId": "ragu",
+            "recipeName": "Beef ragù",
+            "sourceId": "2026-09-16:wed-dinner",
+            "reasons": [
+              {
+                "code": "equipment-unavailable",
+                "text": "The required cooking equipment has not been confirmed available."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-18:fri-dinner",
+            "slotId": "2026-09-18:fri-dinner",
+            "slotKey": "fri-dinner",
+            "date": "2026-09-18",
+            "recipeId": "chickpea",
+            "recipeName": "Chickpea and tomato rice",
+            "sourceId": "2026-09-18:fri-dinner",
+            "reasons": [
+              {
+                "code": "equipment-unavailable",
+                "text": "The required cooking equipment has not been confirmed available."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-23:wed-dinner",
+            "slotId": "2026-09-23:wed-dinner",
+            "slotKey": "wed-dinner",
+            "date": "2026-09-23",
+            "recipeId": "chilli",
+            "recipeName": "Beef and bean chilli",
+            "sourceId": "2026-09-23:wed-dinner",
+            "reasons": [
+              {
+                "code": "equipment-unavailable",
+                "text": "The required cooking equipment has not been confirmed available."
+              }
+            ]
+          },
+          {
+            "id": "condition:2026-09-25:fri-dinner",
+            "slotId": "2026-09-25:fri-dinner",
+            "slotKey": "fri-dinner",
+            "date": "2026-09-25",
+            "recipeId": "tuna",
+            "recipeName": "Tuna and sweetcorn pasta",
+            "sourceId": "2026-09-25:fri-dinner",
+            "reasons": [
+              {
+                "code": "equipment-unavailable",
+                "text": "The required cooking equipment has not been confirmed available."
+              }
+            ]
+          }
+        ],
+        "proposals": [
+          {
+            "id": "2:fri-dinner",
+            "slotKey": "fri-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-12",
+            "text": "You asked to look again at Friday: “Next Friday also needs something we can prepare without a hob.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-18:fri-dinner",
+              "2026-09-25:fri-dinner"
+            ]
+          },
+          {
+            "id": "2:wed-dinner",
+            "slotKey": "wed-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-12",
+            "text": "You asked to look again at Wednesday: “The hob will still be disconnected next Wednesday; can we revisit that dinner?” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-16:wed-dinner",
+              "2026-09-23:wed-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "tue-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "4 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "2 discretionary candidates; 2 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "chickpeas|g",
+              "id": "chickpeas",
+              "name": "Drained chickpeas",
+              "unit": "g",
+              "quantity": 360,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 360
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 225,
+              "status": "bought",
+              "acquired": 300,
+              "remaining": 0
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 300,
+              "status": "bought",
+              "acquired": 400,
+              "remaining": 0
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 2.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2.25
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 225,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 225
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 90,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 90
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 6,
+              "status": "have",
+              "acquired": 6,
+              "remaining": 0
+            }
+          ],
+          "manual": [
+            {
+              "id": "priya-bin-bags",
+              "name": "Bin bags",
+              "period": "2026-09-14..2026-09-20"
+            }
+          ]
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 600,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 600
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 180,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 180
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "tuna|g",
+              "id": "tuna",
+              "name": "Drained tuna",
+              "unit": "g",
+              "quantity": 165,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 165
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 225,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 225
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 2.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2.25
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 225,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 225
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 90,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 90
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 6,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 6
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-06",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "proposal",
+        "summary": "2 planned meals completed. 1 chosen activity completed.",
+        "conditions": [],
+        "proposals": [
+          {
+            "id": "2:wed-dinner",
+            "slotKey": "wed-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-13",
+            "text": "You asked to look again at Wednesday: “Could we look at something with less time standing at the hob after work?” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-16:wed-dinner",
+              "2026-09-23:wed-dinner"
+            ]
+          },
+          {
+            "id": "2:sat-walk",
+            "slotKey": "sat-walk",
+            "kind": "move",
+            "priority": 0,
+            "evidenceAt": "2026-09-12",
+            "text": "You asked to look again at Saturday: “Could Saturday be a shorter walk on flat ground? I do not want that hill again right now.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-19:sat-walk",
+              "2026-09-26:sat-walk"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "tue-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "fri-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "2 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "2 discretionary candidates; 2 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 750,
+              "status": "have",
+              "acquired": 500,
+              "remaining": 250
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 400,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 400
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.25
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 360,
+              "status": "bought",
+              "acquired": 480,
+              "remaining": 0
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 2,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 250,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 250
+            }
+          ],
+          "manual": [
+            {
+              "id": "jonas-batteries",
+              "name": "Batteries for the remote",
+              "period": "2026-09-14..2026-09-20"
+            }
+          ]
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 500,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 500
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.25
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 240,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 240
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 150,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 150
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 250,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 250
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-07",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "proposal",
+        "summary": "3 planned meals completed. 1 chosen activity completed.",
+        "conditions": [],
+        "proposals": [
+          {
+            "id": "2:sat-lunch",
+            "slotKey": "sat-lunch",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-13",
+            "text": "You asked to look again at Saturday: “Could we consider a warm Saturday lunch for when my friends come?” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-19:sat-lunch",
+              "2026-09-26:sat-lunch"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "tue-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "sun-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "2 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 1,
+              "status": "bought",
+              "acquired": 1,
+              "remaining": 0
+            },
+            {
+              "key": "chickpeas|g",
+              "id": "chickpeas",
+              "name": "Drained chickpeas",
+              "unit": "g",
+              "quantity": 240,
+              "status": "have",
+              "acquired": 480,
+              "remaining": 0
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 480,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 480
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 320,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 320
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 150,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 150
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 1,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 2.5,
+              "status": "have",
+              "acquired": 4,
+              "remaining": 0
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            }
+          ],
+          "manual": []
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 100,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 100
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "chickpeas|g",
+              "id": "chickpeas",
+              "name": "Drained chickpeas",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 360,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 360
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 240,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 240
+            },
+            {
+              "key": "rice|g",
+              "id": "rice",
+              "name": "Dry rice",
+              "unit": "g",
+              "quantity": 75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 75
+            },
+            {
+              "key": "cumin|tsp",
+              "id": "cumin",
+              "name": "Ground cumin",
+              "unit": "tsp",
+              "quantity": 0.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.5
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.75
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.25
+            }
+          ],
+          "manual": [
+            {
+              "id": "amara-card",
+              "name": "Birthday card",
+              "period": "2026-09-21..2026-09-27"
+            }
+          ]
+        }
+      ],
+      "followup": {
+        "kind": "No automatic change",
+        "reason": "A preferred recipe in the fictional follow-up is not a structured accepted change."
+      }
+    },
+    {
+      "id": "case-08",
+      "result": "PASS",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.2",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-09-13",
+        "kind": "proposal",
+        "summary": "3 planned meals completed. 1 chosen activity completed.",
+        "conditions": [],
+        "proposals": [
+          {
+            "id": "2:fri-dinner",
+            "slotKey": "fri-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-13",
+            "text": "You asked to look again at Friday: “Our three visitors for 25 September have cancelled. Could that Friday dinner be for just the three flatmates?” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-18:fri-dinner",
+              "2026-09-25:fri-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "sat-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "0 saved occurrences need checking outside the cap and decline gates; no automatic change."
+          },
+          {
+            "rule": "R10",
+            "result": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+          }
+        ]
+      },
+      "lists": [
+        {
+          "start": "2026-09-14",
+          "end": "2026-09-20",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "tomatoes|g",
+              "id": "tomatoes",
+              "name": "Chopped tomatoes",
+              "unit": "g",
+              "quantity": 200,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 200
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "tuna|g",
+              "id": "tuna",
+              "name": "Drained tuna",
+              "unit": "g",
+              "quantity": 110,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 110
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 500,
+              "status": "have",
+              "acquired": 300,
+              "remaining": 200
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 2.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 2.25
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.25
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 225,
+              "status": "bought",
+              "acquired": 300,
+              "remaining": 0
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 90,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 90
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 6,
+              "status": "have",
+              "acquired": 6,
+              "remaining": 0
+            }
+          ],
+          "manual": [
+            {
+              "id": "nolan-kitchen-roll",
+              "name": "Kitchen roll",
+              "period": "2026-09-14..2026-09-20"
+            }
+          ]
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "items": [
+            {
+              "key": "mince|g",
+              "id": "mince",
+              "name": "Beef mince",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "carrot|whole",
+              "id": "carrot",
+              "name": "Carrot",
+              "unit": "whole",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "celery|stalk",
+              "id": "celery",
+              "name": "Celery",
+              "unit": "stalk",
+              "quantity": 1.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.5
+            },
+            {
+              "key": "cucumber|whole",
+              "id": "cucumber",
+              "name": "Cucumber",
+              "unit": "whole",
+              "quantity": 1.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.75
+            },
+            {
+              "key": "beans|g",
+              "id": "beans",
+              "name": "Drained kidney beans",
+              "unit": "g",
+              "quantity": 120,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 120
+            },
+            {
+              "key": "sweetcorn|g",
+              "id": "sweetcorn",
+              "name": "Drained sweetcorn",
+              "unit": "g",
+              "quantity": 80,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 80
+            },
+            {
+              "key": "pasta|g",
+              "id": "pasta",
+              "name": "Dry wheat pasta",
+              "unit": "g",
+              "quantity": 300,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 300
+            },
+            {
+              "key": "mayo|tbsp",
+              "id": "mayo",
+              "name": "Mayonnaise",
+              "unit": "tbsp",
+              "quantity": 4.5,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 4.5
+            },
+            {
+              "key": "oil|tbsp",
+              "id": "oil",
+              "name": "Olive oil",
+              "unit": "tbsp",
+              "quantity": 1.25,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 1.25
+            },
+            {
+              "key": "onion|whole",
+              "id": "onion",
+              "name": "Onion",
+              "unit": "whole",
+              "quantity": 0.75,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 0.75
+            },
+            {
+              "key": "passata|g",
+              "id": "passata",
+              "name": "Passata",
+              "unit": "g",
+              "quantity": 375,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 375
+            },
+            {
+              "key": "chicken|g",
+              "id": "chicken",
+              "name": "Ready-to-eat cooked chicken",
+              "unit": "g",
+              "quantity": 450,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 450
+            },
+            {
+              "key": "salad|g",
+              "id": "salad",
+              "name": "Ready-to-eat washed salad",
+              "unit": "g",
+              "quantity": 180,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 180
+            },
+            {
+              "key": "wraps|whole",
+              "id": "wraps",
+              "name": "Wheat tortilla wraps",
+              "unit": "whole",
+              "quantity": 12,
+              "status": "unknown",
+              "acquired": 0,
+              "remaining": 12
+            }
+          ],
+          "manual": []
+        }
+      ],
+      "followup": {
+        "kind": "Explicit single-date manual portion change",
+        "date": "2026-09-25",
+        "beforeChicken": 450,
+        "afterChicken": 225,
+        "firstWeekBought": 300
+      }
+    }
+  ]
+}

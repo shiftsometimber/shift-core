@@ -14,5 +14,6 @@ export function fixture(name='Dave'){
  }
  s.manualItems=[{id:'fictional-manual-coffee',name:'Coffee — my own addition',period:'2026-09-14..2026-09-20'}];
  s.acquired={'2026-09-14..2026-09-20':{'mince|g':{status:'bought',quantity:1000}}};
+ if(name==='Constraint check'){s.preferences.allergies=['fish'];for(const slot of s.slots)if(slot.slotKey==='thu-dinner'&&slot.date>s.clock)slot.recipeId='tuna';s.requests=['mon-dinner','sun-dinner','sat-walk'].map(slotKey=>({slotKey,date:s.clock,reason:'Please revisit this saved item'}));s.freezes['thu-dinner']={throughCycle:99,evidenceAt:s.clock};}
  return s;
 }

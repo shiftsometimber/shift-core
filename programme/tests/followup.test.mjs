@@ -17,17 +17,18 @@ function mixedHistory(){
  s.requests=[{slotKey:'sun-dinner',date:'2026-09-13',reason:'I want a different Sunday meal'}];
  return s;
 }
-test('R10 collision: member request, declared mismatch and three recurring difficulties compete for three places',()=>{
+test('R10 collision: constraints stay outside the cap while member request and recurring difficulties compete',()=>{
  const s=mixedHistory(),before=structuredClone(s),r=evaluate(s,options);
- assert.deepEqual(r.proposals.map(p=>[p.slotKey,p.priority]),[['sun-dinner',0],['thu-dinner',1],['sat-walk',2]]);
- assert.deepEqual(r.suppressed.filter(p=>p.rule==='R10').map(p=>p.slotKey),['thu-walk','tue-walk']);
+ assert.deepEqual(r.proposals.map(p=>[p.slotKey,p.priority]),[['sun-dinner',0],['sat-walk',2],['thu-walk',2]]);
+ assert.deepEqual(r.suppressed.filter(p=>p.rule==='R10').map(p=>p.slotKey),['tue-walk']);
+ assert.equal(r.conditions.filter(c=>c.slotKey==='thu-dinner').length,2);
  assert.deepEqual(s,before);
  const reversed=structuredClone(s);reversed.slots.reverse();reversed.reports.reverse();
  assert.deepEqual(evaluate(reversed,options).proposals.map(p=>p.slotKey),r.proposals.map(p=>p.slotKey));
 });
 test('R8 gates the collision before R10; even the highest-ranked item stays frozen',()=>{
  const s=mixedHistory();s.freezes['sun-dinner']={throughCycle:s.cycle+1,evidenceAt:'2026-09-12'};
- const r=evaluate(s,options);assert.deepEqual(r.proposals.map(p=>p.slotKey),['thu-dinner','sat-walk','thu-walk']);
+ const r=evaluate(s,options);assert.deepEqual(r.proposals.map(p=>p.slotKey),['sat-walk','thu-walk','tue-walk']);
  assert(r.suppressed.some(p=>p.rule==='R8'&&p.slotKey==='sun-dinner'));
 });
 test('An old member request cannot resurrect after its decline freeze; a genuinely later request can',()=>{

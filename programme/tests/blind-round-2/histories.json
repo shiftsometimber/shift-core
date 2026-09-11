@@ -1,0 +1,3192 @@
+[
+  {
+    "id": "case-01",
+    "title": "A changing shop rota",
+    "background": "Mira shares evening meals with her partner. These saved occasions sit alongside other meals they arrange themselves. She had an early retail rota in the first week and covered two late closes in the second. Her partner can help at weekends. On 10 September she explicitly chose to leave Wednesday wraps alone through cycle 3, because those evenings have been straightforward. On 12 September she asked to revisit Monday dinner after seeing another late close on the next rota. She has bought mince for the coming week and checked their rice tin.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Mira",
+      "preferences": {
+        "allergies": "none",
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "About 20 minutes on late-close evenings; up to an hour together on Saturdays.",
+        "household": "Two adults, usually both eating the saved dinners.",
+        "spending": "Roughly £45 for our shared evening food each week; use the rice already here."
+      },
+      "goal": "Keep a few shared dinners and get outside between shop shifts.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "date": "2026-08-31",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-walk",
+          "date": "2026-09-01",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop around the recreation ground",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-dinner",
+          "date": "2026-09-02",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-dinner",
+          "date": "2026-09-05",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-lunch",
+          "date": "2026-09-06",
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-05:sat-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-walk",
+          "date": "2026-09-06",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk to the riverside and back",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "date": "2026-09-07",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-walk",
+          "date": "2026-09-08",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop around the recreation ground",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-dinner",
+          "date": "2026-09-09",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-dinner",
+          "date": "2026-09-12",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-walk",
+          "date": "2026-09-13",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk to the riverside and back",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "date": "2026-09-14",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-walk",
+          "date": "2026-09-15",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop around the recreation ground",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-dinner",
+          "date": "2026-09-16",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-dinner",
+          "date": "2026-09-19",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-lunch",
+          "date": "2026-09-20",
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-19:sat-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-walk",
+          "date": "2026-09-20",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk to the riverside and back",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "date": "2026-09-21",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-walk",
+          "date": "2026-09-22",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop around the recreation ground",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-dinner",
+          "date": "2026-09-23",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-dinner",
+          "date": "2026-09-26",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-walk",
+          "date": "2026-09-27",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk to the riverside and back",
+          "minutes": 35,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-08-31",
+          "shift": "Early shop shift",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I was home by five.",
+          "note": "We cooked together and both had dinner."
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-01",
+          "shift": "Early shop shift",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I still had some daylight after work.",
+          "note": "The shorter loop was pleasant."
+        },
+        {
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Usual daytime shift",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "There was very little to get ready.",
+          "note": "We liked having something simple halfway through the week."
+        },
+        {
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-05",
+          "shift": "Saturday off",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I started too late before our film.",
+          "note": "We ate it, but the chopping felt like a rush."
+        },
+        {
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Sunday off",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "Lunch was already there.",
+          "note": "We used the two portions from Saturday."
+        },
+        {
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Sunday off",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "We stayed in when it poured.",
+          "note": "I did not go out for this walk."
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-07",
+          "shift": "Unexpected late close",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I got back after eight and we ate something else.",
+          "note": "Neither of us started the chilli."
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-08",
+          "shift": "Covering a late close",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "The shop needed me to stay.",
+          "note": "I came straight home afterwards."
+        },
+        {
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Late shop shift",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "My partner had the ingredients ready.",
+          "note": "We still sat down together."
+        },
+        {
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday off",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We began earlier this time.",
+          "note": "The chickpea rice fitted nicely before we went out."
+        },
+        {
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-13",
+          "shift": "Sunday off",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We wanted some fresh air.",
+          "note": "We walked together after breakfast."
+        }
+      ],
+      "requests": [
+        {
+          "slotKey": "mon-dinner",
+          "date": "2026-09-12",
+          "reason": "I'm closing again next Monday; could we revisit that dinner?"
+        }
+      ],
+      "freezes": {
+        "wed-dinner": {
+          "throughCycle": 3,
+          "evidenceAt": "2026-09-10"
+        }
+      },
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "mince|g": {
+            "status": "bought",
+            "quantity": 500
+          },
+          "rice|g": {
+            "status": "have",
+            "quantity": 450
+          }
+        }
+      },
+      "manualItems": [
+        {
+          "id": "mira-washing-up",
+          "name": "Washing-up liquid",
+          "period": "2026-09-14..2026-09-20"
+        }
+      ],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": "tuna",
+      "reason": "I fancy the tuna pasta on work nights because fifteen minutes sounds doable."
+    }
+  },
+  {
+    "id": "case-02",
+    "title": "A useful small batch",
+    "background": "Leo lives alone and is vegetarian. He saves a Tuesday cook and a portion for Wednesday lunch, a Friday bowl, and a Sunday meal when a friend sometimes visits. The extra Tuesday portion is put aside for the next day's lunch. A visitor stayed for Sunday dinner in the first week; he ate alone in the second. On 12 September he chose to leave the Tuesday cook in place through cycle 4. He counted the tins and rice he wants to use next week.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Leo",
+      "preferences": {
+        "allergies": "none",
+        "diet": "vegetarian",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "I have half an hour on Tuesdays and like a quick Friday meal.",
+        "household": "One adult; I sometimes invite a friend for Sunday dinner.",
+        "spending": "I can spend about £25 on these saved meals and would like to use my cupboard tins."
+      },
+      "goal": "Cook without much waste and make room for relaxed walks.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-09-01:tue-dinner",
+          "date": "2026-09-01",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-lunch",
+          "date": "2026-09-02",
+          "slotKey": "wed-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-01:tue-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-walk",
+          "date": "2026-09-02",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk before lunch",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-dinner",
+          "date": "2026-09-04",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-walk",
+          "date": "2026-09-05",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Park paths with a friend",
+          "minutes": 30,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-dinner",
+          "date": "2026-09-06",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-dinner",
+          "date": "2026-09-08",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-lunch",
+          "date": "2026-09-09",
+          "slotKey": "wed-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-08:tue-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-walk",
+          "date": "2026-09-09",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk before lunch",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-dinner",
+          "date": "2026-09-11",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-walk",
+          "date": "2026-09-12",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Park paths with a friend",
+          "minutes": 40,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-dinner",
+          "date": "2026-09-13",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-dinner",
+          "date": "2026-09-15",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-lunch",
+          "date": "2026-09-16",
+          "slotKey": "wed-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-15:tue-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-walk",
+          "date": "2026-09-16",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk before lunch",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-dinner",
+          "date": "2026-09-18",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-walk",
+          "date": "2026-09-19",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Park paths with a friend",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-dinner",
+          "date": "2026-09-20",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-dinner",
+          "date": "2026-09-22",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-lunch",
+          "date": "2026-09-23",
+          "slotKey": "wed-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-22:tue-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-walk",
+          "date": "2026-09-23",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk before lunch",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-dinner",
+          "date": "2026-09-25",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-walk",
+          "date": "2026-09-26",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Park paths with a friend",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-dinner",
+          "date": "2026-09-27",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-01",
+          "shift": "Working from home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I finished work on time.",
+          "note": "One portion for dinner and one put aside for Wednesday."
+        },
+        {
+          "slotKey": "wed-lunch",
+          "kind": "leftovers",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Working from home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I only needed to get lunch ready.",
+          "note": "I ate the portion I had saved."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-04",
+          "shift": "Office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I wanted something quick after the train.",
+          "note": "The bean bowl was enough before my evening class."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-05",
+          "shift": "Free Saturday morning",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "My friend met me at the gate.",
+          "note": "We took the shorter park circuit."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Friend visiting",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We chatted while I cooked.",
+          "note": "We ate both portions."
+        },
+        {
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-08",
+          "shift": "Working from home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I knew what to do this time.",
+          "note": "Again, I kept one portion for the next day."
+        },
+        {
+          "slotKey": "wed-lunch",
+          "kind": "leftovers",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Working from home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I had a gap between calls.",
+          "note": "The lunch portion got used."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Working from home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I protected my lunch break.",
+          "note": "It helped to leave the desk for a bit."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-11",
+          "shift": "Office day",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I fancied a hot meal on a chilly evening.",
+          "note": "I made the bowl and ate it, but it was not what I wanted that night."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Free Saturday morning",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We had time for the longer loop.",
+          "note": "Forty minutes felt comfortable."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-13",
+          "shift": "Quiet Sunday at home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "It was easy to cook for just me.",
+          "note": "I finished dinner before calling my sister."
+        }
+      ],
+      "requests": [],
+      "freezes": {
+        "tue-dinner": {
+          "throughCycle": 4,
+          "evidenceAt": "2026-09-12"
+        }
+      },
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "chickpeas|g": {
+            "status": "have",
+            "quantity": 480
+          },
+          "rice|g": {
+            "status": "have",
+            "quantity": 300
+          },
+          "tomatoes|g": {
+            "status": "bought",
+            "quantity": 400
+          }
+        }
+      },
+      "manualItems": [],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": "chickpea",
+      "reason": "I enjoy the chickpea rice and a second portion makes the following lunch easy."
+    }
+  },
+  {
+    "id": "case-03",
+    "title": "Not sure what made Thursday difficult",
+    "background": "Sana and her spouse both commute, and Thursday is meant to provide dinner plus two portions for Friday lunch. Their trains and evening plans varied across the fortnight. Sana remembers some occasions clearly and is unsure about others. She has not attributed the Thursday difficulties to one cause and has made no decision to keep or change a particular meal. She checked one tin of beans but has not checked how much pasta is left.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Sana",
+      "preferences": {
+        "allergies": "none",
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "Usually 30 to 45 minutes for an evening meal, but the train home is unpredictable.",
+        "household": "Two adults; we like taking lunch from a previous dinner when it happens.",
+        "spending": "We have around £40 for these meals, though I have not counted everything in the cupboard."
+      },
+      "goal": "Find an evening rhythm that works around our journeys.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "date": "2026-08-31",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-walk",
+          "date": "2026-09-02",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-dinner",
+          "date": "2026-09-03",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-lunch",
+          "date": "2026-09-04",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-03:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-dinner",
+          "date": "2026-09-05",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-walk",
+          "date": "2026-09-06",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "date": "2026-09-07",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-walk",
+          "date": "2026-09-09",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-dinner",
+          "date": "2026-09-10",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-lunch",
+          "date": "2026-09-11",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-10:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-dinner",
+          "date": "2026-09-12",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-walk",
+          "date": "2026-09-13",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "date": "2026-09-14",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-walk",
+          "date": "2026-09-16",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-dinner",
+          "date": "2026-09-17",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-lunch",
+          "date": "2026-09-18",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-17:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-dinner",
+          "date": "2026-09-19",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-walk",
+          "date": "2026-09-20",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "date": "2026-09-21",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-walk",
+          "date": "2026-09-23",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Station neighbourhood loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-dinner",
+          "date": "2026-09-24",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-lunch",
+          "date": "2026-09-25",
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "servings": 2,
+          "sourceId": "2026-09-24:thu-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-dinner",
+          "date": "2026-09-26",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-walk",
+          "date": "2026-09-27",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Walk around the common",
+          "minutes": 25,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-08-31",
+          "shift": "Usual office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We both got home at about six.",
+          "note": "The pasta was quick enough."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Office day",
+          "status": "unknown",
+          "fit": "unknown",
+          "reason": "I cannot remember whether I did the loop or came straight home.",
+          "note": "I did not write it down at the time."
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-03",
+          "shift": "Office day with a late train",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I remember being annoyed, but not exactly why.",
+          "note": "We did cook and set aside two lunch portions. It might have been the delay or just the evening."
+        },
+        {
+          "slotKey": "fri-lunch",
+          "kind": "leftovers",
+          "period": "2026-08-31",
+          "date": "2026-09-04",
+          "shift": "Office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "Lunch was packed already.",
+          "note": "We each took one of Thursday's portions."
+        },
+        {
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Sunday at home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We went after breakfast.",
+          "note": "We were happy with the route."
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-07",
+          "shift": "Usual office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "The ingredients were ready to use.",
+          "note": "We made wraps when we got in."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Office day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I had no appointment after work.",
+          "note": "I took the loop before heading home."
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-10",
+          "shift": "Office day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I know we did not cook it, but I cannot remember what changed first.",
+          "note": "We ate separately that evening; I do not want to guess the reason."
+        },
+        {
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday with errands",
+          "status": "done",
+          "fit": "unknown",
+          "reason": "We definitely cooked the ragù.",
+          "note": "I cannot really say whether it fitted the day well."
+        }
+      ],
+      "requests": [],
+      "freezes": {},
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "beans|g": {
+            "status": "have",
+            "quantity": 240
+          },
+          "pasta|g": {
+            "status": "unknown",
+            "quantity": 0
+          }
+        }
+      },
+      "manualItems": [],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": null,
+      "reason": "I'm not ready to pick a different meal; I'm still not sure what went wrong on Thursdays."
+    }
+  },
+  {
+    "id": "case-04",
+    "title": "Only one check-in",
+    "background": "Ellis rents a room and uses a shared hob. He saved a few meals and walks when he set up, but has entered only one report over the fortnight. The saved ragù includes one portion for the following day. He has not supplied allergy or activity-limitation information, checked cupboard stock, or asked to alter any particular slot. His lack of reports does not say whether the other saved occasions happened.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Ellis",
+      "preferences": {
+        "allergies": "unknown",
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "unknown",
+        "time": "I can usually book the shared kitchen for half an hour; longer on Saturday.",
+        "household": "One adult in a house share, cooking my own meals.",
+        "spending": "I am trying to keep these dinners to about £20 a week."
+      },
+      "goal": "Have a few meals written down so shopping takes less thought.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-08-31:mon-walk",
+          "date": "2026-08-31",
+          "slotKey": "mon-walk",
+          "kind": "move",
+          "label": "Walk to the little park and back",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-dinner",
+          "date": "2026-09-01",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-dinner",
+          "date": "2026-09-03",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-walk",
+          "date": "2026-09-04",
+          "slotKey": "fri-walk",
+          "kind": "move",
+          "label": "Canal towpath loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-dinner",
+          "date": "2026-09-05",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-lunch",
+          "date": "2026-09-06",
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-05:sat-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-walk",
+          "date": "2026-09-07",
+          "slotKey": "mon-walk",
+          "kind": "move",
+          "label": "Walk to the little park and back",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-dinner",
+          "date": "2026-09-08",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-dinner",
+          "date": "2026-09-10",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-walk",
+          "date": "2026-09-11",
+          "slotKey": "fri-walk",
+          "kind": "move",
+          "label": "Canal towpath loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-dinner",
+          "date": "2026-09-12",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-lunch",
+          "date": "2026-09-13",
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-12:sat-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-walk",
+          "date": "2026-09-14",
+          "slotKey": "mon-walk",
+          "kind": "move",
+          "label": "Walk to the little park and back",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-dinner",
+          "date": "2026-09-15",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-dinner",
+          "date": "2026-09-17",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-walk",
+          "date": "2026-09-18",
+          "slotKey": "fri-walk",
+          "kind": "move",
+          "label": "Canal towpath loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-dinner",
+          "date": "2026-09-19",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-lunch",
+          "date": "2026-09-20",
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-19:sat-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-walk",
+          "date": "2026-09-21",
+          "slotKey": "mon-walk",
+          "kind": "move",
+          "label": "Walk to the little park and back",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-dinner",
+          "date": "2026-09-22",
+          "slotKey": "tue-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-dinner",
+          "date": "2026-09-24",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-walk",
+          "date": "2026-09-25",
+          "slotKey": "fri-walk",
+          "kind": "move",
+          "label": "Canal towpath loop",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-dinner",
+          "date": "2026-09-26",
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-lunch",
+          "date": "2026-09-27",
+          "slotKey": "sun-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-26:sat-dinner",
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "sat-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday at home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "The kitchen was free when I wanted it.",
+          "note": "I had one portion and saved the second for Sunday lunch."
+        }
+      ],
+      "requests": [],
+      "freezes": {},
+      "acquired": {},
+      "manualItems": [],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": null,
+      "reason": "I haven't looked closely enough to choose another dish yet."
+    }
+  },
+  {
+    "id": "case-05",
+    "title": "Kitchen work has overrun",
+    "background": "Priya cooks for herself, her partner and their child. They chose these saved meals before repairs to their kitchen. The hob was available for both past weeks' saved cooked dinners, but was disconnected on 11 September after Friday's meal and is now expected back on 25 September. Their current equipment list is empty because no cooking appliance is available; they still have a fridge and a preparation surface. On 12 September Priya asked to revisit the Wednesday and Friday dinners. She had already bought pasta and rice for the coming week and has six wraps in the cupboard.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Priya",
+      "preferences": {
+        "allergies": "none",
+        "diet": "any",
+        "equipment": [],
+        "activityLimitations": "none",
+        "time": "Ten to twenty minutes at our temporary preparation table until the kitchen is working again.",
+        "household": "Two adults and one child; three portions at the saved family dinners.",
+        "spending": "About £40 for these dinners; I would prefer to use purchases we have already made where possible."
+      },
+      "goal": "Keep some shared dinners going while the kitchen is being repaired.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-09-01:tue-walk",
+          "date": "2026-09-01",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk after the school run",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-dinner",
+          "date": "2026-09-02",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-dinner",
+          "date": "2026-09-04",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-walk",
+          "date": "2026-09-05",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Family park loop",
+          "minutes": 30,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-dinner",
+          "date": "2026-09-06",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-walk",
+          "date": "2026-09-08",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk after the school run",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-dinner",
+          "date": "2026-09-09",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-dinner",
+          "date": "2026-09-11",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-walk",
+          "date": "2026-09-12",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Family park loop",
+          "minutes": 30,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-dinner",
+          "date": "2026-09-13",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-walk",
+          "date": "2026-09-15",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk after the school run",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-dinner",
+          "date": "2026-09-16",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-dinner",
+          "date": "2026-09-18",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-walk",
+          "date": "2026-09-19",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Family park loop",
+          "minutes": 30,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-dinner",
+          "date": "2026-09-20",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-walk",
+          "date": "2026-09-22",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood walk after the school run",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-dinner",
+          "date": "2026-09-23",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-dinner",
+          "date": "2026-09-25",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-walk",
+          "date": "2026-09-26",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Family park loop",
+          "minutes": 30,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-dinner",
+          "date": "2026-09-27",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Usual work and school day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We had the kitchen to ourselves.",
+          "note": "All three of us ate the chilli."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-04",
+          "shift": "Usual work and school day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "It was quick before our film.",
+          "note": "We had dinner together."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-05",
+          "shift": "Free Saturday afternoon",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We wanted to get out of the house.",
+          "note": "The park loop worked for us."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Family Sunday",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "Everyone could help assemble their own.",
+          "note": "The wraps went down well."
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-08",
+          "shift": "School day with a delivery",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I needed to be home for the delivery window.",
+          "note": "I did not do the extra loop."
+        },
+        {
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Work day with repair preparations",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I kept moving boxes to find things.",
+          "note": "We ate it, but cooking around the packing was frustrating."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-11",
+          "shift": "Work day; hob disconnected afterwards",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I cooked before the fitter arrived.",
+          "note": "The pasta was finished while we still had the hob."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday during kitchen repairs",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We welcomed an excuse to get outside.",
+          "note": "We all went around the park."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-13",
+          "shift": "Sunday without a working kitchen",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We could make these at the table.",
+          "note": "We had an early dinner after our outing."
+        }
+      ],
+      "requests": [
+        {
+          "slotKey": "wed-dinner",
+          "date": "2026-09-12",
+          "reason": "The hob will still be disconnected next Wednesday; can we revisit that dinner?"
+        },
+        {
+          "slotKey": "fri-dinner",
+          "date": "2026-09-12",
+          "reason": "Next Friday also needs something we can prepare without a hob."
+        }
+      ],
+      "freezes": {},
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "pasta|g": {
+            "status": "bought",
+            "quantity": 400
+          },
+          "rice|g": {
+            "status": "bought",
+            "quantity": 300
+          },
+          "wraps|whole": {
+            "status": "have",
+            "quantity": 6
+          }
+        }
+      },
+      "manualItems": [
+        {
+          "id": "priya-bin-bags",
+          "name": "Bin bags",
+          "period": "2026-09-14..2026-09-20"
+        }
+      ],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": "wraps",
+      "reason": "We can put wraps together at the table and the three of us already like them."
+    }
+  },
+  {
+    "id": "case-06",
+    "title": "Family visits, tired evenings and a sore knee",
+    "background": "Jonas usually cooks for himself, with family at Sunday dinner. His daughter and two other relatives joined him in the second past week and plan to return on 20 September, so those Sundays have four portions. He states that he has a fish allergy and that his knee has been sore; he asks for short, flat walks. He has not supplied a diagnosis. On 12 September he asked to revisit the Saturday walk, and on 13 September he asked about a dinner with less time standing at the hob on Wednesdays. Also on 13 September he explicitly chose to leave the saved Sunday meal alone through cycle 4 because he values that family occasion. He checked some food but could not check the pasta.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Jonas",
+      "preferences": {
+        "allergies": [
+          "fish"
+        ],
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "My knee is sore. I only want short walks on flat ground at the moment.",
+        "time": "I feel tired after work; I would like less time standing at the hob on Wednesdays.",
+        "household": "One adult most days; two at Sunday dinner normally, four on 13 and 20 September.",
+        "spending": "About £35 for my saved meals, with a bit extra when family comes. Please make use of the mince and beans."
+      },
+      "goal": "Keep family dinners and fit cooking and walking around how my week feels.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-09-01:tue-walk",
+          "date": "2026-09-01",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood loop past the shops",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-dinner",
+          "date": "2026-09-02",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-lunch",
+          "date": "2026-09-03",
+          "slotKey": "thu-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-02:wed-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-dinner",
+          "date": "2026-09-04",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-walk",
+          "date": "2026-09-05",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Country park circuit with the hill",
+          "minutes": 40,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-dinner",
+          "date": "2026-09-06",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-walk",
+          "date": "2026-09-08",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood loop past the shops",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-dinner",
+          "date": "2026-09-09",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-lunch",
+          "date": "2026-09-10",
+          "slotKey": "thu-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-09:wed-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-dinner",
+          "date": "2026-09-11",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-walk",
+          "date": "2026-09-12",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Country park circuit with the hill",
+          "minutes": 40,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-dinner",
+          "date": "2026-09-13",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-walk",
+          "date": "2026-09-15",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood loop past the shops",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-dinner",
+          "date": "2026-09-16",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-lunch",
+          "date": "2026-09-17",
+          "slotKey": "thu-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-16:wed-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-dinner",
+          "date": "2026-09-18",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-walk",
+          "date": "2026-09-19",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Country park circuit with the hill",
+          "minutes": 40,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-dinner",
+          "date": "2026-09-20",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-walk",
+          "date": "2026-09-22",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Neighbourhood loop past the shops",
+          "minutes": 25,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-dinner",
+          "date": "2026-09-23",
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-lunch",
+          "date": "2026-09-24",
+          "slotKey": "thu-lunch",
+          "kind": "leftovers",
+          "servings": 1,
+          "sourceId": "2026-09-23:wed-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-dinner",
+          "date": "2026-09-25",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-walk",
+          "date": "2026-09-26",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Country park circuit with the hill",
+          "minutes": 40,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-dinner",
+          "date": "2026-09-27",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-01",
+          "shift": "After work",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "My knee was sore by the time I got home.",
+          "note": "I finished the loop but it felt too long that evening."
+        },
+        {
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Usual work day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I got started before I sat down.",
+          "note": "I put one portion aside for Thursday."
+        },
+        {
+          "slotKey": "thu-lunch",
+          "kind": "leftovers",
+          "period": "2026-08-31",
+          "date": "2026-09-03",
+          "shift": "Usual work day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I brought the saved portion with me.",
+          "note": "It made lunch straightforward."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-04",
+          "shift": "Usual work day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I thought I had beans but the cupboard was empty.",
+          "note": "I made something else."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-05",
+          "shift": "Saturday at home",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I stayed indoors because of the heavy rain.",
+          "note": "I did not start the walk."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Family Sunday",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "My brother helped chop the onion.",
+          "note": "It was nice eating together."
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-08",
+          "shift": "Evening family errand",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I drove my daughter to an appointment.",
+          "note": "I did not have the planned walk afterwards."
+        },
+        {
+          "slotKey": "wed-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Long work day",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I was tired of standing by the end.",
+          "note": "Dinner got made and I saved a lunch portion, but it took more out of me this week."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-11",
+          "shift": "Usual work day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I had bought the beans this time.",
+          "note": "It came together quickly."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday morning free",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "The hill bothered my knee.",
+          "note": "I went round, but I would prefer flat ground and less distance."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-13",
+          "shift": "Family Sunday",
+          "status": "unknown",
+          "fit": "unknown",
+          "reason": "The others took over in the kitchen and I have not checked exactly what they made.",
+          "note": "We ate together, but I cannot confirm it was the saved chilli."
+        }
+      ],
+      "requests": [
+        {
+          "slotKey": "sat-walk",
+          "date": "2026-09-12",
+          "reason": "Could Saturday be a shorter walk on flat ground? I do not want that hill again right now."
+        },
+        {
+          "slotKey": "wed-dinner",
+          "date": "2026-09-13",
+          "reason": "Could we look at something with less time standing at the hob after work?"
+        }
+      ],
+      "freezes": {
+        "sun-dinner": {
+          "throughCycle": 4,
+          "evidenceAt": "2026-09-13"
+        }
+      },
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "beans|g": {
+            "status": "bought",
+            "quantity": 480
+          },
+          "mince|g": {
+            "status": "have",
+            "quantity": 500
+          },
+          "pasta|g": {
+            "status": "unknown",
+            "quantity": 0
+          }
+        }
+      },
+      "manualItems": [
+        {
+          "id": "jonas-batteries",
+          "name": "Batteries for the remote",
+          "period": "2026-09-14..2026-09-20"
+        }
+      ],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": "beanSalad",
+      "reason": "The bean bowl sounds useful on an evening when I do not want to stand at the cooker."
+    }
+  },
+  {
+    "id": "case-07",
+    "title": "Term has started and the visitors change",
+    "background": "Amara is a vegetarian teacher who states a wheat allergy. She cooks separately from her flatmate and sometimes has friends round. Thursday dinner numbers across the four saved weeks are two, three, two and one; Saturday lunch numbers are two, one, three and two. On 6 September she chose to keep Thursday's chickpea meal in place through cycle 2. The second week brought evening marking and changed meeting times. On 13 September she asked about a warm Saturday lunch because the bean bowl had felt less appealing during a cool weekend. She has checked chickpeas and oil, and bought a cucumber for next week.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Amara",
+      "preferences": {
+        "allergies": [
+          "wheat"
+        ],
+        "diet": "vegetarian",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "Up to 30 minutes on school nights; more time on Saturdays if friends are coming.",
+        "household": "One adult cooking separately in a shared flat, with varying numbers of friends at Thursday dinner and Saturday lunch.",
+        "spending": "Around £30 for these meals in an ordinary week; visitors contribute when several of us eat."
+      },
+      "goal": "Keep some easy vegetarian meals and get away from the marking desk.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "date": "2026-08-31",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-walk",
+          "date": "2026-09-01",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop through the nearby streets",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-dinner",
+          "date": "2026-09-03",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-lunch",
+          "date": "2026-09-05",
+          "slotKey": "sat-lunch",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-walk",
+          "date": "2026-09-06",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Long park path with a friend",
+          "minutes": 45,
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "date": "2026-09-07",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-walk",
+          "date": "2026-09-08",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop through the nearby streets",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-dinner",
+          "date": "2026-09-10",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-lunch",
+          "date": "2026-09-12",
+          "slotKey": "sat-lunch",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-walk",
+          "date": "2026-09-13",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Long park path with a friend",
+          "minutes": 45,
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "date": "2026-09-14",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-walk",
+          "date": "2026-09-15",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop through the nearby streets",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-dinner",
+          "date": "2026-09-17",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-lunch",
+          "date": "2026-09-19",
+          "slotKey": "sat-lunch",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-walk",
+          "date": "2026-09-20",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Long park path with a friend",
+          "minutes": 45,
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "date": "2026-09-21",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-walk",
+          "date": "2026-09-22",
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "label": "Loop through the nearby streets",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-dinner",
+          "date": "2026-09-24",
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-lunch",
+          "date": "2026-09-26",
+          "slotKey": "sat-lunch",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-walk",
+          "date": "2026-09-27",
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "label": "Long park path with a friend",
+          "minutes": 45,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-08-31",
+          "shift": "School preparation day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I wanted an easy dinner after setting up the classroom.",
+          "note": "The bowl took very little time."
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-01",
+          "shift": "School meeting ran over",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "The meeting finished late.",
+          "note": "I went home and started dinner."
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-03",
+          "shift": "School day, friend visiting",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We had time to chat while the rice cooked.",
+          "note": "Two portions were right for us."
+        },
+        {
+          "slotKey": "sat-lunch",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-05",
+          "shift": "Friend visiting at lunchtime",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We wanted a quick lunch before heading out.",
+          "note": "We ate both portions."
+        },
+        {
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Sunday with a friend",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We had a free morning.",
+          "note": "The park path was a good length."
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-07",
+          "shift": "School day with marking at home",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "It was useful to have something quick.",
+          "note": "I ate before opening my laptop again."
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-08",
+          "shift": "School meeting moved earlier",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "I got away from school on time.",
+          "note": "I enjoyed the short loop."
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-10",
+          "shift": "School day with three at dinner",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I was later home than I expected.",
+          "note": "We all ate, but I was trying to cook and answer school messages together."
+        },
+        {
+          "slotKey": "sat-lunch",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Quiet Saturday alone",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I wanted a warm lunch because I felt chilly.",
+          "note": "I finished the bean bowl, but it was not what I fancied."
+        },
+        {
+          "slotKey": "sun-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-13",
+          "shift": "Sunday with marking to finish",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "I left my marking too late and stayed at the desk.",
+          "note": "My friend went without me."
+        }
+      ],
+      "requests": [
+        {
+          "slotKey": "sat-lunch",
+          "date": "2026-09-13",
+          "reason": "Could we consider a warm Saturday lunch for when my friends come?"
+        }
+      ],
+      "freezes": {
+        "thu-dinner": {
+          "throughCycle": 2,
+          "evidenceAt": "2026-09-06"
+        }
+      },
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "chickpeas|g": {
+            "status": "have",
+            "quantity": 480
+          },
+          "oil|tbsp": {
+            "status": "have",
+            "quantity": 4
+          },
+          "cucumber|whole": {
+            "status": "bought",
+            "quantity": 1
+          }
+        }
+      },
+      "manualItems": [
+        {
+          "id": "amara-card",
+          "name": "Birthday card",
+          "period": "2026-09-21..2026-09-27"
+        }
+      ],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": "chickpea",
+      "reason": "I'd choose the chickpea rice for a warm Saturday lunch with friends."
+    }
+  },
+  {
+    "id": "case-08",
+    "title": "Shared flat dinners around rehearsals",
+    "background": "Nolan shares a flat with two other adults. They save Monday dinner for all three, Friday wraps for whoever has arranged to eat together, and a smaller Sunday meal when people are often out. In the second past week Monday ragù was doubled, with three portions set aside for Tuesday lunch. On 5 September Nolan explicitly chose to leave Monday dinner alone through cycle 3. Rehearsals moved between early and late evenings across the fortnight. Friday 25 September was saved for six people, but on 13 September three visitors cancelled and he asked to reduce that occurrence to the three flatmates. He bought chicken for 18 September and has not checked chicken for the following week. The saved quantities still record the plans made before the cancellation.",
+    "state": {
+      "schemaVersion": 1,
+      "revision": 0,
+      "clock": "2026-09-13",
+      "cycle": 2,
+      "anchor": "2026-08-30",
+      "name": "Nolan",
+      "preferences": {
+        "allergies": "none",
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "We can take 45 minutes together on Mondays; Fridays need to fit around rehearsals.",
+        "household": "Three adult flatmates. The three visitors expected on 25 September have now cancelled. Sunday numbers vary.",
+        "spending": "We share the cost of communal dinners; I would like to avoid buying for visitors who are no longer coming."
+      },
+      "goal": "Keep a couple of communal meals despite different rehearsal times.",
+      "focus": "food",
+      "track": "everyday",
+      "measures": [],
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "date": "2026-08-31",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-02:wed-walk",
+          "date": "2026-09-02",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Short loop before rehearsal",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-04:fri-dinner",
+          "date": "2026-09-04",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-walk",
+          "date": "2026-09-05",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Walk along the seafront",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-dinner",
+          "date": "2026-09-06",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "date": "2026-09-07",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 6,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-lunch",
+          "date": "2026-09-08",
+          "slotKey": "tue-lunch",
+          "kind": "leftovers",
+          "servings": 3,
+          "sourceId": "2026-09-07:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-09:wed-walk",
+          "date": "2026-09-09",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Short loop before rehearsal",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-11:fri-dinner",
+          "date": "2026-09-11",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-walk",
+          "date": "2026-09-12",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Walk along the seafront",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-dinner",
+          "date": "2026-09-13",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "date": "2026-09-14",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-16:wed-walk",
+          "date": "2026-09-16",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Short loop before rehearsal",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-18:fri-dinner",
+          "date": "2026-09-18",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-walk",
+          "date": "2026-09-19",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Walk along the seafront",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-dinner",
+          "date": "2026-09-20",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 2,
+          "serveNow": 2,
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "date": "2026-09-21",
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 3,
+          "serveNow": 3,
+          "completed": false
+        },
+        {
+          "id": "2026-09-23:wed-walk",
+          "date": "2026-09-23",
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "label": "Short loop before rehearsal",
+          "minutes": 15,
+          "completed": false
+        },
+        {
+          "id": "2026-09-25:fri-dinner",
+          "date": "2026-09-25",
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "recipeId": "wraps",
+          "recipeVersion": 1,
+          "servings": 6,
+          "serveNow": 6,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-walk",
+          "date": "2026-09-26",
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "label": "Walk along the seafront",
+          "minutes": 35,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-dinner",
+          "date": "2026-09-27",
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "recipeId": "beanSalad",
+          "recipeVersion": 1,
+          "servings": 1,
+          "serveNow": 1,
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-08-31",
+          "shift": "No Monday rehearsal",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "All three of us were in.",
+          "note": "We shared the preparation and sat down together."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-02",
+          "shift": "Later Wednesday rehearsal",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "There was a gap before I needed to leave.",
+          "note": "The short loop fitted into it."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-04",
+          "shift": "Early Friday rehearsal",
+          "status": "done",
+          "fit": "did-not-fit",
+          "reason": "I only had a few minutes before leaving.",
+          "note": "I ate the wraps, but dinner felt rushed even though they were quick."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-08-31",
+          "date": "2026-09-05",
+          "shift": "Saturday afternoon soundcheck",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "The soundcheck was moved into the afternoon.",
+          "note": "I did not go to the seafront."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-08-31",
+          "date": "2026-09-06",
+          "shift": "Sunday evening alone",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "The others were out and I had time to cook.",
+          "note": "One portion was right for me."
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-07",
+          "shift": "No Monday rehearsal",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We agreed to make tomorrow's lunch at the same time.",
+          "note": "We ate three portions and set aside three for Tuesday."
+        },
+        {
+          "slotKey": "tue-lunch",
+          "kind": "leftovers",
+          "period": "2026-09-07",
+          "date": "2026-09-08",
+          "shift": "Separate daytime schedules",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We each took a portion before leaving.",
+          "note": "All three saved portions were eaten for lunch."
+        },
+        {
+          "slotKey": "wed-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-09",
+          "shift": "Wednesday rehearsal time changed",
+          "status": "unknown",
+          "fit": "unknown",
+          "reason": "I remember going out, but not whether I took the saved loop.",
+          "note": "I cannot give a definite check-in for this one."
+        },
+        {
+          "slotKey": "fri-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-11",
+          "shift": "Later Friday rehearsal",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "We had longer before I left this week.",
+          "note": "We ate the wraps together without rushing."
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "period": "2026-09-07",
+          "date": "2026-09-12",
+          "shift": "Saturday morning free",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "The soundcheck was later this week.",
+          "note": "I went out before lunch and enjoyed the seafront."
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "period": "2026-09-07",
+          "date": "2026-09-13",
+          "shift": "Sunday at home together",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "Everyone happened to be in, so we cooked for three.",
+          "note": "The chickpea rice worked for an early dinner."
+        }
+      ],
+      "requests": [
+        {
+          "slotKey": "fri-dinner",
+          "date": "2026-09-13",
+          "reason": "Our three visitors for 25 September have cancelled. Could that Friday dinner be for just the three flatmates?"
+        }
+      ],
+      "freezes": {
+        "mon-dinner": {
+          "throughCycle": 3,
+          "evidenceAt": "2026-09-05"
+        }
+      },
+      "acquired": {
+        "2026-09-14..2026-09-20": {
+          "chicken|g": {
+            "status": "bought",
+            "quantity": 300
+          },
+          "wraps|whole": {
+            "status": "have",
+            "quantity": 6
+          },
+          "pasta|g": {
+            "status": "have",
+            "quantity": 300
+          }
+        },
+        "2026-09-21..2026-09-27": {
+          "chicken|g": {
+            "status": "unknown",
+            "quantity": 0
+          }
+        }
+      },
+      "manualItems": [
+        {
+          "id": "nolan-kitchen-roll",
+          "name": "Kitchen roll",
+          "period": "2026-09-14..2026-09-20"
+        }
+      ],
+      "reviews": [],
+      "decisions": [],
+      "operations": [],
+      "setup": true,
+      "entitlement": {
+        "active": true
+      },
+      "review": null
+    },
+    "memberFollowup": {
+      "preferredMealId": "ragu",
+      "reason": "I'd still choose the ragù when we have time together; the extra lunch portions were useful last week."
+    }
+  }
+]

@@ -50,7 +50,7 @@ All six recipes are unapproved test fixtures. `fixtureMode` is injected only by 
 
 There is no claim that users will pay for this or that a successful fictional case establishes a safe/complete paid service.
 
-## Follow-up verification — rule version 1.0.1
+## Historical follow-up — rule version 1.0.1 (ranking superseded below)
 
 The follow-up suite has 45 passing tests. It explicitly covers mixed-priority R10 competition, suppression before ranking, cross-account API reads, genuine session expiry and a post-swap rise from 1000g to 1500g mince with 1000g bought and only 500g outstanding.
 
@@ -59,3 +59,20 @@ Two new regression checks initially failed: an old member request could return a
 The unchanged eight independently authored histories were rerun. They cover sparse/ambiguous reports and requests but do not independently exercise the R10 cap. The additional crowded cases are deliberately constructed regression tests, not falsely described as blind histories. See `evidence/followup-results.json`, `evidence/followup-before-fixes.txt` and `evidence/followup-all-tests.txt`.
 
 The original uploaded standalone prototype is retained as an archive/reference. This module is the sole implementation candidate; no parallel prototype is maintained.
+
+
+## Current correction — rule version 1.0.2
+
+64 automated tests pass. The prior test treated a declared food exclusion as a ranked candidate; that was wrong. Current saved-plan conditions are separate, uncapped, recalculated on every read and unaffected by decline/skip. A conflicting plan cannot be repeated. No saved meal is silently deleted or substituted. The private module shows the flagged dates and reasons above its screens, labels affected occurrences and preserves explicit manual edits/free records. Account-name/status cleanup now accompanies body cleanup on expiry/pagehide.
+
+The requested three-requests-plus-conflict case is proved. Four new checks failed before the correction; their actual old outputs and failures are retained. Further checks cover multiple conflicts, future leftovers from past cooks, unknown preferences, unavailable content, frozen decisions, explicit resolution and stale options. See `evidence/constraint-all-tests.txt` and `evidence/constraint-before-output.json`.
+
+The second independent round uses eight full states authored from the supplied schema and six-recipe catalogue: 179 saved occurrences, 73 reports and 19 leftover occurrences. Input SHA256: `bb9f3fe5dcb20f1ea951fdee8cbc7b4fc8db8b9ff858d91740abbf96aa696f65`. Expectations were written before evaluation; the last two cases were withheld from the first engine run. All eight and their actual shopping totals pass. The author happened to supply no two-miss recurrence; this is expressly NOT blind R2 coverage. A separately labelled one-report counterfactual exercises recurrence, preview, acceptance, unchanged successful slots, dependent leftovers and recomputation. The original authored input is not changed to manufacture coverage. A preferred recipe alone is not treated as an accepted replacement.
+
+Six further contract checks pass in actual workerd with local D1 emulation. This improves on a Node SQLite adapter but does not prove the remote Cloudflare runtime. The pinned root toolchain includes workerd 1.20260714.1, which cannot run the existing 2026-08-09 compatibility date. A separate test-only workerd 1.20260911.1 binary was used through the supported `MINIFLARE_WORKERD_PATH` override; root dependencies/configuration remain unchanged. The initial incompatible-runtime error is retained. An initial expiry-page test followed its redirect outside the fixture route and returned 500; the harness now uses `redirect: manual` and verifies the actual 303 without external navigation.
+
+To reproduce the runtime contract, install the pinned test binary outside the repository, set `MINIFLARE_WORKERD_PATH` to its native executable, and run `node programme/tests/runtime-contract.mjs` from the repository root. The test creates disposable fictional D1 stores and disposes its runtime. It never deploys or changes the production bindings. Browser checks are distinct: the latest preview could not start with the restricted harness root, and native Safari/history restoration remain unobserved. Do not call module-level tests a browser pass.
+
+`DELIVERY-3.md` gives the remote concurrency, logout/back and content gates owners, execution steps and required evidence. Content remains six unapproved fixtures. No live deployment or participant contact has occurred.
+
+An additional assertion on the authored six-to-three headcount change exposed an internal serving allocation still set to six. Manual edits without reserved leftovers now reduce that allocation along with the cooked quantity. `evidence/portion-before-fix.txt` preserves the failing assertion; the final 64-test suite passes. This extra assertion was added after the initial held-out arithmetic check, not falsely claimed as its original result.

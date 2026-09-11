@@ -12,7 +12,7 @@ const root=resolve(import.meta.dirname,'../..');const pagesRoot=process.env.SHIF
 const db=sqliteAdapter(resolve(root,'programme/proof/data/fictional.sqlite'));
 db.sqlite.exec(SCHEMA+`CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY,first_name TEXT);CREATE TABLE IF NOT EXISTS user_sessions(id INTEGER PRIMARY KEY, user_id INTEGER, token_hash TEXT UNIQUE, expires_at TEXT, revoked_at TEXT,last_used_at TEXT);`);
 const env={DB:db,PROGRAMME_DB:db,PROGRAMME_V1_ENABLED:'true'},store=new ProgrammeStore(db);
-const toolbar='<div class="sp-fixture-bar"><span>ISOLATED TEST · Fictional accounts · 13 Sep 2026</span><a href="/__fixtures/dave">Dave</a><a href="/__fixtures/dave-fresh">Dave fresh review</a><a href="/__fixtures/gaz">Gaz</a><a href="/__fixtures/new">New member</a><a href="/__fixtures/expiry">Simulate expiry</a><a href="/__fixtures/logout">End fixture session</a><a href="/__qa">Responsive checks</a></div>';
+const toolbar='<div class="sp-fixture-bar"><span>ISOLATED TEST · Fictional accounts · 13 Sep 2026</span><a href="/__fixtures/dave">Dave</a><a href="/__fixtures/dave-fresh">Dave fresh review</a><a href="/__fixtures/gaz">Gaz</a><a href="/__fixtures/new">New member</a><a href="/__fixtures/constraint">Constraint check</a><a href="/__fixtures/expiry">Simulate expiry</a><a href="/__fixtures/logout">End fixture session</a><a href="/__qa">Responsive checks</a></div>';
 const html=programmeHTML.replace('<body class="sp-shell">','<body class="sp-shell">'+toolbar);
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const send=async(res,response)=>{res.statusCode=response.status;for(const[k,v]of response.headers)res.setHeader(k,v);res.end(Buffer.from(await response.arrayBuffer()))};
@@ -24,8 +24,8 @@ export default defineConfig({root,publicDir:false,server:{host:'0.0.0.0',allowed
   const key=path.split('/').pop();
   if(key==='logout'){res.setHeader('Set-Cookie','sst_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0');res.statusCode=303;res.setHeader('Location','/');res.end();return}
   if(key==='expiry'){const request=new Request(url,{headers:req.headers});const auth=await authenticateMember(request,env);if(auth.userId){const s=await store.get(auth.userId);s.entitlement.active=false;await store.save(auth.userId,s.revision,s)}res.statusCode=303;res.setHeader('Location','/member/programme');res.end();return}
-  const name={dave:'Dave','dave-fresh':'Dave',gaz:'Gaz',new:'New member'}[key];if(!name){res.statusCode=404;res.end();return}
-  const id={dave:101,'dave-fresh':104,gaz:102,new:103}[key];db.sqlite.prepare('INSERT OR IGNORE INTO users(id,first_name) VALUES(?,?)').run(id,name);await store.create(id,fixture(name));
+  const name={dave:'Dave','dave-fresh':'Dave',gaz:'Gaz',new:'New member',constraint:'Constraint check'}[key];if(!name){res.statusCode=404;res.end();return}
+  const id={dave:101,'dave-fresh':104,gaz:102,new:103,constraint:105}[key];db.sqlite.prepare('INSERT OR IGNORE INTO users(id,first_name) VALUES(?,?)').run(id,name);await store.create(id,fixture(name));
   const token=randomBytes(32).toString('hex');db.sqlite.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at) VALUES(?,?,?)').run(id,hash(token),'2027-01-01T00:00:00Z');
   res.setHeader('Set-Cookie',`sst_session=${token}; Path=/; HttpOnly; SameSite=Strict`);res.setHeader('Cache-Control','no-store');res.statusCode=303;res.setHeader('Location','/member/programme');res.end();return;
  }

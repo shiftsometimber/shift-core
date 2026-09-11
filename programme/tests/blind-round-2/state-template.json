@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "revision": 0,
+  "clock": "2026-09-13",
+  "cycle": 0,
+  "anchor": "2026-09-13",
+  "name": "",
+  "preferences": {
+    "allergies": "unknown",
+    "diet": "unknown",
+    "equipment": [],
+    "activityLimitations": "unknown"
+  },
+  "goal": "",
+  "focus": "food",
+  "track": "everyday",
+  "measures": [],
+  "slots": [],
+  "reports": [],
+  "requests": [],
+  "freezes": {},
+  "acquired": {},
+  "manualItems": [],
+  "reviews": [],
+  "decisions": [],
+  "operations": [],
+  "setup": false,
+  "entitlement": {
+    "active": false
+  },
+  "review": null
+}

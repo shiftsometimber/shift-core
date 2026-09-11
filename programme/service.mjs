@@ -1,5 +1,5 @@
 import {RECIPES,suitable,CONTENT_VERSION} from './content.mjs';
-import {clone,dateAdd,weekStart,planningStart,periodStart,evaluate,previewChange,shopping} from './engine.mjs';
+import {clone,dateAdd,weekStart,planningStart,periodStart,evaluate,previewChange,shopping,planConditions} from './engine.mjs';
 export class ProgrammeError extends Error{constructor(message,status=400){super(message);this.status=status}}
 const insist=(condition,message,status=400)=>{if(!condition)throw new ProgrammeError(message,status)};
 export function currentState(state,options={}){
@@ -19,7 +19,7 @@ function cleanPreferences(p){
 export function publicState(state,{fixtureMode=false}={}){
  const s=clone(state);delete s.operations;
  const start=planningStart(state);
- return {...s,contentVersion:CONTENT_VERSION,catalogue:Object.values(RECIPES).filter(r=>suitable(r,state.preferences,{fixtureMode})),lists:[shopping(state,start,dateAdd(start,6)),shopping(state,dateAdd(start,7),dateAdd(start,13))],fixtureMode};
+ return {...s,conditions:planConditions(state,{fixtureMode}),contentVersion:CONTENT_VERSION,catalogue:Object.values(RECIPES).filter(r=>suitable(r,state.preferences,{fixtureMode})),lists:[shopping(state,start,dateAdd(start,6)),shopping(state,dateAdd(start,7),dateAdd(start,13))],fixtureMode};
 }
 function rolledSlots(state,start){
  const templates=new Map();for(const s of [...state.slots].sort((a,b)=>a.date.localeCompare(b.date)))templates.set(s.slotKey,s);
@@ -40,6 +40,7 @@ export function mutate(state,action,{fixtureMode=false}={}){
   });insist(new Set(next.slots.map(s=>s.id)).size===next.slots.length,'Choose different days for duplicate meal or walking slots.');next.setup=true;
  }else if(type==='preferences'){
   next.preferences=cleanPreferences(action.preferences);if(state.setup)insist(next.preferences.reviewDay===(state.preferences.reviewDay??0),'The saved review day is fixed for this test. Your plan is unchanged.');
+  next.review=null;
  }else if(type==='reports'){
   insist(Array.isArray(action.reports)&&action.reports.length<=30,'Too many reports.');
   for(const r of action.reports){const slot=state.slots.find(s=>s.id===r.slotId);insist(slot&&slot.date<=state.clock,'Only report a saved action whose date has arrived.');insist(['done','missed','unknown'].includes(r.status)&&['manageable','did-not-fit','unknown'].includes(r.fit),'Choose a valid report.');
@@ -61,10 +62,11 @@ export function mutate(state,action,{fixtureMode=false}={}){
   next.decisions.push({id:crypto.randomUUID(),type:'skip',date:state.clock,reviewId:state.review?.id||null});next.review=null;
  }else if(type==='repeat'){
   const start=planningStart(state),draft=rolledSlots(state,start);insist(draft.length>0,'Choose a first plan before repeating.');
+  insist(!planConditions({...state,slots:[...state.slots,...draft.filter(d=>!state.slots.some(s=>s.id===d.id))]},{fixtureMode}).length,'Check the flagged meals and current restrictions before repeating this plan. Your saved record is unchanged.',409);
   next.slots=[...state.slots,...draft.filter(d=>!state.slots.some(s=>s.id===d.id))];next.decisions.push({id:crypto.randomUUID(),type:'repeat',date:state.clock,start,end:dateAdd(start,13)});next.review=null;
  }else if(type==='edit-slot'){
   const slot=next.slots.find(s=>s.id===action.slotId);insist(slot&&slot.date>state.clock,'Only future saved actions can be edited.');
-  if(slot.kind==='meal'){insist(suitable(RECIPES[action.recipeId],state.preferences,{fixtureMode}),'This meal is not available for your stated preferences.');insist(Number.isFinite(action.servings)&&action.servings>=1&&action.servings<=12,'Choose 1–12 portions.');slot.recipeId=action.recipeId;slot.recipeVersion=RECIPES[action.recipeId].version;slot.servings=action.servings}
+  if(slot.kind==='meal'){insist(suitable(RECIPES[action.recipeId],state.preferences,{fixtureMode}),'This meal is not available for your stated preferences.');insist(Number.isFinite(action.servings)&&action.servings>=1&&action.servings<=12,'Choose 1–12 portions.');slot.recipeId=action.recipeId;slot.recipeVersion=RECIPES[action.recipeId].version;slot.servings=action.servings;if(Number.isFinite(slot.serveNow)&&!next.slots.some(s=>s.kind==='leftovers'&&s.sourceId===slot.id))slot.serveNow=Math.min(slot.serveNow,action.servings)}
   else {insist(Number.isInteger(action.minutes)&&action.minutes>=1&&action.minutes<=180,'Choose a valid duration.');slot.minutes=action.minutes}
  }else if(type==='request'){
   insist(state.slots.some(s=>s.slotKey===action.slotKey),'Choose an existing item.');next.requests.push({slotKey:action.slotKey,reason:text(action.reason,200),date:state.clock});next.review=null;
