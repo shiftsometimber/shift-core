@@ -52,6 +52,7 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
             old_binding=old_bindings.get(name,{});new_binding=new_bindings.get(name,{})
             if old_binding!=new_binding: binding_changes.append({'name':name,'changed_fields':[k for k in set(old_binding)|set(new_binding) if old_binding.get(k)!=new_binding.get(k)]})
         print(json.dumps({'code_equal':old_identity['etag']==new_identity['etag'],'runtime_equal':old_identity['runtime']==new_identity['runtime'],'binding_changes':binding_changes,'old_script_etag':old_identity['etag'],'new_script_etag':new_identity['etag']},sort_keys=True))
+        if old_identity['runtime']!=new_identity['runtime']: print(json.dumps({'active_runtime':old_identity['runtime'],'candidate_runtime':new_identity['runtime']},sort_keys=True))
     assert equivalent, 'Latest upload differs from the active Worker; refuse accidental promotion'
     etag=before['resources']['script']['etag']
     assert etag, 'Cannot establish current script identity'
