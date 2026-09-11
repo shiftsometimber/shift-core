@@ -41,7 +41,13 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
     newest=api('/workers/scripts/shift-core/versions/'+newest_id)
     def runtime_identity(version):
         resources=version['resources']
-        return {'etag':resources['script'].get('etag'),'runtime':resources.get('script_runtime'),'bindings':sorted([b for b in resources.get('bindings',[]) if b.get('name')!='HQ_MFA_ENCRYPTION_KEY'],key=lambda b:b['name'])}
+        runtime=json.loads(json.dumps(resources.get('script_runtime')))
+        if runtime and isinstance(runtime.get('assets'),dict):
+            # Cloudflare's secret-version API spells out the existing asset-routing defaults.
+            # Canonicalise only these documented defaults; all other runtime fields must match.
+            runtime['assets'].setdefault('html_handling','auto-trailing-slash')
+            runtime['assets'].setdefault('not_found_handling','none')
+        return {'etag':resources['script'].get('etag'),'runtime':runtime,'bindings':sorted([b for b in resources.get('bindings',[]) if b.get('name')!='HQ_MFA_ENCRYPTION_KEY'],key=lambda b:b['name'])}
     equivalent=runtime_identity(before)==runtime_identity(newest)
     print(json.dumps({'active_version':expected,'latest_upload':newest_id,'identical_code_runtime_bindings':equivalent},sort_keys=True))
     if not equivalent:
