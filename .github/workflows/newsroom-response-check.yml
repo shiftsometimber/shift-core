@@ -1,0 +1,48 @@
+name: Newsroom response release check
+on:
+  push:
+    branches: [recovery/pages-access-20260911]
+    paths:
+      - '.github/workflows/newsroom-response-check.yml'
+      - 'release/newsroom-response-20260911/**'
+permissions:
+  contents: read
+concurrency:
+  group: shift-core-newsroom-response-release
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: control
+      - uses: actions/checkout@v4
+        with:
+          ref: 0a667f2953e943665d2d9313d80ff0d4801e14fd
+          fetch-depth: 2
+          path: worker
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Install the locked toolchain
+        working-directory: worker
+        run: npm ci --no-audit --no-fund
+      - name: Verify the actual news and ticker routes with a database that rejects writes
+        working-directory: worker
+        run: node ../control/release/newsroom-response-20260911/route-test.mjs
+      - name: Build current and proposed Worker without uploading
+        working-directory: worker
+        run: python3 ../control/release/newsroom-response-20260911/build.py
+      - name: Reconcile active code and settings without changing production
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 ../control/release/newsroom-response-20260911/inspect.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newsroom-response-evidence
+          path: worker/release-evidence
+          if-no-files-found: ignore
