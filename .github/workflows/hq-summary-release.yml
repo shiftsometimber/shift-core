@@ -24,5 +24,7 @@ jobs:
         if: always()
         with:
           name: hq-summary-release-evidence
-          path: hq-release-report.json
+          path: |
+            hq-release-report.json
+            hq-release-evidence
           if-no-files-found: ignore

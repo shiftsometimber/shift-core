@@ -1,5 +1,5 @@
 """Inspect the existing HQ release, without authentication or editorial actions."""
-import hashlib, json, os, pathlib, urllib.error, urllib.request
+import difflib, hashlib, json, os, pathlib, urllib.error, urllib.request
 
 ACCOUNT = '9e5386dcf455be34c582d93f8bfc79e6'
 BASE = 'https://api.cloudflare.com/client/v4/accounts/' + ACCOUNT
@@ -47,6 +47,9 @@ domain = [x for x in domains if x.get('hostname') == 'hq.shiftsometimber.co.uk']
 report = {'mode': 'inspect', 'source_commit': SOURCE, 'baseline_commit': BASELINE,
           'hq_domain': [{k:x.get(k) for k in ['hostname','service','environment']} for x in domain],
           'active': version_report(active), 'candidate': version_report(candidate), 'core_versions': core_before, 'assets': {}}
+print(json.dumps(report,sort_keys=True))
+evidence = pathlib.Path('hq-release-evidence')
+evidence.mkdir(exist_ok=True)
 for name in ASSETS:
     before = public('https://raw.githubusercontent.com/shiftsometimber/shift-hq/' + BASELINE + '/' + name)
     after = public('https://raw.githubusercontent.com/shiftsometimber/shift-hq/' + SOURCE + '/' + name)
@@ -54,8 +57,10 @@ for name in ASSETS:
     current = public('https://hq.shiftsometimber.co.uk/' + name + '?hq_summary_release=20260911')
     report['assets'][name] = {'before_sha256':digest(before),'source_sha256':digest(after),'preview_sha256':digest(preview),'production_sha256':digest(current),
                               'preview_matches_source':preview == after,'production_matches_baseline':current == before,'changed':before != after}
-    assert preview == after, 'Preview asset differs from reviewed source: ' + name
-    assert current == before, 'Production asset differs from baseline: ' + name
+    if current != before:
+        diff = ''.join(difflib.unified_diff(before.decode().splitlines(True),current.decode().splitlines(True),fromfile='repository/'+name,tofile='production/'+name))
+        (evidence/(name+'.diff')).write_text(diff)
+        print(json.dumps({'mismatch':name,'diff':diff[:15000]}))
 assert [n for n,r in report['assets'].items() if r['changed']] == ['index.html','hq.js'], 'Unexpected HQ browser changes'
 pages = json.loads(public('https://shiftsometimber.co.uk/DEPLOYMENT-FINGERPRINT.json'))
 report['pages_fingerprint'] = {k: pages[k] for k in ['aggregate_sha256','file_count']}
@@ -63,4 +68,6 @@ assert pages['aggregate_sha256'] == '5d7007a2eb1b7b8adf84609ceb6e0134b316240271c
 assert api('/workers/scripts/shift-core/deployments')['deployments'][0]['versions'] == core_before, 'Core runtime changed during inspection'
 pathlib.Path('hq-release-report.json').write_text(json.dumps(report,indent=2) + '\n')
 print(json.dumps(report,sort_keys=True))
+assert all(r['preview_matches_source'] for r in report['assets'].values()), 'Preview differs from reviewed source'
+assert all(r['production_matches_baseline'] for r in report['assets'].values()), 'Production differs from baseline; no deployment'
 print('PASS: seven HQ browser assets verified; only index.html and hq.js differ; no production mutation.')
