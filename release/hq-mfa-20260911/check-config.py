@@ -1,5 +1,5 @@
 """Check the exact MFA dependency without exposing credentials or touching user records."""
-import json, os, urllib.request, urllib.error
+import json, os, secrets as random_secrets, urllib.request, urllib.error
 
 account=os.environ['CLOUDFLARE_ACCOUNT_ID']
 base='https://api.cloudflare.com/client/v4/accounts/'+account
@@ -22,3 +22,30 @@ if not present:
     data=api('/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query',{'sql':"SELECT COUNT(*) AS existing_mfa_records FROM hq_users WHERE mfa_enabled=1 OR (mfa_secret IS NOT NULL AND mfa_secret<>'')"},'POST')
     report['existing_mfa_records']=data[0]['results'][0]['existing_mfa_records']
 print(json.dumps(report,sort_keys=True))
+
+if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
+    if present:
+        print('No change: MFA encryption secret already exists. It will not be replaced.')
+        raise SystemExit(0)
+    assert report['existing_mfa_records']==0, 'Existing MFA records require recovery of the original key'
+    expected='9c3cd9d1-deb2-4fc8-8973-0616915e84a5'
+    assert latest['versions']==[{'percentage':100,'version_id':expected}], 'Active Worker version changed'
+    versions=api('/workers/scripts/shift-core/versions')
+    assert versions['items'][0]['id']==expected, 'A newer Worker upload exists; refuse accidental promotion'
+    before=api('/workers/scripts/shift-core/versions/'+expected)
+    etag=before['resources']['script']['etag']
+    assert etag, 'Cannot establish current script identity'
+    # The key exists only in process memory and the encrypted Cloudflare binding.
+    # No secret value is printed, committed, returned or saved as an artifact.
+    value=random_secrets.token_urlsafe(48)
+    result=api('/workers/scripts/shift-core/secrets',{'name':'HQ_MFA_ENCRYPTION_KEY','text':value,'type':'secret_text'},'PUT')
+    del value
+    assert result.get('name')=='HQ_MFA_ENCRYPTION_KEY', 'Secret update was not confirmed'
+    after_deployment=api('/workers/scripts/shift-core/deployments')['deployments'][0]
+    assert len(after_deployment['versions'])==1 and after_deployment['versions'][0]['percentage']==100, 'Unexpected traffic split after secret update'
+    after_id=after_deployment['versions'][0]['version_id']
+    after=api('/workers/scripts/shift-core/versions/'+after_id)
+    assert after['resources']['script']['etag']==etag, 'Worker code identity changed unexpectedly'
+    remaining=api('/workers/scripts/shift-core/secrets')
+    assert any(s.get('name')=='HQ_MFA_ENCRYPTION_KEY' for s in remaining), 'Secret is not present after update'
+    print(json.dumps({'status':'PASS','worker':'shift-core','secret_added':'HQ_MFA_ENCRYPTION_KEY','before_version':expected,'after_version':after_id,'script_etag_unchanged':etag,'user_records_changed':False,'secret_value_logged':False},sort_keys=True))

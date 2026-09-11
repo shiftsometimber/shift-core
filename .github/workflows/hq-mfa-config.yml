@@ -16,8 +16,9 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Check the missing MFA dependency without changing user records
+      - name: Add only the confirmed missing MFA secret; preserve Worker code and user records
         env:
           CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          APPLY_MISSING_MFA_SECRET: 'true'
         run: python3 release/hq-mfa-20260911/check-config.py
