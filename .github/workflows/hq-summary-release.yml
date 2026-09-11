@@ -1,0 +1,28 @@
+name: HQ summary release
+on:
+  push:
+    branches: [recovery/pages-access-20260911]
+    paths:
+      - '.github/workflows/hq-summary-release.yml'
+      - 'release/hq-summary-20260911/**'
+permissions:
+  contents: read
+concurrency:
+  group: shift-hq-summary-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect the prepared HQ version and preserve current production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 release/hq-summary-20260911/inspect-release.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hq-summary-release-evidence
+          path: hq-release-report.json
+          if-no-files-found: ignore
