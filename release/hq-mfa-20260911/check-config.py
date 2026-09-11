@@ -17,10 +17,11 @@ def api(path,body=None,method='GET'):
     if not result.get('success'): raise SystemExit('Cloudflare request did not succeed')
     return result['result']
 
-secrets=api('/workers/scripts/shift-core/secrets')
-present=any(s.get('name')=='HQ_MFA_ENCRYPTION_KEY' for s in secrets)
 deployments=api('/workers/scripts/shift-core/deployments')
 latest=deployments.get('deployments',[])[0]
+assert len(latest['versions'])==1 and latest['versions'][0]['percentage']==100, 'Unexpected active traffic split'
+active=api('/workers/scripts/shift-core/versions/'+latest['versions'][0]['version_id'])
+present=any(b.get('name')=='HQ_MFA_ENCRYPTION_KEY' for b in active['resources']['bindings'])
 report={'worker':'shift-core','secret_name':'HQ_MFA_ENCRYPTION_KEY','secret_present':present,'deployment_id':latest.get('id'),'versions':latest.get('versions'),'mutation_performed':False}
 if not present:
     data=api('/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query',{'sql':"SELECT COUNT(*) AS existing_mfa_records FROM hq_users WHERE mfa_enabled=1 OR (mfa_secret IS NOT NULL AND mfa_secret<>'')"},'POST')
@@ -40,7 +41,7 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
     newest=api('/workers/scripts/shift-core/versions/'+newest_id)
     def runtime_identity(version):
         resources=version['resources']
-        return {'etag':resources['script'].get('etag'),'runtime':resources.get('script_runtime'),'bindings':resources.get('bindings')}
+        return {'etag':resources['script'].get('etag'),'runtime':resources.get('script_runtime'),'bindings':sorted([b for b in resources.get('bindings',[]) if b.get('name')!='HQ_MFA_ENCRYPTION_KEY'],key=lambda b:b['name'])}
     equivalent=runtime_identity(before)==runtime_identity(newest)
     print(json.dumps({'active_version':expected,'latest_upload':newest_id,'identical_code_runtime_bindings':equivalent},sort_keys=True))
     assert equivalent, 'Latest upload differs from the active Worker; refuse accidental promotion'
@@ -48,19 +49,21 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
     assert etag, 'Cannot establish current script identity'
     # The key exists only in process memory and the encrypted Cloudflare binding.
     # No secret value is printed, committed, returned or saved as an artifact.
-    value=random_secrets.token_urlsafe(48)
-    # Same version-secret operation used by Cloudflare's official Wrangler.
-    result=api('/workers/workers/shift-core/versions/latest',{'env':{'HQ_MFA_ENCRYPTION_KEY':{'text':value,'type':'secret_text'}},'annotations':{'workers/message':'Add missing HQ MFA encryption key; preserve live code'}},'PATCH')
-    del value
-    candidate_id=result.get('id')
+    if any(b.get('name')=='HQ_MFA_ENCRYPTION_KEY' for b in newest['resources']['bindings']):
+        candidate_id=newest_id
+    else:
+        value=random_secrets.token_urlsafe(48)
+        result=api('/workers/workers/shift-core/versions/latest',{'env':{'HQ_MFA_ENCRYPTION_KEY':{'text':value,'type':'secret_text'}},'annotations':{'workers/message':'Add missing HQ MFA encryption key; preserve live code'}},'PATCH')
+        del value
+        candidate_id=result.get('id')
     assert candidate_id, 'Candidate version was not returned'
     candidate=api('/workers/scripts/shift-core/versions/'+candidate_id)
     identity=runtime_identity(candidate)
-    bindings=identity['bindings']
+    bindings=candidate['resources']['bindings']
     assert isinstance(bindings,list), 'Unexpected binding representation'
     new_binding=[b for b in bindings if b.get('name')=='HQ_MFA_ENCRYPTION_KEY']
     assert len(new_binding)==1 and new_binding[0].get('type')=='secret_text', 'Encrypted secret binding missing'
-    identity['bindings']=[b for b in bindings if b.get('name')!='HQ_MFA_ENCRYPTION_KEY']
+    print(json.dumps({'candidate_version':candidate_id,'code_equal':identity['etag']==runtime_identity(before)['etag'],'runtime_equal':identity['runtime']==runtime_identity(before)['runtime'],'other_bindings_equal':identity['bindings']==runtime_identity(before)['bindings']},sort_keys=True))
     assert identity==runtime_identity(before), 'Candidate differs beyond the MFA secret; no deployment'
     still_live=api('/workers/scripts/shift-core/deployments')['deployments'][0]
     assert still_live['versions']==latest['versions'], 'Production moved during preparation; no deployment'
@@ -70,6 +73,6 @@ if os.environ.get('APPLY_MISSING_MFA_SECRET')=='true':
     after_id=after_deployment['versions'][0]['version_id']
     after=api('/workers/scripts/shift-core/versions/'+after_id)
     assert after['resources']['script']['etag']==etag, 'Worker code identity changed unexpectedly'
-    remaining=api('/workers/scripts/shift-core/secrets')
+    remaining=after['resources']['bindings']
     assert any(s.get('name')=='HQ_MFA_ENCRYPTION_KEY' for s in remaining), 'Secret is not present after update'
     print(json.dumps({'status':'PASS','worker':'shift-core','secret_added':'HQ_MFA_ENCRYPTION_KEY','before_version':expected,'after_version':after_id,'script_etag_unchanged':etag,'user_records_changed':False,'secret_value_logged':False},sort_keys=True))
