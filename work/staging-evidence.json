@@ -1,9 +1,9 @@
 {
   "status": "pass",
-  "checkedAt": "2026-09-12T09:33:13.711Z",
+  "checkedAt": "2026-09-12T10:02:19.964Z",
   "origin": "https://shift-core-work-staging.matobrien.workers.dev",
-  "commit": "af27c70dd3c63679c240af560d1b94e3c163b73b",
-  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34686084461",
+  "commit": "1141a18f1c1a73b196c1ea8d4c19db456b1e888d",
+  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34687345910",
   "checks": [
     "Separate real member and HQ password logins",
     "HQ/member session separation",
@@ -18,13 +18,14 @@
     "Fictional accounts only",
     "Closed period is a seeded fixture",
     "No real-employee or clinical commissioning",
-    "Browser account journey not passed"
+    "Desktop Chrome member journey only; no production sign-in, HQ MFA, mobile or Safari acceptance"
   ],
   "browser": {
-    "status": "blocked",
-    "reason": "Automatic approval review rejected the secure credential handoff: its sign-in prompt did not match the visible create-test-account action.",
-    "credentialsEntered": false,
+    "status": "pass",
+    "scope": "Secure existing-account sign-in, voluntary company-code claim, shared start, week-one completion persisted after reload, logout and fresh protected-route redirect to sign-in",
     "registrationAttempted": false,
-    "remaining": "A correctly described registration step or an existing fictional staging account is needed before an ordinary secure sign-in handoff."
+    "credentials": "Secure handoff only; no values inspected or logged",
+    "fix": "Literal browser source removes bundled __name dependency; served-asset regression test added",
+    "logout": "Completed after delayed navigation; cause of delay not diagnosed. Staging helper now provides pending/error feedback."
   }
 }
