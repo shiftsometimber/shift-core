@@ -43,10 +43,17 @@ main.work .work-lead-copy,main.work .work-welcome>div{padding:clamp(24px,3.4vw,4
 main.work .work-lead h2,main.work .work-welcome h2{color:#e7e3da!important;font-size:clamp(27px,3.5vw,42px);line-height:1.1}
 main.work .work-lead p,main.work .work-welcome p{color:#e7e3da}
 main.work .work-lead .work-eyebrow,main.work .work-welcome .work-eyebrow{color:#b6bea7}
-main.work .work-lead img,main.work .work-welcome img{height:100%;min-height:245px;max-height:350px;width:100%;object-fit:cover;object-position:60% center;display:block}
+main.work .work-lead img,main.work .work-welcome img{height:100%;min-height:245px;max-height:none;width:100%;object-fit:cover;object-position:60% center;display:block}
+main.work .work-lead h2{font-size:clamp(27px,3vw,36px)}
+main.work .work-lead .work-company{font-size:14px;color:#b6bea7;margin-bottom:14px}
+main.work .work-lead .work-next-actions{flex-direction:row;flex-wrap:wrap;gap:10px;margin-top:18px;min-width:0}
+main.work .work-lead a.work-primary{color:#050505!important;background:#e7e3da;border-color:#e7e3da}
+main.work .work-lead a.work-primary:hover{background:#d9dfce}
+main.work .work-lead button.work-secondary{color:#e7e3da!important;background:#050505;border-color:#b6bea7}
+main.work .work-lead button.work-secondary:hover{background:#2b3024}
 main.work .work-badge{display:inline-block;border:1px solid #707762;padding:5px 10px;font-size:12px;letter-spacing:.03em;color:#e7e3da}
 main.work .work-cohort-body{padding:28px}
-main.work .work-stats{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:20px;padding-bottom:24px;border-bottom:1px solid #b1b3a5}
+main.work .work-stats{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:20px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid #b1b3a5}
 main.work .work-stats span{display:block;font-size:13px;color:#4e5543;margin-bottom:5px}
 main.work .work-stats strong{font-size:18px;display:block}
 main.work progress{display:block;width:100%;height:7px;margin-top:12px;accent-color:#586548;border:0;background:#d1d4c7}
