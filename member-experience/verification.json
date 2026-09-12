@@ -1,0 +1,176 @@
+{
+  "date": "2026-09-12",
+  "implementationCommit": "d4071764cce61f82901f39a1f0393bd46c30b89d",
+  "implementationTree": "76aeab8ebb334f237422485378fdea4d237e9d87",
+  "environment": "isolated workplace Worker; fictional member UI review",
+  "checksWorkflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34690665204",
+  "stagingWorkflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34690665172",
+  "tests": {
+    "memberPresentationAndExistingContracts": 33,
+    "workplace": 38,
+    "programme": 84,
+    "total": 155
+  },
+  "layouts": [
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "dashboard",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "dashboard",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "dashboard",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "dashboard",
+      "width": "1280"
+    },
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "grub",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "grub",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "grub",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "grub",
+      "width": "1280"
+    },
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "fit",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "fit",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "fit",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "fit",
+      "width": "1280"
+    },
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "check-in",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "check-in",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "check-in",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "check-in",
+      "width": "1280"
+    },
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "settings",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "settings",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "settings",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "settings",
+      "width": "1280"
+    },
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "saved",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "saved",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "saved",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "saved",
+      "width": "1280"
+    },
+    {
+      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+      "screen": "today",
+      "width": "320"
+    },
+    {
+      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+      "screen": "today",
+      "width": "390"
+    },
+    {
+      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+      "screen": "today",
+      "width": "768"
+    },
+    {
+      "measurement": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+      "screen": "today",
+      "width": "1280"
+    }
+  ],
+  "interactions": [
+    "Today and Journey switch through existing handlers",
+    "Journey weekly review remounts after the summary renders",
+    "Weekly validation rejects a missing overall marker",
+    "Rejected weekly save reports 'That did not save.'",
+    "Grub failed account save reports 'Not saved — retry'",
+    "Ingredient controls have distinct accessible add/remove names",
+    "Saved page opens Grub with Saved tab selected and fictional retained item visible",
+    "Check-in missing selection focuses first mood",
+    "Consent dialog leaves Continue disabled until explicit opt-in",
+    "Declining consent leaves check-in unsaved",
+    "Fit failed request reports the error and restores the build button"
+  ],
+  "limits": [
+    "Fictional UI data; member saves deliberately rejected",
+    "No new authenticated UI end-to-end claim for these six Pages tools",
+    "Responsive Chrome frames are not physical-device or Safari certification",
+    "Approved content and partner/legal commissioning remain separate release dependencies",
+    "Production config and authoritative Pages payload unchanged"
+  ]
+}
