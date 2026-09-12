@@ -8,7 +8,7 @@ User-authorised follow-through from the approved workplace member screen. This i
 
 `/member/journey` and its HTML alias redirect to the functioning `/member/dashboard#journey`. The previous page described future clinical workflow states. Saved now links to account-backed food, Journey, check-ins and privacy controls, replacing obsolete placeholder claims. Grub supports a direct `#saved` landing and check-in supports `#history`.
 
-No data model, employer permissions, reporting thresholds, medical advice, recipe approval, exercise approval, treatment availability, pricing or consent notice has changed. The enhancement client makes no requests and stores no data.
+No data model, employer permissions, reporting thresholds, medical advice, recipe approval, exercise approval, treatment availability, pricing or consent notice has changed. The enhancement client makes no requests and stores no data. It restores the existing `sst:journey-rendered` notification after the Pages V2 renderer rebuilds the Journey host, so the existing Worker weekly client remounts.
 
 ## Isolated review
 

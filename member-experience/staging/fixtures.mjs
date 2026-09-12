@@ -16,6 +16,13 @@ const fixture={
  conundrum:async()=>({top:[{name:'Fictional meal for layout review',minutes:20,protein_g:25,summary:'Sample card to check reading, saving and error states. This is not a reviewed recipe.'}]}),
 };
 window.SST_API=new Proxy(fixture,{get:(target,key)=>target[key]||blocked});
+window.SST_MEMBER_REVIEW_FETCH=async(url,options={})=>{
+ if(options.method&&options.method!=='GET')return Response.json({error:'Read-only design review. Nothing has been saved.'},{status:409});
+ const path=new URL(url,window.location.origin).pathname;
+ if(path.endsWith('/journey/weekly-check-in'))return Response.json(await fixture.getJourneyCheckIn());
+ if(path.endsWith('/journey/trends'))return Response.json(await fixture.getJourneyTrends());
+ return Response.json({error:'Not connected in this review.'},{status:404});
+};
 document.addEventListener('submit',e=>{if(e.target.closest('.preview-auth'))e.preventDefault()});
 document.addEventListener('click',e=>{
  const a=e.target.closest('a');if(!a)return;

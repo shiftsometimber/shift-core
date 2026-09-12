@@ -4,7 +4,7 @@ export const memberClient = String.raw`(() => {
   'use strict';
   const body=document.body;
   if(!body.matches('[data-member-experience="v1"]'))return;
-  const page=body.dataset.memberPage;
+  const page=body.dataset.memberPage,journeyRenders=new WeakSet();
   const all=(s,root=document)=>[...root.querySelectorAll(s)];
   const set=(el,key,value)=>{if(el&&el.getAttribute(key)!==String(value))el.setAttribute(key,String(value))};
   function nav(){
@@ -16,7 +16,7 @@ export const memberClient = String.raw`(() => {
     const u=new URL(a.href);
     if(page==='dashboard'&&u.pathname==='/member/dashboard'&&document.querySelector('#previewMember.is-ready')){
       const tab=document.querySelector('.mp-tab[data-panel="'+(u.hash==='#journey'?'journey':'today')+'"]');
-      if(tab){e.preventDefault();tab.click();nav();document.querySelector(u.hash==='#journey'?'#panel-journey':'#panel-today')?.scrollIntoView({block:'start'});}
+      if(tab&&document.querySelector('#panel-journey[aria-busy="false"]')){e.preventDefault();tab.click();nav();document.querySelector(u.hash==='#journey'?'#panel-journey':'#panel-today')?.scrollIntoView({block:'start'});}
     }
   }));
   const more=document.querySelector('.member-nav-more');
@@ -46,6 +46,13 @@ export const memberClient = String.raw`(() => {
   }
   // Label controls created by the existing tool clients without changing handlers.
   function labels(){
+    all('#panel-journey .mj-hero,#panel-journey .mj-setup').forEach(el=>{
+      if(journeyRenders.has(el))return;journeyRenders.add(el);
+      const strip=el.querySelector('.mj-support-strip');if(strip)el.after(strip);
+      // Existing Worker weekly client listens for this event. The Pages V2
+      // renderer replaced its host without notifying that client.
+      document.dispatchEvent(new CustomEvent('sst:journey-rendered'));
+    });
     all('#sgIngredientChips [data-remove]').forEach(b=>set(b,'aria-label','Remove '+b.textContent.replace(/ ×$/,'')));
     all('#shoppingList [data-check],#shoppingList [data-delete]').forEach(b=>{const item=b.closest('.shopping-item'),text=item?.querySelector('span')?.textContent||'item';set(b,'aria-label',b.hasAttribute('data-delete')?'Remove '+text:(item?.classList.contains('done')?'Mark needed: ':'Mark bought: ')+text)});
     nav();

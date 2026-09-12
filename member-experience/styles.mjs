@@ -23,9 +23,12 @@ body.sst-member-experience [hidden]{display:none!important}
 .sst-member-experience .member-nav-more summary{cursor:pointer;padding:10px 8px;font-weight:700;min-height:44px}
 .sst-member-experience .member-nav-more>div{position:absolute;right:0;top:100%;width:260px;max-width:calc(100vw - 32px);padding:10px;background:#11140f;border:1px solid #707762;box-shadow:0 14px 28px #05050533}
 .sst-member-experience .member-nav-more a{display:block;white-space:normal}
-.sst-member-experience :is(.member-side,.member-quick-nav){display:none!important}
+.sst-member-experience :is(.member-side,.member-quick-nav,.my-shift-v8-mobile-nav){display:none!important}
 .sst-member-experience .member-shell{display:block!important;grid-template-columns:1fr!important;padding:0!important;background:transparent!important;border:0!important}
-.sst-member-experience :is(.member-main,.fit-experience-v1,.preview-wrap,.preview-member){padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:transparent!important;color:var(--me-ink)!important;max-width:none!important}
+.sst-member-experience :is(.member-main,.fit-experience-v1,.preview-member){padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:transparent!important;color:var(--me-ink)!important;max-width:none!important}
+.sst-member-experience main.preview-wrap{background:transparent!important;border:0!important;box-shadow:none!important}
+.sst-member-experience .site-header nav a{color:#dddcd3!important}
+.sst-member-experience .grub-v8-panel{padding:0!important;border:0!important;background:transparent!important}
 .sst-member-experience .member-main:before,.sst-member-experience .v6-watermark-host:before{display:none!important}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival){position:relative;isolation:isolate;overflow:hidden;min-height:290px!important;margin:0 0 28px!important;padding:36px 42% 36px 32px!important;border:0!important;border-radius:16px!important;background:#11140f!important;color:#f4f1e9!important;box-shadow:none!important}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival):after{content:''!important;display:block!important;position:absolute;inset:0 0 0 58%;z-index:-1;opacity:1!important;background:linear-gradient(90deg,#11140f 0%,#11140f00 60%),url('/assets/home-hero-men-v32o.jpg') center/cover no-repeat;pointer-events:none}

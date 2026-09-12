@@ -28,7 +28,7 @@ export async function memberReviewRoutes(request,env){
      js=js.slice(start,end);
    }
    // Lexical fixture transport/storage, leaving the original tool code intact.
-   const lead="const localStorage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}};const location={pathname:window.location.pathname.replace('/staging',''),hash:window.location.hash};";
+   const lead="const fetch=window.SST_MEMBER_REVIEW_FETCH;const localStorage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}};const location={pathname:window.location.pathname.replace('/staging',''),hash:window.location.hash};";
    return new Response('(()=>{'+lead+js+'})();',{headers:{...headers,'Content-Type':'text/javascript'}});
  }
  const name=path.slice(prefix.length);if(!Object.hasOwn(scripts,name))return new Response('Unknown review screen.',{status:404,headers});

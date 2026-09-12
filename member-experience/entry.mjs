@@ -32,7 +32,9 @@ export async function memberExperienceEntry(request, env, response) {
   if (!html.includes('</head>') || !html.includes('</body>') || html.includes('data-member-experience="v1"')) return original;
   html = html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+(attrs.includes('class=')?attrs.replace(/class="([^"]*)"/,'class="$1 sst-member-experience"'):attrs+' class="sst-member-experience"')+' data-member-experience="v1" data-member-page="'+name+'">');
   html = html.replace(/(<nav\b[^>]*class="[^"]*sst-member-tabs[^>]*>)[\s\S]*?<\/nav>/,(_,open)=>open+navigation(env.WORK_V1_ENABLED === 'true')+'</nav>');
-  html = html.replace('</head>','<link rel="stylesheet" href="/assets/member-experience/v1.css"></head>').replace('</body>','<script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
+  // Some legacy member templates include stylesheets inside the body. Load the
+  // scoped layer after those too, so their sidebars cannot reappear on mobile.
+  html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
   if(name === 'grub') html = html.replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');
