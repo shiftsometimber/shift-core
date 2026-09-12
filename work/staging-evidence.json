@@ -17,7 +17,14 @@
   "limits": [
     "Fictional accounts only",
     "Closed period is a seeded fixture",
-    "Browser credential handoff pending",
-    "No real-employee or clinical commissioning"
-  ]
+    "No real-employee or clinical commissioning",
+    "Browser account journey not passed"
+  ],
+  "browser": {
+    "status": "blocked",
+    "reason": "Automatic approval review rejected the secure credential handoff: its sign-in prompt did not match the visible create-test-account action.",
+    "credentialsEntered": false,
+    "registrationAttempted": false,
+    "remaining": "A correctly described registration step or an existing fictional staging account is needed before an ordinary secure sign-in handoff."
+  }
 }
