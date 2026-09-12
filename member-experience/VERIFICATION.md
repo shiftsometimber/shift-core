@@ -1,5 +1,7 @@
 # Member experience verification — 12 September 2026
 
+Historical layout review below. The later connected Grub release has now passed authenticated browser saving/planning/shopping acceptance and 168 targeted checks; see [the final release evidence](../docs/grub-connected-release-20260912.md). Grub in the hosted review now uses real private fictional account storage. The other screens remain read-only layout reviews.
+
 Implementation: `d4071764cce61f82901f39a1f0393bd46c30b89d`, tree `76aeab8ebb334f237422485378fdea4d237e9d87`.
 
 ## Result

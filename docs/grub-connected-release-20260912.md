@@ -22,7 +22,9 @@ The existing unrelated `act2b-one-shot.yml` validation failure is not a passing 
 
 Packaged source `009d62c7bbf06fdf72b26b9bc972330a162f453d` has tree `a9f4cd2c71e9153c9b5b74813b52f64d2a931a24`. Both hosted workflows passed: [168 targeted checks and the enabled release bundle](https://github.com/shiftsometimber/shift-core/actions/runs/34702099552), and [hosted deployment plus remote account/D1 verification](https://github.com/shiftsometimber/shift-core/actions/runs/34702099554). The remote probe completed at `2026-09-12T15:25:28.734Z`. Counts are 39 workplace/account runtime checks, 84 Programme checks and 45 member/tool checks.
 
-Merge commit `cc8095d183f86df74e50d4caf50b54f87d14b11e` incorporates the current production parent with the identical verified tree; no files changed in that merge. [Draft PR 677](https://github.com/shiftsometimber/shift-core/pull/677) is mergeable and records the remaining browser boundary. The existing Daily Shift, My Timber completeness/navigation and secure-login source gates also passed locally.
+Merge commit `cc8095d183f86df74e50d4caf50b54f87d14b11e` incorporates the current production parent with the identical verified tree; no files changed in that merge. [PR 677](https://github.com/shiftsometimber/shift-core/pull/677) contains the consolidated release. The existing Daily Shift, My Timber completeness/navigation and secure-login source gates also passed locally.
+
+Final browser corrections are in `eae08d8e5300047d2b9a7b7acc85026f01095465` and `7a5f8fa68748a856cf30285d50c1f3286907de73` (final implementation tree `7f9ecae214f9e52f27f99d800380adcc19286bd3`). These restore saved planner options, hide inappropriate sign-in/sign-out controls, keep shopping checkboxes stable while saving, restore focus after writes, and style native dialog and print actions consistently. On that exact final implementation, [all 168 targeted checks and both release bundle dry runs passed](https://github.com/shiftsometimber/shift-core/actions/runs/34704841557). [Hosted deployment and the full remote account/D1 probe also passed](https://github.com/shiftsometimber/shift-core/actions/runs/34704841533), completing at `2026-09-12T16:20:52.923Z`.
 
 ## Deployment preparation
 
@@ -36,4 +38,17 @@ SHIFT for Work remains separately controlled by its workplace binding and commis
 
 ## Browser acceptance
 
-Earlier browser checks established full recipe readability, working filters and no contrast failures/overflow at 320px and 1280px for the search renderer. They do not establish the newly connected account UI. The secure browser sign-in request timed out after 300 seconds. A canonical-page verification was attempted to establish whether sign-in nevertheless completed; no browser success is claimed. Final interactive save/plan/shopping and responsive-dialog checks remain open. Fresh password sign-in on the actual production origin is also unverified. Do not describe this record as final browser sign-off or a production deployment.
+The previously blocked browser check resumed successfully in a real signed-in fictional staging account. Chrome interactive acceptance is complete:
+
+- The reported search `Chicken, beef, noodles, bread` returned a real approved recipe, with actual quantities, method, allergens, storage and calculated nutrition. Filters and the fridge flow use the connected recipe service.
+- Saving a recipe, assigning day 2 / dinner / two servings, and building a three-day plan persisted to the account. The shopping list scaled the actual recipe quantities.
+- Cancelling plan replacement retained the current meal. Confirming replacement saved nine meals. Swapping the first meal left the other eight unchanged.
+- The saved recipe, all nine meals and a checked manual shopping item survived navigation and reload. The planner restored three days, fast meals, two servings and the ingredient exclusion.
+- An unsupported `nut-free` request showed its error inside the replacement dialog and left the saved nine-meal plan intact.
+- The native dialog's Cancel control is readable. Escape closes the dialog and returns focus to the invoking action. Shopping check/uncheck works while a pending status is shown until server confirmation.
+- All five food tabs were measured at 320px and 1280px. Final measurements have zero text contrast failures and no horizontal overflow. The populated nine-meal plan, saved recipe and shopping list were included, alongside the phone add-meal dialog and expanded recipe. The print control's original contrast failure and successful correction are both retained in the measurement record.
+- Test records were removed using the visible controls. A fresh page load confirmed empty saved recipes, no meals and an empty shopping list. Non-sensitive planner preferences remain in the fictional account. Sign-out completed; a fresh Grub page then showed the session-ended message, disabled account writes, displayed Sign in and hid Sign out.
+
+Evidence: [individual measurements](grub-browser-measurements-20260912.json) and [verified phone dialog](grub-phone-dialog-20260912.jpg). The screenshot was captured after the dialog fix; the subsequent change only styles the print control. Temporary browser transport timeouts were resolved by inspecting the actual page state; they are not recorded as application failures or evidence of success.
+
+This closes authenticated staging browser acceptance for the food release. The other member screens retain their earlier layout evidence in `member-experience/VERIFICATION.md`. Native Safari/physical devices and a fresh password sign-in on the actual production origin were not independently verified. The current production login repair is retained exactly. No new production deployment is claimed; the candidate is ready for review and controlled promotion using the prepared configuration above.
