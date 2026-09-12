@@ -38,3 +38,4 @@ work/staging/prepare.mjs
 work/staging/provision.mjs
 work/staging/worker.mjs
 work/staging/pinned-assets.json
+work/staging-evidence.json

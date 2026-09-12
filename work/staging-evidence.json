@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-09-12T09:33:13.711Z",
+  "origin": "https://shift-core-work-staging.matobrien.workers.dev",
+  "commit": "af27c70dd3c63679c240af560d1b94e3c163b73b",
+  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34686084461",
+  "checks": [
+    "Separate real member and HQ password logins",
+    "HQ/member session separation",
+    "Code claim and review persisted across remote requests",
+    "Foreign employer cannot access reports",
+    "Clinical ordering remains blocked",
+    "Fixed closed-fixture report released without member records",
+    "Reporting-access revocation takes effect",
+    "Logout invalidates the saved member session"
+  ],
+  "limits": [
+    "Fictional accounts only",
+    "Closed period is a seeded fixture",
+    "Browser credential handoff pending",
+    "No real-employee or clinical commissioning"
+  ]
+}
