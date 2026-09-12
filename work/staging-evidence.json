@@ -1,9 +1,9 @@
 {
   "status": "pass",
-  "checkedAt": "2026-09-12T10:02:19.964Z",
+  "checkedAt": "2026-09-12T10:12:54.376Z",
   "origin": "https://shift-core-work-staging.matobrien.workers.dev",
-  "commit": "1141a18f1c1a73b196c1ea8d4c19db456b1e888d",
-  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34687345910",
+  "commit": "62f9df4d89b0846a1babc3df9618f074d5b2ffe8",
+  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34687802312",
   "checks": [
     "Separate real member and HQ password logins",
     "HQ/member session separation",
@@ -26,6 +26,7 @@
     "registrationAttempted": false,
     "credentials": "Secure handoff only; no values inspected or logged",
     "fix": "Literal browser source removes bundled __name dependency; served-asset regression test added",
-    "logout": "Completed after delayed navigation; cause of delay not diagnosed. Staging helper now provides pending/error feedback."
+    "logout": "Completed after delayed navigation; cause of delay not diagnosed. Staging helper now provides pending/error feedback.",
+    "responsiveEvidence": "work/responsive-evidence.json"
   }
 }
