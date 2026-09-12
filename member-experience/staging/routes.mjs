@@ -1,4 +1,3 @@
-import {upgradeGrubHTML} from '../grub-runtime.mjs';
 import {memberExperienceEntry,memberExperienceRoutes} from '../entry.mjs';
 import {fixtureClient} from './fixtures.mjs';
 import {contrastCheckClient} from './contrast.mjs';
@@ -83,6 +82,6 @@ export async function memberReviewRoutes(request,env){
  if(name==='grub')html=html.replace('Design review · fictional data · saves disabled · live site unchanged','Private food trial · real recipe and saving flow · fictional accounts only');
  const response=await memberExperienceEntry(new Request(new URL('/member/'+name,url)),{MEMBER_EXPERIENCE_V1_ENABLED:'true',WORK_V1_ENABLED:'true'},new Response(html,{headers:{'Content-Type':'text/html'}}));
  const pageHeaders={...headers,'Content-Type':'text/html; charset=utf-8'};
- if(name==='grub'){pageHeaders['Content-Security-Policy']=headers['Content-Security-Policy'].replace("connect-src 'none'","connect-src 'self'").replace("form-action 'none'","form-action 'self'");let body=await response.text();body=body.replace('data-member-page="grub"','data-member-page="grub" data-food-staging="true"').replace('href="/member/dashboard">Sign in','href="/staging/sign-in">Sign in').replace('<button id="grubSignOut">Sign out</button>','<button id="grubSignOut">Sign out</button><button id="grubStartTrial">Start a private test account</button>');return new Response(body,{headers:pageHeaders})}
+ if(name==='grub'){pageHeaders['Content-Security-Policy']=headers['Content-Security-Policy'].replace("connect-src 'none'","connect-src 'self'").replace("form-action 'none'","form-action 'self'");let body=await response.text();body=body.replace('data-member-page="grub"','data-member-page="grub" data-food-staging="true"').replace('href="/member/dashboard">Sign in','href="/staging/sign-in">Sign in');return new Response(body,{headers:pageHeaders})}
  return new Response(response.body,{headers:pageHeaders});
 }
