@@ -144,6 +144,8 @@ jobs:
         run: node my-timber-final-source-gate.mjs
       - name: Prove signed-in members can reach the site and The Lounge
         run: node my-timber-navigation-gate.mjs
+      - name: Verify security-check timeouts and retry before promotion
+        run: node --test tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs
       - name: Prove persistent member login remains secure
         run: node g5-012-login-fastpath-gate.mjs
       - name: Prove Ask Timber handles every explicit request part
