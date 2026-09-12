@@ -38,6 +38,8 @@ Record setup time, launch delivery, support, content review, software/email, rep
 
 Test employer-led cohort delivery before promising founder-led sessions: one shared start, ready-made launch materials and a common first fortnight with private goals. Cap SHIFT hours and record all interventions. A programme-fee waiver for one design partner is an internal option; it does not waive test costs or readiness obligations. Do not publicly promise three free pilots.
 
+Testing invoices must be aggregated at agreed intervals, never itemised by individual, team or site. Before contracting, assess invoice quantities, unit prices, totals, credits, timing and successive invoices together with reporting and the employer’s contextual knowledge. Aggregation alone cannot protect a small cohort if the amount reveals uptake. If necessary, agree a fixed testing allowance or another arrangement that prevents that inference; do not launch testing until a privacy-safe billing design is agreed with the supplier and employer. Internal accounting may retain required restricted records; employer-facing documents must not expose participants.
+
 The employer must not learn who redeemed a test or see results. Employee refusal does not remove programme access. An employer-funded service ending must not close a free personal My Timber account. Test results must not enter employer reporting or automatically flow into SHIFT without an agreed lawful data design.
 
 ## Product contract: one Programme, funded extras
@@ -85,7 +87,9 @@ Do not make a six-year invoice-retention rule into six years of health-data rete
 
 ## Clinical, content and safeguarding boundary
 
-The Health MOT is a lifestyle check-in, not a diagnostic examination. Good to Talk provides information and signposting; do not imply a 24/7 monitored counselling service. Confirm human support hours, response times, escalation ownership and emergency language before selling support capacity.
+The Health MOT is a lifestyle questionnaire and goal-setting exercise, not a blood test or medical examination. The optional blood test is a separate proposed clinical service with a doctor’s report through the clinical testing provider. Good to Talk provides information and signposting; do not imply a 24/7 monitored counselling service. The weekly review is self-guided. Any human support limits, response times, escalation ownership and emergency language must be agreed in writing before a pilot starts. No weekly live session or ongoing human availability is implied.
+
+The programme is not health surveillance and does not discharge any statutory health or safety obligation. It complements occupational health and EAP services. See [HSE: health surveillance](https://www.hse.gov.uk/health-surveillance/overview.htm).
 
 Clinical responsibility sits with an appropriately regulated provider under a separate individual pathway. No clinical partner, test availability, prescribing or supply is promised. Public employer copy does not promote named prescription medicines. [CAP: prescription-only medicines and weight control](https://www.asa.org.uk/advice-online/weight-control-prescription-only-medicines.html)
 
@@ -114,3 +118,7 @@ Discuss a bounded design partnership; keep any fee waiver an internal decision u
 Keep the supplied 90-day acquisition/setup plan separate from the 12-week employee pilot clock. Days 46–57 can cover onboarding and baseline; a pilot beginning on day 46 finishes around day 129. Day 90 is an interim engagement decision, not a completed 12-week outcomes claim.
 
 The next commercial step is an itemised supplier quote and bounded employer discovery, without publishing prices. The later build should be **employer entitlement and privacy-preserving reporting**, tied to the existing Programme. Complete the actual controller/data-map decisions first because they determine the storage and API boundaries.
+
+## Image provenance decision
+
+Matt confirmed on 12 September 2026 that home-hero-men-v32o.jpg is SHIFT's own image, created for its homepage. Retain the photograph in the employer page and proposition on that owner confirmation. This records provenance supplied by Matt; it is not an independent licence audit. No third-party stock attribution is claimed.
