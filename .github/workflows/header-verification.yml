@@ -1,0 +1,21 @@
+name: Verify approved header preview without uploading
+on:
+  push:
+    branches: [recovery/header-approved-20260912]
+    paths:
+      - '.github/workflows/header-verification.yml'
+      - 'verification/rec034-*'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 verification/rec034-preview.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REC-034-read-only-preview-proof
+          path: verification/rec034-preview-proof.json
