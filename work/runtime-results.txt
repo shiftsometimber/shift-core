@@ -1,0 +1,34 @@
+✔ Late private responses cannot repopulate the DOM after page exit, even if abort is ignored (3.892919ms)
+✔ Visibility closes old identity; only the newly authenticated response can render on return (1.582067ms)
+✔ Session expiry clears private data and escapes company-provided text (0.873623ms)
+✔ Hidden bfcache pages do not start another private load (0.303466ms)
+✔ Workplace dashboard entry preserves all original HTML and remains absent when disabled or signed out (5.08511ms)
+✔ Create employer with unconfirmed pricing and no exposed members or token hashes (20.693992ms)
+✔ Member cannot operate HQ; anonymous cannot view private data (6.164026ms)
+✔ Activation requires agreed fee and actual commissioning reference (18.903277ms)
+✔ Unknown financial or health fields rejected (3.869313ms)
+✔ Issue code once; store only hash and reject stale contract write (10.506615ms)
+✔ No cross-origin claims, missing consent or silently accepted participant identity (9.912072ms)
+✔ Twenty concurrent claims cannot oversubscribe two seats (80.419458ms)
+✔ Retry after successful claim is idempotent and account IDs in queries do not select another account (13.614155ms)
+✔ Employer reporter cannot enrol in its own cohort or see named participation (14.92885ms)
+✔ Weekly review is owned, bounded to shared start and excludes clinical payloads (13.168976ms)
+✔ No testing order can be enabled by client flags or allowance (6.610212ms)
+✔ Pause revokes new actions while retaining free accounts and export; revocation invalidates code (40.561012ms)
+✔ Withdrawal removes workplace link and review history only (34.971013ms)
+✔ Report cannot be released before end date (7.397054ms)
+✔ Expiry invalidates access on read without deleting records (32.953712ms)
+✔ One fixed report only; under-threshold outputs withheld (23.928512ms)
+✔ Completion and complement suppression; no clinical or individual exports (0.527983ms)
+✔ Private shells require authentication and retain header-main-footer order (18.579005ms)
+✔ Future cohort accepts a private claim without opening weekly reviews; HQ membership is separate (93.929617ms)
+✔ Code guessing is rate limited per authenticated account (32.518228ms)
+✔ Real session revocation prevents further reads (18.123585ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5088.039418

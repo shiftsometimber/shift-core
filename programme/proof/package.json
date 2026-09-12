@@ -1,0 +1,11 @@
+{
+  "name": "shift-programme-isolated-proof",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.mjs"
+  },
+  "devDependencies": {
+    "vite": "6.1.0"
+  }
+}

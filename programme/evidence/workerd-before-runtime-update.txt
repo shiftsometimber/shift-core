@@ -1,0 +1,22 @@
+service core:user:: This Worker requires compatibility date "2026-08-09", but the newest date supported by this server binary is "2026-07-21".
+/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:83547
+      throw new MiniflareCoreError(
+            ^
+
+MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There was likely a problem with the workerd binary or your configuration.
+Runtime stderr:
+service core:user:: This Worker requires compatibility date "2026-08-09", but the newest date supported by this server binary is "2026-07-21".
+    at StartupLogBuffer.handleStartupFailure (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:83547:13)
+    at Runtime.updateConfig (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:83637:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async #assembleAndUpdateConfig (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:103863:30)
+    at async Mutex.runWith (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:71860:48)
+    at async #waitForReady (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:103982:5)
+    at async _Miniflare._getProxyClient (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:104162:5)
+    at async #getProxy (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:104224:25)
+    at async file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/runtime-contract.mjs:15:13 {
+  code: 'ERR_RUNTIME_FAILURE',
+  cause: undefined
+}
+
+Node.js v24.19.0

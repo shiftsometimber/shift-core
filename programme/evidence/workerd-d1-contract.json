@@ -1,0 +1,86 @@
+{
+  "scope": "Local workerd using Miniflare D1 emulation, not remote Cloudflare D1. Full Worker integration and remote concurrency remain distinct gates.",
+  "compatibilityDate": "2026-08-09",
+  "workerdVersion": "1.20260911.1",
+  "results": [
+    {
+      "name": "Twelve concurrent writes across two authenticated sessions",
+      "result": "PASS",
+      "details": {
+        "statuses": [
+          200,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409
+        ],
+        "revision": 1,
+        "committedAdditions": 1,
+        "planUnchanged": true
+      }
+    },
+    {
+      "name": "Concurrent duplicate then retry",
+      "result": "PASS",
+      "details": {
+        "firstStatuses": [
+          200,
+          200
+        ],
+        "retry": 200,
+        "revision": 2,
+        "reviewCount": 1
+      }
+    },
+    {
+      "name": "Reused operation ID with different payload",
+      "result": "PASS",
+      "details": {
+        "status": 409
+      }
+    },
+    {
+      "name": "Stale acceptance after another session writes",
+      "result": "PASS",
+      "details": {
+        "status": 409,
+        "planUnchanged": true
+      }
+    },
+    {
+      "name": "Account isolation",
+      "result": "PASS",
+      "details": {
+        "foreignIdIgnored": true,
+        "otherAccountRevision": 0
+      }
+    },
+    {
+      "name": "Existing Grub and Fit data across separate D1 bindings",
+      "result": "PASS",
+      "details": {
+        "read": 200,
+        "write": 405,
+        "ownerScoped": true,
+        "unrelatedNotesOmitted": true,
+        "existingRecordsUnchanged": true
+      }
+    },
+    {
+      "name": "Real session expiry in workerd",
+      "result": "PASS",
+      "details": {
+        "read": 401,
+        "write": 401,
+        "privatePage": 303
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+✔ Round 2 case-01: full authored slots, reports and catalogue (12.173646ms)
+✔ Round 2 case-02: full authored slots, reports and catalogue (1.496877ms)
+✔ Round 2 case-03: full authored slots, reports and catalogue (1.417868ms)
+✔ Round 2 case-04: full authored slots, reports and catalogue (1.773484ms)
+✔ Round 2 case-05: full authored slots, reports and catalogue (1.712913ms)
+✔ Round 2 case-06: full authored slots, reports and catalogue (2.921174ms)
+✔ Round 2 case-07: full authored slots, reports and catalogue (1.698301ms)
+✔ Round 2 case-08: full authored slots, reports and catalogue (2.913984ms)
+✔ Targeted extension of an authored plan: two explicit misses allow a previewed swap, preserving successful slots and reserved portions (2.687012ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.445903

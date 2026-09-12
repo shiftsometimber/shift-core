@@ -534,6 +534,11 @@ async function hqMfaEnable(request,env){
   if(!row?.mfa_secret||code.length!==6||!(await verifyHqTotp(env,row,code)))return json({ok:false,error:'invalid_mfa_code'},400);
   await env.DB.prepare('UPDATE hq_users SET mfa_enabled=1,updated_at=? WHERE id=?').bind(isoNow(),row.id).run();await hqAudit(env,access.actor,'hq.mfa_enabled','hq_user',String(row.id),{});return json({ok:true});
 }
+// Reuse the existing session verifier without running the legacy schema/bootstrap router.
+export async function authenticateWorkHQ(request,env){
+  const access=await requireHqAccess(request,env,null,false);
+  return access.response?access:{user:publicHqUser(access.actor),userId:access.actor.id};
+}
 async function requireHqAccess(request,env,permission=null,allowBootstrap=true){
   if(allowBootstrap&&isAdmin(request,env))return{actor:{id:null,email:'bootstrap',name:'Bootstrap Admin',role:'owner',bootstrap:true}};
   const token=hqTokenFromRequest(request);if(!token)return{response:json({ok:false,error:'hq_unauthorized'},401)};

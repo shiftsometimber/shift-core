@@ -1,3 +1,11 @@
+import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
+import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
+import { workDashboardEntry } from "./work/dashboard-entry.mjs";
+import { workRoutes } from "./work/routes.mjs";
+import { authenticateWorkHQ } from "./worker.js";
+import { programmeRoutes } from "./programme/routes.mjs";
+import { programmeHTML } from "./programme/screen.mjs";
+import { programmeDashboardEntry } from "./programme/dashboard-entry.mjs";
 export { SiteContentState } from "./site-content-state-v1.js";
 import hq from "./hq-ai-v2.js";
 import { runScheduledIntelligence } from "./scheduled-intelligence.js";
@@ -59,6 +67,8 @@ const MEMBER_ORIGINS = new Set([
 ]);
 const HQ_ORIGINS = new Set(["https://hq.shiftsometimber.co.uk"]);
 const GIT_MEMBER_ASSETS = new Map([
+  ["/assets/programme-v1/programme.css", "text/css; charset=utf-8"],
+  ["/assets/programme-v1/programme.mjs", "text/javascript; charset=utf-8"],
   ["/turnstile-auth-v1.js", "application/javascript; charset=utf-8"],
   ["/api-adapter-v33d.js", "application/javascript; charset=utf-8"],
   ["/member-product-v33d.js", "application/javascript; charset=utf-8"],
@@ -510,6 +520,12 @@ export default {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const memberExperience = memberExperienceRoutes(request, env);
+    if (memberExperience) return memberExperience;
+    const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
+    if (workplace) return workplace;
+    const programme = await programmeRoutes(request, env, {authenticate: authenticateMember, html: programmeHTML});
+    if (programme) return programme;
     if (request.method === "GET" && path === "/v1/auth/turnstile-config") {
       const response = new Response(
         JSON.stringify(publicTurnstileConfig(env, request)),
@@ -668,7 +684,10 @@ export default {
         "/member/achievements.html",
       ].includes(path)
     )
-      return publicPagesAsset(request, path.replace(/\.html$/, ""));
+    {
+      const response = await publicPagesAsset(request, path.replace(/\.html$/, ""));
+      return memberExperienceEntry(request, env, await workDashboardEntry(request, env, await programmeDashboardEntry(request, env, response, {authenticate: authenticateMember}), {authenticate: authenticateMember}));
+    }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/member/grub" ||
@@ -809,6 +828,8 @@ export default {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const grubWorkspace = await grubWorkspaceRoutes(request, env);
+    if (grubWorkspace) return withMemberCors(grubWorkspace, request);
     const fastMemberState = await fastMemberStateRoute(request, env);
     if (fastMemberState) return withMemberCors(fastMemberState, request);
     const myJourney = await myJourneyRoutes(request, env);

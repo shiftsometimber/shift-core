@@ -1,0 +1,359 @@
+{
+  "chilli": {
+    "id": "chilli",
+    "version": 1,
+    "name": "Beef and bean chilli",
+    "minutes": 40,
+    "serves": 4,
+    "allergens": [],
+    "vegetarian": false,
+    "noCook": false,
+    "equipment": [
+      "hob"
+    ],
+    "reviewStatus": "test-fixture",
+    "reviewDate": null,
+    "reviewerId": null,
+    "reviewedVersion": null,
+    "ingredients": [
+      {
+        "id": "mince",
+        "name": "Beef mince",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "id": "beans",
+        "name": "Drained kidney beans",
+        "quantity": 240,
+        "unit": "g"
+      },
+      {
+        "id": "tomatoes",
+        "name": "Chopped tomatoes",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "id": "onion",
+        "name": "Onion",
+        "quantity": 1,
+        "unit": "whole"
+      },
+      {
+        "id": "rice",
+        "name": "Dry rice",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "id": "cumin",
+        "name": "Ground cumin",
+        "quantity": 2,
+        "unit": "tsp"
+      },
+      {
+        "id": "oil",
+        "name": "Olive oil",
+        "quantity": 1,
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      "Chop the onion. Soften it in the oil, then add the mince and cook thoroughly.",
+      "Add cumin, beans and tomatoes; simmer until fully cooked.",
+      "Cook the rice according to its packet. Serve the chosen portions."
+    ],
+    "substitutions": "No substitutions are pre-approved. Check every product label."
+  },
+  "ragu": {
+    "id": "ragu",
+    "version": 1,
+    "name": "Beef ragù",
+    "minutes": 45,
+    "serves": 4,
+    "allergens": [
+      "wheat",
+      "celery"
+    ],
+    "vegetarian": false,
+    "noCook": false,
+    "equipment": [
+      "hob"
+    ],
+    "reviewStatus": "test-fixture",
+    "reviewDate": null,
+    "reviewerId": null,
+    "reviewedVersion": null,
+    "ingredients": [
+      {
+        "id": "mince",
+        "name": "Beef mince",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "id": "passata",
+        "name": "Passata",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "id": "carrot",
+        "name": "Carrot",
+        "quantity": 2,
+        "unit": "whole"
+      },
+      {
+        "id": "celery",
+        "name": "Celery",
+        "quantity": 2,
+        "unit": "stalk"
+      },
+      {
+        "id": "onion",
+        "name": "Onion",
+        "quantity": 1,
+        "unit": "whole"
+      },
+      {
+        "id": "pasta",
+        "name": "Dry wheat pasta",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "id": "oil",
+        "name": "Olive oil",
+        "quantity": 1,
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      "Chop the vegetables and soften in the oil. Add the mince and cook thoroughly.",
+      "Add passata and simmer until the vegetables and meat are fully cooked.",
+      "Cook pasta according to the packet and combine."
+    ],
+    "substitutions": "No substitutions are pre-approved. Check every product label."
+  },
+  "chickpea": {
+    "id": "chickpea",
+    "version": 1,
+    "name": "Chickpea and tomato rice",
+    "minutes": 25,
+    "serves": 4,
+    "allergens": [],
+    "vegetarian": true,
+    "noCook": false,
+    "equipment": [
+      "hob"
+    ],
+    "reviewStatus": "test-fixture",
+    "reviewDate": null,
+    "reviewerId": null,
+    "reviewedVersion": null,
+    "ingredients": [
+      {
+        "id": "chickpeas",
+        "name": "Drained chickpeas",
+        "quantity": 480,
+        "unit": "g"
+      },
+      {
+        "id": "tomatoes",
+        "name": "Chopped tomatoes",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "id": "onion",
+        "name": "Onion",
+        "quantity": 1,
+        "unit": "whole"
+      },
+      {
+        "id": "rice",
+        "name": "Dry rice",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "id": "cumin",
+        "name": "Ground cumin",
+        "quantity": 2,
+        "unit": "tsp"
+      },
+      {
+        "id": "oil",
+        "name": "Olive oil",
+        "quantity": 1,
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      "Chop the onion and soften it in oil.",
+      "Add cumin, chickpeas and tomatoes. Simmer until hot throughout.",
+      "Cook rice according to the packet; serve together."
+    ],
+    "substitutions": "No substitutions are pre-approved. Check every product label."
+  },
+  "tuna": {
+    "id": "tuna",
+    "version": 1,
+    "name": "Tuna and sweetcorn pasta",
+    "minutes": 15,
+    "serves": 4,
+    "allergens": [
+      "fish",
+      "wheat"
+    ],
+    "vegetarian": false,
+    "noCook": false,
+    "equipment": [
+      "hob"
+    ],
+    "reviewStatus": "test-fixture",
+    "reviewDate": null,
+    "reviewerId": null,
+    "reviewedVersion": null,
+    "ingredients": [
+      {
+        "id": "tuna",
+        "name": "Drained tuna",
+        "quantity": 220,
+        "unit": "g"
+      },
+      {
+        "id": "sweetcorn",
+        "name": "Drained sweetcorn",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "id": "tomatoes",
+        "name": "Chopped tomatoes",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "id": "pasta",
+        "name": "Dry wheat pasta",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "id": "oil",
+        "name": "Olive oil",
+        "quantity": 1,
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      "Cook the pasta according to its packet.",
+      "Heat tomatoes, tuna, sweetcorn and oil in a separate pan until hot throughout.",
+      "Drain the pasta and combine."
+    ],
+    "substitutions": "No substitutions are pre-approved. Check every product label."
+  },
+  "wraps": {
+    "id": "wraps",
+    "version": 1,
+    "name": "Chicken and salad wraps",
+    "minutes": 10,
+    "serves": 4,
+    "allergens": [
+      "wheat",
+      "egg"
+    ],
+    "vegetarian": false,
+    "noCook": true,
+    "equipment": [],
+    "reviewStatus": "test-fixture",
+    "reviewDate": null,
+    "reviewerId": null,
+    "reviewedVersion": null,
+    "ingredients": [
+      {
+        "id": "wraps",
+        "name": "Wheat tortilla wraps",
+        "quantity": 8,
+        "unit": "whole"
+      },
+      {
+        "id": "chicken",
+        "name": "Ready-to-eat cooked chicken",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "id": "salad",
+        "name": "Ready-to-eat washed salad",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "id": "mayo",
+        "name": "Mayonnaise",
+        "quantity": 3,
+        "unit": "tbsp"
+      },
+      {
+        "id": "cucumber",
+        "name": "Cucumber",
+        "quantity": 1,
+        "unit": "whole"
+      }
+    ],
+    "steps": [
+      "Use ready-to-eat cooked chicken and washed salad; check their storage and use-by instructions.",
+      "Slice cucumber. Divide all ingredients between the wraps and fold."
+    ],
+    "substitutions": "No substitutions are pre-approved. Check every product label."
+  },
+  "beanSalad": {
+    "id": "beanSalad",
+    "version": 1,
+    "name": "Bean and cucumber bowl",
+    "minutes": 10,
+    "serves": 4,
+    "allergens": [],
+    "vegetarian": true,
+    "noCook": true,
+    "equipment": [],
+    "reviewStatus": "test-fixture",
+    "reviewDate": null,
+    "reviewerId": null,
+    "reviewedVersion": null,
+    "ingredients": [
+      {
+        "id": "beans",
+        "name": "Drained kidney beans",
+        "quantity": 480,
+        "unit": "g"
+      },
+      {
+        "id": "sweetcorn",
+        "name": "Drained sweetcorn",
+        "quantity": 320,
+        "unit": "g"
+      },
+      {
+        "id": "cucumber",
+        "name": "Cucumber",
+        "quantity": 1,
+        "unit": "whole"
+      },
+      {
+        "id": "oil",
+        "name": "Olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      "Use ready-to-eat tinned beans and sweetcorn; drain them.",
+      "Wash and chop the cucumber. Combine with beans, sweetcorn and oil."
+    ],
+    "substitutions": "No substitutions are pre-approved. Check every product label."
+  }
+}

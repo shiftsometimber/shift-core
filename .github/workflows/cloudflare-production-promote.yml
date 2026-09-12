@@ -187,6 +187,18 @@ jobs:
           run_d1_file migrations/018_foundayo_launch_ready.sql
           run_d1_file migrations/019_foundayo_option_stock_lock.sql
           run_d1_file migrations/020_radar_duplicate_cleanup.sql
+      - name: Verify existing production food catalogue without account writes
+        if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
+        run: |
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,title,data_json FROM structured_content WHERE content_type='recipe' AND status='published' ORDER BY id LIMIT 2500" > "$RUNNER_TEMP/food-catalogue.json"
+          node member-experience/verify-production-catalogue.mjs "$RUNNER_TEMP/food-catalogue.json"
+      - name: Capture current Worker deployment for rollback
+        run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+      - name: Retain rollback deployment record
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-deployment-before-${{ github.run_id }}
+          path: deployment-before.json
       - name: Deploy current main to production
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation

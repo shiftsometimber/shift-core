@@ -1,0 +1,1309 @@
+{
+  "ruleVersion": "programme-rules-1.0.2",
+  "environment": "isolated, fictional records only",
+  "unitSuite": {
+    "raw": "constraint-all-tests.txt",
+    "note": "Use the raw executed test counts; this generator does not run the suite."
+  },
+  "beforeFixes": {
+    "passed": 5,
+    "failed": 2,
+    "raw": "followup-before-fixes.txt"
+  },
+  "arithmetic": {
+    "beforeSwap": {
+      "key": "mince|g",
+      "id": "mince",
+      "name": "Beef mince",
+      "unit": "g",
+      "quantity": 1500,
+      "status": "bought",
+      "acquired": 1000,
+      "remaining": 500
+    },
+    "afterSwap": {
+      "key": "mince|g",
+      "id": "mince",
+      "name": "Beef mince",
+      "unit": "g",
+      "quantity": 1000,
+      "status": "bought",
+      "acquired": 1000,
+      "remaining": 0
+    },
+    "afterIncreasingChilliTo12": {
+      "key": "mince|g",
+      "id": "mince",
+      "name": "Beef mince",
+      "unit": "g",
+      "quantity": 1500,
+      "status": "bought",
+      "acquired": 1000,
+      "remaining": 500
+    }
+  },
+  "recipes": [
+    {
+      "id": "tuna",
+      "name": "Tuna and sweetcorn pasta",
+      "reviewStatus": "test-fixture",
+      "reviewDate": null,
+      "reviewerId": null,
+      "reviewedVersion": null
+    },
+    {
+      "id": "beanSalad",
+      "name": "Bean and cucumber bowl",
+      "reviewStatus": "test-fixture",
+      "reviewDate": null,
+      "reviewerId": null,
+      "reviewedVersion": null
+    }
+  ],
+  "collision": {
+    "ruleVersion": "programme-rules-1.0.2",
+    "cycle": 2,
+    "inputRevision": 0,
+    "created": "2026-09-13",
+    "kind": "requires-review",
+    "summary": "Check the flagged saved meals before using or repeating them. Your record has been kept.",
+    "conditions": [
+      {
+        "id": "condition:2026-09-17:thu-dinner",
+        "slotId": "2026-09-17:thu-dinner",
+        "slotKey": "thu-dinner",
+        "date": "2026-09-17",
+        "recipeId": "tuna",
+        "recipeName": "Tuna and sweetcorn pasta",
+        "sourceId": "2026-09-17:thu-dinner",
+        "reasons": [
+          {
+            "code": "excluded-allergen",
+            "text": "The recipe lists fish, which you have excluded."
+          }
+        ]
+      },
+      {
+        "id": "condition:2026-09-24:thu-dinner",
+        "slotId": "2026-09-24:thu-dinner",
+        "slotKey": "thu-dinner",
+        "date": "2026-09-24",
+        "recipeId": "tuna",
+        "recipeName": "Tuna and sweetcorn pasta",
+        "sourceId": "2026-09-24:thu-dinner",
+        "reasons": [
+          {
+            "code": "excluded-allergen",
+            "text": "The recipe lists fish, which you have excluded."
+          }
+        ]
+      }
+    ],
+    "proposals": [
+      {
+        "id": "2:sun-dinner",
+        "slotKey": "sun-dinner",
+        "kind": "meal",
+        "priority": 0,
+        "evidenceAt": "2026-09-13",
+        "text": "You asked to look again at Sunday: “I want a different Sunday meal” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+        "options": [],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-20:sun-dinner",
+          "2026-09-27:sun-dinner"
+        ]
+      },
+      {
+        "id": "2:sat-walk",
+        "slotKey": "sat-walk",
+        "kind": "move",
+        "priority": 2,
+        "evidenceAt": "2026-09-12",
+        "text": "Two planned activities in the Saturday slot did not happen. Both times you reported “No time”. That does not tell us why.",
+        "options": [],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-19:sat-walk",
+          "2026-09-26:sat-walk"
+        ]
+      },
+      {
+        "id": "2:thu-walk",
+        "slotKey": "thu-walk",
+        "kind": "move",
+        "priority": 2,
+        "evidenceAt": "2026-09-10",
+        "text": "Two planned activities in the Thursday slot did not happen. Both times you reported “No time”. That does not tell us why.",
+        "options": [],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-17:thu-walk",
+          "2026-09-24:thu-walk"
+        ]
+      }
+    ],
+    "suppressed": [
+      {
+        "slotKey": "thu-dinner",
+        "rule": "R9",
+        "reason": "Saved-plan condition shown separately before proposal ranking; no automatic change."
+      },
+      {
+        "slotKey": "tue-walk",
+        "rule": "R10",
+        "reason": "Beyond the cap of three."
+      }
+    ],
+    "trace": [
+      {
+        "rule": "R1",
+        "result": "Successful items are preserved in every draft."
+      },
+      {
+        "rule": "R5",
+        "result": "No optional measure frequency used or mentioned."
+      },
+      {
+        "rule": "R6",
+        "result": "Not enough evidence for a wholly manageable week."
+      },
+      {
+        "rule": "R2",
+        "result": "3 recurring difficulties eligible."
+      },
+      {
+        "rule": "R3",
+        "result": "0 isolated misses kept out of member copy."
+      },
+      {
+        "rule": "R4",
+        "result": "No new recurring commitments are generated; swaps require acceptance."
+      },
+      {
+        "rule": "R7",
+        "result": "Explicit reports only; no causes inferred."
+      },
+      {
+        "rule": "R8",
+        "result": "0 declined items suppressed."
+      },
+      {
+        "rule": "R9",
+        "result": "2 saved occurrences need checking outside the cap and decline gates; no automatic change."
+      },
+      {
+        "rule": "R10",
+        "result": "4 discretionary candidates; 3 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+      }
+    ],
+    "inputSnapshot": {
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-08-31",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-03",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-06",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-01",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-03",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-05",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-01",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-08-31:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-09-07",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-10",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-13",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-08",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-10",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-12",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-08",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-09-07:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-09-14",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-17",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-20",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-15",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-17",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-19",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-15",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-09-14:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-09-21",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-24",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-27",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-22",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-24",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-26",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-22",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-09-21:mon-dinner",
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "date": "2026-08-31",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "date": "2026-09-03",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "date": "2026-09-06",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "date": "2026-09-01",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-walk",
+          "kind": "move",
+          "date": "2026-09-03",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "date": "2026-09-05",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "date": "2026-09-07",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "date": "2026-09-10",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "date": "2026-09-13",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "date": "2026-09-08",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-walk",
+          "kind": "move",
+          "date": "2026-09-10",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "date": "2026-09-12",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        }
+      ],
+      "preferences": {
+        "allergies": [
+          "fish"
+        ],
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "20 minutes after work",
+        "household": "Two adults and two children",
+        "spending": "Keep waste down",
+        "workPattern": "fixed",
+        "firstShift": "early",
+        "shiftAnchor": "2026-08-31"
+      },
+      "requests": [
+        {
+          "slotKey": "sun-dinner",
+          "date": "2026-09-13",
+          "reason": "I want a different Sunday meal"
+        }
+      ],
+      "freezes": {}
+    }
+  },
+  "collisionWithFrozenRequest": {
+    "ruleVersion": "programme-rules-1.0.2",
+    "cycle": 2,
+    "inputRevision": 0,
+    "created": "2026-09-13",
+    "kind": "requires-review",
+    "summary": "Check the flagged saved meals before using or repeating them. Your record has been kept.",
+    "conditions": [
+      {
+        "id": "condition:2026-09-17:thu-dinner",
+        "slotId": "2026-09-17:thu-dinner",
+        "slotKey": "thu-dinner",
+        "date": "2026-09-17",
+        "recipeId": "tuna",
+        "recipeName": "Tuna and sweetcorn pasta",
+        "sourceId": "2026-09-17:thu-dinner",
+        "reasons": [
+          {
+            "code": "excluded-allergen",
+            "text": "The recipe lists fish, which you have excluded."
+          }
+        ]
+      },
+      {
+        "id": "condition:2026-09-24:thu-dinner",
+        "slotId": "2026-09-24:thu-dinner",
+        "slotKey": "thu-dinner",
+        "date": "2026-09-24",
+        "recipeId": "tuna",
+        "recipeName": "Tuna and sweetcorn pasta",
+        "sourceId": "2026-09-24:thu-dinner",
+        "reasons": [
+          {
+            "code": "excluded-allergen",
+            "text": "The recipe lists fish, which you have excluded."
+          }
+        ]
+      }
+    ],
+    "proposals": [
+      {
+        "id": "2:sat-walk",
+        "slotKey": "sat-walk",
+        "kind": "move",
+        "priority": 2,
+        "evidenceAt": "2026-09-12",
+        "text": "Two planned activities in the Saturday slot did not happen. Both times you reported “No time”. That does not tell us why.",
+        "options": [],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-19:sat-walk",
+          "2026-09-26:sat-walk"
+        ]
+      },
+      {
+        "id": "2:thu-walk",
+        "slotKey": "thu-walk",
+        "kind": "move",
+        "priority": 2,
+        "evidenceAt": "2026-09-10",
+        "text": "Two planned activities in the Thursday slot did not happen. Both times you reported “No time”. That does not tell us why.",
+        "options": [],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-17:thu-walk",
+          "2026-09-24:thu-walk"
+        ]
+      },
+      {
+        "id": "2:tue-walk",
+        "slotKey": "tue-walk",
+        "kind": "move",
+        "priority": 2,
+        "evidenceAt": "2026-09-08",
+        "text": "Two planned activities in the Tuesday slot did not happen. Both times you reported “No time”. That does not tell us why.",
+        "options": [],
+        "restrictionUnknown": false,
+        "targetIds": [
+          "2026-09-15:tue-walk",
+          "2026-09-22:tue-walk"
+        ]
+      }
+    ],
+    "suppressed": [
+      {
+        "slotKey": "thu-dinner",
+        "rule": "R9",
+        "reason": "Saved-plan condition shown separately before proposal ranking; no automatic change."
+      },
+      {
+        "slotKey": "sun-dinner",
+        "rule": "R8",
+        "reason": "Decline freeze or no new evidence since decline."
+      }
+    ],
+    "trace": [
+      {
+        "rule": "R1",
+        "result": "Successful items are preserved in every draft."
+      },
+      {
+        "rule": "R5",
+        "result": "No optional measure frequency used or mentioned."
+      },
+      {
+        "rule": "R6",
+        "result": "Not enough evidence for a wholly manageable week."
+      },
+      {
+        "rule": "R2",
+        "result": "3 recurring difficulties eligible."
+      },
+      {
+        "rule": "R3",
+        "result": "0 isolated misses kept out of member copy."
+      },
+      {
+        "rule": "R4",
+        "result": "No new recurring commitments are generated; swaps require acceptance."
+      },
+      {
+        "rule": "R7",
+        "result": "Explicit reports only; no causes inferred."
+      },
+      {
+        "rule": "R8",
+        "result": "1 declined items suppressed."
+      },
+      {
+        "rule": "R9",
+        "result": "2 saved occurrences need checking outside the cap and decline gates; no automatic change."
+      },
+      {
+        "rule": "R10",
+        "result": "3 discretionary candidates; 3 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+      }
+    ],
+    "inputSnapshot": {
+      "slots": [
+        {
+          "id": "2026-08-31:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-08-31",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-03",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-06:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-06",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-01",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-03:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-03",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-05:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-05",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-01:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-01",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-08-31:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-07:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-09-07",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-10",
+          "kind": "meal",
+          "recipeId": "ragu",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-13:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-13",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-08",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-10:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-10",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-12:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-12",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-08:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-08",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-09-07:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-14:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-09-14",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-17",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-20:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-20",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-15",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-17:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-17",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-19:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-19",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-15:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-15",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-09-14:mon-dinner",
+          "completed": false
+        },
+        {
+          "id": "2026-09-21:mon-dinner",
+          "slotKey": "mon-dinner",
+          "date": "2026-09-21",
+          "kind": "meal",
+          "recipeId": "chilli",
+          "recipeVersion": 1,
+          "servings": 8,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-dinner",
+          "slotKey": "thu-dinner",
+          "date": "2026-09-24",
+          "kind": "meal",
+          "recipeId": "tuna",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-27:sun-dinner",
+          "slotKey": "sun-dinner",
+          "date": "2026-09-27",
+          "kind": "meal",
+          "recipeId": "chickpea",
+          "recipeVersion": 1,
+          "servings": 4,
+          "serveNow": 4,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-walk",
+          "slotKey": "tue-walk",
+          "date": "2026-09-22",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-24:thu-walk",
+          "slotKey": "thu-walk",
+          "date": "2026-09-24",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-26:sat-walk",
+          "slotKey": "sat-walk",
+          "date": "2026-09-26",
+          "kind": "move",
+          "label": "20-minute walk",
+          "minutes": 20,
+          "completed": false
+        },
+        {
+          "id": "2026-09-22:tue-leftovers",
+          "slotKey": "tue-leftovers",
+          "date": "2026-09-22",
+          "kind": "leftovers",
+          "servings": 4,
+          "label": "Chilli portions from Monday",
+          "sourceId": "2026-09-21:mon-dinner",
+          "completed": false
+        }
+      ],
+      "reports": [
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "date": "2026-08-31",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "date": "2026-09-03",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "date": "2026-09-06",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "date": "2026-09-01",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-walk",
+          "kind": "move",
+          "date": "2026-09-03",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "date": "2026-09-05",
+          "period": "2026-08-31",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "mon-dinner",
+          "kind": "meal",
+          "date": "2026-09-07",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-dinner",
+          "kind": "meal",
+          "date": "2026-09-10",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "sun-dinner",
+          "kind": "meal",
+          "date": "2026-09-13",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "done",
+          "fit": "manageable",
+          "reason": "",
+          "note": ""
+        },
+        {
+          "slotKey": "tue-walk",
+          "kind": "move",
+          "date": "2026-09-08",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "thu-walk",
+          "kind": "move",
+          "date": "2026-09-10",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        },
+        {
+          "slotKey": "sat-walk",
+          "kind": "move",
+          "date": "2026-09-12",
+          "period": "2026-09-07",
+          "shift": "day",
+          "status": "missed",
+          "fit": "unknown",
+          "reason": "No time",
+          "note": ""
+        }
+      ],
+      "preferences": {
+        "allergies": [
+          "fish"
+        ],
+        "diet": "any",
+        "equipment": [
+          "hob"
+        ],
+        "activityLimitations": "none",
+        "time": "20 minutes after work",
+        "household": "Two adults and two children",
+        "spending": "Keep waste down",
+        "workPattern": "fixed",
+        "firstShift": "early",
+        "shiftAnchor": "2026-08-31"
+      },
+      "requests": [
+        {
+          "slotKey": "sun-dinner",
+          "date": "2026-09-13",
+          "reason": "I want a different Sunday meal"
+        }
+      ],
+      "freezes": {
+        "sun-dinner": {
+          "throughCycle": 3,
+          "evidenceAt": "2026-09-12"
+        }
+      }
+    }
+  },
+  "independentHistories": [
+    {
+      "id": "fictional-01",
+      "result": "PASS",
+      "proposals": [
+        {
+          "slotKey": "mon-dinner",
+          "priority": 0
+        }
+      ],
+      "r10": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-02",
+      "result": "PASS",
+      "proposals": [],
+      "r10": "0 discretionary candidates; 0 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-03",
+      "result": "PASS",
+      "proposals": [
+        {
+          "slotKey": "sat-walk",
+          "priority": 0
+        }
+      ],
+      "r10": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-04",
+      "result": "PASS",
+      "proposals": [],
+      "r10": "0 discretionary candidates; 0 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-05",
+      "result": "PASS",
+      "proposals": [
+        {
+          "slotKey": "thu-dinner",
+          "priority": 0
+        }
+      ],
+      "r10": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-06",
+      "result": "PASS",
+      "proposals": [
+        {
+          "slotKey": "sun-dinner",
+          "priority": 0
+        }
+      ],
+      "r10": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-07",
+      "result": "PASS",
+      "proposals": [
+        {
+          "slotKey": "thu-walk",
+          "priority": 0
+        }
+      ],
+      "r10": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    },
+    {
+      "id": "fictional-08",
+      "result": "PASS",
+      "proposals": [
+        {
+          "slotKey": "thu-dinner",
+          "priority": 0
+        }
+      ],
+      "r10": "1 discretionary candidates; 1 shown; member request, recurrence, date, slot. Saved-plan conditions are separate and uncapped."
+    }
+  ],
+  "independentInputSha256": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398"
+}

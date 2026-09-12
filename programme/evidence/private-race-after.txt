@@ -1,0 +1,13 @@
+✔ A delayed initial read cannot restore private data after page exit (9.55856ms)
+✔ A delayed save is discarded after page exit even if the transport ignores abort (9.760245ms)
+✔ A delayed preview rejects after private state is cleared (0.970473ms)
+✔ A delayed existing-tool response is rejected after clearing the account (0.763291ms)
+✔ Session expiry clears the member view and cancels other outstanding requests (0.873637ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.314089

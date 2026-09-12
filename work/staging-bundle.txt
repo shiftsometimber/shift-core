@@ -1,0 +1,24 @@
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.112.0
+────────────────────
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe package "node:crypto" wasn't found on the file system but is built into node.[0m
+
+  Your Worker may throw errors at runtime unless you enable the "nodejs_compat" compatibility flag. Refer to [4mhttps://developers.cloudflare.com/workers/runtime-apis/nodejs/[0m for more details. Imported from:
+   - ../../../../../c41c73708c39/programme-v1/core/node_modules/@block65/webcrypto-web-push/dist/lib/isomorphic-crypto.js
+
+
+✨ Read 8 files from the assets directory /workspace/scratch/f937e983e4cb/shift-work-core/work/staging/generated/assets
+Total Upload: 1311.89 KiB / gzip: 324.50 KiB
+Your Worker has access to the following bindings:
+Binding                                                       Resource
+env.STAGING_ASSETS                                            Assets
+env.SHIFT_ENVIRONMENT ("work-staging-20260912")               Environment Variable
+env.STAGING_EXPIRES_AT ("2026-09-14T09:24:18.011Z")           Environment Variable
+env.WORK_V1_ENABLED ("true")                                  Environment Variable
+env.WORK_PILOT_COMMISSIONED ("true")                          Environment Variable
+env.AUTO_VERIFY_EMAIL ("true")                                Environment Variable
+
+--dry-run: exiting now.

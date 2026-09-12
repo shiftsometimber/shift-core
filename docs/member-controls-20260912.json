@@ -1,0 +1,1501 @@
+{
+  "checkedAt": "2026-09-12T12:00:25.083Z",
+  "implementationCommit": "cdf9b8ec8c37a7130c7885ccc36c524e466f82b5",
+  "deployedCommit": "ff031e0f09ceda84d83c44741307633fcd6b06bf",
+  "deployedTree": "83396cff1af20368bd0eea522ba9316b78da2d7a",
+  "origin": "https://shift-core-work-staging.matobrien.workers.dev",
+  "browser": "Chrome (provided controlled browser); iframe widths and heights",
+  "scope": "Fictional read-only member design review. No production deployment or authenticated member-write acceptance claimed.",
+  "checksWorkflow": 34692169884,
+  "stagingWorkflow": 34692169872,
+  "remoteWorkplaceProbe": {
+    "checkedAt": "2026-09-12T11:53:40.942Z",
+    "status": "pass"
+  },
+  "interactions": [
+    "Consent from Settings and Check-in named by heading; unchecked, checked, unchecked and reopened states verified.",
+    "Agree remains disabled until explicit tick. Both actions reachable at 320 × 480; checked Agree returns read-only error in Settings.",
+    "Not now and Escape close consent; check-in mood and save controls recover.",
+    "Today Life changed: last-button Tab cycles to Close; Escape restores focus to trigger.",
+    "Journey: steps 1 to 4, radio selection, disruption checkbox and confirmation screen inspected at 320px.",
+    "Today reminder checkbox inspected checked and unchecked; control is 22 × 22.",
+    "Fit: checkbox selection, build failure and usable button after read-only rejection.",
+    "Grub: all five tabs, missing-ingredient message, ingredient entry, result card, read-only week error, saved item, shopping addition and Home-key tab selection.",
+    "Desktop consent and 320px short-screen consent actions visually inspected; selected Journey choices and Today sheet visually inspected."
+  ],
+  "limits": [
+    "Safari / iOS hardware were not available; explicit logical/physical checkbox sizing addresses the cross-browser intrinsic-sizing conflict, but no Safari test is claimed.",
+    "Native browser confirm/alert prompts retain browser appearance.",
+    "Member design saves stay disabled. Real member saving needs a separate authenticated acceptance pass before production promotion.",
+    "The unrelated pre-existing act2b-one-shot workflow validation failure remains outside this change."
+  ],
+  "measurements": {
+    "checkInConsent": [
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 480,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 226
+              }
+            ],
+            "content": 262,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 262,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 480,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 667,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 296
+              }
+            ],
+            "content": 332,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 332,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 850,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 616,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 616,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      }
+    ],
+    "pages": [
+      {
+        "checks": [],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "dashboard",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "dashboard",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "dashboard",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "dashboard",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "grub",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "grub",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "grub",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "grub",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          }
+        ],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "fit",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          }
+        ],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "fit",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          }
+        ],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "fit",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          },
+          {
+            "height": 22,
+            "id": "fitLimitation",
+            "width": 22
+          }
+        ],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "fit",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "check-in",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "check-in",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "check-in",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "check-in",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "saved",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "saved",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "saved",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "screen": "saved",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      }
+    ],
+    "settingsConsent": [
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 480,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 226
+              }
+            ],
+            "content": 262,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 262,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 480,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 667,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 226
+              }
+            ],
+            "content": 262,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 262,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 667,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 850,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 241
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 241
+              }
+            ],
+            "content": 277,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 277,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 480,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 296
+              }
+            ],
+            "content": 332,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 332,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 480,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 667,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 296
+              }
+            ],
+            "content": 332,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 332,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 667,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 850,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 311
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 311
+              }
+            ],
+            "content": 347,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 347,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 480,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 601,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 601,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 480,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 667,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 616,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 616,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 667,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 850,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 616,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 616,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 480,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 601,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": true,
+            "width": 601,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 480,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 667,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 616,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 616,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 667,
+          "width": 1265
+        },
+        "width": 1280
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "healthConsentCheck",
+            "width": 22
+          }
+        ],
+        "height": 850,
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": true,
+                "height": 47,
+                "text": "Agree & continue",
+                "width": 162.1875
+              },
+              {
+                "disabled": false,
+                "height": 47,
+                "text": "Not now",
+                "width": 97.15625
+              }
+            ],
+            "content": 616,
+            "horizontalOverflow": false,
+            "name": "Your health data. Your choice.",
+            "scrollable": false,
+            "width": 616,
+            "withinViewport": true
+          }
+        ],
+        "screen": "settings",
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      }
+    ],
+    "today": [
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "metrics": "320px frame · 305px content area · 305px content width · No horizontal overflow",
+        "overlays": [],
+        "viewport": {
+          "height": 850,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "metrics": "390px frame · 375px content area · 375px content width · No horizontal overflow",
+        "overlays": [],
+        "viewport": {
+          "height": 850,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "metrics": "768px frame · 753px content area · 753px content width · No horizontal overflow",
+        "overlays": [],
+        "viewport": {
+          "height": 850,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "metrics": "1280px frame · 1265px content area · 1265px content width · No horizontal overflow",
+        "overlays": [],
+        "viewport": {
+          "height": 850,
+          "width": 1265
+        },
+        "width": 1280
+      }
+    ],
+    "todayDialog": [
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": false,
+                "height": 44,
+                "text": "×",
+                "width": 44
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Working late",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Feeling rough",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Guts playing up",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Absolutely knackered",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Eating out",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Going to the pub",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Missed lunch",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "No time to train",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Plans cancelled",
+                "width": 226
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Sort my next three hours",
+                "width": 226
+              }
+            ],
+            "content": 262,
+            "horizontalOverflow": false,
+            "name": "What happened?",
+            "scrollable": true,
+            "width": 262,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 480,
+          "width": 305
+        },
+        "width": 320
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": false,
+                "height": 44,
+                "text": "×",
+                "width": 44
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Working late",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Feeling rough",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Guts playing up",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Absolutely knackered",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Eating out",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Going to the pub",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Missed lunch",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "No time to train",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Plans cancelled",
+                "width": 296
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Sort my next three hours",
+                "width": 296
+              }
+            ],
+            "content": 332,
+            "horizontalOverflow": false,
+            "name": "What happened?",
+            "scrollable": true,
+            "width": 332,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 480,
+          "width": 375
+        },
+        "width": 390
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": false,
+                "height": 44,
+                "text": "×",
+                "width": 44
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Working late",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Feeling rough",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Guts playing up",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Absolutely knackered",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Eating out",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Going to the pub",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Missed lunch",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "No time to train",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Plans cancelled",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Sort my next three hours",
+                "width": 545
+              }
+            ],
+            "content": 601,
+            "horizontalOverflow": false,
+            "name": "What happened?",
+            "scrollable": true,
+            "width": 601,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 480,
+          "width": 753
+        },
+        "width": 768
+      },
+      {
+        "checks": [
+          {
+            "height": 22,
+            "id": "checkbox",
+            "width": 22
+          }
+        ],
+        "overlays": [
+          {
+            "buttons": [
+              {
+                "disabled": false,
+                "height": 44,
+                "text": "×",
+                "width": 44
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Working late",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Feeling rough",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Guts playing up",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Absolutely knackered",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Eating out",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Going to the pub",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Missed lunch",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "No time to train",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Plans cancelled",
+                "width": 266.5
+              },
+              {
+                "disabled": false,
+                "height": 52.390625,
+                "text": "Sort my next three hours",
+                "width": 545
+              }
+            ],
+            "content": 601,
+            "horizontalOverflow": false,
+            "name": "What happened?",
+            "scrollable": true,
+            "width": 601,
+            "withinViewport": true
+          }
+        ],
+        "viewport": {
+          "height": 480,
+          "width": 1265
+        },
+        "width": 1280
+      }
+    ]
+  }
+}
