@@ -51,6 +51,19 @@ export const memberClient = String.raw`(() => {
     tabs.forEach((t,i)=>{t.addEventListener('click',syncTabs);t.addEventListener('keydown',e=>{const index=e.key==='Home'?0:e.key==='End'?tabs.length-1:e.key==='ArrowRight'?(i+1)%tabs.length:e.key==='ArrowLeft'?(i+tabs.length-1)%tabs.length:null;if(index!==null){e.preventDefault();tabs[index].click();tabs[index].focus()}})});
     all('[data-open-grub]').forEach(b=>b.addEventListener('click',()=>{syncTabs();tabs.find(t=>t.dataset.grubTab===b.dataset.openGrub)?.focus()}));
     if(location.hash==='#saved')tabs.find(t=>t.dataset.grubTab==='saved')?.click();syncTabs();
+    // Keep results beside the search that requested them. Shortcut card titles
+    // use their existing tab action, so clicks do not strand the reader.
+    const results=document.querySelector('#grubDiscoverResults'),search=document.querySelector('.grub-search');
+    if(results&&search)search.after(results);
+    all('.grub-spotlight article').forEach(card=>{
+      const button=card.querySelector('[data-open-grub]'),heading=card.querySelector('h2');if(!button||!heading)return;
+      const link=document.createElement('a');link.href='#'+button.dataset.openGrub;link.textContent=heading.textContent;link.className='member-grub-shortcut';
+      heading.replaceChildren(link);link.addEventListener('click',e=>{e.preventDefault();button.click()});
+      card.addEventListener('click',e=>{if(!e.target.closest('a,button,input,select,textarea'))button.click()});
+    });
+    const filters=all('[data-filter]');
+    const syncFilters=()=>filters.forEach(b=>set(b,'aria-pressed',b.classList.contains('active')));
+    filters.forEach(b=>b.addEventListener('click',syncFilters));syncFilters();
     set(document.querySelector('#sgIngredientInput'),'aria-label','Add an ingredient');set(document.querySelector('#sgAddIngredient'),'aria-label','Add ingredient');
     set(document.querySelector('#shoppingInput'),'aria-label','Add a shopping item');set(document.querySelector('#shoppingForm button'),'aria-label','Add shopping item');
     set(document.querySelector('#grubDiscoverResults'),'aria-live','polite');

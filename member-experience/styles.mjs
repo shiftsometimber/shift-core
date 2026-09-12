@@ -2,6 +2,11 @@
 export const memberStyles = String.raw`
 body.sst-member-experience{--me-ink:#11140f;--me-paper:#e7e3da;--me-card:#f4f1e9;--me-line:#b6b8a9;--me-muted:#4c5245;background:var(--me-paper)!important;color:var(--me-ink)!important;font-family:Arial,Helvetica,sans-serif}
 body.sst-member-experience [hidden]{display:none!important}
+/* Legacy dark-card CSS sets WebKit's painted text separately from color.
+   Keep the two aligned across member screens, including dynamic overlays. */
+html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role=dialog],.sst-member-tabs),html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role=dialog],.sst-member-tabs) *{-webkit-text-fill-color:currentColor!important}
+html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role=dialog]) :is(input,textarea)::placeholder{-webkit-text-fill-color:currentColor!important}
+html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role=dialog]) :is(button,.btn) :is(span,small,strong,b,em,i){color:inherit!important;-webkit-text-fill-color:currentColor!important}
 .sst-member-experience main{width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:28px 24px 64px!important;box-sizing:border-box!important;overflow-wrap:anywhere;color:var(--me-ink);background:transparent!important}
 .sst-member-experience main:before,.sst-member-experience main:after{display:none!important}
 .sst-member-experience .member-records{padding:0!important;margin:0!important;background:transparent!important;border:0!important}
@@ -13,7 +18,7 @@ body.sst-member-experience [hidden]{display:none!important}
 .sst-member-experience main :is(button,.btn,summary){min-height:44px;white-space:normal;cursor:pointer}
 .sst-member-experience main :is(button,.btn){font-family:inherit;line-height:1.35;font-weight:700!important;text-transform:none!important;letter-spacing:0!important}
 .sst-member-experience main :is(button:disabled,input:disabled,textarea:disabled){opacity:.65;cursor:wait}
-.sst-member-experience main :is(input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea){max-width:100%;min-height:48px;font-size:16px!important;line-height:1.4!important;border:1px solid #8a917e!important;border-radius:8px!important;background:#fff!important;color:#11140f!important;accent-color:#445438;padding:12px!important}
+.sst-member-experience main :is(input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea){max-width:100%;min-height:48px;font-size:16px!important;line-height:1.4!important;border:1px solid #8a917e!important;border-radius:8px!important;background:var(--me-card)!important;color:#11140f!important;accent-color:#445438;padding:12px!important}
 /* Shared controls include overlays appended to body, not just main. Explicit
    physical and logical sizes prevent legacy 100% width / 50px minimum rules
    from stretching native checkboxes (including WebKit flex sizing). */
@@ -94,21 +99,30 @@ body.sst-member-experience #main-content .member-tool-hero h1 .accent{color:#f4f
 .sst-member-experience .grub-filters button.active{background:#25351e!important;color:#fff!important}
 .sst-member-experience .grub-spotlight{gap:20px!important;margin:24px 0!important}.sst-member-experience .grub-spotlight article{padding:24px!important}
 .sst-member-experience .grub-spotlight h2{font-size:27px!important}.sst-member-experience .grub-spotlight button{margin-top:8px!important}
+body.sst-member-experience .grub-spotlight article{cursor:pointer}
+body.sst-member-experience .grub-spotlight .member-grub-shortcut{color:#11140f!important;font:inherit!important;letter-spacing:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+body.sst-member-experience .grub-spotlight .member-grub-shortcut:hover{color:#25351e!important}
+body.sst-member-experience #grubDiscoverResults{margin:20px 0 24px}
 .sst-member-experience :is(.grub-empty,.grub-panel-head,.grubStatus){color:var(--me-muted)!important;background:transparent!important}
 .sst-member-experience .grub-empty{padding:24px!important;border:1px dashed #8a917e!important;border-radius:10px!important;display:grid;gap:6px}
 .sst-member-experience .grub-empty :is(strong,span){color:var(--me-muted)!important}
 .sst-member-experience .grub-add{display:flex;gap:10px}.sst-member-experience .grub-add input{flex:1}
+body.sst-member-experience .grub-chips button{background:#e4e8da!important;color:#11140f!important;border:1px solid #8a917e!important;border-radius:999px!important;min-height:44px!important;padding:10px 14px!important;white-space:normal;overflow-wrap:anywhere}
+body.sst-member-experience .grub-chips button:is(:hover,:focus-visible){background:#d5dbc6!important;color:#11140f!important}
+body.sst-member-experience .shopping-item{background:#f4f1e9!important;color:#11140f!important}
+body.sst-member-experience .shopping-item.done span{opacity:1!important}
+body.sst-member-experience .shopping-item button{background:#e4e8da!important;color:#11140f!important;border:1px solid #8a917e!important;border-radius:8px!important;min-width:44px;min-height:44px}
 .sst-member-experience :is(#grubSearchGo,#grubGenerate,#grubWeekGenerate,.grub-spotlight button,.grub-actions button,#sgAddIngredient,#shoppingForm button,.sf-build,.sf-start,.sf-review-save,#saveMood,.mj-next button,.mj-setup button[type=submit],.mj-weekly button){background:#25351e!important;color:#fff!important;border:1px solid #25351e!important;border-radius:8px!important;padding:13px 18px!important;font-size:15px!important;box-shadow:none!important}
 .sst-member-experience :is(#grubSearchGo,#grubGenerate,#grubWeekGenerate,.grub-spotlight button,.grub-actions button,.sf-build,#saveMood,.mj-next button):hover{background:#3e5434!important;color:#fff!important}
 .sst-member-experience .sf-builder-grid{gap:16px!important}.sst-member-experience .sf-builder label{font-size:13px!important;letter-spacing:.02em!important;font-weight:700!important}
 .sst-member-experience .sf-limitations{margin-top:24px!important;border:1px solid var(--me-line)!important;border-radius:8px!important}
-.sst-member-experience .sf-limitation-grid label{font-size:14px!important;letter-spacing:0!important;background:#fff!important;color:#11140f!important}
+.sst-member-experience .sf-limitation-grid label{font-size:14px!important;letter-spacing:0!important;background:var(--me-card)!important;color:#11140f!important}
 .sst-member-experience .sf-pref{margin-top:20px!important}
 .sst-member-experience .sf-status{background:#dce2d0!important;color:#25351e!important;border:1px solid #aeb89c!important;padding:14px 18px!important}
 .sst-member-experience .sf-builder .sf-build{margin-top:24px!important}
 .sst-member-experience .sf-session :is(.sf-verdict p,.sf-verdict span){color:#f4f1e9!important}
 .sst-member-experience .checkin-consent{max-width:none!important;margin:0 0 24px!important;padding:16px 20px!important;background:#dce2d0!important;color:#25351e!important;border:1px solid #aeb89c!important;font-size:14px!important}
-.sst-member-experience .checkin-card h2{font-size:30px!important}.sst-member-experience .checkin-card .mood-btn{background:#fff!important;color:#11140f!important;border:1px solid #8a917e!important;border-radius:10px!important;min-height:88px!important;height:auto!important}
+.sst-member-experience .checkin-card h2{font-size:30px!important}.sst-member-experience .checkin-card .mood-btn{background:var(--me-card)!important;color:#11140f!important;border:1px solid #8a917e!important;border-radius:10px!important;min-height:88px!important;height:auto!important}
 .sst-member-experience .checkin-card .mood-btn:is(.active,:hover){background:#25351e!important;color:#fff!important;border-color:#25351e!important}
 .sst-member-experience .checkin-card .mood-btn:is(.active,:hover) span{color:#fff!important}
 .sst-member-experience .checkin-note{display:block;margin:20px 0!important;font-size:15px!important;color:#11140f!important}
@@ -125,11 +139,11 @@ body.sst-member-experience #main-content .member-tool-hero h1 .accent{color:#f4f
 .sst-member-experience .mj-story-grid{gap:20px!important}.sst-member-experience .mj-story-grid article{padding:24px!important}
 .sst-member-experience .mj-next{margin:24px 0!important;padding:24px!important;background:#dce2d0!important;color:#11140f!important;border-radius:10px!important}
 .sst-member-experience .mj-next :is(h3,p){color:#11140f!important}
-.sst-member-experience .mj-setup-section{margin:24px 0!important;padding:20px!important;background:#fff!important;border:1px solid var(--me-line)!important;border-radius:10px!important}
+.sst-member-experience .mj-setup-section{margin:24px 0!important;padding:20px!important;background:var(--me-card)!important;border:1px solid var(--me-line)!important;border-radius:10px!important}
 .sst-member-experience .mj-setup label{line-height:1.5!important}.sst-member-experience .mj-setup legend{font-weight:800!important;font-size:18px!important}
 .sst-member-experience .mj-weekly{margin-top:28px!important}.sst-member-experience .mj-weekly header{padding:0 0 20px!important;background:transparent!important}
 .sst-member-experience .mj-weekly :is(.mj-step,fieldset,.mj-reading){background:transparent!important;color:#11140f!important;border-color:var(--me-line)!important}
-.sst-member-experience .mj-weekly .mj-pill span{background:#fff!important;color:#11140f!important;border-color:#8a917e!important}
+.sst-member-experience .mj-weekly .mj-pill span{background:var(--me-card)!important;color:#11140f!important;border-color:#8a917e!important}
 .sst-member-experience .mj-weekly input:checked+span{background:#25351e!important;color:#fff!important}
 .sst-member-experience .mj-weekly .mj-step-count{color:#4c5245!important}.sst-member-experience .mj-weekly label{font-size:15px!important}
 .sst-member-experience .member-record-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
@@ -156,7 +170,7 @@ body.sst-member-experience :is(.mt-sheet-grid,.mt-alternative-list,.wm-sort-grid
 body.sst-member-experience :is(.mt-sheet-grid,.mt-alternative-list,.wm-sort-grid) button:is(:hover,:focus-visible,.signature){background:#25351e!important;color:#fff!important}
 body.sst-member-experience .sf-visual-dialog{width:min(980px,calc(100% - 32px))!important}
 body.sst-member-experience .sf-visual-dialog :is(.sf-visual-head,.sf-visual-stage){background:#f4f1e9!important}
-body.sst-member-experience [role=dialog] textarea{width:100%;min-height:96px;padding:12px;border:1px solid #8a917e;border-radius:8px;background:#fff;color:#11140f;font:16px/1.4 Arial}
+body.sst-member-experience [role=dialog] textarea{width:100%;min-height:96px;padding:12px;border:1px solid #8a917e;border-radius:8px;background:#f4f1e9;color:#11140f;font:16px/1.4 Arial}
 .sst-member-experience .preview-auth{max-width:740px;margin:12px auto!important;padding:32px!important;border-radius:16px!important;background:#11140f!important}
 .sst-member-experience .preview-auth h1{color:#f4f1e9!important}.sst-member-experience .preview-auth form{gap:16px!important}
 @media(max-width:900px){

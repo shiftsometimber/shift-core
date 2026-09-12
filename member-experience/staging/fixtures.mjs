@@ -14,7 +14,7 @@ const fixture={
  getJourneyTrends:async()=>({export:{records:[]},message:'Your confirmed weekly records will appear here.'}),
  getDailyShift:async()=>({daily:{daily_output:{status:'setup',headline:'Make room for a better day.',subhead:'One useful next step. Then take it from there.',next:{title:'How are you feeling today?',detail:'Start with your optional private check-in.',cta:'Open my check-in',href:'/member/check-in'}}}}),
  getFitReminder:async()=>({enabled:false,hour:8}),
- conundrum:async()=>({top:[{name:'Fictional meal for layout review',minutes:20,protein_g:25,summary:'Sample card to check reading, saving and error states. This is not a reviewed recipe.'}]}),
+ conundrum:async({items=[]}={})=>{const choice=items.map(String).join(', ').slice(0,120)||'meal';return {top:[{name:'Preview result · '+choice,minutes:20,protein_g:25,summary:'This example reflects your selection. Recipe matching and cooking instructions are not connected in this preview. This is not a reviewed recipe.'}]};},
 };
 window.SST_API=new Proxy(fixture,{get:(target,key)=>target[key]||blocked});
 window.SST_MEMBER_REVIEW_FETCH=async(url,options={})=>{
