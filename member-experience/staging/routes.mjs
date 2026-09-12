@@ -35,6 +35,7 @@ export async function memberReviewRoutes(request,env){
  let html=await(await env.STAGING_ASSETS.fetch(sourceRequest(request,'member/'+name+'.html'))).text();
  // Exclude auth, analytics, service workers and public widgets from this sandbox.
  html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<link\b[^>]*rel="(?:preconnect|preload|prefetch|manifest)"[^>]*>/gi,'');
+ html=html.replace(/<button\b[^>]*id="askTimberLaunch"[^>]*>[\s\S]*?<\/button>/,'');
  html=html.replace(/(href=")(\/[^"?]+\.css)([^\"]*")/g,(_,a,b,c)=>a+sourcePrefix+b.slice(1)+c);
  if(name==='dashboard')html=html.replace(/<section\b[^>]*id="previewAuth"[^>]*>[\s\S]*?<\/section>/,'').replace(/id="previewMember" hidden/,'id="previewMember"').replace('class="preview-member"','class="preview-member is-ready"').replace(/(id="memberTabs") hidden/,'$1');
  html=html.replace('</head>','<script defer src="'+prefix+'fixture.mjs"></script>'+scripts[name].map(s=>'<script defer src="'+prefix+'script/'+s+'"></script>').join('')+'</head>');

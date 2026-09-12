@@ -25,12 +25,13 @@ window.SST_MEMBER_REVIEW_FETCH=async(url,options={})=>{
 };
 document.addEventListener('submit',e=>{if(e.target.closest('.preview-auth'))e.preventDefault()});
 document.addEventListener('click',e=>{
+ if(e.defaultPrevented)return;
  const a=e.target.closest('a');if(!a)return;
  const u=new URL(a.href),pages=['dashboard','grub','fit','check-in','saved','settings'];
  if(u.pathname.startsWith('/staging/member/'))return;
  if(u.pathname==='/member/journey')u.pathname='/member/dashboard',u.hash='#journey';
- if(pages.includes(u.pathname.replace('/member/',''))){a.href='/staging'+u.pathname+u.hash;return}
+ if(pages.includes(u.pathname.replace('/member/',''))){e.preventDefault();window.location.assign('/staging'+u.pathname+u.hash);return}
  if(u.hash&&u.pathname===location.pathname)return;
  e.preventDefault();document.querySelector('#memberReviewNote').textContent='Design review · this destination is outside the six review screens. No live account is connected.';
-},true);
+});
 `;
