@@ -1,0 +1,106 @@
+{
+  "checked_at": "2026-09-12T16:40:16.343984+00:00",
+  "release": "ecf0be136f666cb535cd39e2a5c1e17643cbd08b",
+  "checks": [
+    {
+      "path": "/",
+      "status": "200",
+      "bytes": 12309,
+      "sha256": "09ef6c9c5076ea22e2e5f70afe5ea44b7016f651a74141c994b62cc4b0044ea5",
+      "matches_before": true
+    },
+    {
+      "path": "/treatment-centre",
+      "status": "200",
+      "bytes": 26503,
+      "sha256": "6da1bf4d2b4d21e45927e30bf0e9d05f5068a3d7d148cbc0261579ee3141ca69",
+      "matches_before": true
+    },
+    {
+      "path": "/mounjaro",
+      "status": "200",
+      "bytes": 19231,
+      "sha256": "2f45c6b5e209b49c2cc2381d1a9079ed840bd610773d5657f09c12a1b755d147",
+      "matches_before": true
+    },
+    {
+      "path": "/member/dashboard",
+      "status": "200",
+      "bytes": 16967,
+      "sha256": "107d470d0a2eff0bb91feb8cb2bdd9a2f50d65da06c64a3358cf11883fdff15f",
+      "member_layer": true
+    },
+    {
+      "path": "/member/grub",
+      "status": "200",
+      "bytes": 12632,
+      "sha256": "26c6e1cdf02265b366ea7e7df1791b1b20bba5851a6da0dddd6be1761bbce97b",
+      "matches_before": false,
+      "member_layer": true,
+      "connected_script": true,
+      "old_scripts_absent": true
+    },
+    {
+      "path": "/member/fit",
+      "status": "200",
+      "bytes": 11142,
+      "sha256": "c215c5c2b6e722c0380f7e59781dc85c204cf8ce4ae108467575821a9a5b1c68",
+      "member_layer": true
+    },
+    {
+      "path": "/member/check-in",
+      "status": "200",
+      "bytes": 12276,
+      "sha256": "488ed4233b02851b1a52b13f0e6e43d52795f2b80f3e2ad1c409fdff460fab73",
+      "member_layer": true
+    },
+    {
+      "path": "/member/saved",
+      "status": "200",
+      "bytes": 10818,
+      "sha256": "14bd624c958f0600b8070baab4e17f3ca49b537d07c0d6c09df90a8a00f2a4e7",
+      "member_layer": true
+    },
+    {
+      "path": "/member/settings",
+      "status": "200",
+      "bytes": 11356,
+      "sha256": "e95e1586f89cea41c0d9bcf215d1a1c57abe7cdd89ead0139f69dad54aefd7a5",
+      "member_layer": true
+    },
+    {
+      "path": "/turnstile-auth-v1.js?v=timeout-20260912",
+      "status": "200",
+      "bytes": 4978,
+      "sha256": "ab4c12202142282824fbf1e453254cc35a51892a07fd51fd844c4ab27d6d4532",
+      "matches_before": true
+    },
+    {
+      "path": "/assets/member-experience/grub.mjs",
+      "status": "200",
+      "bytes": 13953,
+      "sha256": "ddd16edf30cc2bcfa202ca04835255c620990a3f579e5cbfeef2be0928452383",
+      "matches_verified_source": true
+    },
+    {
+      "path": "/assets/member-experience/v1.css",
+      "status": "200",
+      "bytes": 35714,
+      "sha256": "8c8cab23a0fba69125b1cdc211306651328e6ea8d78ae5e45cf2097feaab1a99",
+      "matches_verified_source": true
+    },
+    {
+      "path": "/assets/member-experience/v1.mjs",
+      "status": "200",
+      "bytes": 8976,
+      "sha256": "96c0ab495bb9bc3c0590c0ad33d2a4aec6f96b14906700573718c4ba719f787d",
+      "matches_verified_source": true
+    },
+    {
+      "path": "/v1/grub/workspace",
+      "status": "401",
+      "bytes": 46,
+      "sha256": "12408277d2940c16896276b3803e2f24165d71369579342736777419c3181660"
+    }
+  ]
+}
