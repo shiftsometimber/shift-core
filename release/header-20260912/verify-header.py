@@ -1,5 +1,5 @@
 """GET-only post-upload checks; dynamic public routes checked in production."""
-import concurrent.futures,hashlib,json,os,pathlib,re,time,urllib.request,urllib.error
+import concurrent.futures,hashlib,json,os,pathlib,re,time,urllib.request,urllib.error,urllib.parse
 HERE=pathlib.Path(__file__).resolve().parent
 control=json.loads((HERE.parent/'public-pages-20260911/control.json').read_text())
 log=(pathlib.Path(os.environ['RUNNER_TEMP'])/'header-deploy.log').read_text()
@@ -8,11 +8,12 @@ assert urls,'upload URL absent'
 PAGES=urls[-1];PUBLIC='https://shiftsometimber.co.uk'; fp=control['source_fingerprint']
 primary=['/start-here','/programme','/shift-health','/treatment-centre','/member/dashboard']
 menu=primary+['/about','/ask-timber','/contact','/help','/how-are-you-feeling','/explore-knowledge','/shift-for-work','/shop','/work-with-us']
-def get(url):
+def get(url,with_url=False):
  req=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'SHIFT-REC034-read-only-verification'})
  with urllib.request.urlopen(req,timeout=35) as r:
   assert r.status==200,url
-  return r.read()
+  data=r.read()
+  return (data,r.geturl()) if with_url else data
 def links(s):return re.findall(r'<a\b[^>]*href="([^"]+)"',s)
 def header(s,path):
  assert 'data-header-style="underline"' in s,path+': header variant'
@@ -30,16 +31,39 @@ assert manifest['aggregate_sha256']==fp
 entries={x['path']:x for x in manifest['files']}
 proof={'change':'REC-034','mode':control['mode'],'fingerprint':fp,'pages':PAGES,'checks':[]}
 sourceproof=json.loads((HERE/'header-source-proof.json').read_text())
+# Routing is read from the unchanged source payload because Pages consumes _redirects.
+import gzip
+payload=json.loads(gzip.decompress((HERE.parent/'public-pages-20260911/source.json.gz').read_bytes()))
+redirects=payload['overrides'].get('_redirects')
+if redirects is None:
+ redirects=(pathlib.Path(os.environ['SST_RELEASE_DIR'])/'_redirects').read_text()
+assert hashlib.sha256(redirects.encode()).hexdigest()==entries['_redirects']['sha256']
+rewrites=[]
+for line in redirects.splitlines():
+ parts=line.split()
+ if len(parts)==3 and parts[0].startswith('/') and parts[2]=='200':rewrites.append(parts[:2])
+def served_source(final_url):
+ u=urllib.parse.urlparse(final_url)
+ assert u.netloc==urllib.parse.urlparse(PAGES).netloc,'unexpected external redirect'
+ path=u.path
+ for source,target in rewrites:
+  if path==source or ('*' in source and path.startswith(source.split('*')[0])):
+   path=target;break
+ name='index.html' if path=='/' else path.lstrip('/')
+ if name not in entries:name+='.html'
+ assert name in entries,('unknown served source',final_url,name)
+ return name
 def verify_template(item):
- name=item['path'];data=get(PAGES+'/'+name)
- assert hashlib.sha256(data).hexdigest()==entries[name]['sha256'],name+': bytes differ'
- return header(data.decode(),name)
+ name=item['path'];data,final_url=get(PAGES+'/'+name,True)
+ served=served_source(final_url)
+ assert hashlib.sha256(data).hexdigest()==entries[served]['sha256'],name+': served bytes differ from '+served
+ result=header(data.decode(),name);result.update({'served_source':served,'final_url':final_url,'sha256':hashlib.sha256(data).hexdigest()});return result
 with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
  proof['template_checks']=list(pool.map(verify_template,sourceproof['changes']))
 for name in ['assets/header-navigation-v2.css','start-here-v72.js','assets/v42.js','app.js','sitemap.xml']:
  data=get(PAGES+'/'+name)
  assert hashlib.sha256(data).hexdigest()==entries[name]['sha256'],name
-proof['checks'].append('438 exact uploaded template hashes and unchanged journey/menu assets')
+proof['checks'].append('438 route checks against exact served template hashes, preserving canonical redirects; unchanged journey/menu assets')
 if control['mode']=='production':
  assert json.loads(get(PUBLIC+'/DEPLOYMENT-FINGERPRINT.json'))['aggregate_sha256']==fp
  paths=['/','/start-here','/programme','/shift-health','/treatment-centre','/member-login','/shift-for-work','/shop','/explore-knowledge','/about','/medicine-news','/medicine-news/obesity-management-new-research','/treatment-order?medicine=mounjaro&view=spec&from=start-here']
