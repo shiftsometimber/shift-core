@@ -24,3 +24,6 @@ work/preview/assets/work-preview.css
 work/preview/assets/work-preview.mjs
 work/review-files.txt
 work/client-results.txt
+.github/workflows/shift-work-checks.yml
+work/tests/journey.test.mjs
+work/journey-results.txt

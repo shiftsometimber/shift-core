@@ -1,0 +1,10 @@
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+✔ Actual password login → company claim → review → fixed report → revocation (271.674156ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10953.710121

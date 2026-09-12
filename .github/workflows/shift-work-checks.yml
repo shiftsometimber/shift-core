@@ -1,0 +1,34 @@
+name: SHIFT for Work isolated checks
+on:
+  push:
+    branches: [feature/shift-for-work-20260912]
+    paths:
+      - 'work/**'
+      - 'worker-entry-v6.js'
+      - 'worker.js'
+      - '.github/workflows/shift-work-checks.yml'
+permissions:
+  contents: read
+concurrency:
+  group: shift-work-isolated-checks
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Install the verified local runtime in a separate tools directory
+        run: npm install --prefix "$RUNNER_TEMP/work-runtime" --no-audit --no-fund --ignore-scripts @cloudflare/workerd-linux-64@1.20260911.1
+      - name: Bundle only — no deployment
+        run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir work/build
+      - name: Verify workplace contracts and complete password-login journey
+        env:
+          MINIFLARE_WORKERD_PATH: ${{ runner.temp }}/work-runtime/node_modules/@cloudflare/workerd-linux-64/bin/workerd
+        run: node --test work/tests/*.test.mjs
+      - name: Verify existing Programme behaviour
+        run: node --test programme/tests/*.test.mjs

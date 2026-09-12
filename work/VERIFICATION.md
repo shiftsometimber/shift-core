@@ -38,3 +38,11 @@ The browser review caught shared-CSS interference with navigation/table layout a
 SEO integrity passed for 461 pages and the exact release fingerprint passed. The source comparison preserves all 871 original production files plus the four approved employer proposition files; only generated integrity records and five new fictional preview files differ. The approved PDF remains byte-identical. The actual production deployment remains `02d4d911`, checked by the release workflow.
 
 The repository also triggers a pre-existing `.github/workflows/act2b-one-shot.yml` validation failure on these branch pushes; it is separate from the successful Pages deployment. This record does not call the entire repository CI green.
+
+## Account journey gate — 12 September 2026
+
+`work/tests/journey.test.mjs` adds one passing integration journey through the actual bundled Worker: employee and employer password login, separate HQ password login, code issuance/claim, saved weekly review, employer isolation, blocked test ordering, a fixed closing report, reporter-access revocation, employee withdrawal, logout and rejection of the old session. The free account remains. Passwords are randomly generated for each run and never saved in the repository.
+
+The closed reporting period is an explicit local fixture transition in WORK_DB, not a real twelve-week pilot and not a request-controlled clock override. The HQ test account has MFA disabled; no production MFA setting changes or MFA acceptance claim are involved. This verifies the HTTP account journey in local workerd/D1, not a hosted browser or remote D1 flow. The existing legacy schema readiness probe emits its known SQLite parameter-limit fallback during HQ login; the unchanged fallback completes and the journey passes.
+
+The feature branch now has `.github/workflows/shift-work-checks.yml`: read-only repository permissions, isolated runtime tests, a bundle dry-run and existing Programme tests. It has no deployment credentials, remote database mutation or publishing step. Its runtime binary is pinned to the exact verified `1.20260911.1` version in a separate tools directory. Local test totals are now 29 workplace checks plus 84 existing Programme checks. Hosted CI status is recorded separately after the run.
