@@ -33,10 +33,17 @@ body.sst-member-experience [hidden]{display:none!important}
 .sst-member-experience .site-header nav a{color:#dddcd3!important}
 .sst-member-experience .grub-v8-panel{padding:0!important;border:0!important;background:transparent!important}
 .sst-member-experience .member-main:before,.sst-member-experience .v6-watermark-host:before{display:none!important}
+body.sst-member-experience main#main-content{background:transparent!important;border:0!important;box-shadow:none!important}
+body.sst-member-experience #main-content .member-shell{display:block!important;grid-template-columns:1fr!important;padding:0!important;background:transparent!important;border:0!important}
+body.sst-member-experience #main-content .member-shell .member-side{display:none!important}
+body.sst-member-experience #main-content .member-main{padding:0!important;margin:0!important;background:transparent!important;border:0!important;color:#11140f!important}
+body.sst-member-experience #main-content .member-main>:is(h1,h2,p),body.sst-member-experience #main-content .member-main>h1 .accent{color:#11140f!important}
+body.sst-member-experience #main-content :is(.member-shell,.member-main,.member-records,.checkin-card):before,body.sst-member-experience #main-content :is(.member-shell,.member-main,.member-records,.checkin-card):after{display:none!important}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival){position:relative;isolation:isolate;overflow:hidden;min-height:290px!important;margin:0 0 28px!important;padding:36px 42% 36px 32px!important;border:0!important;border-radius:16px!important;background:#11140f!important;color:#f4f1e9!important;box-shadow:none!important}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival):after{content:''!important;display:block!important;position:absolute;inset:0 0 0 58%;z-index:-1;opacity:1!important;background:linear-gradient(90deg,#11140f 0%,#11140f00 60%),url('/assets/home-hero-men-v32o.jpg') center/cover no-repeat;pointer-events:none}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival) :is(h1,h2){margin:8px 0 16px!important;font-size:clamp(34px,4.1vw,54px)!important;line-height:1.02!important;letter-spacing:-.045em!important;color:#f4f1e9!important;max-width:650px!important}
-.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival) :is(p,.accent){color:#dadfd0!important;font-size:17px!important;line-height:1.5!important;margin:0!important}
+.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival) p{color:#dadfd0!important;font-size:17px!important;line-height:1.5!important;margin:0!important}
+.sst-member-experience .member-tool-hero h1 .accent{font-size:inherit!important;line-height:inherit!important;color:inherit!important}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival) :is(.eyebrow,.sf-kicker,header>span,.mt-arrival-copy>span){font-size:11px!important;font-weight:800!important;letter-spacing:.13em!important;color:#c5cdb3!important}
 .sst-member-experience .mt-arrival{display:block!important}.sst-member-experience .mt-live-mark{display:none!important}
 .sst-member-experience :is(.grub-search,.grub-workbench,.grub-week-builder,.sf-builder,.checkin-card,.mj-setup,.mj-weekly,.tracker-card,.member-record-card){padding:28px!important;background:var(--me-card)!important;color:var(--me-ink)!important;border:1px solid var(--me-line)!important;border-radius:12px!important;box-shadow:none!important;transform:none!important}
