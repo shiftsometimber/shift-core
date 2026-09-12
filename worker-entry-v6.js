@@ -1,3 +1,6 @@
+import { workDashboardEntry } from "./work/dashboard-entry.mjs";
+import { workRoutes } from "./work/routes.mjs";
+import { authenticateWorkHQ } from "./worker.js";
 import { programmeRoutes } from "./programme/routes.mjs";
 import { programmeHTML } from "./programme/screen.mjs";
 import { programmeDashboardEntry } from "./programme/dashboard-entry.mjs";
@@ -515,6 +518,8 @@ export default {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
+    if (workplace) return workplace;
     const programme = await programmeRoutes(request, env, {authenticate: authenticateMember, html: programmeHTML});
     if (programme) return programme;
     if (request.method === "GET" && path === "/v1/auth/turnstile-config") {
@@ -677,7 +682,7 @@ export default {
     )
     {
       const response = await publicPagesAsset(request, path.replace(/\.html$/, ""));
-      return programmeDashboardEntry(request, env, response, {authenticate: authenticateMember});
+      return workDashboardEntry(request, env, await programmeDashboardEntry(request, env, response, {authenticate: authenticateMember}), {authenticate: authenticateMember});
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
