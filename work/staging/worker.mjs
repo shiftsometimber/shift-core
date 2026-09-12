@@ -15,7 +15,7 @@ export default {async fetch(request,env,ctx){
   return new Response(workHTML('member').replace(/<main\b.*?<\/main>/s,main).replace('/assets/work/work.mjs','/staging/login.mjs'),{headers:privateHeaders});
  }
  if(request.method==='GET'&&['/staging/login.mjs','/staging/invitation.txt'].includes(p))return env.STAGING_ASSETS.fetch(request);
- if(request.method==='GET'&&['/styles.css','/assets/member-shell-v6.css','/assets/shift-recovery-v6.css','/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png'].includes(p))return env.STAGING_ASSETS.fetch(request);
+ if(request.method==='GET'&&['/assets/home-hero-men-v32o.jpg','/styles.css','/assets/member-shell-v6.css','/assets/shift-recovery-v6.css','/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png'].includes(p))return env.STAGING_ASSETS.fetch(request);
  const allowed=['/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
  if(!allowed.includes(p))return new Response('Only workplace verification routes are available here.',{status:404});
  if(request.method==='POST'){

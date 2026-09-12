@@ -5,6 +5,7 @@ work/model.mjs
 work/routes.mjs
 work/client.mjs
 work/screen.mjs
+work/styles.mjs
 work/dashboard-entry.mjs
 work/migration.sql
 work/README.md

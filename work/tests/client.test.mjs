@@ -21,3 +21,19 @@ test('Workplace dashboard entry preserves all original HTML and remains absent w
  const response=await workDashboardEntry(request,{WORK_V1_ENABLED:'true'},source(),{authenticate:async()=>({userId:1})}),html=await response.text();assert.equal(html.replace(/<section class="mt-card" id="sstWorkEntry">[\s\S]*?<\/section>/,''),body);assert.equal(response.headers.get('ETag'),null);
  for(const on of [false,true]){const r=source();assert.equal(await workDashboardEntry(request,{WORK_V1_ENABLED:String(on)},r,{authenticate:async()=>({response:new Response(null,{status:401})})}),r)}
 });
+const workplace={employerId:'fictional-ui',name:'Example workplace',start:'2026-09-14',end:'2026-12-07',status:'active',active:true,week:4,completedWeeks:[1,2,3],scope:'Agreed programme scope',support:'Agreed support limits',testing:{message:'Testing is unavailable.'}};
+test('Returning members see their current programme before the optional joining form',async()=>{
+ const h=harness('member');h.response(0,{workplaces:[workplace]});await tick();
+ const html=h.root.innerHTML;assert.ok(html.indexOf('data-cohort="fictional-ui"')<html.indexOf('data-kind="join"'));
+ assert.match(html,/WEEK 4 OF 12/);assert.match(html,/3 of 12 complete/);assert.match(html,/data-week="4" data-done="false"/);assert.match(html,/Your privacy and workplace data/);
+ assert.match(html,/Have another workplace invitation/);assert.match(html,/Your employer cannot open your account/);
+});
+test('First join retains the complete voluntary notice before the joining controls',async()=>{
+ const h=harness('member');h.response(0,{workplaces:[]});await tick();const html=h.root.innerHTML;
+ assert.ok(html.indexOf('Your employer cannot open your account')<html.indexOf('name="consent"'));
+ assert.match(html,/Joining is optional/);assert.match(html,/name="consent" required/);assert.doesNotMatch(html,/data-cohort/);
+});
+test('Upcoming and inactive programmes show no review write controls; completed current week is explicit',async()=>{
+ for(const [week,active]of [[0,false],[4,false],[12,false]]){const h=harness('member');h.response(0,{workplaces:[{...workplace,week,active}]});await tick();assert.doesNotMatch(h.root.innerHTML,/data-action="review"/);assert.match(h.root.innerHTML,/Your place is confirmed|Weekly updates are closed/)}
+ const h=harness('member');h.response(0,{workplaces:[{...workplace,completedWeeks:[1,2,3,4]}]});await tick();assert.match(h.root.innerHTML,/Your review is saved/);assert.match(h.root.innerHTML,/data-week="4" data-done="true"/);
+});
