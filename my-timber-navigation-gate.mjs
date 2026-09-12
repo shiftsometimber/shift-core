@@ -16,15 +16,20 @@ const extension=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
 need(workerCompact.includes("newURL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
 for(const marker of [
   'aria-label="Main website navigation"',
-  'href="https://shiftsometimber.co.uk/start-here"',
-  'href="https://shiftsometimber.co.uk/treatment-centre"',
-  'href="https://shiftsometimber.co.uk/explore-knowledge"',
-  'href="https://shiftsometimber.co.uk/tools"',
-  'href="https://shiftsometimber.co.uk/mens-mental-health">Good to Talk</a>',
-  'href="https://shiftsometimber.co.uk/lounge"',
-  'href="https://shiftsometimber.co.uk/shop"',
-  'href="https://shiftsometimber.co.uk/ask-timber"',
-  'href="https://shiftsometimber.co.uk/programme"',
+  'href="/start-here"',
+  'href="/programme"',
+  'href="/shift-health"',
+  'href="/treatment-centre"',
+  'href="/member/dashboard"',
+  'href="/about"',
+  'href="/ask-timber"',
+  'href="/contact"',
+  'href="/help"',
+  'href="/how-are-you-feeling"',
+  'href="/explore-knowledge"',
+  'href="/shift-for-work"',
+  'href="/shop"',
+  'href="/work-with-us"',
   'aria-label="Primary website navigation"',
   'aria-label="My Timber destinations"',
   '<a href="/lounge">THE LOUNGE</a>',
@@ -37,7 +42,8 @@ for(const marker of [
   "params.get('returnTo')"
 ])need(shell.includes(marker),`My Timber navigation contract missing ${marker}`);
 for(const [name,page,current] of [['Today',shell,'/member/dashboard'],['Grub',grub,'/member/grub'],['Fit',fit,'/member/fit']]){
-  for(const marker of ['/member/dashboard','/member/grub','/member/fit','/lounge','/my-timber-v11.css','/my-timber-v11.js','/sst-logo-official.png'])need(page.includes(marker),`${name} V11 contract missing ${marker}`);
+  for(const marker of ['/member/dashboard','/member/grub','/member/fit','/lounge','/my-timber-v11.css','/my-timber-v11.js'])need(page.includes(marker),`${name} V11 contract missing ${marker}`);
+  need(page.includes(name==='Today'?'/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png?v=42c':'/sst-logo-official.png'),name+' approved logo missing');
   need(page.includes(`href="${current}" aria-current="page"`),`${name} current navigation state missing`);
 }
 for(const marker of ['background:var(--sst-black)','background:var(--sst-cream)','background:var(--sst-green)','font-family:Arial'])need(visual.includes(marker),`V11 visual contract missing ${marker}`);
@@ -57,3 +63,13 @@ for(const marker of ['matchAll','values.slice(0,4)','for(const raw of candidates
 need(workerCompact.includes('authenticateMember(request,env)'),'Lounge page gate is not using duplicate-cookie-safe member authentication');
 
 console.log('My Timber navigation gate: PASS');
+
+// REC-034A: exact approved public navigation, independent of private portal tabs.
+const primary=shell.match(/<nav[^>]*class="desktop-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+const drawer=shell.match(/<aside[^>]*id="site-drawer"[^>]*>([\s\S]*?)<\/aside>/)?.[1];
+const hrefs=s=>[...String(s||'').matchAll(/<a[^>]*href="([^"]+)"/g)].map(m=>m[1]);
+need(JSON.stringify(hrefs(primary))==="[\"/start-here\",\"/programme\",\"/shift-health\",\"/treatment-centre\",\"/member/dashboard\"]",'approved primary order differs');
+need(JSON.stringify(hrefs(drawer))==="[\"/start-here\",\"/programme\",\"/shift-health\",\"/treatment-centre\",\"/member/dashboard\",\"/about\",\"/ask-timber\",\"/contact\",\"/help\",\"/how-are-you-feeling\",\"/explore-knowledge\",\"/shift-for-work\",\"/shop\",\"/work-with-us\"]",'approved menu order differs');
+need(shell.includes('data-header-style="underline"'),'approved header variant missing');
+need(shell.includes('class="drawer-backdrop" hidden'),'menu backdrop missing');
+need(shell.includes('data-auth-header-handler'),'canonical menu handler missing');

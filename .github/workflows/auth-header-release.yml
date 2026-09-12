@@ -1,0 +1,75 @@
+name: Complete approved header on the auth shell
+on:
+  push:
+    branches: [recovery/auth-header-approved-20260912]
+    paths:
+      - '.github/workflows/auth-header-release.yml'
+      - 'frontend/member/my-timber-preview.html'
+      - 'my-timber-navigation-gate.mjs'
+      - 'verification/rec034-auth-*'
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Require the recorded current-main baseline
+        run: |
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = b3b86d41d1283d08e7b1e464f72e7aa72fa5b082
+          node verification/rec034-auth-source.mjs
+      - name: Install the existing exact deployment toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Verify the existing member and navigation source gates
+        run: |
+          node daily-shift-frontdoor-gate.mjs
+          node my-timber-75-green-gate.mjs
+          node my-timber-final-source-gate.mjs
+          node my-timber-navigation-gate.mjs
+          node g5-012-login-fastpath-gate.mjs
+      - name: Verify authentication, recovery and existing security gates
+        run: node --test tests/member-auth-ui-v2.test.mjs tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs tests/seo-release-integrity.test.mjs
+      - name: Verify unchanged member and treatment contracts
+        run: |
+          node --test ask-timber-multi-intent-gate.mjs tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
+          node my-journey-integration-gate.mjs
+      - name: Capture the active Worker and require the recorded baseline
+        run: |
+          npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('deployment-before.json'))
+          assert isinstance(d,list) and d
+          latest=max(d,key=lambda x:x['created_on'])
+          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='24d239bc-a944-4ec8-986b-b0660faf8ff2', 'Worker moved; refuse stale deployment'
+          PY
+      - name: Capture current public pages and menu assets
+        run: node verification/rec034-auth-live.mjs before
+      - name: Publish the single auth-header asset using unchanged runtime and configuration
+        run: npx wrangler deploy --config wrangler.jsonc
+      - name: Verify all header routes and preserved public/member source
+        run: |
+          node verification/rec034-auth-live.mjs after
+          node member-experience/verify-production-member.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REC-034A-auth-header-evidence
+          path: |
+            deployment-before.json
+            auth-header-source-proof.json
+            auth-header-public-before.json
+            auth-header-live-proof.json
+            member-live-proof.json

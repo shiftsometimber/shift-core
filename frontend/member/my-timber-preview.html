@@ -28,16 +28,31 @@
     @media(max-width:560px){.member-quick-nav{grid-template-columns:1fr 1fr}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
   </style>
+<style data-auth-header-base>
+header.site-header[data-header-v2]{position:relative;z-index:100;font-family:Arial,Helvetica,sans-serif}
+header.site-header[data-header-v2] .header-inner{width:92%;max-width:1440px;margin:auto;display:flex;align-items:center}
+header.site-header[data-header-v2] .site-logo img{display:block}
+header.site-header[data-header-v2] .desktop-nav{text-transform:uppercase}
+header.site-header[data-header-v2] button,.site-drawer[data-header-v2] button{cursor:pointer;font-family:inherit}
+body:has(header[data-header-v2]).drawer-open{overflow:hidden}
+body:has(header[data-header-v2])>.drawer-backdrop{position:fixed;inset:0;z-index:150;background:rgba(5,5,5,.82)}
+.site-drawer[data-header-v2]{position:fixed;inset:0 0 0 auto;z-index:200;box-sizing:border-box;width:min(92vw,430px);height:100dvh;overflow:auto;background:#050505;color:#E7E3DA;border-left:1px solid #707762;padding:1rem 1.25rem 2rem;font:16px/1.5 Arial,Helvetica,sans-serif}
+.site-drawer[data-header-v2][hidden],body:has(header[data-header-v2])>.drawer-backdrop[hidden]{display:none!important}
+.site-drawer[data-header-v2] .drawer-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:1rem;border-bottom:1px solid #707762}
+.site-drawer[data-header-v2] .drawer-head img{width:235px;max-width:68%}
+.site-drawer[data-header-v2] .drawer-close{background:transparent;color:#E7E3DA;border:1px solid #707762;padding:.65rem .85rem}
+.site-drawer[data-header-v2] nav{display:grid}
+.site-drawer[data-header-v2] nav a{display:block;padding:.75rem .4rem;border-bottom:1px solid #707762;color:#707762;font-weight:900;text-decoration:none}
+.site-drawer[data-header-v2] nav a:is(:hover,:focus-visible,[aria-current="page"]){color:#E7E3DA}
+.site-drawer[data-header-v2] nav a[aria-current="page"]{border-left:4px solid #707762;padding-left:12px}
+.site-drawer[data-header-v2] :is(a,button):focus-visible{outline:2px solid #E7E3DA;outline-offset:3px}
+</style>
+<link rel="stylesheet" href="/assets/header-navigation-v2.css" data-header-v2-style/>
 </head>
 <body>
-  <header class="sst-global-head">
-    <a class="sst-global-brand" href="https://shiftsometimber.co.uk/" aria-label="Shift Some Timber home"><img src="/sst-logo-official.png" alt="Shift Some Timber — helping ordinary blokes feel like themselves again"></a>
-    <button class="sst-menu-button" type="button" aria-expanded="false" aria-controls="sstGlobalMenu">MENU</button>
-  </header>
-  <nav class="sst-public-primary" aria-label="Primary website navigation"><a href="/start-here">Start Here</a><a href="/explore-knowledge">Knowledge</a><a href="/treatment-centre">Treatments</a><a href="/tools">Tools</a><a href="/mens-mental-health">Good to Talk</a><a href="/lounge">The Lounge</a><a href="/member/dashboard" aria-current="page">My Shift</a></nav>
-  <nav class="sst-global-menu" id="sstGlobalMenu" hidden aria-label="Main website navigation">
-    <a href="https://shiftsometimber.co.uk/start-here">Start Here</a><a href="https://shiftsometimber.co.uk/treatment-centre">Treatment Centre</a><a href="https://shiftsometimber.co.uk/explore-knowledge">Knowledge</a><a href="https://shiftsometimber.co.uk/tools">Tools</a><a href="https://shiftsometimber.co.uk/shop">Timber Mill</a><a href="https://shiftsometimber.co.uk/lounge">The Lounge</a><a href="https://shiftsometimber.co.uk/work-with-us">Work With Us</a><a href="https://shiftsometimber.co.uk/about">About</a><a href="https://shiftsometimber.co.uk/contact">Contact</a><a href="https://shiftsometimber.co.uk/ask-timber">Ask Timber</a><a href="https://shiftsometimber.co.uk/member/dashboard">My Shift</a><a href="https://shiftsometimber.co.uk/glp1-knowledge-centre">GLP-1</a><a href="https://shiftsometimber.co.uk/mens-mental-health">Good to Talk</a><a href="https://shiftsometimber.co.uk/programme">Shift Programme</a>
-  </nav>
+  <header data-header-v2 data-header-style="underline" class="site-header"><div class="site-wrap header-inner"><a aria-label="Shift Some Timber home" class="site-logo" href="/"><img alt="Shift Some Timber — Helping ordinary blokes feel like themselves again." src="/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png?v=42c"/></a><nav aria-label="Primary website navigation" class="desktop-nav"><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/treatment-centre">Treatments</a><a href="/member/dashboard" aria-current="page">My Timber</a></nav><button aria-controls="site-drawer" aria-expanded="false" class="menu-trigger" type="button">Menu</button></div></header>
+  <div class="drawer-backdrop" hidden></div>
+  <aside data-header-v2 aria-label="Main website navigation" class="site-drawer" hidden id="site-drawer"><div class="drawer-head"><img alt="Shift Some Timber" src="/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png?v=42c"/><button aria-label="Close menu" class="drawer-close" type="button">Close</button></div><nav><a href="/start-here">Start Here</a><a href="/programme">The Programme</a><a href="/shift-health">SHIFT Health</a><a href="/treatment-centre">Treatments</a><a href="/member/dashboard" aria-current="page">My Timber</a><a href="/about">About</a><a href="/ask-timber">Ask Timber</a><a href="/contact">Contact</a><a href="/help">Help</a><a href="/how-are-you-feeling">How are you feeling?</a><a href="/explore-knowledge">Knowledge</a><a href="/shift-for-work">SHIFT for Work</a><a href="/shop">Timber Mill</a><a href="/work-with-us">Work With Us</a></nav></aside>
   <nav class="sst-portal-tabs" aria-label="My Timber destinations"><a href="/member/dashboard#today" data-portal-panel="today" aria-current="page">TODAY</a><a href="/member/dashboard#journey" data-portal-panel="journey">MY JOURNEY</a><a href="/member/dashboard#visualise" data-portal-panel="visualise">PROGRESS</a><a href="/member/dashboard#shiftme" data-portal-panel="shiftme">SHIFT ME</a><a href="/member/dashboard#journey" data-coming-off>CLINIC GONE QUIET / COMING OFF</a><a href="/member/grub">GRUB</a><a href="/member/fit">FIT</a><a href="/lounge">THE LOUNGE</a></nav>
   <nav class="sst-portal-tools" aria-label="My Timber tools"><a href="/member/dashboard#plans" data-portal-panel="plans">MY PLANS</a></nav>
   <main class="preview-wrap">
@@ -163,5 +178,6 @@
   <script src="/member-medicines-watch-v1.js?v=2"></script>
   <script defer src="/consent-v4a.js?v=52"></script>
   <script defer src="/analytics-events-v31b.js?v=52"></script>
+<script defer src="/assets/v42.js" data-auth-header-handler></script>
 </body>
 </html>
