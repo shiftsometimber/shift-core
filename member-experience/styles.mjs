@@ -71,6 +71,7 @@ body.sst-member-experience #main-content :is(.member-shell,.member-main,.member-
 .sst-member-experience .mt-arrival{display:block!important}.sst-member-experience .mt-live-mark{display:none!important}
 body.sst-member-experience #panel-today{margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
 body.sst-member-experience #panel-today:before,body.sst-member-experience #panel-today:after,body.sst-member-experience #panel-today .mt-arrival:before{display:none!important}
+html body.sst-member-experience #panel-today>.preview-note,html body.sst-member-experience #panel-today .mt-feedback small{color:#25351e!important}
 body.sst-member-experience #panel-today .mt-dayline{background:transparent!important;color:#25351e!important;border-color:#aeb89c!important}
 body.sst-member-experience #panel-today .mt-dayline :is(b,span){color:#25351e!important}
 body.sst-member-experience #panel-today .mt-now{background:#dce2d0!important;color:#11140f!important;border:1px solid #aeb89c!important;border-radius:12px!important;padding:24px!important;box-shadow:none!important}
@@ -131,6 +132,7 @@ body.sst-member-experience .shopping-item button{background:#e4e8da!important;co
 .sst-member-experience .checkin-result :is(h2,p,small,strong){color:#11140f!important}
 .sst-member-experience :is(.checkin-history,.checkin-safety){color:#11140f!important;background:var(--me-card)!important;border:1px solid var(--me-line)!important;padding:20px!important;border-radius:12px!important;margin-top:24px!important}
 .sst-member-experience :is(.checkin-history,.checkin-safety) :is(small,strong,span,a){color:#25351e!important}
+html body.sst-member-experience #main-content .checkin-safety a{color:#25351e!important}
 .sst-member-experience .member-action-status{font-size:14px;margin:12px 0 0!important}.sst-member-experience .member-action-status:empty{display:none}
 .sst-member-experience .mj-support-strip{margin:0 0 24px!important;padding:20px!important;background:#dce2d0!important;color:#25351e!important;border:1px solid #aeb89c!important;border-radius:10px!important}
 .sst-member-experience .mj-support-strip :is(p,strong,span){color:#25351e!important}
@@ -138,7 +140,7 @@ body.sst-member-experience .shopping-item button{background:#e4e8da!important;co
 .sst-member-experience .mj-stat-grid strong{font-size:clamp(26px,3vw,38px)!important}
 .sst-member-experience .mj-story-grid{gap:20px!important}.sst-member-experience .mj-story-grid article{padding:24px!important}
 .sst-member-experience .mj-next{margin:24px 0!important;padding:24px!important;background:#dce2d0!important;color:#11140f!important;border-radius:10px!important}
-.sst-member-experience .mj-next :is(h3,p){color:#11140f!important}
+.sst-member-experience .mj-next :is(h3,p,small){color:#11140f!important}
 .sst-member-experience .mj-setup-section{margin:24px 0!important;padding:20px!important;background:var(--me-card)!important;border:1px solid var(--me-line)!important;border-radius:10px!important}
 .sst-member-experience .mj-setup label{line-height:1.5!important}.sst-member-experience .mj-setup legend{font-weight:800!important;font-size:18px!important}
 .sst-member-experience .mj-weekly{margin-top:28px!important}.sst-member-experience .mj-weekly header{padding:0 0 20px!important;background:transparent!important}

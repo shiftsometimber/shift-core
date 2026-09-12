@@ -64,6 +64,7 @@ export const memberClient = String.raw`(() => {
     const filters=all('[data-filter]');
     const syncFilters=()=>filters.forEach(b=>set(b,'aria-pressed',b.classList.contains('active')));
     filters.forEach(b=>b.addEventListener('click',syncFilters));syncFilters();
+    document.querySelector('#grubSearch')?.addEventListener('input',()=>{filters.forEach(b=>b.classList.remove('active'));syncFilters()});
     set(document.querySelector('#sgIngredientInput'),'aria-label','Add an ingredient');set(document.querySelector('#sgAddIngredient'),'aria-label','Add ingredient');
     set(document.querySelector('#shoppingInput'),'aria-label','Add a shopping item');set(document.querySelector('#shoppingForm button'),'aria-label','Add shopping item');
     set(document.querySelector('#grubDiscoverResults'),'aria-live','polite');

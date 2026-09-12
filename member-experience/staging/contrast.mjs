@@ -10,6 +10,9 @@ function inspectMemberText(doc){
   if(!el.getClientRects().length||el.closest('[hidden],[aria-hidden="true"],button:disabled,input:disabled,textarea:disabled,select:disabled'))continue;
   if(['SCRIPT','STYLE','OPTION'].includes(el.tagName))continue;
   let text=[...el.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join(' ').trim(),style=css(el);
+  // Clipped live announcements are available to assistive technology but are
+  // not painted labels. Keep them out of the visual contrast measurements.
+  if(style.clip==='rect(0px, 0px, 0px, 0px)'||style.clipPath==='inset(50%)')continue;
   if(['INPUT','TEXTAREA'].includes(el.tagName)&&!['checkbox','radio','file','range','hidden'].includes(el.type)){text=el.value||el.getAttribute('placeholder')||'';if(!el.value&&text)style=css(el,'::placeholder')}
   if(!text)continue;
   const ancestors=[];let opacity=Number(style.opacity)||0;
