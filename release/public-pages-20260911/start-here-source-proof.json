@@ -1,0 +1,40 @@
+{
+  "change": "REC-031",
+  "changed_files": [
+    "start-here-v72.js",
+    "start-here.html",
+    "treatment-order.html",
+    "release-body-integrity.json",
+    "DEPLOYMENT-FINGERPRINT.json"
+  ],
+  "preserved_files": 867,
+  "source_fingerprint": "e3fa4e233a125816d26caf4a2ab392949bc656d3f8cf77f16ea06e541367bb88",
+  "payload_sha256": "aba57eed30ffee597222983b094993fb2138869e88cf20dc543d820ad2cf767e",
+  "files": [
+    {
+      "path": "start-here-v72.js",
+      "before": "f010967dc25d8ff5ad9bf199f17385dd57f1efb9226dfc93fe2a7580b60cf803",
+      "after": "f39295b9e62fb23d1bd44a48e89b47de1d2d5063b6c54153a975fd7568444929"
+    },
+    {
+      "path": "start-here.html",
+      "before": "7c3343d52ed2e4e42f5236f76d956dd519c498fd8f65f99cd9cac936ae3a08e0",
+      "after": "67615d838bfeaf5fd7f9f4b0cbdd74a4b476f7cd71cd093630a1711d76ca51d7"
+    },
+    {
+      "path": "treatment-order.html",
+      "before": "ed7fb204d1529331a30d51116bcb2532df177125a997284f1b68d92eaed043ce",
+      "after": "d5691bdf7b35a2fd19f6137ccc68f88c21f823010f209574913b04759c377c4f"
+    },
+    {
+      "path": "release-body-integrity.json",
+      "before": "0dea220ac5989f0380fc07d4218d81f342c900463f409c342a27f652d3a5890c",
+      "after": "699f15c25a5ba968f0b8f905bfc96e3ae96ad329d71ea8070506b1fcb094c2e1"
+    },
+    {
+      "path": "DEPLOYMENT-FINGERPRINT.json",
+      "before": "0fe72be78f91ec5330e470d18fcf55940e36f826b783a57fe64a97adb4d3063f",
+      "after": "45666b54e1b97b4daa91ea428f17cbfe34727871dcb605189918be06700531bf"
+    }
+  ]
+}

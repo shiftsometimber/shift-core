@@ -1,7 +1,7 @@
 name: Verified public Pages repair
 on:
   push:
-    branches: [recovery/pages-access-20260911]
+    branches: [recovery/start-here-20260912]
     paths:
       - '.github/workflows/pages-repair-release.yml'
       - 'release/public-pages-20260911/**'
@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Apply only the recorded Start Here changes
+        run: python3 release/public-pages-20260911/prepare-start-here.py
       - name: Reproduce and verify the exact reviewed Pages source
         run: python3 release/public-pages-20260911/assemble-pages.py
       - name: Install the existing locked deployment toolchain
@@ -32,4 +34,13 @@ jobs:
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/sst-pages-command"
           cd "$RUNNER_TEMP/sst-pages-command"
-          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$SST_PAGES_BRANCH" --commit-hash "$GITHUB_SHA" --commit-message "Reviewed public site repair"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$SST_PAGES_BRANCH" --commit-hash "$GITHUB_SHA" --commit-message "Restore approved Start Here direct handoff" 2>&1 | tee "$RUNNER_TEMP/start-here-deploy.log"
+
+      - name: Verify uploaded source and retain evidence
+        run: python3 release/public-pages-20260911/verify-start-here.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: start-here-release-evidence
+          path: |
+            release/public-pages-20260911/start-here-source-proof.json
+            release/public-pages-20260911/start-here-live-proof.json
