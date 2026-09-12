@@ -531,6 +531,7 @@
   },
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
+    "MEMBER_EXPERIENCE_V1_ENABLED": "true",
     "AUTO_VERIFY_EMAIL": "false",
     "ALLOWED_ORIGINS": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com,https://hq.shiftsometimber.co.uk,https://v23.projectshift.pages.dev,https://23v.projectshift.pages.dev",
     "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
