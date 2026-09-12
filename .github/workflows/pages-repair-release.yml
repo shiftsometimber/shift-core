@@ -1,7 +1,7 @@
 name: Verified public Pages repair
 on:
   push:
-    branches: [recovery/start-here-20260912]
+    branches: [recovery/work-public-20260912]
     paths:
       - '.github/workflows/pages-repair-release.yml'
       - 'release/public-pages-20260911/**'
@@ -19,13 +19,21 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
       - name: Apply only the recorded Start Here changes
         run: python3 release/public-pages-20260911/prepare-start-here.py
+      - name: Merge only the approved employer assets and links
+        run: python3 release/public-pages-20260911/prepare-work-public.py
+      - name: Verify enquiry contracts against the existing contact route
+        run: node --test tests/shift-for-work-enquiry.test.mjs
       - name: Reproduce and verify the exact reviewed Pages source
         run: python3 release/public-pages-20260911/assemble-pages.py
+      - name: Prepare explicit preview-only responsive reviewer
+        run: python3 release/public-pages-20260911/prepare-work-review.py
       - name: Install the existing locked deployment toolchain
         run: npm ci --no-audit --no-fund
       - name: Upload only the verified Pages directory
@@ -34,13 +42,15 @@ jobs:
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/sst-pages-command"
           cd "$RUNNER_TEMP/sst-pages-command"
-          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$SST_PAGES_BRANCH" --commit-hash "$GITHUB_SHA" --commit-message "Restore approved Start Here direct handoff" 2>&1 | tee "$RUNNER_TEMP/start-here-deploy.log"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$SST_PAGES_BRANCH" --commit-hash "$GITHUB_SHA" --commit-message "Publish approved SHIFT for Work enquiry page" 2>&1 | tee "$RUNNER_TEMP/work-public-deploy.log"
 
       - name: Verify uploaded source and retain evidence
-        run: python3 release/public-pages-20260911/verify-start-here.py
+        run: python3 release/public-pages-20260911/verify-work-public.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: start-here-release-evidence
+          name: work-public-release-evidence
           path: |
-            release/public-pages-20260911/start-here-source-proof.json
-            release/public-pages-20260911/start-here-live-proof.json
+            release/public-pages-20260911/work-public-source-proof.json
+            release/public-pages-20260911/work-public-live-proof.json
+            release/public-pages-20260911/REC-032.patch
