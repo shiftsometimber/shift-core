@@ -22,6 +22,29 @@ export const memberClient = String.raw`(() => {
   const more=document.querySelector('.member-nav-more');
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&more?.open){more.open=false;more.querySelector('summary').focus()}});
   document.addEventListener('click',e=>{if(more?.open&&!more.contains(e.target))more.open=false});
+  // Existing tools create their overlays after page load, outside main. Keep
+  // their original close/save handlers; add names and keyboard containment.
+  const dialogs=new Map();let dialogSequence=0;
+  function overlays(){
+    for(const [el,state] of dialogs){if(!el.isConnected){dialogs.delete(el);if(state.custom&&state.returnTo?.isConnected)state.returnTo.focus({preventScroll:true})}}
+    all('dialog,.mt-sheet[role=dialog],.wm-sort-dialog[role=dialog]').forEach(el=>{
+      if(dialogs.has(el))return;
+      const custom=el.tagName!=='DIALOG',returnTo=document.activeElement;
+      dialogs.set(el,{custom,returnTo});
+      const title=el.querySelector('h2');
+      if(title&&!el.hasAttribute('aria-labelledby')){if(!title.id)title.id='member-dialog-title-'+(++dialogSequence);set(el,'aria-labelledby',title.id)}
+      if(title){set(title,'tabindex','-1');title.focus()}
+      if(!custom)return;
+      el.addEventListener('keydown',e=>{
+        if(e.key==='Escape'){e.preventDefault();e.stopPropagation();el.querySelector('[data-close]')?.click();return}
+        if(e.key!=='Tab')return;
+        const controls=all('a[href],button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),[tabindex="0"]',el).filter(x=>x.getClientRects().length&&!x.closest('[hidden]'));
+        const first=controls[0],last=controls.at(-1);if(!first){e.preventDefault();title?.focus();return}
+        if(e.shiftKey&&(document.activeElement===first||document.activeElement===title)){e.preventDefault();last.focus()}
+        else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+      });
+    });
+  }
   if(page==='grub'){
     const tabs=all('[data-grub-tab]');set(document.querySelector('.grub-v8-tabs'),'role','tablist');
     function syncTabs(){tabs.forEach(t=>{const name=t.dataset.grubTab,selected=t.classList.contains('active'),panel=document.querySelector('[data-grub-panel="'+name+'"]');set(t,'role','tab');set(t,'id','member-food-tab-'+name);set(t,'aria-controls','member-food-panel-'+name);set(t,'aria-selected',selected);set(t,'tabindex',selected?'0':'-1');set(panel,'role','tabpanel');set(panel,'id','member-food-panel-'+name);set(panel,'aria-labelledby','member-food-tab-'+name);if(panel)panel.hidden=!selected;});}
@@ -57,6 +80,6 @@ export const memberClient = String.raw`(() => {
     all('#shoppingList [data-check],#shoppingList [data-delete]').forEach(b=>{const item=b.closest('.shopping-item'),text=item?.querySelector('span')?.textContent||'item';set(b,'aria-label',b.hasAttribute('data-delete')?'Remove '+text:(item?.classList.contains('done')?'Mark needed: ':'Mark bought: ')+text)});
     nav();
   }
-  labels();let queued=false;
-  new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;labels()})}}).observe(document.querySelector('main')||body,{childList:true,subtree:true});
+  labels();overlays();let queued=false;
+  new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;labels();overlays()})}}).observe(body,{childList:true,subtree:true});
 })();`;
