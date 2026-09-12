@@ -1,6 +1,6 @@
 {
   "baseline": "bea98002e376482eb5111d6d1d9ad5e1708c3e893c777749f740b6ea172b9a59",
-  "candidate": "cef08a8cfa49b6646667a1693c7a38f0bd744573f7bde6eac0ab66601df2f294",
+  "candidate": "157f8c6f59e1d20b90fddbc9b03e1e758485edf070b686cf68a187103c248801",
   "existing_files_checked": 871,
   "existing_public_contents_changed": 0,
   "generated_records_changed": [
@@ -16,6 +16,6 @@
   "binary_overrides": [
     "downloads/SHIFT-for-Work-Proposition.pdf"
   ],
-  "compressed_bytes": 1085743,
-  "git_blob_sha": "70cba7aaaa7dec9273dfe210ff6b448d80efdfb5"
+  "compressed_bytes": 1085595,
+  "git_blob_sha": "832e9760ba3703d2316650387ff85d00917257c8"
 }

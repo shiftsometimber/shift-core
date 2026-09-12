@@ -1,6 +1,6 @@
 # SHIFT for Work: pilot offer and next build
 
-Prepared for Matt O’Brien · 11 September 2026
+Prepared for Matt O’Brien · 12 September 2026
 
 ## What this section delivers
 
@@ -10,31 +10,37 @@ Public promise: **Men’s health support your workforce might actually use.**
 
 Employer copy: “SHIFT gives men a private place to work on weight, energy, sleep, fitness, confidence and the things they might not discuss at work.”
 
-Employee copy for the future invitation: “Your employer pays for access. Your private health information is not shared through employer reports. You choose whether to join and what to track.” Full notices must explain necessary legal/safety disclosures without suggesting managers can monitor the account.
+Employee copy for the future invitation: “Your employer funds the workplace programme. My Timber is free for individuals. Your private health information is not shared through employer reports. You choose whether to join and what to track.” Full notices must explain necessary legal/safety disclosures without suggesting managers can monitor the account.
 
-## The commercial decision
+## The commercial decision - revised
 
-Sell a defined 12-week pilot first. Keep Core and Plus as indicative renewal options until delivery costs and support capacity are measured. No automatic pilot renewal, guaranteed medical outcome or promised reduction in absence.
+Access is not the paid product. My Timber remains free for individuals. SHIFT for Work is a defined workplace programme with optional employer-funded home testing, subject to a testing-provider agreement. No supplier is contracted by this document.
 
-| Option | Test price | Billing unit | Scope to agree |
-|---|---|---|---|
-| Pilot | £1,500–£3,000 fixed | One 12-week pilot, normally 50–150 eligible employees | Exact cohort, launch materials, weekly programme, reporting and support allowance |
-| Core | £4–£7/month | Every eligible employee, whether activated or not | Digital programme, wellbeing support, minimum contract and service limits |
-| Plus | £8–£15/month | Each enrolled employee under an agreed definition | Enhanced support allowance, campaigns, minimum charge and counting/withdrawal rules |
+Public wording: **Founding pilot enquiries welcome. Packages quoted individually.** All previous numerical price ranges, subscription tiers and quote anchors are withdrawn from the current proposition. Earlier copies are superseded, not evidence of an available tariff.
 
-These are Matt’s test ranges, not market-validated tariffs. Confirm any VAT in the written quote; no tax treatment is asserted. Separate tests, devices, prescriptions and treatment are outside membership fees. No allowance is sold until the relevant service and responsibility are commissioned.
+| Component | Proposed commercial structure | Still to agree |
+|---|---|---|
+| Programme | Fixed fee for agreed deliverables, dates and support limits | Delivery hours, launch materials, cohort size, reporting scope and actual cost |
+| Optional testing | Separately itemised employer-funded allowance | Suitable panel, clinical interpretation, fulfilment, failure/retest policy and all supplier charges |
+| Contract | Written quote before commitment; no automatic pilot renewal | Billing trigger, minimum commitments, unused kits, expiry, cancellation and applicable taxes |
 
-Recommended first quote to test: **£2,250 for 12 weeks and up to 100 eligible employees**, within the supplied range. This is a proposed test anchor, not an approved contract. Specify a support allowance before accepting it; do not sell unlimited human support at a digital subscription rate.
+Do not promise tests at cost, pay-on-redemption, no minimum spend, or zero charges for non-participation. These require supplier terms and a deliberate SHIFT decision. A fixed programme fee still funds agreed work even when uptake is low. Clinical follow-up and urgent escalation must be explicitly assigned and costed.
 
-For the 30–75 staff design partner, agree any sub-50 exception before quoting. For the 500+ staff employer, use an agreed voluntary cohort of up to 150 in the first pilot. Do not quietly include the whole workforce in a 150-seat price. Invitations must avoid targeting individuals based on assumed weight or health.
+At-cost testing is an internal option, not settled policy. Define what cost includes before using that description; do not imply trade savings until evidenced. Retail list prices do not establish our supplier cost or margin. Supplier willingness to accept employer resale, margins and customer-marketing restrictions must be confirmed rather than assumed.
 
-### Cost discipline
+### Cost discipline and commercial confidentiality
 
-At a £2,250 fee, 100 eligible employees means £22.50 per eligible employee for the full pilot. If 40 activate, revenue per activated employee is £56.25; at 70 activations it is £32.14. These are arithmetic scenarios, not forecasts or results.
+Unknown supplier charges remain unpriced. Keep retail strategy, margin targets and employer quotes private. Give suppliers accurate scope, realistic pilot volumes and integration requirements. Request itemised quotes at 25, 50 and 100 tests without committing to those volumes. Ask about setup/API charges, branding minimums, postage, reporting, unsuccessful samples, billing trigger, expiry, deposits and workplace-channel restrictions. No outreach is authorised by this document.
 
-Record setup time, launch delivery, weekly moderation/support time, content review, software/email costs, reporting, security/privacy review and any partner costs. Contribution = collected revenue less these delivery costs. Cost per activated employee = measured delivery cost divided by distinct activated employees. Calculate neither “profit” nor a sustainable renewal price from revenue alone.
+Record setup time, launch delivery, support, content review, software/email, reporting, privacy/security work and supplier costs. Contribution = collected revenue minus delivery costs. Measure cost per activated employee from actual costs and activations, not forecasts.
 
-## Product contract: one Programme, employer-funded access
+### Bounded design partnership
+
+Test employer-led cohort delivery before promising founder-led sessions: one shared start, ready-made launch materials and a common first fortnight with private goals. Cap SHIFT hours and record all interventions. A programme-fee waiver for one design partner is an internal option; it does not waive test costs or readiness obligations. Do not publicly promise three free pilots.
+
+The employer must not learn who redeemed a test or see results. Employee refusal does not remove programme access. An employer-funded service ending must not close a free personal My Timber account. Test results must not enter employer reporting or automatically flow into SHIFT without an agreed lawful data design.
+
+## Product contract: one Programme, funded extras
 
 Employer funding should become an entitlement on the existing SHIFT account. It must not create a second employee health database or a parallel Programme. Keep the current Programme candidate’s review, provisioning, export and privacy gates.
 
@@ -75,7 +81,7 @@ Prepare a DPIA using the actual data map and vendors. Determine controller/proce
 
 The employee notice must state the data collected, purposes and lawful bases; who operates SHIFT and any clinical service; recipients and international transfers; the employer reporting boundary; access, export, deletion and objection/withdrawal routes; any safety/legal disclosure rules; complaint contacts; and specific retention periods or criteria. The employer notice covers business contacts and aggregate reporting separately.
 
-Do not make a six-year invoice-retention rule into six years of health-data retention. Specify retention independently for employer contracts, invitations, entitlement links, health records, raw report inputs, generated reports, security logs and backups. Confirm deletion jobs and backup expiry in the real environment. Explain loss of funded access and the options for continuing before enrolment; ending the contract must not silently delete an existing personal account.
+Do not make a six-year invoice-retention rule into six years of health-data retention. Specify retention independently for employer contracts, invitations, entitlement links, health records, raw report inputs, generated reports, security logs and backups. Confirm deletion jobs and backup expiry in the real environment. Explain when funded extras end and how the free account continues before enrolment; ending the contract must not silently delete an existing personal account.
 
 ## Clinical, content and safeguarding boundary
 
@@ -87,15 +93,15 @@ Clinical responsibility sits with an appropriately regulated provider under a se
 
 Use three cooperative businesses: one 30–75 staff employer, one 100–250, and one 500+ or multi-site employer with a bounded cohort. Matt can prioritise warm logistics, sponsor/supplier and grounds-care relationships. No business has agreed, and no outreach or case-study permission is implied.
 
-In each discussion ask who existing wellbeing misses, how staff receive information, whether staff have private email/device access, what worries them about privacy, who can sponsor a 12-week pilot, and what budget and evidence would justify renewal. Ask for workforce totals and business needs only, never named employee health examples.
+In each discussion ask what proportion of male staff use existing wellbeing support (measured or estimated), whether starting together helps engagement or undermines privacy, whether an internal contact can deliver the launch, who controls renewal budget, who existing wellbeing misses, how staff receive information, whether staff have private email/device access, what worries them about privacy, who can sponsor a 12-week pilot, and what budget and evidence would justify renewal. Ask for workforce totals and business needs only, never named employee health examples.
 
-Offer a founding rate in exchange for structured product feedback. Treat case-study publication and identifiable quotations as separate optional permissions. Do not make publication a condition of an employee’s access.
+Discuss a bounded design partnership; keep any fee waiver an internal decision until costs are known. Treat case-study publication and identifiable quotations as separate optional permissions. Do not make publication a condition of an employee’s access.
 
 ## Readiness and sequence
 
 | Workstream | State after this section | Next concrete task |
 |---|---|---|
-| Offer, indicative pricing and two-page proposition | Prepared | Test scope and willingness to pay in three conversations |
+| Offer, unpriced commercial structure and two-page proposition | Prepared | Test scope and willingness to pay in three conversations |
 | Employer page and business enquiry | Built for preview | Verify the preview; production publication is a separate release |
 | Partnership delivery | Existing route reused; simulated contract test | Verify actual production inbox receipt before relying on live enquiries |
 | Employer contract/HQ record | Not built here | Add dates, seats, rate basis, support scope, status and accountable operator |
@@ -107,4 +113,4 @@ Offer a founding rate in exchange for structured product feedback. Treat case-st
 
 Keep the supplied 90-day acquisition/setup plan separate from the 12-week employee pilot clock. Days 46–57 can cover onboarding and baseline; a pilot beginning on day 46 finishes around day 129. Day 90 is an interim engagement decision, not a completed 12-week outcomes claim.
 
-The next build should be **employer entitlement and privacy-preserving reporting**, tied to the existing Programme. Complete the actual controller/data-map decisions first because they determine the storage and API boundaries.
+The next commercial step is an itemised supplier quote and bounded employer discovery, without publishing prices. The later build should be **employer entitlement and privacy-preserving reporting**, tied to the existing Programme. Complete the actual controller/data-map decisions first because they determine the storage and API boundaries.
