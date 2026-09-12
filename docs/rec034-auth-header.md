@@ -17,3 +17,5 @@ Deploy from an isolated current-main branch using unchanged Worker configuration
 Rollback: current core main and recorded active Worker version. Only one deployed asset changes. Pages fingerprint must remain unchanged.
 
 The interactive execution environment disconnected after the Pages live browser checks. Additional source work is through repository tools and CI; do not claim a new browser-rendered auth-shell check until reconnected.
+
+Release update: all source, navigation, account, recovery, security, journey and treatment gates PASS. Fresh baseline/version gate PASS. One auth-shell asset uploaded; Worker version 9c4ee3e3-b3e2-40e7-b161-097ca929c6fe, source cfedfa3458d4e1540aeef1d2e149238121f46892, run 34722551929. The immediate two-second public check still saw the old sign-in header. A read-only verification workflow now downloads the original before evidence and rechecks the existing deployment after propagation; no second upload or database action.

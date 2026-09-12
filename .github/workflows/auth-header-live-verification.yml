@@ -1,0 +1,34 @@
+name: Verify live approved headers after propagation
+on:
+  push:
+    branches: [recovery/auth-header-approved-20260912]
+    paths:
+      - '.github/workflows/auth-header-live-verification.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - uses: actions/download-artifact@v4
+        with:
+          name: REC-034A-auth-header-evidence
+          run-id: 34722551929
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify the existing deployment without publishing again
+        run: |
+          node verification/rec034-auth-live.mjs after
+          node member-experience/verify-production-member.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REC-034-final-live-evidence
+          path: |
+            auth-header-live-proof.json
+            member-live-proof.json
