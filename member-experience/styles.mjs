@@ -46,6 +46,21 @@ body.sst-member-experience #main-content :is(.member-shell,.member-main,.member-
 .sst-member-experience .member-tool-hero h1 .accent{font-size:inherit!important;line-height:inherit!important;color:inherit!important}
 .sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival) :is(.eyebrow,.sf-kicker,header>span,.mt-arrival-copy>span){font-size:11px!important;font-weight:800!important;letter-spacing:.13em!important;color:#c5cdb3!important}
 .sst-member-experience .mt-arrival{display:block!important}.sst-member-experience .mt-live-mark{display:none!important}
+body.sst-member-experience #panel-today{margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body.sst-member-experience #panel-today:before,body.sst-member-experience #panel-today:after,body.sst-member-experience #panel-today .mt-arrival:before{display:none!important}
+body.sst-member-experience #panel-today .mt-dayline{background:transparent!important;color:#25351e!important;border-color:#aeb89c!important}
+body.sst-member-experience #panel-today .mt-dayline :is(b,span){color:#25351e!important}
+body.sst-member-experience #panel-today .mt-now{background:#dce2d0!important;color:#11140f!important;border:1px solid #aeb89c!important;border-radius:12px!important;padding:24px!important;box-shadow:none!important}
+body.sst-member-experience #panel-today .mt-now :is(h3,p,small){color:#11140f!important}
+body.sst-member-experience #panel-today .mt-now-action{background:#25351e!important;color:#fff!important;border-radius:8px!important}
+body.sst-member-experience #panel-today .mt-real-plan{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important;padding:0!important;overflow:visible!important}
+body.sst-member-experience #panel-today .mt-real-card{min-height:220px!important}
+body.sst-member-experience #panel-today :is(.mt-fluid-line,.mt-why-v2){background:#f4f1e9!important;color:#11140f!important;border:1px solid #b6b8a9!important;border-radius:10px!important;padding:20px!important}
+body.sst-member-experience #panel-today :is(.mt-fluid-line,.mt-why-v2) :is(small,b,p,summary,li,label,span){color:#11140f!important}
+body.sst-member-experience #panel-today .mt-today-footer{background:transparent!important;color:#4c5245!important}
+body.sst-member-experience #panel-today .mt-today-footer span{color:#4c5245!important}
+.sst-member-experience .member-tool-hero:after{background-position:center,center 28%!important}
+body.sst-member-experience #main-content .member-tool-hero h1 .accent{color:#f4f1e9!important}
 .sst-member-experience :is(.grub-search,.grub-workbench,.grub-week-builder,.sf-builder,.checkin-card,.mj-setup,.mj-weekly,.tracker-card,.member-record-card){padding:28px!important;background:var(--me-card)!important;color:var(--me-ink)!important;border:1px solid var(--me-line)!important;border-radius:12px!important;box-shadow:none!important;transform:none!important}
 .sst-member-experience :is(.grub-spotlight article,.grub-recipe,.sf-session,.sf-exercise,.mj-story-grid article,.mj-stat-grid article,.mt-real-card,.mt-card,.saved-item){background:var(--me-card)!important;color:var(--me-ink)!important;border:1px solid var(--me-line)!important;border-radius:12px!important;box-shadow:none!important;transform:none!important}
 .sst-member-experience :is(.grub-search,.grub-workbench,.grub-week-builder,.sf-builder,.checkin-card,.mj-setup,.mj-weekly,.tracker-card,.member-record-card,.grub-spotlight article,.grub-recipe,.sf-session,.sf-exercise,.mj-story-grid article,.mj-stat-grid article,.mt-real-card,.mt-card,.saved-item):hover{background:var(--me-card)!important;color:var(--me-ink)!important;box-shadow:none!important;transform:none!important}
@@ -127,6 +142,7 @@ body.sst-member-experience #main-content :is(.member-shell,.member-main,.member-
  .sst-member-experience .mj-stat-grid{gap:10px!important}.sst-member-experience .mj-stat-grid article{padding:14px!important}.sst-member-experience .mj-stat-grid strong{font-size:27px!important}
  .sst-member-experience .mj-setup-section{padding:14px!important}.sst-member-experience :is(.mj-two,.mj-three,.mj-corrections){grid-template-columns:1fr!important}
  .sst-member-experience .preview-auth{padding:24px!important}
+ body.sst-member-experience #panel-today .mt-real-plan{grid-template-columns:1fr!important}
 }
 @media(max-width:400px){.sst-member-experience .site-header .site-logo,.sst-member-experience .site-header .site-logo img{width:160px!important;max-width:160px!important;min-width:160px!important}.sst-member-experience .site-header .header-inner{gap:12px!important;padding-left:12px!important;padding-right:12px!important}.sst-member-experience .site-header .menu-trigger{flex:0 0 auto}}
 @media(prefers-reduced-motion:reduce){.sst-member-experience *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
