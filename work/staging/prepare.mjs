@@ -1,4 +1,5 @@
 import {readFileSync,writeFileSync,mkdirSync,copyFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {createHash,randomBytes,pbkdf2Sync,randomUUID} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
 import '../../member-experience/staging/prepare.mjs';
@@ -20,6 +21,9 @@ const closedEnd=new Date(+start-86400000),closed={id:closedId,revision:0,config:
 let workplace=readFileSync('work/migration.sql','utf8');for(const s of [active,closed])workplace+=`\nINSERT INTO work_employers(id,revision,state_json,updated_at) VALUES(${quote(s.id)},0,${quote(JSON.stringify(s))},${quote(new Date().toISOString())});\n`;
 const recipes=JSON.parse(readFileSync(dir+'/assets/staging/grub-approved.json'));
 auth+=readFileSync('member-experience/staging/catalogue-schema.sql','utf8');
+execFileSync(process.execPath,['final-v1-production-publication.mjs'],{stdio:'inherit',env:{...process.env,GRUB_PUBLISHABLE_FILE:dir+'/grub-approved/grub-v1-publishable.json',FINAL_V1_PUBLICATION_DIR:dir+'/accepted-fit'}});
+const publication=readFileSync(dir+'/accepted-fit/final-v1-production-publication.sql','utf8');
+auth+='\n'+publication.split('\n').filter(line=>line.startsWith('INSERT INTO structured_content')).join('\n');
 for(const r of recipes)auth+=`INSERT OR REPLACE INTO structured_content(id,content_type,title,status,data_json) VALUES(${quote(r.id)},'recipe',${quote(r.title)},'published',${quote(JSON.stringify(r.data))});\n`;
 writeFileSync(dir+'/assets/staging/invitation.txt',code);writeFileSync(dir+'/auth.sql',auth);writeFileSync(dir+'/work.sql',workplace);writeFileSync(dir+'/probe.json',JSON.stringify({password,ids,hqId:accountBase,id,closedId,code}));
 writeFileSync(dir+'/config.json',JSON.stringify({name:'shift-core-work-staging',main:'../worker.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,assets:{directory:'./assets',binding:'STAGING_ASSETS',run_worker_first:true},vars:{SHIFT_ENVIRONMENT:'work-staging-20260912',STAGING_EXPIRES_AT:expiresAt,WORK_V1_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true',WORK_PILOT_COMMISSIONED:'true',AUTO_VERIFY_EMAIL:'true'},d1_databases:[]},null,2));

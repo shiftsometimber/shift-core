@@ -1,5 +1,10 @@
 [
   {
+    "path": "api-adapter-v33d.js",
+    "source": "worker",
+    "sha256": "6a2a790ee584c89664ef004b44d450be8427fff665ab6122ddc02231b25fa239"
+  },
+  {
     "path": "app.js",
     "sha256": "6ca07d9895ff03e15ea7ef174ea675a276ba1786ac851c8b3507a45a403b5ab8"
   },
@@ -66,7 +71,7 @@
   },
   {
     "path": "member-my-journey-checkin-v1.js",
-    "sha256": "9eae4e9eb401a92e1c182ad5f98372f61c4ce76e9f7e967ddf6263b98abd32eb",
+    "sha256": "c205147a011b1fbabd2460b996962538a91591d6fd9b5bffbd2455c5e17a42f0",
     "source": "worker"
   },
   {

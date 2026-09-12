@@ -1,4 +1,5 @@
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
+import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
 import { workRoutes } from "./work/routes.mjs";
@@ -828,6 +829,8 @@ export default {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const memberHealth = await memberHealthRoutes(request, env);
+    if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
     if (grubWorkspace) return withMemberCors(grubWorkspace, request);
     const fastMemberState = await fastMemberStateRoute(request, env);
@@ -877,8 +880,10 @@ export default {
     if (daily) return withMemberCors(daily, request);
     const practical = await memberPracticalRoutes(request, env, ctx);
     if (practical) return withMemberCors(practical, request);
+    const fitReplacementInput = path === '/v1/fit/replace' && request.method === 'POST'
+      ? await request.clone().json().catch(() => null) : null;
     const memberV8 = await memberProductV8Routes(request, env, ctx);
-    if (memberV8) return withMemberCors(memberV8, request);
+    if (memberV8) return withMemberCors(await persistFitReplacement(request, env, memberV8, fitReplacementInput), request);
     const personal = await personalRoutes(request, env, ctx);
     if (personal) return withMemberCors(personal, request);
     const radarPublic = await radarPublicRoutes(request, env);
@@ -899,9 +904,10 @@ export default {
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
       return rewritePublicLoungeChrome(await act2bPagesContent(request));
     }
-    const fallback = await rewritePublicLoungeChrome(
+    let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
     );
+    fallback = await appendHealthExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)

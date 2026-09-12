@@ -1,0 +1,55 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {Miniflare} from 'miniflare';
+import {readFileSync} from 'node:fs';
+import {resolve,dirname} from 'node:path';
+import {pbkdf2Sync,randomBytes} from 'node:crypto';
+const bundle=resolve('work/build/worker-entry-v6.js');
+const mf=new Miniflare({modules:[{type:'ESModule',path:bundle}],modulesRoot:dirname(bundle),compatibilityDate:'2026-08-09',d1Databases:{DB:'member-health-fictional'},bindings:{MEMBER_EXPERIENCE_V1_ENABLED:'true'}});
+const db=await mf.getD1Database('DB');
+await db.exec(readFileSync('preview/bootstrap.sql','utf8').replace(/^--.*$/gm,'').replace(/\n/g,' '));
+const password=randomBytes(24).toString('base64url'),salt=randomBytes(16),hash='pbkdf2$100000$'+salt.toString('base64url')+'$'+pbkdf2Sync(password,salt,100000,32,'sha256').toString('base64url');
+for(const id of [1,2]){await db.prepare('INSERT INTO users(id,email,first_name) VALUES(?,?,?)').bind(id,'health'+id+'@example.invalid','Fictional reviewer').run();await db.prepare('INSERT INTO user_auth(user_id,password_hash,email_verified) VALUES(?,?,1)').bind(id,hash).run();await db.prepare('INSERT INTO member_status(user_id) VALUES(?)').bind(id).run()}
+const call=(path,method='GET',body,cookie='')=>mf.dispatchFetch('https://shiftsometimber.co.uk'+path,{method,headers:{Origin:'https://shiftsometimber.co.uk','Content-Type':'application/json',Cookie:cookie},body:body===undefined?undefined:JSON.stringify(body)});
+const data=async(r,status=200)=>{assert.equal(r.status,status,await r.clone().text());return r.json()};
+async function login(id){const r=await call('/v1/auth/login','POST',{email:'health'+id+'@example.invalid',password});await data(r);const cookie=r.headers.getSetCookie().find(value=>/^sst_session=[^;]/.test(value));assert(cookie,'A non-empty member session cookie must be issued');assert.match(cookie,/HttpOnly/);assert.match(cookie,/Secure/);return cookie.split(';')[0]}
+try{await test('Optional tracking: consent, Journey, mood, Fit, weekly record, return and erasure',async()=>{
+ let cookie=await login(1),other=await login(2);
+ await data(await call('/v1/consents','GET',undefined,cookie));
+ await data(await call('/v1/member-state','PATCH',{preferences:{myJourney:{injected:true},fitJourney:{entries:{injected:{status:'done'}}},lifeBack:{injected:true}}},other));
+ const blockedState=(await data(await call('/v1/member-state','GET',undefined,other))).state.preferences;
+ for(const key of ['myJourney','fitJourney','lifeBack'])assert.equal(blockedState[key],undefined,'Generic settings must not bypass consent');
+ await data(await call('/v1/check-ins','POST',{mood:'Good',note:'Fictional check-in'},cookie),409);
+ await data(await call('/v1/consents','POST',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true},cookie),201);
+ await data(await call('/v1/check-ins','POST',{mood:'Good',note:'Fictional check-in'},cookie),201);
+ const checks=await data(await call('/v1/check-ins','GET',undefined,cookie));assert.equal(checks.checkIns[0].mood,'Good');assert.equal(checks.checkIns[0].note,'Fictional check-in');assert(checks.checkIns[0].checkedAt);
+ assert.equal((await data(await call('/v1/check-ins','GET',undefined,other))).checkIns.length,0);
+ const date=new Date().toISOString().slice(0,10),journey={setup:{startDate:date,units:'kg',route:'lifestyle',focus:'energy',why:'Fictional goal'},weight:{startKg:100,currentKg:99,targetKg:90}};
+ await data(await call('/v1/journey','PATCH',{journey},cookie));
+ const fitJourney={entries:{['test-'+date]:{status:'done',exerciseId:'fictional-exercise',sessionDay:1,recordedOn:date}},sessionReviews:{}};
+ await data(await call('/v1/fit/activity','POST',{fitJourney},cookie));
+ await data(await call('/v1/member-state','PATCH',{preferences:{staleExample:true}},cookie));
+ assert.equal((await data(await call('/v1/journey','GET',undefined,cookie))).journey.setup.why,'Fictional goal');
+ assert.equal(Object.keys((await data(await call('/v1/fit/activity','GET',undefined,cookie))).fitJourney.entries).length,1);
+ const weekly=await data(await call('/v1/journey/weekly-check-in','GET',undefined,cookie));assert.equal(weekly.prefill.movement.exercisesCompleted,1);
+ await data(await call('/v1/journey/weekly-check-in','POST',{weekEnding:weekly.week.ending,overallFeeling:'80',clothesFit:'same',weightKg:99,sleep:'80',movement:weekly.prefill.movement},cookie),201);
+ assert.equal((await data(await call('/v1/journey/trends','GET',undefined,cookie))).confirmed_weeks,1);
+ assert.equal((await db.prepare('SELECT sleep_hours FROM progress_entries WHERE user_id=1').first()).sleep_hours,null);
+ await data(await call('/v1/auth/logout','POST',{},cookie));
+ await data(await call('/v1/journey','GET',undefined,cookie),401);cookie=await login(1);
+ assert.equal((await data(await call('/v1/journey','GET',undefined,cookie))).journey.weight.currentKg,99);
+ assert.equal(Object.keys((await data(await call('/v1/fit/activity','GET',undefined,cookie))).fitJourney.entries).length,1);
+ await data(await call('/v1/consents','POST',{type:'my_shift_health_tracking',granted:false},cookie),201);
+ await data(await call('/v1/journey','PATCH',{journey},cookie),409);
+ await data(await call('/v1/fit/activity','POST',{fitJourney},cookie),409);
+ await db.prepare("INSERT INTO cases(id,user_id,reference,status) VALUES(91,1,'fictional-clinical-reference','draft')").run();
+ await db.prepare("INSERT INTO check_ins(user_id,case_id,wellbeing_score,notes) VALUES(1,91,3,'Fictional clinical record')").run();
+ await data(await call('/v1/privacy/health-tracking','DELETE',undefined,cookie));
+ assert(await db.prepare('SELECT id FROM check_ins WHERE user_id=1 AND case_id=91').first(),'Optional erasure must preserve clinical case-linked records');
+ assert.equal((await data(await call('/v1/check-ins','GET',undefined,cookie))).checkIns.length,0);
+ assert.equal((await data(await call('/v1/journey/trends','GET',undefined,cookie))).confirmed_weeks,0);
+ assert.equal(Object.keys((await data(await call('/v1/fit/activity','GET',undefined,cookie))).fitJourney.entries).length,0);
+ assert.equal((await data(await call('/v1/journey','GET',undefined,cookie))).journey.setup.complete,false);
+ assert.equal((await data(await call('/v1/member-state','GET',undefined,cookie))).state.preferences.staleExample,true);
+ assert(await db.prepare('SELECT id FROM users WHERE id=1').first());
+})}finally{await mf.dispose()}

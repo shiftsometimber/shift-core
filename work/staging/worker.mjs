@@ -18,9 +18,9 @@ export default {async fetch(request,env,ctx){
  }
  if(request.method==='GET'&&['/staging/login.mjs','/staging/invitation.txt'].includes(p))return env.STAGING_ASSETS.fetch(request);
  if(request.method==='GET'&&['/assets/home-hero-men-v32o.jpg','/styles.css','/assets/member-shell-v6.css','/assets/shift-recovery-v6.css','/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png'].includes(p))return env.STAGING_ASSETS.fetch(request);
- const allowed=['/v1/grub/workspace','/v1/grub/search','/v1/member-state','/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
+ const allowed=['/v1/profile','/v1/me','/v1/consents','/v1/check-ins','/v1/health-mot','/v1/progress','/v1/journey','/v1/journey/weekly-check-in','/v1/journey/trends','/v1/journey/export','/v1/privacy/health-tracking','/v1/privacy/export','/v1/fit/activity','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback','/v1/plan/list','/v1/grub/workspace','/v1/grub/search','/v1/member-state','/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
  if(!allowed.includes(p))return new Response('Only workplace verification routes are available here.',{status:404});
- if(['POST','PATCH'].includes(request.method)){
+ if(['POST','PATCH','DELETE'].includes(request.method)){
   if(request.headers.get('Origin')!==u.origin)return new Response('Same-origin requests only.',{status:403});
   if(p==='/v1/auth/register'){
    const b=await request.clone().json().catch(()=>null);
