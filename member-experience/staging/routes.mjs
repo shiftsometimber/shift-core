@@ -1,3 +1,4 @@
+import {connectedMemberRoutes} from './connected.mjs';
 import {memberExperienceEntry,memberExperienceRoutes} from '../entry.mjs';
 import {fixtureClient} from './fixtures.mjs';
 import {contrastCheckClient} from './contrast.mjs';
@@ -25,6 +26,7 @@ document.querySelector('#width').addEventListener('change',e=>{frame.width=e.tar
 document.querySelector('#height').addEventListener('change',e=>{frame.style.height=e.target.value+'px';requestAnimationFrame(measure)});
 document.querySelector('#screen').addEventListener('change',e=>{metrics.textContent='Measuring…';frame.src='/staging/member/'+e.target.value+(e.target.value==='dashboard'?'#journey':'')});`;
 export async function memberReviewRoutes(request,env){
+ const connected=await connectedMemberRoutes(request,env);if(connected)return connected;
  const url=new URL(request.url),path=url.pathname;
  if(path.startsWith('/assets/member-experience/'))return memberExperienceRoutes(request,{MEMBER_EXPERIENCE_V1_ENABLED:'true'});
  if(!path.startsWith(prefix)&&!path.startsWith(sourcePrefix))return null;

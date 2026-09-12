@@ -194,6 +194,8 @@ jobs:
           node member-experience/verify-production-catalogue.mjs "$RUNNER_TEMP/food-catalogue.json"
       - name: Capture current Worker deployment for rollback
         run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+      - name: Capture current public pages before this member release
+        run: node member-experience/public-preservation.mjs public-before.json
       - name: Retain rollback deployment record
         uses: actions/upload-artifact@v4
         with:
@@ -203,6 +205,14 @@ jobs:
         run: npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Prove the public site and login asset did not change
+        run: node member-experience/public-preservation.mjs public-after.json public-before.json
+      - name: Retain public preservation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: member-public-preservation-${{ github.run_id }}
+          path: public-*.json
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
       - name: Prove newer restricted routes are on live traffic

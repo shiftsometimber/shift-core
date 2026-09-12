@@ -1,0 +1,52 @@
+✔ Late private responses cannot repopulate the DOM after page exit, even if abort is ignored (6.679447ms)
+✔ Visibility closes old identity; only the newly authenticated response can render on return (2.232245ms)
+✔ Session expiry clears private data and escapes company-provided text (1.344691ms)
+✔ Hidden bfcache pages do not start another private load (0.340192ms)
+✔ Workplace dashboard entry preserves all original HTML and remains absent when disabled or signed out (7.011796ms)
+✔ Returning members see their current programme before the optional joining form (20.687667ms)
+✔ First join retains the complete voluntary notice before the joining controls (1.059272ms)
+✔ Upcoming and inactive programmes show no review write controls; completed current week is explicit (3.904717ms)
+✔ Both workplace audiences return through the existing My Timber sign-in destination (4.999522ms)
+✔ Actual Worker stays dark by default and rejects feature asset access (3847.759165ms)
+✔ Actual Worker uses real separate HQ and member sessions; commissioning stays closed (2043.654213ms)
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+✔ Complete real Worker food journey with separate password-authenticated accounts (3013.501965ms)
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+✔ Actual password login → company claim → review → fixed report → revocation (349.982819ms)
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+✔ Optional tracking: consent, Journey, mood, Fit, weekly record, return and erasure (604.757261ms)
+✔ Create employer with unconfirmed pricing and no exposed members or token hashes (21.676913ms)
+✔ Member cannot operate HQ; anonymous cannot view private data (9.140735ms)
+✔ Activation requires agreed fee and actual commissioning reference (23.281609ms)
+✔ Unknown financial or health fields rejected (5.036839ms)
+✔ Issue code once; store only hash and reject stale contract write (19.69206ms)
+✔ No cross-origin claims, missing consent or silently accepted participant identity (15.274261ms)
+✔ Twenty concurrent claims cannot oversubscribe two seats (75.805454ms)
+✔ Retry after successful claim is idempotent and account IDs in queries do not select another account (13.770342ms)
+✔ Employer reporter cannot enrol in its own cohort or see named participation (17.291623ms)
+✔ Weekly review is owned, bounded to shared start and excludes clinical payloads (24.612474ms)
+✔ No testing order can be enabled by client flags or allowance (9.484152ms)
+✔ Pause revokes new actions while retaining free accounts and export; revocation invalidates code (57.963368ms)
+✔ Withdrawal removes workplace link and review history only (39.221711ms)
+✔ Report cannot be released before end date (9.49654ms)
+✔ Expiry invalidates access on read without deleting records (39.233814ms)
+✔ One fixed report only; under-threshold outputs withheld (25.516437ms)
+✔ Completion and complement suppression; no clinical or individual exports (0.666312ms)
+✔ Private shells require authentication and retain header-main-footer order (21.489807ms)
+✔ Future cohort accepts a private claim without opening weekly reviews; HQ membership is separate (99.099671ms)
+✔ Code guessing is rate limited per authenticated account (48.702412ms)
+✔ Real session revocation prevents further reads (18.438571ms)
+✔ Staging logout waits for success and exposes failures for retry (1.712664ms)
+✔ Staging refuses production hosts and unrelated application routes (15.001492ms)
+✔ Responsive review has fictional-only transport while authenticated screens remain unframeable (25.910345ms)
+✔ Bundled workplace browser asset starts and renders without Worker-only helpers (6.887028ms)
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+✔ Staging registration accepts only bounded fictional accounts and preserves actual authentication (183.355979ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23665.033613

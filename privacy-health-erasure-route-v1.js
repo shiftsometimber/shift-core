@@ -16,31 +16,35 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
   if(!userId)return json({ok:false,error:'unauthorised'},401);
 
   const required=['progress_entries','check_ins'];
-  const optional=['health_mot_entries','health_mots','progress_photos'];
+  const optional=['health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2'];
   const present=await existingTables(env.DB,[...required,...optional]);
   const missingRequired=required.filter(name=>!present.has(name));
   if(missingRequired.length)return json({ok:false,error:'health_erasure_schema_incomplete',missing:missingRequired},503);
 
-  const deleted=[];
+  const deleted=[],statements=[];
   for(const table of [...required,...optional]){
     if(!present.has(table))continue;
-    const result=await env.DB.prepare(`DELETE FROM ${table} WHERE user_id=?`).bind(userId).run();
-    deleted.push({table,changes:Number(result?.meta?.changes||0)});
+    statements.push(env.DB.prepare(`DELETE FROM ${table} WHERE user_id=?${table==='check_ins'?' AND case_id IS NULL':''}`).bind(userId));
+    deleted.push({table});
   }
+  statements.push(env.DB.prepare("UPDATE member_state SET preferences=json_remove(preferences,'$.myJourney','$.lifeBack','$.fitJourney'),updated_at=? WHERE user_id=?").bind(new Date().toISOString(),userId));
+  deleted.push({table:'member_state',scopes:['myJourney','lifeBack','fitJourney']});
 
   // Record withdrawal as a new immutable consent event. Keep consent/audit
   // history so Shift can evidence that withdrawal and erasure were honoured.
   const now=new Date().toISOString();
-  await env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at,withdrawn_at,created_at) VALUES(?,?,?,?,?,?,?)`)
-    .bind(userId,TRACKING_CONSENT,'2026-08-18-v1',0,null,now,now).run();
+  statements.push(env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at,withdrawn_at,created_at) VALUES(?,?,?,?,?,?,?)`)
+    .bind(userId,TRACKING_CONSENT,'2026-08-18-v1',0,null,now,now));
 
   // Reuse the core audit behaviour through the consent route when possible is
   // deliberately avoided here because data is already deleted. Store a narrow
   // audit record without health values.
   if(present.has('audit_log')||await tableExists(env.DB,'audit_log')){
-    await env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`)
-      .bind(userId,'privacy.health_tracking_erased','privacy',String(userId),JSON.stringify({scopes:deleted.map(x=>x.table)}),now).run();
+    statements.push(env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`)
+      .bind(userId,'privacy.health_tracking_erased','privacy',String(userId),JSON.stringify({scopes:deleted.map(x=>x.table)}),now));
   }
+  const results=await env.DB.batch(statements);
+  deleted.forEach((item,i)=>item.changes=Number(results[i]?.meta?.changes||0));
   return json({ok:true,erasedAt:now,deleted,consentWithdrawn:true});
 }
 

@@ -1,7 +1,7 @@
 name: SHIFT for Work isolated checks
 on:
   push:
-    branches: [feature/shift-for-work-20260912]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912]
     paths:
       - 'work/**'
       - 'member-experience/**'

@@ -10,5 +10,10 @@ for(const [binding,name]of [['DB','shift-core-work-staging-auth-20260912'],['WOR
  config.d1_databases.push({binding,database_name:name,database_id:id});
 }
 if(config.d1_databases[0].database_id===config.d1_databases[1].database_id)throw Error('Databases must be separate');writeFileSync(file,JSON.stringify(config,null,2));
+// Older isolated Grub staging used a minimal catalogue. Add only missing columns
+// in this explicitly named staging database before loading retained Fit decisions.
+const info=JSON.parse(run(['d1','execute','DB','--remote','--command','PRAGMA table_info(structured_content)','--json','--config',file]));
+const columns=new Set(info.flatMap(x=>x.results||[]).map(x=>x.name));
+if(columns.size)for(const [name,type] of [['version','INTEGER NOT NULL DEFAULT 1'],['review_json',"TEXT NOT NULL DEFAULT '{}'"],['created_at','TEXT'],['updated_at','TEXT']])if(!columns.has(name))run(['d1','execute','DB','--remote','--command','ALTER TABLE structured_content ADD COLUMN '+name+' '+type,'--config',file]);
 for(const [binding,sql]of [['DB','auth.sql'],['WORK_DB','work.sql']])run(['d1','execute',binding,'--remote','--file','work/staging/generated/'+sql,'--config',file]);
 console.log('Initialised only the two explicitly named staging databases.');
