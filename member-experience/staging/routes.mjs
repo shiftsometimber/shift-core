@@ -2,6 +2,9 @@ import {memberExperienceEntry,memberExperienceRoutes} from '../entry.mjs';
 import {fixtureClient} from './fixtures.mjs';
 import {contrastCheckClient} from './contrast.mjs';
 import pins from './pins.json' with {type:'json'};
+import {searchGrubRecipes} from '../grub-search.mjs';
+import {improveGrubClient} from '../grub-client.mjs';
+let recipeCatalogue;
 const prefix='/staging/member/',sourcePrefix='/staging/member-source/';
 const headers={'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'"};
 const scripts={dashboard:['member-my-timber-problem-v1.js','member-my-journey-v2.js','member-my-journey-checkin-v1.js'],grub:['assets/member-grub-v8.js','assets/member-grub-persistence-v1.js'],fit:['shift-fit-approved-v1.js'],'check-in':['app.js','assets/member-checkin-experience-v1.js','assets/health-data-consent-v42o.js'],settings:['assets/health-data-consent-v42o.js'],saved:[]};
@@ -25,6 +28,16 @@ export async function memberReviewRoutes(request,env){
  const url=new URL(request.url),path=url.pathname;
  if(path.startsWith('/assets/member-experience/'))return memberExperienceRoutes(request,{MEMBER_EXPERIENCE_V1_ENABLED:'true'});
  if(!path.startsWith(prefix)&&!path.startsWith(sourcePrefix))return null;
+ if(path===prefix+'grub/search'){
+   if(request.method!=='POST')return Response.json({message:'Use recipe search.'},{status:405,headers});
+   if(request.headers.get('origin')&&request.headers.get('origin')!==url.origin)return Response.json({message:'Cross-origin request rejected.'},{status:403,headers});
+   const body=await request.text();if(body.length>8000)return Response.json({message:'Search is too long.'},{status:413,headers});
+   try{
+     const input=JSON.parse(body);
+     if(!recipeCatalogue){const r=await env.STAGING_ASSETS.fetch(new Request(new URL('/staging/grub-approved.json',url)));if(!r.ok)throw Error('catalogue unavailable');recipeCatalogue=await r.json()}
+     return Response.json(searchGrubRecipes(input,recipeCatalogue),{headers});
+   }catch{return Response.json({message:'Recipes could not be loaded. Please try again.'},{status:503,headers})}
+ }
  if(request.method!=='GET')return new Response('Read-only design review.',{status:405,headers});
  if(path===prefix+'review')return new Response(checkerHTML,{headers:{...headers,'Content-Type':'text/html'}});
  if(path===prefix+'checker.mjs')return new Response(checkerJS+contrastCheckClient,{headers:{...headers,'Content-Type':'text/javascript'}});
@@ -36,6 +49,7 @@ export async function memberReviewRoutes(request,env){
  if(path.startsWith(prefix+'script/')){
    const name=path.slice((prefix+'script/').length);if(!Object.values(scripts).flat().includes(name))return new Response('Unknown review script.',{status:404,headers});
    let js=await(await env.STAGING_ASSETS.fetch(sourceRequest(request,name))).text();
+   if(name==='assets/member-grub-v8.js')js=improveGrubClient(js);
    if(name==='app.js'){
      const start=js.indexOf('// Mood — canonical account-backed check-in.'),end=js.indexOf('// My Why',start);
      if(start<0||end<0)return new Response('Pinned check-in source unavailable.',{status:503,headers});
@@ -65,6 +79,9 @@ export async function memberReviewRoutes(request,env){
  if(name==='dashboard')html=html.replace(/<section\b[^>]*id="previewAuth"[^>]*>[\s\S]*?<\/section>/,'').replace(/id="previewMember" hidden/,'id="previewMember"').replace('class="preview-member"','class="preview-member is-ready"').replace(/(id="memberTabs") hidden/,'$1');
  html=html.replace('</head>','<script defer src="'+prefix+'fixture.mjs"></script>'+scripts[name].map(s=>'<script defer src="'+prefix+'script/'+s+'"></script>').join('')+'</head>');
  html=html.replace(/(<body\b[^>]*>)/,'$1<p id="memberReviewNote" style="margin:0;padding:10px 20px;background:#dce2d0;color:#25351e;font:13px/1.5 Arial">Design review · fictional data · saves disabled · live site unchanged</p>');
+ if(name==='grub')html=html.replace('Design review · fictional data · saves disabled · live site unchanged','Recipe trial · existing reviewed catalogue · account saving disabled');
  const response=await memberExperienceEntry(new Request(new URL('/member/'+name,url)),{MEMBER_EXPERIENCE_V1_ENABLED:'true',WORK_V1_ENABLED:'true'},new Response(html,{headers:{'Content-Type':'text/html'}}));
- return new Response(response.body,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
+ const pageHeaders={...headers,'Content-Type':'text/html; charset=utf-8'};
+ if(name==='grub')pageHeaders['Content-Security-Policy']=headers['Content-Security-Policy'].replace("connect-src 'none'","connect-src 'self'");
+ return new Response(response.body,{headers:pageHeaders});
 }

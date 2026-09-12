@@ -202,6 +202,10 @@ body.sst-member-experience [role=dialog] textarea{width:100%;min-height:96px;pad
  body.sst-member-experience #panel-today .mt-real-plan{grid-template-columns:1fr!important}
 }
 @media(max-width:400px){.sst-member-experience .site-header .site-logo,.sst-member-experience .site-header .site-logo img{width:160px!important;max-width:160px!important;min-width:160px!important}.sst-member-experience .site-header .header-inner{gap:12px!important;padding-left:12px!important;padding-right:12px!important}.sst-member-experience .site-header .menu-trigger{flex:0 0 auto}}
+.sst-member-experience .grub-recipe-detail{margin:18px 0;border-top:1px solid #707762;border-bottom:1px solid #707762;padding:12px 0;color:#11140f!important;background:transparent!important}
+.sst-member-experience .grub-recipe-detail summary{cursor:pointer;min-height:44px;display:list-item;padding:10px 0;font-weight:700;color:#25351e!important}
+.sst-member-experience .grub-recipe-detail :is(ul,ol){padding-left:24px;overflow-wrap:anywhere}
+.sst-member-experience .grub-recipe-detail li{margin:8px 0}
 @media(prefers-reduced-motion:reduce){.sst-member-experience *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{.sst-member-experience .sst-member-tabs,.sst-member-experience .site-header{display:none!important}.sst-member-experience main{max-width:none!important;padding:0!important}.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival){background:#fff!important;color:#111!important;min-height:0!important;padding:0!important}.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival):after{display:none!important}}
 `;
