@@ -86,3 +86,9 @@ The existing Pages dashboard file was rechecked: its SHA-256 remains `e030aee40a
 The isolated suite passed at https://github.com/shiftsometimber/shift-core/actions/runs/34687802288 (35 workplace checks plus 84 Programme checks). Hosted staging and the real remote D1 probe passed at https://github.com/shiftsometimber/shift-core/actions/runs/34687802312, probe timestamp `2026-09-12T10:12:54.376Z`.
 
 `RELEASE-HANDOFF.md` records the exact Worker/Pages relationship, commissioning records, first-cohort procedure and pause/disable/rollback controls. Physical iPhone/Safari and Android acceptance, approved privacy/retention and delivery procedures, and the production release decision remain outstanding. Testing stays hard-disabled. No production deployment or employer communication occurred.
+
+## Member experience correction
+
+See `MEMBER-EXPERIENCE-REVIEW.md` for the visual/usability findings and changes. The previous width pass did not establish adequate hover contrast: the shared public card treatment could obscure workplace headings and links. Scoped styles now fix that, and the member view leads with the current week's action instead of the joining form.
+
+Current implementation `70865a5342a35057c86837121f643fe7cc9481d1` passes isolated CI `34688961824` (38 workplace checks plus 84 Programme checks) and remote staging probe `34688961817` at `2026-09-12T10:39:39.228Z`. All fifteen responsive measurements were repeated successfully. Browser review also verified mobile card readability, visible joining consent, refused-save feedback and retained review-button focus. The complete existing My Timber tool set has not been visually signed off by this workplace pass.

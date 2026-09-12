@@ -1,9 +1,9 @@
 {
   "status": "pass",
-  "checkedAt": "2026-09-12T10:12:54.376Z",
+  "checkedAt": "2026-09-12T10:39:39.228Z",
   "origin": "https://shift-core-work-staging.matobrien.workers.dev",
-  "commit": "62f9df4d89b0846a1babc3df9618f074d5b2ffe8",
-  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34687802312",
+  "commit": "70865a5342a35057c86837121f643fe7cc9481d1",
+  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34688961817",
   "checks": [
     "Separate real member and HQ password logins",
     "HQ/member session separation",
@@ -27,6 +27,8 @@
     "credentials": "Secure handoff only; no values inspected or logged",
     "fix": "Literal browser source removes bundled __name dependency; served-asset regression test added",
     "logout": "Completed after delayed navigation; cause of delay not diagnosed. Staging helper now provides pending/error feedback.",
-    "responsiveEvidence": "work/responsive-evidence.json"
+    "responsiveEvidence": "work/responsive-evidence.json",
+    "designReview": "work/MEMBER-EXPERIENCE-REVIEW.md",
+    "scopeNote": "Authenticated browser journey was verified before the visual revision. Current revision passes real API/persistence checks and separately reviewed fictional browser interactions."
   }
 }

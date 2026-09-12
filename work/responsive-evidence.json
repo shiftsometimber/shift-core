@@ -1,83 +1,83 @@
 {
   "date": "2026-09-12",
-  "implementation": "62f9df4d89b0846a1babc3df9618f074d5b2ffe8",
+  "implementation": "70865a5342a35057c86837121f643fe7cc9481d1",
   "url": "https://shift-core-work-staging.matobrien.workers.dev/staging/layout-check",
-  "scope": "Current workplace client and styles; fictional read-only frames in hosted Chrome. Not Safari or physical-device acceptance.",
+  "scope": "Current revised workplace client/styles and fictional read-only frames in hosted Chrome; all fifteen width measurements repeated after the redesign. Not Safari, physical-device or whole-My-Timber acceptance.",
   "layouts": [
     {
       "mode": "member",
       "width": "320",
-      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow"
+      "measurement": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "member",
       "width": "375",
-      "measurement": "375px frame · 360px content area · 360px content width · No horizontal overflow"
+      "measurement": "375px frame \u00b7 360px content area \u00b7 360px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "member",
       "width": "390",
-      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow"
+      "measurement": "390px frame \u00b7 375px content area \u00b7 375px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "member",
       "width": "768",
-      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow"
+      "measurement": "768px frame \u00b7 753px content area \u00b7 753px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "member",
       "width": "1024",
-      "measurement": "1024px frame · 1009px content area · 1009px content width · No horizontal overflow"
+      "measurement": "1024px frame \u00b7 1009px content area \u00b7 1009px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "hq",
       "width": "320",
-      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow"
+      "measurement": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "hq",
       "width": "375",
-      "measurement": "375px frame · 360px content area · 360px content width · No horizontal overflow"
+      "measurement": "375px frame \u00b7 360px content area \u00b7 360px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "hq",
       "width": "390",
-      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow"
+      "measurement": "390px frame \u00b7 375px content area \u00b7 375px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "hq",
       "width": "768",
-      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow"
+      "measurement": "768px frame \u00b7 753px content area \u00b7 753px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "hq",
       "width": "1024",
-      "measurement": "1024px frame · 1009px content area · 1009px content width · No horizontal overflow"
+      "measurement": "1024px frame \u00b7 1009px content area \u00b7 1009px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "employer",
       "width": "320",
-      "measurement": "320px frame · 305px content area · 305px content width · No horizontal overflow"
+      "measurement": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "employer",
       "width": "375",
-      "measurement": "375px frame · 360px content area · 360px content width · No horizontal overflow"
+      "measurement": "375px frame \u00b7 360px content area \u00b7 360px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "employer",
       "width": "390",
-      "measurement": "390px frame · 375px content area · 375px content width · No horizontal overflow"
+      "measurement": "390px frame \u00b7 375px content area \u00b7 375px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "employer",
       "width": "768",
-      "measurement": "768px frame · 753px content area · 753px content width · No horizontal overflow"
+      "measurement": "768px frame \u00b7 753px content area \u00b7 753px content width \u00b7 No horizontal overflow"
     },
     {
       "mode": "employer",
       "width": "1024",
-      "measurement": "1024px frame · 1009px content area · 1009px content width · No horizontal overflow"
+      "measurement": "1024px frame \u00b7 1009px content area \u00b7 1009px content width \u00b7 No horizontal overflow"
     }
   ],
   "keyboard": [
@@ -92,5 +92,6 @@
     "No health information or authenticated records in layout fixtures.",
     "No full screen-reader or physical mobile acceptance.",
     "Production unchanged."
-  ]
+  ],
+  "designReview": "work/MEMBER-EXPERIENCE-REVIEW.md"
 }
