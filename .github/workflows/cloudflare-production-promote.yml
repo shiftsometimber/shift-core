@@ -207,12 +207,16 @@ jobs:
         run: sleep 10
       - name: Prove the public site and login asset did not change
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
+      - name: Prove exact member scripts and authentication on live traffic
+        run: node member-experience/verify-production-member.mjs
       - name: Retain public preservation evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: member-public-preservation-${{ github.run_id }}
-          path: public-*.json
+          path: |
+            public-*.json
+            member-live-proof.json
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
       - name: Prove newer restricted routes are on live traffic
