@@ -13,7 +13,7 @@ $('#grubSearch').addEventListener('input',()=>{activeFilter='';++searchSequence;
 export function improveGrubClient(original){
  let s=original;
  function section(start,end,replacement){const a=s.indexOf(start),b=s.indexOf(end,a);if(a<0||b<0)throw Error('Pinned Grub client changed: '+start);s=s.slice(0,a)+replacement+s.slice(b)}
- function exact(from,to){if(!s.includes(from))throw Error('Pinned Grub client changed: '+from);s=s.replace(from,to)}
+ function exact(from,to){if(!s.includes(from))throw Error('Pinned Grub client changed: '+from);s=s.replace(from,()=>to)}
  section('function recipe(m){','function ideas(r){',recipeSource);
  section('function render(host,r){','function drawChips(){',renderSource);
  section('async function discover(){',"$('#grubSearchGo').onclick",discover);
