@@ -32,3 +32,5 @@ node work/staging/probe.mjs
 Provision/deploy/probe run only in the dedicated workflow with its preview credential. Local staging tests use an independently bundled staging entry and local fictional D1. Their source does not provision remote resources. Production remains uncommissioned.
 
 Browser verification found that serializing a bundled function leaked Wrangler's `__name` helper into the external script. The workplace client now uses literal browser source; the staging test executes the actual served, bundled asset and checks that the invitation form renders.
+
+The staging-only `/staging/layout-check` page shows the current employee, HQ and employer screens at 320, 375, 390, 768 and 1024px frame widths. A visible measurement reports horizontal overflow. These frames use fictional local responses, reject writes and have `connect-src 'none'`; only fictional layout documents can be framed on the same origin. Authenticated workplace documents retain `frame-ancestors 'none'`. This checks responsive CSS in the available browser, not Safari or physical-device behaviour.
