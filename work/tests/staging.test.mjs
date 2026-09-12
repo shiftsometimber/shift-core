@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {runInNewContext} from 'node:vm';
 import {Miniflare} from 'miniflare';
 import {execFileSync} from 'node:child_process';
 import {resolve,join} from 'node:path';
@@ -11,7 +12,16 @@ const mf=new Miniflare({modules:[{type:'ESModule',path:bundle}],modulesRoot:join
 const db=await mf.getD1Database('DB'),work=await mf.getD1Database('WORK_DB');for(const [d,p]of [[db,'preview/bootstrap.sql'],[work,'work/migration.sql']])await d.exec(readFileSync(p,'utf8').replace(/^--.*$/gm,'').replace(/\n/g,' '));
 const origin='https://shift-core-work-staging.test.workers.dev',call=(path,body,cookie='',host=origin)=>mf.dispatchFetch(host+path,{redirect:'manual',method:body?'POST':'GET',headers:{Origin:host,'Content-Type':'application/json',Cookie:cookie},body:body?JSON.stringify(body):undefined});
 try{
-await test('Staging refuses production hosts and unrelated application routes',async()=>{assert.equal((await call('/staging/sign-in',undefined,'','https://shiftsometimber.co.uk')).status,404);assert.equal((await call('/v1/hq/content')).status,404);const r=await call('/staging/sign-in');assert.equal(r.status,200);assert.match(r.headers.get('Content-Security-Policy'),/connect|default-src 'self'/);assert.match(await r.text(),/Fictional staging environment/)});
+await test('Staging refuses production hosts and unrelated application routes',async()=>{assert.equal((await call('/staging/sign-in',undefined,'','https://shiftsometimber.co.uk')).status,404);assert.equal((await call('/v1/hq/content')).status,404);assert.equal((await call('/staging/layout/member',undefined,'','https://shiftsometimber.co.uk')).status,404);const r=await call('/staging/sign-in');assert.equal(r.status,200);assert.match(r.headers.get('Content-Security-Policy'),/connect|default-src 'self'/);assert.match(await r.text(),/Fictional staging environment/)});
+await test('Responsive review has fictional-only transport while authenticated screens remain unframeable',async()=>{
+ const page=await call('/staging/layout/member');assert.equal(page.status,200);assert.match(page.headers.get('Content-Security-Policy'),/connect-src 'none'/);assert.match(await page.text(),/Fictional layout review/);
+ assert.equal((await call('/staging/layout/member',{})).status,405);assert.equal((await call('/staging/layout/unknown')).status,404);
+ const script=await (await call('/staging/layout/work.mjs')).text();
+ let calledNetwork=false;const root={dataset:{mode:'member'},innerHTML:'',querySelectorAll:()=>[]},status={textContent:''};
+ const document={visibilityState:'visible',querySelector:s=>s==='#work-app'?root:s==='#work-status'?status:null,addEventListener(){}};
+ runInNewContext(script,{document,addEventListener(){},AbortController,DOMException,Response,fetch(){calledNetwork=true;throw Error('Real network is forbidden in this fixture')}});
+ await new Promise(resolve=>setImmediate(resolve));assert.equal(calledNetwork,false);assert.match(root.innerHTML,/Example Logistics/);assert.match(script,/Read-only layout review/);
+});
 await test('Bundled workplace browser asset starts and renders without Worker-only helpers',async()=>{
  const asset=await call('/assets/work/work.mjs');assert.equal(asset.status,200);
  const source=await asset.text(),root={dataset:{mode:'member'},innerHTML:'',querySelectorAll:()=>[],replaceChildren(){this.innerHTML=''}},status={textContent:''},requests=[];
@@ -21,5 +31,5 @@ await test('Bundled workplace browser asset starts and renders without Worker-on
  await new Promise(resolve=>setImmediate(resolve));
  assert.deepEqual(requests,['/v1/work']);assert.match(root.innerHTML,/Join privately/);assert.equal(status.textContent,'');
 });
-await test('Staging registration accepts only bounded fictional accounts and preserves actual authentication',async()=>{const password=randomBytes(24).toString('base64url'),payload={email:'reviewer@example.invalid',password,firstName:'Fictional reviewer'};assert.equal((await call('/v1/auth/register',{...payload,email:'real@company.com'})).status,400);assert.equal((await call('/v1/auth/register',{...payload,role:'owner'})).status,400);assert.equal((await call('/v1/auth/login',{email:'readiness@example.invalid',password:'not-a-real-account'})).status,401);const r=await call('/v1/auth/register',payload);assert.equal(r.status,201,await r.clone().text());const login=await call('/v1/auth/login',{email:payload.email,password});assert.equal(login.status,200,await login.clone().text());const cookie=r.headers.get('Set-Cookie').split(';')[0];assert.equal((await call('/member/work',undefined,cookie)).status,200);assert.equal((await call('/v1/hq/work',undefined,cookie)).status,401);assert.equal((await call('/v1/work/testing',{},cookie)).status,409);assert.equal((await call('/v1/auth/logout',{},cookie)).status,200);assert.equal((await call('/v1/work',undefined,cookie)).status,401)});
+await test('Staging registration accepts only bounded fictional accounts and preserves actual authentication',async()=>{const password=randomBytes(24).toString('base64url'),payload={email:'reviewer@example.invalid',password,firstName:'Fictional reviewer'};assert.equal((await call('/v1/auth/register',{...payload,email:'real@company.com'})).status,400);assert.equal((await call('/v1/auth/register',{...payload,role:'owner'})).status,400);assert.equal((await call('/v1/auth/login',{email:'readiness@example.invalid',password:'not-a-real-account'})).status,401);const r=await call('/v1/auth/register',payload);assert.equal(r.status,201,await r.clone().text());const login=await call('/v1/auth/login',{email:payload.email,password});assert.equal(login.status,200,await login.clone().text());const cookie=r.headers.get('Set-Cookie').split(';')[0];const memberPage=await call('/member/work',undefined,cookie);assert.equal(memberPage.status,200);assert.match(memberPage.headers.get('Content-Security-Policy'),/frame-ancestors 'none'/);assert.equal((await call('/v1/hq/work',undefined,cookie)).status,401);assert.equal((await call('/v1/work/testing',{},cookie)).status,409);assert.equal((await call('/v1/auth/logout',{},cookie)).status,200);assert.equal((await call('/v1/work',undefined,cookie)).status,401)});
 }finally{await mf.dispose();rmSync(temp,{recursive:true,force:true})}
