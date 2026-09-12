@@ -24,7 +24,7 @@ function containsIngredient(supplied,ingredient){
  // not soy sauce, and chicken stock is not chicken breast.
  return a.every(x=>b.includes(x));
 }
-function memberRecipe(row,items=[]){
+export function memberRecipe(row,items=[]){
  const d=row.data||{},ingredients=d.ingredients,method=d.method,n=d.nutrition||{};
  if(!row.id||!row.title||n.status!=='validated'||!Array.isArray(ingredients)||!ingredients.length||ingredients.some(i=>!i.item||!i.amount)||!Array.isArray(method)||method.length<2)return null;
  const matched=ingredients.filter(i=>items.some(x=>containsIngredient(x,i.item))).map(i=>i.item);
@@ -33,7 +33,7 @@ function memberRecipe(row,items=[]){
  const minutes=present(d.timeMinutes)?Number(d.timeMinutes):prep!==null&&cook!==null?prep+cook:null;
  return {id:row.id,name:row.title,meal_type:d.meal_type,servings:Number(d.servings)||1,minutes,prep_minutes:prep,cook_minutes:cook,protein_g:present(n.protein_g)?Number(n.protein_g):null,kcal:present(n.kcal)?Number(n.kcal):null,nutrition:n,ingredients,method,allergens:d.allergens||[],food_safety:d.food_safety||[],storage:d.storage||{},equipment:d.equipment||[],matched,missing,pantry:missing.filter(x=>pantry.has(normalise(x))),source:'published_catalogue',taxonomy:d.taxonomy||{},food_format:d.food_format||'',tags:d.tags||[]};
 }
-function filterRecipe(r,filter){
+export function filterRecipe(r,filter){
  switch(filter){
   case 'fast':return r.minutes!==null&&r.minutes<=25;
   case 'high protein':return r.protein_g!==null&&r.protein_g>=25;

@@ -1,3 +1,4 @@
+import {grubRuntime,upgradeGrubHTML} from './grub-runtime.mjs';
 import {memberStyles} from './styles.mjs';
 import {memberClient} from './client.mjs';
 
@@ -11,7 +12,7 @@ export function memberExperienceRoutes(request, env) {
   if (['/member/journey','/member/journey.html'].includes(path)) {
     return new Response(null, {status:302,headers:{...privateHeaders,Location:new URL('/member/dashboard#journey',request.url).href}});
   }
-  const asset = {'/assets/member-experience/v1.css':[memberStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
+  const asset = {'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
   if (!asset) return null;
   return new Response(request.method === 'HEAD' ? null : asset[0],{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
 }
@@ -36,7 +37,7 @@ export async function memberExperienceEntry(request, env, response) {
   // scoped layer after those too, so their sidebars cannot reappear on mobile.
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
-  if(name === 'grub') html = html.replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
+  if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');
   if(name === 'check-in') html = html.replace(/(<p class="eyebrow">Daily check-in<\/p>[\s\S]*?<p class="checkin-intro">[\s\S]*?<\/p>)/,'<header class="member-tool-hero">$1</header>');
   if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');

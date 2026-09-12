@@ -1,3 +1,4 @@
+import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
 import { workRoutes } from "./work/routes.mjs";
@@ -827,6 +828,8 @@ export default {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const grubWorkspace = await grubWorkspaceRoutes(request, env);
+    if (grubWorkspace) return withMemberCors(grubWorkspace, request);
     const fastMemberState = await fastMemberStateRoute(request, env);
     if (fastMemberState) return withMemberCors(fastMemberState, request);
     const myJourney = await myJourneyRoutes(request, env);

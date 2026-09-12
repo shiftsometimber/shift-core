@@ -8,6 +8,15 @@ const isHost=h=>h.startsWith('shift-core-work-staging.')&&h.endsWith('.workers.d
 export default {async fetch(request,env,ctx){
  const u=new URL(request.url),p=u.pathname;
  if(env.SHIFT_ENVIRONMENT!=='work-staging-20260912'||!isHost(u.hostname)||!env.STAGING_EXPIRES_AT||!Number.isFinite(Date.parse(env.STAGING_EXPIRES_AT))||Date.now()>=Date.parse(env.STAGING_EXPIRES_AT))return new Response('Staging is unavailable.',{status:404});
+ if(p==='/staging/food-trial'){
+  if(request.method!=='POST'||request.headers.get('Origin')!==u.origin)return Response.json({error:'Same-origin POST required'},{status:403});
+  const count=await env.DB.prepare("SELECT COUNT(*) n FROM users WHERE first_name='Fictional food trial'").first();if(count.n>=100)return Response.json({error:'Test account limit reached'},{status:409});
+  const password=crypto.randomUUID()+crypto.randomUUID();
+  const signup=new Request(new URL('/v1/auth/register',u),{method:'POST',headers:{Origin:u.origin,'Content-Type':'application/json'},body:JSON.stringify({email:'food-'+crypto.randomUUID()+'@example.invalid',password,firstName:'Fictional food trial'})});
+  const response=await core.fetch(signup,env,ctx);
+  if(!response.ok)return Response.json({error:'The fictional test account could not be created.'},{status:503});
+  const h=new Headers({'Cache-Control':'no-store'});const cookie=response.headers.get('Set-Cookie');if(!cookie)return Response.json({error:'Test sign-in is unavailable.'},{status:503});h.set('Set-Cookie',cookie);return Response.json({ok:true},{headers:h});
+ }
  const memberReview=await memberReviewRoutes(request,env);if(memberReview)return memberReview;
  const layout=layoutResponse(request);if(layout)return layout;
  const banner='<aside class="work-panel"><strong>Fictional staging environment</strong><p>Separate test accounts and databases. No real employees, health information, email delivery, payment or test ordering. Your fictional invitation code can be loaded below after signing in. This environment expires automatically.</p><a href="/staging/sign-in">Test sign-in</a> · <a href="/staging/register">Create a fictional test account</a> <button type="button" id="stage-logout">Sign out of test account</button></aside>';
@@ -18,9 +27,9 @@ export default {async fetch(request,env,ctx){
  }
  if(request.method==='GET'&&['/staging/login.mjs','/staging/invitation.txt'].includes(p))return env.STAGING_ASSETS.fetch(request);
  if(request.method==='GET'&&['/assets/home-hero-men-v32o.jpg','/styles.css','/assets/member-shell-v6.css','/assets/shift-recovery-v6.css','/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png'].includes(p))return env.STAGING_ASSETS.fetch(request);
- const allowed=['/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
+ const allowed=['/v1/grub/workspace','/v1/grub/search','/v1/member-state','/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
  if(!allowed.includes(p))return new Response('Only workplace verification routes are available here.',{status:404});
- if(request.method==='POST'){
+ if(['POST','PATCH'].includes(request.method)){
   if(request.headers.get('Origin')!==u.origin)return new Response('Same-origin requests only.',{status:403});
   if(p==='/v1/auth/register'){
    const b=await request.clone().json().catch(()=>null);

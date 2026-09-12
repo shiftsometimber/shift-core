@@ -206,6 +206,19 @@ body.sst-member-experience [role=dialog] textarea{width:100%;min-height:96px;pad
 .sst-member-experience .grub-recipe-detail summary{cursor:pointer;min-height:44px;display:list-item;padding:10px 0;font-weight:700;color:#25351e!important}
 .sst-member-experience .grub-recipe-detail :is(ul,ol){padding-left:24px;overflow-wrap:anywhere}
 .sst-member-experience .grub-recipe-detail li{margin:8px 0}
+.sst-member-experience .grub-account{padding:18px 0;margin:12px 0 24px;border-bottom:1px solid #707762}
+.sst-member-experience .grub-account p{margin:0 0 12px}.sst-member-experience .grub-account [data-error="true"]{font-weight:700}
+.sst-member-experience .grub-account .grub-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.sst-member-experience .grub-result-message{grid-column:1/-1}
+.sst-member-experience #grubWeekOutput{align-items:start}
+.sst-member-experience .shopping-item{display:flex;gap:12px;align-items:center;padding:14px;border-bottom:1px solid #707762}
+.sst-member-experience .shopping-item label{display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;gap:12px;align-items:center;flex:1;min-width:0}
+.sst-member-experience .shopping-item input[type="checkbox"]{width:22px!important;height:22px!important;min-height:22px!important;margin:0!important;accent-color:#25351e}
+.sst-member-experience .shopping-item.done span{text-decoration:line-through}
+.sst-member-experience .shopping-item button{flex:0 0 auto;font-size:14px!important;padding:10px!important}
+.sst-member-experience #grubAddForm{display:grid;gap:16px}.sst-member-experience #grubAddForm label{display:grid;gap:6px}
+.sst-member-experience #grubReplaceDialog button{margin:8px 8px 0 0}
+@media print{body.sst-member-experience[data-member-page="grub"] :is(.site-header,.site-drawer,.sst-member-tabs,.site-footer,.skip-link,.grub-account,.grub-v8-tabs,.member-tool-hero,.grub-v8-panel:not([data-grub-panel="shoplist"]),#shoppingForm,#grubPrint,.shopping-item button){display:none!important}body.sst-member-experience[data-member-page="grub"] [data-grub-panel="shoplist"]{display:block!important}body.sst-member-experience[data-member-page="grub"] .shopping-item{break-inside:avoid}}
 @media(prefers-reduced-motion:reduce){.sst-member-experience *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{.sst-member-experience .sst-member-tabs,.sst-member-experience .site-header{display:none!important}.sst-member-experience main{max-width:none!important;padding:0!important}.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival){background:#fff!important;color:#111!important;min-height:0!important;padding:0!important}.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival):after{display:none!important}}
 `;
