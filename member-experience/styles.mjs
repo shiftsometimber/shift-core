@@ -27,6 +27,10 @@ html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role
    from stretching native checkboxes (including WebKit flex sizing). */
 body.sst-member-experience :is(main,dialog,[role=dialog]) input:is([type=checkbox],[type=radio]){box-sizing:border-box!important;appearance:auto!important;accent-color:#445438;width:22px!important;min-width:22px!important;max-width:22px!important;inline-size:22px!important;min-inline-size:22px!important;max-inline-size:22px!important;height:22px!important;min-height:22px!important;max-height:22px!important;block-size:22px!important;min-block-size:22px!important;max-block-size:22px!important;flex:0 0 22px!important;padding:0!important;margin:3px 0!important;box-shadow:none!important;cursor:pointer}
 body.sst-member-experience :is(main,dialog,[role=dialog]) :is(button,.btn){box-sizing:border-box;max-width:100%;min-height:44px;white-space:normal;overflow-wrap:anywhere;font-family:inherit;line-height:1.4;font-weight:700;text-transform:none;letter-spacing:0;cursor:pointer}
+/* A native Cancel button has no component class. Give every dialog action a
+   readable base pair; the explicit ghost/selection variants below still win. */
+body.sst-member-experience :is(dialog,[role=dialog]) button{background:#25351e!important;color:#fff!important;border:1px solid #25351e!important;border-radius:8px!important;padding:12px 18px!important}
+body.sst-member-experience :is(dialog,[role=dialog]) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea){background:#f4f1e9!important;color:#11140f!important;border:1px solid #8a917e!important;border-radius:8px!important;min-height:48px;padding:12px!important;font:16px/1.4 Arial!important}
 body.sst-member-experience :is(main,dialog,[role=dialog]) :is(button:disabled,input:disabled,textarea:disabled){opacity:.6;cursor:not-allowed}
 body.sst-member-experience :is(main,dialog,[role=dialog]) .actions{display:flex;flex-wrap:wrap;gap:12px;min-width:0}
 body.sst-member-experience :is(main,dialog,[role=dialog]) .actions>*{margin:0!important;min-width:0}
@@ -215,6 +219,8 @@ body.sst-member-experience [role=dialog] textarea{width:100%;min-height:96px;pad
 .sst-member-experience .shopping-item label{display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;gap:12px;align-items:center;flex:1;min-width:0}
 .sst-member-experience .shopping-item input[type="checkbox"]{width:22px!important;height:22px!important;min-height:22px!important;margin:0!important;accent-color:#25351e}
 .sst-member-experience .shopping-item.done span{text-decoration:line-through}
+.sst-member-experience .shopping-item[aria-busy=true]{flex-wrap:wrap}
+.sst-member-experience .shopping-item .food-item-status{flex:1 0 100%;font-size:14px;color:#25351e!important;text-decoration:none}
 .sst-member-experience .shopping-item button{flex:0 0 auto;font-size:14px!important;padding:10px!important}
 .sst-member-experience #grubAddForm{display:grid;gap:16px}.sst-member-experience #grubAddForm label{display:grid;gap:6px}
 .sst-member-experience #grubReplaceDialog button{margin:8px 8px 0 0}
