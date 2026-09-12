@@ -26,6 +26,11 @@ jobs:
       - name: Require the existing preview credential — no fallback
         run: test -n "$CLOUDFLARE_API_TOKEN"
       - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the recipe publication reader
+        run: python -m pip install openpyxl==3.1.5
       - name: Verify pinned assets and prepare fictional fixtures
         run: node work/staging/prepare.mjs
       - name: Provision only separately named staging databases
