@@ -93,9 +93,10 @@ for name, data in changes.items():
         integrity[name] = hashlib.sha256(data.decode().split('</head>', 1)[1].encode()).hexdigest()
 changes['release-body-integrity.json'] = (json.dumps(integrity, indent=2) + '\n').encode()
 fp = json.loads(base['overrides']['DEPLOYMENT-FINGERPRINT.json'])
+assert fp['files'] == sorted(fp['files'], key=lambda x: pathlib.PurePosixPath(x['path'])), 'baseline fingerprint ordering changed'
 fp_entries = {x['path']: x for x in fp['files']}
 for name, data in changes.items(): fp_entries[name] = entry(name, data)
-fp['files'] = [fp_entries[n] for n in sorted(fp_entries)]
+fp['files'] = [fp_entries[n] for n in sorted(fp_entries, key=pathlib.PurePosixPath)]
 fp['file_count'] = len(fp['files'])
 fp['aggregate_sha256'] = hashlib.sha256(''.join(f"{x['sha256']}  {x['path']}\n" for x in fp['files']).encode()).hexdigest()
 changes['DEPLOYMENT-FINGERPRINT.json'] = (json.dumps(fp, indent=2) + '\n').encode()
