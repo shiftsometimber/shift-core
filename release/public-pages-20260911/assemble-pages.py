@@ -1,5 +1,5 @@
 """Materialise only the exact locally reviewed Pages bytes; never accept a stale file."""
-import base64, concurrent.futures, gzip, hashlib, json, os, pathlib, subprocess, urllib.error, urllib.parse, urllib.request
+import re, base64, concurrent.futures, gzip, hashlib, json, os, pathlib, subprocess, urllib.error, urllib.parse, urllib.request
 
 HERE = pathlib.Path(__file__).resolve().parent
 control = json.loads((HERE / 'control.json').read_text())
@@ -92,8 +92,8 @@ assert 'hero-shirt' not in (release / 'shop.html').read_text().split('<body', 1)
 assert 'body.about-story-page .reading-layout>.pagehero,' not in (release / 'assets/about-shift-v1.css').read_text(), 'About heading hidden'
 for name in ('index.html', 'shop.html', 'about.html', 'medicine-news.html'):
     page = (release / name).read_text()
-    assert 'href="/treatment-centre">Treatments</a>' in page, name + ': Treatments missing'
-    assert 'href="/shop">Timber Mill</a>' in page, name + ': Timber Mill missing'
+    assert re.search(r'href="/treatment-centre"(?: aria-current="page")?>Treatments</a>', page), name + ': Treatments missing'
+    assert re.search(r'href="/shop"(?: aria-current="page")?>Timber Mill</a>', page), name + ': Timber Mill missing'
     assert 'class="site-footer"' in page, name + ': footer missing'
 print(json.dumps({'verified_files': len(entries), 'source_fingerprint': control['source_fingerprint'], 'mode': control['mode'], 'source_origin': origin}, sort_keys=True))
 with open(os.environ['GITHUB_ENV'], 'a') as env:

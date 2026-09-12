@@ -1,0 +1,54 @@
+name: Approved compact header release
+on:
+  push:
+    branches: [recovery/header-approved-20260912]
+    paths:
+      - '.github/workflows/header-release.yml'
+      - 'release/header-20260912/**'
+      - 'release/public-pages-20260911/assemble-pages.py'
+permissions:
+  contents: read
+concurrency:
+  group: verified-public-pages-repair
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Reproduce the locked Start Here source
+        run: python3 release/public-pages-20260911/prepare-start-here.py
+      - name: Reproduce the current SHIFT for Work release
+        run: python3 release/public-pages-20260911/prepare-work-public.py
+      - name: Apply the approved header and menu only
+        run: python3 release/header-20260912/prepare-header.py
+      - name: Reproduce and verify the exact candidate with a fresh production baseline gate
+        run: python3 release/public-pages-20260911/assemble-pages.py
+      - name: Install the existing locked deployment toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Upload the verified Pages directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/sst-pages-command"
+          cd "$RUNNER_TEMP/sst-pages-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$SST_PAGES_BRANCH" --commit-hash "$GITHUB_SHA" --commit-message "Approved compact header and revised menu" 2>&1 | tee "$RUNNER_TEMP/header-deploy.log"
+      - name: Verify uploaded navigation and locked journey
+        run: python3 release/header-20260912/verify-header.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-header-release-evidence
+          path: |
+            release/header-20260912/header-source-proof.json
+            release/header-20260912/header-live-proof.json
+            release/header-20260912/REC-034.patch
