@@ -1,3 +1,4 @@
+import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
 import { workRoutes } from "./work/routes.mjs";
 import { authenticateWorkHQ } from "./worker.js";
@@ -518,6 +519,8 @@ export default {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const memberExperience = memberExperienceRoutes(request, env);
+    if (memberExperience) return memberExperience;
     const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
     if (workplace) return workplace;
     const programme = await programmeRoutes(request, env, {authenticate: authenticateMember, html: programmeHTML});
@@ -682,7 +685,7 @@ export default {
     )
     {
       const response = await publicPagesAsset(request, path.replace(/\.html$/, ""));
-      return workDashboardEntry(request, env, await programmeDashboardEntry(request, env, response, {authenticate: authenticateMember}), {authenticate: authenticateMember});
+      return memberExperienceEntry(request, env, await workDashboardEntry(request, env, await programmeDashboardEntry(request, env, response, {authenticate: authenticateMember}), {authenticate: authenticateMember}));
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
