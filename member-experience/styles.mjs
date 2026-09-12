@@ -2,7 +2,10 @@
 export const memberStyles = String.raw`
 body.sst-member-experience{--me-ink:#11140f;--me-paper:#e7e3da;--me-card:#f4f1e9;--me-line:#b6b8a9;--me-muted:#4c5245;background:var(--me-paper)!important;color:var(--me-ink)!important;font-family:Arial,Helvetica,sans-serif}
 body.sst-member-experience [hidden]{display:none!important}
-.sst-member-experience main{width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:28px 24px 64px!important;box-sizing:border-box!important;overflow-wrap:anywhere;color:var(--me-ink)}
+.sst-member-experience main{width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:28px 24px 64px!important;box-sizing:border-box!important;overflow-wrap:anywhere;color:var(--me-ink);background:transparent!important}
+.sst-member-experience main:before,.sst-member-experience main:after{display:none!important}
+.sst-member-experience .member-records{padding:0!important;margin:0!important;background:transparent!important;border:0!important}
+.sst-member-experience .member-records:before,.sst-member-experience .member-records:after{display:none!important}
 .sst-member-experience main *{box-sizing:border-box;min-width:0}
 .sst-member-experience main :is(h1,h2,h3,h4){letter-spacing:-.035em;line-height:1.12}
 .sst-member-experience main p{line-height:1.6}
@@ -118,6 +121,7 @@ body.sst-member-experience [hidden]{display:none!important}
  .sst-member-experience .mj-setup-section{padding:14px!important}.sst-member-experience :is(.mj-two,.mj-three,.mj-corrections){grid-template-columns:1fr!important}
  .sst-member-experience .preview-auth{padding:24px!important}
 }
+@media(max-width:400px){.sst-member-experience .site-header .site-logo,.sst-member-experience .site-header .site-logo img{width:160px!important;max-width:160px!important;min-width:160px!important}.sst-member-experience .site-header .header-inner{gap:12px!important;padding-left:12px!important;padding-right:12px!important}.sst-member-experience .site-header .menu-trigger{flex:0 0 auto}}
 @media(prefers-reduced-motion:reduce){.sst-member-experience *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{.sst-member-experience .sst-member-tabs,.sst-member-experience .site-header{display:none!important}.sst-member-experience main{max-width:none!important;padding:0!important}.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival){background:#fff!important;color:#111!important;min-height:0!important;padding:0!important}.sst-member-experience :is(.member-tool-hero,.mj-hero,.mt-arrival):after{display:none!important}}
 `;
