@@ -18,6 +18,12 @@ The remote test uses separate fictional accounts and databases. It proves passwo
 
 The existing unrelated `act2b-one-shot.yml` validation failure is not a passing repository-wide CI claim.
 
+## Final packaged verification
+
+Packaged source `009d62c7bbf06fdf72b26b9bc972330a162f453d` has tree `a9f4cd2c71e9153c9b5b74813b52f64d2a931a24`. Both hosted workflows passed: [168 targeted checks and the enabled release bundle](https://github.com/shiftsometimber/shift-core/actions/runs/34702099552), and [hosted deployment plus remote account/D1 verification](https://github.com/shiftsometimber/shift-core/actions/runs/34702099554). The remote probe completed at `2026-09-12T15:25:28.734Z`. Counts are 39 workplace/account runtime checks, 84 Programme checks and 45 member/tool checks.
+
+Merge commit `cc8095d183f86df74e50d4caf50b54f87d14b11e` incorporates the current production parent with the identical verified tree; no files changed in that merge. [Draft PR 677](https://github.com/shiftsometimber/shift-core/pull/677) is mergeable and records the remaining browser boundary. The existing Daily Shift, My Timber completeness/navigation and secure-login source gates also passed locally.
+
 ## Deployment preparation
 
 The production Pages baseline is deployment `5a064385`, fingerprint `0111ddc13262846355df76dd5f2b3067b02dca9d92716105bf4bf24f9394e665`. The current Worker baseline is `19e037713b36ffa8b7424143e983a50d18e70f83`. Both contain the released sign-in repair. The candidate retains the Worker security client, its cache version and its release tests exactly. It does not republish an old Pages payload.
@@ -30,4 +36,4 @@ SHIFT for Work remains separately controlled by its workplace binding and commis
 
 ## Browser acceptance
 
-Earlier browser checks established full recipe readability, working filters and no contrast failures/overflow at 320px and 1280px for the search renderer. They do not establish the newly connected account UI. The secure browser sign-in is pending so the final interactive save/plan/shopping and responsive-dialog checks can be completed. Fresh password sign-in on the actual production origin is also unverified. Do not describe this record as final browser sign-off or a production deployment.
+Earlier browser checks established full recipe readability, working filters and no contrast failures/overflow at 320px and 1280px for the search renderer. They do not establish the newly connected account UI. The secure browser sign-in request timed out after 300 seconds. A canonical-page verification was attempted to establish whether sign-in nevertheless completed; no browser success is claimed. Final interactive save/plan/shopping and responsive-dialog checks remain open. Fresh password sign-in on the actual production origin is also unverified. Do not describe this record as final browser sign-off or a production deployment.
