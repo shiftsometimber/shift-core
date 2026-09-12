@@ -2,6 +2,9 @@
 export const memberStyles = String.raw`
 body.sst-member-experience{--me-ink:#11140f;--me-paper:#e7e3da;--me-card:#f4f1e9;--me-line:#b6b8a9;--me-muted:#4c5245;background:var(--me-paper)!important;color:var(--me-ink)!important;font-family:Arial,Helvetica,sans-serif}
 body.sst-member-experience [hidden]{display:none!important}
+/* Live announcements remain available to screen readers without becoming a
+   visible, unstyled row when legacy Journey CSS has not loaded. */
+body.sst-member-experience .mj-sr{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
 /* Legacy dark-card CSS sets WebKit's painted text separately from color.
    Keep the two aligned across member screens, including dynamic overlays. */
 html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role=dialog],.sst-member-tabs),html body.sst-member-experience[data-member-experience=v1] :is(main,dialog,[role=dialog],.sst-member-tabs) *{-webkit-text-fill-color:currentColor!important}
