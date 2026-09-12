@@ -39,8 +39,18 @@ export async function memberReviewRoutes(request,env){
      const start=js.indexOf('// Mood — canonical account-backed check-in.'),end=js.indexOf('// My Why',start);
      if(start<0||end<0)return new Response('Pinned check-in source unavailable.',{status:503,headers});
      js=js.slice(start,end);
+     // The real client collapses all non-auth errors into a retry instruction.
+     // Explain our explicit preview rejection without turning it into success.
+     const from="sm.textContent=e?.status===401?'SIGN IN TO SAVE':'COULD NOT SAVE — TRY AGAIN'";
+     if(!js.includes(from))return new Response('Pinned check-in feedback unavailable.',{status:503,headers});
+     js=js.replace(from,"sm.textContent=e?.code==='member_review_read_only'?'PREVIEW — SAVING DISABLED':e?.code==='health_consent_required'?'HEALTH TRACKING IS OFF':e?.status===401?'SIGN IN TO SAVE':'COULD NOT SAVE — TRY AGAIN'");
    }
-   // Lexical fixture transport/storage, leaving the original tool code intact.
+   if(name==='assets/member-grub-persistence-v1.js'){
+     const from="button.textContent = 'Not saved — retry';";
+     if(!js.includes(from))return new Response('Pinned food feedback unavailable.',{status:503,headers});
+     js=js.replace(from,"button.textContent = error.code === 'member_review_read_only' ? 'Preview — saving disabled' : 'Not saved — retry';");
+   }
+   // Lexical fixture transport/storage; preview-only error wording above.
    const lead="const fetch=window.SST_MEMBER_REVIEW_FETCH;const localStorage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}};const location={pathname:window.location.pathname.replace('/staging',''),hash:window.location.hash};";
    return new Response('(()=>{'+lead+js+'})();',{headers:{...headers,'Content-Type':'text/javascript'}});
  }
@@ -49,6 +59,7 @@ export async function memberReviewRoutes(request,env){
  // Exclude auth, analytics, service workers and public widgets from this sandbox.
  html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<link\b[^>]*rel="(?:preconnect|preload|prefetch|manifest)"[^>]*>/gi,'');
  html=html.replace(/<button\b[^>]*id="askTimberLaunch"[^>]*>[\s\S]*?<\/button>/,'');
+ if(name==='check-in')html=html.replace(/(<button\b[^>]*id="saveMood")/,'<p class="checkin-consent" id="memberPreviewSaveNote">Preview only: saving is disabled. You can explore these screens, but no check-in or consent choice will be saved here.</p>$1 aria-describedby="memberPreviewSaveNote"');
  html=html.replace(/(href=")(\/[^"?]+\.css)([^\"]*")/g,(_,a,b,c)=>a+sourcePrefix+b.slice(1)+c);
  if(name==='dashboard')html=html.replace(/<section\b[^>]*id="previewAuth"[^>]*>[\s\S]*?<\/section>/,'').replace(/id="previewMember" hidden/,'id="previewMember"').replace('class="preview-member"','class="preview-member is-ready"').replace(/(id="memberTabs") hidden/,'$1');
  html=html.replace('</head>','<script defer src="'+prefix+'fixture.mjs"></script>'+scripts[name].map(s=>'<script defer src="'+prefix+'script/'+s+'"></script>').join('')+'</head>');

@@ -1,7 +1,8 @@
 // Design review only. Explicit fictional values, never sent to a service.
 const journey={version:1,setup:{complete:true,startDate:'2026-08-01',route:'lifestyle',units:'kg',heightCm:180,targetMode:'loss',focus:'energy',reviewCadence:'weekly'},weight:{startKg:100,currentKg:98,targetKg:90},waist:{startCm:108,currentCm:106},clothes:{startTop:'XL',currentTop:'XL',startTrouserWaist:'38 in',currentTrouserWaist:'38 in'},wellbeing:{baseline:50,latest:60,note:''},lifeBack:{baseline:{scores:{energy:60,sleep:55,confidence:60,movement:65,social:70,family:75}}}};
 export const fixtureClient = 'const journey='+JSON.stringify(journey)+';'+String.raw`
-const blocked=async()=>{const e=new Error('Read-only design review. Nothing has been saved.');e.status=409;throw e};
+const previewMessage='Preview only — saving is disabled. Nothing has been saved.';
+const blocked=async()=>{const e=new Error(previewMessage);e.status=409;e.code='member_review_read_only';throw e};
 const fixture={
  getMyJourney:async()=>({journey:structuredClone(journey)}),
  getMe:async()=>({user:{id:0,firstName:'Fictional member'}}),
@@ -17,7 +18,7 @@ const fixture={
 };
 window.SST_API=new Proxy(fixture,{get:(target,key)=>target[key]||blocked});
 window.SST_MEMBER_REVIEW_FETCH=async(url,options={})=>{
- if(options.method&&options.method!=='GET')return Response.json({error:'Read-only design review. Nothing has been saved.'},{status:409});
+ if(options.method&&options.method!=='GET')return Response.json({error:previewMessage,code:'member_review_read_only'},{status:409});
  const path=new URL(url,window.location.origin).pathname;
  if(path.endsWith('/journey/weekly-check-in'))return Response.json(await fixture.getJourneyCheckIn());
  if(path.endsWith('/journey/trends'))return Response.json(await fixture.getJourneyTrends());

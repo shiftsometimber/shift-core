@@ -60,7 +60,7 @@ export const memberClient = String.raw`(() => {
     const row=document.querySelector('#moodRow'),save=document.querySelector('#saveMood'),result=document.querySelector('#checkinResult');
     set(row,'role','group');set(row,'aria-label','How you feel today');
     const status=document.createElement('p');status.className='member-action-status';set(status,'role','status');set(status,'aria-live','polite');save?.after(status);
-    function syncMood(){all('[data-mood]').forEach(b=>set(b,'aria-pressed',b.classList.contains('active')));if(save){status.textContent=save.disabled?'Saving your private check-in…':/SIGN IN|COULD NOT|UNAVAILABLE|CHOOSE/.test(save.textContent)?save.textContent:'';all('[data-mood],#moodNote').forEach(el=>el.disabled=save.disabled);}}
+    function syncMood(){all('[data-mood]').forEach(b=>set(b,'aria-pressed',b.classList.contains('active')));if(save){status.textContent=save.disabled?'Saving your private check-in…':/SIGN IN|COULD NOT|UNAVAILABLE|CHOOSE|PREVIEW|HEALTH TRACKING/.test(save.textContent)?save.textContent:'';all('[data-mood],#moodNote').forEach(el=>el.disabled=save.disabled);}}
     all('[data-mood]').forEach(b=>b.addEventListener('click',()=>{if(save&&!save.disabled)save.textContent='GIVE ME MY NEXT STEP →';if(result)result.hidden=true;syncMood()}));
     if(save)new MutationObserver(syncMood).observe(save,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});
     document.addEventListener('shift:mood-required',()=>all('[data-mood]')[0]?.focus());
