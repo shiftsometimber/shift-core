@@ -1,5 +1,6 @@
-// Served as an external script. No browser storage, analytics or third-party calls.
-export function workClient(){
+// Literal browser source: Worker bundling must not inject server-side helpers.
+// No browser storage, analytics or third-party calls.
+export const workClientSource=String.raw`(function workClient(){
  const root=document.querySelector('#work-app'),mode=root.dataset.mode,status=document.querySelector('#work-status');
  let generation=0,controller=new AbortController();
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -61,4 +62,4 @@ export function workClient(){
  }
  for(const [id,css]of [['toggleLargeText','work-large-text'],['toggleMotion','work-reduce-motion']]){const b=document.querySelector('#'+id);if(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>b.setAttribute('aria-pressed',String(document.body.classList.toggle(css))))}}
  load();
-}
+})();`;

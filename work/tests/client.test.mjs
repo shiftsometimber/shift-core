@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {workClient} from '../client.mjs';
+import {workClientSource} from '../client.mjs';
 import {workDashboardEntry} from '../dashboard-entry.mjs';
 import {DASHBOARD_ANCHOR} from '../../programme/dashboard-entry.mjs';
 const tick=()=>new Promise(r=>setImmediate(r));
@@ -8,7 +8,7 @@ function harness(mode='employer'){
  const events={},requests=[],node=()=>({innerHTML:'',textContent:'',dataset:{mode},replaceChildren(){this.innerHTML='';this.textContent=''},querySelectorAll(){return []}});
  const root=node(),status=node(),document={visibilityState:'visible',querySelector:s=>s==='#work-app'?root:s==='#work-status'?status:null,addEventListener:(e,fn)=>events[e]=fn};
  const fetch=(url,options)=>new Promise(resolve=>requests.push({url,options,resolve}));
- new Function('document','fetch','addEventListener','AbortController','DOMException','('+workClient.toString()+')()')(document,fetch,(e,fn)=>events[e]=fn,AbortController,DOMException);
+ new Function('document','fetch','addEventListener','AbortController','DOMException',workClientSource)(document,fetch,(e,fn)=>events[e]=fn,AbortController,DOMException);
  const response=(i,b,status=200)=>requests[i].resolve({status,ok:status===200,json:async()=>b});return {document,events,requests,root,status,response};
 }
 const report=name=>({reports:[{name,start:'2026-09-14',end:'2026-12-07',report:{status:'not-released'}}]});
