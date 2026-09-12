@@ -1,0 +1,55 @@
+name: SHIFT for Work isolated hosted staging
+on:
+  push:
+    branches: [feature/shift-for-work-20260912]
+    paths:
+      - 'work/staging/**'
+      - '.github/workflows/shift-work-staging.yml'
+permissions:
+  contents: read
+concurrency:
+  group: shift-work-hosted-staging
+  cancel-in-progress: false
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Require the existing preview credential — no fallback
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+      - run: npm ci --no-audit --no-fund
+      - name: Verify pinned assets and prepare fictional fixtures
+        run: node work/staging/prepare.mjs
+      - name: Provision only separately named staging databases
+        run: node work/staging/provision.mjs
+      - name: Deploy only the isolated Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/work-staging-deploy.txt" 2>&1; then
+            tail -n 60 "$RUNNER_TEMP/work-staging-deploy.txt"
+            exit 1
+          fi
+          node - <<'NODE'
+          const fs=require('fs');
+          const log=fs.readFileSync(process.env.RUNNER_TEMP+'/work-staging-deploy.txt','utf8');
+          const url=log.match(/https:\/\/shift-core-work-staging\.[a-z0-9-]+\.workers\.dev/);
+          if(!url)throw Error('The isolated deployment URL was not returned');
+          fs.appendFileSync(process.env.GITHUB_ENV,'WORK_STAGING_URL='+url[0]+'\n');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'Fictional staging: '+url[0]+'\n');
+          NODE
+      - name: Verify real remote persistence and access boundaries
+        run: node work/staging/probe.mjs
+      - name: Save non-secret verification evidence only
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-work-staging-evidence
+          path: work/staging/generated/probe-result.json
+          if-no-files-found: error

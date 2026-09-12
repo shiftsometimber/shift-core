@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {Miniflare} from 'miniflare';
+import {execFileSync} from 'node:child_process';
+import {resolve,join} from 'node:path';
+import {tmpdir} from 'node:os';
+import {readFileSync,writeFileSync,mkdtempSync,readdirSync,rmSync} from 'node:fs';
+import {randomBytes} from 'node:crypto';
+const temp=mkdtempSync(join(tmpdir(),'shift-work-stage-')),cfg=join(temp,'wrangler.json');writeFileSync(cfg,JSON.stringify({name:'shift-core-work-staging',main:resolve('work/staging/worker.mjs'),compatibility_date:'2026-08-09'}));execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','deploy','--dry-run','--config',cfg,'--outdir',join(temp,'build')],{stdio:'pipe'});const bundle=join(temp,'build',readdirSync(join(temp,'build')).find(p=>p.endsWith('.js')));
+const mf=new Miniflare({modules:[{type:'ESModule',path:bundle}],modulesRoot:join(temp,'build'),compatibilityDate:'2026-08-09',d1Databases:{DB:'staging-auth-isolated',WORK_DB:'staging-work-isolated'},bindings:{SHIFT_ENVIRONMENT:'work-staging-20260912',STAGING_EXPIRES_AT:'2099-01-01T00:00:00.000Z',WORK_V1_ENABLED:'true',WORK_PILOT_COMMISSIONED:'true',AUTO_VERIFY_EMAIL:'true'}});
+const db=await mf.getD1Database('DB'),work=await mf.getD1Database('WORK_DB');for(const [d,p]of [[db,'preview/bootstrap.sql'],[work,'work/migration.sql']])await d.exec(readFileSync(p,'utf8').replace(/^--.*$/gm,'').replace(/\n/g,' '));
+const origin='https://shift-core-work-staging.test.workers.dev',call=(path,body,cookie='',host=origin)=>mf.dispatchFetch(host+path,{redirect:'manual',method:body?'POST':'GET',headers:{Origin:host,'Content-Type':'application/json',Cookie:cookie},body:body?JSON.stringify(body):undefined});
+try{
+await test('Staging refuses production hosts and unrelated application routes',async()=>{assert.equal((await call('/staging/sign-in',undefined,'','https://shiftsometimber.co.uk')).status,404);assert.equal((await call('/v1/hq/content')).status,404);const r=await call('/staging/sign-in');assert.equal(r.status,200);assert.match(r.headers.get('Content-Security-Policy'),/connect|default-src 'self'/);assert.match(await r.text(),/Fictional staging environment/)});
+await test('Staging registration accepts only bounded fictional accounts and preserves actual authentication',async()=>{const password=randomBytes(24).toString('base64url'),payload={email:'reviewer@example.invalid',password,firstName:'Fictional reviewer'};assert.equal((await call('/v1/auth/register',{...payload,email:'real@company.com'})).status,400);assert.equal((await call('/v1/auth/register',{...payload,role:'owner'})).status,400);const r=await call('/v1/auth/register',payload);assert.equal(r.status,201,await r.clone().text());const cookie=r.headers.get('Set-Cookie').split(';')[0];assert.equal((await call('/member/work',undefined,cookie)).status,200);assert.equal((await call('/v1/hq/work',undefined,cookie)).status,401);assert.equal((await call('/v1/work/testing',{},cookie)).status,409);assert.equal((await call('/v1/auth/logout',{},cookie)).status,200);assert.equal((await call('/v1/work',undefined,cookie)).status,401)});
+}finally{await mf.dispose();rmSync(temp,{recursive:true,force:true})}
