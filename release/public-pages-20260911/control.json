@@ -1,6 +1,8 @@
 {
-  "mode": "preview",
+  "mode": "production",
   "source_fingerprint": "e3fa4e233a125816d26caf4a2ab392949bc656d3f8cf77f16ea06e541367bb88",
   "expected_live_fingerprint": "0111ddc13262846355df76dd5f2b3067b02dca9d92716105bf4bf24f9394e665",
-  "payload_sha256": "aba57eed30ffee597222983b094993fb2138869e88cf20dc543d820ad2cf767e"
+  "payload_sha256": "aba57eed30ffee597222983b094993fb2138869e88cf20dc543d820ad2cf767e",
+  "approved_preview_url": "https://93c4be98.projectshift.pages.dev",
+  "preview_browser_checks_passed": true
 }
