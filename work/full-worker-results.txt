@@ -1,5 +1,5 @@
-✔ Actual Worker stays dark by default and rejects feature asset access (3339.083533ms)
-✔ Actual Worker uses real separate HQ and member sessions; commissioning stays closed (3308.678924ms)
+✔ Actual Worker stays dark by default and rejects feature asset access (3346.774939ms)
+✔ Actual Worker uses real separate HQ and member sessions; commissioning stays closed (3291.308784ms)
 ℹ tests 2
 ℹ suites 0
 ℹ pass 2
@@ -7,4 +7,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 8963.056065
+ℹ duration_ms 9016.680878

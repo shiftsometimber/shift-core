@@ -23,3 +23,4 @@ work/preview/shift-work-preview-employer.html
 work/preview/assets/work-preview.css
 work/preview/assets/work-preview.mjs
 work/review-files.txt
+work/client-results.txt

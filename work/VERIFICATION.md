@@ -25,3 +25,16 @@ Coverage includes concurrent seat contention, pre-start enrolment, expiry, hashe
 The fictional Pages preview uses the actual workplace screen/client with an explicit read-only fixture transport. It contains no accounts, raw invitation codes or real employer data. All mutations return a preview refusal and no request reaches the real API. It is visual review evidence only; local runtime tests provide separate backend evidence.
 
 Open acceptance gates: an authenticated hosted end-to-end flow with isolated remote D1; all supported mobile/browser/keyboard checks including Safari; approved privacy and retention procedures; reviewed delivery content/support; partner and clinical commissioning; production release approval. Do not infer that these passed from unit/runtime tests or fictional screenshots.
+
+## Hosted visual verification
+
+Final fictional preview: https://95e283ac.projectshift.pages.dev/shift-work-preview
+Pages commit: `2002cc69fc4f399171a60ca039b59a56fd5f6bbd`. Fingerprint: `6d31ed83d4915f958c25bbd002393661ba03b31f7968a60c91a70b331f04aa52`. Deployment workflow: https://github.com/shiftsometimber/shift-core/actions/runs/34680117338 (success).
+
+At the available 1363 × 936 browser viewport, the employee, employer and HQ screens rendered. No horizontal overflow was observed. The code field and voluntary joining checkbox are present; the fictional transport rejects mutations rather than recording a false success. The employer report demonstrates rounded group figures and an entirely suppressed small cohort. HQ shows private, unconfirmed pricing and the staff-only membership control.
+
+The browser review caught shared-CSS interference with navigation/table layout and inactive footer controls. Scoped workplace styles now resolve the layout conflict. Larger text changes the main text to 20px with pressed state; reduced motion also updates its pressed state. Menu opening reveals its backdrop and focuses Close; Escape closes it and returns focus to Menu. The HQ header/main/footer order is intact. This is not full keyboard, mobile or Safari acceptance.
+
+SEO integrity passed for 461 pages and the exact release fingerprint passed. The source comparison preserves all 871 original production files plus the four approved employer proposition files; only generated integrity records and five new fictional preview files differ. The approved PDF remains byte-identical. The actual production deployment remains `02d4d911`, checked by the release workflow.
+
+The repository also triggers a pre-existing `.github/workflows/act2b-one-shot.yml` validation failure on these branch pushes; it is separate from the successful Pages deployment. This record does not call the entire repository CI green.

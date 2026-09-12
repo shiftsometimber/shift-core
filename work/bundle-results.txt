@@ -11,7 +11,7 @@
 
 
 ✨ Read 137 files from the assets directory /workspace/scratch/f937e983e4cb/shift-work-core/frontend/member
-Total Upload: 1306.94 KiB / gzip: 323.00 KiB
+Total Upload: 1308.98 KiB / gzip: 323.62 KiB
 Your Worker has access to the following bindings:
 Binding                                                                          Resource                  
 env.SITE_CONTENT_STATE (SiteContentState)                                        Durable Object            
