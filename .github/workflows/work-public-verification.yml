@@ -1,0 +1,20 @@
+name: Verify published SHIFT for Work
+on:
+  push:
+    branches: [recovery/work-public-20260912]
+    paths:
+      - '.github/workflows/work-public-verification.yml'
+      - 'verification/rec032-public.py'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 verification/rec032-public.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REC-032-published-evidence
+          path: verification/REC-032-live-evidence.json
