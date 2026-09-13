@@ -47,6 +47,6 @@ No production configuration, key, binding, migration, DNS or deployment was chan
 
 `node --test tests/patient-intake-v2.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-stripe-retry-v1.test.mjs`
 
-28 tests pass locally: real SQLite-backed D1 interface with mocked Stripe/pharmacy transport and R2 memory binding. Includes encrypted persistence, missing evidence, required question follow-ups, urgent response, cross-account/origin denial, retry idempotency, partner reference, Journey gate, refund pending/completed and legacy retry regression. Not a real Stripe payment, real pharmacy acceptance, external lookup test or clinical sign-off.
+29 tests pass locally: real SQLite-backed D1 interface with mocked Stripe/pharmacy transport and R2 memory binding. Includes encrypted persistence, missing evidence, required question follow-ups, urgent response, cross-account/origin denial, retry idempotency, partner reference, Journey gate, refund pending/completed and legacy retry regression. Not a real Stripe payment, real pharmacy acceptance, external lookup test or clinical sign-off.
 
 Public preview is a separate, read-only Worker with no DB/R2/Stripe/pharmacy bindings. CSP blocks outbound connections. The same form runs on synthetic in-tab data; reload resets it. Public preview demonstrates UI and branching; backend persistence evidence is the automated integration tests.

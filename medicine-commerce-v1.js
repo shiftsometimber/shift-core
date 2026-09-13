@@ -652,7 +652,7 @@ async function checkout(request, env) {
         "idempotency-key": order.orderNumber,
       },
       body: stripeForm(order, item, user, env),
-    }),
+    }).catch(error=>{if(!shiftIntake)throw error;return Response.json({error:{type:'network_error',message:'Stripe connection did not complete.'}},{status:503})}),
     session = await response.json().catch(() => null);
   if (!response.ok || !session?.id || !session?.url) {
     await env.DB.batch([
@@ -669,7 +669,7 @@ async function checkout(request, env) {
     await env.DB.prepare(`UPDATE medicine_orders SET stripe_error_json=?,updated_at=? WHERE id=?`).bind(JSON.stringify(stripeError),now(),inserted.meta.last_row_id).run().catch(()=>{});
     await updateOrderReferenceStatus(env.DB,order.orderNumber,'failed');
     return json(
-      { ok: false, error: "checkout_unavailable",...(mode==='test'?{diagnostic:stripeError}:{}) },
+      { ok: false, error: "checkout_unavailable",...(shiftIntake?{retryable:true,message:"Payment could not be opened. Retry to start a new checkout attempt."}:{}),...(mode==='test'?{diagnostic:stripeError}:{}) },
       502,
       cors(request),
     );
