@@ -23,11 +23,12 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Test candidate and enforce isolated configuration
         run: |
-          node --test tests/member-refinements-preview.test.mjs tests/grub-programme-v1.test.mjs tests/afternoon-ticket-c-fit.test.mjs tests/medicine-stripe-retry-v1.test.mjs
+          node --test tests/member-refinements-preview.test.mjs preview/fit-grub/catalogue.test.mjs tests/grub-programme-v1.test.mjs tests/afternoon-ticket-c-fit.test.mjs tests/medicine-stripe-retry-v1.test.mjs
           node - <<'JS'
           const fs=require('fs'),assert=require('assert/strict'),c=JSON.parse(fs.readFileSync('preview/fit-grub/wrangler.json'));
           assert.equal(c.name,'shift-fit-grub-refinement-preview');
-          assert.deepEqual(Object.keys(c).sort(),['compatibility_date','main','name','preview_urls','workers_dev'].sort());
+          assert.deepEqual(Object.keys(c).sort(),['assets','compatibility_date','main','name','preview_urls','workers_dev'].sort());
+          assert.deepEqual(c.assets,{directory:'./public',binding:'PREVIEW_ASSETS',run_worker_first:true});
           assert.equal(c.main,'worker.js');assert.equal(c.workers_dev,true);
           JS
           node preview/fit-grub/build.mjs
@@ -40,7 +41,8 @@ jobs:
           node - <<'JS'
           const fs=require('fs'),assert=require('assert/strict');
           (async()=>{const url=fs.readFileSync('preview-deploy.txt','utf8').split(String.fromCharCode(10)).map(x=>x.trim()).find(x=>x.startsWith('https://shift-fit-grub-refinement-preview.')&&x.endsWith('.workers.dev'));assert.ok(url);
-          for(const path of ['/member/fit','/member/grub','/phone','/visuals','/visual-phone']){const r=await fetch(url+path);assert.equal(r.status,200);assert.ok(r.headers.get('content-security-policy').includes("connect-src 'none'"));assert.ok(r.headers.get('x-robots-tag').includes('noindex'));}
+          for(const path of ['/member/fit','/member/grub','/phone','/visuals','/visual-phone','/catalogue','/catalogue-summary.json','/catalogue-images/catalogue-chicken-traybake.webp']){const r=await fetch(url+path);assert.equal(r.status,200);assert.ok(r.headers.get('content-security-policy').includes("connect-src 'none'"));assert.ok(r.headers.get('x-robots-tag').includes('noindex'));}
+          assert.equal((await fetch(url+'/catalogue-images/catalogue-chicken-traybake.webp',{method:'POST'})).status,405);
           assert.equal((await fetch(url+'/v1/member/state',{method:'POST',body:'{}'})).status,405);
           fs.writeFileSync('fit-grub-preview-proof.json',JSON.stringify({url,productionChanged:false,databaseBindings:0,serviceBindings:0,externalConnectionsBlocked:true,readOnlyServer:true},null,2));console.log('PREVIEW_URL='+url);
           })().catch(e=>{console.error(e);process.exit(1)});

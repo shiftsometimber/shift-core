@@ -1,3 +1,4 @@
+import {catalogueAssets} from './catalogue-page.mjs';
 import {applyProgrammeVisuals,programmeVisualCSS} from './programme-visuals.mjs';
 import {visualReviewAssets,visualRecords} from './visual-review.mjs';
 import fs from 'node:fs';
@@ -20,4 +21,6 @@ for(const kind of ['fit','grub']){
 }
 assets['/phone']={type:'text/html',body:'<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>390px layout check</title><style>body{background:#050505;color:#e7e3da;font:16px Arial;margin:20px}iframe{display:block;width:390px;height:850px;max-width:100%;border:1px solid #707762;margin:auto}a{color:#e7e3da}</style></head><body><p>390px component layout preview · <a href="/phone?view=grub">Grub</a> · <a href="/phone?view=fit">Fit</a></p><iframe title="Phone width preview" src="/member/fit"></iframe><script>document.querySelector("iframe").src=new URLSearchParams(location.search).get("view")==="grub"?"/member/grub":"/member/fit";</script></body></html>'};
 Object.assign(assets,visualReviewAssets());
+Object.assign(assets,catalogueAssets());
+for(const path of ['/member/fit','/member/grub'])assets[path].body=assets[path].body.replace('<nav>','<nav><a href="/catalogue">Full catalogue</a>');
 fs.writeFileSync(root+'/assets.js','export default '+JSON.stringify(assets)+';\n');
