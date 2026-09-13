@@ -1,14 +1,14 @@
 # REC-038 — Contextual UK newsroom discovery, prepared 13 September 2026
 
-Status: **prepared, not deployed**. Main stays at 51342daaa3ca7f0bd95f337af7f2e8d2fe82bf32 and the REC-037 runtime remains the live release. This branch is based on that exact main.
+Status: **released after Matt’s explicit “Go live now please” instruction**. Source 169d8c1612aec0aa276162532e95adb06c2106ac; Worker 0596c9a3-42f9-4a67-ae3b-8cb311437fec. Historical preparation notes below record the earlier blocked preview.
 
 Adds a compact “From the UK newsroom” section within the existing main content of Knowledge Hub and SHIFT Health. Each has three links to published articles, corresponding UK topic-filter links and an all-UK link. Scoped styling uses the established palette and stacks at 700px. Existing main content, header, footer, metadata and journeys remain intact. No article publication, medicines, pricing, clinical gates, member sends, social posts, homepage or ticker changes.
 
 Local verification before the runtime stopped responding: 32 focused tests passed, plus the three existing navigation/auth source gates. All five distinct article destinations returned 200 and their expected article headings. A dedicated read-only GitHub workflow rechecks the saved source. This is not a claim that the full repository suite passes.
 
-The desktop/mobile preview remains outstanding. Starting the local preview server returned EPERM and reset the preview runtime. A browser reconnection failed; subsequent environment calls stopped returning. No alternate port, browser automation surface or access-control workaround was attempted. The tested source was preserved through the authorised GitHub connector. No production release should be represented as completed.
+At initial preparation, the desktop/mobile preview remained outstanding. Starting the local preview server returned EPERM and reset the preview runtime. A browser reconnection failed; subsequent environment calls stopped returning. No alternate port, browser automation surface or access-control workaround was attempted. The tested source was preserved through the authorised GitHub connector. No production release had occurred at that stage.
 
-To finish: restore normal preview access, render the two actual pages at desktop and 390px, inspect the new section and topic-link/filter behaviour, and run the existing REC-035 before/after preservation guard for a tightly scoped release. Recheck current main and Worker identity first. Do not rerun the old REC-037 release workflow: its pre-release identity guard is stale. Record the actual new release and screenshot only after they exist.
+The original resumption plan was to restore normal preview access, render the two actual pages at desktop and 390px, inspect the new section and topic-link/filter behaviour, and run the existing REC-035 before/after preservation guard for a tightly scoped release. Recheck current main and Worker identity first. Do not rerun the old REC-037 release workflow: its pre-release identity guard is stale. Record the actual new release and screenshot only after they exist.
 
 ## Next UK reporting priorities
 
@@ -22,4 +22,12 @@ BARCODE remains held: search snippets are insufficient to replace an inspected p
 
 ## Saved-source verification
 
-The [dedicated check run](https://github.com/shiftsometimber/shift-core/actions/runs/34757788288) succeeded on commit bc747bb1d9bc5fb0b638a84e048adc6b73de4ac6: all 32 focused tests, the three existing source gates, and all five published reading destinations passed. This job contains no deployment or credentials. An unrelated pre-existing act2b-one-shot workflow validation failure remains outside this change. Visual verification and production deployment are still outstanding.
+The [dedicated check run](https://github.com/shiftsometimber/shift-core/actions/runs/34757788288) succeeded on commit bc747bb1d9bc5fb0b638a84e048adc6b73de4ac6: all 32 focused tests, the three existing source gates, and all five published reading destinations passed. This job contains no deployment or credentials. An unrelated pre-existing act2b-one-shot workflow validation failure remains outside this change. Visual verification and production deployment were outstanding at that checkpoint.
+
+## Production release
+
+[Release run 34759343882](https://github.com/shiftsometimber/shift-core/actions/runs/34759343882), job 103729243950, completed successfully. Deployed source 169d8c1612aec0aa276162532e95adb06c2106ac, tree 1a2ed0257603353d9407cbff574f373fb70979a7, Worker 0596c9a3-42f9-4a67-ae3b-8cb311437fec. The pre-release main and runtime guards passed. All 32 focused tests and the existing source gates passed. Both live reading sections appeared once, all five destination pages returned 200, and all 51 UK / 156 total articles remain published.
+
+The complete existing Knowledge Hub and SHIFT Health HTML, after removing only the two added reading/style sections, matched their before-release SHA-256 values. REC-035 independently confirmed the locked homepage, Start Here, selected treatment workspace, SHIFT for Work, login and shared header assets were preserved. No database writes, publication changes, migrations, sends or Pages deployment were part of this release.
+
+Actual live browser checks confirmed both reading sections render, the UK mental-health link selects both filters and returns 21 matching articles with zero wrong-topic/wrong-region results, and the SHIFT Health desktop page has no horizontal overflow. The browser has no supported viewport-resize capability; no new 390px browser claim is made.
