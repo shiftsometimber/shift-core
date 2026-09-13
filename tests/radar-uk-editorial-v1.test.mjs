@@ -36,3 +36,11 @@ test('UK grouping preserves articles and their order within each section', () =>
   assert.deepEqual(result.international.map(x => x.id), [1]);
   assert.equal(rows[2].region, 'GLOBAL');
 });
+test('four-nation mental-health archive reaches HQ without admitting global or unknown sources', () => {
+  for (const [region, regulator] of [['England','Department of Health and Social Care'],['Wales','Welsh Government'],['Scotland','Scottish Government'],['Northern Ireland','Department of Health Northern Ireland'],['UK','Mental Health UK']]) {
+    assert.equal(isRelevantRadarRow({region, regulator, headline:'Mental health services and support update'}), true);
+    assert.equal(isRelevantRadarRow({region:'GLOBAL', regulator, headline:'Mental health services and support update'}), false);
+  }
+  assert.equal(isRelevantNewsItem({region:'UK',authority:'Unverified health blog'}, {title:'Mental health services'}), false);
+  assert.equal(isRelevantNewsItem({region:'England',authority:'NHS England'}, {title:'Men and NHS talking therapies'}), true);
+});

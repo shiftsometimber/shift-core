@@ -16,7 +16,7 @@ export const TOPIC_FILTERS = [
   ['safety','Safety & side effects',/\b(safety|side effects?|adverse|risk|warning\w*|recall\w*|falsified|pancreatitis|naion)\b/i],
   ['research','Research & clinical trials',/\b(research\w*|trial\w*|stud(?:y|ies)|cohort|preprint|meta-analysis|review)\b/i],
   ['weight','Weight, nutrition & muscle',/\b(weight|obesity|obese|overweight|nutrition\w*|diet\w*|muscle|lean mass|sarcopen\w*)\b/i],
-  ['mental-health','Mental health & wellbeing',/\b(mental health|wellbeing|anxiety|depression|suicid\w*|alcohol|binge[- ]eating)\b/i],
+  ['mental-health','Mental health & wellbeing',/\b(mental[- ]health|talking therapies|burnout|wellbeing|anxiety|depression|suicid\w*|alcohol|binge[- ]eating)\b/i],
   ['heart-metabolic','Heart & metabolic health',/\b(heart|cardiovascular|blood pressure|hypertension|cholesterol|diabetes|metabolic|kidney|liver)\b/i],
 ];
 export function classifyNewsFilters(row={}) {

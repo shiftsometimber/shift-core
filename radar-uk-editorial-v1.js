@@ -1,12 +1,13 @@
 const WEIGHT = /\b(obesity|overweight|weight[- ]?loss|weight management|anti-obesity|glp[- ]?1|glucagon-like peptide[- ]?1|semaglutide|tirzepatide|liraglutide|orlistat|retatrutide|orforglipron|cagrisema|cagrilintide|mounjaro|wegovy|saxenda|foundayo)\b/i;
-const UK_HEALTH = /\b(pharmac(?:y|ies|ist|ists)|pharmacy first|prescrib\w*|blood pressure|hypertension|cholesterol|diabetes|mental health|depression|anxiety|men'?s health|prostate|testosterone|erectile|sleep apnoea|sleep apnea|smoking|stop smoking|flu jab\w*|vaccin\w*|screening|nhs access|waiting lists?|GP appointments?)\b/i;
+const UK_HEALTH = /\b(pharmac(?:y|ies|ist|ists)|pharmacy first|prescrib\w*|blood pressure|hypertension|cholesterol|diabetes|mental[- ]health|talking therapies|burnout|depression|anxiety|men['’]?s health|prostate|testosterone|erectile|sleep apnoea|sleep apnea|smoking|stop smoking|flu jab\w*|vaccin\w*|screening|nhs access|waiting lists?|GP appointments?)\b/i;
 const UK_REGIONS = new Set(['UK', 'England', 'Scotland', 'Wales', 'Northern Ireland']);
+const UK_HEALTH_AUTHORITIES = new Set(['NHS England', 'MHRA', 'NICE', 'Department of Health and Social Care', 'Welsh Government', 'Scottish Government', 'Department of Health Northern Ireland', 'Mental Health UK']);
 export const REQUIRED_UK_NEWS_SOURCES = ['nhs-england-news', 'mhra-announcements'];
 export function isRelevantNewsItem(source = {}, item = {}) {
   const text = `${item.title || ''} ${item.summary || ''}`;
   if (WEIGHT.test(text)) return true;
-  // Broader health belongs only to UK public-authority feeds, not research-index noise.
-  return UK_REGIONS.has(source.region) && /^(NHS England|MHRA)$/.test(source.authority || '') && UK_HEALTH.test(text);
+  // Explicit UK authority/primary-charity sources only; evidence verification remains separate.
+  return UK_REGIONS.has(source.region) && UK_HEALTH_AUTHORITIES.has(source.authority || '') && UK_HEALTH.test(text);
 }
 export function newsRegion(source = {}, item = {}) {
   if (UK_REGIONS.has(source.region)) return source.region;
