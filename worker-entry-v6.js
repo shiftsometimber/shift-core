@@ -1,3 +1,5 @@
+import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
+import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
@@ -447,21 +449,18 @@ async function publicSitemapWithReviewedMentalHealth(request, env) {
   );
   if (!response.ok) return response;
   let xml = await response.text();
-  const { results: publishedNews = [] } = await env.DB.prepare("SELECT content_package_json FROM radar_events WHERE status='published' ORDER BY id DESC LIMIT 500").all();
-  const newsroomPaths = publishedNews.flatMap((row) => {
-    let content = {}; try { content = JSON.parse(row.content_package_json || "{}"); } catch {}
-    const destinations = Array.isArray(content.destinations) ? content.destinations : [];
-    const slug = String(content.seo?.slug || "").split("/").filter(Boolean).join("/");
-    const child = slug.startsWith("medicine-news/") ? slug.slice("medicine-news/".length) : "";
-    return destinations.includes("medicine_news") && /^[a-z0-9][a-z0-9-]+$/.test(child) ? ["/" + slug] : [];
-  });
-  const requiredPaths = [...new Set([...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS, ...newsroomPaths])];
+  const { results: publishedNews = [] } = await env.DB.prepare("SELECT content_package_json,updated_at,reviewed_at,created_at FROM radar_events WHERE status='published' ORDER BY id DESC LIMIT 500").all();
+  const newsDates = newsSitemapDates(publishedNews);
+  const newsroomPaths = [...newsDates.keys()];
+  for (const [path,date] of newsDates) xml = setSitemapDate(xml,path,date);
+  for (const path of [STATS_PATH,'/editorial-standards']) xml = setSitemapDate(xml,path,RESOURCE_UPDATED);
+  const requiredPaths = [...new Set([...REVIEWED_MENTAL_HEALTH_PATHS, ...PRIORITY_PUBLIC_PATHS, STATS_PATH, "/editorial-standards", ...newsroomPaths])];
   const additions = requiredPaths.filter(
     (path) => !xml.includes(`<loc>https://shiftsometimber.co.uk${path}</loc>`),
   )
     .map(
       (path) =>
-        `<url><loc>https://shiftsometimber.co.uk${path}</loc><lastmod>2026-09-03</lastmod></url>`,
+        `<url><loc>https://shiftsometimber.co.uk${path}</loc>${newsDates.has(path) ? (newsDates.get(path) ? `<lastmod>${newsDates.get(path)}</lastmod>` : "") : [STATS_PATH,"/editorial-standards"].includes(path) ? `<lastmod>${RESOURCE_UPDATED}</lastmod>` : ""}</url>`,
     )
     .join("");
   if (additions && xml.includes("</urlset>"))
@@ -904,7 +903,7 @@ export default {
     const newsroomPage = await radarNewsPageRoutes(request, env);
     if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request);
+      return withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request);
     }
     let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
