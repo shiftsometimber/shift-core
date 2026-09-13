@@ -1,0 +1,24 @@
+{
+  "previewUrl": "https://shift-patient-intake-preview.matobrien.workers.dev/patient-intake?demo=1",
+  "phoneUrl": "https://shift-patient-intake-preview.matobrien.workers.dev/phone.html",
+  "previewCommit": "d2c7f64aa860cca1201311aaf3b22283647d1b16",
+  "previewWorkerVersion": "3cea41a5-dd43-4531-bc77-06cfcbe8b095",
+  "previewWorkflowRun": 34783811453,
+  "previewWorkflowConclusion": "success",
+  "mainBeforeAndAfter": "ef72fc99f6bf827d3dc161e90976c17c8617e17b",
+  "backendTests": {"passed":29,"failed":0,"transport":"mock Stripe/pharmacy, SQLite D1, memory R2"},
+  "browserChecks": {
+    "desktopFormRendered":true,
+    "mobileViewportWidth":390,
+    "mobileBodyClientWidth":388,
+    "mobileBodyScrollWidth":388,
+    "sampleAddressSelection":true,
+    "sampleGpSelection":true,
+    "weightConversion":{"inputKg":92.4,"outputStone":14,"outputLb":7.7},
+    "heightConversion":{"inputCm":173,"outputFeet":5,"outputInches":8.1},
+    "mentalHealthYesRevealsDetails":true,
+    "switchingRevealsPreviousMedicineAndEvidence":true
+  },
+  "limits":["Preview uses synthetic browser-memory data and resets on reload","No real Stripe transaction or pharmacy API call performed","Live address and GP provider adapters not configured","Questionnaire remains a draft awaiting pharmacy approval","Real clinical data storage and governance remain uncommissioned"],
+  "notes":["Initial static-asset redirect loop corrected before this verification","Unrelated pre-existing act2b-one-shot workflow validation fails without running a job; main remains unchanged","Phone screenshots are not included in this evidence pack; mobile overflow was measured from rendered DOM"]
+}

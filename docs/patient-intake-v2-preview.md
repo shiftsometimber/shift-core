@@ -50,3 +50,9 @@ No production configuration, key, binding, migration, DNS or deployment was chan
 29 tests pass locally: real SQLite-backed D1 interface with mocked Stripe/pharmacy transport and R2 memory binding. Includes encrypted persistence, missing evidence, required question follow-ups, urgent response, cross-account/origin denial, retry idempotency, partner reference, Journey gate, refund pending/completed and legacy retry regression. Not a real Stripe payment, real pharmacy acceptance, external lookup test or clinical sign-off.
 
 Public preview is a separate, read-only Worker with no DB/R2/Stripe/pharmacy bindings. CSP blocks outbound connections. The same form runs on synthetic in-tab data; reload resets it. Public preview demonstrates UI and branching; backend persistence evidence is the automated integration tests.
+
+## Browser verification
+
+Preview: https://shift-patient-intake-preview.matobrien.workers.dev/patient-intake?demo=1
+
+Rendered browser checks and production main fingerprint: `docs/evidence/patient-intake-v2/browser-proof.json`. The attached desktop and mental-health screenshots show the form; later changes were mobile spacing and checkout retry/copy fixes. Public demo cannot prove live persistence; the SQLite integration test does test encrypted save/resume.

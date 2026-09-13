@@ -22,11 +22,11 @@ async function loadCatalogue(){
     const sync=()=>{
       const o=select.selectedOptions[0],available=o?.dataset.status==='available';
       let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${o?.value}`)||'null')}catch{}
-      const verified=shiftIntake||verification?.token&&Date.parse(verification.expiresAt)>Date.now();
+      const verified=verification?.token&&Date.parse(verification.expiresAt)>Date.now();
       $('price').textContent=o?.dataset.price?money(o.dataset.price):'—';
-      $('stockMessage').textContent=available?(verified?'Verification accepted · payment ready':'Available · verification required before payment'):slug==='foundayo'?'Formulary and partner supply not yet confirmed':'Currently out of stock';
+      $('stockMessage').textContent=available?(shiftIntake?'Available · clinical assessment follows payment':verified?'Verification accepted · payment ready':'Available · verification required before payment'):slug==='foundayo'?'Formulary and partner supply not yet confirmed':'Currently out of stock';
       button.disabled=!available;
-      button.textContent=!available?'Currently unavailable':verified?'Continue to secure payment':'Continue to verification';
+      button.textContent=!available?'Currently unavailable':(shiftIntake||verified)?'Continue to secure payment':'Continue to verification';
     };
     select.onchange=sync;sync();
     button.onclick=async()=>{
