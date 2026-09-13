@@ -23,8 +23,8 @@ jobs:
           npx wrangler deployments list --config wrangler.jsonc --json
           npx wrangler d1 execute shift-core-db --remote --command "SELECT id,headline,region,regulator,status FROM radar_events WHERE id BETWEEN 310 AND 336 ORDER BY id"
           node --input-type=module - <<'JS'
-          const response=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core/content',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
+          const response=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
           if(!response.ok)throw Error('Script inspection HTTP '+response.status);
           const code=await response.text();
-          console.log(JSON.stringify({compiledScriptContainsNewAuthorities:code.includes('Public Health Scotland'),compiledScriptContainsADHD:code.includes('GP walk-in|ADHD|HeartFlow'),length:code.length}));
+          console.log(JSON.stringify({compiledScriptContainsNewAuthorities:code.includes('Public Health Scotland'),compiledScriptContainsADHD:code.includes('GP walk-in|ADHD|HeartFlow'),ukHealthPattern:code.match(/(?:var|const) UK_HEALTH[^;]+/)?.[0],authorityPattern:code.match(/(?:var|const) UK_HEALTH_AUTHORITIES[^;]+/)?.[0],length:code.length}));
           JS
