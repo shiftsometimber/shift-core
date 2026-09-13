@@ -1,4 +1,5 @@
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
+import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
@@ -584,7 +585,7 @@ export default {
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/shift-health" || path === "/shift-health.html")
     )
-      return publicPagesAsset(request, "/shift-health");
+      return withNewsroomReading(await publicPagesAsset(request, "/shift-health"), request);
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       path.startsWith("/shift-health/") &&
@@ -903,7 +904,7 @@ export default {
     const newsroomPage = await radarNewsPageRoutes(request, env);
     if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return rewritePublicLoungeChrome(await act2bPagesContent(request));
+      return withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request);
     }
     let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
