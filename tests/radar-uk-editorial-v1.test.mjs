@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { isRelevantNewsItem, newsRegion, ukCoverage, partitionNewsRows } from '../radar-uk-editorial-v1.js';
 import { AUTHORITATIVE_RADAR_SOURCES, parseAuthoritativeFeed } from '../radar-authoritative-scan-v1.js';
-import { isRelevantRadarRow } from '../radar-integration-v1.js';
+import { isRelevantRadarRow, radarSeoPackage } from '../radar-integration-v1.js';
 
 test('NHS pharmacy announcement survives feed and HQ relevance filters', () => {
   const source = AUTHORITATIVE_RADAR_SOURCES.find(x => x.id === 'nhs-england-news');
@@ -44,3 +44,13 @@ test('four-nation mental-health archive reaches HQ without admitting global or u
   assert.equal(isRelevantNewsItem({region:'UK',authority:'Unverified health blog'}, {title:'Mental health services'}), false);
   assert.equal(isRelevantNewsItem({region:'England',authority:'NHS England'}, {title:'Men and NHS talking therapies'}), true);
 });
+
+ test('partial HQ SEO edits retain the SHIFT publication date and author, not the source date', () => {
+  const publication='2026-09-13T07:35:00.000Z';
+  const row={headline:'UK archive weight management research',source_evidence_json:JSON.stringify([{source_date:'2025-08-04',url:'https://www.ucl.ac.uk/news/study'}]),content_package_json:JSON.stringify({seo:{datePublished:publication,author:'SHIFT Newsroom'}})};
+  const result=radarSeoPackage({headline:row.headline,standfirst:'Original UK research explained with clear context, evidence and limitations for readers.',known_facts:[{claim:'UK study'}],seo:{title:'An edited title about UK weight research'}},row);
+  assert.equal(result.seo.datePublished,publication);
+  assert.equal(result.seo.author,'SHIFT Newsroom');
+  assert.equal(result.seo.title,'An edited title about UK weight research');
+  assert.deepEqual(result.errors,[]);
+ });

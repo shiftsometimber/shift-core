@@ -41,7 +41,7 @@ jobs:
           import json
           d=json.load(open('uk-archive-deployment-before.json'))
           latest=max(d,key=lambda x:x['created_on'])
-          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='43840d70-c611-4459-a724-4c351587c86b', 'Worker moved; refuse stale release'
+          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='43a913ff-d449-4448-988c-52b42b93c4fe', 'Worker moved; refuse stale release'
           PY
           node verification/rec035-newsroom-live.mjs before
       - name: Deploy UK editorial relevance extension
@@ -53,8 +53,8 @@ jobs:
             if [ "$attempt" -lt 4 ]; then sleep 10; fi
           done
           exit 1
-      - name: Prepare UK archive drafts for normal HQ approval
-        run: node verification/rec036-prepare-uk-archive.mjs --remote
+      - name: Correct archive publication metadata after HQ approval
+        run: node verification/rec036-correct-archive-metadata.mjs --remote
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -63,4 +63,4 @@ jobs:
             uk-archive-deployment-before.json
             newsroom-public-before.json
             newsroom-live-proof.json
-            uk-archive-preparation.json
+            uk-archive-metadata-correction.json
