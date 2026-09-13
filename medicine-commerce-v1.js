@@ -1,4 +1,4 @@
-import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
 import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';
 
@@ -681,8 +681,10 @@ async function webhook(request, env, ctx) {
   )
     .bind(clean(event.id, 200), clean(event.type, 100), now())
     .run();
-  if (Number(inserted.meta?.changes || 0) !== 1)
-    return json({ ok: true, duplicate: true });
+  if (Number(inserted.meta?.changes || 0) !== 1) {
+    const previous = await env.DB.prepare("SELECT processed_at FROM medicine_stripe_events WHERE stripe_event_id=?").bind(event.id).first();
+    if (previous?.processed_at) return json({ ok: true, duplicate: true });
+  }
   const session = event.data.object,
     number = clean(
       session.metadata?.order_number || session.client_reference_id,
@@ -693,56 +695,44 @@ async function webhook(request, env, ctx) {
     )
       .bind(number)
       .first();
-  if (!order) return json({ ok: true, ignored: true });
+  // A transient lookup failure must stay retryable, not be acknowledged as complete.
+  if (!order) return json({ ok: false, error: "medicine_order_not_found" }, 503);
+  await ensureOrderReferenceRegistry(env.DB);
+  let notifyPaid = false;
   try {
-    if (
-      [
-        "checkout.session.completed",
-        "checkout.session.async_payment_succeeded",
-      ].includes(event.type) &&
-      session.payment_status === "paid"
-    ) {
-      await env.DB.batch([
-        env.DB.prepare(
-          `UPDATE medicine_orders SET status='paid',clinical_status='assessment_pending',clinical_updated_at=?,stripe_payment_intent_id=?,updated_at=? WHERE id=?`,
-        ).bind(now(), clean(session.payment_intent, 200), now(), order.id),
-        env.DB.prepare(
-          `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),stock_on_hand=MAX(0,stock_on_hand-1),updated_at=? WHERE variant_id=?`,
-        ).bind(now(), order.variant_id),
-      ]);
-      await updateOrderReferenceStatus(env.DB,number,'paid');
-      const mail=medicineEmailTemplates.orderConfirmation({orderNumber:number});
-      const delivery=sendTransactionalEmail(env,{to:order.email,userId:order.user_id,internalNotify:true,includeMatt:true,...mail});
-      if(ctx?.waitUntil) ctx.waitUntil(delivery); else await delivery;
-    } else if (
-      [
-        "checkout.session.expired",
-        "checkout.session.async_payment_failed",
-        "payment_intent.payment_failed",
-      ].includes(event.type)
-    ) {
-      await env.DB.batch([
-        env.DB.prepare(
-          `UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=?`,
-        ).bind(now(), order.id),
-        env.DB.prepare(
-          `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`,
-        ).bind(now(), order.variant_id),
-      ]);
-      await updateOrderReferenceStatus(env.DB,number,'failed');
+    const stamp = now(), statements = [];
+    const paid = ["checkout.session.completed", "checkout.session.async_payment_succeeded"].includes(event.type) && session.payment_status === "paid";
+    const failed = ["checkout.session.expired", "checkout.session.async_payment_failed", "payment_intent.payment_failed"].includes(event.type);
+    // Conditions are evaluated inside the transaction, not against the earlier read.
+    // Distinct Stripe events and concurrent deliveries must settle one order only once.
+    const payable = "status IN ('pending','checkout_open','failed','expired')";
+    const reserved = "status IN ('pending','checkout_open')";
+    if (paid) {
+      statements.push(
+        env.DB.prepare(`UPDATE medicine_inventory SET stock_on_hand=MAX(0,stock_on_hand-1),reserved=MAX(0,reserved-CASE WHEN EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${reserved}) THEN 1 ELSE 0 END),updated_at=? WHERE variant_id=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${payable})`).bind(order.id,stamp,order.variant_id,order.id),
+        env.DB.prepare(`UPDATE order_reference_registry SET status='paid',updated_at=? WHERE order_number=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${payable})`).bind(stamp,number,order.id),
+        env.DB.prepare(`UPDATE medicine_orders SET status='paid',clinical_status='assessment_pending',clinical_updated_at=?,stripe_payment_intent_id=?,updated_at=? WHERE id=? AND ${payable}`).bind(stamp,clean(session.payment_intent,200),stamp,order.id)
+      );
+    } else if (failed) {
+      statements.push(
+        env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${reserved})`).bind(stamp,order.variant_id,order.id),
+        env.DB.prepare(`UPDATE order_reference_registry SET status='failed',updated_at=? WHERE order_number=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${reserved})`).bind(stamp,number,order.id),
+        env.DB.prepare(`UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=? AND ${reserved}`).bind(stamp,order.id)
+      );
     }
-    await env.DB.prepare(
-      "UPDATE medicine_stripe_events SET processed_at=? WHERE stripe_event_id=?",
-    )
-      .bind(now(), event.id)
-      .run();
+    // The event is complete only when order, inventory and registry commit together.
+    statements.push(env.DB.prepare("UPDATE medicine_stripe_events SET processed_at=?,processing_error=NULL WHERE stripe_event_id=?").bind(stamp,event.id));
+    const result = await env.DB.batch(statements);
+    notifyPaid = paid && Number(result[2]?.meta?.changes || 0) === 1;
   } catch (error) {
-    await env.DB.prepare(
-      "UPDATE medicine_stripe_events SET processing_error=? WHERE stripe_event_id=?",
-    )
-      .bind(clean(error?.message, 1000), event.id)
-      .run();
+    await env.DB.prepare("UPDATE medicine_stripe_events SET processing_error=? WHERE stripe_event_id=? AND processed_at IS NULL")
+      .bind(clean(error?.message,1000),event.id).run().catch(()=>{});
     throw error;
+  }
+  if (notifyPaid) {
+    const mail=medicineEmailTemplates.orderConfirmation({orderNumber:number});
+    const delivery=sendTransactionalEmail(env,{to:order.email,userId:order.user_id,internalNotify:true,includeMatt:true,...mail});
+    if(ctx?.waitUntil) ctx.waitUntil(delivery); else await delivery;
   }
   return json({ ok: true });
 }
