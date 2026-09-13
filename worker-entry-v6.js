@@ -142,6 +142,9 @@ const GIT_MEMBER_ASSETS = new Map([
   ["/tap-room-general.webp", "image/webp"],
   ["/member-my-journey-checkin-v1.js", "application/javascript; charset=utf-8"],
   ["/member-my-journey-checkin-v1.css", "text/css; charset=utf-8"],
+  ["/patient-intake.html", "text/html; charset=utf-8"],
+  ["/patient-intake.js", "application/javascript; charset=utf-8"],
+  ["/patient-intake.css", "text/css; charset=utf-8"],
   ["/treatment-assessment.html", "text/html; charset=utf-8"],
   ["/treatment-assessment.js", "application/javascript; charset=utf-8"],
   ["/clinical-intake-v1.css", "text/css; charset=utf-8"],
@@ -624,6 +627,11 @@ export default {
       legacyFaqRedirects[path]
     )
       return Response.redirect(new URL(legacyFaqRedirects[path], request.url), 301);
+    if ((request.method === 'GET' || request.method === 'HEAD') && ['/patient-intake','/patient-intake.html','/treatment-checkout'].includes(path)) {
+      if(env.MEDICINE_INTAKE_V2_ENABLED!=='true')return new Response('Not found',{status:404});
+      const response=await gitMemberAsset('/patient-intake.html',env);
+      return response?privatePageHeaders(response):new Response('Assessment unavailable',{status:503});
+    }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/treatment-assessment" ||

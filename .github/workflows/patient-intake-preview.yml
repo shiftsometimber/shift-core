@@ -1,0 +1,42 @@
+name: SHIFT patient intake isolated preview
+on:
+  push:
+    branches: [preview/shift-patient-intake-20260913]
+permissions:
+  contents: read
+concurrency:
+  group: shift-patient-intake-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Verify candidate and legacy payment flow
+        run: node --test tests/patient-intake-v2.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-stripe-retry-v1.test.mjs | tee patient-intake-tests.txt
+      - name: Enforce isolated preview configuration
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),assert=require('assert/strict'),c=JSON.parse(fs.readFileSync('preview/patient-intake/wrangler.json'));
+          assert.equal(c.name,'shift-patient-intake-preview');
+          assert.deepEqual(Object.keys(c).sort(),['name','main','compatibility_date','workers_dev','preview_urls','assets'].sort());
+          assert.equal(c.main,'worker.js');assert.deepEqual(c.assets,{directory:'./public',binding:'PREVIEW_ASSETS',run_worker_first:true});
+          JS
+          node preview/patient-intake/build.mjs
+      - name: Publish synthetic preview only
+        run: npx wrangler deploy --config preview/patient-intake/wrangler.json 2>&1 | tee patient-intake-preview-deploy.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: patient-intake-preview-evidence
+          path: |
+            patient-intake-tests.txt
+            patient-intake-preview-deploy.txt

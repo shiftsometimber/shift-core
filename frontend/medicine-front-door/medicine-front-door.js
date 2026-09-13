@@ -14,6 +14,7 @@ async function loadCatalogue(){
   const select=$('variant'),button=$('continue');
   try{
     const r=await fetch(`${API}/v1/catalogue/medicines`,{credentials:'include'}),b=await r.json();
+    const shiftIntake=b.intakeFlow==='shift_v2';
     const product=(b.products||[]).find(x=>String(x.name).toLowerCase()===config.match);
     if(!product)throw Error('not-listed');
     select.innerHTML=product.variants.map(v=>`<option value="${v.id}" data-price="${v.pricePence}" data-status="${v.status}">${v.strengthLabel} · ${money(v.pricePence)} · ${v.status==='available'?'In stock':'Out of stock'}</option>`).join('')||'<option>No current variants</option>';
@@ -21,7 +22,7 @@ async function loadCatalogue(){
     const sync=()=>{
       const o=select.selectedOptions[0],available=o?.dataset.status==='available';
       let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${o?.value}`)||'null')}catch{}
-      const verified=verification?.token&&Date.parse(verification.expiresAt)>Date.now();
+      const verified=shiftIntake||verification?.token&&Date.parse(verification.expiresAt)>Date.now();
       $('price').textContent=o?.dataset.price?money(o.dataset.price):'—';
       $('stockMessage').textContent=available?(verified?'Verification accepted · payment ready':'Available · verification required before payment'):slug==='foundayo'?'Formulary and partner supply not yet confirmed':'Currently out of stock';
       button.disabled=!available;
@@ -30,6 +31,7 @@ async function loadCatalogue(){
     select.onchange=sync;sync();
     button.onclick=async()=>{
       const variantId=Number(select.value);
+      if(shiftIntake){location.assign(`/treatment-checkout?variant=${variantId}`);return}
       let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${variantId}`)||'null')}catch{}
       if(!verification?.token||Date.parse(verification.expiresAt)<=Date.now()){
         location.assign(`/treatment-assessment?variant=${encodeURIComponent(variantId)}&returnTo=${encodeURIComponent(location.pathname+location.search)}`);

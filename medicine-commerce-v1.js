@@ -1,3 +1,5 @@
+import {policyApproved} from './patient-questionnaire-v2.js';
+import {intakeEnabled,intakeReady,patientIntakeRoutes} from './patient-intake-v2.js';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
 import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';
@@ -178,6 +180,10 @@ async function schema(env) {
       `CREATE TABLE IF NOT EXISTS medicine_clinical_intakes (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,variant_id INTEGER NOT NULL,public_reference TEXT NOT NULL UNIQUE,partner_reference TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'submitted',gp_contact_consent INTEGER NOT NULL,consent_version TEXT NOT NULL,evidence_manifest_json TEXT NOT NULL,verification_issued_at TEXT,submitted_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
     ),
   ]);
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN intake_flow TEXT NOT NULL DEFAULT 'partner_v1'`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN checkout_request_id TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN stripe_checkout_url TEXT`).run().catch(()=>{});
+  await env.DB.prepare(`CREATE UNIQUE INDEX IF NOT EXISTS medicine_checkout_request_v2 ON medicine_orders(user_id,checkout_request_id) WHERE checkout_request_id IS NOT NULL`).run();
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN stripe_error_json TEXT`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_status TEXT NOT NULL DEFAULT 'not_started'`).run().catch(()=>{});
   await env.DB.prepare(`ALTER TABLE medicine_orders ADD COLUMN clinical_reason_code TEXT`).run().catch(()=>{});
@@ -319,6 +325,8 @@ function memberTreatmentView(order, setupComplete) {
     fulfilled: ["Treatment delivered", "Keep the weekly My Journey check-in going; reorder opens only when eligible."],
   }[clinicalStatus] || ["Treatment update", "Your latest treatment status is shown here."];
   return {
+    intakeFlow: order.intake_flow || "partner_v1",
+    assessmentUrl: order.intake_flow === "shift_v2" ? `/patient-intake?order=${encodeURIComponent(order.order_number)}` : null,
     orderNumber: order.order_number,
     variantId: Number(order.variant_id),
     medicineName: order.medicine_name,
@@ -445,7 +453,7 @@ function stripeForm(order, item, user, env) {
   put("payment_method_types[0]", "card");
   put(
     "success_url",
-    `${siteUrl(env)}/order-success?session_id={CHECKOUT_SESSION_ID}`,
+    intakeEnabled(env) ? `${siteUrl(env)}/patient-intake?session_id={CHECKOUT_SESSION_ID}` : `${siteUrl(env)}/order-success?session_id={CHECKOUT_SESSION_ID}`,
   );
   put("cancel_url", `${siteUrl(env)}/treatment-order?checkout=cancelled`);
   put("client_reference_id", order.orderNumber);
@@ -512,6 +520,19 @@ async function checkout(request, env) {
     variantId = Number(input?.variantId);
   if (!Number.isInteger(variantId) || variantId < 1)
     return json({ ok: false, error: "invalid_variant" }, 400, cors(request));
+  const shiftIntake=intakeEnabled(env);
+  if(shiftIntake){
+    if(!intakeReady(env))return json({ok:false,error:'secure_intake_not_configured'},503,cors(request));
+    if(input?.assessmentTermsAccepted!==true)return json({ok:false,error:'assessment_terms_required'},400,cors(request));
+    if(!/^[a-f0-9-]{36}$/i.test(input?.checkoutRequestId||''))return json({ok:false,error:'checkout_request_id_required'},400,cors(request));
+    const previous=await env.DB.prepare('SELECT * FROM medicine_orders WHERE user_id=? AND checkout_request_id=?').bind(user.id,input.checkoutRequestId).first();
+    if(previous){
+      if(previous.variant_id!==variantId)return json({error:'checkout_request_mismatch'},409,cors(request));
+      if(previous.status==='paid')return json({ok:true,orderNumber:previous.order_number,checkoutUrl:`${siteUrl(env)}/patient-intake?order=${encodeURIComponent(previous.order_number)}`},200,cors(request));
+      if(previous.status==='checkout_open'&&previous.stripe_checkout_url)return json({ok:true,orderNumber:previous.order_number,checkoutUrl:previous.stripe_checkout_url},200,cors(request));
+      return json({error:'checkout_in_progress_or_expired',message:'This payment attempt is pending or closed. Check My Timber before starting another payment.'},409,cors(request));
+    }
+  }
   let reorderOf = null;
   const reorderNumber = clean(input?.reorderOfOrderNumber, 80);
   if (reorderNumber) {
@@ -525,7 +546,7 @@ async function checkout(request, env) {
   }
   const verificationToken=clean(input?.verificationToken,160);
   let verification=null,verificationHash='';
-  if (!reorderOf) {
+  if (!reorderOf && !shiftIntake) {
     if (!verificationToken) return json({ok:false,error:"prepay_verification_required",message:"Complete verification before payment."},409,cors(request));
     verificationHash=await sha256(verificationToken);
     verification=await env.DB.prepare(`SELECT token_hash,partner_reference,expires_at FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?`).bind(verificationHash,user.id,variantId,now()).first();
@@ -537,6 +558,7 @@ async function checkout(request, env) {
     .bind(variantId)
     .first();
   const checkoutTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+  if(shiftIntake&&item&&!policyApproved(env,item.name))return json({error:'clinical_questionnaire_not_commissioned',message:'This treatment assessment is awaiting pharmacy approval. No payment has been taken.'},503,cors(request));
   if (!checkoutTruth?.canBuy)
     return json(
       { ok: false, error: "out_of_stock", message: "Currently out of stock." },
@@ -592,8 +614,9 @@ async function checkout(request, env) {
     totalPence: Number(item.selling_price_pence) - Number(offer?.amount || 0),
   };
   const stamp = now();
-  const inserted = await env.DB.prepare(
-    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+  let inserted;
+  try { inserted = await env.DB.prepare(
+    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,created_at,updated_at,intake_flow,checkout_request_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
   )
     .bind(
       order.orderNumber,
@@ -611,8 +634,15 @@ async function checkout(request, env) {
       verification ? stamp : null,
       stamp,
       stamp,
+      shiftIntake ? "shift_v2" : "partner_v1",
+      shiftIntake ? input.checkoutRequestId : null,
     )
     .run();
+  } catch(error) {
+    await env.DB.prepare('UPDATE medicine_inventory SET reserved=MAX(0,reserved-1) WHERE variant_id=?').bind(variantId).run();
+    if(verification)await env.DB.prepare('UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?').bind(verificationHash,verificationClaimedAt).run();
+    return json({error:'order_creation_conflict',message:'Check My Timber before retrying this payment.'},409,cors(request));
+  }
   await attachOrderReference(env.DB,order.orderNumber,{sourceTable:'medicine_orders',sourceId:inserted.meta.last_row_id,status:'pending'});
   const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
@@ -649,6 +679,7 @@ async function checkout(request, env) {
   )
     .bind(session.id, now(), inserted.meta.last_row_id)
     .run();
+  if(shiftIntake)await env.DB.prepare('UPDATE medicine_orders SET stripe_checkout_url=? WHERE id=?').bind(session.url,inserted.meta.last_row_id).run();
   await updateOrderReferenceStatus(env.DB,order.orderNumber,'checkout_open');
   return json(
     {
@@ -796,6 +827,16 @@ async function pharmacyStatus(request, env) {
     return json({ ok: false, error: "invalid_status_update" }, 400);
   const order = await env.DB.prepare(`SELECT * FROM medicine_orders WHERE order_number=?`).bind(orderNumber).first();
   if (!order) return json({ ok: false, error: "order_not_found" }, 404);
+  if(order.intake_flow==='shift_v2'){
+    if(order.status!=='paid')return json({error:'payment_not_confirmed'},409);
+    const assessment=await env.DB.prepare('SELECT status,partner_reference FROM patient_intakes_v2 WHERE order_number=?').bind(orderNumber).first();
+    if(!assessment||assessment.status!=='submitted'||input.partnerReference!==assessment.partner_reference)return json({error:'assessment_not_received_or_reference_mismatch'},409);
+    if(next==='refunded')return json({error:'refund_requires_stripe_confirmation'},409);
+    if(next==='dispensing'){
+      const state=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(order.user_id).first();
+      if(!journeyComplete(state?.preferences))return json({error:'journey_setup_incomplete'},409);
+    }
+  }
   const current = order.clinical_status || "not_started";
   if (current !== next && !CLINICAL_TRANSITIONS[current]?.has(next))
     return json({ ok: false, error: "invalid_status_transition", current, requested: next }, 409);
@@ -812,13 +853,15 @@ async function pharmacyStatus(request, env) {
 }
 
 export async function medicineCommerceRoutes(request, env, ctx) {
+  const intakeResponse=await patientIntakeRoutes(request,env,{member,commerceSchema:schema});
+  if(intakeResponse){const headers=new Headers(intakeResponse.headers);for(const [k,v] of Object.entries(cors(request)))headers.set(k,v);return new Response(intakeResponse.body,{status:intakeResponse.status,headers})}
   const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
   if (request.method === "OPTIONS" && ["/v1/commerce/medicine-checkout","/v1/commerce/medicine-prepay-verification","/v1/commerce/medicine-clinical-intake"].includes(path))
     return new Response(null, { status: 204, headers: cors(request) });
   if (request.method === "GET" && path === "/v1/catalogue/medicines") {
     if (!env.DB) return json({ ok: true, products: [] }, 200, cors(request));
     return json(
-      { ok: true, products: await catalogue(env) },
+      { ok: true, products: await catalogue(env), intakeFlow:intakeEnabled(env)?'shift_v2':'partner_v1' },
       200,
       cors(request),
     );

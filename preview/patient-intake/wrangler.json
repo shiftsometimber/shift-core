@@ -1,0 +1,1 @@
+{"name":"shift-patient-intake-preview","main":"worker.js","compatibility_date":"2026-09-13","workers_dev":true,"preview_urls":true,"assets":{"directory":"./public","binding":"PREVIEW_ASSETS","run_worker_first":true}}
