@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {hqRadarReviewUrl,isRelevantRadarRow} from '../radar-integration-v1.js';
+import {hqRadarReviewUrl,isRelevantRadarRow,isVisibleRadarReviewRow} from '../radar-integration-v1.js';
 import {parseAuthoritativeFeed,parseRelevantHtmlLinks} from '../radar-authoritative-scan-v1.js';
 import {sortPublishedEvents} from '../radar-public-v1.js';
 
@@ -124,4 +124,14 @@ test('approval email deep-links to one exact HQ decision',()=>{
   assert.doesNotMatch(integration,/HQ_API_URL\|\|'https:\/\/api\.shiftsometimber\.co\.uk'/);
   assert.match(integration,/Review this exact item/);
   assert.match(integration,/Response\.redirect\(hqRadarReviewUrl/);
+});
+
+
+test('prepared review records remain visible even when discovery topics change',()=>{
+  const row={headline:'Adult ADHD taskforce report',region:'England',regulator:'NHS England'};
+  for(const status of ['ready_for_review','approved','publish_failed','hold']){
+    assert.equal(isVisibleRadarReviewRow({...row,status}),true);
+    assert.equal(isVisibleRadarReviewRow({headline:'Unclassified prepared package',status}),true);
+  }
+  for(const status of ['detected','verified','published'])assert.equal(isVisibleRadarReviewRow({headline:'Unrelated device notice',status}),false);
 });

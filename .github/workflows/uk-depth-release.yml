@@ -41,7 +41,7 @@ jobs:
           import json
           d=json.load(open('uk-archive-deployment-before.json'))
           latest=max(d,key=lambda x:x['created_on'])
-          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='9b599e85-6f7b-4de3-bec2-1751578f7efc', 'Worker moved; refuse stale release'
+          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='65d7a505-cca3-4034-bd15-05d3a91ee5c6', 'Worker moved; refuse stale release'
           PY
           node verification/rec035-newsroom-live.mjs before
       - name: Deploy UK editorial relevance extension
@@ -53,8 +53,6 @@ jobs:
             if [ "$attempt" -lt 4 ]; then sleep 10; fi
           done
           exit 1
-      - name: Prepare reviewed drafts for HQ approval
-        run: node verification/rec037-prepare-uk-depth.mjs --remote
       - uses: actions/upload-artifact@v4
         if: always()
         with:
