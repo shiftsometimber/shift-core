@@ -27,4 +27,10 @@ jobs:
           if(!response.ok)throw Error('Script inspection HTTP '+response.status);
           const code=await response.text();
           console.log(JSON.stringify({compiledScriptContainsNewAuthorities:code.includes('Public Health Scotland'),compiledScriptContainsADHD:code.includes('GP walk-in|ADHD|HeartFlow'),ukHealthPattern:code.match(/(?:var|const) UK_HEALTH[^;]+/)?.[0],authorityPattern:code.match(/(?:var|const) UK_HEALTH_AUTHORITIES[^;]+/)?.[0],length:code.length}));
+          const domains=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/domains',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
+          const db=await domains.json();console.log('API domain mapping',JSON.stringify(db.result?.filter(d=>d.hostname==='api.shiftsometimber.co.uk')||{status:domains.status,errors:db.errors}));
+          for(const host of ['shiftsometimber.co.uk','api.shiftsometimber.co.uk']){
+            const r=await fetch('https://'+host+'/shift-newsroom?runtime-probe=rec037');
+            const h=await r.text();console.log(host,JSON.stringify({status:r.status,newFilter:h.includes('gambling'),length:h.length}));
+          }
           JS
