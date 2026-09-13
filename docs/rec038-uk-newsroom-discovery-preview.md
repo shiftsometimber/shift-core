@@ -19,3 +19,7 @@ These are research leads, not publishable availability statements.
 3. **Behavioural support alongside weight management.** The NIHR report links to [award NIHR206801](https://fundingawards.nihr.ac.uk/award/NIHR206801). Focus on what support is being evaluated and how that differs from medication access. The award details remain unverified; this should become an article only if the protocol/results answer a distinct question beyond the existing Game of Stones and support-after-treatment coverage.
 
 BARCODE remains held: search snippets are insufficient to replace an inspected primary paper. RESTED is not a new recruitment story based on the previously observed 2024 end date. No extra articles have been created to pad the 51 UK total.
+
+## Saved-source verification
+
+The [dedicated check run](https://github.com/shiftsometimber/shift-core/actions/runs/34757788288) succeeded on commit bc747bb1d9bc5fb0b638a84e048adc6b73de4ac6: all 32 focused tests, the three existing source gates, and all five published reading destinations passed. This job contains no deployment or credentials. An unrelated pre-existing act2b-one-shot workflow validation failure remains outside this change. Visual verification and production deployment are still outstanding.
