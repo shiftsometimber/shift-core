@@ -45,7 +45,7 @@ jobs:
           import json
           d=json.load(open('newsroom-deployment-before.json'))
           latest=max(d,key=lambda x:x['created_on'])
-          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='9c4ee3e3-b3e2-40e7-b161-097ca929c6fe', 'Worker moved; refuse stale release'
+          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='611d6292-d1c7-42e0-b200-88d8fa196aff', 'Worker moved; refuse stale release'
           PY
           npx wrangler d1 execute shift-core-db --remote --command "SELECT id,authority,region,url,active FROM radar_sources ORDER BY id" --json > newsroom-sources-before.json
           node verification/rec035-newsroom-live.mjs before

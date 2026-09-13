@@ -4,6 +4,9 @@ export const NEWSROOM_LAYOUT_STYLE = `<style data-newsroom-layout>
 html{background:#050505;color:#e7e3da;-webkit-text-size-adjust:100%}
 body.newsroom-page{margin:0!important;background:#050505!important;color:#e7e3da!important;font:16px/1.55 Arial,Helvetica,sans-serif!important;overflow-x:hidden}
 .newsroom-page *{box-sizing:border-box}
+.newsroom-page main,.newsroom-page main>.content{background:#050505!important;color:#e7e3da!important}
+.newsroom-page main [data-news-group]{background:transparent!important;padding:0!important;border:0!important}
+.newsroom-page main section::before,.newsroom-page .pagehero::after{display:none!important}
 .newsroom-page .site-wrap,.newsroom-page .wrap{width:92%;max-width:1280px;margin-left:auto;margin-right:auto}
 .newsroom-page .header-inner{display:flex;align-items:center;justify-content:space-between}
 .newsroom-page .site-logo img{display:block}.newsroom-page .menu-trigger{width:auto!important;flex:0 0 auto!important}.newsroom-page .site-logo{display:block}.newsroom-page .site-header{display:block}.newsroom-page .desktop-nav{text-transform:uppercase;flex-shrink:0!important}
