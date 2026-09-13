@@ -3,6 +3,14 @@
 Branch: preview/shift-patient-intake-20260913. Base: ef72fc99f6bf827d3dc161e90976c17c8617e17b.
 Scope: Matt's pay-first, SHIFT-managed patient assessment and subsequent clarification requiring physical and mental health questions. Production remains unchanged. The colleague's Fit/Grub changes are in another worktree/branch.
 
+## Start Here connection
+
+The current public purchase workspace is `/treatment-order`, reached by the locked Start Here preference handoff. Its earlier scripts still hold verification-first ordering closed. The v2 Worker now adds one gated adapter to that existing HTML response; it preserves the source header, medicine details and comparison layout. It resolves the selected medicine/strength to the current HQ variant ID and sends it to `/treatment-checkout`. Pre-payment BMI/clinical capture panels are hidden in this mode. No Start Here source replacement or Pages deployment is involved.
+
+Successful Stripe checkout returns to `/patient-intake?session_id=…`. The assessment waits for the authenticated server order to be marked paid by the verified webhook. An unpaid order cannot read or save an assessment. An interrupted Stripe checkout returns to `/treatment-checkout` with the same variant; My Timber retains the assessment link for paid orders.
+
+The expanded preview copies public layout dependencies from the currently approved Pages deployment recorded in REC-034/035, `https://0da69833.projectshift.pages.dev`, and records each source SHA in `public-source-proof.json`. Catalogue stock and payments are synthetic.
+
 ## Implemented candidate
 
 Choose requested medication/strength → confirm assessment terms → Stripe payment → webhook-confirmed paid order → saved patient assessment → encrypted evidence → pharmacy receipt → clinician decision → mandatory Journey → dispensing/dispatch.
@@ -16,7 +24,8 @@ Choose requested medication/strength → confirm assessment terms → Stripe pay
 - Answers encrypted with AES-256-GCM and order-bound associated data. Evidence encrypted in a private R2 binding with object-bound associated data; authenticated owner-only downloads. Database stores metadata, not public URLs. No clinical content in audit events.
 - Submission locks draft and queues idempotent transfer. No partner connection or failure means `queued`, not `submitted`. Pharmacy must return reference. Retries reuse the same key.
 - Pharmacy status updates for v2 require paid order and matching accepted intake reference. Dispensing blocked before Journey completion.
-- Cancellation before clinical receipt (or after decline), full refund request to original Stripe payment, stable idempotency, pending vs succeeded distinction. No automatic refund claim from pharmacy callbacks. Refund failure/pending visible for retry/support. Refund does not automatically return stock to sale: pharmacy/HQ must confirm sellable inventory.
+- The customer-facing cancel/refund action was removed at Matt's request. The paid assessment now offers save/continue and clinical submission. Declined, pending-refund and refunded orders retain accurate status messages and the support link. The pre-payment clinical-decline refund disclosure remains.
+- The existing authenticated refund API remains available for eligible orders before clinical receipt or after decline, with a full refund request to the original Stripe payment, stable idempotency and pending vs succeeded distinction. Removing the UI does not disable this API or create a blanket no-refunds policy. No automatic refund claim from pharmacy callbacks. Refund does not automatically return stock to sale: pharmacy/HQ must confirm sellable inventory.
 - Checkout request key prevents replay creating another payment session. Legacy verification-first behaviour stays the default with feature disabled.
 
 ## Clinical approval is a real release gate
@@ -47,7 +56,7 @@ No production configuration, key, binding, migration, DNS or deployment was chan
 
 `node --test tests/patient-intake-v2.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-stripe-retry-v1.test.mjs`
 
-29 tests pass locally: real SQLite-backed D1 interface with mocked Stripe/pharmacy transport and R2 memory binding. Includes encrypted persistence, missing evidence, required question follow-ups, urgent response, cross-account/origin denial, retry idempotency, partner reference, Journey gate, refund pending/completed and legacy retry regression. Not a real Stripe payment, real pharmacy acceptance, external lookup test or clinical sign-off.
+30 tests pass locally: real SQLite-backed D1 interface with mocked Stripe/pharmacy transport and R2 memory binding. Includes encrypted persistence, missing evidence, required question follow-ups, urgent response, cross-account/origin denial, retry idempotency, partner reference, Journey gate, refund pending/completed and legacy retry regression. Not a real Stripe payment, real pharmacy acceptance, external lookup test or clinical sign-off.
 
 Public preview is a separate, read-only Worker with no DB/R2/Stripe/pharmacy bindings. CSP blocks outbound connections. The same form runs on synthetic in-tab data; reload resets it. Public preview demonstrates UI and branching; backend persistence evidence is the automated integration tests.
 

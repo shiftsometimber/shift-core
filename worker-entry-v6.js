@@ -32,6 +32,7 @@ import { runRadarScheduledScan } from "./radar-scheduled-scan-v1.js";
 import { commissioningOpsRoutes } from "./commissioning-ops-v1.js";
 import { handleCommissioningIdentity } from "./commissioning-identity-v1.js";
 import { handleEmailVerification } from "./auth-email-verification-v1.js";
+import { withPatientStartHere } from './patient-start-here-v2.js';
 import { handleAuthRecovery } from "./auth-recovery-v1.js";
 import { memberContrastStatic } from "./member-contrast-static-v1.js";
 import { fastMemberRegister } from "./member-register-fastpath-v2.js";
@@ -145,6 +146,7 @@ const GIT_MEMBER_ASSETS = new Map([
   ["/patient-intake.html", "text/html; charset=utf-8"],
   ["/patient-intake.js", "application/javascript; charset=utf-8"],
   ["/patient-intake.css", "text/css; charset=utf-8"],
+  ["/patient-start-here-v2.js", "application/javascript; charset=utf-8"],
   ["/treatment-assessment.html", "text/html; charset=utf-8"],
   ["/treatment-assessment.js", "application/javascript; charset=utf-8"],
   ["/clinical-intake-v1.css", "text/css; charset=utf-8"],
@@ -911,7 +913,7 @@ export default {
     const newsroomPage = await radarNewsPageRoutes(request, env);
     if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request);
+      return withPatientStartHere(await withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request),request,env);
     }
     let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),

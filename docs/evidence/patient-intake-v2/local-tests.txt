@@ -1,33 +1,33 @@
-✔ public medicine catalogue remains harmless without a database (5.488887ms)
-✔ medicine checkout requires a signed-in member before touching Stripe (1.164592ms)
-✔ a stale host cookie cannot hide a valid shared member session at checkout (6.672418ms)
-✔ stock is a server-side quantity and zero never reaches Stripe (1.879968ms)
-✔ public catalogue query cannot expose medicine cost or target margin (0.851861ms)
-✔ checkout is verification-first while stock remains server-gated (1.924805ms)
-✔ clinical intake is complete, partner-owned and fail-closed (0.992453ms)
-✔ the public order page consumes the governed catalogue and checkout (0.675876ms)
-✔ payment hands medicine orders into clinical assessment and never straight to fulfilment (0.579252ms)
-✔ approved treatment requires a complete Journey before support and reorder (1.092634ms)
-✔ clinical transitions are deliberately narrow (0.150727ms)
-✔ member treatment UI and preference intake use controlled choices (1.778526ms)
-✔ one treatment order completes verification, Stripe test payment, tracker, Journey and dispatch (65.493295ms)
-✔ retry recovers transaction failure at statement 0 (29.578898ms)
-✔ retry recovers transaction failure at statement 1 (11.576545ms)
-✔ retry recovers transaction failure at statement 2 (8.420968ms)
-✔ retry recovers transaction failure at statement 3 (7.852654ms)
-✔ distinct success events settle once and preserve clinical progress (5.825183ms)
-✔ late failure cannot downgrade payment or release somebody else’s reservation (7.062084ms)
-✔ failure repeats release once; later confirmed payment does not release another reservation (7.168264ms)
-✔ missing order remains retryable (2.277056ms)
-✔ refunded orders cannot be restored to paid (6.05519ms)
-✔ concurrent distinct success deliveries settle the order once (4.391997ms)
-✔ paid-order intake persists encrypted data, enforces evidence and clinical answers, retries a single pharmacy handoff (68.244104ms)
-✔ cross-account and cross-origin requests cannot read or mutate an assessment or its evidence (13.140002ms)
-✔ unapproved questionnaire prevents payment and invalid measurements do not become complete assessments (4.3877ms)
-✔ cancellation refunds the original payment once and never reports a pending refund as completed (12.591673ms)
-✔ lookup has a manual fallback and rejects malformed evidence (10.192483ms)
+✔ public medicine catalogue remains harmless without a database (6.709852ms)
+✔ medicine checkout requires a signed-in member before touching Stripe (1.753915ms)
+✔ a stale host cookie cannot hide a valid shared member session at checkout (9.287534ms)
+✔ stock is a server-side quantity and zero never reaches Stripe (2.264052ms)
+✔ public catalogue query cannot expose medicine cost or target margin (1.515266ms)
+✔ checkout is verification-first while stock remains server-gated (2.737924ms)
+✔ clinical intake is complete, partner-owned and fail-closed (1.473924ms)
+✔ the public order page consumes the governed catalogue and checkout (0.869296ms)
+✔ payment hands medicine orders into clinical assessment and never straight to fulfilment (1.04478ms)
+✔ approved treatment requires a complete Journey before support and reorder (1.006072ms)
+✔ clinical transitions are deliberately narrow (0.154602ms)
+✔ member treatment UI and preference intake use controlled choices (1.80365ms)
+✔ one treatment order completes verification, Stripe test payment, tracker, Journey and dispatch (49.505934ms)
+✔ retry recovers transaction failure at statement 0 (30.749041ms)
+✔ retry recovers transaction failure at statement 1 (11.078976ms)
+✔ retry recovers transaction failure at statement 2 (5.152792ms)
+✔ retry recovers transaction failure at statement 3 (5.092011ms)
+✔ distinct success events settle once and preserve clinical progress (4.001453ms)
+✔ late failure cannot downgrade payment or release somebody else’s reservation (4.460593ms)
+✔ failure repeats release once; later confirmed payment does not release another reservation (5.644451ms)
+✔ missing order remains retryable (2.352555ms)
+✔ refunded orders cannot be restored to paid (4.124978ms)
+✔ concurrent distinct success deliveries settle the order once (6.360297ms)
+✔ paid-order intake persists encrypted data, enforces evidence and clinical answers, retries a single pharmacy handoff (80.587586ms)
+✔ cross-account and cross-origin requests cannot read or mutate an assessment or its evidence (15.389263ms)
+✔ unapproved questionnaire prevents payment and invalid measurements do not become complete assessments (4.494854ms)
+✔ cancellation refunds the original payment once and never reports a pending refund as completed (14.021297ms)
+✔ lookup has a manual fallback and rejects malformed evidence (11.20764ms)
 medicine_stripe_checkout_create_failed {
-  orderNumber: 'SST-20260913-59BAAFC5',
+  orderNumber: 'SST-20260913-7F433C26',
   status: 503,
   type: 'network_error',
   code: '',
@@ -35,12 +35,13 @@ medicine_stripe_checkout_create_failed {
   message: 'Stripe connection did not complete.',
   keyMode: 'test'
 }
-✔ a failed Stripe connection releases stock and permits a fresh checkout attempt (5.626354ms)
-ℹ tests 29
+✔ a failed Stripe connection releases stock and permits a fresh checkout attempt (6.078613ms)
+✔ Start Here handoff changes only the enabled treatment page and preserves its approved HTML (1.198441ms)
+ℹ tests 30
 ℹ suites 0
-ℹ pass 29
+ℹ pass 30
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 207.492444
+ℹ duration_ms 218.173174

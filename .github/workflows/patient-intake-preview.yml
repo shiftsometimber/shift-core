@@ -31,6 +31,7 @@ jobs:
           assert.equal(c.main,'worker.js');assert.deepEqual(c.assets,{directory:'./public',binding:'PREVIEW_ASSETS',run_worker_first:true,html_handling:'none'});
           JS
           node preview/patient-intake/build.mjs
+          node preview/patient-intake/public-route-build.mjs
       - name: Publish synthetic preview only
         run: npx wrangler deploy --config preview/patient-intake/wrangler.json 2>&1 | tee patient-intake-preview-deploy.txt
       - name: Verify published preview routing

@@ -455,7 +455,7 @@ function stripeForm(order, item, user, env) {
     "success_url",
     intakeEnabled(env) ? `${siteUrl(env)}/patient-intake?session_id={CHECKOUT_SESSION_ID}` : `${siteUrl(env)}/order-success?session_id={CHECKOUT_SESSION_ID}`,
   );
-  put("cancel_url", `${siteUrl(env)}/treatment-order?checkout=cancelled`);
+  put("cancel_url", intakeEnabled(env) ? `${siteUrl(env)}/treatment-checkout?variant=${item.variant_id}&checkout=cancelled` : `${siteUrl(env)}/treatment-order?checkout=cancelled`);
   put("client_reference_id", order.orderNumber);
   put("customer_creation", "always");
   put("customer_email", user.email);
