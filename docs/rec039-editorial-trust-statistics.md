@@ -21,3 +21,15 @@ Google Search Console and Bing account data remain unavailable: GSC Wizard repor
 
 Production baseline: main 8fb4951578afd8b90e0345e6b271e7655da7a158; Worker 0596c9a3-42f9-4a67-ae3b-8cb311437fec.
 Release result will be appended after verified deployment.
+
+## Verified live release — 13 September 2026
+
+Source: `4780ebce1f1918009fb1c58fb6306298c72c245d`; tree: `904b09f3c1ee7b5d4be0187ab4109d1929edf8a5`; Worker: `dc3b60dd-f158-4a97-9d09-1d9984e86969`.
+
+Release run [34762932109](https://github.com/shiftsometimber/shift-core/actions/runs/34762932109), job 103738804070, completed successfully. All 37 scoped tests and existing source gates passed. The production before/after checks passed for locked homepage, Start Here, treatment detail workspace, SHIFT for Work, login, header CSS and Start Here script. Knowledge Hub and SHIFT Health HTML hashes also remained identical.
+
+All 51 UK links returned 200 with matching canonical URLs, no page/header noindex, and sitemap membership. This includes 50 newsroom article routes plus one pre-existing attributed medicine guide; the guide remains on its existing template. Published totals stay 51 UK / 156 overall; first publication dates are unchanged. Sitemap dates agree with article metadata. The CSV and SVG downloads match the reviewed source artifacts exactly.
+
+Actual browser checks verified the statistics headline/cards, loaded chart, data table, article byline/publication/source date precision and working editorial-process link. The approved five-link header remains visible; neither checked desktop page overflowed horizontally. No new mobile-device test or Google/Bing indexing claim is made. The unrelated pre-existing act2b-one-shot workflow validation failure remains outside this release; this is a scoped release success, not a claim that every repository workflow is healthy.
+
+Main is to be fast-forwarded to a documentation-only child of the verified source with `[skip ci]`, avoiding an unrelated second deployment.
