@@ -1,3 +1,4 @@
+import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
@@ -307,7 +308,7 @@ async function rewritePublicLoungeChrome(response) {
   const type = String(response.headers.get("Content-Type") || "").toLowerCase();
   if (!response.ok || !type.includes("text/html")) return response;
   const source = await response.text();
-  let body = source
+  let body = addNewsroomMenu(source)
       .replaceAll('href="/tap-room"', 'href="/lounge"')
       .replaceAll('href="/tap-room.html"', 'href="/lounge"')
       .replaceAll(">The Tap Room<", ">The Lounge<")
@@ -376,7 +377,7 @@ async function act2bV42Asset(request) {
   headers.set("Cache-Control", "no-store, must-revalidate");
   headers.set("X-Shift-Act2B-Chrome", "v42-enclosure-deleted");
   headers.delete("Content-Length");
-  return new Response(request.method === "HEAD" ? null : cleaned, { status: 200, headers });
+  return new Response(request.method === "HEAD" ? null : cleaned + "\n" + NEWSROOM_MENU_SCRIPT, { status: 200, headers });
 }
 
 
@@ -431,7 +432,7 @@ async function shiftHealthWithServerSeo(response, request, slug) {
   return new Response(request.method === "HEAD" ? null : html, { status: response.status, statusText: response.statusText, headers });
 }
 const PRIORITY_PUBLIC_PATHS = [
-  "/medicine-news",
+  "/shift-newsroom",
   "/shift-health",
   ...Object.keys(SHIFT_HEALTH_SEO).map((slug) => `/shift-health/${slug}`),
 ];
@@ -900,7 +901,7 @@ export default {
         : null;
     const publicHost = ["shiftsometimber.co.uk", "www.shiftsometimber.co.uk"].includes(new URL(request.url).hostname);
     const newsroomPage = await radarNewsPageRoutes(request, env);
-    if (newsroomPage) return newsroomPage;
+    if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
       return rewritePublicLoungeChrome(await act2bPagesContent(request));
     }
