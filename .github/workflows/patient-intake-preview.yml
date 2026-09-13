@@ -28,15 +28,25 @@ jobs:
           const fs=require('fs'),assert=require('assert/strict'),c=JSON.parse(fs.readFileSync('preview/patient-intake/wrangler.json'));
           assert.equal(c.name,'shift-patient-intake-preview');
           assert.deepEqual(Object.keys(c).sort(),['name','main','compatibility_date','workers_dev','preview_urls','assets'].sort());
-          assert.equal(c.main,'worker.js');assert.deepEqual(c.assets,{directory:'./public',binding:'PREVIEW_ASSETS',run_worker_first:true});
+          assert.equal(c.main,'worker.js');assert.deepEqual(c.assets,{directory:'./public',binding:'PREVIEW_ASSETS',run_worker_first:true,html_handling:'none'});
           JS
           node preview/patient-intake/build.mjs
       - name: Publish synthetic preview only
         run: npx wrangler deploy --config preview/patient-intake/wrangler.json 2>&1 | tee patient-intake-preview-deploy.txt
+      - name: Verify published preview routing
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),assert=require('assert/strict');
+          (async()=>{const url=fs.readFileSync('patient-intake-preview-deploy.txt','utf8').match(/https:\/\/shift-patient-intake-preview\.[a-z0-9-]+\.workers\.dev/)[0];
+          for(const path of ['/patient-intake','/treatment-checkout','/phone.html','/patient-intake.js','/demo.js']){const r=await fetch(url+path);assert.equal(r.status,200,path);assert.ok(r.headers.get('content-security-policy').includes("connect-src 'none'"));}
+          assert.equal((await fetch(url+'/v1/patient-intake',{method:'POST',body:'{}'})).status,405);
+          fs.writeFileSync('patient-intake-preview-http.json',JSON.stringify({url,readOnly:true,externalConnectionsBlocked:true,productionBindings:0},null,2));})();
+          JS
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: patient-intake-preview-evidence
           path: |
             patient-intake-tests.txt
+            patient-intake-preview-http.json
             patient-intake-preview-deploy.txt
