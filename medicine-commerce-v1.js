@@ -522,6 +522,7 @@ async function checkout(request, env) {
     return json({ ok: false, error: "invalid_variant" }, 400, cors(request));
   const shiftIntake=intakeEnabled(env);
   if(shiftIntake){
+    if(mode==='live'&&(!env.PHARMACY_PATIENT_INTAKE_V2_URL||!env.PHARMACY_INTEGRATION_SECRET))return json({error:'pharmacy_handoff_not_configured'},503,cors(request));
     if(!intakeReady(env))return json({ok:false,error:'secure_intake_not_configured'},503,cors(request));
     if(input?.assessmentTermsAccepted!==true)return json({ok:false,error:'assessment_terms_required'},400,cors(request));
     if(!/^[a-f0-9-]{36}$/i.test(input?.checkoutRequestId||''))return json({ok:false,error:'checkout_request_id_required'},400,cors(request));
