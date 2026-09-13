@@ -35,3 +35,20 @@ test('newsroom menu insertion is alphabetical and idempotent; page body stays in
   assert.ok(after.indexOf('SHIFT for Work') < after.indexOf('SHIFT Newsroom'));
   assert.ok(after.indexOf('SHIFT Newsroom') < after.indexOf('Timber Mill'));
 });
+
+
+test('article meaning is shown once when the reviewed body already contains it',async()=>{
+ const original=globalThis.fetch;globalThis.fetch=async()=>new Response(shell);
+ try{
+  for(const alreadyIncluded of [true,false]){
+   const article=row(3,'England','A distinct UK report');const content=JSON.parse(article.content_package_json);
+   content.why_it_matters_to_uk='Ask the local service how to access support.';
+   content.article_markdown='Original reporting.'+(alreadyIncluded?'\n\n'+content.why_it_matters_to_uk:'');
+   article.content_package_json=JSON.stringify(content);
+   const env={DB:{prepare:()=>({all:async()=>({results:[article]})})}};
+   const html=await (await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news/article-3'),env)).text();
+   assert.equal(html.split(content.why_it_matters_to_uk).length-1,1);
+   assert.equal(html.includes('<h2>What this means in the UK</h2>'),!alreadyIncluded);
+  }
+ }finally{globalThis.fetch=original}
+});

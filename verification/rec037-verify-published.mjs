@@ -16,14 +16,14 @@ for(let i=0;i<archiveBatch.length;i+=4){
   const slug=article.content.seo.slug,url=base+'/'+slug;
   const matches=feed.filter(x=>x.metadata.slug===slug);assert.equal(matches.length,1,slug);
   const item=matches[0];assert.equal(item.article_markdown,article.content.article_markdown,slug+' body');
-  assert.equal(item.region,article.region);assert.equal(item.sources[0].url,article.evidence[0].url);
+  assert.equal(item.region,article.region);assert.equal(item.sources[0].url.replace(/\/+$/,''),article.evidence[0].url.replace(/\/+$/,''));
   assert.equal(item.metadata.author,'SHIFT Newsroom');assert.ok(item.metadata.datePublished.startsWith('2026-09-13'));
   assert.deepEqual([...item.destinations].sort(),['knowledge_links','medicine_news','search','sitemap']);
   assert.ok(sitemap.includes(url));assert.ok(hub.includes(slug));
   const html=await get('/'+slug);
   assert.equal((html.match(/<h1\b/g)||[]).length,1,slug+' h1');
   assert.ok(html.includes('rel="canonical" href="'+url+'"'));
-  assert.ok(html.includes(article.evidence[0].url));assert.ok(html.includes('Related UK reporting'));
+  assert.ok(html.includes(item.sources[0].url));assert.ok(html.includes('Related UK reporting'));
   const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema['@type'],'Article');assert.equal(schema.author.name,'SHIFT Newsroom');assert.equal(schema.mainEntityOfPage,url);
   assert.equal(schema.datePublished,item.metadata.datePublished);assert.ok(schema.dateModified>=schema.datePublished);

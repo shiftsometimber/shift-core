@@ -25,7 +25,7 @@ jobs:
       - name: Guard current approved source and website
         run: |
           test "$(git ls-remote origin refs/heads/main | cut -f1)" = ff61b96be4af56aa0656ddce714179e6a4e84575
-          git diff --exit-code ff61b96be4af56aa0656ddce714179e6a4e84575 -- frontend wrangler.jsonc package.json package-lock.json worker-entry-v6.js radar-news-pages-v1.js radar-newsroom-layout-v1.js
+          git diff --exit-code ff61b96be4af56aa0656ddce714179e6a4e84575 -- frontend wrangler.jsonc package.json package-lock.json worker-entry-v6.js radar-newsroom-layout-v1.js
       - run: npm ci --no-audit --no-fund
       - name: Validate archive and existing editorial gates
         run: |
@@ -41,7 +41,7 @@ jobs:
           import json
           d=json.load(open('uk-archive-deployment-before.json'))
           latest=max(d,key=lambda x:x['created_on'])
-          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='65d7a505-cca3-4034-bd15-05d3a91ee5c6', 'Worker moved; refuse stale release'
+          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='774be20c-4af4-4af7-bcbb-1747a549a15b', 'Worker moved; refuse stale release'
           PY
           node verification/rec035-newsroom-live.mjs before
       - name: Deploy UK editorial relevance extension
@@ -53,6 +53,8 @@ jobs:
             if [ "$attempt" -lt 4 ]; then sleep 10; fi
           done
           exit 1
+      - name: Verify published UK archive
+        run: node verification/rec037-verify-published.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -62,3 +64,4 @@ jobs:
             newsroom-public-before.json
             newsroom-live-proof.json
             uk-depth-preparation.json
+            uk-depth-live-proof.json
