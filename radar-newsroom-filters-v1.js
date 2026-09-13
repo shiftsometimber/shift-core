@@ -12,11 +12,11 @@ export const MEDICINE_FILTERS = [
   ['glp1','GLP-1 medicines (general)',/\b(glp[- ]?1|glucagon[- ]like peptide[- ]?1)\b/i],
 ];
 export const TOPIC_FILTERS = [
-  ['access','NHS & treatment access',/\b(nhs|pharmacy|pharmacies|prescribing|access|availability|available|approval|approved|authoris\w*|licens\w*|licenc\w*)\b/i],
+  ['access','NHS & treatment access',/\b(nhs|pharmacy|pharmacies|prescribing|access|availability|available|approval|approved|authoris\w*|licens\w*|licenc\w*|screening)\b/i],
   ['safety','Safety & side effects',/\b(safety|side effects?|adverse|risk|warning\w*|recall\w*|falsified|pancreatitis|naion)\b/i],
   ['research','Research & clinical trials',/\b(research\w*|trial\w*|stud(?:y|ies)|cohort|preprint|meta-analysis|review)\b/i],
   ['weight','Weight, nutrition & muscle',/\b(weight|obesity|obese|overweight|nutrition\w*|diet\w*|muscle|lean mass|sarcopen\w*)\b/i],
-  ['mental-health','Mental health & wellbeing',/\b(mental[- ]health|talking therapies|burnout|wellbeing|anxiety|depression|suicid\w*|alcohol|binge[- ]eating)\b/i],
+  ['mental-health','Mental health & wellbeing',/\b(mental[- ]health|talking therapies|burnout|wellbeing|anxiety|depression|suicid\w*|alcohol|binge[- ]eating|ADHD|gambling)\b/i],
   ['heart-metabolic','Heart & metabolic health',/\b(heart|cardiovascular|blood pressure|hypertension|cholesterol|diabetes|metabolic|kidney|liver)\b/i],
 ];
 export function classifyNewsFilters(row={}) {

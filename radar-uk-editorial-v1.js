@@ -1,7 +1,7 @@
 const WEIGHT = /\b(obesity|overweight|weight[- ]?loss|weight management|anti-obesity|glp[- ]?1|glucagon-like peptide[- ]?1|semaglutide|tirzepatide|liraglutide|orlistat|retatrutide|orforglipron|cagrisema|cagrilintide|mounjaro|wegovy|saxenda|foundayo)\b/i;
-const UK_HEALTH = /\b(pharmac(?:y|ies|ist|ists)|pharmacy first|prescrib\w*|blood pressure|hypertension|cholesterol|diabetes|mental[- ]health|talking therapies|burnout|depression|anxiety|men['’]?s health|prostate|testosterone|erectile|sleep apnoea|sleep apnea|smoking|stop smoking|flu jab\w*|vaccin\w*|screening|nhs access|waiting lists?|GP appointments?)\b/i;
+const UK_HEALTH = /\b(pharmac(?:y|ies|ist|ists)|pharmacy first|prescrib\w*|blood pressure|hypertension|cholesterol|diabetes|mental[- ]health|talking therapies|burnout|depression|anxiety|men['’]?s health|prostate|testosterone|erectile|sleep apnoea|sleep apnea|smoking|stop smoking|flu jab\w*|vaccin\w*|screening|nhs access|waiting lists?|GP appointments?|GP walk-in|ADHD|HeartFlow|suicide|wellbeing|gambling|severe mental illness|antidepressants?)\b/i;
 const UK_REGIONS = new Set(['UK', 'England', 'Scotland', 'Wales', 'Northern Ireland']);
-const UK_HEALTH_AUTHORITIES = new Set(['NHS England', 'MHRA', 'NICE', 'Department of Health and Social Care', 'Welsh Government', 'Scottish Government', 'Department of Health Northern Ireland', 'Mental Health UK']);
+const UK_HEALTH_AUTHORITIES = new Set(['NHS England', 'MHRA', 'NICE', 'Department of Health and Social Care', 'Welsh Government', 'Scottish Government', 'Department of Health Northern Ireland', 'Mental Health UK', 'SAMH', 'Public Health Scotland', 'NIHR', 'University of Oxford', 'University of Bristol']);
 export const REQUIRED_UK_NEWS_SOURCES = ['nhs-england-news', 'mhra-announcements'];
 export function isRelevantNewsItem(source = {}, item = {}) {
   const text = `${item.title || ''} ${item.summary || ''}`;

@@ -1,0 +1,66 @@
+name: Prepare UK newsroom depth batch
+on:
+  push:
+    branches: [feat/uk-newsroom-depth-20260913]
+    paths: ['.github/workflows/uk-depth-release.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Guard current approved source and website
+        run: |
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = ff61b96be4af56aa0656ddce714179e6a4e84575
+          git diff --exit-code ff61b96be4af56aa0656ddce714179e6a4e84575 -- frontend wrangler.jsonc package.json package-lock.json worker-entry-v6.js radar-news-pages-v1.js radar-newsroom-layout-v1.js
+      - run: npm ci --no-audit --no-fund
+      - name: Validate archive and existing editorial gates
+        run: |
+          node verification/rec037-prepare-uk-depth.mjs
+          node --test tests/uk-depth-editorial.test.mjs tests/radar-newsroom-filters-v1.test.mjs tests/radar-uk-editorial-v1.test.mjs tests/radar-newsroom-page-v1.test.mjs tests/hq-radar-review-queue-v1.test.mjs tests/shift-ai-newsroom-wire-v1.test.mjs tests/radar-freshness-v2.test.mjs
+          node my-timber-navigation-gate.mjs
+          node my-timber-final-source-gate.mjs
+          node g5-012-login-fastpath-gate.mjs
+      - name: Guard runtime and capture preservation baseline
+        run: |
+          npx wrangler deployments list --config wrangler.jsonc --json > uk-archive-deployment-before.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('uk-archive-deployment-before.json'))
+          latest=max(d,key=lambda x:x['created_on'])
+          assert len(latest['versions'])==1 and latest['versions'][0]['version_id']=='9b599e85-6f7b-4de3-bec2-1751578f7efc', 'Worker moved; refuse stale release'
+          PY
+          node verification/rec035-newsroom-live.mjs before
+      - name: Deploy UK editorial relevance extension
+        run: npx wrangler deploy --config wrangler.jsonc
+      - name: Verify website preservation
+        run: |
+          for attempt in 1 2 3 4; do
+            if node verification/rec035-newsroom-live.mjs after; then exit 0; fi
+            if [ "$attempt" -lt 4 ]; then sleep 10; fi
+          done
+          exit 1
+      - name: Prepare reviewed drafts for HQ approval
+        run: node verification/rec037-prepare-uk-depth.mjs --remote
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REC-037-UK-depth-evidence
+          path: |
+            uk-archive-deployment-before.json
+            newsroom-public-before.json
+            newsroom-live-proof.json
+            uk-depth-preparation.json
