@@ -5,7 +5,11 @@ export default {async fetch(request,env){
   if(!['GET','HEAD'].includes(request.method))return new Response('Preview is read-only',{status:405,headers});
   if(url.pathname==='/')return new Response(null,{status:302,headers:{...headers,Location:url.origin+'/member/fit'}});
   // The only binding is this preview's uploaded static files. No member or production services.
-  if(/^\/catalogue-images\/[a-z0-9-]+\.webp$/.test(url.pathname)){
+  if(/^\/catalogue-images\/[a-z0-9-]+\.webp$/.test(url.pathname)||/^\/fit-v3-images\/[a-z0-9-]+\.png$/.test(url.pathname)){
+    if(url.pathname.startsWith('/fit-v3-images/')){
+      const allowed=JSON.parse(assets['/fit-v3-approval.json'].body).records.some(r=>r.status==='approved'&&r.image===url.pathname);
+      if(!allowed)return new Response('Image held or unknown',{status:404,headers});
+    }
     const result=await env.PREVIEW_ASSETS.fetch(request);
     const response=new Response(request.method==='HEAD'?null:result.body,result);
     for(const [key,value] of Object.entries(headers))response.headers.set(key,value);

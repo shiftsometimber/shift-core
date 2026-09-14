@@ -1,7 +1,7 @@
 name: Isolated Fit and Grub refinement preview
 on:
   push:
-    branches: [preview/fit-grub-refinements-20260913]
+    branches: [preview/fit-v3-approved-20260914]
     paths: ['.github/workflows/fit-grub-refinement-preview.yml','preview/fit-grub/**','frontend/member/member-fit-programme-v1.js','frontend/member/member-grub-programme-v1.js','tests/member-refinements-preview.test.mjs']
 permissions:
   contents: read
@@ -23,7 +23,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Test candidate and enforce isolated configuration
         run: |
-          node --test tests/member-refinements-preview.test.mjs preview/fit-grub/catalogue.test.mjs tests/grub-programme-v1.test.mjs tests/afternoon-ticket-c-fit.test.mjs tests/medicine-stripe-retry-v1.test.mjs
+          node preview/fit-grub/build.mjs
+          node --test preview/fit-grub/session-visuals.test.mjs preview/fit-grub/v3.test.mjs tests/member-refinements-preview.test.mjs preview/fit-grub/catalogue.test.mjs tests/grub-programme-v1.test.mjs tests/afternoon-ticket-c-fit.test.mjs tests/medicine-stripe-retry-v1.test.mjs
           node - <<'JS'
           const fs=require('fs'),assert=require('assert/strict'),c=JSON.parse(fs.readFileSync('preview/fit-grub/wrangler.json'));
           assert.equal(c.name,'shift-fit-grub-refinement-preview');
@@ -41,7 +42,7 @@ jobs:
           node - <<'JS'
           const fs=require('fs'),assert=require('assert/strict');
           (async()=>{const url=fs.readFileSync('preview-deploy.txt','utf8').split(String.fromCharCode(10)).map(x=>x.trim()).find(x=>x.startsWith('https://shift-fit-grub-refinement-preview.')&&x.endsWith('.workers.dev'));assert.ok(url);
-          for(const path of ['/member/fit','/member/grub','/phone','/visuals','/visual-phone','/catalogue','/catalogue-summary.json','/catalogue-images/catalogue-chicken-traybake.webp']){const r=await fetch(url+path);assert.equal(r.status,200);assert.ok(r.headers.get('content-security-policy').includes("connect-src 'none'"));assert.ok(r.headers.get('x-robots-tag').includes('noindex'));}
+          for(const path of ['/member/fit','/member/grub','/phone','/visuals','/visual-phone','/catalogue','/catalogue-summary.json','/fit-v3','/fit-v3-images/walk.png','/catalogue-images/catalogue-chicken-traybake.webp']){const r=await fetch(url+path);assert.equal(r.status,200);assert.ok(r.headers.get('content-security-policy').includes("connect-src 'none'"));assert.ok(r.headers.get('x-robots-tag').includes('noindex'));}
           assert.equal((await fetch(url+'/catalogue-images/catalogue-chicken-traybake.webp',{method:'POST'})).status,405);
           assert.equal((await fetch(url+'/v1/member/state',{method:'POST',body:'{}'})).status,405);
           fs.writeFileSync('fit-grub-preview-proof.json',JSON.stringify({url,productionChanged:false,databaseBindings:0,serviceBindings:0,externalConnectionsBlocked:true,readOnlyServer:true},null,2));console.log('PREVIEW_URL='+url);
