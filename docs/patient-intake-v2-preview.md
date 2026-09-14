@@ -9,6 +9,8 @@ The current public purchase workspace is `/treatment-order`, reached by the lock
 
 Successful Stripe checkout returns to `/patient-intake?session_id=…`. The assessment waits for the authenticated server order to be marked paid by the verified webhook. An unpaid order cannot read or save an assessment. An interrupted Stripe checkout returns to `/treatment-checkout` with the same variant; My Timber retains the assessment link for paid orders.
 
+Matt's 14 September refinement adds a second Continue to payment button immediately below the selected-dose dropdown. Both buttons use the same current selection and stock checks; the original bottom button remains.
+
 The expanded preview copies public layout dependencies from the currently approved Pages deployment recorded in REC-034/035, `https://0da69833.projectshift.pages.dev`, and records each source SHA in `public-source-proof.json`. Catalogue stock and payments are synthetic.
 
 ## Implemented candidate
