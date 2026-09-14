@@ -27,7 +27,7 @@ function visual(x){
  return '<button class="sf-visual-open" type="button" data-fit-visual data-src="'+esc(ref)+'" data-name="'+esc(x.name)+'" aria-label="Enlarge '+esc(x.name)+' movement demonstration"><img width="1280" height="720" src="'+esc(ref)+'" alt="'+esc(x.name)+' — three-panel movement illustration" loading="lazy"><span>Tap to enlarge</span></button>';
 }
 function exercisePurposeCopy(x){
- const p=fitAsset(x)?.purpose;
+ const p=(typeof window!=='undefined'?window.SHIFT_FIT_GUIDANCE?.find(r=>r.id===x.canonical_movement)?.purpose:null)||fitAsset(x)?.purpose;
  const reason=x.id==='fallback-easy-walk'?'The session builder is unavailable. This optional walking break fits within your selected time and needs no exercise equipment. It is not a personalised workout.':typeof x.selection_reason==='string'?x.selection_reason:'';
  if(!p&&!reason)return '';
  return '<section class="sf-exercise-purpose" aria-label="Exercise purpose">'+(reason?'<h4>Why this option?</h4><p>'+esc(reason)+'</p>':'')+(p?'<h4>'+esc(p.focus)+'</h4><p>'+esc(p.benefit)+'</p><h4>How it supports your goals</h4><p>'+esc(p.weightLoss)+'</p><details><summary>Evidence behind this guidance</summary><ul>'+p.sources.map((url,i)=>'<li><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+(i===0?'NHS exercise guidance':'British Heart Foundation: exercise and body fat')+'</a></li>').join('')+'</ul></details>':'')+'</section>';
