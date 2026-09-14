@@ -5,7 +5,7 @@ export function createFitPreview(records){
   const negative=new Set(),recent=[];
   const preferred=['low-impact-march','walk','stationary-bike','sit-to-stand','chair-supported-squat','squat','counter-push-up','standing-wall-push-up','push-up','row','standing-band-row','dead-bug','glute-bridge','chair-balance-reach','wall-slides','hamstring-mobility','thoracic-rotation'];
   const priority=r=>{const n=preferred.indexOf(r.id);return n<0?999:n};
-  const group=r=>/Core/.test(r.movementType)?'core':/cardio|Conditioning/i.test(r.movementType)?'cardio':/Balance/.test(r.movementType)?'balance':/Stretch|Gentle/.test(r.movementType)?'mobility':/chest|push|press|triceps/i.test(r.id)?'push':/row|pull|curl|back/i.test(r.id)?'pull':'legs';
+  const group=r=>/sit-to-stand|chair-supported-squat/.test(r.id)?'legs':/Core/.test(r.movementType)?'core':/cardio|Conditioning/i.test(r.movementType)?'cardio':/Balance/.test(r.movementType)?'balance':/Stretch|Gentle/.test(r.movementType)?'mobility':/chest|push|press|triceps/i.test(r.id)?'push':/row|pull|curl|back/i.test(r.id)?'pull':'legs';
   const requirements=r=>{
     // Exact requirements remain visible. Unknown or specialist equipment requires
     // the equipped-gym option; a single matching word never clears the whole setup.
@@ -38,7 +38,7 @@ export function createFitPreview(records){
   function build(body){
     const c=context(body);if(c.held)return held();
     let pool=records.filter(r=>eligible(r,c));
-    const goals=/strength/.test(c.goal)?['legs','push','pull','core','cardio']:/stamina|cardiovascular/.test(c.goal)?['cardio','legs','core','mobility']:/mobility|balance/.test(c.goal)?['mobility','balance','core']:['cardio','legs','push','pull','core','mobility'];
+    const goals=/strength/.test(c.goal)?['legs','push','pull','core','cardio']:/stamina|cardiovascular/.test(c.goal)?['cardio','legs','core','mobility']:/mobility|balance/.test(c.goal)?['mobility','balance','core']:['cardio','legs','push','pull','core','balance','mobility'];
     const count=Math.min(6,Math.max(2,Math.floor(c.minutes/5))),picked=[];
     pool.sort((a,b)=>Number(recent.includes(a.id))-Number(recent.includes(b.id))||priority(a)-priority(b)||a.id.localeCompare(b.id));
     for(const g of [...goals,...goals]){if(picked.length>=count)break;const r=pool.find(x=>group(x)===g&&!picked.some(y=>y.id===x.id));if(r)picked.push(r);}

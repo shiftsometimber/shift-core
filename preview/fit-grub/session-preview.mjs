@@ -6,7 +6,8 @@ export function applySessionPreview(source){
   replace('1,326 reviewed exercise options','300 movement guides');
   replace('26 core movement patterns','2,688 source protocols');
   replace('Built around UK activity guidance','Content preview · technique review pending');
-  replace('const dose=[x.sets','const dose=x.dose_text||[x.sets');
+  replace('const dose=[x.sets','const dose=formatPreviewDose(x.dose_text)||[x.sets');
+  replace('function exercise(x,allowFeedback=true){',`function formatPreviewDose(value){return String(value||'').replace(/sets: (\\d+)/g,'$1 sets').replace(/reps: ([^\\n]+)/g,'$1 reps').replace(/time seconds: (\\d+)/g,(_,n)=>Number(n)%60===0?Number(n)/60+' min':n+' sec').replace(/rest seconds: (\\d+)/g,'$1 sec rest').replace(/\\n/g,' · ')}\nfunction exercise(x,allowFeedback=true){`);
   replace('preferences:`${p.goal}. ${p.notes}`,limitations:p.limitations','preferences:`${p.goal}. ${p.notes}`,goal:p.goal,notes:p.notes,limitations:p.limitations');
   // Swap with the profile which built the session, not unsaved form edits.
   replace('const p=readProfile(),exclude=',"const p=memberState.preferences?.fit||readProfile(),exclude=");
