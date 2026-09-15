@@ -14,6 +14,7 @@ export function adjustPreviewExercise(exercise,mode='planned'){
  if(dose===original&&!/^(reps|time seconds):/m.test(original)){
   dose=dose.replace(/\b(\d+)([–-])(\d+)(\s+reps\b)/g,(_,lo,sep,hi,unit)=>work(lo)+sep+work(hi)+unit)
    .replace(/\b(\d+)(\s+reps\b)/g,(match,n,unit,offset,text)=>/[–-]$/.test(text.slice(0,offset))?match:work(n)+unit)
+   .replace(/\b(\d+)(s|\s+seconds?)(?=[;.,\s]|$)/g,(match,n,unit,offset,text)=>/^\s+rest\b/.test(text.slice(offset+match.length))?match:work(n)+unit)
    .replace(/\b(\d+)(s|\s+seconds?)\s+rest\b/g,(_,n,unit)=>rest(n)+unit+' rest');
  }
  x.dose_text=dose;
@@ -30,6 +31,8 @@ function previewSessionExercise(x,allowFeedback){return exercise(adjustPreviewEx
 function exercise(x,allowFeedback=true){`);
  replace("${(s.exercises||[]).map(x=>exercise(x,!p.fallback)).join('')}","${p.fallback?'':previewEffortControls()}${(s.exercises||[]).map(x=>previewSessionExercise(x,!p.fallback)).join('')}");
  replace("currentPlan=null;","currentPlan=null;previewEffort='planned';");
+ replace('function renderPlan(p){',`function renderPlan(p){renderPreviewPlan(p);const target=$('#sfResults .sf-effort')||$('#sfResults');target.scrollIntoView({behavior:'auto',block:'start'})}
+function renderPreviewPlan(p){`);
  replace("<summary>Make it easier or harder</summary>","<summary>Movement alternatives</summary>");
  replace("holder.innerHTML=exercise(r.exercise);", "const list=currentPlan?.sessions?.[0]?.exercises||[],index=list.findIndex(x=>x.id===id);if(index>=0)list[index]=r.exercise;holder.innerHTML=previewSessionExercise(r.exercise);");
  replace("panel.addEventListener('click',e=>{",`panel.addEventListener('click',e=>{const effort=e.target.closest('[data-preview-effort]');if(effort){if(!currentPlan||currentPlan.held||currentPlan.fallback||[...panel.querySelectorAll('[data-vote]')].some(b=>b.textContent==='Swapping…'))return;previewEffort=effort.dataset.previewEffort;renderPlan(currentPlan);$('#sfResults [data-preview-effort="'+previewEffort+'"]').focus({preventScroll:true});return}`);

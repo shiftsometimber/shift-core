@@ -36,4 +36,5 @@ test('unsupported effort resets to source; authored repetition ranges remain ord
  assert.equal(adjustPreviewExercise(x,'harder').dose_text,'2 sets × 7–10 reps; 60s rest.');
  assert.equal(adjustPreviewExercise(x,'easier').dose_text,'2 sets × 5–6 reps; 90s rest.');
  assert.deepEqual(adjustPreviewExercise(x,'unknown'),x);
+ assert.equal(adjustPreviewExercise({dose_text:'2 bouts × 10s; 15s rest between bouts.'},'harder').dose_text,'2 bouts × 12s; 15s rest between bouts.');
 });
