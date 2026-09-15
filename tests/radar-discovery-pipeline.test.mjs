@@ -24,7 +24,7 @@ test('republished feeds retain original publication and separate update dates',(
 });
 test('scan ingests primary ruling and unverified lead, deduplicates rescans, and drafts verified item',async()=>{
  const DB=memoryDB();await ensureRadarSchema(DB);await loadRadarSources(DB);
- await DB.prepare("UPDATE radar_sources SET active=0 WHERE id NOT IN ('asa-weight-rulings','uk-advertising-news-search')").run();
+ await DB.prepare("UPDATE radar_sources SET active=0 WHERE id NOT IN ('asa-weight-rulings','uk-advertising-news-search','uk-weight-news-search')").run();
  const original=globalThis.fetch;globalThis.fetch=async url=>new Response(String(url).includes('asa.org.uk')?fixture:'<rss><channel><item><title>GPhC enforcement over POM ads</title><link>https://news.google.com/rss/articles/example</link><pubDate>Tue, 15 Sep 2026 09:00:00 GMT</pubDate></item></channel></rss>');
  const env={DB,RADAR_SUPPRESS_NOTIFICATIONS:true,AI:{run:async()=>({response:JSON.stringify({medicine_id:'',headline:'ASA advertising ruling',article_markdown:'Test draft for human review.'})})}};
  try{
