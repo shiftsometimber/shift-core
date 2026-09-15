@@ -3,6 +3,7 @@ import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
+import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
@@ -834,6 +835,7 @@ export default {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
     const memberHealth = await memberHealthRoutes(request, env);
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);

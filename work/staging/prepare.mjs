@@ -1,4 +1,4 @@
-import {readFileSync,writeFileSync,mkdirSync,copyFileSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,copyFileSync,cpSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash,randomBytes,pbkdf2Sync,randomUUID} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
@@ -7,6 +7,9 @@ import '../../member-experience/staging/grub-catalogue.mjs';
 const dir=resolve('work/staging/generated');mkdirSync(dir+'/assets/staging',{recursive:true});
 const pins=JSON.parse(readFileSync('work/staging/pinned-assets.json'));
 for(const p of pins){const data=process.env.SHIFT_WORK_PAGES_ROOT?readFileSync(resolve(process.env.SHIFT_WORK_PAGES_ROOT,p.path)):Buffer.from(await (await fetch('https://95e283ac.projectshift.pages.dev/'+p.path)).arrayBuffer());if(createHash('sha256').update(data).digest('hex')!==p.sha256)throw Error('Pinned asset mismatch: '+p.path);const dest=dir+'/assets/'+p.path;mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,data)}
+cpSync('frontend/member/fit-v3-images',dir+'/assets/fit-v3-images',{recursive:true});
+cpSync('frontend/member/assets/member-experience/food',dir+'/assets/assets/member-experience/food',{recursive:true});
+copyFileSync('frontend/member/sst-logo-official.png',dir+'/assets/sst-logo-official.png');
 copyFileSync('work/staging/login.mjs',dir+'/assets/staging/login.mjs');
 const password=randomBytes(30).toString('base64url'),salt=randomBytes(16),passwordHash='pbkdf2$100000$'+salt.toString('base64url')+'$'+pbkdf2Sync(password,salt,100000,32,'sha256').toString('base64url');
 const quote=s=>"'"+String(s).replaceAll("'","''")+"'",start=new Date();start.setUTCHours(0,0,0,0);const end=new Date(+start+84*86400000),id=randomUUID(),closedId=randomUUID(),code=id+'.'+randomBytes(32).toString('hex'),expiresAt=new Date(Date.now()+2*86400000).toISOString();

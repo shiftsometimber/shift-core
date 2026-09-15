@@ -1,10 +1,13 @@
 name: SHIFT for Work isolated hosted staging
 on:
   push:
-    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915]
     paths:
       - 'work/staging/**'
       - 'member-experience/**'
+      - 'frontend/member/member-my-timber-problem-v1.js'
+      - 'member-product-v8.js'
+      - 'my-journey*.js'
       - '.github/workflows/shift-work-staging.yml'
 permissions:
   contents: read
@@ -31,6 +34,10 @@ jobs:
           python-version: '3.12'
       - name: Install the recipe publication reader
         run: python -m pip install openpyxl==3.1.5
+      - name: Test connected member journey
+        run: |
+          node member-experience/prepare-life-back.mjs
+          node --test member-experience/tests/*.test.mjs
       - name: Verify pinned assets and prepare fictional fixtures
         run: node work/staging/prepare.mjs
       - name: Provision only separately named staging databases

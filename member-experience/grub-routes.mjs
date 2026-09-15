@@ -1,3 +1,4 @@
+import {ukDate} from './journey-context.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {enrichGrubRecipes,searchGrubRecipes} from './grub-search.mjs';
 import {emptyGrub,usableCatalogue,applyGrubOperation,workspaceView,GrubError} from './grub-workspace.mjs';
@@ -27,7 +28,7 @@ export async function grubWorkspaceRoutes(request,env){
   const prefs=row?JSON.parse(row.preferences||'{}'):{},current=prefs.grubV2||emptyGrub();
   // Preserve explicitly saved legacy recipe names where their identity is exact.
   if(!prefs.grubV2&&Array.isArray(prefs.grub?.savedRecipes))current.saved=recipes.filter(r=>prefs.grub.savedRecipes.includes(r.name)).map(r=>r.id).slice(0,100);
-  const context=grubMemberContext(prefs);
+  const context={...grubMemberContext(prefs),date:ukDate(),at:new Date().toISOString()};
   if(request.method==='GET')return json(workspaceView(current,recipes,context));
   const next=applyGrubOperation(current,input,recipes,context);
   if(next.revision===current.revision)return json(workspaceView(current,recipes,context));

@@ -70,4 +70,8 @@ test('deployed bundler preserves every member script byte for byte',async()=>{
   const source=await memberExperienceRoutes(request,env).text(),actual=await module.memberExperienceRoutes(request,env).text();
   assert.equal(actual,source,name+' runtime changed during bundle');new Function(actual);
  }
+ for(const path of ['/member/life-back',...['client.mjs','model.mjs','icons.mjs','style.css','win.webp'].map(n=>'/assets/member-experience/life-back/'+n)]){
+  const request=new Request('https://shiftsometimber.co.uk'+path),env={MEMBER_EXPERIENCE_V1_ENABLED:'true'};
+  assert.deepEqual(Buffer.from(await module.memberExperienceRoutes(request,env).arrayBuffer()),Buffer.from(await memberExperienceRoutes(request,env).arrayBuffer()),path+' changed during bundle');
+ }
 });
