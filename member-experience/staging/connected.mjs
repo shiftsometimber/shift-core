@@ -1,6 +1,6 @@
 import {memberExperienceEntry} from '../entry.mjs';
 import {healthRuntime} from '../health-runtime.mjs';
-import {fitRuntime} from '../fit-runtime.mjs';
+import {fitRuntime} from '../fit-approved-runtime.mjs';
 const prefix='/staging/member-connected/';
 const source='/staging/member-source/';
 const headers={'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://shiftsometimber.co.uk; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'"};

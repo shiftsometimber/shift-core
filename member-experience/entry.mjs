@@ -2,7 +2,7 @@ import {grubRuntime,upgradeGrubHTML} from './grub-runtime.mjs';
 import {memberStyles} from './styles.mjs';
 import {memberClient} from './client.mjs';
 import {healthRuntime} from './health-runtime.mjs';
-import {fitRuntime} from './fit-runtime.mjs';
+import {fitRuntime} from './fit-approved-runtime.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');

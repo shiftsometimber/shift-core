@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {writeFileSync} from 'node:fs';
 import {healthRuntime} from './health-runtime.mjs';
-import {fitRuntime} from './fit-runtime.mjs';
+import {fitRuntime} from './fit-approved-runtime.mjs';
 import {grubRuntime} from './grub-runtime.mjs';
 const origin='https://shiftsometimber.co.uk';
 const evidence={checkedAt:new Date().toISOString(),assets:[],auth:[]};

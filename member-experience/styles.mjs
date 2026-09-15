@@ -129,6 +129,8 @@ body.sst-member-experience .shopping-item button{background:#e4e8da!important;co
 .sst-member-experience .sf-status{background:#dce2d0!important;color:#25351e!important;border:1px solid #aeb89c!important;padding:14px 18px!important}
 .sst-member-experience .sf-builder .sf-build{margin-top:24px!important}
 .sst-member-experience .sf-session :is(.sf-verdict p,.sf-verdict span){color:#f4f1e9!important}
+.sst-member-experience .sf-exercise-art{overflow:hidden!important;background:#11140f!important;border-radius:10px!important}
+.sst-member-experience .sf-approved-exercise-image{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;aspect-ratio:16/9;object-fit:contain;background:#11140f!important}
 .sst-member-experience .checkin-consent{max-width:none!important;margin:0 0 24px!important;padding:16px 20px!important;background:#dce2d0!important;color:#25351e!important;border:1px solid #aeb89c!important;font-size:14px!important}
 .sst-member-experience .checkin-card h2{font-size:30px!important}.sst-member-experience .checkin-card .mood-btn{background:var(--me-card)!important;color:#11140f!important;border:1px solid #8a917e!important;border-radius:10px!important;min-height:88px!important;height:auto!important}
 .sst-member-experience .checkin-card .mood-btn:is(.active,:hover){background:#25351e!important;color:#fff!important;border-color:#25351e!important}
