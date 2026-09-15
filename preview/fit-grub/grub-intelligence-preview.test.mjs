@@ -31,8 +31,16 @@ test('all adjustment buttons change real accepted meals or explain an honest no-
  assert.ok(grubPreviewRecipes.lighter.kcal<grubPreviewRecipes.base.kcal);
  assert.ok(grubPreviewRecipes.protein.protein>grubPreviewRecipes.base.protein);
  assert.ok(grubPreviewRecipes.fuller.fibre>grubPreviewRecipes.base.fibre);
- assert.match(html,/Already 8 minutes/);
+ assert.match(html,/32 minutes quicker/);
  assert.match(html,/no invented £ claim/);
+});
+
+test('mobile recommendation starts with an exact approved recipe image',()=>{
+ assert.equal(grubPreviewRecipes.base.id,'industrial-dinner-chicken-traybake');
+ assert.equal(grubPreviewRecipes.base.image,'/catalogue-images/catalogue-chicken-traybake.webp');
+ assert.match(html,/id="mealVisual"/);
+ assert.match(html,/id="mealImage"/);
+ assert.match(html,/Exact recipe illustration/);
 });
 
 test('preview remains isolated from network and production writes',()=>{
