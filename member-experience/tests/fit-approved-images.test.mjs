@@ -4,6 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 import {fitRuntime} from '../fit-approved-runtime.mjs';
+import {exercisePurpose} from '../../fit-exercise-purpose-v1.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const approval = JSON.parse(
@@ -15,6 +16,17 @@ test('Fit runtime renders approved PNGs instead of legacy inline diagrams', () =
   assert.match(fitRuntime, /class="sf-approved-exercise-image"/);
   assert.match(fitRuntime, /\/fit-v3-images\/\$\{esc\(canonical\)\}\.png/);
   assert.doesNotMatch(fitRuntime, /<svg viewBox=/);
+});
+
+test('Fit cards explain their purpose and include bounded session effort controls', () => {
+  assert.doesNotThrow(() => new Function(fitRuntime));
+  assert.match(fitRuntime, /WHY THIS IS HERE/);
+  assert.match(fitRuntime, /WHAT IT WORKS/);
+  assert.match(fitRuntime, /HOW IT SUPPORTS YOUR GOALS/);
+  assert.match(fitRuntime, /data-sf-difficulty/);
+  assert.match(fitRuntime, /Go easier/);
+  assert.match(fitRuntime, /Go harder/);
+  assert.doesNotMatch(fitRuntime, /calories burned|calorie loss/i);
 });
 
 test('every approved image and every currently published Fit family is mapped', () => {
@@ -35,6 +47,10 @@ test('every approved image and every currently published Fit family is mapped', 
     assert.ok(
       approved.has(decision.movement_id),
       `published Fit family lacks approved PNG: ${decision.movement_id}`,
+    );
+    assert.ok(
+      exercisePurpose[decision.movement_id],
+      `published Fit family lacks purpose guidance: ${decision.movement_id}`,
     );
   }
 });
