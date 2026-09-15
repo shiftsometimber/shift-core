@@ -1,9 +1,9 @@
 # Fit v3 approved preview handoff
 
-Matt approved the visual catalogue in bulk after reviewing five examples. 255 images approved; 44 source regen flags plus frog-pump remain held. Approval applies to visual assets and preview integration, not a production release or individual exercise technique certification.
+Matt approved 255 original images in bulk. On 14 September 2026 he signed off the working preview and asked, “Can you resolve the 45 holds yourself ??” Codex generated and visually checked replacements for all 45 held images, retrying visible defects. The catalogue now has 300 images ready and zero image holds. The 255 original approvals and image bytes remain unchanged. Correction reviews are attributed to Codex, not to a new individual review by Matt.
 
-Source: verified 1246 split release. Original ZIPs and extracted source metadata remain unchanged. This overlay is authoritative for the approval decision. Only approved image bytes are included here; held assets must never be served. SHA-256 values bind approval to the exact supplied bytes.
+Source: verified 1246 split release. Original ZIPs, the original archive MANIFEST.csv and extracted source metadata remain unchanged. approval.json is authoritative for currently served images; corrections/MANIFEST.csv overlays the 212 affected variant mappings. Only images that pass their recorded visual review are served. SHA-256 values bind each decision to exact bytes. The build rejects unreviewed corrections and altered files.
 
-The existing 26 canonical exercise records retain their original instructions and dosage. Their illustrations resolve by exact canonical ID. The additional movements are browsable in /fit-v3 with source variant IDs; the image manifest supplies no exercise instructions, so these records do not silently become workout prescriptions or extend the programme generator.
+The preceding preview connected all 300 workbook guides and 2,688 source protocols to the gallery and sample session builder. This image update preserves that workbook export byte-for-byte, including its pending technique, programming and member-release reviews. Visual correction does not certify exercise technique or approve live member use.
 
-No recipe content, live routes, backend, checkout or production configuration changes. This branch deploys only to the existing isolated Fit/Grub preview. The colleague's uncommitted work in uk-newsroom-archive is untouched.
+This branch deploys only to the existing isolated Fit/Grub preview. See corrections/REVIEW.md for image decisions, provenance, tests and verification commands.

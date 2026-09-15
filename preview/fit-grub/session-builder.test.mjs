@@ -12,7 +12,7 @@ const base={location:'home',minutes_per_day:20,equipment:['No equipment','Chair'
 test('all 300 written guides join exactly to 2688 asset mappings and retain release holds',()=>{
   assert.equal(records.length,300);
   assert.equal(records.reduce((n,r)=>n+r.variants.length,0),2688);
-  assert.equal(records.filter(r=>r.status==='approved').length,255);
+  assert.equal(records.filter(r=>r.status==='approved').length,300);
   for(const r of records){assert.ok(r.purpose.benefit&&r.purpose.weightLoss);for(const v of r.variants){assert.ok(v.instructions&&v.dose);assert.match(v.releaseStatus,/Hold/);}}
   const summary=JSON.parse(assets['/fit-guidance-summary.json'].body);
   assert.equal(summary.sourceSha256,'2461d65b76efac19ef718359331cd9eb5612e21c3212dae4424526cbf7bb4817');

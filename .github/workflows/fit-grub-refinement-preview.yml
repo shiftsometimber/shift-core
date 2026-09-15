@@ -48,6 +48,8 @@ jobs:
           fs.writeFileSync('fit-grub-preview-proof.json',JSON.stringify({url,productionChanged:false,databaseBindings:0,serviceBindings:0,externalConnectionsBlocked:true,readOnlyServer:true},null,2));console.log('PREVIEW_URL='+url);
           })().catch(e=>{console.error(e);process.exit(1)});
           JS
+      - name: Verify all corrected image bytes
+        run: node preview/fit-grub/verify-corrections.mjs https://shift-fit-grub-refinement-preview.matobrien.workers.dev
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -55,3 +57,4 @@ jobs:
           path: |
             fit-grub-preview-proof.json
             preview-deploy.txt
+            fit-correction-proof.json

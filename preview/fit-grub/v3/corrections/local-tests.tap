@@ -1,0 +1,48 @@
+✔ accepted cohort remains 798 recipes and 1326 exact variants; drafts are excluded (2.564161ms)
+✔ changed ingredients cannot silently reuse a previous image; title similarity is insufficient (28.144197ms)
+✔ base movement images do not approve their variants or confer production approval (3.003865ms)
+✔ every accepted item has a source-bound generation brief and all exercise protocols remain available (10.507465ms)
+✔ static image serving stays read-only and cannot open production services (9.404581ms)
+✔ all 300 written guides join exactly to 2688 asset mappings and retain release holds (5.063783ms)
+✔ 125 session combinations respect setting, complete equipment requirements and beginner source protocols (50.69559ms)
+✔ restrictions and unknown notes hold the session; explicit no-floor preference excludes floor transfers (4.571926ms)
+✔ swaps use another canonical movement, preserve role and equipment, and fail without weakening constraints (4.625206ms)
+✔ built preview has a functioning composer and no fake live Progress success (14.633641ms)
+✔ actual Easy walk card contains the approved image, purpose, source links and existing instructions (29.479226ms)
+✔ all 2688 known variant IDs resolve without name/group guessing, including replacement-card rendering (41.465363ms)
+✔ all 26 current programme movements explain their role; personalised selection reasons are never fabricated (21.96ms)
+✔ all 45 corrections bind to reviewed replacement bytes while original approvals and guidance stay unchanged (742.590541ms)
+✔ unreviewed or altered correction bytes cannot pass the asset gate (151.487439ms)
+✔ all existing movements bind by exact ID while recipes, instructions and variant dosage remain unchanged (732.543333ms)
+✔ worker blocks excluded images before static serving and refuses state mutations (360.874783ms)
+✔ 20 minutes is the unsaved default (1.608688ms)
+✔ Fit fallback preserves limitations and uses explicit recovery controls (0.64187ms)
+✔ done uses completeFitToday and never doors to visualise (0.386443ms)
+✔ programme requests one day, not a seven day planner (0.361832ms)
+✔ Grub is an informational programme with a complete next-action loop (6.416714ms)
+✔ Grub selection applies tastes, hard exclusions, time and repeat cooling (2.612998ms)
+✔ new Grub assets are served and mounted through the existing member shell (4.963087ms)
+✔ retry recovers transaction failure at statement 0 (62.547955ms)
+✔ retry recovers transaction failure at statement 1 (20.119188ms)
+✔ retry recovers transaction failure at statement 2 (11.581692ms)
+✔ retry recovers transaction failure at statement 3 (12.528873ms)
+✔ distinct success events settle once and preserve clinical progress (9.692959ms)
+✔ late failure cannot downgrade payment or release somebody else’s reservation (10.40723ms)
+✔ failure repeats release once; later confirmed payment does not release another reservation (10.350379ms)
+✔ missing order remains retryable (4.081305ms)
+✔ refunded orders cannot be restored to paid (9.295365ms)
+✔ concurrent distinct success deliveries settle the order once (13.223611ms)
+✔ Fit preserves restrictions and unknown notes without prescribing a fallback (4.561214ms)
+✔ simple fallback stays within available time, keeps location and avoids knee-safe claims (2.500726ms)
+✔ failed Fit profile save never calls the planner or renders a fallback (3.150907ms)
+✔ held fallback exposes retry/profile controls without completion (2.833276ms)
+✔ Grub prep carries exact recipe text, servings and storage without inferred cooking advice (3.695914ms)
+✔ missing storage stays explicit; unsafe text is escaped; all meals are retained (3.422942ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2129.97508

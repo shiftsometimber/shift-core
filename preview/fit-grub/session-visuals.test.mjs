@@ -18,9 +18,9 @@ test('actual Easy walk card contains the approved image, purpose, source links a
 test('all 2688 known variant IDs resolve without name/group guessing, including replacement-card rendering',()=>{
  const h=helpers();let images=0,holds=0;
  for(const r of pack.records)for(const v of r.variants){const html=h.exercise({id:v.id,name:v.name});if(r.status==='approved'){assert.ok(html.includes(r.image));images++;}else{assert.doesNotMatch(html,/<img/);holds++;}}
- assert.equal(images,2476);assert.equal(holds,212);
+ assert.equal(images,2688);assert.equal(holds,0);
  assert.equal(h.visual({id:'unknown',name:'Walk',group:'walk',visual:{asset_ref:'stale.png'}}),'');
- assert.equal(h.visual({id:'wall-push-up',visual:{asset_ref:'stale.png'}}),'');
+ assert.match(h.visual({id:'wall-push-up',visual:{asset_ref:'stale.png'}}),/fit-v3-images\/wall-push-up.png/);
  const original={id:'fallback-easy-walk',name:'Easy walk'};const replacement={id:'sit-to-stand',name:'Sit to stand'};
  assert.match(h.exercise(original),/walk.png/);assert.match(h.exercise(replacement),/sit-to-stand.png/);assert.doesNotMatch(h.exercise(replacement),/walk.png/);
 });

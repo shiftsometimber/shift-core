@@ -33,6 +33,6 @@ export function guidanceAssets(pack){
     data,
     script:'window.SHIFT_FIT_GUIDANCE='+JSON.stringify(firstVariants).replaceAll('<','\\u003c')+';\n',
     galleryScript:'<script id="fit-guidance" type="application/json">'+JSON.stringify(data.records).replaceAll('<','\\u003c')+'</script>',
-    summary:{source:data.source,sourceSha256:data.sha256,movements:300,variants:2688,approvedImages:255,heldImages:45,sourceReviewStatus:'preserved; no new technique or member-release approval',productionChanged:false}
+    summary:{source:data.source,sourceSha256:data.sha256,movements:300,variants:2688,approvedImages:pack.approvedImages,heldImages:pack.heldImages,sourceReviewStatus:'preserved; no new technique or member-release approval',productionChanged:false}
   };
 }

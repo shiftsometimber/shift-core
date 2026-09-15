@@ -3,7 +3,7 @@ import {exercisePurpose} from './exercise-purpose.mjs';
 export function sessionVisualData(pack){
  const byId={},byVariant={};
  for(const r of pack.records){
-  byId[r.id]={id:r.id,image:r.status==='approved'?r.image:null,status:r.status,purpose:exercisePurpose[r.id]||null};
+  byId[r.id]={id:r.id,image:r.status==='approved'?r.image:null,status:r.status,width:r.width,height:r.height,purpose:exercisePurpose[r.id]||null};
   for(const v of r.variants){assert.ok(!byVariant[v.id]);byVariant[v.id]=r.id;}
  }
  // This is the exact fallback exercise in the existing programme, not a name/group guess.
@@ -24,7 +24,7 @@ function fitAsset(x){
 function visual(x){
  const match=fitAsset(x);if(!match||match.status!=='approved'||!match.image)return '';
  const ref=match.image;
- return '<button class="sf-visual-open" type="button" data-fit-visual data-src="'+esc(ref)+'" data-name="'+esc(x.name)+'" aria-label="Enlarge '+esc(x.name)+' movement demonstration"><img width="1280" height="720" src="'+esc(ref)+'" alt="'+esc(x.name)+' — three-panel movement illustration" loading="lazy"><span>Tap to enlarge</span></button>';
+ return '<button class="sf-visual-open" type="button" data-fit-visual data-src="'+esc(ref)+'" data-name="'+esc(x.name)+'" aria-label="Enlarge '+esc(x.name)+' movement demonstration"><img width="'+match.width+'" height="'+match.height+'" src="'+esc(ref)+'" alt="'+esc(x.name)+' — three-panel movement illustration" loading="lazy"><span>Tap to enlarge</span></button>';
 }
 function exercisePurposeCopy(x){
  const p=(typeof window!=='undefined'?window.SHIFT_FIT_GUIDANCE?.find(r=>r.id===x.canonical_movement)?.purpose:null)||fitAsset(x)?.purpose;
