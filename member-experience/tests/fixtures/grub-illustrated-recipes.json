@@ -1,0 +1,959 @@
+[
+  {
+    "id": "industrial-breakfast-breakfast-wrap-apple-cinnamon-0",
+    "contentType": "recipe",
+    "title": "Egg Kidney Beans Spinach Breakfast Wrap",
+    "status": "published",
+    "data": {
+      "meal_type": "breakfast",
+      "servings": 1,
+      "equipment": [
+        "hob",
+        "frying-pan"
+      ],
+      "storage": {
+        "chilled": "If prepared ahead, cool promptly where relevant, cover and refrigerate. Use within the stated safe storage period.",
+        "reheat": "Where reheating is appropriate, heat until steaming hot throughout and only reheat once."
+      },
+      "shift_says": null,
+      "nutrition": {
+        "status": "validated",
+        "kcal": 462.9,
+        "protein_g": 26.7,
+        "carbohydrate_g": 61,
+        "fat_g": 13.9,
+        "fibre_g": 8.4,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "2 / 100g",
+          "item": "large eggs",
+          "allergens": [
+            "egg"
+          ]
+        },
+        {
+          "amount": "80g drained",
+          "item": "kidney beans"
+        },
+        {
+          "amount": "1 / 65g",
+          "item": "wholemeal wrap",
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "amount": "60g",
+          "item": "spinach"
+        },
+        {
+          "amount": "50g",
+          "item": "tomato salsa"
+        }
+      ],
+      "method": [
+        "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+        "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30–60 seconds so it coats the filling rather than burning.",
+        "Warm the wrap for 20–30 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+        "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+      ],
+      "allergens": [
+        "egg",
+        "gluten"
+      ],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Cook raw animal products thoroughly and cool leftovers promptly."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "large eggs",
+          "amount": "2 / 100g",
+          "grams": 100,
+          "cofid_code": "12-937",
+          "cofid_name": "Eggs, chicken, whole, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "kidney beans",
+          "amount": "80g drained",
+          "grams": 80,
+          "cofid_code": "13-660",
+          "cofid_name": "Beans, red kidney, canned in water, re-heated, drained",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "drained canned red kidney beans are suitable for the ready-to-use ingredient"
+        },
+        {
+          "item": "wholemeal wrap",
+          "amount": "1 / 65g",
+          "grams": 65,
+          "cofid_code": "11-925",
+          "cofid_name": "Tortilla, wheat, soft",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap"
+        },
+        {
+          "item": "spinach",
+          "amount": "60g",
+          "grams": 60,
+          "cofid_code": "13-521",
+          "cofid_name": "Spinach, baby, raw",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+        },
+        {
+          "item": "tomato salsa",
+          "amount": "50g",
+          "grams": 50,
+          "cofid_code": "17-354",
+          "cofid_name": "Relish, tomato based",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "tomato-based relish is the closest CoFID prepared tomato condiment analogue for the generated salsa portion"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "7b490beddcf7b8e262c35301fce5924a83b2dd1e8878f1587a69487b877ee5c1"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "7b490beddcf7b8e262c35301fce5924a83b2dd1e8878f1587a69487b877ee5c1",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  },
+  {
+    "id": "industrial-v3-wrap-classic-chicken",
+    "contentType": "recipe",
+    "title": "Shift Classic Chicken Loaded Wrap",
+    "status": "published",
+    "data": {
+      "meal_type": "lunch",
+      "servings": 1,
+      "equipment": [
+        "none"
+      ],
+      "storage": {
+        "chilled": "Cool leftovers promptly, cover and refrigerate; use within 2 days unless a stricter ingredient label applies.",
+        "freezer": "Freeze only where the finished texture remains suitable.",
+        "reheat": "Reheat once until steaming hot throughout; do not repeatedly cool and reheat."
+      },
+      "shift_says": null,
+      "nutrition": {
+        "status": "validated",
+        "kcal": 527.9,
+        "protein_g": 48.5,
+        "carbohydrate_g": 41.5,
+        "fat_g": 19.8,
+        "fibre_g": 4.6,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "130g",
+          "item": "cooked chicken breast"
+        },
+        {
+          "amount": "65g",
+          "item": "wholemeal wrap",
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "amount": "90g",
+          "item": "lettuce"
+        },
+        {
+          "amount": "90g",
+          "item": "tomato"
+        },
+        {
+          "amount": "30g",
+          "item": "light mayonnaise"
+        },
+        {
+          "amount": "1 tsp / 5ml",
+          "item": "olive oil"
+        }
+      ],
+      "method": [
+        "Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+        "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.",
+        "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+        "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1–2 minutes if you want a crisp finish."
+      ],
+      "allergens": [
+        "gluten"
+      ],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Prevent cross-contamination from raw meat or fish.",
+        "Cook raw animal proteins thoroughly and cool leftovers promptly."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "cooked chicken breast",
+          "amount": "130g",
+          "grams": 130,
+          "cofid_code": "18-323",
+          "cofid_name": "Chicken, breast, grilled without skin, meat only",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source"
+        },
+        {
+          "item": "wholemeal wrap",
+          "amount": "65g",
+          "grams": 65,
+          "cofid_code": "11-925",
+          "cofid_name": "Tortilla, wheat, soft",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap"
+        },
+        {
+          "item": "lettuce",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-520",
+          "cofid_name": "Lettuce, average, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "tomato",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-517",
+          "cofid_name": "Tomatoes, standard, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "light mayonnaise",
+          "amount": "30g",
+          "grams": 30,
+          "cofid_code": "17-679",
+          "cofid_name": "Mayonnaise, reduced fat",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "olive oil",
+          "amount": "1 tsp / 5ml",
+          "grams": 4.6,
+          "cofid_code": "17-038",
+          "cofid_name": "Oil, olive",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "cfaad37de0d6d31052a2900956e3cb6dcc71ca504c99fe0a218486da60b326e7"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "cfaad37de0d6d31052a2900956e3cb6dcc71ca504c99fe0a218486da60b326e7",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  },
+  {
+    "id": "industrial-v3-wrap-bbq-chickpea",
+    "contentType": "recipe",
+    "title": "Shift BBQ Chickpea Loaded Wrap",
+    "status": "published",
+    "data": {
+      "meal_type": "lunch",
+      "servings": 1,
+      "equipment": [
+        "none"
+      ],
+      "storage": {
+        "chilled": "Cool leftovers promptly, cover and refrigerate; use within 2 days unless a stricter ingredient label applies.",
+        "freezer": "Freeze only where the finished texture remains suitable.",
+        "reheat": "Reheat once until steaming hot throughout; do not repeatedly cool and reheat."
+      },
+      "shift_says": null,
+      "nutrition": {
+        "status": "validated",
+        "kcal": 498.6,
+        "protein_g": 19.6,
+        "carbohydrate_g": 80.9,
+        "fat_g": 13,
+        "fibre_g": 15.7,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "150g",
+          "item": "chickpeas, drained"
+        },
+        {
+          "amount": "65g",
+          "item": "wholemeal wrap",
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "amount": "90g",
+          "item": "lettuce"
+        },
+        {
+          "amount": "90g",
+          "item": "tomato"
+        },
+        {
+          "amount": "40g",
+          "item": "reduced-sugar BBQ sauce"
+        },
+        {
+          "amount": "1 tsp / 5ml",
+          "item": "olive oil"
+        }
+      ],
+      "method": [
+        "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+        "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+        "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+        "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1–2 minutes if you want a crisp finish."
+      ],
+      "allergens": [
+        "gluten"
+      ],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Prevent cross-contamination from raw meat or fish.",
+        "Cook raw animal proteins thoroughly and cool leftovers promptly."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "chickpeas, drained",
+          "amount": "150g",
+          "grams": 150,
+          "cofid_code": "13-670",
+          "cofid_name": "Beans, chick peas, canned, re-heated, drained",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "wholemeal wrap",
+          "amount": "65g",
+          "grams": 65,
+          "cofid_code": "11-925",
+          "cofid_name": "Tortilla, wheat, soft",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap"
+        },
+        {
+          "item": "lettuce",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-520",
+          "cofid_name": "Lettuce, average, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "tomato",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-517",
+          "cofid_name": "Tomatoes, standard, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "reduced-sugar BBQ sauce",
+          "amount": "40g",
+          "grams": 40,
+          "cofid_code": "17-705",
+          "cofid_name": "Barbecue sauce",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "barbecue sauce is the closest CoFID analogue"
+        },
+        {
+          "item": "olive oil",
+          "amount": "1 tsp / 5ml",
+          "grams": 4.6,
+          "cofid_code": "17-038",
+          "cofid_name": "Oil, olive",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "cfaad37de0d6d31052a2900956e3cb6dcc71ca504c99fe0a218486da60b326e7"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "cfaad37de0d6d31052a2900956e3cb6dcc71ca504c99fe0a218486da60b326e7",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  },
+  {
+    "id": "industrial-dinner-chicken-traybake",
+    "contentType": "recipe",
+    "title": "Chicken Traybake",
+    "status": "published",
+    "data": {
+      "meal_type": "dinner",
+      "servings": 1,
+      "equipment": [
+        "oven",
+        "tray"
+      ],
+      "storage": {
+        "chilled": "If prepared ahead, cool promptly where relevant, cover and refrigerate. Use within the stated safe storage period.",
+        "reheat": "Where reheating is appropriate, heat until steaming hot throughout and only reheat once."
+      },
+      "shift_says": "Do not overcrowd the pan or tray. If it is packed solid, use two batches — colour beats grey every time.",
+      "nutrition": {
+        "status": "validated",
+        "kcal": 456.8,
+        "protein_g": 48.1,
+        "carbohydrate_g": 48.4,
+        "fat_g": 9.3,
+        "fibre_g": 11.5,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "170g",
+          "item": "chicken breast"
+        },
+        {
+          "amount": "250g",
+          "item": "baby potatoes"
+        },
+        {
+          "amount": "120g",
+          "item": "broccoli"
+        },
+        {
+          "amount": "100g",
+          "item": "red pepper"
+        },
+        {
+          "amount": "5ml",
+          "item": "olive oil"
+        }
+      ],
+      "method": [
+        "Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+        "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through — colour is flavour, so do not crowd the pan.",
+        "Add the vegetables to the hot tray and roast for another 15–20 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+        "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+      ],
+      "allergens": [],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Cook raw animal products thoroughly and cool leftovers promptly."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "chicken breast",
+          "amount": "170g",
+          "grams": 170,
+          "cofid_code": "18-488",
+          "cofid_name": "Chicken, meat, average, raw",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "raw uncoated chicken breast/meat is the appropriate source before recipe cooking"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "250g",
+          "grams": 250,
+          "cofid_code": "13-618",
+          "cofid_name": "Potatoes, new and salad, flesh only, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "broccoli",
+          "amount": "120g",
+          "grams": 120,
+          "cofid_code": "13-502",
+          "cofid_name": "Broccoli, green, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "red pepper",
+          "amount": "100g",
+          "grams": 100,
+          "cofid_code": "13-524",
+          "cofid_name": "Pepper, capsicum, red, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "olive oil",
+          "amount": "5ml",
+          "grams": 4.6,
+          "cofid_code": "17-038",
+          "cofid_name": "Oil, olive",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "96609678b1b6979a385961a464668b8707f33aa798370d76b09bc357f8e107fd"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "96609678b1b6979a385961a464668b8707f33aa798370d76b09bc357f8e107fd",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  },
+  {
+    "id": "industrial-v4-protein-pot-classic-greek-yoghurt",
+    "contentType": "recipe",
+    "title": "Shift Classic Greek Yoghurt Protein Pot",
+    "status": "published",
+    "data": {
+      "meal_type": "snack",
+      "servings": 1,
+      "equipment": [
+        "none"
+      ],
+      "storage": {
+        "chilled": "Cover and refrigerate; use within 24 hours unless an ingredient label is stricter.",
+        "freezer": "Not generally recommended for assembled pots.",
+        "reheat": "Not applicable."
+      },
+      "shift_says": null,
+      "nutrition": {
+        "status": "validated",
+        "kcal": 314.6,
+        "protein_g": 17.9,
+        "carbohydrate_g": 41.4,
+        "fat_g": 9.8,
+        "fibre_g": 3.8,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "200g",
+          "item": "0% Greek yoghurt",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "amount": "1g",
+          "item": "cinnamon"
+        },
+        {
+          "amount": "25g",
+          "item": "mixed berries"
+        },
+        {
+          "amount": "30g",
+          "item": "rolled oats",
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "amount": "15g",
+          "item": "pumpkin seeds",
+          "allergens": []
+        }
+      ],
+      "method": [
+        "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+        "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+        "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+        "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+      ],
+      "allergens": [
+        "milk",
+        "gluten"
+      ],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Use clean utensils and follow ingredient use-by dates."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "0% Greek yoghurt",
+          "amount": "200g",
+          "grams": 200,
+          "cofid_code": "12-533",
+          "cofid_name": "Yogurt, virtually fat free/diet, plain",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "virtually fat-free plain yoghurt is the closest suitable macro analogue"
+        },
+        {
+          "item": "cinnamon",
+          "amount": "1g",
+          "grams": 1,
+          "cofid_code": "13-874",
+          "cofid_name": "Cinnamon, ground",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "mixed berries",
+          "amount": "25g",
+          "grams": 25,
+          "cofid_code": "14-324",
+          "cofid_name": "Strawberries, raw",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "raw strawberry is used as a conservative single-food proximates proxy for an unsweetened fresh mixed-berry portion"
+        },
+        {
+          "item": "rolled oats",
+          "amount": "30g",
+          "grams": 30,
+          "cofid_code": "11-788",
+          "cofid_name": "Porridge oats, unfortified",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "pumpkin seeds",
+          "amount": "15g",
+          "grams": 15,
+          "cofid_code": "14-842",
+          "cofid_name": "Pumpkin seeds",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "0f7a5229c92be9a3020c6e5f28beafaa79fb59a8f61de9275941153a39ec1449"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "0f7a5229c92be9a3020c6e5f28beafaa79fb59a8f61de9275941153a39ec1449",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  },
+  {
+    "id": "industrial-v3-sandwich-peri-peri-chicken",
+    "contentType": "recipe",
+    "title": "Shift Peri-Peri Chicken Proper Sandwich",
+    "status": "published",
+    "data": {
+      "meal_type": "lunch",
+      "servings": 1,
+      "equipment": [
+        "none"
+      ],
+      "storage": {
+        "chilled": "Cool leftovers promptly, cover and refrigerate; use within 2 days unless a stricter ingredient label applies.",
+        "freezer": "Freeze only where the finished texture remains suitable.",
+        "reheat": "Reheat once until steaming hot throughout; do not repeatedly cool and reheat."
+      },
+      "shift_says": null,
+      "nutrition": {
+        "status": "validated",
+        "kcal": 451.5,
+        "protein_g": 52.8,
+        "carbohydrate_g": 40.8,
+        "fat_g": 9.7,
+        "fibre_g": 7.9,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "130g",
+          "item": "cooked chicken breast"
+        },
+        {
+          "amount": "80g",
+          "item": "wholemeal bread",
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "amount": "90g",
+          "item": "lettuce"
+        },
+        {
+          "amount": "90g",
+          "item": "tomato"
+        },
+        {
+          "amount": "40g",
+          "item": "peri-peri yoghurt",
+          "allergens": [
+            "milk"
+          ]
+        },
+        {
+          "amount": "1 tsp / 5ml",
+          "item": "olive oil"
+        }
+      ],
+      "method": [
+        "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+        "Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+        "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.",
+        "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+      ],
+      "allergens": [
+        "gluten",
+        "milk"
+      ],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Prevent cross-contamination from raw meat or fish.",
+        "Cook raw animal proteins thoroughly and cool leftovers promptly."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "cooked chicken breast",
+          "amount": "130g",
+          "grams": 130,
+          "cofid_code": "18-323",
+          "cofid_name": "Chicken, breast, grilled without skin, meat only",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source"
+        },
+        {
+          "item": "wholemeal bread",
+          "amount": "80g",
+          "grams": 80,
+          "cofid_code": "11-981",
+          "cofid_name": "Bread, wholemeal, average",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "lettuce",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-520",
+          "cofid_name": "Lettuce, average, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "tomato",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-517",
+          "cofid_name": "Tomatoes, standard, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "peri-peri yoghurt",
+          "amount": "40g",
+          "grams": 40,
+          "cofid_code": "12-533",
+          "cofid_name": "Yogurt, virtually fat free/diet, plain",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "virtually fat-free plain yoghurt is the dominant macro component of the generated peri-peri yoghurt dressing"
+        },
+        {
+          "item": "olive oil",
+          "amount": "1 tsp / 5ml",
+          "grams": 4.6,
+          "cofid_code": "17-038",
+          "cofid_name": "Oil, olive",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "92d7c791c8cf146fca45b804bfcccc056acc36e9d180ee6f8f151433aef7b80e"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "92d7c791c8cf146fca45b804bfcccc056acc36e9d180ee6f8f151433aef7b80e",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  },
+  {
+    "id": "industrial-v3-sandwich-sweet-chilli-chicken",
+    "contentType": "recipe",
+    "title": "Shift Sweet Chilli Chicken Proper Sandwich",
+    "status": "published",
+    "data": {
+      "meal_type": "lunch",
+      "servings": 1,
+      "equipment": [
+        "none"
+      ],
+      "storage": {
+        "chilled": "Cool leftovers promptly, cover and refrigerate; use within 2 days unless a stricter ingredient label applies.",
+        "freezer": "Freeze only where the finished texture remains suitable.",
+        "reheat": "Reheat once until steaming hot throughout; do not repeatedly cool and reheat."
+      },
+      "shift_says": null,
+      "nutrition": {
+        "status": "validated",
+        "kcal": 445.9,
+        "protein_g": 51.2,
+        "carbohydrate_g": 40.5,
+        "fat_g": 10,
+        "fibre_g": 8.7,
+        "methodology": "CoFID 2021 ingredient-level weighted calculation"
+      },
+      "ingredients": [
+        {
+          "amount": "130g",
+          "item": "cooked chicken breast"
+        },
+        {
+          "amount": "80g",
+          "item": "wholemeal bread",
+          "allergens": [
+            "gluten"
+          ]
+        },
+        {
+          "amount": "90g",
+          "item": "lettuce"
+        },
+        {
+          "amount": "90g",
+          "item": "tomato"
+        },
+        {
+          "amount": "40g",
+          "item": "sweet chilli sauce"
+        },
+        {
+          "amount": "1 tsp / 5ml",
+          "item": "olive oil"
+        }
+      ],
+      "method": [
+        "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+        "Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+        "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.",
+        "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+      ],
+      "allergens": [
+        "gluten"
+      ],
+      "food_safety": [
+        "Keep chilled ingredients refrigerated until needed.",
+        "Prevent cross-contamination from raw meat or fish.",
+        "Cook raw animal proteins thoroughly and cool leftovers promptly."
+      ],
+      "ingredient_evidence": [
+        {
+          "item": "cooked chicken breast",
+          "amount": "130g",
+          "grams": 130,
+          "cofid_code": "18-323",
+          "cofid_name": "Chicken, breast, grilled without skin, meat only",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "high",
+          "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source"
+        },
+        {
+          "item": "wholemeal bread",
+          "amount": "80g",
+          "grams": 80,
+          "cofid_code": "11-981",
+          "cofid_name": "Bread, wholemeal, average",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "lettuce",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-520",
+          "cofid_name": "Lettuce, average, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "tomato",
+          "amount": "90g",
+          "grams": 90,
+          "cofid_code": "13-517",
+          "cofid_name": "Tomatoes, standard, raw",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        },
+        {
+          "item": "sweet chilli sauce",
+          "amount": "40g",
+          "grams": 40,
+          "cofid_code": "17-719",
+          "cofid_name": "Chilli sauce",
+          "mapping_state": "approved_canonical_proxy",
+          "mapping_confidence": "medium",
+          "mapping_basis": "chilli sauce is the closest CoFID analogue"
+        },
+        {
+          "item": "olive oil",
+          "amount": "1 tsp / 5ml",
+          "grams": 4.6,
+          "cofid_code": "17-038",
+          "cofid_name": "Oil, olive",
+          "mapping_state": "exact",
+          "mapping_confidence": "high",
+          "mapping_basis": "direct canonical CoFID identity"
+        }
+      ],
+      "canonical_review": {
+        "template_digest": "92d7c791c8cf146fca45b804bfcccc056acc36e9d180ee6f8f151433aef7b80e"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "scope": "canonical_family",
+      "template_digest": "92d7c791c8cf146fca45b804bfcccc056acc36e9d180ee6f8f151433aef7b80e",
+      "decision_source": "M11_SECOND_PERSON_DECISIONS"
+    }
+  }
+]

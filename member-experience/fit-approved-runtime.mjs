@@ -119,4 +119,11 @@ fitRuntime = fitRuntime.replace(
   `${difficultySource}\n${initHook}`,
 );
 
+const renderScrollHook = '    applyJourney();\n  }\n  const allowedLimitations';
+if (!fitRuntime.includes(renderScrollHook)) throw new Error('Fit could not locate the completed programme renderer.');
+fitRuntime = fitRuntime.replace(renderScrollHook, '    applyJourney();\n    output.querySelector(".sf-difficulty")?.scrollIntoView({behavior:"auto",block:"start"});\n  }\n  const allowedLimitations');
+const swapEffortHook = '      card.replaceWith(holder.firstElementChild);';
+if (!fitRuntime.includes(swapEffortHook)) throw new Error('Fit could not locate the exercise swap.');
+fitRuntime = fitRuntime.replace(swapEffortHook, '      const effort = card.closest(".sf-session")?.querySelector(\'[data-sf-difficulty][aria-pressed="true"]\');\n      card.replaceWith(holder.firstElementChild);\n      if (effort) adjustSession(effort);');
+
 export {fitRuntime};

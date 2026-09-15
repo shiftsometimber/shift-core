@@ -3,6 +3,7 @@ import {memberStyles} from './styles.mjs';
 import {memberClient} from './client.mjs';
 import {healthRuntime} from './health-runtime.mjs';
 import {fitRuntime} from './fit-approved-runtime.mjs';
+import {grubIntelligenceCSS} from './grub-intelligence-client.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -16,7 +17,7 @@ export function memberExperienceRoutes(request, env) {
   }
   const asset = {'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
   if (!asset) return null;
-  return new Response(request.method === 'HEAD' ? null : asset[0],{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
+  return new Response(request.method === 'HEAD' ? null : asset[0]+(path==='/assets/member-experience/v1.css'?grubIntelligenceCSS:''),{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
 }
 
 function navigation(work) {
