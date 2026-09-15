@@ -1,10 +1,10 @@
 export const areas = [
- {id:'energy',label:'Energy',icon:'sun',description:'Getting through the day without crashing.',prompt:'How has your energy felt right now?'},
- {id:'sleep',label:'Sleep',icon:'moon',description:'Waking up feeling more rested.',prompt:'How rested have you felt right now?'},
- {id:'confidence',label:'Confidence',icon:'sparkles',description:'Feeling more like yourself again.',prompt:'How confident have you felt right now?'},
- {id:'movement',label:'Movement',icon:'footprints',description:'Feeling stronger and more capable.',prompt:'How comfortable has everyday movement felt right now?'},
- {id:'clothes',label:'Clothes',icon:'shirt',description:'More comfort in what you wear.',prompt:'How comfortable have you felt in your clothes right now?'},
- {id:'personal',label:'Playing with the kids',icon:'heart',description:'More present. More moments.',prompt:'How close have you felt to your personal goal right now?'}
+ {id:'energy',label:'Energy',icon:'sun',description:'Getting through the day without crashing.',prompt:'How is your energy right now?'},
+ {id:'sleep',label:'Sleep',icon:'moon',description:'Waking up feeling more rested.',prompt:'How rested do you feel right now?'},
+ {id:'confidence',label:'Confidence',icon:'sparkles',description:'Feeling more like yourself again.',prompt:'How confident do you feel right now?'},
+ {id:'movement',label:'Movement',icon:'footprints',description:'Feeling stronger and more capable.',prompt:'How comfortable does everyday movement feel right now?'},
+ {id:'clothes',label:'Clothes',icon:'shirt',description:'More comfort in what you wear.',prompt:'How comfortable do you feel in your clothes right now?'},
+ {id:'personal',label:'Playing with the kids',icon:'heart',description:'More present. More moments.',prompt:'How close do you feel to your personal goal right now?'}
 ];
 export const sample = {
  goalId:'sample-family',
