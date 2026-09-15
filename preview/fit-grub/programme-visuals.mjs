@@ -15,8 +15,8 @@ function recipeDetails(meal)`);
   replace('function markup()',`const previewMovementRecords=${data};
 function previewMovementLibrary(){return '<section class="sv-library" aria-labelledby="svGuideTitle"><p class="sf-kicker">MOVEMENT GUIDES · APPROVED VISUALS</p><h2 id="svGuideTitle">See how it moves.</h2><p>Explore these movement guides, or <a href="/fit-v3">browse all 300 movement images</a>. Your session is built separately from your saved profile.</p><div class="sv-guide-grid">'+previewMovementRecords.map(m=>'<details class="sv-guide" data-visual-id="'+esc(m.id)+'"><summary><img width="'+m.width+'" height="'+m.height+'" src="'+m.image+'" alt="'+esc(m.title)+' — three-stage sequence"><span><b>'+esc(m.title)+'</b><em>Open the movement guide ↓</em></span></summary><div class="sv-guide-body"><div class="sv-stages">'+m.phases.map((p,i)=>'<figure><div class="sv-pose" style="aspect-ratio:'+m.width+'/'+(m.height*3)+'"><img src="'+m.image+'" style="left:-'+(i*100)+'%" alt="'+esc(p.alt)+'"></div><figcaption><b>'+esc(p.title)+'</b><span>'+esc(p.caption)+'</span></figcaption></figure>').join('')+'</div><h3>Movement instructions</h3><ul>'+m.source.instructions.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul><h3>Form & safety</h3><ul>'+[...m.source.form_cues,...m.source.safety_cues].map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul><h3>Make it easier</h3><p>'+esc(m.source.regression.instruction)+'</p><p class="sv-caption">AI-generated illustration, visually approved by Matt. This guide does not select an exercise for you or log a session.</p></div></details>').join('')+'</div></section>'}
 function markup()`);
-  // Keep the approved guides in the visible Fit flow on a phone.
-  replace('</header><section class="sf-card sf-daily"','</header>${previewMovementLibrary()}<section class="sf-card sf-daily"');
+  // The active session leads. Static examples remain clearly separate below it.
+  replace('<section id="sfResults"></section>','<section id="sfResults"></section><details class="sv-other-guides"><summary>Browse other movement guides</summary>${previewMovementLibrary()}</details>');
  }
  return source;
 }

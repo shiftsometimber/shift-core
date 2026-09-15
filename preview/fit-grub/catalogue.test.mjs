@@ -17,7 +17,7 @@ test('changed ingredients cannot silently reuse a previous image; title similari
 });
 test('base movement images do not approve their variants or confer production approval',()=>{
   const bound=bindCatalogueImages(rows,manifest),summary=catalogueSummary(bound);
-  assert.equal(summary.recipeImages,4);assert.equal(summary.movementImages,2);assert.equal(summary.variantImageApprovals,0);assert.equal(summary.productionImagesApproved,0);
+  assert.equal(summary.recipeImages,7);assert.equal(summary.movementImages,2);assert.equal(summary.variantImageApprovals,0);assert.equal(summary.productionImagesApproved,0);
   assert.ok(bound.filter(r=>r.kind==='movement').flatMap(r=>r.variants).every(v=>!v.image));
   assert.throws(()=>bindCatalogueImages(rows,[{...manifest[0],productionApproved:true}]),/production approval/);
 });

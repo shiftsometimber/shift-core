@@ -43,6 +43,16 @@ test('mobile recommendation starts with an exact approved recipe image',()=>{
  assert.match(html,/Exact recipe illustration/);
 });
 
+test('every adjustment retains its own exact recipe image, including shared alternatives',()=>{
+ const mapping=JSON.parse(fs.readFileSync('preview/fit-grub/catalogue-images.json'));
+ for(const recipe of Object.values(grubPreviewRecipes)){
+  const match=mapping.find(x=>x.id===recipe.id);
+  assert.ok(match,recipe.id);assert.equal(recipe.image,'/catalogue-images/'+match.file);
+  assert.equal(recipe.imageAlt,match.alt);assert.ok(fs.statSync('preview/fit-grub/images/'+match.file).size>1000);
+ }
+ assert.equal(new Set(Object.values(grubPreviewRecipes).map(r=>r.image)).size,4);
+});
+
 test('preview remains isolated from network and production writes',()=>{
  const worker=fs.readFileSync('preview/fit-grub/worker.js','utf8');
  assert.match(worker,/connect-src 'none'/);

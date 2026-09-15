@@ -70,5 +70,41 @@
     "productionApproved": false,
     "visualInspection": "Retained draft visual inspection; professional technique review pending",
     "generation": "built-in image_gen"
+  },
+  {
+    "id": "industrial-v3-sandwich-sweet-chilli-chicken",
+    "file": "catalogue-sweet-chilli-chicken.webp",
+    "alt": "Wholemeal sandwich with cooked chicken in glossy sweet chilli sauce, lettuce and tomato.",
+    "note": "Exact recipe illustration. Ingredients and preparation visually checked; quantities are illustrative.",
+    "scope": "exact-recipe",
+    "sourceHash": "e69aa80a71d78d7a76e91321b7e62dbc13abee457824fd5557bd71a3f1a367bb",
+    "imageHash": "090ed795f03582424dec0b841f3dbca7b58a3e42dd4ecac10631b4a8ac977da1",
+    "visualInspection": "Visible ingredients and preparation checked against the exact recipe; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "industrial-v3-sandwich-peri-peri-chicken",
+    "file": "catalogue-peri-peri-chicken.webp",
+    "alt": "Wholemeal sandwich with cooked chicken in creamy peri-peri yoghurt dressing, lettuce and tomato.",
+    "note": "Exact recipe illustration. Ingredients and preparation visually checked; quantities are illustrative.",
+    "scope": "exact-recipe",
+    "sourceHash": "4cd2c644716f1cedd4df3015d3155006641ca24332c38b3b77ba8f7dc2fd51cb",
+    "imageHash": "07905bd46458a0d325f1d47ec30f34431a1b5386ea07c16cdaf07896d7cf0c01",
+    "visualInspection": "Visible ingredients and preparation checked against the exact recipe; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "industrial-v3-wrap-bbq-chickpea",
+    "file": "catalogue-bbq-chickpea-wrap.webp",
+    "alt": "Toasted wholemeal wrap filled with BBQ-glazed chickpeas, lettuce and tomato.",
+    "note": "Exact recipe illustration. Ingredients and preparation visually checked; quantities are illustrative.",
+    "scope": "exact-recipe",
+    "sourceHash": "244d5783c6bcfb41cb18bc31946305ad22f6eb00b6a016f5e431fd54c2605f0d",
+    "imageHash": "120302e36f18936b2be7f9c97d77fa750af8c510d2ed331d43ddcd2ca7de30ad",
+    "visualInspection": "Visible ingredients and preparation checked against the exact recipe; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
   }
 ]

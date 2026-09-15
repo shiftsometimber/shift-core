@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import {catalogueRecords,bindCatalogueImages} from './catalogue-data.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 // These five examples are exact members of the 798-recipe human-accepted
@@ -9,6 +11,14 @@ export const grubPreviewRecipes={
   fuller:{id:'industrial-v3-wrap-bbq-chickpea',title:'Shift BBQ Chickpea Loaded Wrap',minutes:8,kcal:498.6,protein:19.6,fibre:15.7,carbs:80.9,fat:13,allergens:['gluten'],ingredients:[['150g','chickpeas, drained'],['65g','wholemeal wrap'],['90g','lettuce'],['90g','tomato'],['40g','reduced-sugar BBQ sauce'],['1 tsp / 5ml','olive oil']],method:['Get the pan hot, add the drained chickpeas and let them take on colour before moving them.','Keep the lettuce and tomato out of the pan. Coat only the chickpeas with the measured BBQ sauce.','Warm the wrap, layer the filling through the centre and add the fresh ingredients last.','Fold in the sides, roll firmly and toast seam-side down for 1–2 minutes if you want a crisp finish.']},
   budget:{id:'industrial-v3-wrap-bbq-chickpea',title:'Shift BBQ Chickpea Loaded Wrap',minutes:8,kcal:498.6,protein:19.6,fibre:15.7,carbs:80.9,fat:13,allergens:['gluten'],ingredients:[['150g','chickpeas, drained'],['65g','wholemeal wrap'],['90g','lettuce'],['90g','tomato'],['40g','reduced-sugar BBQ sauce'],['1 tsp / 5ml','olive oil']],method:['Get the pan hot, add the drained chickpeas and let them take on colour before moving them.','Keep the lettuce and tomato out of the pan. Coat only the chickpeas with the measured BBQ sauce.','Warm the wrap, layer the filling through the centre and add the fresh ingredients last.','Fold in the sides, roll firmly and toast seam-side down for 1–2 minutes if you want a crisp finish.']}
 };
+
+// One exact-ID/source/hash checked mapping serves the catalogue and every swap.
+const illustratedRecipes=bindCatalogueImages(catalogueRecords(),JSON.parse(fs.readFileSync('preview/fit-grub/catalogue-images.json')));
+for(const recipe of Object.values(grubPreviewRecipes)){
+ const match=illustratedRecipes.find(r=>r.id===recipe.id);
+ if(!match?.image)throw new Error('Missing exact Grub preview image: '+recipe.id);
+ recipe.image=match.image.url;recipe.imageAlt=match.image.alt;
+}
 
 const reasons={
   base:{label:'Shift pick',headline:'A high-protein hot plate with plenty of veg.',body:'You have a strength session planned, want healthy-weight support, and mushrooms are on your Nay list. This reviewed recipe has not appeared in your recent plan.',change:'Best exact-image match for the sample profile.'},

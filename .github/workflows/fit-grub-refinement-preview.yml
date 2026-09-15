@@ -24,7 +24,7 @@ jobs:
       - name: Test candidate and enforce isolated configuration
         run: |
           node preview/fit-grub/build.mjs
-          node --test preview/fit-grub/session-builder.test.mjs preview/fit-grub/session-visuals.test.mjs preview/fit-grub/v3.test.mjs preview/fit-grub/grub-intelligence-preview.test.mjs tests/member-refinements-preview.test.mjs preview/fit-grub/catalogue.test.mjs tests/grub-programme-v1.test.mjs tests/afternoon-ticket-c-fit.test.mjs tests/medicine-stripe-retry-v1.test.mjs
+          node --test preview/fit-grub/session-builder.test.mjs preview/fit-grub/session-visuals.test.mjs preview/fit-grub/session-effort.test.mjs preview/fit-grub/v3.test.mjs preview/fit-grub/grub-intelligence-preview.test.mjs tests/member-refinements-preview.test.mjs preview/fit-grub/catalogue.test.mjs tests/grub-programme-v1.test.mjs tests/afternoon-ticket-c-fit.test.mjs tests/medicine-stripe-retry-v1.test.mjs
           node - <<'JS'
           const fs=require('fs'),assert=require('assert/strict'),c=JSON.parse(fs.readFileSync('preview/fit-grub/wrangler.json'));
           assert.equal(c.name,'shift-fit-grub-refinement-preview');
