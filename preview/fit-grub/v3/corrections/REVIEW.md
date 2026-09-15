@@ -24,6 +24,8 @@ node preview/fit-grub/verify-corrections.mjs https://shift-fit-grub-refinement-p
 
 The isolated preview workflow repeats the tests and checks all 45 deployed PNG hashes. Its artifact includes fit-correction-proof.json. The gallery's /fit-v3-phone route provides a 390px frame for checking enlarged panels at phone width. Production configuration, routes, member accounts and the workbook export are unchanged.
 
+Upload resumed from the interrupted 49-object checkpoint on 15 September 2026; all 67 correction objects were committed before the preview workflow was retriggered.
+
 ## Supporting movement references
 
 Primary references used for difficult distinctions included [NHS seated exercises](https://www.nhs.uk/live-well/exercise/sitting-exercises/), [North Tees chair exercises](https://www.nth.nhs.uk/resources/chair-exercises/), [ACE wood chop](https://www.acefitness.org/resources/everyone/exercise-library/108/standing-wood-chop/), [ACE seated leg press](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) and [ACE swing](https://www.acefitness.org/resources/everyone/exercise-library/391/swing/). These inform visual distinctions; they do not establish professional approval of generated imagery or the source protocols.
