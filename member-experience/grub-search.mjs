@@ -1,5 +1,6 @@
 // Shared by the member API and the isolated recipe trial. No recipe generation.
 import {buildIndustrialCatalogue} from '../industrial-catalogue-v14.js';
+import {imageForRecipe} from './grub-image-map.mjs';
 let authored;
 const normalise=value=>String(value??'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
 const words=value=>normalise(value).split(' ').map(x=>({eggs:'egg',potatoes:'potato',tomatoes:'tomato',peppers:'pepper',noodles:'noodle',beans:'bean',wraps:'wrap',mushrooms:'mushroom',sausages:'sausage'}[x]||x)).filter(Boolean);
@@ -31,7 +32,7 @@ export function memberRecipe(row,items=[]){
  const missing=ingredients.filter(i=>!matched.includes(i.item)).map(i=>i.item);
  const prep=present(d.prep_minutes)?Number(d.prep_minutes):null,cook=present(d.cook_minutes)?Number(d.cook_minutes):null;
  const minutes=present(d.timeMinutes)?Number(d.timeMinutes):prep!==null&&cook!==null?prep+cook:null;
- return {id:row.id,name:row.title,meal_type:d.meal_type,servings:Number(d.servings)||1,minutes,prep_minutes:prep,cook_minutes:cook,protein_g:present(n.protein_g)?Number(n.protein_g):null,kcal:present(n.kcal)?Number(n.kcal):null,nutrition:n,ingredients,method,allergens:d.allergens||[],food_safety:d.food_safety||[],storage:d.storage||{},equipment:d.equipment||[],matched,missing,pantry:missing.filter(x=>pantry.has(normalise(x))),source:'published_catalogue',taxonomy:d.taxonomy||{},food_format:d.food_format||'',tags:d.tags||[]};
+ return {id:row.id,name:row.title,image:imageForRecipe(row),meal_type:d.meal_type,servings:Number(d.servings)||1,minutes,prep_minutes:prep,cook_minutes:cook,protein_g:present(n.protein_g)?Number(n.protein_g):null,kcal:present(n.kcal)?Number(n.kcal):null,nutrition:n,ingredients,method,allergens:d.allergens||[],food_safety:d.food_safety||[],storage:d.storage||{},equipment:d.equipment||[],matched,missing,pantry:missing.filter(x=>pantry.has(normalise(x))),source:'published_catalogue',taxonomy:d.taxonomy||{},food_format:d.food_format||'',tags:d.tags||[]};
 }
 export function filterRecipe(r,filter){
  switch(filter){

@@ -1,6 +1,7 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {enrichGrubRecipes,searchGrubRecipes} from './grub-search.mjs';
 import {emptyGrub,usableCatalogue,applyGrubOperation,workspaceView,GrubError} from './grub-workspace.mjs';
+import {grubMemberContext} from './grub-intelligence.mjs';
 const headers={'Cache-Control':'no-store','Content-Type':'application/json; charset=utf-8','Vary':'Cookie'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
 export async function loadGrubCatalogue(DB){
@@ -26,12 +27,13 @@ export async function grubWorkspaceRoutes(request,env){
   const prefs=row?JSON.parse(row.preferences||'{}'):{},current=prefs.grubV2||emptyGrub();
   // Preserve explicitly saved legacy recipe names where their identity is exact.
   if(!prefs.grubV2&&Array.isArray(prefs.grub?.savedRecipes))current.saved=recipes.filter(r=>prefs.grub.savedRecipes.includes(r.name)).map(r=>r.id).slice(0,100);
-  if(request.method==='GET')return json(workspaceView(current,recipes));
-  const next=applyGrubOperation(current,input,recipes);
-  if(next.revision===current.revision)return json(workspaceView(current,recipes));
+  const context=grubMemberContext(prefs);
+  if(request.method==='GET')return json(workspaceView(current,recipes,context));
+  const next=applyGrubOperation(current,input,recipes,context);
+  if(next.revision===current.revision)return json(workspaceView(current,recipes,context));
   await env.DB.prepare("INSERT OR IGNORE INTO member_state(user_id) VALUES(?)").bind(auth.userId).run();
   const saved=await env.DB.prepare("UPDATE member_state SET preferences=json_set(preferences,'$.grubV2',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.grubV2.revision'),0)=?").bind(JSON.stringify(next),new Date().toISOString(),auth.userId,current.revision).run();
   if(saved.meta.changes!==1)throw new GrubError('Your food list changed in another tab. Reload it before trying again.',409);
-  return json(workspaceView(next,recipes));
+  return json(workspaceView(next,recipes,context));
  }catch(e){return json({error:e instanceof GrubError?e.message:'Food could not be loaded or saved. Please try again.'},e instanceof GrubError?e.status:503)}
 }

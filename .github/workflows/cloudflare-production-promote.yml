@@ -137,6 +137,8 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Verify member experience and Grub account integration
+        run: node --test member-experience/tests/*.test.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
         run: node daily-shift-frontdoor-gate.mjs
       - name: Prove My Timber has reached the 75 percent all-green bar

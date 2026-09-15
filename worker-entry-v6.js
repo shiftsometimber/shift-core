@@ -246,6 +246,8 @@ async function gitMemberAsset(path, env) {
     GIT_MEMBER_ASSETS.get(path) ||
     (/^\/fit-v3-images\/[a-z0-9-]+\.png$/.test(path)
       ? "image/png"
+      : /^\/assets\/member-experience\/food\/[a-z0-9-]+\.webp$/.test(path)
+      ? "image/webp"
       : /^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)
       ? "image/svg+xml; charset=utf-8"
       : null);
