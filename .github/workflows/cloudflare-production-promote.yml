@@ -142,7 +142,8 @@ jobs:
         run: |
           node member-experience/prepare-life-back.mjs
           git diff --exit-code -- member-experience/life-back-assets.mjs
-          node --test member-experience/tests/*.test.mjs
+          node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
+          node gate4-one-shift-brain-gate.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
         run: node daily-shift-frontdoor-gate.mjs
       - name: Prove My Timber has reached the 75 percent all-green bar

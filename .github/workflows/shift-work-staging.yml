@@ -1,9 +1,14 @@
 name: SHIFT for Work isolated hosted staging
 on:
   push:
-    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915]
     paths:
       - 'work/staging/**'
+      - 'ask-timber-v1.js'
+      - 'shift-brain-v1.js'
+      - 'shift-ai-v6.js'
+      - 'medicines-watch/**'
+      - 'tests/ai-connected*.test.mjs'
       - 'member-experience/**'
       - 'frontend/member/member-my-timber-problem-v1.js'
       - 'member-product-v8.js'
@@ -37,9 +42,13 @@ jobs:
       - name: Test connected member journey
         run: |
           node member-experience/prepare-life-back.mjs
-          node --test member-experience/tests/*.test.mjs
+          node --test member-experience/tests/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs
+          node gate4-one-shift-brain-gate.mjs
+          node ask-timber-multi-intent-gate.mjs
       - name: Verify pinned assets and prepare fictional fixtures
         run: node work/staging/prepare.mjs
+      - name: Prepare real AI and read-only source checks in staging
+        run: node work/staging/prepare-ai.mjs
       - name: Provision only separately named staging databases
         run: node work/staging/provision.mjs
       - name: Deploy only the isolated Worker
@@ -64,5 +73,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: shift-work-staging-evidence
-          path: work/staging/generated/probe-result.json
+          path: |
+            work/staging/generated/probe-result.json
+            work/staging/generated/ai-connected-proof.json
+            work/staging/generated/watch-observations.sql.json
           if-no-files-found: error

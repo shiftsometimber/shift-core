@@ -19,7 +19,7 @@ export default {async fetch(request,env,ctx){
  if(request.method==='GET'&&['/staging/login.mjs','/staging/invitation.txt'].includes(p))return env.STAGING_ASSETS.fetch(request);
  if(request.method==='GET'&&['/sst-logo-official.png','/assets/home-hero-men-v32o.jpg','/styles.css','/assets/member-shell-v6.css','/assets/shift-recovery-v6.css','/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png'].includes(p))return env.STAGING_ASSETS.fetch(request);
  if(request.method==='GET'&&/^(?:\/fit-v3-images\/[a-z0-9-]+\.png|\/assets\/member-experience\/food\/[a-z0-9-]+\.webp)$/.test(p))return env.STAGING_ASSETS.fetch(request);
- const allowed=['/v1/hydration/log','/v1/hydration/today','/v1/fit/reminders','/v1/shift/daily-action','/v1/shift/daily-adjust','/v1/shift/today/help','/v1/life-back','/v1/shift/daily-plan','/v1/profile','/v1/me','/v1/consents','/v1/check-ins','/v1/health-mot','/v1/progress','/v1/journey','/v1/journey/weekly-check-in','/v1/journey/trends','/v1/journey/export','/v1/privacy/health-tracking','/v1/privacy/export','/v1/fit/activity','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback','/v1/plan/list','/v1/grub/workspace','/v1/grub/search','/v1/member-state','/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
+ const allowed=['/v1/ai/chat','/v1/shift/brain/context','/v1/shift-ai/chat','/v1/shift-ai/status','/v1/hydration/log','/v1/hydration/today','/v1/fit/reminders','/v1/shift/daily-action','/v1/shift/daily-adjust','/v1/shift/today/help','/v1/life-back','/v1/shift/daily-plan','/v1/profile','/v1/me','/v1/consents','/v1/check-ins','/v1/health-mot','/v1/progress','/v1/journey','/v1/journey/weekly-check-in','/v1/journey/trends','/v1/journey/export','/v1/privacy/health-tracking','/v1/privacy/export','/v1/fit/activity','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback','/v1/plan/list','/v1/grub/workspace','/v1/grub/search','/v1/member-state','/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
  if(!allowed.includes(p))return new Response('Only workplace verification routes are available here.',{status:404});
  if(['POST','PATCH','DELETE'].includes(request.method)){
   if(request.headers.get('Origin')!==u.origin)return new Response('Same-origin requests only.',{status:403});
@@ -29,7 +29,22 @@ export default {async fetch(request,env,ctx){
    const count=await env.DB.prepare('SELECT COUNT(*) n FROM users WHERE first_name="Fictional reviewer"').first();if(count.n>=20)return Response.json({error:'Staging account limit reached.'},{status:409});
   }
  }
- const response=await core.fetch(request,env,ctx);
+ // Staging-only diagnostics contain no request headers, prompts or model text.
+ // They distinguish a working fallback from an actual successful model call.
+ const aiCheck={attempted:false};
+ const checkedEnv=p==='/v1/ai/chat'&&env.AI?{...env,AI:{run:async(model,input)=>{
+  aiCheck.attempted=true;aiCheck.model=model;
+  try{const result=await env.AI.run(model,input);const raw=result?.response||result?.result?.response||result?.output_text;
+   aiCheck.resultKeys=Object.keys(result||{});aiCheck.responseType=typeof raw;aiCheck.responseLength=typeof raw==='string'?raw.length:null;
+   if(raw&&typeof raw==='object')aiCheck.validJSON=!Array.isArray(raw);
+   if(typeof raw==='string'){try{JSON.parse(raw.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim());aiCheck.validJSON=true}catch{aiCheck.validJSON=false}}
+   return result;
+  }catch(e){aiCheck.error={name:e?.name||'Error',code:e?.code||null,status:e?.status||null,message:String(e?.message||'').slice(0,300)};throw e}
+ }}}:env;
+ const response=await core.fetch(request,checkedEnv,ctx);
+ if(p==='/v1/ai/chat'&&response.headers.get('Content-Type')?.includes('application/json')){
+  const data=await response.json();return Response.json({...data,stagingAI:aiCheck},{status:response.status,headers:response.headers});
+ }
  if(response.headers.get('Content-Type')?.includes('text/html')&&response.ok){
   const body=await response.text(),h=new Headers(response.headers);h.delete('Content-Length');h.delete('ETag');h.set('Cache-Control','no-store');
   return new Response(body.replace('<main class="work">','<main class="work">'+banner).replace('</head>','<script type="module" src="/staging/login.mjs"></script></head>'),{status:response.status,headers:h});
