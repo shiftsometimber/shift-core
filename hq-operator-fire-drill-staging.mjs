@@ -49,7 +49,7 @@ globalThis.fetch=async input=>{
 try{
   // Exercise the real additive Core schema before HQ bootstrap.
   let x=await call('/health');assert.equal(x.response.status,200);
-  await DB.prepare(`INSERT INTO radar_audit(action,created_at) VALUES('scan',CURRENT_TIMESTAMP)`).run();
+  await DB.prepare(`INSERT INTO radar_audit(action,detail_json,created_at) VALUES('scan','{"tier_one_healthy":true,"coverage":{"complete":true}}',CURRENT_TIMESTAMP)`).run();
   const radarSeed=await DB.prepare(`INSERT INTO radar_events(event_key,status,headline,reviewed_at) VALUES('b06-healthy-baseline','published','B06 healthy baseline',CURRENT_TIMESTAMP)`).run();
   await DB.prepare(`INSERT INTO radar_publication_jobs(event_id,status,completed_at) VALUES(?,'complete',CURRENT_TIMESTAMP)`).bind(radarSeed.meta.last_row_id).run();
 

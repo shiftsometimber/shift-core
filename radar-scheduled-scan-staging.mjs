@@ -29,9 +29,17 @@ assert.equal(before.ages.scan,null);
 assert.ok(before.reasons.some(x=>x.code==='scan_stale'));
 
 const oldFetch=globalThis.fetch;
-globalThis.fetch=async url=>{const value=String(url);if(value.includes('esearch.fcgi'))return Response.json({esearchresult:{idlist:['42673585']}});if(value.includes('esummary.fcgi'))return Response.json({result:{'42673585':{uid:'42673585',title:'Peer-reviewed GLP-1 and retatrutide weight-loss review',pubdate:'2026 Sep 1',sorttitle:'GLP-1 weight loss',fulljournalname:'Annals of Internal Medicine'}}});return new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative GLP-1 weight-management medicine update</title><link href="${url}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update concerning obesity treatment.</summary></entry></feed>`,{status:200})};
+globalThis.fetch=async url=>{
+ const value=String(url);
+ if(value.includes('esearch.fcgi'))return Response.json({esearchresult:{idlist:['42673585']}});
+ if(value.includes('esummary.fcgi'))return Response.json({result:{'42673585':{uid:'42673585',title:'Peer-reviewed GLP-1 and retatrutide weight-loss review',pubdate:'2026 Sep 1'}}});
+ if(value.includes('clinicaltrials.gov/api/'))return Response.json({studies:[]});
+ if(value.includes('europepmc/webservices/'))return Response.json({resultList:{result:[]}});
+ if(/asa\.org|pharmacyregulation\.org|nice\.org|investor\.lilly|novonordisk|chemistanddruggist/.test(value)&&!value.includes('news.google.com'))return new Response('<html><a href="/news/weight-loss-update">Weight-loss advertising update</a></html>');
+ return new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative GLP-1 weight-management medicine update</title><link href="${new URL(value).origin}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update concerning obesity treatment.</summary></entry></feed>`,{status:200});
+};
 try {
-  const result=await runRadarScheduledScan({DB});
+  const result=await runRadarScheduledScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});
   assert.equal(result.scan.ok,true);
   assert.ok(result.scan.sources.length>=4);
   assert.ok(result.scan.newEvents>=4);

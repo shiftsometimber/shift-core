@@ -76,7 +76,7 @@ try {
   // that scanner cycle explicitly so the public ticker is tested under the same fail-safe
   // freshness contract as production. Authoritative feed retrieval itself is separately
   // exercised by radar-scheduled-scan-staging.mjs.
-  await DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'scan','radar_stage_scanner',?)`).bind(JSON.stringify({staging:true,authoritative_cycle:true,delivered_event_id:eventId})).run();
+  await DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(NULL,'scan','radar_stage_scanner',?)`).bind(JSON.stringify({staging:true,authoritative_cycle:true,tier_one_healthy:true,coverage:{complete:true},delivered_event_id:eventId})).run();
 
   // 2) PACKAGE via the authenticated HQ review route.
   r=await radarRoutes(request(`/v1/hq/radar/events/${eventId}/process`,{method:'POST',headers:hqHeaders,body:'{}'}),env,{});assert.equal(r.status,200);d=await body(r);assert.equal(d.status,'ready_for_review');assert.equal(aiCalls,2);assert.equal(d.medicinePatch.medicine_id,'stage-medicine');

@@ -26,6 +26,9 @@ jobs:
           node --test tests/radar-discovery-pipeline.test.mjs tests/radar-uk-editorial-v1.test.mjs tests/hq-radar-review-queue-v1.test.mjs tests/radar-freshness-v2.test.mjs tests/radar-newsroom-page-v1.test.mjs tests/radar-newsroom-filters-v1.test.mjs tests/shift-ai-newsroom-wire-v1.test.mjs tests/radar-newsroom-discovery-v1.test.mjs | tee newsroom-tests.txt
           node --check radar-authoritative-scan-v1.js
           node --check radar-integration-v1.js
+          node hq-operator-fire-drill-staging.mjs
+          node radar-scheduled-scan-staging.mjs
+          node radar-e2e-staging.mjs
           node my-timber-navigation-gate.mjs
           node my-timber-final-source-gate.mjs
           node g5-012-login-fastpath-gate.mjs
