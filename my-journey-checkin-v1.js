@@ -26,7 +26,7 @@ export async function myJourneyTrendRoutes(request,env){
   if(path==='/v1/journey/export'){
     const [state,weekly,photos]=await Promise.all([safeFirst(env.DB,`SELECT preferences FROM member_state WHERE user_id=?`,[auth.user.id]),safeAll(env.DB,`SELECT * FROM my_journey_weekly_checkins WHERE user_id=? ORDER BY week_ending`,[auth.user.id]),safeAll(env.DB,`SELECT id,captured_at,weight_kg,waist_cm,source,created_at FROM shift_progress_photos_v2 WHERE user_id=? AND source='my_journey_weekly' AND deleted_at IS NULL ORDER BY captured_at,id`,[auth.user.id])]);
     const preferences=parse(state?.preferences);
-    return respond({ok:true,private:true,analyticsIdentifiers:false,exportedAt:new Date().toISOString(),journey:preferences.myJourney||null,weekly:weekly.map(deserialize),photos:photos.map(p=>({...p,downloadUrl:`/v1/shift/progress-photo/${p.id}/image`}))},200,request);
+    return respond({ok:true,private:true,analyticsIdentifiers:false,exportedAt:new Date().toISOString(),journey:preferences.myJourney||null,lifeBack:preferences.lifeBack||null,weekly:weekly.map(deserialize),photos:photos.map(p=>({...p,downloadUrl:`/v1/shift/progress-photo/${p.id}/image`}))},200,request);
   }
   const [rows,state]=await Promise.all([safeAll(env.DB,`SELECT * FROM my_journey_weekly_checkins WHERE user_id=? AND confirmed_at IS NOT NULL ORDER BY week_ending DESC LIMIT 52`,[auth.user.id]),safeFirst(env.DB,`SELECT preferences FROM member_state WHERE user_id=?`,[auth.user.id])]);
   const records=rows.reverse().map(trendRecord),mode=records.at(-1)?.route==='maintenance'?'maintenance':'loss';
