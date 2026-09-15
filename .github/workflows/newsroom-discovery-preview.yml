@@ -1,0 +1,65 @@
+name: SHIFT newsroom discovery preview
+on:
+  push:
+    branches: [fix/newsroom-discovery-20260915]
+permissions:
+  contents: read
+concurrency:
+  group: newsroom-discovery-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --no-audit --no-fund
+      - name: Test discovery, review and publication gates
+        run: |
+          set -o pipefail
+          node --test tests/radar-discovery-pipeline.test.mjs tests/radar-uk-editorial-v1.test.mjs tests/hq-radar-review-queue-v1.test.mjs tests/radar-freshness-v2.test.mjs tests/radar-newsroom-page-v1.test.mjs tests/radar-newsroom-filters-v1.test.mjs tests/shift-ai-newsroom-wire-v1.test.mjs tests/radar-newsroom-discovery-v1.test.mjs | tee newsroom-tests.txt
+          node --check radar-authoritative-scan-v1.js
+          node --check radar-integration-v1.js
+          node my-timber-navigation-gate.mjs
+          node my-timber-final-source-gate.mjs
+          node g5-012-login-fastpath-gate.mjs
+      - name: Live discovery with a disposable database and no notifications
+        run: node preview/newsroom-discovery/build.mjs | tee newsroom-live-scan.txt
+      - name: Confirm isolated preview configuration
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('preview/newsroom-discovery/wrangler.json'));
+          assert.deepEqual(Object.keys(c).sort(),['name','main','compatibility_date','workers_dev','preview_urls','assets'].sort());
+          assert.equal(c.name,'shift-newsroom-discovery-preview');assert.equal(c.main,'worker.js');
+          assert.deepEqual(c.assets,{directory:'./public',binding:'ASSETS',run_worker_first:true});
+          JS
+      - name: Deploy isolated preview
+        run: npx wrangler deploy --config preview/newsroom-discovery/wrangler.json | tee newsroom-preview-deploy.txt
+      - name: Verify preview and fingerprint
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const url='https://shift-newsroom-discovery-preview.matobrien.workers.dev';
+          const r=await fetch(url+'/report.json');assert.equal(r.status,200);assert.match(r.headers.get('x-robots-tag'),/noindex/);
+          const evidence=await r.json();assert.equal(evidence.productionChanged,false);assert.equal(evidence.notificationsSent,false);assert.equal(evidence.articlesPublished,0);
+          assert.equal(evidence.commit,process.env.GITHUB_SHA);assert.equal((await fetch(url,{method:'POST'})).status,405);
+          console.log('PREVIEW_URL='+url);
+          JS
+          sha256sum radar-authoritative-scan-v1.js radar-discovery-sources-v1.js radar-uk-editorial-v1.js radar-integration-v1.js radar-freshness-v2.js > newsroom-checksums.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newsroom-discovery-evidence
+          path: |
+            newsroom-tests.txt
+            newsroom-live-scan.txt
+            newsroom-preview-deploy.txt
+            newsroom-checksums.txt
+            preview/newsroom-discovery/public/report.json
