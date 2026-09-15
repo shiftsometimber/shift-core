@@ -11,9 +11,88 @@ const time = value => value && Number.isFinite(Date.parse(value)) ? new Intl.Dat
 const statusLabel = status => ({current:'Sources unchanged',verification_pending:'Verification pending',check_delayed:'Source check delayed',awaiting_review:'Update awaiting review'}[status] || 'Verification pending');
 
 export const WATCH_STYLE = `<style data-medicines-watch-style>
-.medicines-watch{--mw-cream:#e7e3da;--mw-ash:#707762;--mw-muted:#b7bcaa;box-sizing:border-box;background:#050505;color:var(--mw-cream);font:17px/1.65 Arial,Helvetica,sans-serif;padding:28px max(20px,calc((100% - 1140px)/2)) 80px;isolation:isolate}
-.medicines-watch *{box-sizing:border-box}.medicines-watch [hidden]{display:none!important}.medicines-watch h1,.medicines-watch h2,.medicines-watch h3,.medicines-watch p{color:inherit;font-family:inherit}.medicines-watch h1{font-size:clamp(2.2rem,5.5vw,4.25rem)!important;line-height:1.05!important;letter-spacing:-.045em;margin:18px 0 24px!important;max-width:760px}.medicines-watch h2{font-size:clamp(1.4rem,3vw,2rem)!important;line-height:1.25!important;margin:0 0 12px}.medicines-watch h3{font-size:.78rem!important;line-height:1.4!important;text-transform:uppercase;letter-spacing:.09em;color:var(--mw-muted)!important;margin:0 0 10px}.medicines-watch p{font-size:inherit;line-height:inherit;margin:0 0 14px}.medicines-watch a{color:var(--mw-cream);text-underline-offset:4px}.medicines-watch :focus-visible{outline:3px solid var(--mw-cream);outline-offset:5px}.mw-breadcrumb{font-size:.85rem;margin:0 0 30px;color:var(--mw-muted)}.mw-eyebrow{font-size:.8rem!important;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--mw-muted)!important}.mw-hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(200px,.6fr);gap:35px;align-items:center;padding:15px 0 35px}.mw-lead{max-width:650px;color:#d2d3c8!important;font-size:1.16rem!important}.mw-radar{width:100%;max-width:280px;justify-self:end;color:var(--mw-ash)}.mw-radar .mw-ray{stroke:#b7bcaa}.mw-overview{border:1px solid var(--mw-ash);border-radius:16px;background:#12150f;padding:24px;margin-bottom:28px}.mw-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:20px}.mw-counts div+div{border-left:1px solid #454b3e;padding-left:24px}.mw-counts strong{display:block;font-size:2rem;line-height:1.3}.mw-counts span{font-size:.9rem;color:var(--mw-muted)}.mw-monitor{border-top:1px solid #454b3e;padding-top:16px;font-size:.88rem;color:#d2d3c8}.mw-monitor strong{color:var(--mw-cream)}.mw-monitor p{margin:4px 0}.mw-dot{display:inline-block;width:9px;height:9px;background:var(--mw-muted);border-radius:50%;margin-right:8px}.mw-filter{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:14px;align-items:end;margin:30px 0 12px}.mw-filter label{font-size:.8rem;font-weight:700;display:grid;gap:7px}.medicines-watch input,.medicines-watch select,.medicines-watch button{font:inherit;max-width:100%;min-width:0;min-height:48px;border:1px solid var(--mw-ash);border-radius:9px;padding:10px 12px;background:var(--mw-cream);color:#404935;-webkit-text-fill-color:#404935}.medicines-watch button{cursor:pointer;font-weight:700}.mw-result{font-size:.85rem!important;color:var(--mw-muted)!important;margin-bottom:18px!important}.mw-card{border:1px solid var(--mw-ash);border-radius:16px;background:linear-gradient(140deg,#151a11,#0a0d08);margin:0 0 18px;overflow:hidden;scroll-margin-top:110px}.mw-card summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;padding:24px}.mw-card summary::-webkit-details-marker{display:none}.mw-card summary:after{content:'+';font-size:2rem;font-weight:400;line-height:1}.mw-card[open] summary:after{content:'−'}.mw-card summary h2{margin:10px 0 5px!important}.mw-card summary p{color:#c5c9ba;font-size:.92rem!important;margin:0}.mw-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--mw-ash);border-radius:6px;color:#d6daca;background:#242c1d;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 9px;text-transform:uppercase}.mw-tag-research{background:#29251c;color:#e7d7bb;border-color:#9b8863}.mw-card-content{padding:0 24px 24px}.mw-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}.mw-cell{padding:22px 0;border-top:1px solid #424a39;min-width:0}.mw-cell p:last-child{margin-bottom:0}.mw-cell ul{padding-left:20px;margin:0}.mw-cell li{margin:0 0 7px}.mw-evidence{border-top:1px solid #424a39;padding-top:20px}.mw-evidence>summary{display:block!important;padding:0!important;font-weight:700;line-height:1.5}.mw-evidence>summary:after{content:' ↓'!important;font-size:1rem!important}.mw-evidence ul{padding:0;list-style:none;margin:18px 0 0}.mw-evidence li{padding:13px 0;border-top:1px solid #313a2b;overflow-wrap:anywhere;font-size:.92rem}.mw-evidence small{display:block;color:#b7bcaa;margin-top:4px;font-size:.8rem}.mw-review{margin:0 0 14px!important;font-size:.8rem!important;color:#b7bcaa!important}.mw-flag{border-left:3px solid #b7bcaa;background:#22271b;padding:10px 14px;margin:0 0 18px!important;font-size:.9rem!important}.mw-explainer{margin:35px 0 0;padding:26px;border:1px solid var(--mw-ash);border-radius:16px;background:#12150f}.mw-explainer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:24px 0}.mw-explainer-grid strong{display:block;margin-bottom:7px}.mw-explainer-grid p{font-size:.95rem!important;color:#c5c9ba}.mw-note{font-size:.88rem!important;color:#c5c9ba!important}.mw-links{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px}.mw-links a{font-size:.9rem}.mw-empty{padding:28px;border:1px solid var(--mw-ash);border-radius:12px}
-@media(max-width:650px){.medicines-watch{padding:20px 18px 60px;font-size:16px}.mw-breadcrumb{margin-bottom:22px}.mw-hero{grid-template-columns:1fr;padding:0 0 25px;gap:0}.mw-radar{display:none}.mw-hero h1{font-size:2.65rem!important}.mw-overview{padding:18px}.mw-counts{gap:9px}.mw-counts div+div{padding-left:12px}.mw-counts strong{font-size:1.65rem}.mw-counts span{font-size:.75rem;line-height:1.35;display:block}.mw-filter{grid-template-columns:1fr 1fr;gap:12px}.mw-filter label:first-child{grid-column:1/-1}.mw-filter button{grid-column:1/-1}.mw-card summary{padding:20px 18px;gap:10px}.mw-card-content{padding:0 18px 20px}.mw-card-grid,.mw-explainer-grid{grid-template-columns:1fr}.mw-cell{padding:18px 0}.mw-explainer{padding:20px}.mw-explainer-grid{gap:10px}.mw-review{line-height:1.5!important}}
+html body.medicines-watch-page main.medicines-watch{--mw-cream:#e7e3da;--mw-ash:#707762;--mw-muted:#b7bcaa;box-sizing:border-box;background:#050505;color:var(--mw-cream);font:17px/1.65 Arial,Helvetica,sans-serif;padding:28px max(20px,calc((100% - 1140px)/2)) 80px!important;isolation:isolate}
+html body.medicines-watch-page main.medicines-watch *{box-sizing:border-box}
+html body.medicines-watch-page main.medicines-watch [hidden]{display:none!important}
+html body.medicines-watch-page main.medicines-watch h1,html body.medicines-watch-page main.medicines-watch h2,html body.medicines-watch-page main.medicines-watch h3,html body.medicines-watch-page main.medicines-watch p{color:inherit;font-family:inherit}
+html body.medicines-watch-page main.medicines-watch h1{font-size:clamp(2.2rem,5.5vw,4.25rem)!important;line-height:1.05!important;letter-spacing:-.045em;margin:18px 0 24px!important;max-width:760px}
+html body.medicines-watch-page main.medicines-watch h2{font-size:clamp(1.4rem,3vw,2rem)!important;line-height:1.25!important;margin:0 0 12px!important}
+html body.medicines-watch-page main.medicines-watch h3{font-size:.78rem!important;line-height:1.4!important;text-transform:uppercase;letter-spacing:.09em;color:var(--mw-muted)!important;margin:0 0 10px!important}
+html body.medicines-watch-page main.medicines-watch p{font-size:inherit;line-height:inherit;margin:0 0 14px!important}
+html body.medicines-watch-page main.medicines-watch a{color:var(--mw-cream);text-underline-offset:4px}
+html body.medicines-watch-page main.medicines-watch :focus-visible{outline:3px solid var(--mw-cream);outline-offset:5px}
+html body.medicines-watch-page main.medicines-watch .mw-breadcrumb{font-size:.85rem;margin:0 0 30px!important;color:var(--mw-muted)}
+html body.medicines-watch-page main.medicines-watch .mw-eyebrow{font-size:.8rem!important;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--mw-muted)!important}
+html body.medicines-watch-page main.medicines-watch .mw-hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(200px,.6fr);gap:35px;align-items:center;padding:15px 0 35px!important}
+html body.medicines-watch-page main.medicines-watch .mw-lead{max-width:650px;color:#d2d3c8!important;font-size:1.16rem!important}
+html body.medicines-watch-page main.medicines-watch .mw-radar{width:100%;max-width:280px;justify-self:end;color:var(--mw-ash)}
+html body.medicines-watch-page main.medicines-watch .mw-radar .mw-ray{stroke:#b7bcaa}
+html body.medicines-watch-page main.medicines-watch .mw-overview{border:1px solid var(--mw-ash);border-radius:16px;background:#12150f;padding:24px!important;margin-bottom:28px}
+html body.medicines-watch-page main.medicines-watch .mw-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:20px}
+html body.medicines-watch-page main.medicines-watch .mw-counts div+div{border-left:1px solid #454b3e;padding-left:24px}
+html body.medicines-watch-page main.medicines-watch .mw-counts strong{display:block;font-size:2rem;line-height:1.3}
+html body.medicines-watch-page main.medicines-watch .mw-counts span{font-size:.9rem;color:var(--mw-muted)}
+html body.medicines-watch-page main.medicines-watch .mw-monitor{border-top:1px solid #454b3e;padding-top:16px;font-size:.88rem;color:#d2d3c8}
+html body.medicines-watch-page main.medicines-watch .mw-monitor strong{color:var(--mw-cream)}
+html body.medicines-watch-page main.medicines-watch .mw-monitor p{margin:4px 0!important}
+html body.medicines-watch-page main.medicines-watch .mw-dot{display:inline-block;width:9px;height:9px;background:var(--mw-muted);border-radius:50%;margin-right:8px}
+html body.medicines-watch-page main.medicines-watch .mw-filter{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:14px;align-items:end;margin:30px 0 12px!important}
+html body.medicines-watch-page main.medicines-watch .mw-filter label{font-size:.8rem;font-weight:700;display:grid;gap:7px}
+html body.medicines-watch-page main.medicines-watch input,html body.medicines-watch-page main.medicines-watch select,html body.medicines-watch-page main.medicines-watch button{font:inherit;max-width:100%;min-width:0;min-height:48px;border:1px solid var(--mw-ash);border-radius:9px;padding:10px 12px!important;background:var(--mw-cream);color:#404935;-webkit-text-fill-color:#404935}
+html body.medicines-watch-page main.medicines-watch button{cursor:pointer;font-weight:700}
+html body.medicines-watch-page main.medicines-watch .mw-result{font-size:.85rem!important;color:var(--mw-muted)!important;margin-bottom:18px!important}
+html body.medicines-watch-page main.medicines-watch .mw-card{border:1px solid var(--mw-ash);border-radius:16px;background:linear-gradient(140deg,#151a11,#0a0d08);margin:0 0 18px!important;overflow:hidden;scroll-margin-top:110px}
+html body.medicines-watch-page main.medicines-watch .mw-card summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;padding:24px!important}
+html body.medicines-watch-page main.medicines-watch .mw-card summary::-webkit-details-marker{display:none}
+html body.medicines-watch-page main.medicines-watch .mw-card summary:after{content:'+';font-size:2rem;font-weight:400;line-height:1}
+html body.medicines-watch-page main.medicines-watch .mw-card[open] summary:after{content:'−'}
+html body.medicines-watch-page main.medicines-watch .mw-card summary h2{margin:10px 0 5px!important}
+html body.medicines-watch-page main.medicines-watch .mw-card summary p{color:#c5c9ba;font-size:.92rem!important;margin:0!important}
+html body.medicines-watch-page main.medicines-watch .mw-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--mw-ash);border-radius:6px;color:#d6daca;background:#242c1d;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 9px!important;text-transform:uppercase}
+html body.medicines-watch-page main.medicines-watch .mw-tag-research{background:#29251c;color:#e7d7bb;border-color:#9b8863}
+html body.medicines-watch-page main.medicines-watch .mw-card-content{padding:0 24px 24px!important}
+html body.medicines-watch-page main.medicines-watch .mw-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+html body.medicines-watch-page main.medicines-watch .mw-cell{padding:22px 0!important;border-top:1px solid #424a39;min-width:0}
+html body.medicines-watch-page main.medicines-watch .mw-cell p:last-child{margin-bottom:0}
+html body.medicines-watch-page main.medicines-watch .mw-cell ul{padding-left:20px;margin:0!important}
+html body.medicines-watch-page main.medicines-watch .mw-cell li{margin:0 0 7px!important}
+html body.medicines-watch-page main.medicines-watch .mw-evidence{border-top:1px solid #424a39;padding-top:20px}
+html body.medicines-watch-page main.medicines-watch .mw-evidence>summary{display:block!important;padding:0!important;font-weight:700;line-height:1.5}
+html body.medicines-watch-page main.medicines-watch .mw-evidence>summary:after{content:' ↓'!important;font-size:1rem!important}
+html body.medicines-watch-page main.medicines-watch .mw-evidence ul{padding:0!important;list-style:none;margin:18px 0 0!important}
+html body.medicines-watch-page main.medicines-watch .mw-evidence li{padding:13px 0!important;border-top:1px solid #313a2b;overflow-wrap:anywhere;font-size:.92rem}
+html body.medicines-watch-page main.medicines-watch .mw-evidence small{display:block;color:#b7bcaa;margin-top:4px;font-size:.8rem}
+html body.medicines-watch-page main.medicines-watch .mw-review{margin:0 0 14px!important;font-size:.8rem!important;color:#b7bcaa!important}
+html body.medicines-watch-page main.medicines-watch .mw-flag{border-left:3px solid #b7bcaa;background:#22271b;padding:10px 14px!important;margin:0 0 18px!important;font-size:.9rem!important}
+html body.medicines-watch-page main.medicines-watch .mw-explainer{margin:35px 0 0!important;padding:26px!important;border:1px solid var(--mw-ash);border-radius:16px;background:#12150f}
+html body.medicines-watch-page main.medicines-watch .mw-explainer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:24px 0!important}
+html body.medicines-watch-page main.medicines-watch .mw-explainer-grid strong{display:block;margin-bottom:7px}
+html body.medicines-watch-page main.medicines-watch .mw-explainer-grid p{font-size:.95rem!important;color:#c5c9ba}
+html body.medicines-watch-page main.medicines-watch .mw-note{font-size:.88rem!important;color:#c5c9ba!important}
+html body.medicines-watch-page main.medicines-watch .mw-links{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px}
+html body.medicines-watch-page main.medicines-watch .mw-links a{font-size:.9rem}
+html body.medicines-watch-page main.medicines-watch .mw-empty{padding:28px!important;border:1px solid var(--mw-ash);border-radius:12px}
+@media(max-width:650px){
+html body.medicines-watch-page main.medicines-watch{padding:20px 18px 60px!important;font-size:16px}
+html body.medicines-watch-page main.medicines-watch .mw-breadcrumb{margin-bottom:22px}
+html body.medicines-watch-page main.medicines-watch .mw-hero{grid-template-columns:1fr;padding:0 0 25px!important;gap:0}
+html body.medicines-watch-page main.medicines-watch .mw-radar{display:none}
+html body.medicines-watch-page main.medicines-watch .mw-hero h1{font-size:2.65rem!important}
+html body.medicines-watch-page main.medicines-watch .mw-overview{padding:18px!important}
+html body.medicines-watch-page main.medicines-watch .mw-counts{gap:9px}
+html body.medicines-watch-page main.medicines-watch .mw-counts div+div{padding-left:12px}
+html body.medicines-watch-page main.medicines-watch .mw-counts strong{font-size:1.65rem}
+html body.medicines-watch-page main.medicines-watch .mw-counts span{font-size:.75rem;line-height:1.35;display:block}
+html body.medicines-watch-page main.medicines-watch .mw-filter{grid-template-columns:1fr 1fr;gap:12px}
+html body.medicines-watch-page main.medicines-watch .mw-filter label:first-child{grid-column:1/-1}
+html body.medicines-watch-page main.medicines-watch .mw-filter button{grid-column:1/-1}
+html body.medicines-watch-page main.medicines-watch .mw-card summary{padding:20px 18px!important;gap:10px}
+html body.medicines-watch-page main.medicines-watch .mw-card-content{padding:0 18px 20px!important}
+html body.medicines-watch-page main.medicines-watch .mw-card-grid,html body.medicines-watch-page main.medicines-watch .mw-explainer-grid{grid-template-columns:1fr}
+html body.medicines-watch-page main.medicines-watch .mw-cell{padding:18px 0!important}
+html body.medicines-watch-page main.medicines-watch .mw-explainer{padding:20px!important}
+html body.medicines-watch-page main.medicines-watch .mw-explainer-grid{gap:10px}
+html body.medicines-watch-page main.medicines-watch .mw-review{line-height:1.5!important}}
 </style>`;
 
 const RADAR = `<svg class="mw-radar" viewBox="0 0 300 300" aria-hidden="true" fill="none"><circle cx="150" cy="150" r="126" stroke="currentColor"/><circle cx="150" cy="150" r="94" stroke="currentColor"/><circle cx="150" cy="150" r="62" stroke="currentColor"/><path d="M150 9v282M9 150h282" stroke="currentColor" opacity=".45"/><path d="M150 150 243 66" class="mw-ray" stroke-width="3"/><circle cx="221" cy="88" r="5" fill="#b7bcaa"/><circle cx="78" cy="208" r="5" fill="#b7bcaa"/><rect x="130" y="117" width="39" height="70" rx="19.5" transform="rotate(35 150 150)" stroke="#b7bcaa" stroke-width="3"/><path d="m131 141 34 22" stroke="#b7bcaa" stroke-width="3"/></svg>`;
@@ -45,7 +124,7 @@ export function renderWatchDocument(html, health, query) {
  const title = 'Medicines & Peptides Watch | SHIFT Treatments';
  const description = 'UK weight-management medicines explained with authorisation, access, emerging research, exact sources and visible review dates.';
  html = html.replace(/<main\b[\s\S]*?<\/main>/i, () => watchMain(health,query))
-  .replace(/<script\b[^>]*\bsrc=["']\/assets\/treatment-guided-v1\.js(?:\?[^"']*)?["'][^>]*>[\s\S]*?<\/script>/gi,'')
+  .replace(/<script\b[^>]*\bsrc=["']\/assets\/(?:treatment-guided-v1|shift-service-bridge-v1)\.js(?:\?[^"']*)?["'][^>]*>[\s\S]*?<\/script>/gi,'')
   .replace(/<title>[\s\S]*?<\/title>/i,'').replace(/<meta\s+name=["']description["'][^>]*>/gi,'')
   .replace(/<link\s+rel=["']canonical["'][^>]*>/gi,'').replace(/<meta\s+(?:property|name)=["'](?:og:|twitter:)[^>]*>/gi,'')
   .replace(/<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'')

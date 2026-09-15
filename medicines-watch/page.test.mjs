@@ -32,8 +32,8 @@ test('source failure is visible and is never presented as a renewed review',()=>
  assert.ok(html.includes('0 of '+sources.length+' monitored sources'));
 });
 test('child retains shell but replaces main and metadata exactly once',()=>{
- const html=renderWatchDocument(shell.replace('</head>','<script src="/assets/treatment-guided-v1.js?v=1"></script><script src="/assets/v42.js"></script></head>'),health);
- assert.doesNotMatch(html,/treatment-guided-v1\.js/);assert.match(html,/src="\/assets\/v42.js"/);
+ const html=renderWatchDocument(shell.replace('</head>','<script src="/assets/treatment-guided-v1.js?v=1"></script><script src="/assets/shift-service-bridge-v1.js?v=2"></script><script src="/assets/v42.js"></script></head>'),health);
+ assert.doesNotMatch(html,/(?:treatment-guided-v1|shift-service-bridge-v1)\.js/);assert.match(html,/src="\/assets\/v42.js"/);
  assert.match(html,/<header>Original menu<\/header>/);assert.match(html,/<footer>Original footer<\/footer>/);
  assert.equal((html.match(/<main\b/g)||[]).length,1);assert.equal((html.match(/<h1>/g)||[]).length,1);
  assert.doesNotMatch(html,/Existing treatments|class="one-shift treatment-centre/);
