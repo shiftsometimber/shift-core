@@ -1,0 +1,74 @@
+[
+  {
+    "id": "industrial-breakfast-breakfast-wrap-apple-cinnamon-0",
+    "file": "catalogue-egg-kidney-spinach-wrap.webp",
+    "alt": "Toasted wholemeal wrap cut into two halves, filled with cooked egg, red kidney beans, softened spinach and tomato salsa.",
+    "note": "Exact recipe illustration: kidney beans, eggs, spinach and salsa; no cheese. The serving cut reveals the filling. Ingredient weights cannot be verified from an image.",
+    "scope": "exact-recipe",
+    "sourceHash": "0abb7e9f2e168c8c8b62c098ded8f34762059360835e2ac7acf9189cf84cd5eb",
+    "imageHash": "db90d668678c7493935f772f2bc9b8c762ba387134dc1dff4f6f0e209187012d",
+    "visualInspection": "assistant inspected visible ingredient identity and preparation; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "industrial-v3-wrap-classic-chicken",
+    "file": "catalogue-classic-chicken-wrap.webp",
+    "alt": "Wholemeal chicken wrap cut into two halves, with lightly dressed chicken breast, fresh lettuce and tomato.",
+    "note": "Matches chicken, wholemeal wrap, lettuce, tomato and mayonnaise. The serving cut reveals the filling. Exact weights and mayonnaise formulation cannot be verified visually.",
+    "scope": "exact-recipe",
+    "sourceHash": "50983fdee7719d5ea18101fd670e6183458093d7a073ff42c45c8bea3a6e9f46",
+    "imageHash": "dd8ed9743604c71d633cb4695020f784604a17e7f35c643498d2ab8d15a30e24",
+    "visualInspection": "assistant inspected visible ingredient identity and preparation; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "industrial-dinner-chicken-traybake",
+    "file": "catalogue-chicken-traybake.webp",
+    "alt": "Sliced browned chicken breast beside golden potato pieces, roasted broccoli and red pepper on a cream plate.",
+    "note": "Pan-browned chicken with roasted potato, broccoli and red pepper; no added sauce. A photo cannot establish safe cooking temperature or exact quantities.",
+    "scope": "exact-recipe",
+    "sourceHash": "944b5e3d3d3380e0e61cccd62b89b7da834389d615ce74be42c7230a66f12f50",
+    "imageHash": "7d5ec8abb38ce91a2818e08c839a6f0c04afe32bcdf46c064f1ea2e6c00abb72",
+    "visualInspection": "assistant inspected visible ingredient identity and preparation; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "industrial-v4-protein-pot-classic-greek-yoghurt",
+    "file": "catalogue-greek-yoghurt-pot.webp",
+    "alt": "Greek yoghurt topped with rolled oat flakes, pumpkin seeds, raspberries, blueberries and cinnamon.",
+    "note": "Plain rolled oats and pumpkin seeds match the recipe; no granola, honey or nuts. Exact topping weights and yoghurt fat percentage cannot be verified visually.",
+    "scope": "exact-recipe",
+    "sourceHash": "de9dfbea14979ab0081ed8632fd7096794eab3ce9d451049e8cefa80ac49b584",
+    "imageHash": "39e624b638e6c0ba3d527f703c6f255a41592374a09cd4e5309b6a4a8a13bc59",
+    "visualInspection": "assistant inspected visible ingredient identity and preparation; not quantitative verification",
+    "productionApproved": false,
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "sit-to-stand",
+    "file": "sit-to-stand.webp",
+    "alt": "Sit-to-stand setup: seated near the chair front, feet flat and arms forward. Sit-to-stand middle phase: hips lifted above seat, trunk inclined forward and feet flat. Sit-to-stand finish: standing upright immediately in front of the chair.",
+    "note": "The corrected sequence keeps the hands and feet in frame. Professional technique review remains pending. A static generated sequence cannot prove controlled speed, balance or suitability for an individual. This is not professional form approval.",
+    "scope": "canonical-example",
+    "sourceHash": "7478a1c56094389d2a3d40d1255bf46d94f267f68d3b39598451cb4b2ceec90d",
+    "imageHash": "f4ba5b72e95478aacd1742de348b1888c3a623eb66d146eb84d73cc05e0a2a96",
+    "productionApproved": false,
+    "visualInspection": "Retained draft visual inspection; professional technique review pending",
+    "generation": "built-in image_gen"
+  },
+  {
+    "id": "calf-raise",
+    "file": "calf-raise.webp",
+    "alt": "Supported calf raise setup: both heels down, hands resting on the chair back. Supported calf raise middle phase: both heels raised, forefeet planted and hands on chair back. Supported calf raise end: both heels back on the floor in the original stance.",
+    "note": "Both heels and both supporting hands are visible. Professional technique review remains pending. A static generated sequence cannot prove controlled lowering, weight distribution or individual suitability. This is not professional form approval.",
+    "scope": "canonical-example",
+    "sourceHash": "5f92382f72e9cae76d8d37973a5b969c9f830fb8c75516d218b1093a9e28c8ae",
+    "imageHash": "936bf8cb91742a5337d1b149ffc0eb5929e43b38a1631452f06cb4a6cfb2c640",
+    "productionApproved": false,
+    "visualInspection": "Retained draft visual inspection; professional technique review pending",
+    "generation": "built-in image_gen"
+  }
+]

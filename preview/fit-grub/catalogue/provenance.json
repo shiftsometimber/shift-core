@@ -1,0 +1,14 @@
+{
+  "scope": "Accepted catalogue snapshot, not a live database export",
+  "payloadProof": "M11_V1_PUBLISHABLE_CONTENT_V1",
+  "payloadHash": "ad71deb28b9e9997e6dcd4f74feea64edc5f54eecfee6587958d83e8dd6fd82c",
+  "sourceGenerator": "industrial-catalogue-v14.js",
+  "acceptanceFile": "evidence/grub-v1-final-decisions-2026-08-14.json",
+  "acceptanceHash": "b96660303feb17199786b2cbaa81a049b782206ff4b8365fa1d8cf49fdcb6d96",
+  "counts": {
+    "breakfast": 212,
+    "lunch": 204,
+    "dinner": 195,
+    "snack": 187
+  }
+}

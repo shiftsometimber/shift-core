@@ -9,11 +9,11 @@ test('20 minutes is the unsaved default',()=>{
   assert.match(js,/else \$\('#sfMinutes'\)\.value='20'/);
 });
 
-test('Fit has a hardcoded no-kit knee-friendly 20 minute fallback',()=>{
+test('Fit fallback preserves limitations and uses explicit recovery controls',()=>{
   assert.match(js,/fallbackFitPlan/);
-  assert.match(js,/20-minute knee-friendly keep-muscle session/);
-  assert.match(js,/No equipment/);
-  assert.doesNotMatch(js,/No suitable session found/);
+  assert.match(js,/hasContext\(profile.limitations\)/);
+  assert.match(js,/data-fit-retry/);
+  assert.doesNotMatch(js,/built-in safe fallback|20-minute knee-friendly keep-muscle session/);
 });
 
 test('done uses completeFitToday and never doors to visualise',()=>{
