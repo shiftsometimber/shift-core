@@ -63,6 +63,8 @@ import {
 import { hqCommerceContentRoutes } from "./hq-commerce-content-v1.js";
 import { hqCatalogueRoutes } from "./hq-catalogue-v1.js";
 import { continuityInterestRoutes } from "./continuity-interest-v1.js";
+import { medicinesWatchRoutes, withMedicinesWatchEntry } from './medicines-watch/page.mjs';
+import { checkSources } from './medicines-watch/monitor.mjs';
 
 
 const MEMBER_ORIGINS = new Set([
@@ -440,6 +442,7 @@ async function shiftHealthWithServerSeo(response, request, slug) {
   return new Response(request.method === "HEAD" ? null : html, { status: response.status, statusText: response.statusText, headers });
 }
 const PRIORITY_PUBLIC_PATHS = [
+  "/treatment-centre/medicines-watch",
   "/shift-newsroom",
   "/shift-health",
   ...Object.keys(SHIFT_HEALTH_SEO).map((slug) => `/shift-health/${slug}`),
@@ -527,6 +530,8 @@ export default {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const medicinesWatch = await medicinesWatchRoutes(request, env);
+    if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);
     const memberExperience = memberExperienceRoutes(request, env);
     if (memberExperience) return memberExperience;
     const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
@@ -909,7 +914,7 @@ export default {
     const newsroomPage = await radarNewsPageRoutes(request, env);
     if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request);
+      return withMedicinesWatchEntry(await withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request), request);
     }
     let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
@@ -927,6 +932,7 @@ export default {
       runRadarScheduledScan(env),
       runKnowledgeFlywheel(env, { limit: 1000 }),
       runFitMorningReminders(env),
+      checkSources(env).catch(error => ({medicinesWatch:'check_failed',message:error.message})),
     ])
       .then((r) =>
         console.log("shift_scheduled_intelligence", JSON.stringify(r)),
