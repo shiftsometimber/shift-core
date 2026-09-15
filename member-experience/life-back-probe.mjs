@@ -8,6 +8,9 @@ export async function probeLifeBack({call,member,other,patch,method,relogin}){
  await call('/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:false},member);
  assert.equal((await call('/v1/life-back',op,member)).status,409);
  await call('/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true},member);
+ assert.equal((await call('/v1/life-back',op,member)).status,409);
+ assert.equal((await call('/v1/life-back',{action:'goal',operationId:id(),revision:initial.progress.revision,goal:'Your personal goal'},member)).status,400);
+ const firstGoal=await call('/v1/life-back',{action:'goal',operationId:id(),revision:initial.progress.revision,goal:'Enjoying weekend walks'},member);assert.equal(firstGoal.status,201);op.goalId=(await firstGoal.json()).progress.goalId;checks.push('A real personal goal is required before recording a Life Back score');
  assert.equal((await call('/v1/life-back',op,member)).status,201);
  assert.equal((await call('/v1/life-back',op,member)).status,200);
  const n=(await read(member)).progress.entries.length;assert.equal(n,initial.progress.entries.length+1);

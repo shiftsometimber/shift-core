@@ -1,6 +1,6 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
-import {score,areas} from './life-back/model.mjs';
+import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
 import {connectedDay} from './journey-context.mjs';
 const headers={'Cache-Control':'no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
@@ -13,9 +13,10 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  if(next.operations.includes(input.operationId)||next.entries.some(e=>e.id===input.operationId))return next;
  if(input.action==='goal'){
   if(input.revision!==next.revision)fail('Your goal changed in another tab. Reload before changing it.',409);
-  const goal=String(input.goal||'').trim();if(!goal||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
+  const goal=String(input.goal||'').trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
   if(goal!==next.goal){next.goal=goal;next.goalId=input.operationId}
  }else if(input.action==='checkin'){
+  if(!hasPersonalGoal(next.goal))fail('Choose what you want to get back before recording a check-in.',409);
   if(input.goalId!==next.goalId)fail('Your personal goal changed. Reload before recording this check-in.',409);
   if(!input.ratings||score(input.ratings)===null||Object.values(input.ratings).some(v=>!Number.isInteger(v)))fail('Rate all six areas with a whole number from 0 to 100.');
   const win=String(input.win||'').trim();if(win.length>180)fail('Keep your win under 180 characters.');
