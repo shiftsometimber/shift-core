@@ -8,13 +8,18 @@ export const NEWS_DISCOVERY_SOURCES = [
   {id:'guardian-health',authority:'The Guardian',region:'GLOBAL',url:'https://www.theguardian.com/society/health/rss',adapter:'feed',eventType:'news_discovery',tier:4,confidence:60},
   {id:'cd-regulation',authority:'Chemist+Druggist',region:'UK',url:'https://www.chemistanddruggist.co.uk/news/regulation/',adapter:'html',eventType:'news_discovery',tier:4,confidence:60},
   ...[
+    ['sky-news-search','Sky News','news.sky.com'],
+    ['itv-news-search','ITV News','itv.com/news'],
+    ['ap-news-search','Associated Press','apnews.com']
+  ].map(([id,authority,domain])=>({id,authority,region:'GLOBAL',url:searchUrl(`site:${domain} ("weight loss" OR obesity OR GLP-1 OR Mounjaro OR Wegovy OR semaglutide OR tirzepatide OR "men’s health" OR "mental health" OR "blood pressure" OR NHS OR "prescription-only" OR "pharmacy advertising")`),adapter:'feed',eventType:'news_discovery',tier:4,confidence:60})),
+  ...[
     ['uk-weight-news-search','UK ("weight loss" OR GLP-1 OR Mounjaro OR Wegovy)'],
     ['uk-health-news-search','UK ("men’s health" OR "mental health" OR "blood pressure" OR "NHS access")'],
     ['uk-advertising-news-search','(ASA OR GPhC OR MHRA) (advertising OR adverts OR enforcement OR "prescription-only")'],
     ['gphc-news-search','site:pharmacyregulation.org (medicines OR prescribing OR advertising OR pharmacies)']
   ].map(([id,query])=>({id,authority:'Google News discovery',region:'GLOBAL',url:searchUrl(query),adapter:'feed',eventType:'news_discovery',tier:4,confidence:40}))
 ];
-export const REQUIRED_DISCOVERY_SOURCES = ['asa-weight-rulings','asa-news','gphc-news','bbc-health','guardian-health','cd-regulation','uk-weight-news-search','uk-health-news-search','uk-advertising-news-search','gphc-news-search'];
+export const REQUIRED_DISCOVERY_SOURCES = ['asa-weight-rulings','asa-news','gphc-news','bbc-health','guardian-health','cd-regulation','uk-weight-news-search','uk-health-news-search','uk-advertising-news-search','gphc-news-search','sky-news-search','itv-news-search','ap-news-search'];
 export function discoveryLead(source) { return source.eventType === 'news_discovery'; }
 export function scanCoverage(sources, results) {
   const active = new Set(sources.map(x=>x.id));

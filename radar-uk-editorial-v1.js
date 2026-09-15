@@ -7,8 +7,8 @@ export const REQUIRED_UK_NEWS_SOURCES = ['nhs-england-news', 'mhra-announcements
 export function isRelevantNewsItem(source = {}, item = {}) {
   const text = `${item.title || ''} ${item.summary || ''}`;
   if (WEIGHT.test(text)) return true;
-  if (['ASA / CAP','GPhC','Chemist+Druggist','Google News discovery'].includes(source.authority) && /\b(POMs?|prescription[- ]only|pharmac(?:y|ies)|medicines?)\b/i.test(text) && /\b(advertis\w*|adverts?|enforcement|crackdown|improvement notice)\b/i.test(text)) return true;
-  if (['BBC News','The Guardian','Google News discovery','Chemist+Druggist'].includes(source.authority) && /\b(mental[- ]health|blood pressure|hypertension|cholesterol|diabetes|prostate|testosterone|erectile|sleep apnoea|smoking|NHS|men['’]?s health)\b/i.test(text) && /\b(UK|Britain|British|England|Scotland|Wales|Northern Ireland|NHS)\b/i.test(text)) return true;
+  if (['ASA / CAP','GPhC','Chemist+Druggist','Google News discovery','Sky News','ITV News','Associated Press'].includes(source.authority) && /\b(POMs?|prescription[- ]only|pharmac(?:y|ies)|medicines?)\b/i.test(text) && /\b(advertis\w*|adverts?|enforcement|crackdown|improvement notice)\b/i.test(text)) return true;
+  if (['BBC News','The Guardian','Google News discovery','Sky News','ITV News','Associated Press','Chemist+Druggist'].includes(source.authority) && /\b(mental[- ]health|blood pressure|hypertension|cholesterol|diabetes|prostate|testosterone|erectile|sleep apnoea|smoking|NHS|men['’]?s health)\b/i.test(text) && /\b(UK|Britain|British|England|Scotland|Wales|Northern Ireland|NHS)\b/i.test(text)) return true;
   // Explicit UK authority/primary-charity sources only; evidence verification remains separate.
   return UK_REGIONS.has(source.region) && UK_HEALTH_AUTHORITIES.has(source.authority || '') && UK_HEALTH.test(text);
 }
