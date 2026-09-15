@@ -244,7 +244,9 @@ function privatePageHeaders(response) {
 async function gitMemberAsset(path, env) {
   const contentType =
     GIT_MEMBER_ASSETS.get(path) ||
-    (/^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)
+    (/^\/fit-v3-images\/[a-z0-9-]+\.png$/.test(path)
+      ? "image/png"
+      : /^\/assets\/fit\/premium\/[a-z0-9-]+\.svg$/.test(path)
       ? "image/svg+xml; charset=utf-8"
       : null);
   if (!env.MEMBER_ASSETS || !contentType) return null;
