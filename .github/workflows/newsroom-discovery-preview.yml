@@ -50,8 +50,14 @@ jobs:
           node --input-type=module <<'JS'
           import fs from 'node:fs';import assert from 'node:assert/strict';
           const url='https://shift-newsroom-discovery-preview.matobrien.workers.dev';
-          const r=await fetch(url+'/report.json');assert.equal(r.status,200);assert.match(r.headers.get('x-robots-tag'),/noindex/);
-          const evidence=await r.json();assert.equal(evidence.productionChanged,false);assert.equal(evidence.notificationsSent,false);assert.equal(evidence.articlesPublished,0);
+          let r,evidence;
+          for(let attempt=0;attempt<12;attempt++){
+            r=await fetch(url+'/report.json?commit='+process.env.GITHUB_SHA,{cache:'no-store'});
+            if(r.ok){evidence=await r.json();if(evidence.commit===process.env.GITHUB_SHA)break;}
+            await new Promise(resolve=>setTimeout(resolve,5000));
+          }
+          assert.equal(r.status,200);assert.match(r.headers.get('x-robots-tag'),/noindex/);
+          assert.equal(evidence.productionChanged,false);assert.equal(evidence.notificationsSent,false);assert.equal(evidence.articlesPublished,0);
           assert.equal(evidence.commit,process.env.GITHUB_SHA);assert.equal((await fetch(url,{method:'POST'})).status,405);
           console.log('PREVIEW_URL='+url);
           JS
