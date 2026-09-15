@@ -20,7 +20,7 @@ export async function probeConnectedAI({call,member,other}){
   assert.equal((await call('/v1/life-back',{action:'checkin',operationId:id(),goalId:one.goalId,
     ratings:{energy:68,sleep:68,confidence:68,movement:68,clothes:68,personal:68},win:'A fictional walk along the seafront'},member)).status,201);
   const a=await ask(member,'What personal Life Back goal have I saved, and what is my latest Life Back score?');
-  assert.equal(a.mode,'grounded','Real model response required; a fallback is not a generation pass');
+  assert.equal(a.mode,'grounded','Real model response required; a fallback is not a generation pass: '+JSON.stringify(a.stagingAI));
   assert.equal(a.journeyUsed,true);assert.match(a.answer,/Violet Pier/i);assert.match(a.answer,/68/);assert.doesNotMatch(a.answer,/Amber Lake/);
   answers.push({scenario:'Own saved goal and check-in',answer:a.answer});
   checks.push('Actual model answers from the authenticated saved goal and score');

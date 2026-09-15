@@ -29,7 +29,21 @@ export default {async fetch(request,env,ctx){
    const count=await env.DB.prepare('SELECT COUNT(*) n FROM users WHERE first_name="Fictional reviewer"').first();if(count.n>=20)return Response.json({error:'Staging account limit reached.'},{status:409});
   }
  }
- const response=await core.fetch(request,env,ctx);
+ // Staging-only diagnostics contain no request headers, prompts or model text.
+ // They distinguish a working fallback from an actual successful model call.
+ const aiCheck={attempted:false};
+ const checkedEnv=p==='/v1/ai/chat'&&env.AI?{...env,AI:{run:async(model,input)=>{
+  aiCheck.attempted=true;aiCheck.model=model;
+  try{const result=await env.AI.run(model,input);const raw=result?.response||result?.result?.response||result?.output_text;
+   aiCheck.resultKeys=Object.keys(result||{});aiCheck.responseType=typeof raw;aiCheck.responseLength=typeof raw==='string'?raw.length:null;
+   if(typeof raw==='string'){try{JSON.parse(raw.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim());aiCheck.validJSON=true}catch{aiCheck.validJSON=false}}
+   return result;
+  }catch(e){aiCheck.error={name:e?.name||'Error',code:e?.code||null,status:e?.status||null,message:String(e?.message||'').slice(0,300)};throw e}
+ }}}:env;
+ const response=await core.fetch(request,checkedEnv,ctx);
+ if(p==='/v1/ai/chat'&&response.headers.get('Content-Type')?.includes('application/json')){
+  const data=await response.json();return Response.json({...data,stagingAI:aiCheck},{status:response.status,headers:response.headers});
+ }
  if(response.headers.get('Content-Type')?.includes('text/html')&&response.ok){
   const body=await response.text(),h=new Headers(response.headers);h.delete('Content-Length');h.delete('ETag');h.set('Cache-Control','no-store');
   return new Response(body.replace('<main class="work">','<main class="work">'+banner).replace('</head>','<script type="module" src="/staging/login.mjs"></script></head>'),{status:response.status,headers:h});
