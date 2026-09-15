@@ -5,6 +5,7 @@ import {fitV3Assets,approvedFitPack} from './v3-assets.mjs';
 import {catalogueAssets} from './catalogue-page.mjs';
 import {applyProgrammeVisuals,programmeVisualCSS} from './programme-visuals.mjs';
 import {visualReviewAssets,visualRecords} from './visual-review.mjs';
+import {grubIntelligencePreviewAssets} from './grub-intelligence-preview.mjs';
 import fs from 'node:fs';
 const root='preview/fit-grub';
 const recipes=JSON.parse(fs.readFileSync('content/grub/batch-01.json')).slice(0,3);
@@ -34,6 +35,7 @@ assets['/phone']={type:'text/html',body:'<!doctype html><html><head><meta name="
 Object.assign(assets,visualReviewAssets());
 Object.assign(assets,catalogueAssets());
 Object.assign(assets,fitV3Assets());
+Object.assign(assets,grubIntelligencePreviewAssets());
 assets['/fit-v3-phone']={type:'text/html',body:'<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>FIT gallery · 390px layout check</title><style>body{background:#050505;color:#e7e3da;font:16px Arial;margin:20px}iframe{display:block;width:390px;height:850px;max-width:100%;border:1px solid #707762;margin:auto}</style></head><body><p>390px movement gallery layout check</p><iframe title="Phone width movement gallery" src="/fit-v3"></iframe></body></html>'};
 assets['/fit-v3'].body=assets['/fit-v3'].body.replace('<script src="/fit-v3.js">',guidance.galleryScript+'<script src="/fit-v3.js">');
 for(const path of ['/member/fit','/member/grub'])assets[path].body=assets[path].body.replace('<nav>','<nav><a href="/fit-v3">Fit movement images</a><a href="/catalogue">Full catalogue</a>');
