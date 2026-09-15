@@ -29,5 +29,16 @@ document.addEventListener('click',async event=>{
 `;
 
 export const grubIntelligenceCSS=`
+
+/* Legacy member button rules use important cream text. Set the complete colour
+   pair on these controls, including Safari's painted text colour. */
+html body.sst-member-experience #grubRecommendation .grub-pick-adjust button,
+html body.sst-member-experience #grubRecommendation #grubPickServings,
+html body.sst-member-experience #grubRecommendation #grubPickServings option{
+ background:#e7e3da!important;color:#707762!important;-webkit-text-fill-color:#707762!important;
+}
+html body.sst-member-experience #grubRecommendation .grub-pick-adjust button[aria-pressed="true"]{
+ background:#050505!important;color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important;
+}
 .sst-member-experience #grubRecommendation{margin:22px 0 28px;max-width:1080px}.sst-member-experience #grubRecommendation[hidden]{display:none}.sst-member-experience .grub-food-image{margin:16px 0}.sst-member-experience .grub-food-image img{display:block;width:100%;height:auto;max-height:460px;object-fit:cover;border-radius:12px}.sst-member-experience .grub-food-image figcaption{font-size:13px;margin-top:7px}.sst-member-experience #grubRecommendation>.grub-recipe{background:#e7e3da;color:#050505;border-color:#707762;padding:24px;border-radius:16px}.sst-member-experience #grubRecommendation .grub-recipe :is(h3,h4,p,span,small,strong,summary,li,label){color:#050505}.sst-member-experience #grubRecommendation button,.sst-member-experience #grubRecommendation select{background:#e7e3da;color:#050505;border:1px solid #707762;min-height:44px;font:inherit}.sst-member-experience #grubRecommendation button[aria-pressed="true"]{background:#050505;color:#e7e3da}.sst-member-experience .grub-pick-why{margin:20px 0;padding:18px 0;border-top:1px solid #707762;border-bottom:1px solid #707762}.sst-member-experience .grub-pick-why ul{padding-left:20px}.sst-member-experience .grub-pick-adjust{display:flex;flex-wrap:wrap;gap:8px}.sst-member-experience .grub-pick-adjust button{border-radius:10px;padding:10px 14px}.sst-member-experience .grub-pick-change{padding:12px;border-left:4px solid #707762}.sst-member-experience .grub-pick-servings{display:flex;gap:16px;align-items:center}.sst-member-experience .grub-pick-servings select{padding:10px;min-width:80px}.sst-member-experience .grub-pick-feedback,.sst-member-experience .grub-pick-fit{margin-top:18px;padding:20px;border:1px solid #707762;border-radius:12px}.sst-member-experience .grub-nutrition-context{grid-column:1/-1;padding:20px;border:1px solid #707762;border-radius:12px;margin-bottom:20px}.sst-member-experience .grub-nutrition-row{display:flex;gap:15px;flex-wrap:wrap;padding:12px 0;border-top:1px solid #707762}.sst-member-experience .grub-nutrition-row strong{min-width:160px}@media(max-width:600px){.sst-member-experience #grubRecommendation>.grub-recipe{padding:16px}.sst-member-experience .grub-pick-adjust button{flex:1 1 45%;min-width:0}.sst-member-experience #grubRecommendation .grub-actions{flex-wrap:wrap}.sst-member-experience .grub-pick-feedback button{flex:1 1 130px}.sst-member-experience .grub-nutrition-row{gap:8px 14px}.sst-member-experience .grub-nutrition-row strong{width:100%}}
 `;
