@@ -15,7 +15,7 @@ export async function connectedMemberRoutes(request,env){
  const name=path.slice(prefix.length),jsHeaders={...headers,'Content-Type':'text/javascript'};
  if(name==='life-back'){
   const r=memberExperienceRoutes(new Request(new URL('/member/life-back',u)),env);
-  let html=(await r.text()).replace('Your private progress','Fictional test account').replace('href="/member/dashboard">Sign in to My Timber','href="/staging/sign-in">Sign in to test account').replace('</body>','<script defer src="'+prefix+'status.js"></script></body>');
+  let html=(await r.text()).replace('Your private progress','Fictional test account').replace('href="/member/dashboard">Sign in to My Timber','href="/staging/sign-in?next=life-back">Sign in to test account').replace('</body>','<script defer src="'+prefix+'status.js"></script></body>');
   return new Response(html,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
  }
 
