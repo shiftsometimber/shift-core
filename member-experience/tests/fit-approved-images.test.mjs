@@ -26,6 +26,8 @@ test('Fit cards explain their purpose and include bounded session effort control
   assert.match(fitRuntime, /data-sf-difficulty/);
   assert.match(fitRuntime, /Go easier/);
   assert.match(fitRuntime, /Go harder/);
+  assert.doesNotMatch(fitRuntime, /<button data-sf-show/);
+  assert.equal((fitRuntime.match(/Show me how/g) || []).length, 1);
   assert.doesNotMatch(fitRuntime, /calories burned|calorie loss/i);
 });
 
