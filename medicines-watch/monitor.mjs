@@ -3,7 +3,9 @@ import { sources as catalogueSources, medicines as catalogueMedicines } from './
 export const CHECK_INTERVAL_MS = 60 * 60 * 1000;
 export const REVIEW_INTERVAL_MS = 7 * 24 * CHECK_INTERVAL_MS;
 const DEADLINE_MS = 8000;
-const MAX_BYTES = 1024 * 1024;
+// The complete Mounjaro emc SmPC exceeds 1 MiB (1,258,162 bytes observed
+// 2026-09-15). Retain a hard bound without truncating the evidence document.
+const MAX_BYTES = 2 * 1024 * 1024;
 const CONCURRENCY = 3;
 const CRON_GRACE_MS = 15 * 60 * 1000;
 
@@ -271,7 +273,7 @@ export async function readWatchHealth(env, options = {}) {
     lastAttemptAt: attempts.at(-1) || null, sources, medicines };
 }
 
-/** Scheduled writer: at most three requests, eight seconds and 1 MB each. */
+/** Scheduled writer: at most three concurrent requests, eight seconds and 2 MiB each. */
 export async function checkSources(env, options = {}) {
   if (!env?.DB) throw new Error('medicines_watch_database_missing');
   const sourceList = options.sources ?? catalogueSources;
