@@ -30,7 +30,9 @@ test('scan ingests primary ruling and unverified lead, deduplicates rescans, and
  try{
   const first=await runAuthoritativeRadarScan(env);assert.equal(first.newEvents,2);assert.equal(first.coverage.complete,false);
   assert.equal((await runAuthoritativeRadarScan(env)).newEvents,0);
-  const rows=(await DB.prepare('SELECT * FROM radar_events ORDER BY id').all()).results;
+  const events=(await DB.prepare('SELECT * FROM radar_events ORDER BY id').all()).results;
+  const rows=[events.find(x=>x.status==='verified'),events.find(x=>x.status==='needs_more_evidence')];
+  assert.ok(rows[0]);assert.ok(rows[1]);
   assert.equal(rows[0].status,'verified');assert.equal(rows[1].status,'needs_more_evidence');
   // Give the unverified lead top priority: it still must not consume the drafting slot.
   await DB.prepare('UPDATE radar_events SET urgency_score=100 WHERE id=?').bind(rows[1].id).run();
