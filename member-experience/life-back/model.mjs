@@ -4,9 +4,15 @@ export const areas = [
  {id:'confidence',label:'Confidence',icon:'sparkles',description:'Feeling more like yourself again.',prompt:'How confident do you feel right now?'},
  {id:'movement',label:'Movement',icon:'footprints',description:'Feeling stronger and more capable.',prompt:'How comfortable does everyday movement feel right now?'},
  {id:'clothes',label:'Clothes',icon:'shirt',description:'More comfort in what you wear.',prompt:'How comfortable do you feel in your clothes right now?'},
- {id:'personal',label:'Playing with the kids',icon:'heart',description:'More present. More moments.',prompt:'How close do you feel to your personal goal right now?'}
+ {id:'personal',label:'Your personal goal',icon:'star',description:'More of what matters to you.',prompt:'How close do you feel to your personal goal right now?'}
 ];
-export const goalChoices=['Playing with the kids','Walking the dog','Enjoying a weekend away','Getting back to a hobby','Feeling comfortable in my clothes'];
+export const goalChoices=['Walking the dog comfortably','Getting back to a sport or hobby','Enjoying weekends away','Feeling confident socially','Keeping up with the kids','Keeping up with the grandchildren'];
+export function hasPersonalGoal(goal){return Boolean(goal&&goal!=='Your personal goal');}
+export function goalPresentation(goal){
+ const family=['Playing with the kids','Keeping up with the kids','Keeping up with the grandchildren'].includes(goal);
+ const icon=family?'heart':['Walking the dog','Walking the dog comfortably'].includes(goal)?'footprints':['Feeling confident socially'].includes(goal)?'sparkles':['Feeling comfortable in my clothes'].includes(goal)?'shirt':'star';
+ return {family,icon,prompt:hasPersonalGoal(goal)?'How close do you feel to “'+goal+'” right now?':'Choose what you want to get back.'};
+}
 export function score(ratings){
  const values=areas.map(a=>ratings[a.id]);
  if(values.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||v>100))return null;
