@@ -65,6 +65,16 @@ function request(body={},token='synthetic-1',origin='https://shiftsometimber.co.
 const ask=(env,body,token,origin)=>askTimberRoutes(request(body,token,origin),env);
 const prompt=calls=>calls.map(call=>call.messages.map(m=>m.content).join('\n')).join('\n');
 
+test('Ask Shift requests a schema and accepts the provider’s parsed response object',async t=>{
+ const {env,calls}=fixture(t);env.AI.run=async(model,input)=>{calls.push(input);return {response:{answer:'Your saved goal is Enjoying weekend walks.',keyPoints:[],nextSteps:[],followUps:[],confidence:'medium',limitations:'Saved records only.'}}};
+ const response=await ask(env),data=await response.json();assert.equal(data.mode,'grounded');assert.match(data.answer,/weekend walks/);
+ assert.equal(calls[0].response_format.type,'json_schema');assert(calls[0].response_format.json_schema.required.includes('answer'));
+});
+test('invalid structured model output remains a fallback instead of becoming a fabricated answer',async t=>{
+ const {env}=fixture(t);env.AI.run=async()=>({response:{answer:{invented:true}}});
+ const data=await(await ask(env)).json();assert.equal(data.mode,'saved_journey');assert.doesNotMatch(data.answer,/object Object|invented/);
+});
+
 test('real SQL summary separates chosen meals, exercise events and self-reported scores',async t=>{
   const {DB}=fixture(t),out=await buildMemberJourneyContext(DB,1);
   assert.equal(out.status,'available');assert.equal(out.grub.chosenForToday.name,'Synthetic Lentil Bowl');

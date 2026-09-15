@@ -6,6 +6,7 @@ const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometim
 const MODEL_FALLBACK='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 const MAX_MESSAGE=900;
 const MAX_HISTORY=6;
+const ANSWER_SCHEMA={type:'object',properties:{answer:{type:'string'},keyPoints:{type:'array',items:{type:'string'}},nextSteps:{type:'array',items:{type:'string'}},followUps:{type:'array',items:{type:'string'}},confidence:{type:'string',enum:['high','medium','low']},limitations:{type:'string'}},required:['answer','keyPoints','nextSteps','followUps','confidence','limitations'],additionalProperties:false};
 // Clinic Gone Quiet ten-pack: one reviewed, fail-safe answer lane for each
 // stranded-member moment. These are information and support routes, never a
 // substitute prescriber or a disguised route to the till.
@@ -75,10 +76,10 @@ export async function askTimberRoutes(request,env){
     {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(journey):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nReturn valid JSON only.`}
   ];
   try{
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:900,temperature:0.2});
-    const raw=String(result?.response||result?.result?.response||result?.output_text||'');
+    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:900,temperature:0.2,response_format:{type:'json_schema',json_schema:ANSWER_SCHEMA}});
+    const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
-    if(!generated?.answer)throw new Error('invalid_model_response');
+    if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');
     const confidence=confidenceFor(evidence,generated.confidence);
     console.log('ask_timber_answered',JSON.stringify({requestId,evidence:evidence.length,confidence}));
     return json({
@@ -174,7 +175,7 @@ async function retrieveForParts(db,message,parts){
 }
 function reviewedSiteEvidence(query){const q=String(query||'').toLowerCase();return [...CLINIC_GONE_QUIET_PACK,...REVIEWED_SITE_EVIDENCE].filter(item=>item.terms.some(term=>q.includes(term))).map(item=>({title:item.title,content:item.content,authority:75,reviewState:'verified',citation:item.url,provenance:[{ref:item.url}]}));}
 function normaliseHistory(value){if(!Array.isArray(value))return[];return value.slice(-MAX_HISTORY).map(x=>({role:x?.role==='assistant'?'assistant':'user',content:clean(x?.content,500)})).filter(x=>x.content);}
-function parseAnswer(raw){const stripped=raw.trim().replace(/^\`\`\`(?:json)?/i,'').replace(/\`\`\`$/,'').trim();try{return JSON.parse(stripped)}catch{const a=stripped.indexOf('{'),b=stripped.lastIndexOf('}');if(a>=0&&b>a)return JSON.parse(stripped.slice(a,b+1));return null}}
+function parseAnswer(raw){if(raw&&typeof raw==='object')return Array.isArray(raw)?null:raw;if(typeof raw!=='string')return null;const stripped=raw.trim().replace(/^\`\`\`(?:json)?/i,'').replace(/\`\`\`$/,'').trim();try{return JSON.parse(stripped)}catch{const a=stripped.indexOf('{'),b=stripped.lastIndexOf('}');if(a>=0&&b>a)return JSON.parse(stripped.slice(a,b+1));return null}}
 function confidenceFor(items,claimed){const top=Math.max(...items.map(x=>Number(x.authority||0)));const verified=items.some(x=>x.reviewState==='verified'||x.reviewState==='approved');const ceiling=verified&&top>=70?'high':verified?'medium':'low';return ceiling==='low'||claimed==='low'?'low':claimed==='medium'||ceiling==='medium'?'medium':ceiling;}
 function publicSource(provenance){for(const p of provenance||[]){const ref=String(p?.ref||'');if(/^https:\/\//i.test(ref))return ref;}return null;}
 function list(value,max,len){return(Array.isArray(value)?value:[]).map(x=>clean(x,len)).filter(Boolean).slice(0,max)}

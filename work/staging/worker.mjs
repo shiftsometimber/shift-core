@@ -36,6 +36,7 @@ export default {async fetch(request,env,ctx){
   aiCheck.attempted=true;aiCheck.model=model;
   try{const result=await env.AI.run(model,input);const raw=result?.response||result?.result?.response||result?.output_text;
    aiCheck.resultKeys=Object.keys(result||{});aiCheck.responseType=typeof raw;aiCheck.responseLength=typeof raw==='string'?raw.length:null;
+   if(raw&&typeof raw==='object')aiCheck.validJSON=!Array.isArray(raw);
    if(typeof raw==='string'){try{JSON.parse(raw.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim());aiCheck.validJSON=true}catch{aiCheck.validJSON=false}}
    return result;
   }catch(e){aiCheck.error={name:e?.name||'Error',code:e?.code||null,status:e?.status||null,message:String(e?.message||'').slice(0,300)};throw e}
