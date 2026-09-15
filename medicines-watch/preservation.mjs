@@ -1,0 +1,49 @@
+export const TREATMENTS_ENTRY_START='<!-- SHIFT_MEDICINES_WATCH_ENTRY_START -->';
+export const TREATMENTS_ENTRY_END='<!-- SHIFT_MEDICINES_WATCH_ENTRY_END -->';
+export const TREATMENTS_ENTRY=TREATMENTS_ENTRY_START+'<style data-medicines-watch-entry-style>.sst-medicines-watch-entry{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1180px;margin:32px auto;padding:24px;background:#050505;border:1px solid #707762;border-radius:18px;color:#E7E3DA;font-family:Arial,Helvetica,sans-serif}.sst-medicines-watch-entry h2{margin:0 0 8px;color:#E7E3DA;font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.2}.sst-medicines-watch-entry p{margin:0;max-width:660px;color:#E7E3DA;font-size:1rem;line-height:1.5}.sst-medicines-watch-entry a{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;min-height:44px;padding:12px 18px;border:1px solid #707762;border-radius:999px;background:#E7E3DA;color:#454D39;font-size:1rem;font-weight:700;text-align:center;text-decoration:none}.sst-medicines-watch-entry a:hover{text-decoration:underline}.sst-medicines-watch-entry a:focus-visible{outline:3px solid #E7E3DA;outline-offset:4px}@media(max-width:700px){.sst-medicines-watch-entry{flex-direction:column;align-items:stretch;gap:18px;margin:24px 16px;padding:20px}.sst-medicines-watch-entry a{align-self:flex-start}}</style><section class="sst-medicines-watch-entry" data-medicines-watch-entry aria-labelledby="medicines-watch-entry-title"><div><h2 id="medicines-watch-entry-title">Medicines &amp; Peptides Watch</h2><p>UK authorisation, access and emerging evidence — with sources and review dates.</p></div><a href="/treatment-centre/medicines-watch">Explore the watch <span aria-hidden="true">&nbsp;→</span></a></section>'+TREATMENTS_ENTRY_END;
+
+// Keep this module safe to import into the Worker for its entry markup.
+// The verification caller supplies SHA-256; no Node modules enter that bundle.
+const requireThat=(condition,message)=>{if(!condition)throw Error(message)};
+const equal=(actual,expected,message)=>requireThat(actual===expected,message);
+
+function normaliseTreatments(body,required){
+ const html=body.toString('utf8');
+ requireThat(Buffer.from(html).equals(body),'Treatment Centre must be valid UTF-8');
+ const markers=html.match(/SHIFT_MEDICINES_WATCH_ENTRY_/g)||[];
+ if(markers.length===0){
+  requireThat(!required,'Treatment Centre is missing the Medicines Watch entry');
+  return {body,entry:false};
+ }
+ equal(markers.length,2,'Treatment Centre has duplicate or malformed Medicines Watch markers');
+ const start=html.indexOf(TREATMENTS_ENTRY_START),end=html.indexOf(TREATMENTS_ENTRY_END);
+ requireThat(start>=0&&end>start,'Treatment Centre has malformed Medicines Watch markers');
+ const block=html.slice(start,end+TREATMENTS_ENTRY_END.length);
+ equal(block,TREATMENTS_ENTRY,'Treatment Centre Medicines Watch entry differs from approved source');
+ return {body:Buffer.from(html.slice(0,start)+html.slice(end+TREATMENTS_ENTRY_END.length)),entry:true};
+}
+
+export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=false,hash}={}){
+ requireThat(typeof hash==='function','Public preservation requires a SHA-256 function');
+ const body=Buffer.isBuffer(input)?input:Buffer.from(input);
+ const preserved=path==='/treatment-centre'?normaliseTreatments(body,requireTreatmentsEntry):{body,entry:false};
+ return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry}:{})};
+}
+
+export function assertPublicPagesPreserved(pages,baseline){
+ equal(JSON.stringify(pages.map(x=>x.path)),JSON.stringify(baseline.map(x=>x.path)),'Public preservation paths changed');
+ let entryAdded=false;
+ for(let i=0;i<pages.length;i++){
+  const current=pages[i],before=baseline[i];
+  equal(current.status,before.status,current.path+' response status changed');
+  if(current.path==='/treatment-centre'){
+   equal(current.treatmentsWatchEntry,true,'Treatment Centre is missing the approved Medicines Watch entry');
+   equal(current.preservedSha256,before.preservedSha256,'Treatment Centre content changed outside its approved Medicines Watch entry');
+   equal(current.preservedBytes,before.preservedBytes,'Treatment Centre size changed outside its approved Medicines Watch entry');
+   if(!before.treatmentsWatchEntry){entryAdded=true;continue;}
+  }
+  equal(current.sha256,before.sha256,current.path+' changed outside the approved Treatments addition');
+  equal(current.bytes,before.bytes,current.path+' response size changed');
+ }
+ return entryAdded?'preserved_with_treatments_watch_entry':'identical';
+}

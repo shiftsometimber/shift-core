@@ -1,0 +1,19 @@
+name: Medicines Watch checks
+on:
+  pull_request:
+    paths:
+      - 'medicines-watch/**'
+      - 'member-experience/public-preservation.mjs'
+      - 'worker-entry-v6.js'
+      - '.github/workflows/medicines-watch-check.yml'
+permissions:
+  contents: read
+jobs:
+  evidence-and-isolation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node --test medicines-watch/*.test.mjs
