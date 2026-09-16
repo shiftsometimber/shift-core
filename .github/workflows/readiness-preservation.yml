@@ -4,6 +4,8 @@ on:
     paths:
       - 'member-experience/**'
       - 'member-daily-v3.js'
+      - 'worker.js'
+      - 'tests/schema-readiness.test.mjs'
       - 'product-analytics-v1.js'
       - 'frontend/member/**'
       - 'rendered-member-acceptance-support.mjs'
@@ -29,7 +31,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify connected journeys, treatment records and preservation
         run: |
-          node --test member-experience/tests/*.test.mjs member-experience/staging/tool-routes.test.mjs tests/ai-connected*.test.mjs tests/adaptive-*.test.mjs tests/my-timber-analytics*.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/act2b-workflow-preservation.test.mjs
+          node --test member-experience/tests/*.test.mjs member-experience/staging/tool-routes.test.mjs tests/ai-connected*.test.mjs tests/adaptive-*.test.mjs tests/my-timber-analytics*.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/act2b-workflow-preservation.test.mjs tests/schema-readiness.test.mjs
           node tests/adaptive-today-source-gate.mjs
           node frontend-member-source-gate.mjs
           npm run check

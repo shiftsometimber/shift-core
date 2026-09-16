@@ -55,7 +55,7 @@ for(const [name,sha]of Object.entries(JSON.parse(readFileSync('work/staging/gene
 const browser=await chromium.launch({headless:true});
 try{
  for(const [index,[name,viewport]]of Object.entries({desktop:{width:1440,height:1000},mobile390:{width:390,height:844}}).entries()){
-  const row={name,viewport,phase:'fictional-account-login',checks:[],pageErrors:[],failedRequests:[]};report.cases.push(row);
+  const row={name,viewport,phase:'fictional-account-login',checks:[],pageErrors:[],failedRequests:[],apiRequests:[]};report.cases.push(row);
   const own=await browser.newContext({viewport,reducedMotion:'reduce'}),other=await browser.newContext({viewport,reducedMotion:'reduce'});
   const ownId=fixture.browserIds[index*2],otherId=fixture.browserIds[index*2+1];let page;
   try{
@@ -82,15 +82,28 @@ try{
    assert.deepEqual(otherSummary.metrics,[],'Separate account leaked progress metrics');
    assert.deepEqual(otherSummary.milestones,[],'Separate account leaked progress milestones');
    assert(!Object.hasOwn(otherSummary,'entries')||otherSummary.entries===0,'An empty progress summary must omit entries or report numeric zero');
+   const ownSummary=(await api(own,'/v1/progress/summary')).progress;
+   assert.equal(ownSummary?.state,'ready','The seeded progress summary is not ready');
+   assert.equal(ownSummary.entries,2,'The seeded progress summary must retain both check-ins');
+   for(const label of ['Weight','Waist','Steps','Sleep','Mood'])assert(ownSummary.metrics?.some(metric=>metric.label===label),'Seeded progress API omitted '+label);
+   row.seededProgress={state:ownSummary.state,entries:ownSummary.entries,metricLabels:ownSummary.metrics.map(metric=>metric.label)};
    row.checks.push('Real API writes retain two progress records, current plans and replaced history; separate account stays empty');
    row.phase='open-current-today';
-   page=await own.newPage();page.on('pageerror',e=>row.pageErrors.push(clean(e.message)));page.on('requestfailed',r=>row.failedRequests.push({path:new URL(r.url()).pathname,error:r.failure()?.errorText}));
+   page=await own.newPage();page.on('pageerror',e=>row.pageErrors.push(clean(e.message)));
+   // Record timings and transport outcomes only; never record cookies, headers,
+   // credentials or response bodies. This separates an actual API timeout from
+   // a request cancelled when the test closes a failed page.
+   const requestTimes=new WeakMap();
+   page.on('request',request=>{const url=new URL(request.url());if(!url.pathname.startsWith('/v1/'))return;const trace={host:url.host,path:url.pathname,method:request.method(),phase:row.phase};requestTimes.set(request,{trace,started:Date.now()});if(row.apiRequests.length<100)row.apiRequests.push(trace)});
+   page.on('response',response=>{const item=requestTimes.get(response.request());if(item){item.trace.status=response.status();item.trace.responseMs=Date.now()-item.started}});
+   page.on('requestfinished',request=>{const item=requestTimes.get(request);if(item)item.trace.finishedMs=Date.now()-item.started});
+   page.on('requestfailed',request=>{const item=requestTimes.get(request),url=new URL(request.url()),error=request.failure()?.errorText;if(item){item.trace.error=error;item.trace.failedMs=Date.now()-item.started}row.failedRequests.push({host:url.host,path:url.pathname,error,elapsedMs:item?Date.now()-item.started:null,phase:row.phase})});
    await open(page);const before=await today(page);assert(before.hero?.includes('MY TIMBER'));assert(before.care?.includes('Feeling rough'));assert(before.meal?.includes(chosen.name));assert.equal(before.avatar,false);assert.equal(before.tapRoom,false);row.todayBefore=before;
    await geometry(page,row,'today');await page.screenshot({path:join(out,name+'-today.png'),fullPage:true});
    row.phase='render-progress-via-more';
    await page.locator('.member-nav-more > summary').click();await page.locator('.member-nav-more [data-panel="visualise"]').click();
    await page.waitForFunction(()=>document.querySelector('#panel-visualise')?.classList.contains('active')&&document.querySelector('#shiftProgressStory')?.getAttribute('aria-busy')==='false');
-   const story=await page.locator('#shiftProgressStory').innerText();for(const text of ['2 check-ins retained','Weight','Waist','Steps','Sleep','Mood'])assert(story.includes(text),'Missing progress metric '+text);
+   const story=await page.locator('#shiftProgressStory').innerText();row.progressText=clean(story);for(const text of ['2 check-ins retained','Weight','Waist','Steps','Sleep','Mood'])assert(story.includes(text),'Missing progress metric '+text);
    row.phase='upload-photo-through-visible-controls';
    await revealUserControl(page.locator('#photoInput'));await page.setInputFiles('#photoInput',{name:'fictional-pixel.png',mimeType:'image/png',buffer:png});await page.locator('#visualConsentWrap').waitFor({state:'visible'});
    await revealUserControl(page.locator('#photoWeightUnit'));await page.selectOption('#photoWeightUnit','kg');await revealUserControl(page.locator('#photoWeightKg'));await page.selectOption('#photoWeightKg','105.0');await revealUserControl(page.locator('#savePhotoConsent'));await page.check('#savePhotoConsent');await revealUserControl(page.locator('#saveOriginal'));await page.click('#saveOriginal');

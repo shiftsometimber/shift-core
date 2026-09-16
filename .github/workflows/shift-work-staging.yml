@@ -4,6 +4,8 @@ on:
     branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916, fix/readiness-preservation-20260916]
     paths:
       - 'work/staging/**'
+      - 'worker.js'
+      - 'tests/schema-readiness.test.mjs'
       - 'ask-timber-v1.js'
       - 'shift-brain-v1.js'
       - 'shift-ai-v6.js'
@@ -45,7 +47,7 @@ jobs:
       - name: Test connected member journey
         run: |
           node member-experience/prepare-life-back.mjs
-          node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs tests/adaptive-treatment-integrity.test.mjs tests/my-timber-analytics-privacy.test.mjs
+          node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs tests/adaptive-treatment-integrity.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/schema-readiness.test.mjs
           node gate4-one-shift-brain-gate.mjs
           node ask-timber-multi-intent-gate.mjs
       - name: Verify pinned assets and prepare fictional fixtures
