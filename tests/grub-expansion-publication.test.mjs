@@ -204,3 +204,31 @@ test('the default pending manifest accepts all 798 real retained V1 records with
     assert.throws(() => execFileSync(process.execPath,['member-experience/verify-production-catalogue.mjs',queryFile],{stdio:'pipe'}),/original_content_changed/);
   } finally { fs.rmSync(dir,{recursive:true,force:true}); }
 });
+
+function ownerInput() {
+  const input=structuredClone(source);delete input.humanAcceptance;
+  input.ownerAcceptance={proof:'GRUB_OWNER_PUBLICATION_INSTRUCTION_V1',status:'authorised',instruction:'Publish them all !!!!!!',actor:{id:'Matt O’Brien',kind:'human',role:'owner'},recorded_at:'2026-09-16T18:46:00Z',human_editorial_review_claimed:false,candidate_sha256:hash(input.result),independent_review_sha256:hash(normaliseGrubEditorialEvidence(input.decisions)),authorship_sha256:hash(input.authorship),families:input.decisions.families.map(f=>({...structuredClone(f),decision:'AUTHORISE_PUBLICATION'}))};
+  return input;
+}
+
+test('explicit owner instruction authorises exact reviewed batch without inventing human editorial review',async()=>{
+  const input=ownerInput(),approved=buildGrubExpansionPublication(input);
+  assert.equal(approved.items.length,1873);
+  assert.equal(approved.serving_manifest.acceptance_kind,'owner_publication');
+  for(const row of approved.items){assert.equal(row.review.owner_publication.human_editorial_review_claimed,false);assert.equal(row.review.reviewer.kind,'ai');assert.equal(row.review.human_acceptance,undefined);}
+  const selected=await selectGovernedGrubRows([...originals,...approved.items.map(rowFromItem)],approved.serving_manifest);
+  assert.equal(selected.incomplete,false);assert.equal(selected.rows.length,2671);
+});
+
+test('owner instruction cannot authorise stale, partial, self-reviewed or falsely attested content',()=>{
+  for(const mutate of [
+    x=>x.ownerAcceptance.instruction='Go ahead',
+    x=>x.ownerAcceptance.actor.role='viewer',
+    x=>x.ownerAcceptance.human_editorial_review_claimed=true,
+    x=>x.ownerAcceptance.candidate_sha256='0'.repeat(64),
+    x=>x.ownerAcceptance.families[0].recipes.pop(),
+    x=>x.ownerAcceptance.families[0].template_digest='stale',
+    x=>x.selectedTemplateKeys=[x.result.families[0].template_key],
+    x=>x.decisions.recipes[0].reviewer.id='synthetic-author',
+  ]){const input=ownerInput();mutate(input);assert.throws(()=>buildGrubExpansionPublication(input));}
+});

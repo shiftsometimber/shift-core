@@ -1,9 +1,13 @@
 import {verifyGithubOidc} from './commissioning-identity-v1.js';
+import {cataloguePublicationRoute} from './catalogue-publication-v1.js';
+import {newsroomPublicationRoute} from './newsroom-publication-v1.js';
 import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
 import {progressStaticPatch} from './progress-static-patch-v1.js';
 const COMMISSIONING_OPS_VERSION='final-v1-worker-publication-v1-20260815';
 const json=(d,s=200)=>new Response(JSON.stringify(d),{status:s,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff','x-shift-commissioning-ops':COMMISSIONING_OPS_VERSION}});
 export async function commissioningOpsRoutes(request,env){
+  const catalogue=await cataloguePublicationRoute(request,env);if(catalogue)return catalogue;
+  const newsroom=await newsroomPublicationRoute(request,env);if(newsroom)return newsroom;
   const progressAsset=await progressStaticPatch(request);if(progressAsset)return progressAsset;
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
   const fitAsset=await fitPremiumAsset(request,env,p);if(fitAsset)return fitAsset;

@@ -1,5 +1,7 @@
 # Grub additive publication bridge
 
+Update: the owner subsequently instructed “Publish them all !!!!!!” after the exact batch inventory. `docs/OWNER-PUBLICATION-INSTRUCTION-2026-09-16.md` records this specific publication authority. The builder now accepts a separately typed, exact-version `ownerAcceptance` record; it does not create human editorial PASS decisions. The ordinary human-review path below remains available and AI review alone still grants no publication authority.
+
 The reviewed engineering path is ready; it does not publish content. The checked-in serving manifest is **pending**, with zero additions. Both Grub serving surfaces continue to select the same exact 798 accepted recipes. The original 205 quarantined IDs remain excluded. Existing Fit publication and serving are unchanged.
 
 `grub-expansion-publication-v1.mjs` exports `buildGrubExpansionPublication`, `prepareGrubExpansionBatch`, and `buildGrubHumanAcceptanceTemplate`. The first two contain no credentials, network access or execution call. The separate serving manifest is a reviewed build input, not a member-supplied flag.

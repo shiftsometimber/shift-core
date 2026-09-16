@@ -1,0 +1,92 @@
+{
+  "proof": "NEWSROOM_LIVE_SOURCE_OBSERVATION_REVIEW_V1",
+  "reviewed_at": "2026-09-16T19:07:12.997Z",
+  "reviewer": {
+    "id": "/root/medicine_baselines",
+    "kind": "ai"
+  },
+  "scope": "Exact retained source-observation metadata reconciled against the nine already independently primary-source-reviewed articles; no clinical review claimed.",
+  "snapshot_run_id": "35138394950",
+  "raw_snapshot_sha256": "24a8979cb8d2a06221af9211d162c36cdd97fec1234e00eef2044a7210e94cd9",
+  "production_mutated": false,
+  "findings": [
+    "All nine selected rows remain hold; the stalled browser click did not start a correction.",
+    "All nine older source-identical rows (1,8,9,12,15,16,19,23,35) are reject. They remain untouched. No approved/published canonical duplicate is present in the retained relevant set.",
+    "There is no existing publication history or publication job for these nine; their first SHIFT publication dates must use actual release execution time.",
+    "The scanner observations are metadata fingerprints and truncated summaries, not complete primary-page body fingerprints. Full primary pages and later notices were read in the separately retained independent editorial review."
+  ],
+  "decisions": [
+    {
+      "event_id": 276,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "721dc6013428e2ce9388191c2b42295e2b5e7e2a03ec31114f16630364fb53b6",
+      "notes": "Observation 4734 names the same MHRA domperidone notice and confirmed/suspected phaeochromocytoma restriction as the complete primary page previously read. Source day 21 July 2026 agrees. Four European reports and no UK report at notice are contextualised in the exact reviewed body; no incidence calculation or individual treatment instruction."
+    },
+    {
+      "event_id": 279,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "3dd07be9e8179621c6dfd6dcdf434e50a480d4245b59c9663507968e0fe1fa7c",
+      "notes": "Observation 4748 is the historical IXCHIQ suspension page, not the current eligibility rule. Feed source_date is 11 February 2026 (the page update), while its original notice was 18 June 2025. The exact reviewed article explicitly identifies the archived temporary 65+ pause and links the replacement February 2026 review; the original publication date is not inferred from the feed update."
+    },
+    {
+      "event_id": 281,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "4f2b510c9b871b3ba5d2ac2e46e82078ca7c38faa3d3381ea52b000d54f2f2a4",
+      "notes": "Observation 4755 is the current IXCHIQ restrictions notice dated 11 February 2026. Its truncated feed summary says over 60; the reviewed article correctly follows the detailed recommendation and accompanying MHRA announcement: 60 or over excluded, use age 18–59. This resolved summary/detail discrepancy is retained in draft limitations."
+    },
+    {
+      "event_id": 284,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "55bad8ba46c5f7070d84e4ebd5afebbf294120abcf3b71d778cc51b0dab05ea1",
+      "notes": "Observation 4775 is the 22 January 2026 isotretinoin risk-minimisation update. The reviewed body describes the removal of the under-18 second-prescriber requirement while retaining other safeguards; it does not incorrectly reinstate the superseded October 2025 requirements."
+    },
+    {
+      "event_id": 286,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "0977a4c9e25ce34610351184caad680bc3418fb4fd028d287023b65b0aa22ac6",
+      "notes": "Observation 4786 matches the 4 December 2025 mesalazine IIH notice. Its summary describes warnings being added, and the reviewed article does not claim that every leaflet was already updated. Suspected-event counts are not presented as incidence."
+    },
+    {
+      "event_id": 288,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "cd8e9eca11a5d4b353333fdaec9edc40d6ebe7faf1fcb5687435bfc226a8eea5",
+      "notes": "Observation 4790 matches the 27 October 2025 isotretinoin remote-care and survey notice. The exact article states that its survey deadline has passed, identifies the subsequent January 2026 change and preserves the initial in-person/appropriate remote-follow-up distinction."
+    },
+    {
+      "event_id": 290,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "aa5b18bdea5a01410dffba288f94558492b0f266945a5875a6c173b794e909b4",
+      "notes": "Observation 4793 matches the 7 July 2025 RSV-vaccine GBS notice and older-adult scope. The reviewed article retains favourable benefit-risk context and links the separately read August 2026 UKHSA guidance, without assigning older-adult risk findings to pregnancy or reusing old programme eligibility as current."
+    },
+    {
+      "event_id": 292,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "3d3438c4dbb28ccc7c9f9a8cf619941e00610400201c44d28063bd13b2cb495a",
+      "notes": "Observation 4796 matches the 24 April 2025 MHRA SABA-overuse reminder. Prescribing claims remain attributed to the retrieved MHRA notice; the draft does not claim independent retrieval of the linked NICE page. Earlier source-identical event 23 is already reject in the actual snapshot, so publishing 292 does not duplicate a published/approved older article."
+    },
+    {
+      "event_id": 294,
+      "kind": "ai",
+      "reviewer": "/root/medicine_baselines",
+      "decision": "PASS",
+      "sha256": "26609db40206be009d8fe922dc5ca6ddff9b289b4c52e508c01c4b47bc50ac12",
+      "notes": "Observation 4806 matches the 24 October 2024 bromocriptine monitoring reminder. The article is explicitly historical and contains no individual dose or monitoring schedule. Earlier source-identical event 35 is already reject in the actual snapshot."
+    }
+  ]
+}

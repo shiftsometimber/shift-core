@@ -54,3 +54,16 @@ test('four-nation mental-health archive reaches HQ without admitting global or u
   assert.equal(result.seo.title,'An edited title about UK weight research');
   assert.deepEqual(result.errors,[]);
  });
+
+test('new SHIFT article date uses approval time while retaining historical source evidence', () => {
+  const evidence=[{source_date:'2024-10-24',url:'https://www.gov.uk/drug-safety-update/example'}];
+  const row={id:294,status:'ready_for_review',created_at:'2026-09-12T22:54:00.000Z',headline:'Bromocriptine reminder stresses blood pressure checks',source_evidence_json:JSON.stringify(evidence),content_package_json:'{}'};
+  const before=Date.now();
+  const result=radarSeoPackage({headline:row.headline,standfirst:'The MHRA’s 2024 review reinforced monitoring when the medicine is used after childbirth.',known_facts:[{claim:'The MHRA published the notice on 24 October 2024.',source_url:evidence[0].url}]},row);
+  const after=Date.now();
+  assert.ok(Date.parse(result.seo.datePublished)>=before && Date.parse(result.seo.datePublished)<=after);
+  assert.notEqual(result.seo.datePublished,evidence[0].source_date);
+  assert.notEqual(result.seo.datePublished,row.created_at);
+  assert.deepEqual(JSON.parse(row.source_evidence_json),evidence);
+  assert.deepEqual(result.errors,[]);
+});

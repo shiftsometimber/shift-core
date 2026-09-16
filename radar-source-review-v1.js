@@ -16,6 +16,9 @@ export async function sourceReviewEvent(DB,eventId) {
 }
 export const sourceReviewGuardSql = (table='radar_events') => `${table}.source_evidence_json=? AND ${sourceReviewGenerationSql(table+'.id')}=? AND NOT EXISTS (${pendingSourceChangeSql(table+'.id')})`;
 export const sourceReviewGuardBindings = row => [row.source_evidence_json,Number(row.source_review_generation||0)];
+export const retainedReviewGuardSql = (table='radar_events') => ['status','headline','content_package_json','medicine_patch_json','verification_json','updated_at'].map(key=>`${table}.${key} IS ?`).join(' AND ');
+export const retainedReviewGuardBindings = row => ['status','headline','content_package_json','medicine_patch_json','verification_json','updated_at'].map(key=>row[key]??null);
+export const exactReviewStateMatches = (row,expected) => !expected || (row.source_evidence_json===expected.row.source_evidence_json && Number(row.source_review_generation||0)===Number(expected.row.source_review_generation||0) && retainedReviewGuardBindings(row).every((value,index)=>value===retainedReviewGuardBindings(expected.row)[index]));
 export function reviewedSourceSnapshot(row) {
  return Boolean(row.reviewed_at) || !['detected','verified','needs_more_evidence'].includes(row.status) || !['','{}'].includes(row.content_package_json || '{}');
 }
@@ -47,7 +50,7 @@ export async function beginSourceCorrection(DB,row,change,actor,note='') {
  if(!observed?.evidence?.length)throw Error('source_observation_missing');
  const status=observed.verification?.verified?'verified':'needs_more_evidence';
  const [updated]=await DB.batch([
-  DB.prepare(`UPDATE radar_events SET headline=?,source_evidence_json=?,verification_json=?,confidence_score=?,relevance_score=?,urgency_score=?,region=?,status=?,medicine_patch_json='{}',content_package_json='{}',review_note=?,reviewed_by=NULL,reviewed_at=NULL,updated_at=? WHERE id=? AND source_evidence_json=? AND ${sourceReviewGenerationSql('radar_events.id')}=? AND EXISTS (${pendingSourceChangeSql('radar_events.id')} AND a.id=?)`).bind(observed.headline,JSON.stringify(observed.evidence),JSON.stringify(observed.verification),observed.confidence,observed.scores.relevance,observed.scores.urgency,observed.region,status,String(note||'Source changed: prepare and review a fresh correction.').slice(0,2000),stamp,row.id,...sourceReviewGuardBindings(row),change.id),
+  DB.prepare(`UPDATE radar_events SET headline=?,source_evidence_json=?,verification_json=?,confidence_score=?,relevance_score=?,urgency_score=?,region=?,status=?,medicine_patch_json='{}',content_package_json='{}',review_note=?,reviewed_by=NULL,reviewed_at=NULL,updated_at=? WHERE id=? AND source_evidence_json=? AND ${sourceReviewGenerationSql('radar_events.id')}=? AND EXISTS (${pendingSourceChangeSql('radar_events.id')} AND a.id=?) AND NOT EXISTS (${pendingSourceChangeSql('radar_events.id')} AND a.id>?) AND ${retainedReviewGuardSql()}`).bind(observed.headline,JSON.stringify(observed.evidence),JSON.stringify(observed.verification),observed.confidence,observed.scores.relevance,observed.scores.urgency,observed.region,status,String(note||'Source changed: prepare and review a fresh correction.').slice(0,2000),stamp,row.id,...sourceReviewGuardBindings(row),change.id,change.id,...retainedReviewGuardBindings(row)),
   DB.prepare(`INSERT INTO radar_audit(event_id,action,actor,detail_json) SELECT ?,'source_change_review_started',?,? WHERE changes()>0`).bind(row.id,actor,JSON.stringify({observation_id:change.id,prior_status:row.status,note:String(note).slice(0,2000)})),
   DB.prepare(`UPDATE radar_publication_jobs SET status='cancelled',error_text='source_changed_review_required' WHERE event_id=? AND status IN ('queued','failed','running') AND changes()>0`).bind(row.id)
  ]);

@@ -4,6 +4,7 @@
   "name": "shift-core",
   "main": "worker-entry-v6.js",
   "compatibility_date": "2026-08-09",
+  "compatibility_flags": ["nodejs_compat"],
 
   "workers_dev": true,
   "preview_urls": false,

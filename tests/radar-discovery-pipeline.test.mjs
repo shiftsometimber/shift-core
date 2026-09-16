@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { memoryDB } from '../preview/newsroom-discovery/memory-db.mjs';
-import { ensureRadarSchema, prepareVerifiedRadarQueue, verifyEvidence, radarRoutes } from '../radar-integration-v1.js';
+import { ensureRadarSchema, prepareVerifiedRadarQueue, verifyEvidence, radarRoutes, radarPublicationPayloads } from '../radar-integration-v1.js';
 import { AUTHORITATIVE_RADAR_SOURCES, loadRadarSources, runAuthoritativeRadarScan, parseRelevantHtmlLinks, parseAuthoritativeFeed, notifyDetection, editorialScores } from '../radar-authoritative-scan-v1.js';
 import { radarFreshnessState, readRadarFreshness } from '../radar-freshness-v2.js';
 import { ukCoverage, isRelevantNewsItem } from '../radar-uk-editorial-v1.js';
@@ -234,7 +234,7 @@ test('a running publication cannot revive an obsolete job after correction, on f
   globalThis.fetch=async url=>{if(String(url)==='https://delivery.test/article'){outbound++;begin();await blocked;if(responseMode==='failure')throw Error('Test transport failure');return Response.json({ok:true})}return new Response(`<li><a href="https://www.asa.org.uk/rulings/publish-race.html">${title}</a><time datetime="2026-09-15"></time></li>`)};
   const env={DB,RADAR_SUPPRESS_NOTIFICATIONS:true,SHIFT_SITE_PUBLISH_ENDPOINT:'https://delivery.test/article'};
   const call=(id,action)=>radarRoutes(new Request(`https://example.test/v1/hq/radar/events/${id}/${action}`,{method:'POST',body:'{}'}),env,{});
-  await runAuthoritativeRadarScan(env);const row=await DB.prepare('SELECT * FROM radar_events').first();await DB.prepare("UPDATE radar_events SET status='approved',content_package_json=?,reviewed_at='2026-09-15T12:00:00Z' WHERE id=?").bind(JSON.stringify({headline:'Original approved article',article_markdown:'Original approved article text.'}),row.id).run();await DB.prepare("INSERT INTO radar_publication_jobs(event_id,status,site_payload_json) VALUES(?,'queued',?)").bind(row.id,JSON.stringify({approval_generation:0,evidence:JSON.parse(row.source_evidence_json)})).run();
+  await runAuthoritativeRadarScan(env);const row=await DB.prepare('SELECT * FROM radar_events').first();await DB.prepare("UPDATE radar_events SET status='approved',content_package_json=?,reviewed_at='2026-09-15T12:00:00Z' WHERE id=?").bind(JSON.stringify({headline:'Original approved article',article_markdown:'Original approved article text.'}),row.id).run();const approvedSnapshot=await DB.prepare('SELECT * FROM radar_events WHERE id=?').bind(row.id).first(),payloads=radarPublicationPayloads(approvedSnapshot);await DB.prepare("INSERT INTO radar_publication_jobs(event_id,status,site_payload_json,brain_payload_json,search_payload_json) VALUES(?,'queued',?,?,?)").bind(row.id,JSON.stringify(payloads.site),JSON.stringify(payloads.brain),JSON.stringify(payloads.search)).run();
   const publishing=call(row.id,'publish');await begun;assert.equal((await DB.prepare('SELECT status FROM radar_publication_jobs').first()).status,'running');
   title='Weight-loss medicine changed source';await runAuthoritativeRadarScan(env);assert.equal((await call(row.id,'correct')).status,200);release();
   const finished=await publishing;assert.equal(finished.status,409);assert.equal((await finished.json()).error,'source_changed_review_required');
