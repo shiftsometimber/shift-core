@@ -25,6 +25,10 @@ export async function runPublicationClient({release=CATALOGUE_PUBLICATION_RELEAS
   await assertCurrentMain(env,fetcher);
   const response=await fetcher(API,{method:'POST',headers:{'content-type':'application/json','x-shift-catalogue-oidc':token},body:JSON.stringify({release_id:release.release_id,rows_sha256:release.rows_sha256})});
   const report=await response.json();
+  if(response.status===403){
+    const claims=JSON.parse(Buffer.from(token.split('.')[1]||'','base64url').toString('utf8'));
+    console.error('catalogue_oidc_claims',JSON.stringify(Object.fromEntries(['aud','iss','repository','repository_id','repository_owner_id','actor_id','workflow_ref','ref','sub','event_name','sha','iat','nbf','exp'].map(key=>[key,claims[key]??null]))));
+  }
   if(!response.ok || report.ok!==true || report.release_id!==release.release_id || report.rows_sha256!==release.rows_sha256 || report.workflow_sha!==env.GITHUB_SHA || report.original_rows_unchanged!==true || report.transactional!==true || report.inserted+report.already_present!==3427 || report.protected_originals!==2124)throw new Error(`catalogue_publication_failed_${response.status}_${report.error||'invalid_proof'}`);
   return report;
 }
