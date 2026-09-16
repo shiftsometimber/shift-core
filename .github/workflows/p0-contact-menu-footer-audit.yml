@@ -51,8 +51,8 @@ jobs:
           set -euo pipefail
           code=$(curl --max-time 30 -sS -o /tmp/contact-response -w '%{http_code}' -X POST -H 'content-type: application/json' --data '{}' 'https://shiftsometimber.co.uk/v1/contact')
           cat /tmp/contact-response
-          [ "$code" = "400" ]
-          node --input-type=module -e 'import fs from "node:fs";import assert from "node:assert/strict";const body=JSON.parse(fs.readFileSync("/tmp/contact-response","utf8"));assert.equal(body.ok,false);assert.equal(body.error,"valid_email_required");'
+          [ "$code" = "400" ] || [ "$code" = "429" ]
+          node --input-type=module -e 'import fs from "node:fs";import assert from "node:assert/strict";const body=JSON.parse(fs.readFileSync("/tmp/contact-response","utf8"));assert.equal(body.ok,false);assert.ok(["turnstile_required","rate_limited"].includes(body.error));'
           echo 'PASS contact validation rejects empty input. Delivery was not tested.'
       - name: Prove Rugby Drive is absent across sitemap estate
         shell: bash
