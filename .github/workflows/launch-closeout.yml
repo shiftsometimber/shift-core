@@ -4,6 +4,14 @@ on:
   pull_request:
     paths:
       - 'scripts/fit-v3-closeout.mjs'
+      - 'scripts/build-*-owner-*.mjs'
+      - 'catalogue-publication-*.mjs'
+      - 'fit-expansion-*.mjs'
+      - 'tests/grub-owner*.test.mjs'
+      - 'tests/grub-protected*.test.mjs'
+      - 'tests/fit-expansion*.test.mjs'
+      - 'tests/catalogue-publication*.test.mjs'
+      - 'evidence/owner-publication-instruction-2026-09-16.json'
       - 'scripts/verify-grub-closeout-reviews.mjs'
       - 'tests/fit-v3-closeout.test.mjs'
       - 'grub-expansion-*.mjs'
@@ -21,6 +29,14 @@ on:
     branches: [main]
     paths:
       - 'scripts/fit-v3-closeout.mjs'
+      - 'scripts/build-*-owner-*.mjs'
+      - 'catalogue-publication-*.mjs'
+      - 'fit-expansion-*.mjs'
+      - 'tests/grub-owner*.test.mjs'
+      - 'tests/grub-protected*.test.mjs'
+      - 'tests/fit-expansion*.test.mjs'
+      - 'tests/catalogue-publication*.test.mjs'
+      - 'evidence/owner-publication-instruction-2026-09-16.json'
       - 'scripts/verify-grub-closeout-reviews.mjs'
       - 'tests/fit-v3-closeout.test.mjs'
       - 'grub-expansion-*.mjs'
@@ -56,9 +72,11 @@ jobs:
           node scripts/fit-v3-closeout.mjs
           node grub-expansion-review-pack.mjs
           node scripts/verify-grub-closeout-reviews.mjs
+          node scripts/build-fit-owner-publication.mjs
+          node scripts/build-catalogue-owner-release.mjs --check
           git diff --exit-code
       - name: Verify exact candidate repairs and accepted catalogue preservation
-        run: node --test tests/fit-v3-closeout.test.mjs tests/grub-expansion*.test.mjs tests/evidence-desk-hq-read.test.mjs
+        run: node --test tests/fit-v3-closeout.test.mjs tests/grub-expansion*.test.mjs tests/evidence-desk-hq-read.test.mjs tests/grub-owner*.test.mjs tests/grub-protected*.test.mjs tests/fit-expansion*.test.mjs tests/catalogue-publication*.test.mjs
       - name: Retain complete corrected drafts and exact review evidence
         uses: actions/upload-artifact@v4
         with:
@@ -66,4 +84,6 @@ jobs:
           path: |
             evidence/fit-v3-closeout-2026-09-16/
             evidence/grub-expansion-closeout-2026-09-16/
+            evidence/fit-publication-2026-09-16/
+            evidence/catalogue-publication-2026-09-16/
           if-no-files-found: error

@@ -32,6 +32,16 @@ on:
       - "frontend/member/**"
       - "member-experience/**"
       - "grub-expansion-*.mjs"
+      - "catalogue-publication-*.mjs"
+      - "catalogue-publication-*.js"
+      - "fit-expansion-*.mjs"
+      - "fit-publication-contract-v1.mjs"
+      - "scripts/catalogue-publication-*.mjs"
+      - "tests/catalogue-publication*.test.mjs"
+      - "newsroom-publication-*.mjs"
+      - "newsroom-publication-*.js"
+      - "scripts/newsroom-publication-client.mjs"
+      - "tests/newsroom-publication*.test.mjs"
       - "tests/grub-expansion*.test.mjs"
       - "fit-reminders-v1.js"
       - "scheduled-intelligence.js"
@@ -121,6 +131,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: cloudflare-production-promote
@@ -130,14 +141,15 @@ jobs:
   promote:
     if: ${{ github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
@@ -156,7 +168,8 @@ jobs:
         run: |
           node grub-expansion-review-pack.mjs
           node scripts/verify-grub-closeout-reviews.mjs
-          node --test tests/grub-expansion*.test.mjs
+          node --test tests/grub-expansion*.test.mjs tests/grub-owner-publication-build.test.mjs tests/grub-protected-revisions.test.mjs
+          node --test tests/catalogue-publication*.test.mjs tests/fit-expansion*.test.mjs tests/fit-v3-closeout.test.mjs
       - name: Verify reminder delivery and proactive acknowledgement before promotion
         run: node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
@@ -186,9 +199,12 @@ jobs:
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
+          node --test tests/newsroom-publication*.test.mjs
           node --test tests/evidence-desk-hq-read.test.mjs
           node g3-006-hq-editorial-cors-gate.mjs
           node g3-006-knowledge-editorial-staging.mjs
+      - name: Verify exact current main before production mutations
+        run: node scripts/catalogue-publication-client.mjs --verify-main
       - name: Apply pharmacy-readiness database additions
         shell: bash
         run: |
@@ -223,6 +239,10 @@ jobs:
         run: |
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
+      - name: Publish only the fixed owner-authorised catalogue when approved
+        env:
+          CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json
+        run: node scripts/catalogue-publication-client.mjs
       - name: Verify existing production food catalogue without account writes
         if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
         run: |
@@ -244,9 +264,13 @@ jobs:
           name: worker-deployment-before-${{ github.run_id }}
           path: deployment-before.json
       - name: Deploy current main to production
-        run: npx wrangler deploy --config wrangler.jsonc
+        run: |
+          node scripts/catalogue-publication-client.mjs --verify-main
+          npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Publish the exact owner-authorised newsroom batch when approved
+        run: node scripts/newsroom-publication-client.mjs
       - name: Prove the public site and login asset did not change
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
       - name: Prove exact member scripts and authentication on live traffic
@@ -262,6 +286,8 @@ jobs:
             public-*.json
             member-live-proof.json
             medicines-watch-live-proof.json
+            catalogue-publication-result.json
+            newsroom-publication-proof.json
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
       - name: Prove newer restricted routes are on live traffic

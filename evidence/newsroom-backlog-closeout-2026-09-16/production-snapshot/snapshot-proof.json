@@ -1,0 +1,96 @@
+{
+  "proof": "PREPARED_CONTENT_READ_ONLY_SNAPSHOT_V1",
+  "status": "pass",
+  "captured_at": "2026-09-16T19:05:31.258Z",
+  "expected_main_sha": "222b1adeafab7d2cc128d9032cc0638664e51048",
+  "source_sha": "c633b3b4ba98ac914c44cfdbd289defff029de66",
+  "workflow_ref": "shiftsometimber/shift-core/.github/workflows/prepared-content-readonly-snapshot.yml@refs/heads/audit/prepared-content-snapshot-20260916",
+  "workflow_run_id": "35138394950",
+  "workflow_run_attempt": "1",
+  "database_writes": false,
+  "deployment_performed": false,
+  "approval_performed": false,
+  "publication_performed": false,
+  "snapshot_consistency": "Two separate read-only queries; no cross-query transaction or freeze is claimed.",
+  "catalogue": {
+    "columns": [
+      "id",
+      "content_type",
+      "title",
+      "version",
+      "status",
+      "data_json",
+      "review_json",
+      "created_at",
+      "updated_at"
+    ],
+    "counts": {
+      "recipe": 799,
+      "exercise": 1329
+    },
+    "total": 2128,
+    "raw_sha256": "87568d39a37c52175c9b591b815826494fce7507dd1cfd8936f44ffc3b3e9606",
+    "canonical_rows_sha256": "8cb20486711b6d92c1befa32205f3661bed28d6e6946d1344146447748aafb39",
+    "sql_sha256": "5c20a69cbf701465fe53e1842e0b42bbf419fe2316501b7e959ad6766bf03bf3"
+  },
+  "radar": {
+    "selected_ids": [
+      276,
+      279,
+      281,
+      284,
+      286,
+      288,
+      290,
+      292,
+      294
+    ],
+    "missing_selected_ids": [],
+    "selected_statuses": [
+      {
+        "id": 276,
+        "status": "hold"
+      },
+      {
+        "id": 279,
+        "status": "hold"
+      },
+      {
+        "id": 281,
+        "status": "hold"
+      },
+      {
+        "id": 284,
+        "status": "hold"
+      },
+      {
+        "id": 286,
+        "status": "hold"
+      },
+      {
+        "id": 288,
+        "status": "hold"
+      },
+      {
+        "id": 290,
+        "status": "hold"
+      },
+      {
+        "id": 292,
+        "status": "hold"
+      },
+      {
+        "id": 294,
+        "status": "hold"
+      }
+    ],
+    "section_counts": {
+      "events": 18,
+      "source_audit": 9,
+      "publication_history": 0,
+      "publication_jobs": 0
+    },
+    "raw_sha256": "24a8979cb8d2a06221af9211d162c36cdd97fec1234e00eef2044a7210e94cd9",
+    "sql_sha256": "f5ca0c421e446ce28454f19ffea0e9a3fac2c4de2b7ff0a2e8e95f426e5f3b67"
+  }
+}

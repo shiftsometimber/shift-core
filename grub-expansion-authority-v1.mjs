@@ -4,7 +4,7 @@ const nutrients = ['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];
 const sha256 = async text => [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(byte => byte.toString(16).padStart(2,'0')).join('');
 const unique = (rows,key) => new Map(rows.map(row => [row[key],row]));
 
-function originalContent(row) {
+export function originalContent(row) {
   const data = row.data, content = {};
   for (const key of ['title','meal_type','servings','ingredients','method','equipment','allergens','storage','food_safety','nutrition','shift_says']) {
     if (key === 'title') content[key] = row.title;
@@ -26,7 +26,7 @@ export async function selectGovernedGrubRows(rows,manifest = GRUB_EXPANSION_SERV
   const originalHashes = await Promise.all(accepted.map(async row => [row.id,await sha256(JSON.stringify(originalContent(row)))]));
   if (originalHashes.some(([id,hash]) => protectedIds.get(id)?.content_hash !== hash)) return failure('original_content_changed');
   if (manifest.status === 'pending') {
-    if (manifest.additions.length) return failure('pending_manifest_has_additions');
+    if (manifest.additions.length || manifest.revisions?.length) return failure('pending_manifest_has_additions');
     return {...base,incomplete:false,rows:accepted};
   }
   if (!/^[a-f0-9]{64}$/.test(manifest.release_id || '') || !/^[a-f0-9]{64}$/.test(manifest.review_digest || '') || !/^[a-f0-9]{64}$/.test(manifest.human_acceptance_digest || '') || !manifest.additions.length || manifest.additions.length > 1873 || unique(manifest.additions,'id').size !== manifest.additions.length) return failure('invalid_expansion_authority');
@@ -34,13 +34,29 @@ export async function selectGovernedGrubRows(rows,manifest = GRUB_EXPANSION_SERV
   for (const binding of manifest.additions) {
     const row = byId.get(binding.id), acceptance = row?.data?.provenance?.grub_expansion_acceptance;
     if (!row || protectedIds.has(binding.id) || excluded.has(binding.id) || row.title !== binding.title || row.data?.provenance?.final_v1_acceptance || acceptance?.accepted !== true || acceptance.proof !== 'GRUB_ADDITIVE_PUBLICATION_V1' || acceptance.release_id !== manifest.release_id || acceptance.content_hash !== binding.content_hash || row.review?.status !== 'approved' || row.review?.decision_source !== 'GRUB_ADDITIVE_EDITORIAL_DECISIONS_V1' || row.review?.content_hash !== binding.content_hash || !['ai','human'].includes(row.review?.reviewer?.kind)) return failure('expansion_missing_or_unapproved');
-    if (acceptance.human_acceptance_digest !== manifest.human_acceptance_digest || row.review.human_acceptance?.proof !== 'GRUB_ADDITIVE_HUMAN_ACCEPTANCE_V1' || row.review.human_acceptance?.reviewer?.kind !== 'human' || row.review.human_acceptance?.template_digest !== acceptance.template_digest) return failure('expansion_human_acceptance_missing');
+    if (acceptance.human_acceptance_digest !== manifest.human_acceptance_digest) return failure('expansion_human_acceptance_missing');
+    if (manifest.acceptance_kind === 'owner_publication') {
+      const owner = row.review.owner_publication;
+      if (owner?.proof !== 'GRUB_OWNER_PUBLICATION_INSTRUCTION_V1' || owner.instruction !== 'Publish them all !!!!!!' || owner.actor?.kind !== 'human' || owner.actor?.role !== 'owner' || owner.actor?.id !== 'Matt O’Brien' || owner.human_editorial_review_claimed !== false || owner.template_digest !== acceptance.template_digest || row.review.human_acceptance) return failure('expansion_owner_instruction_missing');
+    } else if (row.review.human_acceptance?.proof !== 'GRUB_ADDITIVE_HUMAN_ACCEPTANCE_V1' || row.review.human_acceptance?.reviewer?.kind !== 'human' || row.review.human_acceptance?.template_digest !== acceptance.template_digest) return failure('expansion_human_acceptance_missing');
     additions.push(row);
   }
   const hashes = await Promise.all(additions.map(async row => ({id:row.id,data:await sha256(row.data_json || JSON.stringify(row.data)),review:await sha256(row.review_json || JSON.stringify(row.review))})));
   const bindings = unique(manifest.additions,'id');
   if (hashes.some(row => row.data !== bindings.get(row.id).data_sha256 || row.review !== bindings.get(row.id).review_sha256)) return failure('expansion_content_changed');
-  return {...base,incomplete:false,expansionAccepted:additions.length,rows:[...accepted,...additions]};
+  const revisions=manifest.revisions||[], successors=[], superseded=new Set();
+  if (!Array.isArray(revisions) || (revisions.length && revisions.length!==12) || unique(revisions,'id').size!==revisions.length) return failure('invalid_revision_manifest');
+  for (const binding of revisions) {
+    const row=byId.get(binding.id), revision=row?.data?.provenance?.grub_protected_revision;
+    if (!row || !protectedIds.has(binding.original_id) || protectedIds.has(binding.id) || excluded.has(binding.id) || bindings.has(binding.id) || superseded.has(binding.original_id) || binding.source_content_hash!==protectedIds.get(binding.original_id).content_hash || row.title!==binding.title || row.version!==2 || row.review?.status!=='approved' || row.review?.reviewer?.kind!=='ai' || row.review?.human_review_claimed!==false || revision?.proof!=='GRUB_PROTECTED_RECIPE_PUBLICATION_V2' || revision.accepted!==true || revision.original_id!==binding.original_id || revision.expected_source_content_hash!==binding.source_content_hash || revision.content_hash!==binding.content_hash || row.data.provenance.final_v1_acceptance) return failure('revision_missing_or_unapproved');
+    const owner=row.review.owner_publication;
+    if (owner?.instruction!=='Publish them all !!!!!!' || owner.actor?.role!=='owner' || owner.actor?.id!=='Matt O’Brien' || owner.human_editorial_review_claimed!==false) return failure('revision_owner_instruction_missing');
+    if (await sha256(row.data_json||JSON.stringify(row.data))!==binding.data_sha256 || await sha256(row.review_json||JSON.stringify(row.review))!==binding.review_sha256) return failure('revision_content_changed');
+    superseded.add(binding.original_id);
+    // Keep saved meals, shopping references and prior plan IDs addressable.
+    successors.push({...row,id:binding.original_id,publication_id:row.id});
+  }
+  return {...base,incomplete:false,expansionAccepted:additions.length,revisionAccepted:successors.length,rows:[...accepted.filter(row=>!superseded.has(row.id)),...successors,...additions]};
 }
 
 export async function loadGovernedGrubCatalogue(DB,manifest = GRUB_EXPANSION_SERVING_AUTHORITY) {
@@ -59,6 +75,6 @@ export async function loadGovernedGrubCatalogue(DB,manifest = GRUB_EXPANSION_SER
 }
 
 export function reviewedRecipeMinutes(data) {
-  if (data?.provenance?.grub_expansion_acceptance?.accepted === true && Number.isFinite(data.total_minutes) && data.total_minutes >= 0) return data.total_minutes;
+  if ((data?.provenance?.grub_expansion_acceptance?.accepted === true || data?.provenance?.grub_protected_revision?.accepted === true) && Number.isFinite(data.total_minutes) && data.total_minutes >= 0) return data.total_minutes;
   return Number(data?.prep_minutes || 0) + Number(data?.cook_minutes || 0);
 }

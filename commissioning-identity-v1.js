@@ -61,5 +61,29 @@ async function fetchJwks({force=false}={}){
   return body.keys;
 }
 
-export async function verifyGithubOidc(token){try{const parts=String(token).split('.');if(parts.length!==3)return{ok:false};const header=JSON.parse(text(parts[0])),claims=JSON.parse(text(parts[1]));if(header.alg!=='RS256'||!header.kid)return{ok:false};const now=Math.floor(Date.now()/1000),aud=Array.isArray(claims.aud)?claims.aud:[claims.aud];if(claims.iss!==ISSUER||!aud.includes(AUDIENCE)||claims.repository!==REPOSITORY||String(claims.actor_id)!==ACTOR_ID)return{ok:false};if(Number(claims.exp||0)<=now||Number(claims.nbf||0)>now+60||Number(claims.iat||0)>now+60)return{ok:false};if(!ALLOWED_WORKFLOWS.some(x=>String(claims.workflow_ref||'').includes(x)))return{ok:false};let keys=await fetchJwks();let jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA');if(!jwk){keys=await fetchJwks({force:true});jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA')}if(!jwk)return{ok:false};const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);const signed=new TextEncoder().encode(`${parts[0]}.${parts[1]}`),sig=bytes(parts[2]);const valid=await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,sig,signed);return valid?{ok:true,claims}:{ok:false}}catch{return{ok:false}}}
+export const CATALOGUE_PUBLICATION_AUDIENCE='shift-catalogue-publication';
+const CATALOGUE_WORKFLOW=`${REPOSITORY}/.github/workflows/cloudflare-production-promote.yml@refs/heads/main`;
+export const verifyGithubOidc=token=>verifyOidc(token,false);
+export const verifyCataloguePublicationOidc=token=>verifyOidc(token,CATALOGUE_PUBLICATION_AUDIENCE);
+export const verifyNewsroomPublicationOidc=token=>verifyOidc(token,'shift-newsroom-publication');
+async function verifyOidc(token,publicationAudience){
+  try{
+    const parts=String(token).split('.');if(parts.length!==3)return{ok:false};
+    const header=JSON.parse(text(parts[0])),claims=JSON.parse(text(parts[1]));
+    if(header.alg!=='RS256'||!header.kid)return{ok:false};
+    const now=Math.floor(Date.now()/1000),aud=Array.isArray(claims.aud)?claims.aud:[claims.aud];
+    if(claims.iss!==ISSUER||claims.repository!==REPOSITORY||String(claims.actor_id)!==ACTOR_ID)return{ok:false};
+    if(Number(claims.exp||0)<=now||Number(claims.nbf||0)>now+60||Number(claims.iat||0)>now+60)return{ok:false};
+    if(publicationAudience){
+      if(claims.aud!==publicationAudience || claims.workflow_ref!==CATALOGUE_WORKFLOW || claims.ref!=='refs/heads/main' || claims.sub!==`repo:${REPOSITORY}:ref:refs/heads/main` || claims.event_name!=='push' || String(claims.repository_id)!=='1328867509' || String(claims.repository_owner_id)!==ACTOR_ID || !Number.isFinite(claims.exp) || !Number.isFinite(claims.iat) || !Number.isFinite(claims.nbf) || claims.iat>claims.exp || claims.nbf>claims.exp || claims.iat<now-600 || claims.exp>now+600 || typeof claims.sha!=='string' || !/^[a-f0-9]{40}$/.test(claims.sha))return{ok:false};
+    }else if(!aud.includes(AUDIENCE)||!ALLOWED_WORKFLOWS.some(x=>String(claims.workflow_ref||'').includes(x)))return{ok:false};
+    let keys=await fetchJwks();let jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA');
+    if(!jwk){keys=await fetchJwks({force:true});jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA')}
+    if(!jwk)return{ok:false};
+    const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);
+    const signed=new TextEncoder().encode(`${parts[0]}.${parts[1]}`),sig=bytes(parts[2]);
+    const valid=await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,sig,signed);
+    return valid?{ok:true,claims}:{ok:false};
+  }catch{return{ok:false}}
+}
 function text(s){return new TextDecoder().decode(bytes(s))}function bytes(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s);return Uint8Array.from(b,c=>c.charCodeAt(0))}async function readJson(r){try{return await r.json()}catch{return{}}}function json(d,s=200){return new Response(JSON.stringify(d),{status:s,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}})}

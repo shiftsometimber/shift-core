@@ -1,0 +1,336 @@
+{
+  "proof": "FIT_NINE_DOSE_CLARIFICATIONS_INDEPENDENT_AI_REVIEW_V1",
+  "reviewer": {
+    "id": "/root/commissioning_closeout",
+    "kind": "ai"
+  },
+  "reviewed_at": "2026-09-16T18:47:43.619Z",
+  "source_candidate_path": "evidence/fit-publication-2026-09-16/resolved-candidate.json",
+  "source_candidate_file_sha256": "15eb1b17aedc4384596d59700f5de54b28e1fb10709d954897ea6036140e627b",
+  "source_candidate_json_stringify_sha256": "d83071b453c9079a44e6fef6b0e3726d82cc0b162e49eaed93249a1ac5d4971b",
+  "original_workbook_path": "preview/fit-grub/guidance/workbook.json",
+  "original_workbook_sha256": "ffd9bc0eed4e10e234c6179f8d252c897dfdc9578b7facf1f0708f9d923bf57a",
+  "owner_publication_instruction": "Publish them all !!!!!!",
+  "decision_meaning": "Independent AI PASS for exact source-preserving dose clarifications and the two relevant guides. Owner publication authorization is separate; this review is not a trainer or clinician attestation, and does not assert that publication has occurred.",
+  "counts": {
+    "reviewed": 9,
+    "PASS": 9,
+    "FIX": 0
+  },
+  "professional_review_status": "pending; no completed professional review is claimed",
+  "resolved_findings": [
+    {
+      "movementId": "45-degree-sled-leg-press",
+      "finding": "The original higher-seat/fixed-support wording could be mistaken for machine setup advice.",
+      "resolution": "The final guide explicitly identifies armrest-assisted sit-to-stand as a separate alternative and forbids improvised machine supports."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "SST-FIT-0171-V01",
+      "movementId": "dumbbell-triceps-kickback",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "eb3221988955e8ea465211513e9487d02a186234ca0b9ecb03ff9aaf3f24e41f",
+      "guideHash": "8c9d2a214f5d17186b9ff0ff7452a210c4d7799bbf6d364a29697cafcab38733",
+      "sourceWorkbookHash": "ae018816bb8755f2116012b50ce1c48126a3ca8f1c682f50fdc696f42e5646a5",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "2 sets × 5 reps; 75s rest between sets.",
+      "finalDose": "2 sets × 5 reps; 75s rest between sets.",
+      "sessionWork": {
+        "repetitionsTotalAcrossBothArms": 10
+      },
+      "betweenSetsOrBoutsRestSeconds": 75,
+      "findings": [],
+      "reviewNotes": "Every original set, repetition, rest and tempo number is preserved. The explicit total is distributed between the two arms without multiplying it; an odd total alternates the extra repetition. The one-set V06 has no additional between-set rest prescription.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0171-V02",
+      "movementId": "dumbbell-triceps-kickback",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "ba48b74920abb837d905ffa602a1c90a56dc3bd0954241363d68b173959d7ee7",
+      "guideHash": "8c9d2a214f5d17186b9ff0ff7452a210c4d7799bbf6d364a29697cafcab38733",
+      "sourceWorkbookHash": "9d2bf0da82b01c310a57b9a425dc8b2dbc97423e7583e0b72d3c45185bcdb1f2",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "2 sets × 8 reps; 75s rest between sets.",
+      "finalDose": "2 sets × 8 reps; 75s rest between sets.",
+      "sessionWork": {
+        "repetitionsTotalAcrossBothArms": 16
+      },
+      "betweenSetsOrBoutsRestSeconds": 75,
+      "findings": [],
+      "reviewNotes": "Every original set, repetition, rest and tempo number is preserved. The explicit total is distributed between the two arms without multiplying it; an odd total alternates the extra repetition. The one-set V06 has no additional between-set rest prescription.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0171-V03",
+      "movementId": "dumbbell-triceps-kickback",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "c3d0e7676d04cf94b684d03e6b763a0315cb24e0a3e336d25f5e21d3c50d6eea",
+      "guideHash": "8c9d2a214f5d17186b9ff0ff7452a210c4d7799bbf6d364a29697cafcab38733",
+      "sourceWorkbookHash": "bb1a5d81333daaff26c7e561041317b230287e95f17932cd2c5c9db6ed6c4586",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "3 sets × 8 reps; 90s rest between sets.",
+      "finalDose": "3 sets × 8 reps; 90s rest between sets.",
+      "sessionWork": {
+        "repetitionsTotalAcrossBothArms": 24
+      },
+      "betweenSetsOrBoutsRestSeconds": 90,
+      "findings": [],
+      "reviewNotes": "Every original set, repetition, rest and tempo number is preserved. The explicit total is distributed between the two arms without multiplying it; an odd total alternates the extra repetition. The one-set V06 has no additional between-set rest prescription.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0171-V04",
+      "movementId": "dumbbell-triceps-kickback",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "61d4f3ed2c0f95b302b414a919714154a3c12c84709083f2d7d20ad707ca9949",
+      "guideHash": "8c9d2a214f5d17186b9ff0ff7452a210c4d7799bbf6d364a29697cafcab38733",
+      "sourceWorkbookHash": "e1f2179afa64db1d9e4641e37ef27096a70f9ff7a8c0c1cff2305336e5d5dfea",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "2 sets × 12 reps; 90s rest between sets.",
+      "finalDose": "2 sets × 12 reps; 90s rest between sets.",
+      "sessionWork": {
+        "repetitionsTotalAcrossBothArms": 24
+      },
+      "betweenSetsOrBoutsRestSeconds": 90,
+      "findings": [],
+      "reviewNotes": "Every original set, repetition, rest and tempo number is preserved. The explicit total is distributed between the two arms without multiplying it; an odd total alternates the extra repetition. The one-set V06 has no additional between-set rest prescription.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0171-V05",
+      "movementId": "dumbbell-triceps-kickback",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "32a38639944d2c32bed67fbd5a110ac6ab4a71f04250cabbafa29427b86f22cc",
+      "guideHash": "8c9d2a214f5d17186b9ff0ff7452a210c4d7799bbf6d364a29697cafcab38733",
+      "sourceWorkbookHash": "a74390cd66ac406bd097d775d1d4d3f6a431bb9f82fe38175f7f3893de25b420",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "2 sets × 6 reps; 90s rest between sets.",
+      "finalDose": "2 sets × 6 reps; 90s rest between sets.",
+      "sessionWork": {
+        "repetitionsTotalAcrossBothArms": 12
+      },
+      "betweenSetsOrBoutsRestSeconds": 90,
+      "findings": [],
+      "reviewNotes": "Every original set, repetition, rest and tempo number is preserved. The explicit total is distributed between the two arms without multiplying it; an odd total alternates the extra repetition. The one-set V06 has no additional between-set rest prescription.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0171-V06",
+      "movementId": "dumbbell-triceps-kickback",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "4888085604a96afd238466ae21542cfd75ced4efcdc98deb3498669619e767d8",
+      "guideHash": "8c9d2a214f5d17186b9ff0ff7452a210c4d7799bbf6d364a29697cafcab38733",
+      "sourceWorkbookHash": "e22a3e21244e2c84402f8779b57346ff204af801919995c20487287b381c3948",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "1 set × 8 reps.",
+      "finalDose": "1 set × 8 reps.",
+      "sessionWork": {
+        "repetitionsTotalAcrossBothArms": 8
+      },
+      "betweenSetsOrBoutsRestSeconds": 0,
+      "findings": [],
+      "reviewNotes": "Every original set, repetition, rest and tempo number is preserved. The explicit total is distributed between the two arms without multiplying it; an odd total alternates the extra repetition. The one-set V06 has no additional between-set rest prescription.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0224-V01",
+      "movementId": "45-degree-sled-leg-press",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "944a6e31bbccc6f2c7e7ebb4b19504df5f3311bc6f949118b8bc34885f296cd0",
+      "guideHash": "61d6600084c8550aa620c80e5c5c7efcc7d01b71edb4b05bb9c1626df4819d4e",
+      "sourceWorkbookHash": "82a3e68e6f6f8ed9e043c6fd898d4e57954c1caa60f92785fd736fa6787c98c7",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "4 bouts × 10s; 50s rest between bouts.",
+      "finalDose": "4 bouts × 10s; 50s rest between bouts.",
+      "sessionWork": {
+        "seconds": 40
+      },
+      "betweenSetsOrBoutsRestSeconds": 50,
+      "findings": [],
+      "reviewNotes": "The exact timed work and rest periods are retained at intermediate difficulty. Instructions specify controlled dynamic repetitions, no static hold or race, and loss-of-control stopping. Equipment induction and manufacturer settings remain explicit; the easier sit-to-stand is a separate exercise with its own dose.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0224-V02",
+      "movementId": "45-degree-sled-leg-press",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "25bc0c633b442906f3c311278e64248224e2d86b8af174f9b53885cbd0000554",
+      "guideHash": "61d6600084c8550aa620c80e5c5c7efcc7d01b71edb4b05bb9c1626df4819d4e",
+      "sourceWorkbookHash": "4b5e89802a990a36906252bc573d3ea64d6624f7284f6ca249e7c20b9cca1171",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "5 bouts × 15s; 60s rest between bouts.",
+      "finalDose": "5 bouts × 15s; 60s rest between bouts.",
+      "sessionWork": {
+        "seconds": 75
+      },
+      "betweenSetsOrBoutsRestSeconds": 60,
+      "findings": [],
+      "reviewNotes": "The exact timed work and rest periods are retained at intermediate difficulty. Instructions specify controlled dynamic repetitions, no static hold or race, and loss-of-control stopping. Equipment induction and manufacturer settings remain explicit; the easier sit-to-stand is a separate exercise with its own dose.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    },
+    {
+      "id": "SST-FIT-0224-V03",
+      "movementId": "45-degree-sled-leg-press",
+      "decision": "PASS",
+      "candidateSnapshotSha256": "5324fc787d5008f515e9b993589df33998154ac31c71bded0b1429cfbc96c67b",
+      "guideHash": "61d6600084c8550aa620c80e5c5c7efcc7d01b71edb4b05bb9c1626df4819d4e",
+      "sourceWorkbookHash": "8f0223da6f2aad88532d07ab29ba9c29bdf2ec3b50bd1ac6ccd6d1e803fcbab6",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/fit_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:47:43.619Z",
+      "scopes": [
+        "dose_source_fidelity",
+        "repetition_scope",
+        "work_and_rest",
+        "difficulty_label",
+        "instruction_consistency",
+        "relevant_equipment_guidance"
+      ],
+      "originalDose": "4 bouts × 20s; 70s rest between bouts.",
+      "finalDose": "4 bouts × 20s; 70s rest between bouts.",
+      "sessionWork": {
+        "seconds": 80
+      },
+      "betweenSetsOrBoutsRestSeconds": 70,
+      "findings": [],
+      "reviewNotes": "The exact timed work and rest periods are retained at intermediate difficulty. Instructions specify controlled dynamic repetitions, no static hold or race, and loss-of-control stopping. Equipment induction and manufacturer settings remain explicit; the easier sit-to-stand is a separate exercise with its own dose.",
+      "trainer_attestation": false,
+      "clinical_attestation": false
+    }
+  ]
+}

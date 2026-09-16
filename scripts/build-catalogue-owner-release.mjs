@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {gzipSync,gunzipSync} from 'node:zlib';
+import {buildGrubOwnerPublication} from './build-grub-owner-publication.mjs';
+import {canonicalCatalogueRows,catalogueRowsSha256,catalogueSha256} from '../catalogue-publication-shared.mjs';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const check=process.argv.includes('--check');
+const status=process.argv.includes('--approved')?'approved':check?(await import('../catalogue-publication-release-v1.mjs')).CATALOGUE_PUBLICATION_RELEASE.status:'prepared';
+if(!['prepared','approved'].includes(status))throw new Error('Invalid owner release phase');
+const owner=JSON.parse(fs.readFileSync(path.join(root,'evidence/owner-publication-instruction-2026-09-16.json'),'utf8'));
+const grub=buildGrubOwnerPublication();
+const fit=JSON.parse(gunzipSync(fs.readFileSync(path.join(root,'evidence/fit-publication-2026-09-16/owner-release.json.gz'))));
+if(await catalogueRowsSha256(fit.additions)!==fit.rows_sha256)throw new Error('Fit owner rows changed');
+const additions=canonicalCatalogueRows([...grub.additions,...fit.additions]);
+const rows_sha256=await catalogueRowsSha256(additions);
+const protected_originals=[...grub.protected_originals,...fit.protected_originals].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+const release_id=await catalogueSha256(JSON.stringify({proof:'CATALOGUE_PUBLICATION_RELEASE_V1',owner_instruction:owner,rows_sha256,protected_originals}));
+const metadata={proof:'CATALOGUE_PUBLICATION_RELEASE_V1',release_id,status,rows_sha256,owner_instruction:owner,protected_originals,protected_counts:{recipe:798,exercise:1326},addition_counts:{recipe:1885,exercise:1542}};
+const packed=gzipSync(JSON.stringify(additions),{level:9}).toString('base64');
+const module=`// Generated exact owner-authorised publication. Rebuild with scripts/build-catalogue-owner-release.mjs.\n// Decompression is lazy: ordinary member requests do not allocate the publication rows.\nimport {gunzipSync} from 'node:zlib';\nimport {Buffer} from 'node:buffer';\nconst packed=${JSON.stringify(packed)};\nlet rows;\nexport const CATALOGUE_PUBLICATION_RELEASE={...${JSON.stringify(metadata,null,2)},get additions(){return rows??=JSON.parse(gunzipSync(Buffer.from(packed,'base64')).toString('utf8'))}};\n`;
+const modulePath=path.join(root,'catalogue-publication-release-v1.mjs');
+const output=path.join(root,'evidence/catalogue-publication-2026-09-16');
+fs.mkdirSync(output,{recursive:true});
+if(check){if(fs.readFileSync(modulePath,'utf8')!==module)throw new Error('Compiled owner release does not match source');}
+else fs.writeFileSync(modulePath,module);
+const manifests={proof:'CATALOGUE_OWNER_TARGET_SERVING_MANIFESTS_V1',release_id,rows_sha256,grub:grub.serving_manifest,fit:fit.manifest};
+const manifestsBytes=gzipSync(JSON.stringify(manifests),{level:9});
+const manifestPath=path.join(output,'target-serving-manifests.json.gz');
+if(check){if(!fs.readFileSync(manifestPath).equals(manifestsBytes))throw new Error('Target serving manifests changed');}
+else fs.writeFileSync(manifestPath,manifestsBytes);
+const summary={proof:metadata.proof,release_id,status,rows_sha256,protected_counts:metadata.protected_counts,addition_counts:metadata.addition_counts,physical_additions:additions.length,served_recipe_count:2671,served_fit_count:2688,served_fit_movements:300,owner_instruction:owner.instruction,human_editorial_review_claimed:false,trainer_review_claimed:false,clinical_review_claimed:false,production_mutated:false};
+if(!check)fs.writeFileSync(path.join(output,'release-summary.json'),JSON.stringify(summary,null,2)+'\n');
+console.log(JSON.stringify({...summary,module_bytes:Buffer.byteLength(module),manifest_gzip_bytes:manifestsBytes.length}));

@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {DatabaseSync} from 'node:sqlite';
+import {gunzipSync} from 'node:zlib';
+import {CATALOGUE_PUBLICATION_RELEASE} from '../catalogue-publication-release-v1.mjs';
+import {publishFixedCatalogue} from '../catalogue-publication-core.mjs';
+import {catalogueRowsSha256} from '../catalogue-publication-shared.mjs';
+import {selectGovernedGrubRows} from '../grub-expansion-authority-v1.mjs';
+import {selectGovernedFitRows} from '../fit-expansion-authority-v1.mjs';
+
+test('actual fixed release preserves the original publisher output and serves every authorised recipe and protocol',async t=>{
+  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'catalogue-release-integration-'));t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));
+  execFileSync(process.execPath,['grub-v1-publication-pack.mjs'],{stdio:'pipe',env:{...process.env,COFID_INDEX:path.resolve('tests/fixtures/grub-cofid-2021-governed-subset.json'),GRUB_PUBLICATION_DIR:dir,GRUB_DECISIONS_FILE:path.resolve('evidence/grub-v1-final-decisions-2026-08-14.json')}});
+  execFileSync(process.execPath,['final-v1-production-publication.mjs'],{stdio:'pipe',env:{...process.env,GRUB_PUBLISHABLE_FILE:path.join(dir,'grub-v1-publishable.json'),FINAL_V1_PUBLICATION_DIR:dir}});
+  const sqlite=new DatabaseSync(':memory:');t.after(()=>sqlite.close());sqlite.exec(fs.readFileSync(path.join(dir,'final-v1-production-publication.sql'),'utf8'));
+  const before=sqlite.prepare('SELECT * FROM structured_content ORDER BY id').all(),originalIds=new Set(before.map(row=>row.id));
+  const originalHash=await catalogueRowsSha256(before);assert.equal(before.length,2124);
+  sqlite.exec("CREATE TRIGGER catalogue_no_update BEFORE UPDATE ON structured_content BEGIN SELECT RAISE(ABORT,'original_update_forbidden'); END");
+  const db={prepare(sql){let args=[];return{bind(...v){args=v;return this},async all(){return{success:true,results:sqlite.prepare(sql).all(...args)}},async run(){if(sql.startsWith('SELECT'))return{success:true,results:sqlite.prepare(sql).all(...args),meta:{changes:0}};const r=sqlite.prepare(sql).run(...args);return{success:true,meta:{changes:Number(r.changes)}}}}},async batch(statements){sqlite.exec('BEGIN');try{const results=[];for(const statement of statements)results.push(await statement.run());sqlite.exec('COMMIT');return results}catch(error){sqlite.exec('ROLLBACK');throw error}}};
+  const report=await publishFixedCatalogue(db,CATALOGUE_PUBLICATION_RELEASE);assert.equal(report.inserted,3427);
+  const all=sqlite.prepare('SELECT * FROM structured_content ORDER BY id').all();assert.equal(all.length,5551);
+  assert.equal(await catalogueRowsSha256(all.filter(row=>originalIds.has(row.id))),originalHash);
+  const targets=JSON.parse(gunzipSync(fs.readFileSync('evidence/catalogue-publication-2026-09-16/target-serving-manifests.json.gz')));
+  const decoded=all.map(row=>({...row,data:JSON.parse(row.data_json),review:JSON.parse(row.review_json)}));
+  const grub=await selectGovernedGrubRows(decoded.filter(row=>row.content_type==='recipe'),targets.grub);
+  const fit=await selectGovernedFitRows(decoded.filter(row=>row.content_type==='exercise'),targets.fit);
+  assert.equal(grub.incomplete,false,grub.reason);assert.equal(grub.rows.length,2671);assert.equal(grub.revisionAccepted,12);
+  assert.equal(fit.incomplete,false,fit.reason);assert.equal(fit.rows.length,2688);assert.equal(fit.revisionAccepted,180);
+  assert.equal(new Set(fit.rows.map(row=>row.data.canonical_movement)).size,300);
+  const retry=await publishFixedCatalogue(db,CATALOGUE_PUBLICATION_RELEASE);assert.equal(retry.inserted,0);assert.equal(retry.already_present,3427);
+});

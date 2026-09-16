@@ -1,0 +1,604 @@
+{
+  "proof": "GRUB_PROTECTED_REVISIONS_V2_INDEPENDENT_AI_REVIEW",
+  "version": 1,
+  "reviewer": {
+    "id": "/root/commissioning_closeout",
+    "kind": "ai"
+  },
+  "reviewed_at": "2026-09-16T18:52:38.264Z",
+  "input_file": "evidence/grub-expansion-closeout-2026-09-16/protected-revisions-v2.json",
+  "input_file_sha256": "a47bbfbf4d44843d2e8d00b5043b4a8fe316e258925453d5f27f9ae046e8c939",
+  "candidate_digest": "ed9781c42f996c37143901d0bcaf0dbca117749d298e197b65aee9e617dfc073",
+  "author_ids": [
+    "/root/grub_closeout"
+  ],
+  "outcome": "PASS",
+  "decision_count": 12,
+  "scopes": [
+    "title",
+    "ingredients",
+    "method",
+    "equipment",
+    "allergens",
+    "nutrition",
+    "storage",
+    "food_safety",
+    "serving_metadata"
+  ],
+  "review_basis": "Substantive reading of all 12 complete ingredient lists, full methods, equipment, allergens, storage, food-safety instructions, ingredient evidence, nutrition and serving metadata. Shared steps were reviewed together and all six protein branches and both serving formats were read. Final corrections were re-read before this exact-file binding.",
+  "resolved_findings": [
+    {
+      "issue": "Raw potato food identity",
+      "resolution": "All 12 methods now peel and weigh 120g raw edible flesh, matching the exact flesh-only CoFID entry. Potatoes are boiled until tender, drained, mashed into thin patties and fried until crisp; no uncooked potato is assembled."
+    },
+    {
+      "issue": "Egg portion ambiguity",
+      "resolution": "Both egg rows now specify 100g without shell, with the count labelled approximate and an explicit weighing instruction."
+    },
+    {
+      "issue": "Late protein method order",
+      "resolution": "All egg, turkey and bean steps now refer to the preceding vegetable step."
+    },
+    {
+      "issue": "Equipment and actionable cooling",
+      "resolution": "Peeler and kitchen scales are listed. Non-turkey components are cooled in small portions and refrigerated within two hours at 0–5°C, keeping the conservative 24-hour storage period. Turkey is eaten immediately after its single reheating."
+    }
+  ],
+  "checked_shared_details": [
+    "Exactly 10ml olive oil is apportioned 6ml to patties, 2ml to vegetables and 2ml to protein; nutrition includes 9.2g oil.",
+    "All listed ingredients are used, including the grated onion and both vegetables; no additional caloric ingredient is required.",
+    "One serving includes all ingredients, even where filling is served alongside. The 60-minute total is explicitly an estimate, with doneness and packet instructions governing cooking.",
+    "Gluten is declared for each wheat base and egg for the egg variants. Actual product labels must still be checked; there is no allergy-free claim."
+  ],
+  "nutrition_audit": {
+    "method": "Independent Python Decimal ingredient sum, per-serving division and ROUND_HALF_UP to one decimal place; does not call the author calculation helper.",
+    "source_candidate_digest": "ed9781c42f996c37143901d0bcaf0dbca117749d298e197b65aee9e617dfc073",
+    "candidate_file_sha256": "a47bbfbf4d44843d2e8d00b5043b4a8fe316e258925453d5f27f9ae046e8c939",
+    "cofid_index_file": "tests/fixtures/grub-cofid-2021-governed-subset.json",
+    "cofid_index_sha256": "69cd46739800770a79405d96e8efd4e41df0bc9b0dbf9bad3b63eb4d6cd4a683",
+    "nutrients_checked": 60,
+    "mismatches": [],
+    "rows": [
+      {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-bacon--hash-brown-repair-v2",
+        "content_hash": "696ae9ce37c1ed89a59a57ada243dbf33246cfc546da39d376c9cfcdf06e69c6",
+        "nutrition": {
+          "kcal": 515.9,
+          "protein_g": 30.3,
+          "carbohydrate_g": 60.7,
+          "fat_g": 18.6,
+          "fibre_g": 8.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-sausage--hash-brown-repair-v2",
+        "content_hash": "586cd0b2228e17d89d2392a5c573cc7e4948a66a68e5922c45496c41167e1cc2",
+        "nutrition": {
+          "kcal": 534.5,
+          "protein_g": 27.8,
+          "carbohydrate_g": 69.4,
+          "fat_g": 18.2,
+          "fibre_g": 11.1
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-egg--hash-brown-repair-v2",
+        "content_hash": "0d954dad62bee902a8ea89c12be8bad2eec804cc26099daae221f40b4b8b9879",
+        "nutrition": {
+          "kcal": 524.5,
+          "protein_g": 26,
+          "carbohydrate_g": 60.7,
+          "fat_g": 21.6,
+          "fibre_g": 8.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage--hash-brown-repair-v2",
+        "content_hash": "c26b3ded6bf13d1babe0fb4bb948e302e7e9ef3c32cf25341b82a2c051b1558d",
+        "nutrition": {
+          "kcal": 501.5,
+          "protein_g": 35.7,
+          "carbohydrate_g": 60.7,
+          "fat_g": 14.7,
+          "fibre_g": 8.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-turkey--hash-brown-repair-v2",
+        "content_hash": "4ba22f68159b149177815bdf44102f690b3c9a1a5ec277d1ba31e3d3afef94cd",
+        "nutrition": {
+          "kcal": 548.5,
+          "protein_g": 48.4,
+          "carbohydrate_g": 60.7,
+          "fat_g": 14.3,
+          "fibre_g": 8.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-beans--hash-brown-repair-v2",
+        "content_hash": "ec2f6a7324711df14733c1bd0be57c345d1a0bf7a570031d5e302ed8d45fedaf",
+        "nutrition": {
+          "kcal": 523.1,
+          "protein_g": 21.4,
+          "carbohydrate_g": 84.7,
+          "fat_g": 13.4,
+          "fibre_g": 16.6
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-bacon--hash-brown-repair-v2",
+        "content_hash": "0b873837f47d81d0ab5d71425451986faef2d66dde89606f4d83cc5a10dc7d9a",
+        "nutrition": {
+          "kcal": 512.3,
+          "protein_g": 27.3,
+          "carbohydrate_g": 60,
+          "fat_g": 19.8,
+          "fibre_g": 7.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-sausage--hash-brown-repair-v2",
+        "content_hash": "269d55d9736a6be0b4baae902d0d536d426ac90533e63c8dfc7a504f60f2725a",
+        "nutrition": {
+          "kcal": 530.9,
+          "protein_g": 24.8,
+          "carbohydrate_g": 68.7,
+          "fat_g": 19.4,
+          "fibre_g": 10.1
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-egg--hash-brown-repair-v2",
+        "content_hash": "3b10b7459ccdf0f6c3e5f673c7ce49bfc53f0eb75b6be34530ea96a466008bb5",
+        "nutrition": {
+          "kcal": 520.9,
+          "protein_g": 23,
+          "carbohydrate_g": 60,
+          "fat_g": 22.8,
+          "fibre_g": 7.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-chicken-sausage--hash-brown-repair-v2",
+        "content_hash": "91b6ee2e34e6e173e24704084cef2c5a5f5310717a98e469575f6bd367a8f10f",
+        "nutrition": {
+          "kcal": 497.9,
+          "protein_g": 32.7,
+          "carbohydrate_g": 60,
+          "fat_g": 15.9,
+          "fibre_g": 7.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-turkey--hash-brown-repair-v2",
+        "content_hash": "9a1115efa6d9ae1a590df5b9c561ad0a1792b0e2b7b2168ae0a0150f4705c5f8",
+        "nutrition": {
+          "kcal": 544.9,
+          "protein_g": 45.4,
+          "carbohydrate_g": 60,
+          "fat_g": 15.5,
+          "fibre_g": 7.8
+        }
+      },
+      {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-beans--hash-brown-repair-v2",
+        "content_hash": "0473ff2b249eebc63f69e14bbcf207fb16ac3e0084ab2385532d487eeedcbd65",
+        "nutrition": {
+          "kcal": 519.5,
+          "protein_g": 18.4,
+          "carbohydrate_g": 84,
+          "fat_g": 14.6,
+          "fibre_g": 15.7
+        }
+      }
+    ]
+  },
+  "protected_source_check": {
+    "accepted_roster_count": 798,
+    "roster_file": "evidence/grub-expansion-closeout-2026-09-16/grub-additive-candidate.json.gz",
+    "roster_file_sha256": "fc9fbbe12e29ed175c3a742d086b1820778a0adcafc680b25a47225ac876eab8",
+    "original_content_hashes_reconstructed_and_matched": 12,
+    "new_successor_ids": 12,
+    "original_rows_modified_by_this_review": 0
+  },
+  "sources_read": [
+    {
+      "url": "https://www.gov.uk/government/publications/cooking-your-food/cooking-your-food",
+      "supports": "Cooking endpoint of 70°C for two minutes, thorough cooking of raw poultry and pork, and reheating only once."
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/home-food-fact-checker/home-food-fact-checker",
+      "supports": "Fully cooked egg instructions and the distinction between ready-cooked canned beans and raw dried beans."
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely",
+      "supports": "Refrigeration at 0–5°C, small portions for cooling, and refrigeration within two hours."
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
+      "supports": "Official CoFID dataset publication; arithmetic uses the retained governed CoFID2021 subset and its recorded source-workbook provenance."
+    }
+  ],
+  "limitations": [
+    "AI editorial and source-consistency review; no person is represented as having read or approved these recipes.",
+    "No kitchen cooking trial, taste test, laboratory analysis, clinician assessment or dietitian attestation was performed. Nutrition remains an ingredient-table estimate, including the disclosed generic food proxies and natural product variation.",
+    "This review records exact-content decisions. Owner publication authority and any subsequent live publication are separate release actions."
+  ],
+  "human_review_claimed": false,
+  "clinical_review_claimed": false,
+  "live_mutation_performed": false,
+  "decisions": [
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-bacon--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-bacon",
+      "expected_source_content_hash": "18c36918d5e39fcf96c8fc37a67c967a0474e9ea453956edd951beb8e07e5953",
+      "content_hash": "696ae9ce37c1ed89a59a57ada243dbf33246cfc546da39d376c9cfcdf06e69c6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The method trims and weighs 90g raw bacon, matching CoFID 19-646; full cooking and a clean thermometer check replace the former cooked-food identity mismatch.",
+        "The measured bap carries a manageable portion; the second patty and remaining filling are served alongside and included in the complete serving nutrition."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-sausage",
+      "expected_source_content_hash": "1c66b272a60a1521457d489615629dd6290b05245486ded2f0eef646c72da3e0",
+      "content_hash": "586cd0b2228e17d89d2392a5c573cc7e4948a66a68e5922c45496c41167e1cc2",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The 100g raw reduced-fat sausage quantity uses the raw sausage entry, follows packet cooking guidance and includes the thermometer endpoint. Actual product allergen labels remain authoritative.",
+        "The measured bap carries a manageable portion; the second patty and remaining filling are served alongside and included in the complete serving nutrition."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-egg--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-egg",
+      "expected_source_content_hash": "fc53c843ed10b0e935e6f53ab2bd8299e2324694a08ca7300f24705739a7b46b",
+      "content_hash": "0d954dad62bee902a8ea89c12be8bad2eec804cc26099daae221f40b4b8b9879",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The portion is explicitly 100g edible egg without shell; the count is approximate. Vegetables precede gently cooked fully set eggs, and egg plus gluten are declared.",
+        "The measured bap carries a manageable portion; the second patty and remaining filling are served alongside and included in the complete serving nutrition."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage",
+      "expected_source_content_hash": "66bce8b9e5774b89700749841ca126b0c284b494aaf1e271e4df1d574c9d1355",
+      "content_hash": "c26b3ded6bf13d1babe0fb4bb948e302e7e9ef3c32cf25341b82a2c051b1558d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The 100g raw breast portion, separate raw-meat preparation, thin-strip cooking and thermometer endpoint are coherent. The retained raw chicken macro analogue is explicitly a proxy; the title says chicken despite the historical ID.",
+        "The measured bap carries a manageable portion; the second patty and remaining filling are served alongside and included in the complete serving nutrition."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-turkey--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-turkey",
+      "expected_source_content_hash": "6d2ff200fe19ccc03f6175c14bf1b6e5f69c34f0e935b0a6ed920c97b36586da",
+      "content_hash": "4ba22f68159b149177815bdf44102f690b3c9a1a5ec277d1ba31e3d3afef94cd",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "Already-cooked turkey has a cooked turkey mapping, is added after the vegetables, reheated once to steaming hot and eaten immediately. Storage prohibits another reheating.",
+        "The measured bap carries a manageable portion; the second patty and remaining filling are served alongside and included in the complete serving nutrition."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-beans--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-beans",
+      "expected_source_content_hash": "bef349d0cb6b1e5d89ff0876cc558601420c24dadecc1a6783cdb09a2640b9da",
+      "content_hash": "ec2f6a7324711df14733c1bd0be57c345d1a0bf7a570031d5e302ed8d45fedaf",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The 160g portion is ready-cooked canned beans with sauce, heated gently after the vegetables; the method does not imply raw dried beans or browning the beans.",
+        "The measured bap carries a manageable portion; the second patty and remaining filling are served alongside and included in the complete serving nutrition."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-bacon--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-bacon",
+      "expected_source_content_hash": "d921b5cf13a34d0ca267bc3d9f8d844858d1eab8b624a04a8b39e2a9cc3ea1b2",
+      "content_hash": "0b873837f47d81d0ab5d71425451986faef2d66dde89606f4d83cc5a10dc7d9a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The method trims and weighs 90g raw bacon, matching CoFID 19-646; full cooking and a clean thermometer check replace the former cooked-food identity mismatch.",
+        "The measured wrap is warmed and sealed; excess filling is explicitly served alongside and included in the complete serving nutrition. The wheat tortilla proxy and variable brand fibre are disclosed."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-sausage",
+      "expected_source_content_hash": "03adfa88a911028f6bb995df7e0f2a901b6b89c522d5b20dd248fdb83e8e90dc",
+      "content_hash": "269d55d9736a6be0b4baae902d0d536d426ac90533e63c8dfc7a504f60f2725a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The 100g raw reduced-fat sausage quantity uses the raw sausage entry, follows packet cooking guidance and includes the thermometer endpoint. Actual product allergen labels remain authoritative.",
+        "The measured wrap is warmed and sealed; excess filling is explicitly served alongside and included in the complete serving nutrition. The wheat tortilla proxy and variable brand fibre are disclosed."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-egg--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-egg",
+      "expected_source_content_hash": "32c883ed0852c73ca863d5c6e3df9dc8bd4bbec54b12a76b39110761a7146792",
+      "content_hash": "3b10b7459ccdf0f6c3e5f673c7ce49bfc53f0eb75b6be34530ea96a466008bb5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The portion is explicitly 100g edible egg without shell; the count is approximate. Vegetables precede gently cooked fully set eggs, and egg plus gluten are declared.",
+        "The measured wrap is warmed and sealed; excess filling is explicitly served alongside and included in the complete serving nutrition. The wheat tortilla proxy and variable brand fibre are disclosed."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-chicken-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-chicken-sausage",
+      "expected_source_content_hash": "963a0c24ef5759315ddacb6a603cdff9a8ca8ca154693ea4f9e86471bace5af6",
+      "content_hash": "91b6ee2e34e6e173e24704084cef2c5a5f5310717a98e469575f6bd367a8f10f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The 100g raw breast portion, separate raw-meat preparation, thin-strip cooking and thermometer endpoint are coherent. The retained raw chicken macro analogue is explicitly a proxy; the title says chicken despite the historical ID.",
+        "The measured wrap is warmed and sealed; excess filling is explicitly served alongside and included in the complete serving nutrition. The wheat tortilla proxy and variable brand fibre are disclosed."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-turkey--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-turkey",
+      "expected_source_content_hash": "c7157b8bb82b534f82d08976d384b13ebd7b9713ee6311b82116c120a7628a55",
+      "content_hash": "9a1115efa6d9ae1a590df5b9c561ad0a1792b0e2b7b2168ae0a0150f4705c5f8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "Already-cooked turkey has a cooked turkey mapping, is added after the vegetables, reheated once to steaming hot and eaten immediately. Storage prohibits another reheating.",
+        "The measured wrap is warmed and sealed; excess filling is explicitly served alongside and included in the complete serving nutrition. The wheat tortilla proxy and variable brand fibre are disclosed."
+      ]
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-beans--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-beans",
+      "expected_source_content_hash": "8df50a18e9e262629b8e8c6a510364d234a5b0ef835bc4d3410e16d5c8e6eeb1",
+      "content_hash": "0473ff2b249eebc63f69e14bbcf207fb16ac3e0084ab2385532d487eeedcbd65",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:52:38.264Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": [],
+      "review_notes": [
+        "The 160g portion is ready-cooked canned beans with sauce, heated gently after the vegetables; the method does not imply raw dried beans or browning the beans.",
+        "The measured wrap is warmed and sealed; excess filling is explicitly served alongside and included in the complete serving nutrition. The wheat tortilla proxy and variable brand fibre are disclosed."
+      ]
+    }
+  ]
+}
