@@ -21,7 +21,7 @@ Before deployment, recheck the actual account-side identity, existing schema and
 ```bash
 npx wrangler d1 list --json > "$RUNNER_TEMP/evidence-inbox-databases.json"
 node scripts/verify-evidence-inbox-connection.mjs --sql > "$RUNNER_TEMP/evidence-inbox-read.sql"
-npx wrangler d1 execute EVIDENCE_DESK_READ_DB --remote --config wrangler.jsonc --json --file "$RUNNER_TEMP/evidence-inbox-read.sql" > "$RUNNER_TEMP/evidence-inbox-read.json"
+npx wrangler d1 execute EVIDENCE_DESK_READ_DB --remote --config wrangler.jsonc --json --command "$(cat "$RUNNER_TEMP/evidence-inbox-read.sql")" > "$RUNNER_TEMP/evidence-inbox-read.json"
 node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
 ```
 
