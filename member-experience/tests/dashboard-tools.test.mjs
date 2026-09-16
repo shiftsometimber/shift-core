@@ -151,3 +151,34 @@ test('actual header links return from restored tools to Today and Journey withou
  }
  assert.deepEqual(panels.map(p=>p.innerHTML),names.map(name=>'existing '+name));assert.deepEqual(historyCalls,['#visualise','#journey','#plans','#today']);
 });
+
+test('finishing delayed tool loading keeps a member-opened More menu open until they choose a destination',async()=>{
+ for(const initial of ['','today','plans']){
+  const handlers={},windowHandlers={},pending=[];
+  const panels=['today','journey','visualise','plans'].map(name=>({id:'panel-'+name,classList:{active:name==='today',toggle(_,on){this.active=on}},scrollIntoView(){}}));
+  const member={hidden:false,classList:{contains:()=>true}},more={open:false,removeAttribute(name){if(name==='open')this.open=false}};
+  const location={href:'https://shiftsometimber.co.uk/member/dashboard'+(initial?'#'+initial:''),hash:initial?'#'+initial:''};
+  const history={replaceState:(_,__,hash)=>location.hash=hash};
+  const document={body:{dataset:{memberTools:'v1'}},readyState:'complete',getElementById:id=>id==='previewMember'?member:panels.find(panel=>panel.id===id),querySelector:selector=>selector==='.member-nav-more'?more:null,querySelectorAll:selector=>selector==='.mp-panel'?panels:[],addEventListener:(name,callback)=>handlers[name]=callback,createElement:()=>({}),head:{appendChild:script=>pending.push(script)}};
+  const window={SST_API:{},addEventListener:(name,callback)=>windowHandlers[name]=callback,dispatchEvent:event=>windowHandlers[event.type]?.()};
+  vm.runInNewContext(dashboardToolsRuntime,{document,window,location,URL,Event,history,MutationObserver:class{observe(){}}});
+  assert.equal(pending.length,1,'first real tool load must remain pending');
+  more.open=true; // A member opens More while the script network requests finish.
+  if(!initial){
+   // The pinned Journey V2 boot calls activate('today',false) on an empty
+   // hash; that still uses replaceState, which emits no hashchange event.
+   history.replaceState(null,'','#today');
+   assert.equal(more.open,true,'Journey initialisation itself has not closed More');
+  }
+  for(let index=0;index<4;index++){
+   assert.equal(pending.length,index+1,'tool scripts must still load sequentially');
+   pending[index].onload();await new Promise(setImmediate);
+   assert.equal(more.open,true,'background script completion must not dismiss an open menu');
+  }
+  assert.deepEqual(panels.filter(panel=>panel.classList.active).map(panel=>panel.id),['panel-'+(initial||'today')],'initial requested panel must still synchronise');
+  let prevented=false;
+  handlers.click({target:{closest:()=>({href:'https://shiftsometimber.co.uk/member/dashboard#visualise'})},preventDefault:()=>prevented=true});
+  assert.equal(prevented,true);assert.equal(more.open,false,'explicit selection must still close More');assert.equal(location.hash,'#visualise');
+  assert.deepEqual(panels.filter(panel=>panel.classList.active).map(panel=>panel.id),['panel-visualise']);
+ }
+});

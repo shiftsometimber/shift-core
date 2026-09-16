@@ -1,5 +1,6 @@
 // Test harness only. Authenticate a newly created commissioning identity through
 // the existing server flow; never inject member state or manufacture UI readiness.
+import {join} from 'node:path';
 const SYNTHETIC=/^shiftsometimber\+(?:finish|longitudinal|b03|structured|structured-authrender|sport|safety)-[a-z0-9-]+@gmail\.com$/i;
 const identities=new WeakMap();
 
@@ -40,8 +41,9 @@ export async function memberReady(page,{site,panel=null}){
   if(panel)await requireMemberPanel(page,panel);
 }
 
-export async function requireMemberPanel(page,panel){
+export async function requireMemberPanel(page,panel,{evidenceDir}={}){
   if(!/^[a-z][a-z0-9-]*$/.test(panel))throw new Error('Invalid member panel name');
+  try{
   const host=page.locator(`#panel-${panel}`);
   if(!await host.count())throw new Error(`Missing member capability: #panel-${panel} is absent from the current dashboard`);
   const candidates=page.locator(`[data-portal-panel="${panel}"],.mp-tab[data-panel="${panel}"]`);
@@ -61,4 +63,15 @@ export async function requireMemberPanel(page,panel){
   await control.click();
   await page.waitForFunction(name=>document.querySelector(`#panel-${name}`)?.classList.contains('active'),panel,{timeout:10000});
   await host.waitFor({state:'visible',timeout:10000});
+  }catch(error){
+    // Capture only navigation state from the verified synthetic account. Omit
+    // query strings, account data, cookies and request/response contents.
+    const state=await page.evaluate(name=>{
+      const visible=element=>!!element&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden';
+      const more=document.querySelector('.member-nav-more');
+      return{path:location.pathname,hash:location.hash,more:more?{open:more.open,visible:visible(more),summaryVisible:visible(more.querySelector('summary'))}:null,candidates:[...document.querySelectorAll(`[data-portal-panel="${name}"],.mp-tab[data-panel="${name}"]`)].slice(0,10).map(element=>({tag:element.tagName,visible:visible(element),inMore:!!element.closest('.member-nav-more'),disclosureOpen:element.closest('details')?.open??null})),activePanels:[...document.querySelectorAll('.mp-panel.active')].map(element=>element.id),scriptPaths:[...document.scripts].filter(script=>script.src).map(script=>new URL(script.src,location.href).pathname).slice(0,50)};
+    },panel).catch(()=>({path:new URL(page.url()).pathname,hash:new URL(page.url()).hash,documentUnavailable:true}));
+    if(evidenceDir)await page.screenshot({path:join(evidenceDir,`navigation-failure-${panel}-${Date.now()}.png`),fullPage:true}).catch(()=>{});
+    throw new Error(`Member navigation state: ${JSON.stringify(state)}; cause: ${error?.message||error}`);
+  }
 }

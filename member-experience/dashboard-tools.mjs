@@ -80,19 +80,21 @@ export const dashboardToolsRuntime=String.raw`(()=>{
   const scripts=['/member-product-v33d.js?v=member-tools-20260916','/member-progress-picture-premium-v1.js?v=2','/member-progress-v1.js?v=1','/member-plans-premium-v1.js?v=1'];
   let started=false;
   function isReady(){return member?.classList.contains('is-ready')&&!member.hidden;}
-  function activate(name){
+  function activate(name,closeMenu=true){
     if(!isReady()||!['today','journey','visualise','plans'].includes(name))return;
     const panel=document.getElementById('panel-'+name);if(!panel)return;
     document.querySelectorAll('.mp-panel').forEach(p=>p.classList.toggle('active',p===panel));
     document.querySelectorAll('.mp-tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===name));
-    document.querySelector('.member-nav-more')?.removeAttribute('open');
+    if(closeMenu)document.querySelector('.member-nav-more')?.removeAttribute('open');
   }
   async function script(src){
     await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.async=false;s.onload=resolve;s.onerror=()=>reject(new Error('A saved-record tool could not load. Refresh to try again.'));document.head.appendChild(s)});
   }
   async function boot(){
     if(started||!isReady()||!window.SST_API)return;started=true;
-    try{for(const src of scripts)await script(src);activate(location.hash.slice(1));}
+    // Background loading must not dismiss More if the member opened it while
+    // those requests were pending. An explicit destination still closes it.
+    try{for(const src of scripts)await script(src);activate(location.hash.slice(1),false);}
     catch(error){for(const id of ['visualStatus','activePlans']){const el=document.getElementById(id);if(el)el.textContent=error.message;}}
   }
   document.addEventListener('click',event=>{

@@ -1,7 +1,7 @@
 {
   "baseline": "e18bf18bb29dca51a536c32178c615bdfcc9c48b",
   "scope": "Selected approved design, food/exercise artwork, Life Back/Grub/Fit renderers, auth authority and payment configuration; no claim of full UI equivalence.",
-  "unchanged": 319,
+  "unchanged": 318,
   "checked": 319,
   "files": [
     {
@@ -31,8 +31,10 @@
     },
     {
       "path": "member-experience/fit-approved-runtime.mjs",
-      "sha256": "62e3c14a066fe8e67f7679978a86a4e0cabd244527e41b3683bcf7ec17244533",
-      "unchanged": true
+      "sha256": "a7eebd5bf93a6264f6dc00bfbd6afb94d12af5901e7ebc6d32c410038fcec0d2",
+      "unchanged": false,
+      "baseline_sha256": "62e3c14a066fe8e67f7679978a86a4e0cabd244527e41b3683bcf7ec17244533",
+      "reason": "Bounded Today duration handoff: preselect a requested duration and explain the retained saved plan; only the existing explicit Build action replaces it. Exercise renderer, imagery, effort controls and swaps preserved."
     },
     {
       "path": "member-experience/grub-runtime.mjs",
