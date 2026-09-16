@@ -8,5 +8,9 @@ need(/["']\/member-today-final-v1\.css["']/.test(worker),'final mobile CSS is no
 need(/Access-Control-Allow-Headers["']?\s*:\s*["']Content-Type, X-Shift-Commissioning-OIDC, X-Shift-Local-Date, X-Shift-Local-Hour/.test(worker),'Today local date/hour headers are not allowed through the production CORS preflight');
 for(const marker of ['390,height:844','recordVideo','working_late','data-meal="accept"','Start the session','horizontal overflow'])need(production.includes(marker),`missing genuine production walkthrough assertion: ${marker}`);
 for(const marker of ['my-timber-final-production.mjs','my-timber-billy-iphone.mp4','actions/upload-artifact@v4'])need(workflow.includes(marker),`final production workflow missing: ${marker}`);
-need(workflow.includes("frontend/member/member-progress-v1.js"),'Progress runtime changes do not trigger the final production journey');
+const promotion=read('.github/workflows/cloudflare-production-promote.yml');
+need(promotion.includes('frontend/member/member-progress-v1.js'),'Progress runtime changes do not trigger production promotion');
+need(workflow.includes('workflow_run:')&&workflow.includes("workflows: ['Cloudflare Production Promote']")&&workflow.includes("github.event.workflow_run.conclusion == 'success'"),'Final production journey must run after successful promotion');
+need(workflow.includes('ref: ${{ github.event.workflow_run.head_sha || github.sha }}'),'Final production journey must use the promoted source revision');
+need(!/^  push:/m.test(workflow),'Final live acceptance must not race deployment on a source push');
 console.log('PASS My Timber final source gate: above-fold phone refinement, immediate-result contract, genuine authenticated Billy journey, dead-end/CTA/overflow assertions and production video evidence are fail-closed.');
