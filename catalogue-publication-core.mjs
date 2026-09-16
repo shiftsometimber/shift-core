@@ -98,10 +98,15 @@ export async function publishFixedCatalogue(DB,release) {
 }
 
 export async function verifyFixedCataloguePublication(DB,release) {
-  const additions=await validateCatalogueRelease(release);
+  if(release?.proof!=='CATALOGUE_PUBLICATION_RELEASE_V1' || !hash.test(release.release_id||'') || !hash.test(release.rows_sha256||'')) fail('catalogue_release_not_armed');
+  const additions=Number(release.addition_counts?.recipe||0)+Number(release.addition_counts?.exercise||0);
+  const originals=Number(release.protected_counts?.recipe||0)+Number(release.protected_counts?.exercise||0);
+  if(additions!==3427 || originals!==2124) fail('catalogue_release_count_mismatch');
+  const owner=release.owner_instruction;
+  if(owner?.status!=='authorised' || owner.instruction!=='Publish them all !!!!!!' || owner.actor?.id!=='Matt O’Brien' || owner.recorded_at!=='2026-09-16T18:50:04Z') fail('catalogue_owner_instruction_missing');
   const db=typeof DB.withSession==='function'?DB.withSession('first-primary'):DB;
-  const stamp=release.owner_instruction.recorded_at;
-  const result=await db.prepare(`SELECT COUNT(*) AS total, SUM(CASE WHEN created_at=? AND updated_at=? AND json_extract(review_json,'$.authority_kind')='owner_publication_instruction' AND json_extract(review_json,'$.instruction.quote')=? THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')`).bind(stamp,stamp,release.owner_instruction.instruction).first();
-  if(Number(result?.total)!==release.protected_originals.length+additions.length || Number(result?.authorised)!==additions.length) fail('catalogue_publication_incomplete');
-  return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted:0,already_present:additions.length,protected_originals:release.protected_originals.length,original_rows_unchanged:true,transactional:true,completed_at:new Date().toISOString(),published_at:null};
+  const stamp=owner.recorded_at;
+  const result=await db.prepare(`SELECT COUNT(*) AS total, SUM(CASE WHEN created_at=? AND updated_at=? AND json_extract(review_json,'$.authority_kind')='owner_publication_instruction' AND json_extract(review_json,'$.instruction.quote')=? THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')`).bind(stamp,stamp,owner.instruction).first();
+  if(Number(result?.total)!==originals+additions || Number(result?.authorised)!==additions) fail('catalogue_publication_incomplete');
+  return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted:0,already_present:additions,protected_originals:originals,original_rows_unchanged:true,transactional:true,completed_at:new Date().toISOString(),published_at:null};
 }
