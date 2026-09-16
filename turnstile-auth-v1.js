@@ -21,17 +21,21 @@ export async function turnstileGuard(request,env){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/',expectedAction=PROTECTED_ACTIONS.get(path);
   if(request.method!=='POST'||!expectedAction||!truthy(env.TURNSTILE_REQUIRED))return null;
   if(path==='/v1/hq/auth/login'||path==='/v1/hq/auth/bootstrap')return null;
+  return verifyTurnstile(request,env,expectedAction);
+}
+
+export async function verifyTurnstile(request,env,expectedAction){
   const secret=clean(env.TURNSTILE_SECRET_KEY),siteKey=clean(env.TURNSTILE_SITE_KEY);
   if(!secret||!siteKey)return json({ok:false,error:'turnstile_not_configured',message:'Secure sign-in is temporarily unavailable.'},503);
   let body={};try{body=await request.clone().json()}catch{}
   const token=clean(body.turnstileToken||body['cf-turnstile-response']);
-  if(!token)return json({ok:false,error:'turnstile_required',message:'Complete the security check and try again.'},400);
+  if(!token||token.length>2048)return json({ok:false,error:'turnstile_required',message:'Complete the security check and try again.'},400);
   const form=new URLSearchParams({secret,response:token,idempotency_key:crypto.randomUUID()});
   const ip=clean(request.headers.get('CF-Connecting-IP'));if(ip)form.set('remoteip',ip);
   let result={};
   try{const response=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form});result=await response.json();if(!response.ok)throw new Error('siteverify_failed')}catch{return json({ok:false,error:'turnstile_unavailable',message:'The security check could not be verified. Please try again.'},503)}
   const allowedHosts=new Set(String(env.TURNSTILE_ALLOWED_HOSTNAMES||'shiftsometimber.co.uk,www.shiftsometimber.co.uk,hq.shiftsometimber.co.uk').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean));
-  if(result.success!==true||result.action!==expectedAction||(result.hostname&&!allowedHosts.has(String(result.hostname).toLowerCase())))return json({ok:false,error:'turnstile_failed',message:'That security check expired or was not accepted. Please try again.'},403);
+  if(result.success!==true||result.action!==expectedAction||!allowedHosts.has(String(result.hostname||'').toLowerCase()))return json({ok:false,error:'turnstile_failed',message:'That security check expired or was not accepted. Please try again.'},403);
   return null;
 }
 

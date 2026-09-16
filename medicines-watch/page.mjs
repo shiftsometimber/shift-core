@@ -126,7 +126,7 @@ export function renderWatchDocument(html, health, query) {
  html = html.replace(/<main\b[\s\S]*?<\/main>/i, () => watchMain(health,query))
   .replace(/<script\b[^>]*\bsrc=["']\/assets\/(?:treatment-guided-v1|shift-service-bridge-v1)\.js(?:\?[^"']*)?["'][^>]*>[\s\S]*?<\/script>/gi,'')
   .replace(/<title>[\s\S]*?<\/title>/i,'').replace(/<meta\s+name=["']description["'][^>]*>/gi,'')
-  .replace(/<link\s+rel=["']canonical["'][^>]*>/gi,'').replace(/<meta\s+(?:property|name)=["'](?:og:|twitter:)[^>]*>/gi,'')
+  .replace(/<link\b(?=[^>]*\brel\s*=\s*(?:"canonical"|'canonical'|canonical(?=[\s/>])))[^>]*>/gi,'').replace(/<meta\s+(?:property|name)=["'](?:og:|twitter:)[^>]*>/gi,'')
   .replace(/<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'')
   .replace(/<body\b([^>]*)>/i,(_,attrs)=>'<body'+attrs.replace(/\sclass=(["'])(.*?)\1/i,(_,quote,classes)=>' class='+quote+classes.split(/\s+/).filter(c=>!c.startsWith('treatment-')).concat('medicines-watch-page').join(' ')+quote)+'>');
  const schema = {'@context':'https://schema.org','@type':'CollectionPage',name:title,description,url:CANONICAL,dateModified:REVIEWED_AT,publisher:{'@type':'Organization',name:'Shift Some Timber'}};
