@@ -122,7 +122,10 @@ try{
    await geometry(page,row,'progress');await page.screenshot({path:join(out,name+'-progress-photo.png'),fullPage:true});
    row.phase='render-retained-plans';
    await open(page,'plans');const currentCount=await page.locator('.mp-plan-manager-card.is-current').count();assert.equal(currentCount,ownPlans.current.length);assert(await page.locator('.mp-plan-history-row[data-plan-record="'+firstId+'"]').count());
-   await page.locator('.mp-plan-manager-history > summary').first().click();await geometry(page,row,'plans');await page.screenshot({path:join(out,name+'-plans.png'),fullPage:true});
+   await page.locator('.mp-plan-manager-history > summary').first().click();await geometry(page,row,'plans');
+   const planText=await page.locator('#panel-plans .mp-plan-manager-heading h3').evaluate(el=>({text:el.textContent,color:getComputedStyle(el).color}));
+   assert.equal(planText.text,'Current plans');assert.equal(planText.color,'rgb(231, 227, 218)','Plans heading must remain readable on the dark member panel');
+   await page.screenshot({path:join(out,name+'-plans.png'),fullPage:true});
    row.phase='open-saved-plan-without-changing-current-week';
    const beforeView=await api(own,'/v1/grub/workspace');
    await page.locator('[data-plan-snapshot="'+firstId+'"]').click();

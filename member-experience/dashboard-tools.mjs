@@ -68,6 +68,7 @@ body[data-member-tools="v1"] .mp-saved-plan-view dt{font-weight:700}
 body[data-member-tools="v1"] .mp-saved-plan-view dd{margin:4px 0 12px;padding-left:12px;border-left:1px solid #b6b8a9}
 body[data-member-tools="v1"] .mp-saved-plan-view ol{padding-left:22px}
 body[data-member-tools="v1"] .mp-plan-history-meta{white-space:normal}
+body[data-member-tools="v1"] #panel-plans :is(.mp-plan-manager-heading h3,.mp-plan-manager-heading p,.mp-plan-manager-heading .eyebrow,.mp-plan-manager-foot){color:#e7e3da!important}
 body[data-member-tools="v1"] .member-tools-status{padding:12px 0;color:#4c5245;font:inherit}
 @media(max-width:600px){body[data-member-tools="v1"] #panel-visualise :is(.mp-two,.mp-visual-options){grid-template-columns:1fr}}
 `;
