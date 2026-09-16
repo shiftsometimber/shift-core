@@ -58,6 +58,16 @@ export async function knowledgeEditorialRoutes(request,env,ctx){
 
   if(m==='GET'&&p==='/v1/hq/articles'){
     const base=await hq.fetch(request,env,ctx);if(!base.ok)return withHqCors(base,request,env);
+    const requestedId=u.searchParams.get('articleId');
+    if(requestedId!==null){
+      if(!/^[1-9]\d*$/.test(requestedId)||!Number.isSafeInteger(Number(requestedId)))return withHqCors(json({ok:false,error:'invalid_article_id'},400),request,env);
+      // The existing article-list route above owns content_read authorization.
+      // Fetch the body only after that same authenticated permission succeeds.
+      const article=await env.DB.prepare(`SELECT id,title,slug,category,author,status,summary,body,seo_title,publish_at,created_at,updated_at FROM knowledge_articles WHERE id=?`).bind(Number(requestedId)).first();
+      if(!article)return withHqCors(json({ok:false,error:'article_not_found'},404),request,env);
+      const [reviewedArticle]=await listEditorialArticles(env.DB,[article]);
+      return withHqCors(json({article:reviewedArticle}),request,env);
+    }
     const body=await base.json();return withHqCors(json({...body,articles:await listEditorialArticles(env.DB,body.articles||[])}),request,env);
   }
 
