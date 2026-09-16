@@ -8,6 +8,7 @@ on:
       - ".github/workflows/cloudflare-production-promote.yml"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
+      - "medicines-watch/**"
       - "worker.js"
       - "ask-timber-v1.js"
       - "ask-timber-multi-intent-gate.mjs"
@@ -138,7 +139,11 @@ jobs:
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
       - name: Verify member experience and Grub account integration
-        run: node --test member-experience/tests/*.test.mjs
+        run: |
+          node member-experience/prepare-life-back.mjs
+          git diff --exit-code -- member-experience/life-back-assets.mjs
+          node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
+          node gate4-one-shift-brain-gate.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
         run: node daily-shift-frontdoor-gate.mjs
       - name: Prove My Timber has reached the 75 percent all-green bar
@@ -161,6 +166,8 @@ jobs:
           node my-journey-integration-gate.mjs
       - name: Prove medicine front door, commercial safety and full purchase lifecycle
         run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
+      - name: Verify Medicines Watch evidence, monitor and public isolation
+        run: node --test medicines-watch/*.test.mjs
       - name: Apply pharmacy-readiness database additions
         shell: bash
         run: |
@@ -190,6 +197,11 @@ jobs:
           run_d1_file migrations/018_foundayo_launch_ready.sql
           run_d1_file migrations/019_foundayo_option_stock_lock.sql
           run_d1_file migrations/020_radar_duplicate_cleanup.sql
+          run_d1_file medicines-watch/migration.sql
+      - name: Initialise Medicines Watch source observations
+        run: |
+          node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
       - name: Verify existing production food catalogue without account writes
         if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
         run: |
@@ -212,6 +224,8 @@ jobs:
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
       - name: Prove exact member scripts and authentication on live traffic
         run: node member-experience/verify-production-member.mjs
+      - name: Prove Medicines Watch and its source checks on live traffic
+        run: node medicines-watch/verify-live.mjs
       - name: Retain public preservation evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -220,6 +234,7 @@ jobs:
           path: |
             public-*.json
             member-live-proof.json
+            medicines-watch-live-proof.json
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
       - name: Prove newer restricted routes are on live traffic

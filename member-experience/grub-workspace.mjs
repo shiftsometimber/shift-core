@@ -53,7 +53,10 @@ export function applyGrubOperation(current,input,recipes,context={}){
  if(next.operations.includes(input.operationId))return next;
  if(input.revision!==next.revision)throw new GrubError('Your food list changed in another tab. Reload it before trying again.',409);
  const a=input.action;
- if(a==='save'){
+ if(a==='choose-today'){
+  const r=recipeById(recipes,input.recipeId);if(!/^\d{4}-\d{2}-\d{2}$/.test(context.date||''))fail('Today is unavailable. Reload and try again.');
+  next.today={date:context.date,recipeId:r.id,name:r.name,minutes:r.minutes,kcal:r.kcal,protein_g:r.protein_g,chosenAt:context.at};
+ }else if(a==='save'){
   recipeById(recipes,input.recipeId);if(typeof input.saved!=='boolean')fail('Choose save or remove.');
   next.saved=next.saved.filter(x=>x!==input.recipeId);if(input.saved){if(next.saved.length>=100)fail('You have 100 saved recipes. Remove one before saving another.');next.saved.push(input.recipeId)}
  }else if(a==='recommendation-adjust'){
@@ -90,5 +93,5 @@ export function applyGrubOperation(current,input,recipes,context={}){
 }
 export function workspaceView(state,recipes,context={}){
  const lookup=new Map(recipes.map(r=>[r.id,r]));
- return {revision:state.revision,saved:state.saved,week:state.week,shopping:state.shopping,options:state.options,recipes:[...new Set([...state.saved,...state.week.map(x=>x.recipeId)])].map(id=>lookup.get(id)).filter(Boolean),unavailable:state.saved.filter(id=>!lookup.has(id)),recommendation:recommendationFor(state,recipes,context),nutritionContext:nutritionForWeek(state,recipes)};
+ return {today:state.today||null,revision:state.revision,saved:state.saved,week:state.week,shopping:state.shopping,options:state.options,recipes:[...new Set([...state.saved,...state.week.map(x=>x.recipeId),state.today?.recipeId])].map(id=>lookup.get(id)).filter(Boolean),unavailable:state.saved.filter(id=>!lookup.has(id)),recommendation:recommendationFor(state,recipes,context),nutritionContext:nutritionForWeek(state,recipes)};
 }

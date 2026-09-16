@@ -1,10 +1,12 @@
+import {probeConnectedAI} from '../../member-experience/ai-connected-probe.mjs';
+import {probeLifeBack} from '../../member-experience/life-back-probe.mjs';
 import {probeGrub} from '../../member-experience/grub-journey-probe.mjs';
 import {probeMemberHealth} from '../../member-experience/health-journey-probe.mjs';
 import {readFileSync,writeFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 const origin=process.env.WORK_STAGING_URL;if(!/^https:\/\/shift-core-work-staging\.[a-z0-9-]+\.workers\.dev$/.test(origin??''))throw Error('Not the isolated staging origin');
 const fixture=JSON.parse(readFileSync('work/staging/generated/probe.json')),checks=[];
-const call=(path,body,cookie='')=>fetch(origin+path,{redirect:'manual',method:body?'POST':'GET',headers:{Origin:origin,'Content-Type':'application/json',Cookie:cookie},body:body?JSON.stringify(body):undefined});
+const call=(path,body,cookie='')=>fetch(origin+path,{signal:AbortSignal.timeout(30000),redirect:'manual',method:body?'POST':'GET',headers:{Origin:origin,'Content-Type':'application/json',Cookie:cookie},body:body?JSON.stringify(body):undefined});
 // A newly published workers.dev route can briefly return 404. Check the actual
 // anonymous auth route before attempting any seeded account; do not retry logins.
 let ready=false,last='';
@@ -28,7 +30,9 @@ const all=await(await call('/v1/hq/work',undefined,hq)).json(),closed=all.employ
 const release=await call('/v1/hq/work',{action:'report',id:closed.id,revision:closed.revision,safeToRelease:true,reviewReference:'Fictional remote fixture; not a real pilot or privacy approval'},hq);assert.equal(release.status,200);
 const after=await release.json(),reports=await(await call('/v1/employer/work',undefined,employer)).json(),report=reports.reports.find(s=>s.employerId===closed.id).report;assert.equal(report.activations.count,35);assert(!JSON.stringify(reports).includes('completedWeeks'));checks.push('Fixed closed-fixture report released without member records');
 assert.equal((await call('/v1/hq/work',{action:'reporters',id:closed.id,revision:after.employer.revision,reporterIds:[]},hq)).status,200);assert(!(await(await call('/v1/employer/work',undefined,employer)).json()).reports.some(s=>s.employerId===closed.id));checks.push('Reporting-access revocation takes effect');
-checks.push(...await probeGrub({call,member:employee,other,patch:(path,body,cookie)=>fetch(origin+path,{method:'PATCH',headers:{Origin:origin,'Content-Type':'application/json',Cookie:cookie},body:JSON.stringify(body)})}));
-checks.push(...await probeMemberHealth((path,method,body)=>fetch(origin+path,{method,headers:{Origin:origin,'Content-Type':'application/json',Cookie:employee},body:body===undefined?undefined:JSON.stringify(body)})));
+checks.push(...await probeGrub({call,member:employee,other,patch:(path,body,cookie)=>fetch(origin+path,{signal:AbortSignal.timeout(30000),method:'PATCH',headers:{Origin:origin,'Content-Type':'application/json',Cookie:cookie},body:JSON.stringify(body)})}));
+checks.push(...await probeMemberHealth((path,method,body)=>fetch(origin+path,{signal:AbortSignal.timeout(30000),method,headers:{Origin:origin,'Content-Type':'application/json',Cookie:employee},body:body===undefined?undefined:JSON.stringify(body)})));
+checks.push(...await probeLifeBack({call,member:employee,other,relogin:()=>login(fixture.ids[0]),patch:(path,body,cookie)=>fetch(origin+path,{signal:AbortSignal.timeout(30000),method:'PATCH',headers:{Origin:origin,'Content-Type':'application/json',Cookie:cookie},body:JSON.stringify(body)}),method:(path,method,body,cookie)=>fetch(origin+path,{signal:AbortSignal.timeout(30000),method,headers:{Origin:origin,'Content-Type':'application/json',Cookie:cookie},body:body===undefined?undefined:JSON.stringify(body)})}));
+checks.push(...await probeConnectedAI({call,member:employee,other}));
 assert.equal((await call('/v1/auth/logout',{},employee)).status,200);assert.equal((await call('/v1/work',undefined,employee)).status,401);assert.equal((await call('/v1/grub/workspace',undefined,employee)).status,401);const reopened=await login(fixture.ids[0]);assert.equal((await(await call('/v1/grub/workspace',undefined,reopened)).json()).week.length,9);await call('/v1/auth/logout',{},reopened);checks.push('Food remains saved after logout and fresh password sign-in');await call('/v1/auth/logout',{},employer);await call('/v1/auth/logout',{},other);await call('/v1/hq/auth/logout',{},hq);checks.push('Logout invalidates the saved member session');
 const result={origin,checkedAt:new Date().toISOString(),status:'pass',checks,limits:['Fictional accounts only','Closed period is a seeded fixture','No browser sign-in claim','No clinical or real-employee commissioning']};writeFileSync('work/staging/generated/probe-result.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));

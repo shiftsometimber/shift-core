@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let context=null,today=null;
+let context=null,today=null,waistInputUnit='cm';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function status(id,msg,error=false){const e=$(id);if(!e)return;e.className='mp-status'+(error?' error':'');e.textContent=msg}
 function pretty(x){return JSON.stringify(x,null,2)}
@@ -126,7 +126,9 @@ function kgFromInputs(){
  const unit=$('#photoWeightUnit')?.value||'stone';
  if(unit==='kg')return Number($('#photoWeightKg')?.value)||null;
  if(unit==='lb')return (Number($('#photoWeightLbOnly')?.value)||0)*0.45359237||null;
- const st=Number($('#photoWeightStone')?.value)||0,lb=Number($('#photoWeightPounds')?.value)||0;
+ const stoneValue=$('#photoWeightStone')?.value||'',poundsValue=$('#photoWeightPounds')?.value||'';
+ if(document.body.dataset.memberTools==='v1'&&Boolean(stoneValue)!==Boolean(poundsValue))throw new Error('Choose both stone and pounds (including 0 lb), or leave both blank.');
+ const st=Number(stoneValue)||0,lb=Number(poundsValue)||0;
  return (st*14+lb)*0.45359237||null;
 }
 function formatWeightKg(kg){
@@ -200,7 +202,7 @@ async function generateVisual(direction){
  try{
   const resized=await resizedPhoto(file);const r=await SST_API.visualise(resized,direction);
   const src='data:'+((r.visualisation&&r.visualisation.mime)||'image/png')+';base64,'+r.visualisation.imageBase64;
-  const img=$('#'+visualMap[direction]);img.src=src;img.style.display='block';
+  const img=$('#'+visualMap[direction]);img.src=src;img.hidden=false;img.style.display='block';
   status('#visualStatus',r.disclaimer||'Visualisation ready. This is illustrative, not a prediction.');
  }catch(e){status('#visualStatus',e.message||'We could not create the visualisation.',true)}
  finally{if(btn)btn.disabled=!$('#visualConsent').checked}
@@ -210,9 +212,9 @@ async function saveOriginal(){
  if(!$('#savePhotoConsent').checked)return status('#visualStatus','Please confirm that you want this real photo stored in My Shift.',true);
  const btn=$('#saveOriginal');btn.disabled=true;status('#visualStatus','Saving your real progress photo…');
  try{
-  const resized=await resizedPhoto(file);
   const weightKg=kgFromInputs();let waistCm=Number($('#photoWaist').value)||null;
  if(waistCm&&$('#photoWaistUnit')?.value==='in')waistCm=waistCm*2.54;
+  const resized=await resizedPhoto(file);
   await SST_API.saveProgressPhoto(resized,{weightKg,waistCm,source:'upload'});
   status('#visualStatus','Original progress photo saved to My Shift.',false);
   await loadSavedPhotos();
@@ -229,13 +231,34 @@ async function loadSavedPhotos(){
 }
 
 function fillSelect(el,values,label=v=>v){if(!el)return;el.innerHTML=values.map(v=>`<option value="${v}">${label(v)}</option>`).join('')}
+function fillWaistOptions(unit,physicalCm=null){
+ const control=$('#photoWaist'),inch=unit==='in',values=inch?Array.from({length:121},(_,i)=>(20+i*.5).toFixed(1)):Array.from({length:301},(_,i)=>(50+i*.5).toFixed(1));
+ const selected=physicalCm===null?'':String(inch?physicalCm/2.54:physicalCm);
+ const matching=selected===''?null:values.find(value=>Number(value)===Number(selected));
+ // Converted selections retain the same physical measurement even when they
+ // lie between the half-unit options. Blank continues to mean not supplied.
+ if(selected!==''&&!matching)values.push(selected);
+ fillSelect(control,values,value=>`${Number(value).toLocaleString('en-GB',{maximumFractionDigits:2})} ${inch?'in':'cm'}`);
+ control.innerHTML='<option value="">Not added</option>'+control.innerHTML;control.value=matching||selected;
+}
+function syncWaistInputs(){
+ const next=$('#photoWaistUnit').value,current=$('#photoWaist').value;
+ const physicalCm=current===''?null:Number(current)*(waistInputUnit==='in'?2.54:1);
+ fillWaistOptions(next,physicalCm);waistInputUnit=next;
+ localStorage.setItem('shiftWaistUnit',next);
+}
 function setupMeasurementDropdowns(){
  fillSelect($('#photoWeightStone'),Array.from({length:33},(_,i)=>i+5),v=>v+' st');
  fillSelect($('#photoWeightPounds'),Array.from({length:28},(_,i)=>(i/2).toFixed(1)),v=>v+' lb');
  fillSelect($('#photoWeightKg'),Array.from({length:441},(_,i)=>(30+i*.5).toFixed(1)),v=>v+' kg');
  fillSelect($('#photoWeightLbOnly'),Array.from({length:485},(_,i)=>66+i),v=>v+' lb');
  fillSelect($('#photoWaist'),Array.from({length:301},(_,i)=>(50+i*.5).toFixed(1)),v=>v);
- $('#photoWeightStone').value='15';$('#photoWeightPounds').value='4.0';$('#photoWeightKg').value='96.2';$('#photoWeightLbOnly').value='212';$('#photoWaist').value='81.0';
+ if(document.body.dataset.memberTools==='v1'){
+  for(const id of ['photoWeightStone','photoWeightPounds','photoWeightKg','photoWeightLbOnly','photoWaist']){const control=$('#'+id);control.innerHTML='<option value="">Not added</option>'+control.innerHTML;control.value=''}
+  waistInputUnit=$('#photoWaistUnit').value||'cm';fillWaistOptions(waistInputUnit);
+ }else{
+  $('#photoWeightStone').value='15';$('#photoWeightPounds').value='4.0';$('#photoWeightKg').value='96.2';$('#photoWeightLbOnly').value='212';$('#photoWaist').value='81.0';
+ }
 }
 
 async function handleFitVote(btn){
@@ -258,11 +281,14 @@ async function handleMealVote(btn){
   const holder=document.createElement('div');holder.innerHTML=mealCard(r.meal,Number(card.dataset.day)||0);card.replaceWith(holder.firstElementChild);
  }catch(e){btn.disabled=false;btn.textContent='👎 Nay — swap it';status('#grubStatus',e.message||'Could not swap that meal.',true)}
 }
-window.addEventListener('DOMContentLoaded',()=>{
+function bootProduct(){
+ const retainedToolsOnly=document.body.dataset.memberTools==='v1';
  document.addEventListener('click',async e=>{const b=e.target.closest('[data-vote]');if(b)handleMealVote(b);const f=e.target.closest('[data-fit-vote]');if(f)handleFitVote(f);const d=e.target.closest('[data-photo-delete]');if(d){d.disabled=true;try{await SST_API.deleteProgressPhoto(d.dataset.photoDelete);await loadSavedPhotos();status('#visualStatus','Photo deleted.');}catch(err){d.disabled=false;status('#visualStatus',err.message||'Could not delete that photo.',true)}}});
  setupMeasurementDropdowns();
- $$('.mp-tab').forEach(b=>b.onclick=()=>activate(b.dataset.panel));
- const hash=location.hash.slice(1);activate(['today','journey','grub','fit','water','conundrum','plans','ai','visualise','shiftme','lifeback','medicines'].includes(hash)?hash:'today');
+ if(!retainedToolsOnly){
+  $$('.mp-tab').forEach(b=>b.onclick=()=>activate(b.dataset.panel));
+  const hash=location.hash.slice(1);activate(['today','journey','grub','fit','water','conundrum','plans','ai','visualise','shiftme','lifeback','medicines'].includes(hash)?hash:'today');
+ }
  $('#grubGenerate')?.addEventListener('click',e=>run(e.currentTarget,()=>SST_API.generateGrub({days:Number($('#grubDays').value)||7,preferences:$('#grubPrefs').value||undefined}),'#grubStatus','#grubOutput','Building your Grub plan'));
  $('#fitGenerate')?.addEventListener('click',e=>run(e.currentTarget,()=>SST_API.generateFit({days:Number($('#fitDays').value)||3,minutes_per_day:Number($('#fitMinutes').value)||30,location:$('#fitLocation').value,equipment:$('#fitEquipment').value,preferences:$('#fitPrefs').value||undefined,limitations:$('#fitPrefs').value||undefined}),'#fitStatus','#fitOutput','Building your Fit plan'));
  $('#waterGenerate')?.addEventListener('click',e=>run(e.currentTarget,()=>SST_API.generateHydration({}),'#waterStatus','#waterOutput','Refreshing your hydration guide')); $('#drinkLog')?.addEventListener('click',logDrink); if($('#drinkLog'))loadHydration();
@@ -274,10 +300,12 @@ window.addEventListener('DOMContentLoaded',()=>{
  $('#photoInput').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const img=$('#photoPreview');img.src=URL.createObjectURL(f);img.style.display='block';$('#visualConsentWrap').style.display='block'};
  $$('.visual-gen').forEach(b=>b.onclick=()=>generateVisual(b.dataset.visual));
  $('#saveOriginal').onclick=saveOriginal;
- $('#photoWeightUnit').onchange=syncWeightInputs; syncWeightInputs(); $('#photoWaistUnit').onchange=e=>localStorage.setItem('shiftWaistUnit',e.target.value);
+ $('#photoWeightUnit').onchange=syncWeightInputs; syncWeightInputs(); $('#photoWaistUnit').onchange=retainedToolsOnly?syncWaistInputs:e=>localStorage.setItem('shiftWaistUnit',e.target.value);
  loadSavedPhotos();
 
  $('#visualConsent').onchange=e=>$$('.visual-gen').forEach(b=>b.disabled=!e.target.checked);
- load();
-});
+ // The current master owns Today; restored tools must never rewrite its actions.
+ if(!retainedToolsOnly)load();
+}
+if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',bootProduct,{once:true});else bootProduct();
 })();

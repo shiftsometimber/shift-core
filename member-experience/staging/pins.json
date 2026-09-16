@@ -2,7 +2,7 @@
   {
     "path": "api-adapter-v33d.js",
     "source": "worker",
-    "sha256": "6a2a790ee584c89664ef004b44d450be8427fff665ab6122ddc02231b25fa239"
+    "sha256": "dba8205f66c55e51eae2256b8a2ecaa7b3ae1c65a8f84ea2006cd24eb4942aec"
   },
   {
     "path": "app.js",
@@ -85,7 +85,7 @@
   },
   {
     "path": "member-my-timber-problem-v1.js",
-    "sha256": "964b6c018d24d7719afe95122d5f19de23a943ed27cd442fda5f9d30060fb770",
+    "sha256": "881c8ed74375959674706542008c42048de266041d2ce1f4797040c4ab816056",
     "source": "worker"
   },
   {

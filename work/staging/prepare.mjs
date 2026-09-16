@@ -1,4 +1,4 @@
-import {readFileSync,writeFileSync,mkdirSync,copyFileSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,copyFileSync,cpSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash,randomBytes,pbkdf2Sync,randomUUID} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
@@ -7,13 +7,16 @@ import '../../member-experience/staging/grub-catalogue.mjs';
 const dir=resolve('work/staging/generated');mkdirSync(dir+'/assets/staging',{recursive:true});
 const pins=JSON.parse(readFileSync('work/staging/pinned-assets.json'));
 for(const p of pins){const data=process.env.SHIFT_WORK_PAGES_ROOT?readFileSync(resolve(process.env.SHIFT_WORK_PAGES_ROOT,p.path)):Buffer.from(await (await fetch('https://95e283ac.projectshift.pages.dev/'+p.path)).arrayBuffer());if(createHash('sha256').update(data).digest('hex')!==p.sha256)throw Error('Pinned asset mismatch: '+p.path);const dest=dir+'/assets/'+p.path;mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,data)}
+cpSync('frontend/member/fit-v3-images',dir+'/assets/fit-v3-images',{recursive:true});
+cpSync('frontend/member/assets/member-experience/food',dir+'/assets/assets/member-experience/food',{recursive:true});
+copyFileSync('frontend/member/sst-logo-official.png',dir+'/assets/sst-logo-official.png');
 copyFileSync('work/staging/login.mjs',dir+'/assets/staging/login.mjs');
 const password=randomBytes(30).toString('base64url'),salt=randomBytes(16),passwordHash='pbkdf2$100000$'+salt.toString('base64url')+'$'+pbkdf2Sync(password,salt,100000,32,'sha256').toString('base64url');
 const quote=s=>"'"+String(s).replaceAll("'","''")+"'",start=new Date();start.setUTCHours(0,0,0,0);const end=new Date(+start+84*86400000),id=randomUUID(),closedId=randomUUID(),code=id+'.'+randomBytes(32).toString('hex'),expiresAt=new Date(Date.now()+2*86400000).toISOString();
 let auth=readFileSync('preview/bootstrap.sql','utf8')+'\nCREATE TABLE IF NOT EXISTS hq_users(id INTEGER PRIMARY KEY,email TEXT,name TEXT,password_hash TEXT,role TEXT,status TEXT,mfa_enabled INTEGER,last_login_at TEXT,created_at TEXT,updated_at TEXT);CREATE TABLE IF NOT EXISTS hq_sessions(id INTEGER PRIMARY KEY,hq_user_id INTEGER,token_hash TEXT,expires_at TEXT,revoked_at TEXT,last_used_at TEXT,created_at TEXT);\n';
 // Unique account IDs per deployment avoid overwriting earlier test accounts.
-const accountBase=Math.floor(Date.now()/1000)*10;const ids=[accountBase+1,accountBase+2,accountBase+3];
-for(let i=0;i<3;i++)auth+=`INSERT INTO users(id,email,first_name) VALUES(${ids[i]},${quote('probe'+ids[i]+'@example.invalid')},'Fictional probe');INSERT INTO user_auth(user_id,password_hash,email_verified) VALUES(${ids[i]},${quote(passwordHash)},1);INSERT INTO member_status(user_id) VALUES(${ids[i]});\n`;
+const accountBase=Math.floor(Date.now()/1000)*10;const ids=[accountBase+1,accountBase+2,accountBase+3],browserIds=[accountBase+4,accountBase+5,accountBase+6,accountBase+7],allIds=[...ids,...browserIds];
+for(let i=0;i<allIds.length;i++)auth+=`INSERT INTO users(id,email,first_name) VALUES(${allIds[i]},${quote('probe'+allIds[i]+'@example.invalid')},'Fictional probe');INSERT INTO user_auth(user_id,password_hash,email_verified) VALUES(${allIds[i]},${quote(passwordHash)},1);INSERT INTO member_status(user_id) VALUES(${allIds[i]});\n`;
 auth+=`INSERT INTO hq_users(id,email,name,password_hash,role,status,mfa_enabled) VALUES(${accountBase},${quote('hq'+accountBase+'@example.invalid')},'Fictional HQ',${quote(passwordHash)},'owner','active',0);\n`;
 const config={name:'Fictional hosted workplace',start:start.toISOString().slice(0,10),end:end.toISOString().slice(0,10),seats:50,feePence:0,scope:'Technical staging only; not an employer offer.',support:'No real employee support.',testingAllowancePence:null,reporterIds:[ids[1]]};
 const active={id,revision:0,config,status:'active',members:[],invites:[{id:randomUUID(),hash:createHash('sha256').update(code).digest('hex'),expiresAt,createdAt:new Date().toISOString()}],audit:[],privacyReference:'Fictional staging fixture only'};
@@ -25,6 +28,6 @@ execFileSync(process.execPath,['final-v1-production-publication.mjs'],{stdio:'in
 const publication=readFileSync(dir+'/accepted-fit/final-v1-production-publication.sql','utf8');
 auth+='\n'+publication.split('\n').filter(line=>line.startsWith('INSERT INTO structured_content')).join('\n');
 for(const r of recipes)auth+=`INSERT OR REPLACE INTO structured_content(id,content_type,title,status,data_json) VALUES(${quote(r.id)},'recipe',${quote(r.title)},'published',${quote(JSON.stringify(r.data))});\n`;
-writeFileSync(dir+'/assets/staging/invitation.txt',code);writeFileSync(dir+'/auth.sql',auth);writeFileSync(dir+'/work.sql',workplace);writeFileSync(dir+'/probe.json',JSON.stringify({password,ids,hqId:accountBase,id,closedId,code}));
+writeFileSync(dir+'/assets/staging/invitation.txt',code);writeFileSync(dir+'/auth.sql',auth);writeFileSync(dir+'/work.sql',workplace);writeFileSync(dir+'/probe.json',JSON.stringify({password,ids,browserIds,hqId:accountBase,id,closedId,code}));
 writeFileSync(dir+'/config.json',JSON.stringify({name:'shift-core-work-staging',main:'../worker.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,assets:{directory:'./assets',binding:'STAGING_ASSETS',run_worker_first:true},vars:{SHIFT_ENVIRONMENT:'work-staging-20260912',STAGING_EXPIRES_AT:expiresAt,WORK_V1_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true',WORK_PILOT_COMMISSIONED:'true',AUTO_VERIFY_EMAIL:'true'},d1_databases:[]},null,2));
 console.log('Prepared isolated staging files with pinned public assets and fictional credentials. No credentials printed.');

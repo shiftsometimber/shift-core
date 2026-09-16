@@ -1,0 +1,44 @@
+name: Readiness repair and preservation
+on:
+  pull_request:
+    paths:
+      - 'member-experience/**'
+      - 'member-daily-v3.js'
+      - 'worker.js'
+      - 'tests/schema-readiness.test.mjs'
+      - 'product-analytics-v1.js'
+      - 'frontend/member/**'
+      - 'rendered-member-acceptance-support.mjs'
+      - 'my-timber-final-production.mjs'
+      - 'tests/adaptive-*.test.mjs'
+      - 'tests/my-timber-analytics*.test.mjs'
+      - 'tests/rendered-member-acceptance-support.test.mjs'
+      - 'tests/act2b-workflow-preservation.test.mjs'
+      - '.github/workflows/readiness-preservation.yml'
+permissions:
+  contents: read
+jobs:
+  preservation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Verify connected journeys, treatment records and preservation
+        run: |
+          node --test member-experience/tests/*.test.mjs member-experience/staging/tool-routes.test.mjs tests/ai-connected*.test.mjs tests/adaptive-*.test.mjs tests/my-timber-analytics*.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/act2b-workflow-preservation.test.mjs tests/schema-readiness.test.mjs
+          node tests/adaptive-today-source-gate.mjs
+          node frontend-member-source-gate.mjs
+          npm run check
+      - name: Verify current member and protected commercial contracts
+        run: |
+          node my-timber-final-source-gate.mjs
+          node my-journey-integration-gate.mjs
+          node --test tests/commerce-stripe-v1.test.mjs tests/medicine-commerce-v1.test.mjs
+      - name: Ensure verification did not rewrite source
+        run: git diff --exit-code

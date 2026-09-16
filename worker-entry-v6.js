@@ -3,6 +3,7 @@ import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
+import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
@@ -62,6 +63,8 @@ import {
 import { hqCommerceContentRoutes } from "./hq-commerce-content-v1.js";
 import { hqCatalogueRoutes } from "./hq-catalogue-v1.js";
 import { continuityInterestRoutes } from "./continuity-interest-v1.js";
+import { medicinesWatchRoutes, withMedicinesWatchEntry } from './medicines-watch/page.mjs';
+import { checkSources } from './medicines-watch/monitor.mjs';
 
 
 const MEMBER_ORIGINS = new Set([
@@ -439,6 +442,7 @@ async function shiftHealthWithServerSeo(response, request, slug) {
   return new Response(request.method === "HEAD" ? null : html, { status: response.status, statusText: response.statusText, headers });
 }
 const PRIORITY_PUBLIC_PATHS = [
+  "/treatment-centre/medicines-watch",
   "/shift-newsroom",
   "/shift-health",
   ...Object.keys(SHIFT_HEALTH_SEO).map((slug) => `/shift-health/${slug}`),
@@ -526,6 +530,8 @@ export default {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const medicinesWatch = await medicinesWatchRoutes(request, env);
+    if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);
     const memberExperience = memberExperienceRoutes(request, env);
     if (memberExperience) return memberExperience;
     const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
@@ -834,6 +840,7 @@ export default {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
     const memberHealth = await memberHealthRoutes(request, env);
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
@@ -907,7 +914,7 @@ export default {
     const newsroomPage = await radarNewsPageRoutes(request, env);
     if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request);
+      return withMedicinesWatchEntry(await withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request), request);
     }
     let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),
@@ -920,18 +927,36 @@ export default {
       : fallback;
   },
   async scheduled(controller, env, ctx) {
-    const job = Promise.all([
-      runScheduledIntelligence(env),
-      runRadarScheduledScan(env),
-      runKnowledgeFlywheel(env, { limit: 1000 }),
-      runFitMorningReminders(env),
-    ])
-      .then((r) =>
-        console.log("shift_scheduled_intelligence", JSON.stringify(r)),
-      )
-      .catch((e) =>
-        console.error("shift_scheduled_intelligence_failed", e?.message),
+    const job = (async () => {
+      // Reserve and run the bounded evidence checks before the shared D1-heavy
+      // jobs. A sibling failure or contention must not silently starve the Watch.
+      const medicinesWatch = await checkSources(env).catch((error) => ({
+        medicinesWatch: "check_failed",
+        message: error?.message || "scheduled_job_failed",
+      }));
+      const names = ["intelligence", "radar", "knowledge", "fit-reminders"];
+      const settled = await Promise.allSettled([
+        runScheduledIntelligence(env),
+        runRadarScheduledScan(env),
+        runKnowledgeFlywheel(env, { limit: 1000 }),
+        runFitMorningReminders(env),
+      ]);
+      const scheduled = settled.map((result, index) =>
+        result.status === "fulfilled"
+          ? { job: names[index], status: "fulfilled", value: result.value }
+          : {
+              job: names[index],
+              status: "rejected",
+              message: result.reason?.message || "scheduled_job_failed",
+            },
       );
+      console.log(
+        "shift_scheduled_intelligence",
+        JSON.stringify({ medicinesWatch, scheduled }),
+      );
+    })().catch((error) =>
+      console.error("shift_scheduled_intelligence_failed", error?.message),
+    );
     if (ctx?.waitUntil) ctx.waitUntil(job);
     else await job;
   },

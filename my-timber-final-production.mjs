@@ -2,6 +2,8 @@ import {chromium} from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {commissioningLogin,memberReady} from './rendered-member-acceptance-support.mjs';
 
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
@@ -10,13 +12,13 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'iPhone-format Safari acceptance geometry'},checks:[],failures:[],screens:[]};
+const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],screens:[]};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
 async function register(){const r=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'Billy',source:'commissioning-my-timber-final'})});if(r.status!==201)throw new Error(`register ${r.status} ${await r.text()}`)}
-async function login(page){await page.goto(`${SITE}/member-login`,{waitUntil:'domcontentloaded',timeout:30000});const result=await page.evaluate(async({api,email,password})=>{const r=await fetch(`${api}/v1/auth/login`,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});return{ok:r.ok,status:r.status,text:await r.text()}},{api:API,email,password});if(!result.ok)throw new Error(`login ${result.status} ${result.text}`)}
+async function login(page){return commissioningLogin(page,{site:SITE,api:API,oidc:OIDC,email,password});}
 async function screenshot(page,name){const file=path.join(OUT,`${name}.png`);await page.screenshot({path:file,fullPage:false});report.screens.push(file)}
 async function body(page){return clean(await page.locator('body').innerText())}
 async function geometry(page){return page.evaluate(()=>{const root=document.querySelector('#todayActions'),next=document.querySelector('.mt-now'),box=root?.getBoundingClientRect(),nextBox=next?.getBoundingClientRect();return{overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,rootTop:Math.round(box?.top||0),rootWidth:Math.round(box?.width||0),nextTop:Math.round(nextBox?.top||0),nextBottom:Math.round(nextBox?.bottom||0),viewport:{width:innerWidth,height:innerHeight},decisionReady:root?.dataset.todayDecisionReady||''}})}
@@ -41,22 +43,42 @@ try{
   if(!fitResponse.ok())throw new Error(`Fit seed ${fitResponse.status()} ${JSON.stringify(fit)}`);
   const seeded={grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0};
   if(!seeded.grub||!seeded.fit)fail('Billy plan seed',JSON.stringify(seeded));else pass('Billy receives real Grub and Fit plans',JSON.stringify(seeded));
-  await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded',timeout:30000});
+  async function account(path,data){const response=await context.request.fetch(`${API}${path}`,{method:data===undefined?'GET':'POST',headers:todayHeaders,...(data===undefined?{}:{data})});const result=await response.json().catch(()=>null);assert(response.ok(),`${path}: HTTP ${response.status()}`);assert(result,`${path}: missing JSON response`);return result}
+  // The connected master takes an explicit published meal from Grub. It does
+  // not show the retired one-click acceptance of a generated legacy meal.
+  const workspace=await account('/v1/grub/workspace'),recipes=await account('/v1/grub/search',{mode:'discover',query:'chicken'}),chosen=recipes.top?.[0];
+  assert.equal(typeof chosen?.id,'string','Published recipe ID missing');assert.equal(typeof chosen?.name,'string','Published recipe name missing');assert(chosen.name.length>0);
+  await account('/v1/grub/workspace',{action:'choose-today',recipeId:chosen.id,revision:workspace.revision,operationId:randomUUID()});
+  const chosenWorkspace=await account('/v1/grub/workspace'),dailyBefore=(await account('/v1/shift/daily-plan')).daily;
+  assert.equal(dailyBefore?.connected?.meal?.recipeId,chosen.id,'Today must use the explicit Grub choice');
+  assert(dailyBefore.daily_output?.workout?.minutes>10,'Seeded Fit plan must provide a real longer session before adjustment');
+  pass('Explicit published Grub choice feeds the connected day',chosen.name);
+  await memberReady(page,{site:SITE});
+  await page.waitForFunction(()=>document.querySelector('#panel-today')?.classList.contains('active'),null,{timeout:10000});
   await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
   await page.waitForSelector('.mt-now-action',{state:'visible',timeout:10000});
   const initial=await body(page),initialGeometry=await geometry(page);await screenshot(page,'01-billy-today');
-  for(const marker of ['MY TIMBER · TODAY','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
+  for(const marker of ['MY TIMBER','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
+  if(!(await page.locator('.mtm-hero').isVisible()))fail('approved My Timber home','Current illustrated home header is missing');else pass('Approved My Timber home is preserved');
   if(initialGeometry.overflow!==0)fail('initial horizontal overflow',JSON.stringify(initialGeometry));else pass('390px Today has zero horizontal overflow');
   if(initialGeometry.decisionReady!=='true')fail('recommendation readiness','missing');else pass('Recommended next action is visibly ready');
+  assert.equal(clean(await page.locator('.mt-meal h3').innerText()),clean(chosen.name),'Rendered Today meal differs from the saved Grub choice');
+  assert.match(await page.locator('.mt-meal').innerText(),/Kept for today/);
   await page.locator('[data-life-changed]').click();
   const late=page.locator('[data-adjust="working_late"]');await late.waitFor({state:'visible',timeout:10000});await late.click();
-  await page.waitForSelector('.mt-rebuilt',{state:'visible',timeout:20000});
+  await page.waitForSelector('.mtm-announcement[role="status"]',{state:'visible',timeout:20000});
   await page.waitForFunction(()=>/10 minutes/i.test(document.querySelector('.mt-workout')?.textContent||''),null,{timeout:10000});
   const rebuilt=await body(page);await screenshot(page,'02-working-late-rebuilt');
   if(!/10 minutes/i.test(rebuilt))fail('working late movement','not compressed to ten minutes');else pass('Working late compresses movement to 10 minutes');
-  if(!/Day rebuilt|working late|late/i.test(rebuilt))fail('working late explanation','recalculation not explained');else pass('Working late visibly explains the recalculation');
-  const mealTitle=clean(await page.locator('.mt-meal h3').innerText());
-  const accept=page.locator('[data-meal="accept"]');if(!(await accept.count()))fail('meal choice CTA','I’ll have that missing');else{await accept.click();await page.waitForFunction(()=>/Kept for today/i.test(document.querySelector('.mt-meal')?.textContent||''),null,{timeout:15000});await screenshot(page,'03-meal-kept-next-action');const advanced=await body(page);if(!/Start the session/i.test(advanced))fail('meal-to-movement progression','next action did not advance');else pass('Accepting dinner advances directly to movement',mealTitle)}
+  const announcement=clean(await page.locator('.mtm-announcement').innerText());
+  assert.match(announcement,/Your change is saved/);assert.match(announcement,/Review movement/);assert.match(announcement,/choose any different meal in Grub/);
+  pass('Working late explains movement adjustment and preserves member meal control',announcement);
+  const dailyAfter=(await account('/v1/shift/daily-plan')).daily;
+  assert.equal(dailyAfter.daily_output?.adjustment,'working_late');assert.equal(dailyAfter.daily_output?.workout?.minutes,10);
+  assert.equal(dailyAfter.connected?.meal?.recipeId,chosen.id,'Working late replaced the explicitly chosen meal');
+  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Working late changed the saved Grub workspace');
+  assert.equal(clean(await page.locator('.mt-meal h3').innerText()),clean(chosen.name));assert.match(await page.locator('.mt-meal').innerText(),/Kept for today/);
+  await screenshot(page,'03-meal-preserved-next-action');pass('Saved meal stays unchanged while the movement recommendation becomes ten minutes',chosen.name);
   const workoutLink=page.getByRole('link',{name:/Start the session/i}).first();if(await workoutLink.count()){await workoutLink.click();await page.waitForFunction(()=>location.pathname==='/member/fit'||document.querySelector('#panel-fit')?.classList.contains('active'),null,{timeout:15000});await page.waitForSelector('#panel-fit',{state:'visible',timeout:15000});await screenshot(page,'04-fit-opened');pass('Movement CTA opens the real Fit session immediately')}else fail('movement CTA','Start the session missing');
   const finalGeometry=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,url:location.href}));if(finalGeometry.overflow!==0)fail('final horizontal overflow',JSON.stringify(finalGeometry));else pass('Journey finishes with zero horizontal overflow');
 }catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800))}finally{
@@ -64,4 +86,4 @@ try{
 }
 console.log(JSON.stringify(report,null,2));
 if(report.failures.length)throw new Error(`My Timber final production candidate failed ${report.failures.length} check(s)`);
-console.log('PASS My Timber final production candidate: real authenticated Billy plans, immediate Today recommendation, working-late Grub/Fit recalculation, meal-to-movement progression, real Fit handoff, 390x844 zero-overflow evidence and a genuine phone-format walkthrough video.');
+console.log('PASS My Timber final production candidate: real authenticated Billy plans, explicit published Grub choice, connected Today, working-late movement adjustment with the chosen meal preserved, real Fit handoff, 390x844 zero-overflow evidence and a genuine phone-format walkthrough video.');

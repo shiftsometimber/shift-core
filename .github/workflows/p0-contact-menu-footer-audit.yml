@@ -1,38 +1,23 @@
 name: P0 Contact Menu Footer Audit
+# The completed cleanup is source-controlled. These checks must never rewrite it.
 on:
   push:
     branches: [main]
 permissions:
-  contents: write
+  contents: read
 jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
-          fetch-depth: 0
-      - name: Execute Act2B cleanup
-        shell: bash
-        run: |
-          msg=$(git log -1 --pretty=%s)
-          if [ "$msg" != "Act2B consolidate chrome and direct enquiries" ]; then
-            python3 act2b_cleanup.py
-            node --check worker-entry-v6.js
-            node --check continuity-interest-v1.js
-            git config user.name 'shift-act2b-bot'
-            git config user.email 'it@shiftsometimber.co.uk'
-            git add worker-entry-v6.js frontend/member public-site 2>/dev/null || true
-            if ! git diff --cached --quiet; then
-              git commit -m 'Act2B consolidate chrome and direct enquiries'
-              git push origin HEAD:main
-            fi
-          fi
+          persist-credentials: false
       - name: Prove Act2B source locks
         shell: bash
         run: |
-          git fetch origin main
-          git checkout -f origin/main
+          set -euo pipefail
+          node --check worker-entry-v6.js
+          node --check continuity-interest-v1.js
           ! git grep -n -E '38[[:space:]]+Rugby[[:space:]]+Drive' -- 'public-site/*.html' 'frontend/member/*.html' 'frontend/member/*.js' 2>/dev/null
           ! git grep -n -E 'mailto:(hello|matt|support|orders|clinical|complaints|privacy|partners|press|finance|accounts|feedback)@shiftsometimber\.co\.uk' -- 'public-site/*.html' 'frontend/member/*.html' 'frontend/member/*.js' 2>/dev/null
           ! git grep -n -E 'SHIFT_HEALTH_(CHROME_PATCH|NAV_ENFORCER|NAV_GUARD|NAV_ROOT_GUARD)' -- worker-entry-v6.js
@@ -60,19 +45,15 @@ jobs:
             grep -Eq 'site-footer|class="footer site-footer"' /tmp/page.html || { echo "$path missing static footer"; exit 1; }
             echo "PASS static chrome $path"
           done
-      - name: Prove customer contact route is server-side
+      - name: Verify contact rejects incomplete requests without sending a message
         shell: bash
         run: |
           set -euo pipefail
-          marker="ACT2B-LIVE-$(date +%s)"
-          printf '%s' "$marker" > /tmp/contact-marker
-          body=$(printf '{"name":"Act2B Website Test","email":"hello@shiftsometimber.co.uk","type":"general","message":"%s","consent":true}' "$marker")
-          code=$(curl -sS -o /tmp/contact-response -w '%{http_code}' -X POST -H 'content-type: application/json' --data "$body" 'https://shiftsometimber.co.uk/v1/contact')
+          code=$(curl --max-time 30 -sS -o /tmp/contact-response -w '%{http_code}' -X POST -H 'content-type: application/json' --data '{}' 'https://shiftsometimber.co.uk/v1/contact')
           cat /tmp/contact-response
-          [ "$code" = "201" ]
-          grep -q '"status":"sent"' /tmp/contact-response
-          echo "CONTACT_MARKER=$marker"
-          echo 'PASS website contact route accepted direct submission.'
+          [ "$code" = "400" ]
+          node --input-type=module -e 'import fs from "node:fs";import assert from "node:assert/strict";const body=JSON.parse(fs.readFileSync("/tmp/contact-response","utf8"));assert.equal(body.ok,false);assert.equal(body.error,"valid_email_required");'
+          echo 'PASS contact validation rejects empty input. Delivery was not tested.'
       - name: Prove Rugby Drive is absent across sitemap estate
         shell: bash
         run: |
@@ -94,3 +75,5 @@ jobs:
             exit 1
           fi
           echo 'PASS Rugby Drive absent across sitemap estate.'
+      - name: Verify working tree is unchanged
+        run: git diff --exit-code
