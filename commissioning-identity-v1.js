@@ -63,6 +63,7 @@ async function fetchJwks({force=false}={}){
 
 export const CATALOGUE_PUBLICATION_AUDIENCE='shift-catalogue-publication';
 const CATALOGUE_WORKFLOW=`${REPOSITORY}/.github/workflows/cloudflare-production-promote.yml@refs/heads/main`;
+const PUBLICATION_SUBJECT=`repo:shiftsometimber@315011648/shift-core@1328867509:ref:refs/heads/main`;
 export const verifyGithubOidc=token=>verifyOidc(token,false);
 export const verifyCataloguePublicationOidc=token=>verifyOidc(token,CATALOGUE_PUBLICATION_AUDIENCE);
 export const verifyNewsroomPublicationOidc=token=>verifyOidc(token,'shift-newsroom-publication');
@@ -75,7 +76,7 @@ async function verifyOidc(token,publicationAudience){
     if(claims.iss!==ISSUER||claims.repository!==REPOSITORY||String(claims.actor_id)!==ACTOR_ID)return{ok:false};
     if(Number(claims.exp||0)<=now||Number(claims.nbf||0)>now+60||Number(claims.iat||0)>now+60)return{ok:false};
     if(publicationAudience){
-      if(claims.aud!==publicationAudience || claims.workflow_ref!==CATALOGUE_WORKFLOW || claims.ref!=='refs/heads/main' || claims.sub!==`repo:${REPOSITORY}:ref:refs/heads/main` || claims.event_name!=='push' || String(claims.repository_id)!=='1328867509' || String(claims.repository_owner_id)!==ACTOR_ID || !Number.isFinite(claims.exp) || !Number.isFinite(claims.iat) || !Number.isFinite(claims.nbf) || claims.iat>claims.exp || claims.nbf>claims.exp || claims.iat<now-600 || claims.exp>now+600 || typeof claims.sha!=='string' || !/^[a-f0-9]{40}$/.test(claims.sha))return{ok:false};
+      if(claims.aud!==publicationAudience || claims.workflow_ref!==CATALOGUE_WORKFLOW || claims.ref!=='refs/heads/main' || claims.sub!==PUBLICATION_SUBJECT || claims.event_name!=='push' || String(claims.repository_id)!=='1328867509' || String(claims.repository_owner_id)!==ACTOR_ID || !Number.isFinite(claims.exp) || !Number.isFinite(claims.iat) || !Number.isFinite(claims.nbf) || claims.iat>claims.exp || claims.nbf>claims.exp || claims.iat<now-600 || claims.exp>now+600 || typeof claims.sha!=='string' || !/^[a-f0-9]{40}$/.test(claims.sha))return{ok:false};
     }else if(!aud.includes(AUDIENCE)||!ALLOWED_WORKFLOWS.some(x=>String(claims.workflow_ref||'').includes(x)))return{ok:false};
     let keys=await fetchJwks();let jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA');
     if(!jwk){keys=await fetchJwks({force:true});jwk=keys.find(k=>k.kid===header.kid&&k.kty==='RSA')}

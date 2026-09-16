@@ -18,7 +18,7 @@ after(()=>{globalThis.fetch=originalFetch});
 
 function claims(audience='shift-catalogue-publication'){
   const now=Math.floor(Date.now()/1000);
-  return{iss:'https://token.actions.githubusercontent.com',aud:audience,repository:'shiftsometimber/shift-core',repository_id:'1328867509',repository_owner_id:'315011648',actor_id:'315011648',workflow_ref:'shiftsometimber/shift-core/.github/workflows/cloudflare-production-promote.yml@refs/heads/main',ref:'refs/heads/main',sub:'repo:shiftsometimber/shift-core:ref:refs/heads/main',event_name:'push',sha:'a'.repeat(40),iat:now-5,nbf:now-5,exp:now+300};
+  return{iss:'https://token.actions.githubusercontent.com',aud:audience,repository:'shiftsometimber/shift-core',repository_id:'1328867509',repository_owner_id:'315011648',actor_id:'315011648',workflow_ref:'shiftsometimber/shift-core/.github/workflows/cloudflare-production-promote.yml@refs/heads/main',ref:'refs/heads/main',sub:'repo:shiftsometimber@315011648/shift-core@1328867509:ref:refs/heads/main',event_name:'push',sha:'a'.repeat(40),iat:now-5,nbf:now-5,exp:now+300};
 }
 async function token(payload=claims(),{key=privateKey,header={}}={}){
   const signed=encode({alg:'RS256',kid:jwk.kid,typ:'JWT',...header})+'.'+encode(payload);
