@@ -1,4 +1,5 @@
 import {fitRuntime as baseFitRuntime} from './fit-runtime.mjs';
+import {fitTodayHandoffSource} from './fit-today-handoff.mjs';
 
 function purpose(item = {}) {
   const detail = item.purpose || {};
@@ -125,5 +126,17 @@ fitRuntime = fitRuntime.replace(renderScrollHook, '    applyJourney();\n    outp
 const swapEffortHook = '      card.replaceWith(holder.firstElementChild);';
 if (!fitRuntime.includes(swapEffortHook)) throw new Error('Fit could not locate the exercise swap.');
 fitRuntime = fitRuntime.replace(swapEffortHook, '      const effort = card.closest(".sf-session")?.querySelector(\'[data-sf-difficulty][aria-pressed="true"]\');\n      card.replaceWith(holder.firstElementChild);\n      if (effort) adjustSession(effort);');
+
+const handoffHooks = [
+  ['  function init() {', fitTodayHandoffSource + '\n  function init() {'],
+  ['    button.onclick = build;', '    button.onclick = build;\n    initFitTodayHandoff();'],
+  ['      fitJourney = response.fitJourney;', '      fitJourney = response.fitJourney;\n      renderFitTodayHandoff(response.plan);'],
+  ['      const result = await window.SST_API.generateFit(data);', '      const result = await window.SST_API.generateFit(data);\n      finishFitTodayHandoff(result);'],
+  ['    output.querySelector(".sf-difficulty")?.scrollIntoView({behavior:"auto",block:"start"});', '    (document.getElementById("fitTodayHandoff") || output.querySelector(".sf-difficulty"))?.scrollIntoView({behavior:"auto",block:"start"});'],
+];
+for (const [hook, replacement] of handoffHooks) {
+  if (!fitRuntime.includes(hook)) throw new Error('Fit Today handoff could not find its reviewed runtime hook.');
+  fitRuntime = fitRuntime.replace(hook, replacement);
+}
 
 export {fitRuntime};

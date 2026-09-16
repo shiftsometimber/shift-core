@@ -42,7 +42,7 @@ jobs:
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          const config=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8').replace(/^\s*\/\/.*$/gm,''));
+          const config=require('wrangler').experimental_readRawConfig({config:'wrangler.jsonc'}).rawConfig;
           const db=config.d1_databases?.find(item=>item.binding==='DB');
           if(config.name!=='shift-core'||db?.database_id!==process.env.PRODUCTION_D1_ID)throw new Error('production monitor binding mismatch');
           config.vars={...config.vars,SHIFT_AI_R4_PILOT_ENABLED:'false',SHIFT_TODAY_MODEL_ENABLED:'false'};

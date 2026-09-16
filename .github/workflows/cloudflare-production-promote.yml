@@ -26,6 +26,9 @@ on:
       - "frontend/member/**"
       - "member-experience/**"
       - "fit-reminders-v1.js"
+      - "scheduled-intelligence.js"
+      - "tests/scheduled-intelligence-delivery.test.mjs"
+      - "tests/fit-reminders-delivery.test.mjs"
       - "daily-reminder-copy-v1.js"
       - "fit-reminders-source-gate.mjs"
       - "frontend/member/member-fit.html"
@@ -101,9 +104,6 @@ on:
       - "reconcile-final-v1-gate2-board.mjs"
       - "reconcile-final-v1-recovery-pointers.mjs"
       - ".github/workflows/final-v1-production-publication.yml"
-  pull_request:
-    branches: [main]
-    types: [closed]
   workflow_dispatch:
     inputs:
       confirm:
@@ -120,7 +120,7 @@ concurrency:
 
 jobs:
   promote:
-    if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.head.repo.full_name == github.repository) || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
+    if: ${{ github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -144,6 +144,8 @@ jobs:
           git diff --exit-code -- member-experience/life-back-assets.mjs
           node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
           node gate4-one-shift-brain-gate.mjs
+      - name: Verify reminder delivery and proactive acknowledgement before promotion
+        run: node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
         run: node daily-shift-frontdoor-gate.mjs
       - name: Prove My Timber has reached the 75 percent all-green bar

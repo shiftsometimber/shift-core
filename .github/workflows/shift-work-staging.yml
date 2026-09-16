@@ -5,6 +5,10 @@ on:
     paths:
       - 'work/staging/**'
       - 'worker.js'
+      - 'scheduled-intelligence.js'
+      - 'fit-reminders-v1.js'
+      - 'tests/*delivery.test.mjs'
+      - 'tests/pilot-monitor*.test.mjs'
       - 'tests/schema-readiness.test.mjs'
       - 'ask-timber-v1.js'
       - 'shift-brain-v1.js'
@@ -47,7 +51,7 @@ jobs:
       - name: Test connected member journey
         run: |
           node member-experience/prepare-life-back.mjs
-          node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs tests/adaptive-treatment-integrity.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/schema-readiness.test.mjs
+          node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs tests/adaptive-treatment-integrity.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/schema-readiness.test.mjs tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
           node gate4-one-shift-brain-gate.mjs
           node ask-timber-multi-intent-gate.mjs
       - name: Verify pinned assets and prepare fictional fixtures

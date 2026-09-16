@@ -1,9 +1,9 @@
-import {buildProactiveInsights,nextDeliverableInsight,markInsightDelivered} from './proactive-insights.js';
+import {buildProactiveInsights,nextDeliverableInsight} from './proactive-insights.js';
 import {runAcademyRegression} from './academy-regression-runner-v2.js';
 
 export async function runScheduledIntelligence(env){
   await ensureSchema(env.DB);
-  const out={membersScanned:0,queued:0,academy:null};
+  const out={membersScanned:0,queued:0,failed:0,academy:null};
   try{
     const {results:users=[]}=await env.DB.prepare(`SELECT id FROM users ORDER BY id DESC LIMIT 500`).all();
     for(const u of users){
@@ -13,17 +13,27 @@ export async function runScheduledIntelligence(env){
         await buildProactiveInsights(env,uid);
         const insight=await nextDeliverableInsight(env.DB,uid);
         if(!insight) continue;
-        await env.DB.prepare(`INSERT INTO shift_ai_proactive_outbox(user_id,insight_id,title,body,channel,status) VALUES(?,?,?,?,?,'queued')`).bind(uid,insight.id,insight.title,insight.body,'in_app').run();
-        await markInsightDelivered(env.DB,uid,insight.id);
-        out.queued++;
-      }catch(e){console.warn('scheduled_member_failed',uid,e?.message)}
+        // Preparing an in-app insight is not delivery. Leave the insight open
+        // for the existing authenticated feed or acknowledgement endpoint to
+        // record delivery and start cooldown. This is not proof of display,
+        // email or push delivery; no outbox dispatcher is implied.
+        // One conditional write prevents overlapping scans from enqueueing the
+        // same insight twice, and rechecks permission/state after the read.
+        const queued=await env.DB.prepare(`INSERT INTO shift_ai_proactive_outbox(user_id,insight_id,title,body,channel,status)
+          SELECT ?,?,?,?,'in_app','queued'
+          WHERE EXISTS(SELECT 1 FROM shift_ai_proactive_insights WHERE id=? AND user_id=? AND status='open')
+            AND COALESCE((SELECT proactive_insights FROM shift_ai_privacy_settings WHERE user_id=?),1)<>0
+            AND NOT EXISTS(SELECT 1 FROM shift_ai_proactive_outbox WHERE user_id=? AND insight_id=? AND channel='in_app')`)
+          .bind(uid,insight.id,insight.title,insight.body,insight.id,uid,uid,uid,insight.id).run();
+        out.queued+=Number(queued?.meta?.changes||0);
+      }catch(e){out.failed++;console.warn('scheduled_member_failed',uid,e?.message)}
     }
-  }catch(e){console.warn('scheduled_users_failed',e?.message)}
+  }catch(e){out.failed++;console.warn('scheduled_users_failed',e?.message)}
   try{
     const academy=await runAcademyRegression(env,{limit:8});
     out.academy=academy?.summary||academy;
     await env.DB.prepare(`INSERT INTO shift_ai_academy_runs(pass_rate,passed,total,detail_json) VALUES(?,?,?,?)`).bind(Number(academy?.summary?.passRate||0),Number(academy?.summary?.passed||0),Number(academy?.summary?.total||0),JSON.stringify(academy).slice(0,50000)).run();
-  }catch(e){console.warn('scheduled_academy_failed',e?.message)}
+  }catch(e){out.failed++;console.warn('scheduled_academy_failed',e?.message)}
   return out;
 }
 
