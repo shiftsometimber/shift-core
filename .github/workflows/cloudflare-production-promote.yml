@@ -9,6 +9,8 @@ on:
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
       - "medicines-watch/**"
+      - "knowledge-editorial-v1.js"
+      - "tests/knowledge-editorial-d1.test.mjs"
       - "worker.js"
       - "ask-timber-v1.js"
       - "ask-timber-multi-intent-gate.mjs"
@@ -170,6 +172,11 @@ jobs:
         run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
       - name: Verify Medicines Watch evidence, monitor and public isolation
         run: node --test medicines-watch/*.test.mjs
+      - name: Verify HQ article schema and retained editorial approvals
+        run: |
+          node --test tests/knowledge-editorial-d1.test.mjs
+          node g3-006-hq-editorial-cors-gate.mjs
+          node g3-006-knowledge-editorial-staging.mjs
       - name: Apply pharmacy-readiness database additions
         shell: bash
         run: |

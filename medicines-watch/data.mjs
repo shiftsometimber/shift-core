@@ -5,6 +5,12 @@ export const REVIEWED_AT = '2026-09-15T21:28:30Z';
 // Exact bodies fetched after editorial verification, using fingerprintSource.
 // Blocked, empty or timed-out responses deliberately have no approved baseline.
 const reviewedFingerprints = {
+  'mounjaro-smpc': 'c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55',
+  'wegovy-injection-smpc': '21124f70931fd9c9d69938b8a1a9c0e94b6680a6cb42e4dc49ba218224da7855',
+  'wegovy-tablet-smpc': '142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e',
+  'orlistat-120-smpc': '029e3b4179df1b22b4b3594bd54b5be4ca95c43983411a18433c97d2cf77e114',
+  'orlistat-60-smpc': '423e9d82afdb18cda4f8bc7b727df90424606f2c648c465098586283779abddd',
+  'foundayo-smpc': 'e528bfc81887cc52f40a8086cc26488db67e72e349bd63eebc3d24ff27249101',
   'mounjaro-mhra': 'a12f34e632571947426d59bf458053d8b59c6dc93507ca644529ecbb600ca3bb',
   'wegovy-injection-access': '8eb2cb71a8b584a471647a770f6c37cea413bf80fb4dce760ca1064f53d677ca',
   'orlistat-nhs': 'a005b76ef816a6b6d4505122c902445d5396d1e74dc6f2b4c58c51f057ce9f37',
@@ -18,9 +24,20 @@ const reviewedFingerprints = {
   'retatrutide-mhra': '34258dd5def20deb8e4e24894d51d5407bc2dd2073e0911d43f0839c4017d40e',
 };
 
+// Source-specific factual review; the rest of the catalogue keeps its prior date.
+// Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
+const sourceReviewedDates = {
+  'mounjaro-smpc': '2026-09-16T17:44:34Z',
+  'wegovy-injection-smpc': '2026-09-16T17:44:34Z',
+  'wegovy-tablet-smpc': '2026-09-16T17:44:34Z',
+  'orlistat-120-smpc': '2026-09-16T17:44:34Z',
+  'orlistat-60-smpc': '2026-09-16T17:44:34Z',
+  'foundayo-smpc': '2026-09-16T17:44:34Z',
+};
+
 const source = (id, title, url, sourcePublishedAt, requiredTerms, extra = {}) => ({
   id, title, url, checkUrl: url, format: 'html', sourcePublishedAt,
-  reviewedAt: REVIEWED_AT, requiredTerms,
+  reviewedAt: sourceReviewedDates[id] || REVIEWED_AT, requiredTerms,
   ...(reviewedFingerprints[id] ? { reviewedFingerprint: reviewedFingerprints[id] } : {}), ...extra,
 });
 const govuk = (id, title, path, publishedAt, requiredTerms) => source(
