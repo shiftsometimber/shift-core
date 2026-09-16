@@ -51,7 +51,7 @@ export async function memberExperienceEntry(request, env, response) {
   // scoped layer after those too, so their sidebars cannot reappear on mobile.
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
-  if(name === 'dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
+  if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=my-timber-master-20260916').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
   if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');
   if(['dashboard','fit','check-in','settings'].includes(name)){

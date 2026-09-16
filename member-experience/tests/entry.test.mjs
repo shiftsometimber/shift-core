@@ -20,10 +20,11 @@ test('Journey aliases lead to the real dashboard record with a reversible privat
  }
  assert.equal(memberExperienceRoutes(new Request('https://shiftsometimber.co.uk/member/journey',{method:'POST'}),enabled),null);
 });
-test('real dashboard keeps all original scripts, IDs, forms and auth logic',async()=>{
+test('real dashboard keeps original scripts, IDs, forms and auth logic with a versioned Today asset',async()=>{
  const r=await memberExperienceEntry(request('/member/dashboard'),enabled,page(dashboard)),html=await r.text();
  const scripts=s=>[...s.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/g)].map(x=>x[0]);
- assert.deepEqual(scripts(html).filter(x=>!x.includes("/assets/member-experience/")),scripts(dashboard));
+ const versionedDashboard=dashboard.replace('/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-timber-problem-v1.js?v=my-timber-master-20260916');
+ assert.deepEqual(scripts(html).filter(x=>!x.includes("/assets/member-experience/")),scripts(versionedDashboard));
  const ids=s=>[...s.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.deepEqual(ids(html),ids(dashboard));
  assert.match(html,/data-member-experience="v1"/);assert.match(html,/name="firstName"/);assert.doesNotMatch(html,/name="firstName"[^>]*value="Matt"/);
  assert.match(html,/id="previewMember"[^>]*hidden/);assert.match(html,/href="\/member\/dashboard#journey"/);
