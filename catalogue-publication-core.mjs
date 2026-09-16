@@ -96,3 +96,20 @@ export async function publishFixedCatalogue(DB,release) {
   const completedAt=new Date().toISOString();
   return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted,already_present:additions.length-inserted,protected_originals:release.protected_originals.length,original_rows_unchanged:true,transactional:true,completed_at:completedAt,published_at:inserted?completedAt:null};
 }
+
+export async function verifyFixedCataloguePublication(DB,release) {
+  const additions=await validateCatalogueRelease(release);
+  if(typeof DB?.batch!=='function') fail('catalogue_atomic_batch_required');
+  const db=typeof DB.withSession==='function'?DB.withSession('first-primary'):DB;
+  const statements=[db.prepare("SELECT COUNT(*) AS n FROM structured_content WHERE content_type IN ('recipe','exercise')")];
+  for(const part of chunks(additions)) {
+    const equal=CATALOGUE_COLUMNS.map(key=>`s.${key} IS json_extract(e.value,'$.${key}')`).join(' AND ');
+    statements.push(db.prepare(`SELECT COUNT(*) AS n FROM json_each(?) e JOIN structured_content s ON s.id=json_extract(e.value,'$.id') WHERE ${equal}`).bind(JSON.stringify(part)));
+  }
+  const results=await db.batch(statements);
+  if(!Array.isArray(results) || results.length!==statements.length || results.some(result=>result.success===false)) fail('catalogue_verification_failed');
+  const value=result=>Number(result?.results?.[0]?.n??result?.rows?.[0]?.n??NaN);
+  const total=value(results[0]),exact=results.slice(1).reduce((sum,result)=>sum+value(result),0);
+  if(total!==release.protected_originals.length+additions.length || exact!==additions.length) fail('catalogue_publication_incomplete');
+  return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted:0,already_present:additions.length,protected_originals:release.protected_originals.length,original_rows_unchanged:true,transactional:true,completed_at:new Date().toISOString(),published_at:null};
+}
