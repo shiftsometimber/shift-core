@@ -1,0 +1,388 @@
+{
+  "proof": "NEWSROOM_MHRA_SOURCE_CORRECTION_DRAFTS_V1",
+  "status": "DRAFT",
+  "event_ids": [
+    276,
+    284,
+    286,
+    288
+  ],
+  "prepared_at": "2026-09-16T18:24:35.444126+00:00",
+  "publication_authorized": false,
+  "production_mutated": false,
+  "hq_mutated": false,
+  "qualified_reviewer": null,
+  "review_requirement": "AI-authored replacement drafts for qualified source-correction and editorial review. No retained approval or source baseline is advanced by this file.",
+  "retrieval_summary": {
+    "primary_pages_retrieved": 5,
+    "raw_http_200": 5,
+    "unretrievable_pages": []
+  },
+  "drafting_notes": [
+    "Original MHRA dates are preserved and separated from drafting/check dates.",
+    "No individual dosing, treatment selection or medication-change instructions are provided.",
+    "Known facts refer to source IDs in the source registry. All article wording is paraphrased; no direct quotations are used.",
+    "Searches checked GOV.UK for later domperidone, mesalazine and isotretinoin notices; absence of a returned result is not proof that no later update exists.",
+    "Raw-response fingerprints describe the independently retrieved complete HTML, not the existing Radar source snapshot or an approved source fingerprint."
+  ],
+  "sources": [
+    {
+      "source_id": "276",
+      "publisher": "Medicines and Healthcare products Regulatory Agency (MHRA)",
+      "url": "https://www.gov.uk/drug-safety-update/domperidone-new-contraindication-in-patients-with-phaeochromocytoma-due-to-the-risk-of-severe-hypertension",
+      "retrieved_at": "2026-09-16T18:24:35.444126+00:00",
+      "retrieval_method": "Primary page read with web; independent complete raw HTML retrieval for fingerprint.",
+      "published_date": "2026-07-21",
+      "last_updated_date": null,
+      "date_note": "Publication date displayed; no separate last-updated date displayed.",
+      "retrieval": {
+        "id": 276,
+        "url": "https://www.gov.uk/drug-safety-update/domperidone-new-contraindication-in-patients-with-phaeochromocytoma-due-to-the-risk-of-severe-hypertension",
+        "final_url": "https://www.gov.uk/drug-safety-update/domperidone-new-contraindication-in-patients-with-phaeochromocytoma-due-to-the-risk-of-severe-hypertension",
+        "status": 200,
+        "bytes": 91886,
+        "raw_html_sha256": "d71fe6b6fae378f44fde712e46b7e154ad9ae0929aa95a70d2f2d7f109998b63"
+      },
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+      "source_id": "284",
+      "publisher": "Medicines and Healthcare products Regulatory Agency (MHRA)",
+      "url": "https://www.gov.uk/drug-safety-update/isotretinoin-changes-to-prescribing-guidance-and-additional-risk-minimisation-measures",
+      "retrieved_at": "2026-09-16T18:24:35.444126+00:00",
+      "retrieval_method": "Primary page read with web; independent complete raw HTML retrieval for fingerprint.",
+      "published_date": "2026-01-22",
+      "last_updated_date": null,
+      "date_note": "Publication date displayed; no separate last-updated date displayed.",
+      "retrieval": {
+        "id": 284,
+        "url": "https://www.gov.uk/drug-safety-update/isotretinoin-changes-to-prescribing-guidance-and-additional-risk-minimisation-measures",
+        "final_url": "https://www.gov.uk/drug-safety-update/isotretinoin-changes-to-prescribing-guidance-and-additional-risk-minimisation-measures",
+        "status": 200,
+        "bytes": 114071,
+        "raw_html_sha256": "66e62dc7ae8dbb08ca3d027da48f690c9ca6d44e3a1f74cfb0baabac24e873d2"
+      },
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+      "source_id": "286",
+      "publisher": "Medicines and Healthcare products Regulatory Agency (MHRA)",
+      "url": "https://www.gov.uk/drug-safety-update/mesalazine-and-idiopathic-intracranial-hypertension",
+      "retrieved_at": "2026-09-16T18:24:35.444126+00:00",
+      "retrieval_method": "Primary page read with web; independent complete raw HTML retrieval for fingerprint.",
+      "published_date": "2025-12-04",
+      "last_updated_date": null,
+      "date_note": "Publication date displayed; no separate last-updated date displayed.",
+      "retrieval": {
+        "id": 286,
+        "url": "https://www.gov.uk/drug-safety-update/mesalazine-and-idiopathic-intracranial-hypertension",
+        "final_url": "https://www.gov.uk/drug-safety-update/mesalazine-and-idiopathic-intracranial-hypertension",
+        "status": 200,
+        "bytes": 97874,
+        "raw_html_sha256": "814b960501914614786231d6452970edea26b866c65cf9c1e8260f36a79b5a20"
+      },
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+      "source_id": "288",
+      "publisher": "Medicines and Healthcare products Regulatory Agency (MHRA)",
+      "url": "https://www.gov.uk/drug-safety-update/isotretinoin-updates-to-prescribing-guidance-and-survey-of-services",
+      "retrieved_at": "2026-09-16T18:24:35.444126+00:00",
+      "retrieval_method": "Primary page read with web; independent complete raw HTML retrieval for fingerprint.",
+      "published_date": "2025-10-27",
+      "last_updated_date": null,
+      "date_note": "Publication date displayed; no separate last-updated date displayed.",
+      "retrieval": {
+        "id": 288,
+        "url": "https://www.gov.uk/drug-safety-update/isotretinoin-updates-to-prescribing-guidance-and-survey-of-services",
+        "final_url": "https://www.gov.uk/drug-safety-update/isotretinoin-updates-to-prescribing-guidance-and-survey-of-services",
+        "status": 200,
+        "bytes": 92073,
+        "raw_html_sha256": "1250fbfd67c94e126e0858e84901af89e745ed55dc0055f1e513b656069cda42"
+      },
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+      "source_id": "isotretinoin-addenda",
+      "publisher": "Commission on Human Medicines and MHRA",
+      "url": "https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group",
+      "retrieved_at": "2026-09-16T18:24:35.444126+00:00",
+      "retrieval_method": "Primary page read with web; independent complete raw HTML retrieval for fingerprint.",
+      "published_date": "2023-10-31",
+      "last_updated_date": "2026-01-22",
+      "date_note": "Report published 31 October 2023; latest displayed update/addendum 22 January 2026.",
+      "retrieval": {
+        "id": "isotretinoin-addenda",
+        "url": "https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group",
+        "final_url": "https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group",
+        "status": 200,
+        "bytes": 89256,
+        "raw_html_sha256": "cb9beb9fd94ea4c759ff40d420df9837e0f66ec79d44c2d15a745ca1bc887de5"
+      },
+      "licence": "Open Government Licence v3.0 except where otherwise stated",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    }
+  ],
+  "articles": [
+    {
+      "event_id": 276,
+      "historical_headline": "Domperidone: new contraindication in patients with phaeochromocytoma due to the risk of severe hypertension",
+      "headline": "Domperidone warning strengthened for rare adrenal tumour",
+      "standfirst": "The MHRA has added a restriction for confirmed or suspected phaeochromocytoma after reports of severe hypertension.",
+      "source_published_date": "2026-07-21",
+      "article_markdown": "The UK medicines regulator has strengthened domperidone product information following a safety review involving people with phaeochromocytoma, a rare adrenal-gland tumour. Its [21 July 2026 notice](https://www.gov.uk/drug-safety-update/domperidone-new-contraindication-in-patients-with-phaeochromocytoma-due-to-the-risk-of-severe-hypertension) says the medicine is contraindicated when the condition is confirmed or suspected because of the risk of severe rises in blood pressure.\n\nA European review considered four reports. The MHRA said it had received no UK Yellow Card reports of this particular combination of medicine, condition and reaction at the time of the notice. Those figures describe reported events; they do not establish an individual patient's likelihood of harm.\n\nThe UK pharmacovigilance advisory committee supported the restriction. The notice also highlights that a severe blood-pressure episode after domperidone may reveal a previously unrecognised tumour, making clinical assessment important.\n\nDomperidone is used for nausea and vomiting. The update reinforces existing limits on its use and identifies specific considerations for palliative care. It is a targeted safety change, rather than a withdrawal of every domperidone product. The regulator's notice contains the detailed professional and patient advice, including circumstances requiring urgent medical attention. Treatment decisions belong with the patient's clinical team.",
+      "known_facts": [
+        {
+          "fact": "Restriction covers confirmed or suspected phaeochromocytoma.",
+          "source_ids": [
+            "276"
+          ]
+        },
+        {
+          "fact": "European review: four reports; UK reports: none cited at publication.",
+          "source_ids": [
+            "276"
+          ]
+        },
+        {
+          "fact": "The notice concerns all domperidone product information.",
+          "source_ids": [
+            "276"
+          ]
+        }
+      ],
+      "limitations": [
+        "Report counts are not an incidence estimate or proof of causality in each individual report.",
+        "The patient/professional advice should be checked by a qualified reviewer; this brief does not supply a replacement medicine or dosing plan.",
+        "The source has an internal age/weight wording inconsistency in its reminder section; this draft deliberately does not restate dosing or eligibility thresholds."
+      ],
+      "later_update_check": "Primary notice and its page history read on 16 September 2026; GOV.UK search found no later domperidone/phaeochromocytoma MHRA notice. This records the search result, not a guarantee against future updates.",
+      "seo": {
+        "title": "Domperidone: MHRA adrenal tumour safety warning",
+        "description": "MHRA adds a domperidone restriction for confirmed or suspected phaeochromocytoma following reports of severe hypertension.",
+        "slug": "domperidone-phaeochromocytoma-mhra-warning-2026"
+      },
+      "source_ids": [
+        "276"
+      ],
+      "relationship_to_other_records": null,
+      "status": "DRAFT",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "drafted_at": "2026-09-16T18:24:35.444126+00:00",
+      "source_checked_at": "2026-09-16T18:24:35.444126+00:00",
+      "draft_as_of_date": "2026-09-16",
+      "source_correction_review_required": true,
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false,
+      "hq_mutated": false,
+      "blockers": [
+        "qualified_source_correction_review",
+        "editorial_approval"
+      ],
+      "article_word_count": 184,
+      "content_sha256": "399d0ac11b4d13c4e80fbebb3578d8372a15f122f2bef808367a146ee284e2fb"
+    },
+    {
+      "event_id": 284,
+      "historical_headline": "Isotretinoin – changes to prescribing guidance and additional risk minimisation measures",
+      "headline": "Isotretinoin: second-prescriber rule replaced with updated safeguards",
+      "standfirst": "January 2026 guidance changed prescribing for under-18s while retaining pregnancy prevention and side-effect monitoring.",
+      "source_published_date": "2026-01-22",
+      "article_markdown": "The MHRA changed isotretinoin prescribing requirements on 22 January 2026 following a review of safeguards introduced in 2023. The [regulator’s update](https://www.gov.uk/drug-safety-update/isotretinoin-changes-to-prescribing-guidance-and-additional-risk-minimisation-measures) removed the requirement for a second prescriber's agreement before treatment could begin for someone under 18, replacing it with other risk-minimisation measures.\n\nAn updated acknowledgement form asks patients and prescribers to confirm that treatment is appropriate, and records patients' understanding that they can seek another clinical opinion. The package also includes patient information and an audit approach led by the British Association of Dermatologists. The [published CHM addendum](https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group) records these changes.\n\nThe change does not remove the other safeguards. Pregnancy prevention remains central because isotretinoin can seriously harm an unborn baby. Assessment and monitoring for possible mental-health and sexual-function effects also continue. The lead prescriber still needs the relevant expertise and understanding of monitoring requirements.\n\nThe January notice describes audits planned for 2026; it does not establish whether a particular service has completed one. It follows the October 2025 service survey and guidance clarifications. The two notices therefore describe successive stages of the same review, rather than interchangeable announcements. This account concerns the regulatory framework, not whether isotretinoin is suitable for any individual.",
+      "known_facts": [
+        {
+          "fact": "Second-prescriber requirement for under-18s removed from 22 January 2026.",
+          "source_ids": [
+            "284",
+            "isotretinoin-addenda"
+          ]
+        },
+        {
+          "fact": "Other pregnancy-prevention and monitoring measures continue.",
+          "source_ids": [
+            "284"
+          ]
+        },
+        {
+          "fact": "Revised form, patient video and clinical audit form the replacement approach.",
+          "source_ids": [
+            "isotretinoin-addenda"
+          ]
+        }
+      ],
+      "limitations": [
+        "Do not claim that the medicine is risk-free, that monitoring stopped or that any individual is eligible.",
+        "The January source describes a planned audit; completion or local implementation was not established.",
+        "This is the January 2026 change, not a fresh September policy announcement."
+      ],
+      "later_update_check": "Read the January 2026 notice and the linked CHM report page, whose displayed latest update is 22 January 2026. GOV.UK search did not locate a later MHRA prescribing-change notice; this is a bounded check as of 16 September 2026.",
+      "seo": {
+        "title": "Isotretinoin prescribing: January 2026 MHRA changes",
+        "description": "The second-prescriber rule for under-18s was replaced by updated safeguards; pregnancy prevention and side-effect monitoring remain.",
+        "slug": "isotretinoin-prescribing-safeguards-january-2026"
+      },
+      "source_ids": [
+        "284",
+        "isotretinoin-addenda",
+        "288"
+      ],
+      "relationship_to_other_records": {
+        "event_id": 288,
+        "relationship": "Later policy change following the October 2025 survey; keep distinct and cross-link."
+      },
+      "status": "DRAFT",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "drafted_at": "2026-09-16T18:24:35.444126+00:00",
+      "source_checked_at": "2026-09-16T18:24:35.444126+00:00",
+      "draft_as_of_date": "2026-09-16",
+      "source_correction_review_required": true,
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false,
+      "hq_mutated": false,
+      "blockers": [
+        "qualified_source_correction_review",
+        "editorial_approval"
+      ],
+      "article_word_count": 194,
+      "content_sha256": "3a313f665ca00da246eacf358e5e810fc031c419e74f527918c56737aea6d429"
+    },
+    {
+      "event_id": 286,
+      "historical_headline": "Mesalazine and idiopathic intracranial hypertension",
+      "headline": "Mesalazine warning follows rare intracranial-pressure reports",
+      "standfirst": "The MHRA called for warnings after a safety review; the medicine’s benefit-risk balance for approved uses was unchanged.",
+      "source_published_date": "2025-12-04",
+      "article_markdown": "The MHRA announced warnings for mesalazine product information about idiopathic intracranial hypertension, following a European safety review considered by UK advisers. The MHRA's [4 December 2025 notice](https://www.gov.uk/drug-safety-update/mesalazine-and-idiopathic-intracranial-hypertension) describes reports of this condition as very rare and says the medicine's benefit-risk balance remains unchanged for its approved uses.\n\nThe condition involves increased pressure inside the skull and can threaten vision. The notice draws attention to symptoms such as worsening or recurring headache, visual disturbance and tinnitus. It stresses that these symptoms are not unique to this diagnosis, so a news report cannot determine their cause.\n\nThe MHRA cited six UK Yellow Card reports of increased intracranial-pressure disorders associated with mesalazine. That is a count of suspected reports, not a measured rate among patients. It should not be divided by prescription-item totals to produce a risk percentage.\n\nThe warning applies across mesalazine formulations. The regulator asks clinicians to explain the warning, assess concerning symptoms promptly and coordinate care with relevant specialists. Its notice describes clinical management where the condition occurs; it does not announce a general withdrawal of mesalazine. This brief reports the safety update and leaves diagnosis and treatment changes to the clinical team.",
+      "known_facts": [
+        {
+          "fact": "Warnings apply to all mesalazine products.",
+          "source_ids": [
+            "286"
+          ]
+        },
+        {
+          "fact": "Six UK Yellow Card reports cited; reports described as very rare.",
+          "source_ids": [
+            "286"
+          ]
+        },
+        {
+          "fact": "Benefit-risk balance unchanged in approved indications.",
+          "source_ids": [
+            "286"
+          ]
+        }
+      ],
+      "limitations": [
+        "Six suspected reports do not establish an individual risk rate or prove causality in every case.",
+        "The brief does not diagnose headache, visual disturbance or tinnitus, or advise anyone to stop treatment.",
+        "No claim is made that every product leaflet had already been updated by a particular date."
+      ],
+      "later_update_check": "Primary notice, page history and later GOV.UK search checked on 16 September 2026. No later MHRA mesalazine/IIH notice was found in that bounded search.",
+      "seo": {
+        "title": "Mesalazine: MHRA warning about intracranial pressure",
+        "description": "MHRA describes very rare reports of idiopathic intracranial hypertension with mesalazine; benefits and risks for approved uses remain unchanged.",
+        "slug": "mesalazine-intracranial-hypertension-mhra-warning"
+      },
+      "source_ids": [
+        "286"
+      ],
+      "relationship_to_other_records": null,
+      "status": "DRAFT",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "drafted_at": "2026-09-16T18:24:35.444126+00:00",
+      "source_checked_at": "2026-09-16T18:24:35.444126+00:00",
+      "draft_as_of_date": "2026-09-16",
+      "source_correction_review_required": true,
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false,
+      "hq_mutated": false,
+      "blockers": [
+        "qualified_source_correction_review",
+        "editorial_approval"
+      ],
+      "article_word_count": 193,
+      "content_sha256": "cb64401e85fd055c363c54c28a3c1489c55babe0bb7a0c3e99c492d926bc3c55"
+    },
+    {
+      "event_id": 288,
+      "historical_headline": "Isotretinoin – updates to prescribing guidance and survey of services",
+      "headline": "Isotretinoin: the October 2025 review behind later prescribing changes",
+      "standfirst": "A historical update explains the service survey and remote-care clarifications, with the subsequent January 2026 changes linked.",
+      "source_published_date": "2025-10-27",
+      "article_markdown": "An MHRA announcement on [27 October 2025](https://www.gov.uk/drug-safety-update/isotretinoin-updates-to-prescribing-guidance-and-survey-of-services) clarified parts of isotretinoin care and sought information from NHS and private prescribing services. It was an earlier stage of a review that subsequently produced further changes in January 2026.\n\nThe October guidance allowed suitable follow-up consultations to take place remotely while retaining an in-person first appointment. It also clarified that pregnancy testing could be medically supervised remotely with appropriate guidance and oversight. These options were conditional on clinical assessment, patient needs and safeguarding; they were not a blanket switch to remote care.\n\nSexual-function monitoring at follow-up appointments continued, although discussions could be briefer by the third appointment. The notice also asked service leads to complete a baseline survey by 16 November 2025. That deadline is historical and should not be presented as an open invitation today.\n\nThe [CHM report’s later January 2026 addendum](https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group) records the next stage: replacement of the under-18 second-prescriber requirement with revised risk-minimisation measures. Other safeguards remained. Readers need that later context when interpreting the October notice. These are related but distinct records, and preserving their dates avoids confusing a past consultation exercise with the current prescribing framework.",
+      "known_facts": [
+        {
+          "fact": "Historical survey deadline: 16 November 2025.",
+          "source_ids": [
+            "288"
+          ]
+        },
+        {
+          "fact": "Remote follow-up and testing require appropriate assessment and oversight.",
+          "source_ids": [
+            "288",
+            "isotretinoin-addenda"
+          ]
+        },
+        {
+          "fact": "January 2026 addendum records subsequent prescribing changes.",
+          "source_ids": [
+            "isotretinoin-addenda"
+          ]
+        }
+      ],
+      "limitations": [
+        "This record must be clearly dated as historical context, not a current survey or new September announcement.",
+        "Do not imply that remote pregnancy tests can be unsupervised or that the first appointment can routinely be remote.",
+        "The survey announcement alone cannot establish later policy; the January addendum is separately cited."
+      ],
+      "later_update_check": "The October notice links to the CHM report; its 22 January 2026 addendum was read and incorporated. The later MHRA notice for event284 was also read. The expired survey is explicitly labelled historical.",
+      "seo": {
+        "title": "Isotretinoin: October 2025 review and later changes",
+        "description": "Historical context for MHRA remote-care guidance and its 2025 service survey, with the later January 2026 prescribing changes explained.",
+        "slug": "isotretinoin-october-2025-survey-later-guidance"
+      },
+      "source_ids": [
+        "288",
+        "isotretinoin-addenda",
+        "284"
+      ],
+      "relationship_to_other_records": {
+        "event_id": 284,
+        "relationship": "Earlier survey/guidance record; subsequent January 2026 policy must be linked, not silently substituted."
+      },
+      "status": "DRAFT",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "drafted_at": "2026-09-16T18:24:35.444126+00:00",
+      "source_checked_at": "2026-09-16T18:24:35.444126+00:00",
+      "draft_as_of_date": "2026-09-16",
+      "source_correction_review_required": true,
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false,
+      "hq_mutated": false,
+      "blockers": [
+        "qualified_source_correction_review",
+        "editorial_approval"
+      ],
+      "article_word_count": 189,
+      "content_sha256": "29d257085b1aba4d948fdc353142e33366bd6442f88bc377e87f63e5ac077d6b"
+    }
+  ]
+}

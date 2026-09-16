@@ -49,6 +49,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Install locked Worker test dependencies
+        run: npm ci --no-audit --no-fund
       - name: Verify exact candidate repairs and accepted catalogue preservation
         run: node --test tests/fit-v3-closeout.test.mjs tests/grub-expansion*.test.mjs tests/evidence-desk-hq-read.test.mjs
       - name: Rebuild reviewable candidates without production access
