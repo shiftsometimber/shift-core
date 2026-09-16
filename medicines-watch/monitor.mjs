@@ -175,7 +175,8 @@ async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
     return await Promise.race([
       (async () => {
         const response = await fetchImpl(source.checkUrl || source.url, {
-          signal: controller.signal, redirect: 'error',
+          // Workers supports manual redirects; the status guard below rejects every 3xx.
+          signal: controller.signal, redirect: 'manual',
           headers: { Accept: source.format === 'govuk-json' ? 'application/json' : 'text/html',
             'User-Agent': 'ShiftMedicinesWatch/1.0 (source availability and change checks)' }
         });

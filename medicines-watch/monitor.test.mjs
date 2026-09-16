@@ -79,6 +79,56 @@ test('scheduled schema initialization respects D1 newline-separated exec semanti
   }
 });
 
+test('source retrieval uses a redirect mode supported by the Workers runtime', async t => {
+  const env = setup(t);
+  let fetches = 0;
+  const result = await scan(env, source, { fetchImpl: async (url, init) => {
+    // workerd rejects unsupported modes before contacting the source.
+    if (!['follow', 'manual'].includes(init.redirect)) throw new TypeError('Invalid redirect value');
+    fetches++;
+    return response();
+  } });
+  assert.equal(result.checked, 1);
+  assert.equal(result.failed, 0);
+  assert.equal(fetches, 1);
+  const state = await health(env);
+  assert.equal(state.sources[0].checkStatus, 'current');
+  assert.equal(state.sources[0].reviewStatus, 'verification_pending');
+  assert.equal(state.sources[0].reviewedAt, source.reviewedAt);
+});
+
+test('source redirects are rejected without following or renewing successful evidence', async t => {
+  for (const status of [301, 302, 303, 307, 308]) {
+    const env = setup(t), approved = await approvedSource();
+    await scan(env, approved);
+    const previousFingerprint = env.DB.db.prepare('SELECT last_fingerprint FROM medicines_watch_checks').get().last_fingerprint;
+    let fetches = 0, followed = 0;
+    const result = await scan(env, approved, { now: NOW + CHECK_INTERVAL_MS,
+      fetchImpl: async (url, init) => {
+        if (!['follow', 'manual'].includes(init.redirect)) throw new TypeError('Invalid redirect value');
+        fetches++;
+        if (url !== source.checkUrl || init.redirect === 'follow') {
+          followed++;
+          return response();
+        }
+        return new Response(null, { status, headers: { Location: 'https://unreviewed.example/replacement' } });
+      }
+    });
+    assert.equal(result.checked, 0, `status=${status}`);
+    assert.equal(result.failed, 1);
+    assert.equal(fetches, 1);
+    assert.equal(followed, 0);
+    const state = await health(env, approved, { now: NOW + CHECK_INTERVAL_MS });
+    assert.equal(state.sources[0].error, `http_${status}`);
+    assert.equal(state.sources[0].httpStatus, status);
+    assert.equal(state.sources[0].checkStatus, 'check_delayed');
+    assert.equal(state.sources[0].lastSuccessAt, new Date(NOW).toISOString());
+    assert.equal(state.sources[0].reviewedAt, approved.reviewedAt);
+    assert.equal(approved.reviewedFingerprint, previousFingerprint);
+    assert.equal(env.DB.db.prepare('SELECT last_fingerprint FROM medicines_watch_checks').get().last_fingerprint, previousFingerprint);
+  }
+});
+
 test('successful first fingerprint stays verification pending and never approves a source', async t => {
   const env = setup(t);
   assert.equal((await scan(env)).checked, 1);
@@ -283,4 +333,3 @@ test('migration and writer initialize compatible owned schemas without Radar tab
   await scan(env);
   assert.deepEqual(env.DB.db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map(row => row.name), ['medicines_watch_checks']);
 });
-
