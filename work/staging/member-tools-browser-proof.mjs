@@ -55,11 +55,12 @@ for(const [name,sha]of Object.entries(JSON.parse(readFileSync('work/staging/gene
 const browser=await chromium.launch({headless:true});
 try{
  for(const [index,[name,viewport]]of Object.entries({desktop:{width:1440,height:1000},mobile390:{width:390,height:844}}).entries()){
-  const row={name,viewport,checks:[],pageErrors:[],failedRequests:[]};report.cases.push(row);
+  const row={name,viewport,phase:'fictional-account-login',checks:[],pageErrors:[],failedRequests:[]};report.cases.push(row);
   const own=await browser.newContext({viewport,reducedMotion:'reduce'}),other=await browser.newContext({viewport,reducedMotion:'reduce'});
   const ownId=fixture.browserIds[index*2],otherId=fixture.browserIds[index*2+1];let page;
   try{
    await login(own,ownId);await login(other,otherId);
+   row.phase='seed-progress-and-saved-plans';
    await api(own,'/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true});
    const dates=['2026-08-01','2026-08-14'];
    for(let i=0;i<2;i++)await api(own,'/v1/progress',{recordedOn:dates[i],weightKg:i?105:110,waistCm:i?115:120,systolic:i?135:145,diastolic:i?88:95,steps:i?6500:3000,sleepHours:i?7:5.5,moodScore:i?8:5,source:'fictional-staging-readiness'});
@@ -68,29 +69,43 @@ try{
    const firstId=beforePlans.plans.current.find(p=>p.type==='grub').id;
    await api(own,'/v1/grub/plan',{days:1,calories:2100,protein_g:120,preferences:'no fish; batch friendly'});
    await api(own,'/v1/fit/plan',{days:1,minutes_per_day:20,location:'home',equipment:'none'});
+   row.phase='choose-today-meal';
    const food=await api(own,'/v1/grub/workspace'),search=await api(own,'/v1/grub/search',{mode:'discover',query:'chicken'});assert(search.top?.length);
-   const chosen=search.top[0];await api(own,'/v1/grub/workspace',{action:'choose-today',recipeId:chosen.id,revision:food.revision,operationId:randomUUID()});
+   const chosen=search.top[0];assert.equal(typeof chosen.id,'string','Published recipe must have a string ID');assert.equal(typeof chosen.name,'string','Published recipe uses the name field');assert.notEqual(chosen.name,'','Published recipe name is empty');await api(own,'/v1/grub/workspace',{action:'choose-today',recipeId:chosen.id,revision:food.revision,operationId:randomUUID()});
+   row.phase='verify-account-isolation';
    const ownPlans=(await api(own,'/v1/plan/list')).plans;assert(ownPlans.replaced.some(p=>String(p.id)===String(firstId)));
    const otherPlans=(await api(other,'/v1/plan/list')).plans;assert.equal(otherPlans.current.length,0);assert.equal(otherPlans.replaced.length,0);
-   const otherSummary=(await api(other,'/v1/progress/summary')).progress;assert.equal(otherSummary.entries,0);
+   const otherSummary=(await api(other,'/v1/progress/summary')).progress;
+   // The canonical empty summary omits entries; only a ready summary has a count.
+   // Accept an explicitly zero count too, without coercing a missing/wrong shape.
+   assert.equal(otherSummary?.state,'empty','Separate account must return the canonical empty summary');
+   assert.deepEqual(otherSummary.metrics,[],'Separate account leaked progress metrics');
+   assert.deepEqual(otherSummary.milestones,[],'Separate account leaked progress milestones');
+   assert(!Object.hasOwn(otherSummary,'entries')||otherSummary.entries===0,'An empty progress summary must omit entries or report numeric zero');
    row.checks.push('Real API writes retain two progress records, current plans and replaced history; separate account stays empty');
+   row.phase='open-current-today';
    page=await own.newPage();page.on('pageerror',e=>row.pageErrors.push(clean(e.message)));page.on('requestfailed',r=>row.failedRequests.push({path:new URL(r.url()).pathname,error:r.failure()?.errorText}));
-   await open(page);const before=await today(page);assert(before.hero?.includes('MY TIMBER'));assert(before.care?.includes('Feeling rough'));assert(before.meal?.includes(chosen.title||chosen.name));assert.equal(before.avatar,false);assert.equal(before.tapRoom,false);row.todayBefore=before;
+   await open(page);const before=await today(page);assert(before.hero?.includes('MY TIMBER'));assert(before.care?.includes('Feeling rough'));assert(before.meal?.includes(chosen.name));assert.equal(before.avatar,false);assert.equal(before.tapRoom,false);row.todayBefore=before;
    await geometry(page,row,'today');await page.screenshot({path:join(out,name+'-today.png'),fullPage:true});
+   row.phase='render-progress-via-more';
    await page.locator('.member-nav-more > summary').click();await page.locator('.member-nav-more [data-panel="visualise"]').click();
    await page.waitForFunction(()=>document.querySelector('#panel-visualise')?.classList.contains('active')&&document.querySelector('#shiftProgressStory')?.getAttribute('aria-busy')==='false');
    const story=await page.locator('#shiftProgressStory').innerText();for(const text of ['2 check-ins retained','Weight','Waist','Steps','Sleep','Mood'])assert(story.includes(text),'Missing progress metric '+text);
+   row.phase='upload-photo-through-visible-controls';
    await revealUserControl(page.locator('#photoInput'));await page.setInputFiles('#photoInput',{name:'fictional-pixel.png',mimeType:'image/png',buffer:png});await page.locator('#visualConsentWrap').waitFor({state:'visible'});
    await revealUserControl(page.locator('#photoWeightUnit'));await page.selectOption('#photoWeightUnit','kg');await revealUserControl(page.locator('#photoWeightKg'));await page.selectOption('#photoWeightKg','105.0');await revealUserControl(page.locator('#savePhotoConsent'));await page.check('#savePhotoConsent');await revealUserControl(page.locator('#saveOriginal'));await page.click('#saveOriginal');
    await page.waitForFunction(()=>document.querySelector('#savedPhotos [data-photo-id] img')?.complete&&document.querySelector('#savedPhotos [data-photo-id] img')?.naturalWidth>0,null,{timeout:30000});
+   row.phase='verify-photo-account-isolation';
    const photoId=await page.locator('#savedPhotos [data-photo-id]').first().getAttribute('data-photo-id');
    const photos=await api(own,'/v1/shift/progress-photo');assert.equal(photos.photos.length,1);assert.equal(String(photos.photos[0].id),photoId);assert.equal((await api(other,'/v1/shift/progress-photo')).photos.length,0);
    assert.equal((await other.request.get(origin+'/v1/shift/progress-photo/'+photoId+'/image')).status(),404);
    assert.equal((await fetch(origin+'/v1/shift/progress-photo/'+photoId+'/image')).status,401);
    row.checks.push('Progress renders; photo uploaded through UI loads from private D1 and another account cannot list or retrieve it');
    await geometry(page,row,'progress');await page.screenshot({path:join(out,name+'-progress-photo.png'),fullPage:true});
+   row.phase='render-retained-plans';
    await open(page,'plans');const currentCount=await page.locator('.mp-plan-manager-card.is-current').count();assert.equal(currentCount,ownPlans.current.length);assert(await page.locator('.mp-plan-history-row[data-plan-record="'+firstId+'"]').count());
    await page.locator('.mp-plan-manager-history > summary').first().click();await geometry(page,row,'plans');await page.screenshot({path:join(out,name+'-plans.png'),fullPage:true});
+   row.phase='open-saved-plan-without-changing-current-week';
    const beforeView=await api(own,'/v1/grub/workspace');
    await page.locator('[data-plan-snapshot="'+firstId+'"]').click();
    await page.waitForFunction(id=>document.querySelector('[data-saved-plan-view="'+id+'"]')?.textContent.includes('Saved contents'),String(firstId),{timeout:20000});
@@ -99,18 +114,21 @@ try{
    assert(!(await api(other,'/v1/plan/latest')).plans.some(p=>String(p.id)===String(firstId)),'Another account received this saved plan');
    assert.deepEqual(await api(own,'/v1/grub/workspace'),beforeView,'Viewing a historical plan changed the current food workspace');
    row.checks.push('My Plans renders actual current records and prior history; saved contents match the retained record without replacing the current week');
+   row.phase='verify-return-after-fresh-login';
    await api(own,'/v1/auth/logout',{});assert.equal((await own.request.get(origin+'/v1/shift/progress-photo/'+photoId+'/image')).status(),401);await login(own,ownId);
    await open(page,'visualise');await page.locator('#savedPhotos [data-photo-id="'+photoId+'"] img').waitFor({state:'visible'});assert((await page.locator('#shiftProgressStory').innerText()).includes('2 check-ins retained'));
    await open(page,'plans');assert(await page.locator('.mp-plan-history-row[data-plan-record="'+firstId+'"]').count());
    row.checks.push('Progress, private photo, current plans and replaced plans survive logout and fresh password sign-in');
+   row.phase='delete-photo-and-verify-reload';
    await open(page,'visualise');await page.locator('[data-photo-delete="'+photoId+'"]').click();await page.waitForFunction(id=>!document.querySelector('#savedPhotos [data-photo-id="'+id+'"]'),photoId);
    assert.equal((await api(own,'/v1/shift/progress-photo')).photos.length,0);assert.equal((await own.request.get(origin+'/v1/shift/progress-photo/'+photoId+'/image')).status(),404);
    await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('#savedPhotos')?.textContent.includes('No saved progress photos'));
    row.checks.push('Delete through UI removes photo from fresh list, image URL and reload');
+   row.phase='return-through-native-journey-and-today-links';
    await navigateHeader(page,'Journey');await navigateHeader(page,'Today');assert.deepEqual(await today(page),before,'Restored tools changed the approved Today content or chosen meal');await geometry(page,row,'returnToday');
    row.checks.push('Real header controls return from Progress to Journey and Today; approved greeting, care, meal, movement and font remain, without avatar or Tap Room');
-   assert.deepEqual(row.pageErrors,[],'Browser page errors');row.status='pass';
-  }catch(error){row.status='fail';row.error=clean(error.message);report.failures.push({name,error:row.error});if(page)await page.screenshot({path:join(out,name+'-failure.png'),fullPage:true}).catch(()=>{});}
+   assert.deepEqual(row.pageErrors,[],'Browser page errors');row.phase='complete';row.status='pass';
+  }catch(error){row.status='fail';row.error=clean(error.message);row.stack=String(error.stack||'').split('\n').filter(line=>/^\s+at /.test(line)).slice(0,4).map(clean);report.failures.push({name,phase:row.phase,error:row.error,stack:row.stack});if(page)await page.screenshot({path:join(out,name+'-failure.png'),fullPage:true}).catch(()=>{});}
   finally{for(const context of [own,other]){await context.request.post(origin+'/v1/auth/logout',{headers:{Origin:origin},data:{}}).catch(()=>{});await context.close()}save();}
  }
 }finally{await browser.close();report.status=report.failures.length?'fail':'pass';save();}

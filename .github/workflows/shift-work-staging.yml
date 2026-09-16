@@ -70,14 +70,14 @@ jobs:
           fs.appendFileSync(process.env.GITHUB_ENV,'WORK_STAGING_URL='+url[0]+'\n');
           fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'Fictional staging: '+url[0]+'\n');
           NODE
-      - name: Verify real remote persistence and access boundaries
-        run: node work/staging/probe.mjs
       - name: Install isolated member browser verifier
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium
       - name: Verify restored tools and preserve current Today at desktop and 390px
         run: node work/staging/member-tools-browser-proof.mjs
+      - name: Verify real remote persistence and access boundaries
+        run: node work/staging/probe.mjs
       - name: Save non-secret verification evidence only
         if: always()
         uses: actions/upload-artifact@v4
