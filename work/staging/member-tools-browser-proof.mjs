@@ -47,6 +47,9 @@ async function geometry(page,row,label){
  row.geometry??={};row.geometry[label]=g;
 }
 async function today(page){
+ // A panel can become visible while the freshly reloaded page is still reading
+ // its account-backed day. Wait for that render before comparing its contents.
+ await page.waitForFunction(()=>{const root=document.querySelector('#todayActions');return root?.dataset.todayDecisionReady==='true'&&['.mtm-hero','[data-master-rough]','.mt-meal','.mt-workout'].every(selector=>root.querySelector(selector))},null,{timeout:30000});
  return page.evaluate(()=>{const root=document.querySelector('#todayActions');return{hero:root.querySelector('.mtm-hero')?.textContent.replace(/\s+/g,' ').trim(),care:root.querySelector('[data-master-rough]')?.textContent.trim(),meal:root.querySelector('.mt-meal')?.textContent.replace(/\s+/g,' ').trim(),fit:root.querySelector('.mt-workout')?.textContent.replace(/\s+/g,' ').trim(),avatar:!!root.querySelector('[data-avatar],.avatar'),tapRoom:/tap room/i.test(root.innerText)}});
 }
 for(const [name,sha]of Object.entries(JSON.parse(readFileSync('work/staging/generated/current-tool-assets.json')))){
