@@ -1,5 +1,5 @@
 name: Cloudflare Production Promote
-# Catalogue publication uses Wrangler's atomic import envelope for direct D1 fallback.
+# Catalogue publication uses a validated snapshot and exact post-import comparison.
 # Act2B unified public authority production promotion
 
 on:
@@ -270,15 +270,16 @@ jobs:
         env:
           CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json
         run: |
-          if ! node scripts/catalogue-publication-client.mjs; then
-            npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT COUNT(*) AS total, SUM(CASE WHEN created_at='2026-09-16T18:50:04Z' AND updated_at='2026-09-16T18:50:04Z' THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')" > "$RUNNER_TEMP/catalogue-publication-proof.json"
-            if ! node scripts/catalogue-publication-d1-proof.mjs "$RUNNER_TEMP/catalogue-publication-proof.json"; then
-              node scripts/d1-fixed-catalogue-sql.mjs > "$RUNNER_TEMP/catalogue-publication.sql"
-              npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/catalogue-publication.sql"
-              npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT COUNT(*) AS total, SUM(CASE WHEN created_at='2026-09-16T18:50:04Z' AND updated_at='2026-09-16T18:50:04Z' THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')" > "$RUNNER_TEMP/catalogue-publication-proof.json"
-              node scripts/catalogue-publication-d1-proof.mjs "$RUNNER_TEMP/catalogue-publication-proof.json"
-            fi
-          fi
+          test "$GITHUB_EVENT_NAME" = push
+          test "$GITHUB_ACTOR_ID" = 315011648
+          node scripts/catalogue-publication-client.mjs --verify-main
+          catalogue_sql=$(node scripts/catalogue-publication-snapshot.mjs --sql)
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-before.json"
+          node scripts/catalogue-exact-d1-import.mjs --sql "$RUNNER_TEMP/catalogue-before.json" > "$RUNNER_TEMP/catalogue-publication.sql"
+          node scripts/catalogue-publication-client.mjs --verify-main
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/catalogue-publication.sql"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-after.json"
+          node scripts/catalogue-exact-d1-import.mjs --verify "$RUNNER_TEMP/catalogue-before.json" "$RUNNER_TEMP/catalogue-after.json"
       - name: Publish the exact owner-authorised newsroom batch when approved
         run: node scripts/newsroom-publication-client.mjs
       - name: Prove the public site and login asset did not change

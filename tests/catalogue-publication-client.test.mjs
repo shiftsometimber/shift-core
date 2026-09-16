@@ -43,11 +43,15 @@ test('snapshot query contains only the exact catalogue columns and recipe/exerci
   const sql=execFileSync(process.execPath,['scripts/catalogue-publication-snapshot.mjs','--sql'],{encoding:'utf8'}).trim();
   assert.equal(sql,"SELECT id,content_type,title,version,status,data_json,review_json,created_at,updated_at FROM structured_content WHERE content_type IN ('recipe','exercise') ORDER BY id;");
 });
-test('promotion publishes before catalogue authority verification and rechecks main immediately before deployment',()=>{
+test('promotion validates snapshot, imports and verifies exact rows with current-main checks',()=>{
   const source=fs.readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
-  const publish=source.indexOf('run: node scripts/catalogue-publication-client.mjs');
-  assert.ok(publish>source.indexOf('Verify catalogue authority, additive publication guards and timing'));
-  assert.ok(publish<source.indexOf('Verify existing production food catalogue without account writes'));
+  const publish=source.indexOf('name: Publish only the fixed owner-authorised catalogue when approved');
+  assert.ok(publish>source.indexOf('name: Deploy current main to production'));
+  const sql=source.indexOf('node scripts/catalogue-exact-d1-import.mjs --sql');
+  const verify=source.indexOf('node scripts/catalogue-exact-d1-import.mjs --verify');
+  assert.ok(sql>publish&&verify>sql);
+  assert.ok(source.indexOf('node scripts/newsroom-publication-client.mjs')>verify);
+  assert.match(source,/--verify-main\s+npx wrangler d1 execute DB --remote/);
   assert.match(source,/node scripts\/catalogue-publication-client\.mjs --verify-main\s+npx wrangler deploy/);
   assert.match(source,/ref: \$\{\{ github\.sha \}\}/);assert.match(source,/cancel-in-progress: false/);
 });
