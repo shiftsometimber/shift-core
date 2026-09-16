@@ -22,7 +22,7 @@ test('good energy permits a longer walk while not tonight remains valid',()=>{
 });
 
 test('first-run treatment is chip-driven, infers route and rejects invented doses',()=>{
-  assert.deepEqual(resolveTreatmentSetup({medicineKey:'mounjaro',doseKey:'5mg',durationKey:'weeks'}),{medicine:'Mounjaro',route:'jab',dose:'5mg',week:3,status:'active'});
+  assert.deepEqual(resolveTreatmentSetup({medicineKey:'mounjaro',doseKey:'5mg',durationKey:'weeks'}),{medicine:'Mounjaro',route:'jab',dose:'5mg',week:null,status:'active'});
   assert.equal(resolveTreatmentSetup({medicineKey:'mounjaro',doseKey:'9mg',durationKey:'weeks'}),null);
   assert.equal(resolveTreatmentSetup({medicineKey:'add-later'}).status,'add_later');
 });

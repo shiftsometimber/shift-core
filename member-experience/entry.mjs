@@ -1,3 +1,4 @@
+import {restoreDashboardTools,dashboardToolsRuntime,dashboardToolsStyles} from './dashboard-tools.mjs';
 import lifeBackAssets from './life-back-assets.mjs';
 import homeArt from './home-art.mjs';
 import {homeStyles} from './home-styles.mjs';
@@ -26,14 +27,14 @@ export function memberExperienceRoutes(request, env) {
     const body=a.base64?Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0)):a.body;
     return new Response(request.method==='HEAD'?null:body,{headers:{...privateHeaders,'Content-Type':a.type}});
   }
-  const asset = {'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
+  const asset = {'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
   if (!asset) return null;
   return new Response(request.method === 'HEAD' ? null : asset[0]+(path==='/assets/member-experience/v1.css'?grubIntelligenceCSS:''),{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
 }
 
 function navigation(work) {
   const links = [['/member/dashboard#today','Today'],['/member/dashboard#journey','Journey'],['/member/grub','Grub'],['/member/fit','Fit'],['/member/check-in','Check-in'],['/member/life-back','Life Back']];
-  return '<span class="member-nav-label">MY TIMBER</span><div class="member-nav-tools">'+links.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')+'</div><details class="member-nav-more"><summary>More</summary><div><a href="/member/saved">Saved &amp; records</a><a href="/member/settings">Settings &amp; privacy</a><a href="/member/ask-timber">Ask Timber</a>'+(work?'<a href="/member/work">My workplace programme</a>':'')+'</div></details>';
+  return '<span class="member-nav-label">MY TIMBER</span><div class="member-nav-tools">'+links.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')+'</div><details class="member-nav-more"><summary>More</summary><div><a class="mp-tab" data-panel="visualise" href="/member/dashboard#visualise">Progress &amp; photos</a><a class="mp-tab" data-panel="plans" href="/member/dashboard#plans">My Plans</a><a href="/member/saved">Saved &amp; records</a><a href="/member/settings">Settings &amp; privacy</a><a href="/member/ask-timber">Ask Timber</a>'+(work?'<a href="/member/work">My workplace programme</a>':'')+'</div></details>';
 }
 const savedMain = `<section class="member-records"><header class="member-tool-hero"><p class="eyebrow">MY TIMBER · SAVED &amp; RECORDS</p><h1>Pick up where you left off.</h1><p>Your food, your Journey and your recent check-ins. Open the tool where you saved them.</p></header><div class="member-record-grid"><a class="member-record-card" href="/member/grub#saved"><span>01 · FOOD</span><h2>Food worth repeating.</h2><p>Recipes and meals you explicitly saved to your account.</p><strong>Open saved food →</strong></a><a class="member-record-card" href="/member/dashboard#journey"><span>02 · YOUR JOURNEY</span><h2>See your own picture.</h2><p>Your starting point, goals and confirmed weekly records.</p><strong>Open my Journey →</strong></a><a class="member-record-card" href="/member/check-in#history"><span>03 · CHECK-INS</span><h2>Notice your pattern.</h2><p>Return to the check-ins you chose to save.</p><strong>Open recent check-ins →</strong></a><a class="member-record-card" href="/member/settings"><span>04 · YOUR CHOICE</span><h2>Stay in control.</h2><p>Manage optional health tracking and download your account data.</p><strong>Open privacy controls →</strong></a></div></section>`;
 
@@ -51,6 +52,7 @@ export async function memberExperienceEntry(request, env, response) {
   // scoped layer after those too, so their sidebars cannot reappear on mobile.
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
+  if(name === 'dashboard')html=restoreDashboardTools(html);
   if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=my-timber-master-20260916').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
   if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');

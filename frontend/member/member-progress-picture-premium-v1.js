@@ -74,6 +74,9 @@
 // Whole-Man loaders. Kept outside treatment/auth files so Track S stays untouched.
 (function(){
   'use strict';
+  // The current master already owns Today and Journey. Restoring its photo
+  // tool must not bring back the secondary legacy home/mode controllers.
+  if(document.body.dataset.memberTools==='v1')return;
   if(!/^\/member\/dashboard(?:\.html)?$/.test(location.pathname))return;
   const load=(marker,src)=>{if(document.querySelector(`script[${marker}]`))return;const script=document.createElement('script');script.setAttribute(marker,'v1');script.src=src;document.body.appendChild(script)};
   load('data-whole-man-intent-os','/whole-man-intent-os-v1.js?v=3');

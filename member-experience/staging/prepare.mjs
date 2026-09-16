@@ -3,6 +3,7 @@ import {resolve,dirname} from 'node:path';
 import {createHash} from 'node:crypto';
 import {improveGrubClient} from '../grub-client.mjs';
 import {verifyGrubClient} from './verify-grub-client.mjs';
+import {currentToolAssets} from './tool-assets.mjs';
 const pins=JSON.parse(readFileSync('member-experience/staging/pins.json'));
 // Same immutable Pages source as the approved workplace stage; fail on drift.
 for(const p of pins){
@@ -13,3 +14,7 @@ for(const p of pins){
   mkdirSync(dirname(out),{recursive:true});writeFileSync(out,data);
 }
 console.log('Verified immutable member preview sources. No live member data is used.');
+
+const currentHashes={};
+for(const name of currentToolAssets){const data=readFileSync(resolve('frontend/member',name));const out='work/staging/generated/assets/staging/member-current/'+name;mkdirSync(dirname(out),{recursive:true});writeFileSync(out,data);currentHashes[name]=createHash('sha256').update(data).digest('hex')}
+writeFileSync('work/staging/generated/current-tool-assets.json',JSON.stringify(currentHashes,null,2));
