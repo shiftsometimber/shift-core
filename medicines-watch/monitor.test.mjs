@@ -58,6 +58,27 @@ test('GET health is SELECT-only, including a missing migration, and cannot claim
   assert.equal(env.DB.db.prepare("SELECT count(*) AS count FROM sqlite_master WHERE type='table'").get().count, 0);
 });
 
+test('scheduled schema initialization respects D1 newline-separated exec semantics', async t => {
+  for (const alreadyMigrated of [false, true]) {
+    const env = setup(t);
+    // Wrangler's file migration accepts full SQL; D1's Worker exec binding
+    // sends each newline-delimited line as a separate statement.
+    if (alreadyMigrated) env.DB.db.exec(readFileSync(new URL('./migration.sql', import.meta.url), 'utf8'));
+    env.DB.exec = async sql => {
+      env.DB.commands.push(sql);
+      for (const statement of sql.trim().split('\n')) env.DB.db.prepare(statement).run();
+    };
+    let fetches = 0;
+    const result = await scan(env, source, { fetchImpl: async () => { fetches++; return response(); } });
+    assert.equal(result.checked, 1, `alreadyMigrated=${alreadyMigrated}`);
+    assert.equal(fetches, 1);
+    const state = await health(env);
+    assert.equal(state.sources[0].checkStatus, 'current');
+    assert.equal(state.sources[0].reviewStatus, 'verification_pending');
+    assert.equal(state.sources[0].reviewedAt, source.reviewedAt);
+  }
+});
+
 test('successful first fingerprint stays verification pending and never approves a source', async t => {
   const env = setup(t);
   assert.equal((await scan(env)).checked, 1);
@@ -262,3 +283,4 @@ test('migration and writer initialize compatible owned schemas without Radar tab
   await scan(env);
   assert.deepEqual(env.DB.db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map(row => row.name), ['medicines_watch_checks']);
 });
+
