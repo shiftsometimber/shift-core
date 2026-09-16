@@ -3,13 +3,13 @@ import {authenticateMember} from '../member-state-fast-v1.js';
 import {enrichGrubRecipes,searchGrubRecipes} from './grub-search.mjs';
 import {emptyGrub,usableCatalogue,applyGrubOperation,workspaceView,GrubError} from './grub-workspace.mjs';
 import {grubMemberContext} from './grub-intelligence.mjs';
+import {loadGovernedGrubCatalogue} from '../grub-expansion-authority-v1.mjs';
 const headers={'Cache-Control':'no-store','Content-Type':'application/json; charset=utf-8','Vary':'Cookie'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
 export async function loadGrubCatalogue(DB){
- // A single explicit governed-catalogue read avoids the legacy 500→2500
- // pagination expansion and never falls back to generated or draft meals.
- const {results=[]}=await DB.prepare("SELECT id,title,data_json FROM structured_content WHERE content_type='recipe' AND status='published' ORDER BY id LIMIT 2500").all();
- const records=enrichGrubRecipes(results.map(r=>({id:r.id,title:r.title,data:JSON.parse(r.data_json)})));
+ const {authority}=await loadGovernedGrubCatalogue(DB);
+ if(authority.incomplete)throw new GrubError('The recipe library is temporarily unavailable. Please try again.',503);
+ const records=enrichGrubRecipes(authority.rows);
  if(!records.length)throw new GrubError('The recipe library is temporarily unavailable. Please try again.',503);
  return records;
 }

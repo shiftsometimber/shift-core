@@ -1,0 +1,69 @@
+name: Launch closeout evidence
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/fit-v3-closeout.mjs'
+      - 'scripts/verify-grub-closeout-reviews.mjs'
+      - 'tests/fit-v3-closeout.test.mjs'
+      - 'grub-expansion-*.mjs'
+      - 'tests/grub-expansion*.test.mjs'
+      - 'tests/fixtures/grub-cofid-2021-governed-subset.json'
+      - 'member-experience/grub-*.mjs'
+      - 'member-product-v7.js'
+      - 'evidence-desk-hq-read-v1.js'
+      - 'evidence-desk-v1.js'
+      - 'tests/evidence-desk-hq-read.test.mjs'
+      - 'scripts/verify-evidence-inbox-connection.mjs'
+      - 'evidence/grub-expansion-closeout-2026-09-16/**'
+      - '.github/workflows/launch-closeout.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fit-v3-closeout.mjs'
+      - 'scripts/verify-grub-closeout-reviews.mjs'
+      - 'tests/fit-v3-closeout.test.mjs'
+      - 'grub-expansion-*.mjs'
+      - 'tests/grub-expansion*.test.mjs'
+      - 'tests/fixtures/grub-cofid-2021-governed-subset.json'
+      - 'member-experience/grub-*.mjs'
+      - 'member-product-v7.js'
+      - 'evidence-desk-hq-read-v1.js'
+      - 'evidence-desk-v1.js'
+      - 'tests/evidence-desk-hq-read.test.mjs'
+      - 'scripts/verify-evidence-inbox-connection.mjs'
+      - 'evidence/grub-expansion-closeout-2026-09-16/**'
+      - '.github/workflows/launch-closeout.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  catalogue-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install locked Worker test dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Rebuild reviewable candidates without production access
+        run: |
+          node scripts/fit-v3-closeout.mjs
+          node grub-expansion-review-pack.mjs
+          node scripts/verify-grub-closeout-reviews.mjs
+          git diff --exit-code
+      - name: Verify exact candidate repairs and accepted catalogue preservation
+        run: node --test tests/fit-v3-closeout.test.mjs tests/grub-expansion*.test.mjs tests/evidence-desk-hq-read.test.mjs
+      - name: Retain complete corrected drafts and exact review evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: launch-closeout-catalogue-${{ github.sha }}
+          path: |
+            evidence/fit-v3-closeout-2026-09-16/
+            evidence/grub-expansion-closeout-2026-09-16/
+          if-no-files-found: error

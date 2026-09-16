@@ -542,6 +542,7 @@
     "ORDER_NOTIFICATION_EMAIL": "orders@shiftsometimber.co.uk",
     "RADAR_ALERT_TO": "hq@shiftsometimber.co.uk",
     "EVIDENCE_DESK_ALERT_TO": "hq@shiftsometimber.co.uk",
+    "EVIDENCE_DESK_READ_ENV": "non-production",
     "TAP_ROOM_MODERATION_OWNER": "Matt O'Brien",
     "TAP_ROOM_MODERATION_BACKUP": "Linda O'Brien",
     "TAP_ROOM_P0_EMAIL": "hq@shiftsometimber.co.uk",
@@ -554,6 +555,11 @@
       "binding": "DB",
       "database_name": "shift-core-db",
       "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+    },
+    {
+      "binding": "EVIDENCE_DESK_READ_DB",
+      "database_name": "shift-evidence-desk-r12-nonprod-db",
+      "database_id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3",
     },
   ],
   "durable_objects": {

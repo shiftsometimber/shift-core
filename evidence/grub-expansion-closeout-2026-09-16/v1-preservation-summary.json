@@ -1,0 +1,16 @@
+{
+  "proof": "M11_V1_PUBLICATION_PACK_V1",
+  "decisionCount": 8,
+  "boundRecipes": 798,
+  "approvedRecipes": 798,
+  "heldRecipes": 0,
+  "publicationByMeal": {
+    "breakfast": 212,
+    "lunch": 204,
+    "dinner": 195,
+    "snack": 187
+  },
+  "allPass": true,
+  "publicationReady": true,
+  "criterion": "Publication payload exists only when all 8 immutable family decisions PASS; any FIX/REJECT fails the 798-recipe regenerated launch publication closed. Every published descendant also retains the accepted meal_type required by the live structured Grub selector."
+}

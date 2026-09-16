@@ -1,0 +1,287 @@
+{
+  "proof": "NEWSROOM_NINE_DRAFTS_INDEPENDENT_AI_SOURCE_REVIEW_V1",
+  "reviewer": {
+    "id": "/root/commissioning_closeout",
+    "kind": "ai"
+  },
+  "reviewed_at": "2026-09-16T18:27:14.870716Z",
+  "decision_meaning": "PASS means no blocking source-fidelity or editorial defect found for offline qualified-review handoff. It is not clinical approval, source-baseline acceptance, HQ approval or publication authority.",
+  "qualified_review_status": "PENDING",
+  "qualified_reviewer": null,
+  "publication_authorized": false,
+  "production_mutated": false,
+  "hq_mutated": false,
+  "scopes": [
+    "headline",
+    "standfirst",
+    "article_body",
+    "known_facts",
+    "source_dates",
+    "chronology",
+    "superseded_notices",
+    "medical_framing",
+    "limitations",
+    "seo"
+  ],
+  "method": "Read all nine actual drafts and independently opened their cited MHRA pages, CHM addendum page and UKHSA RSV practitioner guidance using web retrieval on 16 September 2026. Checked specific source passages for age boundaries, chronology, monitoring, survey deadline and reported-event interpretation. Confirmed JSON headlines, standfirsts and bodies exactly occur in the companion Markdown files.",
+  "input_files": [
+    {
+      "path": "evidence/newsroom-backlog-closeout-2026-09-16/drafts-276-284-286-288.json",
+      "sha256": "2ba7b897ea5223a0cb5ea83fc9c3133b3ae61dbe816393bf46822531fa3c92d9"
+    },
+    {
+      "path": "evidence/newsroom-backlog-closeout-2026-09-16/drafts-276-284-286-288.md",
+      "sha256": "5ea2e95455cef8a229c5d517afd03ef20e9150aebe1087bd42a2f2b7e7af11af"
+    },
+    {
+      "path": "evidence/newsroom-backlog-closeout-2026-09-16/drafts-279-281-290-292-294.json",
+      "sha256": "b25fac5619cc5f2a15bbedeece85630cd0feac9396906d749201f810c509bc41"
+    },
+    {
+      "path": "evidence/newsroom-backlog-closeout-2026-09-16/drafts-279-281-290-292-294.md",
+      "sha256": "1651043b988208a3b2055bb87884161ae5b5e9d81b32dda6a23ec6fe96a0cd53"
+    }
+  ],
+  "decisions": [
+    {
+      "event_id": 276,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "2ba7b897ea5223a0cb5ea83fc9c3133b3ae61dbe816393bf46822531fa3c92d9",
+      "declared_content_sha256": "399d0ac11b4d13c4e80fbebb3578d8372a15f122f2bef808367a146ee284e2fb",
+      "article_markdown_sha256": "42fd4ed7c79e985e69f04a3c2bc7f52c984c4aeab1927fac8965f5ced2509e90",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The July 2026 targeted contraindication, confirmed/suspected condition, four European reports and no UK reports match the MHRA notice. The brief avoids converting reports into risk rates and does not repeat the source age/weight inconsistency.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/domperidone-new-contraindication-in-patients-with-phaeochromocytoma-due-to-the-risk-of-severe-hypertension"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 279,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "b25fac5619cc5f2a15bbedeece85630cd0feac9396906d749201f810c509bc41",
+      "declared_content_sha256": "14c746eb140dd3f4ebe5dabed9b2bb303f8796aab593381ea260670f8c9c1856",
+      "article_markdown_sha256": "bdd9f6421f3657d7d03570289e565dcc197f2a7a5b3672dc8057cef3ed092684",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The June 2025 notice explicitly directs readers to its February 2026 replacement. The draft correctly treats the 65+ pause as historical and links the later 18–59 restrictions; it does not present the old threshold as current.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older",
+        "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review",
+        "https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 281,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "b25fac5619cc5f2a15bbedeece85630cd0feac9396906d749201f810c509bc41",
+      "declared_content_sha256": "3e932c1acf09626d240239eba5d0cf9991b776e508180b995eef01ad8d4efd22",
+      "article_markdown_sha256": "1fd5cfea6cbcc607f575a19351636c702fc285bba0cdfeb2a78d5c4bfb1cc3dc",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The explicit MHRA professional/patient advice and accompanying announcement support the inclusive 60+ exclusion, despite the less precise summary wording. Listed conditions, trained assessment, 30-day precaution and report counts match those sources.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review",
+        "https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq",
+        "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 284,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "2ba7b897ea5223a0cb5ea83fc9c3133b3ae61dbe816393bf46822531fa3c92d9",
+      "declared_content_sha256": "3a313f665ca00da246eacf358e5e810fc031c419e74f527918c56737aea6d429",
+      "article_markdown_sha256": "83c55f4304afeb08544ac1ada9f2c38807c8aa670e6507bc3c7fcd14911c4398",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The January 2026 notice and CHM addendum support removal of the under-18 second-prescriber requirement alongside replacement measures. Pregnancy prevention, monitoring and clinical expertise remain explicit; planned audit activity is not represented as completed.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/isotretinoin-changes-to-prescribing-guidance-and-additional-risk-minimisation-measures",
+        "https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group",
+        "https://www.gov.uk/drug-safety-update/isotretinoin-updates-to-prescribing-guidance-and-survey-of-services"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 286,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "2ba7b897ea5223a0cb5ea83fc9c3133b3ae61dbe816393bf46822531fa3c92d9",
+      "declared_content_sha256": "cb64401e85fd055c363c54c28a3c1489c55babe0bb7a0c3e99c492d926bc3c55",
+      "article_markdown_sha256": "27db4aa2113fd099ae715b2392661cc909878f87014538397b7581a2cb0c8590",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The December 2025 notice supports the all-formulation warning and unchanged benefit-risk assessment. Six Yellow Card reports remain a suspected-report count, not an incidence estimate; symptoms are not presented as a diagnosis.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/mesalazine-and-idiopathic-intracranial-hypertension"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 288,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "2ba7b897ea5223a0cb5ea83fc9c3133b3ae61dbe816393bf46822531fa3c92d9",
+      "declared_content_sha256": "29d257085b1aba4d948fdc353142e33366bd6442f88bc377e87f63e5ac077d6b",
+      "article_markdown_sha256": "d8fde8b0a9eb9a755d38b7aec0834c2b7be8fc95bbc9cef9b7c7901b328e0fac",
+      "author": {
+        "id": "/root/medicine_baselines",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The October 2025 survey is clearly historical, including its expired November deadline. Remote follow-up/testing conditions and continued monitoring match the source, with the later January 2026 policy change separately identified.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/isotretinoin-updates-to-prescribing-guidance-and-survey-of-services",
+        "https://www.gov.uk/government/publications/report-of-the-commission-on-human-medicines-isotretinoin-implementation-advisory-expert-working-group",
+        "https://www.gov.uk/drug-safety-update/isotretinoin-changes-to-prescribing-guidance-and-additional-risk-minimisation-measures"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 290,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "b25fac5619cc5f2a15bbedeece85630cd0feac9396906d749201f810c509bc41",
+      "declared_content_sha256": "fec8854fbbd087d597f3d9cd70bed547ba1d974633f8cbc00dd3570593c3cae7",
+      "article_markdown_sha256": "bc16b79082cf7aedbb95dc49e4f6e78a59f550f2ff02892424f405e2a3feca93",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The July 2025 MHRA notice and August 2026 UKHSA guidance support the safety framing. Older-adult and pregnancy evidence are distinguished; the draft avoids stale NHS cohort rules, false incidence calculations and an unsupported suspension claim.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/abrysvov-pfizer-rsv-vaccine-and-arexvyv-gsk-rsv-vaccine-be-alert-to-a-small-risk-of-guillain-barre-syndrome-following-vaccination-in-older-adults",
+        "https://www.gov.uk/government/publications/respiratory-syncytial-virus-rsv-programme-information-for-healthcare-professionals/rsv-vaccination-of-older-adults-information-for-healthcare-practioners"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 292,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "b25fac5619cc5f2a15bbedeece85630cd0feac9396906d749201f810c509bc41",
+      "declared_content_sha256": "8abe1e6536b5ca59718119da7c0ebe3d9dfaf3355b903e8f7cddf5c0451bf732",
+      "article_markdown_sha256": "cc1da457de115798f30010fc48e17e38e8c69951df2460e85872ae8eeeac945c",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The April 2025 MHRA notice supports the corticosteroid co-prescription and review statements. The draft keeps the emergency-help distinction and does not instruct readers to abandon a prescribed reliever. Canonical identity against event 23 remains unresolved.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    },
+    {
+      "event_id": 294,
+      "decision": "PASS",
+      "decision_scope": "offline_primary_source_editorial_review",
+      "input_json_sha256": "b25fac5619cc5f2a15bbedeece85630cd0feac9396906d749201f810c509bc41",
+      "declared_content_sha256": "30150dc589a61ce93d59cec6025dc0d69fe3d8b102f1e29d92d07b700f6ef3a1",
+      "article_markdown_sha256": "2c18e01897242353e869546377c51f28292b91121587af09e435a4aeebfe4020",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "reviewed_at": "2026-09-16T18:27:14.870716Z",
+      "review_notes": "The October 2024 MHRA notice supports the medical-indication limits, early and post-increase blood-pressure monitoring, and urgent symptom assessment. It is explicitly dated historical reporting. Canonical identity against event 35 remains unresolved.",
+      "findings": [],
+      "primary_sources_checked": [
+        "https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation"
+      ],
+      "qualified_review_status": "PENDING",
+      "publication_authorized": false
+    }
+  ],
+  "remaining_gates": [
+    "All nine live records retain the existing source-change hold until the normal qualified source-correction review is completed.",
+    "Qualified medical/editorial review remains pending for every draft.",
+    "The editor must resolve canonical record identity for 23/292 and 35/294 before publication; headline matching alone is insufficient.",
+    "No draft author or AI reviewer supplied a clinician attestation or authorized publication."
+  ],
+  "limitations": [
+    "This is a bounded primary-source editorial review of the supplied briefs, not an exhaustive literature review or independent clinical determination.",
+    "Linked NICE asthma guidance was not independently reviewed here; prescribing statements are checked against the retrieved MHRA notice and remain attributed to it.",
+    "Source content can change after review; a normal source correction must use the current retained source version before approval."
+  ],
+  "counts": {
+    "PASS": 9,
+    "FIX": 0
+  }
+}

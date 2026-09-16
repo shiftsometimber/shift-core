@@ -31,7 +31,8 @@ export function memberRecipe(row,items=[]){
  const matched=ingredients.filter(i=>items.some(x=>containsIngredient(x,i.item))).map(i=>i.item);
  const missing=ingredients.filter(i=>!matched.includes(i.item)).map(i=>i.item);
  const prep=present(d.prep_minutes)?Number(d.prep_minutes):null,cook=present(d.cook_minutes)?Number(d.cook_minutes):null;
- const minutes=present(d.timeMinutes)?Number(d.timeMinutes):prep!==null&&cook!==null?prep+cook:null;
+ const reviewedTotal=d.provenance?.grub_expansion_acceptance?.accepted===true&&present(d.total_minutes)?Number(d.total_minutes):null;
+ const minutes=reviewedTotal!==null?reviewedTotal:present(d.timeMinutes)?Number(d.timeMinutes):prep!==null&&cook!==null?prep+cook:null;
  return {id:row.id,name:row.title,image:imageForRecipe(row),meal_type:d.meal_type,servings:Number(d.servings)||1,minutes,prep_minutes:prep,cook_minutes:cook,protein_g:present(n.protein_g)?Number(n.protein_g):null,kcal:present(n.kcal)?Number(n.kcal):null,nutrition:n,ingredients,method,allergens:d.allergens||[],food_safety:d.food_safety||[],storage:d.storage||{},equipment:d.equipment||[],matched,missing,pantry:missing.filter(x=>pantry.has(normalise(x))),source:'published_catalogue',taxonomy:d.taxonomy||{},food_format:d.food_format||'',tags:d.tags||[]};
 }
 export function filterRecipe(r,filter){

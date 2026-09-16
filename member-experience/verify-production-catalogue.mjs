@@ -4,10 +4,15 @@ import {enrichGrubRecipes,searchGrubRecipes} from './grub-search.mjs';
 import {emptyGrub,usableCatalogue,applyGrubOperation} from './grub-workspace.mjs';
 import {recommendationFor,adjustRecommendation,grubModes} from './grub-intelligence.mjs';
 import {grubImages} from './grub-image-map.mjs';
+import {selectGovernedGrubRows} from '../grub-expansion-authority-v1.mjs';
 const result=JSON.parse(readFileSync(process.argv[2],'utf8'));
 assert(Array.isArray(result)&&result.every(x=>x.success!==false),'Production catalogue query failed');
 const rows=result.flatMap(x=>x.results||[]);
-const records=enrichGrubRecipes(rows.map(r=>({id:r.id,title:r.title,data:JSON.parse(r.data_json)})));
+assert(rows.every(row=>typeof row.review_json==='string'),'Production catalogue query must include review_json for exact serving authority');
+const authority=await selectGovernedGrubRows(rows.map(row=>({...row,data:JSON.parse(row.data_json),review:JSON.parse(row.review_json)})));
+assert.equal(authority.incomplete,false,'Production catalogue fails the proposed serving authority: '+authority.reason);
+assert.equal(authority.accepted,798,'Production original accepted cohort is incomplete');
+const records=enrichGrubRecipes(authority.rows);
 const recipes=usableCatalogue(records);
 assert(recipes.length>0,'No published, validated production recipes');
 for(const image of grubImages)assert(recipes.find(r=>r.id===image.id)?.image,'Exact approved image does not match production recipe: '+image.id);
@@ -24,4 +29,4 @@ for(const style of ['protein','budget','fast','vegetarian']){
  assert.equal(plan.week.length,9,'Incomplete '+style+' plan');
  assert(plan.shopping.length>0,'No ingredients for '+style);
 }
-console.log(JSON.stringify({status:'pass',published:rows.length,usable:recipes.length,styles:['protein','budget','fast','vegetarian'],databaseWrites:false}));
+console.log(JSON.stringify({status:'pass',published:rows.length,usable:recipes.length,originalAccepted:authority.accepted,reviewedExpansion:authority.expansionAccepted,exactServingAuthority:true,styles:['protein','budget','fast','vegetarian'],databaseWrites:false}));
