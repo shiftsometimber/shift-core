@@ -1,0 +1,6427 @@
+{
+  "proof": "GRUB_INDEPENDENT_EDITORIAL_REVIEW_V1",
+  "review_type": "AI editorial review",
+  "reviewer": {
+    "id": "/root/review_release",
+    "kind": "ai"
+  },
+  "reviewed_at": "2026-09-16T18:13:34.314Z",
+  "publication_authority": false,
+  "human_acceptance": "Pending; this AI review cannot supply the mandatory human second-person acceptance.",
+  "source_candidate": "grub-additive-candidate.json.gz",
+  "source_candidate_sha256": "fc9fbbe12e29ed175c3a742d086b1820778a0adcafc680b25a47225ac876eab8",
+  "cofid_fixture_sha256": "69cd46739800770a79405d96e8efd4e41df0bc9b0dbf9bad3b63eb4d6cd4a683",
+  "summary": {
+    "recipes": 216,
+    "pass": 216,
+    "fix": 0,
+    "scope": [
+      "title",
+      "ingredients",
+      "method",
+      "equipment",
+      "allergens",
+      "nutrition",
+      "storage",
+      "food_safety",
+      "serving_metadata"
+    ],
+    "protected_v1_reviewed_or_modified": 0,
+    "quarantined_reviewed_or_modified": 0,
+    "nutrient_fields_recomputed": 1080,
+    "nutrient_arithmetic_mismatches": 0
+  },
+  "methodology": "54 pasta, 84 potato-topped pies, 54 roasts, eight pasta bakes, eight taco bowls and eight potato hashes. Actual protein portions, every base/flavour ingredient combination, unique instructions, allergens, storage and final serving metadata were examined across all descendants.",
+  "review_basis": {
+    "title": "Named dish and protein agree with ingredients and attainable cooking format; flavour labels are interpretations rather than authenticity guarantees.",
+    "ingredients": "Each listed quantity is accounted for, with dry/raw/cooked states matched to method and nutrient evidence; no unlisted oil, cheese, sauce or protein is required.",
+    "method": "Actual instructions assessed for preparation, order, finite heat/time guidance, doneness, cooked-grain use and cold dressing handling across every variant.",
+    "equipment": "Listed equipment supports the actual method, including thermometers where explicitly used.",
+    "allergens": "Known ingredient allergens checked against final tags; bought sauces and substitutions still require product-label checks.",
+    "nutrition": "All five per-serving nutrient fields independently recomputed with decimal arithmetic from the final exact CoFID fixture and ingredient weights. Raw/cooked state corrections checked. Disclosed generic-food and retail-sauce proxies remain estimates.",
+    "storage": "Chilling window, use-by precedence and single-reheat advice checked; rice and already-cooked poultry receive their applicable stricter instructions.",
+    "food_safety": "Raw meat handling, thorough minced-meat/poultry cooking, fish/prawn doneness, canned pulses and cold ingredients checked against FSA guidance.",
+    "serving_metadata": "One-serving portions, dish format and explicit estimated timings checked against method. Appliance/packet timings and doneness govern cooking."
+  },
+  "resolved_findings": [
+    "Completed equipment for cutting, stirring, draining, mashing, cooked-food transfer, temperature checks and hot trays.",
+    "Removed conflicting generic pasta cooking instructions ahead of the two-minute-short pasta-bake method.",
+    "Restricted already-cooked poultry hash portions to a single reheat.",
+    "Corrected finished-prawn, lentil and drained-bean wording and potato-hash food-format metadata.",
+    "Roast potatoes are now explicitly raw peeled potato weight with parboiling and roasting instructions matching the raw CoFID source.",
+    "Turkey mince is restricted to raw 100% turkey breast mince and mapped to raw turkey light meat.",
+    "The 54 pasta recipes with a 60-minute estimated total now use the standard preparation band rather than quick."
+  ],
+  "observations": [],
+  "equivalent_recipe_pairs": [],
+  "limits": [
+    "Independent AI editorial review; no human, Matt, clinical or professional-dietitian approval is represented.",
+    "Publication remains blocked until the mandatory human second-person acceptance is recorded separately.",
+    "Recipes were not physically cooked or taste-tested. Timings and generic-food nutrient values are estimates.",
+    "Allergen tags are not a guarantee of suitability for an individual allergy; actual bought-product labels govern.",
+    "Approval applies only to the exact listed content hashes and scopes. Any change requires renewed review."
+  ],
+  "sources": [
+    {
+      "title": "Food Standards Agency: Cooking your food",
+      "url": "https://www.gov.uk/government/publications/cooking-your-food/cooking-your-food"
+    },
+    {
+      "title": "Food Standards Agency: Home food fact checker",
+      "url": "https://www.gov.uk/government/publications/home-food-fact-checker/home-food-fact-checker"
+    },
+    {
+      "title": "CoFID 2021 publication",
+      "url": "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+    }
+  ],
+  "families": [
+    {
+      "template_key": "breakfast|frying-pan+hob|5|08936769c149",
+      "template_digest": "48bbdc4ae736805c495567597dc6a26aeb24fb174d69206fc6b347c3e17e19f7",
+      "full_family_recipe_count": 8,
+      "reviewed_recipe_count": 8,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-breakfast-potato-hash-apple-cinnamon-0",
+          "content_hash": "05b41de5d60797b96b37c8ac3e7e5dd8f4d6dbef4e6f0ef55765f3de84571ffe"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-banana-cocoa-1",
+          "content_hash": "4c70ff3fc8d3e32e9a9a070bbca6b3cb642ca87ffad54a7c2845a2c1b37df095"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-berry-vanilla-2",
+          "content_hash": "16bd8421530a4b332a43295d6e49ec482ee8f62d41107cc11a9b57e674f5da4a"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-blueberry-lemon-6",
+          "content_hash": "f476fde9c74545eeec96d5ae68b725197827e99d7fd0abfc46e1bf89397d6ba9"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-cherry-cocoa-5",
+          "content_hash": "479f2141a3d8ba986f1d7b9a42a026c21ddcf05195fc88577310d746fde6a2f3"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-peach-cinnamon-4",
+          "content_hash": "17e55b9a6d6169c15a2289dc8c2b93d01b76c37f0fc60e143637426aaf2d1691"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-pear-ginger-3",
+          "content_hash": "e66443b92b7e62b512585d51fdd6f32b482f29aa7aafc548f91ea95768d0b8f4"
+        },
+        {
+          "id": "industrial-breakfast-potato-hash-plum-ginger-7",
+          "content_hash": "6c6a15bceecdd7c5c35d429ec2b79bbecc9674fb9580a60795657358d3b05746"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|frying-pan+saucepan|6|077ee51b3e41",
+      "template_digest": "69b406ddf885a5c887b0e5f7831b9778634832d4f872282bd724829eba1c6b32",
+      "full_family_recipe_count": 36,
+      "reviewed_recipe_count": 36,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-v3-pasta-bbq-beef",
+          "content_hash": "94da472423e05e87dfda0f770204fae0dda121db46828e6af22188b847749dcb"
+        },
+        {
+          "id": "industrial-v3-pasta-bbq-chicken",
+          "content_hash": "ba15603e663f596daa15a0493178efbaf3d5035953366f972708c87b80dda6cb"
+        },
+        {
+          "id": "industrial-v3-pasta-bbq-pork",
+          "content_hash": "8928dd8efc195f0990eae0d725d0d0a5b654d4f2d28a2c49e03d2fb7606df2ba"
+        },
+        {
+          "id": "industrial-v3-pasta-bbq-salmon",
+          "content_hash": "61809e173288ea8d0cce4763c1229412158bce0c1a76af1aa4d1d0ce6edec11b"
+        },
+        {
+          "id": "industrial-v3-pasta-bbq-tofu",
+          "content_hash": "9cb0fa48f85bbf13431a6167f676d581cbb374b4b15dc886277920130b1ede2b"
+        },
+        {
+          "id": "industrial-v3-pasta-bbq-turkey",
+          "content_hash": "b8cd2f799cefd243e30b20d7b672ee23f05348413e9ba91125b7c5c91d3207c3"
+        },
+        {
+          "id": "industrial-v3-pasta-cajun-beef",
+          "content_hash": "6019a9f3355406db4d8d8b3f866d8d0da556e4195e1e788e0c4e82bb7f22c190"
+        },
+        {
+          "id": "industrial-v3-pasta-cajun-chicken",
+          "content_hash": "7bcf5d7663ad37c50246c0fdfc5f84523c6f79fd902c70ef75e4047944940fd1"
+        },
+        {
+          "id": "industrial-v3-pasta-cajun-pork",
+          "content_hash": "f2829003299a9e14b7fa221a3622b6b955a2e491996ef325f729b87ea2da0425"
+        },
+        {
+          "id": "industrial-v3-pasta-cajun-salmon",
+          "content_hash": "9864011f5b191776bb7baadbe847b25313657bba6f900c714f7265f3b7aa63d1"
+        },
+        {
+          "id": "industrial-v3-pasta-cajun-tofu",
+          "content_hash": "4f88f90f4df1ef4eea930f0d23ed1b97131d531c1b6cfdfd0d74af89a26d296b"
+        },
+        {
+          "id": "industrial-v3-pasta-cajun-turkey",
+          "content_hash": "2b9a0df9f42f13554d33d5e845362ec2cfd79be4f905ba84d900b6d394589e92"
+        },
+        {
+          "id": "industrial-v3-pasta-chilli-beef",
+          "content_hash": "8f42544027b7966b82e592ec55fb62abda91f6189d71ce1b57da2b4a25f89bf9"
+        },
+        {
+          "id": "industrial-v3-pasta-chilli-chicken",
+          "content_hash": "5de99734b8f30bf3123cde8122916528fa116436f01eaf3f8facceb31b307f12"
+        },
+        {
+          "id": "industrial-v3-pasta-chilli-pork",
+          "content_hash": "fb0b322ff373352b8a0131d34222701127e4d237f819f99b689afa254c897769"
+        },
+        {
+          "id": "industrial-v3-pasta-chilli-salmon",
+          "content_hash": "be6ec34814399337ed0d2001a3a95ce08d2e9377650a5a979e413637dd3546e9"
+        },
+        {
+          "id": "industrial-v3-pasta-chilli-tofu",
+          "content_hash": "2a746ee7be76eeff3ae37e402c871d623d89c44c150575808206759f720b1579"
+        },
+        {
+          "id": "industrial-v3-pasta-chilli-turkey",
+          "content_hash": "55834f2888836e9a89b72899cc890b43c4ed95c8a088033ec8c75d5d7b549b4e"
+        },
+        {
+          "id": "industrial-v3-pasta-harissa-beef",
+          "content_hash": "62664d6d7c34401812b56b3881df2e50dff9c52e76c615d57a63d0e8dba7d850"
+        },
+        {
+          "id": "industrial-v3-pasta-harissa-chicken",
+          "content_hash": "73ca5c05963a3fa7290ed3479423c7c9184e13031d38ba33c753045aa93c1069"
+        },
+        {
+          "id": "industrial-v3-pasta-harissa-pork",
+          "content_hash": "0c85a3cfd85bc612bacdd0fb1e914d7367f2c54ee7df013fb69534fb798a3876"
+        },
+        {
+          "id": "industrial-v3-pasta-harissa-salmon",
+          "content_hash": "cc58bf20b7d348d3a8d286ca235e53fac20b69087689de3b6db1dac4d94f9155"
+        },
+        {
+          "id": "industrial-v3-pasta-harissa-tofu",
+          "content_hash": "4e418ca254d95527af802d8cb06d529ab8952f336a3777b06e4c3ed59821361d"
+        },
+        {
+          "id": "industrial-v3-pasta-harissa-turkey",
+          "content_hash": "69aa4c90547c2a391e64cd40d3ed719ec866472efab5b0bacd0597881da564fb"
+        },
+        {
+          "id": "industrial-v3-pasta-mediterranean-beef",
+          "content_hash": "dda0189ba40f6fc5d2ac2fc5805c9bccf38bcb71090a399ce5b5637cf9705347"
+        },
+        {
+          "id": "industrial-v3-pasta-mediterranean-chicken",
+          "content_hash": "47a7a8c89c3e377d5c72f0b72893d1e2ebbfa43be4c4f89b3576bd8be3137c0d"
+        },
+        {
+          "id": "industrial-v3-pasta-mediterranean-pork",
+          "content_hash": "c11244d129d20993a2c381be2de79fe2a6f750335ef4d07fd45cbc5119192e5b"
+        },
+        {
+          "id": "industrial-v3-pasta-mediterranean-salmon",
+          "content_hash": "e90f4a690e0672e9694a780a9a7ef17b51ec0e9352a7ad0dcda08390ca9ff4ea"
+        },
+        {
+          "id": "industrial-v3-pasta-mediterranean-tofu",
+          "content_hash": "b22621e69181b8b7299c424e6dd38957548825c032253a6549336aa21c20f3d5"
+        },
+        {
+          "id": "industrial-v3-pasta-mediterranean-turkey",
+          "content_hash": "6399a08a40af33277095a72b8bc391bc8dbc704eaf9f2ef2188d97a0b82efe00"
+        },
+        {
+          "id": "industrial-v3-pasta-peri-peri-beef",
+          "content_hash": "2a7cb44f07e1c87f72e0f16d9717b1f161213e90b9f49e528a5c730e3b241240"
+        },
+        {
+          "id": "industrial-v3-pasta-peri-peri-chicken",
+          "content_hash": "d8dc0d46b1562b3c39014e1097e7eab11ea19114541c79675a522d74c63770fd"
+        },
+        {
+          "id": "industrial-v3-pasta-peri-peri-pork",
+          "content_hash": "6f1ffa7cf34d18892db8264d62ed838122533d8a6fc0ce1b3377b1dd655e3bff"
+        },
+        {
+          "id": "industrial-v3-pasta-peri-peri-salmon",
+          "content_hash": "5ac5afe4ce9719e96272b61ab12ffabab7af400bdbdd71f14e9fad9930862f4b"
+        },
+        {
+          "id": "industrial-v3-pasta-peri-peri-tofu",
+          "content_hash": "30d099f7aab18172006a67c1545b4f02f1179f320b80bf61e7db897a2591dd99"
+        },
+        {
+          "id": "industrial-v3-pasta-peri-peri-turkey",
+          "content_hash": "332d1298f676b5560e1cdedcbc3f8a0ae5495a3f9d34875a99c0001a51c6d7cc"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|frying-pan+saucepan|8|5d79bf67d333",
+      "template_digest": "711e27c0dd2a890be832110c284514f08e5fd662998007f796d84cbb7349f9e0",
+      "full_family_recipe_count": 18,
+      "reviewed_recipe_count": 18,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-v3-pasta-garlic-herb-beef",
+          "content_hash": "cb21d1d349b56f5abc56452fce51400e1af8e644a2e77377fcc4525769016da0"
+        },
+        {
+          "id": "industrial-v3-pasta-garlic-herb-chicken",
+          "content_hash": "2307e31af29e48385b7df643402f3ce34296a2cbe5aecb3dbd742afeec5d68c9"
+        },
+        {
+          "id": "industrial-v3-pasta-garlic-herb-pork",
+          "content_hash": "d5011b80f0bbb48581c95ef5e46831cc973014bcfee5a1c7366e704e7829a7ae"
+        },
+        {
+          "id": "industrial-v3-pasta-garlic-herb-salmon",
+          "content_hash": "c531e95205a896914f4510e0ea756a5b9b18065c1de7640ffe22defd6c4c1a1c"
+        },
+        {
+          "id": "industrial-v3-pasta-garlic-herb-tofu",
+          "content_hash": "3044e389e313687e5dcfa194c1542245ebd91c265eab789f80b6d6c209507e85"
+        },
+        {
+          "id": "industrial-v3-pasta-garlic-herb-turkey",
+          "content_hash": "ead717577cb3db7fc64fe5398409f0cb4ea5b53739848f995c6798bb2fc3c578"
+        },
+        {
+          "id": "industrial-v3-pasta-lemon-herb-beef",
+          "content_hash": "e6d791d721e30cb3359dcb32c17ee4ad71e72032a539361a162b3c5a6f360805"
+        },
+        {
+          "id": "industrial-v3-pasta-lemon-herb-chicken",
+          "content_hash": "6220f3463e501473923b93a6625fa3f2434d801973a97ad693fb7b322ca27bb3"
+        },
+        {
+          "id": "industrial-v3-pasta-lemon-herb-pork",
+          "content_hash": "b8ad1bac295cf95140de3f9147a2c40ff7c3e55203a9f4866b45a4b0682df6e7"
+        },
+        {
+          "id": "industrial-v3-pasta-lemon-herb-salmon",
+          "content_hash": "e6aeb12a8ebfa7e51b0925b2c1ae25c062194552a116d65b8fb8caec0506d090"
+        },
+        {
+          "id": "industrial-v3-pasta-lemon-herb-tofu",
+          "content_hash": "e7a0b133943d9979b05b723e683c3ca6cf2ee51e42707f257a1b4b1597803c23"
+        },
+        {
+          "id": "industrial-v3-pasta-lemon-herb-turkey",
+          "content_hash": "70e18da787256f60b4d30276e52bd1b024d6d4d42de9b4407a98150bffbaf780"
+        },
+        {
+          "id": "industrial-v3-pasta-peppercorn-beef",
+          "content_hash": "935e0cd3db03a565e0d5d3035bf5005d4a4bab79ebdb3c63fe345fe21cb806ce"
+        },
+        {
+          "id": "industrial-v3-pasta-peppercorn-chicken",
+          "content_hash": "f3152a125e2232a2f7e40189aaccef0da1b35ce783d278fa5e88917a1bf964a0"
+        },
+        {
+          "id": "industrial-v3-pasta-peppercorn-pork",
+          "content_hash": "7bcdcd90981ac42dd0169d472e0154fc763d88de140119b2f3af4f97896afcab"
+        },
+        {
+          "id": "industrial-v3-pasta-peppercorn-salmon",
+          "content_hash": "08a303bdc861ebba0c81ed4951aaebc399dd3ebfac3e7c11e2e5722ccc53fc01"
+        },
+        {
+          "id": "industrial-v3-pasta-peppercorn-tofu",
+          "content_hash": "7e32ddc14916b11ca5ff0f2899fa53f454eccccae64266d65f3323a5377a65e0"
+        },
+        {
+          "id": "industrial-v3-pasta-peppercorn-turkey",
+          "content_hash": "2fa905c0871c4574488c4e3ebc4028a2400442ad072893ba79d30d93d0612664"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|hob+oven|5|c6c7a440b2ff",
+      "template_digest": "002a55e3b7d5d46f8d4b3a782fb21714e9ec3acd4abe4a978e6587bc353e2e65",
+      "full_family_recipe_count": 8,
+      "reviewed_recipe_count": 8,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-dinner-chicken-pasta-bake",
+          "content_hash": "08213c6cb8ddb034318f554ca0dc0035a67a79a1ab8d1f2d9adc656094e285f7"
+        },
+        {
+          "id": "industrial-dinner-lean-beef-pasta-bake",
+          "content_hash": "6dbc89d5d4f3d7f66bc22a62c5f25563d8d728846db8b1ebbdf6e31207e4f3ca"
+        },
+        {
+          "id": "industrial-dinner-lentil-pasta-bake",
+          "content_hash": "087ba500f76c8f660417026ba19f5134ef1b4d0aba93e1620d24e3003bdfeb34"
+        },
+        {
+          "id": "industrial-dinner-pork-pasta-bake",
+          "content_hash": "6a218f81ee9307245518912d105ccb0eef226b26d0651e1de498ce6210701b0f"
+        },
+        {
+          "id": "industrial-dinner-prawn-pasta-bake",
+          "content_hash": "e8fc1b30b64bf9a04dbc6d1d1e22d79397e3fda75c99ae4906b4b6a223028fb2"
+        },
+        {
+          "id": "industrial-dinner-salmon-pasta-bake",
+          "content_hash": "3e146c37363cff6e9f71cbd83a0354a8c8c12d157f8e34791f644c46fe777c20"
+        },
+        {
+          "id": "industrial-dinner-tofu-pasta-bake",
+          "content_hash": "fb2374d263fcd7144c458900fd67fe10505c7d9a60924f45b085caf97a7d8427"
+        },
+        {
+          "id": "industrial-dinner-turkey-pasta-bake",
+          "content_hash": "0cef7043f83ee33c07e16e83729304e7d6aeb8581820d24deba0fd6331c26bcc"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|hob+saucepan|5|165abb856e64",
+      "template_digest": "20370d37ed223bf58b0cd621649a834bd87144d622dbbb52af3e8e5f39f50bf9",
+      "full_family_recipe_count": 8,
+      "reviewed_recipe_count": 8,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-dinner-chicken-taco-bowl",
+          "content_hash": "ce83fd28b8a718022bc38fd7df8d86c8dbfe5c1319e10aca51529d0f7d2f3f7e"
+        },
+        {
+          "id": "industrial-dinner-lean-beef-taco-bowl",
+          "content_hash": "58f7375c4412b817aa03e4622d24452661c2f190a05829475449a02eaec91d51"
+        },
+        {
+          "id": "industrial-dinner-lentil-taco-bowl",
+          "content_hash": "700ca6d849582653b3e9b88922c462eebdadd67b95f4f3814ef0e85e7fb23fe1"
+        },
+        {
+          "id": "industrial-dinner-pork-taco-bowl",
+          "content_hash": "b4c5f2b469512c3de61dcf77d958cd0f97ab625d117edcd5b58df51936336931"
+        },
+        {
+          "id": "industrial-dinner-prawn-taco-bowl",
+          "content_hash": "099e73ba49dc8b597c6d48d72e39677d23398783822f18d3df08240a63c1c6fd"
+        },
+        {
+          "id": "industrial-dinner-salmon-taco-bowl",
+          "content_hash": "55acfbfa1a9ebfc60f7fb0bccadcfa662079eb6202ce41b7d75a613001f61b13"
+        },
+        {
+          "id": "industrial-dinner-tofu-taco-bowl",
+          "content_hash": "026942408f47f88bb63240ddc49501325953a1c5ca8d84192a22bb2f7557c19f"
+        },
+        {
+          "id": "industrial-dinner-turkey-taco-bowl",
+          "content_hash": "5f8dea275a798ed6abd43b198142c06cdf61155a7048f8e29d13687079316680"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|oven+saucepan|6|5475f37750d4",
+      "template_digest": "f6f65ca64f3cf93437a74d2adfc0ce2da181c72a709b7f18db07adb33ec9c93f",
+      "full_family_recipe_count": 66,
+      "reviewed_recipe_count": 66,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-v3-pie-balti-beef",
+          "content_hash": "4811c88d7fc8f27b3dc6b3427f8175887d57ff78b22f9eaa0271517cee5b151b"
+        },
+        {
+          "id": "industrial-v3-pie-balti-chicken",
+          "content_hash": "7ebcf17febf12b3cd038e3ace03ac0734372fad836bd08805d017b1cb15b1374"
+        },
+        {
+          "id": "industrial-v3-pie-balti-pork",
+          "content_hash": "a2d07e9691bd894f81608d4f77a262cb1c9fc124b59560a202a1d1c14d17d542"
+        },
+        {
+          "id": "industrial-v3-pie-balti-salmon",
+          "content_hash": "c7c3f02924a2aaa36282d7c8528cb837e809dcb3da620da2d0010e087ac8b890"
+        },
+        {
+          "id": "industrial-v3-pie-balti-tofu",
+          "content_hash": "0439b1e205bfa21a0cd2e80c40e00c3a629c5ca59054c5bda30e96c65132e10d"
+        },
+        {
+          "id": "industrial-v3-pie-balti-turkey",
+          "content_hash": "1c989973adf8a789505b7909504d006b8c4a6a3472cf1e9b9b55d3b2782fafc5"
+        },
+        {
+          "id": "industrial-v3-pie-bbq-beef",
+          "content_hash": "c0f7e36692442608cd6e596144a831da28ba69cf8dd09200bbbfd44baded7c03"
+        },
+        {
+          "id": "industrial-v3-pie-bbq-chicken",
+          "content_hash": "d359daa394ddf8ef40c0d40802321cc9089abfbb82878a68439b1d430e96d17a"
+        },
+        {
+          "id": "industrial-v3-pie-bbq-pork",
+          "content_hash": "b4ebdc3c3d23f5d2d16ab1d3406d70b6168710846587918cb6a53d5f232a3e4e"
+        },
+        {
+          "id": "industrial-v3-pie-bbq-salmon",
+          "content_hash": "7ca081492730a9fdfbdfd5f9c010dcdf44007ead728ffb0f0a9f45f9028a562e"
+        },
+        {
+          "id": "industrial-v3-pie-bbq-tofu",
+          "content_hash": "6e81f0755c9917b96092658bf2f204d689116003412be914ef5d583b372be717"
+        },
+        {
+          "id": "industrial-v3-pie-bbq-turkey",
+          "content_hash": "d88192a10e5ab6636dc48bcdc53003486e4b08c9f0824db11502a1c97e21dba4"
+        },
+        {
+          "id": "industrial-v3-pie-cajun-beef",
+          "content_hash": "e04af46dda7728a70da0607fac095fd76851ff826e241c04325f00d5c2185b5a"
+        },
+        {
+          "id": "industrial-v3-pie-cajun-chicken",
+          "content_hash": "b4f18047790064c771d9a988efd3fb18d49cc4d50596326aea7548d5644d3f58"
+        },
+        {
+          "id": "industrial-v3-pie-cajun-pork",
+          "content_hash": "4e818b473155c67ae0962ec83e84a095076c9633dfdf47a8b9c91d12e0cc38a1"
+        },
+        {
+          "id": "industrial-v3-pie-cajun-salmon",
+          "content_hash": "3c1de089134b3d9a402c548beff8b63b668cc3326b33aec13968bfe012ad0854"
+        },
+        {
+          "id": "industrial-v3-pie-cajun-tofu",
+          "content_hash": "b5397fa39824c17fdf00410cf613a139176af3dd29e6023c470f1a6310a704c7"
+        },
+        {
+          "id": "industrial-v3-pie-cajun-turkey",
+          "content_hash": "c96f78fb4141571bff8a25d4a272b0dbba51e090265788ccac16cbb628bd6fd5"
+        },
+        {
+          "id": "industrial-v3-pie-chilli-beef",
+          "content_hash": "35ac58cf6b39a97f422bc324ecaac768b1159d1a6247eb38e896953247b12425"
+        },
+        {
+          "id": "industrial-v3-pie-chilli-chicken",
+          "content_hash": "9a206bf22e82c69fbe69a464ee659a7214c3ece705168348486b8a400884ac84"
+        },
+        {
+          "id": "industrial-v3-pie-chilli-pork",
+          "content_hash": "1da6532176073ff9a9ce8e0b04936c0e8bbad28b3ddcd364672e6b938e0c390b"
+        },
+        {
+          "id": "industrial-v3-pie-chilli-salmon",
+          "content_hash": "90e1d2a61264abbdcac0220e6d42125f513d25d2026c497d1d0c3b46e54208d3"
+        },
+        {
+          "id": "industrial-v3-pie-chilli-tofu",
+          "content_hash": "b6a786aedc1c5b9b4cabc0a7e7726a6ee9d850d11f453de455d45e874e2ab945"
+        },
+        {
+          "id": "industrial-v3-pie-chilli-turkey",
+          "content_hash": "7bd2c54c0ea137a12129c8d597f8d1ff7896ddc1ce0fdb6c526269d8abbc2817"
+        },
+        {
+          "id": "industrial-v3-pie-curry-house-beef",
+          "content_hash": "732bf929f1372943e8cc1fc27e96badc11cb11879b2c1a2d4922af48f52bab14"
+        },
+        {
+          "id": "industrial-v3-pie-curry-house-chicken",
+          "content_hash": "a9ec06829aefd290cf6c4aa761fe5d1da104ebe1c0d38c833851fe32b490b45f"
+        },
+        {
+          "id": "industrial-v3-pie-curry-house-pork",
+          "content_hash": "c67e1d276d108075dd68e1260cf10cb55c611130d19be297ae8b166c85a091c4"
+        },
+        {
+          "id": "industrial-v3-pie-curry-house-salmon",
+          "content_hash": "214de9cf980218c36fa807d6c0728667e3ed51191e192eb7e9766dac24cf5b76"
+        },
+        {
+          "id": "industrial-v3-pie-curry-house-tofu",
+          "content_hash": "9d4b157b0771bc41bd4800e7c4fb25a63d0ff63c9429b3771d4569c69c4b1c3f"
+        },
+        {
+          "id": "industrial-v3-pie-curry-house-turkey",
+          "content_hash": "cefdd638c31c472075789a508b1b3393498b0033ff780fafa0ecbfc15384a6a7"
+        },
+        {
+          "id": "industrial-v3-pie-harissa-beef",
+          "content_hash": "488bc61297125f133156a16ccd39971df3e9f9e7af7a3fe855ba3fb21e52a38f"
+        },
+        {
+          "id": "industrial-v3-pie-harissa-chicken",
+          "content_hash": "4a53b535137a140cac2a227cb8abfff3eb3c38dc745bac198be2c194a3854788"
+        },
+        {
+          "id": "industrial-v3-pie-harissa-pork",
+          "content_hash": "5dd239bab417783122661903348d4fc2b019ff098e6d4f1507e72c28fe4e2cf2"
+        },
+        {
+          "id": "industrial-v3-pie-harissa-salmon",
+          "content_hash": "d7f93916dbff55e9b944949ca8d39779d50acf7b30bee829b6b1f50850b37e6e"
+        },
+        {
+          "id": "industrial-v3-pie-harissa-tofu",
+          "content_hash": "0b6ad73bfa4bc82854e7c131c575f4a27074befb9ead34a92481c595a24223d0"
+        },
+        {
+          "id": "industrial-v3-pie-harissa-turkey",
+          "content_hash": "a2ed31707b58efd1d5dd01967b5489dc7838ec79f2e975fd9d071fbc231f1380"
+        },
+        {
+          "id": "industrial-v3-pie-jalfrezi-beef",
+          "content_hash": "98f8ccad4cf03a3a985ed149f69509de1ee531a6703cac4b8799abaab39e0b1b"
+        },
+        {
+          "id": "industrial-v3-pie-jalfrezi-chicken",
+          "content_hash": "ca90b00450a6788b7a94618b35d86d2755e840078ba4e75905d1e16c20722ee1"
+        },
+        {
+          "id": "industrial-v3-pie-jalfrezi-pork",
+          "content_hash": "41d6e19fe362ae922f0b56e4aaddb91f53b32acc2260e8ddaafbaf202a86e987"
+        },
+        {
+          "id": "industrial-v3-pie-jalfrezi-salmon",
+          "content_hash": "57d45a8af1d764aba02d2e1e992491278ca38a27dd8ef7b4092b0f9fe08a9fa7"
+        },
+        {
+          "id": "industrial-v3-pie-jalfrezi-tofu",
+          "content_hash": "55d307e7e7bdab4a6f3fe356def203c4b61ae80922b83683b04535a3a3bfe463"
+        },
+        {
+          "id": "industrial-v3-pie-jalfrezi-turkey",
+          "content_hash": "98ab6cdbfc7145ee5e203be171c6c4827bf3eb7d92a4d9aa7b2aade6b6e351ce"
+        },
+        {
+          "id": "industrial-v3-pie-madras-beef",
+          "content_hash": "79afc8b6f8775a4e204d2777a70ff6113462c35a20355b4cd516ba12cc2cf5b6"
+        },
+        {
+          "id": "industrial-v3-pie-madras-chicken",
+          "content_hash": "d22230419853bf7903d17b75491adb85be5dfb41818716e956784a104dda7148"
+        },
+        {
+          "id": "industrial-v3-pie-madras-pork",
+          "content_hash": "08c4dfa761cbddefb7998c3fcd69276b09e5ec2570d563818c087f889749f6b4"
+        },
+        {
+          "id": "industrial-v3-pie-madras-salmon",
+          "content_hash": "03fe250b091413d24b9f25d4d2dd7d8d86bc8ff90486b32a486b37c19124a514"
+        },
+        {
+          "id": "industrial-v3-pie-madras-tofu",
+          "content_hash": "5245f079516fd571fe2b87316ebaef1fefb977efd94192db93b16dc3e6daa0ba"
+        },
+        {
+          "id": "industrial-v3-pie-madras-turkey",
+          "content_hash": "8c9841ff70daa75f2af22153ce727ef7a2e5674994e3823317aaf3f6ed0d39de"
+        },
+        {
+          "id": "industrial-v3-pie-mediterranean-beef",
+          "content_hash": "c3cb9c83687fe8b901f75c157ccfe1dff2086d639111fc07a038d99a782355af"
+        },
+        {
+          "id": "industrial-v3-pie-mediterranean-chicken",
+          "content_hash": "ba5d350dbafe911b1f758e43be6e4d39f19065c46b19203874b595248771be41"
+        },
+        {
+          "id": "industrial-v3-pie-mediterranean-pork",
+          "content_hash": "a934a39183971953fb4f264bfd07e4e00ea61e3d951121b568150ed7edfbcf87"
+        },
+        {
+          "id": "industrial-v3-pie-mediterranean-salmon",
+          "content_hash": "d16fd63af6860977e2194c5432fa2d96af7f4a986192db102b2f5696ec45f30d"
+        },
+        {
+          "id": "industrial-v3-pie-mediterranean-tofu",
+          "content_hash": "f741a66ada994943152a67f28e2c28dd5434baf0746d851cec065830089200f3"
+        },
+        {
+          "id": "industrial-v3-pie-mediterranean-turkey",
+          "content_hash": "7a57590f27ad2204f4846d9b1abcc153a81be486457083653819940e0bc28f2f"
+        },
+        {
+          "id": "industrial-v3-pie-peri-peri-beef",
+          "content_hash": "287653c37d69a7b6ba3383e825495101cc19df778b2b18492d097dc9c75dd4b1"
+        },
+        {
+          "id": "industrial-v3-pie-peri-peri-chicken",
+          "content_hash": "95127cd1d0bfc0e836b4a8fc599d9bbab93f93c67159e1395eaca8fb6a240725"
+        },
+        {
+          "id": "industrial-v3-pie-peri-peri-pork",
+          "content_hash": "4dfcb3ce8f71d19e2b2ccffe317495f46423ad61ea8d397a08c35b6147d3e116"
+        },
+        {
+          "id": "industrial-v3-pie-peri-peri-salmon",
+          "content_hash": "2dcb87b2340411e96a0d358b429fcb89160e0cb5a43a983e4ce9d956e159c5e4"
+        },
+        {
+          "id": "industrial-v3-pie-peri-peri-tofu",
+          "content_hash": "8b0b8282e596412d046dddffa2560ad3f77f314441eda41c043f8b3ad24e05eb"
+        },
+        {
+          "id": "industrial-v3-pie-peri-peri-turkey",
+          "content_hash": "2b85caf19591a6c16825d6ac21e5d7c5ccf919bad807af5a82f0d97c46028f39"
+        },
+        {
+          "id": "industrial-v3-pie-tikka-beef",
+          "content_hash": "e4be98686b7aa29f00617d4510bf127fde904d0ea834f31cbabd07327af0b72d"
+        },
+        {
+          "id": "industrial-v3-pie-tikka-chicken",
+          "content_hash": "42c0fdcdea7a4d12fab39dcdaa052fe8a3f87de515e161a85017165862e853c8"
+        },
+        {
+          "id": "industrial-v3-pie-tikka-pork",
+          "content_hash": "fd5c0850d7a26350009cc91fbfc157d6fc6ac051b98eac618657c493b9d60b0d"
+        },
+        {
+          "id": "industrial-v3-pie-tikka-salmon",
+          "content_hash": "1cb81283b4288e1b3ff287f908fea6b414f631879488e275055b7ffcd587ae53"
+        },
+        {
+          "id": "industrial-v3-pie-tikka-tofu",
+          "content_hash": "409bb6fec1367d99e16ddb227d47897c221153b1ffafda3c9248797597ded17b"
+        },
+        {
+          "id": "industrial-v3-pie-tikka-turkey",
+          "content_hash": "f3d39bd12ef1ac44d9ea25b136bfdf8b645a1cd1968ea607c381d0dd01b5034f"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|oven+saucepan|8|4083efb9b949",
+      "template_digest": "89e03b72506a77e11a29005da466cb980aad24ceb7852bd0ec7f695d15572c1d",
+      "full_family_recipe_count": 18,
+      "reviewed_recipe_count": 18,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-v3-pie-garlic-herb-beef",
+          "content_hash": "66f5804c26a8f6a4fa542401113a639f220a7358cd964a17e7f365abe36b23e6"
+        },
+        {
+          "id": "industrial-v3-pie-garlic-herb-chicken",
+          "content_hash": "662644b09cfb88a90afbb28766672daf02cbbf3bae244d9170a5ebd1336864c9"
+        },
+        {
+          "id": "industrial-v3-pie-garlic-herb-pork",
+          "content_hash": "c64461af21ed3eadf07d3fdf4798f072741f8c32b8795ca0542b0308370ff12d"
+        },
+        {
+          "id": "industrial-v3-pie-garlic-herb-salmon",
+          "content_hash": "aae0d63748be6357426166479ecc532038c1db4f3814a01bf1294063cde2039b"
+        },
+        {
+          "id": "industrial-v3-pie-garlic-herb-tofu",
+          "content_hash": "add66d1e4f39ef67791508c08a42d383090bd4c478c7b539a2943c0b806543e5"
+        },
+        {
+          "id": "industrial-v3-pie-garlic-herb-turkey",
+          "content_hash": "ff7122116085074e5d51d434c5b1397c6a318669289100134e7c0acb12599f65"
+        },
+        {
+          "id": "industrial-v3-pie-lemon-herb-beef",
+          "content_hash": "bcf5f3bb4e1530fda95ef574c1b16828868a8aa2474a8b65a0bc7185995c560c"
+        },
+        {
+          "id": "industrial-v3-pie-lemon-herb-chicken",
+          "content_hash": "11ae9f26e7e9740dbdff209bcf3f1dea1b281b6bb93e1ebfd39abc0a72deaf5f"
+        },
+        {
+          "id": "industrial-v3-pie-lemon-herb-pork",
+          "content_hash": "d907a8aff30cc52ab3fe5e43e3b891a80644a192c1ada473178af48a774f4624"
+        },
+        {
+          "id": "industrial-v3-pie-lemon-herb-salmon",
+          "content_hash": "dbc7e975092f7824905e176e19d83a89b66dcc7b8e52f78f394a9b38e11080d0"
+        },
+        {
+          "id": "industrial-v3-pie-lemon-herb-tofu",
+          "content_hash": "fcb8c19ba48f6918ee1fd42510da39ab14d00563ddfdd1a89e9cfbc94807eb93"
+        },
+        {
+          "id": "industrial-v3-pie-lemon-herb-turkey",
+          "content_hash": "e2db7722700166a542b2ac490655f4df881f7982a5abd398e23ebdd62b23cc26"
+        },
+        {
+          "id": "industrial-v3-pie-peppercorn-beef",
+          "content_hash": "77f66e5c26256cc4c48bb97ed2ae3268e2544c93c27a003aaf7e97b2bef99da8"
+        },
+        {
+          "id": "industrial-v3-pie-peppercorn-chicken",
+          "content_hash": "bc4f90f4b4fa1b8720f77e2f85c4655ca84370fb2d0df9280ea4187f38213d22"
+        },
+        {
+          "id": "industrial-v3-pie-peppercorn-pork",
+          "content_hash": "50050084674eb0215e2e1b033c879308d271113a6e1c49ce2893e3670f0cbe86"
+        },
+        {
+          "id": "industrial-v3-pie-peppercorn-salmon",
+          "content_hash": "cd874d15656ae8a3c16ab73503cb32149221a52d711edd9efa0b9859a2fb1e87"
+        },
+        {
+          "id": "industrial-v3-pie-peppercorn-tofu",
+          "content_hash": "2b75ab32a4bcb68288bcf5477c82840452683a05cd0f66474e601f3f215d63ee"
+        },
+        {
+          "id": "industrial-v3-pie-peppercorn-turkey",
+          "content_hash": "c70218cad9946168f636f5803b98819648c57de09aa9303103a118ae414f562a"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|oven+tray|6|7ae9f8b454ab",
+      "template_digest": "2dc2cdd4953f933802f79d1d86455f85d0c3cd01f2a9e857889374d12d8aadbc",
+      "full_family_recipe_count": 36,
+      "reviewed_recipe_count": 36,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-v3-roast-bbq-beef",
+          "content_hash": "ed0a3395ba120520b82a9ea6e38aa6d1ecd2fa288147e8aeea0651c2263f521a"
+        },
+        {
+          "id": "industrial-v3-roast-bbq-chicken",
+          "content_hash": "545cf3d9d7c70563f1136d015f22d22fe21677ce37603bd69ac7a13bce28ecf2"
+        },
+        {
+          "id": "industrial-v3-roast-bbq-pork",
+          "content_hash": "de6c0253f8e58dcaeb1939acab09adfbf986b45d6c8cf740b6ea0ab30b7c829e"
+        },
+        {
+          "id": "industrial-v3-roast-bbq-salmon",
+          "content_hash": "284fe97ee220ab9040deee6146da9fa86732167a646afa3169db30bc5dcb05c5"
+        },
+        {
+          "id": "industrial-v3-roast-bbq-tofu",
+          "content_hash": "049e38f3c089467a0067050cf6de885515cf0cd8c5a12117575bd1b348ed374f"
+        },
+        {
+          "id": "industrial-v3-roast-bbq-turkey",
+          "content_hash": "f49026c69a5120e5c0a19008d5c5ca6b137c0be39b3931c6e3428935761de6da"
+        },
+        {
+          "id": "industrial-v3-roast-cajun-beef",
+          "content_hash": "d6937b3b758fab83f69594a2c8e45f680ae08513d7c9a6c72fd0267abbef4870"
+        },
+        {
+          "id": "industrial-v3-roast-cajun-chicken",
+          "content_hash": "e806655a3384e85eda0b7b18141a61c4367aa9dd4371c5176a750faa38842b6b"
+        },
+        {
+          "id": "industrial-v3-roast-cajun-pork",
+          "content_hash": "207a1f8390cc7d2a55a657633d3a0531c2a3777121e370994fb846831a01e4ba"
+        },
+        {
+          "id": "industrial-v3-roast-cajun-salmon",
+          "content_hash": "68bdd84b27f179ff04abf03445de273094f9df65c26f748f75abb89c25ae5f3f"
+        },
+        {
+          "id": "industrial-v3-roast-cajun-tofu",
+          "content_hash": "c00d253f1eb24c5a47d64f3146394f9b7030df6e23a0b89b531c39106024ec28"
+        },
+        {
+          "id": "industrial-v3-roast-cajun-turkey",
+          "content_hash": "c4bb96e46515aec1296b70c883354e3e380d9a1d30c32f64a87fc6ee54e4d2e3"
+        },
+        {
+          "id": "industrial-v3-roast-chilli-beef",
+          "content_hash": "60cc5464605d9fb6713ccf974a5c98044eadd39766f60845f385bed948ac9a76"
+        },
+        {
+          "id": "industrial-v3-roast-chilli-chicken",
+          "content_hash": "8aec9879738b3c73cb8a73b6b6d816a99d32dd19e01cdda950d31f9422539367"
+        },
+        {
+          "id": "industrial-v3-roast-chilli-pork",
+          "content_hash": "dbd2028946e214a3564d24f2153f99b851ad118c43b484db704557648aef49b1"
+        },
+        {
+          "id": "industrial-v3-roast-chilli-salmon",
+          "content_hash": "32a1a650a34ecf897cde89118ee7eabb4645f007099e46426f87bedb56a841c9"
+        },
+        {
+          "id": "industrial-v3-roast-chilli-tofu",
+          "content_hash": "eef0cff82205bb7426d5a1c1ecb669263ee6bb08c628b1beb28659da4cfd9cde"
+        },
+        {
+          "id": "industrial-v3-roast-chilli-turkey",
+          "content_hash": "3a0aff31e9fe00f4819cd21a3fe8bca05466efeb2878b970e901b2c05e751d4b"
+        },
+        {
+          "id": "industrial-v3-roast-harissa-beef",
+          "content_hash": "3a4807aeffed2d8d3cf6a0be59ce021a9b779e3f2a8eb4a6bf34cb5e0c2fdf31"
+        },
+        {
+          "id": "industrial-v3-roast-harissa-chicken",
+          "content_hash": "4973f9275d0894040d8ca3d899a72a02dec97e20a3471c7542e5fee30c90a5bc"
+        },
+        {
+          "id": "industrial-v3-roast-harissa-pork",
+          "content_hash": "1b60f455e182896fa2a5acbb7bcc31a8f4649a939a3c49cc6f44a8d9d0b89ee7"
+        },
+        {
+          "id": "industrial-v3-roast-harissa-salmon",
+          "content_hash": "f5c68778b420f18f4d2a84c8248759c085744b0912a18180e2e7b9632a3d02aa"
+        },
+        {
+          "id": "industrial-v3-roast-harissa-tofu",
+          "content_hash": "d6b81da9c525c964021182dd2f5a97d0f41cad2299e36fb54729bd3e55ee4b94"
+        },
+        {
+          "id": "industrial-v3-roast-harissa-turkey",
+          "content_hash": "7e386c3334a1c396925b9f0b7866a266621d408de6c8185f8c16b540ec238fdc"
+        },
+        {
+          "id": "industrial-v3-roast-mediterranean-beef",
+          "content_hash": "06198e24114c4824e46c3b1ece62774bac81f01def1308ddf9bb5d01e34a4424"
+        },
+        {
+          "id": "industrial-v3-roast-mediterranean-chicken",
+          "content_hash": "4206399d95a77025bd4d0905571e5f73b6d778d22d000f283740385c859910b4"
+        },
+        {
+          "id": "industrial-v3-roast-mediterranean-pork",
+          "content_hash": "8492bef1231865140b3047fec702aae25566acdae8177f57acf747a37169dea1"
+        },
+        {
+          "id": "industrial-v3-roast-mediterranean-salmon",
+          "content_hash": "53bdef23b7dbdbfedcd14f63304837700779e747b9b470583fcd913f0e210706"
+        },
+        {
+          "id": "industrial-v3-roast-mediterranean-tofu",
+          "content_hash": "86dea6e658464eeb3201b3c17480b679a3fc4ee23c687c880da4fb69f92b9b5f"
+        },
+        {
+          "id": "industrial-v3-roast-mediterranean-turkey",
+          "content_hash": "b411307d3f2f9396c44aab48b65dd010dec4b8355ac4bfda48c5105d82032354"
+        },
+        {
+          "id": "industrial-v3-roast-peri-peri-beef",
+          "content_hash": "019873aeb406651072a105eb3a09f785348b436791752f012178cd9e06cef5a6"
+        },
+        {
+          "id": "industrial-v3-roast-peri-peri-chicken",
+          "content_hash": "5a955354d95eaeb8099e33efaa9e0fe7e9e442e1dd2caf9c36ffb9d4d7e9a603"
+        },
+        {
+          "id": "industrial-v3-roast-peri-peri-pork",
+          "content_hash": "0a644323ea0b5ef2dea0bc4430c63e5200a908cea4393fd358342efecced50e4"
+        },
+        {
+          "id": "industrial-v3-roast-peri-peri-salmon",
+          "content_hash": "60527c9100af63e2d294a1de8583ea341bd73b00292fffd4d08619ca7f0b667a"
+        },
+        {
+          "id": "industrial-v3-roast-peri-peri-tofu",
+          "content_hash": "649b085068a4a6cb42594da55c6d0e42f49022110cb5ff60b6aafaf6ee5fb721"
+        },
+        {
+          "id": "industrial-v3-roast-peri-peri-turkey",
+          "content_hash": "42c992eeaced108daa326ff1c68b5cc2e80ee5082785d2a2fd77639d14bbfdf3"
+        }
+      ]
+    },
+    {
+      "template_key": "dinner|oven+tray|8|6e4889d9ddf8",
+      "template_digest": "7901824e7e64c302fcc7d22e1839752147a96ebb325a3d8a0584887ed51b3007",
+      "full_family_recipe_count": 18,
+      "reviewed_recipe_count": 18,
+      "coverage_complete": true,
+      "descendants": [
+        {
+          "id": "industrial-v3-roast-garlic-herb-beef",
+          "content_hash": "3b9c3490fe861b897d11c050662d780255d4977b7728caf48aa8732dc7ba97ba"
+        },
+        {
+          "id": "industrial-v3-roast-garlic-herb-chicken",
+          "content_hash": "1840bbaf60e95a3b2e45684b9e340e0605409bf6b1512048feb677ca892d7de8"
+        },
+        {
+          "id": "industrial-v3-roast-garlic-herb-pork",
+          "content_hash": "bcd4af0947d43661decab4bd67928c652f6ee0151bb9f048c8c1e59d29c45b8f"
+        },
+        {
+          "id": "industrial-v3-roast-garlic-herb-salmon",
+          "content_hash": "b0cb25d583d0e9de24436e977dd44b549adfd5df948ca7d5a1125eff563b40ee"
+        },
+        {
+          "id": "industrial-v3-roast-garlic-herb-tofu",
+          "content_hash": "1bdced3571ecd30518578d0c7f0bd64b2545ac4cfc951924f142497fbb9dacd9"
+        },
+        {
+          "id": "industrial-v3-roast-garlic-herb-turkey",
+          "content_hash": "833adee2e4c98817843bf610ae671438c846764d7973d330b9b7589c4d7bffd3"
+        },
+        {
+          "id": "industrial-v3-roast-lemon-herb-beef",
+          "content_hash": "059aabc30efffe9622ca47b98a5277d1c29679c883d78e34695c1088de312a18"
+        },
+        {
+          "id": "industrial-v3-roast-lemon-herb-chicken",
+          "content_hash": "32d7006e2730f5313dcf551b810b071ef1a0940e495dd841fcb3990e273e32ec"
+        },
+        {
+          "id": "industrial-v3-roast-lemon-herb-pork",
+          "content_hash": "17922f2b909ac252cceea671bcde8de24301ff9bf7904aea867e5248bfc89041"
+        },
+        {
+          "id": "industrial-v3-roast-lemon-herb-salmon",
+          "content_hash": "282bd30373fbf6d7742e1d9aae1927e9958747ef32757fc1244a3752d13ccf39"
+        },
+        {
+          "id": "industrial-v3-roast-lemon-herb-tofu",
+          "content_hash": "050c68123e7477252a72ffbfac8f7f209832b94a73a2313874684d053ebc8f93"
+        },
+        {
+          "id": "industrial-v3-roast-lemon-herb-turkey",
+          "content_hash": "cec444f8a97f22243f0745f6663d69ba0728309d5a5715180b62b39c618ff806"
+        },
+        {
+          "id": "industrial-v3-roast-peppercorn-beef",
+          "content_hash": "fd53f100cc68f8a34e42399edcfc2127254286220ad9b68c8ed96e5f2e686e7e"
+        },
+        {
+          "id": "industrial-v3-roast-peppercorn-chicken",
+          "content_hash": "015a0fab5ddb57b94d36869174066e2b7eedbe237dcdccb26a82b89e9bfab5c8"
+        },
+        {
+          "id": "industrial-v3-roast-peppercorn-pork",
+          "content_hash": "0e69745a6e5aac22ccbd5e5a5fa7962a5962fd1076c6c438c40ca18811490499"
+        },
+        {
+          "id": "industrial-v3-roast-peppercorn-salmon",
+          "content_hash": "72d23d6ccbba848bd67ab0a254fe045c95ea9a73890f737bdf4e05a157072d13"
+        },
+        {
+          "id": "industrial-v3-roast-peppercorn-tofu",
+          "content_hash": "651e8b7cdbccb8ef44a1e7715bde8ccd10f8a0d89117cb887cf52eac225630cb"
+        },
+        {
+          "id": "industrial-v3-roast-peppercorn-turkey",
+          "content_hash": "ac405ca736f988b55db012d1fb52eed8f12f73f3393c5a50c96111961aa8277b"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "industrial-breakfast-potato-hash-apple-cinnamon-0",
+      "content_hash": "05b41de5d60797b96b37c8ac3e7e5dd8f4d6dbef4e6f0ef55765f3de84571ffe",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-banana-cocoa-1",
+      "content_hash": "4c70ff3fc8d3e32e9a9a070bbca6b3cb642ca87ffad54a7c2845a2c1b37df095",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-berry-vanilla-2",
+      "content_hash": "16bd8421530a4b332a43295d6e49ec482ee8f62d41107cc11a9b57e674f5da4a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-pear-ginger-3",
+      "content_hash": "e66443b92b7e62b512585d51fdd6f32b482f29aa7aafc548f91ea95768d0b8f4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-peach-cinnamon-4",
+      "content_hash": "17e55b9a6d6169c15a2289dc8c2b93d01b76c37f0fc60e143637426aaf2d1691",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-cherry-cocoa-5",
+      "content_hash": "479f2141a3d8ba986f1d7b9a42a026c21ddcf05195fc88577310d746fde6a2f3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-blueberry-lemon-6",
+      "content_hash": "f476fde9c74545eeec96d5ae68b725197827e99d7fd0abfc46e1bf89397d6ba9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-breakfast-potato-hash-plum-ginger-7",
+      "content_hash": "6c6a15bceecdd7c5c35d429ec2b79bbecc9674fb9580a60795657358d3b05746",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-chicken-pasta-bake",
+      "content_hash": "08213c6cb8ddb034318f554ca0dc0035a67a79a1ab8d1f2d9adc656094e285f7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-turkey-pasta-bake",
+      "content_hash": "0cef7043f83ee33c07e16e83729304e7d6aeb8581820d24deba0fd6331c26bcc",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-lean-beef-pasta-bake",
+      "content_hash": "6dbc89d5d4f3d7f66bc22a62c5f25563d8d728846db8b1ebbdf6e31207e4f3ca",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-pork-pasta-bake",
+      "content_hash": "6a218f81ee9307245518912d105ccb0eef226b26d0651e1de498ce6210701b0f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-salmon-pasta-bake",
+      "content_hash": "3e146c37363cff6e9f71cbd83a0354a8c8c12d157f8e34791f644c46fe777c20",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-prawn-pasta-bake",
+      "content_hash": "e8fc1b30b64bf9a04dbc6d1d1e22d79397e3fda75c99ae4906b4b6a223028fb2",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-tofu-pasta-bake",
+      "content_hash": "fb2374d263fcd7144c458900fd67fe10505c7d9a60924f45b085caf97a7d8427",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-lentil-pasta-bake",
+      "content_hash": "087ba500f76c8f660417026ba19f5134ef1b4d0aba93e1620d24e3003bdfeb34",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-chicken-taco-bowl",
+      "content_hash": "ce83fd28b8a718022bc38fd7df8d86c8dbfe5c1319e10aca51529d0f7d2f3f7e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-turkey-taco-bowl",
+      "content_hash": "5f8dea275a798ed6abd43b198142c06cdf61155a7048f8e29d13687079316680",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-lean-beef-taco-bowl",
+      "content_hash": "58f7375c4412b817aa03e4622d24452661c2f190a05829475449a02eaec91d51",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-pork-taco-bowl",
+      "content_hash": "b4c5f2b469512c3de61dcf77d958cd0f97ab625d117edcd5b58df51936336931",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-salmon-taco-bowl",
+      "content_hash": "55acfbfa1a9ebfc60f7fb0bccadcfa662079eb6202ce41b7d75a613001f61b13",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-prawn-taco-bowl",
+      "content_hash": "099e73ba49dc8b597c6d48d72e39677d23398783822f18d3df08240a63c1c6fd",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-tofu-taco-bowl",
+      "content_hash": "026942408f47f88bb63240ddc49501325953a1c5ca8d84192a22bb2f7557c19f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-dinner-lentil-taco-bowl",
+      "content_hash": "700ca6d849582653b3e9b88922c462eebdadd67b95f4f3814ef0e85e7fb23fe1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-chilli-chicken",
+      "content_hash": "5de99734b8f30bf3123cde8122916528fa116436f01eaf3f8facceb31b307f12",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-chilli-beef",
+      "content_hash": "8f42544027b7966b82e592ec55fb62abda91f6189d71ce1b57da2b4a25f89bf9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-chilli-pork",
+      "content_hash": "fb0b322ff373352b8a0131d34222701127e4d237f819f99b689afa254c897769",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-chilli-turkey",
+      "content_hash": "55834f2888836e9a89b72899cc890b43c4ed95c8a088033ec8c75d5d7b549b4e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-chilli-salmon",
+      "content_hash": "be6ec34814399337ed0d2001a3a95ce08d2e9377650a5a979e413637dd3546e9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-chilli-tofu",
+      "content_hash": "2a746ee7be76eeff3ae37e402c871d623d89c44c150575808206759f720b1579",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-garlic-herb-chicken",
+      "content_hash": "2307e31af29e48385b7df643402f3ce34296a2cbe5aecb3dbd742afeec5d68c9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-garlic-herb-beef",
+      "content_hash": "cb21d1d349b56f5abc56452fce51400e1af8e644a2e77377fcc4525769016da0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-garlic-herb-pork",
+      "content_hash": "d5011b80f0bbb48581c95ef5e46831cc973014bcfee5a1c7366e704e7829a7ae",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-garlic-herb-turkey",
+      "content_hash": "ead717577cb3db7fc64fe5398409f0cb4ea5b53739848f995c6798bb2fc3c578",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-garlic-herb-salmon",
+      "content_hash": "c531e95205a896914f4510e0ea756a5b9b18065c1de7640ffe22defd6c4c1a1c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-garlic-herb-tofu",
+      "content_hash": "3044e389e313687e5dcfa194c1542245ebd91c265eab789f80b6d6c209507e85",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peppercorn-chicken",
+      "content_hash": "f3152a125e2232a2f7e40189aaccef0da1b35ce783d278fa5e88917a1bf964a0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peppercorn-beef",
+      "content_hash": "935e0cd3db03a565e0d5d3035bf5005d4a4bab79ebdb3c63fe345fe21cb806ce",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peppercorn-pork",
+      "content_hash": "7bcdcd90981ac42dd0169d472e0154fc763d88de140119b2f3af4f97896afcab",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peppercorn-turkey",
+      "content_hash": "2fa905c0871c4574488c4e3ebc4028a2400442ad072893ba79d30d93d0612664",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peppercorn-salmon",
+      "content_hash": "08a303bdc861ebba0c81ed4951aaebc399dd3ebfac3e7c11e2e5722ccc53fc01",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peppercorn-tofu",
+      "content_hash": "7e32ddc14916b11ca5ff0f2899fa53f454eccccae64266d65f3323a5377a65e0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-bbq-chicken",
+      "content_hash": "ba15603e663f596daa15a0493178efbaf3d5035953366f972708c87b80dda6cb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-bbq-beef",
+      "content_hash": "94da472423e05e87dfda0f770204fae0dda121db46828e6af22188b847749dcb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-bbq-pork",
+      "content_hash": "8928dd8efc195f0990eae0d725d0d0a5b654d4f2d28a2c49e03d2fb7606df2ba",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-bbq-turkey",
+      "content_hash": "b8cd2f799cefd243e30b20d7b672ee23f05348413e9ba91125b7c5c91d3207c3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-bbq-salmon",
+      "content_hash": "61809e173288ea8d0cce4763c1229412158bce0c1a76af1aa4d1d0ce6edec11b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-bbq-tofu",
+      "content_hash": "9cb0fa48f85bbf13431a6167f676d581cbb374b4b15dc886277920130b1ede2b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peri-peri-chicken",
+      "content_hash": "d8dc0d46b1562b3c39014e1097e7eab11ea19114541c79675a522d74c63770fd",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peri-peri-beef",
+      "content_hash": "2a7cb44f07e1c87f72e0f16d9717b1f161213e90b9f49e528a5c730e3b241240",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peri-peri-pork",
+      "content_hash": "6f1ffa7cf34d18892db8264d62ed838122533d8a6fc0ce1b3377b1dd655e3bff",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peri-peri-turkey",
+      "content_hash": "332d1298f676b5560e1cdedcbc3f8a0ae5495a3f9d34875a99c0001a51c6d7cc",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peri-peri-salmon",
+      "content_hash": "5ac5afe4ce9719e96272b61ab12ffabab7af400bdbdd71f14e9fad9930862f4b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-peri-peri-tofu",
+      "content_hash": "30d099f7aab18172006a67c1545b4f02f1179f320b80bf61e7db897a2591dd99",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-cajun-chicken",
+      "content_hash": "7bcf5d7663ad37c50246c0fdfc5f84523c6f79fd902c70ef75e4047944940fd1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-cajun-beef",
+      "content_hash": "6019a9f3355406db4d8d8b3f866d8d0da556e4195e1e788e0c4e82bb7f22c190",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-cajun-pork",
+      "content_hash": "f2829003299a9e14b7fa221a3622b6b955a2e491996ef325f729b87ea2da0425",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-cajun-turkey",
+      "content_hash": "2b9a0df9f42f13554d33d5e845362ec2cfd79be4f905ba84d900b6d394589e92",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-cajun-salmon",
+      "content_hash": "9864011f5b191776bb7baadbe847b25313657bba6f900c714f7265f3b7aa63d1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-cajun-tofu",
+      "content_hash": "4f88f90f4df1ef4eea930f0d23ed1b97131d531c1b6cfdfd0d74af89a26d296b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-mediterranean-chicken",
+      "content_hash": "47a7a8c89c3e377d5c72f0b72893d1e2ebbfa43be4c4f89b3576bd8be3137c0d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-mediterranean-beef",
+      "content_hash": "dda0189ba40f6fc5d2ac2fc5805c9bccf38bcb71090a399ce5b5637cf9705347",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-mediterranean-pork",
+      "content_hash": "c11244d129d20993a2c381be2de79fe2a6f750335ef4d07fd45cbc5119192e5b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-mediterranean-turkey",
+      "content_hash": "6399a08a40af33277095a72b8bc391bc8dbc704eaf9f2ef2188d97a0b82efe00",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-mediterranean-salmon",
+      "content_hash": "e90f4a690e0672e9694a780a9a7ef17b51ec0e9352a7ad0dcda08390ca9ff4ea",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-mediterranean-tofu",
+      "content_hash": "b22621e69181b8b7299c424e6dd38957548825c032253a6549336aa21c20f3d5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-harissa-chicken",
+      "content_hash": "73ca5c05963a3fa7290ed3479423c7c9184e13031d38ba33c753045aa93c1069",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-harissa-beef",
+      "content_hash": "62664d6d7c34401812b56b3881df2e50dff9c52e76c615d57a63d0e8dba7d850",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-harissa-pork",
+      "content_hash": "0c85a3cfd85bc612bacdd0fb1e914d7367f2c54ee7df013fb69534fb798a3876",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-harissa-turkey",
+      "content_hash": "69aa4c90547c2a391e64cd40d3ed719ec866472efab5b0bacd0597881da564fb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-harissa-salmon",
+      "content_hash": "cc58bf20b7d348d3a8d286ca235e53fac20b69087689de3b6db1dac4d94f9155",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-harissa-tofu",
+      "content_hash": "4e418ca254d95527af802d8cb06d529ab8952f336a3777b06e4c3ed59821361d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-lemon-herb-chicken",
+      "content_hash": "6220f3463e501473923b93a6625fa3f2434d801973a97ad693fb7b322ca27bb3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-lemon-herb-beef",
+      "content_hash": "e6d791d721e30cb3359dcb32c17ee4ad71e72032a539361a162b3c5a6f360805",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-lemon-herb-pork",
+      "content_hash": "b8ad1bac295cf95140de3f9147a2c40ff7c3e55203a9f4866b45a4b0682df6e7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-lemon-herb-turkey",
+      "content_hash": "70e18da787256f60b4d30276e52bd1b024d6d4d42de9b4407a98150bffbaf780",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-lemon-herb-salmon",
+      "content_hash": "e6aeb12a8ebfa7e51b0925b2c1ae25c062194552a116d65b8fb8caec0506d090",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pasta-lemon-herb-tofu",
+      "content_hash": "e7a0b133943d9979b05b723e683c3ca6cf2ee51e42707f257a1b4b1597803c23",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-curry-house-chicken",
+      "content_hash": "a9ec06829aefd290cf6c4aa761fe5d1da104ebe1c0d38c833851fe32b490b45f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-curry-house-beef",
+      "content_hash": "732bf929f1372943e8cc1fc27e96badc11cb11879b2c1a2d4922af48f52bab14",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-curry-house-pork",
+      "content_hash": "c67e1d276d108075dd68e1260cf10cb55c611130d19be297ae8b166c85a091c4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-curry-house-turkey",
+      "content_hash": "cefdd638c31c472075789a508b1b3393498b0033ff780fafa0ecbfc15384a6a7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-curry-house-salmon",
+      "content_hash": "214de9cf980218c36fa807d6c0728667e3ed51191e192eb7e9766dac24cf5b76",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-curry-house-tofu",
+      "content_hash": "9d4b157b0771bc41bd4800e7c4fb25a63d0ff63c9429b3771d4569c69c4b1c3f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-tikka-chicken",
+      "content_hash": "42c0fdcdea7a4d12fab39dcdaa052fe8a3f87de515e161a85017165862e853c8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-tikka-beef",
+      "content_hash": "e4be98686b7aa29f00617d4510bf127fde904d0ea834f31cbabd07327af0b72d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-tikka-pork",
+      "content_hash": "fd5c0850d7a26350009cc91fbfc157d6fc6ac051b98eac618657c493b9d60b0d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-tikka-turkey",
+      "content_hash": "f3d39bd12ef1ac44d9ea25b136bfdf8b645a1cd1968ea607c381d0dd01b5034f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-tikka-salmon",
+      "content_hash": "1cb81283b4288e1b3ff287f908fea6b414f631879488e275055b7ffcd587ae53",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-tikka-tofu",
+      "content_hash": "409bb6fec1367d99e16ddb227d47897c221153b1ffafda3c9248797597ded17b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-jalfrezi-chicken",
+      "content_hash": "ca90b00450a6788b7a94618b35d86d2755e840078ba4e75905d1e16c20722ee1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-jalfrezi-beef",
+      "content_hash": "98f8ccad4cf03a3a985ed149f69509de1ee531a6703cac4b8799abaab39e0b1b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-jalfrezi-pork",
+      "content_hash": "41d6e19fe362ae922f0b56e4aaddb91f53b32acc2260e8ddaafbaf202a86e987",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-jalfrezi-turkey",
+      "content_hash": "98ab6cdbfc7145ee5e203be171c6c4827bf3eb7d92a4d9aa7b2aade6b6e351ce",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-jalfrezi-salmon",
+      "content_hash": "57d45a8af1d764aba02d2e1e992491278ca38a27dd8ef7b4092b0f9fe08a9fa7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-jalfrezi-tofu",
+      "content_hash": "55d307e7e7bdab4a6f3fe356def203c4b61ae80922b83683b04535a3a3bfe463",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-balti-chicken",
+      "content_hash": "7ebcf17febf12b3cd038e3ace03ac0734372fad836bd08805d017b1cb15b1374",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-balti-beef",
+      "content_hash": "4811c88d7fc8f27b3dc6b3427f8175887d57ff78b22f9eaa0271517cee5b151b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-balti-pork",
+      "content_hash": "a2d07e9691bd894f81608d4f77a262cb1c9fc124b59560a202a1d1c14d17d542",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-balti-turkey",
+      "content_hash": "1c989973adf8a789505b7909504d006b8c4a6a3472cf1e9b9b55d3b2782fafc5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-balti-salmon",
+      "content_hash": "c7c3f02924a2aaa36282d7c8528cb837e809dcb3da620da2d0010e087ac8b890",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-balti-tofu",
+      "content_hash": "0439b1e205bfa21a0cd2e80c40e00c3a629c5ca59054c5bda30e96c65132e10d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-madras-chicken",
+      "content_hash": "d22230419853bf7903d17b75491adb85be5dfb41818716e956784a104dda7148",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-madras-beef",
+      "content_hash": "79afc8b6f8775a4e204d2777a70ff6113462c35a20355b4cd516ba12cc2cf5b6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-madras-pork",
+      "content_hash": "08c4dfa761cbddefb7998c3fcd69276b09e5ec2570d563818c087f889749f6b4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-madras-turkey",
+      "content_hash": "8c9841ff70daa75f2af22153ce727ef7a2e5674994e3823317aaf3f6ed0d39de",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-madras-salmon",
+      "content_hash": "03fe250b091413d24b9f25d4d2dd7d8d86bc8ff90486b32a486b37c19124a514",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-madras-tofu",
+      "content_hash": "5245f079516fd571fe2b87316ebaef1fefb977efd94192db93b16dc3e6daa0ba",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-chilli-chicken",
+      "content_hash": "9a206bf22e82c69fbe69a464ee659a7214c3ece705168348486b8a400884ac84",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-chilli-beef",
+      "content_hash": "35ac58cf6b39a97f422bc324ecaac768b1159d1a6247eb38e896953247b12425",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-chilli-pork",
+      "content_hash": "1da6532176073ff9a9ce8e0b04936c0e8bbad28b3ddcd364672e6b938e0c390b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-chilli-turkey",
+      "content_hash": "7bd2c54c0ea137a12129c8d597f8d1ff7896ddc1ce0fdb6c526269d8abbc2817",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-chilli-salmon",
+      "content_hash": "90e1d2a61264abbdcac0220e6d42125f513d25d2026c497d1d0c3b46e54208d3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-chilli-tofu",
+      "content_hash": "b6a786aedc1c5b9b4cabc0a7e7726a6ee9d850d11f453de455d45e874e2ab945",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-garlic-herb-chicken",
+      "content_hash": "662644b09cfb88a90afbb28766672daf02cbbf3bae244d9170a5ebd1336864c9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-garlic-herb-beef",
+      "content_hash": "66f5804c26a8f6a4fa542401113a639f220a7358cd964a17e7f365abe36b23e6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-garlic-herb-pork",
+      "content_hash": "c64461af21ed3eadf07d3fdf4798f072741f8c32b8795ca0542b0308370ff12d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-garlic-herb-turkey",
+      "content_hash": "ff7122116085074e5d51d434c5b1397c6a318669289100134e7c0acb12599f65",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-garlic-herb-salmon",
+      "content_hash": "aae0d63748be6357426166479ecc532038c1db4f3814a01bf1294063cde2039b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-garlic-herb-tofu",
+      "content_hash": "add66d1e4f39ef67791508c08a42d383090bd4c478c7b539a2943c0b806543e5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peppercorn-chicken",
+      "content_hash": "bc4f90f4b4fa1b8720f77e2f85c4655ca84370fb2d0df9280ea4187f38213d22",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peppercorn-beef",
+      "content_hash": "77f66e5c26256cc4c48bb97ed2ae3268e2544c93c27a003aaf7e97b2bef99da8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peppercorn-pork",
+      "content_hash": "50050084674eb0215e2e1b033c879308d271113a6e1c49ce2893e3670f0cbe86",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peppercorn-turkey",
+      "content_hash": "c70218cad9946168f636f5803b98819648c57de09aa9303103a118ae414f562a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peppercorn-salmon",
+      "content_hash": "cd874d15656ae8a3c16ab73503cb32149221a52d711edd9efa0b9859a2fb1e87",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peppercorn-tofu",
+      "content_hash": "2b75ab32a4bcb68288bcf5477c82840452683a05cd0f66474e601f3f215d63ee",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-bbq-chicken",
+      "content_hash": "d359daa394ddf8ef40c0d40802321cc9089abfbb82878a68439b1d430e96d17a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-bbq-beef",
+      "content_hash": "c0f7e36692442608cd6e596144a831da28ba69cf8dd09200bbbfd44baded7c03",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-bbq-pork",
+      "content_hash": "b4ebdc3c3d23f5d2d16ab1d3406d70b6168710846587918cb6a53d5f232a3e4e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-bbq-turkey",
+      "content_hash": "d88192a10e5ab6636dc48bcdc53003486e4b08c9f0824db11502a1c97e21dba4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-bbq-salmon",
+      "content_hash": "7ca081492730a9fdfbdfd5f9c010dcdf44007ead728ffb0f0a9f45f9028a562e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-bbq-tofu",
+      "content_hash": "6e81f0755c9917b96092658bf2f204d689116003412be914ef5d583b372be717",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peri-peri-chicken",
+      "content_hash": "95127cd1d0bfc0e836b4a8fc599d9bbab93f93c67159e1395eaca8fb6a240725",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peri-peri-beef",
+      "content_hash": "287653c37d69a7b6ba3383e825495101cc19df778b2b18492d097dc9c75dd4b1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peri-peri-pork",
+      "content_hash": "4dfcb3ce8f71d19e2b2ccffe317495f46423ad61ea8d397a08c35b6147d3e116",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peri-peri-turkey",
+      "content_hash": "2b85caf19591a6c16825d6ac21e5d7c5ccf919bad807af5a82f0d97c46028f39",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peri-peri-salmon",
+      "content_hash": "2dcb87b2340411e96a0d358b429fcb89160e0cb5a43a983e4ce9d956e159c5e4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-peri-peri-tofu",
+      "content_hash": "8b0b8282e596412d046dddffa2560ad3f77f314441eda41c043f8b3ad24e05eb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-cajun-chicken",
+      "content_hash": "b4f18047790064c771d9a988efd3fb18d49cc4d50596326aea7548d5644d3f58",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-cajun-beef",
+      "content_hash": "e04af46dda7728a70da0607fac095fd76851ff826e241c04325f00d5c2185b5a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-cajun-pork",
+      "content_hash": "4e818b473155c67ae0962ec83e84a095076c9633dfdf47a8b9c91d12e0cc38a1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-cajun-turkey",
+      "content_hash": "c96f78fb4141571bff8a25d4a272b0dbba51e090265788ccac16cbb628bd6fd5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-cajun-salmon",
+      "content_hash": "3c1de089134b3d9a402c548beff8b63b668cc3326b33aec13968bfe012ad0854",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-cajun-tofu",
+      "content_hash": "b5397fa39824c17fdf00410cf613a139176af3dd29e6023c470f1a6310a704c7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-mediterranean-chicken",
+      "content_hash": "ba5d350dbafe911b1f758e43be6e4d39f19065c46b19203874b595248771be41",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-mediterranean-beef",
+      "content_hash": "c3cb9c83687fe8b901f75c157ccfe1dff2086d639111fc07a038d99a782355af",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-mediterranean-pork",
+      "content_hash": "a934a39183971953fb4f264bfd07e4e00ea61e3d951121b568150ed7edfbcf87",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-mediterranean-turkey",
+      "content_hash": "7a57590f27ad2204f4846d9b1abcc153a81be486457083653819940e0bc28f2f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-mediterranean-salmon",
+      "content_hash": "d16fd63af6860977e2194c5432fa2d96af7f4a986192db102b2f5696ec45f30d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-mediterranean-tofu",
+      "content_hash": "f741a66ada994943152a67f28e2c28dd5434baf0746d851cec065830089200f3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-harissa-chicken",
+      "content_hash": "4a53b535137a140cac2a227cb8abfff3eb3c38dc745bac198be2c194a3854788",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-harissa-beef",
+      "content_hash": "488bc61297125f133156a16ccd39971df3e9f9e7af7a3fe855ba3fb21e52a38f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-harissa-pork",
+      "content_hash": "5dd239bab417783122661903348d4fc2b019ff098e6d4f1507e72c28fe4e2cf2",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-harissa-turkey",
+      "content_hash": "a2ed31707b58efd1d5dd01967b5489dc7838ec79f2e975fd9d071fbc231f1380",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-harissa-salmon",
+      "content_hash": "d7f93916dbff55e9b944949ca8d39779d50acf7b30bee829b6b1f50850b37e6e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-harissa-tofu",
+      "content_hash": "0b6ad73bfa4bc82854e7c131c575f4a27074befb9ead34a92481c595a24223d0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-lemon-herb-chicken",
+      "content_hash": "11ae9f26e7e9740dbdff209bcf3f1dea1b281b6bb93e1ebfd39abc0a72deaf5f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-lemon-herb-beef",
+      "content_hash": "bcf5f3bb4e1530fda95ef574c1b16828868a8aa2474a8b65a0bc7185995c560c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-lemon-herb-pork",
+      "content_hash": "d907a8aff30cc52ab3fe5e43e3b891a80644a192c1ada473178af48a774f4624",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-lemon-herb-turkey",
+      "content_hash": "e2db7722700166a542b2ac490655f4df881f7982a5abd398e23ebdd62b23cc26",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-lemon-herb-salmon",
+      "content_hash": "dbc7e975092f7824905e176e19d83a89b66dcc7b8e52f78f394a9b38e11080d0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-pie-lemon-herb-tofu",
+      "content_hash": "fcb8c19ba48f6918ee1fd42510da39ab14d00563ddfdd1a89e9cfbc94807eb93",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-chilli-chicken",
+      "content_hash": "8aec9879738b3c73cb8a73b6b6d816a99d32dd19e01cdda950d31f9422539367",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-chilli-beef",
+      "content_hash": "60cc5464605d9fb6713ccf974a5c98044eadd39766f60845f385bed948ac9a76",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-chilli-pork",
+      "content_hash": "dbd2028946e214a3564d24f2153f99b851ad118c43b484db704557648aef49b1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-chilli-turkey",
+      "content_hash": "3a0aff31e9fe00f4819cd21a3fe8bca05466efeb2878b970e901b2c05e751d4b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-chilli-salmon",
+      "content_hash": "32a1a650a34ecf897cde89118ee7eabb4645f007099e46426f87bedb56a841c9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-chilli-tofu",
+      "content_hash": "eef0cff82205bb7426d5a1c1ecb669263ee6bb08c628b1beb28659da4cfd9cde",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-garlic-herb-chicken",
+      "content_hash": "1840bbaf60e95a3b2e45684b9e340e0605409bf6b1512048feb677ca892d7de8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-garlic-herb-beef",
+      "content_hash": "3b9c3490fe861b897d11c050662d780255d4977b7728caf48aa8732dc7ba97ba",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-garlic-herb-pork",
+      "content_hash": "bcd4af0947d43661decab4bd67928c652f6ee0151bb9f048c8c1e59d29c45b8f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-garlic-herb-turkey",
+      "content_hash": "833adee2e4c98817843bf610ae671438c846764d7973d330b9b7589c4d7bffd3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-garlic-herb-salmon",
+      "content_hash": "b0cb25d583d0e9de24436e977dd44b549adfd5df948ca7d5a1125eff563b40ee",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-garlic-herb-tofu",
+      "content_hash": "1bdced3571ecd30518578d0c7f0bd64b2545ac4cfc951924f142497fbb9dacd9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peppercorn-chicken",
+      "content_hash": "015a0fab5ddb57b94d36869174066e2b7eedbe237dcdccb26a82b89e9bfab5c8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peppercorn-beef",
+      "content_hash": "fd53f100cc68f8a34e42399edcfc2127254286220ad9b68c8ed96e5f2e686e7e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peppercorn-pork",
+      "content_hash": "0e69745a6e5aac22ccbd5e5a5fa7962a5962fd1076c6c438c40ca18811490499",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peppercorn-turkey",
+      "content_hash": "ac405ca736f988b55db012d1fb52eed8f12f73f3393c5a50c96111961aa8277b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peppercorn-salmon",
+      "content_hash": "72d23d6ccbba848bd67ab0a254fe045c95ea9a73890f737bdf4e05a157072d13",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peppercorn-tofu",
+      "content_hash": "651e8b7cdbccb8ef44a1e7715bde8ccd10f8a0d89117cb887cf52eac225630cb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-bbq-chicken",
+      "content_hash": "545cf3d9d7c70563f1136d015f22d22fe21677ce37603bd69ac7a13bce28ecf2",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-bbq-beef",
+      "content_hash": "ed0a3395ba120520b82a9ea6e38aa6d1ecd2fa288147e8aeea0651c2263f521a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-bbq-pork",
+      "content_hash": "de6c0253f8e58dcaeb1939acab09adfbf986b45d6c8cf740b6ea0ab30b7c829e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-bbq-turkey",
+      "content_hash": "f49026c69a5120e5c0a19008d5c5ca6b137c0be39b3931c6e3428935761de6da",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-bbq-salmon",
+      "content_hash": "284fe97ee220ab9040deee6146da9fa86732167a646afa3169db30bc5dcb05c5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-bbq-tofu",
+      "content_hash": "049e38f3c089467a0067050cf6de885515cf0cd8c5a12117575bd1b348ed374f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peri-peri-chicken",
+      "content_hash": "5a955354d95eaeb8099e33efaa9e0fe7e9e442e1dd2caf9c36ffb9d4d7e9a603",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peri-peri-beef",
+      "content_hash": "019873aeb406651072a105eb3a09f785348b436791752f012178cd9e06cef5a6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peri-peri-pork",
+      "content_hash": "0a644323ea0b5ef2dea0bc4430c63e5200a908cea4393fd358342efecced50e4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peri-peri-turkey",
+      "content_hash": "42c992eeaced108daa326ff1c68b5cc2e80ee5082785d2a2fd77639d14bbfdf3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peri-peri-salmon",
+      "content_hash": "60527c9100af63e2d294a1de8583ea341bd73b00292fffd4d08619ca7f0b667a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-peri-peri-tofu",
+      "content_hash": "649b085068a4a6cb42594da55c6d0e42f49022110cb5ff60b6aafaf6ee5fb721",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-cajun-chicken",
+      "content_hash": "e806655a3384e85eda0b7b18141a61c4367aa9dd4371c5176a750faa38842b6b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-cajun-beef",
+      "content_hash": "d6937b3b758fab83f69594a2c8e45f680ae08513d7c9a6c72fd0267abbef4870",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-cajun-pork",
+      "content_hash": "207a1f8390cc7d2a55a657633d3a0531c2a3777121e370994fb846831a01e4ba",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-cajun-turkey",
+      "content_hash": "c4bb96e46515aec1296b70c883354e3e380d9a1d30c32f64a87fc6ee54e4d2e3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-cajun-salmon",
+      "content_hash": "68bdd84b27f179ff04abf03445de273094f9df65c26f748f75abb89c25ae5f3f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-cajun-tofu",
+      "content_hash": "c00d253f1eb24c5a47d64f3146394f9b7030df6e23a0b89b531c39106024ec28",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-mediterranean-chicken",
+      "content_hash": "4206399d95a77025bd4d0905571e5f73b6d778d22d000f283740385c859910b4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-mediterranean-beef",
+      "content_hash": "06198e24114c4824e46c3b1ece62774bac81f01def1308ddf9bb5d01e34a4424",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-mediterranean-pork",
+      "content_hash": "8492bef1231865140b3047fec702aae25566acdae8177f57acf747a37169dea1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-mediterranean-turkey",
+      "content_hash": "b411307d3f2f9396c44aab48b65dd010dec4b8355ac4bfda48c5105d82032354",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-mediterranean-salmon",
+      "content_hash": "53bdef23b7dbdbfedcd14f63304837700779e747b9b470583fcd913f0e210706",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-mediterranean-tofu",
+      "content_hash": "86dea6e658464eeb3201b3c17480b679a3fc4ee23c687c880da4fb69f92b9b5f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-harissa-chicken",
+      "content_hash": "4973f9275d0894040d8ca3d899a72a02dec97e20a3471c7542e5fee30c90a5bc",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-harissa-beef",
+      "content_hash": "3a4807aeffed2d8d3cf6a0be59ce021a9b779e3f2a8eb4a6bf34cb5e0c2fdf31",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-harissa-pork",
+      "content_hash": "1b60f455e182896fa2a5acbb7bcc31a8f4649a939a3c49cc6f44a8d9d0b89ee7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-harissa-turkey",
+      "content_hash": "7e386c3334a1c396925b9f0b7866a266621d408de6c8185f8c16b540ec238fdc",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-harissa-salmon",
+      "content_hash": "f5c68778b420f18f4d2a84c8248759c085744b0912a18180e2e7b9632a3d02aa",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-harissa-tofu",
+      "content_hash": "d6b81da9c525c964021182dd2f5a97d0f41cad2299e36fb54729bd3e55ee4b94",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-lemon-herb-chicken",
+      "content_hash": "32d7006e2730f5313dcf551b810b071ef1a0940e495dd841fcb3990e273e32ec",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-lemon-herb-beef",
+      "content_hash": "059aabc30efffe9622ca47b98a5277d1c29679c883d78e34695c1088de312a18",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-lemon-herb-pork",
+      "content_hash": "17922f2b909ac252cceea671bcde8de24301ff9bf7904aea867e5248bfc89041",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-lemon-herb-turkey",
+      "content_hash": "cec444f8a97f22243f0745f6663d69ba0728309d5a5715180b62b39c618ff806",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-lemon-herb-salmon",
+      "content_hash": "282bd30373fbf6d7742e1d9aae1927e9958747ef32757fc1244a3752d13ccf39",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v3-roast-lemon-herb-tofu",
+      "content_hash": "050c68123e7477252a72ffbfac8f7f209832b94a73a2313874684d053ebc8f93",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/review_release",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:13:34.314Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    }
+  ]
+}

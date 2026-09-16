@@ -62,6 +62,7 @@ import {
 } from "./my-journey-checkin-v1.js";
 import { hqCommerceContentRoutes } from "./hq-commerce-content-v1.js";
 import { hqCatalogueRoutes } from "./hq-catalogue-v1.js";
+import { evidenceDeskHqReadRoutes } from "./evidence-desk-hq-read-v1.js";
 import { continuityInterestRoutes } from "./continuity-interest-v1.js";
 import { medicinesWatchRoutes, withMedicinesWatchEntry } from './medicines-watch/page.mjs';
 import { checkSources } from './medicines-watch/monitor.mjs';
@@ -123,6 +124,7 @@ const GIT_MEMBER_ASSETS = new Map([
   ["/member-life-back-v1.js", "application/javascript; charset=utf-8"],
   ["/member-life-back-v1.css", "text/css; charset=utf-8"],
   ["/member-my-journey-v1.js", "application/javascript; charset=utf-8"],
+  ["/member-my-journey-v2.js", "application/javascript; charset=utf-8"],
   ["/member-my-journey-v1.css", "text/css; charset=utf-8"],
   ["/member-medicines-watch-v1.js", "application/javascript; charset=utf-8"],
   ["/member-medicines-watch-v1.css", "text/css; charset=utf-8"],
@@ -762,6 +764,8 @@ export default {
     if (gitAsset) return gitAsset;
     const contrast = await memberContrastStatic(request, env);
     if (contrast) return contrast;
+    const evidenceInbox = await evidenceDeskHqReadRoutes(request, env);
+    if (evidenceInbox) return withHqCors(evidenceInbox, request);
     const hqCatalogue = await hqCatalogueRoutes(request, env, ctx);
     if (hqCatalogue) return withHqCors(hqCatalogue, request);
     const hqCommerceContent = await hqCommerceContentRoutes(request, env, ctx);

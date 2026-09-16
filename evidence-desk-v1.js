@@ -430,6 +430,10 @@ async function listRows(DB,kind){
   return{ok:false,error:'not_found'};
 }
 
+// Read-only projections are shared with HQ; the operational router and schema
+// initializer remain confined to the separately commissioned Worker.
+export {overview as readEvidenceDeskOverview,listRows as readEvidenceDeskRows};
+
 export async function evidenceDeskRoutes(request,env,ctx){
   const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/',method=request.method.toUpperCase();
   const commission=await evidenceR12CommissionRoute(request,env,path,method);if(commission)return commission;

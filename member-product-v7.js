@@ -5,6 +5,7 @@ import {listPublishedContent} from './structured-content-v1.js';
 import {ensureStructuredLaunchSeed} from './structured-launch-seed-v1.js';
 import {assessMemberOutput} from './member-quality-v1.js';
 import {exercisePurpose} from './fit-exercise-purpose-v1.mjs';
+import {loadGovernedGrubCatalogue,reviewedRecipeMinutes} from './grub-expansion-authority-v1.mjs';
 
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/fit/plan','/v1/fit/replace']);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
@@ -17,6 +18,13 @@ export async function memberProductV7Routes(request,env,ctx){
   if(!OWNED.has(path))return memberProductV6Routes(request,env,ctx);
   if(request.method==='OPTIONS')return memberProductV6Routes(request,env,ctx);
   const auth=await authenticateMember(request,env);if(auth.response)return withCors(auth.response,request);
+  // Grub's older route persists its initial plan. Validate the exact governed
+  // catalogue before entering that route, then reuse this read for replacement.
+  let grubCatalogue;
+  if(path.startsWith('/v1/grub/')&&request.method==='POST'){
+    try{grubCatalogue=await loadGovernedGrubCatalogue(env.DB)}catch{return json({ok:false,error:'grub_catalogue_unavailable',message:'The recipe library is temporarily unavailable. Please try again.'},503,request)}
+    if(grubCatalogue.authority.incomplete)return incompleteFinalV1(request,'grub',grubCatalogue.authority);
+  }
   const body=await readClone(request);
   let base=await memberProductV6Routes(request,env,ctx,{deferQuality:true});
   // Taste choices are ranking signals, not safety exclusions. If the legacy seed layer
@@ -32,14 +40,14 @@ export async function memberProductV7Routes(request,env,ctx){
   if(!base?.ok)return withCors(base,request);
   const payload=await base.clone().json().catch(()=>null);if(!payload)return withCors(base,request);
   const nays=await negativeIds(env.DB,auth.user.id,path.startsWith('/v1/grub')?'grub':'fit');
-  if(path==='/v1/grub/plan')return structuredGrubPlan(request,env,auth.user.id,body,payload,nays);
-  if(path==='/v1/grub/replace')return structuredGrubReplace(request,env,body,payload,nays);
+  if(path==='/v1/grub/plan')return structuredGrubPlan(request,env,auth.user.id,body,payload,nays,grubCatalogue);
+  if(path==='/v1/grub/replace')return structuredGrubReplace(request,env,body,payload,nays,grubCatalogue);
   if(path==='/v1/fit/plan')return structuredFitPlan(request,env,auth.user.id,body,payload,nays);
   return structuredFitReplace(request,env,body,payload,nays);
 }
 
-async function structuredGrubPlan(request,env,userId,body,payload,nays){
-  const allPublished=await listPublishedContent(env.DB,'recipe',{limit:2500}),authority=finalV1Authority(allPublished,'recipe');
+async function structuredGrubPlan(request,env,userId,body,payload,nays,grubCatalogue){
+  const {allPublished,authority}=grubCatalogue;
   if(authority.incomplete)return incompleteFinalV1(request,'grub',authority);
   const published=authority.rows.filter(credibleRecipe),prefs=preferenceText(body),likes=preferenceLikes(body),recent=await recentGrubIds(env.DB,userId),hardBlocked=new Set(nays),blocked=new Set([...nays,...recent]);let structuredServed=0,nearestServed=0;
   const globallyUsed=new Set(),familyCounts=new Map();
@@ -76,8 +84,8 @@ async function structuredGrubPlan(request,env,userId,body,payload,nays){
   return json(payload,200,request);
 }
 
-async function structuredGrubReplace(request,env,body,payload,nays){
-  const allPublished=await listPublishedContent(env.DB,'recipe',{limit:2500}),authority=finalV1Authority(allPublished,'recipe');
+async function structuredGrubReplace(request,env,body,payload,nays,grubCatalogue){
+  const {allPublished,authority}=grubCatalogue;
   if(authority.incomplete)return incompleteFinalV1(request,'grub',authority);
   const published=authority.rows,type=String(body.type||payload?.meal?.type||''),prefs=preferenceText(body),exclude=new Set([...(body.exclude||[]).map(String),...nays]);
   const options=published.filter(x=>x.data?.meal_type===type&&!exclude.has(x.id)&&recipeAllowed(x,prefs));
@@ -128,9 +136,9 @@ function finalV1Authority(rows,type){
   return{active:true,incomplete:false,expected,accepted:accepted.length,rows:accepted};
 }
 function incompleteFinalV1(request,product,a){return json({ok:false,error:'final_v1_publication_incomplete',message:'Shift is holding this plan while the accepted launch catalogue finishes publishing.',product,accepted:a.accepted,expected:a.expected},503,request)}
-function catalogueMeta(authority,publishedTotal,structuredServed,totalItems,legacyItems){return{authority:authority.active?'final_v1_human_accepted':structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:authority.rows.length,published_total_available:publishedTotal,final_v1_human_accepted:authority.active,final_v1_accepted_available:authority.active?authority.accepted:0,total_items:totalItems,structured_items_served:structuredServed,legacy_fallback_items:legacyItems,structured_serving_pct:pct(structuredServed,totalItems),legacy_fallback_pct:pct(legacyItems,totalItems),legacy_fallback_used:legacyItems>0,progressive_cutover:!authority.active,quality_preserving_fallback:true,provenance_visible:true}}
+function catalogueMeta(authority,publishedTotal,structuredServed,totalItems,legacyItems){return{authority:authority.expansionAccepted?'final_v1_and_independent_expansion':authority.active?'final_v1_human_accepted':structuredServed?'structured_published_preferred':'legacy_fallback',structured_published_available:authority.rows.length,published_total_available:publishedTotal,final_v1_human_accepted:authority.active,final_v1_accepted_available:authority.active?authority.accepted:0,...(authority.expansionAccepted?{independently_reviewed_expansion_available:authority.expansionAccepted}:{}),total_items:totalItems,structured_items_served:structuredServed,legacy_fallback_items:legacyItems,structured_serving_pct:pct(structuredServed,totalItems),legacy_fallback_pct:pct(legacyItems,totalItems),legacy_fallback_used:legacyItems>0,progressive_cutover:!authority.active,quality_preserving_fallback:true,provenance_visible:true}}
 function qualityFailure(quality,request){return json({ok:false,error:'quality_gate_failed',message:'Shift rejected a recommendation that did not meet the member quality bar. Please retry.',quality,composition_stage:'post_structured_v7'},503,request)}
-function toRecipe(row){const d=row.data,n=d.nutrition||{},acceptance=d.provenance?.final_v1_acceptance||null;return{id:row.id,type:d.meal_type,name:row.title,minutes:Number(d.prep_minutes||0)+Number(d.cook_minutes||0),kcal:Number(n.kcal||0),protein:Number(n.protein_g||0),fibre:Number(n.fibre_g||0),servings:Number(d.servings||1),ingredients:d.ingredients||[],method:d.method||[],tags:d.tags||[],equipment:d.equipment||[],storage:d.storage,nutrition_basis:n.precision_note,nutrition:{status:n.status,kcal:Number(n.kcal||0),protein_g:Number(n.protein_g||0),carbohydrate_g:Number(n.carbohydrate_g||0),fat_g:Number(n.fat_g||0),fibre_g:Number(n.fibre_g||0),methodology:n.methodology,dataset_version:n.dataset_version,ingredient_evidence_count:Array.isArray(d.ingredient_evidence)?d.ingredient_evidence.length:0},recipe:{servings:Number(d.servings||1),ingredients:(d.ingredients||[]).map(x=>`${x.amount} ${x.item}`),method:d.method||[],minutes:Number(d.prep_minutes||0)+Number(d.cook_minutes||0),equipment:d.equipment||[],storage:d.storage,food_safety:d.food_safety||[],substitutions:d.substitutions||[]},structured:{published:true,version:row.version,updated_at:row.updated_at,provenance:d.provenance||{},final_v1_accepted:Boolean(acceptance?.accepted),review_authority:d.canonical_review||null}};}
+function toRecipe(row){const d=row.data,n=d.nutrition||{},acceptance=d.provenance?.final_v1_acceptance||null;return{id:row.id,type:d.meal_type,name:row.title,minutes:reviewedRecipeMinutes(d),kcal:Number(n.kcal||0),protein:Number(n.protein_g||0),fibre:Number(n.fibre_g||0),servings:Number(d.servings||1),ingredients:d.ingredients||[],method:d.method||[],tags:d.tags||[],equipment:d.equipment||[],storage:d.storage,nutrition_basis:n.precision_note,nutrition:{status:n.status,kcal:Number(n.kcal||0),protein_g:Number(n.protein_g||0),carbohydrate_g:Number(n.carbohydrate_g||0),fat_g:Number(n.fat_g||0),fibre_g:Number(n.fibre_g||0),methodology:n.methodology,dataset_version:n.dataset_version,ingredient_evidence_count:Array.isArray(d.ingredient_evidence)?d.ingredient_evidence.length:0},recipe:{servings:Number(d.servings||1),ingredients:(d.ingredients||[]).map(x=>`${x.amount} ${x.item}`),method:d.method||[],minutes:reviewedRecipeMinutes(d),equipment:d.equipment||[],storage:d.storage,food_safety:d.food_safety||[],substitutions:d.substitutions||[]},structured:{published:true,version:row.version,updated_at:row.updated_at,provenance:d.provenance||{},final_v1_accepted:Boolean(acceptance?.accepted),review_authority:d.canonical_review||null}};}
 function fitSelectionReason(d,group,body){const minutes=Math.max(1,Number(body.minutes_per_day)||30),location=String(body.location||'your chosen setting').toLowerCase(),equipment=(d.equipment||[]).map(x=>String(x).toLowerCase()),label=group==='cardio'?'stamina':group==='core'?'trunk control':group==='mobility'?'movement practice':group==='balance'?'balance':'strength',kit=equipment.length&&!equipment.includes('none')?`Its listed setup uses ${equipment.join(', ')}, which matches the kit available.`:'It needs no exercise equipment.';return `Included for ${label} within your selected ${minutes}-minute ${location} session. ${kit}`}
 function toExercise(row,group,body={}){const d=row.data,acceptance=d.provenance?.final_v1_acceptance||null;return{id:row.id,name:row.title,group:group||d.movement_group,movement_group:d.movement_group,canonical_movement:d.canonical_movement,minutes:Number(d.minutes||0),sets:d.dosage?.sets??null,reps:d.dosage?.reps??d.dosage?.time_seconds??null,rest_seconds:Number(d.dosage?.rest_seconds||0),how:d.instructions||[],form_cues:d.form_cues||[],safety_cues:d.safety_cues||[],equipment:d.equipment||[],locations:d.locations||[],avoid:d.limitations?.avoid||[],caution:d.limitations?.caution||[],regressions:d.regressions||[],progressions:d.progressions||[],substitutions:d.substitutions||[],visual:d.visual,purpose:exercisePurpose[d.canonical_movement]||null,selection_reason:fitSelectionReason(d,group||d.movement_group,body),structured:{published:true,version:row.version,updated_at:row.updated_at,provenance:d.provenance||{},final_v1_accepted:Boolean(acceptance?.accepted),review_authority:d.canonical_review||null}};}
 function preferenceText(body){return [body.preferences,body.dislikes,body.dietaryRequirements].filter(Boolean).join(' ').toLowerCase();}
@@ -146,7 +154,7 @@ const UK_TASTE_ALIASES={
 };
 function recipeTasteMatch(row,likes){if(!likes.length)return{matched:0,total:0};const haystack=`${row.title} ${(row.data?.tags||[]).join(' ')} ${(row.data?.ingredients||[]).map(x=>x.item).join(' ')}`.toLowerCase();return{matched:likes.reduce((n,x)=>n+((UK_TASTE_ALIASES[x]||[x]).some(term=>haystack.includes(term))?1:0),0),total:likes.length}}
 function rankRecipes(rows,likes){if(!likes.length)return rows;return rows.map((row,index)=>({row,index,score:recipeTasteMatch(row,likes).matched})).sort((a,b)=>b.score-a.score||a.index-b.index).map(x=>x.row)}
-function withinTime(row,maxMinutes){const max=Number(maxMinutes||0);return !max||(Number(row.data?.prep_minutes||0)+Number(row.data?.cook_minutes||0))<=max}
+function withinTime(row,maxMinutes){const max=Number(maxMinutes||0);return !max||reviewedRecipeMinutes(row.data)<=max}
 function credibleRecipe(row){const title=String(row?.title||'').toLowerCase();if(!title)return false;if(/(?:bbq|barbecue).*(?:ham|turkey).*(?:buttie|sandwich)|(?:ham|turkey).*(?:bbq|barbecue).*(?:buttie|sandwich)/.test(title))return false;if(/industrial-|test recipe|placeholder|recipe \d+$/.test(title))return false;return true}
 function mealFamily(value){const title=String(value||'').toLowerCase();for(const family of ['buttie','sandwich','wrap','pasta','curry','traybake','stir-fry','salad','rice','potato','omelette','oats','yoghurt','soup'])if(title.includes(family))return family;return title.split(/\s+/).slice(-2).join('-')}
 function recipeAllowed(row,prefs){const text=`${row.title} ${(row.data?.ingredients||[]).map(x=>x.item).join(' ')} ${(row.data?.tags||[]).join(' ')}`.toLowerCase(),tags=row.data?.tags||[];if(/no fish|hate fish|fish allergy/.test(prefs)&&tags.includes('fish'))return false;if(prefs.includes('vegetarian')&&!tags.includes('vegetarian'))return false;if(/vegan/.test(prefs)&&!tags.includes('vegan'))return false;if(/gluten[ -]?free|coeliac/.test(prefs)&&!/gluten[ -]?free/.test(text))return false;for(const item of ['mushroom','salmon','tuna','bacon','beef','chicken','egg','cheese','peanut','nut','shellfish','prawn','milk','dairy','soya','soy','sesame','mustard','celery'])if(new RegExp(`(?:hate|no|allergy|allergic|intolerant|avoid)[^,;]{0,24}\\b${item}s?\\b|\\b${item}s?\\b[^,;]{0,24}(?:allergy|allergic|intolerant)`).test(prefs)&&text.includes(item))return false;return true;}

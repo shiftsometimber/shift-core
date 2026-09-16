@@ -10,6 +10,10 @@ on:
       - "worker-entry-v6.js"
       - "medicines-watch/**"
       - "knowledge-editorial-v1.js"
+      - "evidence-desk-hq-read-v1.js"
+      - "evidence-desk-v1.js"
+      - "tests/evidence-desk-hq-read.test.mjs"
+      - "scripts/verify-evidence-inbox-connection.mjs"
       - "tests/knowledge-editorial-*.test.mjs"
       - "worker.js"
       - "ask-timber-v1.js"
@@ -27,6 +31,8 @@ on:
       - "public/shift-me-3d/**"
       - "frontend/member/**"
       - "member-experience/**"
+      - "grub-expansion-*.mjs"
+      - "tests/grub-expansion*.test.mjs"
       - "fit-reminders-v1.js"
       - "scheduled-intelligence.js"
       - "tests/scheduled-intelligence-delivery.test.mjs"
@@ -146,6 +152,8 @@ jobs:
           git diff --exit-code -- member-experience/life-back-assets.mjs
           node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
           node gate4-one-shift-brain-gate.mjs
+      - name: Verify catalogue authority, additive publication guards and timing
+        run: node --test tests/grub-expansion*.test.mjs
       - name: Verify reminder delivery and proactive acknowledgement before promotion
         run: node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
@@ -175,6 +183,7 @@ jobs:
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
+          node --test tests/evidence-desk-hq-read.test.mjs
           node g3-006-hq-editorial-cors-gate.mjs
           node g3-006-knowledge-editorial-staging.mjs
       - name: Apply pharmacy-readiness database additions
@@ -214,8 +223,14 @@ jobs:
       - name: Verify existing production food catalogue without account writes
         if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
         run: |
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,title,data_json FROM structured_content WHERE content_type='recipe' AND status='published' ORDER BY id LIMIT 2500" > "$RUNNER_TEMP/food-catalogue.json"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,title,version,data_json,review_json,updated_at FROM structured_content WHERE content_type='recipe' AND status='published' ORDER BY id" > "$RUNNER_TEMP/food-catalogue.json"
           node member-experience/verify-production-catalogue.mjs "$RUNNER_TEMP/food-catalogue.json"
+      - name: Verify the isolated Evidence Inbox connection without writes
+        run: |
+          npx wrangler d1 list --json > "$RUNNER_TEMP/evidence-inbox-databases.json"
+          node scripts/verify-evidence-inbox-connection.mjs --sql > "$RUNNER_TEMP/evidence-inbox-read.sql"
+          npx wrangler d1 execute EVIDENCE_DESK_READ_DB --remote --config wrangler.jsonc --json --file "$RUNNER_TEMP/evidence-inbox-read.sql" > "$RUNNER_TEMP/evidence-inbox-read.json"
+          node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
       - name: Capture current Worker deployment for rollback
         run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
       - name: Capture current public pages before this member release

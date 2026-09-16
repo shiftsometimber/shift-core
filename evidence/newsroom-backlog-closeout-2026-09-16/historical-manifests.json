@@ -1,0 +1,802 @@
+{
+  "proof": "Retained GitHub Actions preparation-manifest extracts, read 2026-09-16. These record historical editorial queue state, not current production status.",
+  "rec036": {
+    "run_id": 34745573473,
+    "job_id": 103692806573,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/34745573473/job/103692806573",
+    "manifest": {
+      "batchId": "REC-036-UK-archive-20260913",
+      "eligibleForReview": [
+        {
+          "headline": "Less-processed food and weight loss: what a UK trial found",
+          "id": 295,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Weight-loss medicine use in Britain: what the survey says about men",
+          "id": 296,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "After weight-loss treatment: why follow-up belongs in the plan",
+          "id": 297,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "NHS Mounjaro access in England: why the route still matters",
+          "id": 298,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Men and NHS talking therapies: what London\u2019s feedback really shows",
+          "id": 299,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "A 24-hour mental-health centre in Tower Hamlets: what changed",
+          "id": 300,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "England\u2019s mental-health expansion: what is planned to open, and when",
+          "id": 301,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "England\u2019s first men\u2019s health strategy: what matters beyond the launch",
+          "id": 302,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Wales\u2019 ten-year mental-health strategy: the plan behind the promise",
+          "id": 303,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s mental-health progress report: why delivery needs scrutiny",
+          "id": 304,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Northern Ireland\u2019s obesity service: what the first phase actually covers",
+          "id": 305,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "England\u2019s mental-health survey: what the newer figures can tell us",
+          "id": 306,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Foundayo approved in the UK: what the orforglipron decision means",
+          "id": 307,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s prevention plans: why weight management goes beyond a prescription",
+          "id": 308,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "UK burnout research: workplace support needs to reach the working day",
+          "id": 309,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Short-acting beta 2 agonists (SABA) (salbutamol and terbutaline): reminder of the risks from overuse in asthma and to be aware of changes in the SABA prescribing guidelines",
+          "id": 23,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Bromocriptine: monitor blood pressure when prescribing bromocriptine for prevention or inhibition of post-partum physiological lactation",
+          "id": 35,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Domperidone: new contraindication in patients with phaeochromocytoma due to the risk of severe hypertension",
+          "id": 276,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Isotretinoin \u2013 changes to prescribing guidance and additional risk minimisation measures",
+          "id": 284,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Mesalazine and idiopathic intracranial hypertension",
+          "id": 286,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Isotretinoin \u2013 updates to prescribing guidance and survey of services",
+          "id": 288,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Abrysvo\u25bc (Pfizer RSV vaccine) and Arexvy\u25bc (GSK RSV vaccine): be alert to a small risk of Guillain-Barr\u00e9 syndrome following vaccination in older adults",
+          "id": 290,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Short-acting beta 2 agonists (SABA) (salbutamol and terbutaline): reminder of the risks from overuse in asthma and to be aware of changes in the SABA prescribing guidelines",
+          "id": 292,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "IXCHIQ Chikungunya vaccine: updates to restrictions of use following safety review",
+          "id": 281,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Bromocriptine: monitor blood pressure when prescribing bromocriptine for prevention or inhibition of post-partum physiological lactation",
+          "id": 294,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "IXCHIQ Chikungunya vaccine: temporary suspension in people aged 65 years or older",
+          "id": 279,
+          "status": "ready_for_review"
+        }
+      ],
+      "prepared": [
+        {
+          "headline": "Less-processed food and weight loss: what a UK trial found",
+          "id": 295,
+          "original_source_date": "2025-08-04",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-less-processed-food-ucl-weight-loss-trial",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Weight-loss medicine use in Britain: what the survey says about men",
+          "id": 296,
+          "original_source_date": "2026-01-08",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-glp1-use-britain-men-survey",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "After weight-loss treatment: why follow-up belongs in the plan",
+          "id": 297,
+          "original_source_date": "2025-08-05",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-nice-support-after-weight-loss-treatment",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "NHS Mounjaro access in England: why the route still matters",
+          "id": 298,
+          "original_source_date": "2026-04-02",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-nhs-mounjaro-access-england-2026",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Men and NHS talking therapies: what London\u2019s feedback really shows",
+          "id": 299,
+          "original_source_date": "2025-06-09",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-men-talking-therapies-london",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "A 24-hour mental-health centre in Tower Hamlets: what changed",
+          "id": 300,
+          "original_source_date": "2025-07-17",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-tower-hamlets-24-hour-mental-health-centre",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "England\u2019s mental-health expansion: what is planned to open, and when",
+          "id": 301,
+          "original_source_date": "2026-08-05",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-england-community-mental-health-expansion-2026",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "England\u2019s first men\u2019s health strategy: what matters beyond the launch",
+          "id": 302,
+          "original_source_date": "2025-11-18",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-england-first-mens-health-strategy",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Wales\u2019 ten-year mental-health strategy: the plan behind the promise",
+          "id": 303,
+          "original_source_date": "2025-04-30",
+          "region": "Wales",
+          "slug": "medicine-news/uk-archive-wales-mental-health-strategy-2025-2035",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s mental-health progress report: why delivery needs scrutiny",
+          "id": 304,
+          "original_source_date": "2025-06-11",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-scotland-mental-health-progress-2025",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Northern Ireland\u2019s obesity service: what the first phase actually covers",
+          "id": 305,
+          "original_source_date": "2026-06-29",
+          "region": "Northern Ireland",
+          "slug": "medicine-news/uk-archive-northern-ireland-obesity-service-first-phase",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "England\u2019s mental-health survey: what the newer figures can tell us",
+          "id": 306,
+          "original_source_date": "2025-11-27",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-england-mental-health-survey-2023-2024",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Foundayo approved in the UK: what the orforglipron decision means",
+          "id": 307,
+          "original_source_date": "2026-08-10",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-foundayo-orforglipron-mhra-approval",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s prevention plans: why weight management goes beyond a prescription",
+          "id": 308,
+          "original_source_date": "2025-06-17",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-scotland-prevention-weight-health-framework",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "UK burnout research: workplace support needs to reach the working day",
+          "id": 309,
+          "original_source_date": "2026-01-16",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-burnout-report-2026-workplace-mental-health",
+          "status": "ready_for_review"
+        }
+      ],
+      "skipped": [
+        {
+          "id": 236,
+          "slug": "uk-archive-wegovy-tablet-mhra-approval-june-2026",
+          "status": "published"
+        }
+      ]
+    }
+  },
+  "rec037": {
+    "run_id": 34747678464,
+    "job_id": 103698496524,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/34747678464/job/103698496524",
+    "manifest": {
+      "batchId": "REC-037-UK-archive-20260913",
+      "eligibleForReview": [
+        {
+          "headline": "NHS diabetes remission: what the programme actually involves",
+          "id": 310,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Healthier You: understanding NHS diabetes-prevention support",
+          "id": 311,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Anxiety and NHS talking therapies: when to ask for support",
+          "id": 312,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "GlobalMinds: what the mental-health research invitation means",
+          "id": 313,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Adult ADHD: what England\u2019s taskforce report changes\u2014and leaves open",
+          "id": 314,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Suicide prevention: the NHS shift towards person-centred support",
+          "id": 315,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "The Nook: walk-in mental-health support in Aberdeen and Glasgow",
+          "id": 316,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Blood pressure checks: turn online concern into a useful appointment",
+          "id": 317,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "HeartFlow on the NHS: what the heart-scan evidence shows",
+          "id": 318,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Prostate Progress: understanding the NHS research invitation",
+          "id": 319,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Bowel screening in your 50s: what England\u2019s figures mean",
+          "id": 320,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Prostate SABR: fewer radiotherapy visits for eligible men",
+          "id": 321,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Young adults and work: what UK mental-health research asks employers",
+          "id": 322,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "AI and mental health: what a UK survey can\u2014and cannot\u2014tell us",
+          "id": 323,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s health survey: weight and wellbeing in context",
+          "id": 324,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Wales gambling support: what the new NHS service was set up to do",
+          "id": 325,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s GP walk-in centres: access and the limits of early data",
+          "id": 326,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s drug-treatment standards: access, choice and mental health",
+          "id": 327,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "STAMINA: exercise support during prostate hormone treatment",
+          "id": 328,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Severe mental illness and weight: a UK gap in practical support",
+          "id": 329,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Persistent depression: what the UK pramipexole trial found",
+          "id": 330,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Northern Ireland\u2019s health survey: weight, wellbeing and unequal access",
+          "id": 331,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Game of Stones: two-year results for men\u2019s weight management",
+          "id": 332,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "NHS lung screening: what the mobile-scan milestone means",
+          "id": 333,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Antidepressant reviews: what the UK REDUCE programme teaches",
+          "id": 334,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "TRANSFORM: better representation in UK prostate screening research",
+          "id": 335,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s mental-health employment gap after leaving school",
+          "id": 336,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Pharmacy cholesterol checks: who England\u2019s pilot is for",
+          "id": 283,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Isotretinoin \u2013 updates to prescribing guidance and survey of services",
+          "id": 16,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Abrysvo\u25bc (Pfizer RSV vaccine) and Arexvy\u25bc (GSK RSV vaccine): be alert to a small risk of Guillain-Barr\u00e9 syndrome following vaccination in older adults",
+          "id": 19,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Short-acting beta 2 agonists (SABA) (salbutamol and terbutaline): reminder of the risks from overuse in asthma and to be aware of changes in the SABA prescribing guidelines",
+          "id": 23,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Bromocriptine: monitor blood pressure when prescribing bromocriptine for prevention or inhibition of post-partum physiological lactation",
+          "id": 35,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Domperidone: new contraindication in patients with phaeochromocytoma due to the risk of severe hypertension",
+          "id": 276,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Isotretinoin \u2013 changes to prescribing guidance and additional risk minimisation measures",
+          "id": 284,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Mesalazine and idiopathic intracranial hypertension",
+          "id": 286,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Isotretinoin \u2013 updates to prescribing guidance and survey of services",
+          "id": 288,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Abrysvo\u25bc (Pfizer RSV vaccine) and Arexvy\u25bc (GSK RSV vaccine): be alert to a small risk of Guillain-Barr\u00e9 syndrome following vaccination in older adults",
+          "id": 290,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Short-acting beta 2 agonists (SABA) (salbutamol and terbutaline): reminder of the risks from overuse in asthma and to be aware of changes in the SABA prescribing guidelines",
+          "id": 292,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "IXCHIQ Chikungunya vaccine: updates to restrictions of use following safety review",
+          "id": 281,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Bromocriptine: monitor blood pressure when prescribing bromocriptine for prevention or inhibition of post-partum physiological lactation",
+          "id": 294,
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "IXCHIQ Chikungunya vaccine: temporary suspension in people aged 65 years or older",
+          "id": 279,
+          "status": "ready_for_review"
+        }
+      ],
+      "prepared": [
+        {
+          "headline": "NHS diabetes remission: what the programme actually involves",
+          "id": 310,
+          "original_source_date": "2025-11-08",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-nhs-diabetes-remission-programme-explained",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Healthier You: understanding NHS diabetes-prevention support",
+          "id": 311,
+          "original_source_date": "2025-12-30",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-healthier-you-diabetes-prevention-million",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Anxiety and NHS talking therapies: when to ask for support",
+          "id": 312,
+          "original_source_date": "2026-02-18",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-anxiety-talking-therapies-self-referral",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "GlobalMinds: what the mental-health research invitation means",
+          "id": 313,
+          "original_source_date": "2026-02-14",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-globalminds-mental-health-research-invitations",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Adult ADHD: what England\u2019s taskforce report changes\u2014and leaves open",
+          "id": 314,
+          "original_source_date": "2025-11-06",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-adult-adhd-taskforce-final-report",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Suicide prevention: the NHS shift towards person-centred support",
+          "id": 315,
+          "original_source_date": "2025-09-11",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-suicide-prevention-training-person-centred-care",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "The Nook: walk-in mental-health support in Aberdeen and Glasgow",
+          "id": 316,
+          "original_source_date": "2026-06-17",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-samh-nook-aberdeen-glasgow-mental-health",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Pharmacy cholesterol checks: who England\u2019s pilot is for",
+          "id": 283,
+          "original_source_date": "2026-08-31",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-pharmacy-cholesterol-pilot-england",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Blood pressure checks: turn online concern into a useful appointment",
+          "id": 317,
+          "original_source_date": "2026-02-21",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-blood-pressure-checks-england-access",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "HeartFlow on the NHS: what the heart-scan evidence shows",
+          "id": 318,
+          "original_source_date": "2025-05-06",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-heartflow-nhs-coronary-scan-evidence",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Prostate Progress: understanding the NHS research invitation",
+          "id": 319,
+          "original_source_date": "2026-08-01",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-prostate-progress-research-invitation",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Bowel screening in your 50s: what England\u2019s figures mean",
+          "id": 320,
+          "original_source_date": "2026-07-11",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-bowel-screening-fifties-england",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Prostate SABR: fewer radiotherapy visits for eligible men",
+          "id": 321,
+          "original_source_date": "2026-06-10",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-prostate-sabr-radiotherapy-england",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Young adults and work: what UK mental-health research asks employers",
+          "id": 322,
+          "original_source_date": "2026-05-20",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-young-adults-mental-health-work-report",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "AI and mental health: what a UK survey can\u2014and cannot\u2014tell us",
+          "id": 323,
+          "original_source_date": "2025-11-18",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-ai-chatbots-mental-health-uk-survey",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s health survey: weight and wellbeing in context",
+          "id": 324,
+          "original_source_date": "2025-10-21",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-scottish-health-survey-weight-wellbeing-2024",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Wales gambling support: what the new NHS service was set up to do",
+          "id": 325,
+          "original_source_date": "2026-02-25",
+          "region": "Wales",
+          "slug": "medicine-news/uk-archive-wales-gambling-treatment-helpline",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s GP walk-in centres: access and the limits of early data",
+          "id": 326,
+          "original_source_date": "2026-07-28",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-scotland-gp-walk-in-centres-data",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s drug-treatment standards: access, choice and mental health",
+          "id": 327,
+          "original_source_date": "2026-07-07",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-scotland-mat-standards-mental-health-support",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "STAMINA: exercise support during prostate hormone treatment",
+          "id": 328,
+          "original_source_date": "2026-09-07",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-stamina-prostate-exercise-support",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Severe mental illness and weight: a UK gap in practical support",
+          "id": 329,
+          "original_source_date": "2025-09-23",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-severe-mental-illness-weight-support-gap",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Persistent depression: what the UK pramipexole trial found",
+          "id": 330,
+          "original_source_date": "2025-06-30",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-paxd-pramipexole-depression-uk-trial",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Northern Ireland\u2019s health survey: weight, wellbeing and unequal access",
+          "id": 331,
+          "original_source_date": "2025-11-26",
+          "region": "Northern Ireland",
+          "slug": "medicine-news/uk-archive-northern-ireland-health-survey-weight-mental-health",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Game of Stones: two-year results for men\u2019s weight management",
+          "id": 332,
+          "original_source_date": "2026-05",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-game-of-stones-men-weight-loss-followup",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "NHS lung screening: what the mobile-scan milestone means",
+          "id": 333,
+          "original_source_date": "2026-05-25",
+          "region": "England",
+          "slug": "medicine-news/uk-archive-lung-cancer-screening-mobile-scans-england",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Antidepressant reviews: what the UK REDUCE programme teaches",
+          "id": 334,
+          "original_source_date": "2025-07",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-reduce-antidepressant-review-support",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "TRANSFORM: better representation in UK prostate screening research",
+          "id": 335,
+          "original_source_date": "2026-06-04",
+          "region": "UK",
+          "slug": "medicine-news/uk-archive-transform-prostate-screening-black-men",
+          "status": "ready_for_review"
+        },
+        {
+          "headline": "Scotland\u2019s mental-health employment gap after leaving school",
+          "id": 336,
+          "original_source_date": "2026-08-25",
+          "region": "Scotland",
+          "slug": "medicine-news/uk-archive-scotland-young-people-mental-health-transitions",
+          "status": "ready_for_review"
+        }
+      ],
+      "skipped": []
+    }
+  },
+  "excluded_from_rec036": [
+    {
+      "headline": "Short-acting beta 2 agonists (SABA) (salbutamol and terbutaline): reminder of the risks from overuse in asthma and to be aware of changes in the SABA prescribing guidelines",
+      "id": 23,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Bromocriptine: monitor blood pressure when prescribing bromocriptine for prevention or inhibition of post-partum physiological lactation",
+      "id": 35,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Domperidone: new contraindication in patients with phaeochromocytoma due to the risk of severe hypertension",
+      "id": 276,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Isotretinoin \u2013 changes to prescribing guidance and additional risk minimisation measures",
+      "id": 284,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Mesalazine and idiopathic intracranial hypertension",
+      "id": 286,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Isotretinoin \u2013 updates to prescribing guidance and survey of services",
+      "id": 288,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Abrysvo\u25bc (Pfizer RSV vaccine) and Arexvy\u25bc (GSK RSV vaccine): be alert to a small risk of Guillain-Barr\u00e9 syndrome following vaccination in older adults",
+      "id": 290,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Short-acting beta 2 agonists (SABA) (salbutamol and terbutaline): reminder of the risks from overuse in asthma and to be aware of changes in the SABA prescribing guidelines",
+      "id": 292,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "IXCHIQ Chikungunya vaccine: updates to restrictions of use following safety review",
+      "id": 281,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "Bromocriptine: monitor blood pressure when prescribing bromocriptine for prevention or inhibition of post-partum physiological lactation",
+      "id": 294,
+      "status": "ready_for_review"
+    },
+    {
+      "headline": "IXCHIQ Chikungunya vaccine: temporary suspension in people aged 65 years or older",
+      "id": 279,
+      "status": "ready_for_review"
+    }
+  ],
+  "conclusion": "All 11 excluded REC-036 records remain eligibleForReview in the later REC-037 preparation manifest, and none belongs to its 28 prepared articles. The 26-item earlier preview is therefore the 15 REC-036 articles plus these 11 records, not a separate later backlog.",
+  "authenticated_ui_observation_2026_09_16": {
+    "observer": "/root",
+    "method": "Normal authenticated owner HQ UI; communicated to source-audit subagent.",
+    "visible_queue_count": 164,
+    "visible_published_count": 77,
+    "approved_publication_preview_ready": 0,
+    "historical_records_on_hold_source_changed": [
+      276,
+      279,
+      281,
+      284,
+      286,
+      288,
+      290,
+      292,
+      294
+    ],
+    "historical_records_absent_from_visible_queue_current_status_unknown": [
+      23,
+      35
+    ],
+    "event_276": {
+      "status": "Hold / Source changed \u2014 fresh review required",
+      "dialog_gate": "Saving, approving and publishing blocked until Start source correction",
+      "article_completeness": "Only a short introduction; not a complete article",
+      "observed_source_change_local": "2026-09-16 12:45 UK",
+      "first_source_date": "2026-07-21"
+    },
+    "work_in_progress": "Fresh offline drafts against primary sources; no live hold cleared and no human approval claimed."
+  }
+}
