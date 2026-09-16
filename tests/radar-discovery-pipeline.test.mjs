@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { memoryDB } from '../preview/newsroom-discovery/memory-db.mjs';
 import { ensureRadarSchema, prepareVerifiedRadarQueue, verifyEvidence } from '../radar-integration-v1.js';
 import { AUTHORITATIVE_RADAR_SOURCES, loadRadarSources, runAuthoritativeRadarScan, parseRelevantHtmlLinks, parseAuthoritativeFeed, notifyDetection, editorialScores } from '../radar-authoritative-scan-v1.js';
@@ -8,6 +9,50 @@ import { ukCoverage, isRelevantNewsItem } from '../radar-uk-editorial-v1.js';
 const asa=AUTHORITATIVE_RADAR_SOURCES.find(x=>x.id==='asa-weight-rulings');
 const news=AUTHORITATIVE_RADAR_SOURCES.find(x=>x.id==='uk-advertising-news-search');
 const fixture='<li class="icon-listing-item"><h4><a href="https://www.asa.org.uk/rulings/shemed-ltd.html">SheMed Ltd</a></h4><ul><li>Upheld</li><li>02 September 2026</li></ul><p>A weight-loss prescription-only medicines ad was banned.</p></li>';
+test('Lilly seed migration updates only the exact retired source and preserves paused state and evidence',async()=>{
+ const DB=memoryDB();await ensureRadarSchema(DB);await loadRadarSources(DB);
+ const retired='https://investor.lilly.com/news-releases',current='https://investor.lilly.com/';
+ assert.equal((await DB.prepare("SELECT url FROM radar_sources WHERE id='lilly-newsroom'").first()).url,current);
+ await DB.prepare("UPDATE radar_sources SET url=?,active=0,updated_at='2026-09-01 00:00:00' WHERE id='lilly-newsroom'").bind(retired).run();
+ await DB.prepare("INSERT INTO radar_events(event_key,status,headline,source_evidence_json,verification_json,reviewed_at) VALUES(?,?,?,?,?,?)").bind('preserved','approved','Historical reviewed record',JSON.stringify([{source_feed:retired,source_date:'2026-08-01',url:'https://investor.lilly.com/news-releases/news-release-details/existing'}]),'{"verified":true}','2026-08-02').run();
+ const evidenceBefore=await DB.prepare("SELECT * FROM radar_events WHERE event_key='preserved'").first();
+ const listed=await loadRadarSources(DB);
+ const migrated=await DB.prepare("SELECT * FROM radar_sources WHERE id='lilly-newsroom'").first();
+ assert.equal(migrated.url,current);assert.equal(migrated.active,0);
+ assert.equal(listed.some(x=>x.id==='lilly-newsroom'),false);
+ assert.deepEqual(await DB.prepare("SELECT * FROM radar_events WHERE event_key='preserved'").first(),evidenceBefore);
+ await loadRadarSources(DB);
+ assert.deepEqual(await DB.prepare("SELECT * FROM radar_sources WHERE id='lilly-newsroom'").first(),migrated);
+ // A customised URL, provider identity or confidence must not be overwritten.
+ for(const patch of [{url:'https://www.lilly.com/news'},{url:retired,authority:'Custom review provider'},{url:retired,authority:'Eli Lilly and Company newsroom',confidence:65}]){
+  for(const [key,value]of Object.entries(patch))await DB.prepare(`UPDATE radar_sources SET ${key}=? WHERE id='lilly-newsroom'`).bind(value).run();
+  const custom=await DB.prepare("SELECT * FROM radar_sources WHERE id='lilly-newsroom'").first();
+  await loadRadarSources(DB);
+  assert.deepEqual(await DB.prepare("SELECT * FROM radar_sources WHERE id='lilly-newsroom'").first(),custom);
+ }
+});
+test('Lilly latest-news markup keeps the release URL and original date without approving manufacturer claims',async()=>{
+ const source=AUTHORITATIVE_RADAR_SOURCES.find(x=>x.id==='lilly-newsroom');
+ const html=readFileSync(new URL('./fixtures/radar/lilly-investor-index.html',import.meta.url),'utf8');
+ const url='https://investor.lilly.com/news-releases/news-release-details/lilly-present-new-data-foundayo-retatrutide-and-eloratzp-easd';
+ const links=parseRelevantHtmlLinks(html+'<a href="https://unrelated.test/news-releases/news-release-details/weight-loss">Weight loss</a>',source);
+ assert.equal(links.length,1);assert.equal(links[0].url,url);
+ assert.equal(links[0].source_date,'2026-09-15T00:00:00.000Z');
+ assert.match(links[0].title,/Foundayo, retatrutide, and eloraTZP/);
+ const DB=memoryDB();await ensureRadarSchema(DB);await loadRadarSources(DB);
+ await DB.prepare("UPDATE radar_sources SET active=0 WHERE id!='lilly-newsroom'").run();
+ const original=globalThis.fetch;globalThis.fetch=async request=>{assert.equal(String(request),source.url);return new Response(html)};
+ try{
+  const scan=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});
+  assert.equal(scan.sources[0].ok,true);assert.equal(scan.sources[0].newEvents,1);
+  const row=await DB.prepare('SELECT * FROM radar_events').first();
+  assert.equal(row.status,'needs_more_evidence');assert.equal(JSON.parse(row.verification_json).verified,false);
+  const evidence=JSON.parse(row.source_evidence_json)[0];
+  assert.equal(evidence.url,url);assert.equal(evidence.source_feed,source.url);
+  assert.equal(evidence.source_date,'2026-09-15T00:00:00.000Z');
+  assert.equal((await DB.prepare("SELECT COUNT(*) c FROM radar_audit WHERE action='notification_sent'").first()).c,0);
+ }finally{globalThis.fetch=original}
+});
 test('company-name ASA rulings retain relevance, date and primary host boundary',()=>{
  const items=parseRelevantHtmlLinks(fixture+'<li><a href="https://other.test/news/fake">weight-loss ads banned</a></li>',asa);
  assert.equal(items.length,1);assert.equal(items[0].title,'SheMed Ltd');assert.match(items[0].summary,/weight-loss/);assert.equal(items[0].source_date,'2026-09-02T00:00:00.000Z');assert.equal(editorialScores(asa,items[0]).urgency,90);
