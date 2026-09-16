@@ -25,7 +25,9 @@ test('real dashboard keeps original scripts, IDs, forms and auth logic with a ve
  const scripts=s=>[...s.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/g)].map(x=>x[0]);
  const versionedDashboard=dashboard.replace('/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-timber-problem-v1.js?v=my-timber-master-20260916');
  assert.deepEqual(scripts(html).filter(x=>!x.includes("/assets/member-experience/")),scripts(versionedDashboard));
- const ids=s=>[...s.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.deepEqual(ids(html),ids(dashboard));
+ const ids=s=>[...s.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
+ const originalIds=ids(dashboard);assert.deepEqual(ids(html).filter(id=>originalIds.includes(id)),originalIds);
+ assert.equal(new Set(ids(html)).size,ids(html).length,'restoration must not duplicate existing IDs');
  assert.match(html,/data-member-experience="v1"/);assert.match(html,/name="firstName"/);assert.doesNotMatch(html,/name="firstName"[^>]*value="Matt"/);
  assert.match(html,/id="previewMember"[^>]*hidden/);assert.match(html,/href="\/member\/dashboard#journey"/);
  assert.match(r.headers.get('Vary'),/Cookie/);assert.equal(r.headers.get('ETag'),null);assert.match(r.headers.get('Cache-Control'),/no-store/);

@@ -1,14 +1,6 @@
 name: Rendered Member Production Acceptance
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'g2-011-progress-story-production.mjs'
-      - 'g2-013-progress-picture-rendered-production.mjs'
-      - 'g2-014-progress-picture-premium-production.mjs'
-      - 'g2-015-plan-manager-production.mjs'
-      - '.github/workflows/rendered-member-production-acceptance.yml'
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
@@ -25,57 +17,27 @@ concurrency:
 
 jobs:
   rendered-member-production-acceptance:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Prepare commissioning acceptance handoff
-        shell: bash
+      - name: Check committed acceptance scripts
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          files = [
-              'g2-011-progress-story-production.mjs',
-              'g2-013-progress-picture-rendered-production.mjs',
-              'g2-014-progress-picture-premium-production.mjs',
-              'g2-015-plan-manager-production.mjs',
-          ]
-          old = "headers:{Origin:SITE,'Content-Type':'application/json'},data:{email,password}"
-          new = "headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},data:{email,password}"
-          for name in files:
-              path = Path(name)
-              text = path.read_text()
-              if old not in text:
-                  raise SystemExit(f'commissioning login pattern missing in {name}')
-              path.write_text(text.replace(old, new))
-
-          # Premium suites assert the actual member outcome. Generic expected
-          # 400/401/404 background probes are not a rendered-product failure.
-          for name in ['g2-014-progress-picture-premium-production.mjs','g2-015-plan-manager-production.mjs']:
-              path = Path(name)
-              text = path.read_text()
-              if '(401|404)' not in text:
-                  raise SystemExit(f'console filter pattern missing in {name}')
-              path.write_text(text.replace('(401|404)', '(400|401|404)'))
-
-          # waitForURL resolves at navigation commit; require the Grub DOM to be
-          # populated before judging the Open Shift Grub outcome.
-          path = Path('g2-015-plan-manager-production.mjs')
-          text = path.read_text()
-          old_nav = "await Promise.all([p.waitForURL('**/member/grub',{timeout:20000}),opener.click()]);row.openOutcome=clean(await p.locator('body').innerText().catch(()=>''));"
-          new_nav = "await Promise.all([p.waitForURL('**/member/grub',{timeout:20000}),opener.click()]);await p.waitForLoadState('domcontentloaded',{timeout:20000});await p.waitForFunction(()=>document.body&&document.body.innerText.trim().length>0,null,{timeout:20000});row.openOutcome=clean(await p.locator('body').innerText().catch(()=>''));"
-          if old_nav not in text:
-              raise SystemExit('Grub navigation timing pattern missing in g2-015')
-          path.write_text(text.replace(old_nav, new_nav))
-          PY
+          node --test tests/rendered-member-acceptance-support.test.mjs
           node --check g2-011-progress-story-production.mjs
           node --check g2-013-progress-picture-rendered-production.mjs
           node --check g2-014-progress-picture-premium-production.mjs
           node --check g2-015-plan-manager-production.mjs
+      - name: Install Chromium once
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
       - name: Acquire G2-011 commissioning identity
         id: oidc_011
         shell: bash
@@ -84,10 +46,6 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Install Chromium once
-        run: |
-          npm install --no-save --ignore-scripts playwright
-          npx playwright install --with-deps chromium
       - name: Run G2-011 Progress acceptance
         id: g2_011
         continue-on-error: true

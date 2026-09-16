@@ -9,13 +9,15 @@ export const memberClient = String.raw`(() => {
   const all=(s,root=document)=>[...root.querySelectorAll(s)];
   const set=(el,key,value)=>{if(el&&el.getAttribute(key)!==String(value))el.setAttribute(key,String(value))};
   function nav(){
-    const current=page==='dashboard'&&['#journey','#progress','#lifeback'].includes(location.hash)?'/member/dashboard#journey':page==='dashboard'?'/member/dashboard#today':'/member/'+page;
+    const selected=['#journey','#progress','#lifeback'].includes(location.hash)?'journey':['#visualise','#plans'].includes(location.hash)?location.hash.slice(1):'today';
+    const current=page==='dashboard'?'/member/dashboard#'+selected:'/member/'+page;
     all('.sst-member-tabs a').forEach(a=>{const url=new URL(a.href);if(canonical(url.pathname)+url.hash===current)set(a,'aria-current','page');else a.removeAttribute('aria-current')});
   }
   nav();window.addEventListener('hashchange',nav);
   all('.sst-member-tabs a').forEach(a=>a.addEventListener('click',e=>{
     const u=new URL(a.href);
     if(page==='dashboard'&&canonical(u.pathname)==='/member/dashboard'&&document.querySelector('#previewMember.is-ready')){
+      if(body.dataset.memberTools==='v1'&&['#today','#journey','#visualise','#plans',''].includes(u.hash))return; // current-shell tool runtime owns these panel transitions
       const tab=document.querySelector('.mp-tab[data-panel="'+(u.hash==='#journey'?'journey':'today')+'"]');
       if(tab&&document.querySelector('#panel-journey[aria-busy="false"]')){e.preventDefault();tab.click();nav();document.querySelector(u.hash==='#journey'?'#panel-journey':'#panel-today')?.scrollIntoView({block:'start'});}
     }

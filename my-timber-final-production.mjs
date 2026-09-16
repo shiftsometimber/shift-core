@@ -2,6 +2,7 @@ import {chromium} from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
+import {commissioningLogin,memberReady} from './rendered-member-acceptance-support.mjs';
 
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
@@ -10,13 +11,13 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'iPhone-format Safari acceptance geometry'},checks:[],failures:[],screens:[]};
+const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],screens:[]};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
 async function register(){const r=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'Billy',source:'commissioning-my-timber-final'})});if(r.status!==201)throw new Error(`register ${r.status} ${await r.text()}`)}
-async function login(page){await page.goto(`${SITE}/member-login`,{waitUntil:'domcontentloaded',timeout:30000});const result=await page.evaluate(async({api,email,password})=>{const r=await fetch(`${api}/v1/auth/login`,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});return{ok:r.ok,status:r.status,text:await r.text()}},{api:API,email,password});if(!result.ok)throw new Error(`login ${result.status} ${result.text}`)}
+async function login(page){return commissioningLogin(page,{site:SITE,api:API,oidc:OIDC,email,password});}
 async function screenshot(page,name){const file=path.join(OUT,`${name}.png`);await page.screenshot({path:file,fullPage:false});report.screens.push(file)}
 async function body(page){return clean(await page.locator('body').innerText())}
 async function geometry(page){return page.evaluate(()=>{const root=document.querySelector('#todayActions'),next=document.querySelector('.mt-now'),box=root?.getBoundingClientRect(),nextBox=next?.getBoundingClientRect();return{overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,rootTop:Math.round(box?.top||0),rootWidth:Math.round(box?.width||0),nextTop:Math.round(nextBox?.top||0),nextBottom:Math.round(nextBox?.bottom||0),viewport:{width:innerWidth,height:innerHeight},decisionReady:root?.dataset.todayDecisionReady||''}})}
@@ -41,11 +42,12 @@ try{
   if(!fitResponse.ok())throw new Error(`Fit seed ${fitResponse.status()} ${JSON.stringify(fit)}`);
   const seeded={grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0};
   if(!seeded.grub||!seeded.fit)fail('Billy plan seed',JSON.stringify(seeded));else pass('Billy receives real Grub and Fit plans',JSON.stringify(seeded));
-  await page.goto(`${SITE}/member/dashboard#today`,{waitUntil:'domcontentloaded',timeout:30000});
+  await memberReady(page,{site:SITE,panel:'today'});
   await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
   await page.waitForSelector('.mt-now-action',{state:'visible',timeout:10000});
   const initial=await body(page),initialGeometry=await geometry(page);await screenshot(page,'01-billy-today');
-  for(const marker of ['MY TIMBER · TODAY','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
+  for(const marker of ['MY TIMBER','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
+  if(!(await page.locator('.mtm-hero').isVisible()))fail('approved My Timber home','Current illustrated home header is missing');else pass('Approved My Timber home is preserved');
   if(initialGeometry.overflow!==0)fail('initial horizontal overflow',JSON.stringify(initialGeometry));else pass('390px Today has zero horizontal overflow');
   if(initialGeometry.decisionReady!=='true')fail('recommendation readiness','missing');else pass('Recommended next action is visibly ready');
   await page.locator('[data-life-changed]').click();

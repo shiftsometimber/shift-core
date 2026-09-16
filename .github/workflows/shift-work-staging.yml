@@ -1,7 +1,7 @@
 name: SHIFT for Work isolated hosted staging
 on:
   push:
-    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916, fix/readiness-preservation-20260916]
     paths:
       - 'work/staging/**'
       - 'ask-timber-v1.js'
@@ -11,6 +11,9 @@ on:
       - 'tests/ai-connected*.test.mjs'
       - 'member-experience/**'
       - 'frontend/member/member-my-timber-problem-v1.js'
+      - 'frontend/member/member-product-v33d.js'
+      - 'frontend/member/member-progress*.js'
+      - 'frontend/member/member-plans-premium-v1.*'
       - 'member-product-v8.js'
       - 'my-journey*.js'
       - '.github/workflows/shift-work-staging.yml'
@@ -22,7 +25,7 @@ concurrency:
 jobs:
   staging:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
@@ -42,7 +45,7 @@ jobs:
       - name: Test connected member journey
         run: |
           node member-experience/prepare-life-back.mjs
-          node --test member-experience/tests/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs
+          node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs tests/adaptive-treatment-integrity.test.mjs tests/my-timber-analytics-privacy.test.mjs
           node gate4-one-shift-brain-gate.mjs
           node ask-timber-multi-intent-gate.mjs
       - name: Verify pinned assets and prepare fictional fixtures
@@ -69,7 +72,14 @@ jobs:
           NODE
       - name: Verify real remote persistence and access boundaries
         run: node work/staging/probe.mjs
+      - name: Install isolated member browser verifier
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Verify restored tools and preserve current Today at desktop and 390px
+        run: node work/staging/member-tools-browser-proof.mjs
       - name: Save non-secret verification evidence only
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: shift-work-staging-evidence
@@ -77,4 +87,7 @@ jobs:
             work/staging/generated/probe-result.json
             work/staging/generated/ai-connected-proof.json
             work/staging/generated/watch-observations.sql.json
+            work/staging/generated/current-tool-assets.json
+            work/staging/generated/member-tools-proof/report.json
+            work/staging/generated/member-tools-proof/*.png
           if-no-files-found: error

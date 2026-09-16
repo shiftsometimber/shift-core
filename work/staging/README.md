@@ -36,3 +36,34 @@ Browser verification found that serializing a bundled function leaked Wrangler's
 The staging-only `/staging/layout-check` page shows the current employee, HQ and employer screens at 320, 375, 390, 768 and 1024px frame widths. A visible measurement reports horizontal overflow. These frames use fictional local responses, reject writes and have `connect-src 'none'`; only fictional layout documents can be framed on the same origin. Authenticated workplace documents retain `frame-ancestors 'none'`. This checks responsive CSS in the available browser, not Safari or physical-device behaviour.
 
 The member experience now leads with the current weekly action, then progress and the existing My Timber tools. Full joining information remains above voluntary consent for first-time claims; returning members keep it in an expandable privacy section. The approved homepage photograph is SHA-pinned. Scoped workplace styles prevent the shared public card-hover treatment from obscuring private forms and reports.
+
+## Restored member tools proof (16 September 2026)
+
+The readiness branch uses this same isolated Worker and the same two separately
+named databases. It exposes the current member enhancement at `/member/dashboard`
+as well as the older connected-preview links. The canonical staging path lets the
+actual clients keep their production pathname guards unchanged. The actual
+progress/photo and retained-plan routes use the isolated auth database; there is
+no production database, R2 bucket, email or payment fallback.
+
+`member-experience/staging/tool-assets.mjs` explicitly lists the current checkout
+assets copied into the staging package. Their SHA-256 values are recorded, and the
+hosted browser proof checks each served file against those values. The approved
+immutable Pages shell remains pinned. Blob images are allowed in this connected
+staging document so a selected fictional image can be previewed and resized by
+the existing client before it is saved.
+
+The workflow creates four additional fictional accounts solely for
+`member-tools-browser-proof.mjs`. In CI, the real test password API creates their
+ordinary sessions; it does not use a commissioning bypass. Chromium checks the
+actual rendered desktop and 390px interfaces, progress and photo saving, plan
+history, read-only saved-plan contents, return after sign-in, account separation,
+photo deletion, typography, overflow and preservation of the current Today card.
+It never submits an AI image-generation request. It records only non-secret
+results, asset hashes and screenshots of those fictional accounts. Passwords,
+session cookies, SQL and the full generated directory must never be uploaded.
+Browser interactions outside this CI verification still require the supported
+secure browser sign-in handoff.
+
+A passing result is evidence of these staging interactions, not production
+sign-in, actual Safari, clinical aftercare delivery or pharmaceutical fulfilment.
