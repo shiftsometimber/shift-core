@@ -6,7 +6,7 @@ html body.sst-member-experience[data-member-page="dashboard"] main{max-width:110
 html body.sst-member-experience[data-member-page="dashboard"] :is(main,dialog,[role=dialog],.sst-member-tabs) :is(h1,h2,h3,h4,p,span,small,strong,button,a,input,select,textarea,summary,label){font-family:sans-serif!important}
 html body.sst-member-experience[data-member-page="dashboard"] .sst-member-tabs{background:#050505!important;border-bottom:1px solid #414638!important}
 html body.sst-member-experience[data-member-page="dashboard"] .sst-member-tabs :is(a,summary){color:#e7e3da!important}
-html body.sst-member-experience[data-member-page="dashboard"] .sst-member-tabs a[aria-current=page]{background:#e7e3da!important;color:#050505!important}
+html body.sst-member-experience[data-member-page="dashboard"] .sst-member-tabs a:is([aria-current=page],:hover,:focus-visible){background:#e7e3da!important;color:#050505!important}
 html body.sst-member-experience[data-member-page="dashboard"] #panel-today>.preview-note{display:none!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayTitle{color:#e7e3da!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home{color:#e7e3da!important;font:16px/1.6 sans-serif!important;min-width:0}
