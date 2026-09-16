@@ -46,8 +46,8 @@ jobs:
           mkdir -p "$SNAPSHOT_DIRECTORY"
           node scripts/prepared-content-readonly-snapshot.mjs --catalogue-sql > "$SNAPSHOT_DIRECTORY/catalogue-query.sql"
           node scripts/prepared-content-readonly-snapshot.mjs --radar-sql > "$SNAPSHOT_DIRECTORY/radar-query.sql"
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$(cat "$SNAPSHOT_DIRECTORY/catalogue-query.sql")" > "$SNAPSHOT_DIRECTORY/catalogue-raw.json"
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$(cat "$SNAPSHOT_DIRECTORY/radar-query.sql")" > "$SNAPSHOT_DIRECTORY/radar-raw.json"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command="$(cat "$SNAPSHOT_DIRECTORY/catalogue-query.sql")" > "$SNAPSHOT_DIRECTORY/catalogue-raw.json"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command="$(cat "$SNAPSHOT_DIRECTORY/radar-query.sql")" > "$SNAPSHOT_DIRECTORY/radar-raw.json"
           node scripts/prepared-content-readonly-snapshot.mjs --proof "$SNAPSHOT_DIRECTORY/catalogue-raw.json" "$SNAPSHOT_DIRECTORY/radar-raw.json" "$SNAPSHOT_DIRECTORY"
           test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN_SHA"
       - name: Retain exact raw results, SQL and snapshot proof

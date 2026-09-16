@@ -18,7 +18,7 @@ export function readRadarSql() {
   if (!/^WITH\s+selected\s+AS\s*\(/i.test(statement) || statement.includes(';') || /\b(?:INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|REPLACE|PRAGMA|ATTACH|DETACH|VACUUM|REINDEX|ANALYZE|BEGIN|COMMIT|ROLLBACK)\b/i.test(statement)) {
     throw new Error('radar_snapshot_must_be_one_read_only_select');
   }
-  return sql;
+  return statement + ';\n';
 }
 
 function resultRows(bytes, label) {
