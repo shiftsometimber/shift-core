@@ -283,7 +283,8 @@ export async function checkSources(env, options = {}) {
   const fetchImpl = options.fetchImpl ?? fetch;
   for (const source of sourceList) validSource(source);
   if (new Set(sourceList.map(source => source.id)).size !== sourceList.length) throw new Error('duplicate_source_id');
-  await env.DB.exec(SCHEMA);
+  // D1 exec splits input at newlines; keep this multiline schema as one statement.
+  await env.DB.prepare(SCHEMA).run();
   const outcomes = new Array(sourceList.length);
   let cursor = 0;
   async function worker() {
