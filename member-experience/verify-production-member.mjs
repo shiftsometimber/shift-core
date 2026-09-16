@@ -6,8 +6,21 @@ import {fitRuntime} from './fit-approved-runtime.mjs';
 import {grubRuntime} from './grub-runtime.mjs';
 import lifeBackAssets from './life-back-assets.mjs';
 import {grubImages} from './grub-image-map.mjs';
+import {homeStyles} from './home-styles.mjs';
+import homeArt from './home-art.mjs';
 const origin='https://shiftsometimber.co.uk';
 const evidence={checkedAt:new Date().toISOString(),assets:[],auth:[]};
+{
+ const r=await fetch(origin+'/member/dashboard',{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);
+ const html=await r.text();assert.match(html,/\/member-my-timber-problem-v1\.js\?v=my-timber-master-20260916/);assert.match(html,/\/assets\/member-experience\/home\.css/);
+ assert.match(r.headers.get('Cache-Control')||'',/no-store/);
+ evidence.dashboard={status:r.status,versionedToday:true,masterStyles:true};
+}
+for(const [path,expected] of [['/assets/member-experience/home.css',Buffer.from(homeStyles)],['/assets/member-experience/home-art.webp',Buffer.from(homeArt.split(',')[1],'base64')]]){
+ const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);
+ const actual=Buffer.from(await r.arrayBuffer());assert.deepEqual(actual,expected,path+' must match the approved master');
+ evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
+}
 for(const [name,expected] of [['health',healthRuntime],['fit',fitRuntime],['grub',grubRuntime]]){
  const path='/assets/member-experience/'+name+'.mjs';
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});
@@ -24,7 +37,7 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
 }
 {
- const path='/member-my-timber-problem-v1.js',r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);
+ const path='/member-my-timber-problem-v1.js?v=my-timber-master-20260916',r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);
  const actual=await r.text();assert.equal(actual,readFileSync('frontend/member/member-my-timber-problem-v1.js','utf8'),path+' must match source');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
 }

@@ -34,8 +34,11 @@ export default {async fetch(request,env,ctx){
  const aiCheck={attempted:false};
  const checkedEnv=p==='/v1/ai/chat'&&env.AI?{...env,AI:{run:async(model,input)=>{
   aiCheck.attempted=true;aiCheck.model=model;
-  try{const result=await env.AI.run(model,input);const raw=result?.response||result?.result?.response||result?.output_text;
+  try{const result=await env.AI.run(model,input);const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text;
    aiCheck.resultKeys=Object.keys(result||{});aiCheck.responseType=typeof raw;aiCheck.responseLength=typeof raw==='string'?raw.length:null;
+   aiCheck.maxTokens=input.max_tokens;aiCheck.finishReason=String(result?.choices?.[0]?.finish_reason||result?.finish_reason||'').slice(0,60);
+   aiCheck.outputTokens=Number(result?.usage?.completion_tokens||result?.usage?.output_tokens)||null;
+   aiCheck.candidates=[['response',result?.response],['nested',result?.result?.response],['choice',result?.choices?.[0]?.message?.content],['output',result?.output_text]].filter(([,v])=>v!==undefined).map(([envelope,v])=>{let validJSON=false;try{const parsed=typeof v==='string'?JSON.parse(v.trim().replace(/^```(?:json)?/i,'').replace(/```$/,'').trim()):v;validJSON=typeof parsed?.answer==='string'&&!!parsed.answer.trim()}catch{}return{envelope,type:typeof v,length:typeof v==='string'?v.length:null,validJSON}});
    if(raw&&typeof raw==='object')aiCheck.validJSON=!Array.isArray(raw);
    if(typeof raw==='string'){try{JSON.parse(raw.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim());aiCheck.validJSON=true}catch{aiCheck.validJSON=false}}
    return result;
