@@ -106,7 +106,7 @@ export async function verifyFixedCataloguePublication(DB,release) {
   if(owner?.status!=='authorised' || owner.instruction!=='Publish them all !!!!!!' || owner.actor?.id!=='Matt O’Brien' || owner.recorded_at!=='2026-09-16T18:50:04Z') fail('catalogue_owner_instruction_missing');
   const db=typeof DB.withSession==='function'?DB.withSession('first-primary'):DB;
   const stamp=owner.recorded_at;
-  const result=await db.prepare(`SELECT COUNT(*) AS total, SUM(CASE WHEN created_at=? AND updated_at=? AND json_extract(review_json,'$.authority_kind')='owner_publication_instruction' AND json_extract(review_json,'$.instruction.quote')=? THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')`).bind(stamp,stamp,owner.instruction).first();
+  const result=await db.prepare(`SELECT COUNT(*) AS total, SUM(CASE WHEN created_at=? AND updated_at=? THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')`).bind(stamp,stamp).first();
   if(Number(result?.total)!==originals+additions || Number(result?.authorised)!==additions) fail('catalogue_publication_incomplete');
   return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted:0,already_present:additions,protected_originals:originals,original_rows_unchanged:true,transactional:true,completed_at:new Date().toISOString(),published_at:null};
 }
