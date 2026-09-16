@@ -24,12 +24,12 @@ test('public chrome rewrites retired Tap Room links to The Lounge', () => {
   assert.match(worker, /path==='\/tap-room'/);
   assert.match(worker, /link\.href='\/lounge'/);
   assert.match(worker, /link\.textContent='The Lounge'/);
-  assert.match(worker, /replaceAll\('>Tap Room<','>The Lounge<'\)/);
+  assert.match(worker, /replaceAll\(\s*["']>Tap Room<["']\s*,\s*["']>The Lounge<["']\s*\)/);
 });
 
 test('legacy implementation identifiers are not treated as a public product name', () => {
   // tap_room DB/API aliases remain temporarily for backward compatibility.
   // This test deliberately locks the public boundary rather than forcing a risky schema rename.
-  assert.match(worker, /path\.startsWith\('\/v1\/tap-room'\)/);
-  assert.match(worker, /path\.startsWith\('\/v1\/lounge'\)/);
+  assert.match(worker, /path\.startsWith\(\s*["']\/v1\/tap-room["']\s*\)/);
+  assert.match(worker, /path\.startsWith\(\s*["']\/v1\/lounge["']\s*\)/);
 });

@@ -264,16 +264,26 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
   assert.ok(
     workerCompact.includes("['/shift-health.html','text/html;charset=utf-8']"),
   );
-  assert.ok(workerEntry.includes("SHIFT_HEALTH_CHROME_PATCH"));
-  assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_ENFORCER"));
-  assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_GUARD"));
-  assert.ok(workerEntry.includes("SHIFT_HEALTH_NAV_ROOT_GUARD"));
-  assert.ok(workerEntry.includes("document.documentElement"));
-  assert.ok(workerEntry.includes("subtree:true"));
+  // Act2B replaced competing runtime nav writers with static public chrome.
+  // Assert the link in each actual navigation region, not anywhere in the page.
+  const navs = [...shiftHealth.matchAll(/<nav\b([^>]*)>([\s\S]*?)<\/nav>/g)];
+  for (const label of ["Primary", "Mobile primary", "Footer"]) {
+    const nav = navs.find(([, attributes]) =>
+      attributes.includes(`aria-label="${label}"`),
+    );
+    assert.ok(nav, `missing ${label} navigation`);
+    assert.match(nav[2], /<a\b[^>]*href="\/shift-health"[^>]*>SHIFT Health<\/a>/);
+  }
+  assert.match(shiftHealth, /<header\b[^>]*class="[^"]*\bsite-header\b/);
+  assert.match(shiftHealth, /<footer\b[^>]*class="[^"]*\bsite-footer\b/);
+  assert.doesNotMatch(
+    workerEntry,
+    /SHIFT_HEALTH_(?:CHROME_PATCH|NAV_ENFORCER|NAV_GUARD|NAV_ROOT_GUARD)/,
+  );
+  assert.ok(workerCompact.includes("returnpublicSiteConfigWithLoungeChrome(request)"));
+  assert.ok(workerCompact.includes("publicPagesAsset(request,'/shift-health')"));
   assert.ok(workerEntry.includes('upstreamHeaders.delete("If-None-Match")'));
   assert.ok(workerEntry.includes('headers.delete("ETag")'));
-  assert.ok(workerEntry.includes("new MutationObserver"));
-  assert.ok(workerEntry.includes("setTimeout(run,150)"));
   assert.ok(
     workerEntry.includes('"Cache-Control", "no-store, must-revalidate"'),
   );
@@ -288,20 +298,19 @@ test("SHIFT Health ships in desktop, mobile, footer and shared public chrome", (
     assert.ok(shiftHealth.includes(asset));
     assert.ok(shiftHealthProduct.includes(asset));
   }
-  for (const path of [
-    "/medicine-news",
-    "/shift-health",
-    "/shift-health/health-mot",
-    "/shift-health/testosterone-energy",
-    "/shift-health/blood-pressure-monitor",
-    "/shift-health/digital-scales",
-    "/shift-health/resistance-bands",
-    "/shift-health/shift-measure",
-    "/shift-health/erectile-dysfunction",
-    "/shift-health/hair-loss",
-    "/shift-health/stop-smoking",
-    "/shift-health/sleep-apnoea",
-  ]) assert.ok(workerEntry.includes(`"${path}"`));
+  for (const path of ["/medicine-news", "/shift-health"])
+    assert.ok(workerCompact.includes(`'${path}'`));
+  // Child routes now use the shared product template and keyed server SEO,
+  // rather than a separate literal path in each removed navigation writer.
+  const healthSeo = workerEntry.match(/const SHIFT_HEALTH_SEO = \{([\s\S]*?)\n\};/)?.[1];
+  assert.ok(healthSeo, "missing SHIFT Health route metadata");
+  for (const slug of [
+    "health-mot", "testosterone-energy", "blood-pressure-monitor", "digital-scales",
+    "resistance-bands", "shift-measure", "erectile-dysfunction", "hair-loss",
+    "stop-smoking", "sleep-apnoea",
+  ]) assert.match(healthSeo, new RegExp(`["']${slug}["']\\s*:`));
+  assert.ok(workerCompact.includes("path.startsWith('/shift-health/')"));
+  assert.ok(workerCompact.includes("returnshiftHealthWithServerSeo(response,request,slug)"));
 });
 
 test("SHIFT Health matches medicine-page depth while remaining honestly out of stock", () => {

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {runInNewContext} from 'node:vm';
 
 const worker=fs.readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');
 const wrangler=fs.readFileSync(new URL('../wrangler.jsonc',import.meta.url),'utf8');
@@ -26,8 +27,20 @@ test('Knowledge and Treatment Centre receive the same uncapped approved wire',()
   assert.match(worker,/prefers-reduced-motion:reduce/);
 });
 
-test('sitemap restores only the six reviewed mental-health leaves',()=>{
+test('unified sitemap retains exactly the six reviewed mental-health additions',()=>{
   assert.match(wrangler,/shiftsometimber\.co\.uk\/sitemap\.xml\*/);
-  for(const path of ['/mental-health/confidence-self-worth','/mental-health/sleep-mental-health','/mental-health/mental-health-and-weight','/mental-health/talking-about-it','/mental-health/myths-men-mental-health','/mental-health/when-to-get-help']) assert.match(worker,new RegExp(path));
-  assert.match(worker,/X-Shift-Sitemap-Authority','reviewed-mental-health-v1/);
+  const reviewedPaths=worker.match(/const\s+REVIEWED_MENTAL_HEALTH_PATHS\s*=\s*(\[[\s\S]*?\]);/);
+  assert.ok(reviewedPaths,'reviewed mental-health allowlist must remain explicit');
+  assert.deepEqual(Array.from(runInNewContext(reviewedPaths[1])),[
+    '/mental-health/confidence-self-worth',
+    '/mental-health/sleep-mental-health',
+    '/mental-health/mental-health-and-weight',
+    '/mental-health/talking-about-it',
+    '/mental-health/myths-men-mental-health',
+    '/mental-health/when-to-get-help',
+  ]);
+  // Approved newsroom and SHIFT Health additions now share this sitemap.
+  // The mental-health allowlist remains independently bounded to six leaves.
+  assert.match(worker,/requiredPaths\s*=\s*\[\.\.\.new Set\(\[\.\.\.REVIEWED_MENTAL_HEALTH_PATHS/);
+  assert.match(worker,/headers\.set\(\s*["']X-Shift-Sitemap-Authority["']\s*,\s*["']unified-estate-v1-no-removals["']\s*\)/);
 });
