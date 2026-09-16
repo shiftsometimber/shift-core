@@ -68,6 +68,25 @@ test('saved plan viewer reads the selected private snapshot without changing the
  assert.match(hosts[0].innerHTML,/Saved &lt;script&gt;meal&lt;\/script&gt;/);assert.match(hosts[0].innerHTML,/Rice/);assert.doesNotMatch(hosts[0].innerHTML,/A different plan|<script>/);assert.match(hosts[0].innerHTML,/does not replace your current food week/);assert.equal(button.disabled,false);
 });
 
+test('restored plans preserve hydration records without offering the absent legacy water panel',async()=>{
+ const source=readFileSync(new URL('../../frontend/member/member-plans-premium-v1.js',import.meta.url),'utf8');
+ for(const restored of [true,false])for(const populated of [true,false]){
+  const box={innerHTML:'',dataset:{}};
+  const groups=populated?{current:[{id:17,type:'hydration',title:'Hydration guide',summary:'Saved hydration plan'},{id:18,type:'grub',title:'Food plan'},{id:19,type:'fit',title:'Movement plan'}],replaced:[{id:16,type:'hydration',title:'Earlier hydration guide',summary:'Earlier saved plan'}],other:[]}:{current:[],replaced:[],other:[]};
+  const api={getPlanList:async()=>({plans:groups})};
+  const document={body:{dataset:restored?{memberTools:'v1'}:{}},readyState:'complete',querySelector:s=>s==='#activePlans'?box:null,addEventListener(){}};
+  vm.runInNewContext(source,{document,window:{SST_API:api},SST_API:api,location:{pathname:'/member/dashboard'},MutationObserver:class{observe(){}}});
+  await new Promise(setImmediate);
+  assert.equal(box.dataset.planManagerReady,'true','actual client render must complete');
+  assert.equal(box.innerHTML.includes('data-open-plan="water"'),!restored,'only the legacy mode has a real water panel');
+  assert.match(box.innerHTML,/data-open-plan="grub"/);assert.match(box.innerHTML,/data-open-plan="fit"/);
+  if(populated){
+   for(const id of [16,17])assert.match(box.innerHTML,new RegExp('data-plan-snapshot="'+id+'"'),'saved hydration contents remain reachable');
+   assert.match(box.innerHTML,/3 current/);assert.match(box.innerHTML,/1 previous plan kept in history/);assert.match(box.innerHTML,/Earlier hydration guide/);
+  }else if(restored){assert.doesNotMatch(box.innerHTML,/Set hydration guide|Build a Grub, Fit or hydration plan/)}
+ }
+});
+
 test('restored photo presentation cannot inject legacy Today or Journey controllers',()=>{
  const source=readFileSync(new URL('../../frontend/member/member-progress-picture-premium-v1.js',import.meta.url),'utf8');
  for(const restored of [true,false]){
