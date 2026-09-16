@@ -153,7 +153,10 @@ jobs:
           node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
           node gate4-one-shift-brain-gate.mjs
       - name: Verify catalogue authority, additive publication guards and timing
-        run: node --test tests/grub-expansion*.test.mjs
+        run: |
+          node grub-expansion-review-pack.mjs
+          node scripts/verify-grub-closeout-reviews.mjs
+          node --test tests/grub-expansion*.test.mjs
       - name: Verify reminder delivery and proactive acknowledgement before promotion
         run: node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
