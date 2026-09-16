@@ -1,4 +1,5 @@
 name: Cloudflare Production Promote
+# Catalogue publication uses Wrangler's atomic import envelope for direct D1 fallback.
 # Act2B unified public authority production promotion
 
 on:
