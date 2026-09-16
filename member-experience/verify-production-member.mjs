@@ -6,8 +6,15 @@ import {fitRuntime} from './fit-approved-runtime.mjs';
 import {grubRuntime} from './grub-runtime.mjs';
 import lifeBackAssets from './life-back-assets.mjs';
 import {grubImages} from './grub-image-map.mjs';
+import {homeStyles} from './home-styles.mjs';
+import homeArt from './home-art.mjs';
 const origin='https://shiftsometimber.co.uk';
 const evidence={checkedAt:new Date().toISOString(),assets:[],auth:[]};
+for(const [path,expected] of [['/assets/member-experience/home.css',Buffer.from(homeStyles)],['/assets/member-experience/home-art.webp',Buffer.from(homeArt.split(',')[1],'base64')]]){
+ const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);
+ const actual=Buffer.from(await r.arrayBuffer());assert.deepEqual(actual,expected,path+' must match the approved master');
+ evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
+}
 for(const [name,expected] of [['health',healthRuntime],['fit',fitRuntime],['grub',grubRuntime]]){
  const path='/assets/member-experience/'+name+'.mjs';
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});

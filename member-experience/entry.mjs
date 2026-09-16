@@ -1,4 +1,6 @@
 import lifeBackAssets from './life-back-assets.mjs';
+import homeArt from './home-art.mjs';
+import {homeStyles} from './home-styles.mjs';
 import {grubRuntime,upgradeGrubHTML} from './grub-runtime.mjs';
 import {memberStyles,journeyStyles} from './styles.mjs';
 import {memberClient} from './client.mjs';
@@ -13,6 +15,8 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(path==='/assets/member-experience/home-art.webp')return new Response(request.method==='HEAD'?null:Uint8Array.from(atob(homeArt.split(',')[1]),c=>c.charCodeAt(0)),{headers:{...privateHeaders,'Content-Type':'image/webp'}});
+  if(path==='/assets/member-experience/home.css')return new Response(request.method==='HEAD'?null:homeStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if (['/member/journey','/member/journey.html'].includes(path)) {
     return new Response(null, {status:302,headers:{...privateHeaders,Location:new URL('/member/dashboard#journey',request.url).href}});
   }
@@ -47,6 +51,7 @@ export async function memberExperienceEntry(request, env, response) {
   // scoped layer after those too, so their sidebars cannot reappear on mobile.
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
+  if(name === 'dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
   if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');
   if(['dashboard','fit','check-in','settings'].includes(name)){

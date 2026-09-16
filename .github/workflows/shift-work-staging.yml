@@ -1,7 +1,7 @@
 name: SHIFT for Work isolated hosted staging
 on:
   push:
-    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916]
     paths:
       - 'work/staging/**'
       - 'ask-timber-v1.js'
