@@ -103,7 +103,12 @@ try{
    row.phase='render-progress-via-more';
    await page.locator('.member-nav-more > summary').click();await page.locator('.member-nav-more [data-panel="visualise"]').click();
    await page.waitForFunction(()=>document.querySelector('#panel-visualise')?.classList.contains('active')&&document.querySelector('#shiftProgressStory')?.getAttribute('aria-busy')==='false');
-   const story=await page.locator('#shiftProgressStory').innerText();row.progressText=clean(story);for(const text of ['2 check-ins retained','Weight','Waist','Steps','Sleep','Mood'])assert(story.includes(text),'Missing progress metric '+text);
+   const story=await page.locator('#shiftProgressStory').innerText();row.progressText=clean(story);
+   assert(story.includes('2 check-ins retained'),'Missing retained progress count');
+   // CSS uppercases metric labels. Read their actual DOM text so typography
+   // cannot turn a present metric into a false negative.
+   const metricLabels=(await page.locator('#shiftProgressStory .shift-progress-label').allTextContents()).map(text=>text.trim());
+   for(const label of ['Weight','Waist','Steps','Sleep','Mood'])assert(metricLabels.includes(label),'Missing progress metric '+label);
    row.phase='upload-photo-through-visible-controls';
    await revealUserControl(page.locator('#photoInput'));await page.setInputFiles('#photoInput',{name:'fictional-pixel.png',mimeType:'image/png',buffer:png});await page.locator('#visualConsentWrap').waitFor({state:'visible'});
    await revealUserControl(page.locator('#photoWeightUnit'));await page.selectOption('#photoWeightUnit','kg');await revealUserControl(page.locator('#photoWeightKg'));await page.selectOption('#photoWeightKg','105.0');await revealUserControl(page.locator('#savePhotoConsent'));await page.check('#savePhotoConsent');await revealUserControl(page.locator('#saveOriginal'));await page.click('#saveOriginal');

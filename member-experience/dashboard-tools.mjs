@@ -57,6 +57,7 @@ body[data-member-tools="v1"] #panel-visualise .mp-two{display:grid;grid-template
 body[data-member-tools="v1"] #panel-visualise label{display:grid;gap:8px}
 body[data-member-tools="v1"] #panel-visualise .mp-visual-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 body[data-member-tools="v1"] #panel-visualise .mp-visual{display:grid;gap:10px;padding:16px;background:#f4f1e9;border:1px solid #b6b8a9;border-radius:16px}
+body[data-member-tools="v1"] #panel-visualise .mp-visual>strong{color:#4c5245!important}
 body[data-member-tools="v1"] :is(#panel-visualise,#panel-plans) .mp-btn{min-height:48px;padding:12px 18px;border:1px solid #707762;background:#17261d;color:#e7e3da;border-radius:12px;font:inherit;cursor:pointer}
 body[data-member-tools="v1"] :is(#panel-visualise,#panel-plans) :is(.mp-picture-intro,.mp-plan-manager-hero) :is(h3,p,strong,span){color:#e7e3da!important}
 body[data-member-tools="v1"] #panel-visualise img{max-width:100%;height:auto}
