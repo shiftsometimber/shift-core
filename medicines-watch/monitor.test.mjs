@@ -149,6 +149,41 @@ test('deadline and streamed byte cap apply before fingerprinting', async t => {
   assert.equal((await health(capEnv)).sources[0].lastSuccessAt, null);
 });
 
+test('complete large HTML sources are checked without approving their evidence', async t => {
+  const htmlSource = { ...source, format: 'html', contentSelector: '#smpc' };
+  const html = '<html><title>Example medicine</title><div id="smpc">' +
+    'Example medicine authorised. Important clinical limitations apply. '.repeat(19500) +
+    '</div></html>';
+  const size = new TextEncoder().encode(html).byteLength;
+  assert.ok(size > 1024 * 1024 && size < 2 * 1024 * 1024);
+  const fetchImpl = async () => new Response(html, { headers: {
+    'content-type': 'text/html', 'content-length': String(size)
+  } });
+  const previousLimit = setup(t);
+  assert.equal((await scan(previousLimit, htmlSource, { fetchImpl, maxBytes: 1024 * 1024 }))
+    .outcomes[0].error, 'response_too_large');
+  const env = setup(t);
+  assert.equal((await scan(env, htmlSource, { fetchImpl })).checked, 1);
+  const state = await health(env, htmlSource);
+  assert.equal(state.sources[0].checkStatus, 'current');
+  assert.equal(state.sources[0].reviewStatus, 'verification_pending');
+  assert.equal(state.sources[0].reviewedAt, htmlSource.reviewedAt);
+  assert.equal(htmlSource.reviewedFingerprint, undefined);
+});
+
+test('2 MiB hard ceiling rejects declared and streamed excess even with a larger option', async t => {
+  for (const declared of [true, false]) {
+    const env = setup(t);
+    const result = await scan(env, source, { maxBytes: 10 * 1024 * 1024,
+      fetchImpl: async () => new Response('x'.repeat(2 * 1024 * 1024 + 1), {
+        headers: { 'content-type': 'application/json',
+          ...(declared ? { 'content-length': String(2 * 1024 * 1024 + 1) } : {}) }
+      }) });
+    assert.equal(result.outcomes[0].error, 'response_too_large');
+    assert.equal((await health(env)).sources[0].lastSuccessAt, null);
+  }
+});
+
 test('hourly reservation is atomic across overlapping scheduled invocations', async t => {
   const env = setup(t);
   let calls = 0, release;

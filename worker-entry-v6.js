@@ -927,19 +927,36 @@ export default {
       : fallback;
   },
   async scheduled(controller, env, ctx) {
-    const job = Promise.all([
-      runScheduledIntelligence(env),
-      runRadarScheduledScan(env),
-      runKnowledgeFlywheel(env, { limit: 1000 }),
-      runFitMorningReminders(env),
-      checkSources(env).catch(error => ({medicinesWatch:'check_failed',message:error.message})),
-    ])
-      .then((r) =>
-        console.log("shift_scheduled_intelligence", JSON.stringify(r)),
-      )
-      .catch((e) =>
-        console.error("shift_scheduled_intelligence_failed", e?.message),
+    const job = (async () => {
+      // Reserve and run the bounded evidence checks before the shared D1-heavy
+      // jobs. A sibling failure or contention must not silently starve the Watch.
+      const medicinesWatch = await checkSources(env).catch((error) => ({
+        medicinesWatch: "check_failed",
+        message: error?.message || "scheduled_job_failed",
+      }));
+      const names = ["intelligence", "radar", "knowledge", "fit-reminders"];
+      const settled = await Promise.allSettled([
+        runScheduledIntelligence(env),
+        runRadarScheduledScan(env),
+        runKnowledgeFlywheel(env, { limit: 1000 }),
+        runFitMorningReminders(env),
+      ]);
+      const scheduled = settled.map((result, index) =>
+        result.status === "fulfilled"
+          ? { job: names[index], status: "fulfilled", value: result.value }
+          : {
+              job: names[index],
+              status: "rejected",
+              message: result.reason?.message || "scheduled_job_failed",
+            },
       );
+      console.log(
+        "shift_scheduled_intelligence",
+        JSON.stringify({ medicinesWatch, scheduled }),
+      );
+    })().catch((error) =>
+      console.error("shift_scheduled_intelligence_failed", error?.message),
+    );
     if (ctx?.waitUntil) ctx.waitUntil(job);
     else await job;
   },
