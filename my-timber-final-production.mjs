@@ -90,13 +90,15 @@ try{
   await page.waitForURL('**/member/fit?from=today&minutes=10',{timeout:15000});
   await page.waitForSelector('.fit-experience-v1',{state:'visible',timeout:20000});
   await page.waitForSelector('#fitTodayHandoff[data-fit-today-minutes="10"]',{state:'visible',timeout:20000});
-  await page.waitForFunction(()=>/saved 30-minute session/.test(document.querySelector('#fitTodayHandoff')?.textContent||''),null,{timeout:20000});
+  const savedSession=savedFitBefore.plan.sessions[0],savedSessionMinutes=Number(savedSession.estimated_minutes||savedSession.requested_minutes||savedFitBefore.plan.minutes_per_day);
+  assert.ok(Number.isFinite(savedSessionMinutes)&&savedSessionMinutes>0,'Saved session must have an actual duration');
+  await page.waitForFunction(minutes=>(document.querySelector('#fitTodayHandoff')?.textContent||'').includes(`Your saved ${minutes}-minute session below is unchanged.`),savedSessionMinutes,{timeout:20000});
   assert.equal(await page.locator('#fitMinutes').inputValue(),'10');
   assert.equal(await page.locator('#fitDays').inputValue(),'1');
   assert.deepEqual((await account('/v1/fit/activity')).plan,savedFitBefore.plan,'Opening the shorter-session suggestion changed the saved Fit plan');
   await page.waitForFunction(()=>{const img=document.querySelector('#fitOutput .sf-session .sf-exercise img');return img?.complete&&img.naturalWidth>0},null,{timeout:20000});
   await screenshot(page,'04-fit-suggestion-saved-plan-preserved');
-  pass('Fit opens with the 10-minute suggestion and the saved 30-minute session explicitly unchanged');
+  pass('Fit opens with the 10-minute suggestion and the actual saved session explicitly unchanged');
   await page.locator('#fitGenerate').click();
   await page.waitForFunction(()=>/Your plan is ready/.test(document.querySelector('#fitStatus')?.textContent||'')&&!document.querySelector('#fitGenerate')?.disabled,null,{timeout:60000});
   const savedFitAfter=await account('/v1/fit/activity');
