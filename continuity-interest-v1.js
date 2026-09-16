@@ -1,4 +1,5 @@
 import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';
+import {verifyTurnstile} from './turnstile-auth-v1.js';
 
 const INTEREST_PATH='/v1/continuity-interest';
 const CONTACT_PATH='/v1/contact';
@@ -32,9 +33,21 @@ async function rateLimited(request,DB){
 }
 async function handleContact(request,env){
   if(!env.DB)return json({ok:false,error:'capture_unavailable'},503);
-  await ensureSchema(env.DB);
-  if(await rateLimited(request,env.DB))return json({ok:false,error:'rate_limited',message:'Too many attempts. Please try again later.'},429);
-  const body=await request.json().catch(()=>({}));
+  if(request.headers.get('Origin')&&!['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(request.headers.get('Origin')))return json({ok:false,error:'origin_not_allowed'},403);
+  if(!request.headers.get('content-type')?.toLowerCase().startsWith('application/json'))return json({ok:false,error:'json_required'},415);
+  let raw='',size=0;const reader=request.body?.getReader(),decoder=new TextDecoder();
+  if(reader){while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>16384){await reader.cancel();return json({ok:false,error:'request_too_large'},413)}raw+=decoder.decode(value,{stream:true})}raw+=decoder.decode()}
+  let body;try{body=JSON.parse(raw)}catch{return json({ok:false,error:'invalid_json'},400)}
+  if(!body||typeof body!=='object'||Array.isArray(body))return json({ok:false,error:'invalid_json'},400);
+  await env.DB.prepare(`CREATE TABLE IF NOT EXISTS contact_attempts (id INTEGER PRIMARY KEY AUTOINCREMENT,ip_hash TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`).run();
+  await env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_contact_attempts ON contact_attempts(ip_hash,created_at)`).run();
+  const ipHash=await hash(request.headers.get('CF-Connecting-IP')||'unknown');
+  // One atomic claim, so parallel requests cannot all pass a read-then-write check.
+  const claim=await env.DB.prepare(`INSERT INTO contact_attempts(ip_hash) SELECT ? WHERE (SELECT COUNT(*) FROM contact_attempts WHERE ip_hash=? AND created_at>=datetime('now','-1 hour'))<5 AND NOT EXISTS (SELECT 1 FROM contact_attempts WHERE ip_hash=? AND created_at>=datetime('now','-30 seconds'))`).bind(ipHash,ipHash,ipHash).run();
+  if(!claim.meta?.changes)return json({ok:false,error:'rate_limited',message:'Please wait before trying again. You can send up to five enquiries per hour.'},429);
+  await env.DB.prepare(`DELETE FROM contact_attempts WHERE created_at<datetime('now','-2 days')`).run().catch(()=>{});
+  const secureRequest=new Request(request.url,{method:'POST',headers:request.headers,body:raw});
+  const blocked=await verifyTurnstile(secureRequest,env,'contact_enquiry');if(blocked)return blocked;
   const name=clean(body.name||body.first_name,100),email=normaliseEmail(body.email),message=clean(body.message,5000),rawType=clean(body.type||body.enquiry_type||'general',80).toLowerCase();
   const eventType=CONTACT_TYPES.get(rawType)||'general';
   if(!validEmail(email))return json({ok:false,error:'valid_email_required',message:'Enter a valid email address.'},400);
@@ -43,7 +56,8 @@ async function handleContact(request,env){
   const subject=`SHIFT enquiry — ${rawType||'general'}`.slice(0,180);
   const text=`New website enquiry\n\nName: ${name||'Not supplied'}\nEmail: ${email}\nEnquiry: ${rawType||'general'}\n\n${message}`;
   const html=`<h1>New website enquiry</h1><p><strong>Name:</strong> ${esc(name||'Not supplied')}<br><strong>Email:</strong> ${esc(email)}<br><strong>Enquiry:</strong> ${esc(rawType||'general')}</p><p>${esc(message).replace(/\n/g,'<br>')}</p>`;
-  const results=await sendTransactionalEmail(env,{to:email,eventType,internalNotify:true,includeMatt:false,subject,text,html});
+  // Never relay submitted content to an arbitrary user-supplied recipient.
+  const results=await sendTransactionalEmail(env,{eventType,internalNotify:true,includeMatt:false,subject,text,html});
   if(results.some(r=>r.status==='failed'||r.status==='binding_missing'))return json({ok:false,error:'delivery_failed',message:'We could not send your message. Please try again.'},503);
   return json({ok:true,status:'sent',message:'Message sent. Shift has it — no email app needed.'},201);
 }

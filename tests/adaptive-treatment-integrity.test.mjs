@@ -27,7 +27,7 @@ bootstrap.sqlite.exec(`
  CREATE TABLE cases(id INTEGER PRIMARY KEY,user_id INTEGER,reference TEXT,status TEXT,service_type TEXT,pharmacy_status TEXT,payment_status TEXT,created_at TEXT,updated_at TEXT);
  CREATE TABLE pharmacy_orders(id INTEGER PRIMARY KEY,user_id INTEGER);
 `);
-assert.equal((await core.fetch(new Request('https://api.shiftsometimber.co.uk/health'),{DB:bootstrap})).status,200);
+assert.equal((await core.fetch(new Request('https://api.shiftsometimber.co.uk/v1/me'),{DB:bootstrap})).status,401);
 await ensureTodaySchema(bootstrap);
 const schema=bootstrap.sqlite.prepare("SELECT sql FROM sqlite_master WHERE sql IS NOT NULL AND name NOT LIKE 'sqlite_%' ORDER BY CASE type WHEN 'table' THEN 0 ELSE 1 END,name").all().map(r=>r.sql+';').join('\n');
 bootstrap.sqlite.close();

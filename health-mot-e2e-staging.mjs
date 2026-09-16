@@ -36,8 +36,8 @@ CREATE TABLE shift_plans (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER N
 `);
 const env={DB,AUTO_VERIFY_EMAIL:'true'};
 
-// Build the same additive Core schema production uses.
-let response=await worker.fetch(req('/health'),env,{});assert.equal(response.status,200);
+// Build the same additive Core schema using its guarded API, not public readiness.
+let response=await worker.fetch(req('/v1/me'),env,{});assert.equal(response.status,401);
 
 await DB.prepare(`INSERT INTO users(email,first_name,last_name) VALUES(?,?,?)`).bind('mot-dave@shift.test','Dave','MOT').run();
 await DB.prepare(`INSERT INTO users(email,first_name,last_name) VALUES(?,?,?)`).bind('mot-other@shift.test','Other','Member').run();

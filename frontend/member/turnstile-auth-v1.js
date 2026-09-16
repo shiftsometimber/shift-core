@@ -38,11 +38,11 @@
     }).catch(error=>{scriptPromise=null;throw error});
     return scriptPromise;
   }
-  async function getToken(action){
+  async function getToken(action,targetForm=null){
     if(pending.has(action))return pending.get(action);
-    const form=document.activeElement?.closest('form')||document.querySelector('input[type="password"]')?.form;
+    const form=targetForm||document.activeElement?.closest('form')||document.querySelector('input[type="password"]')?.form;
     const task=(async()=>{
-      const c=await config();if(!c.required)return '';
+      const c=await config();if(!c.required&&action!=='contact_enquiry')return '';
       if(!c.enabled||!c.siteKey)throw problem('Secure sign-in is temporarily unavailable. Please try again.');
       await script();
       return new Promise((resolve,reject)=>{

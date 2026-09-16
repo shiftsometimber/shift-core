@@ -61,7 +61,7 @@ globalThis.fetch=async (url,opts={})=>{
 
 try {
   // Build the real live additive Core/HQ schema over the known production baseline.
-  const health=await worker.fetch(request('/health'),env,{}); assert.equal(health.status,200);
+  const bootstrap=await worker.fetch(request('/v1/me'),env,{}); assert.equal(bootstrap.status,401);
   const hqToken='radar-stage-hq-session',hqHash=await sha256(hqToken),future=new Date(Date.now()+3600_000).toISOString();
   await DB.prepare(`INSERT INTO hq_users(email,name,password_hash,role,status) VALUES(?,?,?,?,?)`).bind('radar-stage@shift.test','Radar Stage Reviewer','unused-test-hash','owner','active').run();
   const hqUser=await DB.prepare('SELECT id FROM hq_users WHERE email=?').bind('radar-stage@shift.test').first();

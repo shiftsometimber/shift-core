@@ -1,4 +1,5 @@
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+import {publicHealthResponse} from './public-health-v1.js';
 
 const APP_NAME = 'Shift Core';
 const API_VERSION = '4.0-hq-v1-section13-deploy';
@@ -14,6 +15,7 @@ let schemaReady = false;
 
 export default {
   async fetch(request, env, ctx) {
+    if (['GET','HEAD'].includes(request.method) && ['/health','/v1/health'].includes(normalizePath(new URL(request.url).pathname))) return publicHealthResponse(request, env);
     const requestId = crypto.randomUUID();
     try {
       await ensureSchema(env.DB);
@@ -43,8 +45,7 @@ async function routeRequest(request, env, url, requestId) {
   const method = request.method.toUpperCase();
 
   if (method === 'GET' && (path === '/health' || path === '/v1/health')) {
-    const row = await env.DB.prepare('SELECT COUNT(*) AS count FROM users').first();
-    return json({ ok: true, service: APP_NAME, version: API_VERSION, database: 'connected', users: Number(row?.count || 0) });
+    return publicHealthResponse(request, env);
   }
 
   if (method === 'POST' && path === '/v1/auth/register') return register(request, env);
