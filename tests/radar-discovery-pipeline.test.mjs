@@ -12,6 +12,36 @@ test('company-name ASA rulings retain relevance, date and primary host boundary'
  const items=parseRelevantHtmlLinks(fixture+'<li><a href="https://other.test/news/fake">weight-loss ads banned</a></li>',asa);
  assert.equal(items.length,1);assert.equal(items[0].title,'SheMed Ltd');assert.match(items[0].summary,/weight-loss/);assert.equal(items[0].source_date,'2026-09-02T00:00:00.000Z');assert.equal(editorialScores(asa,items[0]).urgency,90);
 });
+test('GPhC discovery accepts its published article path but excludes the index and external hosts',async()=>{
+ const source=AUTHORITATIVE_RADAR_SOURCES.find(x=>x.id==='gphc-news');
+ // Official URL and original date indexed by GPhC; the live host can return 403.
+ // This is an adapter fixture, not evidence of successful live retrieval.
+ const path='/about-us/news-and-updates/updated-enforcement-notice-issued-weight-management-prescription-medicine-ads';
+ const title='Updated enforcement notice issued on weight management prescription medicine ads';
+ const url='https://www.pharmacyregulation.org'+path;
+ const html=`<li><a href="${path}">${title}</a><time datetime="2025-09-24"></time></li>
+ <a href="/about-us/news-and-updates">Weight management news</a>
+ <a href="https://unrelated.test${path}">${title}</a>`;
+ const rows=parseRelevantHtmlLinks(html,source);
+ assert.equal(rows.length,1);assert.equal(rows[0].url,url);
+ assert.equal(rows[0].source_date,'2025-09-24T00:00:00.000Z');
+ const DB=memoryDB();await ensureRadarSchema(DB);await loadRadarSources(DB);
+ await DB.prepare("UPDATE radar_sources SET active=0 WHERE id!='gphc-news'").run();
+ const original=globalThis.fetch;let blocked=false;
+ globalThis.fetch=async()=>blocked?new Response('Forbidden',{status:403}):new Response(html);
+ try{
+  const scan=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});
+  assert.equal(scan.sources[0].newEvents,1);
+  const event=await DB.prepare('SELECT status,source_evidence_json FROM radar_events').first();
+  assert.equal(event.status,'verified');
+  assert.equal(JSON.parse(event.source_evidence_json)[0].url,url);
+  blocked=true;
+  const failed=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});
+  assert.equal(failed.ok,false);assert.equal(failed.sources[0].error,'http_403');
+  assert.ok(failed.coverage.failed.includes('gphc-news'));
+  assert.equal((await DB.prepare("SELECT COUNT(*) c FROM radar_events WHERE status IN ('approved','published')").first()).c,0);
+ }finally{globalThis.fetch=original}
+});
 test('search finds enforcement without drug names; media evidence cannot verify itself',()=>{
  assert.equal(isRelevantNewsItem(news,{title:'Exclusive: GPhC takes first enforcement action over POM ads'}),true);
  assert.equal(isRelevantNewsItem(news,{title:'Advertising awards for a car company'}),false);

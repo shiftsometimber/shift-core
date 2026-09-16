@@ -81,7 +81,7 @@ export function parseRelevantHtmlLinks(text,source){
   // Primary evidence must stay on the authority host, never become an external ad/link.
   if(Number(source.tier)===1&&parsed.origin!==new URL(source.url).origin)continue;
   if(source.id.startsWith('asa-')&&!/^\/(?:rulings|news|resource)\//.test(parsed.pathname))continue;
-  if(source.id==='gphc-news'&&!/\/news\//.test(parsed.pathname))continue;
+  if(source.id==='gphc-news'&&!/^\/(?:about-us\/news-and-updates|news)\/[^/]+\/?$/.test(parsed.pathname))continue;
   if(source.id==='cd-regulation'&&!/^\/(?:news|analysis)\/[^/]+\/[^/]+/.test(parsed.pathname))continue;
   // ASA ruling titles are company names: relevance lives in the containing list item.
   const block=enclosingListItem(html,match.index,match[0]);
