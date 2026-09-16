@@ -4,6 +4,11 @@ on:
     paths:
       - 'member-experience/**'
       - 'member-daily-v3.js'
+      - 'scheduled-intelligence.js'
+      - 'fit-reminders-v1.js'
+      - 'tests/*delivery.test.mjs'
+      - 'tests/pilot-monitor*.test.mjs'
+      - '.github/workflows/shift-ai-r4-pilot-monitor.yml'
       - 'worker.js'
       - 'tests/schema-readiness.test.mjs'
       - 'product-analytics-v1.js'
@@ -31,7 +36,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify connected journeys, treatment records and preservation
         run: |
-          node --test member-experience/tests/*.test.mjs member-experience/staging/tool-routes.test.mjs tests/ai-connected*.test.mjs tests/adaptive-*.test.mjs tests/my-timber-analytics*.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/act2b-workflow-preservation.test.mjs tests/schema-readiness.test.mjs
+          node --test member-experience/tests/*.test.mjs member-experience/staging/tool-routes.test.mjs tests/ai-connected*.test.mjs tests/adaptive-*.test.mjs tests/my-timber-analytics*.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/act2b-workflow-preservation.test.mjs tests/schema-readiness.test.mjs tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
           node tests/adaptive-today-source-gate.mjs
           node frontend-member-source-gate.mjs
           npm run check
