@@ -10,7 +10,7 @@ html body.sst-member-experience[data-member-page="dashboard"] .sst-member-tabs a
 html body.sst-member-experience[data-member-page="dashboard"] #panel-today>.preview-note{display:none!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayTitle{color:#e7e3da!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home{color:#e7e3da!important;font:16px/1.6 sans-serif!important;min-width:0}
-html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home :is(h2,h3,h4,p,li,small,span,strong,b,label,summary,a){color:inherit!important}
+html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home :is(section,article,div,h2,h3,h4,p,li,small,span,strong,b,label,summary,a){color:#e7e3da!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home :is(h2,h3){text-transform:none!important;font-weight:500!important;letter-spacing:-.025em!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home p{line-height:1.6!important}
 html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home :is(button,.mt-now-action){border:1px solid #707762!important;border-radius:9px!important;background:transparent!important;color:#e7e3da!important;min-height:46px!important;padding:12px 18px!important;font-size:15px!important;font-weight:600!important;box-shadow:none!important}
@@ -91,6 +91,7 @@ html body.sst-member-experience[data-member-page="dashboard"] #sstFiveLoops .sst
 html body.sst-member-experience[data-member-page="dashboard"] #sstFiveLoops .sst-five-grid article[data-loop="fridge"]{grid-column:1/-1}
 html body.sst-member-experience[data-member-page="dashboard"] #sstTodayContext{border-radius:15px!important}
 @media(max-width:650px){
+ html body.sst-member-experience[data-member-page="dashboard"] .member-nav-tools{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px!important;width:100%;text-align:center}
  html body.sst-member-experience[data-member-page="dashboard"] main{padding:12px 16px 60px!important}
  html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home .mtm-hero{min-height:185px}
  html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home .mtm-hero h2{font-size:38px!important}
