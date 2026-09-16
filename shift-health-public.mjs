@@ -12,7 +12,7 @@ export function renderShiftHealthDocument(shell,slug=''){
     .replace(/<link\b(?=[^>]*\brel\s*=\s*(?:"canonical"|'canonical'|canonical(?=[\s/>])))[^>]*>/gi,'')
     .replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi,'')
     .replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'')
-    .replace(/<script\b[^>]*src=["'][^"']*programme[^"']*["'][^>]*>[\s\S]*?<\/script>/gi,'')
+    .replace(/<script\b[^>]*src=["'][^"']*(?:programme|shift-service-bridge-v1)[^"']*["'][^>]*>[\s\S]*?<\/script>/gi,'')
     .replace(/<body\b([^>]*)>/i,(_,attrs)=>'<body'+attrs.replace(/\sclass=(["'])(.*?)\1/i,(_,quote,classes)=>' class='+quote+classes.split(/\s+/).filter(c=>!c.startsWith('programme')).concat('shift-health-public').join(' ')+quote)+'>');
   // Use the same header, drawer, footer, consent and core styles as the accepted public shell.
   html=html.replace(/(<a\b[^>]*href=["']\/programme["'][^>]*?)\saria-current=["']page["']/gi,'$1');

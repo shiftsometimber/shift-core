@@ -2,6 +2,11 @@ import {renderShiftHealthDocument,healthSlugs} from '../../shift-health-public.m
 export default {async fetch(request,env){
   if(!['GET','HEAD'].includes(request.method))return new Response('Read-only preview',{status:405});
   const url=new URL(request.url),slug=url.pathname==='/shift-health'?'':url.pathname.split('/')[2];
+  if(url.pathname==='/__qa'){
+    const width=Number(url.searchParams.get('width')),path=url.searchParams.get('path')||'/shift-health';
+    if(![360,390,768,1024,1440].includes(width)||!['/shift-health',...healthSlugs.map(s=>'/shift-health/'+s)].includes(path))return new Response('Invalid preview',{status:400});
+    return new Response(`<html><head><meta name="robots" content="noindex"></head><body style="margin:0;background:#333"><iframe title="Responsive Health preview" src="${path}" style="display:block;width:${width}px;height:1000px;border:0"></iframe></body></html>`,{headers:{'Content-Type':'text/html','X-Robots-Tag':'noindex, nofollow'}});
+  }
   if(url.pathname==='/shift-health'||(url.pathname.startsWith('/shift-health/')&&healthSlugs.includes(slug))){
     const shell=await fetch('https://projectshift.pages.dev/programme',{headers:{Accept:'text/html'}});
     if(!shell.ok)return new Response('Public shell unavailable',{status:502});

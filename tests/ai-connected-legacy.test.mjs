@@ -31,8 +31,10 @@ bootstrap.sqlite.exec(`
  CREATE TABLE cases(id INTEGER PRIMARY KEY,user_id INTEGER);
  CREATE TABLE pharmacy_orders(id INTEGER PRIMARY KEY,user_id INTEGER);
 `);
-const bootResponse=await core.fetch(new Request('https://api.shiftsometimber.co.uk/health'),{DB:bootstrap});
-assert.equal(bootResponse.status,200,'real legacy core must initialise successfully');
+// Readiness no longer bootstraps or inspects member tables. Exercise the normal
+// guarded core path for this isolated fixture, retaining anonymous denial.
+const bootResponse=await core.fetch(new Request('https://api.shiftsometimber.co.uk/v1/me'),{DB:bootstrap});
+assert.equal(bootResponse.status,401,'real legacy core must initialise and deny anonymous access');
 const schema=bootstrap.sqlite.prepare("SELECT sql FROM sqlite_master WHERE sql IS NOT NULL AND name NOT LIKE 'sqlite_%' ORDER BY CASE type WHEN 'table' THEN 0 ELSE 1 END,name").all().map(r=>r.sql+';').join('\n');
 bootstrap.sqlite.close();
 const OLD='2026-01-01T12:00:00.000Z',WITHDRAW='2026-02-01T12:00:00.000Z',BETWEEN='2026-03-01T12:00:00.000Z',DELETE='2026-04-01T12:00:00.000Z',FRESH='2026-05-01T12:00:00.000Z';
