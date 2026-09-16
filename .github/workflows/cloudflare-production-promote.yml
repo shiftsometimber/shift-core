@@ -239,10 +239,6 @@ jobs:
         run: |
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
-      - name: Publish only the fixed owner-authorised catalogue when approved
-        env:
-          CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json
-        run: node scripts/catalogue-publication-client.mjs
       - name: Verify existing production food catalogue without account writes
         if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
         run: |
@@ -269,6 +265,10 @@ jobs:
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Publish only the fixed owner-authorised catalogue when approved
+        env:
+          CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json
+        run: node scripts/catalogue-publication-client.mjs
       - name: Publish the exact owner-authorised newsroom batch when approved
         run: node scripts/newsroom-publication-client.mjs
       - name: Prove the public site and login asset did not change
