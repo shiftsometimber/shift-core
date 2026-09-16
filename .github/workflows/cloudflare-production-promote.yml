@@ -271,7 +271,12 @@ jobs:
         run: |
           if ! node scripts/catalogue-publication-client.mjs; then
             npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT COUNT(*) AS total, SUM(CASE WHEN created_at='2026-09-16T18:50:04Z' AND updated_at='2026-09-16T18:50:04Z' THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')" > "$RUNNER_TEMP/catalogue-publication-proof.json"
-            node scripts/catalogue-publication-d1-proof.mjs "$RUNNER_TEMP/catalogue-publication-proof.json"
+            if ! node scripts/catalogue-publication-d1-proof.mjs "$RUNNER_TEMP/catalogue-publication-proof.json"; then
+              node scripts/d1-fixed-catalogue-sql.mjs > "$RUNNER_TEMP/catalogue-publication.sql"
+              npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/catalogue-publication.sql"
+              npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT COUNT(*) AS total, SUM(CASE WHEN created_at='2026-09-16T18:50:04Z' AND updated_at='2026-09-16T18:50:04Z' THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')" > "$RUNNER_TEMP/catalogue-publication-proof.json"
+              node scripts/catalogue-publication-d1-proof.mjs "$RUNNER_TEMP/catalogue-publication-proof.json"
+            fi
           fi
       - name: Publish the exact owner-authorised newsroom batch when approved
         run: node scripts/newsroom-publication-client.mjs
