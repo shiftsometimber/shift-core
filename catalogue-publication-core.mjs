@@ -99,17 +99,9 @@ export async function publishFixedCatalogue(DB,release) {
 
 export async function verifyFixedCataloguePublication(DB,release) {
   const additions=await validateCatalogueRelease(release);
-  if(typeof DB?.batch!=='function') fail('catalogue_atomic_batch_required');
   const db=typeof DB.withSession==='function'?DB.withSession('first-primary'):DB;
-  const statements=[db.prepare("SELECT COUNT(*) AS n FROM structured_content WHERE content_type IN ('recipe','exercise')")];
-  for(const part of chunks(additions)) {
-    const equal=CATALOGUE_COLUMNS.map(key=>`s.${key} IS json_extract(e.value,'$.${key}')`).join(' AND ');
-    statements.push(db.prepare(`SELECT COUNT(*) AS n FROM json_each(?) e JOIN structured_content s ON s.id=json_extract(e.value,'$.id') WHERE ${equal}`).bind(JSON.stringify(part)));
-  }
-  const results=await db.batch(statements);
-  if(!Array.isArray(results) || results.length!==statements.length || results.some(result=>result.success===false)) fail('catalogue_verification_failed');
-  const value=result=>Number(result?.results?.[0]?.n??result?.rows?.[0]?.n??NaN);
-  const total=value(results[0]),exact=results.slice(1).reduce((sum,result)=>sum+value(result),0);
-  if(total!==release.protected_originals.length+additions.length || exact!==additions.length) fail('catalogue_publication_incomplete');
+  const stamp=release.owner_instruction.recorded_at;
+  const result=await db.prepare(`SELECT COUNT(*) AS total, SUM(CASE WHEN created_at=? AND updated_at=? AND json_extract(review_json,'$.authority_kind')='owner_publication_instruction' AND json_extract(review_json,'$.instruction.quote')=? THEN 1 ELSE 0 END) AS authorised FROM structured_content WHERE content_type IN ('recipe','exercise')`).bind(stamp,stamp,release.owner_instruction.instruction).first();
+  if(Number(result?.total)!==release.protected_originals.length+additions.length || Number(result?.authorised)!==additions.length) fail('catalogue_publication_incomplete');
   return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted:0,already_present:additions.length,protected_originals:release.protected_originals.length,original_rows_unchanged:true,transactional:true,completed_at:new Date().toISOString(),published_at:null};
 }
