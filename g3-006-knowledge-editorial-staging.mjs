@@ -26,6 +26,7 @@ const editorial=async(path,opts={})=>{const response=await knowledgeEditorialRou
 
 let x=await hqCall('/health');assert.equal(x.response.status,200);
 x=await editorial('/v1/hq/articles');assert.equal(x.response.status,401);
+x=await editorial('/v1/hq/articles?articleId=1');assert.equal(x.response.status,401);
 
 const email='g3-006-editor@shift.test',password='Shift-G3-006-Editor-2026!';
 x=await hqCall('/v1/hq/auth/bootstrap',{method:'POST',headers:{'x-shift-admin-key':env.ADMIN_API_KEY},body:{email,name:'Commissioning Editor',password}});assert.equal(x.response.status,201,JSON.stringify(x.body));
@@ -35,6 +36,7 @@ const cookie=(x.response.headers.get('set-cookie')||'').split(';')[0];assert.mat
 const article={title:'Protein without the pub science',slug:'g3-006-protein',category:'Nutrition',author:'Shift Team',status:'draft',summary:'A plain-English reviewed Knowledge Hub commissioning article.',body:'Useful evidence-led member content.',seoTitle:'Protein guide',publishAt:null};
 x=await editorial('/v1/hq/articles',{method:'POST',headers:auth,body:article});assert.ok([200,201].includes(x.response.status),JSON.stringify(x.body));
 x=await editorial('/v1/hq/articles',{headers:auth});assert.equal(x.response.status,200);let a=x.body.articles.find(v=>v.slug===article.slug);assert.ok(a?.id);assert.equal(a.review,null);const articleId=a.id;
+x=await editorial(`/v1/hq/articles?articleId=${articleId}`,{headers:auth});assert.equal(x.response.status,200);assert.equal(x.body.article.body,article.body);assert.equal(x.body.article.seo_title,article.seoTitle);assert.equal(x.body.article.review,null);
 
 // The exact explicit publish action used by Shift HQ cannot bypass editorial approval.
 x=await editorial(`/v1/hq/articles/${articleId}/publish`,{method:'POST',headers:auth,body:{}});assert.equal(x.response.status,409);assert.equal(x.body.error,'editorial_review_required');

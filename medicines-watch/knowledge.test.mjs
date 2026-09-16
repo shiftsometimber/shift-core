@@ -7,7 +7,7 @@ const WATCH = new URL('./', import.meta.url);
 const { matchingWatchMedicines, retrieveWatchKnowledge } = await import(new URL('knowledge.mjs', WATCH));
 const { medicines, sources, REVIEWED_AT } = await import(new URL('data.mjs', WATCH));
 const { CHECK_INTERVAL_MS, REVIEW_INTERVAL_MS } = await import(new URL('monitor.mjs', WATCH));
-const NOW = Date.parse(REVIEWED_AT) + 30 * 60 * 1000;
+const NOW = Math.max(Date.parse(REVIEWED_AT), ...sources.map(source => Date.parse(source.reviewedAt))) + 30 * 60 * 1000;
 const iso = n => new Date(n).toISOString();
 const ids = items => items.map(item => item.id).sort();
 const available = items => items.filter(item => item.reviewState !== 'unavailable');
@@ -54,8 +54,8 @@ function setup(t, { schema = true, seed = true, checkedAt = NOW } = {}) {
   return { DB, sqlite };
 }
 
-async function retrieve(DB, query, now = NOW) {
-  const items = await retrieveWatchKnowledge(DB, query, { now });
+async function retrieve(DB, query, now = NOW, options = {}) {
+  const items = await retrieveWatchKnowledge(DB, query, { ...options, now });
   assert.ok(Array.isArray(items));
   for (const item of items) {
     assert.equal(item.sourceWorld, 'medicines_watch');
@@ -153,11 +153,22 @@ test('overdue checks suppress evidence even though the stored fingerprints still
 
 test('successful observation without an approved baseline never admits product-information claims', async t => {
   const { DB, sqlite } = setup(t);
-  assert.equal(source('wegovy-injection-smpc').reviewedFingerprint, undefined);
+  const unreviewedSources = sources.map(item => item.id === 'wegovy-injection-smpc'
+    ? { ...item, reviewedFingerprint: undefined } : item);
   sqlite.prepare("UPDATE medicines_watch_checks SET last_fingerprint=? WHERE source_id='wegovy-injection-smpc'").run('a'.repeat(64));
-  const facts = available(await retrieve(DB, 'Wegovy injection'));
+  const facts = available(await retrieve(DB, 'Wegovy injection', NOW, { sources: unreviewedSources }));
   assert.ok(facts.every(item => !item.sourceIds.includes('wegovy-injection-smpc')));
   assert.ok(!text(facts).includes(medicine('wegovy-injection').authorisation));
+});
+
+test('reviewed product evidence admits its supported claim but a failed later retrieval suppresses it', async t => {
+  const { DB, sqlite } = setup(t);
+  assert.ok(source('wegovy-injection-smpc').reviewedFingerprint);
+  const current = available(await retrieve(DB, 'Wegovy injection'));
+  assert.ok(text(current).includes(medicine('wegovy-injection').authorisation));
+  sqlite.prepare("UPDATE medicines_watch_checks SET attempt_status='failed',last_error='http_403',last_http_status=403 WHERE source_id='wegovy-injection-smpc'").run();
+  const delayed = available(await retrieve(DB, 'Wegovy injection'));
+  assert.ok(!text(delayed).includes(medicine('wegovy-injection').authorisation));
 });
 
 test('Foundayo unmonitored launch PDF and its private-availability claim never enter grounded evidence', async t => {

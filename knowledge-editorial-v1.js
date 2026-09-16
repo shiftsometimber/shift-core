@@ -7,7 +7,8 @@ function hqCorsHeaders(request,env){const origin=request.headers.get('Origin')||
 function withHqCors(response,request,env){const headers=new Headers(response.headers);for(const [k,v]of Object.entries(hqCorsHeaders(request,env)))headers.set(k,v);return new Response(response.body,{status:response.status,statusText:response.statusText,headers});}
 
 async function ensureReviewSchema(DB){
-  await DB.exec(`CREATE TABLE IF NOT EXISTS knowledge_article_reviews (
+  // D1 exec splits on newlines; submit each complete statement separately.
+  await DB.batch([DB.prepare(`CREATE TABLE IF NOT EXISTS knowledge_article_reviews (
     article_id INTEGER PRIMARY KEY,
     decision TEXT NOT NULL,
     reviewer_id INTEGER,
@@ -16,7 +17,7 @@ async function ensureReviewSchema(DB){
     notes TEXT,
     reviewed_at TEXT NOT NULL,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-  );CREATE INDEX IF NOT EXISTS idx_knowledge_article_reviews_decision ON knowledge_article_reviews(decision,reviewed_at);`);
+  )`),DB.prepare(`CREATE INDEX IF NOT EXISTS idx_knowledge_article_reviews_decision ON knowledge_article_reviews(decision,reviewed_at)`)]);
 }
 async function actor(request,env,ctx){
   const r=await hq.fetch(new Request(new URL('/v1/hq/me',request.url),{method:'GET',headers:request.headers}),env,ctx);
@@ -57,6 +58,16 @@ export async function knowledgeEditorialRoutes(request,env,ctx){
 
   if(m==='GET'&&p==='/v1/hq/articles'){
     const base=await hq.fetch(request,env,ctx);if(!base.ok)return withHqCors(base,request,env);
+    const requestedId=u.searchParams.get('articleId');
+    if(requestedId!==null){
+      if(!/^[1-9]\d*$/.test(requestedId)||!Number.isSafeInteger(Number(requestedId)))return withHqCors(json({ok:false,error:'invalid_article_id'},400),request,env);
+      // The existing article-list route above owns content_read authorization.
+      // Fetch the body only after that same authenticated permission succeeds.
+      const article=await env.DB.prepare(`SELECT id,title,slug,category,author,status,summary,body,seo_title,publish_at,created_at,updated_at FROM knowledge_articles WHERE id=?`).bind(Number(requestedId)).first();
+      if(!article)return withHqCors(json({ok:false,error:'article_not_found'},404),request,env);
+      const [reviewedArticle]=await listEditorialArticles(env.DB,[article]);
+      return withHqCors(json({article:reviewedArticle}),request,env);
+    }
     const body=await base.json();return withHqCors(json({...body,articles:await listEditorialArticles(env.DB,body.articles||[])}),request,env);
   }
 
