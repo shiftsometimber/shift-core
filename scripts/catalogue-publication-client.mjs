@@ -23,8 +23,14 @@ export async function runPublicationClient({release=CATALOGUE_PUBLICATION_RELEAS
   const token=(await oidcResponse.json()).value;if(typeof token!=='string' || !token)throw new Error('catalogue_oidc_empty');
   // Check again after issuing the short-lived token, immediately before writes.
   await assertCurrentMain(env,fetcher);
-  const response=await fetcher(API,{method:'POST',headers:{'content-type':'application/json','x-shift-catalogue-oidc':token},body:JSON.stringify({release_id:release.release_id,rows_sha256:release.rows_sha256})});
-  const report=await response.json();
+  const request={method:'POST',headers:{'content-type':'application/json','x-shift-catalogue-oidc':token},body:JSON.stringify({release_id:release.release_id,rows_sha256:release.rows_sha256})};
+  const response=await fetcher(API,request);
+  const responseText=await response.text();
+  let report;try{report=JSON.parse(responseText)}catch{
+    const proofResponse=await fetcher(`${API}-status`,request);
+    report=await proofResponse.json();
+    if(!proofResponse.ok)throw new Error(`catalogue_publication_failed_${response.status}_unverified_timeout`);
+  }
   if(response.status===403){
     const claims=JSON.parse(Buffer.from(token.split('.')[1]||'','base64url').toString('utf8'));
     console.error('catalogue_oidc_claims',JSON.stringify(Object.fromEntries(['aud','iss','repository','repository_id','repository_owner_id','actor_id','workflow_ref','ref','sub','event_name','sha','iat','nbf','exp'].map(key=>[key,claims[key]??null]))));
