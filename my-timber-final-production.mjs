@@ -43,7 +43,9 @@ try{
   if(!fitResponse.ok())throw new Error(`Fit seed ${fitResponse.status()} ${JSON.stringify(fit)}`);
   const seeded={grub:grub?.plan?.days?.length||0,fit:fit?.plan?.sessions?.length||0};
   if(!seeded.grub||!seeded.fit)fail('Billy plan seed',JSON.stringify(seeded));else pass('Billy receives real Grub and Fit plans',JSON.stringify(seeded));
-  async function account(path,data){const response=await context.request.fetch(`${API}${path}`,{method:data===undefined?'GET':'POST',headers:todayHeaders,...(data===undefined?{}:{data})});const result=await response.json().catch(()=>null);assert(response.ok(),`${path}: HTTP ${response.status()}`);assert(result,`${path}: missing JSON response`);return result}
+  // Connected Grub writes use the page origin, as the actual member app does.
+  // Keep its same-origin guard and the server-issued shared-domain cookie intact.
+  async function account(path,data){const response=await context.request.fetch(`${SITE}${path}`,{method:data===undefined?'GET':'POST',headers:todayHeaders,...(data===undefined?{}:{data})});const result=await response.json().catch(()=>null);assert(response.ok(),`${path}: HTTP ${response.status()}`);assert(result,`${path}: missing JSON response`);return result}
   // The connected master takes an explicit published meal from Grub. It does
   // not show the retired one-click acceptance of a generated legacy meal.
   const workspace=await account('/v1/grub/workspace'),recipes=await account('/v1/grub/search',{mode:'discover',query:'chicken'}),chosen=recipes.top?.[0];
