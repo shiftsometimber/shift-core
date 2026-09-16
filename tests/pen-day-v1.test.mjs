@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {penDayInternals} from '../pen-day-v1.js';
+import {penDayInternals,penDayRoutes} from '../pen-day-v1.js';
 
 const api=fs.readFileSync(new URL('../pen-day-v1.js',import.meta.url),'utf8');
 const ui=fs.readFileSync(new URL('../frontend/member/member-pen-day-v1.js',import.meta.url),'utf8');
@@ -25,7 +25,13 @@ test('rough and paused states open the existing support doors',()=>{
  assert.doesNotMatch(ui,/name=["'](?:dose|mg|units)/i);
 });
 
-test('Worker serves the member asset and mounts the authenticated route',()=>{
- assert.match(worker,/\['\/member-pen-day-v1\.js','application\/javascript; charset=utf-8'\]/);
- assert.match(worker,/penDayRoutes\(request,env\)/);
+test('Worker serves the member asset and mounts the authenticated route',async()=>{
+ assert.match(worker,/\[\s*["']\/member-pen-day-v1\.js["']\s*,\s*["']application\/javascript; charset=utf-8["']\s*\]/);
+ assert.match(worker,/await\s+penDayRoutes\(\s*request\s*,\s*env\s*\)/);
+ // Both mounted methods must reject a missing session before touching storage.
+ for(const method of ['GET','POST']){
+  const response=await penDayRoutes(new Request('https://shiftsometimber.co.uk/v1/pen-day',{method}),{});
+  assert.equal(response.status,401);
+  assert.equal((await response.json()).error,'authentication_required');
+ }
 });

@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { verifyGrubCloseoutReviews } from '../scripts/verify-grub-closeout-reviews.mjs';
@@ -9,7 +13,17 @@ const root = new URL('../', import.meta.url);
 const dir = new URL('evidence/grub-expansion-closeout-2026-09-16/', root);
 const read = name => JSON.parse(fs.readFileSync(new URL(name, dir), 'utf8'));
 const sha = value => createHash('sha256').update(value).digest('hex');
-const bytes = fs.readFileSync(new URL('grub-additive-candidate.json.gz', dir));
+// Generated evidence is deliberately not tracked. Rebuild an isolated candidate
+// from committed inputs so this suite works in any fresh-checkout test caller.
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'grub-closeout-contract-'));
+let bytes;
+try{
+  execFileSync(process.execPath,['grub-expansion-review-pack.mjs'],{
+    cwd:fileURLToPath(root),stdio:'pipe',
+    env:{...process.env,GRUB_EXPANSION_DIR:temp,COFID_INDEX:fileURLToPath(new URL('tests/fixtures/grub-cofid-2021-governed-subset.json',root))}
+  });
+  bytes=fs.readFileSync(path.join(temp,'grub-additive-candidate.json.gz'));
+}finally{fs.rmSync(temp,{recursive:true,force:true});}
 const baseline = {
   candidate: JSON.parse(gunzipSync(bytes)), candidateSha: sha(bytes),
   report: read('independent-editorial-review.json'), authorship: read('authorship.json'),

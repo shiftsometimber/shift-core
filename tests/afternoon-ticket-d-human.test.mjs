@@ -7,9 +7,11 @@ const recovery=await readFile(new URL('../auth-recovery-v1.js',import.meta.url),
 const wrangler=await readFile(new URL('../wrangler.jsonc',import.meta.url),'utf8');
 
 test('My Timber has a named human route and extensionless contact page',()=>{
-  assert.match(timber,/Message Matt/);
-  assert.match(timber,/mailto:hello@shiftsometimber\.co\.uk/);
-  assert.match(timber,/href="\/contact"/);
+  const human=timber.match(/<article\b[^>]*data-loop="human"[^>]*>([\s\S]*?)<\/article>/)?.[1];
+  assert.ok(human,'My Timber must retain its human-support card');
+  // Act2B routes support through the contact form instead of mailto aliases.
+  assert.match(human,/<a\b[^>]*href="\/contact\?type=support"[^>]*>Message Matt<\/a>/);
+  assert.match(human,/href="\/contact"/);
   assert.doesNotMatch(timber,/contact\.html/);
 });
 
