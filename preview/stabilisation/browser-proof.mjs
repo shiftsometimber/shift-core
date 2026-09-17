@@ -35,7 +35,7 @@ for(let index=0;index<checks.length;index++){
  try{
   row.phase='read-only-public-shell';
   for(const path of ['/shift-health','/mental-health/getting-professional-help','/member-login','/life-back']){
-   await open(page,path);await page.locator('.site-header .menu-trigger').click();await page.locator('#site-drawer').waitFor({state:'visible'});
+   row.publicPath=path;await open(page,path);await page.locator('.site-header .menu-trigger').click();await page.locator('#site-drawer').waitFor({state:'visible'});
    assert(await page.locator('#site-drawer a[href="/shift-newsroom"]').isVisible());assert.equal(await page.locator('.site-footer').count(),1);
    for(const route of ['/treatment-centre','/shop','/shift-newsroom','/good-to-talk'])assert.equal(await page.locator('.site-footer a[href="'+route+'"]').count(),1);
    await page.locator('#site-drawer .drawer-close').click();await page.locator('#site-drawer').waitFor({state:'hidden'});await geometry(page);
@@ -69,11 +69,11 @@ for(let index=0;index<checks.length;index++){
   await api(context,'/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:false});await api(context,'/v1/life-back',{action:'shift-status',operationId:randomUUID(),shiftId:reviewed.progress.nextShift.id,status:'done'},'POST',409);assert.deepEqual((await api(context,'/v1/life-back')).progress,reviewed.progress);
   row.checks.push('Cross-origin update blocked; revoked tracking consent blocks writes without replacing saved history');
   row.usage=reviewed.usage;row.status='pass';row.phase='complete';assert.deepEqual(row.blockedExternalWrites,[],'Browser attempted a write outside the preview');
- }catch(error){row.status='fail';row.error=scrub(error.stack||error);report.failures.push({name,phase:row.phase,error:row.error});await page.screenshot({path:dir+'/'+name+'-failure.png',fullPage:true}).catch(()=>{});}
+ }catch(error){row.status='fail';row.finalUrl=page.url();row.bodyText=scrub(await page.locator('body').innerText().catch(()=>''));row.error=scrub(error.stack||error);report.failures.push({name,phase:row.phase,error:row.error});await page.screenshot({path:dir+'/'+name+'-failure.png',fullPage:true}).catch(()=>{});}
  finally{await context.request.post(origin+'/v1/auth/logout',{headers:{Origin:origin},data:{}}).catch(()=>{});await context.close();await browser.close();save();}
 }
 // Fresh browser creation path plus basic remote boundaries.
 const browser=await chromium.launch({headless:true}),context=await browser.newContext(),page=await context.newPage();
 try{await open(page,'/__review');await page.getByRole('button',{name:'Start a fresh fictional review'}).click();await page.waitForURL('**/member/life-back');await waitLife(page);assert.equal((await api(context,'/v1/life-back')).progress.entries.length,0);report.freshReview='pass';for(const path of ['/v1/contact','/v1/continuity-interest','/payment','/treatment-order'])assert.equal((await context.request.post(origin+path,{headers:{Origin:origin},data:{}})).status(),403);const m=await api(context,'/__preview/meta');assert.equal(m.productionBindings,false);assert.equal(m.source,process.env.PREVIEW_SOURCE_SHA);report.boundaries='pass';}
-catch(e){report.failures.push({phase:'fresh-review-and-boundaries',error:scrub(e.stack||e)})}finally{await context.close();await browser.close();}
+catch(e){await page.screenshot({path:dir+'/fresh-review-failure.png',fullPage:true}).catch(()=>{});report.failures.push({phase:'fresh-review-and-boundaries',url:page.url(),body:scrub(await page.locator('body').innerText().catch(()=>'')),error:scrub(e.stack||e)})}finally{await context.close();await browser.close();}
 report.status=report.failures.length?'fail':'pass';save();console.log(JSON.stringify(report,null,2));assert.equal(report.failures.length,0,'Preview browser proof failed');
