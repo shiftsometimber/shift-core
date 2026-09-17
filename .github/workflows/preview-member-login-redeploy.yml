@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/preview-member-login-redeploy.yml'
       - 'work/staging/worker.mjs'
+      - 'work/staging/login.mjs'
+      - 'preview/stabilisation/prepare.mjs'
+      - 'preview/stabilisation/registration-proof.mjs'
 permissions:
   contents: read
 jobs:
@@ -98,6 +101,8 @@ jobs:
           npx playwright install --with-deps chromium webkit
       - name: Prove actual UI login logout re-login and full connected loop
         run: node preview/stabilisation/browser-proof.mjs
+      - name: Prove brand-new account creation through visible preview UI
+        run: node preview/stabilisation/registration-proof.mjs
       - name: Upload proof
         if: always()
         uses: actions/upload-artifact@v4
