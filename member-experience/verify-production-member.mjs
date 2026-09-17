@@ -1,3 +1,4 @@
+import {memberChromeStyles,memberChromeClient,lifeBackChrome} from './chrome.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {writeFileSync,readFileSync} from 'node:fs';
@@ -16,12 +17,12 @@ const evidence={checkedAt:new Date().toISOString(),assets:[],auth:[]};
  assert.match(r.headers.get('Cache-Control')||'',/no-store/);
  evidence.dashboard={status:r.status,versionedToday:true,masterStyles:true};
 }
-for(const [path,expected] of [['/assets/member-experience/home.css',Buffer.from(homeStyles)],['/assets/member-experience/home-art.webp',Buffer.from(homeArt.split(',')[1],'base64')]]){
+for(const [path,expected] of [['/assets/member-experience/chrome.css',Buffer.from(memberChromeStyles)],['/assets/member-experience/home.css',Buffer.from(homeStyles)],['/assets/member-experience/home-art.webp',Buffer.from(homeArt.split(',')[1],'base64')]]){
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);
  const actual=Buffer.from(await r.arrayBuffer());assert.deepEqual(actual,expected,path+' must match the approved master');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
 }
-for(const [name,expected] of [['health',healthRuntime],['fit',fitRuntime],['grub',grubRuntime]]){
+for(const [name,expected] of [['chrome',memberChromeClient],['health',healthRuntime],['fit',fitRuntime],['grub',grubRuntime]]){
  const path='/assets/member-experience/'+name+'.mjs';
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path);
@@ -33,7 +34,7 @@ for(const [name,expected] of [['health',healthRuntime],['fit',fitRuntime],['grub
 for(const [name,asset] of Object.entries(lifeBackAssets)){
  const path=name==='index.html'?'/member/life-back':'/assets/member-experience/life-back/'+name;
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);assert.ok((r.headers.get('content-type')||'').includes(asset.type),path+' MIME');
- const actual=Buffer.from(await r.arrayBuffer()),expected=asset.base64?Buffer.from(asset.base64,'base64'):Buffer.from(asset.body);assert.deepEqual(actual,expected,path+' must match source');
+ const actual=Buffer.from(await r.arrayBuffer()),expected=asset.base64?Buffer.from(asset.base64,'base64'):Buffer.from(name==='index.html'?lifeBackChrome(asset.body,/"WORK_V1_ENABLED"\s*:\s*"true"/.test(readFileSync('wrangler.jsonc','utf8'))):asset.body);assert.deepEqual(actual,expected,path+' must match source');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
 }
 {
