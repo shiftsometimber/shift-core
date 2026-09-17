@@ -10,6 +10,9 @@ export function metadataAdditions(row, change) {
  if (!before || !observed || before.headline !== row.headline || row.headline !== observed.headline) return null;
  if (before.source_evidence_json !== row.source_evidence_json) return null;
  for (const field of ['content_package_json','medicine_patch_json','verification_json','reviewed_at','reviewed_by']) {
+  // A later reaffirmation of the same rejection has no publication to renew.
+  // Preserve its current timestamp; the batch still compares that exact value.
+  if (field === 'reviewed_at' && before.status === 'reject' && row.status === 'reject') continue;
   if ((before[field]??null) !== (row[field]??null)) return null;
  }
  const prior = JSON.parse(row.source_evidence_json || '[]');

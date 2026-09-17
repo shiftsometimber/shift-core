@@ -42,6 +42,12 @@ test('held drafts remain held and are not returned to an approval queue',async()
  await backfillLegacySourceMetadata(DB,manifest);
  assert.equal((await DB.prepare('SELECT status FROM radar_events').first()).status,'hold');
 });
+test('a reaffirmed rejection keeps its later review timestamp and remains rejected',async()=>{
+ const {DB,manifest}=await fixture('reject');
+ await DB.prepare("UPDATE radar_events SET reviewed_at='2026-09-16T13:00:00Z' WHERE id=1").run();
+ assert.deepEqual(await backfillLegacySourceMetadata(DB,manifest),{repaired:1,skipped:0});
+ const after=await sourceReviewEvent(DB,1);assert.equal(after.status,'reject');assert.equal(after.reviewed_at,'2026-09-16T13:00:00Z');
+});
 test('unlisted records, changed digests and newer observations stay pending',async()=>{
  for(const kind of ['unlisted','digest','newer']){
   const {DB,manifest,before,change}=await fixture();
