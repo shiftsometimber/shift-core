@@ -1,7 +1,7 @@
 // Source retrieval never amends a reviewed publication or renews its approval.
 const safe = (value, fallback = {}) => { try { return JSON.parse(value); } catch { return fallback; } };
 const iso = () => new Date().toISOString();
-export const pendingSourceChangeSql = eventId => `SELECT a.* FROM radar_audit a WHERE a.event_id=${eventId} AND a.action='source_changed_review_required' AND NOT EXISTS (SELECT 1 FROM radar_audit r WHERE r.event_id=a.event_id AND r.action='source_change_review_started' AND CAST(json_extract(r.detail_json,'$.observation_id') AS INTEGER)>=a.id)`;
+export const pendingSourceChangeSql = eventId => `SELECT a.* FROM radar_audit a WHERE a.event_id=${eventId} AND a.action='source_changed_review_required' AND NOT EXISTS (SELECT 1 FROM radar_audit r WHERE r.event_id=a.event_id AND r.action IN ('source_change_review_started','source_metadata_backfilled') AND CAST(json_extract(r.detail_json,'$.observation_id') AS INTEGER)>=a.id)`;
 export async function pendingSourceChange(DB, eventId) {
  const row = await DB.prepare(`${pendingSourceChangeSql('?')} ORDER BY a.id DESC LIMIT 1`).bind(eventId).first();
  return row ? {id:row.id, observed_at:row.created_at, ...safe(row.detail_json)} : null;
@@ -10,7 +10,7 @@ export async function pendingSourceChangeMap(DB) {
  const {results=[]} = await DB.prepare(`${pendingSourceChangeSql('a.event_id')} AND a.id=(SELECT MAX(n.id) FROM radar_audit n WHERE n.event_id=a.event_id AND n.action='source_changed_review_required')`).all();
  return new Map(results.map(row=>[row.event_id,{id:row.id,observed_at:row.created_at,...safe(row.detail_json)}]));
 }
-export const sourceReviewGenerationSql = eventId => `COALESCE((SELECT MAX(g.id) FROM radar_audit g WHERE g.event_id=${eventId} AND g.action='source_change_review_started'),0)`;
+export const sourceReviewGenerationSql = eventId => `COALESCE((SELECT MAX(g.id) FROM radar_audit g WHERE g.event_id=${eventId} AND g.action IN ('source_change_review_started','source_metadata_backfilled')),0)`;
 export async function sourceReviewEvent(DB,eventId) {
  return DB.prepare(`SELECT e.*,${sourceReviewGenerationSql('e.id')} source_review_generation FROM radar_events e WHERE e.id=?`).bind(eventId).first();
 }
