@@ -7,7 +7,7 @@ import {ensureRadarSchema} from '../radar-integration-v1.js';
 import {runAuthoritativeRadarScan,loadRadarSources} from '../radar-authoritative-scan-v1.js';
 const source=NEWS_DISCOVERY_SOURCES.find(s=>s.id==='uk-weight-news-search');
 async function fixture(now=Date.now()){
- const items_json=JSON.stringify([{title:'UK weight loss research update',url:'https://news.google.com/rss/articles/test',source_date:'2026-09-16T09:00:00Z',source_updated_at:null,summary:'Research lead for verification',source:source.id,regulator:source.authority,region:source.region,event_type:'news_discovery'}]);
+ const items_json=JSON.stringify([{title:'UK weight loss research update',url:'https://news.google.com/rss/articles/test',source_date:'2026-09-16T09:00:00.000Z',source_updated_at:null,summary:'Research lead for verification',source:source.id,regulator:source.authority,region:source.region,event_type:'news_discovery'}]);
  return{source_id:source.id,source_url:source.url,fetched_at:new Date(now).toISOString(),items_json,items_sha256:await snapshotSha(items_json),document_sha256:'b'.repeat(64),workflow_sha:'a'.repeat(40)};
 }
 async function insert(DB,row){await DB.exec(SNAPSHOT_SCHEMA);await DB.prepare('INSERT INTO radar_source_snapshots VALUES(?,?,?,?,?,?,?)').bind(...Object.values(row)).run()}
@@ -29,7 +29,7 @@ test('scanner consumes a recent snapshot as an unverified lead with transport ev
  const original=globalThis.fetch;let calls=0;globalThis.fetch=async()=>{calls++;throw Error('direct feed unavailable')};
  try{
   const result=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});assert.equal(calls,0);assert.equal(result.sources[0].ok,true);assert.equal(result.sources[0].transport,'scheduled_collector');assert.equal(result.sources[0].newEvents,1);
-  const row=await DB.prepare('SELECT * FROM radar_events').first();assert.equal(row.status,'needs_more_evidence');assert.equal(JSON.parse(row.verification_json).verified,false);assert.equal(JSON.parse(row.source_evidence_json)[0].source_date,'2026-09-16T09:00:00Z');
+  const row=await DB.prepare('SELECT * FROM radar_events').first();assert.equal(row.status,'needs_more_evidence');assert.equal(JSON.parse(row.verification_json).verified,false);assert.equal(JSON.parse(row.source_evidence_json)[0].source_date,'2026-09-16T09:00:00.000Z');
   assert.equal((await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true})).newEvents,0);
   assert.equal((await DB.prepare("SELECT COUNT(*) c FROM radar_audit WHERE action='notification_sent'").first()).c,0);
   await DB.prepare("UPDATE radar_source_snapshots SET fetched_at='2000-01-01T00:00:00Z'").run();
