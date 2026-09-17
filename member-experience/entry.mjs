@@ -44,6 +44,9 @@ export async function memberExperienceEntry(request, env, response) {
   let html = await response.text();
   if (!html.includes('</head>') || !html.includes('</body>') || html.includes('data-member-experience="v1"')) return original;
   html = html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+(attrs.includes('class=')?attrs.replace(/class="([^"]*)"/,'class="$1 sst-member-experience"'):attrs+' class="sst-member-experience"')+' data-member-experience="v1" data-member-page="'+name+'">');
+  // Retire the legacy dashboard-only portal bars. The shared My Timber chrome
+  // below is the single navigation authority across every authenticated page.
+  html = html.replace(/<nav\b[^>]*class="[^"]*\bsst-portal-(?:tabs|tools)\b[^"]*"[^>]*>[\s\S]*?<\/nav>/g,'');
   html = html.replace(/(<nav\b[^>]*class="[^"]*sst-member-tabs[^>]*>)[\s\S]*?<\/nav>/,(_,open)=>open+memberNavigation(env.WORK_V1_ENABLED === 'true')+'</nav>');
   if(!/<nav\b[^>]*class="[^"]*\bsst-member-tabs\b/.test(html))html=html.replace(/<main\b/,'<nav class="sst-member-tabs" aria-label="My Timber">'+memberNavigation(env.WORK_V1_ENABLED==='true')+'</nav><main');
   // Some legacy member templates include stylesheets inside the body. Load the
