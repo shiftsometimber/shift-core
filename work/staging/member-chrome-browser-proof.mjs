@@ -18,6 +18,7 @@ try{
    ['saved','/staging/member/saved'],['grub','/staging/member-connected/grub'],['fit','/staging/member-connected/fit'],['check-in','/staging/member-connected/check-in'],['settings','/staging/member-connected/settings'],['life-back','/staging/member-connected/life-back']
   ]){
    await page.goto(origin+path,{waitUntil:'domcontentloaded'});
+   if(path.includes('/member/dashboard#'))await page.waitForFunction(panel=>document.querySelector('#panel-'+panel)?.classList.contains('active')&&(panel!=='today'||document.querySelector('#todayActions')?.dataset.todayDecisionReady==='true'),path.split('#')[1],{timeout:30000});
    await page.waitForFunction(()=>[...document.querySelectorAll('[data-member-hero="v1"]')].some(e=>e.getBoundingClientRect().height>0),null,{timeout:30000});
    const row=await page.evaluate(()=>{
     const hero=[...document.querySelectorAll('[data-member-hero="v1"]')].find(e=>e.getBoundingClientRect().height>0);
