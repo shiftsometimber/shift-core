@@ -1,0 +1,48 @@
+name: Full live colour contrast audit AFTER repair
+on:
+  push:
+    branches: [audit/full-live-contrast-20260917]
+    paths: ['.github/workflows/full-live-contrast-audit-after.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Install browser
+        run: |
+          mkdir -p audit && cd audit
+          npm init -y >/dev/null
+          npm install playwright@1.58.2 --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Crawl complete live sitemap at desktop and iPhone widths
+        run: |
+          cat > audit/contrast.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const ORIGIN='https://shiftsometimber.co.uk';
+          const forced=['/','/start-here','/programme','/shift-health','/treatment-centre','/shift-newsroom','/member-login','/shop','/about','/contact','/help','/explore-knowledge','/shift-for-work'];
+          const outDir='audit/out';fs.mkdirSync(outDir,{recursive:true});
+          async function fetchText(url){const r=await fetch(url,{headers:{'user-agent':'SHIFT-Contrast-Audit/2026-09-17-after'}});if(!r.ok)throw new Error(`${url} -> ${r.status}`);return r.text()}
+          async function sitemapUrls(){const seen=new Set(),urls=new Set();async function walk(url,depth=0){if(seen.has(url)||depth>2)return;seen.add(url);const xml=await fetchText(url);const locs=[...xml.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/gi)].map(m=>m[1].trim().replaceAll('&amp;','&'));if(/<sitemapindex\b/i.test(xml)){for(const loc of locs)if(loc.startsWith(ORIGIN))await walk(loc,depth+1)}else for(const loc of locs)if(loc.startsWith(ORIGIN))urls.add(loc)}await walk(ORIGIN+'/sitemap.xml');forced.forEach(p=>urls.add(ORIGIN+p));return[...urls].sort()}
+          const auditInPage=()=>{function rgb(s){const m=String(s).match(/rgba?\((\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)(?:[ ,\/]+(\d+(?:\.\d+)?))?\)/i);return m?{r:+m[1],g:+m[2],b:+m[3],a:m[4]==null?1:+m[4]}:null}function lum(c){const f=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b)}function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}function blend(fg,bg){const a=fg.a??1;return{r:fg.r*a+bg.r*(1-a),g:fg.g*a+bg.g*(1-a),b:fg.b*a+bg.b*(1-a),a:1}}function visible(el){const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0.02&&r.width>1&&r.height>1&&r.bottom>0&&r.right>0}function directText(el){let t='';for(const n of el.childNodes)if(n.nodeType===Node.TEXT_NODE)t+=' '+n.textContent;return t.replace(/\s+/g,' ').trim()}function bgFor(el){let cur=el,complex=false,bg={r:255,g:255,b:255,a:1},source='default-white';while(cur){const s=getComputedStyle(cur);if(s.backgroundImage&&s.backgroundImage!=='none')complex=true;const c=rgb(s.backgroundColor);if(c&&c.a>0.01){bg=c;source=cur===el?'self':(cur.tagName.toLowerCase()+(cur.id?'#'+cur.id:''));break}cur=cur.parentElement}if(bg.a<1)bg=blend(bg,{r:255,g:255,b:255,a:1});return{bg,complex,source}}function selector(el){if(el.id)return'#'+CSS.escape(el.id);let s=el.tagName.toLowerCase();if(el.classList.length)s+='.'+[...el.classList].slice(0,3).map(x=>CSS.escape(x)).join('.');return s}const issues=[],seen=new Set();for(const el of document.querySelectorAll('body *')){if(!visible(el))continue;let text=directText(el);if(!text&&el.matches('input,textarea'))text=el.value||el.getAttribute('placeholder')||'';if(!text&&el.matches('select'))text=el.selectedOptions?.[0]?.textContent?.trim()||'';if(!text)continue;const style=getComputedStyle(el),fg=rgb(style.color);if(!fg)continue;const{bg,complex,source}=bgFor(el);if(complex)continue;const effective=fg.a<1?blend(fg,bg):fg,cr=ratio(effective,bg),size=parseFloat(style.fontSize)||16,weight=parseInt(style.fontWeight)||400,large=size>=24||(size>=18.66&&weight>=700),threshold=large?3:4.5;if(cr+1e-6>=threshold)continue;const key=selector(el)+'|'+text.slice(0,80)+'|'+style.color+'|'+JSON.stringify(bg);if(seen.has(key))continue;seen.add(key);issues.push({selector:selector(el),text:text.slice(0,180),foreground:style.color,background:`rgb(${Math.round(bg.r)}, ${Math.round(bg.g)}, ${Math.round(bg.b)})`,backgroundSource:source,ratio:+cr.toFixed(2),required:threshold,fontSize:style.fontSize,fontWeight:style.fontWeight})}issues.sort((a,b)=>a.ratio-b.ratio);return{title:document.title,status:'ok',issues:issues.slice(0,100),issueCount:issues.length,severeCount:issues.filter(x=>x.ratio<2).length,exactCount:issues.filter(x=>x.ratio<=1.01).length,contrastSafety:document.querySelector('style[data-shift-public-contrast]')?.getAttribute('data-shift-public-contrast')||null}};
+          const browser=await chromium.launch(),urls=await sitemapUrls(),viewports=[['desktop',{width:1440,height:1000}],['iphone',{width:390,height:844}]],report={generatedAt:new Date().toISOString(),origin:ORIGIN,urlCount:urls.length,viewports:{},failures:[]};
+          for(const[label,viewport]of viewports){const context=await browser.newContext({viewport,ignoreHTTPSErrors:true});await context.route(/\.(?:png|jpe?g|webp|gif|svg|ico|woff2?|ttf|mp4)(?:\?.*)?$/i,r=>r.abort());const results=new Array(urls.length);let next=0;async function worker(){const page=await context.newPage();while(true){const i=next++;if(i>=urls.length)break;const url=urls[i];try{const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:25000});await page.waitForTimeout(220);results[i]={url,httpStatus:response?.status()??null,finalUrl:page.url(),...(await page.evaluate(auditInPage))}}catch(error){results[i]={url,status:'error',error:String(error.message||error)};report.failures.push({viewport:label,url,error:String(error.message||error)})}}await page.close()}await Promise.all(Array.from({length:6},worker));report.viewports[label]={pages:results,flaggedPages:results.filter(x=>x?.issueCount>0).length,totalIssues:results.reduce((n,x)=>n+(x?.issueCount||0),0),severePages:results.filter(x=>x?.severeCount>0).length,severeIssues:results.reduce((n,x)=>n+(x?.severeCount||0),0),exactPages:results.filter(x=>x?.exactCount>0).length,exactIssues:results.reduce((n,x)=>n+(x?.exactCount||0),0),safetyPages:results.filter(x=>x?.contrastSafety).length};await context.close()}
+          const all=[];for(const[vp,v]of Object.entries(report.viewports))for(const p of v.pages||[])for(const issue of p?.issues||[])all.push({vp,url:p.url,ratio:issue.ratio,issue});all.sort((a,b)=>a.ratio-b.ratio);report.worst=all.slice(0,150);
+          const chosen=[],keys=new Set();for(const row of all){if(row.ratio>=2)break;const key=row.vp+'|'+row.url;if(keys.has(key))continue;keys.add(key);chosen.push(row);if(chosen.length>=20)break}for(const row of chosen){const viewport=row.vp==='iphone'?{width:390,height:844}:{width:1440,height:1000},context=await browser.newContext({viewport}),page=await context.newPage();try{await page.goto(row.url,{waitUntil:'domcontentloaded',timeout:25000});await page.waitForTimeout(300);const u=new URL(row.url),slug=(u.pathname==='/'?'home':u.pathname.replace(/^\/+|\/+$/g,'').replace(/[^a-z0-9]+/gi,'-').slice(0,80)||'page'),file=`${row.vp}-${slug}.png`;await page.screenshot({path:path.join(outDir,file),fullPage:true});row.screenshot=file}catch{}await context.close()}report.severeScreenshots=chosen;
+          fs.writeFileSync(path.join(outDir,'contrast-report-after.json'),JSON.stringify(report,null,2));const summary={urlCount:report.urlCount,desktop:{flagged:report.viewports.desktop.flaggedPages,issues:report.viewports.desktop.totalIssues,severePages:report.viewports.desktop.severePages,severe:report.viewports.desktop.severeIssues,exactPages:report.viewports.desktop.exactPages,exact:report.viewports.desktop.exactIssues,safetyPages:report.viewports.desktop.safetyPages},iphone:{flagged:report.viewports.iphone.flaggedPages,issues:report.viewports.iphone.totalIssues,severePages:report.viewports.iphone.severePages,severe:report.viewports.iphone.severeIssues,exactPages:report.viewports.iphone.exactPages,exact:report.viewports.iphone.exactIssues,safetyPages:report.viewports.iphone.safetyPages},failures:report.failures.length,worst:report.worst.slice(0,30)};fs.writeFileSync(path.join(outDir,'summary-after.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary,null,2));await browser.close();
+          JS
+          node audit/contrast.mjs | tee audit/out/summary-after.txt
+      - name: Upload after-repair evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-full-live-colour-contrast-audit-after
+          retention-days: 14
+          path: audit/out/**
+          if-no-files-found: error
