@@ -6,8 +6,10 @@ import {tickerAllowed,tickerVersion,tickerAsset} from '../public-navigation-poli
 const base='58280310a4780ba59f69413ebba40fdf34fa3551',release='1051225086ba078b41975c92f99ad03a4628dc5d';
 const before=JSON.parse(readFileSync('proof/public-before.json')),after=JSON.parse(readFileSync('proof/public-after.json'));
 const expectedChanges=new Set(['/programme','/shift-health','/treatment-centre','/explore-knowledge','/shop','/work-with-us']);
+const expectedLegacyRemoval=new Set(['/about']);
 assert.deepEqual(before.pages.map(p=>p.path),after.pages.map(p=>p.path));
-const rows=before.pages.map((b,i)=>{const a=after.pages[i];assert.equal(a.status,b.status,b.path);const changed=a.sha256!==b.sha256;assert.equal(changed,expectedChanges.has(b.path),b.path+' unexpected change classification');return {path:b.path,changed,before:b.sha256,after:a.sha256};});
+console.log('Retained snapshot changes:',JSON.stringify(before.pages.map((b,i)=>({path:b.path,changed:after.pages[i].sha256!==b.sha256}))));
+const rows=before.pages.map((b,i)=>{const a=after.pages[i];assert.equal(a.status,b.status,b.path);const changed=a.sha256!==b.sha256;assert.equal(changed,expectedChanges.has(b.path)||expectedLegacyRemoval.has(b.path),b.path+' unexpected change classification');return {path:b.path,changed,reason:expectedChanges.has(b.path)?'shared public ticker':expectedLegacyRemoval.has(b.path)?'remove excluded legacy ticker':'unchanged',before:b.sha256,after:a.sha256};});
 const origin='https://shiftsometimber.co.uk',hash=s=>createHash('sha256').update(s).digest('hex');
 for(const a of after.pages){
  const r=await fetch(origin+a.path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,a.path);const body=await r.text();assert.equal(hash(Buffer.from(body)),a.sha256,a.path+' changed since retained after-snapshot');
@@ -15,6 +17,11 @@ for(const a of after.pages){
   assert.equal((body.match(/id="shift-public-news"/g)||[]).length,1,a.path);
   assert.ok(body.includes('data-shift-news-ticker="'+tickerVersion+'"'),a.path);
   assert.ok(body.includes(tickerAsset+'?v='+tickerVersion),a.path);
+ }
+ if(expectedLegacyRemoval.has(a.path)){
+  assert.equal(tickerAllowed(a.path),false);
+  assert.ok(body.includes('<style data-shift-public-news>.medicine-ticker-v138{display:none!important}</style>'),a.path+' must have the legacy-removal marker');
+  assert.ok(!body.includes('id="shift-public-news"')&&!body.includes('/assets/newsroom-ticker-v2.js'),a.path+' must not retain a ticker');
  }
 }
 const original=execFileSync('git',['show',base+':worker-entry-v6.js'],{encoding:'utf8'});
