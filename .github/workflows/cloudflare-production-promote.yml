@@ -321,6 +321,13 @@ jobs:
         run: node scripts/verify-public-audit-live.mjs
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
+      - name: Record Radar metadata repair and remaining source failures without writes
+        run: node scripts/radar-feed-diagnostics.mjs
+      - name: Retain Radar diagnosis after deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-feed-after-${{ github.run_id }}
+          path: radar-feed-diagnostics.json
       - name: Prove newer restricted routes are on live traffic
         shell: bash
         run: |
