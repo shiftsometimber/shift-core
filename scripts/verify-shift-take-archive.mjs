@@ -22,6 +22,7 @@ try{for(const row of rows){
  assert.equal((html.match(/data-shift-take/g)||[]).length,1,path);
  assert.ok(!html.includes('A separate SHIFT interpretation has not been added'),path);
  assert.ok(html.includes('SHIFT’s take'),path);
+ for(const link of [...String(p.shift_take||p.why_it_matters_to_uk||'').matchAll(/\]\((https:\/\/[^)]+)\)/g)].map(x=>x[1]))assert.ok(html.includes('href="'+link.replace(/&/g,'&amp;')+'"'),'Retain clickable citation: '+path);
  proof.push({id:row.id,path,retainedInterpretation:true,firstPublished:row.first_published_at});
 }}finally{globalThis.fetch=shellFetch}
 writeFileSync('shift-take-archive-proof.json',JSON.stringify({commit:process.env.GITHUB_SHA,articles:proof.length,productionWrites:false,proof},null,2));
