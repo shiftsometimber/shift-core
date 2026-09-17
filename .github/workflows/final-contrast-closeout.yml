@@ -1,0 +1,122 @@
+name: Final live contrast closeout
+on:
+  push:
+    branches: [audit/full-live-contrast-20260917]
+    paths: ['.github/workflows/final-contrast-closeout.yml']
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      EXPECTED_MAIN: ccd55eaf30dee560bbbfd751328ac6b814e84b17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lock to the audited production source
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$EXPECTED_MAIN"
+          git checkout -B contrast-final origin/main
+          git config user.name 'SHIFT contrast closeout'
+          git config user.email 'it@shiftsometimber.co.uk'
+      - name: Repair remaining shared roots and install severe-clash fail-safe
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('public-navigation-policy.mjs')
+          s=p.read_text()
+          assert "contrastSafetyVersion='public-contrast-20260917-r1'" in s
+          s=s.replace("contrastSafetyVersion='public-contrast-20260917-r1'","contrastSafetyVersion='public-contrast-20260917-r2'",1)
+          anchor=".featured-links__eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}\n`;"
+          assert anchor in s
+          extra=r'''
+/* r2: exact shared roots identified by the complete 532-page ancestor map. */
+html body main#main-content :is(aside.editorial-note-v2222,.ct-form-card,.kg-path-main,article.faqcard,article.article,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.social-community-card-v2223,.founding-panel-v3b1,.fifa-card,.future-card,.promise-card-v3b1,.cagri-card,.nhsm-card,.calc-explain-card,.life2-panel,.np-panel,.surg2-panel,.eu-panel,.proc-toc){background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content :is(aside.editorial-note-v2222,.ct-form-card,.kg-path-main,article.faqcard,article.article,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.social-community-card-v2223,.founding-panel-v3b1,.fifa-card,.future-card,.promise-card-v3b1,.cagri-card,.nhsm-card,.calc-explain-card,.life2-panel,.np-panel,.surg2-panel,.eu-panel,.proc-toc) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,a,td,th,div){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content div.standard-layout section.section.white,
+html body main#main-content div.standard-layout section.section.stone,
+html body main#main-content div.reading-layout section.section.white,
+html body main#main-content div.reading-layout section.section.stone{background:#E7E3DA!important;color:#050505!important}
+html body main#main-content div.standard-layout section.section.white > .wrap > :is(h1,h2,h3,h4,p,.eyebrow),
+html body main#main-content div.standard-layout section.section.stone > .wrap > :is(h1,h2,h3,h4,p,.eyebrow),
+html body main#main-content div.reading-layout section.section.white > .wrap > :is(h1,h2,h3,h4,p,.eyebrow),
+html body main#main-content div.reading-layout section.section.stone > .wrap > :is(h1,h2,h3,h4,p,.eyebrow){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .sst-service-bridge .sst-service-bridge__limit{background:#050505!important;color:#E7E3DA!important}
+html body main#main-content .sst-service-bridge .sst-service-bridge__limit *{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content.authority-hub section.authority-next a{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}
+html body main#main-content.authority-hub section.authority-next a *{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content .shift-guided-card{background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content .shift-guided-card *{color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content :is(.shift-guided-actions__primary,.shift-guided-library__body button){background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}
+html body main#main-content :is(.shift-guided-actions__primary,.shift-guided-library__body button) *{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content .review-status-v2222{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content :is(table.reta-table,table.nhsm-table){background:#E7E3DA!important;color:#050505!important}
+html body main#main-content :is(table.reta-table,table.nhsm-table) :is(td,th,span,strong,small,a){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .calc-explain-card :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .sh-choice-grid-v72 button{background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content .sh-choice-grid-v72 button *{color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .mmh-start-grid a{background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content .mmh-start-grid a *{color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content details.mw-evidence{background:#E7E3DA!important;color:#050505!important}
+html body main#main-content details.mw-evidence :is(a,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}
+'''
+          s=s.replace(anchor,".featured-links__eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}\n"+extra+"`;",1)
+          client=r'''export const contrastSafetyClient = String.raw`(function shiftContrastGuard(){
+  const BLACK={r:5,g:5,b:5,hex:'#050505'},CREAM={r:231,g:227,b:218,hex:'#E7E3DA'};
+  function rgb(v){const m=String(v).match(/rgba?\\((\\d+(?:\\.\\d+)?)[ ,]+(\\d+(?:\\.\\d+)?)[ ,]+(\\d+(?:\\.\\d+)?)(?:[ ,\\/]+(\\d+(?:\\.\\d+)?))?\\)/i);return m?{r:+m[1],g:+m[2],b:+m[3],a:m[4]==null?1:+m[4]}:null}
+  function lum(c){const f=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b)}
+  function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+  function blend(f,b){const a=f.a??1;return{r:f.r*a+b.r*(1-a),g:f.g*a+b.g*(1-a),b:f.b*a+b.b*(1-a),a:1}}
+  function background(el){let n=el;while(n){const s=getComputedStyle(n);if(s.backgroundImage&&s.backgroundImage!=='none')return null;const c=rgb(s.backgroundColor);if(c&&c.a>.01)return c.a<1?blend(c,{r:255,g:255,b:255,a:1}):c;n=n.parentElement}return{r:255,g:255,b:255,a:1}}
+  function hasOwnText(el){for(const n of el.childNodes)if(n.nodeType===3&&n.textContent.trim())return true;return el.matches('input,textarea,select,button')}
+  function fix(el){if(!(el instanceof Element)||el.matches('script,style,svg,svg *'))return;const s=getComputedStyle(el),r=el.getBoundingClientRect();if(s.display==='none'||s.visibility==='hidden'||+s.opacity<=.02||r.width<=1||r.height<=1||!hasOwnText(el))return;const fg=rgb(s.color),bg=background(el);if(!fg||!bg)return;const effective=fg.a<1?blend(fg,bg):fg;if(ratio(effective,bg)>=2)return;const pick=ratio(BLACK,bg)>=ratio(CREAM,bg)?BLACK:CREAM;el.style.setProperty('color',pick.hex,'important');el.style.setProperty('-webkit-text-fill-color',pick.hex,'important');el.dataset.shiftContrastGuard='1'}
+  function scan(root=document){const list=root===document?document.querySelectorAll('body *'):[root,...(root.querySelectorAll?.('*')||[])];for(const el of list)fix(el)}
+  let queued=false;function queue(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;scan()})}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{scan();setTimeout(scan,120);setTimeout(scan,400)},{once:true});else{scan();setTimeout(scan,120)}
+  new MutationObserver(queue).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style','hidden']});
+})();`;
+'''
+          marker='// Keep browser code literal: Worker bundlers add private helpers to function.toString().\n'
+          assert marker in s
+          s=s.replace(marker,client+marker,1)
+          old="  const contrastSource=source.includes('data-shift-public-contrast')?source:source.replace(/<\\/head>/i,`<style data-shift-public-contrast=\"${contrastSafetyVersion}\">${contrastSafetyStyles}</style></head>`);\n  const enabled = tickerAllowed(new URL(request.url).pathname);\n  let html = contrastSource\n"
+          new="  const contrastSource=source.includes('data-shift-public-contrast')?source:source.replace(/<\\/head>/i,`<style data-shift-public-contrast=\"${contrastSafetyVersion}\">${contrastSafetyStyles}</style></head>`);\n  const guardedSource=contrastSource.includes('data-shift-contrast-guard')?contrastSource:contrastSource.replace(/<\\/body>/i,`<script data-shift-contrast-guard=\"${contrastSafetyVersion}\">${contrastSafetyClient}</script></body>`);\n  const enabled = tickerAllowed(new URL(request.url).pathname);\n  let html = guardedSource\n"
+          assert old in s
+          s=s.replace(old,new,1).replace('  const legacyPresent = html !== contrastSource;','  const legacyPresent = html !== guardedSource;',1)
+          p.write_text(s)
+
+          tp=Path('tests/public-ticker-contrast-safety.test.mjs')
+          t=tp.read_text()
+          t=t.replace("import {contrastSafetyStyles,contrastSafetyVersion} from '../public-navigation-policy.mjs';","import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,withPublicTicker} from '../public-navigation-policy.mjs';\nimport {Script} from 'node:vm';")
+          t += r'''
+
+test('severe contrast guard is syntactically valid and is injected once into public HTML',async()=>{
+  new Script(contrastSafetyClient);
+  const html='<!doctype html><html><head><title>x</title></head><body><main><p>x</p></main></body></html>';
+  const req=new Request('https://shiftsometimber.co.uk/knowledge');
+  const once=await(await withPublicTicker(req,new Response(html,{headers:{'Content-Type':'text/html'}}))).text();
+  const twice=await(await withPublicTicker(req,new Response(once,{headers:{'Content-Type':'text/html'}}))).text();
+  assert.equal((once.match(/data-shift-contrast-guard/g)||[]).length,1);
+  assert.equal((twice.match(/data-shift-contrast-guard/g)||[]).length,1);
+  assert.match(once,/public-contrast-20260917-r2/);
+});
+'''
+          tp.write_text(t)
+          PY
+      - name: Prove the repair before main changes
+        run: |
+          set -euo pipefail
+          node --check public-navigation-policy.mjs
+          node --test tests/public-navigation-policy.test.mjs tests/public-ticker-contrast-safety.test.mjs
+          git diff --check
+          git diff -- public-navigation-policy.mjs tests/public-ticker-contrast-safety.test.mjs
+      - name: Push one guarded contrast closeout to main
+        run: |
+          set -euo pipefail
+          git add public-navigation-policy.mjs tests/public-ticker-contrast-safety.test.mjs
+          git commit -m 'Close remaining severe public contrast collisions'
+          git push origin HEAD:main
