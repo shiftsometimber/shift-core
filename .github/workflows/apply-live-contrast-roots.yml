@@ -1,0 +1,95 @@
+name: Apply audited live contrast roots
+on:
+  push:
+    branches: [audit/full-live-contrast-20260917]
+    paths: ['.github/workflows/apply-live-contrast-roots.yml']
+permissions:
+  contents: write
+  actions: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      EXPECTED_MAIN: ac3a89208bbe7a20a2b9378d7a43a80607636a00
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lock repair to audited production source
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$EXPECTED_MAIN"
+          git checkout -B contrast-live-repair origin/main
+          git config user.name 'SHIFT contrast repair'
+          git config user.email 'it@shiftsometimber.co.uk'
+      - name: Install one brand-only contrast safety layer at the shared public response boundary
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const file='public-navigation-policy.mjs';
+          let s=fs.readFileSync(file,'utf8');
+          assert(!s.includes('data-shift-public-contrast'),'Contrast layer already present unexpectedly');
+          const marker='// Keep browser code literal: Worker bundlers add private helpers to function.toString().';
+          assert(s.includes(marker));
+          const block=String.raw`
+export const contrastSafetyVersion='public-contrast-20260917-r1';
+export const contrastSafetyStyles=String.raw\`
+/* Brand-only repair for live computed-colour collisions found by the 532-URL audit. */
+.sst-reading-article-v31 :is(.road-card,.uni-panel,.uni-fighter,.uni-card,.social-community-card-v2223,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.faqcard,.founding-panel-v3b1,.fifa-card,.future-card,.compare-panel),
+.ct-form-card,.kg-path-main,.shift-guided-card,.editorial-note-v2222,
+.standard-layout :is(.section.white,.section.stone),.reading-layout :is(.section.white,.section.stone){background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+.sst-reading-article-v31 :is(.road-card,.uni-panel,.uni-fighter,.uni-card,.social-community-card-v2223,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.faqcard,.founding-panel-v3b1,.fifa-card,.future-card,.compare-panel) :is(h1,h2,h3,h4,p,span,strong,small,li,label),
+.ct-form-card :is(h1,h2,h3,h4,p,span,strong,small,li,label),.kg-path-main :is(h1,h2,h3,h4,p,span,strong,small,li,label),
+.shift-guided-card :is(h1,h2,h3,h4,p,span,strong,small,li,label),.editorial-note-v2222 :is(h1,h2,h3,h4,p,span,strong,small,li,label),
+.standard-layout :is(.section.white,.section.stone) :is(h1,h2,h3,h4,p,span,strong,small,li,label),.reading-layout :is(.section.white,.section.stone) :is(h1,h2,h3,h4,p,span,strong,small,li,label){color:#050505!important;-webkit-text-fill-color:#050505!important}
+.sst-reading-article-v31 :is(.fifa-card,.future-card) :is(.fifa-stat,.attribute-row,.procon-box,.future-badge){background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+.sst-reading-article-v31 :is(.fifa-card,.future-card) :is(.fifa-stat,.attribute-row,.procon-box,.future-badge) :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}
+.sst-service-bridge__limit{background:#050505!important;color:#E7E3DA!important;border:1px solid #707762!important}
+.sst-service-bridge__limit :is(h1,h2,h3,h4,p,span,strong,small,li){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+a.sst-service-bridge__cta,.authority-next a,.shift-guided-actions__primary,.shift-guided-library__body button{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}
+a.sst-service-bridge__cta :is(span,strong,small),.authority-next a :is(span,strong,small),.shift-guided-actions__primary :is(span,strong,small),.shift-guided-library__body button :is(span,strong,small){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+.at-composer,.at-dock{background:#E7E3DA!important;color:#050505!important}
+.at-composer :is(label,label span,.at-composer-label),.at-dock :is(label,label span){color:#050505!important;-webkit-text-fill-color:#050505!important}
+.sh-card__alt{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}.sh-card__alt :is(span,strong,small){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+.tool-intro{background:#050505!important;color:#E7E3DA!important}.tool-intro :is(h1,h2,h3,h4,p,span,strong,small,li){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+.featured-links__eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+\`;
+`;
+          s=s.replace(marker,block+marker);
+          const old=`  const enabled = tickerAllowed(new URL(request.url).pathname);\n  let html = source\n`;
+          const replacement=`  const contrastSource=source.includes('data-shift-public-contrast')?source:source.replace(/<\\/head>/i,\`<style data-shift-public-contrast="\${contrastSafetyVersion}">\${contrastSafetyStyles}</style></head>\`);\n  const enabled = tickerAllowed(new URL(request.url).pathname);\n  let html = contrastSource\n`;
+          assert(s.includes(old),'Could not locate ticker transform source');
+          s=s.replace(old,replacement).replace('  const legacyPresent = html !== source;','  const legacyPresent = html !== contrastSource;');
+          fs.writeFileSync(file,s);
+
+          const testFile='tests/public-navigation-policy.test.mjs';
+          let t=fs.readFileSync(testFile,'utf8');
+          t=t.replace("import {myTimberRedirect,tickerAllowed,tickerAsset,tickerClient,withPublicTicker,publicTickerAsset} from '../public-navigation-policy.mjs';","import {myTimberRedirect,tickerAllowed,tickerAsset,tickerClient,withPublicTicker,publicTickerAsset,contrastSafetyStyles,contrastSafetyVersion} from '../public-navigation-policy.mjs';");
+          const insert=`\ntest('live contrast safety is brand-only, idempotent and present even where ticker is excluded',async()=>{\n const selectors=['.sst-service-bridge__limit','a.sst-service-bridge__cta','.ct-form-card','.faqcard','.eu-card','.dec-panel','.ready-panel','.ready-card','.resource-card-v3b2','.fifa-card','.authority-next a','.shift-guided-card','.at-composer'];\n for(const selector of selectors)assert.ok(contrastSafetyStyles.includes(selector),selector);\n assert.doesNotMatch(contrastSafetyStyles,/#fff(?:fff)?\\b|#f4f1e9\\b|background:\\s*white\\b|color:\\s*white\\b/i);\n for(const path of ['/start-here','/mental-health/when-to-get-help','/contact','/faq']){const once=await(await withPublicTicker(new Request(origin+path),htmlResponse(shell))).text();const twice=await(await withPublicTicker(new Request(origin+path),htmlResponse(once))).text();assert.equal((once.match(/data-shift-public-contrast/g)||[]).length,1,path);assert.equal((twice.match(/data-shift-public-contrast/g)||[]).length,1,path);assert.ok(once.includes(contrastSafetyVersion),path)}\n});\n`;
+          assert(!t.includes('live contrast safety is brand-only'));
+          t+=insert;
+          fs.writeFileSync(testFile,t);
+          NODE
+      - name: Verify targeted presentation contract
+        run: |
+          node --test tests/public-navigation-policy.test.mjs
+          node --check public-navigation-policy.mjs
+          git diff --check
+          git diff -- public-navigation-policy.mjs tests/public-navigation-policy.test.mjs
+      - name: Commit one audited repair to main
+        run: |
+          set -euo pipefail
+          git add public-navigation-policy.mjs tests/public-navigation-policy.test.mjs
+          git commit -m 'Repair shared public colour contrast collisions'
+          git push origin HEAD:main
+          echo "REPAIR_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Dispatch guarded production promotion for exact repaired main
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$REPAIR_SHA"
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/cloudflare-production-promote.yml/dispatches" -f ref=main -f 'inputs[confirm]=PROMOTE_CURRENT_MAIN'
+          echo "Dispatched guarded production promotion for $REPAIR_SHA"
