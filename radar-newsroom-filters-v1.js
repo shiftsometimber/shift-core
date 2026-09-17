@@ -1,3 +1,4 @@
+import {compareNews} from './radar-newsroom-sort-v1.js';
 import {newsRegion} from './radar-uk-editorial-v1.js';
 
 export const MEDICINE_FILTERS = [
@@ -41,20 +42,23 @@ export const NEWSROOM_FILTER_STYLE = `<style data-newsroom-filters>
 @media(max-width:560px){.newsroom-filters{padding:16px;gap:12px}.newsroom-filters label{flex-basis:100%}.newsroom-filters button,.newsroom-filter-empty button{width:100%}}
 </style>`;
 export const NEWSROOM_FILTER_SCRIPT = `;(()=>{
+const compareNews=${compareNews.toString()};
 const start=()=>{
  const form=document.querySelector('[data-news-filters]');if(!form)return;
  const cards=[...document.querySelectorAll('[data-news-card]')],groups=[...document.querySelectorAll('[data-news-group]')];
  const result=document.querySelector('[data-news-results]'),empty=document.querySelector('[data-news-empty]');
+ const sort=form.elements.namedItem('sort'),list=document.querySelector('[data-news-list]');
  const fields=['medicine','topic','region'].map(name=>form.elements.namedItem(name));
  const apply=(writeUrl=true)=>{
+  if(sort&&list)for(const card of [...cards].sort((a,b)=>compareNews(a.dataset,b.dataset,sort.value)))list.appendChild(card);
   let shown=0;for(const card of cards){const visible=fields.every(field=>!field.value||(card.dataset[field.name]||'').split(' ').includes(field.value));card.hidden=!visible;if(visible)shown++;}
   for(const group of groups)group.hidden=![...group.querySelectorAll('[data-news-card]')].some(card=>!card.hidden);
   result.textContent='Showing '+shown+' of '+cards.length+' '+(cards.length===1?'story':'stories');empty.hidden=shown!==0;
-  if(writeUrl&&/^https?:$/.test(location.protocol)){const params=new URLSearchParams();for(const field of fields)if(field.value)params.set(field.name,field.value);history.replaceState(null,'',location.pathname+location.search+(params.size?'#'+params:''));}
+  if(writeUrl&&/^https?:$/.test(location.protocol)){const params=new URLSearchParams();for(const field of fields)if(field.value)params.set(field.name,field.value);if(sort&&sort.value!=='newest')params.set('sort',sort.value);history.replaceState(null,'',location.pathname+location.search+(params.size?'#'+params:''));}
  };
- const read=()=>{const params=new URLSearchParams(location.hash.slice(1));for(const field of fields){const value=params.get(field.name)||'';field.value=[...field.options].some(option=>option.value===value)?value:'';}apply(false);};
+ const read=()=>{const params=new URLSearchParams(location.hash.slice(1));for(const field of fields){const value=params.get(field.name)||'';field.value=[...field.options].some(option=>option.value===value)?value:'';}if(sort){const value=params.get('sort')||'newest';sort.value=[...sort.options].some(option=>option.value===value)?value:'newest';}apply(false);};
  form.addEventListener('submit',event=>event.preventDefault());form.addEventListener('change',()=>apply());
- const clear=()=>{form.reset();apply();};form.querySelector('button').addEventListener('click',clear);
+ const clear=()=>{for(const field of fields)field.value='';apply();};form.querySelector('button').addEventListener('click',clear);
  document.querySelector('[data-news-clear-empty]').addEventListener('click',()=>{clear();fields[0].focus();});
  window.addEventListener('hashchange',read);form.hidden=false;read();
 };if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();})();`;

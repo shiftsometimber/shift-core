@@ -1,0 +1,12 @@
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {collectorD1} from '../../scripts/radar-collector-d1.mjs';
+import {radarNewsPageRoutes} from '../../radar-news-pages-v1.js';
+import {withPublicTicker} from '../../public-navigation-policy.mjs';
+const rows=collectorD1(['--command',"SELECT id,headline,region,regulator,event_type,content_package_json,source_evidence_json,reviewed_at,updated_at,created_at FROM radar_events WHERE status='published' ORDER BY COALESCE(reviewed_at,updated_at) DESC,id DESC LIMIT 250"]).flatMap(x=>x.results||[]);
+const response=await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/shift-newsroom'),{DB:{prepare:()=>({all:async()=>({results:rows})})}});
+if(!response.ok)throw Error('Public shell unavailable');
+const html=await(await withPublicTicker(new Request('https://shiftsometimber.co.uk/shift-newsroom'),response)).text();if(!html.includes('data-news-list'))throw Error('Candidate renderer missing');
+mkdirSync('preview/newsroom-sort/public',{recursive:true});
+writeFileSync('preview/newsroom-sort/public/index.html',html);
+const report={commit:process.env.GITHUB_SHA,generatedAt:new Date().toISOString(),articles:(html.match(/<article class="radar-news-card"/g)||[]).length,undated:(html.match(/Publication date unavailable/g)||[]).length,productionChanged:false,notificationsSent:false};
+writeFileSync('preview/newsroom-sort/public/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
