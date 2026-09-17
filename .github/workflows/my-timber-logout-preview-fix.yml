@@ -5,11 +5,17 @@ on:
     paths: ['.github/workflows/my-timber-logout-preview-fix.yml']
 permissions:
   contents: write
+concurrency:
+  group: my-timber-logout-preview-only
+  cancel-in-progress: false
 jobs:
-  patch:
+  patch-and-prove:
     if: github.ref == 'refs/heads/preview/stabilisation-life-back-20260917'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 35
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -71,12 +77,66 @@ jobs:
           assert(memberChromeClient.includes("location.replace('/member-login')"));
           console.log('PASS: one visible shared logout control, existing auth endpoint, explicit sign-in redirect.');
           NODE
-      - name: Commit preview-only change and trigger the existing full isolated preview gate
+      - name: Commit source changes to preview branch only
         run: |
           set -euo pipefail
-          printf '\n# logout-preview-proof-trigger-20260917\n' >> .github/workflows/stabilisation-life-back-preview.yml
           git config user.name 'SHIFT preview verification'
           git config user.email 'it@shiftsometimber.co.uk'
-          git add member-experience/chrome.mjs preview/stabilisation/browser-proof.mjs .github/workflows/stabilisation-life-back-preview.yml
-          git commit -m 'Preview only: expose and prove My Timber logout'
-          git push origin HEAD:refs/heads/preview/stabilisation-life-back-20260917
+          git add member-experience/chrome.mjs preview/stabilisation/browser-proof.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Preview only: expose and prove My Timber logout'
+            git push origin HEAD:refs/heads/preview/stabilisation-life-back-20260917
+          fi
+          echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Require preview credential only
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Member regression gates
+        run: |
+          node --test --test-reporter=tap member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/my-timber-analytics-privacy.test.mjs
+      - name: Prepare fictional preview and verify preserved public shell
+        run: |
+          node preview/stabilisation/prepare.mjs
+          node preview/stabilisation/verify-public.mjs
+      - name: Provision separately named preview databases only
+        run: node preview/stabilisation/provision.mjs
+      - name: Deploy only isolated preview Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');
+          assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
+          assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.equal(c.workers_dev,true);
+          NODE
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/shift-preview-deploy.txt" 2>&1
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const log=fs.readFileSync(process.env.RUNNER_TEMP+'/shift-preview-deploy.txt','utf8');
+          const match=log.match(/https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev/);if(!match)throw Error('Isolated preview URL not returned');
+          fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+match[0]+'\n');
+          console.log('PREVIEW ONLY',match[0]);
+          NODE
+      - name: Install Chromium and WebKit
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+      - name: Prove visible logout revokes session and full Life Back loop still works
+        run: node preview/stabilisation/browser-proof.mjs
+      - name: Upload sanitised evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-logout-preview-evidence
+          retention-days: 14
+          path: |
+            work/staging/generated/public-proof.json
+            work/staging/generated/review-evidence/**
+          if-no-files-found: warn
