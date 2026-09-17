@@ -9,6 +9,9 @@ on:
       - ".github/workflows/cloudflare-production-promote.yml"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
+      - "public-navigation-policy.mjs"
+      - "public-ticker-preservation.mjs"
+      - "tests/public-ticker-*.test.mjs"
       - "radar-live-email-v1.js"
       - "radar-scheduled-scan-v1.js"
       - "tests/radar-live-email-v1.test.mjs"
@@ -221,7 +224,7 @@ jobs:
       - name: Verify Medicines Watch evidence, monitor and public isolation
         run: node --test medicines-watch/*.test.mjs
       - name: Verify Radar retrieval, publication edition, dates and correction races
-        run: node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
+        run: node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/public-ticker-motion.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
       - name: Verify owner-authorised automatic news and human-decision preservation
         run: node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs
       - name: Verify newsroom publication ordering and combined controls

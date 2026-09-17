@@ -1,5 +1,5 @@
 // Owner's 17 September 2026 instruction supersedes earlier ticker allowlists.
-export const tickerVersion = 'public-news-20260917-r3';
+export const tickerVersion = 'public-news-20260917-r4';
 export const tickerAsset = '/assets/public-news-ticker-v1.js';
 export const normalizePublicPath = path => {
   const normalized = path.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
@@ -25,31 +25,25 @@ export function myTimberRedirect(request) {
   if (url.hostname === 'shiftsometimber.co.uk' || url.hostname === 'www.shiftsometimber.co.uk') url.protocol = 'https:';
   return new Response(null, {status: 301, headers: {Location: url.href, 'Cache-Control': 'public, max-age=300'}});
 }
-const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/medicine-news">Medicine news and evidence →</a></span></div></div><button type="button" class="shift-news-pause" aria-label="Pause news ticker" aria-pressed="false" hidden>Pause</button></section>`;
+const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/medicine-news">Medicine news and evidence →</a></span></div></div></section>`;
 export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker]){display:none!important}
-#shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#707762;color:#050505;border-block:1px solid #050505;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
-#shift-public-news a{color:#050505;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible,#shift-public-news button:focus-visible{outline:2px solid #050505;outline-offset:3px}
+#shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#707762;color:#050505;border-block:1px solid #050505;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
+#shift-public-news a{color:#050505;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible{outline:2px solid #050505;outline-offset:3px}
 #shift-public-news .shift-news-label{font-weight:900;white-space:nowrap}#shift-public-news .shift-news-window{min-width:0;overflow:hidden}#shift-public-news .shift-news-track{display:flex;width:max-content;max-width:none}#shift-public-news .shift-news-copy{display:flex;align-items:center;gap:24px;white-space:nowrap;padding-right:24px;flex-shrink:0}
 #shift-public-news:not([data-ready]) .shift-news-track{width:auto}#shift-public-news:not([data-ready]) .shift-news-copy{flex:1;min-width:0;max-width:100%;padding:0;white-space:normal;flex-wrap:wrap;gap:8px 18px}
-#shift-public-news[data-ready] .shift-news-track{animation:shiftPublicNews 90s linear infinite}#shift-public-news:hover .shift-news-track,#shift-public-news:focus-within .shift-news-track,#shift-public-news[data-paused] .shift-news-track{animation-play-state:paused}
-#shift-public-news .shift-news-pause{font:inherit;cursor:pointer;border:1px solid #050505;border-radius:4px;padding:4px 8px;background:#e7e3da;color:#050505}#shift-public-news [hidden]{display:none!important}
+#shift-public-news[data-ready] .shift-news-track{animation:shiftPublicNews 90s linear infinite}#shift-public-news .shift-news-track:has(a:focus-visible){animation-play-state:paused}
+@media(hover:hover) and (pointer:fine){#shift-public-news .shift-news-window:hover .shift-news-track{animation-play-state:paused}}
+#shift-public-news [hidden]{display:none!important}
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
-@media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-pause{grid-column:2;grid-row:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
-@media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}#shift-public-news .shift-news-pause{display:none}}`;
+@media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr);gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}}`;
 // Keep browser code literal: Worker bundlers add private helpers to function.toString().
 export const tickerClient = String.raw`(function bootTicker() {
   const start = async () => {
     const strip = document.getElementById('shift-public-news');
     if (!strip || strip.dataset.started) return;
     strip.dataset.started = 'true';
-    const track = strip.querySelector('.shift-news-track'), button = strip.querySelector('button');
-    button.addEventListener('click', () => {
-      const paused = !strip.hasAttribute('data-paused');
-      strip.toggleAttribute('data-paused', paused);
-      button.setAttribute('aria-pressed', String(paused));
-      button.setAttribute('aria-label', paused ? 'Resume news ticker' : 'Pause news ticker');
-      button.textContent = paused ? 'Resume' : 'Pause';
-    });
+    const track = strip.querySelector('.shift-news-track');
     try {
       const response = await fetch('/v1/radar/ticker', {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(8000)});
       const body = await response.json();
@@ -76,7 +70,7 @@ export const tickerClient = String.raw`(function bootTicker() {
       if (edition) {strip.querySelector('.shift-news-label').textContent = 'Published in SHIFT'; strip.dataset.edition = edition.edition_id;}
       const duplicate = copy.cloneNode(true); duplicate.setAttribute('aria-hidden','true');
       duplicate.querySelectorAll('a').forEach(link => link.tabIndex = -1);
-      track.replaceChildren(copy, duplicate); strip.setAttribute('data-ready', ''); button.hidden = false;
+      track.replaceChildren(copy, duplicate); strip.setAttribute('data-ready', '');
       const fit = () => {
         const width = strip.querySelector('.shift-news-window').clientWidth;
         copy.style.minWidth = duplicate.style.minWidth = width + 'px';
