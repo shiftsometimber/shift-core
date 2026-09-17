@@ -1,0 +1,36 @@
+name: Contrast root diagnostics 2
+on:
+  push:
+    branches: [audit/full-live-contrast-20260917]
+    paths: ['.github/workflows/contrast-root-diagnostics-2.yml']
+permissions:
+  contents: read
+jobs:
+  trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: |
+          mkdir -p diag && cd diag
+          npm init -y >/dev/null
+          npm install playwright@1.58.2 --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Trace remaining shared severe clashes
+        run: |
+          cat > diag/run.mjs <<'JS'
+          import{chromium}from'playwright';import fs from'node:fs';
+          const origin='https://shiftsometimber.co.uk';
+          const paths=['/mental-health/after-a-mental-health-crisis','/articles/air-fryer-meals-men','/community','/compare-weight-loss-treatments','/comparisons/europe/headline-price-vs-true-cost','/comparisons/europe/overseas-surgery-complications','/contact','/decision-centre','/decision-readiness','/decision-readiness-methodology','/downloads-resources','/explore-knowledge','/faq','/foundayo','/founding-members','/future-medicines-comparison','/glp1-knowledge-centre','/nhs-bmi-rules-2025','/strength-training-for-men-over-40','/take-it-to-your-gp'];
+          const b=await chromium.launch(),ctx=await b.newContext({viewport:{width:390,height:844}}),out=[];const page=await ctx.newPage();
+          for(const p of paths){await page.goto(origin+p,{waitUntil:'domcontentloaded',timeout:25000});await page.waitForTimeout(180);out.push(await page.evaluate(()=>{function rgb(s){const m=String(s).match(/rgba?\((\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)(?:[ ,\/]+(\d+(?:\.\d+)?))?\)/i);return m?{r:+m[1],g:+m[2],b:+m[3],a:m[4]==null?1:+m[4]}:null}function lum(c){const f=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b)}function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}function bgFor(el){let cur=el,bg={r:255,g:255,b:255,a:1},source='default';while(cur){const c=rgb(getComputedStyle(cur).backgroundColor);if(c&&c.a>.01){bg=c;source=cur;break}cur=cur.parentElement}return{bg,source}}function vis(el){const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&+s.opacity>.02&&r.width>1&&r.height>1}function txt(el){let t='';for(const n of el.childNodes)if(n.nodeType===3)t+=' '+n.textContent;return t.replace(/\s+/g,' ').trim()}const bad=[];for(const el of document.querySelectorAll('body *')){if(!vis(el))continue;const text=txt(el);if(!text)continue;const fg=rgb(getComputedStyle(el).color),{bg}=bgFor(el);if(!fg||ratio(fg,bg)>=2)continue;const chain=[];for(let n=el;n&&n!==document.body&&chain.length<6;n=n.parentElement)chain.push(n.tagName.toLowerCase()+(n.id?'#'+n.id:'')+(n.className&&typeof n.className==='string'?'.'+n.className.trim().split(/\s+/).slice(0,6).join('.') :''));bad.push({text:text.slice(0,100),ratio:+ratio(fg,bg).toFixed(2),chain});if(bad.length>=35)break}return{url:location.href,title:document.title,bad}}));}
+          fs.writeFileSync('diag/roots2.json',JSON.stringify(out,null,2));console.log(JSON.stringify(out,null,2));await b.close();
+          JS
+          node diag/run.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contrast-root-diagnostics-2
+          retention-days: 7
+          path: diag/roots2.json
