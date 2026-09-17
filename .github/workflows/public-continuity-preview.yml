@@ -1,0 +1,30 @@
+name: Public Continuity preview
+on:
+  push:
+    branches: [fix/public-continuity-20260917]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify public content, exact preservation and existing repairs
+        run: node --test tests/public-continuity.test.mjs tests/public-navigation-policy.test.mjs tests/public-audit-repair.test.mjs tests/lounge-public-chrome.test.mjs tests/seo-release-integrity.test.mjs member-experience/tests/*.test.mjs medicines-watch/*.test.mjs
+      - name: Publish the scoped read-only preview
+        run: npx wrangler deploy --config preview/public-continuity/wrangler.jsonc
+      - name: Check rendered documents, related links and additive sitemap
+        run: node scripts/verify-public-continuity-live.mjs https://shift-public-continuity-preview.matobrien.workers.dev
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-continuity-preview-evidence
+          path: public-continuity-live-proof.json
