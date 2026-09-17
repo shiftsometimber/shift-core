@@ -1,5 +1,5 @@
 // Owner's 17 September 2026 instruction supersedes earlier ticker allowlists.
-export const tickerVersion = 'public-news-20260917';
+export const tickerVersion = 'public-news-20260917-r2';
 export const tickerAsset = '/assets/public-news-ticker-v1.js';
 export const normalizePublicPath = path => {
   const normalized = path.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
