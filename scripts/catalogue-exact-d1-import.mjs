@@ -26,6 +26,11 @@ export async function buildCatalogueImport(rows,release=fixedRelease){
   if(release.status!=='approved')throw Error('catalogue_release_not_approved');
   const additions=await validateCatalogueRelease(release);
   const snapshot=await validateCatalogueSnapshot(release,rows);
+  // A fully published release needs no import session. Validation above still
+  // rejects changed originals and conflicting additions; the caller must take
+  // a fresh after-snapshot and run the exact verifier even when SQL is empty.
+  const present=new Set(snapshot.map(row=>row.id));
+  if(additions.every(row=>present.has(row.id)))return [];
   const sql=[`SELECT CASE WHEN (SELECT COUNT(*) FROM structured_content WHERE ${scope})=${snapshot.length} THEN 1 ELSE json('catalogue_snapshot_count_drift') END;`];
   for(const part of chunks(snapshot))sql.push(`SELECT CASE WHEN (SELECT COUNT(*) FROM json_each(${quote(JSON.stringify(part))}) e JOIN structured_content s ON s.id=json_extract(e.value,'$.id') WHERE ${equal})=${part.length} THEN 1 ELSE json('catalogue_snapshot_drift') END;`);
   const id=`CASE WHEN EXISTS(SELECT 1 FROM structured_content s WHERE s.id=json_extract(e.value,'$.id') AND NOT (${equal})) THEN json('catalogue_addition_collision') ELSE json_extract(e.value,'$.id') END`;
@@ -50,7 +55,10 @@ export async function verifyCatalogueImport(beforeRows,afterRows,release=fixedRe
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const [mode,beforeFile,afterFile]=process.argv.slice(2);
-  if(mode==='--sql')process.stdout.write((await buildCatalogueImport(readSnapshot(beforeFile))).join('\n')+'\n');
+  if(mode==='--sql'){
+    const statements=await buildCatalogueImport(readSnapshot(beforeFile));
+    if(statements.length)process.stdout.write(statements.join('\n')+'\n');
+  }
   else if(mode==='--verify'){
     const report=await verifyCatalogueImport(readSnapshot(beforeFile),readSnapshot(afterFile));
     if(process.env.CATALOGUE_PUBLICATION_REPORT)fs.writeFileSync(process.env.CATALOGUE_PUBLICATION_REPORT,JSON.stringify(report,null,2)+'\n');

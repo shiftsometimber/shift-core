@@ -1,0 +1,38 @@
+{
+  "reviewedAt": "2026-09-17T05:45:00Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "captureRun": "https://github.com/shiftsometimber/shift-core/actions/runs/35186880485",
+  "captureCommit": "23f667ebbdbb1e3c077abc62bf314c10a0d1748b",
+  "captureArtifact": "watch-source-review-capture",
+  "scope": "Two access-source baselines. No clinical capability, stock, price or prescribing flag changed. Catalogue-wide review date retained.",
+  "sources": [
+    {
+      "id": "mounjaro-nhs",
+      "url": "https://www.nhs.uk/medicines/tirzepatide/",
+      "replaces": "https://www.england.nhs.uk/long-read/interim-commissioning-guidance-nice-ta1026-tirzepatide/",
+      "replacementReason": "The detailed NHS England document returns a robot challenge. The NHS medicine page is a separately published primary source for the narrower access statement; the challenge is not treated as successful retrieval.",
+      "retrievedAt": "2026-09-17T05:44:14.724Z",
+      "httpStatus": 200,
+      "bytes": 50888,
+      "responseSha256": "fad3968708c7b4a54c510bf7b7f4609e7ae6e9b2596d9908fc12d59b25c40ddb",
+      "reviewedFingerprint": "0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff",
+      "withdrawn": false,
+      "reviewedSections": ["Introduction", "What tirzepatide is for"],
+      "assessment": "NHS information confirms prescription-only access and differing eligibility through a doctor or specialist weight-management service. The card now states that narrower supported distinction; it no longer presents this replacement as evidence for detailed rollout phasing.",
+      "wordingChanged": true
+    },
+    {
+      "id": "wegovy-tablet-private",
+      "url": "https://onlinedoctor.asda.com/uk/wegovy-pill.html",
+      "retrievedAt": "2026-09-17T05:44:15.270Z",
+      "httpStatus": 200,
+      "bytes": 317186,
+      "responseSha256": "d6b897f95fd915893d0c36061631bab01d599a11d74f87106ba1d9dd5af1d338",
+      "reviewedFingerprint": "351c85bcb8ae82aa136498bdbe3913d9e042a1185274f5c4d029132f1d776d82",
+      "withdrawn": false,
+      "reviewedSections": ["Where can I buy the Wegovy pill?", "Can I get the Wegovy pill on the NHS?", "Are Wegovy pills available in the UK right now?"],
+      "assessment": "The provider describes its own private prescription service after assessment. This supports the existing qualified private-provision statement, without promising SHIFT supply or individual stock. Provider predictions about future NHS access and comparative efficacy are not adopted. NHS wording retains separate MHRA evidence.",
+      "wordingChanged": false
+    }
+  ]
+}

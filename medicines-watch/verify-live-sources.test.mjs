@@ -7,7 +7,7 @@ const observation = () => sources.map(({id, reviewedAt}) => ({id, reviewedAt, la
 
 test('live verification accepts separately reviewed sources without advancing other dates', () => {
   const observed = observation();
-  assert.equal(observed.filter(source => source.reviewedAt !== REVIEWED_AT).length, 6);
+  assert.equal(observed.filter(source => source.reviewedAt !== REVIEWED_AT).length, 8);
   verifyLiveSourceReviews(observed, sources);
 });
 
