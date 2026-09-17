@@ -56,3 +56,16 @@ test('article meaning is shown once when the reviewed body already contains it',
   }
  }finally{globalThis.fetch=original}
 });
+test('every newsroom Organization record carries the shared logo',async()=>{
+ const original=globalThis.fetch;globalThis.fetch=async()=>new Response(shell);
+ try{
+  const article=row(4,'England','A schema test');const env={DB:{prepare:()=>({all:async()=>({results:[article]})})}};
+  const html=await (await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news/article-4'),env)).text();
+  const schemas=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match=>JSON.parse(match[1]));
+  const articleSchema=schemas.find(schema=>schema['@type']==='Article');assert.ok(articleSchema);
+  for(const organization of [articleSchema.author,articleSchema.publisher]){
+   assert.equal(organization['@type'],'Organization');
+   assert.equal(organization.logo?.url,'https://shiftsometimber.co.uk/assets/shift-wordmark.png');
+  }
+ }finally{globalThis.fetch=original}
+});

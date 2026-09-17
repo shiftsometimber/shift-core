@@ -7,6 +7,7 @@ import {renderShiftHealthDocument,healthSlugs} from './shift-health-public.mjs';
 import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
+import {withPublicSeoCloseout} from './public-seo-closeout.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
@@ -931,7 +932,7 @@ const worker = {
     const newsroomPage = await radarNewsPageRoutes(request, env);
     if (newsroomPage) return rewritePublicLoungeChrome(newsroomPage);
     if (publicHost && (request.method === "GET" || request.method === "HEAD") && !path.startsWith("/v1/") && !path.startsWith("/member/")) {
-      return withMedicinesWatchEntry(await withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await act2bPagesContent(request)), request), request), request);
+      return withMedicinesWatchEntry(await withEditorialResources(await withNewsroomReading(await rewritePublicLoungeChrome(await withPublicSeoCloseout(await act2bPagesContent(request), request)), request), request), request);
     }
     let fallback = await rewritePublicLoungeChrome(
       await hq.fetch(request, env, ctx),

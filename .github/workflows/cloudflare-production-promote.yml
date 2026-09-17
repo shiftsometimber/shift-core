@@ -31,6 +31,8 @@ on:
       - "public-continuity*.mjs"
       - "tests/public-continuity.test.mjs"
       - "scripts/verify-public-continuity-live.mjs"
+      - "public-seo-closeout.mjs"
+      - "scripts/verify-seo-closeout-live.mjs"
       - "medicines-watch/**"
       - "knowledge-editorial-v1.js"
       - "evidence-desk-hq-read-v1.js"
@@ -216,7 +218,7 @@ jobs:
       - name: Prove Ask Timber handles every explicit request part
         run: node --test ask-timber-multi-intent-gate.mjs
       - name: Block SEO deployment regressions
-        run: node --test tests/seo-release-integrity.test.mjs
+        run: node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs
       - name: Prove Health rendering, canonical uniqueness and public endpoint security
         run: node --test tests/testosterone-public.test.mjs tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-continuity.test.mjs
       - name: Prove My Journey end to end before promotion
@@ -340,6 +342,8 @@ jobs:
         run: node medicines-watch/verify-live.mjs
       - name: Prove repaired access sources are reviewed and current on live traffic
         run: node scripts/verify-watch-access-closeout.mjs
+      - name: Prove the complete SEO closeout on live traffic
+        run: node scripts/verify-seo-closeout-live.mjs
       - name: Retain public preservation evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -353,6 +357,7 @@ jobs:
             catalogue-publication-result.json
             newsroom-publication-proof.json
             newsroom-order-proof.json
+            seo-closeout-live-proof.json
       - name: Prove deployed public audit repairs
         run: node scripts/verify-public-audit-live.mjs
       - name: Prove deployed Progress client matches current Git authority
