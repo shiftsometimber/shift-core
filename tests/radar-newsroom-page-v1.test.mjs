@@ -50,7 +50,9 @@ test('article meaning is shown once when the reviewed body already contains it',
    const env={DB:{prepare:()=>({all:async()=>({results:[article]})})}};
    const html=await (await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news/article-3'),env)).text();
    assert.equal(html.split(content.why_it_matters_to_uk).length-1,1);
-   assert.equal(html.includes('<h2>What this means in the UK</h2>'),!alreadyIncluded);
+   assert.equal((html.match(/data-shift-take/g)||[]).length,1);
+   assert.ok(html.includes('<h2>SHIFT’s take</h2>'));
+   assert.ok(html.includes('Original reporting.'));
   }
  }finally{globalThis.fetch=original}
 });
