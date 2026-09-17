@@ -19,6 +19,11 @@ test('live confirmation contains headline, summary, SHIFT take, publication date
 test('repeated enqueue and competing send attempts deliver only one notice',async()=>{
  const {env,sent,fetcher}=await fixture();await queueLiveArticleEmail(env,1);assert.equal((await queueLiveArticleEmail(env,1)).queued,false);await Promise.all([deliverLiveArticleEmail(env,1,{fetcher}),deliverLiveArticleEmail(env,1,{fetcher})]);await deliverLiveArticleEmail(env,1,{fetcher});assert.equal(sent.length,1);
 });
+test('inline citations remain readable in the email and match the rendered live interpretation',async()=>{
+ const {env,DB,pkg,sent}=await fixture();pkg.why_it_matters_to_uk='Read the [original source](https://example.test/source).';await DB.prepare('UPDATE radar_events SET content_package_json=? WHERE id=1').bind(JSON.stringify(pkg)).run();await queueLiveArticleEmail(env,1);
+ const fetcher=async()=>new Response('<article><h1>'+pkg.headline+'</h1><section data-shift-take>Read the <a href="https://example.test/source">original source</a>.</section></article>');
+ assert.equal((await deliverLiveArticleEmail(env,1,{fetcher})).sent,true);assert.match(sent[0].text,/original source \(https:\/\/example.test\/source\)/);
+});
 test('drafts, failed publication and notification-suppressed previews never email',async()=>{
  for(const status of ['ready_for_review','approved','publish_failed']){const {env,sent}=await fixture({status});assert.equal((await queueLiveArticleEmail(env,1)).queued,false);assert.equal(sent.length,0)}
  const {env,sent}=await fixture();env.RADAR_SUPPRESS_NOTIFICATIONS=true;assert.equal((await queueLiveArticleEmail(env,1)).queued,false);assert.equal((await runLiveArticleEmails(env)).sent,0);assert.equal(sent.length,0);

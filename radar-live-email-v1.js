@@ -3,6 +3,7 @@ const parse=(s,f={})=>{try{return JSON.parse(s)}catch{return f}};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const plain=s=>String(s||'').replace(/\[([^\]]+)\]\((https:\/\/[^)]+)\)/g,'$1 ($2)').replace(/^#{1,6}\s+/gm,'').replace(/\*\*/g,'').trim();
 const html=s=>esc(plain(s)).replace(/\n/g,'<br>');
+const comparable=s=>String(s).replace(/\s+/g,' ').replace(/\s+([.,;:!?])/g,'$1').trim();
 const enabled=env=>env.RADAR_NOTIFICATION_MODE==='publication_only'&&!env.RADAR_SUPPRESS_NOTIFICATIONS;
 const recipient=env=>String(env.RADAR_PUBLICATION_EMAIL_TO||'').trim();
 const iso=()=>new Date().toISOString();
@@ -43,7 +44,7 @@ export async function deliverLiveArticleEmail(env,id,{fetcher=fetch}={}){
   const message=liveArticleEmail(row),response=await fetcher(message.url,{redirect:'error',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});
   if(!response.ok)throw Error('public_page_http_'+response.status);
   const body=await response.text(),text=body.replace(/<[^>]*>/g,' ').replace(/&#39;|&apos;/g,"'").replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ');
-  if(!body.includes('data-shift-take')||!text.includes(message.title)||!text.includes(message.take.replace(/\s+/g,' ').replace(/ \(https:\/\/[^)]+\)/g,'')))throw Error('public_page_copy_not_ready');
+  if(!body.includes('data-shift-take')||!comparable(text).includes(comparable(message.title))||!comparable(text).includes(comparable(message.take.replace(/ \(https:\/\/[^)]+\)/g,''))))throw Error('public_page_copy_not_ready');
   if(await pendingSourceChange(env.DB,id))throw Error('source_changed_before_email');
   const ready=await env.DB.prepare("UPDATE radar_live_email SET status='sending' WHERE event_id=? AND claim_token=? AND status='checking' AND EXISTS (SELECT 1 FROM radar_events e WHERE e.id=radar_live_email.event_id AND e.status='published' AND e.content_package_json=radar_live_email.content_json AND e.source_evidence_json=radar_live_email.evidence_json)").bind(id,token).run();
   if(!ready.meta?.changes)return{sent:false,reason:'article_changed_before_email'};
