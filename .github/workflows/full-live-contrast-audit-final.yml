@@ -1,0 +1,48 @@
+name: Final 532-page live contrast gate
+on:
+  push:
+    branches: [audit/full-live-contrast-20260917]
+    paths: ['.github/workflows/full-live-contrast-audit-final.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Install Chromium
+        run: |
+          mkdir -p audit/out
+          cd audit
+          npm init -y >/dev/null
+          npm install playwright@1.58.2 --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Crawl complete live estate at desktop and iPhone widths
+        run: |
+          cat > audit/contrast-final.mjs <<'JS'
+          import {chromium} from 'playwright';
+          import fs from 'node:fs';
+          const ORIGIN='https://shiftsometimber.co.uk';
+          const forced=['/','/start-here','/programme','/shift-health','/treatment-centre','/shift-newsroom','/member-login','/shop','/about','/contact','/help','/explore-knowledge','/shift-for-work'];
+          async function getText(url){const r=await fetch(url,{headers:{'user-agent':'SHIFT-Contrast-Final/2026-09-17'}});if(!r.ok)throw new Error(`${url} -> ${r.status}`);return r.text()}
+          async function sitemapUrls(){const seen=new Set(),urls=new Set();async function walk(url,d=0){if(seen.has(url)||d>2)return;seen.add(url);const xml=await getText(url);const locs=[...xml.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/gi)].map(m=>m[1].trim().replaceAll('&amp;','&'));if(/<sitemapindex\b/i.test(xml)){for(const loc of locs)if(loc.startsWith(ORIGIN))await walk(loc,d+1)}else for(const loc of locs)if(loc.startsWith(ORIGIN))urls.add(loc)}await walk(ORIGIN+'/sitemap.xml');forced.forEach(p=>urls.add(ORIGIN+p));return[...urls].sort()}
+          const inspect=()=>{function rgb(s){const m=String(s).match(/rgba?\((\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)(?:[ ,\/]+(\d+(?:\.\d+)?))?\)/i);return m?{r:+m[1],g:+m[2],b:+m[3],a:m[4]==null?1:+m[4]}:null}function lum(c){const f=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b)}function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}function blend(f,b){const a=f.a??1;return{r:f.r*a+b.r*(1-a),g:f.g*a+b.g*(1-a),b:f.b*a+b.b*(1-a),a:1}}function visible(el){const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&+s.opacity>.02&&r.width>1&&r.height>1&&r.bottom>0&&r.right>0}function ownText(el){let t='';for(const n of el.childNodes)if(n.nodeType===3)t+=' '+n.textContent;if(!t.trim()&&el.matches('input,textarea'))t=el.value||el.placeholder||'';if(!t.trim()&&el.matches('select'))t=el.selectedOptions?.[0]?.textContent||'';return t.replace(/\s+/g,' ').trim()}function bg(el){let n=el,complex=false;while(n){const s=getComputedStyle(n);if(s.backgroundImage&&s.backgroundImage!=='none')complex=true;const c=rgb(s.backgroundColor);if(c&&c.a>.01)return{c:c.a<1?blend(c,{r:255,g:255,b:255,a:1}):c,complex,source:n};n=n.parentElement}return{c:{r:255,g:255,b:255,a:1},complex,source:null}}function sel(el){if(el.id)return'#'+el.id;let s=el.tagName.toLowerCase();if(el.classList.length)s+='.'+[...el.classList].slice(0,4).join('.');return s}const severe=[],exact=[],aa=[];for(const el of document.querySelectorAll('body *')){if(!visible(el))continue;const text=ownText(el);if(!text)continue;const style=getComputedStyle(el),fg=rgb(style.color),B=bg(el);if(!fg||B.complex)continue;const eff=fg.a<1?blend(fg,B.c):fg,cr=ratio(eff,B.c),size=parseFloat(style.fontSize)||16,weight=parseInt(style.fontWeight)||400,large=size>=24||(size>=18.66&&weight>=700),required=large?3:4.5;const row={selector:sel(el),text:text.slice(0,140),ratio:+cr.toFixed(2),foreground:style.color,background:B.source?getComputedStyle(B.source).backgroundColor:'default'};if(cr<required)aa.push(row);if(cr<2)severe.push(row);if(cr<=1.01)exact.push(row)}return{severe:severe.slice(0,50),exact:exact.slice(0,50),severeCount:severe.length,exactCount:exact.length,aaCount:aa.length,safety:document.querySelector('style[data-shift-public-contrast]')?.getAttribute('data-shift-public-contrast')||null,guard:document.querySelector('script[data-shift-contrast-guard]')?.getAttribute('data-shift-contrast-guard')||null}};
+          const browser=await chromium.launch(),urls=await sitemapUrls(),viewports=[['desktop',{width:1440,height:1000}],['iphone',{width:390,height:844}]],report={generatedAt:new Date().toISOString(),urlCount:urls.length,failures:[],viewports:{}};
+          for(const[label,viewport]of viewports){const ctx=await browser.newContext({viewport,ignoreHTTPSErrors:true});await ctx.route(/\.(?:png|jpe?g|webp|gif|svg|ico|woff2?|ttf|mp4)(?:\?.*)?$/i,r=>r.abort());const results=new Array(urls.length);let next=0;async function worker(){const page=await ctx.newPage();while(true){const i=next++;if(i>=urls.length)break;const url=urls[i];try{const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:25000});await page.waitForTimeout(650);results[i]={url,status:response?.status()??null,...await page.evaluate(inspect)}}catch(e){results[i]={url,error:String(e.message||e)};report.failures.push({viewport:label,url,error:String(e.message||e)})}}await page.close()}await Promise.all(Array.from({length:6},worker));report.viewports[label]={pages:results,severePages:results.filter(x=>x?.severeCount>0).length,severe:results.reduce((n,x)=>n+(x?.severeCount||0),0),exactPages:results.filter(x=>x?.exactCount>0).length,exact:results.reduce((n,x)=>n+(x?.exactCount||0),0),aaPages:results.filter(x=>x?.aaCount>0).length,aaIssues:results.reduce((n,x)=>n+(x?.aaCount||0),0),safetyPages:results.filter(x=>x?.safety==='public-contrast-20260917-r2').length,guardPages:results.filter(x=>x?.guard==='public-contrast-20260917-r2').length};await ctx.close()}
+          await browser.close();
+          const summary={urlCount:report.urlCount,failures:report.failures.length,desktop:{severePages:report.viewports.desktop.severePages,severe:report.viewports.desktop.severe,exactPages:report.viewports.desktop.exactPages,exact:report.viewports.desktop.exact,aaPages:report.viewports.desktop.aaPages,aaIssues:report.viewports.desktop.aaIssues,safetyPages:report.viewports.desktop.safetyPages,guardPages:report.viewports.desktop.guardPages},iphone:{severePages:report.viewports.iphone.severePages,severe:report.viewports.iphone.severe,exactPages:report.viewports.iphone.exactPages,exact:report.viewports.iphone.exact,aaPages:report.viewports.iphone.aaPages,aaIssues:report.viewports.iphone.aaIssues,safetyPages:report.viewports.iphone.safetyPages,guardPages:report.viewports.iphone.guardPages}};
+          fs.writeFileSync('audit/out/final-report.json',JSON.stringify(report,null,2));fs.writeFileSync('audit/out/final-summary.json',JSON.stringify(summary,null,2));console.log(JSON.stringify(summary,null,2));
+          if(report.failures.length||summary.desktop.severe||summary.desktop.exact||summary.iphone.severe||summary.iphone.exact||summary.desktop.safetyPages!==report.urlCount||summary.iphone.safetyPages!==report.urlCount||summary.desktop.guardPages!==report.urlCount||summary.iphone.guardPages!==report.urlCount)process.exitCode=1;
+          JS
+          node audit/contrast-final.mjs | tee audit/out/final-summary.txt
+      - name: Upload final evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-final-532-page-contrast-gate
+          retention-days: 14
+          path: audit/out/**
+          if-no-files-found: error
