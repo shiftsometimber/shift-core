@@ -1,0 +1,22 @@
+name: Testosterone hub preview only
+on:
+  push:
+    branches: [preview/testosterone-hub-20260917]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/testosterone-hub-preview.test.mjs
+      - name: Deploy isolated preview without production bindings
+        run: npx wrangler deploy --config preview/testosterone-hub/wrangler.jsonc
