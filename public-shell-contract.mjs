@@ -1,0 +1,269 @@
+// Accepted public shell captured from production on 17 September 2026.
+// Presentation contract only. No page-specific sizing, contact/auth changes or ticker motion changes.
+export const publicShellVersion='public-shell-20260917-preview1';
+export const publicHeader="<header data-header-v2 data-header-style=\"underline\" class=\"site-header\"><div class=\"site-wrap header-inner\">\n<a aria-label=\"Shift Some Timber home\" class=\"site-logo\" href=\"/\"><img alt=\"Shift Some Timber — Helping ordinary blokes feel like themselves again.\" src=\"/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png?v=42c\"/></a>\n<nav aria-label=\"Primary\" class=\"desktop-nav\"><a href=\"/start-here\">Start Here</a><a href=\"/programme\">The Programme</a><a href=\"/shift-health\">SHIFT Health</a><a href=\"/treatment-centre\">Treatments</a><a href=\"/member/dashboard\">My Timber</a></nav>\n<button aria-controls=\"site-drawer\" aria-expanded=\"false\" class=\"menu-trigger\" type=\"button\">Menu</button>\n</div></header>";
+export const publicDrawer="<aside data-header-v2 aria-label=\"Site menu\" class=\"site-drawer\" hidden id=\"site-drawer\"><div class=\"drawer-head\"><img alt=\"Shift Some Timber\" src=\"/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png?v=42c\"/><button aria-label=\"Close menu\" class=\"drawer-close\" type=\"button\">Close</button></div><nav><a href=\"/start-here\">Start Here</a><a href=\"/programme\">The Programme</a><a href=\"/shift-health\">SHIFT Health</a><a href=\"/treatment-centre\">Treatments</a><a href=\"/member/dashboard\">My Timber</a><a href=\"/about\">About</a><a href=\"/ask-timber\">Ask Timber</a><a href=\"/contact\">Contact</a><a href=\"/good-to-talk\">Good to Talk</a><a href=\"/help\">Help</a><a href=\"/how-are-you-feeling\">How are you feeling?</a><a href=\"/explore-knowledge\">Knowledge</a><a href=\"/shift-for-work\">SHIFT for Work</a><a href=\"/shift-newsroom\">SHIFT Newsroom</a><a href=\"/shop\">Timber Mill</a><a href=\"/work-with-us\">Work With Us</a></nav></aside>";
+export const publicFooter="<footer class=\"site-footer\"><div class=\"site-wrap\"><div class=\"footer-grid\"><section class=\"footer-brand\"><img alt=\"Shift Some Timber\" src=\"/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png?v=42b\"/><p>Helping ordinary blokes feel like themselves again.</p><p>Built by blokes. For blokes.</p><a href=\"mailto:hello@shiftsometimber.co.uk\">hello@shiftsometimber.co.uk</a><a href=\"tel:03303110981\">0330 311 0981</a></section><section><h2>Start</h2><a href=\"/start-here\">Start Here</a><a href=\"/programme\">The Programme</a><a href=\"/shift-health\">SHIFT Health</a><a href=\"/treatment-centre\">Treatments</a><a href=\"/how-are-you-feeling\">How are you feeling?</a></section><section><h2>Explore</h2><a href=\"/explore-knowledge\">Knowledge</a><a href=\"/ask-timber\">Ask Timber</a><a href=\"/shop\">Timber Mill</a><a href=\"/shift-newsroom\">SHIFT Newsroom</a></section><section><h2>Support</h2><a href=\"/member/dashboard\">My Timber</a><a href=\"/good-to-talk\">Good to Talk</a><a href=\"/contact\">Contact</a><a href=\"/help\">Help</a></section><section><h2>Trust</h2><a href=\"/editorial-standards\">Editorial standards</a><a href=\"/clinical-governance\">Clinical governance</a><a href=\"/expert-contributors\">Experts</a><a href=\"/medical-disclaimer\">Medical disclaimer</a></section><section><h2>Company</h2><a href=\"/about\">About</a><a href=\"/shift-for-work\">SHIFT for Work</a><a href=\"/work-with-us\">Work With Us</a></section></div><nav aria-label=\"Help and legal\" class=\"footer-legal-links\"><a href=\"/terms\">Terms</a><a href=\"/privacy\">Privacy</a><a href=\"/cookies\">Cookies</a><a href=\"/complaints\">Complaints</a></nav><div aria-label=\"Accessibility controls\" class=\"accessibility-controls\" id=\"a11yControls\"><strong>Accessibility</strong><button id=\"toggleLargeText\" type=\"button\">Larger text</button><button id=\"toggleMotion\" type=\"button\">Reduce motion</button></div><div class=\"footer-bottom\"><span>© 2026 Shift Some Timber Ltd (company no. 17393135).</span><span>General information—not individual medical advice.</span></div></div></footer>";
+export const relatedGuideGroups={
+  "/mens-mental-health": [
+    {
+      "title": "Weight, confidence and common questions",
+      "links": [
+        {
+          "path": "/mental-health/mental-health-and-weight",
+          "label": "Weight and mental health: connected, but not simple"
+        },
+        {
+          "path": "/mental-health/myths-men-mental-health",
+          "label": "Stuff we need to stop telling ourselves"
+        }
+      ]
+    }
+  ],
+  "/mental-health/getting-professional-help": [
+    {
+      "title": "Preparing for a conversation",
+      "links": [
+        {
+          "path": "/mental-health/what-will-gp-ask",
+          "label": "What will the GP ask me?"
+        },
+        {
+          "path": "/mental-health/first-therapy-session",
+          "label": "Your first therapy appointment"
+        },
+        {
+          "path": "/mental-health/prepare-for-therapy",
+          "label": "How to get more from therapy"
+        },
+        {
+          "path": "/mental-health/supporting-treatment-at-home",
+          "label": "What can family and partners actually do?"
+        }
+      ]
+    },
+    {
+      "title": "Finding and understanding talking support",
+      "links": [
+        {
+          "path": "/mental-health/self-refer-talking-therapy",
+          "label": "Can I refer myself for therapy?"
+        },
+        {
+          "path": "/mental-health/cbt-explained",
+          "label": "CBT without the jargon"
+        },
+        {
+          "path": "/mental-health/counselling-explained",
+          "label": "What actually happens in counselling?"
+        },
+        {
+          "path": "/mental-health/types-of-talking-therapy",
+          "label": "Therapy isn't one single thing"
+        },
+        {
+          "path": "/mental-health/therapy-confidentiality",
+          "label": "Is therapy confidential?"
+        },
+        {
+          "path": "/mental-health/therapy-waiting-lists",
+          "label": "What do I do while I'm waiting?"
+        },
+        {
+          "path": "/mental-health/private-therapy",
+          "label": "Going private for therapy"
+        },
+        {
+          "path": "/mental-health/choosing-a-therapist",
+          "label": "How do I choose a therapist?"
+        }
+      ]
+    },
+    {
+      "title": "Medicine questions to discuss with a professional",
+      "links": [
+        {
+          "path": "/mental-health/antidepressants-explained",
+          "label": "Antidepressants: the straightforward version"
+        },
+        {
+          "path": "/mental-health/starting-antidepressants",
+          "label": "I've been prescribed antidepressants — what now?"
+        },
+        {
+          "path": "/mental-health/antidepressant-side-effects",
+          "label": "Side effects: don't just suffer in silence"
+        },
+        {
+          "path": "/mental-health/stopping-antidepressants",
+          "label": "Don't just stop antidepressants overnight"
+        },
+        {
+          "path": "/mental-health/medication-and-weight",
+          "label": "What if my mental-health medication affects my weight?"
+        },
+        {
+          "path": "/mental-health/when-treatment-isnt-working",
+          "label": "What if I'm getting help and I'm still not better?"
+        },
+        {
+          "path": "/mental-health/mental-health-medication-myths",
+          "label": "Tablets aren't cheating"
+        }
+      ]
+    },
+    {
+      "title": "Support around work",
+      "links": [
+        {
+          "path": "/mental-health/occupational-health-mental-health",
+          "label": "Can work help?"
+        },
+        {
+          "path": "/mental-health/sick-note-mental-health",
+          "label": "What if I need time off work?"
+        }
+      ]
+    }
+  ],
+  "/comparison-centre": [
+    {
+      "title": "Existing medicine comparisons",
+      "links": [
+        {
+          "path": "/comparisons/medications/mounjaro-vs-orlistat",
+          "label": "Mounjaro vs Orlistat"
+        },
+        {
+          "path": "/comparisons/medications/mounjaro-vs-saxenda",
+          "label": "Mounjaro vs Saxenda"
+        },
+        {
+          "path": "/comparisons/medications/mounjaro-vs-wegovy-tablets",
+          "label": "Mounjaro vs Wegovy Tablets"
+        },
+        {
+          "path": "/comparisons/medications/ozempic-vs-wegovy",
+          "label": "Ozempic vs Wegovy"
+        },
+        {
+          "path": "/comparisons/medications/saxenda-vs-orlistat",
+          "label": "Saxenda vs Orlistat"
+        },
+        {
+          "path": "/comparisons/medications/wegovy-injection-vs-tablets",
+          "label": "Wegovy Injection vs Wegovy Tablets"
+        },
+        {
+          "path": "/comparisons/medications/wegovy-vs-orlistat",
+          "label": "Wegovy vs Orlistat"
+        },
+        {
+          "path": "/comparisons/medications/wegovy-vs-saxenda",
+          "label": "Wegovy vs Saxenda"
+        }
+      ]
+    },
+    {
+      "title": "How these comparisons are prepared",
+      "links": [
+        {
+          "path": "/medication-comparison-methodology",
+          "label": "How the Medication Comparison Centre works."
+        }
+      ]
+    }
+  ],
+  "/shift-health": [
+    {
+      "title": "More practical tools",
+      "links": [
+        {
+          "path": "/shift-health/digital-scales",
+          "label": "Reliable digital scales"
+        },
+        {
+          "path": "/shift-health/resistance-bands",
+          "label": "Resistance bands set"
+        }
+      ]
+    }
+  ],
+  "/treatment-centre": [
+    {
+      "title": "Planning around treatment",
+      "links": [
+        {
+          "path": "/articles/travelling-with-weight-loss-medication",
+          "label": "Travelling with weight-loss medication: sort the boring bits before the airport"
+        }
+      ]
+    }
+  ],
+  "/editorial-standards": [
+    {
+      "title": "Who prepares our content",
+      "links": [
+        {
+          "path": "/authors/shift-some-timber-editorial-team",
+          "label": "Shift Some Timber Editorial Team"
+        }
+      ]
+    }
+  ],
+  "/about": [
+    {
+      "title": "Find SHIFT elsewhere",
+      "links": [
+        {
+          "path": "/community",
+          "label": "Join the Shift Some Timber conversation."
+        }
+      ]
+    }
+  ],
+  "/press-centre": [
+    {
+      "title": "More media resources",
+      "links": [
+        {
+          "path": "/media-centre",
+          "label": "News, research and Shift updates."
+        }
+      ]
+    }
+  ]
+};
+export const sitemapExcludedPaths=['/shift-for-work']; // Already noindex; the page and navigation remain.
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normal=p=>p.replace(/\.html$/,'').replace(/\/+$/,'')||'/';
+export function publicShellPath(path){return !/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(normal(path));}
+function current(markup,path){return markup.replace(/<a href="([^"#]+)">/g,(tag,href)=>href!=='/'&&(path===href||path.startsWith(href+'/'))?tag.replace('>',' aria-current="page">'):tag);}
+export function reconcilePublicDocument(html,path){
+ path=normal(path);
+ if(!publicShellPath(path)||!/<html\b/i.test(html)||!/<main\b/i.test(html))return html;
+ html=html.replace(/<header\b(?=[^>]*class=["'][^"']*\bsite-header\b)[^>]*>[\s\S]*?<\/header>/i,()=>current(publicHeader,path));
+ html=html.replace(/<aside\b(?=[^>]*id=["']site-drawer["'])[^>]*>[\s\S]*?<\/aside>/i,()=>current(publicDrawer,path));
+ if(/<footer\b(?=[^>]*class=["'][^"']*\bsite-footer\b)/i.test(html))html=html.replace(/<footer\b(?=[^>]*class=["'][^"']*\bsite-footer\b)[^>]*>[\s\S]*?<\/footer>/i,()=>current(publicFooter,path));
+ else if(path==='/member-login')html=html.replace('</body>',()=>current(publicFooter,path)+'</body>');
+ // The old hub redirects; individual /medicine-news/* articles remain untouched.
+ html=html.replace(/(<a\b[^>]*href=["'])(?:https:\/\/shiftsometimber\.co\.uk)?\/medicine-news(?=[?#"'])/gi,'$1/shift-newsroom');
+ const groups=relatedGuideGroups[path];
+ if(groups&&!html.includes('data-shift-link-repair')){
+  const body='<section data-shift-link-repair aria-label="Related existing guides">'+groups.filter(g=>g.links.length).map(g=>'<h2>'+escape(g.title)+'</h2><ul>'+g.links.map(a=>'<li><a href="'+escape(a.path)+'">'+escape(a.label)+'</a></li>').join('')+'</ul>').join('')+'</section>';
+  html=html.replace('</main>',()=>body+'</main>');
+ }
+ return html;
+}
+export function reconcileSitemap(xml){return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,block=>sitemapExcludedPaths.some(path=>block.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'))?'':block);}
+export async function withPublicShellContract(request,response){
+ if(request.method!=='GET'||!response.ok)return response;
+ const path=normal(new URL(request.url).pathname),type=response.headers.get('Content-Type')||'';
+ if(path!=='/sitemap.xml'&&(!publicShellPath(path)||!type.includes('text/html')))return response;
+ const original=await response.text(),body=path==='/sitemap.xml'?reconcileSitemap(original):reconcilePublicDocument(original,path);
+ const headers=new Headers(response.headers);
+ for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
+ headers.set('X-Shift-Public-Shell',publicShellVersion);
+ if(path==='/sitemap.xml')headers.set('X-Shift-Sitemap-Authority','explicit-indexing-20260917');
+ return new Response(body,{status:response.status,statusText:response.statusText,headers});
+}

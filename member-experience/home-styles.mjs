@@ -111,4 +111,6 @@ html body.sst-member-experience[data-member-page="dashboard"] #sstTodayContext{b
  html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home .mtm-days{gap:4px}
  html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home .mtm-days b{width:29px;height:29px}
 }
+
+.mtm-next .mtm-loop-controls{grid-column:1/-1;flex-basis:100%;display:flex;gap:12px;flex-wrap:wrap;align-items:center}.mtm-next:has(.mtm-loop-controls){flex-wrap:wrap}.mtm-next .mtm-loop-controls p{flex-basis:100%;margin:0}.mtm-loop-controls button,.mtm-loop-controls a{min-height:44px;box-sizing:border-box;padding:10px 14px}.mtm-loop-controls button{background:#e7e3da;color:#050505;border:1px solid #707762;border-radius:8px;font:inherit;cursor:pointer}
 `;
