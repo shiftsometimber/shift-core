@@ -116,6 +116,8 @@ on:
       - "radar-medicine-seed-v1.js"
       - "radar-integration-v1.js"
       - "radar-authoritative-scan-v1.js"
+      - "radar-source-*.js"
+      - "tests/radar-source-*.test.mjs"
       - "radar-scheduled-scan-v1.js"
       - "sport-clubhouse-v1.js"
       - "personal-platform-v1.js"
@@ -202,6 +204,8 @@ jobs:
         run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
       - name: Verify Medicines Watch evidence, monitor and public isolation
         run: node --test medicines-watch/*.test.mjs
+      - name: Verify Radar source retries, metadata repair and correction races
+        run: node --test tests/radar-source-fetch-v1.test.mjs tests/radar-source-metadata-backfill-v1.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
@@ -317,6 +321,13 @@ jobs:
         run: node scripts/verify-public-audit-live.mjs
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
+      - name: Record Radar metadata repair and remaining source failures without writes
+        run: node scripts/radar-feed-diagnostics.mjs
+      - name: Retain Radar diagnosis after deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-feed-after-${{ github.run_id }}
+          path: radar-feed-diagnostics.json
       - name: Prove newer restricted routes are on live traffic
         shell: bash
         run: |

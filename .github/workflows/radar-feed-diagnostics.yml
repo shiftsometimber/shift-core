@@ -1,0 +1,30 @@
+name: Radar feed read-only diagnosis
+on:
+  push:
+    branches: [fix/radar-feed-recovery-20260917]
+    paths: [scripts/radar-feed-diagnostics.mjs, .github/workflows/radar-feed-diagnostics.yml, 'radar-source-*.js', radar-authoritative-scan-v1.js, 'tests/radar-source-*.test.mjs']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      RADAR_PROBE_SOURCES: '1'
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify source retrieval, correction guards and exact metadata repair
+        run: node --test tests/radar-source-fetch-v1.test.mjs tests/radar-source-metadata-backfill-v1.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs tests/newsroom-publication-race.test.mjs
+      - name: Read only Radar sources, scan failures and pending evidence changes
+        run: node scripts/radar-feed-diagnostics.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: radar-feed-diagnostics
+          path: radar-feed-diagnostics.json
