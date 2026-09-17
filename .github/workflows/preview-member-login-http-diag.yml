@@ -1,4 +1,4 @@
-name: Preview member-login HTTP diagnostics
+name: Preview member-login asset diagnostics
 on:
   push:
     branches: [preview/stabilisation-life-back-20260917]
@@ -8,28 +8,27 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: preview/stabilisation-life-back-20260917
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.16.0'
-      - name: Inspect deployed login markup and auth adapter bytes
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Generate preview assets locally without deploying
+        run: node preview/stabilisation/prepare.mjs
+      - name: Compare generated member-login asset with currently deployed preview
         run: |
           node --input-type=module <<'NODE'
-          const origin='https://shift-stabilisation-preview.matobrien.workers.dev';
-          const res=await fetch(origin+'/member-login?diag='+Date.now(),{headers:{'user-agent':'SST-preview-diagnostic','cache-control':'no-cache'}});
-          const html=await res.text();
-          console.log('LOGIN_STATUS',res.status,res.headers.get('content-type'));
-          console.log('LOGIN_CSP',res.headers.get('content-security-policy'));
-          const adapterMatches=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']*api-adapter-v33d\.js[^"']*)["'][^>]*>/gi)];
-          const firstConsumer=html.search(/\bSST_API(?:\.|\[)/);
-          const adapterPos=adapterMatches[0]?.index ?? -1;
-          console.log('ADAPTER_COUNT',adapterMatches.length,'ADAPTER_POS',adapterPos,'FIRST_CONSUMER_POS',firstConsumer,'ORDER_OK',adapterPos>=0&&firstConsumer>=0&&adapterPos<firstConsumer);
-          console.log('ADAPTER_TAGS',JSON.stringify(adapterMatches.map(m=>m[0]),null,2));
-          const scripts=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].map((m,i)=>({i,attrs:m[1],body:m[2].slice(0,500),src:(m[1].match(/\bsrc=["']([^"']+)/i)||[])[1]||''}));
-          console.log('SCRIPT_ORDER',JSON.stringify(scripts.map(s=>({i:s.i,src:s.src,inlineHasSst:/\bSST_API(?:\.|\[)/.test(s.body)})),null,2));
-          const ar=await fetch(origin+'/api-adapter-v33d.js?diag='+Date.now(),{headers:{'user-agent':'SST-preview-diagnostic','cache-control':'no-cache'}});
-          const at=await ar.text();
-          console.log('ADAPTER_FETCH',ar.status,ar.headers.get('content-type'),'LEN',at.length,'HAS_WINDOW_SST_API',/window\.SST_API\s*=/.test(at),'HAS_SST_API',at.includes('SST_API'),'HEAD',JSON.stringify(at.slice(0,500)));
-          if(adapterMatches.length!==1||!(adapterPos<firstConsumer)||!ar.ok||!/window\.SST_API\s*=/.test(at))process.exitCode=1;
+          import fs from 'node:fs';
+          const inspect=(label,html)=>{const adapters=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']*api-adapter-v33d\.js[^"']*)["'][^>]*>/gi)];const consumer=html.search(/\bSST_API(?:\.|\[)/);const pos=adapters[0]?.index??-1;console.log(label,{adapterCount:adapters.length,adapterPos:pos,consumerPos:consumer,orderOK:pos>=0&&consumer>=0&&pos<consumer,scripts:[...html.matchAll(/<script\b([^>]*)>/gi)].map(m=>(m[1].match(/\bsrc=["']([^"']+)/i)||[])[1]||'[inline]').slice(0,12)});};
+          const generated=fs.readFileSync('work/staging/generated/assets/public-documents/member-login.html','utf8');inspect('GENERATED',generated);
+          const origin='https://shift-stabilisation-preview.matobrien.workers.dev';const r=await fetch(origin+'/member-login?diag='+Date.now(),{headers:{'cache-control':'no-cache'}});const deployed=await r.text();console.log('DEPLOYED_STATUS',r.status);inspect('DEPLOYED',deployed);
           NODE
