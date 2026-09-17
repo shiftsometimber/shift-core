@@ -2,7 +2,7 @@
 export const memberChromeVersion='member-chrome-20260917-v1';
 export function memberNavigation(work=false){
  const links=[['/member/dashboard#today','Today'],['/member/dashboard#journey','Journey'],['/member/grub','Grub'],['/member/fit','Fit'],['/member/check-in','Check-in'],['/member/life-back','Life Back']];
- return '<span class="member-nav-label">MY TIMBER</span><div class="member-nav-tools">'+links.map(([href,label])=>'<a href="'+href+'">'+label+'</a>').join('')+'</div><details class="member-nav-more"><summary>More</summary><div><a class="mp-tab" data-panel="visualise" href="/member/dashboard#visualise">Progress &amp; photos</a><a class="mp-tab" data-panel="plans" href="/member/dashboard#plans">My Plans</a><a href="/member/saved">Saved &amp; records</a><a href="/member/settings">Settings &amp; privacy</a><a href="/member/ask-timber">Ask Timber</a>'+(work?'<a href="/member/work">My workplace programme</a>':'')+'</div></details>';
+ return '<span class="member-nav-label">MY TIMBER</span><div class="member-nav-tools">'+links.map(([href,label])=>'<a href="'+href+'">'+label+'</a>').join('')+'</div><details class="member-nav-more"><summary>More</summary><div><a class="mp-tab" data-panel="visualise" href="/member/dashboard#visualise">Progress &amp; photos</a><a class="mp-tab" data-panel="plans" href="/member/dashboard#plans">My Plans</a><a href="/member/saved">Saved &amp; records</a><a href="/member/settings">Settings &amp; privacy</a><a href="/member/ask-timber">Ask Timber</a>'+(work?'<a href="/member/work">My workplace programme</a>':'')+'<button type="button" class="member-nav-logout" data-member-logout>Log out</button></div></details>';
 }
 export const memberChromeStyles=String.raw`
 html body[data-member-chrome="v1"][data-member-page] main{max-width:1180px!important;width:100%!important;box-sizing:border-box!important;margin:0 auto!important;padding:28px 24px 64px!important}
@@ -16,6 +16,8 @@ html body[data-member-chrome="v1"] nav.sst-member-tabs .member-nav-more{position
 html body[data-member-chrome="v1"] nav.sst-member-tabs summary{cursor:pointer;padding:10px 8px;font:700 15px/1.4 Arial,sans-serif;min-height:44px;box-sizing:border-box}
 html body[data-member-chrome="v1"] nav.sst-member-tabs .member-nav-more>div{position:absolute;right:0;top:100%;width:260px;max-width:calc(100vw - 32px);padding:10px;box-sizing:border-box;background:#11140f;border:1px solid #707762;box-shadow:0 14px 28px #05050533}
 html body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more a{display:block!important;white-space:normal}
+html body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more .member-nav-logout{display:block;width:100%;box-sizing:border-box;margin:6px 0 0;padding:10px 14px;border:1px solid #707762;border-radius:6px;background:transparent;color:#e7e3da;font:700 15px/1.4 Arial,sans-serif;text-align:left;cursor:pointer}
+html body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more .member-nav-logout:is(:hover,:focus-visible){background:#e7e3da;color:#050505;outline:2px solid #707762;outline-offset:2px}
 html body[data-member-chrome="v1"] nav.sst-member-tabs :is(a,summary):focus-visible{outline:2px solid #707762;outline-offset:3px}
 html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"]{position:relative!important;isolation:isolate;display:block!important;overflow:hidden!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;min-height:218px!important;margin:0 0 28px!important;padding:36px 42% 36px 32px!important;border:0!important;border-radius:16px!important;background:#11140f!important;color:#e7e3da!important;box-shadow:none!important}
 html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"]:after{content:''!important;display:block!important;position:absolute!important;inset:0 0 0 58%!important;z-index:-1!important;opacity:1!important;background:linear-gradient(90deg,#11140f 0%,#11140f00 60%),url('/assets/home-hero-men-v32o.jpg') center/cover no-repeat!important;background-position:center,center 28%!important;pointer-events:none}
@@ -77,6 +79,12 @@ export const memberChromeClient=String.raw`(()=>{
  refresh();window.addEventListener('hashchange',refresh);
  let queued=false;new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;refresh()})}}).observe(document.querySelector('main')||document.body,{childList:true,subtree:true});
  const more=document.querySelector('.member-nav-more');
+ const logout=document.querySelector('[data-member-logout]');
+ if(logout)logout.addEventListener('click',async()=>{
+  if(logout.disabled)return;const original=logout.textContent;logout.disabled=true;logout.textContent='Signing out…';
+  try{const response=await fetch('/v1/auth/logout',{method:'POST',credentials:'include',cache:'no-store'});if(!response.ok)throw Error('logout_failed');location.replace('/member-login')}
+  catch{logout.disabled=false;logout.textContent=original;let status=document.querySelector('[data-member-logout-status]');if(!status){status=document.createElement('p');status.dataset.memberLogoutStatus='1';status.setAttribute('role','alert');status.style.cssText='margin:8px 10px;color:#e7e3da;font:13px/1.4 Arial,sans-serif';logout.after(status)}status.textContent='Could not log out. Please try again.'}
+ });
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&more?.open){more.open=false;more.querySelector('summary').focus()}});
  document.addEventListener('click',e=>{if(more?.open&&!more.contains(e.target))more.open=false});
 })();`;
