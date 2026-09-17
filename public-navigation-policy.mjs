@@ -37,6 +37,28 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
 @media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr);gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}}`;
+export const contrastSafetyVersion='public-contrast-20260917-r1';
+export const contrastSafetyStyles=String.raw`
+/* Brand-only repair for computed-colour collisions found by the 532-URL live audit. */
+.sst-reading-article-v31 :is(.road-card,.uni-panel,.uni-fighter,.uni-card,.social-community-card-v2223,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.faqcard,.founding-panel-v3b1,.fifa-card,.future-card,.compare-panel),
+.ct-form-card,.kg-path-main,.shift-guided-card,.editorial-note-v2222,
+.standard-layout :is(.section.white,.section.stone),.reading-layout :is(.section.white,.section.stone){background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+.sst-reading-article-v31 :is(.road-card,.uni-panel,.uni-fighter,.uni-card,.social-community-card-v2223,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.faqcard,.founding-panel-v3b1,.fifa-card,.future-card,.compare-panel) :is(h1,h2,h3,h4,p,span,strong,small,li,label),
+.ct-form-card :is(h1,h2,h3,h4,p,span,strong,small,li,label),.kg-path-main :is(h1,h2,h3,h4,p,span,strong,small,li,label),
+.shift-guided-card :is(h1,h2,h3,h4,p,span,strong,small,li,label),.editorial-note-v2222 :is(h1,h2,h3,h4,p,span,strong,small,li,label),
+.standard-layout :is(.section.white,.section.stone) :is(h1,h2,h3,h4,p,span,strong,small,li,label),.reading-layout :is(.section.white,.section.stone) :is(h1,h2,h3,h4,p,span,strong,small,li,label){color:#050505!important;-webkit-text-fill-color:#050505!important}
+.sst-reading-article-v31 :is(.fifa-card,.future-card) :is(.fifa-stat,.attribute-row,.procon-box,.future-badge){background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+.sst-reading-article-v31 :is(.fifa-card,.future-card) :is(.fifa-stat,.attribute-row,.procon-box,.future-badge) :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}
+.sst-service-bridge__limit{background:#050505!important;color:#E7E3DA!important;border:1px solid #707762!important}
+.sst-service-bridge__limit :is(h1,h2,h3,h4,p,span,strong,small,li){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+a.sst-service-bridge__cta,.authority-next a,.shift-guided-actions__primary,.shift-guided-library__body button{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}
+a.sst-service-bridge__cta :is(span,strong,small),.authority-next a :is(span,strong,small),.shift-guided-actions__primary :is(span,strong,small),.shift-guided-library__body button :is(span,strong,small){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+.at-composer,.at-dock{background:#E7E3DA!important;color:#050505!important}
+.at-composer :is(label,label span,.at-composer-label),.at-dock :is(label,label span){color:#050505!important;-webkit-text-fill-color:#050505!important}
+.sh-card__alt{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}.sh-card__alt :is(span,strong,small){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+.tool-intro{background:#050505!important;color:#E7E3DA!important}.tool-intro :is(h1,h2,h3,h4,p,span,strong,small,li){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+.featured-links__eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+`;
 // Keep browser code literal: Worker bundlers add private helpers to function.toString().
 export const tickerClient = String.raw`(function bootTicker() {
   const start = async () => {
@@ -89,12 +111,13 @@ export async function withPublicTicker(request, response) {
   const source = await response.text();
   // Do not alter non-document fragments or error responses.
   if (!/<\/head>/i.test(source) || !/<\/body>/i.test(source)) return new Response(request.method === 'HEAD' ? null : source, response);
+  const contrastSource=source.includes('data-shift-public-contrast')?source:source.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`);
   const enabled = tickerAllowed(new URL(request.url).pathname);
-  let html = source
+  let html = contrastSource
     .replace(/<section\b(?=[^>]*(?:\bmedicine-ticker-v138\b|\bdata-shift-ai-full-wire\b|\bid=["']shift-public-news["']))[^>]*>[\s\S]*?<\/section>/gi, '')
     .replace(/<script\b[^>]*\bsrc=["'][^"']*\/(?:newsroom-ticker-v2|public-news-ticker-v1)\.js(?:\?[^"']*)?["'][^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<style\b[^>]*data-shift-public-news[^>]*>[\s\S]*?<\/style>/gi, '');
-  const legacyPresent = html !== source;
+  const legacyPresent = html !== contrastSource;
   if (enabled && /<\/header>/i.test(html)) {
     html = html.replace(/<\/header>/i, '$&' + tickerMarkup)
       .replace(/<\/head>/i, `<style data-shift-public-news>${tickerStyles}</style></head>`)
@@ -106,5 +129,6 @@ export async function withPublicTicker(request, response) {
   const headers = new Headers(response.headers);
   for (const h of ['Content-Length','ETag','Last-Modified']) headers.delete(h);
   headers.set('X-Shift-Ticker-Policy', tickerVersion);
+  headers.set('X-Shift-Contrast-Safety', contrastSafetyVersion);
   return new Response(request.method === 'HEAD' ? null : html, {status:response.status,statusText:response.statusText,headers});
 }
