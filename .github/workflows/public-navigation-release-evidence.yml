@@ -1,0 +1,44 @@
+name: Public navigation release evidence
+on:
+  push:
+    branches: [fix/public-navigation-evidence-20260917]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Download retained original snapshots without changing them
+        run: gh run download 35189020506 --name member-public-preservation-35189020506 --dir proof
+      - name: Verify exact authorized route differences and fresh live response hashes
+        run: node scripts/verify-public-navigation-release.mjs
+      - name: Verify transformation and existing public repairs
+        run: node --test tests/public-navigation-policy.test.mjs tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs
+      - name: Complete live checks skipped by the obsolete byte-identical guard
+        run: |
+          node member-experience/verify-production-member.mjs
+          node medicines-watch/verify-live.mjs
+          node scripts/verify-watch-access-closeout.mjs
+          node scripts/verify-public-audit-live.mjs
+          node g2-012-production-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-navigation-release-evidence
+          path: |
+            proof/public-*.json
+            public-navigation-release-proof.json
+            member-live-proof.json
+            medicines-watch-live-proof.json
+            watch-access-closeout.json
