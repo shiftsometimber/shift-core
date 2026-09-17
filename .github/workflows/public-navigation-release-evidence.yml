@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - name: Install locked verification dependencies
+        run: npm ci --ignore-scripts
       - name: Download retained original snapshots without changing them
         run: gh run download 35189020506 --name member-public-preservation-35189020506 --dir proof
       - name: Verify exact authorized route differences and fresh live response hashes
