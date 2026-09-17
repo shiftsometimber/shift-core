@@ -20,7 +20,7 @@ class D {
 
 const DB=new D();
 await ensureRadarSchema(DB);
-const published=await DB.prepare(`INSERT INTO radar_events(event_key,status,headline,reviewed_at) VALUES('m03-published-baseline','published','M03 published baseline',CURRENT_TIMESTAMP)`).run();
+const published=await DB.prepare(`INSERT INTO radar_events(event_key,status,headline,content_package_json,reviewed_at) VALUES('m03-published-baseline','published','M03 published baseline','{"destinations":["ticker_knowledge"]}',CURRENT_TIMESTAMP)`).run();
 await DB.prepare(`INSERT INTO radar_publication_jobs(event_id,status,completed_at) VALUES(?,'complete',CURRENT_TIMESTAMP)`).bind(published.meta.last_row_id).run();
 const before=await readRadarFreshness(DB);
 assert.equal(before.status,'AMBER');

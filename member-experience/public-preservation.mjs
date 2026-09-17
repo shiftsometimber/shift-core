@@ -3,6 +3,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {publicPageEvidence,assertPublicPagesPreserved} from '../medicines-watch/preservation.mjs';
 import {preserveContinuityContent} from '../public-continuity-preservation.mjs';
+import {preserveTickerVersion} from '../public-ticker-preservation.mjs';
 const [output,before]=process.argv.slice(2);
 if(!output)throw Error('An evidence output path is required');
 const paths=['/','/start-here','/programme','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912','/articles/stopping-glp1'];
@@ -12,7 +13,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const preserved=preserveContinuityContent(path,body,{required:Boolean(before)});
+ const preserved=preserveContinuityContent(path,preserveTickerVersion(body),{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';
