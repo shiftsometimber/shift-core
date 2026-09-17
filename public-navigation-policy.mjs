@@ -9,7 +9,7 @@ const excludedRoots = [
   '/about', '/mens-mental-health', '/mental-health', '/good-to-talk',
   '/lounge', '/tap-room', '/my-timber', '/member', '/member-login', '/member-register',
   '/start-here', '/treatment-order', '/treatment-assessment', '/checkout', '/payment', '/verification',
-  '/order-confirmation', '/treatment-confirmation', '/purchase',
+  '/order-confirmation', '/order-success', '/treatment-confirmation', '/purchase',
   '/login', '/sign-in', '/register', '/forgot-password', '/reset-password',
   '/auth', '/hq', '/admin', '/v1', '/api'
 ];

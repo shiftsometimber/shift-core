@@ -38,7 +38,7 @@ test('legacy ticker replacement is idempotent and removes legacy motion from exc
  assert.ok(!excluded.includes('<section'));assert.ok(excluded.includes(header));assert.ok(!excluded.includes('newsroom-ticker-v2.js'));
 });
 test('clinical assessment and account creation also stay inside the excluded journeys',()=>{
- for(const path of ['/treatment-assessment','/treatment-assessment.html','/member-register'])assert.equal(tickerAllowed(path),false,path);
+ for(const path of ['/treatment-assessment','/treatment-assessment.html','/member-register','/order-success'])assert.equal(tickerAllowed(path),false,path);
 });
 test('APIs, errors, and non-GET responses are untouched; script is syntactically valid and HEAD has no body',async()=>{
  const api=Response.json({ok:true});assert.equal(await withPublicTicker(new Request(origin+'/v1/me'),api),api);

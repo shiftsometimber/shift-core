@@ -9,7 +9,7 @@ export default {async fetch(request){
  if(url.pathname==='/__qa/ticker-demo.js')return new Response(tickerClient.replace("'/v1/radar/ticker'","'/__qa/ticker-feed'"),{headers:{'Content-Type':'application/javascript','X-Robots-Tag':'noindex, nofollow'}});
  if(url.pathname==='/__qa/ticker-demo'){
   const response=await withPublicTicker(request,new Response('<!doctype html><html><head><title>Ticker interaction fixture</title></head><body style="margin:0;background:#050505;color:#e7e3da"><header><p>Interaction test · fixture headlines only</p></header><main><h1>Pause and motion check</h1></main></body></html>',{headers:{'Content-Type':'text/html'}}));
-  return new Response((await response.text()).replace(tickerAsset,'/__qa/ticker-demo.js'),{headers:{'Content-Type':'text/html','X-Robots-Tag':'noindex, nofollow'}});
+  return new Response((await response.text()).replace(tickerAsset,'/__qa/ticker-demo.js'),{headers:{'Content-Type':'text/html; charset=utf-8','X-Robots-Tag':'noindex, nofollow'}});
  }
  if(url.pathname==='/__qa'){
   const width=Number(url.searchParams.get('width')),path=url.searchParams.get('path')||'/programme';
