@@ -1,0 +1,58 @@
+name: Preview-only browser diagnostics
+on:
+  push:
+    branches: [preview/stabilisation-life-back-20260917]
+    paths: [.github/workflows/stabilisation-preview-diagnostics.yml]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    if: github.ref == 'refs/heads/preview/stabilisation-life-back-20260917'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm install --no-save --package-lock=false playwright@1.58.2
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Read public failures and exercise only the isolated fictional entry
+        run: |
+          mkdir -p diagnostics
+          cat > diagnostics/run.mjs <<'JS'
+          import {chromium,webkit} from 'playwright';import fs from 'node:fs';
+          const origin='https://shift-stabilisation-preview.matobrien.workers.dev';
+          const report=[];
+          for(const[name,engine]of [['chromium',chromium],['webkit',webkit]]){
+            const browser=await engine.launch();const ctx=await browser.newContext({viewport:{width:1440,height:1000}});const p=await ctx.newPage();let row;
+            p.on('pageerror',e=>row?.errors.push(e.message));
+            p.on('response',r=>{if(row&&r.request().isNavigationRequest())row.navigation.push({url:r.url(),status:r.status()})});
+            await ctx.route('**/*',route=>{if(new URL(route.request().url()).origin!==origin&& !['GET','HEAD'].includes(route.request().method()))return route.abort();return route.continue()});
+            for(const path of ['/shift-health','/mental-health/getting-professional-help','/member-login','/life-back','/__review']){
+              row={browser:name,path,errors:[],navigation:[],assets:[]};report.push(row);
+              try{
+                await p.goto(origin+path,{waitUntil:'domcontentloaded'});await p.waitForTimeout(2000);
+                if(path==='/__review'){
+                  const r=await ctx.request.post(origin+'/__preview/start',{headers:{Origin:origin},maxRedirects:0});row.start={status:r.status(),location:r.headers().location,body:(await r.text()).slice(0,1800),cookiePresent:!!r.headers()['set-cookie']};
+                  if(r.status()===303)await p.goto(origin+r.headers().location,{waitUntil:'domcontentloaded'});
+                  await p.waitForTimeout(1500);
+                }
+                row.finalUrl=p.url();row.title=await p.title();row.body=(await p.locator('body').innerText()).slice(0,1600);
+                row.dom=await p.evaluate(()=>({width:document.documentElement.scrollWidth,view:innerWidth,sheets:[...document.styleSheets].map(s=>({href:s.href,rules:(()=>{try{return s.cssRules.length}catch{return null}})()})),overflow:[...document.querySelectorAll('*')].filter(el=>el.getBoundingClientRect().right>innerWidth+2).slice(0,15).map(el=>({tag:el.tagName,id:el.id,class:el.className,width:el.getBoundingClientRect().width,src:el.getAttribute('src')})),scripts:[...document.scripts].map(s=>s.src)}));
+                await p.screenshot({path:'diagnostics/'+name+path.replaceAll('/','-')+'.png',fullPage:true});
+              }catch(e){row.failure=e.message;row.finalUrl=p.url();row.body=await p.locator('body').innerText().catch(()=>'<unavailable>');}
+              fs.writeFileSync('diagnostics/report.json',JSON.stringify(report,null,2));
+            }
+            await ctx.close();await browser.close();
+          }
+          JS
+          node diagnostics/run.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-preview-diagnostics
+          path: diagnostics
+          retention-days: 7
