@@ -23,7 +23,9 @@ html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member
 html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(h1,h2){margin:8px 0 16px!important;font-size:clamp(32px,4.1vw,48px)!important;font-weight:800!important;line-height:1.05!important;font-family:inherit!important;letter-spacing:-.04em!important;color:#e7e3da!important;-webkit-text-fill-color:currentColor!important;max-width:650px!important}
 html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(p,span){color:#dadfd0!important;-webkit-text-fill-color:currentColor!important;font:400 17px/1.5 Arial,sans-serif!important;margin:0!important}
 html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(.eyebrow,.sf-kicker,.mtm-kicker),html body[data-member-chrome="v1"] main .mj-hero[data-member-hero="v1"]>p:first-child{font-size:11px!important;font-weight:800!important;letter-spacing:.13em!important;color:#c5cdb3!important}
+html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(h1,h2) :is(span,em,strong){font:inherit!important;color:inherit!important;letter-spacing:inherit!important;-webkit-text-fill-color:currentColor!important}
 html body[data-member-chrome="v1"] #todayActions.mtm-home .mtm-hero[data-member-hero="v1"]>img{display:none!important}
+html body[data-member-chrome="v1"] main .member-shell{margin:0!important;width:100%!important;max-width:none!important}
 html body[data-member-chrome="v1"] :is(#panel-plans,#panel-visualise){padding:0!important;border:0!important;background:transparent!important}
 html body[data-member-chrome="v1"][data-member-page="life-back"] .workspace{max-width:none;padding:0}
 html body[data-member-chrome="v1"][data-member-page="life-back"] .hero{padding-top:0;min-height:0}
