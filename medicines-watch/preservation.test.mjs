@@ -34,6 +34,20 @@ test('every other public page and the login asset remain byte-exact',()=>{
  }
 });
 
+test('permits only the exact approved SHIFT Health Twitter image addition',()=>{
+ const tag='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">';
+ const before=evidence(),after=evidence(true),index=paths.indexOf('/shift-health');
+ after[index]=publicPageEvidence('/shift-health',200,'Unchanged /shift-health'+tag);
+ assert.equal(assertPublicPagesPreserved(after,before),'preserved_with_treatments_watch_entry');
+ assert.equal(after[index].shiftHealthTwitterImage,true);
+ assert.equal(after[index].preservedSha256,before[index].preservedSha256);
+ for(const invalid of [tag+tag,tag.replace('og-default.jpg','wrong.jpg'),'<meta content="https://shiftsometimber.co.uk/assets/og-default.jpg" name="twitter:image">']){
+  assert.throws(()=>{const changed=evidence(true);changed[index]=publicPageEvidence('/shift-health',200,'Unchanged /shift-health'+invalid);assertPublicPagesPreserved(changed,before)},/duplicate|missing|changed outside/);
+ }
+ const removed=evidence(true);removed[index]=publicPageEvidence('/shift-health',200,'Unchanged /shift-health');
+ assert.throws(()=>assertPublicPagesPreserved(removed,after),/missing/);
+});
+
 test('missing, duplicate, reversed, malformed or altered entries are rejected',()=>{
  assert.throws(()=>publicPageEvidence('/treatment-centre',200,treatment,{requireTreatmentsEntry:true}),/missing/);
  for(const block of [TREATMENTS_ENTRY+TREATMENTS_ENTRY,TREATMENTS_ENTRY_START,TREATMENTS_ENTRY_END,TREATMENTS_ENTRY_END+TREATMENTS_ENTRY_START,TREATMENTS_ENTRY.replace('<!-- SHIFT_MEDICINES_WATCH_ENTRY_START -->','<!--SHIFT_MEDICINES_WATCH_ENTRY_START-->'),TREATMENTS_ENTRY.replace('Explore the watch','Unexpected wording')]){
