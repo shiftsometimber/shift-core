@@ -18,3 +18,10 @@
 #main-content.th .th-prompt>div p{margin:16px 0}
 #main-content.th #gp-preparation li{margin-bottom:12px}
 @media(max-width:700px){#main-content.th .th-prompts{padding:20px 16px}#main-content.th .th-prompt summary{padding:15px;font-size:17px}#main-content.th .th-prompt>div{padding:0 15px 8px}}
+
+#main-content.th .th-purchase{display:grid;grid-template-columns:1.35fr 1fr;gap:30px;margin-top:35px;padding:30px;border:2px solid #707762;border-radius:26px;background:#050505!important;scroll-margin-top:110px}
+#main-content.th .th-purchase-action{border-left:1px solid #707762;padding-left:30px}
+#main-content.th .th-price{font-size:30px;line-height:1.2;font-weight:800;margin:10px 0 20px}
+#main-content.th .th-stock{display:inline-block;border:1px solid #707762;border-radius:999px;padding:8px 14px;font-size:15px}
+#main-content.th .th-purchase button:disabled{display:block;width:100%;min-height:52px;padding:13px 15px;border:1px solid #707762;border-radius:12px;background:#707762!important;color:#050505!important;font:700 17px/1.4 Arial,sans-serif;cursor:not-allowed;opacity:1}
+@media(max-width:700px){#main-content.th .th-purchase{grid-template-columns:1fr;padding:22px;gap:20px}#main-content.th .th-purchase-action{border-left:0;border-top:1px solid #707762;padding:22px 0 0}}
