@@ -1,7 +1,7 @@
 name: SHIFT for Work isolated hosted staging
 on:
   push:
-    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916, fix/readiness-preservation-20260916]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916, fix/readiness-preservation-20260916, feat/member-shared-header-20260917]
     paths:
       - 'work/staging/**'
       - 'worker.js'
@@ -82,6 +82,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify restored tools and preserve current Today at desktop and 390px
         run: node work/staging/member-tools-browser-proof.mjs
+      - name: Verify shared member headers and banners at desktop and phone width
+        run: node work/staging/member-chrome-browser-proof.mjs
       - name: Verify real remote persistence and access boundaries
         run: node work/staging/probe.mjs
       - name: Save non-secret verification evidence only
@@ -96,4 +98,6 @@ jobs:
             work/staging/generated/current-tool-assets.json
             work/staging/generated/member-tools-proof/report.json
             work/staging/generated/member-tools-proof/*.png
+            work/staging/generated/member-chrome-proof/report.json
+            work/staging/generated/member-chrome-proof/*.png
           if-no-files-found: error
