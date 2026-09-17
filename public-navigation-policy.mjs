@@ -20,7 +20,6 @@ export function tickerAllowed(pathname) {
 export function myTimberRedirect(request) {
   const url = new URL(request.url);
   if (!['GET', 'HEAD'].includes(request.method) || !['/my-timber', '/my-timber.html'].includes(url.pathname.replace(/\/+$/, ''))) return null;
-  // Fixed same-origin destination; retain the query and browser fragment semantics.
   url.pathname = '/member/dashboard';
   if (url.hostname === 'shiftsometimber.co.uk' || url.hostname === 'www.shiftsometimber.co.uk') url.protocol = 'https:';
   return new Response(null, {status: 301, headers: {Location: url.href, 'Cache-Control': 'public, max-age=300'}});
@@ -37,7 +36,7 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
 @media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr);gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}}`;
-export const contrastSafetyVersion='public-contrast-20260917-r1';
+export const contrastSafetyVersion='public-contrast-20260917-r2';
 export const contrastSafetyStyles=String.raw`
 /* Brand-only repair for computed-colour collisions found by the 532-URL live audit. */
 .sst-reading-article-v31 :is(.road-card,.uni-panel,.uni-fighter,.uni-card,.social-community-card-v2223,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.faqcard,.founding-panel-v3b1,.fifa-card,.future-card,.compare-panel),
@@ -58,7 +57,50 @@ a.sst-service-bridge__cta :is(span,strong,small),.authority-next a :is(span,stro
 .sh-card__alt{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}.sh-card__alt :is(span,strong,small){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
 .tool-intro{background:#050505!important;color:#E7E3DA!important}.tool-intro :is(h1,h2,h3,h4,p,span,strong,small,li){color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
 .featured-links__eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+/* r2: exact shared roots identified by the complete 532-page ancestor map. */
+html body main#main-content :is(aside.editorial-note-v2222,.ct-form-card,.kg-path-main,article.faqcard,article.article,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.social-community-card-v2223,.founding-panel-v3b1,.fifa-card,.future-card,.promise-card-v3b1,.cagri-card,.nhsm-card,.calc-explain-card,.life2-panel,.np-panel,.surg2-panel,.eu-panel,.proc-toc){background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content :is(aside.editorial-note-v2222,.ct-form-card,.kg-path-main,article.faqcard,article.article,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.social-community-card-v2223,.founding-panel-v3b1,.fifa-card,.future-card,.promise-card-v3b1,.cagri-card,.nhsm-card,.calc-explain-card,.life2-panel,.np-panel,.surg2-panel,.eu-panel,.proc-toc) :is(h1,h2,h3,h4,h5,h6,p,span,strong,small,li,label,a,td,th,div){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content div.standard-layout section.section.white,
+html body main#main-content div.standard-layout section.section.stone,
+html body main#main-content div.reading-layout section.section.white,
+html body main#main-content div.reading-layout section.section.stone{background:#E7E3DA!important;color:#050505!important}
+html body main#main-content div.standard-layout section.section.white > .wrap > :is(h1,h2,h3,h4,p,.eyebrow),
+html body main#main-content div.standard-layout section.section.stone > .wrap > :is(h1,h2,h3,h4,p,.eyebrow),
+html body main#main-content div.reading-layout section.section.white > .wrap > :is(h1,h2,h3,h4,p,.eyebrow),
+html body main#main-content div.reading-layout section.section.stone > .wrap > :is(h1,h2,h3,h4,p,.eyebrow){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .sst-service-bridge .sst-service-bridge__limit{background:#050505!important;color:#E7E3DA!important}
+html body main#main-content .sst-service-bridge .sst-service-bridge__limit *{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content.authority-hub section.authority-next a{background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}
+html body main#main-content.authority-hub section.authority-next a *{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content .shift-guided-card{background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content .shift-guided-card *{color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content :is(.shift-guided-actions__primary,.shift-guided-library__body button){background:#050505!important;color:#E7E3DA!important;border-color:#707762!important}
+html body main#main-content :is(.shift-guided-actions__primary,.shift-guided-library__body button) *{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content .review-status-v2222{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+html body main#main-content :is(table.reta-table,table.nhsm-table){background:#E7E3DA!important;color:#050505!important}
+html body main#main-content :is(table.reta-table,table.nhsm-table) :is(td,th,span,strong,small,a){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .calc-explain-card :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .sh-choice-grid-v72 button{background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content .sh-choice-grid-v72 button *{color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content .mmh-start-grid a{background:#E7E3DA!important;color:#050505!important;border-color:#707762!important}
+html body main#main-content .mmh-start-grid a *{color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content details.mw-evidence{background:#E7E3DA!important;color:#050505!important}
+html body main#main-content details.mw-evidence :is(a,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}
 `;
+export const contrastSafetyClient = String.raw`(function shiftContrastGuard(){
+  const BLACK={r:5,g:5,b:5,hex:'#050505'},CREAM={r:231,g:227,b:218,hex:'#E7E3DA'};
+  function rgb(v){const m=String(v).match(/rgba?\((\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)(?:[ ,\/]+(\d+(?:\.\d+)?))?\)/i);return m?{r:+m[1],g:+m[2],b:+m[3],a:m[4]==null?1:+m[4]}:null}
+  function lum(c){const f=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b)}
+  function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+  function blend(f,b){const a=f.a??1;return{r:f.r*a+b.r*(1-a),g:f.g*a+b.g*(1-a),b:f.b*a+b.b*(1-a),a:1}}
+  function background(el){let n=el;while(n){const s=getComputedStyle(n);if(s.backgroundImage&&s.backgroundImage!=='none')return null;const c=rgb(s.backgroundColor);if(c&&c.a>.01)return c.a<1?blend(c,{r:255,g:255,b:255,a:1}):c;n=n.parentElement}return{r:255,g:255,b:255,a:1}}
+  function hasOwnText(el){for(const n of el.childNodes)if(n.nodeType===3&&n.textContent.trim())return true;return el.matches('input,textarea,select,button')}
+  function fix(el){if(!(el instanceof Element)||el.matches('script,style,svg,svg *'))return;const s=getComputedStyle(el),r=el.getBoundingClientRect();if(s.display==='none'||s.visibility==='hidden'||+s.opacity<=.02||r.width<=1||r.height<=1||!hasOwnText(el))return;const fg=rgb(s.color),bg=background(el);if(!fg||!bg)return;const effective=fg.a<1?blend(fg,bg):fg;if(ratio(effective,bg)>=2)return;const pick=ratio(BLACK,bg)>=ratio(CREAM,bg)?BLACK:CREAM;el.style.setProperty('color',pick.hex,'important');el.style.setProperty('-webkit-text-fill-color',pick.hex,'important');el.dataset.shiftContrastGuard='1'}
+  function scan(){for(const el of document.querySelectorAll('body *'))fix(el)}
+  let queued=false;function queue(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;scan()})}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{scan();setTimeout(scan,120);setTimeout(scan,400)},{once:true});else{scan();setTimeout(scan,120)}
+  new MutationObserver(queue).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style','hidden']});
+})();`;
 // Keep browser code literal: Worker bundlers add private helpers to function.toString().
 export const tickerClient = String.raw`(function bootTicker() {
   const start = async () => {
@@ -69,8 +111,6 @@ export const tickerClient = String.raw`(function bootTicker() {
     try {
       const response = await fetch('/v1/radar/ticker', {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(8000)});
       const body = await response.json();
-      // A dated publication edition is distinct from a complete, current news scan.
-      // The API keeps its RED/AMBER wire status; only exact published links qualify.
       if (!response.ok) return;
       const edition = !body.current && body.published_edition?.current_wire === false ? body.published_edition : null;
       const items = body.current ? body.items : edition?.items;
@@ -98,7 +138,7 @@ export const tickerClient = String.raw`(function bootTicker() {
         copy.style.minWidth = duplicate.style.minWidth = width + 'px';
       };
       fit(); new ResizeObserver(fit).observe(strip);
-    } catch { /* Keep the honest, working newsroom fallback. */ }
+    } catch { }
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true}); else start();
 })();`;
@@ -109,15 +149,15 @@ export function publicTickerAsset(request) {
 export async function withPublicTicker(request, response) {
   if (!response.ok || !['GET','HEAD'].includes(request.method) || !/text\/html/i.test(response.headers.get('Content-Type') || '')) return response;
   const source = await response.text();
-  // Do not alter non-document fragments or error responses.
   if (!/<\/head>/i.test(source) || !/<\/body>/i.test(source)) return new Response(request.method === 'HEAD' ? null : source, response);
   const contrastSource=source.includes('data-shift-public-contrast')?source:source.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`);
+  const guardedSource=contrastSource.includes('data-shift-contrast-guard')?contrastSource:contrastSource.replace(/<\/body>/i,`<script data-shift-contrast-guard="${contrastSafetyVersion}">${contrastSafetyClient}</script></body>`);
   const enabled = tickerAllowed(new URL(request.url).pathname);
-  let html = contrastSource
+  let html = guardedSource
     .replace(/<section\b(?=[^>]*(?:\bmedicine-ticker-v138\b|\bdata-shift-ai-full-wire\b|\bid=["']shift-public-news["']))[^>]*>[\s\S]*?<\/section>/gi, '')
     .replace(/<script\b[^>]*\bsrc=["'][^"']*\/(?:newsroom-ticker-v2|public-news-ticker-v1)\.js(?:\?[^"']*)?["'][^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<style\b[^>]*data-shift-public-news[^>]*>[\s\S]*?<\/style>/gi, '');
-  const legacyPresent = html !== contrastSource;
+  const legacyPresent = html !== guardedSource;
   if (enabled && /<\/header>/i.test(html)) {
     html = html.replace(/<\/header>/i, '$&' + tickerMarkup)
       .replace(/<\/head>/i, `<style data-shift-public-news>${tickerStyles}</style></head>`)
