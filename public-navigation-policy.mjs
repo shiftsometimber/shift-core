@@ -30,6 +30,7 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 #shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#707762;color:#050505;border-block:1px solid #050505;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
 #shift-public-news a{color:#050505;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible,#shift-public-news button:focus-visible{outline:2px solid #050505;outline-offset:3px}
 #shift-public-news .shift-news-label{font-weight:900;white-space:nowrap}#shift-public-news .shift-news-window{min-width:0;overflow:hidden}#shift-public-news .shift-news-track{display:flex;width:max-content;max-width:none}#shift-public-news .shift-news-copy{display:flex;align-items:center;gap:24px;white-space:nowrap;padding-right:24px;flex-shrink:0}
+#shift-public-news:not([data-ready]) .shift-news-track{width:auto}#shift-public-news:not([data-ready]) .shift-news-copy{white-space:normal;flex-wrap:wrap;gap:8px 18px}
 #shift-public-news[data-ready] .shift-news-track{animation:shiftPublicNews 90s linear infinite}#shift-public-news:hover .shift-news-track,#shift-public-news:focus-within .shift-news-track,#shift-public-news[data-paused] .shift-news-track{animation-play-state:paused}
 #shift-public-news .shift-news-pause{font:inherit;cursor:pointer;border:1px solid #050505;border-radius:4px;padding:4px 8px;background:#e7e3da;color:#050505}#shift-public-news [hidden]{display:none!important}
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
@@ -66,6 +67,11 @@ function bootTicker() {
       const duplicate = copy.cloneNode(true); duplicate.setAttribute('aria-hidden','true');
       duplicate.querySelectorAll('a').forEach(link => link.tabIndex = -1);
       track.replaceChildren(copy, duplicate); strip.setAttribute('data-ready', ''); button.hidden = false;
+      const fit = () => {
+        const width = strip.querySelector('.shift-news-window').clientWidth;
+        copy.style.minWidth = duplicate.style.minWidth = width + 'px';
+      };
+      fit(); new ResizeObserver(fit).observe(strip);
     } catch { /* Keep the honest, working newsroom fallback. */ }
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true}); else start();
