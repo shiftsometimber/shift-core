@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {memoryDB} from '../preview/newsroom-discovery/memory-db.mjs';
+import {ensureRadarSchema,prepareVerifiedRadarQueue} from '../radar-integration-v1.js';
+import {AUTO_NEWS_ACTOR} from '../radar-auto-news-v1.js';
+import {radarNewsPageRoutes} from '../radar-news-pages-v1.js';
+async function fixture({hold=false,change=false}={}){
+ const DB=memoryDB();await ensureRadarSchema(DB);
+ const source={source_tier:1,authority:'Fictional UK authority',title:'Weight management consultation',url:'https://example.test/consultation',source_date:'2026-09-16',retrieved_at:new Date().toISOString(),summary:'The authority has published a new update explaining the status of a public consultation about weight management. The consultation invites responses from stakeholders. It does not announce a change to treatment eligibility or prescribing rules. Final decisions have not yet been made.'};
+ await DB.prepare('INSERT INTO radar_events(id,event_key,status,headline,region,source_evidence_json,verification_json,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?)').bind(1,'fictional-auto','verified','Weight management consultation','UK',JSON.stringify([source]),'{"verified":true}',new Date().toISOString(),new Date().toISOString()).run();
+ const pkg={headline:'Weight management consultation opens',standfirst:'The authority invites responses on weight management policy; it has not announced a final decision.',article_markdown:'## Source findings\n\nA public consultation invites responses on weight management. A final decision has not been announced.',shift_take:'Members can follow the consultation without assuming that treatment access has changed.',known_facts:[{claim:'The consultation invites responses.',source_url:source.url}],unknowns:['Final outcome'],review_flags:[],seo:{title:'Weight management consultation opens',description:'The authority invites responses on weight management policy; it has not announced a final decision.',slug:'fictional-consultation'}};
+ let calls=0;const AI={async run(){calls++;if(calls===1)return{response:JSON.stringify({medicine_id:'must-not-update',review_flags:[]})};if(calls===2)return{response:JSON.stringify(pkg)};if(change)await DB.prepare("UPDATE radar_events SET status='hold',reviewed_by='owner' WHERE id=1").run();return{response:JSON.stringify({decision:hold?'HOLD':'PASS',claims_supported:true,attribution_correct:true,uncertainty_preserved:true,interpretation_separated:true,no_treatment_advice:true,no_promotion:true,no_substantial_copying:true,issues:hold?['needs evidence']:[]})}}};
+ const result=await prepareVerifiedRadarQueue({DB,AI,RADAR_SUPPRESS_NOTIFICATIONS:true},{limit:1});return{DB,result,calls};
+}
+test('scheduled package preparation publishes checked news without personal approval or medicine edits',async()=>{
+ const {DB,result,calls}=await fixture();assert.equal(calls,3);assert.equal(result.prepared[0].status,'published',JSON.stringify(result));
+ const row=await DB.prepare('SELECT * FROM radar_events WHERE id=1').first();assert.equal(row.reviewed_by,AUTO_NEWS_ACTOR);assert.equal(row.medicine_patch_json,'{}');assert.equal((await DB.prepare('SELECT COUNT(*) n FROM radar_medicines').first()).n,0);assert.equal((await DB.prepare("SELECT COUNT(*) n FROM radar_audit WHERE action='notification_sent'").first()).n,0);
+ const old=globalThis.fetch;globalThis.fetch=async()=>new Response('<html><head></head><body><main>Shell</main></body></html>');
+ try{const html=await(await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news/fictional-consultation'),{DB})).text();assert.match(html,/SHIFT’s take/);assert.match(html,/automated accuracy check/);assert.match(html,/Source date/);assert.match(html,/example.test\/consultation/)}finally{globalThis.fetch=old}
+});
+test('failed accuracy checks leave copy for review',async()=>{const {DB}=await fixture({hold:true});assert.equal((await DB.prepare('SELECT status FROM radar_events WHERE id=1').first()).status,'ready_for_review');assert.equal((await DB.prepare('SELECT COUNT(*) n FROM radar_publication_jobs').first()).n,0)});
+test('an owner hold during the accuracy check is retained',async()=>{const {DB}=await fixture({change:true});assert.equal((await DB.prepare('SELECT status FROM radar_events WHERE id=1').first()).status,'hold');assert.equal((await DB.prepare('SELECT COUNT(*) n FROM radar_publication_jobs').first()).n,0)});
