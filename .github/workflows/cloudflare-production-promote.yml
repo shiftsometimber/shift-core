@@ -279,7 +279,11 @@ jobs:
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-before.json"
           node scripts/catalogue-exact-d1-import.mjs --sql "$RUNNER_TEMP/catalogue-before.json" > "$RUNNER_TEMP/catalogue-publication.sql"
           node scripts/catalogue-publication-client.mjs --verify-main
-          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/catalogue-publication.sql"
+          if [ -s "$RUNNER_TEMP/catalogue-publication.sql" ]; then
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/catalogue-publication.sql"
+          else
+            echo 'Exact approved catalogue already present; skipping D1 import and verifying a fresh snapshot.'
+          fi
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-after.json"
           node scripts/catalogue-exact-d1-import.mjs --verify "$RUNNER_TEMP/catalogue-before.json" "$RUNNER_TEMP/catalogue-after.json"
       - name: Publish the exact owner-authorised newsroom batch when approved
