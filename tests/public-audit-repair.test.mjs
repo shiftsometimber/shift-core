@@ -21,7 +21,7 @@ test('all eleven Health pages have complete server-visible content and retained 
     assert.ok(html.includes('href="https://shiftsometimber.co.uk/shift-health'+(slug?'/'+slug:'')+'"'));
     assert.doesNotMatch(html,/complete interactive route loads below|shift-health-catalogue-v1\.js/);
     assert.match(html,/<body class="one-shift shift-health-public">/);
-    if(slug){assert.match(main,/No stock available today/);assert.match(main,/<details>/);assert.match(main,/id="evidence"/)}
+    if(slug){assert.match(main,/No stock available today/);assert.match(main,/<details\b/);assert.match(main,/id="evidence"/)}
   }
   assert.equal(renderShiftHealthDocument(shell,'invented-route'),null);
 });

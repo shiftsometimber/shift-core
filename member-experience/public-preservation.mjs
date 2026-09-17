@@ -1,3 +1,4 @@
+import {preserveHealthCardOrder} from '../testosterone-hub-order.mjs';
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const preserved=preserveContinuityContent(path,preserveTickerVersion(body),{required:Boolean(before)});
+ const preserved=preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(body)),{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';
