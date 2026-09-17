@@ -13,18 +13,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Inspect member-login HTML and same-origin scripts
+      - name: Inspect deployed login markup and auth adapter bytes
         run: |
           node --input-type=module <<'NODE'
           const origin='https://shift-stabilisation-preview.matobrien.workers.dev';
-          const res=await fetch(origin+'/member-login',{headers:{'user-agent':'SST-preview-diagnostic'}});
+          const res=await fetch(origin+'/member-login?diag='+Date.now(),{headers:{'user-agent':'SST-preview-diagnostic','cache-control':'no-cache'}});
           const html=await res.text();
           console.log('LOGIN_STATUS',res.status,res.headers.get('content-type'));
-          const scripts=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].map((m,i)=>({i,attrs:m[1],body:m[2].slice(0,1000),src:(m[1].match(/\bsrc=["']([^"']+)/i)||[])[1]||''}));
-          console.log('SCRIPTS',JSON.stringify(scripts,null,2));
-          for(const s of scripts.filter(x=>x.src)){
-            const u=new URL(s.src,origin);if(u.origin!==origin)continue;
-            const r=await fetch(u);const t=await r.text();console.log('SCRIPT_FETCH',u.pathname,r.status,r.headers.get('content-type'),'LEN',t.length,'HAS_SST_API',t.includes('SST_API'),'HEAD',JSON.stringify(t.slice(0,220)));
-          }
-          console.log('INLINE_SST_API_CONTEXTS',JSON.stringify([...html.matchAll(/.{0,160}SST_API.{0,240}/g)].map(x=>x[0]).slice(0,20),null,2));
+          console.log('LOGIN_CSP',res.headers.get('content-security-policy'));
+          const adapterMatches=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']*api-adapter-v33d\.js[^"']*)["'][^>]*>/gi)];
+          const firstConsumer=html.search(/\bSST_API(?:\.|\[)/);
+          const adapterPos=adapterMatches[0]?.index ?? -1;
+          console.log('ADAPTER_COUNT',adapterMatches.length,'ADAPTER_POS',adapterPos,'FIRST_CONSUMER_POS',firstConsumer,'ORDER_OK',adapterPos>=0&&firstConsumer>=0&&adapterPos<firstConsumer);
+          console.log('ADAPTER_TAGS',JSON.stringify(adapterMatches.map(m=>m[0]),null,2));
+          const scripts=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].map((m,i)=>({i,attrs:m[1],body:m[2].slice(0,500),src:(m[1].match(/\bsrc=["']([^"']+)/i)||[])[1]||''}));
+          console.log('SCRIPT_ORDER',JSON.stringify(scripts.map(s=>({i:s.i,src:s.src,inlineHasSst:/\bSST_API(?:\.|\[)/.test(s.body)})),null,2));
+          const ar=await fetch(origin+'/api-adapter-v33d.js?diag='+Date.now(),{headers:{'user-agent':'SST-preview-diagnostic','cache-control':'no-cache'}});
+          const at=await ar.text();
+          console.log('ADAPTER_FETCH',ar.status,ar.headers.get('content-type'),'LEN',at.length,'HAS_WINDOW_SST_API',/window\.SST_API\s*=/.test(at),'HAS_SST_API',at.includes('SST_API'),'HEAD',JSON.stringify(at.slice(0,500)));
+          if(adapterMatches.length!==1||!(adapterPos<firstConsumer)||!ar.ok||!/window\.SST_API\s*=/.test(at))process.exitCode=1;
           NODE
