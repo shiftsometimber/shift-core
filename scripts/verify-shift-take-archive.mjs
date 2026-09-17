@@ -13,7 +13,7 @@ assert.equal(sample.status,200);const shell=await sample.text();
 globalThis.fetch=async()=>new Response(shell,{headers:{'content-type':'text/html'}});
 const proof=[];
 try{for(const row of rows){
- const p=JSON.parse(row.content_package_json),slug=String(p.seo.slug).replace(/^\\/+/,'');
+ const p=JSON.parse(row.content_package_json),slug=String(p.seo.slug).split('/').filter(Boolean).join('/');
  const path=slug.startsWith('medicine-news/')?'/'+slug:'/medicine-news/'+slug;
  const response=await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk'+path),{DB:{prepare:()=>({all:async()=>({results:rows})})}});
  assert.equal(response.status,200,path);const html=await response.text();
