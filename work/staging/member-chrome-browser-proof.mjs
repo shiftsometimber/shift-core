@@ -15,7 +15,7 @@ try{
   const page=await context.newPage();
   for(const [name,path]of [
    ['today','/member/dashboard#today'],['journey','/member/dashboard#journey'],['plans','/member/dashboard#plans'],['photos','/member/dashboard#visualise'],
-   ['saved','/staging/member/saved'],['grub','/staging/member-connected/grub'],['fit','/staging/member-connected/fit'],['check-in','/staging/member-connected/check-in'],['settings','/staging/member-connected/settings'],['life-back','/staging/member-connected/life-back']
+   ['work','/member/work'],['saved','/staging/member/saved'],['grub','/staging/member-connected/grub'],['fit','/staging/member-connected/fit'],['check-in','/staging/member-connected/check-in'],['settings','/staging/member-connected/settings'],['life-back','/staging/member-connected/life-back']
   ]){
    await page.goto(origin+path,{waitUntil:'domcontentloaded'});
    if(path.includes('/member/dashboard#'))await page.waitForFunction(panel=>document.querySelector('#panel-'+panel)?.classList.contains('active')&&(panel!=='today'||document.querySelector('#todayActions')?.dataset.todayDecisionReady==='true'),path.split('#')[1],{timeout:30000});

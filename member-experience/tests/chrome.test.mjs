@@ -40,3 +40,9 @@ test('shared assets are private, same-origin and use the existing approved banne
  assert.ok(memberChromeStyles.includes('/assets/home-hero-men-v32o.jpg'));
  assert.ok(memberChromeStyles.includes('-webkit-text-fill-color:#050505!important'));
 });
+
+import {workHTML} from '../../work/screen.mjs';
+test('workplace member page shares chrome while employer and HQ keep their own views',()=>{
+ const html=workHTML('member');assert.match(html,/data-member-chrome="v1"/);assert.match(html,/data-member-page="work"/);assert.match(html,/class="sst-member-tabs"/);assert.match(html,/id="work-app" data-mode="member"/);
+ for(const mode of ['employer','hq'])assert.doesNotMatch(workHTML(mode),/data-member-chrome/);
+});
