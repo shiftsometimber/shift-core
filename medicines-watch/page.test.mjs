@@ -32,12 +32,15 @@ test('source failure is visible and is never presented as a renewed review',()=>
  assert.ok(html.includes('0 of '+sources.length+' monitored sources'));
 });
 test('child retains shell but replaces main and metadata exactly once',()=>{
- const html=renderWatchDocument(shell.replace('</head>','<script src="/assets/treatment-guided-v1.js?v=1"></script><script src="/assets/shift-service-bridge-v1.js?v=2"></script><script src="/assets/v42.js"></script></head>'),health);
+ const awkwardShell=shell.replace('<meta name="description" content="old">','<meta content="old" name="description"><meta content="old social" property="og:description"><meta content="old tweet" name="twitter:description">');
+ const html=renderWatchDocument(awkwardShell.replace('</head>','<script src="/assets/treatment-guided-v1.js?v=1"></script><script src="/assets/shift-service-bridge-v1.js?v=2"></script><script src="/assets/v42.js"></script></head>'),health);
  assert.doesNotMatch(html,/(?:treatment-guided-v1|shift-service-bridge-v1)\.js/);assert.match(html,/src="\/assets\/v42.js"/);
  assert.match(html,/<header>Original menu<\/header>/);assert.match(html,/<footer>Original footer<\/footer>/);
  assert.equal((html.match(/<main\b/g)||[]).length,1);assert.equal((html.match(/<h1>/g)||[]).length,1);
  assert.doesNotMatch(html,/Existing treatments|class="one-shift treatment-centre/);
  assert.equal((html.match(/rel="canonical"/g)||[]).length,1);assert.match(html,/https:\/\/shiftsometimber.co.uk\/treatment-centre\/medicines-watch/);
+ assert.equal((html.match(/name="description"/g)||[]).length,1);assert.equal((html.match(/property="og:description"/g)||[]).length,1);assert.equal((html.match(/name="twitter:description"/g)||[]).length,1);
+ assert.doesNotMatch(html,/old social|old tweet/);
 });
 test('parent only gains the exact marked entry; all original bytes survive',async()=>{
  const r=await withMedicinesWatchEntry(new Response(shell,{headers:{'content-type':'text/html'}}),new Request('https://shiftsometimber.co.uk/treatment-centre'));
