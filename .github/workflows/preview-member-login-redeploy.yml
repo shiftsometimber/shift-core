@@ -4,6 +4,7 @@ on:
     branches: [preview/stabilisation-life-back-20260917]
     paths:
       - '.github/workflows/preview-member-login-redeploy.yml'
+      - 'work/staging/worker.mjs'
 permissions:
   contents: read
 jobs:
@@ -77,6 +78,14 @@ jobs:
             console.log('Propagation wait',attempt,last);await sleep(5000);
           }
           throw Error('Fresh v2 preview did not settle on exact source in time: '+last);
+          NODE
+      - name: Prove preview auth routes reach core before browser install
+        run: |
+          node --input-type=module <<'NODE'
+          const origin=process.env.PREVIEW_URL;
+          const r=await fetch(origin+'/v1/auth/logout',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:'{}'});
+          if(r.status===404)throw Error('Preview staging guard still blocks /v1/auth/logout');
+          console.log('PASS: /v1/auth/logout reaches core; unauthenticated status',r.status);
           NODE
       - name: Permit browser proof to recognise the fresh v2 isolated hostname
         run: |
