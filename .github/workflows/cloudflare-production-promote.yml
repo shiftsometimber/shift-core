@@ -9,6 +9,11 @@ on:
       - ".github/workflows/cloudflare-production-promote.yml"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
+      - "radar-news-pages-v1.js"
+      - "radar-newsroom-sort-v1.js"
+      - "radar-newsroom-filters-v1.js"
+      - "tests/radar-newsroom-*.test.mjs"
+      - "scripts/verify-newsroom-order-live.mjs"
       - "public-continuity*.mjs"
       - "tests/public-continuity.test.mjs"
       - "scripts/verify-public-continuity-live.mjs"
@@ -210,6 +215,8 @@ jobs:
         run: node --test medicines-watch/*.test.mjs
       - name: Verify Radar retrieval, publication edition, dates and correction races
         run: node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
+      - name: Verify newsroom publication ordering and combined controls
+        run: node --test tests/radar-newsroom-*.test.mjs
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
@@ -305,6 +312,8 @@ jobs:
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
       - name: Prove public Life Back, food-noise guidance and their linked journeys
         run: node scripts/verify-public-continuity-live.mjs
+      - name: Prove newsroom publication order on live traffic
+        run: node scripts/verify-newsroom-order-live.mjs
       - name: Prove exact member scripts and authentication on live traffic
         run: node member-experience/verify-production-member.mjs
       - name: Prove Medicines Watch and its source checks on live traffic
@@ -323,6 +332,7 @@ jobs:
             watch-access-closeout.json
             catalogue-publication-result.json
             newsroom-publication-proof.json
+            newsroom-order-proof.json
       - name: Prove deployed public audit repairs
         run: node scripts/verify-public-audit-live.mjs
       - name: Prove deployed Progress client matches current Git authority

@@ -4,7 +4,7 @@ import { radarNewsPageRoutes } from '../radar-news-pages-v1.js';
 import { addNewsroomMenu } from '../radar-newsroom-menu-v1.js';
 const shell = '<html><head><title>Old</title><meta name="description" content="Old"><link rel="canonical" href="https://shiftsometimber.co.uk/medicine-news"></head><body><header>Approved header</header><main>Old body</main></body></html>';
 const row = (id, region, title) => ({ id, region, headline: title, regulator: 'Test source', reviewed_at: '2026-09-13', content_package_json: JSON.stringify({ headline: title, article_markdown: 'A complete evidence-led article.', seo: { slug: `medicine-news/article-${id}` }, destinations: ['medicine_news'] }) });
-test('dedicated newsroom is canonical, UK first, and preserves article URLs', async () => {
+test('dedicated newsroom is canonical, globally ordered, and preserves article URLs', async () => {
   const original = globalThis.fetch;
   globalThis.fetch = async () => new Response(shell);
   try {
@@ -17,7 +17,9 @@ test('dedicated newsroom is canonical, UK first, and preserves article URLs', as
     assert.match(html, /<h1>SHIFT <span class="accent">Newsroom/);
     assert.match(html, /rel="canonical" href="https:\/\/shiftsometimber.co.uk\/shift-newsroom"/);
     assert.equal((html.match(/rel="canonical"/g)||[]).length,1);
-    assert.ok(html.indexOf('NHS access') < html.indexOf('International trial'));
+    assert.ok(html.indexOf('href="/medicine-news/article-1"') < html.indexOf('href="/medicine-news/article-2"'));
+    assert.match(html,/name="sort"/);
+    assert.equal((html.match(/data-news-list/g)||[]).length,2);
     assert.match(html,/href="\/medicine-news\/article-2"/);
     assert.match(html,/<header>Approved header<\/header>/);
     const redirect = await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news'),env);
