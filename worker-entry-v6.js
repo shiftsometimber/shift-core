@@ -1,5 +1,6 @@
 import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
 import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navigation-policy.mjs';
+import {continuityPublicRoute,withPublicContinuity} from './public-continuity.mjs';
 import {publicHealthResponse} from './public-health-v1.js';
 import {renderShiftHealthDocument,healthSlugs} from './shift-health-public.mjs';
 import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
@@ -1114,6 +1115,10 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 export default {
   ...worker,
   async fetch(request, env, ctx) {
-    return withPublicTicker(request, await worker.fetch(request, env, ctx));
+    const page = await continuityPublicRoute(request, () => {
+      const url = new URL(request.url); url.pathname = '/programme'; url.search = '';
+      return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
+    });
+    return withPublicTicker(request, await withPublicContinuity(request, page || await worker.fetch(request, env, ctx)));
   },
 };
