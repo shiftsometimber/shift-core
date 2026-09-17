@@ -1,0 +1,23 @@
+name: Public navigation preview
+on:
+  push:
+    branches: [fix/public-navigation-20260917]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify route policy, member preservation and existing public repairs
+        run: node --test tests/public-navigation-policy.test.mjs tests/public-audit-repair.test.mjs tests/lounge-public-chrome.test.mjs tests/seo-release-integrity.test.mjs member-experience/tests/*.test.mjs medicines-watch/*.test.mjs
+      - name: Publish the scoped read-only preview
+        run: npx wrangler deploy --config preview/public-navigation/wrangler.jsonc

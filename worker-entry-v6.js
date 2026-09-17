@@ -1,4 +1,5 @@
 import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
+import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navigation-policy.mjs';
 import {publicHealthResponse} from './public-health-v1.js';
 import {renderShiftHealthDocument,healthSlugs} from './shift-health-public.mjs';
 import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
@@ -537,7 +538,7 @@ async function coreAuthFetch(request, env, ctx) {
 }
 
 
-export default {
+const worker = {
   async fetch(request, env, ctx) {
     const requestUrl = new URL(request.url);
     if (requestUrl.protocol === "http:") {
@@ -545,6 +546,8 @@ export default {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
+    if (publicNavigation) return publicNavigation;
     if (['GET','HEAD'].includes(request.method) && ['/health','/v1/health'].includes(path)) return publicHealthResponse(request,env);
     const medicinesWatch = await medicinesWatchRoutes(request, env);
     if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);
@@ -1107,3 +1110,10 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
     console.warn("analytics_legacy_journey_failed", e?.message);
   }
 }
+
+export default {
+  ...worker,
+  async fetch(request, env, ctx) {
+    return withPublicTicker(request, await worker.fetch(request, env, ctx));
+  },
+};

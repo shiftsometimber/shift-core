@@ -190,7 +190,7 @@ jobs:
       - name: Block SEO deployment regressions
         run: node --test tests/seo-release-integrity.test.mjs
       - name: Prove Health rendering, canonical uniqueness and public endpoint security
-        run: node --test tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs
+        run: node --test tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs tests/public-navigation-policy.test.mjs
       - name: Prove My Journey end to end before promotion
         run: |
           node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs
