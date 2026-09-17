@@ -1,7 +1,7 @@
 name: Archive SHIFT take preview
 on:
   push:
-    branches: [fix/archive-shift-take-20260917]
+    branches: [fix/archive-shift-take-20260917, fix/archive-take-citations-20260917]
 permissions:
   contents: read
 jobs:
