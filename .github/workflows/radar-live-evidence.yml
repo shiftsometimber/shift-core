@@ -1,0 +1,27 @@
+name: Radar live metadata evidence
+on:
+  push:
+    branches: [audit/radar-live-evidence-20260917]
+    paths: [.github/workflows/radar-live-evidence.yml, scripts/radar-live-metadata-evidence.mjs]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Wait read-only for the scheduled repair and scan result
+        run: node scripts/radar-live-metadata-evidence.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: radar-live-metadata-evidence
+          path: radar-feed-diagnostics.json
