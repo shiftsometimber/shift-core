@@ -1,5 +1,5 @@
 // Owner's 17 September 2026 instruction supersedes earlier ticker allowlists.
-export const tickerVersion = 'public-news-20260917-r3';
+export const tickerVersion = 'public-news-20260917-r4';
 export const tickerAsset = '/assets/public-news-ticker-v1.js';
 export const normalizePublicPath = path => {
   const normalized = path.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
@@ -31,11 +31,12 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 #shift-public-news a{color:#050505;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible,#shift-public-news button:focus-visible{outline:2px solid #050505;outline-offset:3px}
 #shift-public-news .shift-news-label{font-weight:900;white-space:nowrap}#shift-public-news .shift-news-window{min-width:0;overflow:hidden}#shift-public-news .shift-news-track{display:flex;width:max-content;max-width:none}#shift-public-news .shift-news-copy{display:flex;align-items:center;gap:24px;white-space:nowrap;padding-right:24px;flex-shrink:0}
 #shift-public-news:not([data-ready]) .shift-news-track{width:auto}#shift-public-news:not([data-ready]) .shift-news-copy{flex:1;min-width:0;max-width:100%;padding:0;white-space:normal;flex-wrap:wrap;gap:8px 18px}
-#shift-public-news[data-ready] .shift-news-track{animation:shiftPublicNews 90s linear infinite}#shift-public-news:hover .shift-news-track,#shift-public-news:focus-within .shift-news-track,#shift-public-news[data-paused] .shift-news-track{animation-play-state:paused}
+#shift-public-news[data-ready] .shift-news-track{animation:shiftPublicNews 90s linear infinite}#shift-public-news .shift-news-window:focus-within .shift-news-track,#shift-public-news[data-paused] .shift-news-track{animation-play-state:paused}
+@media(hover:hover) and (pointer:fine){#shift-public-news .shift-news-window:hover .shift-news-track{animation-play-state:paused}}
 #shift-public-news .shift-news-pause{font:inherit;cursor:pointer;border:1px solid #050505;border-radius:4px;padding:4px 8px;background:#e7e3da;color:#050505}#shift-public-news [hidden]{display:none!important}
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
 @media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-pause{grid-column:2;grid-row:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
-@media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}#shift-public-news .shift-news-pause{display:none}}`;
+@media(prefers-reduced-motion:reduce){#shift-public-news:not([data-motion-enabled]) .shift-news-track{animation:none!important;width:auto}#shift-public-news:not([data-motion-enabled]) .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news:not([data-motion-enabled]) .shift-news-copy[aria-hidden]{display:none}}`;
 // Keep browser code literal: Worker bundlers add private helpers to function.toString().
 export const tickerClient = String.raw`(function bootTicker() {
   const start = async () => {
@@ -43,12 +44,26 @@ export const tickerClient = String.raw`(function bootTicker() {
     if (!strip || strip.dataset.started) return;
     strip.dataset.started = 'true';
     const track = strip.querySelector('.shift-news-track'), button = strip.querySelector('button');
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const showState = () => {
+      const paused = strip.hasAttribute('data-paused');
+      button.setAttribute('aria-pressed', String(paused));
+      button.setAttribute('aria-label', paused ? 'Play news ticker' : 'Pause news ticker');
+      button.textContent = paused ? 'Play' : 'Pause';
+    };
+    const respectMotion = () => {
+      strip.removeAttribute('data-motion-enabled');
+      strip.toggleAttribute('data-paused', motion.matches);
+      showState();
+    };
+    respectMotion();
+    if (motion.addEventListener) motion.addEventListener('change', respectMotion);
+    else if (motion.addListener) motion.addListener(respectMotion);
     button.addEventListener('click', () => {
       const paused = !strip.hasAttribute('data-paused');
       strip.toggleAttribute('data-paused', paused);
-      button.setAttribute('aria-pressed', String(paused));
-      button.setAttribute('aria-label', paused ? 'Resume news ticker' : 'Pause news ticker');
-      button.textContent = paused ? 'Resume' : 'Pause';
+      if (!paused) strip.setAttribute('data-motion-enabled', '');
+      showState();
     });
     try {
       const response = await fetch('/v1/radar/ticker', {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(8000)});
