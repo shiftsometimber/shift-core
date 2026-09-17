@@ -251,7 +251,7 @@ export function reconcilePublicDocument(html,path){
  html=html.replace(/(<a\b[^>]*href=["'])(?:https:\/\/shiftsometimber\.co\.uk)?\/medicine-news(?=[?#"'])/gi,'$1/shift-newsroom');
  if(relatedGuideGroups[path]&&!html.includes('data-related-guide-dependency'))html=html.replace('</head>',()=>'<style data-related-guide-dependency>'+"[data-shift-link-repair]{box-sizing:border-box;width:calc(100% - 36px);max-width:1124px;margin:32px auto 48px;padding:24px;border:1px solid #707762;border-radius:10px;background:#050505;color:#e7e3da;font:16px/1.65 Arial,sans-serif}[data-shift-link-repair] h2{margin:26px 0 12px;color:#e7e3da;font:700 22px/1.3 Arial,sans-serif}[data-shift-link-repair] h2:first-child{margin-top:0}[data-shift-link-repair] ul{margin:0;padding-left:22px}[data-shift-link-repair] li{margin:8px 0}[data-shift-link-repair] a{color:#e7e3da;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}[data-shift-link-repair] a:focus-visible{outline:2px solid #e7e3da;outline-offset:3px}@media(max-width:560px){[data-shift-link-repair]{padding:20px;width:calc(100% - 32px)}}"+'</style></head>');
  const groups=relatedGuideGroups[path];
- if(groups&&!html.includes('data-shift-link-repair')){
+ if(groups&&!/<section\b[^>]*\bdata-shift-link-repair(?:\s|>|=)/i.test(html)){
   const body='<section data-shift-link-repair aria-label="Related existing guides">'+groups.filter(g=>g.links.length).map(g=>'<h2>'+escape(g.title)+'</h2><ul>'+g.links.map(a=>'<li><a href="'+escape(a.path)+'">'+escape(a.label)+'</a></li>').join('')+'</ul>').join('')+'</section>';
   html=html.replace('</main>',()=>body+'</main>');
  }
