@@ -36,7 +36,8 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
 @media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-pause{grid-column:2;grid-row:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}#shift-public-news .shift-news-pause{display:none}}`;
-function bootTicker() {
+// Keep browser code literal: Worker bundlers add private helpers to function.toString().
+export const tickerClient = String.raw`(function bootTicker() {
   const start = async () => {
     const strip = document.getElementById('shift-public-news');
     if (!strip || strip.dataset.started) return;
@@ -75,8 +76,7 @@ function bootTicker() {
     } catch { /* Keep the honest, working newsroom fallback. */ }
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true}); else start();
-}
-export const tickerClient = `(${bootTicker.toString()})();`;
+})();`;
 export function publicTickerAsset(request) {
   if (new URL(request.url).pathname !== tickerAsset || !['GET','HEAD'].includes(request.method)) return null;
   return new Response(request.method === 'HEAD' ? null : tickerClient, {headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'public, max-age=300','X-Content-Type-Options':'nosniff'}});
