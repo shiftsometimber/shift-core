@@ -57,16 +57,26 @@ jobs:
           node --input-type=module <<'NODE'
           import fs from 'node:fs';const log=fs.readFileSync(process.env.RUNNER_TEMP+'/deploy.txt','utf8');const m=log.match(/https:\/\/shift-stabilisation-preview-v2\.[a-z0-9-]+\.workers\.dev/);if(!m)throw Error('Fresh v2 preview URL missing');fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+m[0]+'\n');console.log('PREVIEW V2 ONLY',m[0]);
           NODE
-      - name: Prove served build identity and real member-login adapter
+      - name: Wait for exact served build then prove real member-login adapter
         run: |
           node --input-type=module <<'NODE'
-          const origin=process.env.PREVIEW_URL;
-          const meta=await (await fetch(origin+'/__preview/meta?verify='+Date.now(),{headers:{'cache-control':'no-cache'}})).json();
-          if(meta.source!==process.env.PREVIEW_SOURCE_SHA||meta.productionBindings!==false)throw Error('Fresh v2 preview is not serving this exact isolated source');
-          const r=await fetch(origin+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}}),h=await r.text();
-          const m=h.match(/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i),a=m?.index??-1,c=h.search(/\bSST_API(?:\.|\[)/);
-          if(!r.ok||a<0||c<0||a>=c)throw Error('Fresh v2 deployed member-login still does not load the adapter first');
-          console.log('PASS: exact v2 source is served and login loads api-adapter-v33d.js before SST_API consumer');
+          const origin=process.env.PREVIEW_URL,want=process.env.PREVIEW_SOURCE_SHA,sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          let last='';
+          for(let attempt=1;attempt<=18;attempt++){
+            try{
+              const mr=await fetch(origin+'/__preview/meta?verify='+Date.now(),{headers:{'cache-control':'no-cache'}}),mt=await mr.text();
+              let meta=null;try{meta=JSON.parse(mt)}catch{}
+              last=`meta status ${mr.status} type ${mr.headers.get('content-type')} source ${meta?.source||'none'} body ${mt.slice(0,120)}`;
+              if(mr.ok&&meta?.source===want&&meta.productionBindings===false){
+                const r=await fetch(origin+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}}),h=await r.text();
+                const m=h.match(/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i),a=m?.index??-1,c=h.search(/\bSST_API(?:\.|\[)/);
+                if(r.ok&&a>=0&&c>=0&&a<c){console.log('PASS: exact v2 source propagated and login loads api-adapter-v33d.js before SST_API consumer on attempt',attempt);process.exit(0)}
+                last=`login status ${r.status} adapter ${a} consumer ${c}`;
+              }
+            }catch(error){last=String(error)}
+            console.log('Propagation wait',attempt,last);await sleep(5000);
+          }
+          throw Error('Fresh v2 preview did not settle on exact source in time: '+last);
           NODE
       - name: Permit browser proof to recognise the fresh v2 isolated hostname
         run: |
