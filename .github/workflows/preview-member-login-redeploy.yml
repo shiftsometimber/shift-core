@@ -1,10 +1,9 @@
-name: My Timber login PREVIEW redeploy
+name: My Timber login PREVIEW v2 proof
 on:
   push:
     branches: [preview/stabilisation-life-back-20260917]
     paths:
       - '.github/workflows/preview-member-login-redeploy.yml'
-      - 'preview/stabilisation/worker.mjs'
 permissions:
   contents: read
 jobs:
@@ -30,16 +29,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
-      - name: Confirm final response repair guarantees the same-origin auth adapter
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';import assert from 'node:assert/strict';
-          const worker=fs.readFileSync('preview/stabilisation/worker.mjs','utf8');
-          assert(worker.includes('data-shift-auth-adapter'),'Final-response adapter repair missing');
-          assert(worker.includes("if(path==='/member-login')"),'Member-login finalizer missing');
-          assert(worker.includes("body=baseScript.test(body)?body.replace(baseScript,match=>match+adapter)"),'Adapter ordering repair missing');
-          console.log('PASS: final preview response guarantees api-adapter-v33d.js after safety stripping.');
-          NODE
       - name: Regression gates
         run: node --test --test-reporter=tap member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/my-timber-analytics-privacy.test.mjs
       - name: Prepare and verify isolated preview
@@ -48,33 +37,53 @@ jobs:
           node preview/stabilisation/verify-public.mjs
       - name: Provision only separately named preview databases
         run: node preview/stabilisation/provision.mjs
-      - name: Deploy isolated preview only
+      - name: Move generated config to a fresh isolated v2 Worker name
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const file='work/staging/generated/config.json',c=JSON.parse(fs.readFileSync(file));
+          assert.equal(c.name,'shift-stabilisation-preview');
+          assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
+          assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);assert.equal(c.workers_dev,true);
+          c.name='shift-stabilisation-preview-v2';
+          fs.writeFileSync(file,JSON.stringify(c,null,2));
+          console.log('PASS: fresh v2 Worker uses only existing separately named preview bindings.');
+          NODE
+      - name: Deploy fresh isolated preview v2 only
         shell: bash
         run: |
           set -euo pipefail
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';import assert from 'node:assert/strict';const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);assert.equal(c.workers_dev,true);
-          NODE
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/deploy.txt" 2>&1
           node --input-type=module <<'NODE'
-          import fs from 'node:fs';const log=fs.readFileSync(process.env.RUNNER_TEMP+'/deploy.txt','utf8');const m=log.match(/https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev/);if(!m)throw Error('Preview URL missing');fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+m[0]+'\n');console.log('PREVIEW ONLY',m[0]);
+          import fs from 'node:fs';const log=fs.readFileSync(process.env.RUNNER_TEMP+'/deploy.txt','utf8');const m=log.match(/https:\/\/shift-stabilisation-preview-v2\.[a-z0-9-]+\.workers\.dev/);if(!m)throw Error('Fresh v2 preview URL missing');fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+m[0]+'\n');console.log('PREVIEW V2 ONLY',m[0]);
           NODE
-      - name: Confirm deployed login now contains the adapter
+      - name: Prove served build identity and real member-login adapter
         run: |
           node --input-type=module <<'NODE'
-          const r=await fetch(process.env.PREVIEW_URL+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}});const h=await r.text();const m=h.match(/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i),a=m?.index??-1,c=h.search(/\bSST_API(?:\.|\[)/);if(!r.ok||a<0||c<0||a>=c)throw Error('Deployed member-login still does not load the adapter first');console.log('PASS: deployed login contains auth adapter before SST_API consumer');
+          const origin=process.env.PREVIEW_URL;
+          const meta=await (await fetch(origin+'/__preview/meta?verify='+Date.now(),{headers:{'cache-control':'no-cache'}})).json();
+          if(meta.source!==process.env.PREVIEW_SOURCE_SHA||meta.productionBindings!==false)throw Error('Fresh v2 preview is not serving this exact isolated source');
+          const r=await fetch(origin+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}}),h=await r.text();
+          const m=h.match(/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i),a=m?.index??-1,c=h.search(/\bSST_API(?:\.|\[)/);
+          if(!r.ok||a<0||c<0||a>=c)throw Error('Fresh v2 deployed member-login still does not load the adapter first');
+          console.log('PASS: exact v2 source is served and login loads api-adapter-v33d.js before SST_API consumer');
+          NODE
+      - name: Permit browser proof to recognise the fresh v2 isolated hostname
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';const p='preview/stabilisation/browser-proof.mjs';let s=fs.readFileSync(p,'utf8');s=s.replace('shift-stabilisation-preview\\.','shift-stabilisation-preview(?:-v2)?\\.');fs.writeFileSync(p,s);
           NODE
       - name: Install Chromium and WebKit
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
-      - name: Prove actual UI login and full connected loop
+      - name: Prove actual UI login logout re-login and full connected loop
         run: node preview/stabilisation/browser-proof.mjs
       - name: Upload proof
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: my-timber-ui-login-preview-evidence-final
+          name: my-timber-ui-login-preview-v2-evidence
           retention-days: 14
           path: |
             work/staging/generated/public-proof.json
