@@ -4,7 +4,7 @@ import {memberReviewRoutes} from '../../member-experience/staging/routes.mjs';
 import {layoutResponse} from './layout.mjs';
 import {workHTML} from '../screen.mjs';
 const privateHeaders={'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','Content-Type':'text/html; charset=utf-8'};
-const isHost=(h,env)=>h.startsWith((env.SHIFT_ENVIRONMENT==='stabilisation-preview-20260917'?'shift-stabilisation-preview.':'shift-core-work-staging.'))&&h.endsWith('.workers.dev');
+const isHost=(h,env)=>env.SHIFT_ENVIRONMENT==='stabilisation-preview-20260917'?/^shift-stabilisation-preview(?:-v2)?\.[a-z0-9-]+\.workers\.dev$/.test(h):h.startsWith('shift-core-work-staging.')&&h.endsWith('.workers.dev');
 export default {async fetch(request,env,ctx){
  const u=new URL(request.url),p=u.pathname;
  if(!['work-staging-20260912','stabilisation-preview-20260917'].includes(env.SHIFT_ENVIRONMENT)||!isHost(u.hostname,env)||!env.STAGING_EXPIRES_AT||!Number.isFinite(Date.parse(env.STAGING_EXPIRES_AT))||Date.now()>=Date.parse(env.STAGING_EXPIRES_AT))return new Response('Staging is unavailable.',{status:404});
