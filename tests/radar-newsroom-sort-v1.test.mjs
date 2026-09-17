@@ -3,8 +3,24 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {newsPublicationDate,newsSortKey,compareNews} from '../radar-newsroom-sort-v1.js';
 import {NEWSROOM_FILTER_SCRIPT} from '../radar-newsroom-filters-v1.js';
-import {radarNewsPageRoutes} from '../radar-news-pages-v1.js';
+import {radarNewsPageRoutes,NEWSROOM_ROWS_SQL} from '../radar-news-pages-v1.js';
+import {DatabaseSync} from 'node:sqlite';
 const row=(id,title,date,region='UK')=>({id,headline:title,region,reviewed_at:'2026-09-17',updated_at:'2026-09-17',content_package_json:JSON.stringify({headline:title,seo:{slug:'medicine-news/'+id,datePublished:date},destinations:['medicine_news']})});
+test('first successful publication audit beats journal dates and later republishes',async()=>{
+ const db=new DatabaseSync(':memory:');
+ db.exec("CREATE TABLE radar_events(id INTEGER,headline TEXT,region TEXT,regulator TEXT,event_type TEXT,content_package_json TEXT,source_evidence_json TEXT,reviewed_at TEXT,updated_at TEXT,created_at TEXT,status TEXT);CREATE TABLE radar_audit(event_id INTEGER,action TEXT,created_at TEXT)");
+ const event=row(1,'Future journal issue','2099-12-01');
+ db.prepare("INSERT INTO radar_events(id,headline,region,content_package_json,status) VALUES(?,?,?,?, 'published')").run(event.id,event.headline,event.region,event.content_package_json);
+ db.exec("INSERT INTO radar_audit VALUES(1,'approved','2026-09-01'),(1,'published','2026-09-08 12:00:00'),(1,'published','2026-09-16 12:00:00'),(1,'social_published','2026-09-17')");
+ const result=db.prepare(NEWSROOM_ROWS_SQL).all()[0];
+ assert.equal(newsPublicationDate(result),'2026-09-08T12:00:00.000Z');
+ assert.equal(newsPublicationDate(event),'','No future date is presented as already published');
+ const original=globalThis.fetch;globalThis.fetch=async()=>new Response('<html><head></head><body><main>Shell</main></body></html>');
+ try{
+  const html=await(await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news/1'),{DB:{prepare:()=>({all:async()=>({results:[result]})})}})).text();
+  assert.match(html,/Published 8 September 2026/);assert.match(html,/"datePublished":"2026-09-08T12:00:00.000Z"/);assert.ok(!html.includes('2099-12-01'));
+ }finally{globalThis.fetch=original;db.close()}
+});
 test('publication order ignores later reviews, keeps UTC time, and puts undated stories last',()=>{
   const rows=[row(1,'Zulu','2026-09-16T23:30:00-02:00'),row(2,'alpha','2026-09-17T00:30:00Z'),row(3,'Beta','2026-09-15'),row(4,'Undated',null),row(5,'Invalid','2026-02-30')];
   const keys=rows.map(newsSortKey),titles=order=>[...keys].sort((a,b)=>compareNews(a,b,order)).map(x=>x.title);

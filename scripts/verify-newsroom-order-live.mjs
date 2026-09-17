@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import {writeFileSync} from 'node:fs';
 import {compareNews,NEWSROOM_SORTS} from '../radar-newsroom-sort-v1.js';
 const base=process.env.NEWSROOM_BASE||'https://shiftsometimber.co.uk';
-const response=await fetch(base+'/shift-newsroom?verify='+process.env.GITHUB_SHA,{cache:'no-store',signal:AbortSignal.timeout(30000)});
+let response;for(let attempt=0;attempt<8;attempt++){response=await fetch(base+'/shift-newsroom?verify='+process.env.GITHUB_SHA,{cache:'no-store',signal:AbortSignal.timeout(30000)});
+if(response.ok)break;if(attempt<7)await new Promise(resolve=>setTimeout(resolve,5000));}
 assert.equal(response.status,200);const html=await response.text();
 const decode=s=>s.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 const cards=[...html.matchAll(/<article class="radar-news-card" data-news-card data-date="([^"]*)" data-title="([^"]*)" data-id="([^"]*)"/g)].map(([,date,title,id])=>({date,title:decode(title),id:decode(id)}));
