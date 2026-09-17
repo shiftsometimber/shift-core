@@ -48,11 +48,17 @@ function indexMain(rows){
 function detailMain(row){
  const content=parse(row.content_package_json,{}),sources=parse(row.source_evidence_json,[]),facts=Array.isArray(content.known_facts)?content.known_facts:[];
  const meaning=String(content.shift_take||content.why_it_matters_to_uk||'').trim();
- const meaningInBody=meaning&&String(content.article_markdown||'').split(/\n\s*\n/).some(paragraph=>paragraph.trim()===meaning);
- const meaningHtml=content.shift_take?'<section data-shift-take><h2>SHIFT’s take</h2><p class="radar-news-meta">SHIFT’s interpretation of the findings and what they could mean for members.</p><p>'+esc(meaning)+'</p></section>':meaningInBody?'':'<section><h2>What this means in the UK</h2><p>'+esc(meaning||'Check the cited evidence and current UK guidance.')+'</p></section>';
+ const paragraphs=String(content.article_markdown||'').split(/\n\s*\n/);
+ const duplicate=meaning?paragraphs.findIndex(p=>p.trim()===meaning):-1;
+ if(duplicate>=0){
+  paragraphs.splice(duplicate,1);
+  if(duplicate>0&&/^#{1,6}\s+[^\n]+$/.test(paragraphs[duplicate-1].trim())&&(duplicate===paragraphs.length||/^#{1,6}\s/.test(paragraphs[duplicate].trim())))paragraphs.splice(duplicate-1,1);
+ }
+ const articleBody=paragraphs.join('\n\n');
+ const meaningHtml='<section data-shift-take><h2>SHIFT’s take</h2><p class="radar-news-meta">SHIFT’s interpretation of the findings and what they could mean for members.</p><p>'+esc(meaning||'A separate SHIFT interpretation has not been added to this report.')+'</p></section>';
  const factsHtml=facts.length?'<section><h2>Known facts</h2><ul>'+facts.map(x=>'<li>'+esc(x.claim||x.fact||"")+'</li>').join("")+'</ul></section>':"";
  const sourcesHtml='<section><h2>Sources and evidence</h2><ul class="radar-source-list">'+sources.map(x=>'<li><a href="'+esc(x.url||x.source_url||"#")+'" rel="noopener noreferrer">'+esc(x.authority||x.title||"Primary source")+'</a>'+sourceDateLabel(x)+'</li>').join("")+'</ul></section>';
- return '<main id="main-content"><article class="radar-article"><p class="eyebrow">SHIFT Newsroom · '+esc(newsRegion({region:row.region},{title:row.headline}))+'</p><h1>'+esc(content.headline||row.headline)+'</h1><p class="standfirst">'+esc(content.standfirst||content.what_changed||"")+'</p>'+articleTrust({...content,seo:{...content.seo,datePublished:publishedAt(row)}},row)+markdown(content.article_markdown)+meaningHtml+factsHtml+(content.safety?'<aside class="radar-safety"><strong>Safety context</strong><p>'+esc(content.safety)+'</p></aside>':"")+sourcesHtml+'<p><a href="/shift-newsroom">← Back to SHIFT Newsroom</a></p></article></main>';
+ return '<main id="main-content"><article class="radar-article"><p class="eyebrow">SHIFT Newsroom · '+esc(newsRegion({region:row.region},{title:row.headline}))+'</p><h1>'+esc(content.headline||row.headline)+'</h1><p class="standfirst">'+esc(content.standfirst||content.what_changed||"")+'</p>'+articleTrust({...content,seo:{...content.seo,datePublished:publishedAt(row)}},row)+markdown(articleBody)+meaningHtml+factsHtml+(content.safety?'<aside class="radar-safety"><strong>Safety context</strong><p>'+esc(content.safety)+'</p></aside>':"")+sourcesHtml+'<p><a href="/shift-newsroom">← Back to SHIFT Newsroom</a></p></article></main>';
 }
 function detailHead(html,row,request){
  const content=parse(row.content_package_json,{}),seo=content.seo||{},title=String(seo.title||content.headline||row.headline).slice(0,70),description=String(seo.description||content.standfirst||content.what_changed||"").slice(0,160),canonical=new URL(request.url);canonical.search="";canonical.hash="";
