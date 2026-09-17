@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Add visible logout to the shared My Timber shell and upgrade browser proof
+      - name: Make logout a normal shared-shell POST while keeping presentation code network-free
         run: |
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/preview/stabilisation-life-back-20260917
@@ -33,58 +33,49 @@ jobs:
           import assert from 'node:assert/strict';
           const chromePath='member-experience/chrome.mjs';
           let chrome=fs.readFileSync(chromePath,'utf8');
-          const oldNav=`<a href="/member/ask-timber">Ask Timber</a>'+(work?'<a href="/member/work">My workplace programme</a>':'')+'</div></details>'`;
-          const newNav=`<a href="/member/ask-timber">Ask Timber</a>'+(work?'<a href="/member/work">My workplace programme</a>':'')+'<button type="button" class="member-nav-logout" data-member-logout>Log out</button></div></details>'`;
-          if(!chrome.includes(newNav)){
-            assert(chrome.includes(oldNav),'Expected shared My Timber navigation baseline not found');
-            chrome=chrome.replace(oldNav,newNav);
-          }
-          const oldCss=`html body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more a{display:block!important;white-space:normal}`;
-          const newCss=oldCss+`\nhtml body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more .member-nav-logout{display:block;width:100%;box-sizing:border-box;margin:6px 0 0;padding:10px 14px;border:1px solid #707762;border-radius:6px;background:transparent;color:#e7e3da;font:700 15px/1.4 Arial,sans-serif;text-align:left;cursor:pointer}\nhtml body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more .member-nav-logout:is(:hover,:focus-visible){background:#e7e3da;color:#050505;outline:2px solid #707762;outline-offset:2px}`;
-          if(!chrome.includes('member-nav-logout:is(:hover,:focus-visible)')){
-            assert(chrome.includes(oldCss),'Expected member More-menu CSS baseline not found');
-            chrome=chrome.replace(oldCss,newCss);
-          }
-          const oldClient=` const more=document.querySelector('.member-nav-more');\n document.addEventListener('keydown'`;
-          const logoutClient=` const more=document.querySelector('.member-nav-more');\n const logout=document.querySelector('[data-member-logout]');\n if(logout)logout.addEventListener('click',async()=>{\n  if(logout.disabled)return;const original=logout.textContent;logout.disabled=true;logout.textContent='Signing out…';\n  try{const response=await fetch('/v1/auth/logout',{method:'POST',credentials:'include',cache:'no-store'});if(!response.ok)throw Error('logout_failed');location.replace('/member-login')}\n  catch{logout.disabled=false;logout.textContent=original;let status=document.querySelector('[data-member-logout-status]');if(!status){status=document.createElement('p');status.dataset.memberLogoutStatus='1';status.setAttribute('role','alert');status.style.cssText='margin:8px 10px;color:#e7e3da;font:13px/1.4 Arial,sans-serif';logout.after(status)}status.textContent='Could not log out. Please try again.'}\n });\n document.addEventListener('keydown'`;
-          if(!chrome.includes("fetch('/v1/auth/logout'")){
-            assert(chrome.includes(oldClient),'Expected shared chrome client baseline not found');
-            chrome=chrome.replace(oldClient,logoutClient);
-          }
+          const button='<button type="button" class="member-nav-logout" data-member-logout>Log out</button>';
+          const form='<form class="member-nav-logout-form" method="post" action="/v1/auth/logout"><button type="submit" class="member-nav-logout" data-member-logout>Log out</button></form>';
+          if(chrome.includes(button))chrome=chrome.replace(button,form);
+          assert(chrome.includes(form),'Shared logout form was not installed');
+          const direct=` const logout=document.querySelector('[data-member-logout]');\n if(logout)logout.addEventListener('click',async()=>{\n  if(logout.disabled)return;const original=logout.textContent;logout.disabled=true;logout.textContent='Signing out…';\n  try{const response=await fetch('/v1/auth/logout',{method:'POST',credentials:'include',cache:'no-store'});if(!response.ok)throw Error('logout_failed');location.replace('/member-login')}\n  catch{logout.disabled=false;logout.textContent=original;let status=document.querySelector('[data-member-logout-status]');if(!status){status=document.createElement('p');status.dataset.memberLogoutStatus='1';status.setAttribute('role','alert');status.style.cssText='margin:8px 10px;color:#e7e3da;font:13px/1.4 Arial,sans-serif';logout.after(status)}status.textContent='Could not log out. Please try again.'}\n });\n`;
+          if(chrome.includes(direct))chrome=chrome.replace(direct,'');
+          assert(!/\bfetch\s*\(/.test(chrome.match(/export const memberChromeClient=String\.raw`([\s\S]*?)`;/)?.[1]||''),'Presentation chrome must remain network-free');
+          if(!chrome.includes('.member-nav-logout-form{'))chrome=chrome.replace('.member-nav-more .member-nav-logout{','.member-nav-more .member-nav-logout-form{margin:0;padding:0}\nhtml body[data-member-chrome="v1"][data-member-page] nav.sst-member-tabs .member-nav-more .member-nav-logout{');
           fs.writeFileSync(chromePath,chrome);
 
-          const proofPath='preview/stabilisation/browser-proof.mjs';
-          let proof=fs.readFileSync(proofPath,'utf8');
-          const oldProof=`row.phase='logout-and-return';await api(context,'/v1/auth/logout',{});await api(context,'/v1/life-back',undefined,'GET',401);await login(context,fixture.browserIds[index]);await today(page);assert((await page.locator('.mtm-next').innerText()).includes('Marked done'));`;
-          const newProof=`row.phase='logout-and-return';await today(page);await page.locator('.member-nav-more summary').click();const logout=page.locator('[data-member-logout]');assert.equal(await logout.count(),1,'Exactly one shared logout control');assert(await logout.isVisible(),'Logout must be visible in the shared My Timber menu');await logout.click();await page.waitForURL(/\\/member-login(?:\\?|$)/,{timeout:30000});await api(context,'/v1/me',undefined,'GET',401);await api(context,'/v1/life-back',undefined,'GET',401);row.checks.push('Shared My Timber menu exposes Log out; click revokes the session, returns to sign-in and protected APIs reject the old session');await login(context,fixture.browserIds[index]);await today(page);assert((await page.locator('.mtm-next').innerText()).includes('Marked done'));`;
-          if(!proof.includes(newProof)){
-            assert(proof.includes(oldProof),'Expected browser logout proof baseline not found');
-            proof=proof.replace(oldProof,newProof);
-            fs.writeFileSync(proofPath,proof);
-          }
+          const workerPath='worker.js';
+          let worker=fs.readFileSync(workerPath,'utf8');
+          const old=`  const response=json({ ok: true }, 200, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;`;
+          const replacement=`  const browserNavigation=String(request.headers.get('Accept')||'').toLowerCase().includes('text/html');\n  const response=browserNavigation\n    ? new Response(null,{status:303,headers:{Location:'/member-login','Set-Cookie':clearSessionCookie(request)}})\n    : json({ ok: true }, 200, { 'Set-Cookie': clearSessionCookie(request) });\n  appendLegacyHostCookieClear(response,request);return response;`;
+          if(worker.includes(old))worker=worker.replace(old,replacement);
+          assert(worker.includes("browserNavigation=String(request.headers.get('Accept')"),'Browser logout redirect not installed');
+          fs.writeFileSync(workerPath,worker);
           NODE
-      - name: Static guard for exactly one shared logout implementation
+      - name: Static architecture guard
         run: |
           node --input-type=module <<'NODE'
+          import fs from 'node:fs';
           import assert from 'node:assert/strict';
           import {memberNavigation,memberChromeClient} from './member-experience/chrome.mjs';
           for(const work of [false,true]){
             const nav=memberNavigation(work);
             assert.equal((nav.match(/data-member-logout/g)||[]).length,1);
+            assert(nav.includes('method="post" action="/v1/auth/logout"'));
             assert(nav.includes('>Log out</button>'));
           }
-          assert(memberChromeClient.includes("fetch('/v1/auth/logout'"));
-          assert(memberChromeClient.includes("location.replace('/member-login')"));
-          console.log('PASS: one visible shared logout control, existing auth endpoint, explicit sign-in redirect.');
+          assert.doesNotMatch(memberChromeClient,/\bfetch\s*\(|localStorage|sessionStorage|innerHTML/);
+          const worker=fs.readFileSync('worker.js','utf8');
+          assert(worker.includes("status:303"));assert(worker.includes("Location:'/member-login'"));
+          console.log('PASS: shared logout is visible, browser-native, session-revoking and presentation code stays network-free.');
           NODE
       - name: Commit source changes to preview branch only
         run: |
           set -euo pipefail
           git config user.name 'SHIFT preview verification'
           git config user.email 'it@shiftsometimber.co.uk'
-          git add member-experience/chrome.mjs preview/stabilisation/browser-proof.mjs
+          git add member-experience/chrome.mjs worker.js preview/stabilisation/browser-proof.mjs
           if ! git diff --cached --quiet; then
-            git commit -m 'Preview only: expose and prove My Timber logout'
+            git commit -m 'Preview only: finish visible My Timber logout without shell network calls'
             git push origin HEAD:refs/heads/preview/stabilisation-life-back-20260917
           fi
           echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
@@ -96,8 +87,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
       - name: Member regression gates
-        run: |
-          node --test --test-reporter=tap member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/my-timber-analytics-privacy.test.mjs
+        run: node --test --test-reporter=tap member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/my-timber-analytics-privacy.test.mjs
       - name: Prepare fictional preview and verify preserved public shell
         run: |
           node preview/stabilisation/prepare.mjs
@@ -111,18 +101,15 @@ jobs:
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';import assert from 'node:assert/strict';
           const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
-          assert.equal(c.name,'shift-stabilisation-preview');
-          assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
-          assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
-          assert.equal(c.workers_dev,true);
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
+          assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);assert.equal(c.workers_dev,true);
           NODE
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/shift-preview-deploy.txt" 2>&1
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
           const log=fs.readFileSync(process.env.RUNNER_TEMP+'/shift-preview-deploy.txt','utf8');
           const match=log.match(/https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev/);if(!match)throw Error('Isolated preview URL not returned');
-          fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+match[0]+'\n');
-          console.log('PREVIEW ONLY',match[0]);
+          fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+match[0]+'\n');console.log('PREVIEW ONLY',match[0]);
           NODE
       - name: Install Chromium and WebKit
         run: |
