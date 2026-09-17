@@ -1,0 +1,29 @@
+name: Preview member-login asset diagnostics
+on:
+  push:
+    branches: [preview/stabilisation-life-back-20260917]
+    paths: ['.github/workflows/preview-member-login-http-diag.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Inspect old and v2 preview responses directly
+        run: |
+          node --input-type=module <<'NODE'
+          for (const origin of ['https://shift-stabilisation-preview.matobrien.workers.dev','https://shift-stabilisation-preview-v2.matobrien.workers.dev']) {
+            for (const path of ['/__preview/meta','/member-login']) {
+              const r=await fetch(origin+path+'?diag='+Date.now(),{redirect:'manual',headers:{'cache-control':'no-cache','user-agent':'SST-preview-diagnostic'}});
+              const body=await r.text();
+              console.log('\nURL',origin+path,'STATUS',r.status,'TYPE',r.headers.get('content-type'),'SERVER',r.headers.get('server'),'CF-RAY',r.headers.get('cf-ray'),'LOCATION',r.headers.get('location'));
+              console.log('HEADERS',Object.fromEntries(r.headers.entries()));
+              console.log('BODY_HEAD',JSON.stringify(body.slice(0,700)));
+              console.log('HAS_PREVIEW_UNAVAILABLE',body.includes('Preview unavailable'),'HAS_ADAPTER',/api-adapter-v33d\.js/.test(body),'HAS_SST_API',/\bSST_API(?:\.|\[)/.test(body));
+            }
+          }
+          NODE

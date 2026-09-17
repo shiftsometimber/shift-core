@@ -9,3 +9,6 @@ button:disabled{opacity:.6;cursor:wait}#accountError{padding:48px 0}#accountErro
 @media(max-width:480px){.win-art{padding-left:45%;padding-top:50px}.win-art svg{width:120px;height:120px}}
 .hero-goal{margin:4px 0 8px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 @media(max-width:480px){.hero-goal{justify-content:center}}
+
+/* Scoped controls within the existing check-in, not a dashboard redesign. */
+#supportNeed{box-sizing:border-box;width:100%;min-height:44px;padding:12px;margin:8px 0 20px;background:#e7e3da;color:#050505;border:1px solid #707762;border-radius:8px;font:inherit}.shift-followup{padding:16px;margin:0 0 20px;border:1px solid #707762;border-radius:8px}.shift-followup label{display:flex;align-items:center;gap:10px;min-height:44px}.shift-followup input[type=radio]{width:20px;height:20px;flex:none}.shift-followup fieldset{border:0;padding:0}.shift-followup legend{font-weight:700}

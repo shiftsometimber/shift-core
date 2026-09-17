@@ -1,6 +1,7 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
+import {advanceNextShift,markNextShift,resetNextShift,lifeBackUsage} from './life-back/next-shift.mjs';
 import {connectedDay} from './journey-context.mjs';
 const headers={'Cache-Control':'no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
@@ -14,7 +15,9 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  if(input.action==='goal'){
   if(input.revision!==next.revision)fail('Your goal changed in another tab. Reload before changing it.',409);
   const goal=String(input.goal||'').trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
-  if(goal!==next.goal){next.goal=goal;next.goalId=input.operationId}
+  if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId}
+ }else if(input.action==='shift-status'){
+  markNextShift(next,input,at);
  }else if(input.action==='checkin'){
   if(!hasPersonalGoal(next.goal))fail('Choose what you want to get back before recording a check-in.',409);
   if(input.goalId!==next.goalId)fail('Your personal goal changed. Reload before recording this check-in.',409);
@@ -22,7 +25,9 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
   const win=String(input.win||'').trim();if(win.length>180)fail('Keep your win under 180 characters.');
   // Never discard old entries to make room. Export/retention needs an explicit product decision.
   if(next.entries.length>=10000)fail('Your history is full. Please contact support before adding another entry.',409);
-  next.entries.push({id:input.operationId,at,goalId:next.goalId,goal:next.goal,ratings:Object.fromEntries(areas.map(a=>[a.id,input.ratings[a.id]])),win});
+  const entry={id:input.operationId,at,goalId:next.goalId,goal:next.goal,ratings:Object.fromEntries(areas.map(a=>[a.id,input.ratings[a.id]])),win};
+  advanceNextShift(next,input,entry,at);
+  next.entries.push(entry);
  }else fail('Unknown Life Back action.');
  next.revision++;next.operations=[...next.operations,input.operationId].slice(-100);return next;
 }
@@ -34,7 +39,7 @@ export async function lifeBackRoutes(request,env){
  try{
   const read=async()=>parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first())?.preferences);
   let prefs=await read();
-  if(request.method==='GET')return json({progress:prefs.lifeBack?.progress||emptyLifeBack(),legacyEntries:prefs.lifeBack?.entries||[],journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  if(request.method==='GET')return json({progress:prefs.lifeBack?.progress||emptyLifeBack(),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(prefs.lifeBack?.progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
   const raw=await request.text();if(raw.length>8000)return json({error:'Check-in is too large.'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}
   if(!input||typeof input!=='object'||Array.isArray(input))return json({error:'Invalid check-in.'},400);

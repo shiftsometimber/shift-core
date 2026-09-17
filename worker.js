@@ -216,7 +216,11 @@ async function logout(request, env) {
     const hash = await sha256Hex(token);
     await env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE token_hash=? AND revoked_at IS NULL').bind(isoNow(), hash).run();
   }
-  const response=json({ ok: true }, 200, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;
+  const browserNavigation=String(request.headers.get('Accept')||'').toLowerCase().includes('text/html');
+  const response=browserNavigation
+    ? new Response(null,{status:303,headers:{Location:'/member-login','Set-Cookie':clearSessionCookie(request)}})
+    : json({ ok: true }, 200, { 'Set-Cookie': clearSessionCookie(request) });
+  appendLegacyHostCookieClear(response,request);return response;
 }
 
 async function requestPasswordReset(request, env) {

@@ -25,7 +25,7 @@ export function myTimberRedirect(request) {
   if (url.hostname === 'shiftsometimber.co.uk' || url.hostname === 'www.shiftsometimber.co.uk') url.protocol = 'https:';
   return new Response(null, {status: 301, headers: {Location: url.href, 'Cache-Control': 'public, max-age=300'}});
 }
-const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/medicine-news">Medicine news and evidence →</a></span></div></div></section>`;
+const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/shift-newsroom">Medicine news and evidence →</a></span></div></div></section>`;
 export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker]){display:none!important}
 #shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#707762;color:#050505;border-block:1px solid #050505;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
 #shift-public-news a{color:#050505;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible{outline:2px solid #050505;outline-offset:3px}
@@ -61,7 +61,7 @@ export const tickerClient = String.raw`(function bootTicker() {
           const at = Date.parse(item.published_at); if (!Number.isFinite(at)) continue;
           label = label + ' · Published ' + new Date(at).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric', timeZone:'UTC'});
         }
-        let url; try {url = new URL(item.url || '/medicine-news', location.origin);} catch {continue;}
+        let url; try {url = new URL(item.url || '/shift-newsroom', location.origin);} catch {continue;}
         if (!label || url.origin !== location.origin || !['http:', 'https:'].includes(url.protocol) || seen.has(label)) continue;
         seen.add(label);
         const link = document.createElement('a'); link.href = url.pathname + url.search + url.hash; link.textContent = label; copy.append(link);

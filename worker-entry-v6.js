@@ -1,3 +1,4 @@
+import {withPublicShellContract} from './public-shell-contract.mjs';
 import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
 import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navigation-policy.mjs';
 import {continuityPublicRoute,withPublicContinuity} from './public-continuity.mjs';
@@ -1119,6 +1120,6 @@ export default {
       const url = new URL(request.url); url.pathname = '/programme'; url.search = '';
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
-    return withPublicTicker(request, await withPublicContinuity(request, page || await worker.fetch(request, env, ctx)));
+    return withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, page || await worker.fetch(request, env, ctx))));
   },
 };

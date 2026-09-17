@@ -17,7 +17,7 @@ export async function connectedMemberRoutes(request,env){
  }
  // Canonical paths keep the production clients and their pathname guards intact.
  // This alias still uses the isolated host, fictional accounts and staging DB.
- const canonical=path.startsWith('/member/')&&Object.hasOwn(scripts,path.slice(8));
+ const canonical=path.startsWith('/member/')&&(Object.hasOwn(scripts,path.slice(8))||path.slice(8)==='life-back');
  if(path===prefix+'dashboard')return new Response(null,{status:302,headers:{...headers,Location:'/member/dashboard'+u.search}});
  if(!path.startsWith(prefix)&&!canonical)return null;
  if(request.method!=='GET')return new Response('Method not allowed',{status:405,headers});
