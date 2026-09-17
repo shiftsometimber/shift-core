@@ -7,3 +7,14 @@
 #main-content.th .th-button,#main-content.th .th-tabs a:hover,#main-content.th .th-tabs a:focus{background:#e7e3da!important;color:#050505!important}
 #main-content.th .th-proposed{background:#707762!important;color:#050505!important;border:0;border-radius:16px;padding:24px}
 #main-content.th .th-proposed *{color:#050505!important}
+
+#main-content.th .th-prompts{margin:30px 0;padding:26px;border:1px solid #707762;border-radius:24px;background:#050505!important}
+#main-content.th .th-prompts h2{font-size:clamp(28px,3vw,38px)!important;margin-bottom:14px}
+#main-content.th .th-prompt{margin:10px 0;border:1px solid #707762;border-radius:14px;background:#050505!important;color:#e7e3da!important;overflow:hidden}
+#main-content.th .th-prompt summary{display:list-item;cursor:pointer;padding:17px 20px;min-height:58px;font-size:18px;font-weight:700;color:#e7e3da!important;line-height:1.45}
+#main-content.th .th-prompt summary:focus-visible{outline:3px solid #e7e3da;outline-offset:-5px}
+#main-content.th .th-prompt[open] summary{background:#e7e3da!important;color:#050505!important}
+#main-content.th .th-prompt>div{padding:0 20px 8px}
+#main-content.th .th-prompt>div p{margin:16px 0}
+#main-content.th #gp-preparation li{margin-bottom:12px}
+@media(max-width:700px){#main-content.th .th-prompts{padding:20px 16px}#main-content.th .th-prompt summary{padding:15px;font-size:17px}#main-content.th .th-prompt>div{padding:0 15px 8px}}
