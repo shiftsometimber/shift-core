@@ -1,0 +1,54 @@
+name: Preview member-login diagnostics
+on:
+  push:
+    branches: [preview/stabilisation-life-back-20260917]
+    paths: ['.github/workflows/preview-member-login-diagnostics.yml']
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: |
+          mkdir diag && cd diag
+          npm init -y >/dev/null
+          npm install playwright@1.58.2 --no-audit --no-fund
+          npx playwright install --with-deps webkit chromium
+      - name: Reproduce the actual My Timber login form, not API-only login
+        run: |
+          cat > diag/run.mjs <<'JS'
+          import {webkit,chromium} from 'playwright';
+          import fs from 'node:fs';import crypto from 'node:crypto';
+          const origin='https://shift-stabilisation-preview.matobrien.workers.dev';
+          const password='PreviewOnly-'+crypto.randomUUID()+'!';
+          const email='ui-login-'+crypto.randomUUID().replaceAll('-','')+'@example.invalid';
+          const report={origin,email:'[fictional]',cases:[]};
+          for(const [name,engine] of [['webkit',webkit],['chromium',chromium]]){
+            const browser=await engine.launch();const ctx=await browser.newContext({viewport:{width:390,height:844}});const row={name,console:[],pageErrors:[],responses:[],requests:[]};report.cases.push(row);const page=await ctx.newPage();
+            page.on('console',m=>row.console.push({type:m.type(),text:m.text()}));
+            page.on('pageerror',e=>row.pageErrors.push(e.message));
+            page.on('requestfailed',r=>row.requests.push({url:r.url(),failure:r.failure()?.errorText}));
+            page.on('response',r=>{const u=new URL(r.url());if(u.origin===origin&&(u.pathname.endsWith('.js')||u.pathname.includes('auth')||u.pathname==='/member-login'))row.responses.push({path:u.pathname,status:r.status(),type:r.headers()['content-type']||''})});
+            const reg=await ctx.request.post(origin+'/v1/auth/register',{headers:{Origin:origin},data:{email,password,firstName:'Fictional',lastName:'Reviewer'}});row.registerStatus=reg.status();
+            await ctx.request.post(origin+'/v1/auth/logout',{headers:{Origin:origin},data:{}});
+            await page.goto(origin+'/member-login',{waitUntil:'networkidle',timeout:45000});
+            row.before=await page.evaluate(()=>({sstApi:typeof window.SST_API,scripts:[...document.scripts].map((s,i)=>({i,src:s.src,async:s.async,defer:s.defer,type:s.type,text:s.src?'':s.textContent.slice(0,700)})),forms:[...document.forms].map(f=>({id:f.id,action:f.action,method:f.method,html:f.outerHTML.slice(0,1500)}))}));
+            const emailInput=page.locator('input[type=email]').first(),passInput=page.locator('input[type=password]').first(),submit=page.locator('button[type=submit],input[type=submit]').first();
+            row.controls={email:await emailInput.count(),password:await passInput.count(),submit:await submit.count()};
+            if(row.controls.email&&row.controls.password&&row.controls.submit){await emailInput.fill(email);await passInput.fill(password);await submit.click();await page.waitForTimeout(3500);}
+            row.after={url:page.url(),sstApi:await page.evaluate(()=>typeof window.SST_API),body:(await page.locator('body').innerText()).slice(0,1800)};
+            await page.screenshot({path:'diag/'+name+'-member-login.png',fullPage:true});await ctx.close();await browser.close();
+          }
+          fs.writeFileSync('diag/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          JS
+          node diag/run.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: preview-member-login-diagnostics
+          path: diag
+          retention-days: 7
