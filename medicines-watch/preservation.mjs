@@ -23,11 +23,20 @@ function normaliseTreatments(body,required){
  return {body:Buffer.from(html.slice(0,start)+html.slice(end+TREATMENTS_ENTRY_END.length)),entry:true};
 }
 
+const SHIFT_HEALTH_TWITTER_IMAGE='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">';
+function normaliseShiftHealthTwitterImage(body){
+ const html=body.toString('utf8');
+ requireThat(Buffer.from(html).equals(body),'SHIFT Health must be valid UTF-8');
+ const matches=html.split(SHIFT_HEALTH_TWITTER_IMAGE).length-1;
+ requireThat(matches<=1,'SHIFT Health has duplicate approved Twitter images');
+ return {body:Buffer.from(html.replace(SHIFT_HEALTH_TWITTER_IMAGE,'')),twitterImage:matches===1};
+}
+
 export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=false,hash}={}){
  requireThat(typeof hash==='function','Public preservation requires a SHA-256 function');
  const body=Buffer.isBuffer(input)?input:Buffer.from(input);
- const preserved=path==='/treatment-centre'?normaliseTreatments(body,requireTreatmentsEntry):{body,entry:false};
- return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry}:{})};
+ const preserved=path==='/treatment-centre'?normaliseTreatments(body,requireTreatmentsEntry):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
+ return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:{})};
 }
 
 export function assertPublicPagesPreserved(pages,baseline){
@@ -41,6 +50,12 @@ export function assertPublicPagesPreserved(pages,baseline){
    equal(current.preservedSha256,before.preservedSha256,'Treatment Centre content changed outside its approved Medicines Watch entry');
    equal(current.preservedBytes,before.preservedBytes,'Treatment Centre size changed outside its approved Medicines Watch entry');
    if(!before.treatmentsWatchEntry){entryAdded=true;continue;}
+  }
+  if(current.path==='/shift-health'){
+   if(before.shiftHealthTwitterImage)equal(current.shiftHealthTwitterImage,true,'SHIFT Health is missing the approved Twitter image');
+   equal(current.preservedSha256,before.preservedSha256,'SHIFT Health changed outside its approved Twitter image');
+   equal(current.preservedBytes,before.preservedBytes,'SHIFT Health size changed outside its approved Twitter image');
+   continue;
   }
   equal(current.sha256,before.sha256,current.path+' changed outside the approved Treatments addition');
   equal(current.bytes,before.bytes,current.path+' response size changed');
