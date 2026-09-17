@@ -7,7 +7,7 @@ test('only exact old ticker styles and all three version markers are normalised'
  const current=await(await withPublicTicker(new Request('https://shiftsometimber.co.uk/programme'),new Response(input,{headers:{'Content-Type':'text/html'}}))).text();
  assert.equal(tickerVersion,'public-news-20260917-r4');
  for(const version of ['public-news-20260917-r2','public-news-20260917-r3']){
- const old=current.replaceAll(tickerVersion,version).replace(tickerStyles,previousTickerStyles);
+ const old=current.replaceAll(tickerVersion,version).replace(tickerStyles,previousTickerStyles).replace('</section>',"<button type=\"button\" class=\"shift-news-pause\" aria-label=\"Pause news ticker\" aria-pressed=\"false\" hidden>Pause</button></section>");
  assert.equal(old.split(version).length-1,3);
  assert.equal(preserveTickerVersion(Buffer.from(old)).toString(),current);
  assert.equal(preserveTickerVersion(Buffer.from(current)).toString(),current);

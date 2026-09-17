@@ -11,7 +11,9 @@ export function preserveTickerVersion(input){
   if(a!==1||w!==1||s!==1)throw Error('Unexpected old ticker version markers');
   const style='<style data-shift-public-news>'+previousTickerStyles+'</style>';
   if(html.split(style).length-1!==1)throw Error('Unexpected prior ticker stylesheet');
-  html=html.replace(style,'<style data-shift-public-news>'+tickerStyles+'</style>')
+  const control="<button type=\"button\" class=\"shift-news-pause\" aria-label=\"Pause news ticker\" aria-pressed=\"false\" hidden>Pause</button>";
+  if(html.split(control).length-1!==1)throw Error('Unexpected prior ticker control');
+  html=html.replace(control,'').replace(style,'<style data-shift-public-news>'+tickerStyles+'</style>')
    .replace(attr,`data-shift-news-ticker="${tickerVersion}"`)
    .replace(wire,`data-shift-ai-full-wire="${tickerVersion}"`)
    .replace(script,`src="/assets/public-news-ticker-v1.js?v=${tickerVersion}"`);

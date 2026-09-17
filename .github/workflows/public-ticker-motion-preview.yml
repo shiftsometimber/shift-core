@@ -29,4 +29,5 @@ jobs:
           curl --fail --silent --show-error https://shift-radar-ticker-preview.matobrien.workers.dev/treatment-centre > /tmp/ticker-page.html
           grep -q public-news-20260917-r4 /tmp/ticker-page.html
           curl --fail --silent --show-error https://shift-radar-ticker-preview.matobrien.workers.dev/assets/public-news-ticker-v1.js > /tmp/ticker-client.js
-          grep -q 'Play news ticker' /tmp/ticker-client.js
+          ! grep -q 'shift-news-pause' /tmp/ticker-page.html
+          ! grep -q 'button' /tmp/ticker-client.js
