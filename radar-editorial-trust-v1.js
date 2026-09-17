@@ -9,7 +9,7 @@ export function evidenceDate(value){
 export function articleTrust(content,row){
  const seo=content.seo||{},published=seo.datePublished||row.reviewed_at||row.created_at,modified=seo.dateModified;
  const publication=evidenceDate(published),update=evidenceDate(modified);
- return '<div class="radar-news-meta" data-editorial-trust><p>By '+esc(seo.author||'SHIFT Newsroom')+(publication?' · Published '+esc(publication):'')+(update&&update!==publication?' · Updated '+esc(update):'')+'</p><p><a href="/editorial-standards#newsroom">How we prepare and check newsroom articles</a> · <a href="/editorial-standards#corrections">Report a correction</a></p></div>';
+ return '<div class="radar-news-meta" data-editorial-trust><p>By '+esc(seo.author||'SHIFT Newsroom')+(publication?' · Published '+esc(publication):'')+(update&&update!==publication?' · Updated '+esc(update):'')+'</p>'+(content.automatic_review?'<p>AI-prepared summary with an automated accuracy check. Source findings and SHIFT’s interpretation are distinct. For information, not personal medical advice.</p>':'')+'<p><a href="/editorial-standards#newsroom">How we prepare and check newsroom articles</a> · <a href="/editorial-standards#corrections">Report a correction</a></p></div>';
 }
 export function sourceDateLabel(source){const date=evidenceDate(source.source_date||source.source_published_at||source.published_at);return date?' <span class="radar-news-meta">— Source date: '+esc(date)+'</span>':' <span class="radar-news-meta">— Source date not recorded</span>'}
 export function newsSitemapDates(rows){
