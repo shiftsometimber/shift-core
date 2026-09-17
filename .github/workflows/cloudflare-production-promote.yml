@@ -277,6 +277,8 @@ jobs:
           node scripts/verify-evidence-inbox-connection.mjs --sql > "$RUNNER_TEMP/evidence-inbox-read.sql"
           npx wrangler d1 execute EVIDENCE_DESK_READ_DB --remote --config wrangler.jsonc --json --command "$(cat "$RUNNER_TEMP/evidence-inbox-read.sql")" > "$RUNNER_TEMP/evidence-inbox-read.json"
           node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
+      - name: Verify retained SHIFT interpretations throughout the archive
+        run: node scripts/verify-shift-take-archive.mjs
       - name: Capture current Worker deployment for rollback
         run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
       - name: Seed recent discovery snapshots without publishing or sending notifications
@@ -320,6 +322,8 @@ jobs:
         run: node scripts/verify-public-continuity-live.mjs
       - name: Prove newsroom publication order on live traffic
         run: node scripts/verify-newsroom-order-live.mjs
+      - name: Verify SHIFT take labels and original dates on every live news article
+        run: node scripts/verify-shift-take-live.mjs
       - name: Prove exact member scripts and authentication on live traffic
         run: node member-experience/verify-production-member.mjs
       - name: Prove Medicines Watch and its source checks on live traffic
