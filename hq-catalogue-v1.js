@@ -1,3 +1,5 @@
+import {ensureCommerceSchema} from './commerce-stripe-v1.js';
+import {ensureHealthCommerce,readHealthProduct,healthPurchaseState,updateHealthProduct} from './health-commerce-v1.js';
 import hq from "./hq-ai-v2.js";
 import { ensurePurchaseabilitySchema, normaliseAvailability } from "./hq-purchaseability-v1.js";
 
@@ -158,6 +160,17 @@ export async function hqCatalogueRoutes(request, env, ctx) {
   if (auth.response) return auth.response;
   if (!canManage(auth.user))
     return json({ ok: false, error: "forbidden" }, 403);
+  if(path==='/v1/hq/catalogue/health/SH-TE'){
+    await ensureCommerceSchema(env);await ensureHealthCommerce(env.DB);
+    if(method==='GET'){const product=await readHealthProduct(env.DB);return json({ok:true,product,purchase:healthPurchaseState(product)});}
+    if(method==='PATCH'){
+      const origin=request.headers.get('Origin');if(origin&&origin!==new URL(request.url).origin&&!['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(origin))return json({ok:false,error:'invalid_origin'},403);
+      const text=await request.text();if(text.length>4096)return json({ok:false,error:'payload_too_large'},413);
+      let body;try{body=JSON.parse(text)}catch{return json({ok:false,error:'invalid_json'},400)}
+      try{const product=await updateHealthProduct(env.DB,body);return json({ok:true,product,purchase:healthPurchaseState(product)});}catch(e){if(['invalid_health_product','stock_below_reserved'].includes(e.message))return json({ok:false,error:e.message},400);throw e;}
+    }
+    return json({ok:false,error:'method_not_allowed'},405);
+  }
   if (method === "GET" && path === "/v1/hq/catalogue/products") {
     const rows =
       (

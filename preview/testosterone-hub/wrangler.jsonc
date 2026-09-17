@@ -1,1 +1,25 @@
-{"name":"shift-testosterone-hub-preview","main":"worker.mjs","compatibility_date":"2026-08-09","workers_dev":true,"preview_urls":false,"rules":[{"type":"Text","globs":["**/*.html","**/*.css"],"fallthrough":true}]}
+{
+  "name": "shift-testosterone-hub-preview",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-08-09",
+  "workers_dev": true,
+  "preview_urls": false,
+  "rules": [
+    {
+      "type": "Text",
+      "globs": [
+        "**/*.html",
+        "**/*.css",
+        "**/*.txt"
+      ],
+      "fallthrough": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shift-testosterone-preview-db",
+      "database_id": "__PREVIEW_D1_DATABASE_ID__"
+    }
+  ]
+}

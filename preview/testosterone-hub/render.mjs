@@ -11,7 +11,7 @@ export function render(shell,content,css){
  const description='Understand testosterone assessment, TRT, fertility and monitoring. Clear next steps for persistent symptoms. SHIFT does not prescribe; testing is not bookable.';
  const canonical='https://shiftsometimber.co.uk'+path;
  html=html.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/gi,'');
- return html.replace('</head>',`<link rel="canonical" href="${canonical}"><meta name="description" content="${description}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}"><meta name="robots" content="noindex,nofollow"><style>${css}</style><script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:title,description,url:canonical,inLanguage:'en-GB'})}</script></head>`);
+ return html.replace('</head>',`<link rel="canonical" href="${canonical}"><meta name="description" content="${description}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}"><meta name="robots" content="noindex,nofollow"><style>${css}</style><script src="/testosterone-checkout.js" defer></script><script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:title,description,url:canonical,inLanguage:'en-GB'})}</script></head>`);
 }
 export function addRelated(html,pathname){
  if(!related.includes(pathname)||html.includes('data-testosterone-link'))return html;

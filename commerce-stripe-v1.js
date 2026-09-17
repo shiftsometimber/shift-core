@@ -1,3 +1,4 @@
+import {HEALTH_SKU,ensureHealthCommerce,readHealthProduct,healthPurchaseState,healthCheckoutSelection,reserveHealthStock} from './health-commerce-v1.js';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
 
 const ALLOWED_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
@@ -53,7 +54,7 @@ async function smallJson(request,maxBytes=8192){
   try{return JSON.parse(text)}catch{return null}
 }
 
-async function ensureCommerceSchema(env){
+export async function ensureCommerceSchema(env){
   await env.DB.batch([
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS commerce_order_details (
       order_id INTEGER PRIMARY KEY,
@@ -160,14 +161,16 @@ export function trackingUrl(carrier,reference){
   return urls;
 }
 
-function stripeForm(order,items,member,env){
+export function stripeForm(order,items,member,env){
+  const health=items.length===1&&items[0].sku===HEALTH_SKU;
+  const delivery=health?order.delivery_pence:DELIVERY_PRICE;
   const form=new URLSearchParams();
   const put=(key,value)=>form.append(key,String(value));
   put('mode','payment');
   put('managed_payments[enabled]','false');
   put('payment_method_types[0]','card');
   put('success_url',`${siteUrl(env)}/order-success.html?session_id={CHECKOUT_SESSION_ID}`);
-  put('cancel_url',`${siteUrl(env)}/shop.html?checkout=cancelled`);
+  put('cancel_url',`${siteUrl(env)}${health?'/shift-health/testosterone-energy':'/shop.html'}?checkout=cancelled`);
   put('client_reference_id',order.order_number);
   put('customer_creation','always');
   put('billing_address_collection','required');
@@ -183,11 +186,11 @@ function stripeForm(order,items,member,env){
     put(`line_items[${index}][price_data][currency]`,CURRENCY);
     put(`line_items[${index}][price_data][unit_amount]`,item.price_pence);
     put(`line_items[${index}][price_data][product_data][name]`,item.name);
-    put(`line_items[${index}][price_data][product_data][description]`,`${item.colour} · ${item.size}`);
+    put(`line_items[${index}][price_data][product_data][description]`,health?'Home test — clinical interpretation required; not a prescription':`${item.colour} · ${item.size}`);
     put(`line_items[${index}][quantity]`,item.quantity);
   });
   put('shipping_options[0][shipping_rate_data][type]','fixed_amount');
-  put('shipping_options[0][shipping_rate_data][fixed_amount][amount]',DELIVERY_PRICE);
+  put('shipping_options[0][shipping_rate_data][fixed_amount][amount]',delivery);
   put('shipping_options[0][shipping_rate_data][fixed_amount][currency]',CURRENCY);
   put('shipping_options[0][shipping_rate_data][display_name]','UK delivery');
   return form;
@@ -204,8 +207,18 @@ async function createCheckout(request,env){
   const body=await smallJson(request,16_384);
   const requested=Array.isArray(body?.items)?body.items:(body?.size?[{sku:SHIRT_SKU,size:body.size,colour:'Black',quantity:body.quantity??1}]:[]);
   if(!requested.length||requested.length>20)return json({ok:false,error:'invalid_cart'},400,corsHeaders(request));
+  const isHealth=requested.some(x=>String(x?.sku||'').toUpperCase()===HEALTH_SKU);
+  let deliveryPence=DELIVERY_PRICE;
   const items=[];
-  for(const raw of requested){
+  if(isHealth){
+    const origin=request.headers.get('Origin');
+    if(origin!==new URL(request.url).origin&&!ALLOWED_ORIGINS.has(origin))return json({ok:false,error:'invalid_origin'},403,corsHeaders(request));
+    if(Number(member.email_verified)!==1)return json({ok:false,error:'email_verification_required'},403,corsHeaders(request));
+    const selected=await healthCheckoutSelection(env.DB,requested);
+    if(selected.error)return json({ok:false,error:selected.error,message:selected.message},selected.status,corsHeaders(request));
+    items.push(selected.item);deliveryPence=selected.deliveryPence;
+  }
+  for(const raw of isHealth?[]:requested){
     const sku=clean(raw?.sku,80).toUpperCase(),colour=clean(raw?.colour||'Black',30),quantity=Number(raw?.quantity??1);
     let size=clean(raw?.size,20);if(size!=='One size')size=size.toUpperCase();
     if(!sku||!COLOURS.has(colour)||!Number.isInteger(quantity)||quantity<1||quantity>9)return json({ok:false,error:'invalid_product_selection'},400,corsHeaders(request));
@@ -218,33 +231,33 @@ async function createCheckout(request,env){
   }
   const reserved=[];
   for(const item of items){
-    if(!await reserveStock(env,item.id,item.inventoryKey,item.quantity)){
+    if(!(isHealth?await reserveHealthStock(env.DB,item.id):await reserveStock(env,item.id,item.inventoryKey,item.quantity))){
       await Promise.all(reserved.map(held=>releaseStock(env,held.id,held.inventoryKey,held.quantity)));
       return json({ok:false,error:'out_of_stock',sku:item.sku,message:`${item.name} in ${item.colour}, ${item.size} is currently out of stock.`},409,corsHeaders(request));
     }
     reserved.push(item);
   }
   let number;
-  try{number=await reserveOrderReference(env.DB,{channel:'apparel',userId:member.id})}catch(error){
+  try{number=await reserveOrderReference(env.DB,{channel:isHealth?'service':'apparel',userId:member.id})}catch(error){
     await Promise.all(reserved.map(item=>releaseStock(env,item.id,item.inventoryKey,item.quantity)));
     console.error('order_reference_reservation_failed',{channel:'apparel',message:error?.message});
     return json({ok:false,error:'order_reference_unavailable'},503,corsHeaders(request));
   }
-  const createdAt=now(),subtotal=items.reduce((sum,item)=>sum+Number(item.price_pence)*item.quantity,0),total=subtotal+DELIVERY_PRICE,totalQuantity=items.reduce((sum,item)=>sum+item.quantity,0),first=items[0];
+  const createdAt=now(),subtotal=items.reduce((sum,item)=>sum+Number(item.price_pence)*item.quantity,0),total=subtotal+deliveryPence,totalQuantity=items.reduce((sum,item)=>sum+item.quantity,0),first=items[0];
   const memberName=clean([member.first_name,member.last_name].filter(Boolean).join(' '),200);
   const inserted=await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,'GBP','new','pending',?,?,?)`)
-    .bind(number,member.id,member.email,memberName,first.id,totalQuantity,subtotal,total,JSON.stringify({channel:'stripe_checkout',itemCount:items.length}),createdAt,createdAt).run();
+    .bind(number,member.id,member.email,memberName,first.id,totalQuantity,subtotal,total,JSON.stringify({channel:isHealth?'home_test':'stripe_checkout',itemCount:items.length}),createdAt,createdAt).run();
   const orderId=inserted.meta.last_row_id;
   await attachOrderReference(env.DB,number,{sourceTable:'orders',sourceId:orderId,status:'pending'});
   await env.DB.prepare(`INSERT INTO commerce_order_details(order_id,size,delivery_pence,created_at,updated_at) VALUES(?,?,?,?,?)`)
-    .bind(orderId,items.length===1?first.size:'Multiple',DELIVERY_PRICE,createdAt,createdAt).run();
+    .bind(orderId,items.length===1?first.size:'Multiple',deliveryPence,createdAt,createdAt).run();
   await env.DB.batch(items.map(item=>env.DB.prepare(`INSERT INTO commerce_order_items(order_id,product_id,sku,product_name,colour,size,quantity,unit_price_pence,created_at) VALUES(?,?,?,?,?,?,?,?,?)`).bind(orderId,item.id,item.sku,item.name,item.colour,item.size,item.quantity,item.price_pence,createdAt)));
 
   const response=await fetch('https://api.stripe.com/v1/checkout/sessions',{
     method:'POST',
     headers:{Authorization:`Bearer ${env.STRIPE_SECRET_KEY}`,'Content-Type':'application/x-www-form-urlencoded','Idempotency-Key':number},
-    body:stripeForm({order_number:number},items,member,env)
-  });
+    body:stripeForm({order_number:number,delivery_pence:deliveryPence},items,member,env)
+  }).catch(error=>{if(!isHealth)throw error;return new Response('{}',{status:502})});
   const session=await response.json().catch(()=>null);
   if(!response.ok||!session?.id||!session?.url){
     await Promise.all(items.map(item=>releaseStock(env,item.id,item.inventoryKey,item.quantity)));
@@ -368,14 +381,15 @@ async function sendOrderEmails(env,order){
   if(!env.EMAIL)return;
   const admin=String(env.ORDER_NOTIFICATION_EMAIL||env.ADMIN_NOTIFICATION_EMAIL||'orders@shiftsometimber.co.uk');
   const customer=order.customer_email;
-  const summary=`${order.product_name} · Size ${order.size} · Quantity ${order.quantity} · £${(order.total_pence/100).toFixed(2)}`;
+  const healthOrder=String(order.notes||'').includes('home_test');
+  const summary=`${order.product_name} · ${healthOrder?'Home test':'Size '+order.size} · Quantity ${order.quantity} · £${(order.total_pence/100).toFixed(2)}`;
   const customerFrom={email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'};
   const adminFrom={email:String(env.ADMIN_EMAIL_FROM||'hq@shiftsometimber.co.uk'),name:'Shift HQ'};
   const shell=(preheader,title,body)=>`<!doctype html><html><body style="margin:0;background:#050505;color:#E7E3DA;font-family:Arial,Helvetica,sans-serif"><div style="display:none;max-height:0;overflow:hidden;opacity:0">${escapeHtml(preheader)}</div><div style="max-width:640px;margin:0 auto;padding:32px 20px"><div style="padding:8px 0 22px;border-bottom:2px solid #707762"><img src="https://shiftsometimber.co.uk/assets/start-here-approved-logo.png?v=1" width="560" alt="Shift Some Timber — Helping ordinary blokes feel like themselves again" style="display:block;width:100%;max-width:560px;height:auto;border:0"><div style="display:none;color:#E7E3DA;font-size:20px;font-weight:900">SHIFT SOME TIMBER</div></div><div style="padding:34px 0"><p style="margin:0 0 10px;color:#707762;font-size:12px;font-weight:900;letter-spacing:.14em">SHIFT ORDER</p><h1 style="margin:0 0 24px;color:#E7E3DA;font-size:36px;line-height:1.05">${escapeHtml(title)}</h1>${body}</div><div style="padding-top:20px;border-top:1px solid #707762;color:#aaa69d;font-size:12px;line-height:1.6">Shift Some Timber Ltd · Company no. 17393135<br>Questions? Email <a style="color:#E7E3DA" href="mailto:orders@shiftsometimber.co.uk">orders@shiftsometimber.co.uk</a><br>This transactional email was sent because an order was placed with Shift Some Timber.</div></div></body></html>`;
   const work=[];
   if(customer){
     const subtotal=(order.subtotal_pence/100).toFixed(2),delivery=((order.total_pence-order.subtotal_pence)/100).toFixed(2),total=(order.total_pence/100).toFixed(2);
-    const body=`<p style="margin:0 0 24px;color:#E7E3DA;line-height:1.7">Hi ${escapeHtml(order.customer_name||'there')}, your payment has gone through and we’ve got your order. Here’s everything in one place.</p><div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#707762;color:#050505"><p style="margin:0 0 12px;color:#050505;font-weight:700">Order reference</p><p style="margin:0 0 22px;color:#050505;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;color:#050505;font-size:15px;line-height:1.6"><tr><td style="padding:5px 0;font-weight:800">${escapeHtml(order.product_name)}</td><td align="right" style="padding:5px 0;font-weight:800">£${subtotal}</td></tr><tr><td style="padding:5px 0">Size ${escapeHtml(order.size)} · Quantity ${order.quantity}</td><td></td></tr><tr><td style="padding:12px 0 5px;border-top:1px solid #050505">UK delivery</td><td align="right" style="padding:12px 0 5px;border-top:1px solid #050505">£${delivery}</td></tr><tr><td style="padding:12px 0 0;border-top:2px solid #050505;font-size:18px;font-weight:900">Total paid</td><td align="right" style="padding:12px 0 0;border-top:2px solid #050505;font-size:18px;font-weight:900">£${total}</td></tr></table></div><div style="margin-top:26px;padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><h2 style="margin:0 0 14px;color:#E7E3DA;font-size:21px">What happens next?</h2><p style="margin:0 0 10px;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">1.</strong> We prepare and check your order.</p><p style="margin:0 0 10px;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">2.</strong> We’ll email you when it has been dispatched.</p><p style="margin:0;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">3.</strong> Questions or changes? Reply to this email or contact orders@shiftsometimber.co.uk.</p></div><p style="margin:28px 0 12px;color:#E7E3DA;font-weight:800">Keep up with Shift</p><p style="margin:0 0 22px;color:#aaa69d;line-height:1.6">Real talk, useful updates and the occasional reminder that none of us has to be perfect.</p><div><a href="https://instagram.com/ShiftSomeTimber" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">Instagram</a><a href="https://facebook.com/ShiftSomeTimber" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">Facebook</a><a href="https://x.com/ShiftSomeTimber" style="display:inline-block;margin:0 0 8px;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">X</a></div>`;
+    const body=`<p style="margin:0 0 24px;color:#E7E3DA;line-height:1.7">Hi ${escapeHtml(order.customer_name||'there')}, your payment has gone through and we’ve got your order. Here’s everything in one place.</p><div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#707762;color:#050505"><p style="margin:0 0 12px;color:#050505;font-weight:700">Order reference</p><p style="margin:0 0 22px;color:#050505;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;color:#050505;font-size:15px;line-height:1.6"><tr><td style="padding:5px 0;font-weight:800">${escapeHtml(order.product_name)}</td><td align="right" style="padding:5px 0;font-weight:800">£${subtotal}</td></tr><tr><td style="padding:5px 0">${healthOrder?'Home test':'Size '+escapeHtml(order.size)} · Quantity ${order.quantity}</td><td></td></tr><tr><td style="padding:12px 0 5px;border-top:1px solid #050505">UK delivery</td><td align="right" style="padding:12px 0 5px;border-top:1px solid #050505">£${delivery}</td></tr><tr><td style="padding:12px 0 0;border-top:2px solid #050505;font-size:18px;font-weight:900">Total paid</td><td align="right" style="padding:12px 0 0;border-top:2px solid #050505;font-size:18px;font-weight:900">£${total}</td></tr></table></div><div style="margin-top:26px;padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><h2 style="margin:0 0 14px;color:#E7E3DA;font-size:21px">What happens next?</h2><p style="margin:0 0 10px;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">1.</strong> We prepare and check your order.</p><p style="margin:0 0 10px;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">2.</strong> We’ll email you when it has been dispatched.</p><p style="margin:0;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">3.</strong> Questions or changes? Reply to this email or contact orders@shiftsometimber.co.uk.</p></div><p style="margin:28px 0 12px;color:#E7E3DA;font-weight:800">Keep up with Shift</p><p style="margin:0 0 22px;color:#aaa69d;line-height:1.6">Real talk, useful updates and the occasional reminder that none of us has to be perfect.</p><div><a href="https://instagram.com/ShiftSomeTimber" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">Instagram</a><a href="https://facebook.com/ShiftSomeTimber" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">Facebook</a><a href="https://x.com/ShiftSomeTimber" style="display:inline-block;margin:0 0 8px;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">X</a></div>`;
     work.push(env.EMAIL.send({from:customerFrom,to:customer,subject:`Your Shift order is confirmed · ${order.order_number}`,html:shell(`Payment confirmed for ${order.order_number}`,'Nice one. Your order is confirmed.',body),text:`Shift Some Timber order confirmation\n\nOrder ${order.order_number}\n${summary}\n\nPayment confirmed. We will email you again when your order is dispatched.\n\nQuestions: orders@shiftsometimber.co.uk\nShift Some Timber Ltd · Company no. 17393135`}));
   }
   const adminBody=`<div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><p style="margin:0 0 12px;color:#E7E3DA;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><p style="margin:0 0 18px;color:#E7E3DA;line-height:1.7">${escapeHtml(summary)}</p><p style="margin:0;color:#E7E3DA;line-height:1.7">Customer: ${escapeHtml(order.customer_name)}<br>${escapeHtml(customer)}</p></div>`;
@@ -386,6 +400,11 @@ async function sendOrderEmails(env,order){
 export async function commerceStripeRoutes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   if(request.method==='OPTIONS'&&path==='/v1/commerce/checkout')return new Response(null,{status:204,headers:corsHeaders(request)});
+  if(request.method==='GET'&&path==='/v1/commerce/health/SH-TE'){
+    if(!env.DB)return json({ok:false,error:'catalogue_unavailable',product:healthPurchaseState(null)},503,corsHeaders(request));
+    await ensureCommerceSchema(env);await ensureHealthCommerce(env.DB);
+    return json({ok:true,product:healthPurchaseState(await readHealthProduct(env.DB))},200,corsHeaders(request));
+  }
   if(request.method==='GET'&&path==='/v1/commerce/catalogue'){
     if(!env.DB)return json({ok:true,mode:'test',deliveryPence:DELIVERY_PRICE,product:commerceCatalogue,products:TIMBER_PRODUCTS},200,corsHeaders(request));
     await ensureCommerceSchema(env);

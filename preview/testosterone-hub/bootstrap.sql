@@ -1,0 +1,34 @@
+-- Isolated testosterone preview only. No production records.
+CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,sku TEXT NOT NULL UNIQUE,product_type TEXT NOT NULL DEFAULT 'physical',price_pence INTEGER NOT NULL DEFAULT 0,status TEXT NOT NULL DEFAULT 'draft',description TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT,order_number TEXT NOT NULL UNIQUE,user_id INTEGER,customer_email TEXT,customer_name TEXT,product_id INTEGER,quantity INTEGER NOT NULL DEFAULT 1,subtotal_pence INTEGER NOT NULL DEFAULT 0,total_pence INTEGER NOT NULL DEFAULT 0,currency TEXT NOT NULL DEFAULT 'GBP',status TEXT NOT NULL DEFAULT 'new',payment_status TEXT NOT NULL DEFAULT 'pending',notes TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(user_id) REFERENCES users(id),FOREIGN KEY(product_id) REFERENCES products(id));
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,
+  first_name TEXT,
+  last_name TEXT,
+  phone TEXT,
+  date_of_birth TEXT,
+  postcode TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS user_auth (
+  user_id INTEGER PRIMARY KEY,
+  password_hash TEXT NOT NULL,
+  email_verified INTEGER NOT NULL DEFAULT 0,
+  email_verified_at TEXT,
+  failed_login_attempts INTEGER NOT NULL DEFAULT 0,
+  locked_until TEXT,
+  last_login_at TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS user_sessions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  token_hash TEXT NOT NULL UNIQUE,
+  expires_at TEXT NOT NULL,
+  revoked_at TEXT,
+  last_used_at TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

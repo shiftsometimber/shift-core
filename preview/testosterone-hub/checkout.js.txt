@@ -1,0 +1,21 @@
+(()=>{
+ const panel=document.querySelector('#test-option');if(!panel)return;
+ const button=panel.querySelector('button'),price=panel.querySelector('.th-price'),stock=panel.querySelector('.th-stock'),message=panel.querySelector('#test-unavailable');
+ const money=p=>'£'+(p/100).toFixed(2);let buying=false;
+ async function refresh(){
+  button.disabled=true;
+  try{const response=await fetch('/v1/commerce/health/SH-TE',{credentials:'same-origin',cache:'no-store'});const data=await response.json();if(!response.ok||!data.ok)throw Error('Unavailable');const p=data.product;
+   panel.dataset.stock=String(p.stock);price.textContent=p.pricePence===null?'To be confirmed':money(p.pricePence)+(p.deliveryPence===null?'':` + ${money(p.deliveryPence)} delivery`);stock.textContent=p.message;button.disabled=!p.canBuy;
+   button.textContent=p.canBuy?'Order home test →':'Order home test — unavailable';
+   message.textContent=p.canBuy?'Sign in with your verified My Timber account to continue. This order is for the home test, not TRT.':'Not available to order. No payment can be taken.';
+  }catch{button.disabled=true;stock.textContent='Not available to order';message.textContent='Availability could not be checked. Please try again later.';}
+ }
+ button.addEventListener('click',async()=>{
+  if(button.disabled||buying)return;buying=true;button.disabled=true;
+  try{const r=await fetch('/v1/commerce/checkout',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{sku:'SH-TE',quantity:1}]})});const b=await r.json();
+   if(!r.ok){message.textContent=b.error==='account_required'?'Sign in to My Timber before ordering.':b.error==='email_verification_required'?'Verify your account email before ordering.':b.message||'Checkout is not available. No payment has been taken.';return;}
+   const u=new URL(b.checkoutUrl);if(u.protocol!=='https:'||u.hostname!=='checkout.stripe.com')throw Error('Unexpected checkout');location.assign(u.href);
+  }catch{message.textContent='Checkout could not be opened. Check My Timber before trying again.';}finally{buying=false;}
+ });
+ refresh();
+})();

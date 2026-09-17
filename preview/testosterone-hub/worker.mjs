@@ -1,10 +1,15 @@
+import checkoutClient from './checkout.js.txt';
+import {commerceStripeRoutes} from '../../commerce-stripe-v1.js';
 import content from './content.html';
 import css from './style.css';
 import {render,addRelated,path,related} from './render.mjs';
 const production='https://shiftsometimber.co.uk';
-export default {async fetch(request){
+export default {async fetch(request,env){
  const u=new URL(request.url);
  const headers={'X-Robots-Tag':'noindex, nofollow','Cache-Control':'no-store'};
+ if(u.pathname==='/testosterone-checkout.js')return new Response(checkoutClient,{headers:{...headers,'Content-Type':'application/javascript'}});
+ if(u.pathname==='/v1/commerce/health/SH-TE'&&request.method==='GET')return commerceStripeRoutes(request,env,{});
+ if(u.pathname==='/v1/commerce/checkout'&&request.method==='POST')return commerceStripeRoutes(request,{...env,STRIPE_MODE:'test',STRIPE_SECRET_KEY:undefined},{});
  if(!['GET','HEAD'].includes(request.method))return new Response('Read-only preview',{status:405,headers});
  if(u.pathname==='/__qa'){
   const width=Number(u.searchParams.get('width'));if(![360,390,768,1440].includes(width))return new Response('Invalid width',{status:400,headers});

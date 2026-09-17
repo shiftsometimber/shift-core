@@ -17,6 +17,21 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
-      - run: node --test tests/testosterone-hub-preview.test.mjs
+      - run: node --test tests/testosterone-hub-preview.test.mjs tests/health-commerce.test.mjs
+      - name: Resolve isolated preview database
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx wrangler d1 list --json > /tmp/d1-list.json
+          db_id=$(jq -r '.[] | select(.name=="shift-testosterone-preview-db") | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          if [ -z "$db_id" ] || [ "$db_id" = "null" ]; then
+            npx wrangler d1 create shift-testosterone-preview-db --location weur
+            npx wrangler d1 list --json > /tmp/d1-list.json
+            db_id=$(jq -r '.[] | select(.name=="shift-testosterone-preview-db") | (.uuid // .database_id // .id)' /tmp/d1-list.json | head -n1)
+          fi
+          test -n "$db_id" && test "$db_id" != "null"
+          sed -i "s/__PREVIEW_D1_DATABASE_ID__/$db_id/" preview/testosterone-hub/wrangler.jsonc
+      - name: Initialise isolated schema
+        run: npx wrangler d1 execute DB --remote --file preview/testosterone-hub/bootstrap.sql --config preview/testosterone-hub/wrangler.jsonc
       - name: Deploy isolated preview without production bindings
         run: npx wrangler deploy --config preview/testosterone-hub/wrangler.jsonc
