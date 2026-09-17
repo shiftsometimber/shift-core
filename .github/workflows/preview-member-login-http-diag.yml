@@ -8,27 +8,22 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: preview/stabilisation-life-back-20260917
-          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-      - run: npm ci --no-audit --no-fund
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python -m pip install openpyxl==3.1.5
-      - name: Generate preview assets locally without deploying
-        run: node preview/stabilisation/prepare.mjs
-      - name: Compare generated member-login asset with currently deployed preview
+          node-version: '22.16.0'
+      - name: Inspect old and v2 preview responses directly
         run: |
           node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const inspect=(label,html)=>{const adapters=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']*api-adapter-v33d\.js[^"']*)["'][^>]*>/gi)];const consumer=html.search(/\bSST_API(?:\.|\[)/);const pos=adapters[0]?.index??-1;console.log(label,{adapterCount:adapters.length,adapterPos:pos,consumerPos:consumer,orderOK:pos>=0&&consumer>=0&&pos<consumer,scripts:[...html.matchAll(/<script\b([^>]*)>/gi)].map(m=>(m[1].match(/\bsrc=["']([^"']+)/i)||[])[1]||'[inline]').slice(0,12)});};
-          const generated=fs.readFileSync('work/staging/generated/assets/public-documents/member-login.html','utf8');inspect('GENERATED',generated);
-          const origin='https://shift-stabilisation-preview.matobrien.workers.dev';const r=await fetch(origin+'/member-login?diag='+Date.now(),{headers:{'cache-control':'no-cache'}});const deployed=await r.text();console.log('DEPLOYED_STATUS',r.status);inspect('DEPLOYED',deployed);
+          for (const origin of ['https://shift-stabilisation-preview.matobrien.workers.dev','https://shift-stabilisation-preview-v2.matobrien.workers.dev']) {
+            for (const path of ['/__preview/meta','/member-login']) {
+              const r=await fetch(origin+path+'?diag='+Date.now(),{redirect:'manual',headers:{'cache-control':'no-cache','user-agent':'SST-preview-diagnostic'}});
+              const body=await r.text();
+              console.log('\nURL',origin+path,'STATUS',r.status,'TYPE',r.headers.get('content-type'),'SERVER',r.headers.get('server'),'CF-RAY',r.headers.get('cf-ray'),'LOCATION',r.headers.get('location'));
+              console.log('HEADERS',Object.fromEntries(r.headers.entries()));
+              console.log('BODY_HEAD',JSON.stringify(body.slice(0,700)));
+              console.log('HAS_PREVIEW_UNAVAILABLE',body.includes('Preview unavailable'),'HAS_ADAPTER',/api-adapter-v33d\.js/.test(body),'HAS_SST_API',/\bSST_API(?:\.|\[)/.test(body));
+            }
+          }
           NODE
