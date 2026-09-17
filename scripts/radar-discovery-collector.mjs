@@ -1,4 +1,4 @@
-import {execFileSync} from 'node:child_process';
+import {collectorD1 as d1} from './radar-collector-d1.mjs';
 import {writeFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -7,7 +7,6 @@ import {snapshotSource,snapshotSha,validateSourceSnapshot,SNAPSHOT_SCHEMA} from 
 const write=process.argv.includes('--store');
 if(write&&(process.env.GITHUB_REPOSITORY!=='shiftsometimber/shift-core'||process.env.GITHUB_REF!=='refs/heads/main'||!['push','schedule','workflow_dispatch'].includes(process.env.GITHUB_EVENT_NAME)))throw Error('Collector writes require the trusted main workflow');
 const sha=process.env.GITHUB_SHA;if(!/^[a-f0-9]{40}$/.test(sha||''))throw Error('Missing workflow commit');
-const d1=args=>JSON.parse(execFileSync('npx',['wrangler','d1','execute','DB','--remote','--config','wrangler.jsonc','--json',...args],{encoding:'utf8',maxBuffer:8*1024*1024}));
 const sources=d1(['--command','SELECT id,authority,region,url,adapter,event_type eventType,tier,confidence,active FROM radar_sources WHERE active=1']).flatMap(x=>x.results||[]).filter(snapshotSource);
 const rows=[],report=[];
 for(const source of sources){
@@ -28,6 +27,11 @@ if(write&&rows.length){
  const columns=['source_id','source_url','fetched_at','items_json','items_sha256','document_sha256','workflow_sha'];
  const sql=SNAPSHOT_SCHEMA+';\n'+rows.map(row=>`INSERT INTO radar_source_snapshots(${columns.join(',')}) VALUES(${columns.map(k=>quote(row[k])).join(',')}) ON CONFLICT(source_id) DO UPDATE SET ${columns.slice(1).map(k=>`${k}=excluded.${k}`).join(',')} WHERE excluded.fetched_at>radar_source_snapshots.fetched_at;`).join('\n');
  const dir=mkdtempSync(join(tmpdir(),'radar-collector-'));try{const path=join(dir,'snapshots.sql');writeFileSync(path,sql);d1(['--file',path])}finally{rmSync(dir,{recursive:true,force:true})}
+ const stored=d1(['--command',`SELECT * FROM radar_source_snapshots WHERE source_id IN (${rows.map(r=>quote(r.source_id)).join(',')})`]).flatMap(x=>x.results||[]);
+ for(const row of rows){
+  const actual=stored.find(r=>r.source_id===row.source_id),source=sources.find(s=>s.id===row.source_id);
+  if(!actual||actual.fetched_at<row.fetched_at||actual.fetched_at===row.fetched_at&&actual.items_sha256!==row.items_sha256||!await validateSourceSnapshot(source,actual))throw Error('Stored snapshot verification failed: '+row.source_id);
+ }
 }
 console.log('DISCOVERY_COLLECTOR '+JSON.stringify({stored:write?rows.length:0,probed:report.length,results:report}));
 // A partial failure remains visible in Actions and expires naturally in the scanner.
