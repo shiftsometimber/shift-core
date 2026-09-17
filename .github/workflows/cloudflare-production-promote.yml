@@ -113,6 +113,10 @@ on:
       - "frontend/member/member-sport-v1.js"
       - "frontend/member/member-sport-v1.css"
       - "radar-public-v1.js"
+      - "radar-published-ticker-v1.js"
+      - "radar-freshness-v2.js"
+      - "scripts/radar-discovery-collector.mjs"
+      - ".github/workflows/radar-discovery-collector.yml"
       - "radar-medicine-seed-v1.js"
       - "radar-integration-v1.js"
       - "radar-authoritative-scan-v1.js"
@@ -204,8 +208,8 @@ jobs:
         run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
       - name: Verify Medicines Watch evidence, monitor and public isolation
         run: node --test medicines-watch/*.test.mjs
-      - name: Verify Radar source retries, metadata repair and correction races
-        run: node --test tests/radar-source-fetch-v1.test.mjs tests/radar-source-metadata-backfill-v1.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
+      - name: Verify Radar retrieval, publication edition, dates and correction races
+        run: node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
@@ -262,6 +266,8 @@ jobs:
           node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
       - name: Capture current Worker deployment for rollback
         run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+      - name: Seed recent discovery snapshots without publishing or sending notifications
+        run: node scripts/radar-discovery-collector.mjs --store
       - name: Capture current public pages before this member release
         run: node member-experience/public-preservation.mjs public-before.json
       - name: Retain rollback deployment record

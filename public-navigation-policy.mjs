@@ -1,5 +1,5 @@
 // Owner's 17 September 2026 instruction supersedes earlier ticker allowlists.
-export const tickerVersion = 'public-news-20260917-r2';
+export const tickerVersion = 'public-news-20260917-r3';
 export const tickerAsset = '/assets/public-news-ticker-v1.js';
 export const normalizePublicPath = path => {
   const normalized = path.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
@@ -53,18 +53,27 @@ export const tickerClient = String.raw`(function bootTicker() {
     try {
       const response = await fetch('/v1/radar/ticker', {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(8000)});
       const body = await response.json();
-      // Never present a failed/stale scan as a current wire. The permanent newsroom links remain usable.
-      if (!response.ok || !body.current || !Array.isArray(body.items)) return;
+      // A dated publication edition is distinct from a complete, current news scan.
+      // The API keeps its RED/AMBER wire status; only exact published links qualify.
+      if (!response.ok) return;
+      const edition = !body.current && body.published_edition?.current_wire === false ? body.published_edition : null;
+      const items = body.current ? body.items : edition?.items;
+      if (!Array.isArray(items)) return;
       const copy = document.createElement('span'); copy.className = 'shift-news-copy';
       const seen = new Set();
-      for (const item of body.items) {
-        const label = String(item.ticker_line || item.headline || '').trim();
+      for (const item of items) {
+        let label = String(item.ticker_line || item.headline || '').trim();
+        if (edition) {
+          const at = Date.parse(item.published_at); if (!Number.isFinite(at)) continue;
+          label = label + ' · Published ' + new Date(at).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric', timeZone:'UTC'});
+        }
         let url; try {url = new URL(item.url || '/medicine-news', location.origin);} catch {continue;}
         if (!label || url.origin !== location.origin || !['http:', 'https:'].includes(url.protocol) || seen.has(label)) continue;
         seen.add(label);
         const link = document.createElement('a'); link.href = url.pathname + url.search + url.hash; link.textContent = label; copy.append(link);
       }
       if (!copy.childElementCount) return;
+      if (edition) {strip.querySelector('.shift-news-label').textContent = 'Published in SHIFT'; strip.dataset.edition = edition.edition_id;}
       const duplicate = copy.cloneNode(true); duplicate.setAttribute('aria-hidden','true');
       duplicate.querySelectorAll('a').forEach(link => link.tabIndex = -1);
       track.replaceChildren(copy, duplicate); strip.setAttribute('data-ready', ''); button.hidden = false;
