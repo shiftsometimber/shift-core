@@ -15,6 +15,18 @@ async function api(context,path,data,method=data===undefined?'GET':'POST',status
  return response.headers()['content-type']?.includes('application/json')?response.json():response.text();
 }
 async function login(ctx,id){await api(ctx,'/v1/auth/login',{email:'probe'+id+'@example.invalid',password:fixture.password},'POST',200);const me=await api(ctx,'/v1/me');assert.equal(Number(me.user.id),id)}
+async function uiLogin(page,ctx,id){
+ await api(ctx,'/v1/auth/logout',{},'POST',200);await open(page,'/member-login');
+ await page.waitForFunction(()=>typeof window.SST_API==='object',null,{timeout:15000});
+ const adapters=page.locator('script[src^="/api-adapter-v33d.js"]');assert.equal(await adapters.count(),1,'Exactly one member auth adapter must load');
+ const order=await page.locator('script').evaluateAll(nodes=>nodes.map((s,i)=>({i,src:s.getAttribute('src')||'',text:s.src?'':s.textContent||''})));
+ const adapterIndex=order.find(x=>x.src.startsWith('/api-adapter-v33d.js'))?.i,consumerIndex=order.find(x=>/SST_API(?:\.|\[)/.test(x.text)&&!x.text.includes('SST_API_BASE'))?.i;
+ assert(Number.isInteger(adapterIndex)&&Number.isInteger(consumerIndex)&&adapterIndex<consumerIndex,'Auth adapter must execute before inline SST_API consumer');
+ const form=page.locator('#previewRegister');assert.equal(await form.count(),1,'Real My Timber login form missing');
+ await form.locator('input[type="email"]').fill('probe'+id+'@example.invalid');await form.locator('input[type="password"]').fill(fixture.password);
+ await form.locator('button[type="submit"],input[type="submit"]').first().click();
+ await page.locator('#previewMember.is-ready').waitFor({state:'visible',timeout:30000});const me=await api(ctx,'/v1/me');assert.equal(Number(me.user.id),id);
+}
 async function open(page,path){await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:45000});}
 async function geometry(page){const g=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,content:document.documentElement.scrollWidth,body:document.body.scrollWidth}));assert(g.content<=g.viewport+1,'Horizontal overflow '+JSON.stringify(g));return g;}
 async function waitLife(page){await page.locator('#journeyView').waitFor({state:'visible',timeout:45000});await page.waitForFunction(()=>document.querySelector('[data-dialog="goalDialog"]')&&!document.querySelector('[data-dialog="goalDialog"]').disabled);}
@@ -42,7 +54,7 @@ for(let index=0;index<checks.length;index++){
    if(path==='/shift-health'||path==='/life-back')await page.screenshot({path:dir+'/'+name+'-'+(path==='/shift-health'?'health':'public-life-back')+'.png',fullPage:true});
   }
   row.checks.push('Public drawer opens and closes; newsroom present; shared footer key links unique; public pages fit viewport');
-  row.phase='fictional-member-login';await login(context,fixture.browserIds[index]);await api(context,'/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true});
+  row.phase='fictional-member-login';await uiLogin(page,context,fixture.browserIds[index]);row.checks.push('Actual My Timber form loads SST_API adapter first and signs in successfully');await api(context,'/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true});
   await open(page,'/member/dashboard#today');await page.waitForFunction(()=>document.querySelector('#todayActions')?.dataset.todayDecisionReady==='true',null,{timeout:45000});
   const preseed=await api(context,'/v1/member-state');await api(context,'/v1/member-state',{preferences:{...(preseed.state?.preferences||{}),previewPreservationFixture:{units:'metric',savedList:['fictional-one','fictional-two']}}},'PATCH',200);const baseline=await api(context,'/v1/member-state');assert.deepEqual(baseline.state.preferences.previewPreservationFixture,{units:'metric',savedList:['fictional-one','fictional-two']});row.baselinePreferenceKeys=Object.keys(baseline.state.preferences);
   row.phase='personal-goal';await open(page,'/member/life-back');await waitLife(page);await page.locator('[data-dialog="goalDialog"]').first().click();await page.fill('#customGoal','Join in on a family walk');await page.locator('#goalForm button[type="submit"]').click();await page.locator('#goalDialog').waitFor({state:'hidden',timeout:30000});
@@ -55,7 +67,7 @@ for(let index=0;index<checks.length;index++){
   await today(page);await page.locator('[data-loop-status="done"]').click();await page.getByText('Marked done ✓',{exact:true}).waitFor({state:'visible',timeout:45000});
   const done=await api(context,'/v1/life-back');assert.equal(done.progress.nextShift.id,first);assert.equal(done.progress.nextShift.status,'done');assert.equal(done.usage.actionsCompleted,1);
   row.checks.push('Deliberate six-area check-in creates one task in existing Today; real Grub route opens; opening does not mark done; explicit done persists');
-  row.phase='logout-and-return';await today(page);await page.locator('.member-nav-more summary').click();const logout=page.locator('[data-member-logout]');assert.equal(await logout.count(),1,'Exactly one shared logout control');assert(await logout.isVisible(),'Logout must be visible in the shared My Timber menu');await logout.click();await page.waitForURL(/\/member-login(?:\?|$)/,{timeout:30000});await api(context,'/v1/me',undefined,'GET',401);await api(context,'/v1/life-back',undefined,'GET',401);row.checks.push('Shared My Timber menu exposes Log out; click revokes the session, returns to sign-in and protected APIs reject the old session');await login(context,fixture.browserIds[index]);await today(page);assert((await page.locator('.mtm-next').innerText()).includes('Marked done'));
+  row.phase='logout-and-return';await today(page);await page.locator('.member-nav-more summary').click();const logout=page.locator('[data-member-logout]');assert.equal(await logout.count(),1,'Exactly one shared logout control');assert(await logout.isVisible(),'Logout must be visible in the shared My Timber menu');await logout.click();await page.waitForURL(/\/member-login(?:\?|$)/,{timeout:30000});await api(context,'/v1/me',undefined,'GET',401);await api(context,'/v1/life-back',undefined,'GET',401);row.checks.push('Shared My Timber menu exposes Log out; click revokes the session, returns to sign-in and protected APIs reject the old session');await uiLogin(page,context,fixture.browserIds[index]);await today(page);assert((await page.locator('.mtm-next').innerText()).includes('Marked done'));
   row.phase='follow-up-remembered';await page.locator('.mtm-next a[href*="life-back"]').click();await waitLife(page);await page.locator('#checkinDialog').waitFor({state:'visible',timeout:30000});assert((await page.locator('#shiftFollowup').innerText()).includes('Choose one straightforward meal'));assert((await page.locator('#shiftFollowup').innerText()).includes('You marked this done'));
   await page.screenshot({path:dir+'/'+name+'-follow-up.png',fullPage:true});await checkin(page,outcome);
   const reviewed=await api(context,'/v1/life-back');assert.equal(reviewed.progress.entries.length,2);assert.equal(reviewed.progress.entries[1].shiftFeedback.shiftId,first);assert.equal(reviewed.progress.entries[1].shiftFeedback.outcome,outcome);
