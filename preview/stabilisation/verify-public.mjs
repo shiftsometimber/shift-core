@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {reconcilePublicDocument,reconcileSitemap,relatedGuideGroups,publicHeader,publicDrawer,publicFooter} from '../../public-shell-contract.mjs';
+import {reconcilePublicDocument,reconcileSitemap,relatedGuideGroups} from '../../public-shell-contract.mjs';
 const dir='work/staging/generated',before=JSON.parse(readFileSync(dir+'/public-baseline.json')),after=JSON.parse(readFileSync(dir+'/public-preview.json'));
 const report={checkedAt:new Date().toISOString(),pages:[],linked:[],heldLegacy:['/corporate-wellbeing','/pricing-membership','/progress-centre-methodology'],productionWrites:0};
 const tag=(html,name)=>html.match(new RegExp('<'+name+'\\b[^>]*>[\\s\\S]*?<\\/'+name+'>','i'))?.[0]||'';
@@ -37,6 +37,11 @@ assert.equal(reconcileSitemap(before.sitemap),after.sitemap);
 const urls=s=>[...s.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);report.sitemap={before:urls(before.sitemap).length,after:urls(after.sitemap).length,removed:urls(before.sitemap).filter(u=>!urls(after.sitemap).includes(u)),added:urls(after.sitemap).filter(u=>!urls(before.sitemap).includes(u))};
 assert.deepEqual(report.sitemap.removed,['https://shiftsometimber.co.uk/shift-for-work']);assert.deepEqual(report.sitemap.added,[]);
 assert(!after.sitemap.includes('<loc>https://shiftsometimber.co.uk/shop</loc>'));
-for(const path of ['/shift-for-work','/shop']){const page=after.pages.find(p=>p.path===path);assert(/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(page.after),path+' noindex decision changed');}
+const robots=s=>[...s.matchAll(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/gi)].map(m=>m[0]);
+for(const path of ['/shift-for-work','/shop']){
+ const a=after.pages.find(p=>p.path===path),b=before.pages.find(p=>p.path===path);
+ assert.deepEqual(robots(a.after),robots(b.before),path+' robots tag changed');
+ assert(robots(a.after).some(s=>/\bcontent=["'][^"']*noindex/i.test(s)),path+' must retain the existing noindex decision');
+}
 report.result='pass';report.linkedMentalHealth=report.linked.filter(x=>x.path.startsWith('/mental-health/')).length;
 writeFileSync(dir+'/public-proof.json',JSON.stringify(report,null,2));console.log(JSON.stringify({result:report.result,pages:report.pages.length,contextualLinks:report.linked.length,mentalHealth:report.linkedMentalHealth,sitemap:report.sitemap,held:report.heldLegacy},null,2));
