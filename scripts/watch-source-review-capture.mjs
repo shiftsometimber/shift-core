@@ -6,10 +6,7 @@ import {fingerprintSource} from '../medicines-watch/monitor.mjs';
 
 const directory=process.argv[2]||'watch-source-capture';
 mkdirSync(directory,{recursive:true});
-const targets=[
-  {...sources.find(s=>s.id==='mounjaro-nhs'),url:'https://www.nhs.uk/medicines/tirzepatide/',checkUrl:'https://www.nhs.uk/medicines/tirzepatide/',requiredTerms:['tirzepatide','prescription','specialist weight management']},
-  sources.find(s=>s.id==='wegovy-tablet-private')
-];
+const targets=sources.filter(s=>['mounjaro-nhs','wegovy-tablet-private'].includes(s.id));
 for(const source of targets){
   const record={id:source.id,url:source.url,retrievedAt:new Date().toISOString(),approved:false};
   try{
@@ -21,6 +18,10 @@ for(const source of targets){
     record.bytes=Buffer.byteLength(body);
     record.responseSha256=createHash('sha256').update(body).digest('hex');
     Object.assign(record,await fingerprintSource(source,body,response.headers.get('content-type')));
+    if(source.reviewedFingerprint){
+      record.matchesReviewedFingerprint=record.fingerprint===source.reviewedFingerprint;
+      if(!record.matchesReviewedFingerprint||record.withdrawn)throw Error('reviewed_source_changed');
+    }
     writeFileSync(`${directory}/${source.id}.html`,body);
     const main=body.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||body;
     const text=main.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();

@@ -5,6 +5,8 @@ export const REVIEWED_AT = '2026-09-15T21:28:30Z';
 // Exact bodies fetched after editorial verification, using fingerprintSource.
 // Blocked, empty or timed-out responses deliberately have no approved baseline.
 const reviewedFingerprints = {
+  'mounjaro-nhs': '0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff',
+  'wegovy-tablet-private': '351c85bcb8ae82aa136498bdbe3913d9e042a1185274f5c4d029132f1d776d82',
   'mounjaro-smpc': 'c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55',
   'wegovy-injection-smpc': '21124f70931fd9c9d69938b8a1a9c0e94b6680a6cb42e4dc49ba218224da7855',
   'wegovy-tablet-smpc': '142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e',
@@ -27,6 +29,8 @@ const reviewedFingerprints = {
 // Source-specific factual review; the rest of the catalogue keeps its prior date.
 // Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
 const sourceReviewedDates = {
+  'mounjaro-nhs': '2026-09-17T05:45:00Z',
+  'wegovy-tablet-private': '2026-09-17T05:45:00Z',
   'mounjaro-smpc': '2026-09-16T17:44:34Z',
   'wegovy-injection-smpc': '2026-09-16T17:44:34Z',
   'wegovy-tablet-smpc': '2026-09-16T17:44:34Z',
@@ -59,9 +63,9 @@ export const sources = [
     '2023-11-08', ['Mounjaro', 'tirzepatide', 'weight management']),
   smpc('mounjaro-smpc', 'Mounjaro: UK product information', '15481', '2026-09-08',
     ['Mounjaro', 'tirzepatide', 'weight management']),
-  source('mounjaro-nhs', 'NHS England: phased tirzepatide access',
-    'https://www.england.nhs.uk/long-read/interim-commissioning-guidance-nice-ta1026-tirzepatide/',
-    '2026-04-02', ['tirzepatide', 'TA1026', 'primary care'], { sourceDateLabel: 'Guidance updated' }),
+  source('mounjaro-nhs', 'NHS: tirzepatide prescription access and eligibility',
+    'https://www.nhs.uk/medicines/tirzepatide/',
+    '2026-05-15', ['tirzepatide', 'prescription', 'specialist weight management'], { sourceDateLabel: 'NHS information reviewed' }),
   source('mounjaro-nice', 'NICE TA1026: tirzepatide for weight management',
     'https://www.nice.org.uk/guidance/ta1026', '2025-09-01', ['tirzepatide', 'TA1026'],
     { sourceDateLabel: 'Guidance updated' }),
@@ -119,9 +123,10 @@ export const medicines = [
     tradeoffs: ['Digestive side effects are common.', 'Suitability, other medicines and treatment response need clinical review.'],
     access: {
       private: 'Private prescription route established. Individual pharmacy stock is not tracked here.',
-      nhsEngland: 'Eligible patients only. Access is phased; specialist services and primary care have different arrangements under NICE TA1026.',
+      nhsEngland: 'Eligible patients only. Eligibility criteria differ between prescribing through a doctor and a specialist weight-management service.',
     },
     sourceIds: ['mounjaro-mhra', 'mounjaro-smpc', 'mounjaro-nhs', 'mounjaro-nice'],
+    reviewedAt: '2026-09-17T05:45:00Z',
   },
   {
     id: 'wegovy-injection', name: 'Wegovy injection', ingredient: 'Semaglutide',
