@@ -2,7 +2,9 @@ name: My Timber login PREVIEW redeploy
 on:
   push:
     branches: [preview/stabilisation-life-back-20260917]
-    paths: ['.github/workflows/preview-member-login-redeploy.yml']
+    paths:
+      - '.github/workflows/preview-member-login-redeploy.yml'
+      - 'preview/stabilisation/worker.mjs'
 permissions:
   contents: read
 jobs:
@@ -28,13 +30,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
-      - name: Confirm preview sanitizer preserves the same-origin auth adapter
+      - name: Confirm final response repair guarantees the same-origin auth adapter
         run: |
           node --input-type=module <<'NODE'
-          import fs from 'node:fs';
+          import fs from 'node:fs';import assert from 'node:assert/strict';
           const worker=fs.readFileSync('preview/stabilisation/worker.mjs','utf8');
-          if(/api-adapter-/.test(worker.match(/if\(path==='\/member-login'\)[^\n]+/s)?.[0]||'')) throw Error('Preview sanitizer still strips the auth adapter');
-          console.log('PASS: preview sanitizer preserves api-adapter-v33d.js');
+          assert(worker.includes('data-shift-auth-adapter'),'Final-response adapter repair missing');
+          assert(worker.includes("if(path==='/member-login')"),'Member-login finalizer missing');
+          assert(worker.includes("body=baseScript.test(body)?body.replace(baseScript,match=>match+adapter)"),'Adapter ordering repair missing');
+          console.log('PASS: final preview response guarantees api-adapter-v33d.js after safety stripping.');
           NODE
       - name: Regression gates
         run: node --test --test-reporter=tap member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/my-timber-analytics-privacy.test.mjs
@@ -58,7 +62,7 @@ jobs:
       - name: Confirm deployed login now contains the adapter
         run: |
           node --input-type=module <<'NODE'
-          const r=await fetch(process.env.PREVIEW_URL+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}});const h=await r.text();const a=h.indexOf('src="/api-adapter-v33d.js"'),c=h.search(/\bSST_API(?:\.|\[)/);if(!r.ok||a<0||c<0||a>=c)throw Error('Deployed member-login still does not load the adapter first');console.log('PASS: deployed login contains auth adapter before SST_API consumer');
+          const r=await fetch(process.env.PREVIEW_URL+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}});const h=await r.text();const m=h.match(/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i),a=m?.index??-1,c=h.search(/\bSST_API(?:\.|\[)/);if(!r.ok||a<0||c<0||a>=c)throw Error('Deployed member-login still does not load the adapter first');console.log('PASS: deployed login contains auth adapter before SST_API consumer');
           NODE
       - name: Install Chromium and WebKit
         run: |
@@ -70,7 +74,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: my-timber-ui-login-preview-evidence-fixed
+          name: my-timber-ui-login-preview-evidence-final
           retention-days: 14
           path: |
             work/staging/generated/public-proof.json
