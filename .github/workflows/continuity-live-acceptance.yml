@@ -1,0 +1,53 @@
+name: Continuity Live Acceptance
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/continuity-live-acceptance.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: npm ci --no-audit --no-fund
+      - name: Capture exact public member asset evidence
+        run: |
+          mkdir -p live-acceptance
+          node --input-type=module <<'NODE'
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const evidence={checkedAt:new Date().toISOString(),deployedSource:'d78e74b7e59eb5296da7ebc7ebbd2925985a34ec',assets:[]};
+          for(const name of ['api-adapter-v33d.js','member-shell-v33g.js','member-my-journey-v1.js']){
+            const expected=readFileSync('frontend/member/'+name);
+            writeFileSync('live-acceptance/source-'+name,expected);
+            for(const fresh of [false,true]){
+              const url='https://shiftsometimber.co.uk/'+name+(fresh?'?verify='+Date.now():'');
+              const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(30000),redirect:'manual'});
+              const body=Buffer.from(await r.arrayBuffer());
+              const file=(fresh?'fresh-':'plain-')+name;
+              writeFileSync('live-acceptance/'+file,body);
+              const item={url,status:r.status,file,expectedSha256:hash(expected),actualSha256:hash(body),matches:body.equals(expected),headers:Object.fromEntries(['content-type','cache-control','etag','age','cf-cache-status','x-shift-frontend-authority'].map(k=>[k,r.headers.get(k)]))};
+              evidence.assets.push(item);console.log(JSON.stringify(item));
+            }
+          }
+          writeFileSync('live-acceptance/asset-evidence.json',JSON.stringify(evidence,null,2));
+          if(evidence.assets.some(x=>x.status!==200||!x.matches))process.exitCode=1;
+          NODE
+      - name: Verify current member delivery and unauthenticated guards
+        if: always()
+        run: node member-experience/verify-production-member.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: continuity-live-${{ github.event.pull_request.head.sha }}
+          path: |
+            live-acceptance/
+            member-live-proof.json
