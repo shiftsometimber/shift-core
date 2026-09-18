@@ -1,11 +1,11 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
+import {saveHealthInterest,HEALTH_INTERESTS,normaliseHealthInterest} from './health-interest-store.mjs';
+export {HEALTH_INTERESTS,normaliseHealthInterest};
 
 export const TRACKING_CONSENT='my_shift_health_tracking';
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const parse=value=>{try{return JSON.parse(value||'{}')}catch{return {}}};
 const moods=['Tough day','Struggling','OK','Good','Brilliant'];
-export const HEALTH_INTERESTS=new Set(['health-mot','testosterone-energy','blood-pressure-monitor','digital-scales','resistance-bands','shift-measure','erectile-dysfunction','hair-loss','stop-smoking','sleep-apnoea']);
-export const normaliseHealthInterest=value=>{const slug=String(value||'').trim().toLowerCase();return HEALTH_INTERESTS.has(slug)?slug:''};
 export async function appendHealthExport(request,env,response){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/privacy/export'||request.method!=='POST'||!response.ok)return response;
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
@@ -56,11 +56,8 @@ export async function memberHealthRoutes(request,env){
  if(!owned)return null;
  if(path==='/v1/health-passport/interest'){
   if(method!=='POST')return json({error:'method_not_allowed'},405);
-  const slug=normaliseHealthInterest(body?.slug);
-  if(!slug)return json({error:'invalid_health_interest',message:'Choose a recognised SHIFT Health pathway.'},400);
-  const at=new Date().toISOString(),row=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first(),preferences=parse(row?.preferences),journey=preferences.myJourney&&typeof preferences.myJourney==='object'?preferences.myJourney:parse(preferences.myJourney),interests=[...new Set([...(Array.isArray(journey.healthInterests)?journey.healthInterests.map(normaliseHealthInterest).filter(Boolean):[]),slug])].slice(-10);
-  await env.DB.prepare("INSERT INTO member_state(user_id,preferences,updated_at) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET preferences=json_set(CASE WHEN json_valid(member_state.preferences) THEN member_state.preferences ELSE json('{}') END,'$.myJourney.healthInterests',json(?)),updated_at=excluded.updated_at").bind(auth.userId,JSON.stringify({myJourney:{healthInterests:interests}}),at,JSON.stringify(interests)).run();
-  return json({ok:true,interest:slug,healthInterests:interests},201);
+  try{return json(await saveHealthInterest(env.DB,auth.userId,body?.slug),201)}
+  catch(error){return json({error:error.code||'health_priority_unavailable',message:error.status?error.message:'The save could not be verified. Reload your Journey before retrying.'},error.status||503)}
  }
  if(path==='/v1/check-ins'){
   if(method==='GET'){
