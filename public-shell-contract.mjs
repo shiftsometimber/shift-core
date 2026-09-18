@@ -247,9 +247,7 @@ export const legacyAuthorityRedirects=Object.freeze({
 });
 export const sitemapExcludedPaths=['/shift-for-work',...Object.keys(legacyAuthorityRedirects)]; // Redirect sources stay live but do not compete in the sitemap.
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const regexEscape=s=>String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\export const sitemapExcludedPaths=['/shift-for-work']; // Already noindex; the page and navigation remain.
-const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const normal=p=>p.replace(/\.html$/,'').replace(/\/+$/,'')||'/';');
+const regexEscape=s=>String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const normal=p=>p.replace(/\.html$/,'').replace(/\/+$/,'')||'/';
 export function publicShellPath(path){return !/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(normal(path));}
 function current(markup,path){return markup.replace(/<a href="([^"#]+)">/g,(tag,href)=>href!=='/'&&(path===href||path.startsWith(href+'/'))?tag.replace('>',' aria-current="page">'):tag);}
