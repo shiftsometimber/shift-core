@@ -17,7 +17,16 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Capture immutable candidate source
+        run: |
+          mkdir -p continuity-proof
+          git archive --format=tar.gz HEAD > continuity-proof/source.tar.gz
+          git rev-parse HEAD > continuity-proof/source-sha.txt
+      - name: Existing member and public regression checks
+        run: |
+          node --test member-experience/tests/*.test.mjs tests/my-journey-*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs
       - name: Capture read-only public entry and source mapping
+        if: always()
         run: |
           mkdir -p continuity-proof
           node --input-type=module <<'NODE'
@@ -26,24 +35,21 @@ jobs:
           for(const path of ['/start-here','/member-login','/member/dashboard','/treatment-centre']){
             const r=await fetch(origin+path,{redirect:'manual',signal:AbortSignal.timeout(30000)});
             const html=await r.text();
-            writeFileSync('continuity-proof/'+path.slice(1)+'.html',html);
+            writeFileSync('continuity-proof/'+path.slice(1).replaceAll('/','--')+'.html',html);
             const scripts=[...html.matchAll(/<script\b[^>]*src=["']([^"']+)["']/gi)].map(m=>m[1]);
-            const inline=[...html.matchAll(/<script\b(?![^>]*src=)[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(s=>/start|answer|next|question|member|route|step|finder/i.test(s));
-            console.log(JSON.stringify({path,status:r.status,location:r.headers.get('location'),scripts,inline:path==='/start-here'?inline:[],forms:[...html.matchAll(/<(?:input|select|button|form)\b[^>]*>/gi)].map(m=>m[0])}));
+            console.log(JSON.stringify({path,status:r.status,location:r.headers.get('location'),scripts}));
             if(path==='/start-here')for(const src of scripts){
               if(!/start|finder|route|decision|journey/i.test(src))continue;
               const u=new URL(src,origin);if(u.origin!==origin)continue;
               const sr=await fetch(u,{signal:AbortSignal.timeout(30000)});const body=await sr.text();
               writeFileSync('continuity-proof/'+u.pathname.split('/').at(-1),body);
-              console.log(JSON.stringify({script:u.pathname,status:sr.status,body:body.slice(0,60000)}));
+              console.log(JSON.stringify({script:u.pathname,status:sr.status,bytes:Buffer.byteLength(body)}));
             }
           }
           NODE
-      - name: Existing member and public regression checks
-        run: |
-          node --test member-experience/tests/*.test.mjs tests/my-journey-*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: continuity-source-proof-${{ github.sha }}
           path: continuity-proof
+          retention-days: 7
