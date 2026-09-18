@@ -1,4 +1,5 @@
 import {memberChromeStyles,memberChromeClient,lifeBackChrome} from './chrome.mjs';
+import {withPublicTicker} from '../public-navigation-policy.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {writeFileSync,readFileSync} from 'node:fs';
@@ -34,8 +35,17 @@ for(const [name,expected] of [['chrome',memberChromeClient],['health',healthRunt
 for(const [name,asset] of Object.entries(lifeBackAssets)){
  const path=name==='index.html'?'/member/life-back':'/assets/member-experience/life-back/'+name;
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);assert.ok((r.headers.get('content-type')||'').includes(asset.type),path+' MIME');
- const actual=Buffer.from(await r.arrayBuffer()),expected=asset.base64?Buffer.from(asset.base64,'base64'):Buffer.from(name==='index.html'?lifeBackChrome(asset.body,/"WORK_V1_ENABLED"\s*:\s*"true"/.test(readFileSync('wrangler.jsonc','utf8'))):asset.body);assert.deepEqual(actual,expected,path+' must match source');
- evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
+ const actual=Buffer.from(await r.arrayBuffer());
+ let expected=asset.base64?Buffer.from(asset.base64,'base64'):Buffer.from(name==='index.html'?lifeBackChrome(asset.body,/"WORK_V1_ENABLED"\s*:\s*"true"/.test(readFileSync('wrangler.jsonc','utf8'))):asset.body);
+ if(name==='index.html'){
+  // The live Worker applies this exact response wrapper after member rendering.
+  // Member tickers stay excluded; the approved contrast style still applies.
+  // Generate the complete expected response rather than strip or ignore a diff.
+  const rendered=await withPublicTicker(new Request(origin+path),new Response(expected,{headers:{'Content-Type':asset.type}}));
+  expected=Buffer.from(await rendered.arrayBuffer());
+ }
+ assert.deepEqual(actual,expected,path+' must match exact rendered source');
+ evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),expectedSha256:createHash('sha256').update(expected).digest('hex'),matchesSource:true});
 }
 {
  const path='/member-my-timber-problem-v1.js?v=my-timber-master-20260916',r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);
