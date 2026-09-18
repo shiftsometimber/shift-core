@@ -14,6 +14,8 @@ on:
       - "testosterone-hub-order.mjs"
       - "tests/testosterone-public.test.mjs"
       - "public-navigation-policy.mjs"
+      - "public-shell-contract.mjs"
+      - "tests/public-shell-contract.test.mjs"
       - "public-ticker-preservation.mjs"
       - "tests/public-ticker-*.test.mjs"
       - "radar-live-email-v1.js"
@@ -31,6 +33,7 @@ on:
       - "public-continuity*.mjs"
       - "tests/public-continuity.test.mjs"
       - "scripts/verify-public-continuity-live.mjs"
+      - "scripts/verify-public-audit-live.mjs"
       - "public-seo-closeout.mjs"
       - "scripts/verify-seo-closeout-live.mjs"
       - "medicines-watch/**"
@@ -218,7 +221,7 @@ jobs:
       - name: Prove Ask Timber handles every explicit request part
         run: node --test ask-timber-multi-intent-gate.mjs
       - name: Block SEO deployment regressions
-        run: node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs
+        run: node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs
       - name: Prove Health rendering, canonical uniqueness and public endpoint security
         run: node --test tests/testosterone-public.test.mjs tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-continuity.test.mjs
       - name: Prove My Journey end to end before promotion

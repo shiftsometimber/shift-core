@@ -5,7 +5,8 @@ import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_START,TREATMENTS_ENTRY_END,publicPageE
 const publicPageEvidence=(path,status,body,options={})=>fingerprint(path,status,body,{...options,hash:input=>createHash('sha256').update(input).digest('hex')});
 
 const paths=['/','/start-here','/programme','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912'];
-const treatment='<html><main><h1>Treatments</h1><p>Existing approved content.</p></main></html>';
+const relatedGuide='<section data-shift-link-repair aria-label="Related existing guides"><h2>Planning around treatment</h2><ul><li><a href="/articles/travelling-with-weight-loss-medication">Travelling with weight-loss medication</a></li></ul></section>';
+const treatment='<html><main><h1>Treatments</h1><p>Existing approved content.</p>'+relatedGuide+'</main></html>';
 const withEntry=treatment.replace('</main>',TREATMENTS_ENTRY+'</main>');
 const evidence=(entry=false)=>paths.map(path=>publicPageEvidence(path,200,path==='/treatment-centre'?(entry?withEntry:treatment):'Unchanged '+path,{requireTreatmentsEntry:entry}));
 
@@ -14,9 +15,18 @@ test('permits only the exact Treatments addition and retains raw hashes and size
  assert.equal(assertPublicPagesPreserved(after,before),'preserved_with_treatments_watch_entry');
  assert.notEqual(now.sha256,old.sha256);
  assert.equal(now.bytes-old.bytes,Buffer.byteLength(TREATMENTS_ENTRY));
- assert.equal(now.preservedSha256,old.sha256);
- assert.equal(now.preservedBytes,old.bytes);
+ assert.equal(now.preservedSha256,old.preservedSha256);
+ assert.equal(now.preservedBytes,old.preservedBytes);
+ assert.equal(now.relatedGuide,true);
  assert.equal(assertPublicPagesPreserved(after,after),'identical');
+});
+
+test('Git-controlled Treatment Centre related links may change while surrounding content stays hash-locked',()=>{
+ const before=evidence(),nextGuide=relatedGuide.replace('</ul>','<li><a href="/comparisons/medications/mounjaro-vs-saxenda">Mounjaro vs Saxenda</a></li></ul>'),after=evidence(true);
+ after[4]=publicPageEvidence('/treatment-centre',200,withEntry.replace(relatedGuide,nextGuide),{requireTreatmentsEntry:true});
+ assert.equal(assertPublicPagesPreserved(after,before),'preserved_with_treatments_watch_entry');
+ assert.equal(after[4].relatedGuide,true);
+ assert.equal(after[4].preservedSha256,before[4].preservedSha256);
 });
 
 test('unrelated Treatment Centre changes still fail',()=>{
@@ -46,6 +56,12 @@ test('permits only the exact approved SHIFT Health Twitter image addition',()=>{
  }
  const removed=evidence(true);removed[index]=publicPageEvidence('/shift-health',200,'Unchanged /shift-health');
  assert.throws(()=>assertPublicPagesPreserved(removed,after),/missing/);
+});
+
+test('missing or duplicated Treatment Centre related-guide sections are rejected',()=>{
+ const noGuide=treatment.replace(relatedGuide,'');
+ assert.throws(()=>publicPageEvidence('/treatment-centre',200,noGuide),/related-guide/);
+ assert.throws(()=>publicPageEvidence('/treatment-centre',200,treatment.replace('</main>',relatedGuide+'</main>')),/exactly one/);
 });
 
 test('missing, duplicate, reversed, malformed or altered entries are rejected',()=>{
