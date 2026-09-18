@@ -58,7 +58,7 @@ export async function memberHealthRoutes(request,env){
   if(method!=='POST')return json({error:'method_not_allowed'},405);
   const slug=normaliseHealthInterest(body?.slug);
   if(!slug)return json({error:'invalid_health_interest',message:'Choose a recognised SHIFT Health pathway.'},400);
-  const at=new Date().toISOString(),row=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first(),preferences=parse(row?.preferences),journey=parse(preferences.myJourney),interests=[...new Set([...(Array.isArray(journey.healthInterests)?journey.healthInterests.map(normaliseHealthInterest).filter(Boolean):[]),slug])].slice(-10);
+  const at=new Date().toISOString(),row=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first(),preferences=parse(row?.preferences),journey=preferences.myJourney&&typeof preferences.myJourney==='object'?preferences.myJourney:parse(preferences.myJourney),interests=[...new Set([...(Array.isArray(journey.healthInterests)?journey.healthInterests.map(normaliseHealthInterest).filter(Boolean):[]),slug])].slice(-10);
   await env.DB.prepare("INSERT INTO member_state(user_id,preferences,updated_at) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET preferences=json_set(CASE WHEN json_valid(member_state.preferences) THEN member_state.preferences ELSE json('{}') END,'$.myJourney.healthInterests',json(?)),updated_at=excluded.updated_at").bind(auth.userId,JSON.stringify({myJourney:{healthInterests:interests}}),at,JSON.stringify(interests)).run();
   return json({ok:true,interest:slug,healthInterests:interests},201);
  }
