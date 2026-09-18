@@ -7,6 +7,7 @@ import {renderWatchDocument} from '../medicines-watch/page.mjs';
 import {publicHealthResponse} from '../public-health-v1.js';
 import {continuityInterestRoutes} from '../continuity-interest-v1.js';
 import worker from '../worker-entry-v6.js';
+import {legacyAuthorityRedirects,reconcilePublicDocument,reconcileSitemap} from '../public-shell-contract.mjs';
 
 const shell=`<!doctype html><html><head><title>Programme</title><link href="https://shiftsometimber.co.uk/programme" rel="canonical"/><meta content="old" name="description"><link rel="stylesheet" href="/assets/shift-recovery-v6.css"><link rel="stylesheet" href="/assets/header-navigation-v2.css"><script defer src="/consent-v4a.js"></script></head><body class="one-shift programme-page"><a class="skip-link" href="#main-content">Skip to main content</a><header><a href="/programme" aria-current="page">Programme</a><a href="/shift-health">SHIFT Health</a></header><nav id="site-drawer"><a href="/shift-health">SHIFT Health</a></nav><main id="main-content"><h1>Programme</h1></main><footer>Retained footer</footer></body></html>`;
 test('all eleven Health pages have complete server-visible content and retained canonical shell',()=>{
@@ -24,6 +25,37 @@ test('all eleven Health pages have complete server-visible content and retained 
     if(slug){assert.match(main,/No stock available today/);assert.match(main,/<details\b/);assert.match(main,/id="evidence"/)}
   }
   assert.equal(renderShiftHealthDocument(shell,'invented-route'),null);
+});
+test('superseded authority routes permanently consolidate without broad public rewrites',async()=>{
+  const cases={
+    '/health-mot':'/shift-health/health-mot',
+    '/health-mot.html':'/shift-health/health-mot',
+    '/programme-benefits':'/programme',
+    '/pricing-membership':'/treatment-centre',
+    '/founding-members':'/programme',
+    '/comparisons/surgery/gastric-band-vs-sleeve.html':'/comparisons/surgery/gastric-band-vs-sleeve',
+  };
+  for(const [from,to] of Object.entries(cases))for(const method of ['GET','HEAD']){
+    const r=await worker.fetch(new Request('https://shiftsometimber.co.uk'+from+'?source=legacy',{method}),{},{});
+    assert.equal(r.status,301,from);
+    assert.equal(r.headers.get('location'),'https://shiftsometimber.co.uk'+to+'?source=legacy',from);
+  }
+  const untouched=legacyAuthorityRedirects['/comparisons/surgery/gastric-band-vs-sleeve'];
+  assert.equal(untouched,undefined,'canonical extensionless route is not redirected');
+});
+test('sitemap and rendered internal links point straight at current authority pages',()=>{
+  const oldPaths=Object.keys(legacyAuthorityRedirects);
+  const canonical=['/shift-health/health-mot','/programme','/treatment-centre','/comparisons/surgery/gastric-band-vs-sleeve'];
+  const xml='<urlset>'+[...oldPaths,...canonical].map(path=>'<url><loc>https://shiftsometimber.co.uk'+path+'</loc></url>').join('')+'</urlset>';
+  const cleaned=reconcileSitemap(xml);
+  for(const path of oldPaths)assert.ok(!cleaned.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'),path);
+  for(const path of canonical)assert.ok(cleaned.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'),path);
+  const legacy=shell.replace('</main>','<a href="/health-mot?from=tools">MOT</a><a href="https://shiftsometimber.co.uk/founding-members#join">Founding</a><a href="/comparisons/surgery/gastric-band-vs-sleeve.html">Compare</a></main>');
+  const rendered=reconcilePublicDocument(legacy,'/tools');
+  assert.match(rendered,/href="\/shift-health\/health-mot\?from=tools"/);
+  assert.match(rendered,/href="\/programme#join"/);
+  assert.match(rendered,/href="\/comparisons\/surgery\/gastric-band-vs-sleeve"/);
+  assert.doesNotMatch(rendered,/href="(?:https:\/\/shiftsometimber\.co\.uk)?\/(?:health-mot|founding-members|comparisons\/surgery\/gastric-band-vs-sleeve\.html)/);
 });
 test('canonical replacement handles href-first, mixed-case, unquoted and duplicate tags',()=>{
   for(const tag of [`<link href='/parent' rel='canonical'/>`,`<LINK HREF="/parent" REL="canonical">`,`<link href=/parent rel=canonical>`]){
