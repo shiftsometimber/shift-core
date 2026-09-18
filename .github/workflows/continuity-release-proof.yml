@@ -35,8 +35,12 @@ jobs:
         run: |
           node my-journey-integration-gate.mjs
           node my-timber-final-source-gate.mjs
+      - name: Read-only preservation preflight against current public responses
+        run: node member-experience/public-preservation.mjs public-baseline.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: continuity-proof-${{ github.event.pull_request.head.sha }}
-          path: continuity-proof.tap
+          path: |
+            continuity-proof.tap
+            public-baseline.json
