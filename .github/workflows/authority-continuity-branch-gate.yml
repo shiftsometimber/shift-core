@@ -2,6 +2,8 @@ name: Authority continuity branch gate
 on:
   push:
     branches: [fix/authority-continuity-20260918]
+  pull_request:
+    branches: [main]
 permissions:
   contents: read
 jobs:
