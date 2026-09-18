@@ -191,11 +191,70 @@ export const relatedGuideGroups={
   ],
   "/treatment-centre": [
     {
+      "title": "Compare the options Google is already finding",
+      "links": [
+        {
+          "path": "/comparisons/medications/mounjaro-vs-saxenda",
+          "label": "Mounjaro vs Saxenda"
+        },
+        {
+          "path": "/comparisons/medications/mounjaro-vs-orlistat",
+          "label": "Mounjaro vs Orlistat"
+        },
+        {
+          "path": "/comparisons/medications/wegovy-vs-saxenda",
+          "label": "Wegovy vs Saxenda"
+        },
+        {
+          "path": "/guides/nhs-weight-loss-medication-pathways",
+          "label": "NHS weight-loss medication pathways"
+        }
+      ]
+    },
+    {
       "title": "Planning around treatment",
       "links": [
         {
           "path": "/articles/travelling-with-weight-loss-medication",
           "label": "Travelling with weight-loss medication: sort the boring bits before the airport"
+        }
+      ]
+    }
+  ],
+  "/mens-weight-management": [
+    {
+      "title": "Understand the main UK routes",
+      "links": [
+        {
+          "path": "/guides/nhs-weight-management-uk-guide",
+          "label": "How NHS weight management works"
+        },
+        {
+          "path": "/guides/weight-loss-surgery-uk-costs-guide",
+          "label": "Weight-loss surgery in the UK: costs and routes"
+        },
+        {
+          "path": "/mental-health/mental-health-and-weight",
+          "label": "Weight and mental health: connected, but not simple"
+        }
+      ]
+    }
+  ],
+  "/weight-loss-injections-for-men": [
+    {
+      "title": "Compare before you choose",
+      "links": [
+        {
+          "path": "/comparisons/medications/mounjaro-vs-saxenda",
+          "label": "Mounjaro vs Saxenda"
+        },
+        {
+          "path": "/comparisons/medications/mounjaro-vs-orlistat",
+          "label": "Mounjaro vs Orlistat"
+        },
+        {
+          "path": "/articles/mounjaro-vs-wegovy",
+          "label": "Mounjaro vs Wegovy"
         }
       ]
     }

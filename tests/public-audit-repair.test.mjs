@@ -57,6 +57,18 @@ test('sitemap and rendered internal links point straight at current authority pa
   assert.match(rendered,/href="\/comparisons\/surgery\/gastric-band-vs-sleeve"/);
   assert.doesNotMatch(rendered,/href="(?:https:\/\/shiftsometimber\.co\.uk)?\/(?:health-mot|founding-members|comparisons\/surgery\/gastric-band-vs-sleeve\.html)/);
 });
+test('high-value hubs now pass internal authority to pages Google is already testing',()=>{
+  const cases={
+    '/treatment-centre':['/comparisons/medications/mounjaro-vs-saxenda','/comparisons/medications/mounjaro-vs-orlistat','/guides/nhs-weight-loss-medication-pathways'],
+    '/mens-weight-management':['/guides/weight-loss-surgery-uk-costs-guide','/mental-health/mental-health-and-weight'],
+    '/weight-loss-injections-for-men':['/comparisons/medications/mounjaro-vs-saxenda','/articles/mounjaro-vs-wegovy'],
+  };
+  for(const [path,links] of Object.entries(cases)){
+    const rendered=reconcilePublicDocument(shell,path);
+    for(const href of links)assert.ok(rendered.includes('href="'+href+'"'),path+' -> '+href);
+  }
+});
+
 test('canonical replacement handles href-first, mixed-case, unquoted and duplicate tags',()=>{
   for(const tag of [`<link href='/parent' rel='canonical'/>`,`<LINK HREF="/parent" REL="canonical">`,`<link href=/parent rel=canonical>`]){
     const html=renderWatchDocument(shell.replace('</head>',tag+'</head>'),{available:false});
