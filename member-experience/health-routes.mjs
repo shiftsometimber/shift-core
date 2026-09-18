@@ -4,6 +4,8 @@ export const TRACKING_CONSENT='my_shift_health_tracking';
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const parse=value=>{try{return JSON.parse(value||'{}')}catch{return {}}};
 const moods=['Tough day','Struggling','OK','Good','Brilliant'];
+export const HEALTH_INTERESTS=new Set(['health-mot','testosterone-energy','blood-pressure-monitor','digital-scales','resistance-bands','shift-measure','erectile-dysfunction','hair-loss','stop-smoking','sleep-apnoea']);
+export const normaliseHealthInterest=value=>{const slug=String(value||'').trim().toLowerCase();return HEALTH_INTERESTS.has(slug)?slug:''};
 export async function appendHealthExport(request,env,response){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/privacy/export'||request.method!=='POST'||!response.ok)return response;
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
@@ -37,7 +39,7 @@ export async function persistFitReplacement(request,env,response,input){
 export async function memberHealthRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
  const path=new URL(request.url).pathname.replace(/\/+$/,''),method=request.method;
- const owned=['/v1/check-ins','/v1/fit/activity'].includes(path);
+ const owned=['/v1/check-ins','/v1/fit/activity','/v1/health-passport/interest'].includes(path);
  const protectedWrite=(method==='POST'&&['/v1/progress','/v1/health-mot','/v1/journey/weekly-check-in'].includes(path))||(method==='PATCH'&&['/v1/journey','/v1/my-journey'].includes(path));
  if(!owned&&!protectedWrite)return null;
  if(!['GET','POST','PATCH'].includes(method))return owned?json({error:'method_not_allowed'},405):null;
@@ -52,6 +54,14 @@ export async function memberHealthRoutes(request,env){
   if(!await trackingConsent(env.DB,auth.userId))return json({error:'health_consent_required',message:'Optional health tracking is off. Review your choice before saving.'},409);
  }
  if(!owned)return null;
+ if(path==='/v1/health-passport/interest'){
+  if(method!=='POST')return json({error:'method_not_allowed'},405);
+  const slug=normaliseHealthInterest(body?.slug);
+  if(!slug)return json({error:'invalid_health_interest',message:'Choose a recognised SHIFT Health pathway.'},400);
+  const at=new Date().toISOString(),row=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first(),preferences=parse(row?.preferences),journey=parse(preferences.myJourney),interests=[...new Set([...(Array.isArray(journey.healthInterests)?journey.healthInterests.map(normaliseHealthInterest).filter(Boolean):[]),slug])].slice(-10);
+  await env.DB.prepare("INSERT INTO member_state(user_id,preferences,updated_at) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET preferences=json_set(CASE WHEN json_valid(member_state.preferences) THEN member_state.preferences ELSE json('{}') END,'$.myJourney.healthInterests',json(?)),updated_at=excluded.updated_at").bind(auth.userId,JSON.stringify({myJourney:{healthInterests:interests}}),at,JSON.stringify(interests)).run();
+  return json({ok:true,interest:slug,healthInterests:interests},201);
+ }
  if(path==='/v1/check-ins'){
   if(method==='GET'){
    const {results=[]}=await env.DB.prepare('SELECT id,wellbeing_score,notes,submitted_at FROM check_ins WHERE user_id=? AND case_id IS NULL ORDER BY id DESC LIMIT 100').bind(auth.userId).all();
