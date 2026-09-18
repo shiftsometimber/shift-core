@@ -1,8 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {myJourneyInternals} from '../my-journey-v1.js';
+import {normaliseHealthInterest,HEALTH_INTERESTS} from '../member-experience/health-routes.mjs';
 import fs from 'node:fs';
 const source=fs.readFileSync(new URL('../my-journey-v1.js',import.meta.url),'utf8');
+const memberShell=fs.readFileSync(new URL('../frontend/member/member-shell-v33g.js',import.meta.url),'utf8');
+const memberJourney=fs.readFileSync(new URL('../frontend/member/member-my-journey-v1.js',import.meta.url),'utf8');
+const apiAdapter=fs.readFileSync(new URL('../frontend/member/api-adapter-v33d.js',import.meta.url),'utf8');
 
 test('legacy Life Back is retained inside My Journey',()=>{
   const journey=myJourneyInternals.migrate({lifeBack:{monthlyWin:'Old jeans fit again',entries:[{date:'2026-08-01'}]}});
@@ -58,6 +62,25 @@ test('member personalisation is controlled, optional and health-context consent 
   const withheld=myJourneyInternals.normalise({personalisation:{injuries:['knee'],illnesses:['blood_pressure'],healthContextConsent:false}});
   assert.deepEqual(withheld.personalisation.injuries,[]);
   assert.deepEqual(withheld.personalisation.illnesses,[]);
+});
+
+test('SHIFT Health priorities are bounded, retained and rejected when invented',()=>{
+  assert.equal(HEALTH_INTERESTS.size,10);
+  assert.equal(normaliseHealthInterest('health-mot'),'health-mot');
+  assert.equal(normaliseHealthInterest('invented-route'),'');
+  const journey=myJourneyInternals.normalise({healthInterests:['health-mot','sleep-apnoea','invented-route']});
+  assert.deepEqual(journey.healthInterests,['health-mot','sleep-apnoea']);
+  const preserved=myJourneyInternals.normalise({setup:{focus:'energy'}},journey);
+  assert.deepEqual(preserved.healthInterests,['health-mot','sleep-apnoea']);
+});
+
+test('public SHIFT Health handoff reaches My Journey without losing the query through login',()=>{
+  assert.match(apiAdapter,/saveHealthInterest:slug=>request\('\/health-passport\/interest'/);
+  assert.match(memberShell,/new URLSearchParams\(location\.search\)/);
+  assert.match(memberShell,/location\.pathname\+location\.search\+location\.hash/);
+  assert.match(memberShell,/sst:health-interest-saved/);
+  assert.match(memberJourney,/HEALTH PRIORITIES/);
+  assert.match(memberJourney,/sst:health-interest-saved/);
 });
 
 test('legacy complete flag is repaired on read migration',()=>{
