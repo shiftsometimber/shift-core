@@ -3,7 +3,7 @@ on:
   push:
     branches: [fix/authority-continuity-20260918]
   pull_request:
-    branches: [main]
+    branches: [fix/authority-continuity-20260918]
 permissions:
   contents: read
 jobs:
