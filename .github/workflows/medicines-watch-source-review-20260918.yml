@@ -16,6 +16,23 @@ jobs:
       - name: Capture exact monitored source responses for factual review
         continue-on-error: true
         run: node scripts/watch-source-review-capture.mjs
+      - name: Retain the changed provider response before baseline approval
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const url='https://onlinedoctor.asda.com/uk/wegovy-pill.html';
+          const response=await fetch(url,{redirect:'manual',signal:AbortSignal.timeout(8000),headers:{Accept:'text/html','User-Agent':'ShiftMedicinesWatch/1.0 (source availability and change checks)'}});
+          if(response.status!==200)throw Error('http_'+response.status);
+          const body=await response.text();
+          mkdirSync('watch-source-capture',{recursive:true});
+          writeFileSync('watch-source-capture/wegovy-tablet-private.html',body);
+          writeFileSync('watch-source-capture/wegovy-tablet-private-body.json',JSON.stringify({
+            url,retrievedAt:new Date().toISOString(),httpStatus:response.status,
+            bytes:Buffer.byteLength(body),responseSha256:createHash('sha256').update(body).digest('hex')
+          },null,2)+'\n');
+          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
