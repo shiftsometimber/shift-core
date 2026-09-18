@@ -33,6 +33,7 @@ on:
       - "public-continuity*.mjs"
       - "tests/public-continuity.test.mjs"
       - "scripts/verify-public-continuity-live.mjs"
+      - "scripts/verify-public-audit-live.mjs"
       - "public-seo-closeout.mjs"
       - "scripts/verify-seo-closeout-live.mjs"
       - "medicines-watch/**"
