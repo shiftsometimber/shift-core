@@ -23,6 +23,19 @@ function normaliseTreatments(body,required){
  return {body:Buffer.from(html.slice(0,start)+html.slice(end+TREATMENTS_ENTRY_END.length)),entry:true};
 }
 
+function normaliseTreatmentRelatedGuide(body){
+ const html=body.toString('utf8');
+ requireThat(Buffer.from(html).equals(body),'Treatment Centre related guides must be valid UTF-8');
+ const markers=html.match(/data-shift-link-repair/g)||[];
+ equal(markers.length,1,'Treatment Centre must contain exactly one Git-controlled related-guide section');
+ const start=html.search(/<section\b[^>]*\bdata-shift-link-repair(?:\s|>|=)/i);
+ requireThat(start>=0,'Treatment Centre related-guide section start is missing');
+ const close=html.indexOf('</section>',start);
+ requireThat(close>start,'Treatment Centre related-guide section is malformed');
+ const end=close+'</section>'.length;
+ return {body:Buffer.from(html.slice(0,start)+html.slice(end)),relatedGuide:true};
+}
+
 const SHIFT_HEALTH_TWITTER_IMAGE='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">';
 function normaliseShiftHealthTwitterImage(body){
  const html=body.toString('utf8');
@@ -35,8 +48,13 @@ function normaliseShiftHealthTwitterImage(body){
 export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=false,hash}={}){
  requireThat(typeof hash==='function','Public preservation requires a SHA-256 function');
  const body=Buffer.isBuffer(input)?input:Buffer.from(input);
- const preserved=path==='/treatment-centre'?normaliseTreatments(body,requireTreatmentsEntry):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
- return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:{})};
+ let preserved;
+ if(path==='/treatment-centre'){
+  const treatments=normaliseTreatments(body,requireTreatmentsEntry);
+  const related=normaliseTreatmentRelatedGuide(treatments.body);
+  preserved={body:related.body,entry:treatments.entry,relatedGuide:related.relatedGuide};
+ }else preserved=path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
+ return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:{})};
 }
 
 export function assertPublicPagesPreserved(pages,baseline){
@@ -47,8 +65,10 @@ export function assertPublicPagesPreserved(pages,baseline){
   equal(current.status,before.status,current.path+' response status changed');
   if(current.path==='/treatment-centre'){
    equal(current.treatmentsWatchEntry,true,'Treatment Centre is missing the approved Medicines Watch entry');
-   equal(current.preservedSha256,before.preservedSha256,'Treatment Centre content changed outside its approved Medicines Watch entry');
-   equal(current.preservedBytes,before.preservedBytes,'Treatment Centre size changed outside its approved Medicines Watch entry');
+   equal(current.relatedGuide,true,'Treatment Centre is missing its Git-controlled related-guide section');
+   equal(before.relatedGuide,true,'Treatment Centre baseline is missing its Git-controlled related-guide section');
+   equal(current.preservedSha256,before.preservedSha256,'Treatment Centre content changed outside approved generated sections');
+   equal(current.preservedBytes,before.preservedBytes,'Treatment Centre size changed outside approved generated sections');
    if(!before.treatmentsWatchEntry){entryAdded=true;continue;}
   }
   if(current.path==='/shift-health'){
