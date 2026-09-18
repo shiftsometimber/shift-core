@@ -5,6 +5,9 @@ on:
     paths: ['.github/workflows/continuity-live-acceptance.yml']
 permissions:
   contents: read
+concurrency:
+  group: continuity-live-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -13,56 +16,38 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
       - run: npm ci --no-audit --no-fund
-      - name: Capture exact source used by the acceptance run
+      - name: Retain exact verification source and prove application code is unchanged
         run: |
           mkdir -p live-acceptance/source
-          cp member-experience/verify-production-member.mjs live-acceptance/source/
-          cp scripts/verify-public-audit-live.mjs live-acceptance/source/
+          cp member-experience/verify-production-member.mjs scripts/verify-public-audit-live.mjs live-acceptance/source/
           git rev-parse HEAD > live-acceptance/checked-head.txt
           git diff --exit-code d78e74b7e59eb5296da7ebc7ebbd2925985a34ec -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/
-      - name: Exact ordinary and fresh member assets
-        run: |
-          node --input-type=module <<'NODE'
-          import {readFileSync,writeFileSync} from 'node:fs';
-          import {createHash} from 'node:crypto';
-          const hash=b=>createHash('sha256').update(b).digest('hex');
-          const evidence={checkedAt:new Date().toISOString(),deployedSource:'d78e74b7e59eb5296da7ebc7ebbd2925985a34ec',assets:[]};
-          for(const name of ['api-adapter-v33d.js','member-shell-v33g.js','member-my-journey-v1.js']){
-            const expected=readFileSync('frontend/member/'+name);
-            writeFileSync('live-acceptance/source-'+name,expected);
-            for(const fresh of [false,true]){
-              const url='https://shiftsometimber.co.uk/'+name+(fresh?'?verify='+Date.now():'');
-              const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(30000),redirect:'manual'});
-              const body=Buffer.from(await r.arrayBuffer()),file=(fresh?'fresh-':'plain-')+name;
-              writeFileSync('live-acceptance/'+file,body);
-              const item={url,status:r.status,file,expectedSha256:hash(expected),actualSha256:hash(body),matches:body.equals(expected),headers:Object.fromEntries(['content-type','cache-control','etag','age','cf-cache-status','x-shift-frontend-authority'].map(k=>[k,r.headers.get(k)]))};
-              evidence.assets.push(item);console.log(JSON.stringify(item));
-            }
-          }
-          writeFileSync('live-acceptance/asset-evidence.json',JSON.stringify(evidence,null,2));
-          if(evidence.assets.some(x=>x.status!==200||!x.matches))process.exitCode=1;
-          NODE
-      - name: Explicit live redirect, sitemap, contextual-link and account-guard assertions
+      - name: Independently verify exact assets and live routes
         if: always()
         run: |
+          mkdir -p live-acceptance
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
-          import {writeFileSync} from 'node:fs';
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
           import {legacyAuthorityRedirects,relatedGuideGroups} from './public-shell-contract.mjs';
-          const origin='https://shiftsometimber.co.uk',proof={checkedAt:new Date().toISOString(),release:'d78e74b7e59eb5296da7ebc7ebbd2925985a34ec',checks:[]};
+          const origin='https://shiftsometimber.co.uk',hash=b=>createHash('sha256').update(b).digest('hex');
+          const proof={checkedAt:new Date().toISOString(),release:'d78e74b7e59eb5296da7ebc7ebbd2925985a34ec',checks:[]};
           const get=(path,options={})=>fetch(origin+path,{redirect:'manual',signal:AbortSignal.timeout(30000),cache:'no-store',...options});
-          const check=async(name,fn)=>{try{const detail=await fn();proof.checks.push({name,pass:true,...detail})}catch(e){proof.checks.push({name,pass:false,error:e.message})}};
+          const check=async(name,fn)=>{try{proof.checks.push({name,pass:true,...await fn()})}catch(e){proof.checks.push({name,pass:false,error:e.message})}};
+          for(const name of ['api-adapter-v33d.js','member-shell-v33g.js','member-my-journey-v1.js'])for(const fresh of [false,true])await check((fresh?'Fresh ':'Ordinary ')+name,async()=>{const expected=readFileSync('frontend/member/'+name),r=await get('/'+name+(fresh?'?verify='+Date.now():'')),actual=Buffer.from(await r.arrayBuffer());writeFileSync('live-acceptance/'+(fresh?'fresh-':'plain-')+name,actual);writeFileSync('live-acceptance/source-'+name,expected);assert.equal(r.status,200);assert.match(r.headers.get('content-type')||'',/javascript|ecmascript/);assert.ok(actual.equals(expected),'Exact source bytes differ');return {status:r.status,sha256:hash(actual),expectedSha256:hash(expected)}});
           for(const [from,to] of Object.entries(legacyAuthorityRedirects))for(const method of ['GET','HEAD'])await check(method+' '+from,async()=>{const r=await get(from+'?source=release-proof',{method});assert.equal(r.status,301);assert.equal(r.headers.get('location'),origin+to+'?source=release-proof');return {status:r.status,location:r.headers.get('location')}});
-          for(const path of ['/treatment-centre','/mens-weight-management','/weight-loss-injections-for-men'])await check('Contextual links '+path,async()=>{const r=await get(path),html=await r.text();assert.equal(r.status,200);const block=html.match(/<section\b[^>]*\bdata-shift-link-repair[^>]*>[\s\S]*?<\/section>/i)?.[0];assert.ok(block,'Missing contextual guide section');const links=relatedGuideGroups[path].flatMap(g=>g.links.map(x=>x.path));for(const link of links)assert.ok(block.includes('href="'+link+'"'),link);return {status:r.status,links}});
-          await check('Sitemap preserves destinations and retires redirect sources',async()=>{const r=await get('/sitemap.xml'),xml=await r.text();assert.equal(r.status,200);const urls=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);assert.ok(urls.length>0);assert.equal(urls.length,new Set(urls).size);for(const from of Object.keys(legacyAuthorityRedirects))assert.ok(!urls.includes(origin+from),'Redirect source '+from);for(const path of ['/shift-health','/shift-health/health-mot','/programme','/treatment-centre','/comparisons/surgery/gastric-band-vs-sleeve'])assert.ok(urls.includes(origin+path),'Missing '+path);return {status:r.status,urlCount:urls.length,mentalHealthCount:urls.filter(x=>x.startsWith(origin+'/mental-health/')).length}});
+          for(const path of ['/treatment-centre','/mens-weight-management','/weight-loss-injections-for-men'])await check('Contextual links '+path,async()=>{const r=await get(path),html=await r.text();assert.equal(r.status,200);const block=html.match(/<section\b[^>]*\bdata-shift-link-repair[^>]*>[\s\S]*?<\/section>/i)?.[0];assert.ok(block,'Missing contextual section');const links=relatedGuideGroups[path].flatMap(g=>g.links.map(x=>x.path));for(const link of links)assert.ok(block.includes('href="'+link+'"'),link);return {status:r.status,links}});
+          await check('Sitemap destinations, duplicates and retired routes',async()=>{const r=await get('/sitemap.xml'),xml=await r.text();assert.equal(r.status,200);const urls=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);assert.ok(urls.length);assert.equal(urls.length,new Set(urls).size);for(const from of Object.keys(legacyAuthorityRedirects))assert.ok(!urls.includes(origin+from),'Redirect source '+from);for(const path of ['/shift-health','/shift-health/health-mot','/programme','/treatment-centre','/comparisons/surgery/gastric-band-vs-sleeve'])assert.ok(urls.includes(origin+path),'Missing '+path);return {status:r.status,urlCount:urls.length,mentalHealthCount:urls.filter(x=>x.startsWith(origin+'/mental-health/')).length}});
           for(const path of ['/member/dashboard','/member/life-back','/member/grub','/member/fit'])await check('Private shell '+path,async()=>{const r=await get(path);assert.ok([200,301,302].includes(r.status));if(r.status===200){const text=await r.text();assert.ok(/noindex/i.test(r.headers.get('x-robots-tag')||'')||/<meta\b(?=[^>]*name=["']robots["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i.test(text),'Missing noindex')}return {status:r.status}});
           for(const path of ['/v1/journey','/v1/life-back'])await check('Unauthenticated '+path,async()=>{const r=await get(path);assert.equal(r.status,401);return {status:r.status}});
           await check('Unauthenticated health priority write blocked',async()=>{const r=await get('/v1/health-passport/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:'health-mot'})});assert.equal(r.status,401);return {status:r.status}});
-          proof.pass=proof.checks.every(x=>x.pass);writeFileSync('live-acceptance/route-evidence.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof,null,2));if(!proof.pass)process.exitCode=1;
+          proof.pass=proof.checks.every(x=>x.pass);writeFileSync('live-acceptance/independent-evidence.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof,null,2));if(!proof.pass)process.exitCode=1;
           NODE
       - name: Existing member delivery verifier without modification
         if: always()
