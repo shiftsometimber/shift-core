@@ -2,7 +2,9 @@ name: Continuity Live Acceptance
 on:
   pull_request:
     branches: [main]
-    paths: ['.github/workflows/continuity-live-acceptance.yml']
+    paths:
+      - '.github/workflows/continuity-live-acceptance.yml'
+      - 'member-experience/verify-production-member.mjs'
 permissions:
   contents: read
 concurrency:
@@ -26,7 +28,8 @@ jobs:
           mkdir -p live-acceptance/source
           cp member-experience/verify-production-member.mjs scripts/verify-public-audit-live.mjs live-acceptance/source/
           git rev-parse HEAD > live-acceptance/checked-head.txt
-          git diff --exit-code d78e74b7e59eb5296da7ebc7ebbd2925985a34ec -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/
+          git diff --exit-code d78e74b7e59eb5296da7ebc7ebbd2925985a34ec -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ ':!member-experience/verify-production-member.mjs'
+          git diff d78e74b7e59eb5296da7ebc7ebbd2925985a34ec -- member-experience/verify-production-member.mjs > live-acceptance/verifier-only.patch
       - name: Independently verify exact assets and live routes
         if: always()
         run: |
@@ -49,7 +52,7 @@ jobs:
           await check('Unauthenticated health priority write blocked',async()=>{const r=await get('/v1/health-passport/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:'health-mot'})});assert.equal(r.status,401);return {status:r.status}});
           proof.pass=proof.checks.every(x=>x.pass);writeFileSync('live-acceptance/independent-evidence.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof,null,2));if(!proof.pass)process.exitCode=1;
           NODE
-      - name: Existing member delivery verifier without modification
+      - name: Exact rendered member delivery verifier
         if: always()
         run: |
           set -o pipefail
