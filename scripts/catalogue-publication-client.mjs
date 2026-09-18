@@ -2,14 +2,11 @@ import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {CATALOGUE_PUBLICATION_RELEASE} from '../catalogue-publication-release-v1.mjs';
 import {validateCatalogueRelease} from '../catalogue-publication-core.mjs';
+import {readCurrentMain} from './current-main-guard.mjs';
 const API='https://api.shiftsometimber.co.uk/v1/commissioning/catalogue-publication';
 
 export async function assertCurrentMain(env=process.env,fetcher=fetch) {
-  if(env.GITHUB_REPOSITORY!=='shiftsometimber/shift-core' || env.GITHUB_REF!=='refs/heads/main' || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA||''))throw new Error('catalogue_workflow_context_invalid');
-  const response=await fetcher('https://api.github.com/repos/shiftsometimber/shift-core/git/ref/heads/main',{headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${env.GITHUB_TOKEN}`}});
-  if(!response.ok)throw new Error(`catalogue_main_check_http_${response.status}`);
-  if((await response.json()).object?.sha!==env.GITHUB_SHA)throw new Error('catalogue_stale_main_rejected');
-  return env.GITHUB_SHA;
+  return readCurrentMain(env,fetcher);
 }
 export async function runPublicationClient({release=CATALOGUE_PUBLICATION_RELEASE,env=process.env,fetcher=fetch}={}) {
   await validateCatalogueRelease(release);

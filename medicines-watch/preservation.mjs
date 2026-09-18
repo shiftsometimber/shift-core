@@ -23,17 +23,21 @@ function normaliseTreatments(body,required){
  return {body:Buffer.from(html.slice(0,start)+html.slice(end+TREATMENTS_ENTRY_END.length)),entry:true};
 }
 
+// Exact source-reviewed pre/post blocks. This is a preservation allowlist, not a wildcard.
+export const TREATMENT_RELATED_LEGACY="<section data-shift-link-repair aria-label=\"Related existing guides\"><h2>Planning around treatment</h2><ul><li><a href=\"/articles/travelling-with-weight-loss-medication\">Travelling with weight-loss medication: sort the boring bits before the airport</a></li></ul></section>";
+export const TREATMENT_RELATED_CURRENT="<section data-shift-link-repair aria-label=\"Related existing guides\"><h2>Compare the options Google is already finding</h2><ul><li><a href=\"/comparisons/medications/mounjaro-vs-saxenda\">Mounjaro vs Saxenda</a></li><li><a href=\"/comparisons/medications/mounjaro-vs-orlistat\">Mounjaro vs Orlistat</a></li><li><a href=\"/comparisons/medications/wegovy-vs-saxenda\">Wegovy vs Saxenda</a></li><li><a href=\"/guides/nhs-weight-loss-medication-pathways\">NHS weight-loss medication pathways</a></li></ul><h2>Planning around treatment</h2><ul><li><a href=\"/articles/travelling-with-weight-loss-medication\">Travelling with weight-loss medication: sort the boring bits before the airport</a></li></ul></section>";
 function normaliseTreatmentRelatedGuide(body){
  const html=body.toString('utf8');
  requireThat(Buffer.from(html).equals(body),'Treatment Centre related guides must be valid UTF-8');
- const markers=html.match(/data-shift-link-repair/g)||[];
+ // CSS selectors may mention this attribute many times; count section elements only.
+ const markers=[...html.matchAll(/<section\b[^>]*\bdata-shift-link-repair(?:\s|>|=)[^>]*>/gi)];
  equal(markers.length,1,'Treatment Centre must contain exactly one Git-controlled related-guide section');
- const start=html.search(/<section\b[^>]*\bdata-shift-link-repair(?:\s|>|=)/i);
- requireThat(start>=0,'Treatment Centre related-guide section start is missing');
- const close=html.indexOf('</section>',start);
+ const start=markers[0].index,close=html.indexOf('</section>',start);
  requireThat(close>start,'Treatment Centre related-guide section is malformed');
- const end=close+'</section>'.length;
- return {body:Buffer.from(html.slice(0,start)+html.slice(end)),relatedGuide:true};
+ const end=close+'</section>'.length,block=html.slice(start,end);
+ requireThat(block===TREATMENT_RELATED_LEGACY||block===TREATMENT_RELATED_CURRENT,'Treatment Centre related-guide section differs from exact approved source');
+ // Retain a fixed block at the same location; moving it changes the fingerprint.
+ return {body:Buffer.from(html.slice(0,start)+TREATMENT_RELATED_LEGACY+html.slice(end)),relatedGuide:true,revision:block===TREATMENT_RELATED_CURRENT?'current':'legacy'};
 }
 
 const SHIFT_HEALTH_TWITTER_IMAGE='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">';
@@ -50,16 +54,16 @@ export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=fal
  const body=Buffer.isBuffer(input)?input:Buffer.from(input);
  let preserved;
  if(path==='/treatment-centre'){
-  const treatments=normaliseTreatments(body,requireTreatmentsEntry);
-  const related=normaliseTreatmentRelatedGuide(treatments.body);
-  preserved={body:related.body,entry:treatments.entry,relatedGuide:related.relatedGuide};
+  const related=normaliseTreatmentRelatedGuide(body);
+  const treatments=normaliseTreatments(related.body,requireTreatmentsEntry);
+  preserved={body:treatments.body,entry:treatments.entry,relatedGuide:true,revision:related.revision,authoritySha256:hash(related.body),authorityBytes:related.body.length};
  }else preserved=path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
- return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:{})};
+ return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide,relatedGuideRevision:preserved.revision,authoritySha256:preserved.authoritySha256,authorityBytes:preserved.authorityBytes}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:{})};
 }
 
 export function assertPublicPagesPreserved(pages,baseline){
  equal(JSON.stringify(pages.map(x=>x.path)),JSON.stringify(baseline.map(x=>x.path)),'Public preservation paths changed');
- let entryAdded=false;
+ let entryAdded=false,authorityChanged=false;
  for(let i=0;i<pages.length;i++){
   const current=pages[i],before=baseline[i];
   equal(current.status,before.status,current.path+' response status changed');
@@ -69,7 +73,13 @@ export function assertPublicPagesPreserved(pages,baseline){
    equal(before.relatedGuide,true,'Treatment Centre baseline is missing its Git-controlled related-guide section');
    equal(current.preservedSha256,before.preservedSha256,'Treatment Centre content changed outside approved generated sections');
    equal(current.preservedBytes,before.preservedBytes,'Treatment Centre size changed outside approved generated sections');
-   if(!before.treatmentsWatchEntry){entryAdded=true;continue;}
+   if(!before.treatmentsWatchEntry)entryAdded=true;
+   else{
+    equal(current.authoritySha256,before.authoritySha256,'Treatment Centre content changed outside the exact approved related-guide update');
+    equal(current.authorityBytes,before.authorityBytes,'Treatment Centre size changed outside the exact approved related-guide update');
+   }
+   authorityChanged ||= current.relatedGuideRevision!==before.relatedGuideRevision;
+   continue;
   }
   if(current.path==='/shift-health'){
    if(before.shiftHealthTwitterImage)equal(current.shiftHealthTwitterImage,true,'SHIFT Health is missing the approved Twitter image');
@@ -80,5 +90,5 @@ export function assertPublicPagesPreserved(pages,baseline){
   equal(current.sha256,before.sha256,current.path+' changed outside the approved Treatments addition');
   equal(current.bytes,before.bytes,current.path+' response size changed');
  }
- return entryAdded?'preserved_with_treatments_watch_entry':'identical';
+ return entryAdded?'preserved_with_treatments_watch_entry':authorityChanged?'preserved_with_exact_authority_links':'identical';
 }
