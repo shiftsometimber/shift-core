@@ -2,54 +2,101 @@ name: Continuity completion preview
 on:
   push:
     branches: [fix/continuity-complete-20260918]
+    paths: ['.continuity-ready']
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: continuity-complete-preview
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - name: Apply exact reviewed candidate to the isolated branch workspace
+        run: |
+          test "$GITHUB_REF" = refs/heads/fix/continuity-complete-20260918
+          mkdir -p continuity-proof
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib
+          packed=''.join(pathlib.Path('.continuity-part-'+str(n)).read_text().strip() for n in range(1,6))
+          raw=lzma.decompress(base64.b64decode(packed))
+          expected=pathlib.Path('.continuity-ready').read_text().split()[0]
+          assert hashlib.sha256(raw).hexdigest()==expected,'Candidate checksum does not match'
+          records=json.loads(raw);pending=[]
+          for record in records:
+            path=pathlib.Path(record['path'])
+            assert not path.is_absolute() and '..' not in path.parts,'Unsafe candidate path'
+            assert str(path)!='.github/workflows/continuity-complete-preview.yml','Candidate cannot alter its own verifier'
+            if record['source'] is None:
+              assert not path.exists(),'New source already exists: '+str(path)
+              target=record['content']
+            else:
+              old=path.read_text()
+              assert hashlib.sha256(old.encode()).hexdigest()==record['source'],'Source changed: '+str(path)
+              target=old
+              for start,end,text in reversed(record['edits']):target=target[:start]+text+target[end:]
+            assert hashlib.sha256(target.encode()).hexdigest()==record['target'],'Target checksum mismatch: '+str(path)
+            pending.append((path,target))
+          for path,target in pending:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(target)
+          pathlib.Path('continuity-proof/approved-paths.json').write_text(json.dumps([r['path'] for r in records],indent=2))
+          pathlib.Path('continuity-proof/candidate-sha256.txt').write_text(expected)
+          print('Applied',len(records),'exact source changes after all source/target hashes passed')
+          PY
+          git diff --check
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Capture immutable candidate source
+      - name: Run member, data, public and clinical regression tests
+        shell: bash
         run: |
-          mkdir -p continuity-proof
-          git archive --format=tar.gz HEAD > continuity-proof/source.tar.gz
-          git rev-parse HEAD > continuity-proof/source-sha.txt
-      - name: Existing member and public regression checks
+          set -euo pipefail
+          node --test tests/health-passport-*.test.mjs member-experience/tests/*.test.mjs tests/my-journey-*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/public-seo-closeout.test.mjs tests/seo-release-integrity.test.mjs tests/testosterone-public.test.mjs tests/public-continuity.test.mjs tests/public-navigation-policy.test.mjs tests/public-ticker-*.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/ai-connected*.test.mjs medicines-watch/*.test.mjs | tee continuity-proof/regressions.log
+          node my-journey-integration-gate.mjs | tee continuity-proof/journey-gate.log
+          node my-timber-final-source-gate.mjs | tee continuity-proof/member-source-gate.log
+          node scripts/verify-continuity-release-isolation.mjs | tee continuity-proof/release-isolation.log
+      - name: Capture public fixture without member or clinical writes
         run: |
-          node --test member-experience/tests/*.test.mjs tests/my-journey-*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs
-      - name: Capture read-only public entry and source mapping
-        if: always()
-        run: |
-          mkdir -p continuity-proof
           node --input-type=module <<'NODE'
           import {writeFileSync} from 'node:fs';
-          const origin='https://shiftsometimber.co.uk';
-          for(const path of ['/start-here','/member-login','/member/dashboard','/treatment-centre']){
-            const r=await fetch(origin+path,{redirect:'manual',signal:AbortSignal.timeout(30000)});
-            const html=await r.text();
-            writeFileSync('continuity-proof/'+path.slice(1).replaceAll('/','--')+'.html',html);
-            const scripts=[...html.matchAll(/<script\b[^>]*src=["']([^"']+)["']/gi)].map(m=>m[1]);
-            console.log(JSON.stringify({path,status:r.status,location:r.headers.get('location'),scripts}));
-            if(path==='/start-here')for(const src of scripts){
-              if(!/start|finder|route|decision|journey/i.test(src))continue;
-              const u=new URL(src,origin);if(u.origin!==origin)continue;
-              const sr=await fetch(u,{signal:AbortSignal.timeout(30000)});const body=await sr.text();
-              writeFileSync('continuity-proof/'+u.pathname.split('/').at(-1),body);
-              console.log(JSON.stringify({script:u.pathname,status:sr.status,bytes:Buffer.byteLength(body)}));
-            }
-          }
+          const response=await fetch('https://shiftsometimber.co.uk/start-here',{signal:AbortSignal.timeout(30000)});
+          if(response.status!==200)throw Error('Public Start Here baseline unavailable');
+          writeFileSync('continuity-proof/start-here.html',await response.text());
           NODE
-      - uses: actions/upload-artifact@v4
+      - name: Install isolated browser runner
+        run: |
+          npm install --no-save --ignore-scripts --no-audit --no-fund playwright
+          npx playwright install --with-deps chromium
+      - name: Prove browser saves, privacy and portable summary with fictional accounts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/health-passport-browser-proof.mjs | tee continuity-proof/browser.log
+      - name: Commit only tested source changes to this preview branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$GITHUB_REF" = refs/heads/fix/continuity-complete-20260918
+          python3 - <<'PY'
+          import json,subprocess
+          paths=json.load(open('continuity-proof/approved-paths.json'))
+          subprocess.run(['git','add','--',*paths],check=True)
+          staged=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
+          assert sorted(staged)==sorted(paths),'Unexpected candidate source set'
+          PY
+          git diff --cached --check
+          git diff --cached --stat > continuity-proof/source-diff-stat.txt
+          git config user.name 'shiftsometimber'
+          git config user.email 'it@shiftsometimber.co.uk'
+          git commit -m 'Complete consented continuity and portable member health summary'
+          git rev-parse HEAD > continuity-proof/tested-source-sha.txt
+          git push origin HEAD:refs/heads/fix/continuity-complete-20260918
+      - name: Retain verification evidence
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: continuity-source-proof-${{ github.sha }}
+          name: continuity-verification-${{ github.run_id }}
           path: continuity-proof
-          retention-days: 7
+          retention-days: 14
