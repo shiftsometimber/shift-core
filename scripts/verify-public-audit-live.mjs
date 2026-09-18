@@ -17,6 +17,31 @@ const watch=await fetch(origin+'/treatment-centre/medicines-watch'),html=await w
 const canonicals=html.match(/<link\b(?=[^>]*\brel\s*=\s*["']canonical["'])[^>]*>/gi)||[];
 assert.equal(canonicals.length,1);assert.ok(canonicals[0].includes('/treatment-centre/medicines-watch'));
 proof.medicinesWatch={status:watch.status,canonical:canonicals[0]};
+
+const authorityChecks={
+  '/treatment-centre':['/comparisons/medications/mounjaro-vs-saxenda','/comparisons/medications/mounjaro-vs-orlistat','/guides/nhs-weight-loss-medication-pathways'],
+  '/mens-weight-management':['/guides/weight-loss-surgery-uk-costs-guide','/mental-health/mental-health-and-weight'],
+  '/weight-loss-injections-for-men':['/comparisons/medications/mounjaro-vs-saxenda','/articles/mounjaro-vs-wegovy'],
+};
+proof.authority={};
+for(const [path,links] of Object.entries(authorityChecks)){
+  const r=await fetch(origin+path),page=await r.text();assert.equal(r.status,200,path);
+  for(const href of links)assert.ok(page.includes('href="'+href+'"'),path+' missing '+href);
+  proof.authority[path]={status:r.status,links};
+}
+
+for(const [path,markers] of Object.entries({
+  '/member-shell-v33g.js':['shift_health','sst:health-interest-saved','saveHealthInterest'],
+  '/api-adapter-v33d.js':['/health-passport/interest','saveHealthInterest'],
+})){
+  const r=await fetch(origin+path+'?proof=authority-continuity-20260918'),body=await r.text();
+  assert.equal(r.status,200,path);for(const marker of markers)assert.ok(body.includes(marker),path+' '+marker);
+  proof.pages.push({path,status:r.status,markers});
+}
+const healthInterestRoute=await fetch('https://api.shiftsometimber.co.uk/v1/health-passport/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:'health-mot'})});
+assert.notEqual(healthInterestRoute.status,404,'Health Passport interest route is missing from production');
+assert.ok([401,403,409].includes(healthInterestRoute.status),'Unauthenticated Health Passport route must fail closed');
+proof.healthPassportRoute={status:healthInterestRoute.status};
 for(const host of [origin,'https://api.shiftsometimber.co.uk'])for(const path of ['/health','/v1/health']){
   const r=await fetch(host+path);assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true});
 }
