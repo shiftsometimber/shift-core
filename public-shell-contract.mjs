@@ -234,8 +234,22 @@ export const relatedGuideGroups={
     }
   ]
 };
-export const sitemapExcludedPaths=['/shift-for-work']; // Already noindex; the page and navigation remain.
+export const legacyAuthorityRedirects=Object.freeze({
+  '/health-mot':'/shift-health/health-mot',
+  '/health-mot.html':'/shift-health/health-mot',
+  '/programme-benefits':'/programme',
+  '/programme-benefits.html':'/programme',
+  '/pricing-membership':'/treatment-centre',
+  '/pricing-membership.html':'/treatment-centre',
+  '/founding-members':'/programme',
+  '/founding-members.html':'/programme',
+  '/comparisons/surgery/gastric-band-vs-sleeve.html':'/comparisons/surgery/gastric-band-vs-sleeve',
+});
+export const sitemapExcludedPaths=['/shift-for-work',...Object.keys(legacyAuthorityRedirects)]; // Redirect sources stay live but do not compete in the sitemap.
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const regexEscape=s=>String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\export const sitemapExcludedPaths=['/shift-for-work']; // Already noindex; the page and navigation remain.
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normal=p=>p.replace(/\.html$/,'').replace(/\/+$/,'')||'/';');
 const normal=p=>p.replace(/\.html$/,'').replace(/\/+$/,'')||'/';
 export function publicShellPath(path){return !/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(normal(path));}
 function current(markup,path){return markup.replace(/<a href="([^"#]+)">/g,(tag,href)=>href!=='/'&&(path===href||path.startsWith(href+'/'))?tag.replace('>',' aria-current="page">'):tag);}
@@ -251,6 +265,11 @@ export function reconcilePublicDocument(html,path){
   html=baseScript.test(html)?html.replace(baseScript,match=>match+adapter):html.replace('</head>',()=>adapter+'</head>');
  }
  if(!html.includes('data-shared-footer-dependency'))html=html.replace('</head>',()=>'<style data-shared-footer-dependency>'+"footer.site-footer{box-sizing:border-box;background:#050505;color:#e7e3da;border-top:1px solid #707762;padding:40px 0 24px!important;font:14px/1.6 Arial,sans-serif!important}footer.site-footer *{box-sizing:border-box}footer.site-footer>.site-wrap{width:min(1160px,calc(100% - 36px))!important;max-width:none!important;margin:0 auto!important;padding:0!important}footer.site-footer .footer-grid{display:grid!important;grid-template-columns:2fr repeat(5,minmax(0,1fr))!important;gap:24px!important;align-items:start}footer.site-footer .footer-grid section{min-width:0;width:auto;margin:0!important;padding:0!important}footer.site-footer .footer-brand img{display:block;width:240px!important;max-width:100%!important;height:auto!important;margin:0 0 16px!important}footer.site-footer .footer-grid section h2{color:#e7e3da!important;font:700 14px/1.4 Arial,sans-serif!important;margin:0 0 12px!important;letter-spacing:0!important;text-transform:none!important}footer.site-footer p{margin:10px 0!important;font:14px/1.6 Arial,sans-serif!important;color:#e7e3da!important}footer.site-footer a{color:#e7e3da!important;font:14px/1.6 Arial,sans-serif!important;overflow-wrap:anywhere}footer.site-footer .footer-grid a{display:block;margin:6px 0!important}footer.site-footer .footer-legal-links,footer.site-footer .footer-bottom{display:flex!important;flex-wrap:wrap;gap:12px 20px!important;margin-top:24px!important}footer.site-footer .accessibility-controls{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:24px}footer.site-footer .footer-bottom{justify-content:space-between;padding-top:20px;border-top:1px solid #707762}footer.site-footer button{font:inherit;background:transparent;color:#e7e3da;border:1px solid #707762;border-radius:5px;padding:8px 12px}footer.site-footer a:focus-visible,footer.site-footer button:focus-visible{outline:2px solid #e7e3da;outline-offset:3px}@media(max-width:950px){footer.site-footer .footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}@media(max-width:560px){footer.site-footer .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px 18px!important}footer.site-footer .footer-brand{grid-column:1/-1}}"+'</style></head>');
+ // Rewrite superseded public routes at render time so users and crawlers go straight to the current authority page.
+ for(const [from,to] of Object.entries(legacyAuthorityRedirects)){
+  const pattern=new RegExp('(<a\\b[^>]*href=["\\\'])(?:https:\\/\\/shiftsometimber\\.co\\.uk)?'+regexEscape(from)+'(?=([?#][^"\\\']*)?["\\\'])','gi');
+  html=html.replace(pattern,'$1'+to);
+ }
  // The old hub redirects; individual /medicine-news/* articles remain untouched.
  html=html.replace(/(<a\b[^>]*href=["'])(?:https:\/\/shiftsometimber\.co\.uk)?\/medicine-news(?=[?#"'])/gi,'$1/shift-newsroom');
  if(relatedGuideGroups[path]&&!html.includes('data-related-guide-dependency'))html=html.replace('</head>',()=>'<style data-related-guide-dependency>'+"section[data-shift-link-repair][aria-label]{box-sizing:border-box;width:calc(100% - 36px);max-width:1124px;margin:32px auto 48px;padding:24px;border:1px solid #707762;border-radius:10px;background:#050505;color:#e7e3da;font:16px/1.65 Arial,sans-serif}section[data-shift-link-repair][aria-label] h2{margin:26px 0 12px!important;color:#e7e3da!important;font:700 22px/1.3 Arial,sans-serif!important}section[data-shift-link-repair][aria-label] h2:first-child{margin-top:0!important}section[data-shift-link-repair][aria-label] ul{margin:0;padding-left:22px}section[data-shift-link-repair][aria-label] li{margin:8px 0}section[data-shift-link-repair][aria-label] a{color:#e7e3da!important;font:16px/1.65 Arial,sans-serif!important;text-decoration:underline!important;text-underline-offset:3px;overflow-wrap:anywhere}section[data-shift-link-repair][aria-label] a:focus-visible{outline:2px solid #e7e3da;outline-offset:3px}@media(max-width:560px){section[data-shift-link-repair][aria-label]{padding:20px;width:calc(100% - 32px)}}"+'</style></head>');
