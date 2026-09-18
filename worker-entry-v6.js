@@ -1,4 +1,4 @@
-import {withPublicShellContract} from './public-shell-contract.mjs';
+import {withPublicShellContract,legacyAuthorityRedirects} from './public-shell-contract.mjs';
 import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
 import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navigation-policy.mjs';
 import {continuityPublicRoute,withPublicContinuity} from './public-continuity.mjs';
@@ -595,6 +595,14 @@ const worker = {
       (request.method === "GET" || request.method === "HEAD")
     )
       return publicSiteConfigWithLoungeChrome(request);
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      legacyAuthorityRedirects[path]
+    ) {
+      const target = new URL(legacyAuthorityRedirects[path], request.url);
+      target.search = requestUrl.search;
+      return Response.redirect(target, 301);
+    }
     // Let Shift Core answer HQ browser preflights before feature modules apply
     // session checks. A preflight has no session cookie by design.
     if (request.method === "OPTIONS" && path.startsWith("/v1/hq/"))
