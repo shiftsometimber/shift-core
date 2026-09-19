@@ -1,0 +1,62 @@
+// https://www.babylovegrowth.ai/docs/integrations/webhook
+// Draft intake only: no publication, arbitrary URL fetches or article overwrites.
+export const PATH='/v1/integrations/babylovegrowth';
+const LIMIT=400000;
+const reply=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+const digest=async value=>new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)));
+async function matches(a,b){const x=await digest(a),y=await digest(b);let diff=0;for(let i=0;i<x.length;i++)diff|=x[i]^y[i];return diff===0;}
+function field(value,max,required=false){if(value==null&&!required)return '';if(typeof value!=='string'||value.length>max||(required&&!value.trim()))throw new Error('invalid_payload');return value.trim();}
+export function validate(payload){
+  if(!payload||Array.isArray(payload)||typeof payload!=='object')throw new Error('invalid_payload');
+  const id=payload.id;
+  if(!(typeof id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(id))&&!(Number.isSafeInteger(id)&&id>0))throw new Error('invalid_id');
+  const slug=field(payload.slug,220,true);
+  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))throw new Error('invalid_slug');
+  const title=field(payload.title,300,true),summary=field(payload.metaDescription,3000),body=field(payload.content_markdown,100000,true);
+  field(payload.content_html,200000);
+  return {id:String(id),slug,title,summary,body};
+}
+async function readPayload(request){
+  const reader=request.body?.getReader();if(!reader)throw new Error('invalid_payload');
+  const chunks=[];let length=0;
+  while(true){const {value,done}=await reader.read();if(done)break;length+=value.byteLength;if(length>LIMIT){await reader.cancel();throw new Error('payload_too_large');}chunks.push(value);}
+  const bytes=new Uint8Array(length);let offset=0;for(const part of chunks){bytes.set(part,offset);offset+=part.byteLength;}
+  try{return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}catch{throw new Error('invalid_json');}
+}
+export async function babyLoveRoutes(request,env){
+  if(new URL(request.url).pathname.replace(/\/+$/,'')!==PATH)return null;
+  if(request.method!=='POST')return reply({success:false,error:'method_not_allowed'},405);
+  const secret=env.BABYLOVE_WEBHOOK_TOKEN;
+  if(typeof secret!=='string'||secret.length<32||!env.DB)return reply({success:false,error:'integration_not_configured'},503);
+  const authorization=request.headers.get('Authorization');
+  const token=authorization!==null?(/^Bearer (\S+)$/.exec(authorization)?.[1]||''):(request.headers.get('X-API-Key')||'');
+  if(!token||!await matches(token,secret))return reply({success:false,error:'unauthorized'},401);
+  if(request.headers.get('Content-Type')?.split(';')[0].trim().toLowerCase()!=='application/json')return reply({success:false,error:'json_required'},415);
+  if(Number(request.headers.get('Content-Length'))>LIMIT)return reply({success:false,error:'payload_too_large'},413);
+  let payload,article;
+  try{payload=await readPayload(request);article=validate(payload);}catch(error){return reply({success:false,error:error.message},error.message==='payload_too_large'?413:400);}
+  const raw=JSON.stringify(payload),hash=Array.from(await digest(raw),x=>x.toString(16).padStart(2,'0')).join('');
+  try{
+    await env.DB.prepare(`CREATE TABLE IF NOT EXISTS babylove_receipts(source_id TEXT PRIMARY KEY,slug TEXT NOT NULL UNIQUE,payload_hash TEXT NOT NULL,payload_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`).run();
+    const existing=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
+    if(existing){
+      if(existing.source_id===article.id&&existing.slug===article.slug&&existing.payload_hash===hash)return reply({success:true,status:'received',duplicate:true,published:false});
+      return reply({success:false,error:'article_conflict_requires_review'},409);
+    }
+    // D1 batches are atomic: collision rolls back the receipt as well.
+    // Raw HTML, hero image and schema are retained in the receipt, not rendered.
+    await env.DB.batch([
+      env.DB.prepare('INSERT INTO babylove_receipts(source_id,slug,payload_hash,payload_json) VALUES(?,?,?,?)').bind(article.id,article.slug,hash,raw),
+      env.DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at) VALUES(?,?,'Knowledge','SHIFT Team','draft',?,?,?,NULL)`).bind(article.title,article.slug,article.summary,article.body,article.title)
+    ]);
+    return reply({success:true,status:'draft',published:false});
+  }catch{
+    try{
+      const receipt=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
+      if(receipt?.source_id===article.id&&receipt.slug===article.slug&&receipt.payload_hash===hash)return reply({success:true,status:'received',duplicate:true,published:false});
+      const collision=await env.DB.prepare('SELECT id FROM knowledge_articles WHERE slug=?').bind(article.slug).first();
+      if(receipt||collision)return reply({success:false,error:'article_conflict_requires_review'},409);
+    }catch{}
+    return reply({success:false,error:'storage_unavailable'},503);
+  }
+}

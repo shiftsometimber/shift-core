@@ -1,3 +1,4 @@
+import {babyLoveRoutes} from './babylove/webhook.mjs';
 import {measurementAsset} from './activation-measurement/assets.mjs';
 import {passportRoutes,appendPassportExport} from './health-passport/routes.mjs';
 import {passportAssets,withPassportPresentation} from './health-passport/presentation.mjs';
@@ -552,6 +553,7 @@ const worker = {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const babyLove = await babyLoveRoutes(request,env); if(babyLove)return babyLove;
     const measurement = measurementAsset(request); if(measurement)return measurement;
     const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
     if (publicNavigation) return publicNavigation;
