@@ -293,6 +293,15 @@ export const relatedGuideGroups={
     }
   ]
 };
+export const seoMetadataOverrides=Object.freeze({
+  '/ask-timber': {title:"Ask Timber: Men's Health Answers | Shift Some Timber"},
+  '/advertise-with-us': {title:"Men's Health Advertising UK | Shift Some Timber"},
+  '/community': {title:"Men's Weight Management Community | Shift Some Timber"},
+  '/clinical-governance': {title:"Clinical Governance & Decision Support | Shift Some Timber"},
+  '/contact': {title:"Contact SHIFT: Support & Partnerships | Shift Some Timber"},
+  '/decision-centre-methodology': {description:"How SHIFT interprets UK obesity-treatment pathways, NICE tirzepatide criteria, NHS rollout, weight-management support and bariatric referral thresholds."},
+  '/downloads-resources': {description:"Download free weight-management checklists for GP visits, medicines, bariatric surgery, provider safety, treatment preparation and long-term maintenance."}
+});
 export const legacyAuthorityRedirects=Object.freeze({
   '/health-mot':'/shift-health/health-mot',
   '/health-mot.html':'/shift-health/health-mot',
@@ -308,11 +317,27 @@ export const sitemapExcludedPaths=['/shift-for-work',...Object.keys(legacyAuthor
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const regexEscape=s=>String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const normal=p=>p.replace(/\.html$/,'').replace(/\/+$/,'')||'/';
+function replaceHeadTitle(html,value){
+ const safe=escape(value),pattern=/<title\b[^>]*>[\s\S]*?<\/title>/i;
+ return pattern.test(html)?html.replace(pattern,'<title>'+safe+'</title>'):html.replace('</head>','<title>'+safe+'</title></head>');
+}
+function replaceMetaDescription(html,value){
+ const safe=escape(value),pattern=/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>/i,tag='<meta name="description" content="'+safe+'">';
+ return pattern.test(html)?html.replace(pattern,tag):html.replace('</head>',tag+'</head>');
+}
+function applySeoMetadata(html,path){
+ const meta=seoMetadataOverrides[path];
+ if(meta?.title)html=replaceHeadTitle(html,meta.title);
+ if(meta?.description)html=replaceMetaDescription(html,meta.description);
+ if(path==='/')html=html.replace(/<img\b(?![^>]*\balt=)([^>]*\bsrc=["'][^"']*\/assets\/home-stigma-ruffled-v42p5\.webp(?:\?[^"']*)?["'][^>]*)>/i,'<img alt=""$1>');
+ return html;
+}
 export function publicShellPath(path){return !/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(normal(path));}
 function current(markup,path){return markup.replace(/<a href="([^"#]+)">/g,(tag,href)=>href!=='/'&&(path===href||path.startsWith(href+'/'))?tag.replace('>',' aria-current="page">'):tag);}
 export function reconcilePublicDocument(html,path){
  path=normal(path);
  if(!publicShellPath(path)||!/<html\b/i.test(html)||!/<main\b/i.test(html))return html;
+ html=applySeoMetadata(html,path);
  html=html.replace(/<header\b(?=[^>]*class=["'][^"']*\bsite-header\b)[^>]*>[\s\S]*?<\/header>/i,()=>current(publicHeader,path));
  html=html.replace(/<aside\b(?=[^>]*id=["']site-drawer["'])[^>]*>[\s\S]*?<\/aside>/i,()=>current(publicDrawer,path));
  if(/<footer\b(?=[^>]*class=["'][^"']*\bsite-footer\b)/i.test(html))html=html.replace(/<footer\b(?=[^>]*class=["'][^"']*\bsite-footer\b)[^>]*>[\s\S]*?<\/footer>/i,()=>current(publicFooter,path));
