@@ -1,5 +1,4 @@
 import {continuityPublicRoute,withPublicContinuity} from '../../public-continuity.mjs';
-import {withPublicTicker} from '../../public-navigation-policy.mjs';
 const production='https://shiftsometimber.co.uk';
 export default {async fetch(request){
  const url=new URL(request.url);
@@ -12,7 +11,8 @@ export default {async fetch(request){
  if(url.pathname.startsWith('/v1/')&&url.pathname!=='/v1/radar/ticker')return new Response('Read-only public preview',{status:404});
  const upstream=()=>fetch(production+url.pathname+url.search,{method:request.method,headers:{Accept:request.headers.get('Accept')||'*/*'},redirect:'manual'});
  const page=await continuityPublicRoute(request,()=>fetch(production+'/programme'));
- const response=await withPublicTicker(request,await withPublicContinuity(request,page||await upstream()));
+ // The live shell/upstream already owns the ticker; reapplying it moves shared styles.
+ const response=await withPublicContinuity(request,page||await upstream());
  const headers=new Headers(response.headers);headers.delete('Set-Cookie');headers.set('X-Robots-Tag','noindex, nofollow');headers.set('Cache-Control','no-store');
  const location=headers.get('Location');if(location&&location.startsWith(production+'/'))headers.set('Location',url.origin+location.slice(production.length));
  return new Response(response.body,{status:response.status,headers});

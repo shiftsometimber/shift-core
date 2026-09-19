@@ -1,7 +1,7 @@
 name: Public Continuity preview
 on:
   push:
-    branches: [fix/public-continuity-20260917]
+    branches: [fix/public-continuity-20260917, fix/continuity-live-proof-threshold-20260919]
 permissions:
   contents: read
 jobs:
@@ -23,8 +23,14 @@ jobs:
         run: npx wrangler deploy --config preview/public-continuity/wrangler.jsonc
       - name: Check rendered documents, related links and additive sitemap
         run: node scripts/verify-public-continuity-live.mjs https://shift-public-continuity-preview.matobrien.workers.dev
+      - name: Crawl the complete candidate site before promotion
+        env:
+          SHIFT_SITE_BASE: https://shift-public-continuity-preview.matobrien.workers.dev
+        run: node gate1-whole-estate-production-sweep.mjs > public-continuity-preview-sweep.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: public-continuity-preview-evidence
-          path: public-continuity-live-proof.json
+          path: |
+            public-continuity-live-proof.json
+            public-continuity-preview-sweep.json

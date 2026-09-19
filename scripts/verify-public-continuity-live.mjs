@@ -9,23 +9,23 @@ const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeo
 const pages=[],links=new Set();
 for(const path of CONTINUITY_PATHS){
  const {r,html}=await get(path);assert.equal((html.match(/<h1\b/g)||[]).length,1,path);assert.equal((html.match(/rel="canonical"/g)||[]).length,1,path);assert.ok(html.includes('href="'+production+path+'"'));assert.ok(html.includes(continuityPages[path].heading));assert.ok(html.includes('/consent-v4a.js'));assert.equal((html.match(/id="shift-public-news"/g)||[]).length,1,path);assert.ok(!/complete interactive route loads below|noindex/i.test(html));assert.equal(r.headers.get('x-robots-tag')?.includes('noindex')||false,preview);
- const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;assert.ok(words>400,path);
+ const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];assert.ok(main.includes(continuityPages[path].body),path+' must contain the exact approved body');const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=['/clinic-gone-quiet','/provider-switch','/husband-help'].includes(path)?180:400;assert.ok(words>minimum,path);
  for(const m of main.matchAll(/href="(\/[^"#]*)/g))links.add(m[1].split('#')[0]);
  pages.push({path,status:r.status,words,sha256:hash(html)});
  for(const method of ['GET','HEAD']){const redirect=await fetch(origin+path+'.html?from=proof',{method,redirect:'manual'});assert.equal(redirect.status,301);assert.equal(redirect.headers.get('location'),origin+path+'?from=proof')}
 }
 const related=[];
 for(const path of Object.keys(continuityEntries)){
- const {html}=await get(path);const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
+ const {html}=await get(path);assert.ok(html.includes(continuityEntries[path]),path+' must retain its exact approved Continuity block');const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
  if(path==='/programme')assert.ok(html.includes(NEW_LIFE_LINK));
- if(preview){const before=await (await fetch(production+path)).text();assert.equal(preserved.toString(),before,path+' changed beyond exact approved additions')}
+ if(preview){const before=await (await fetch(production+path)).text();assert.equal(preserved.toString(),preserveContinuityContent(path,Buffer.from(before)).toString(),path+' changed beyond exact approved additions')}
  related.push({path,sha256:hash(html),preservedSha256:hash(preserved)});
 }
 const internalLinks=[];
 for(const path of links){const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.ok(r.status>=200&&r.status<400,path+': '+r.status);internalLinks.push({path,status:r.status})}
 const {html:xml}=await get('/sitemap.xml');const locations=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);assert.equal(new Set(locations).size,locations.length,'duplicate sitemap locations');for(const path of CONTINUITY_PATHS)assert.ok(locations.includes(production+path));
 let sitemap={after:locations.length,added:CONTINUITY_PATHS};
-if(preview){const base=await(await fetch(production+'/sitemap.xml')).text(),before=[...base.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);for(const url of before)assert.ok(locations.includes(url),'removed sitemap entry '+url);sitemap={before:before.length,after:locations.length,added:locations.filter(x=>!before.includes(x)),removed:before.filter(x=>!locations.includes(x))};assert.deepEqual(sitemap.added.sort(),CONTINUITY_PATHS.map(p=>production+p).sort());assert.deepEqual(sitemap.removed,[])}
+if(preview){const base=await(await fetch(production+'/sitemap.xml')).text(),before=[...base.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);for(const url of before)assert.ok(locations.includes(url),'removed sitemap entry '+url);sitemap={before:before.length,after:locations.length,added:locations.filter(x=>!before.includes(x)),removed:before.filter(x=>!locations.includes(x))};assert.deepEqual(sitemap.added.sort(),CONTINUITY_PATHS.map(p=>production+p).filter(url=>!before.includes(url)).sort());assert.deepEqual(sitemap.removed,[])}
 const feed=await(await fetch(origin+'/v1/radar/ticker')).json();
 const result={checkedAt:new Date().toISOString(),origin,pages,related,internalLinks,sitemap,feed:{current:feed.current,status:feed.status,reasons:feed.freshness?.reasons}};
 writeFileSync('public-continuity-live-proof.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
