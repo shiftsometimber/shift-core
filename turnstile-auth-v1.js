@@ -33,7 +33,7 @@ export async function verifyTurnstile(request,env,expectedAction){
   const form=new URLSearchParams({secret,response:token,idempotency_key:crypto.randomUUID()});
   const ip=clean(request.headers.get('CF-Connecting-IP'));if(ip)form.set('remoteip',ip);
   let result={};
-  try{const response=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form});result=await response.json();if(!response.ok)throw new Error('siteverify_failed')}catch{return json({ok:false,error:'turnstile_unavailable',message:'The security check could not be verified. Please try again.'},503)}
+  try{const response=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form,signal:AbortSignal.timeout(10000)});result=await response.json();if(!response.ok)throw new Error('siteverify_failed')}catch{return json({ok:false,error:'turnstile_unavailable',message:'The security check could not be verified. Please try again.'},503)}
   const allowedHosts=new Set(String(env.TURNSTILE_ALLOWED_HOSTNAMES||'shiftsometimber.co.uk,www.shiftsometimber.co.uk,hq.shiftsometimber.co.uk').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean));
   if(result.success!==true||result.action!==expectedAction||!allowedHosts.has(String(result.hostname||'').toLowerCase()))return json({ok:false,error:'turnstile_failed',message:'That security check expired or was not accepted. Please try again.'},403);
   return null;

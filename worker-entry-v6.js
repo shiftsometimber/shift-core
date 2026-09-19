@@ -1,3 +1,4 @@
+import {measurementAsset} from './activation-measurement/assets.mjs';
 import {passportRoutes,appendPassportExport} from './health-passport/routes.mjs';
 import {passportAssets,withPassportPresentation} from './health-passport/presentation.mjs';
 import {withPublicShellContract,legacyAuthorityRedirects} from './public-shell-contract.mjs';
@@ -551,6 +552,7 @@ const worker = {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const measurement = measurementAsset(request); if(measurement)return measurement;
     const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
     if (publicNavigation) return publicNavigation;
     if (['GET','HEAD'].includes(request.method) && ['/health','/v1/health'].includes(path)) return publicHealthResponse(request,env);
