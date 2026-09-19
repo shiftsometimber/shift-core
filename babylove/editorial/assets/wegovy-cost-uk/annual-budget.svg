@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1120" height="560" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1120 560" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Illustrative four-week medication costs over 52 weeks</title>
+	<desc>Thirteen four-week supplies cover 52 weeks. Examples only, not current pharmacy quotes.</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1120" height="560"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-560)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="1120" height="560" style="stroke: rgb(43%,46%,38%); stroke-linecap: butt; stroke-width: 2; fill: rgb(90%,89%,85%); fill-rule: evenodd;"/>
+			<rect x="0" y="435" width="1120" height="125" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(1%,1%,1%); fill-rule: evenodd;"/>
+			<text x="44" y="506" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 24px;fill: rgb(90%,89%,85%); stroke:none;" transform="translate(0,1012) scale(1,-1)">THE FOUR-WEEK CHECK</text>
+			<text x="44" y="460" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 40px;fill: rgb(90%,89%,85%); stroke:none;" transform="translate(0,920) scale(1,-1)">13 supplies cover 52 weeks.</text>
+			<text x="44" y="390" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,780) scale(1,-1)">EXAMPLE QUOTE</text>
+			<text x="804" y="390" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,780) scale(1,-1)">52-WEEK TOTAL</text>
+			<text x="44" y="331" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 43px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,662) scale(1,-1)">£150</text>
+			<text x="44" y="299" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 22px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,598) scale(1,-1)">per four weeks</text>
+			<rect x="296" y="309" width="286" height="48" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(43%,46%,38%); fill-rule: evenodd;"/>
+			<text x="804" y="325" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 43px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,650) scale(1,-1)">£1,950</text>
+			<text x="44" y="227" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 43px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,454) scale(1,-1)">£200</text>
+			<text x="44" y="195" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 22px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,390) scale(1,-1)">per four weeks</text>
+			<rect x="296" y="205" width="381" height="48" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(43%,46%,38%); fill-rule: evenodd;"/>
+			<text x="804" y="221" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 43px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,442) scale(1,-1)">£2,600</text>
+			<text x="44" y="123" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 43px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,246) scale(1,-1)">£250</text>
+			<text x="44" y="91" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 22px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,182) scale(1,-1)">per four weeks</text>
+			<rect x="296" y="101" width="476" height="48" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(43%,46%,38%); fill-rule: evenodd;"/>
+			<text x="804" y="117" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 43px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,234) scale(1,-1)">£3,250</text>
+			<text x="44" y="32" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 23px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,64) scale(1,-1)">Illustrative maths only. Not current quotes or SHIFT prices.</text>
+		</g>
+	</g>
+</svg>

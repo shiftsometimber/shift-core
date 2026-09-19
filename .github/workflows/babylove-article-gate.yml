@@ -1,0 +1,22 @@
+name: BabyLoveGrowth article release gate
+on:
+  push:
+    branches: [publishing/wegovy-cost-uk-20260919]
+permissions:
+  contents: read
+jobs:
+  article:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify approved article, shared shell and publishing isolation
+        run: |
+          node babylove/prepare-public-bundle.mjs
+          git diff --exit-code -- babylove/editorial/public-bundle.mjs
+          node --test babylove/*.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+      - name: Build production Worker without deployment
+        run: npx wrangler deploy --dry-run --config wrangler.jsonc

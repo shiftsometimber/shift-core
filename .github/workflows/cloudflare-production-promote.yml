@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/cloudflare-production-promote.yml"
+      - "babylove/**"
       - "editorial/five-articles/**"
       - "editorial-resources-v1.js"
       - "tests/five-article-evidence.test.mjs"
@@ -251,8 +252,11 @@ jobs:
         run: node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs
       - name: Verify newsroom publication ordering and combined controls
         run: node --test tests/radar-newsroom-*.test.mjs
-      - name: Verify authenticated BabyLoveGrowth draft intake
-        run: node --test babylove/*.test.mjs
+      - name: Verify BabyLoveGrowth intake and exact approved public article
+        run: |
+          node babylove/prepare-public-bundle.mjs
+          git diff --exit-code -- babylove/editorial/public-bundle.mjs
+          node --test babylove/*.test.mjs
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
@@ -328,6 +332,10 @@ jobs:
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Publish the exact owner-approved illustrated Wegovy guide
+        run: node babylove/publish-approved-article.mjs
+      - name: Verify the Wegovy guide, three images, author, Knowledge listing and sitemap
+        run: node babylove/verify-publication-live.mjs
       - name: Verify five revised articles, metadata, downloads and sitemap on live traffic
         run: node editorial/five-articles/proof.mjs --live
       - name: Retain five-article live proof
@@ -388,6 +396,8 @@ jobs:
         with:
           name: member-public-preservation-${{ github.run_id }}
           path: |
+            babylove-publication-proof.json
+            babylove-live-proof.json
             public-*.json
             member-live-proof.json
             medicines-watch-live-proof.json
