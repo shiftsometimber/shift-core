@@ -49,6 +49,21 @@ function normaliseShiftHealthTwitterImage(body){
  return {body:Buffer.from(html.replace(SHIFT_HEALTH_TWITTER_IMAGE,'')),twitterImage:matches===1};
 }
 
+const HOME_STIGMA_ALT='Men&#39;s health stigma and asking for support';
+function normaliseHomeStigmaAlt(body){
+ const html=body.toString('utf8');
+ requireThat(Buffer.from(html).equals(body),'Homepage must be valid UTF-8');
+ const pattern=/<img\b[^>]*\bsrc=["'][^"']*\/assets\/home-stigma-ruffled-v42p5\.webp(?:\?[^"']*)?["'][^>]*>/ig;
+ const matches=[...html.matchAll(pattern)];
+ if(matches.length===0)return {body,homeStigmaAlt:false};
+ equal(matches.length,1,'Homepage has duplicate stigma images');
+ const tag=matches[0][0],alt=tag.match(/\balt=(["'])([^"']*)\1/i);
+ requireThat(alt,'Homepage stigma image is missing its alt attribute');
+ requireThat(alt[2]===''||alt[2]===HOME_STIGMA_ALT,'Homepage stigma alt differs from the exact approved SEO text');
+ const normalised=tag.replace(/\balt=(["'])[^"']*\1/i,'alt=""');
+ return {body:Buffer.from(html.slice(0,matches[0].index)+normalised+html.slice(matches[0].index+tag.length)),homeStigmaAlt:alt[2]===HOME_STIGMA_ALT};
+}
+
 export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=false,hash}={}){
  requireThat(typeof hash==='function','Public preservation requires a SHA-256 function');
  const body=Buffer.isBuffer(input)?input:Buffer.from(input);
@@ -57,8 +72,8 @@ export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=fal
   const related=normaliseTreatmentRelatedGuide(body);
   const treatments=normaliseTreatments(related.body,requireTreatmentsEntry);
   preserved={body:treatments.body,entry:treatments.entry,relatedGuide:true,revision:related.revision,authoritySha256:hash(related.body),authorityBytes:related.body.length};
- }else preserved=path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
- return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide,relatedGuideRevision:preserved.revision,authoritySha256:preserved.authoritySha256,authorityBytes:preserved.authorityBytes}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:{})};
+ }else preserved=path==='/'?normaliseHomeStigmaAlt(body):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
+ return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide,relatedGuideRevision:preserved.revision,authoritySha256:preserved.authoritySha256,authorityBytes:preserved.authorityBytes}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:path==='/'?{homeStigmaAlt:preserved.homeStigmaAlt}:{})};
 }
 
 export function assertPublicPagesPreserved(pages,baseline){
@@ -79,6 +94,11 @@ export function assertPublicPagesPreserved(pages,baseline){
     equal(current.authorityBytes,before.authorityBytes,'Treatment Centre size changed outside the exact approved related-guide update');
    }
    authorityChanged ||= current.relatedGuideRevision!==before.relatedGuideRevision;
+   continue;
+  }
+  if(current.path==='/'){
+   equal(current.preservedSha256,before.preservedSha256,'Homepage changed outside the exact approved stigma alt update');
+   equal(current.preservedBytes,before.preservedBytes,'Homepage size changed outside the exact approved stigma alt update');
    continue;
   }
   if(current.path==='/shift-health'){

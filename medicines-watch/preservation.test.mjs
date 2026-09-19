@@ -18,3 +18,15 @@ test('altered, duplicate and malformed Watch entries are rejected',()=>{for(cons
 test('path and response status changes remain rejected',()=>{const a=fp(page());assert.throws(()=>assertPublicPagesPreserved([{...a,status:404}],[a]),/status changed/);assert.throws(()=>assertPublicPagesPreserved([{...a,path:'/other'}],[a]),/paths changed/)});
 test('other pages and login retain byte-exact hashes',()=>{for(const path of ['/','/start-here','/programme','/about','/member-login']){const a=publicPageEvidence(path,200,'Original',{hash}),b=publicPageEvidence(path,200,'Changed',{hash});assert.throws(()=>assertPublicPagesPreserved([b],[a]),/changed outside/)}});
 test('SHIFT Health accepts only the exact approved Twitter image addition',()=>{const path='/shift-health',tag='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">',a=publicPageEvidence(path,200,'Original',{hash}),b=publicPageEvidence(path,200,'Original'+tag,{hash});assert.equal(assertPublicPagesPreserved([b],[a]),'identical');assert.throws(()=>publicPageEvidence(path,200,'Original'+tag+tag,{hash}),/duplicate/);assert.throws(()=>assertPublicPagesPreserved([a],[b]),/missing/);assert.throws(()=>assertPublicPagesPreserved([publicPageEvidence(path,200,'Original'+tag.replace('og-default.jpg','wrong.jpg'),{hash})],[a]),/changed outside/)});
+
+test('homepage preservation allows only the exact approved stigma alt improvement',()=>{
+ const path='/',base='<html><body><img class="stigma" src="/assets/home-stigma-ruffled-v42p5.webp?v=1" alt=""><p>Keep</p></body></html>',approved=base.replace('alt=""','alt="Men&#39;s health stigma and asking for support"');
+ const a=publicPageEvidence(path,200,base,{hash}),b=publicPageEvidence(path,200,approved,{hash});
+ assert.equal(assertPublicPagesPreserved([b],[a]),'identical');
+ assert.equal(a.preservedSha256,b.preservedSha256);
+ assert.equal(b.homeStigmaAlt,true);
+ assert.throws(()=>publicPageEvidence(path,200,base.replace('alt=""','alt="Different wording"'),{hash}),/alt differs/);
+ assert.throws(()=>publicPageEvidence(path,200,base+base.match(/<img[^>]+>/)[0],{hash}),/duplicate/);
+ const changed=publicPageEvidence(path,200,approved.replace('<p>Keep</p>','<p>Changed</p>'),{hash});
+ assert.throws(()=>assertPublicPagesPreserved([changed],[a]),/changed outside/);
+});
