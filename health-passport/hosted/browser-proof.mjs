@@ -28,7 +28,9 @@ async function signIn(page,id,{direct=false}={}){
  if(direct)await page.goto(origin+'/member-login?next='+encodeURIComponent('/member/dashboard?passport=1#journey'));
  await page.locator('#previewRegister [name="email"]').fill('probe'+id+'@example.invalid');
  await page.locator('#previewRegister [name="password"]').fill(secrets.password);
+ const loginResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/login'&&r.request().method()==='POST');
  await page.locator('#previewRegister [data-auth-submit]').click();
+ const response=await loginResponse;assert.equal(response.status(),200,'Real password login must succeed');
  await page.waitForURL(u=>u.pathname==='/member/dashboard',{timeout:30000});
  await page.locator('#previewMember.is-ready').waitFor({state:'visible'});
  await page.locator('nav.sst-member-tabs a[href="/member/dashboard#journey"]').first().click();
@@ -46,10 +48,15 @@ try{
   const context=await browser.newContext({viewport:{width,height:900},recordVideo:{dir:out+'/'+device,size:{width,height:900}}});
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin===origin)return route.continue();if(u.hostname.endsWith('shiftsometimber.co.uk')&&u.pathname.startsWith('/v1/'))blockedProduct.push(u.pathname);return route.abort()});
   const page=await context.newPage();page.setDefaultTimeout(30000);
-  const errors=[],httpFailures=[],scripts=new Set();
+  const errors=[],httpFailures=[],apiStatuses=[],consoleErrors=[],scripts=new Set();
   page.on('pageerror',e=>errors.push(e.message));
-  page.on('response',r=>{const u=new URL(r.url());if(u.origin!==origin)return;if(/javascript/.test(r.headers()['content-type']||''))scripts.add(u.pathname);if(r.status()>=500)httpFailures.push({path:u.pathname,status:r.status()})});
-  const check=async(name,fn)=>{try{await fn();report.checks.push({device,name,pass:true});console.log('PASS '+device+': '+name)}catch(e){report.checks.push({device,name,pass:false,error:e.message});await page.screenshot({path:out+'/'+device+'-failure.png',fullPage:true});writeFileSync(out+'/'+device+'-failure.html',await page.content());throw e}};
+  page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text().slice(0,400))});
+  page.on('response',r=>{const u=new URL(r.url());if(u.origin!==origin)return;if(/javascript/.test(r.headers()['content-type']||''))scripts.add(u.pathname);if(u.pathname.startsWith('/v1/'))apiStatuses.push({path:u.pathname,method:r.request().method(),status:r.status()});if(r.status()>=500)httpFailures.push({path:u.pathname,status:r.status()})});
+  const check=async(name,fn)=>{try{await fn();report.checks.push({device,name,pass:true});console.log('PASS '+device+': '+name)}catch(e){
+   const me=await api(page,'/v1/me').catch(()=>null);
+   const diagnostic={path:new URL(page.url()).pathname,apiStatuses,consoleErrors,cookies:(await context.cookies()).map(({name,domain,path,httpOnly,secure,sameSite})=>({name,domain,path,httpOnly,secure,sameSite})),me:me?{status:me.status,error:me.body?.error||null,hasUser:!!me.body?.user}:null,dom:await page.evaluate(()=>({apiRoot:window.SST_API_BASE,hasAPI:!!window.SST_API,memberHidden:document.querySelector('#previewMember')?.hidden,memberClass:document.querySelector('#previewMember')?.className,authStatus:document.querySelector('#previewStatus')?.textContent})).catch(()=>null)};
+   report.checks.push({device,name,pass:false,error:e.message,diagnostic});await page.screenshot({path:out+'/'+device+'-failure.png',fullPage:true});writeFileSync(out+'/'+device+'-failure.html',await page.content());throw e;
+  }};
   try{
    await check('Actual Start Here account CTA leads through hosted login to the current dashboard',async()=>{
     await quiz(page);const kept=JSON.parse(await page.evaluate(key=>sessionStorage.getItem(key),KEY));assert.ok(kept?.draft);
@@ -90,7 +97,7 @@ try{
    await check('No uncaught script failures, server errors, product-data egress or Passport overflow',async()=>{
     const rect=await page.locator('.hp-v1').evaluate(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,width:innerWidth}));assert.ok(rect.left>=-1&&rect.right<=rect.width+1);assert.deepEqual(errors,[]);assert.deepEqual(httpFailures,[]);assert.deepEqual(blockedProduct,[]);
    });
-  }finally{report.browserErrors.push({device,errors});report.failedRequests.push({device,httpFailures,blockedProduct});await context.close()}
+  }finally{report.browserErrors.push({device,errors});report.failedRequests.push({device,httpFailures,blockedProduct,apiStatuses,consoleErrors});await context.close()}
  }
 }catch(error){report.error=String(error.message);process.exitCode=1}
 finally{await browser.close();report.pass=report.checks.length===14&&report.checks.every(x=>x.pass)&&!report.error;writeFileSync(out+'/report.json',JSON.stringify(report,null,2));if(!report.pass)process.exitCode=1;console.log(JSON.stringify({pass:report.pass,checks:report.checks,error:report.error},null,2))}
