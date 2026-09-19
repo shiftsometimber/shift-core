@@ -30,3 +30,10 @@ test('portable Continuity front doors are substantial, linked and do not invent 
  const clinic=renderContinuityDocument(shell,'/clinic-gone-quiet');assert.match(clinic,/support should not disappear/i);assert.match(clinic,/including when treatment started elsewhere/i);
  const partner=renderContinuityDocument(shell,'/husband-help');assert.match(partner,/food police/i);assert.match(partner,/Do not advise him to change, stop or restart prescription treatment/i);
 });
+
+test('preservation accepts the immediately previous approved Continuity block but rejects surrounding changes',()=>{
+ const current=addContinuityLinks(shell,'/programme');
+ const previous=current.replace(continuityEntries['/programme'],continuityEntries['/programme'].replace('When the clinic goes quiet →','Earlier approved wording →'));
+ assert.equal(preserveContinuityContent('/programme',Buffer.from(previous),{required:true}).toString(),shell);
+ assert.notEqual(preserveContinuityContent('/programme',Buffer.from(previous.replace('Locked footer','Changed footer')),{required:true}).toString(),shell);
+});
