@@ -1,0 +1,40 @@
+name: Health Passport hosted preflight
+on:
+  push:
+    branches: ['feat/health-passport-v1-20260919']
+    paths: ['.github/workflows/health-passport-hosted-preflight.yml']
+permissions:
+  contents: read
+concurrency:
+  group: health-passport-hosted-preflight
+  cancel-in-progress: false
+jobs:
+  preflight:
+    if: github.repository == 'shiftsometimber/shift-core' && github.ref == 'refs/heads/feat/health-passport-v1-20260919'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify the existing isolated-deployment credential is available
+        env:
+          PREVIEW_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          mkdir -p passport-hosted-proof
+          python3 - <<'PY'
+          import json,os,pathlib,sys
+          present=bool(os.environ.get('PREVIEW_TOKEN','').strip())
+          proof={'head':os.environ['GITHUB_SHA'],'previewCredentialAvailable':present,'productionCredentialUsed':False,'productionWrites':False,'deploymentAttempted':False}
+          pathlib.Path('passport-hosted-proof/preflight.json').write_text(json.dumps(proof,indent=2))
+          if not present:
+              print('::error::The existing CLOUDFLARE_PREVIEW_API_TOKEN is not available to this branch workflow. Hosted isolated sign-in acceptance cannot run; no production-token fallback is permitted.')
+              sys.exit(1)
+          print('Existing isolated preview credential is present. No credential value or scope is printed, and no deployment or database write has occurred.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: passport-hosted-preflight-${{ github.sha }}
+          path: passport-hosted-proof/preflight.json
+          if-no-files-found: error
