@@ -17,38 +17,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Replace only the exact reviewed private-product startup line
+      - run: npm ci --no-audit --no-fund
+      - name: Give the retained-tools fixture its actual dashboard pathname
         run: |
           python3 - <<'PY'
           import pathlib,subprocess
-          p=pathlib.Path('frontend/member/member-product-v33d.js')
-          assert subprocess.check_output(['git','hash-object',str(p)],text=True).strip()=='3b519d725c6b7bc294da479480497b5d17f17038','Source moved; reconcile instead of overwrite'
+          p=pathlib.Path('member-experience/tests/dashboard-tools.test.mjs')
+          assert subprocess.check_output(['git','hash-object',str(p)],text=True).strip()=='29c09e0a4cfd559b9eb279835ad87a271c8b9067','Test source moved'
           text=p.read_text()
-          old="if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',bootProduct,{once:true});else bootProduct();"
-          new="""// The sign-in form owns authentication. Private product controls must not
-          // issue their unauthenticated self-redirect while that form is still open.
-          function bootProductWhenReady(){
-           const authEntry=/^\\/member-(?:login|register)(?:\\.html)?\\/?$/.test(location.pathname);
-           if(!authEntry||document.body.classList.contains('member-ready')){bootProduct();return}
-           let started=false;
-           const observer=new MutationObserver(()=>{
-            if(started||!document.body.classList.contains('member-ready'))return;
-            started=true;observer.disconnect();bootProduct();
-           });
-           observer.observe(document.body,{attributes:true,attributeFilter:['class']});
-          }
-          if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',bootProductWhenReady,{once:true});else bootProductWhenReady();"""
+          old="const context={document:{body:{dataset:{memberTools:'v1'}},readyState:'complete'"
+          new="const context={location:{pathname:'/member/dashboard'},document:{body:{dataset:{memberTools:'v1'}},readyState:'complete'"
           assert text.count(old)==1
           p.write_text(text.replace(old,new))
           assert p.read_text().replace(new,old)==text
           PY
-          node --check frontend/member/member-product-v33d.js
-          node --test health-passport/login-startup.test.mjs
-      - name: Commit the single verified file to this same preview branch only
+          node --test health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs
+      - name: Commit only the verified fixture correction to the same isolated branch
         run: |
           set -euo pipefail
           test "$(git ls-remote origin refs/heads/feat/health-passport-v1-20260919 | cut -f1)" = "$GITHUB_SHA"
-          git add -- frontend/member/member-product-v33d.js
-          test "$(git diff --cached --name-only)" = 'frontend/member/member-product-v33d.js'
-          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Delay private product startup until sign-in actually completes'
+          git add -- member-experience/tests/dashboard-tools.test.mjs
+          test "$(git diff --cached --name-only)" = 'member-experience/tests/dashboard-tools.test.mjs'
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Supply actual dashboard location in retained-tools browser fixture'
           git push origin HEAD:refs/heads/feat/health-passport-v1-20260919
