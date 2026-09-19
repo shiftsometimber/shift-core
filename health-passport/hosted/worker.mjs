@@ -22,15 +22,16 @@ export default {async fetch(request,env,ctx){
  if(path.startsWith('/v1/')){
   const record=/^\/v1\/health-passport\/records\/[a-zA-Z0-9-]+$/.test(path);
   if(!safeAPI.has(path)&&!record&&!(request.method==='GET'&&readOnlyAPI.has(path)))return deny();
-  // Only the production password endpoint issues sessions; no bypass.
   if(request.headers.has('x-shift-commissioning-oidc'))return deny();
   return core.fetch(request,safeEnv,ctx);
  }
  const passport=passportAssets(request,safeEnv);if(passport)return passport;
  const runtime=memberExperienceRoutes(request,safeEnv);if(runtime)return runtime;
  if(!['GET','HEAD'].includes(request.method))return deny();
- let item=snapshot[path+url.search]||snapshot[path];
- // Sole changed browser asset comes from candidate source, not old capture.
+ // Production resolves these .html aliases through its current member shell.
+ // The isolated asset bucket must not fall through to an obsolete raw HTML file.
+ const normal=path.replace(/\.html$/,''),pagePath=pagePaths.has(normal)?normal:path;
+ let item=snapshot[path+url.search]||snapshot[path]||snapshot[pagePath+url.search]||snapshot[pagePath];
  if(path==='/member-my-journey-v2.js')item=null;
  const target=item?item.asset:path;
  const response=await env.MEMBER_ASSETS.fetch(new Request(new URL(target,url),{method:request.method}));
@@ -39,10 +40,9 @@ export default {async fetch(request,env,ctx){
  if(item)headers.set('Content-Type',item.type);
  headers.set('X-Shift-Preview-Source',env.PASSPORT_SOURCE_SHA||'');
  let result=new Response(response.body,{status:response.status,headers});
- if(pagePaths.has(path)&&request.method==='GET'){
+ if(pagePaths.has(pagePath)&&request.method==='GET'){
   const html=await result.text();
   const notice='<aside data-passport-hosted-preview style="padding:10px 18px;background:#E7E3DA;color:#050505;font:14px Arial">Isolated hosted verification · fictional accounts · no live data or payments</aside>';
-  // No script stripping, shell reveal, fake response or session injection.
   const body=html.replace(/(<body\b[^>]*>)/i,'$1'+notice);
   headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
   headers.delete('Content-Length');headers.delete('ETag');
