@@ -50,7 +50,7 @@ test('homepage keeps its ranking title and adds a decorative alt only to the kno
  const page='<html><head><title>Shift Some Timber | UK Men\'s Weight & Health</title></head><body>'+publicHeader+publicDrawer+'<main><h1>Home</h1><img class="stigma" src="/assets/home-stigma-ruffled-v42p5.webp?v=1"><img src="/assets/other.webp" alt="Existing"></main>'+publicFooter+'</body></html>';
  const once=reconcilePublicDocument(page,'/'),twice=reconcilePublicDocument(once,'/');
  assert(once.includes("<title>Shift Some Timber | UK Men's Weight & Health</title>"));
- assert.match(once,/<img alt="" class="stigma" src="\/assets\/home-stigma-ruffled-v42p5\.webp\?v=1">/);
+ assert.match(once,/<img alt="Men&#39;s health stigma and asking for support" class="stigma" src="\/assets\/home-stigma-ruffled-v42p5\.webp\?v=1">/);
  assert.equal((once.match(/home-stigma-ruffled-v42p5/g)||[]).length,1);
  assert.equal(twice,once);
 });
