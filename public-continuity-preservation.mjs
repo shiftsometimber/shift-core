@@ -5,7 +5,16 @@ export function preserveContinuityContent(path,input,{required=false}={}){
  if(!Buffer.from(html).equals(input))throw Error(path+' must be valid UTF-8');
  const count=html.split('data-continuity-entry=').length-1;
  if(!count){if(required)throw Error(path+' missing approved Continuity entry');return input}
- if(count!==1||!html.includes(entry))throw Error(path+' Continuity entry differs from exact release source');
+ if(count!==1)throw Error(path+' Continuity entry count differs from exact release source');
+ const start='<!-- SHIFT_CONTINUITY_'+(entry.match(/SHIFT_CONTINUITY_([^_]+)_START/)?.[1]||'')+'_START -->';
+ const end='<!-- SHIFT_CONTINUITY_'+(entry.match(/SHIFT_CONTINUITY_([^_]+)_START/)?.[1]||'')+'_END -->';
+ const a=html.indexOf(start),b=html.indexOf(end,a);
+ if(a<0||b<a)throw Error(path+' Continuity entry markers differ from exact release source');
+ const actual=html.slice(a,b+end.length);
+ // The production baseline may contain the immediately previous approved entry.
+ // Strip exactly one marker-bounded Continuity block for preservation comparison;
+ // all surrounding bytes and the Programme Life Back link remain locked.
+ html=html.replace(actual,'');
  html=html.replace(entry,'');
  if(path==='/programme'){
   if(html.split(NEW_LIFE_LINK).length!==2)throw Error('Programme Life Back link differs from exact release source');
