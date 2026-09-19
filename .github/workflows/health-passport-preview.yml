@@ -1,0 +1,53 @@
+name: Health Passport v1 Preview
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/health-passport-preview.yml'
+      - 'health-passport/**'
+      - 'member-experience/**'
+      - 'frontend/member/**'
+      - 'frontend/public/**'
+      - 'tests/health-passport*'
+      - 'worker-entry-v6.js'
+permissions:
+  contents: read
+concurrency:
+  group: health-passport-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Retain exact tracked source for isolated implementation and review
+        run: |
+          mkdir -p passport-proof
+          python3 - <<'PY'
+          import pathlib,subprocess,zipfile
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          with zipfile.ZipFile('passport-proof/source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for value in paths:
+              p=pathlib.Path(value)
+              if p.is_file() and p.suffix.lower() in {'.js','.mjs','.cjs','.json','.jsonc','.sql','.yml','.yaml','.html','.css','.md','.txt'}:
+                z.write(p,str(p))
+          pathlib.Path('passport-proof/source-sha.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD']).decode())
+          pathlib.Path('passport-proof/tracked-files.txt').write_text('\n'.join(paths))
+          PY
+      - name: Install locked toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Passport regression proof when implemented
+        run: |
+          if test -f health-passport/preview-proof.mjs; then node health-passport/preview-proof.mjs; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-passport-preview-${{ github.event.pull_request.head.sha }}
+          path: passport-proof/
