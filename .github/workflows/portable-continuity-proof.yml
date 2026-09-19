@@ -29,7 +29,7 @@ jobs:
       - name: Compile exact Worker without deploying
         run: npx wrangler deploy --dry-run --outdir continuity-proof
       - name: Retain exact diff
-        run: git diff bf59b149323d3261d3d2f02ae87322df279d46d7 -- public-continuity.mjs public-shell-contract.mjs tests/public-continuity.test.mjs tests/public-shell-contract.test.mjs > continuity-proof.patch
+        run: git diff HEAD^ -- public-continuity.mjs public-shell-contract.mjs tests/public-continuity.test.mjs tests/public-shell-contract.test.mjs > continuity-proof.patch
       - uses: actions/upload-artifact@v4
         if: always()
         with:
