@@ -3,6 +3,7 @@
 import core from '../../worker-entry-v6.js';
 import {memberExperienceRoutes} from '../../member-experience/entry.mjs';
 import {passportAssets,withPassportPresentation} from '../presentation.mjs';
+import {hostedMutationAllowed} from '../hosted-origin.mjs';
 import snapshot from './generated/snapshot-map.mjs';
 const PREFIX='shift-passport-preview-20260919';
 const privateHeaders={'Cache-Control':'no-store, must-revalidate','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff'};
@@ -18,7 +19,7 @@ export function hostedGuard(request,env){
 export default {async fetch(request,env,ctx){
  if(!hostedGuard(request,env))return deny();
  const url=new URL(request.url),path=url.pathname;
- if(['POST','PATCH','DELETE','PUT'].includes(request.method)&&request.headers.get('Origin')!==url.origin)return Response.json({error:'origin_not_allowed'},{status:403,headers:privateHeaders});
+ if(!hostedMutationAllowed(request))return Response.json({error:'origin_not_allowed'},{status:403,headers:privateHeaders});
  const safeEnv={...env,PUBLIC_SITE_URL:url.origin,MEMBER_ASSETS:env.MEMBER_ASSETS};
  if(path.startsWith('/v1/')){
   const record=/^\/v1\/health-passport\/records\/[a-zA-Z0-9-]+$/.test(path);
