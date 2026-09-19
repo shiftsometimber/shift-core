@@ -25,5 +25,8 @@ test('homepage preservation allows only the exact approved stigma alt improvemen
  assert.equal(assertPublicPagesPreserved([b],[a]),'identical');
  assert.equal(a.preservedSha256,b.preservedSha256);
  assert.equal(b.homeStigmaAlt,true);
- for(const bad of [base.replace('alt=""','alt="Different wording"'),base.replace('<p>Keep</p>','<p>Changed</p>'),base+base.match(/<img[^>]+>/)[0]])assert.throws(()=>publicPageEvidence(path,200,bad,{hash}),/alt differs|duplicate|changed outside/);
+ assert.throws(()=>publicPageEvidence(path,200,base.replace('alt=""','alt="Different wording"'),{hash}),/alt differs/);
+ assert.throws(()=>publicPageEvidence(path,200,base+base.match(/<img[^>]+>/)[0],{hash}),/duplicate/);
+ const changed=publicPageEvidence(path,200,approved.replace('<p>Keep</p>','<p>Changed</p>'),{hash});
+ assert.throws(()=>assertPublicPagesPreserved([changed],[a]),/changed outside/);
 });
