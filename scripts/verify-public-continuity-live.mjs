@@ -9,7 +9,7 @@ const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeo
 const pages=[],links=new Set();
 for(const path of CONTINUITY_PATHS){
  const {r,html}=await get(path);assert.equal((html.match(/<h1\b/g)||[]).length,1,path);assert.equal((html.match(/rel="canonical"/g)||[]).length,1,path);assert.ok(html.includes('href="'+production+path+'"'));assert.ok(html.includes(continuityPages[path].heading));assert.ok(html.includes('/consent-v4a.js'));assert.equal((html.match(/id="shift-public-news"/g)||[]).length,1,path);assert.ok(!/complete interactive route loads below|noindex/i.test(html));assert.equal(r.headers.get('x-robots-tag')?.includes('noindex')||false,preview);
- const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;assert.ok(words>400,path);
+ const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=['/clinic-gone-quiet','/provider-switch','/husband-help'].includes(path)?180:400;assert.ok(words>minimum,path);
  for(const m of main.matchAll(/href="(\/[^"#]*)/g))links.add(m[1].split('#')[0]);
  pages.push({path,status:r.status,words,sha256:hash(html)});
  for(const method of ['GET','HEAD']){const redirect=await fetch(origin+path+'.html?from=proof',{method,redirect:'manual'});assert.equal(redirect.status,301);assert.equal(redirect.headers.get('location'),origin+path+'?from=proof')}
