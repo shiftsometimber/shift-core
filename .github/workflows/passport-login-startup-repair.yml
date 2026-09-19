@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '22.16.0'
       - run: npm ci --no-audit --no-fund
-      - name: Give the retained-tools fixture its actual dashboard pathname
+      - name: Give both retained-tools fixtures their actual dashboard pathname
         run: |
           python3 - <<'PY'
           import pathlib,subprocess
@@ -27,16 +27,16 @@ jobs:
           text=p.read_text()
           old="const context={document:{body:{dataset:{memberTools:'v1'}},readyState:'complete'"
           new="const context={location:{pathname:'/member/dashboard'},document:{body:{dataset:{memberTools:'v1'}},readyState:'complete'"
-          assert text.count(old)==1
+          assert text.count(old)==2
           p.write_text(text.replace(old,new))
           assert p.read_text().replace(new,old)==text
           PY
           node --test health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs
-      - name: Commit only the verified fixture correction to the same isolated branch
+      - name: Commit only the verified fixture corrections to the same isolated branch
         run: |
           set -euo pipefail
           test "$(git ls-remote origin refs/heads/feat/health-passport-v1-20260919 | cut -f1)" = "$GITHUB_SHA"
           git add -- member-experience/tests/dashboard-tools.test.mjs
           test "$(git diff --cached --name-only)" = 'member-experience/tests/dashboard-tools.test.mjs'
-          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Supply actual dashboard location in retained-tools browser fixture'
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Supply actual dashboard locations in retained-tools browser fixtures'
           git push origin HEAD:refs/heads/feat/health-passport-v1-20260919
