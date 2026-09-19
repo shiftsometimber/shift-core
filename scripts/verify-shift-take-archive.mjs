@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {isValidOriginalNotice,originalNoticeHtml} from '../radar-permitted-content-v1.js';
+import {createHash} from 'node:crypto';
 import {writeFileSync} from 'node:fs';
 import {collectorD1} from './radar-collector-d1.mjs';
 import {radarNewsPageRoutes,NEWSROOM_ROWS_SQL} from '../radar-news-pages-v1.js';
@@ -6,7 +8,7 @@ const all=collectorD1(['--command',NEWSROOM_ROWS_SQL]).flatMap(x=>x.results||[])
 const candidates=all.filter(r=>JSON.parse(r.content_package_json||'{}').destinations?.includes('medicine_news'));
 const linkedGuides=candidates.filter(r=>!String(JSON.parse(r.content_package_json).seo?.slug||'').startsWith('medicine-news/')).map(r=>({id:r.id,slug:JSON.parse(r.content_package_json).seo?.slug}));
 const rows=candidates.filter(r=>String(JSON.parse(r.content_package_json).seo?.slug||'').startsWith('medicine-news/')).filter((r,i,list)=>list.findIndex(x=>JSON.parse(x.content_package_json).seo.slug===JSON.parse(r.content_package_json).seo.slug)===i);
-const missing=rows.filter(r=>{const p=JSON.parse(r.content_package_json);return !String(p.shift_take||p.why_it_matters_to_uk||'').trim()});
+const missing=rows.filter(r=>{if(isValidOriginalNotice(r))return false;const p=JSON.parse(r.content_package_json);return !String(p.shift_take||p.why_it_matters_to_uk||'').trim()});
 console.log(JSON.stringify({articles:rows.length,linkedGuides,missing:missing.map(r=>({id:r.id,title:r.headline}))}));
 assert.equal(missing.length,0,'Every existing story needs its own retained interpretation');
 const shellFetch=globalThis.fetch;
@@ -19,6 +21,7 @@ try{for(const row of rows){
  const path=slug.startsWith('medicine-news/')?'/'+slug:'/medicine-news/'+slug;
  const response=await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk'+path),{DB:{prepare:()=>({all:async()=>({results:rows})})}});
  assert.equal(response.status,200,path);const html=await response.text();
+ if(isValidOriginalNotice(row)){const expected=originalNoticeHtml(row);assert.ok(html.includes(expected),path+' exact original GPhC notice');assert.equal((html.match(/data-shift-take/g)||[]).length,0,path+' must not invent a take');proof.push({id:row.id,path,originalPublisherNotice:true,originalMainSha256:createHash('sha256').update(expected).digest('hex'),firstPublished:row.first_published_at});continue;}
  assert.equal((html.match(/data-shift-take/g)||[]).length,1,path);
  assert.ok(!html.includes('A separate SHIFT interpretation has not been added'),path);
  assert.ok(html.includes('SHIFT’s take'),path);

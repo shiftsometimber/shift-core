@@ -1,3 +1,4 @@
+import {permittedPublisherMode,originalNoticeEligibility,applyPublisherFormat,PUBLISHER_DESTINATIONS} from './radar-permitted-content-v1.js';
 import {sourceReusePolicy} from './radar-source-policy-v1.js';
 // Owner-authorised 17 September 2026: routine attributed news and SHIFT's take
 // may publish after automated checks, without repeat personal sign-off.
@@ -8,6 +9,7 @@ export const AUTO_NEWS_DESTINATIONS=['medicine_news','ticker_knowledge','ticker_
 const parse=(value,fallback)=>{try{return JSON.parse(value)}catch{return fallback}};
 const https=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password}catch{return false}};
 export function autoNewsEligibility(row,pkg,patch={},now=Date.now()){
+ if(permittedPublisherMode(row)==='gphc_original_notice')return originalNoticeEligibility(row,pkg,patch,now);
  const reasons=[...sourceReusePolicy(row).reasons],raw=parse(row.source_evidence_json,[]),evidence=Array.isArray(raw)?raw:[];
  if(!pkg||typeof pkg!=='object'||Array.isArray(pkg))return{ok:false,reasons:['invalid_package'],evidence};
  if(row.status!=='ready_for_review'||row.reviewed_at||row.reviewed_by||Number(row.source_review_generation||0)!==0)reasons.push('existing_decision_or_correction');
@@ -32,11 +34,13 @@ export async function checkAndPublishAutoNews({row,pkg,patch,review,approve,publ
  const eligible=autoNewsEligibility(row,pkg,patch,now);
  if(!eligible.ok)return{ok:false,status:'ready_for_review',reasons:eligible.reasons};
  const binding=await hash(JSON.stringify({source:row.source_evidence_json,content:pkg,policy:AUTO_NEWS_POLICY}));
- let result;try{result=await review(AUTO_NEWS_REVIEW_PROMPT,JSON.stringify({source_text:eligible.evidence,draft:pkg}))}catch{return{ok:false,status:'ready_for_review',reasons:['accuracy_check_unavailable']}}
+ const original=permittedPublisherMode(row)==='gphc_original_notice';
+ let result;if(original){result={method:'exact_original_feed_comparison',pass:true};await audit('original_publisher_text_check',{policy:AUTO_NEWS_POLICY,binding,review:result,human_review:false,clinical_review:false});}else{try{result=await review(AUTO_NEWS_REVIEW_PROMPT,JSON.stringify({source_text:eligible.evidence,draft:pkg}))}catch{return{ok:false,status:'ready_for_review',reasons:['accuracy_check_unavailable']}}
  await audit('automatic_accuracy_check',{policy:AUTO_NEWS_POLICY,binding,review:result,human_review:false,clinical_review:false});
- if(!autoNewsReviewPass(result))return{ok:false,status:'ready_for_review',reasons:['accuracy_check_hold']};
+ if(!autoNewsReviewPass(result))return{ok:false,status:'ready_for_review',reasons:['accuracy_check_hold']};}
  const content={...pkg,why_it_matters_to_uk:'',destinations:[...AUTO_NEWS_DESTINATIONS],existing_page_updates:[],dossier_amendment:'',shift_brain:{},seo:{...pkg.seo,author:'SHIFT AI Newsroom',reviewer:'SHIFT AI automated accuracy check'},automatic_review:{policy:AUTO_NEWS_POLICY,binding,checked_at:new Date(now??Date.now()).toISOString(),human_review:false,clinical_review:false}};
- const approved=await approve(row,{contentPackage:content,medicinePatch:{},destinations:AUTO_NEWS_DESTINATIONS,note:'Owner-authorised routine news policy; automated accuracy check passed. No personal or clinical sign-off claimed.'});
+ Object.assign(content,applyPublisherFormat(row,content));const targets=permittedPublisherMode(row)?PUBLISHER_DESTINATIONS:AUTO_NEWS_DESTINATIONS;
+ const approved=await approve(row,{contentPackage:content,medicinePatch:{},destinations:targets,note:'Owner-authorised routine news policy; automated accuracy check passed. No personal or clinical sign-off claimed.'});
  if(!approved.ok)return approved;
  const current=await readCurrent();
  // Approval adds SEO defaults. Compare its exact returned package, not just status.
