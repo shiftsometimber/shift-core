@@ -33,11 +33,17 @@ jobs:
             for item in edits:
               f=pathlib.Path(item['path']);text=f.read_text();assert hashlib.sha256(text.encode()).hexdigest()==item['before'],str(f)+' source mismatch'
               for change in item['replacements']:
+                if item['path']=='radar-live-email-v1.js' and change['old']==' return{url,title,take,subject:':
+                  # JSON transport decoded JS literal escapes. Restore only this
+                  # known text template; the independently tested result hash stays fixed.
+                  prefix,rest=change['new'].split('text:`',1)
+                  message,suffix=rest.split('`,html:`',1)
+                  change['new']=prefix+'text:`'+message.replace('\n','\\n')+'`,html:`'+suffix
                 assert text.count(change['old'])==1,str(f)+' ambiguous edit'
                 text=text.replace(change['old'],change['new'])
               assert hashlib.sha256(text.encode()).hexdigest()==item['after'],str(f)+' result mismatch'
               f.write_text(text)
-            pathlib.Path('publisher-proof/applied-edits.json').write_text(p.read_text())
+            pathlib.Path('publisher-proof/applied-edits.json').write_text(json.dumps(edits,ensure_ascii=False,indent=2))
           PY
       - run: npm ci --no-audit --no-fund
       - name: Real newsroom, source, permission and publication regressions
