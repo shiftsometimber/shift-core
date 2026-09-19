@@ -14,3 +14,42 @@ test('sitemap removes only the already-noindex workplace page; all mental-health
 test('the shared final response strips stale body validators but preserves security headers',async()=>{const req=new Request('https://shiftsometimber.co.uk/shift-health');const out=await withPublicShellContract(req,new Response(shell,{headers:{'Content-Type':'text/html','ETag':'old','Content-Length':'10','Content-Security-Policy':"default-src 'self'"}}));assert.equal(out.headers.get('ETag'),null);assert.equal(out.headers.get('Content-Length'),null);assert.equal(out.headers.get('Content-Security-Policy'),"default-src 'self'");assert((await out.text()).includes('SHIFT Newsroom'))});
 
 test('member login loads the existing auth adapter before any SST_API consumer and only once',()=>{const input='<html><head><script>window.SST_API_BASE=location.origin;</script><script>SST_API.getMe()</script></head><body>'+publicHeader+publicDrawer+'<main><form id="real-login">Login</form></main></body></html>';const once=reconcilePublicDocument(input,'/member-login'),twice=reconcilePublicDocument(once,'/member-login');assert.equal((once.match(/src="\/api-adapter-v33d\.js"/g)||[]).length,1);assert(once.indexOf('src="/api-adapter-v33d.js"')<once.indexOf('SST_API.getMe()'));assert.equal(twice,once)});
+
+
+test('surgical SEO overrides change only the agreed public title and description fields',()=>{
+ const page=(title='Old title',description='Old description')=>'<html><head><title>'+title+'</title><meta name="description" content="'+description+'"></head><body>'+publicHeader+publicDrawer+'<main><h1>Keep body</h1></main>'+publicFooter+'</body></html>';
+ const expectedTitles={
+  '/ask-timber':"Ask Timber: Men's Health Answers | Shift Some Timber",
+  '/advertise-with-us':"Men's Health Advertising UK | Shift Some Timber",
+  '/community':"Men's Weight Management Community | Shift Some Timber",
+  '/clinical-governance':"Clinical Governance & Decision Support | Shift Some Timber",
+  '/contact':"Contact SHIFT: Support & Partnerships | Shift Some Timber"
+ };
+ for(const [path,title] of Object.entries(expectedTitles)){
+  const out=reconcilePublicDocument(page(),path);
+  assert(out.includes('<title>'+title+'</title>'));
+  assert.match(out,/content="Old description"/);
+  assert.match(out,/<h1>Keep body<\/h1>/);
+ }
+ const expectedDescriptions={
+  '/decision-centre-methodology':"How SHIFT interprets UK obesity-treatment pathways, NICE tirzepatide criteria, NHS rollout, weight-management support and bariatric referral thresholds.",
+  '/downloads-resources':"Download free weight-management checklists for GP visits, medicines, bariatric surgery, provider safety, treatment preparation and long-term maintenance."
+ };
+ for(const [path,description] of Object.entries(expectedDescriptions)){
+  const out=reconcilePublicDocument(page(),path);
+  assert(out.includes('content="'+description+'">'));
+  assert.match(out,/<title>Old title<\/title>/);
+ }
+ const about=reconcilePublicDocument(page('Matt O’Brien: My 4½-Stone Weight Loss | Shift Some Timber','Existing about description'),'/about');
+ assert(about.includes('<title>Matt O’Brien: My 4½-Stone Weight Loss | Shift Some Timber</title>'));
+ assert.match(about,/content="Existing about description"/);
+});
+
+test('homepage keeps its ranking title and adds a decorative alt only to the known missing-alt image',()=>{
+ const page='<html><head><title>Shift Some Timber | UK Men\'s Weight & Health</title></head><body>'+publicHeader+publicDrawer+'<main><h1>Home</h1><img class="stigma" src="/assets/home-stigma-ruffled-v42p5.webp?v=1"><img src="/assets/other.webp" alt="Existing"></main>'+publicFooter+'</body></html>';
+ const once=reconcilePublicDocument(page,'/'),twice=reconcilePublicDocument(once,'/');
+ assert(once.includes("<title>Shift Some Timber | UK Men's Weight & Health</title>"));
+ assert.match(once,/<img alt="" class="stigma" src="\/assets\/home-stigma-ruffled-v42p5\.webp\?v=1">/);
+ assert.equal((once.match(/home-stigma-ruffled-v42p5/g)||[]).length,1);
+ assert.equal(twice,once);
+});
