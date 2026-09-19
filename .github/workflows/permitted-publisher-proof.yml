@@ -1,0 +1,74 @@
+name: Permitted Publisher Formats Proof
+on:
+  push:
+    branches: ['fix/publisher-permitted-formats-20260919']
+permissions:
+  contents: write
+concurrency:
+  group: permitted-publisher-formats
+  cancel-in-progress: false
+jobs:
+  proof:
+    if: github.repository == 'shiftsometimber/shift-core' && github.ref == 'refs/heads/fix/publisher-permitted-formats-20260919'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Materialise exact reviewed edits on the isolated branch
+        run: |
+          mkdir -p publisher-proof
+          python3 - <<'PY'
+          import pathlib,json,hashlib,subprocess
+          p=pathlib.Path('scripts/publisher-format-edits.json')
+          if p.exists():
+            main=subprocess.check_output(['git','ls-remote','origin','refs/heads/main'],text=True).split()[0]
+            assert main=='45458894d07a6f56554b57328c152264250203f6','Main changed; reconcile without overwriting'
+            edits=json.loads(p.read_text());allowed={'radar-source-policy-v1.js','radar-authoritative-scan-v1.js','radar-integration-v1.js','radar-auto-news-v1.js','radar-news-pages-v1.js','radar-live-email-v1.js','scripts/verify-shift-take-archive.mjs','scripts/verify-shift-take-live.mjs','tests/source-reuse-integration.test.mjs'}
+            assert len(edits)==len(allowed) and {e['path'] for e in edits}==allowed
+            for item in edits:
+              f=pathlib.Path(item['path']);text=f.read_text();assert hashlib.sha256(text.encode()).hexdigest()==item['before'],str(f)+' source mismatch'
+              for change in item['replacements']:
+                assert text.count(change['old'])==1,str(f)+' ambiguous edit'
+                text=text.replace(change['old'],change['new'])
+              assert hashlib.sha256(text.encode()).hexdigest()==item['after'],str(f)+' result mismatch'
+              f.write_text(text)
+            pathlib.Path('publisher-proof/applied-edits.json').write_text(p.read_text())
+          PY
+      - run: npm ci --no-audit --no-fund
+      - name: Real newsroom, source, permission and publication regressions
+        run: |
+          set -o pipefail
+          node --test tests/radar*.test.mjs tests/source-reuse*.test.mjs | tee publisher-proof/regressions.tap
+          node radar-scheduled-scan-staging.mjs | tee publisher-proof/scheduled-source-fixtures.log
+      - name: Compile without production credentials or deployment
+        run: |
+          set -o pipefail
+          npx wrangler deploy --dry-run --outdir publisher-proof/worker | tee publisher-proof/compile.log
+      - name: Commit only verified application edits to this same preview branch
+        run: |
+          if test -f scripts/publisher-format-edits.json; then
+            CURRENT=$(git rev-parse HEAD)
+            REMOTE=$(git ls-remote origin refs/heads/fix/publisher-permitted-formats-20260919 | cut -f1)
+            test "$CURRENT" = "$REMOTE"
+            git add radar-source-policy-v1.js radar-authoritative-scan-v1.js radar-integration-v1.js radar-auto-news-v1.js radar-news-pages-v1.js radar-live-email-v1.js scripts/verify-shift-take-archive.mjs scripts/verify-shift-take-live.mjs tests/source-reuse-integration.test.mjs
+            git rm scripts/publisher-format-edits.json
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Apply verified NICE summaries and original GPhC feed publication'
+            git push origin HEAD:refs/heads/fix/publisher-permitted-formats-20260919
+          fi
+      - name: Retain tested source and readable change
+        if: always()
+        run: |
+          mkdir -p publisher-proof
+          git rev-parse HEAD > publisher-proof/candidate-sha.txt
+          git diff 45458894d07a6f56554b57328c152264250203f6 -- radar-*.js tests/source-reuse*.mjs tests/radar-auto-news-publisher-permissions.test.mjs scripts/verify-shift-take*.mjs > publisher-proof/candidate.patch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: permitted-publisher-proof-${{ github.sha }}
+          path: publisher-proof/
+          retention-days: 14
