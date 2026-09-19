@@ -26,8 +26,16 @@ async function quiz(page){
 }
 async function signIn(page,id,{direct=false}={}){
  if(direct)await page.goto(origin+'/member-login?next='+encodeURIComponent('/member/dashboard?passport=1#journey'));
+ // A link click may settle at navigation commit while parser-blocking scripts
+ // are still loading. Wait for their real initialization, never force a submit.
+ await page.waitForURL(u=>u.pathname==='/member-login');
+ await page.waitForLoadState('load');
+ await page.waitForFunction(()=>{const f=document.querySelector('#previewRegister');return document.readyState==='complete'&&typeof window.SST_API?.login==='function'&&f?.elements.password.autocomplete==='current-password'&&f?.elements.firstName.required===false});
+ const necessary=page.getByRole('button',{name:'Necessary only',exact:true});
+ if(await necessary.isVisible())await necessary.click();
  await page.locator('#previewRegister [name="email"]').fill('probe'+id+'@example.invalid');
  await page.locator('#previewRegister [name="password"]').fill(secrets.password);
+ assert.equal(await page.locator('#previewRegister').evaluate(f=>f.checkValidity()),true,'Initialized sign-in form must be valid before submission');
  const loginResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/login'&&r.request().method()==='POST');
  await page.locator('#previewRegister [data-auth-submit]').click();
  const response=await loginResponse;assert.equal(response.status(),200,'Real password login must succeed');
@@ -48,13 +56,14 @@ try{
   const context=await browser.newContext({viewport:{width,height:900},recordVideo:{dir:out+'/'+device,size:{width,height:900}}});
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin===origin)return route.continue();if(u.hostname.endsWith('shiftsometimber.co.uk')&&u.pathname.startsWith('/v1/'))blockedProduct.push(u.pathname);return route.abort()});
   const page=await context.newPage();page.setDefaultTimeout(30000);
-  const errors=[],httpFailures=[],apiStatuses=[],consoleErrors=[],scripts=new Set();
+  const errors=[],httpFailures=[],apiStatuses=[],consoleErrors=[],navigations=[],scripts=new Set();
+  page.on('request',r=>{if(r.isNavigationRequest()){const u=new URL(r.url());navigations.push({path:u.pathname,method:r.method(),queryKeys:[...u.searchParams.keys()]})}});
   page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text().slice(0,400))});
   page.on('response',r=>{const u=new URL(r.url());if(u.origin!==origin)return;if(/javascript/.test(r.headers()['content-type']||''))scripts.add(u.pathname);if(u.pathname.startsWith('/v1/'))apiStatuses.push({path:u.pathname,method:r.request().method(),status:r.status()});if(r.status()>=500)httpFailures.push({path:u.pathname,status:r.status()})});
   const check=async(name,fn)=>{try{await fn();report.checks.push({device,name,pass:true});console.log('PASS '+device+': '+name)}catch(e){
    const me=await api(page,'/v1/me').catch(()=>null);
-   const diagnostic={path:new URL(page.url()).pathname,apiStatuses,consoleErrors,cookies:(await context.cookies()).map(({name,domain,path,httpOnly,secure,sameSite})=>({name,domain,path,httpOnly,secure,sameSite})),me:me?{status:me.status,error:me.body?.error||null,hasUser:!!me.body?.user}:null,dom:await page.evaluate(()=>({apiRoot:window.SST_API_BASE,hasAPI:!!window.SST_API,memberHidden:document.querySelector('#previewMember')?.hidden,memberClass:document.querySelector('#previewMember')?.className,authStatus:document.querySelector('#previewStatus')?.textContent})).catch(()=>null)};
+   const diagnostic={path:new URL(page.url()).pathname,navigations,apiStatuses,consoleErrors,cookies:(await context.cookies()).map(({name,domain,path,httpOnly,secure,sameSite})=>({name,domain,path,httpOnly,secure,sameSite})),me:me?{status:me.status,error:me.body?.error||null,hasUser:!!me.body?.user}:null,dom:await page.evaluate(()=>({readyState:document.readyState,apiRoot:window.SST_API_BASE,hasAPI:!!window.SST_API,memberHidden:document.querySelector('#previewMember')?.hidden,memberClass:document.querySelector('#previewMember')?.className,authStatus:document.querySelector('#previewStatus')?.textContent})).catch(()=>null)};
    report.checks.push({device,name,pass:false,error:e.message,diagnostic});await page.screenshot({path:out+'/'+device+'-failure.png',fullPage:true});writeFileSync(out+'/'+device+'-failure.html',await page.content());throw e;
   }};
   try{
@@ -95,9 +104,9 @@ try{
     const erased=await api(page,'/v1/privacy/health-tracking','DELETE');assert.equal(erased.status,200);const r=await api(page,'/v1/health-passport');assert.deepEqual(r.body.passport.records,[]);assert.equal(r.body.passport.trackingConsent,false);
    });
    await check('No uncaught script failures, server errors, product-data egress or Passport overflow',async()=>{
-    const rect=await page.locator('.hp-v1').evaluate(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,width:innerWidth}));assert.ok(rect.left>=-1&&rect.right<=rect.width+1);assert.deepEqual(errors,[]);assert.deepEqual(httpFailures,[]);assert.deepEqual(blockedProduct,[]);
+    const rect=await page.locator('.hp-v1').evaluate(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,width:innerWidth}));assert.ok(rect.left>=-1&&rect.right<=rect.width+1);assert.deepEqual(errors,[]);assert.deepEqual(httpFailures,[]);assert.deepEqual(blockedProduct,[]);assert.ok(!navigations.some(n=>n.queryKeys.includes('password')),'Native GET form fallback must not carry credentials');
    });
-  }finally{report.browserErrors.push({device,errors});report.failedRequests.push({device,httpFailures,blockedProduct,apiStatuses,consoleErrors});await context.close()}
+  }finally{report.browserErrors.push({device,errors});report.failedRequests.push({device,httpFailures,blockedProduct,apiStatuses,consoleErrors,navigations});await context.close()}
  }
 }catch(error){report.error=String(error.message);process.exitCode=1}
 finally{await browser.close();report.pass=report.checks.length===14&&report.checks.every(x=>x.pass)&&!report.error;writeFileSync(out+'/report.json',JSON.stringify(report,null,2));if(!report.pass)process.exitCode=1;console.log(JSON.stringify({pass:report.pass,checks:report.checks,error:report.error},null,2))}
