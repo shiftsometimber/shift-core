@@ -1,0 +1,28 @@
+name: Homepage Alt Proof
+on:
+  push:
+    branches: ['fix/home-alt-seo-20260919']
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Identify live homepage images without alt
+        run: |
+          node --input-type=module <<'NODE'
+          const r=await fetch('https://shiftsometimber.co.uk/',{headers:{'user-agent':'Shift-SEO-Acceptance/1.0'},signal:AbortSignal.timeout(15000)});
+          if(!r.ok)throw Error('homepage http '+r.status);
+          const html=await r.text();
+          const imgs=[...html.matchAll(/<img\b[^>]*>/gi)].map(m=>m[0]);
+          const missing=imgs.filter(tag=>!/(?:^|\s)alt\s*=\s*["'][^"']*["']/i.test(tag));
+          console.log(JSON.stringify({status:r.status,images:imgs.length,missingCount:missing.length,missing},null,2));
+          if(missing.length)process.exitCode=2;
+          NODE
