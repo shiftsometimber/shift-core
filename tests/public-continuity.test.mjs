@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {CONTINUITY_PATHS,continuityPages,renderContinuityDocument,continuityPublicRoute,continuitySitemap,addContinuityLinks,continuityEntries,OLD_LIFE_LINK,NEW_LIFE_LINK} from '../public-continuity.mjs';
+import {CONTINUITY_PATHS,CONTINUITY_REDIRECTS,continuityPages,renderContinuityDocument,continuityPublicRoute,continuitySitemap,addContinuityLinks,continuityEntries,OLD_LIFE_LINK,NEW_LIFE_LINK} from '../public-continuity.mjs';
 import {preserveContinuityContent} from '../public-continuity-preservation.mjs';
 const shell='<!doctype html><html><head><title>Programme</title><link href="/programme" rel="canonical"><meta name="description" content="old"><script defer src="/consent-v4a.js"></script></head><body class="programme-page one-shift"><header>Locked header</header><nav id="site-drawer">Locked drawer</nav><main id="main-content"><h1>Programme</h1>'+OLD_LIFE_LINK+'</main><footer>Locked footer</footer></body></html>';
 test('public pages retain shell and expose unique canonical, heading and accurate structured data',()=>{
@@ -17,5 +17,16 @@ test('only the exact authorised additions are removed for preservation; unrelate
  assert.ok(addContinuityLinks(shell,'/programme').includes(NEW_LIFE_LINK));assert.equal(addContinuityLinks(shell,'/'),shell);
 });
 test('sitemap gains exactly the two public pages once and retains every original entry',()=>{
- const input='<urlset><url><loc>https://shiftsometimber.co.uk/original</loc></url></urlset>',out=continuitySitemap(input);assert.equal((out.match(/<loc>/g)||[]).length,3);assert.ok(out.includes('<url><loc>https://shiftsometimber.co.uk/original</loc></url>'));assert.equal(continuitySitemap(out),out);
+ const input='<urlset><url><loc>https://shiftsometimber.co.uk/original</loc></url></urlset>',out=continuitySitemap(input);assert.equal((out.match(/<loc>/g)||[]).length,1+CONTINUITY_PATHS.length);assert.ok(out.includes('<url><loc>https://shiftsometimber.co.uk/original</loc></url>'));for(const path of CONTINUITY_PATHS)assert.ok(out.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'));assert.equal(continuitySitemap(out),out);
+});
+
+test('pretty Continuity aliases redirect to the existing canonical evidence pages without duplication',async()=>{
+ const get=async()=>new Response(shell,{headers:{'Content-Type':'text/html'}});
+ for(const [from,to] of Object.entries(CONTINUITY_REDIRECTS)){const r=await continuityPublicRoute(new Request('https://shiftsometimber.co.uk'+from+'?utm_source=test'),get);assert.equal(r.status,301);assert.equal(r.headers.get('location'),'https://shiftsometimber.co.uk'+to)}
+});
+test('portable Continuity front doors are substantial, linked and do not invent a clinical partner or reviewer',()=>{
+ for(const path of ['/clinic-gone-quiet','/provider-switch','/husband-help']){const html=renderContinuityDocument(shell,path),text=html.replace(/<[^>]+>/g,' ');assert.ok(text.split(/\s+/).filter(Boolean).length>180,path);assert.match(html,/\/life-back|\/articles\/stopping-glp1|\/start-here/);assert.doesNotMatch(html,/reviewedBy|named clinical partner|our pharmacy partner is/i)}
+ const switcher=renderContinuityDocument(shell,'/provider-switch');assert.match(switcher,/not promising a cheaper pen/i);assert.match(switcher,/not a guarantee/i);
+ const clinic=renderContinuityDocument(shell,'/clinic-gone-quiet');assert.match(clinic,/support should not disappear/i);assert.match(clinic,/including when treatment started elsewhere/i);
+ const partner=renderContinuityDocument(shell,'/husband-help');assert.match(partner,/food police/i);assert.match(partner,/Do not advise him to change, stop or restart prescription treatment/i);
 });
