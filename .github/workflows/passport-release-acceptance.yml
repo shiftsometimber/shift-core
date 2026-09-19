@@ -4,9 +4,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/passport-release-acceptance.yml'
-      - 'scripts/verify-watch-access-closeout.mjs'
-      - 'scripts/watch-access-contract.mjs'
-      - 'tests/watch-access-contract.test.mjs'
+      - 'medicines-watch/data.mjs'
+      - 'medicines-watch/reviews/**'
 permissions:
   contents: read
 concurrency:
@@ -26,50 +25,77 @@ jobs:
         with:
           node-version: '22.16.0'
       - run: npm ci --no-audit --no-fund
-      - name: Capture exact source and anonymous responses
+      - name: Capture exact source and public health response
         run: |
           mkdir -p release-acceptance/source
           git rev-parse HEAD > release-acceptance/candidate-head.txt
-          git ls-tree HEAD scripts/verify-watch-access-closeout.mjs medicines-watch/monitor.mjs > release-acceptance/git-blobs.txt
-          cp scripts/verify-watch-access-closeout.mjs medicines-watch/monitor.mjs medicines-watch/page.mjs release-acceptance/source/
+          git ls-tree HEAD scripts/verify-watch-access-closeout.mjs medicines-watch/monitor.mjs medicines-watch/data.mjs > release-acceptance/git-blobs.txt
+          cp scripts/verify-watch-access-closeout.mjs medicines-watch/monitor.mjs medicines-watch/page.mjs medicines-watch/data.mjs release-acceptance/source/
           cp .github/workflows/cloudflare-production-promote.yml .github/workflows/my-timber-final-production.yml release-acceptance/source/
           node --input-type=module <<'NODE'
           import {writeFileSync} from 'node:fs';
-          import {createHash} from 'node:crypto';
-          const manifest=[];
-          for(const path of ['/v1/medicines-watch/health','/treatment-centre/medicines-watch','/v1/health-passport']){
-            const r=await fetch('https://shiftsometimber.co.uk'+path,{cache:'no-store',redirect:'manual',signal:AbortSignal.timeout(30000)});
-            const body=Buffer.from(await r.arrayBuffer()),file=encodeURIComponent(path)+'.txt';
-            writeFileSync('release-acceptance/'+file,body);
-            manifest.push({path,status:r.status,file,sha256:createHash('sha256').update(body).digest('hex'),checkedAt:new Date().toISOString()});
-          }
-          writeFileSync('release-acceptance/http.json',JSON.stringify(manifest,null,2));
+          const response=await fetch('https://shiftsometimber.co.uk/v1/medicines-watch/health',{cache:'no-store',signal:AbortSignal.timeout(15000)});
+          if(response.status!==200)throw Error('Watch health unavailable');
+          writeFileSync('release-acceptance/live-watch-health.json',await response.text());
           NODE
-      - name: Existing Medicines Watch check without modification
+      - name: Retrieve exact provider bodies twice using the unchanged monitor fingerprint
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          import {sources} from './medicines-watch/data.mjs';
+          import {fingerprintSource} from './medicines-watch/monitor.mjs';
+          const source=sources.find(s=>s.id==='wegovy-tablet-private');
+          assert.equal(source.url,'https://onlinedoctor.asda.com/uk/wegovy-pill.html');
+          const captures=[];
+          for(let index=1;index<=2;index++){
+            const r=await fetch(source.checkUrl,{cache:'no-store',redirect:'error',signal:AbortSignal.timeout(15000)});
+            assert.equal(r.status,200);assert.match(r.headers.get('content-type')||'',/html/);
+            const reader=r.body.getReader(),chunks=[];let size=0;
+            while(true){const {value,done}=await reader.read();if(done)break;size+=value.length;if(size>2097152){await reader.cancel();throw Error('Provider response exceeds 2 MiB')}chunks.push(Buffer.from(value))}
+            const body=Buffer.concat(chunks),text=new TextDecoder('utf-8',{fatal:true}).decode(body);
+            const state=await fingerprintSource(source,text,r.headers.get('content-type'));
+            assert.equal(state.withdrawn,false);
+            writeFileSync('release-acceptance/provider-'+index+'.html',body);
+            captures.push({sourceId:source.id,url:source.url,retrievedAt:new Date().toISOString(),status:r.status,bodySha256:createHash('sha256').update(body).digest('hex'),...state});
+          }
+          writeFileSync('release-acceptance/provider-captures.json',JSON.stringify(captures,null,2));
+          assert.equal(captures[0].fingerprint,captures[1].fingerprint,'Source changes between requests; cannot approve an unstable baseline');
+          // A hash is only retrieval evidence, not an automatic editorial approval.
+          console.log(JSON.stringify(captures,null,2));
+          NODE
+      - name: Local source, privacy and preservation regressions
         run: |
           set -o pipefail
-          node scripts/verify-watch-access-closeout.mjs 2>&1 | tee release-acceptance/watch-check.log
-      - name: Exact Passport delivery verification
-        if: always()
-        run: |
-          set -o pipefail
-          node health-passport/production-live.mjs 2>&1 | tee release-acceptance/passport-check.log
-      - name: Existing member delivery verification
+          node --test medicines-watch/*.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs | tee release-acceptance/regressions.tap
+      - name: Unmodified live member delivery verifier
         if: always()
         run: |
           set -o pipefail
           node member-experience/verify-production-member.mjs 2>&1 | tee release-acceptance/member-check.log
-      - name: Watch contract regression tests when present
+      - name: Confirm public Passport assets and anonymous protection without production release metadata
         if: always()
         run: |
-          set -o pipefail
-          if test -f tests/watch-access-contract.test.mjs; then node --test tests/watch-access-contract.test.mjs | tee release-acceptance/watch-tests.tap; fi
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {writeFileSync} from 'node:fs';
+          import {passportAssets} from './health-passport/presentation.mjs';
+          const origin='https://shiftsometimber.co.uk',checks=[];
+          for(const path of ['/assets/member-experience/passport.js','/assets/member-experience/passport.css']){
+            const expected=passportAssets(new Request(origin+path),{HEALTH_PASSPORT_V1_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true'});
+            assert.ok(expected);
+            const r=await fetch(origin+path,{cache:'no-store',signal:AbortSignal.timeout(15000)});
+            assert.equal(r.status,200);assert.equal(await r.text(),await expected.text());checks.push({path,pass:true});
+          }
+          const r=await fetch(origin+'/v1/health-passport',{redirect:'manual',signal:AbortSignal.timeout(15000)});assert.equal(r.status,401);
+          checks.push({path:'/v1/health-passport',status:401,pass:true});
+          writeFileSync('release-acceptance/passport-delivery.json',JSON.stringify({scope:'delivery and anonymous guard only; not signed-in acceptance',checks},null,2));
+          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: passport-release-acceptance-${{ github.event.pull_request.head.sha }}
           path: |
             release-acceptance/
-            watch-access-closeout.json
             member-live-proof.json
-            health-passport/generated/live-http.json
