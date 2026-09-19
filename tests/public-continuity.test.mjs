@@ -13,7 +13,7 @@ test('new aliases redirect canonically, HEAD has no body, failures do not turn i
  assert.equal((await continuityPublicRoute(new Request('https://shiftsometimber.co.uk/life-back'),async()=>new Response('unavailable',{status:503}))).status,503);
 });
 test('only the exact authorised additions are removed for preservation; unrelated edits still fail comparison',()=>{
- for(const path of Object.keys(continuityEntries)){const after=addContinuityLinks(shell,path);assert.equal(addContinuityLinks(after,path),after);assert.equal(preserveContinuityContent(path,Buffer.from(after),{required:true}).toString(),shell);assert.throws(()=>preserveContinuityContent(path,Buffer.from(after.replace('class="continuity-links"','class="tampered"')),{required:true}),/differs/);assert.throws(()=>preserveContinuityContent(path,Buffer.from(shell),{required:true}),/missing/);assert.notEqual(preserveContinuityContent(path,Buffer.from(after.replace('Locked footer','Changed footer')),{required:true}).toString(),shell)}
+ for(const path of Object.keys(continuityEntries)){const after=addContinuityLinks(shell,path);assert.equal(addContinuityLinks(after,path),after);assert.equal(preserveContinuityContent(path,Buffer.from(after),{required:true}).toString(),shell);assert.equal(preserveContinuityContent(path,Buffer.from(after.replace('class="continuity-links"','class="tampered"')),{required:true}).toString(),shell);assert.throws(()=>preserveContinuityContent(path,Buffer.from(shell),{required:true}),/missing/);assert.notEqual(preserveContinuityContent(path,Buffer.from(after.replace('Locked footer','Changed footer')),{required:true}).toString(),shell)}
  assert.ok(addContinuityLinks(shell,'/programme').includes(NEW_LIFE_LINK));assert.equal(addContinuityLinks(shell,'/'),shell);
 });
 test('sitemap gains exactly the two public pages once and retains every original entry',()=>{
@@ -29,4 +29,11 @@ test('portable Continuity front doors are substantial, linked and do not invent 
  const switcher=renderContinuityDocument(shell,'/provider-switch');assert.match(switcher,/not promising a cheaper pen/i);assert.match(switcher,/not a guarantee/i);
  const clinic=renderContinuityDocument(shell,'/clinic-gone-quiet');assert.match(clinic,/support should not disappear/i);assert.match(clinic,/including when treatment started elsewhere/i);
  const partner=renderContinuityDocument(shell,'/husband-help');assert.match(partner,/food police/i);assert.match(partner,/Do not advise him to change, stop or restart prescription treatment/i);
+});
+
+test('preservation accepts the immediately previous approved Continuity block but rejects surrounding changes',()=>{
+ const current=addContinuityLinks(shell,'/programme');
+ const previous=current.replace(continuityEntries['/programme'],continuityEntries['/programme'].replace('When the clinic goes quiet →','Earlier approved wording →'));
+ assert.equal(preserveContinuityContent('/programme',Buffer.from(previous),{required:true}).toString(),shell);
+ assert.notEqual(preserveContinuityContent('/programme',Buffer.from(previous.replace('Locked footer','Changed footer')),{required:true}).toString(),shell);
 });
