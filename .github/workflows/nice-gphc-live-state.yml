@@ -1,0 +1,50 @@
+name: NICE GPhC Live Source State
+on:
+  push:
+    branches: ['fix/nice-gphc-source-policy-20260919']
+    paths: ['.github/workflows/nice-gphc-live-state.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'shiftsometimber/shift-core' && github.ref == 'refs/heads/fix/nice-gphc-source-policy-20260919'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: '06d2a952c02263abcd443c91c59ec6fca75cccd1'
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Read only the exact live source configuration and latest attempts
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          mkdir -p source-live-proof
+          node --input-type=module <<'NODE'
+          import {execFileSync} from 'node:child_process';
+          import {writeFileSync} from 'node:fs';
+          import {GPHC_RSS,NICE_TOPIC,NICE_TOPIC_ID} from './radar-source-policy-v1.js';
+          const sha=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+          if(sha!=='06d2a952c02263abcd443c91c59ec6fca75cccd1')throw Error('unexpected_source_revision');
+          if(!process.env.CLOUDFLARE_API_TOKEN)throw Error('read_credential_missing');
+          const query="SELECT s.id,s.authority,s.url,s.adapter,s.active,r.status last_status,r.completed_at last_attempt,r.detail_json FROM radar_sources s LEFT JOIN radar_scan_runs r ON r.id=(SELECT MAX(n.id) FROM radar_scan_runs n WHERE n.source_id=s.id AND n.source_url=s.url) WHERE s.id IN ('gphc-news','nice-diet-nutrition-obesity','nice-published-guidance') ORDER BY s.id";
+          if(!query.startsWith('SELECT '))throw Error('read_only_required');
+          const raw=execFileSync('npx',['wrangler','d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',query],{encoding:'utf8',maxBuffer:1024*1024});
+          const rows=JSON.parse(raw).flatMap(x=>x.results||[]),g=rows.find(x=>x.id==='gphc-news'),n=rows.find(x=>x.id===NICE_TOPIC_ID),b=rows.find(x=>x.id==='nice-published-guidance');
+          const configurationCorrect=g?.url===GPHC_RSS&&g?.adapter==='feed'&&n?.url===NICE_TOPIC&&n?.adapter==='html'&&Boolean(b);
+          const proof={checkedAt:new Date().toISOString(),applicationSha:sha,productionWrites:false,externalRequests:false,configurationCorrect,rows,sourceAccessVerified:configurationCorrect&&[g,n].every(x=>x.last_status==='completed'),note:'Configuration and source access are separate. A 403 stays a source failure; no publisher endpoint was probed or retried by this workflow.'};
+          writeFileSync('source-live-proof/source-state.json',JSON.stringify(proof,null,2));
+          console.log(JSON.stringify(proof,null,2));
+          if(!configurationCorrect)process.exitCode=1;
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nice-gphc-live-state-${{ github.sha }}
+          path: source-live-proof/
+          retention-days: 30
