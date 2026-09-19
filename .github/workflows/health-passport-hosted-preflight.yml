@@ -17,21 +17,30 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Verify the existing isolated-deployment credential is available
+      - name: Verify preview token and isolated resource visibility without writes
         env:
           PREVIEW_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
         run: |
           mkdir -p passport-hosted-proof
-          python3 - <<'PY'
-          import json,os,pathlib,sys
-          present=bool(os.environ.get('PREVIEW_TOKEN','').strip())
-          proof={'head':os.environ['GITHUB_SHA'],'previewCredentialAvailable':present,'productionCredentialUsed':False,'productionWrites':False,'deploymentAttempted':False}
-          pathlib.Path('passport-hosted-proof/preflight.json').write_text(json.dumps(proof,indent=2))
-          if not present:
-              print('::error::The existing CLOUDFLARE_PREVIEW_API_TOKEN is not available to this branch workflow. Hosted isolated sign-in acceptance cannot run; no production-token fallback is permitted.')
-              sys.exit(1)
-          print('Existing isolated preview credential is present. No credential value or scope is printed, and no deployment or database write has occurred.')
-          PY
+          node --input-type=module <<'NODE'
+          import {writeFileSync} from 'node:fs';
+          const token=process.env.PREVIEW_TOKEN,account='9e5386dcf455be34c582d93f8bfc79e6';
+          const proof={head:process.env.GITHUB_SHA,previewCredentialAvailable:!!token?.trim(),productionCredentialUsed:false,productionWrites:false,deploymentAttempted:false,checks:[]};
+          try{
+            if(!token?.trim())throw Error('preview_credential_missing');
+            for(const [name,path] of [['token','/user/tokens/verify'],['databases','/accounts/'+account+'/d1/database?per_page=100']]){
+              const response=await fetch('https://api.cloudflare.com/client/v4'+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000)});
+              const body=await response.json();
+              const item={name,status:response.status,success:body.success===true,errorCodes:(body.errors||[]).map(x=>x.code)};
+              if(name==='token')item.active=body.result?.status==='active';
+              proof.checks.push(item);
+              if(!response.ok||!body.success||(name==='token'&&!item.active))throw Error('preview_'+name+'_verification_failed');
+            }
+            proof.pass=true;
+          }catch(error){proof.pass=false;proof.error=error.message;process.exitCode=1}
+          writeFileSync('passport-hosted-proof/preflight.json',JSON.stringify(proof,null,2));
+          console.log(JSON.stringify(proof,null,2));
+          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
