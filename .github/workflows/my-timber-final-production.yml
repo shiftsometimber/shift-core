@@ -1,29 +1,42 @@
 name: My Timber Final Production Candidate
-
 on:
+  push:
+    branches: ['verify/passport-live-closeout-20260919']
+    paths: ['.github/workflows/my-timber-final-production.yml']
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   id-token: write
-
 concurrency:
   group: my-timber-final-production
   cancel-in-progress: false
-
 jobs:
   billy-iphone-candidate:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' || (github.event_name == 'push' && github.ref == 'refs/heads/verify/passport-live-closeout-20260919' && github.actor == 'shiftsometimber')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Lock acceptance to the already deployed application
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git diff --exit-code 618d519f8c9210d4c3bfeceac40a1ca02fae6672 -- . ':!.github/workflows/'
+          python3 - <<'PY'
+          import json,os,urllib.request
+          req=urllib.request.Request('https://api.github.com/repos/shiftsometimber/shift-core/git/ref/heads/main',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+          with urllib.request.urlopen(req,timeout=20) as r: data=json.load(r)
+          assert data['object']['sha']=='618d519f8c9210d4c3bfeceac40a1ca02fae6672','Production source moved'
+          PY
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
@@ -42,10 +55,9 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Prove activated Passport with synthetic production accounts
-        if: ${{ hashFiles('health-passport/production-browser.mjs') != '' }}
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
-          PASSPORT_RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          PASSPORT_RELEASE_SHA: 618d519f8c9210d4c3bfeceac40a1ca02fae6672
         run: node health-passport/production-browser.mjs
       - name: Retain Passport signed-in production evidence
         if: always()
