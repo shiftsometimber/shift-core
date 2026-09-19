@@ -22,6 +22,9 @@ test('dedicated newsroom is canonical, globally ordered, and preserves article U
     assert.equal((html.match(/data-news-list/g)||[]).length,2);
     assert.match(html,/href="\/medicine-news\/article-2"/);
     assert.match(html,/<header>Approved header<\/header>/);
+    for(const key of ['twitter:card','twitter:title','twitter:description','twitter:image'])assert.equal((html.match(new RegExp('name="'+key+'"','g'))||[]).length,1);
+    const collection=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    assert.equal(collection.publisher.logo.url,'https://shiftsometimber.co.uk/assets/shift-wordmark.png');
     const redirect = await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news'),env);
     assert.equal(redirect.status,301);
     assert.equal(redirect.headers.get('location'),'https://shiftsometimber.co.uk/shift-newsroom');

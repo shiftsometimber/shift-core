@@ -390,6 +390,8 @@ jobs:
         run: node scripts/verify-watch-access-closeout.mjs
       - name: Prove the complete SEO closeout on live traffic
         run: node scripts/verify-seo-closeout-live.mjs
+      - name: Prove repaired templates, sharing cards, direct links and real FAQ destinations
+        run: node scripts/verify-seo-template.mjs --live
       - name: Retain public preservation evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -406,6 +408,7 @@ jobs:
             newsroom-publication-proof.json
             newsroom-order-proof.json
             seo-closeout-live-proof.json
+            seo-template-live-proof/
       - name: Prove deployed public audit repairs
         run: node scripts/verify-public-audit-live.mjs
       - name: Prove deployed Progress client matches current Git authority

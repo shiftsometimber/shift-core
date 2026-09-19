@@ -30,3 +30,14 @@ test('homepage preservation allows only the exact approved stigma alt improvemen
  const changed=publicPageEvidence(path,200,approved.replace('<p>Keep</p>','<p>Changed</p>'),{hash});
  assert.throws(()=>assertPublicPagesPreserved([changed],[a]),/changed outside/);
 });
+
+test('Programme allows only the exact sharing tag and direct Journey destination, with all other bytes locked',()=>{
+ const path='/programme',tag='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">',old='<a href="/member/journey">Open Journey →</a>',next='<a href="/member/dashboard#journey">Open Journey →</a>',base='<html><head></head><body>'+old+'<p>Keep</p></body></html>',fixed=base.replace('</head>',tag+'</head>').replace(old,next);
+ const evidence=html=>publicPageEvidence(path,200,html,{hash}),a=evidence(base),b=evidence(fixed);
+ assert.equal(assertPublicPagesPreserved([b],[a]),'identical');
+ assert.notEqual(a.sha256,b.sha256);
+ for(const bad of [fixed.replace('<p>Keep</p>','<p>Changed</p>'),fixed.replace('#journey','#wrong'),fixed.replace('Open Journey','Different label'),fixed.replace('og-default.jpg','wrong.jpg')])assert.throws(()=>assertPublicPagesPreserved([evidence(bad)],[a]),/changed outside/);
+ assert.throws(()=>evidence(fixed.replace(tag,tag+tag)),/duplicate/);
+ assert.throws(()=>evidence(fixed.replace(next,next+next)),/duplicate/);
+ assert.throws(()=>assertPublicPagesPreserved([a],[b]),/missing/);
+});

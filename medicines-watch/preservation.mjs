@@ -49,6 +49,16 @@ function normaliseShiftHealthTwitterImage(body){
  return {body:Buffer.from(html.replace(SHIFT_HEALTH_TWITTER_IMAGE,'')),twitterImage:matches===1};
 }
 
+function normaliseProgrammeSeo(body){
+ const html=body.toString('utf8');
+ requireThat(Buffer.from(html).equals(body),'Programme must be valid UTF-8');
+ const oldLink='<a href="/member/journey">Open Journey →</a>',newLink='<a href="/member/dashboard#journey">Open Journey →</a>';
+ const count=value=>html.split(value).length-1;
+ requireThat(count(SHIFT_HEALTH_TWITTER_IMAGE)<=1,'Programme has duplicate approved Twitter images');
+ requireThat(count(oldLink)+count(newLink)<=1,'Programme has duplicate approved Journey links');
+ return {body:Buffer.from(html.replace(SHIFT_HEALTH_TWITTER_IMAGE,'').replace(newLink,oldLink)),twitterImage:count(SHIFT_HEALTH_TWITTER_IMAGE)===1,journeyLink:count(newLink)===1};
+}
+
 const HOME_STIGMA_ALT='Men&#39;s health stigma and asking for support';
 function normaliseHomeStigmaAlt(body){
  const html=body.toString('utf8');
@@ -72,8 +82,8 @@ export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=fal
   const related=normaliseTreatmentRelatedGuide(body);
   const treatments=normaliseTreatments(related.body,requireTreatmentsEntry);
   preserved={body:treatments.body,entry:treatments.entry,relatedGuide:true,revision:related.revision,authoritySha256:hash(related.body),authorityBytes:related.body.length};
- }else preserved=path==='/'?normaliseHomeStigmaAlt(body):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
- return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide,relatedGuideRevision:preserved.revision,authoritySha256:preserved.authoritySha256,authorityBytes:preserved.authorityBytes}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:path==='/'?{homeStigmaAlt:preserved.homeStigmaAlt}:{})};
+ }else preserved=path==='/'?normaliseHomeStigmaAlt(body):path==='/programme'?normaliseProgrammeSeo(body):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
+ return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide,relatedGuideRevision:preserved.revision,authoritySha256:preserved.authoritySha256,authorityBytes:preserved.authorityBytes}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:path==='/programme'?{programmeTwitterImage:preserved.twitterImage,programmeJourneyLink:preserved.journeyLink}:path==='/'?{homeStigmaAlt:preserved.homeStigmaAlt}:{})};
 }
 
 export function assertPublicPagesPreserved(pages,baseline){
@@ -105,6 +115,13 @@ export function assertPublicPagesPreserved(pages,baseline){
    if(before.shiftHealthTwitterImage)equal(current.shiftHealthTwitterImage,true,'SHIFT Health is missing the approved Twitter image');
    equal(current.preservedSha256,before.preservedSha256,'SHIFT Health changed outside its approved Twitter image');
    equal(current.preservedBytes,before.preservedBytes,'SHIFT Health size changed outside its approved Twitter image');
+   continue;
+  }
+  if(current.path==='/programme'){
+   if(before.programmeTwitterImage)equal(current.programmeTwitterImage,true,'Programme is missing the approved Twitter image');
+   if(before.programmeJourneyLink)equal(current.programmeJourneyLink,true,'Programme is missing the direct Journey link');
+   equal(current.preservedSha256,before.preservedSha256,'Programme changed outside the exact approved SEO metadata and Journey destination');
+   equal(current.preservedBytes,before.preservedBytes,'Programme size changed outside the exact approved SEO metadata and Journey destination');
    continue;
   }
   equal(current.sha256,before.sha256,current.path+' changed outside the approved Treatments addition');
