@@ -54,3 +54,18 @@ test('homepage keeps its ranking title and adds a decorative alt only to the kno
  assert.equal((once.match(/home-stigma-ruffled-v42p5/g)||[]).length,1);
  assert.equal(twice,once);
 });
+
+test('assumed-live treatment wording removes only obsolete information-only copy and keeps partner roles unnamed',()=>{
+ const source='<html><head><title>Mounjaro</title></head><body>'+publicHeader+publicDrawer+'<main><p>Shift is currently providing evidence-led information and decision support. It is not currently supplying medication through this page.</p><p>Keep me.</p></main>'+publicFooter+'</body></html>';
+ const out=reconcilePublicDocument(source,'/mounjaro');
+ assert.match(out,/Treatment access through SHIFT is subject to clinical assessment and current partner availability\. No stock available today\./);
+ assert.doesNotMatch(out,/not currently supplying medication/i);
+ assert.match(out,/Keep me\./);
+ assert.doesNotMatch(out,/prescribed by|dispensed by|clinical partner is|pharmacy partner is/i);
+ assert.equal(reconcilePublicDocument(out,'/mounjaro'),out);
+});
+test('unrelated pages and already-current treatment copy are not rewritten',()=>{
+ const source='<html><head><title>Page</title></head><body>'+publicHeader+publicDrawer+'<main><p>SHIFT does not prescribe. Clinical decisions belong to a qualified clinician.</p></main>'+publicFooter+'</body></html>';
+ assert.match(reconcilePublicDocument(source,'/shift-health/testosterone-energy'),/SHIFT does not prescribe/);
+ assert.match(reconcilePublicDocument(source,'/mounjaro'),/SHIFT does not prescribe/);
+});
