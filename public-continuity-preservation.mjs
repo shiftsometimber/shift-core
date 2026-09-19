@@ -18,8 +18,14 @@ export function preserveContinuityContent(path,input,{required=false}={}){
  html=html.replace(actual,'');
  html=html.replace(entry,'');
  if(path==='/programme'){
-  if(html.split(NEW_LIFE_LINK).length!==2)throw Error('Programme Life Back link differs from exact release source');
-  html=html.replace(NEW_LIFE_LINK,OLD_LIFE_LINK);
+  // Before deployment the live baseline still contains the previous approved
+  // Programme Continuity block and old /member/progress link. After deployment
+  // it contains the current block and NEW_LIFE_LINK. Both normalise to the same
+  // pre-Continuity authority for an exact surrounding-byte comparison.
+  const newCount=html.split(NEW_LIFE_LINK).length-1,oldCount=html.split(OLD_LIFE_LINK).length-1;
+  if(newCount===1&&oldCount===0)html=html.replace(NEW_LIFE_LINK,OLD_LIFE_LINK);
+  else if(newCount===0&&oldCount===1){}
+  else throw Error('Programme Life Back link differs from approved transition states');
  }
  return Buffer.from(html);
 }
