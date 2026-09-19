@@ -29,7 +29,7 @@ async function registerWithVerification(request,env,ctx,next){
   await recordAudit(env.DB,userId,'auth.email_verification_required',{delivery});
 
   const headers=new Headers(response.headers);headers.set('Set-Cookie',clearSessionCookie(request));appendLegacyHostCookieClear(headers,request);headers.set('Cache-Control','no-store');
-  return new Response(JSON.stringify({...data,emailVerified:false,verificationRequired:true,verificationDelivery:delivery,message:'Check your email and verify your address before signing in.'}),{status:response.status,headers:{...Object.fromEntries(headers),'Content-Type':'application/json; charset=utf-8'}});
+  return new Response(JSON.stringify({...data,emailVerified:false,verificationRequired:true,verificationDelivery:delivery,message:delivery==='sent'?'Check your email and verify your address before signing in.':'Your account was created, but we could not send the verification email. Please request a fresh link or contact support.'}),{status:response.status,headers:{...Object.fromEntries(headers),'Content-Type':'application/json; charset=utf-8'}});
 }
 
 async function loginWithVerification(request,env,ctx,next){
