@@ -303,6 +303,25 @@ export const seoMetadataOverrides=Object.freeze({
   '/decision-centre-methodology': {description:"How SHIFT interprets UK obesity-treatment pathways, NICE tirzepatide criteria, NHS rollout, weight-management support and bariatric referral thresholds."},
   '/downloads-resources': {description:"Download free weight-management checklists for GP visits, medicines, bariatric surgery, provider safety, treatment preparation and long-term maintenance."}
 });
+const assumedLiveTreatmentCopy=Object.freeze({
+ '/mounjaro':'Treatment access through SHIFT is subject to clinical assessment and current partner availability. No stock available today.',
+ '/wegovy':'Treatment access through SHIFT is subject to clinical assessment and current partner availability. No stock available today.',
+ '/wegovy-tablet':'Treatment access through SHIFT is subject to clinical assessment and current partner availability. No stock available today.',
+ '/orlistat':'Treatment access through SHIFT is subject to clinical assessment and current partner availability. No stock available today.'
+});
+function reconcileAssumedLiveTreatmentCopy(html,path){
+ const replacement=assumedLiveTreatmentCopy[path];if(!replacement)return html;
+ // Remove only obsolete public information-only wording. Partner roles remain deliberately
+ // unspecified until Matt authorises the separate regulated hand-off work.
+ const patterns=[
+  /Shift is currently providing evidence-led information and decision support\.\s*It is not currently supplying medication[^<]*/ig,
+  /SHIFT is currently providing evidence-led information and decision support\.\s*It is not currently supplying medication[^<]*/ig,
+  /SHIFT does not currently supply medication[^<]*/ig,
+  /Shift does not currently supply medication[^<]*/ig
+ ];
+ for(const pattern of patterns)html=html.replace(pattern,replacement);
+ return html;
+}
 export const legacyAuthorityRedirects=Object.freeze({
   '/health-mot':'/shift-health/health-mot',
   '/health-mot.html':'/shift-health/health-mot',
@@ -339,6 +358,7 @@ export function reconcilePublicDocument(html,path){
  path=normal(path);
  if(!publicShellPath(path)||!/<html\b/i.test(html)||!/<main\b/i.test(html))return html;
  html=applySeoMetadata(html,path);
+ html=reconcileAssumedLiveTreatmentCopy(html,path);
  html=html.replace(/<header\b(?=[^>]*class=["'][^"']*\bsite-header\b)[^>]*>[\s\S]*?<\/header>/i,()=>current(publicHeader,path));
  html=html.replace(/<aside\b(?=[^>]*id=["']site-drawer["'])[^>]*>[\s\S]*?<\/aside>/i,()=>current(publicDrawer,path));
  if(/<footer\b(?=[^>]*class=["'][^"']*\bsite-footer\b)/i.test(html))html=html.replace(/<footer\b(?=[^>]*class=["'][^"']*\bsite-footer\b)[^>]*>[\s\S]*?<\/footer>/i,()=>current(publicFooter,path));
