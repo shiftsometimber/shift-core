@@ -1,35 +1,31 @@
 # Activation and measurement — 19 September 2026
 
-Owner-authorised next block after Health Passport v1. Production baseline at preparation: c478c969ae74a67906b0d3beac2d22a079a3ce71. No redesign, medicine availability changes, new analytics vendor, member-data migration or customer-record deletion.
+Owner-authorised next block after Health Passport v1. Reconciled with deployed main 06d2a952c02263abcd443c91c59ec6fca75cccd1; the NICE/GPhC source changes are retained. The previously prepared branch is continued, not replaced with a competing implementation. No redesign, stock/clinical/payment changes, new analytics vendor, tracking-table migration or deletion of customer records.
 
-## Exact scope
+## Scope
 
-1. Serve the existing analytics-bootstrap-v1.js from this repository. Load the existing GTM only after an explicit analytics opt-in, never on member/authentication, health-record, payment routes or unrecognised query/hash values. Keep Google advertising consent denied. Existing event definitions are deliberately unchanged because duplicate transmission depends on the live GTM configuration, not simply the number of local event objects.
-2. Use the existing protected /v1/hq/journey endpoint for a source-of-truth activation cohort: account created, email verified, signed in and a first successful Journey/Passport save. Return rates use fully observed day windows. Exclude known commissioning fixtures. Do not turn missing data into zero, raw events into customers, or an aggregate into a clinical efficacy claim. No new tracking table or identifiers sent to a marketing platform.
-3. Explain verification-email delivery failure accurately and place a ten-second deadline on server-side CAPTCHA verification. Do not disable CAPTCHA, remove email verification or change password/security policy.
+1. Serve the existing analytics-bootstrap-v1.js from Git. The existing GTM loads only after explicit analytics opt-in, not on member/authentication, health-record/questionnaire or payment routes. Unknown query, encoded path and fragment values suppress collection. Advertising consent remains denied. Do not designate existing page-open or form-attempt events as completed conversions.
+2. Use the existing authenticated /v1/hq/journey endpoint for an aggregate account cohort: created, email verified, signed in, then a successful audited Journey/Passport save. Ordered transitions use the same account, not unrelated stage totals. Set-based cohort joins avoid repeated per-person history reads. Exclude known commissioning records; keep zero mature denominators null.
+3. Verification-email delivery failure receives an accurate recovery message, not a false claim that a message was sent. Server-side CAPTCHA verification has a ten-second deadline and retains action, hostname and token checks. Email verification, password policy, login protections and clinical boundaries are unchanged.
 
-## Measurement tradeoffs
+## Measurement limitations
 
-This deliberately changes collection coverage. Private/member activity belongs in controlled first-party reporting, not GA4. Historical GA4 and post-change traffic are not directly comparable. Only recognised utm_source/utm_medium values are allowed at bootstrap; unknown parameters, campaign values and fragments suppress collection rather than risk sending identifiers. A future campaign taxonomy requires an explicit reviewed allowlist; do not silently permit arbitrary campaign text.
+Week one means days 1–7 after registration, with eight complete days required. Week four means days 21–27 with 28 complete days required. Returns are observed authenticated logins or successful Journey/Passport writes, not all passive visits. First save is not a health outcome. Missing historical audit entries and erased accounts can reduce observed counts. Unknown staff/test activity can remain; no claim of perfect internal-traffic exclusion.
 
-Known synthetic accounts are excluded using the actual commissioning audit actions and address families. Unknown staff activity can remain and must be labelled; no claim is made that all internal traffic is identifiable. Existing pairwise event transitions now require ordered events for the same account and source=server; they are not a cumulative registration funnel. Historical registration_started is only emitted on successful account creation, so it cannot measure abandonment.
+Private activity is first-party HQ reporting, not GA4. Historical and post-change Google traffic coverage are not directly comparable. Campaign collection accepts only a bounded source/medium list; this does not provide joined acquisition-to-activation attribution. Anonymous Start Here completion remains unavailable from the cohort records. No health answers, measurements, authentication tokens or free text are added to marketing analytics by this change.
 
-Week one is days 1–7 after signup and requires eight complete days; week four is days 21–27 and requires 28 complete days. Return evidence is authenticated logins or successful Journey/Passport writes, not every passive visit. All output is owner/HQ-only aggregate data. Zero mature members means a null rate, not 0% retention.
+## Proof boundaries
 
-## Evidence boundaries
+Ordinary registration/email verification/login/reset tests use actual application handlers with fictional SQLite accounts, a recording EMAIL adapter, no commissioning identity and AUTO_VERIFY_EMAIL=false. Siteverify fixtures prove response handling but not completion of a real human CAPTCHA or inbox delivery. Do not label the complete ordinary production signup journey verified from these tests.
 
-Tests exercise actual ordinary registration, email-token verification, login, reset and session modules against real SQLite, with no commissioning identity and AUTO_VERIFY_EMAIL=false. EMAIL transport is recorded in memory and Siteverify responses are controlled fixtures. This proves module behaviour, not actual inbox placement or a production human CAPTCHA challenge. Do not call the complete ordinary production signup gate green on these tests alone.
+Browser privacy checks use real Chromium with external requests intercepted. The additional consent-stack test executes the captured current consent/config/event scripts with the candidate bootstrap and clicks the actual consent buttons in fixture HTML. This is stronger than a bootstrap-only test, but not a complete live GTM configuration audit or full-site browser walkthrough.
 
-The existing hosted full-dashboard/Passport proof remains valid; this block does not claim to retest physical Safari/iPhone, clinical fulfilment or payment. Public/member HTML is not changed by the analytics asset or reporting module.
+Source workflow is contents:read with persisted credentials disabled. No temporary encoded patches or automatic repository writes remain. Full PR checks and controlled production/preservation gates must pass. Production acceptance must match the deployed bootstrap bytes and record the owner-only aggregate, without exposing underlying account/audit rows.
 
-## Acceptance
+## Separate approved work
 
-Run activation-measurement tests plus the existing auth, member, Passport and public preservation regressions. Compile the real Worker with the locked toolchain. Verify browser network attempts at both consent states and private routes. Before production, retain the exact source revision, confirm main has not advanced, pass existing repository gates, and keep rollback explicit. Live acceptance must prove exact bootstrap bytes and the existing auth/account protections without creating unapproved production accounts or exposing health data.
+Five existing articles need substantive editorial strengthening and source review. The small real-user pilot needs real participants and a clear usability protocol. Neither is complete merely because this release passes. NICE/GPhC access and reuse dependencies remain in issue #743; this work does not weaken their restrictions.
 
-Sources supporting implementation boundaries:
+Primary implementation references:
+- https://developers.google.com/tag-platform/security/concepts/consent-mode
 - https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
-- https://developers.cloudflare.com/turnstile/troubleshooting/testing/
-- https://support.google.com/analytics/answer/6366371?hl=en
-- https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events
-
-The five-page editorial strengthening and real-user pilot are separate work items, not silently claimed complete by this release.

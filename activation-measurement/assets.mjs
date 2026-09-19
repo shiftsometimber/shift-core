@@ -8,7 +8,7 @@ export const bootstrap=String.raw`(function(window,document){
  var path=location.pathname.replace(/\.html$/,'').replace(/\/+$/,'')||'/';
  // Never initialise third-party analytics on account, health-record or payment
  // surfaces. Auth tokens and return destinations must not reach tag managers.
- var privatePage=/^\/(?:member(?:[/-]|$)|my-timber(?:\/|$)|my-shift(?:\/|$)|hq(?:[/-]|$)|v1(?:\/|$)|account(?:[/-]|$)|reset-password(?:[/.]|$)|verify-email(?:[/.]|$)|treatment-order(?:[/.]|$)|checkout(?:[/.]|$)|payment(?:[/.]|$)|confirmation(?:[/.]|$)|health-mot(?:[/.]|$)|shift-health(?:\/|$))/.test(path);
+ var privatePage=/^\/(?:start-here(?:[/.]|$)|treatment-finder(?:[/.]|$)|how-are-you-feeling(?:[/.]|$)|member(?:[/-]|$)|my-timber(?:\/|$)|my-shift(?:\/|$)|hq(?:[/-]|$)|v1(?:\/|$)|account(?:[/-]|$)|reset-password(?:[/.]|$)|verify-email(?:[/.]|$)|treatment-order(?:[/.]|$)|checkout(?:[/.]|$)|payment(?:[/.]|$)|confirmation(?:[/.]|$)|health-mot(?:[/.]|$)|shift-health(?:\/|$))/.test(path);
  var querySafe=true;
  var sources=['google','bing','facebook','instagram','x','email','newsletter','partner','referral'];
  var media=['organic','cpc','paid_social','social','email','newsletter','partner','referral'];
@@ -19,7 +19,7 @@ export const bootstrap=String.raw`(function(window,document){
  });}catch(e){querySafe=false;}
  // Unknown query/hash values are excluded, not merely renamed after collection.
  var hashSafe=!location.hash||['#top','#main','#cookie-choices'].indexOf(location.hash)>=0;
- var permitted=!privatePage&&querySafe&&hashSafe&&location.hostname==='shiftsometimber.co.uk';
+ var permitted=!privatePage&&/^\/[a-z0-9/_-]*$/i.test(path)&&querySafe&&hashSafe&&location.hostname==='shiftsometimber.co.uk';
  window.SST_ANALYTICS_SUPPRESSED=!permitted;
  window['ga-disable-'+GA]=true;
  window.dataLayer=window.dataLayer||[];

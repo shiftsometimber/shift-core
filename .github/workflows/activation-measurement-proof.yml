@@ -10,7 +10,7 @@ on:
       - 'auth-email-verification-v1.js'
       - 'turnstile-auth-v1.js'
       - 'worker-entry-v6.js'
-      - '.github/workflows/activation-measurement-proof.yml'
+      - '.github/workflows/activation-*.yml'
 permissions:
   contents: read
 concurrency:
@@ -29,21 +29,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Record exact current source without repository or production writes
+      - name: Record source without repository or production writes
         run: |
           mkdir -p activation-proof
           test ! -f activation-measurement/release-gate.patch
           git rev-parse HEAD > activation-proof/source-sha.txt
-          python3 - <<'PY'
-          import pathlib,subprocess,zipfile
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          with zipfile.ZipFile('activation-proof/current-source.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for value in paths:
-              p=pathlib.Path(value)
-              if p.is_file() and p.suffix in {'.js','.mjs','.json','.jsonc','.sql','.yml','.html','.css','.md','.py'}:z.write(p,str(p))
-          PY
       - run: npm ci --no-audit --no-fund
-      - name: Actual account, consent, database and existing member regressions
+      - name: Account, consent, database and member regressions
         run: |
           set -o pipefail
           node --test activation-measurement/*.test.mjs tests/member-auth*.test.mjs tests/turnstile-auth-v1.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee activation-proof/regressions.tap
@@ -58,7 +50,7 @@ jobs:
           python3 -m playwright install --with-deps chromium
       - name: Browser consent boundaries without Google transmission
         run: python3 activation-measurement/browser-proof.py
-      - name: Capture the current public signup and tracking sources without submitting forms
+      - name: Capture current public sources without submitting forms
         run: |
           node --input-type=module <<'NODE'
           import {mkdirSync,writeFileSync} from 'node:fs';
@@ -71,14 +63,17 @@ jobs:
               if(pages.includes(path))for(const m of body.toString().matchAll(/<script\b[^>]*src=["']([^"']+)["']/gi)){const u=new URL(m[1],origin+path);if(u.origin===origin)queue.add(u.pathname+u.search)}
             }catch(e){records.push({path,error:e.message})}
           }
-          writeFileSync(dir+'/manifest.json',JSON.stringify(records,null,2));console.log('Read-only source capture:',records.length,'responses. No signup submitted.');
+          writeFileSync(dir+'/manifest.json',JSON.stringify(records,null,2));console.log('Read-only capture:',records.length,'responses; no signup submitted.');
           NODE
-      - name: Retain readable change and documentation
+      - name: Actual current consent, config and event scripts tested together
+        run: python3 activation-measurement/consent-stack-proof.py
+      - name: Retain readable change and source
         if: always()
         run: |
           mkdir -p activation-proof
           git diff 06d2a952c02263abcd443c91c59ec6fca75cccd1 -- activation-measurement/ worker-entry-v6.js auth-email-verification-v1.js turnstile-auth-v1.js journey-analytics-v1.js .github/workflows/ > activation-proof/candidate.patch
           cp activation-measurement/README.md activation-proof/README.md
+          cp activation-measurement/pilot-protocol.md activation-proof/pilot-protocol.md
       - uses: actions/upload-artifact@v4
         if: always()
         with:

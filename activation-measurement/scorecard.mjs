@@ -20,16 +20,20 @@ export async function activationScorecard(DB,options={}){
  CASE WHEN a.email_verified=1 AND julianday(a.email_verified_at)>=julianday(u.created_at) AND julianday(a.email_verified_at)<=(SELECT asof FROM bounds) THEN julianday(a.email_verified_at) END verified
  FROM users u JOIN user_auth a ON a.user_id=u.id
  WHERE julianday(u.created_at)>=(SELECT since FROM bounds) AND julianday(u.created_at)<(SELECT asof FROM bounds) AND NOT ${TEST_ACCOUNT_SQL}
- ), observed AS (
- SELECT c.*,
- (SELECT MIN(julianday(l.created_at)) FROM audit_log l WHERE l.user_id=c.id AND l.action='auth.login' AND julianday(l.created_at)>=c.verified AND julianday(l.created_at)<=(SELECT asof FROM bounds)) signed_in,
- (SELECT MIN(julianday(l.created_at)) FROM audit_log l WHERE l.user_id=c.id AND l.action IN ('my_journey.update','passport.add','passport.update') AND julianday(l.created_at)>=c.verified AND julianday(l.created_at)<=(SELECT asof FROM bounds)) first_save
- FROM cohort c
+ ), logins AS (
+ SELECT c.id,MIN(julianday(l.created_at)) signed_in
+ FROM cohort c JOIN audit_log l ON l.user_id=c.id AND l.action='auth.login'
+ WHERE julianday(l.created_at)>=c.verified AND julianday(l.created_at)<=(SELECT asof FROM bounds)
+ GROUP BY c.id
  ), staged AS (
- SELECT o.*,
- EXISTS(SELECT 1 FROM audit_log r WHERE r.user_id=o.id AND r.action IN ('auth.login','my_journey.update','passport.add','passport.update') AND julianday(r.created_at)>=o.verified AND julianday(r.created_at)>=o.joined+1 AND julianday(r.created_at)<o.joined+8 AND julianday(r.created_at)<=(SELECT asof FROM bounds)) week1_return,
- EXISTS(SELECT 1 FROM audit_log r WHERE r.user_id=o.id AND r.action IN ('auth.login','my_journey.update','passport.add','passport.update') AND julianday(r.created_at)>=o.verified AND julianday(r.created_at)>=o.joined+21 AND julianday(r.created_at)<o.joined+28 AND julianday(r.created_at)<=(SELECT asof FROM bounds)) week4_return
- FROM observed o
+ SELECT c.id,c.joined,c.verified,l.signed_in,
+ MIN(CASE WHEN r.action IN ('my_journey.update','passport.add','passport.update') AND julianday(r.created_at)>=l.signed_in THEN julianday(r.created_at) END) first_save,
+ MAX(CASE WHEN julianday(r.created_at)>=c.joined+1 AND julianday(r.created_at)<c.joined+8 THEN 1 ELSE 0 END) week1_return,
+ MAX(CASE WHEN julianday(r.created_at)>=c.joined+21 AND julianday(r.created_at)<c.joined+28 THEN 1 ELSE 0 END) week4_return
+ FROM cohort c LEFT JOIN logins l ON l.id=c.id
+ LEFT JOIN audit_log r ON r.user_id=c.id AND r.action IN ('auth.login','my_journey.update','passport.add','passport.update')
+ AND julianday(r.created_at)>=c.verified AND julianday(r.created_at)<=(SELECT asof FROM bounds)
+ GROUP BY c.id,c.joined,c.verified,l.signed_in
  ) SELECT COUNT(*) registered,
  COALESCE(SUM(verified IS NOT NULL),0) verified,
  COALESCE(SUM(signed_in IS NOT NULL),0) signed_in,
@@ -47,5 +51,5 @@ export async function activationScorecard(DB,options={}){
   retention:{week1:{eligible:counts.week1_eligible,returned:counts.week1_returned,ratePct:percentage(counts.week1_returned,counts.week1_eligible),window:'Days 1–7 after registration; denominator needs eight complete days.'},week4:{eligible:counts.week4_eligible,returned:counts.week4_returned,ratePct:percentage(counts.week4_returned,counts.week4_eligible),window:'Days 21–27 after registration; denominator needs 28 complete days.'}},
   excludedKnownTestAccounts:Number(excluded?.count||0),sampleWarning:counts.registered<20?'Small cohort: operational counts, not reliable evidence of programme effectiveness.':null,
   privacy:'Aggregate owner/HQ reporting only. No identities, URLs, health values or notes returned; no third-party transmission.',
-  limitations:['Unknown staff/test accounts are not magically identifiable and may remain.','Returns count authenticated logins and successful Journey/Passport writes, not all passive browsing.','Deleted accounts are absent; audit retention or erasure can reduce historical counts.','First save means a stored record, not completed clinical care or a health outcome.','Anonymous Start Here completion and acquisition-source attribution are not available from these records.']};
+  limitations:['Unknown staff/test accounts are not magically identifiable and may remain.','Returns count authenticated logins and successful Journey/Passport writes, not all passive browsing.','Deleted accounts are absent; audit retention or erasure can reduce historical counts.','First save requires a successful stored-record audit after an observed verified login; missing historical audit entries can undercount it, and it is not a health outcome.','Anonymous Start Here completion and acquisition-source attribution are not available from these records.']};
 }
