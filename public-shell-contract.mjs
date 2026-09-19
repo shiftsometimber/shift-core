@@ -329,7 +329,7 @@ function applySeoMetadata(html,path){
  const meta=seoMetadataOverrides[path];
  if(meta?.title)html=replaceHeadTitle(html,meta.title);
  if(meta?.description)html=replaceMetaDescription(html,meta.description);
- if(path==='/')html=html.replace(/<img\b(?![^>]*\balt=)([^>]*\bsrc=["'][^"']*\/assets\/home-stigma-ruffled-v42p5\.webp(?:\?[^"']*)?["'][^>]*)>/i,'<img alt=""$1>');
+ if(path==='/')html=html.replace(/<img\b[^>]*\bsrc=["'][^"']*\/assets\/home-stigma-ruffled-v42p5\.webp(?:\?[^"']*)?["'][^>]*>/i,tag=>/\balt=["'][^"']*["']/i.test(tag)?tag.replace(/\balt=["'][^"']*["']/i,'alt="Men&#39;s health stigma and asking for support"'):tag.replace('<img','<img alt="Men&#39;s health stigma and asking for support"'));
  return html;
 }
 export function publicShellPath(path){return !/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(normal(path));}
