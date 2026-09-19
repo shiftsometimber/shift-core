@@ -1,0 +1,34 @@
+name: Request Existing Passport Acceptance
+on:
+  push:
+    branches: ['verify/passport-live-closeout-20260919']
+    paths: ['.github/workflows/passport-request-existing-acceptance.yml']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  request:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor == 'shiftsometimber'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Dispatch only the existing manual verifier on unchanged main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.request
+          base='https://api.github.com/repos/shiftsometimber/shift-core'
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          def request(path,body=None):
+            data=None if body is None else json.dumps(body).encode()
+            req=urllib.request.Request(base+path,data=data,headers={**headers,**({'Content-Type':'application/json'} if data is not None else {})})
+            with urllib.request.urlopen(req,timeout=20) as response:
+              content=response.read()
+              return response.status,json.loads(content) if content else None
+          _,ref=request('/git/ref/heads/main')
+          assert ref['object']['sha']=='618d519f8c9210d4c3bfeceac40a1ca02fae6672','Main moved: do not test a different release'
+          status,_=request('/actions/workflows/my-timber-final-production.yml/dispatches',{'ref':'main'})
+          assert status==204
+          print('Requested the existing manual My Timber production verifier for unchanged deployed main. No deployment, application change or source-review override.')
+          PY
