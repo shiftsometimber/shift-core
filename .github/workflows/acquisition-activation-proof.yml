@@ -1,0 +1,44 @@
+name: Acquisition Activation Proof
+on:
+  push:
+    branches: ['fix/acquisition-activation-20260919']
+  pull_request:
+    branches: [main]
+    paths: ['acquisition-activation/**', 'activation-measurement/**', 'member-register-fastpath-v2.js', 'auth-email-verification-v1.js', 'worker-entry-v6.js', '.github/workflows/acquisition-activation-proof.yml']
+permissions:
+  contents: read
+concurrency:
+  group: acquisition-proof-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Retain exact current source for isolated testing
+        run: |
+          mkdir -p acquisition-proof
+          git rev-parse HEAD > acquisition-proof/source-sha.txt
+          git archive --format=zip HEAD -o acquisition-proof/source.zip
+      - name: Run implementation acceptance when present
+        run: |
+          if test -f acquisition-activation/acceptance.mjs; then
+            npm ci --no-audit --no-fund
+            node acquisition-activation/acceptance.mjs
+          else
+            echo 'Source capture only; acquisition implementation is not yet tested.' > acquisition-proof/PREPARATION-ONLY.txt
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: acquisition-proof-${{ github.event.pull_request.head.sha || github.sha }}
+          path: acquisition-proof/
+          retention-days: 14
