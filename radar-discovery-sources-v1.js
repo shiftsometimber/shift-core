@@ -1,9 +1,10 @@
+import {GPHC_RSS} from './radar-source-policy-v1.js';
 // Discovery leads never constitute primary evidence or permission to publish.
 const searchUrl = query => 'https://news.google.com/rss/search?' + new URLSearchParams({q: query + ' when:14d', hl: 'en-GB', gl: 'GB', ceid: 'GB:en'});
 export const NEWS_DISCOVERY_SOURCES = [
   {id:'asa-weight-rulings',authority:'ASA / CAP',region:'UK',url:'https://www.asa.org.uk/topic/Weight_and_slimming.html',adapter:'html',eventType:'uk_advertising_enforcement',tier:1,confidence:99},
   {id:'asa-news',authority:'ASA / CAP',region:'UK',url:'https://www.asa.org.uk/advice-and-resources/news.html',adapter:'html',eventType:'uk_advertising_enforcement',tier:1,confidence:99},
-  {id:'gphc-news',authority:'GPhC',region:'UK',url:'https://www.pharmacyregulation.org/about-us/news-and-updates',adapter:'html',eventType:'uk_pharmacy_regulation',tier:1,confidence:99},
+  {id:'gphc-news',authority:'GPhC',region:'UK',url:GPHC_RSS,adapter:'feed',eventType:'uk_pharmacy_regulation',tier:1,confidence:99},
   {id:'bbc-health',authority:'BBC News',region:'GLOBAL',url:'https://feeds.bbci.co.uk/news/health/rss.xml',adapter:'feed',eventType:'news_discovery',tier:4,confidence:60},
   {id:'guardian-health',authority:'The Guardian',region:'GLOBAL',url:'https://www.theguardian.com/society/health/rss',adapter:'feed',eventType:'news_discovery',tier:4,confidence:60},
   {id:'cd-regulation',authority:'Chemist+Druggist',region:'UK',url:'https://www.chemistanddruggist.co.uk/news/regulation/',adapter:'html',eventType:'news_discovery',tier:4,confidence:60},

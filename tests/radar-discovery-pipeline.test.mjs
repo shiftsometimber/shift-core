@@ -75,7 +75,7 @@ test('GPhC discovery accepts its published article path but excludes the index a
  const DB=memoryDB();await ensureRadarSchema(DB);await loadRadarSources(DB);
  await DB.prepare("UPDATE radar_sources SET active=0 WHERE id!='gphc-news'").run();
  const original=globalThis.fetch;let blocked=false;
- globalThis.fetch=async()=>blocked?new Response('Forbidden',{status:403}):new Response(html);
+ globalThis.fetch=async()=>blocked?new Response('Forbidden',{status:403}):new Response(`<rss><channel><item><title>${title}</title><link>${url}</link><pubDate>2025-09-24</pubDate><description>Weight management prescription medicine advertising enforcement</description></item></channel></rss>`);
  try{
   const scan=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});
   assert.equal(scan.sources[0].newEvents,1);
@@ -83,6 +83,7 @@ test('GPhC discovery accepts its published article path but excludes the index a
   assert.equal(event.status,'verified');
   assert.equal(JSON.parse(event.source_evidence_json)[0].url,url);
   blocked=true;
+  await DB.prepare("UPDATE radar_scan_runs SET completed_at='2000-01-01T00:00:00Z' WHERE source_id='gphc-news'").run();
   const failed=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});
   assert.equal(failed.ok,false);assert.equal(failed.sources[0].error,'http_403');
   assert.ok(failed.coverage.failed.includes('gphc-news'));
