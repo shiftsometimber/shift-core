@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 
 const article=JSON.parse(fs.readFileSync('babylove/editorial/wegovy-cost-uk.json','utf8'));
-const originalHash='94872cd6c75988c2f7213a4b0f250bfc6e922300365f6b72f9171ad05070e8c5';
+const originalHash='3827956fd8d9208cd51e06276b287691157e487be45168ea67d81e5cb31499cb';
 const hash=s=>createHash('sha256').update(String(s)).digest('hex');
 const literal=v=>v==null?'NULL':"'"+String(v).replaceAll("'","''")+"'";
 const dir='babylove-draft-revision-proof';fs.mkdirSync(dir,{recursive:true});
@@ -29,5 +29,5 @@ if(Object.entries(expected).some(([k,v])=>old[k]!==v)){
 const after=query(select)[0].results;
 if(after.length!==1||after[0].status!=='draft'||after[0].publish_at!==old.publish_at||Object.entries(expected).some(([k,v])=>after[0][k]!==v))throw new Error('Draft verification mismatch');
 fs.writeFileSync(`${dir}/after.json`,JSON.stringify(after,null,2));
-const proof={checked_at:new Date().toISOString(),article_id:after[0].id,title:after[0].title,slug:after[0].slug,status:after[0].status,category:after[0].category,changed,previous_body_sha256:hash(old.body),revised_body_sha256:newHash,published:false,public_website_changed:false};
+const proof={checked_at:new Date().toISOString(),article_id:after[0].id,title:after[0].title,slug:after[0].slug,status:after[0].status,category:after[0].category,author:after[0].author,article_visuals:(after[0].body.match(/!\[/g)||[]).length,changed,previous_body_sha256:hash(old.body),revised_body_sha256:newHash,published:false,public_website_changed:false};
 fs.writeFileSync(`${dir}/proof.json`,JSON.stringify(proof,null,2));console.log(JSON.stringify(proof,null,2));

@@ -1,4 +1,4 @@
-name: BabyLoveGrowth Editorial Draft Revision
+name: BabyLoveGrowth Named Author and Article Images
 on:
   push:
     branches: [audit/babylove-receipt-20260919]
@@ -47,7 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT a.title,a.slug,a.status,a.summary,a.body,r.created_at AS received_at_utc FROM babylove_receipts r JOIN knowledge_articles a ON a.slug=r.slug WHERE r.slug='wegovy-cost-uk';" > babylove-receipt-proof/article.json
-      - name: Save and verify the revised draft only
+      - name: Save and verify Matt O’Brien byline and restored draft imagery
         run: |
           node --check babylove/editorial/update-draft.mjs
           node babylove/editorial/update-draft.mjs
