@@ -3,36 +3,36 @@
   PUBLIC '-//W3C//DTD SVG 1.0//EN'
   'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
 <svg width="1120" height="630" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1120 630" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<title>...</title>
-	<desc>...</desc>
+	<title>Four questions to compare a medication provider</title>
+	<desc>Compare the full bill, the prescriber and pharmacy, access to help and continuing support.</desc>
 	<clipPath id="clip">
 		<rect x="0" y="0" width="1120" height="630"/>
 	</clipPath>
 	<g id="group" transform="scale(1,-1) translate(0,-630)" style="clip-path: url(#clip)">
 		<g transform="">
 			<rect x="0" y="0" width="1120" height="630" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(1%,1%,1%); fill-rule: evenodd;"/>
-			<text x="44" y="580" style="font-family: Helvetica-Bold; font-size: 24px;fill: rgb(90%,89%,85%); stroke:none;" transform="translate(0,1160) scale(1,-1)">LOOK BEYOND THE PEN</text>
-			<text x="44" y="532" style="font-family: Helvetica-Bold; font-size: 38px;fill: rgb(90%,89%,85%); stroke:none;" transform="translate(0,1064) scale(1,-1)">Four questions before you commit.</text>
+			<text x="44" y="580" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 24px;fill: rgb(90%,89%,85%); stroke:none;" transform="translate(0,1160) scale(1,-1)">LOOK BEYOND THE PEN</text>
+			<text x="44" y="532" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 38px;fill: rgb(90%,89%,85%); stroke:none;" transform="translate(0,1064) scale(1,-1)">Four questions before you commit.</text>
 			<rect x="44" y="280" width="488" height="186" rx="10" ry="10" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(90%,89%,85%); fill-rule: evenodd;"/>
-			<text x="68" y="425" style="font-family: Helvetica-Bold; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,850) scale(1,-1)">01</text>
-			<text x="68" y="383" style="font-family: Helvetica-Bold; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,766) scale(1,-1)">The full bill</text>
-			<text x="68" y="342" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,684) scale(1,-1)">Dose, supply period, reviews,</text>
-			<text x="68" y="311" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,622) scale(1,-1)">delivery and membership.</text>
+			<text x="68" y="425" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,850) scale(1,-1)">01</text>
+			<text x="68" y="383" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,766) scale(1,-1)">The full bill</text>
+			<text x="68" y="342" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,684) scale(1,-1)">Dose, supply period, reviews,</text>
+			<text x="68" y="311" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,622) scale(1,-1)">delivery and membership.</text>
 			<rect x="588" y="280" width="488" height="186" rx="10" ry="10" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(90%,89%,85%); fill-rule: evenodd;"/>
-			<text x="612" y="425" style="font-family: Helvetica-Bold; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,850) scale(1,-1)">02</text>
-			<text x="612" y="383" style="font-family: Helvetica-Bold; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,766) scale(1,-1)">Who is responsible?</text>
-			<text x="612" y="342" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,684) scale(1,-1)">Named prescriber and pharmacy.</text>
-			<text x="612" y="311" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,622) scale(1,-1)">Check their registration.</text>
+			<text x="612" y="425" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,850) scale(1,-1)">02</text>
+			<text x="612" y="383" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,766) scale(1,-1)">Who is responsible?</text>
+			<text x="612" y="342" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,684) scale(1,-1)">Named prescriber and pharmacy.</text>
+			<text x="612" y="311" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,622) scale(1,-1)">Check their registration.</text>
 			<rect x="44" y="62" width="488" height="186" rx="10" ry="10" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(90%,89%,85%); fill-rule: evenodd;"/>
-			<text x="68" y="207" style="font-family: Helvetica-Bold; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,414) scale(1,-1)">03</text>
-			<text x="68" y="165" style="font-family: Helvetica-Bold; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,330) scale(1,-1)">Help when you need it</text>
-			<text x="68" y="124" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,248) scale(1,-1)">Medicine questions, side effects</text>
-			<text x="68" y="93" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,186) scale(1,-1)">and how to get a response.</text>
+			<text x="68" y="207" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,414) scale(1,-1)">03</text>
+			<text x="68" y="165" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,330) scale(1,-1)">Help when you need it</text>
+			<text x="68" y="124" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,248) scale(1,-1)">Medicine questions, side effects</text>
+			<text x="68" y="93" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,186) scale(1,-1)">and how to get a response.</text>
 			<rect x="588" y="62" width="488" height="186" rx="10" ry="10" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0; fill: rgb(90%,89%,85%); fill-rule: evenodd;"/>
-			<text x="612" y="207" style="font-family: Helvetica-Bold; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,414) scale(1,-1)">04</text>
-			<text x="612" y="165" style="font-family: Helvetica-Bold; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,330) scale(1,-1)">What happens next?</text>
-			<text x="612" y="124" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,248) scale(1,-1)">What support continues if</text>
-			<text x="612" y="93" style="font-family: Helvetica; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,186) scale(1,-1)">treatment changes or stops?</text>
+			<text x="612" y="207" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 25px;fill: rgb(43%,46%,38%); stroke:none;" transform="translate(0,414) scale(1,-1)">04</text>
+			<text x="612" y="165" style="font-family: DejaVu Sans, Arial, sans-serif; font-weight: 700; font-size: 29px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,330) scale(1,-1)">What happens next?</text>
+			<text x="612" y="124" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,248) scale(1,-1)">What support continues if</text>
+			<text x="612" y="93" style="font-family: DejaVu Sans, Arial, sans-serif; font-size: 24px;fill: rgb(1%,1%,1%); stroke:none;" transform="translate(0,186) scale(1,-1)">treatment changes or stops?</text>
 		</g>
 	</g>
 </svg>
