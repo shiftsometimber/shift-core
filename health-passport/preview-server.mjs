@@ -3,7 +3,7 @@
 // Unrelated dashboard runtimes are omitted so this proves the focused handoff,
 // not production login, payment, clinical suitability, or all My Timber features.
 import {createServer} from 'node:http';
-import {readFileSync,existsSync} from 'node:fs';
+import {readFileSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {fixture} from './fixture.mjs';
 import {passportRoutes,appendPassportExport} from './routes.mjs';
@@ -62,6 +62,14 @@ async function dispatch(request){
   let html=body.toString().replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'');
   const notice='<aside style="padding:10px 18px;background:#E7E3DA;color:#050505;font:14px Arial" data-preview-notice>Isolated integration preview · fictional accounts and data · no production writes</aside>';
   html=html.replace(/(<body\b[^>]*>)/i,'$1'+notice);
+  if(path==='/member/dashboard'){
+   // The capture is anonymous. Only the real fixture session verifier can reveal
+   // this harness shell; production authentication/rendering is not replaced.
+   const auth=await authenticateMember(request,env);
+   if(auth.response)return new Response(null,{status:302,headers:{Location:'/__preview/login','Cache-Control':'no-store'}});
+   html=html.replace(/(<section\b[^>]*\bid="previewAuth")([^>]*>)/,'$1 hidden$2');
+   html=html.replace(/(<(?:section|nav)\b[^>]*\bid="(?:previewMember|memberTabs)"[^>]*?)\s+hidden(?:="[^"]*")?/g,'$1');
+  }
   let scripts='<script>window.SST_API_BASE=location.origin;</script>';
   if(path==='/start-here')scripts+='<script defer src="/start-here-v72.js?v=direct-detail-20260912"></script>';
   else scripts+='<script defer src="/api-adapter-v33d.js"></script><script defer src="/assets/member-experience/health.mjs"></script>'+(path==='/member/dashboard'?'<script defer src="/member-my-journey-v2.js"></script><script defer src="/assets/member-experience/chrome.mjs"></script>':'');
