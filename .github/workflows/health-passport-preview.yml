@@ -12,7 +12,7 @@ on:
       - 'privacy-health-erasure-route-v1.js'
       - 'worker-entry-v6.js'
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: health-passport-preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
@@ -26,63 +26,22 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Materialise the exact reviewed patch on the isolated branch only
+      - name: Record exact isolated candidate without repository or production writes
         env:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           mkdir -p passport-proof
           python3 - <<'PY'
-          import base64,hashlib,json,lzma,os,pathlib,re,subprocess
-          run=lambda *args: subprocess.check_output(args,text=True).strip()
-          root=pathlib.Path('.')
-          allowed={
-            'frontend/member/member-my-journey-v2.js','health-passport/README.md',
-            'health-passport/browser-proof.py','health-passport/capture-baseline.mjs',
-            'health-passport/client.mjs','health-passport/fixture.mjs',
-            'health-passport/journey-health-blocks.mjs','health-passport/model.mjs',
-            'health-passport/presentation.mjs','health-passport/preview-server.mjs',
-            'health-passport/records.test.mjs','health-passport/routes.mjs',
-            'health-passport/schema.sql','health-passport/store.mjs',
-            'member-experience/tests/journey-bootstrap-navigation.test.mjs',
-            'privacy-health-erasure-route-v1.js','worker-entry-v6.js'
-          }
-          chunks=[root/f'health-passport/import-{i:02d}.b64' for i in range(1,5)]
-          proof={'productionWrites':False,'baseline':'2d257d61ae1276c404de5e265a028040cb422aad','inputHead':os.environ['EXPECTED_HEAD']}
-          assert run('git','rev-parse','HEAD')==proof['inputHead']
-          if any(p.exists() for p in chunks):
-            assert all(p.exists() for p in chunks),'Incomplete transport'
-            assert run('git','ls-remote','origin','refs/heads/main').split()[0]==proof['baseline'],'Production baseline moved; reconcile instead of overwrite'
-            encoded=''.join(''.join(p.read_text().split()) for p in chunks)
-            assert len(encoded)==35228,'Transport length mismatch'
-            compressed=base64.b64decode(encoded,validate=True)
-            assert len(compressed)==26420
-            patch=lzma.decompress(compressed)
-            assert len(patch)==100549
-            digest=hashlib.sha256(patch).hexdigest()
-            assert digest=='92cb5db86debfdfe81bf2402022deefa1996e2aed32bc4d8b71a0ad1de7909de','Patch checksum mismatch'
-            text=patch.decode('utf-8')
-            pairs=re.findall(r'^diff --git a/(\S+) b/(\S+)$',text,re.M)
-            assert len(pairs)==len(allowed) and {a for a,b in pairs}==allowed and all(a==b for a,b in pairs),'Unexpected source paths'
-            assert not re.search(r'^(?:old mode|new mode|rename from|rename to|deleted file mode)',text,re.M),'Unsupported patch operation'
-            destination=pathlib.Path('passport-proof/implementation.patch');destination.write_bytes(patch)
-            subprocess.check_call(['git','apply','--check','--unidiff-zero',str(destination)])
-            subprocess.check_call(['git','apply','--unidiff-zero',str(destination)])
-            subprocess.check_call(['git','add','--',*sorted(allowed)])
-            subprocess.check_call(['git','rm','--',*[str(p) for p in chunks]])
-            staged=set(run('git','diff','--cached','--name-only').splitlines())
-            assert staged==allowed|{str(p) for p in chunks},'Unexpected staged changes'
-            branch='refs/heads/feat/health-passport-v1-20260919'
-            assert run('git','ls-remote','origin',branch).split()[0]==proof['inputHead'],'Preview branch moved; do not overwrite'
-            subprocess.check_call(['git','-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com','commit','-m','Implement consented Health Passport v1 for isolated acceptance'])
-            subprocess.check_call(['git','push','origin','HEAD:'+branch])
-            proof['importedPatchSha256']=digest
-          else:
-            assert all((root/p).is_file() for p in allowed),'Implementation source missing'
-          proof['candidateHead']=run('git','rev-parse','HEAD')
-          proof['files']={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in sorted(allowed)}
+          import hashlib,json,os,pathlib,subprocess
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert head==os.environ['EXPECTED_HEAD']
+          assert not list(pathlib.Path('health-passport').glob('import-*.b64'))
+          paths=subprocess.check_output(['git','ls-files','health-passport','frontend/member/member-my-journey-v2.js','member-experience/tests/journey-bootstrap-navigation.test.mjs','privacy-health-erasure-route-v1.js','worker-entry-v6.js'],text=True).splitlines()
+          proof={'candidateHead':head,'baseline':'2d257d61ae1276c404de5e265a028040cb422aad','productionWrites':False,'repositoryWrites':False,'files':{p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in paths}}
           pathlib.Path('passport-proof/source-manifest.json').write_text(json.dumps(proof,indent=2))
           print(json.dumps(proof,indent=2))
           PY
@@ -92,10 +51,12 @@ jobs:
         run: |
           set -o pipefail
           node --test health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee passport-proof/regressions.tap
-          node my-journey-integration-gate.mjs
-          node my-timber-final-source-gate.mjs
+          node my-journey-integration-gate.mjs | tee passport-proof/journey-gate.log
+          node my-timber-final-source-gate.mjs | tee passport-proof/member-gate.log
       - name: Compile without deployment or production credentials
-        run: npx wrangler deploy --dry-run --outdir passport-proof/worker
+        run: |
+          set -o pipefail
+          npx wrangler deploy --dry-run --outdir passport-proof/worker | tee passport-proof/compile.log
       - name: Capture anonymous public baseline without account access
         run: node health-passport/capture-baseline.mjs
       - name: Install isolated browser test runner
@@ -119,7 +80,7 @@ jobs:
         run: |
           mkdir -p passport-proof
           git diff 2d257d61ae1276c404de5e265a028040cb422aad -- frontend/member/member-my-journey-v2.js health-passport/ member-experience/tests/journey-bootstrap-navigation.test.mjs privacy-health-erasure-route-v1.js worker-entry-v6.js > passport-proof/candidate.patch
-          cp health-passport/README.md passport-proof/README.md 2>/dev/null || true
+          cp health-passport/README.md passport-proof/README.md
       - uses: actions/upload-artifact@v4
         if: always()
         with:
