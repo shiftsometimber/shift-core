@@ -38,6 +38,16 @@ test('mental-health help is not weight conditional and includes urgent escalatio
 test('nine source values and existing downloadable bytes are preserved',async()=>{
  const html=articleMain(STATS);assert.equal(DATA.rows.length,9);for(const row of DATA.rows)assert.ok(html.includes('<td>'+row.value));for(const text of ['eight percentage points','not a combined UK estimate','not evidence of treatment results'])assert.ok(html.includes(text));for(const [suffix,body] of [['/data.csv',CSV],['/chart.svg',CHART]]){const r=await withEditorialResources(new Response('404',{status:404}),new Request(origin+STATS+suffix));assert.equal(await r.text(),body)}
 });
+test('organization identity is complete and only a real visible article image is marked up',()=>{
+ for(const path of PATHS){
+  const html=rewriteArticle(shell(),path),schema=JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1])['@graph'][0];
+  for(const org of [schema.author,schema.publisher])assert.equal(org.logo.url,origin+'/assets/shift-wordmark.png');
+  if(path===STATS){assert.equal(schema.image,origin+STATS+'/chart.svg');assert.ok(html.includes('src="'+STATS+'/chart.svg"'))}
+  else assert.equal(schema.image,undefined,'Do not substitute a site logo for a nonexistent article image');
+ }
+ const conflicted=shell().replace('</head>','<script type="application/ld+json">{"@type":"MedicalWebPage","datePublished":"2026-03-01"}</script></head>');
+ assert.doesNotMatch(rewriteArticle(conflicted,PATHS[0]),/datePublished|Originally published/);
+});
 test('sitemap modifies dates only on the same five locs and cannot redate unrelated standards',()=>{
  const old='<urlset>'+[...PATHS,'/programme','/editorial-standards'].map(p=>'<url><loc>'+origin+p+'</loc><lastmod>2026-09-13</lastmod></url>').join('')+'</urlset>',fixed=updateArticleSitemap(old);assert.equal(count(fixed,/<url>/g),7);assert.equal(count(fixed,/<lastmod>2026-09-19<\/lastmod>/g),5);assert.ok(fixed.includes('/editorial-standards</loc><lastmod>2026-09-13'));assert.equal(updateArticleSitemap(fixed),fixed);assert.equal(setSitemapDate(fixed,STATS,'2026-09-13'),fixed);
 });

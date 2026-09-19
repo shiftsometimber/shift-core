@@ -21,7 +21,7 @@ proof.medicinesWatch={status:watch.status,canonical:canonicals[0]};
 const authorityChecks={
   '/treatment-centre':['/comparisons/medications/mounjaro-vs-saxenda','/comparisons/medications/mounjaro-vs-orlistat','/guides/nhs-weight-loss-medication-pathways'],
   '/mens-weight-management':['/guides/weight-loss-surgery-uk-costs-guide','/mental-health/mental-health-and-weight'],
-  '/weight-loss-injections-for-men':['/comparisons/medications/mounjaro-vs-saxenda','/articles/mounjaro-vs-wegovy'],
+  '/weight-loss-injections-for-men':['/comparisons/medications/mounjaro-vs-saxenda','/compare-weight-loss-treatments'],
 };
 proof.authority={};
 for(const [path,links] of Object.entries(authorityChecks)){

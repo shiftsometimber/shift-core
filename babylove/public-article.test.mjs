@@ -24,6 +24,10 @@ test('public document contains named author, publication schema, three images an
  assert.match(html,/#main-content\.sg :is\(\.sg-quick,\s*\.sg-math,\s*\.sg-table,\s*\.sg-end\) \*\s*\{\s*color: #050505 !important;/);
  const main=html.match(/<main[\s\S]*?<\/main>/)[0];assert.equal((main.match(/<img\b/g)||[]).length,3);for(const image of ARTICLE.images){assert(main.includes(image.url));assert(main.includes(image.alt))}
  assert.match(main,/No stock available today/);assert.match(main,/not current pharmacy quotes/);
+ assert.equal(schema.publisher.logo.url,'https://shiftsometimber.co.uk/assets/shift-wordmark.png');
+ assert.equal((html.match(/class="drawer-backdrop"/g)||[]).length,1);
+ assert.ok(html.indexOf('class="drawer-backdrop"')>html.indexOf('id="site-drawer"'));
+ assert.ok(html.indexOf('class="drawer-backdrop"')<html.indexOf('/assets/v42.js'));
 });
 test('the two infographic URLs serve actual accessible SVG images',async()=>{
  for(const asset of ARTICLE.publication_assets){const r=await babyLovePublicRoute(request(asset.public_path),env());assert.equal(r.status,200);assert.match(r.headers.get('Content-Type'),/^image\/svg\+xml/);assert.match(await r.text(),/<title/)}
