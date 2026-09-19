@@ -1,3 +1,4 @@
+import {appendAcquisitionExport} from '../acquisition-activation/server.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {readPassport,saveRecord,updateRecord,removeRecord,exportPassport} from './store.mjs';
 import {object,fail} from './model.mjs';
@@ -29,6 +30,7 @@ export async function passportRoutes(request,env){
 }
 // Existing privacy export remains the parent. This only adds this account's records.
 export async function appendPassportExport(request,env,response){
+ response=await appendAcquisitionExport(request,env,response);
  if(new URL(request.url).pathname!=='/v1/privacy/export'||request.method!=='POST'||!response.ok)return response;
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
  try{const passport=await exportPassport(env.DB,auth.userId);if(passport===null)return response;const payload=await response.json();return json({...payload,healthPassport:passport});}

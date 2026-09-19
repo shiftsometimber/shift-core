@@ -1,3 +1,4 @@
+import {acquisitionRoutes,acquisitionAccountDelete} from './acquisition-activation/server.mjs';
 import {recordAuthDelivery} from './auth-delivery-v1.js';
 
 const VERIFY_TTL_MS=24*60*60*1000;
@@ -6,6 +7,8 @@ const DEFAULT_SITE='https://shiftsometimber.co.uk';
 
 export async function handleEmailVerification(request,env,ctx,next){
   const u=new URL(request.url),p=u.pathname.replace(/\/+$/,'')||'/';
+  const acquisition=await acquisitionRoutes(request,env);if(acquisition)return acquisition;
+  const deletion=await acquisitionAccountDelete(request,env,ctx,next);if(deletion)return deletion;
   if(request.method==='POST'&&p==='/v1/auth/register')return registerWithVerification(request,env,ctx,next);
   if(request.method==='POST'&&p==='/v1/auth/login')return loginWithVerification(request,env,ctx,next);
   if((request.method==='GET'||request.method==='POST')&&p==='/v1/auth/verify-email')return verifyEmail(request,env);

@@ -2,86 +2,58 @@ name: Acquisition Activation Proof
 on:
   push:
     branches: ['fix/acquisition-activation-20260919']
+  pull_request:
+    branches: [main]
+    paths:
+      - 'acquisition-activation/**'
+      - 'activation-measurement/**'
+      - 'member-register-fastpath-v2.js'
+      - 'auth-email-verification-v1.js'
+      - 'frontend/member/api-adapter-v33d.js'
+      - 'health-passport/routes.mjs'
+      - 'privacy-health-erasure-route-v1.js'
+      - '.github/workflows/acquisition-*.yml'
 permissions:
-  contents: write
+  contents: read
 concurrency:
-  group: acquisition-proof-import
-  cancel-in-progress: false
+  group: acquisition-proof-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   prove:
-    if: github.repository == 'shiftsometimber/shift-core' && github.ref == 'refs/heads/fix/acquisition-activation-20260919'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Apply only checksummed source files to the isolated branch
+      - name: Record exact source with no repository or production writes
         run: |
           mkdir -p acquisition-proof
-          python3 - <<'PY'
-          import base64,hashlib,json,lzma,pathlib,subprocess,os
-          run=lambda *a:subprocess.check_output(a,text=True).strip()
-          branch='refs/heads/fix/acquisition-activation-20260919'
-          baseline='25350515a23b984daf54c12ab10b158cc5ce8a3b'
-          head=run('git','rev-parse','HEAD')
-          assert head==os.environ['GITHUB_SHA']
-          assert run('git','ls-remote','origin','refs/heads/main').split()[0]==baseline,'Main changed; reconcile instead of overwrite'
-          assert run('git','ls-remote','origin',branch).split()[0]==head,'Branch changed'
-          chunks=[pathlib.Path(f'acquisition-activation/import-{i:02d}.b64') for i in range(1,4)]
-          text=''.join(''.join(p.read_text().split()) for p in chunks)
-          assert len(text)==30044,'Transport length'
-          payload=lzma.decompress(base64.b64decode(text,validate=True))
-          assert len(payload)==84289
-          assert hashlib.sha256(payload).hexdigest()=='596466684190167a7adcf90620dea9387c5f124ba2ead3baab9d8c097d5540f1','Transport checksum'
-          items=json.loads(payload)
-          allowed={'.github/workflows/acquisition-activation-proof.yml','.github/workflows/acquisition-retention.yml','.github/workflows/cloudflare-production-promote.yml','acquisition-activation/README.md','acquisition-activation/attribution.test.mjs','acquisition-activation/browser-proof.py','acquisition-activation/browser-server.mjs','acquisition-activation/capture.mjs','acquisition-activation/client.mjs','acquisition-activation/client.test.mjs','acquisition-activation/consent-baseline.js','acquisition-activation/consent.mjs','acquisition-activation/fixture.mjs','acquisition-activation/model.mjs','acquisition-activation/report.mjs','acquisition-activation/retention.mjs','acquisition-activation/server.mjs','activation-measurement/assets.mjs','activation-measurement/production-proof.mjs','activation-measurement/scorecard.mjs','auth-email-verification-v1.js','frontend/member/api-adapter-v33d.js','health-passport/routes.mjs','member-register-fastpath-v2.js','privacy-health-erasure-route-v1.js'}
-          assert len(items)==25 and {x['path'] for x in items}==allowed
-          for item in items:
-            p=pathlib.Path(item['path']);before=item['before']
-            if p.as_posix()=='.github/workflows/acquisition-activation-proof.yml':
-              original=subprocess.check_output(['git','show','aeaacdcd89d860decfde2324691f3132cc625149:'+str(p)])
-              assert hashlib.sha256(original).hexdigest()==before
-            elif before is None:assert not p.exists(),str(p)
-            else:assert hashlib.sha256(p.read_bytes()).hexdigest()==before,str(p)
-            if 'content' in item:
-              p.parent.mkdir(parents=True,exist_ok=True);p.write_text(item['content'])
-            else:
-              patch=item['patch'];assert patch.startswith('--- a/'+str(p)+'\n+++ b/'+str(p)+'\n')
-              assert patch.count('\n--- a/')==0
-              for args in [['git','apply','--check','-'],['git','apply','-']]:subprocess.run(args,input=patch.encode(),check=True)
-            assert hashlib.sha256(p.read_bytes()).hexdigest()==item['after'],str(p)
-          subprocess.check_call(['git','add','--',*sorted(allowed)])
-          subprocess.check_call(['git','rm','--',*[str(p) for p in chunks]])
-          assert set(run('git','diff','--cached','--name-only').splitlines())==allowed|{str(p) for p in chunks}
-          assert run('git','ls-remote','origin',branch).split()[0]==head
-          subprocess.check_call(['git','-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com','commit','-m','Link consented acquisition sources to real account activation'])
-          subprocess.check_call(['git','push','origin','HEAD:'+branch])
-          pathlib.Path('acquisition-proof/source-sha.txt').write_text(run('git','rev-parse','HEAD'))
-          pathlib.Path('acquisition-proof/source-manifest.json').write_text(json.dumps({x['path']:x['after'] for x in items},indent=2))
-          PY
+          test ! -f acquisition-activation/candidate.b64
+          git rev-parse HEAD > acquisition-proof/source-sha.txt
       - run: npm ci --no-audit --no-fund
-      - name: Same-account acquisition, auth, privacy and member regressions
+      - name: Same-account acquisition, auth, privacy and existing member regressions
         run: |
           set -o pipefail
           node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs tests/member-auth*.test.mjs tests/turnstile-auth-v1.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee acquisition-proof/regressions.tap
           node my-journey-integration-gate.mjs
           node my-timber-final-source-gate.mjs
-      - name: Compile without deployment credentials
+      - name: Compile the exact candidate without deployment credentials
         run: |
           set -o pipefail
           npx wrangler deploy --dry-run --outdir acquisition-proof/worker | tee acquisition-proof/compile.log
-      - name: Capture current public form and consent sources
+      - name: Capture current signup controller and consent baseline without account writes
         run: node acquisition-activation/capture.mjs
-      - name: Install browser verifier
+      - name: Install isolated browser runner
         run: |
           python3 -m pip install playwright==1.55.0
           python3 -m playwright install --with-deps chromium
-      - name: Captured signup controller to actual source-linked account save
+      - name: Actual captured signup form to real source-linked save using fictional accounts
         run: |
           node acquisition-activation/browser-server.mjs > acquisition-proof/server.log 2>&1 &
           PID=$!
@@ -93,15 +65,15 @@ jobs:
           done
           test "$READY" = 1
           python3 acquisition-activation/browser-proof.py
-      - name: Retain exact candidate and scope
+      - name: Retain source and bounded diff
         if: always()
         run: |
           mkdir -p acquisition-proof
-          cp acquisition-activation/README.md acquisition-proof/README.md 2>/dev/null || true
+          cp acquisition-activation/README.md acquisition-proof/README.md
           git diff 25350515a23b984daf54c12ab10b158cc5ce8a3b -- acquisition-activation/ activation-measurement/ auth-email-verification-v1.js member-register-fastpath-v2.js frontend/member/api-adapter-v33d.js health-passport/routes.mjs privacy-health-erasure-route-v1.js .github/workflows/ > acquisition-proof/candidate.patch
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: acquisition-proof-${{ github.sha }}
+          name: acquisition-proof-${{ github.event.pull_request.head.sha || github.sha }}
           path: acquisition-proof/
           retention-days: 14

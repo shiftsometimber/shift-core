@@ -1,3 +1,5 @@
+import {acquisitionClient} from '../acquisition-activation/client.mjs';
+import {consentClient} from '../acquisition-activation/consent.mjs';
 // Authoritative privacy boundary for the existing Google Tag Manager only.
 // No second tracker and no changes to public or member HTML.
 export const bootstrap=String.raw`(function(window,document){
@@ -42,9 +44,11 @@ export const bootstrap=String.raw`(function(window,document){
  window.addEventListener('sst:analytics-consent',function(event){window.shiftUpdateGoogleConsent(!!(event.detail&&event.detail.analytics===true));});
  window.addEventListener('storage',function(event){if(event.key===KEY){var v=null;try{v=JSON.parse(event.newValue||'null');}catch(e){}window.shiftUpdateGoogleConsent(!!(v&&v.analytics===true));}});
 })(window,document);
-`;
+`+acquisitionClient;
 export function measurementAsset(request){
- if(new URL(request.url).pathname!=='/analytics-bootstrap-v1.js')return null;
+ const path=new URL(request.url).pathname;
+ if(!['/analytics-bootstrap-v1.js','/consent-v4a.js'].includes(path))return null;
+ const body=path==='/consent-v4a.js'?consentClient:bootstrap;
  if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD'}});
- return new Response(request.method==='HEAD'?null:bootstrap,{headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Shift-Analytics-Authority':'consented-public-v2'}});
+ return new Response(request.method==='HEAD'?null:body,{headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Shift-Analytics-Authority':'consented-public-v2','X-Shift-Acquisition-Authority':'acquisition-v1'}});
 }
