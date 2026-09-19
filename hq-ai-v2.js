@@ -12,7 +12,7 @@ export default{async fetch(request,env,ctx){
     const authData=await auth.clone().json().catch(()=>({}));const actor=authData.user||{};
     if(request.method==='POST'&&ack)return acknowledgeAttention(env,actor,ack[1],await readJson(request));
     if(path==='/v1/hq/outcomes')return json(await outcomesSnapshot(env.DB));
-    if(path==='/v1/hq/journey')return json(await memberJourneySnapshot(env.DB));
+    if(path==='/v1/hq/journey')return json(await memberJourneySnapshot(env.DB,{days:new URL(request.url).searchParams.get('days')??30}));
     const w=await watchtowerSnapshot(env);
     if(path==='/v1/hq/attention')return json(await attentionWithActions(env,w));
     return json(w);

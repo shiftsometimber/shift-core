@@ -31,3 +31,23 @@ test('snapshot queries do not write, create tables or alter records',async t=>{c
 test('different people at adjacent stages cannot produce a conversion',async t=>{const f=fixture(t);f.user(1,'2026-09-01');f.user(2,'2026-09-01');f.event(1,'registration_started','2026-09-02');f.event(2,'registration_completed','2026-09-03');const r=await memberJourneySnapshot(f.DB,{now:NOW});assert.equal(r.transitions[0].fromMembers,1);assert.equal(r.transitions[0].toMembers,0);assert.equal(r.transitions[0].observedConversionPct,0)});
 test('ordered same-account pairs count once; wrong order and client claims do not',async t=>{const f=fixture(t);f.user(1,'2026-09-01');f.user(2,'2026-09-01');f.event(1,'registration_started','2026-09-02');f.event(1,'registration_completed','2026-09-03');f.event(1,'registration_completed','2026-09-04');f.event(2,'registration_started','2026-09-04');f.event(2,'registration_completed','2026-09-03');f.event(2,'registration_completed','2026-09-05','member_client');const r=await memberJourneySnapshot(f.DB,{now:NOW});assert.equal(r.transitions[0].fromMembers,2);assert.equal(r.transitions[0].toMembers,1);assert.equal(r.transitions[0].observedConversionPct,50)});
 test('invalid days are bounded; invalid clock is rejected',()=>{assert.equal(reportingWindow({days:999,now:NOW}).days,365);assert.equal(reportingWindow({days:'oops',now:NOW}).days,30);assert.throws(()=>reportingWindow({now:'bad'}),/clock/)});
+
+
+test('week-eight uses days 49–55, deduplicates and requires full maturity',async t=>{
+ const f=fixture(t),now=Date.parse(NOW),at=days=>new Date(now-days*86400000).toISOString();
+ f.user(1,at(59));f.audit(1,'auth.login',at(10));f.audit(1,'passport.add',at(9));
+ f.user(2,at(59));f.audit(2,'auth.login',at(3)); // exactly day 56: outside window
+ f.user(3,at(55));f.audit(3,'auth.login',at(5)); // return observed, cohort immature
+ const r=await f.read();assert.equal(r.retention.week8.eligible,2);assert.equal(r.retention.week8.returned,1);assert.equal(r.retention.week8.ratePct,50);
+});
+test('week-eight includes exactly 56 days of age, excludes pre-window and future evidence',async t=>{
+ const f=fixture(t),now=Date.parse(NOW),at=days=>new Date(now-days*86400000).toISOString();
+ f.user(1,at(56));f.audit(1,'auth.login',at(7)); // day49 included
+ f.user(2,at(56));f.audit(2,'auth.login',at(8)); // day48 excluded
+ f.user(3,at(56));f.audit(3,'auth.login',at(-1)); // future excluded
+ const r=await f.read();assert.equal(r.retention.week8.eligible,3);assert.equal(r.retention.week8.returned,1);assert.equal(r.retention.week8.ratePct,33.33);
+});
+test('short cohort window reports no mature week-eight denominator and no rate',async t=>{
+ const f=fixture(t);f.user(1,'2026-09-01');const r=await activationScorecard(f.DB,{days:30,now:NOW});
+ assert.deepEqual([r.retention.week8.eligible,r.retention.week8.returned,r.retention.week8.ratePct],[0,0,null]);
+});
