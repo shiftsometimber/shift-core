@@ -1,41 +1,36 @@
-# NICE and GPhC source policy — 19 September 2026
+# NICE and GPhC — use the formats already authorised
 
-## Scope
+19 September 2026. This supersedes the previous blanket adaptation hold for the two supported formats only. Matt explicitly instructed SHIFT to use the permissions already supplied, rather than request the same permission again. Permission, source accuracy and successful retrieval remain separate checks.
 
-Source-specific discovery and reuse safeguards only. No member, Passport, login, payment, stock, medicine wording, public design or existing published article changes. Access, factual verification and permission to adapt are independent states. No API activation, paid service or cybersecurity-certification purchase is authorised by this implementation.
+## NICE: short attributed UK editorial summaries
 
-## Correspondence and pending decisions
+The licensing contact confirmed that assistive editorial AI is acceptable when meaning and intent are maintained, including outside the API route suggested for this UK-focused publication. New summaries of identifiable official published-guidance sources use the existing source-evidence and independent automated accuracy checks. They retain the original guidance link, NICE attribution and rights notice, source/check dates, and NICE's required disclaimer. SHIFT interpretation is separately labelled and may not change the meaning of a recommendation or invent access, eligibility or individual advice.
 
-Replies have been sent in the existing NICE and GPhC email threads, using Matt's signature and a BCC to Matt. Private email bodies are not copied into this public repository.
+No medicine-registry, clinical, training/knowledge-ingestion or commercial-page updates are made from this route. No sales copy is added to these articles. Publication is limited to the website's UK-focused editorial/news destination and sitemap, not promotional tickers, social redistribution or member marketing. This does not grant a general worldwide API licence or cover CKS, BNF, draft/consultation material or other excluded publications. Unclear, changed, stale, conflicting or insufficient evidence remains held by the relevant check, not by a demand for another copy of the existing editorial permission.
 
-NICE: the licensing contact described assistive editorial use as acceptable when meaning and intent are maintained. The follow-up asks for the specific non-API scope, UK-focused commercial website with overseas accessibility, attribution/disclaimer and separation from commercial services. It asks for the offered meeting availability but does not book a meeting or accept a licence.
+## GPhC: original feed wording, not an AI rewrite
 
-GPhC: the supported feed is https://www.pharmacyregulation.org/rss. Supplied text must remain as published, attributed and linked. The follow-up distinguishes the earlier news-index refusal from a new RSS diagnostic and asks explicitly about separate summaries and SHIFT interpretation. It contains a genuine request trace and an appropriately qualified observed runner egress IP.
+Use the exact supported https://www.pharmacyregulation.org/rss source. Preserve the feed's original headline and supplied text (decode feed/HTML display encoding without changing words), attribute the General Pharmaceutical Council and link to the original announcement. Active markup is rejected/escaped. The record must contain the original feed fields; legacy rewritten snippets or arbitrary website text do not qualify.
 
-Until those points are settled, new NICE/GPhC material can be discovered and retained as source evidence, but cannot be automatically adapted, approved, published or socially redistributed by the newsroom pipeline. The hold also covers pending jobs and mixed-source packages. Other eligible sources continue. Existing published articles are retained unchanged; this is not a retrospective licensing clearance.
+Preparation is deterministic and publication checks compare the original fields exactly. No AI rewrite, invented SHIFT interpretation, medicine-record update, knowledge ingestion, social redistribution or promotional ticker is added. The original notice is clearly labelled as GPhC material carried by SHIFT, not SHIFT research or an endorsement. Its source date is distinct from the site's publication date. An owner publication email contains the neutral title/link notification, not an invented take.
 
-No environment variable or human-approval button bypasses this hold. Lift it only through a reviewed, tested source-policy change backed by the publisher's written answer and the required attribution/territorial/editorial implementation.
+Source-change, owner hold/reject/correction, snapshot, duplicate and publication-race protections remain. Existing archive acceptance now verifies the exact original-notice body and absence of SHIFT interpretation for this format, while retaining the original SHIFT-take checks for all other articles. This is a format-specific contract, not an ignored assertion.
 
-## Source configuration and honest health
+## Access is separate and remains honest
 
-- GPhC: migrate only the exact old seeded news-index source to the supported RSS adapter. Preserve paused status, custom settings and all historical observations. Do not retry an access refusal or rotate infrastructure to evade it.
-- NICE: add the exact topic URL supplied by the licensing contact: https://www.nice.org.uk/guidance/lifestyle-and-wellbeing/diet-nutrition-and-obesity. Retain the existing broad index and existing individual-source checks.
-- Follow only same-origin topic-filtered listing links actually present on the topic page, with at most four listing requests. Never invent an updates API, feed or filter.
-- Keep consultations, work in development, terminated appraisals and ambiguous published/terminated listings distinct. A guidance URL alone proves neither current final status nor NHS funding or local availability. Source absence is not proof of withdrawal.
-- Reuse labelled previous observations for up to one hour for these two sources; do not advance their timestamps or count cached observations as new discoveries. A cached failed check remains failed. Existing scheduled-request cadence remains in place.
+The corrected RSS and NICE topic configuration is already live from PR742. No source URL, source pause, access control or request-frequency limit is changed here. The latest retained production observations returned HTTP 403; this format change alone cannot make those responses successful. A refusal must stay visible and must not trigger infrastructure rotation or immediate repeat attempts. An HTTP 200 is not enough: actual source parsing and evidence must also succeed.
 
-## Retained external diagnostics
+GPhC already received the requested timestamp, method/application, response headers and appropriately qualified diagnostic-runner IP. NICE already received the topic/listing diagnostic and the follow-up questions. Do not send duplicate correspondence, buy cybersecurity certification, activate an API licence or book a meeting under this change. Further replies may clarify extra uses; the already permitted formats do not require asking again.
 
-Diagnostic run 35447430161, artifact 10586170897 (SHA-256 9d5413d2366eab4685c54ef1060b0c7423b91946149db72ac8558830dc8c3b4a), reproduced an RSS HTTP 403 in an explicitly identified GitHub-hosted diagnostic runner. This is not a historical production egress trace. The old double-hyphen NICE topic URL returned 404 and is not configured by this change.
+Issue #743 should retain the technical access follow-through. Requests to rewrite GPhC, expand territorial/API use or distribute other licensed content are outside this implementation. Do not claim that content is flowing while access or parsing fails. No existing published article is rewritten or retrospectively certified by these changes.
 
-Run 35448197564, artifact 10585576618 (SHA-256 f54dc23ad347fdf2e385acc6494cfcd099fc13d2ca16848d67203147664d5c04), passed 92 newsroom tests and compiled the Worker without deploying. Its separate live diagnostic found the correct NICE topic HTTP 200 but its first linked published/terminated listing HTTP 403. The adapter correctly retained a failed observation with zero claimed discoveries. A passing regression workflow is not evidence of working external access.
+## Scope and proof
 
-No claim of complete NICE update/withdrawal coverage or functioning GPhC RSS access is justified until real source retrieval succeeds. Public read failures must remain visible. Provider responses and written reuse clarification remain external dependencies.
+No Passport, account, analytics, payment, catalogue, stock or shared visual-shell changes. One isolated branch, existing production gates and preservation checks. Local/CI fictional source fixtures prove format behavior; they are not real announcements and must never be loaded into production. Record actual live source observations separately from test results.
 
-## Public reference points
-
-- https://www.nice.org.uk/reusing-our-content/nice-syndication-api
+Relevant public references:
 - https://www.nice.org.uk/reusing-our-content/nice-uk-open-content-licence
+- https://www.nice.org.uk/reusing-our-content/nice-syndication-api
 - https://www.pharmacyregulation.org/rss
 
-Final acceptance: exact Git diff, newsroom regression tests, Worker dry-run compilation, current-main check, the existing production release/preservation gates, and an honest record of external failures. No unrelated gate may be disabled to get this release through.
+Private emails, personal addresses and credentials remain outside this repository. The exact correspondence supplied by Matt is the basis for these specific permitted formats, not an invented broader licence.
