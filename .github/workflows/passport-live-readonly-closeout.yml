@@ -1,0 +1,60 @@
+name: Passport Live Readonly Closeout
+on:
+  push:
+    branches: ['verify/passport-live-closeout-20260919']
+    paths: ['.github/workflows/passport-live-readonly-closeout.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: npm ci --no-audit --no-fund
+      - name: Capture exact current source and live public source observations
+        run: |
+          mkdir -p passport-readonly/source
+          git diff --exit-code 618d519f8c9210d4c3bfeceac40a1ca02fae6672 -- . ':!.github/workflows/passport-live-readonly-closeout.yml'
+          git rev-parse HEAD > passport-readonly/runner-sha.txt
+          cp scripts/verify-watch-access-closeout.mjs medicines-watch/verify-live-sources.mjs medicines-watch/data.mjs passport-readonly/source/
+          sha256sum passport-readonly/source/* > passport-readonly/source-sha256.txt
+          node --input-type=module <<'NODE'
+          import {writeFileSync} from 'node:fs';
+          const r=await fetch('https://shiftsometimber.co.uk/v1/medicines-watch/health',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
+          const body=await r.text();writeFileSync('passport-readonly/watch-public-response.txt',body);
+          writeFileSync('passport-readonly/watch-public-http.json',JSON.stringify({status:r.status,headers:Object.fromEntries(r.headers),checkedAt:new Date().toISOString()},null,2));
+          NODE
+      - name: Execute unchanged read-only release checks independently
+        if: always()
+        run: |
+          node --input-type=module <<'NODE'
+          import {spawnSync} from 'node:child_process';
+          import {writeFileSync,mkdirSync} from 'node:fs';
+          mkdirSync('passport-readonly',{recursive:true});
+          const report={deployedSource:'618d519f8c9210d4c3bfeceac40a1ca02fae6672',productionWrites:false,checks:[]};
+          for(const file of ['scripts/verify-watch-access-closeout.mjs','scripts/verify-seo-closeout-live.mjs','scripts/verify-public-audit-live.mjs','member-experience/verify-production-member.mjs','g2-012-production-proof.mjs']){
+            const r=spawnSync(process.execPath,[file],{encoding:'utf8',timeout:120000,maxBuffer:8*1024*1024});
+            writeFileSync('passport-readonly/'+file.replaceAll('/','_')+'.log',(r.stdout||'')+'\n'+(r.stderr||''));
+            report.checks.push({file,exitCode:r.status,signal:r.signal,error:r.error?.message||null,pass:r.status===0});
+            console.log(file+': '+r.status);
+          }
+          report.pass=report.checks.every(x=>x.pass);writeFileSync('passport-readonly/report.json',JSON.stringify(report,null,2));if(!report.pass)process.exitCode=1;
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: passport-readonly-${{ github.sha }}
+          path: |
+            passport-readonly/
+            watch-access-closeout.json
+            seo-closeout-live-proof.json
+            public-audit-live.json
+            member-live-proof.json
+          retention-days: 30
