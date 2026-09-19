@@ -1,0 +1,49 @@
+name: BabyLoveGrowth Receipt Check
+on:
+  push:
+    branches: [audit/babylove-receipt-20260919]
+    paths: ['.github/workflows/babylove-receipt-check.yml']
+permissions:
+  contents: read
+concurrency:
+  group: babylove-receipt-check-20260919
+  cancel-in-progress: false
+jobs:
+  receipt:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      EXPECTED_MAIN_SHA: 8421dc9ddc8bf1fc98569ae151af79184969afb1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Verify released toolchain
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN_SHA"
+          git diff --exit-code "$EXPECTED_MAIN_SHA" -- .nvmrc package.json package-lock.json wrangler.jsonc
+          test -n "$CLOUDFLARE_API_TOKEN"
+      - name: Install pinned query tool
+        run: npm ci --no-audit --no-fund
+      - name: Read receipt counts only
+        run: |
+          set -euo pipefail
+          mkdir -p babylove-receipt-proof
+          cat > babylove-receipt-proof/query.sql <<'SQL'
+          SELECT datetime('now') AS checked_at_utc, COUNT(*) AS received_articles, COALESCE(SUM(CASE WHEN a.status='draft' THEN 1 ELSE 0 END),0) AS draft_articles, COALESCE(SUM(CASE WHEN a.status='published' THEN 1 ELSE 0 END),0) AS published_articles, MAX(r.created_at) AS latest_received_at_utc FROM babylove_receipts r LEFT JOIN knowledge_articles a ON a.slug=r.slug WHERE r.source_id != 'shift-connection-check-20260919';
+          SQL
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --file babylove-receipt-proof/query.sql > babylove-receipt-proof/receipt.json
+          cat babylove-receipt-proof/receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: babylove-receipt-proof
+          path: babylove-receipt-proof/
+          retention-days: 30
