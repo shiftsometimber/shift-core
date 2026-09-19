@@ -1,6 +1,7 @@
-// All durable health records stay on the authenticated API. The only browser
-// draft is the explicitly requested, 30-minute Start Here preference handoff.
-function passportBrowser(){
+// Literal browser source must remain unchanged by Worker bundling. Serialising a
+// compiled function leaks server-only helpers into the page. No durable record
+// is kept here: only the explicitly requested, 30-minute tab handoff.
+export const passportClient=String.raw`(function passportBrowser(){
  'use strict';
  const KEY='sst_start_here_handoff_v1',TTL=1800000;
  const options={why:['Lose weight','Feel more energy','Health worries','Confidence','Feel like myself again'],med:['Jabs','Tablets','Either','No medication'],access:['NHS','Private','Both'],budget:['£0 / NHS','Under £100','£100–£150','£150–£200','£200+']};
@@ -27,6 +28,14 @@ function passportBrowser(){
   clearDraft(); // Starting again never silently reuses someone else's old choices.
   box.querySelector('input').addEventListener('change',()=>{if(!box.querySelector('input').checked)clearDraft()});
   document.addEventListener('click',e=>{
+   const link=e.target.closest('a[href]');
+   if(link&&draft()){
+    const target=new URL(link.href,location.origin);
+    if(target.origin===location.origin&&/^\/member-login(?:\.html)?$/.test(target.pathname)&&!target.searchParams.has('next')&&!target.searchParams.has('returnTo')){
+     target.searchParams.set('next','/member/dashboard?passport=1#journey');
+     link.href=target.pathname+target.search+target.hash;
+    }
+   }
    if(!e.target.closest('[data-quick-next]')||last.hidden)return;
    const answers={};for(const k of Object.keys(options)){const group=$('[data-multi="'+k+'"], [data-one="'+k+'"]');answers[k]=$$('button[aria-pressed="true"]',group||document).map(b=>(b.querySelector('strong')||b.querySelector('span')||b).textContent.trim())}
    if(!validAnswers(answers))return;
@@ -106,5 +115,4 @@ function passportBrowser(){
   if(window.SST_API?.logout){const logout=SST_API.logout;SST_API.logout=async(...args)=>{const result=await logout(...args);clearDraft();host?.replaceChildren();account=null;passport=null;return result;};}
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-}
-export const passportClient='('+passportBrowser.toString()+')();';
+})();`;
