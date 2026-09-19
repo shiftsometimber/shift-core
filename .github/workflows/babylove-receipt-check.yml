@@ -33,12 +33,13 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN"
       - name: Install pinned query tool
         run: npm ci --no-audit --no-fund
-      - name: Read receipt counts only
+      - name: Read delivery status and article title
         run: |
           set -euo pipefail
           mkdir -p babylove-receipt-proof
           cat > babylove-receipt-proof/query.sql <<'SQL'
           SELECT datetime('now') AS checked_at_utc, COUNT(*) AS received_articles, COALESCE(SUM(CASE WHEN a.status='draft' THEN 1 ELSE 0 END),0) AS draft_articles, COALESCE(SUM(CASE WHEN a.status='published' THEN 1 ELSE 0 END),0) AS published_articles, MAX(r.created_at) AS latest_received_at_utc FROM babylove_receipts r LEFT JOIN knowledge_articles a ON a.slug=r.slug WHERE r.source_id != 'shift-connection-check-20260919';
+          SELECT a.title,a.slug,a.status,r.created_at AS received_at_utc,LENGTH(a.body) AS stored_body_characters FROM babylove_receipts r LEFT JOIN knowledge_articles a ON a.slug=r.slug WHERE r.source_id != 'shift-connection-check-20260919' ORDER BY r.created_at DESC LIMIT 5;
           SQL
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$(cat babylove-receipt-proof/query.sql)" > babylove-receipt-proof/receipt.json
           cat babylove-receipt-proof/receipt.json
