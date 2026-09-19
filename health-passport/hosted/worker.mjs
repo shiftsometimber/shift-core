@@ -9,6 +9,7 @@ const privateHeaders={'Cache-Control':'no-store, must-revalidate','X-Robots-Tag'
 const safeAPI=new Set(['/v1/auth/turnstile-config','/v1/auth/login','/v1/auth/logout','/v1/me','/v1/profile','/v1/member-state','/v1/consents','/v1/check-ins','/v1/health-mot','/v1/progress','/v1/progress/summary','/v1/journey','/v1/my-journey','/v1/journey/weekly-check-in','/v1/journey/trends','/v1/journey/export','/v1/privacy/export','/v1/privacy/health-tracking','/v1/life-back','/v1/health-passport','/v1/health-passport/records','/v1/health-passport/interest','/v1/shift/context','/v1/shift/daily-plan','/v1/shift/daily-action','/v1/shift/daily-adjust','/v1/shift/daily-feedback','/v1/shift/daily-meal','/v1/shift/today','/v1/shift/today/check-in','/v1/shift/today/grub','/v1/shift/today/move','/v1/shift/today/help','/v1/shift/treatment-context','/v1/fit/activity','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback','/v1/fit/reminders','/v1/grub/workspace','/v1/grub/search','/v1/grub/plan','/v1/grub/feedback','/v1/grub/replace','/v1/grub/conundrum','/v1/plan/list','/v1/plan/latest','/v1/hydration/today','/v1/hydration/log','/v1/hydration/plan','/v1/events']);
 const readOnlyAPI=new Set(['/v1/treatment/orders','/v1/cases','/v1/pharmacy/orders','/v1/commerce/orders','/v1/pen-day']);
 const pagePaths=new Set(['/start-here','/member-login','/member/dashboard','/member/settings','/member/grub','/member/fit','/member/check-in']);
+const candidateAssets=new Set(['/member-my-journey-v2.js','/member-product-v33d.js']);
 const deny=()=>Response.json({error:'isolated_preview_route_unavailable'},{status:404,headers:privateHeaders});
 export function hostedGuard(request,env){
  const url=new URL(request.url),expires=Date.parse(env.STAGING_EXPIRES_AT||'');
@@ -28,11 +29,9 @@ export default {async fetch(request,env,ctx){
  const passport=passportAssets(request,safeEnv);if(passport)return passport;
  const runtime=memberExperienceRoutes(request,safeEnv);if(runtime)return runtime;
  if(!['GET','HEAD'].includes(request.method))return deny();
- // Production resolves these .html aliases through its current member shell.
- // The isolated asset bucket must not fall through to an obsolete raw HTML file.
  const normal=path.replace(/\.html$/,''),pagePath=pagePaths.has(normal)?normal:path;
  let item=snapshot[path+url.search]||snapshot[path]||snapshot[pagePath+url.search]||snapshot[pagePath];
- if(path==='/member-my-journey-v2.js')item=null;
+ if(candidateAssets.has(path))item=null;
  const target=item?item.asset:path;
  const response=await env.MEMBER_ASSETS.fetch(new Request(new URL(target,url),{method:request.method}));
  if(!response.ok)return response;
