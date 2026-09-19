@@ -16,8 +16,8 @@ test('only the exact authorised additions are removed for preservation; unrelate
  for(const path of Object.keys(continuityEntries)){const after=addContinuityLinks(shell,path);assert.equal(addContinuityLinks(after,path),after);assert.equal(preserveContinuityContent(path,Buffer.from(after),{required:true}).toString(),shell);assert.throws(()=>preserveContinuityContent(path,Buffer.from(after.replace('class="continuity-links"','class="tampered"')),{required:true}),/differs/);assert.throws(()=>preserveContinuityContent(path,Buffer.from(shell),{required:true}),/missing/);assert.notEqual(preserveContinuityContent(path,Buffer.from(after.replace('Locked footer','Changed footer')),{required:true}).toString(),shell)}
  assert.ok(addContinuityLinks(shell,'/programme').includes(NEW_LIFE_LINK));assert.equal(addContinuityLinks(shell,'/'),shell);
 });
-test('sitemap gains exactly the two public pages once and retains every original entry',()=>{
- const input='<urlset><url><loc>https://shiftsometimber.co.uk/original</loc></url></urlset>',out=continuitySitemap(input);assert.equal((out.match(/<loc>/g)||[]).length,1+CONTINUITY_PATHS.length);assert.ok(out.includes('<url><loc>https://shiftsometimber.co.uk/original</loc></url>'));for(const path of CONTINUITY_PATHS)assert.ok(out.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'));assert.equal(continuitySitemap(out),out);
+test('sitemap gains exactly the canonical public Continuity pages once and retains every original entry',()=>{
+ const input='<urlset><url><loc>https://shiftsometimber.co.uk/original</loc></url></urlset>',out=continuitySitemap(input);assert.equal((out.match(/<loc>/g)||[]).length,1+CONTINUITY_PATHS.length);assert.ok(out.includes('<url><loc>https://shiftsometimber.co.uk/original</loc></url>'));for(const path of CONTINUITY_PATHS)assert.ok(out.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'));for(const alias of Object.keys(CONTINUITY_REDIRECTS))assert.ok(!out.includes('<loc>https://shiftsometimber.co.uk'+alias+'</loc>'));assert.equal(continuitySitemap(out),out);
 });
 
 test('pretty Continuity aliases redirect to the existing canonical evidence pages without duplication',async()=>{
