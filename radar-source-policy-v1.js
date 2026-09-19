@@ -1,5 +1,6 @@
-// Permissions, factual evidence and technical access are separate decisions.
-export const SOURCE_POLICY_VERSION='nice-gphc-20260919-v1';
+import {permittedPublisherMode} from './radar-permitted-content-v1.js';
+// Implement the publishers' authorised formats; access remains a separate check.
+export const SOURCE_POLICY_VERSION='nice-gphc-permitted-20260919-v2';
 export const GPHC_RSS='https://www.pharmacyregulation.org/rss';
 export const NICE_TOPIC='https://www.nice.org.uk/guidance/lifestyle-and-wellbeing/diet-nutrition-and-obesity';
 export const NICE_TOPIC_ID='nice-diet-nutrition-obesity';
@@ -10,9 +11,9 @@ function authorityUrl(value){try{const u=new URL(String(value)),h=u.hostname.toL
 export function sourceReusePolicy(row={}){
  const raw=parse(row?.source_evidence_json??row?.source_evidence??[]),evidence=Array.isArray(raw)?raw:[],publishers=new Set();
  for(const x of [row,...evidence]){if(!x||typeof x!=='object')continue;for(const k of ['authority','regulator','publisher']){const a=authority(x[k]);if(a)publishers.add(a)}for(const k of ['url','source_url','source_feed']){const a=authorityUrl(x[k]);if(a)publishers.add(a)}}
- const pending=[...publishers].sort();return{ok:!pending.length,policy:SOURCE_POLICY_VERSION,publishers:pending,reasons:pending.map(x=>x==='GPhC'?'gphc_original_wording_only_pending_reuse_clarification':'nice_editorial_territory_attribution_scope_pending'),discoveryAllowed:true,existingPublicationsUnchanged:true};
+ const pending=[...publishers].sort(),mode=permittedPublisherMode(row);return{ok:!pending.length||Boolean(mode),policy:SOURCE_POLICY_VERSION,publishers:pending,mode,reasons:mode?[]:pending.map(x=>x==='GPhC'?'gphc_original_feed_evidence_required':'nice_permitted_guidance_evidence_required'),discoveryAllowed:true,existingPublicationsUnchanged:true};
 }
-export function sourceReuseFailure(row){const p=sourceReusePolicy(row);return p.ok?null:{ok:false,error:'source_reuse_review_required',message:'Source access is not permission to generate or publish adapted content. Publisher scope clarification is pending.',sourcePolicy:p}}
+export function sourceReuseFailure(row){const p=sourceReusePolicy(row);return p.ok?null:{ok:false,error:'source_reuse_review_required',message:'Use the publisher-authorised format with its original source evidence: NICE editorial summary or unchanged GPhC feed notice.',sourcePolicy:p}}
 export function niceGuidanceStage(item={}){
  let u;try{u=new URL(item.url)}catch{return 'unknown'}if(u.origin!=='https://www.nice.org.uk')return 'unknown';
  const text=String(item.title||'')+' '+String(item.summary||'');

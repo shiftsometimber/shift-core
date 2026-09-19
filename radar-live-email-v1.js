@@ -1,3 +1,4 @@
+import {isValidOriginalNotice} from './radar-permitted-content-v1.js';
 import {pendingSourceChange} from './radar-source-review-v1.js';
 const parse=(s,f={})=>{try{return JSON.parse(s)}catch{return f}};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -13,10 +14,11 @@ export function liveArticleEmail(row){
  const p=parse(row.content_package_json),slug=String(p.seo?.slug||'').replace(/^\/+/,''),path=slug.startsWith('medicine-news/')?slug:'medicine-news/'+slug;
  if(!/^medicine-news\/[a-z0-9][a-z0-9-]+$/.test(path)||!p.destinations?.includes('medicine_news'))throw Error('not_a_news_article');
  const title=plain(p.headline||row.headline).replace(/[\r\n]+/g,' ').trim(),take=plain(p.shift_take||p.why_it_matters_to_uk),summary=plain(p.standfirst||p.what_changed),url='https://shiftsometimber.co.uk/'+path;
- if(!title||!take)throw Error('publication_email_copy_incomplete');
+ const original=isValidOriginalNotice(row);if(!title||(!take&&!original))throw Error('publication_email_copy_incomplete');
  const date=String(row.first_published_at||'').replace(' ','T'),parsed=Date.parse(date.endsWith('Z')?date:date+'Z');
  if(!Number.isFinite(parsed))throw Error('publication_date_missing');
  const published=new Intl.DateTimeFormat('en-GB',{dateStyle:'long',timeStyle:'short',timeZone:'Europe/London'}).format(parsed);
+ if(original)return{url,title,take:'',original:true,subject:'Now live: '+title,text:`Hi Matt,\n\nAn original GPhC notice is now live on SHIFT.\n\n${title}\nPublished: ${published} (UK time)\n\nThe GPhC feed wording is unchanged and attributed, with its original source link. No AI rewrite or SHIFT interpretation has been added.\n\nRead the notice: ${url}`,html:`<h1>GPhC notice now live</h1><h2>${esc(title)}</h2><p>Original GPhC feed wording, with source attribution and link. No AI rewrite or SHIFT interpretation.</p><p><a href="${esc(url)}">Read the notice on SHIFT</a></p>`};
  return{url,title,take,subject:'Now live: '+title,text:`Hi Matt,\n\nThe following article is now live on SHIFT:\n\n${title}\nPublished: ${published} (UK time)\n\n${summary}\n\nSHIFT’s take\n${take}\n\nRead the article: ${url}\n\nThis is a publication confirmation. No approval is needed.`,html:`<h1>The following article is now live</h1><h2>${esc(title)}</h2><p>Published: ${esc(published)} (UK time)</p><p>${html(summary)}</p><h2>SHIFT’s take</h2><p>${html(take)}</p><p><a href="${esc(url)}">Read the article on SHIFT</a></p><p>This is a publication confirmation. No approval is needed.</p>`};
 }
 async function currentArticle(DB,id){return DB.prepare("SELECT e.*,(SELECT MIN(created_at) FROM radar_audit WHERE event_id=e.id AND action='published') first_published_at FROM radar_events e WHERE e.id=?").bind(id).first()}
@@ -44,7 +46,7 @@ export async function deliverLiveArticleEmail(env,id,{fetcher=fetch}={}){
   const message=liveArticleEmail(row),response=await fetcher(message.url,{redirect:'error',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});
   if(!response.ok)throw Error('public_page_http_'+response.status);
   const body=await response.text(),text=body.replace(/<[^>]*>/g,' ').replace(/&#39;|&apos;/g,"'").replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ');
-  if(!body.includes('data-shift-take')||!comparable(text).includes(comparable(message.title))||!comparable(text).includes(comparable(message.take.replace(/ \(https:\/\/[^)]+\)/g,''))))throw Error('public_page_copy_not_ready');
+  if(!body.includes(message.original?'data-publisher-original':'data-shift-take')||!comparable(text).includes(comparable(message.title))||(!message.original&&!comparable(text).includes(comparable(message.take.replace(/ \(https:\/\/[^)]+\)/g,'')))))throw Error('public_page_copy_not_ready');
   if(await pendingSourceChange(env.DB,id))throw Error('source_changed_before_email');
   const ready=await env.DB.prepare("UPDATE radar_live_email SET status='sending' WHERE event_id=? AND claim_token=? AND status='checking' AND EXISTS (SELECT 1 FROM radar_events e WHERE e.id=radar_live_email.event_id AND e.status='published' AND e.content_package_json=radar_live_email.content_json AND e.source_evidence_json=radar_live_email.evidence_json)").bind(id,token).run();
   if(!ready.meta?.changes)return{sent:false,reason:'article_changed_before_email'};

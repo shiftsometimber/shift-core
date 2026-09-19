@@ -1,3 +1,4 @@
+import {originalNoticeHtml,publisherAttributionHtml} from './radar-permitted-content-v1.js';
 import {NEWSROOM_SORTS,newsSortKey,compareNews,newsPublicationDate} from './radar-newsroom-sort-v1.js';
 import {articleTrust,sourceDateLabel} from './radar-editorial-trust-v1.js';
 import {NEWSROOM_LAYOUT_STYLE} from './radar-newsroom-layout-v1.js';
@@ -46,6 +47,7 @@ function indexMain(rows){
 }
 
 function detailMain(row){
+ const original=originalNoticeHtml(row);if(original)return original;
  const content=parse(row.content_package_json,{}),sources=parse(row.source_evidence_json,[]),facts=Array.isArray(content.known_facts)?content.known_facts:[];
  const meaning=String(content.shift_take||content.why_it_matters_to_uk||'').trim();
  const paragraphs=String(content.article_markdown||'').split(/\n\s*\n/);
@@ -58,7 +60,7 @@ function detailMain(row){
  const meaningHtml='<section data-shift-take><h2>SHIFT’s take</h2><p class="radar-news-meta">SHIFT’s interpretation of the findings and what they could mean for members.</p>'+markdown(meaning||'A separate SHIFT interpretation has not been added to this report.')+'</section>';
  const factsHtml=facts.length?'<section><h2>Known facts</h2><ul>'+facts.map(x=>'<li>'+esc(x.claim||x.fact||"")+'</li>').join("")+'</ul></section>':"";
  const sourcesHtml='<section><h2>Sources and evidence</h2><ul class="radar-source-list">'+sources.map(x=>'<li><a href="'+esc(x.url||x.source_url||"#")+'" rel="noopener noreferrer">'+esc(x.authority||x.title||"Primary source")+'</a>'+sourceDateLabel(x)+'</li>').join("")+'</ul></section>';
- return '<main id="main-content"><article class="radar-article"><p class="eyebrow">SHIFT Newsroom · '+esc(newsRegion({region:row.region},{title:row.headline}))+'</p><h1>'+esc(content.headline||row.headline)+'</h1><p class="standfirst">'+esc(content.standfirst||content.what_changed||"")+'</p>'+articleTrust({...content,seo:{...content.seo,datePublished:publishedAt(row)}},row)+markdown(articleBody)+meaningHtml+factsHtml+(content.safety?'<aside class="radar-safety"><strong>Safety context</strong><p>'+esc(content.safety)+'</p></aside>':"")+sourcesHtml+'<p><a href="/shift-newsroom">← Back to SHIFT Newsroom</a></p></article></main>';
+ return '<main id="main-content"><article class="radar-article"><p class="eyebrow">SHIFT Newsroom · '+esc(newsRegion({region:row.region},{title:row.headline}))+'</p><h1>'+esc(content.headline||row.headline)+'</h1><p class="standfirst">'+esc(content.standfirst||content.what_changed||"")+'</p>'+articleTrust({...content,seo:{...content.seo,datePublished:publishedAt(row)}},row)+markdown(articleBody)+meaningHtml+factsHtml+(content.safety?'<aside class="radar-safety"><strong>Safety context</strong><p>'+esc(content.safety)+'</p></aside>':"")+sourcesHtml+publisherAttributionHtml(row)+'<p><a href="/shift-newsroom">← Back to SHIFT Newsroom</a></p></article></main>';
 }
 function detailHead(html,row,request){
  const content=parse(row.content_package_json,{}),seo=content.seo||{},title=String(seo.title||content.headline||row.headline).slice(0,70),description=String(seo.description||content.standfirst||content.what_changed||"").slice(0,160),canonical=new URL(request.url);canonical.search="";canonical.hash="";
