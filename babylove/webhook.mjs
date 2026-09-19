@@ -5,6 +5,7 @@ const LIMIT=400000;
 const reply=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const digest=async value=>new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)));
 async function matches(a,b){const x=await digest(a),y=await digest(b);let diff=0;for(let i=0;i<x.length;i++)diff|=x[i]^y[i];return diff===0;}
+async function matchesHash(token,hash){const actual=await digest(token);let diff=0;for(let i=0;i<actual.length;i++)diff|=actual[i]^parseInt(hash.slice(i*2,i*2+2),16);return diff===0;}
 function field(value,max,required=false){if(value==null&&!required)return '';if(typeof value!=='string'||value.length>max||(required&&!value.trim()))throw new Error('invalid_payload');return value.trim();}
 export function validate(payload){
   if(!payload||Array.isArray(payload)||typeof payload!=='object')throw new Error('invalid_payload');
@@ -27,10 +28,14 @@ export async function babyLoveRoutes(request,env){
   if(new URL(request.url).pathname.replace(/\/+$/,'')!==PATH)return null;
   if(request.method!=='POST')return reply({success:false,error:'method_not_allowed'},405);
   const secret=env.BABYLOVE_WEBHOOK_TOKEN;
-  if(typeof secret!=='string'||secret.length<32||!env.DB)return reply({success:false,error:'integration_not_configured'},503);
+  // The deployment can retain only a SHA-256 verifier for a random 256-bit token.
+  // The bearer token itself remains private and is never committed to source.
+  const verifier=env.BABYLOVE_WEBHOOK_TOKEN_SHA256;
+  const hasVerifier=typeof verifier==='string'&&/^[a-f0-9]{64}$/.test(verifier);
+  if((verifier!=null&&!hasVerifier)||(!hasVerifier&&(typeof secret!=='string'||secret.length<32))||!env.DB)return reply({success:false,error:'integration_not_configured'},503);
   const authorization=request.headers.get('Authorization');
   const token=authorization!==null?(/^Bearer (\S+)$/.exec(authorization)?.[1]||''):(request.headers.get('X-API-Key')||'');
-  if(!token||!await matches(token,secret))return reply({success:false,error:'unauthorized'},401);
+  if(!token||token.length>4096||!(hasVerifier?await matchesHash(token,verifier):await matches(token,secret)))return reply({success:false,error:'unauthorized'},401);
   if(request.headers.get('Content-Type')?.split(';')[0].trim().toLowerCase()!=='application/json')return reply({success:false,error:'json_required'},415);
   if(Number(request.headers.get('Content-Length'))>LIMIT)return reply({success:false,error:'payload_too_large'},413);
   let payload,article;

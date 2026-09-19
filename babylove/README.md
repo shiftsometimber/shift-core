@@ -5,7 +5,9 @@ Contract checked against https://www.babylovegrowth.ai/docs/integrations/webhook
 This candidate adds POST `/v1/integrations/babylovegrowth` to the existing Worker.
 It is not a deployed or verified live endpoint. Do not enter it in the vendor wizard yet.
 
-Configure a dedicated `BABYLOVE_WEBHOOK_TOKEN` Worker secret (at least 32 characters).
+The deployment stores `BABYLOVE_WEBHOOK_TOKEN_SHA256`, a SHA-256 verifier for a
+private random 256-bit token. The actual token is delivered only to the owner,
+never committed. A legacy `BABYLOVE_WEBHOOK_TOKEN` secret is also supported.
 The receiver accepts the documented Bearer header, with X-API-Key fallback only
 when Authorization is absent. Never reuse an HQ, Cloudflare or member credential.
 
@@ -16,7 +18,7 @@ are acknowledged without another article; content/slug conflicts return 409 for
 review. The existing editorial approval route remains responsible for publication.
 
 Verification: `node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs`
-passed 15 tests locally. These are SQLite-backed handler and existing editorial
+passed 17 tests locally. These are SQLite-backed handler and existing editorial
 tests, not a real vendor delivery, deployed D1 test or visual article acceptance.
 
 Remaining release work: verify isolated Worker/D1 deployment, set the dedicated

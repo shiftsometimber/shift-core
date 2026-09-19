@@ -251,6 +251,8 @@ jobs:
         run: node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs
       - name: Verify newsroom publication ordering and combined controls
         run: node --test tests/radar-newsroom-*.test.mjs
+      - name: Verify authenticated BabyLoveGrowth draft intake
+        run: node --test babylove/*.test.mjs
       - name: Verify HQ article schema and retained editorial approvals
         run: |
           node --test tests/knowledge-editorial-*.test.mjs
