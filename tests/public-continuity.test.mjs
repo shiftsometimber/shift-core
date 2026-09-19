@@ -17,7 +17,7 @@ test('only the exact authorised additions are removed for preservation; unrelate
  assert.ok(addContinuityLinks(shell,'/programme').includes(NEW_LIFE_LINK));assert.equal(addContinuityLinks(shell,'/'),shell);
 });
 test('sitemap gains exactly the two public pages once and retains every original entry',()=>{
- const input='<urlset><url><loc>https://shiftsometimber.co.uk/original</loc></url></urlset>',out=continuitySitemap(input);assert.equal((out.match(/<loc>/g)||[]).length,3);assert.ok(out.includes('<url><loc>https://shiftsometimber.co.uk/original</loc></url>'));assert.equal(continuitySitemap(out),out);
+ const input='<urlset><url><loc>https://shiftsometimber.co.uk/original</loc></url></urlset>',out=continuitySitemap(input);assert.equal((out.match(/<loc>/g)||[]).length,1+CONTINUITY_PATHS.length);assert.ok(out.includes('<url><loc>https://shiftsometimber.co.uk/original</loc></url>'));for(const path of CONTINUITY_PATHS)assert.ok(out.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'));assert.equal(continuitySitemap(out),out);
 });
 
 test('pretty Continuity aliases redirect to the existing canonical evidence pages without duplication',async()=>{
