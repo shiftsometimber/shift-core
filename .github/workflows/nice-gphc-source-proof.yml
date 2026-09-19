@@ -2,66 +2,84 @@ name: NICE GPhC Source Proof
 on:
   push:
     branches: ['fix/nice-gphc-source-policy-20260919']
-    paths: ['.github/workflows/nice-gphc-source-proof.yml', 'radar-source-policy-v1.js', 'tests/radar-source-policy*.mjs']
+  pull_request:
+    branches: [main]
+    paths: ['radar-*.js', 'tests/source-reuse*.mjs', 'tests/radar*.mjs', '.github/workflows/nice-gphc-source-proof.yml']
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: nice-gphc-source-proof
   cancel-in-progress: false
 jobs:
   verify:
+    if: github.repository == 'shiftsometimber/shift-core' && (github.ref == 'refs/heads/fix/nice-gphc-source-policy-20260919' || github.head_ref == 'fix/nice-gphc-source-policy-20260919')
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Retain pinned newsroom source for isolated review
+      - name: Apply exact source edits on this isolated branch only
         run: |
           mkdir -p source-proof
           python3 - <<'PY'
-          import pathlib,subprocess,zipfile
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          with zipfile.ZipFile('source-proof/current-newsroom-source.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for value in paths:
-              p=pathlib.Path(value)
-              if p.is_file() and (value.startswith(('radar-','tests/radar-','scripts/radar-','.github/workflows/','medicines-watch/')) or value in ['package.json','package-lock.json','wrangler.jsonc','worker-entry-v6.js','worker.js']):
-                if p.suffix in ['.js','.mjs','.json','.jsonc','.yml','.sql','.md']: z.write(p,str(p))
-          pathlib.Path('source-proof/source-sha.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD']).decode())
-          pathlib.Path('source-proof/tracked-files.txt').write_text('\n'.join(paths))
+          import pathlib,json,hashlib,subprocess
+          p=pathlib.Path('scripts/source-policy-edits.json')
+          if p.exists():
+            assert subprocess.check_output(['git','ls-remote','origin','refs/heads/main'],text=True).split()[0]=='c478c969ae74a67906b0d3beac2d22a079a3ce71','Main moved; reconcile without overwriting'
+            head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+            branch='refs/heads/fix/nice-gphc-source-policy-20260919'
+            assert subprocess.check_output(['git','ls-remote','origin',branch],text=True).split()[0]==head,'Preview moved'
+            edits=json.loads(p.read_text());allowed={'radar-discovery-sources-v1.js','radar-authoritative-scan-v1.js','radar-auto-news-v1.js','radar-integration-v1.js','tests/radar-discovery-pipeline.test.mjs'}
+            assert {x['path'] for x in edits}==allowed and len(edits)==len(allowed)
+            for item in edits:
+              f=pathlib.Path(item['path']);s=f.read_text();assert hashlib.sha256(s.encode()).hexdigest()==item['beforeSha256'],str(f)
+              for change in item['replacements']:
+                assert s.count(change['old'])==1,str(f)
+                s=s.replace(change['old'],change['new'])
+              assert hashlib.sha256(s.encode()).hexdigest()==item['afterSha256'],str(f)
+              f.write_text(s)
+            pathlib.Path('source-proof/applied-edits.json').write_text(p.read_text())
+            subprocess.check_call(['git','add','--',*sorted(allowed)])
+            subprocess.check_call(['git','rm','--',str(p)])
+            subprocess.check_call(['git','-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com','commit','-m','Integrate source-specific monitoring and publisher reuse holds'])
+            subprocess.check_call(['git','push','origin','HEAD:'+branch])
+          pathlib.Path('source-proof/candidate-sha.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
           PY
-      - name: One transparent GET per confirmed source; retain refusals without retry
+      - run: npm ci --no-audit --no-fund
+      - name: All newsroom source, publication, email and privacy-boundary regressions
+        run: |
+          set -o pipefail
+          node --test tests/source-reuse*.test.mjs tests/radar*.test.mjs | tee source-proof/regressions.tap
+      - name: Compile without deploying
+        run: |
+          set -o pipefail
+          npx wrangler deploy --dry-run --outdir source-proof/worker | tee source-proof/compile.log
+      - name: One bounded discovery test of the exact topic URL supplied by NICE
+        if: always()
         run: |
           node --input-type=module <<'NODE'
           import {writeFileSync} from 'node:fs';
           import {createHash} from 'node:crypto';
-          const report={checkedAt:new Date().toISOString(),runtime:process.version,platform:process.platform,architecture:process.arch,environment:'GitHub-hosted ubuntu-latest diagnostic runner, not the Cloudflare production scanner',workflowSha:process.env.GITHUB_SHA,productionWrites:false,noAuthentication:true,requests:[]};
-          try{const r=await fetch('https://api.ipify.org?format=json',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('http_'+r.status);report.ipObservation={...(await r.json()),observedAt:new Date().toISOString(),service:'https://api.ipify.org?format=json',qualification:'Observed public egress to the IP service in this run, not a historical address or proof of the address seen by a different destination.'}}catch(e){report.ipObservation={unavailable:true,error:e.message}}
-          const headers={Accept:'application/rss+xml,application/atom+xml,application/xml,text/xml,text/html;q=0.8','User-Agent':'Shift-Radar/1.0 (+https://shiftsometimber.co.uk; contact: matt@shiftsometimber.co.uk)'};
-          for(const [name,url] of [['gphc-rss','https://www.pharmacyregulation.org/rss'],['nice-topic','https://www.nice.org.uk/guidance/lifestyle-and-wellbeing/diet--nutrition-and-obesity']]){
-            const item={name,url,method:'GET',startedAt:new Date().toISOString(),requestHeaders:headers,redirectMode:'manual',retries:0};
-            try{
-              const r=await fetch(url,{headers,redirect:'manual',signal:AbortSignal.timeout(20000)});
-              item.status=r.status;item.responseHeaders=Object.fromEntries([...r.headers].filter(([k])=>!['set-cookie','cookie','authorization'].includes(k.toLowerCase())));
-              const chunks=[];let size=0;
-              if(r.body){const reader=r.body.getReader();for(;;){const {value,done}=await reader.read();if(done)break;size+=value.length;if(size>2000000){await reader.cancel();throw Error('response_too_large')}chunks.push(value)}}
-              const body=Buffer.concat(chunks);item.bytes=body.length;item.sha256=createHash('sha256').update(body).digest('hex');item.rssDocument=/<(?:rss|feed|rdf:RDF)\b/i.test(body.toString())&&!/<html\b/i.test(body.toString());
-              writeFileSync('source-proof/'+name+'-response.txt',body);
-            }catch(e){item.error=e.message}
-            item.completedAt=new Date().toISOString();report.requests.push(item);
-          }
-          writeFileSync('source-proof/access-diagnostics.json',JSON.stringify(report,null,2));
-          console.log(JSON.stringify(report,null,2));
+          import {scanNiceTopic,NICE_TOPIC} from './radar-source-policy-v1.js';
+          import {parseRelevantHtmlLinks} from './radar-authoritative-scan-v1.js';
+          const proof={checkedAt:new Date().toISOString(),topic:NICE_TOPIC,productionWrites:false,gphcRetested:false,requests:[]};
+          const fetcher=async(url,options)=>{const at=new Date().toISOString(),r=await fetch(url,{...options,signal:AbortSignal.timeout(20000)}),body=await r.clone().text();writeFileSync('source-proof/nice-'+proof.requests.length+'.html',body);proof.requests.push({url:String(url),finalUrl:r.url,startedAt:at,status:r.status,bytes:Buffer.byteLength(body),sha256:createHash('sha256').update(body).digest('hex')});return r};
+          try{proof.items=await scanNiceTopic(fetcher,parseRelevantHtmlLinks);proof.ok=true}catch(e){proof.ok=false;proof.error=e.message}
+          writeFileSync('source-proof/nice-topic-proof.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof,null,2));
           NODE
-      - name: Run source policy regression tests when present
+      - name: Retain exact code and diff
+        if: always()
         run: |
-          if test -f tests/radar-source-policy-v1.test.mjs; then node --test tests/radar-source-policy*.mjs; fi
+          git diff c478c969ae74a67906b0d3beac2d22a079a3ce71 -- radar-*.js tests/source-reuse*.mjs tests/radar-discovery-pipeline.test.mjs > source-proof/candidate.patch
+          cp radar-source-policy-v1.js source-proof/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: nice-gphc-proof-${{ github.sha }}
+          name: nice-gphc-proof-${{ github.event.pull_request.head.sha || github.sha }}
           path: source-proof/
           retention-days: 30
