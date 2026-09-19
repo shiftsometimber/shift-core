@@ -61,7 +61,7 @@ test('high-value hubs now pass internal authority to pages Google is already tes
   const cases={
     '/treatment-centre':['/comparisons/medications/mounjaro-vs-saxenda','/comparisons/medications/mounjaro-vs-orlistat','/guides/nhs-weight-loss-medication-pathways'],
     '/mens-weight-management':['/guides/weight-loss-surgery-uk-costs-guide','/mental-health/mental-health-and-weight'],
-    '/weight-loss-injections-for-men':['/comparisons/medications/mounjaro-vs-saxenda','/articles/mounjaro-vs-wegovy'],
+    '/weight-loss-injections-for-men':['/comparisons/medications/mounjaro-vs-saxenda','/compare-weight-loss-treatments'],
   };
   for(const [path,links] of Object.entries(cases)){
     const rendered=reconcilePublicDocument(shell,path);

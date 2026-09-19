@@ -17,7 +17,7 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
       - name: Test article, shell, sharing, link and preservation contracts
-        run: node --test tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs tests/radar-newsroom-*.test.mjs babylove/*.test.mjs medicines-watch/preservation.test.mjs tests/public-continuity.test.mjs tests/seo-release-integrity.test.mjs
+        run: node --test tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs tests/radar-newsroom-*.test.mjs babylove/*.test.mjs medicines-watch/preservation.test.mjs tests/public-continuity.test.mjs tests/seo-release-integrity.test.mjs
       - name: Compile exact production Worker without deployment
         run: npx wrangler deploy --dry-run --outdir seo-template-build
       - name: Prove changes against fresh live documents and real FAQ redirects
