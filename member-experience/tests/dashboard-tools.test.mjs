@@ -47,7 +47,7 @@ test('photo client mounts after DOM ready without invoking legacy Today or alter
  const ids=['photoWeightStone','photoWeightPounds','photoWeightKg','photoWeightLbOnly','photoWaist','photoWeightUnit','photoWeightStoneWrap','photoWeightKgWrap','photoWeightLbWrap','photoInput','photoPreview','visualConsentWrap','saveOriginal','photoWaistUnit','visualConsent','savedPhotos'];
  const nodes=new Map(ids.map(id=>['#'+id,{style:{},value:'',innerHTML:'',addEventListener(){}}]));
  const calls=[];const api={listProgressPhotos:async()=>{calls.push('photos');return{photos:[]}},getShiftContext:async()=>calls.push('context'),getShiftToday:async()=>calls.push('today')};
- const context={document:{body:{dataset:{memberTools:'v1'}},readyState:'complete',querySelector:s=>nodes.get(s)||null,querySelectorAll:()=>[],addEventListener(){}},window:{addEventListener(){throw Error('should mount immediately after DOM ready')}},localStorage:{setItem(){},getItem(){return null}},SST_API:api,location:{hash:'#plans',pathname:'/member/dashboard'},history:{replaceState(){throw Error('must not change selected route')}}};
+ const context={location:{pathname:'/member/dashboard'},document:{body:{dataset:{memberTools:'v1'}},readyState:'complete',querySelector:s=>nodes.get(s)||null,querySelectorAll:()=>[],addEventListener(){}},window:{addEventListener(){throw Error('should mount immediately after DOM ready')}},localStorage:{setItem(){},getItem(){return null}},SST_API:api,location:{hash:'#plans',pathname:'/member/dashboard'},history:{replaceState(){throw Error('must not change selected route')}}};
  vm.runInNewContext(source,context);await new Promise(setImmediate);
  assert.deepEqual(calls,['photos']);
  assert.equal(typeof nodes.get('#photoInput').onchange,'function');
@@ -110,7 +110,7 @@ test('photo save requires an explicit stone/pounds pair and preserves waist meas
  nodes.get('#photoWeightUnit').value='stone';nodes.get('#photoWaistUnit').value='cm';nodes.get('#photoInput').files=[{name:'synthetic.png'}];nodes.get('#savePhotoConsent').checked=true;
  const payloads=[];let decoded=0;
  const api={listProgressPhotos:async()=>({photos:[]}),saveProgressPhoto:async(file,payload)=>payloads.push(JSON.parse(JSON.stringify(payload)))};
- const context={document:{body:{dataset:{memberTools:'v1'}},readyState:'complete',querySelector:s=>nodes.get(s)||null,querySelectorAll:()=>[],addEventListener(){},createElement:name=>{assert.equal(name,'canvas');return{getContext:()=>({drawImage(){}}),toBlob:callback=>callback({})}}},window:{},localStorage:{setItem(){},getItem(){return null}},SST_API:api,File:class{},createImageBitmap:async()=>{decoded++;return{width:500,height:700,close(){}}}};
+ const context={location:{pathname:'/member/dashboard'},document:{body:{dataset:{memberTools:'v1'}},readyState:'complete',querySelector:s=>nodes.get(s)||null,querySelectorAll:()=>[],addEventListener(){},createElement:name=>{assert.equal(name,'canvas');return{getContext:()=>({drawImage(){}}),toBlob:callback=>callback({})}}},window:{},localStorage:{setItem(){},getItem(){return null}},SST_API:api,File:class{},createImageBitmap:async()=>{decoded++;return{width:500,height:700,close(){}}}};
  vm.runInNewContext(source,context);
  const save=nodes.get('#saveOriginal').onclick;
  nodes.get('#photoWeightPounds').value='4.0';await save();assert.equal(payloads.length,0);assert.equal(decoded,0);assert.match(nodes.get('#visualStatus').textContent,/Choose both stone and pounds/);

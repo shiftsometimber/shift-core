@@ -9,6 +9,7 @@ on:
       - ".github/workflows/cloudflare-production-promote.yml"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
+      - "health-passport/**"
       - "shift-health-public.mjs"
       - "testosterone-public-content.mjs"
       - "testosterone-hub-order.mjs"
@@ -198,6 +199,8 @@ jobs:
           git diff --exit-code -- member-experience/life-back-assets.mjs
           node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
           node gate4-one-shift-brain-gate.mjs
+      - name: Verify Passport consent, migration and preservation before promotion
+        run: node --test health-passport/*.test.mjs
       - name: Verify catalogue authority, additive publication guards and timing
         run: |
           node grub-expansion-review-pack.mjs
@@ -305,12 +308,23 @@ jobs:
         with:
           name: worker-deployment-before-${{ github.run_id }}
           path: deployment-before.json
+      - name: Prepare exact additive Passport schema and rollback
+        run: node health-passport/production-release.mjs
       - name: Deploy current main to production
         run: |
           node scripts/catalogue-publication-client.mjs --verify-main
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Prove activated Passport delivery and private routes
+        run: node health-passport/production-live.mjs
+      - name: Retain Passport migration and live evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: passport-release-${{ github.run_id }}
+          path: passport-release/
+          if-no-files-found: warn
       - name: Publish only the fixed owner-authorised catalogue when approved
         env:
           CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json

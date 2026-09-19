@@ -307,5 +307,17 @@ function bootProduct(){
  // The current master owns Today; restored tools must never rewrite its actions.
  if(!retainedToolsOnly)load();
 }
-if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',bootProduct,{once:true});else bootProduct();
+// The sign-in form owns authentication. Private product controls must not
+// issue their unauthenticated self-redirect while that form is still open.
+function bootProductWhenReady(){
+ const authEntry=/^\/member-(?:login|register)(?:\.html)?\/?$/.test(location.pathname);
+ if(!authEntry||document.body.classList.contains('member-ready')){bootProduct();return}
+ let started=false;
+ const observer=new MutationObserver(()=>{
+  if(started||!document.body.classList.contains('member-ready'))return;
+  started=true;observer.disconnect();bootProduct();
+ });
+ observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+}
+if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',bootProductWhenReady,{once:true});else bootProductWhenReady();
 })();

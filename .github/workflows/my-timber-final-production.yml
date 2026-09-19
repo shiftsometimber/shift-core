@@ -41,6 +41,20 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Prove activated Passport with synthetic production accounts
+        if: ${{ hashFiles('health-passport/production-browser.mjs') != '' }}
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          PASSPORT_RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: node health-passport/production-browser.mjs
+      - name: Retain Passport signed-in production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: passport-signed-in-production-${{ github.run_id }}
+          path: passport-production-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Record and prove Billy's live production journey
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk

@@ -1,3 +1,4 @@
+import {preservePassportHead} from '../health-passport/production-preservation.mjs';
 import {preserveHealthCardOrder} from '../testosterone-hub-order.mjs';
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -9,12 +10,13 @@ const [output,before]=process.argv.slice(2);
 if(!output)throw Error('An evidence output path is required');
 const paths=['/','/start-here','/programme','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912','/articles/stopping-glp1'];
 const pages=[];
+const passportEnabled=/"HEALTH_PASSPORT_V1_ENABLED"\s*:\s*"true"/.test(readFileSync('wrangler.jsonc','utf8'));
 const hash=body=>createHash('sha256').update(body).digest('hex');
 for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const preserved=preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(body)),{required:Boolean(before)});
+ const preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(body)),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';

@@ -1,3 +1,5 @@
+import {passportRoutes,appendPassportExport} from './health-passport/routes.mjs';
+import {passportAssets,withPassportPresentation} from './health-passport/presentation.mjs';
 import {withPublicShellContract,legacyAuthorityRedirects} from './public-shell-contract.mjs';
 import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
 import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navigation-policy.mjs';
@@ -554,6 +556,7 @@ const worker = {
     if (['GET','HEAD'].includes(request.method) && ['/health','/v1/health'].includes(path)) return publicHealthResponse(request,env);
     const medicinesWatch = await medicinesWatchRoutes(request, env);
     if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);
+    const passportAsset = passportAssets(request, env); if(passportAsset)return passportAsset;
     const memberExperience = memberExperienceRoutes(request, env);
     if (memberExperience) return memberExperience;
     const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
@@ -867,6 +870,7 @@ const worker = {
 
 
     const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
+    const passport = await passportRoutes(request, env); if(passport)return withMemberCors(passport,request);
     const memberHealth = await memberHealthRoutes(request, env);
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
@@ -946,6 +950,7 @@ const worker = {
       await hq.fetch(request, env, ctx),
     );
     fallback = await appendHealthExport(request, env, fallback);
+    fallback = await appendPassportExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)
@@ -1129,6 +1134,6 @@ export default {
       const url = new URL(request.url); url.pathname = '/programme'; url.search = '';
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
-    return withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, page || await worker.fetch(request, env, ctx))));
+    return withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
   },
 };

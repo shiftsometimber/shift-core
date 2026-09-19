@@ -1,0 +1,89 @@
+name: Health Passport v1 Preview
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/health-passport-preview.yml'
+      - 'health-passport/**'
+      - 'member-experience/**'
+      - 'frontend/member/**'
+      - 'frontend/public/**'
+      - 'tests/health-passport*'
+      - 'privacy-health-erasure-route-v1.js'
+      - 'worker-entry-v6.js'
+permissions:
+  contents: read
+concurrency:
+  group: health-passport-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  preview:
+    if: github.repository == 'shiftsometimber/shift-core' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'feat/health-passport-v1-20260919'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Record exact isolated candidate without repository or production writes
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mkdir -p passport-proof
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert head==os.environ['EXPECTED_HEAD']
+          assert not list(pathlib.Path('health-passport').glob('import-*.b64'))
+          paths=subprocess.check_output(['git','ls-files','health-passport','frontend/member/member-my-journey-v2.js','member-experience/tests/journey-bootstrap-navigation.test.mjs','privacy-health-erasure-route-v1.js','worker-entry-v6.js'],text=True).splitlines()
+          proof={'candidateHead':head,'baseline':'2d257d61ae1276c404de5e265a028040cb422aad','productionWrites':False,'repositoryWrites':False,'files':{p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in paths}}
+          pathlib.Path('passport-proof/source-manifest.json').write_text(json.dumps(proof,indent=2))
+          print(json.dumps(proof,indent=2))
+          PY
+      - name: Install locked application toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Real SQLite, authentication, consent and preservation regressions
+        run: |
+          set -o pipefail
+          node --test health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee passport-proof/regressions.tap
+          node my-journey-integration-gate.mjs | tee passport-proof/journey-gate.log
+          node my-timber-final-source-gate.mjs | tee passport-proof/member-gate.log
+      - name: Compile without deployment or production credentials
+        run: |
+          set -o pipefail
+          npx wrangler deploy --dry-run --outdir passport-proof/worker | tee passport-proof/compile.log
+      - name: Capture anonymous public baseline without account access
+        run: node health-passport/capture-baseline.mjs
+      - name: Install isolated browser test runner
+        run: |
+          python3 -m pip install playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+      - name: Fictional-account browser integration and painted text readability
+        run: |
+          node health-passport/preview-server.mjs > passport-proof/server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          READY=0
+          for n in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8765/__preview/login >/dev/null; then READY=1; break; fi
+            sleep 1
+          done
+          test "$READY" = 1
+          python3 health-passport/browser-proof.py
+          python3 health-passport/contrast-proof.py
+      - name: Retain exact candidate source and readable change
+        if: always()
+        run: |
+          mkdir -p passport-proof
+          git diff 2d257d61ae1276c404de5e265a028040cb422aad -- frontend/member/member-my-journey-v2.js health-passport/ member-experience/tests/journey-bootstrap-navigation.test.mjs privacy-health-erasure-route-v1.js worker-entry-v6.js > passport-proof/candidate.patch
+          cp health-passport/README.md passport-proof/README.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-passport-preview-${{ github.event.pull_request.head.sha }}
+          path: passport-proof/
