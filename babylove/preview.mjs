@@ -37,9 +37,18 @@ const report={source_sha:process.env.GITHUB_SHA,checked_at:new Date().toISOStrin
 const suffix=Date.now().toString(),slug='babylove-preview-'+suffix;
 const payload={id:'preview-'+suffix,title:'SHIFT integration fixture',slug,metaDescription:'Fictional preview only',content_html:'<h1>Fixture</h1><script type="application/ld+json">{"@type":"Article"}</script>',content_markdown:'# Fixture\n\nPreview only.',heroImageUrl:'https://example.invalid/fixture.jpg',jsonLd:{'@type':'Article'},status:'published'};
 async function post(body,auth=token){const start=performance.now();const response=await fetch(url,{method:'POST',headers:{Authorization:'Bearer '+auth,'Content-Type':'application/json'},body:JSON.stringify(body)});const result={http:response.status,body:await response.json(),ms:Math.round(performance.now()-start)};return result;}
-function record(label,result,code){assert.equal(result.http,code,label);report.checks.push({label,...result});}
+function record(label,result,code){assert.equal(result.http,code,label+': '+JSON.stringify(result));report.checks.push({label,...result});}
 record('unauthorised request',await post(payload,'invalid'),401);
-record('new article stored as draft',await post(payload),200);
+// The route can still serve the preceding preview version briefly after deploy.
+// Retry only this idempotent fixture's 401 while the newly generated token rolls out.
+let first;
+for(let attempt=0;attempt<12;attempt++){
+  first=await post(payload);
+  if(first.http!==401)break;
+  console.log('Waiting for preview authentication version',attempt+1);
+  await new Promise(resolve=>setTimeout(resolve,2500));
+}
+record('new article stored as draft',first,200);
 for(const result of await Promise.all([post(payload),post(payload),post(payload)])){record('concurrent exact retry',result,200);assert.equal(result.body.duplicate,true);assert.equal(result.body.published,false);assert.equal(result.body.link,undefined);}
 record('changed delivery cannot overwrite',await post({...payload,title:'Changed'}),409);
 record('existing article preserved',await post({...payload,id:'collision-'+suffix,slug:'preserved-existing'}),409);
