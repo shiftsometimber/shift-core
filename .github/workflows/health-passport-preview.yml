@@ -9,43 +9,117 @@ on:
       - 'frontend/member/**'
       - 'frontend/public/**'
       - 'tests/health-passport*'
+      - 'privacy-health-erasure-route-v1.js'
       - 'worker-entry-v6.js'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: health-passport-preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 jobs:
   preview:
+    if: github.repository == 'shiftsometimber/shift-core' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'feat/health-passport-v1-20260919'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Retain exact tracked source for isolated implementation and review
+      - name: Materialise the exact reviewed patch on the isolated branch only
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           mkdir -p passport-proof
           python3 - <<'PY'
-          import pathlib,subprocess,zipfile
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          with zipfile.ZipFile('passport-proof/source.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for value in paths:
-              p=pathlib.Path(value)
-              if p.is_file() and p.suffix.lower() in {'.js','.mjs','.cjs','.json','.jsonc','.sql','.yml','.yaml','.html','.css','.md','.txt'}:
-                z.write(p,str(p))
-          pathlib.Path('passport-proof/source-sha.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD']).decode())
-          pathlib.Path('passport-proof/tracked-files.txt').write_text('\n'.join(paths))
+          import base64,hashlib,json,lzma,os,pathlib,re,subprocess
+          run=lambda *args: subprocess.check_output(args,text=True).strip()
+          root=pathlib.Path('.')
+          allowed={
+            'frontend/member/member-my-journey-v2.js','health-passport/README.md',
+            'health-passport/browser-proof.py','health-passport/capture-baseline.mjs',
+            'health-passport/client.mjs','health-passport/fixture.mjs',
+            'health-passport/journey-health-blocks.mjs','health-passport/model.mjs',
+            'health-passport/presentation.mjs','health-passport/preview-server.mjs',
+            'health-passport/records.test.mjs','health-passport/routes.mjs',
+            'health-passport/schema.sql','health-passport/store.mjs',
+            'member-experience/tests/journey-bootstrap-navigation.test.mjs',
+            'privacy-health-erasure-route-v1.js','worker-entry-v6.js'
+          }
+          chunks=[root/f'health-passport/import-{i:02d}.b64' for i in range(1,5)]
+          proof={'productionWrites':False,'baseline':'2d257d61ae1276c404de5e265a028040cb422aad','inputHead':os.environ['EXPECTED_HEAD']}
+          assert run('git','rev-parse','HEAD')==proof['inputHead']
+          if any(p.exists() for p in chunks):
+            assert all(p.exists() for p in chunks),'Incomplete transport'
+            assert run('git','ls-remote','origin','refs/heads/main').split()[0]==proof['baseline'],'Production baseline moved; reconcile instead of overwrite'
+            encoded=''.join(''.join(p.read_text().split()) for p in chunks)
+            assert len(encoded)==35228,'Transport length mismatch'
+            compressed=base64.b64decode(encoded,validate=True)
+            assert len(compressed)==26420
+            patch=lzma.decompress(compressed)
+            assert len(patch)==100549
+            digest=hashlib.sha256(patch).hexdigest()
+            assert digest=='92cb5db86debfdfe81bf2402022deefa1996e2aed32bc4d8b71a0ad1de7909de','Patch checksum mismatch'
+            text=patch.decode('utf-8')
+            pairs=re.findall(r'^diff --git a/(\S+) b/(\S+)$',text,re.M)
+            assert len(pairs)==len(allowed) and {a for a,b in pairs}==allowed and all(a==b for a,b in pairs),'Unexpected source paths'
+            assert not re.search(r'^(?:old mode|new mode|rename from|rename to|deleted file mode)',text,re.M),'Unsupported patch operation'
+            destination=pathlib.Path('passport-proof/implementation.patch');destination.write_bytes(patch)
+            subprocess.check_call(['git','apply','--check','--unidiff-zero',str(destination)])
+            subprocess.check_call(['git','apply','--unidiff-zero',str(destination)])
+            subprocess.check_call(['git','add','--',*sorted(allowed)])
+            subprocess.check_call(['git','rm','--',*[str(p) for p in chunks]])
+            staged=set(run('git','diff','--cached','--name-only').splitlines())
+            assert staged==allowed|{str(p) for p in chunks},'Unexpected staged changes'
+            branch='refs/heads/feat/health-passport-v1-20260919'
+            assert run('git','ls-remote','origin',branch).split()[0]==proof['inputHead'],'Preview branch moved; do not overwrite'
+            subprocess.check_call(['git','-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com','commit','-m','Implement consented Health Passport v1 for isolated acceptance'])
+            subprocess.check_call(['git','push','origin','HEAD:'+branch])
+            proof['importedPatchSha256']=digest
+          else:
+            assert all((root/p).is_file() for p in allowed),'Implementation source missing'
+          proof['candidateHead']=run('git','rev-parse','HEAD')
+          proof['files']={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in sorted(allowed)}
+          pathlib.Path('passport-proof/source-manifest.json').write_text(json.dumps(proof,indent=2))
+          print(json.dumps(proof,indent=2))
           PY
-      - name: Install locked toolchain
+      - name: Install locked application toolchain
         run: npm ci --no-audit --no-fund
-      - name: Passport regression proof when implemented
+      - name: Real SQLite, authentication, consent and preservation regressions
         run: |
-          if test -f health-passport/preview-proof.mjs; then node health-passport/preview-proof.mjs; fi
+          set -o pipefail
+          node --test health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee passport-proof/regressions.tap
+          node my-journey-integration-gate.mjs
+          node my-timber-final-source-gate.mjs
+      - name: Compile without deployment or production credentials
+        run: npx wrangler deploy --dry-run --outdir passport-proof/worker
+      - name: Capture anonymous public baseline without account access
+        run: node health-passport/capture-baseline.mjs
+      - name: Install isolated browser test runner
+        run: |
+          python3 -m pip install playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+      - name: Fictional-account browser integration on mobile and desktop
+        run: |
+          node health-passport/preview-server.mjs > passport-proof/server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          READY=0
+          for n in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8765/__preview/login >/dev/null; then READY=1; break; fi
+            sleep 1
+          done
+          test "$READY" = 1
+          python3 health-passport/browser-proof.py
+      - name: Retain exact candidate source and readable change
+        if: always()
+        run: |
+          mkdir -p passport-proof
+          git diff 2d257d61ae1276c404de5e265a028040cb422aad -- frontend/member/member-my-journey-v2.js health-passport/ member-experience/tests/journey-bootstrap-navigation.test.mjs privacy-health-erasure-route-v1.js worker-entry-v6.js > passport-proof/candidate.patch
+          cp health-passport/README.md passport-proof/README.md 2>/dev/null || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
