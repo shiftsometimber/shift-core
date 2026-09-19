@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {DatabaseSync} from 'node:sqlite';
+import {preservePassportHead,PASSPORT_HEAD} from './production-preservation.mjs';
+import {assertSchema,assertNoOtherSchemaChanges} from './production-release.mjs';
+const old='<html><head><title>Start Here</title></head><body>Keep this content.</body></html>';
+test('only the exact head insertion is normalised; all surrounding bytes stay locked',()=>{const next=old.replace('</head>',PASSPORT_HEAD+'</head>');assert.equal(preservePassportHead('/start-here',next,{required:true}).toString(),old);assert.equal(preservePassportHead('/start-here',old).toString(),old);assert.notEqual(preservePassportHead('/start-here',next.replace('Keep this','Changed')).toString(),old);assert.throws(()=>preservePassportHead('/start-here',old,{required:true}));});
+test('duplicate, relocated and altered Passport entries fail preservation',()=>{for(const value of [old.replace('</head>',PASSPORT_HEAD+PASSPORT_HEAD+'</head>'),old+PASSPORT_HEAD,old.replace('</head>',PASSPORT_HEAD.replace('passport.js','unapproved.js')+'</head>')])assert.throws(()=>preservePassportHead('/start-here',value));});
+test('unrelated public and member paths are never normalised',()=>{for(const p of ['/','/programme','/member/dashboard','/member-login'])assert.equal(preservePassportHead(p,old+PASSPORT_HEAD).toString(),old+PASSPORT_HEAD);});
+test('reviewed additive schema is valid and repeatable on real SQLite',()=>{const db=new DatabaseSync(':memory:');try{db.exec('CREATE TABLE users(id INTEGER PRIMARY KEY)');const sql=readFileSync(new URL('./schema.sql',import.meta.url),'utf8');const metadata="SELECT type,name,tbl_name,sql FROM sqlite_master WHERE sql IS NOT NULL ORDER BY type,name";const before=db.prepare(metadata).all();db.exec(sql);db.exec(sql);const after=db.prepare(metadata).all();assertSchema(after.filter(r=>['health_passport_records','idx_health_passport_member'].includes(r.name)),sql);assertNoOtherSchemaChanges(before,after);db.exec('CREATE TABLE unintended(value TEXT)');assert.throws(()=>assertNoOtherSchemaChanges(before,db.prepare(metadata).all()));}finally{db.close()}});
+test('incompatible existing schema cannot be accepted',()=>{assert.throws(()=>assertSchema([{name:'health_passport_records',sql:'CREATE TABLE health_passport_records (id TEXT)'}],readFileSync(new URL('./schema.sql',import.meta.url),'utf8')))});
