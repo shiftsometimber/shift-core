@@ -41,7 +41,7 @@ async def main():
     await expect(page.locator('.hp-card')).to_be_visible()
     await page.locator('.hp-record details summary').click()
     cards=page.locator('.hp-record')
-    actual=await cards.evaluate_all(MASURE if False else MEASURE)
+    actual=await cards.evaluate_all(MEASURE)
     report['checks'].append({'device':name,'check':'Questionnaire, provider results and order records have readable painted text',**actual})
     await page.locator('.hp-section').filter(has=page.get_by_role('heading',name='Health MOT and results.',exact=True)).screenshot(path=str(OUT/(name+'-readable-results.png')))
     await page.locator('.hp-v1').screenshot(path=str(OUT/(name+'-readable-passport.png')))
