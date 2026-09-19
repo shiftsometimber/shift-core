@@ -1,7 +1,7 @@
 name: Public Continuity preview
 on:
   push:
-    branches: [fix/public-continuity-20260917]
+    branches: [fix/public-continuity-20260917, fix/continuity-live-proof-threshold-20260919]
 permissions:
   contents: read
 jobs:
