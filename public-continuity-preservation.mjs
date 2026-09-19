@@ -6,8 +6,9 @@ export function preserveContinuityContent(path,input,{required=false}={}){
  const count=html.split('data-continuity-entry=').length-1;
  if(!count){if(required)throw Error(path+' missing approved Continuity entry');return input}
  if(count!==1)throw Error(path+' Continuity entry count differs from exact release source');
- const start='<!-- SHIFT_CONTINUITY_'+(entry.match(/SHIFT_CONTINUITY_([^_]+)_START/)?.[1]||'')+'_START -->';
- const end='<!-- SHIFT_CONTINUITY_'+(entry.match(/SHIFT_CONTINUITY_([^_]+)_START/)?.[1]||'')+'_END -->';
+ const id=entry.match(/<!-- SHIFT_CONTINUITY_(.+?)_START -->/)?.[1]||'';
+ const start='<!-- SHIFT_CONTINUITY_'+id+'_START -->';
+ const end='<!-- SHIFT_CONTINUITY_'+id+'_END -->';
  const a=html.indexOf(start),b=html.indexOf(end,a);
  if(a<0||b<a)throw Error(path+' Continuity entry markers differ from exact release source');
  const actual=html.slice(a,b+end.length);
