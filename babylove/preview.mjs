@@ -21,6 +21,18 @@ run(['d1','execute','DB','--remote','--config',configPath,'--command',sql]);
 const output=run(['deploy','--config',configPath]);
 const origin=output.match(/https:\/\/shift-babylove-preview\.[a-z0-9-]+\.workers\.dev/)?.[0];assert(origin,'Preview deployment URL missing');
 const url=origin+'/v1/integrations/babylovegrowth';
+console.log('Preview receiver:',url);
+// Newly created workers.dev routes can return an HTML 404 while propagating.
+// Wait for this exact receiver's method response before sending fixture writes.
+let ready=false;
+for(let attempt=0;attempt<12;attempt++){
+  const response=await fetch(url,{redirect:'manual'}),body=await response.text();
+  if(response.status===405&&body.includes('method_not_allowed')){ready=true;break;}
+  console.log(JSON.stringify({attempt,http:response.status,type:response.headers.get('content-type'),body:body.slice(0,350)}));
+  if(response.status!==404&&response.status!==503)throw Error('Unexpected preview readiness response');
+  await new Promise(resolve=>setTimeout(resolve,2500));
+}
+assert(ready,'Preview receiver did not become ready');
 const report={source_sha:process.env.GITHUB_SHA,checked_at:new Date().toISOString(),preview_url:url,production_writes:0,checks:[]};
 const suffix=Date.now().toString(),slug='babylove-preview-'+suffix;
 const payload={id:'preview-'+suffix,title:'SHIFT integration fixture',slug,metaDescription:'Fictional preview only',content_html:'<h1>Fixture</h1><script type="application/ld+json">{"@type":"Article"}</script>',content_markdown:'# Fixture\n\nPreview only.',heroImageUrl:'https://example.invalid/fixture.jpg',jsonLd:{'@type':'Article'},status:'published'};
