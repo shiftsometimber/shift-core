@@ -1,7 +1,6 @@
 // ISOLATED TEST HARNESS ONLY. Never imported by the production Worker.
-// Real Passport/Journey/consent-gated API modules + SQLite + captured approved HTML.
-// Unrelated dashboard runtimes are omitted so this proves the focused handoff,
-// not production login, payment, clinical suitability, or all My Timber features.
+// Actual Passport/Journey/authentication handlers and SQLite; fictional login.
+// Unrelated dashboard runtimes are omitted, so this is focused integration only.
 import {createServer} from 'node:http';
 import {readFileSync} from 'node:fs';
 import {join,resolve} from 'node:path';
@@ -63,12 +62,13 @@ async function dispatch(request){
   const notice='<aside style="padding:10px 18px;background:#E7E3DA;color:#050505;font:14px Arial" data-preview-notice>Isolated integration preview · fictional accounts and data · no production writes</aside>';
   html=html.replace(/(<body\b[^>]*>)/i,'$1'+notice);
   if(path==='/member/dashboard'){
-   // The capture is anonymous. Only the real fixture session verifier can reveal
-   // this harness shell; production authentication/rendering is not replaced.
+   // Anonymous capture requires both hidden-state and is-ready state changes.
+   // Only the real cookie/session verifier authorises this TEST HARNESS render.
    const auth=await authenticateMember(request,env);
    if(auth.response)return new Response(null,{status:302,headers:{Location:'/__preview/login','Cache-Control':'no-store'}});
    html=html.replace(/(<section\b[^>]*\bid="previewAuth")([^>]*>)/,'$1 hidden$2');
    html=html.replace(/(<(?:section|nav)\b[^>]*\bid="(?:previewMember|memberTabs)"[^>]*?)\s+hidden(?:="[^"]*")?/g,'$1');
+   html=html.replace('class="preview-member"','class="preview-member is-ready"');
   }
   let scripts='<script>window.SST_API_BASE=location.origin;</script>';
   if(path==='/start-here')scripts+='<script defer src="/start-here-v72.js?v=direct-detail-20260912"></script>';
