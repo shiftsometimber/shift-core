@@ -6,7 +6,7 @@ export const REVIEWED_AT = '2026-09-15T21:28:30Z';
 // Blocked, empty or timed-out responses deliberately have no approved baseline.
 const reviewedFingerprints = {
   'mounjaro-nhs': '0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff',
-  'wegovy-tablet-private': '351c85bcb8ae82aa136498bdbe3913d9e042a1185274f5c4d029132f1d776d82',
+  'wegovy-tablet-private': '592a1cba16592bd8b948f173ecc7d7dea28bbf0fe6a00ea11ccc97a8eac225e6',
   'mounjaro-smpc': 'c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55',
   'wegovy-injection-smpc': '21124f70931fd9c9d69938b8a1a9c0e94b6680a6cb42e4dc49ba218224da7855',
   'wegovy-tablet-smpc': '142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e',
@@ -30,7 +30,7 @@ const reviewedFingerprints = {
 // Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
 const sourceReviewedDates = {
   'mounjaro-nhs': '2026-09-17T05:45:00Z',
-  'wegovy-tablet-private': '2026-09-17T05:45:00Z',
+  'wegovy-tablet-private': '2026-09-18T16:36:50Z',
   'mounjaro-smpc': '2026-09-16T17:44:34Z',
   'wegovy-injection-smpc': '2026-09-16T17:44:34Z',
   'wegovy-tablet-smpc': '2026-09-16T17:44:34Z',

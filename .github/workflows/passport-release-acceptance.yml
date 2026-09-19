@@ -1,0 +1,94 @@
+name: Passport Release Acceptance
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/passport-release-acceptance.yml'
+      - 'medicines-watch/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: passport-release-acceptance-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'fix/passport-release-acceptance-20260919'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: npm ci --no-audit --no-fund
+      - name: Retrieve the existing dated source capture, not an unreviewed replacement
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35369339242
+          name: medicines-watch-source-review-20260918
+          path: release-acceptance/reviewed-capture
+      - name: Recompute the recorded body fingerprint and constrain the data-only change
+        run: |
+          mkdir -p release-acceptance/source
+          git rev-parse HEAD > release-acceptance/candidate-head.txt
+          git diff --exit-code 618d519f8c9210d4c3bfeceac40a1ca02fae6672 -- scripts/verify-watch-access-closeout.mjs medicines-watch/monitor.mjs medicines-watch/page.mjs health-passport/ frontend/member/ wrangler.jsonc worker-entry-v6.js .github/workflows/cloudflare-production-promote.yml .github/workflows/my-timber-final-production.yml
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          import {createHash} from 'node:crypto';
+          import {sources} from './medicines-watch/data.mjs';
+          import {fingerprintSource} from './medicines-watch/monitor.mjs';
+          const receipt=JSON.parse(readFileSync('medicines-watch/reviews/2026-09-18-wegovy-tablet-provider.json'));
+          const source=sources.find(s=>s.id==='wegovy-tablet-private');
+          const body=readFileSync('release-acceptance/reviewed-capture/wegovy-tablet-private.html');
+          assert.equal(body.length,receipt.source.bytes);
+          assert.equal(createHash('sha256').update(body).digest('hex'),receipt.source.responseSha256);
+          const result=await fingerprintSource(source,new TextDecoder('utf-8',{fatal:true}).decode(body),'text/html');
+          assert.equal(result.fingerprint,source.reviewedFingerprint);assert.equal(result.withdrawn,false);
+          const before=execFileSync('git',['show','618d519f8c9210d4c3bfeceac40a1ca02fae6672:medicines-watch/data.mjs'],{encoding:'utf8'});
+          const expected=before.replace("'wegovy-tablet-private': '351c85bcb8ae82aa136498bdbe3913d9e042a1185274f5c4d029132f1d776d82'","'wegovy-tablet-private': '592a1cba16592bd8b948f173ecc7d7dea28bbf0fe6a00ea11ccc97a8eac225e6'").replace("'wegovy-tablet-private': '2026-09-17T05:45:00Z'","'wegovy-tablet-private': '2026-09-18T16:36:50Z'");
+          assert.equal(readFileSync('medicines-watch/data.mjs','utf8'),expected);
+          writeFileSync('release-acceptance/review-proof.json',JSON.stringify({scope:'Recomputed existing dated factual source review; not a new source fetch or live source-health claim',sourceId:source.id,reviewedAt:source.reviewedAt,capturedBodySha256:receipt.source.responseSha256,...result,exactTwoLineChange:true,releaseGuardsUnchanged:true},null,2));
+          NODE
+      - name: Original source, Passport and privacy regressions plus negative controls
+        run: |
+          set -o pipefail
+          node --test medicines-watch/*.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs | tee release-acceptance/regressions.tap
+      - name: Unmodified live member delivery verifier
+        if: always()
+        run: |
+          set -o pipefail
+          node member-experience/verify-production-member.mjs 2>&1 | tee release-acceptance/member-check.log
+      - name: Verify existing Passport assets and anonymous protection without production writes
+        if: always()
+        run: |
+          mkdir -p release-acceptance
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {writeFileSync} from 'node:fs';
+          import {passportAssets} from './health-passport/presentation.mjs';
+          const origin='https://shiftsometimber.co.uk',checks=[];
+          for(const path of ['/assets/member-experience/passport.js','/assets/member-experience/passport.css']){
+            const expected=passportAssets(new Request(origin+path),{HEALTH_PASSPORT_V1_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true'});
+            assert.ok(expected);const r=await fetch(origin+path,{cache:'no-store',signal:AbortSignal.timeout(15000)});
+            assert.equal(r.status,200);assert.equal(await r.text(),await expected.text());checks.push({path,pass:true});
+          }
+          const r=await fetch(origin+'/v1/health-passport',{redirect:'manual',signal:AbortSignal.timeout(15000)});assert.equal(r.status,401);
+          checks.push({path:'/v1/health-passport',status:401,pass:true});
+          writeFileSync('release-acceptance/passport-delivery.json',JSON.stringify({scope:'delivery and anonymous guard only; not signed-in acceptance',checks},null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: passport-release-acceptance-${{ github.event.pull_request.head.sha }}
+          path: |
+            release-acceptance/
+            member-live-proof.json
