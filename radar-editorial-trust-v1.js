@@ -1,3 +1,4 @@
+import {updateArticleSitemap} from './editorial/five-articles/render.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function evidenceDate(value){
  const text=String(value||'');
@@ -24,5 +25,9 @@ export function newsSitemapDates(rows){
 }
 export function setSitemapDate(xml,path,date){
  const loc='<loc>https://shiftsometimber.co.uk'+path+'</loc>';
- return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,entry=>entry.includes(loc)?entry.replace(/<lastmod>[\s\S]*?<\/lastmod>/g,'').replace('</url>',(date?'<lastmod>'+date+'</lastmod>':'')+'</url>'):entry);
+ const dated=xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,entry=>entry.includes(loc)?entry.replace(/<lastmod>[\s\S]*?<\/lastmod>/g,'').replace('</url>',(date?'<lastmod>'+date+'</lastmod>':'')+'</url>'):entry);
+ // Resource revisions take precedence over an older generic resource date.
+ // This touches only five existing locs; it neither adds nor removes URLs and
+ // does not redate the editorial standards, downloads or newsroom archive.
+ return updateArticleSitemap(dated);
 }
