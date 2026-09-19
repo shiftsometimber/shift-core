@@ -1,0 +1,67 @@
+name: NICE GPhC Source Proof
+on:
+  push:
+    branches: ['fix/nice-gphc-source-policy-20260919']
+    paths: ['.github/workflows/nice-gphc-source-proof.yml', 'radar-source-policy-v1.js', 'tests/radar-source-policy*.mjs']
+permissions:
+  contents: read
+concurrency:
+  group: nice-gphc-source-proof
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Retain pinned newsroom source for isolated review
+        run: |
+          mkdir -p source-proof
+          python3 - <<'PY'
+          import pathlib,subprocess,zipfile
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          with zipfile.ZipFile('source-proof/current-newsroom-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for value in paths:
+              p=pathlib.Path(value)
+              if p.is_file() and (value.startswith(('radar-','tests/radar-','scripts/radar-','.github/workflows/','medicines-watch/')) or value in ['package.json','package-lock.json','wrangler.jsonc','worker-entry-v6.js','worker.js']):
+                if p.suffix in ['.js','.mjs','.json','.jsonc','.yml','.sql','.md']: z.write(p,str(p))
+          pathlib.Path('source-proof/source-sha.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD']).decode())
+          pathlib.Path('source-proof/tracked-files.txt').write_text('\n'.join(paths))
+          PY
+      - name: One transparent GET per confirmed source; retain refusals without retry
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const report={checkedAt:new Date().toISOString(),runtime:process.version,platform:process.platform,architecture:process.arch,environment:'GitHub-hosted ubuntu-latest diagnostic runner, not the Cloudflare production scanner',workflowSha:process.env.GITHUB_SHA,productionWrites:false,noAuthentication:true,requests:[]};
+          try{const r=await fetch('https://api.ipify.org?format=json',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('http_'+r.status);report.ipObservation={...(await r.json()),observedAt:new Date().toISOString(),service:'https://api.ipify.org?format=json',qualification:'Observed public egress to the IP service in this run, not a historical address or proof of the address seen by a different destination.'}}catch(e){report.ipObservation={unavailable:true,error:e.message}}
+          const headers={Accept:'application/rss+xml,application/atom+xml,application/xml,text/xml,text/html;q=0.8','User-Agent':'Shift-Radar/1.0 (+https://shiftsometimber.co.uk; contact: matt@shiftsometimber.co.uk)'};
+          for(const [name,url] of [['gphc-rss','https://www.pharmacyregulation.org/rss'],['nice-topic','https://www.nice.org.uk/guidance/lifestyle-and-wellbeing/diet--nutrition-and-obesity']]){
+            const item={name,url,method:'GET',startedAt:new Date().toISOString(),requestHeaders:headers,redirectMode:'manual',retries:0};
+            try{
+              const r=await fetch(url,{headers,redirect:'manual',signal:AbortSignal.timeout(20000)});
+              item.status=r.status;item.responseHeaders=Object.fromEntries([...r.headers].filter(([k])=>!['set-cookie','cookie','authorization'].includes(k.toLowerCase())));
+              const chunks=[];let size=0;
+              if(r.body){const reader=r.body.getReader();for(;;){const {value,done}=await reader.read();if(done)break;size+=value.length;if(size>2000000){await reader.cancel();throw Error('response_too_large')}chunks.push(value)}}
+              const body=Buffer.concat(chunks);item.bytes=body.length;item.sha256=createHash('sha256').update(body).digest('hex');item.rssDocument=/<(?:rss|feed|rdf:RDF)\b/i.test(body.toString())&&!/<html\b/i.test(body.toString());
+              writeFileSync('source-proof/'+name+'-response.txt',body);
+            }catch(e){item.error=e.message}
+            item.completedAt=new Date().toISOString();report.requests.push(item);
+          }
+          writeFileSync('source-proof/access-diagnostics.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          NODE
+      - name: Run source policy regression tests when present
+        run: |
+          if test -f tests/radar-source-policy-v1.test.mjs; then node --test tests/radar-source-policy*.mjs; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nice-gphc-proof-${{ github.sha }}
+          path: source-proof/
+          retention-days: 30
