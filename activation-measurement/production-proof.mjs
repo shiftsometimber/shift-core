@@ -24,7 +24,7 @@ try{
  for(const [path,expected]of [['/consent-v4a.js',consentClient],['/api-adapter-v33d.js',readFileSync('frontend/member/api-adapter-v33d.js','utf8')]]){
   const r=await fetch(origin+path,{cache:'no-store',signal:AbortSignal.timeout(20000)});assert.equal(r.status,200);assert.equal(await r.text(),expected);report.assets.push({path,status:r.status,matchesSource:true});
  }
- for(const path of ['/v1/hq/journey','/v1/me','/v1/acquisition-attribution']){
+ for(const path of ['/v1/hq/journey','/v1/hq/journey?days=90','/v1/me','/v1/acquisition-attribution']){
   const r=await fetch(origin+path,{redirect:'manual',credentials:'omit',signal:AbortSignal.timeout(20000)});assert.equal(r.status,401,path+' must reject anonymous access');report.guards.push({path,status:r.status});
  }
  const literal=value=>{if(typeof value==='number'&&Number.isFinite(value))return String(value);if(typeof value==='string')return "'"+value.replaceAll("'","''")+"'";throw Error('Unsupported query value')};
@@ -35,9 +35,13 @@ try{
   const response=JSON.parse(raw);assert.ok(Array.isArray(response)&&response.every(x=>x.success===true));return response.flatMap(x=>x.results||[]);
  };
  const DB={prepare(sql){let args=[];return{bind(...values){args=values;return this},async all(){return{results:execute(sql,args)}},async first(){return execute(sql,args)[0]||null}}}};
- report.activation=await activationScorecard(DB,{days:30,now:report.checkedAt});assert.equal(report.activation.available,true,'Live account evidence must be available');
+ report.activation=await activationScorecard(DB,{days:90,now:report.checkedAt});assert.equal(report.activation.available,true,'Live account evidence must be available');
  assert.equal(report.activation.acquisition.available,true,'Acquisition report must be available');
  assert.equal(report.activation.acquisition.sources.reduce((n,s)=>n+s.registered,0),report.activation.stages[0].members,'Source buckets reconcile to the same account cohort');
+ assert.ok(report.activation.retention.week8,'Week-eight result must be present');
+ assert.ok(report.activation.retention.week8.returned<=report.activation.retention.week8.eligible);
+ if(!report.activation.retention.week8.eligible)assert.equal(report.activation.retention.week8.ratePct,null);
+ report.aggregateProofScope='Exact released scorecard executed read-only against production D1; authenticated HTTP response not claimed.';
  report.pass=true;
 }catch(e){report.pass=false;report.error=e.message;process.exitCode=1}
 writeFileSync(dir+'/proof.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));

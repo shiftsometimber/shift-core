@@ -23,7 +23,8 @@ export const COHORT_CTE=`WITH bounds AS (SELECT julianday(?) asof,julianday(?) s
  SELECT c.id,c.joined,c.verified,l.signed_in,
  MIN(CASE WHEN r.action IN ('my_journey.update','passport.add','passport.update') AND julianday(r.created_at)>=l.signed_in THEN julianday(r.created_at) END) first_save,
  MAX(CASE WHEN julianday(r.created_at)>=c.joined+1 AND julianday(r.created_at)<c.joined+8 THEN 1 ELSE 0 END) week1_return,
- MAX(CASE WHEN julianday(r.created_at)>=c.joined+21 AND julianday(r.created_at)<c.joined+28 THEN 1 ELSE 0 END) week4_return
+ MAX(CASE WHEN julianday(r.created_at)>=c.joined+21 AND julianday(r.created_at)<c.joined+28 THEN 1 ELSE 0 END) week4_return,
+ MAX(CASE WHEN julianday(r.created_at)>=c.joined+49 AND julianday(r.created_at)<c.joined+56 THEN 1 ELSE 0 END) week8_return
  FROM cohort c LEFT JOIN logins l ON l.id=c.id
  LEFT JOIN audit_log r ON r.user_id=c.id AND r.action IN ('auth.login','my_journey.update','passport.add','passport.update')
  AND julianday(r.created_at)>=c.verified AND julianday(r.created_at)<=(SELECT asof FROM bounds)
@@ -43,14 +44,16 @@ export async function activationScorecard(DB,options={}){
  COALESCE(SUM((SELECT asof FROM bounds)>=joined+8),0) week1_eligible,
  COALESCE(SUM((SELECT asof FROM bounds)>=joined+8 AND week1_return=1),0) week1_returned,
  COALESCE(SUM((SELECT asof FROM bounds)>=joined+28),0) week4_eligible,
- COALESCE(SUM((SELECT asof FROM bounds)>=joined+28 AND week4_return=1),0) week4_returned
+ COALESCE(SUM((SELECT asof FROM bounds)>=joined+28 AND week4_return=1),0) week4_returned,
+ COALESCE(SUM((SELECT asof FROM bounds)>=joined+56),0) week8_eligible,
+ COALESCE(SUM((SELECT asof FROM bounds)>=joined+56 AND week8_return=1),0) week8_returned
  FROM staged`;
  const row=await DB.prepare(sql).bind(window.asOf,window.since).first();
  const excluded=await DB.prepare(`SELECT COUNT(*) count FROM users u JOIN user_auth a ON a.user_id=u.id WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND ${TEST_ACCOUNT_SQL}`).bind(window.since,window.asOf).first();
  const counts=Object.fromEntries(Object.entries(row||{}).map(([k,v])=>[k,Number(v||0)]));
  const stages=[['account_created','registered'],['email_verified','verified'],['signed_in','signed_in'],['first_successful_save','first_save']].map(([name,key])=>({name,members:counts[key],percentOfRegistered:percentage(counts[key],counts.registered)}));
  return {available:true,version:'activation-cohort-v1',...window,stages,acquisition:await acquisitionBreakdown(DB,window,COHORT_CTE),
-  retention:{week1:{eligible:counts.week1_eligible,returned:counts.week1_returned,ratePct:percentage(counts.week1_returned,counts.week1_eligible),window:'Days 1–7 after registration; denominator needs eight complete days.'},week4:{eligible:counts.week4_eligible,returned:counts.week4_returned,ratePct:percentage(counts.week4_returned,counts.week4_eligible),window:'Days 21–27 after registration; denominator needs 28 complete days.'}},
+  retention:{week1:{eligible:counts.week1_eligible,returned:counts.week1_returned,ratePct:percentage(counts.week1_returned,counts.week1_eligible),window:'Days 1–7 after registration; denominator needs eight complete days.'},week4:{eligible:counts.week4_eligible,returned:counts.week4_returned,ratePct:percentage(counts.week4_returned,counts.week4_eligible),window:'Days 21–27 after registration; denominator needs 28 complete days.'},week8:{eligible:counts.week8_eligible,returned:counts.week8_returned,ratePct:percentage(counts.week8_returned,counts.week8_eligible),window:'Days 49–55 after registration; denominator needs 56 complete days. Request a cohort window longer than 56 days.'}},
   excludedKnownTestAccounts:Number(excluded?.count||0),sampleWarning:counts.registered<20?'Small cohort: operational counts, not reliable evidence of programme effectiveness.':null,
   privacy:'Aggregate owner/HQ reporting only. No identities, URLs, health values or notes returned; no third-party transmission.',
   limitations:['Unknown staff/test accounts are not magically identifiable and may remain.','Returns count authenticated logins and successful Journey/Passport writes, not all passive browsing.','Deleted accounts are absent; audit retention or erasure can reduce historical counts.','First save requires a successful stored-record audit after an observed verified login; missing historical audit entries can undercount it, and it is not a health outcome.','Anonymous Start Here completion is not available. Acquisition attribution is prospective, optional and source/medium only; it is not a full marketing attribution model.']};
