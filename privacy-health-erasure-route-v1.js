@@ -1,3 +1,4 @@
+import {eraseAcquisitionStatement} from './acquisition-activation/server.mjs';
 // Shift Some Timber — self-service erasure of optional non-clinical health tracking.
 // Uses the existing authenticated core to resolve the signed-in user, then clears
 // only optional tracking stores that actually exist. Missing optional stores are
@@ -43,6 +44,7 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
     statements.push(env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`)
       .bind(userId,'privacy.health_tracking_erased','privacy',String(userId),JSON.stringify({scopes:deleted.map(x=>x.table)}),now));
   }
+  if(present.has('audit_log')||await tableExists(env.DB,'audit_log'))statements.push(eraseAcquisitionStatement(env.DB,userId));
   const results=await env.DB.batch(statements);
   deleted.forEach((item,i)=>item.changes=Number(results[i]?.meta?.changes||0));
   return json({ok:true,erasedAt:now,deleted,consentWithdrawn:true});

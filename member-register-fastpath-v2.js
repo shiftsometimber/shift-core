@@ -1,3 +1,4 @@
+import {registrationMetadata} from './acquisition-activation/model.mjs';
 // G5-012 bounded member-registration fast path.
 // Preserves the existing Core registration contract while removing avoidable
 // sequential D1 round-trips. Returning null is a fail-safe handoff to the
@@ -44,7 +45,7 @@ export async function fastMemberRegister(request,env){
     ];
     if(Array.isArray(body.consents))for(const c of body.consents.slice(0,20))ops.push(env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at) VALUES(?,?,?,?,?)`).bind(user.id,clean(c?.type,80)||'unspecified',clean(c?.version,50),c?.granted?1:0,c?.granted?now:null));
     ops.push(
-      env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)`).bind(user.id,'auth.register','user',String(user.id),'{}',ipHashRaw?`sha256:${ipHashRaw}`:null,now),
+      env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)`).bind(user.id,'auth.register','user',String(user.id),registrationMetadata(body,Date.parse(now)),ipHashRaw?`sha256:${ipHashRaw}`:null,now),
       env.DB.prepare(`INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)`).bind(user.id,sessionHash,expires,now,now)
     );
     await env.DB.batch(ops);
