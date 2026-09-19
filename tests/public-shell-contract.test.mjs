@@ -27,7 +27,8 @@ test('surgical SEO overrides change only the agreed public title and description
  };
  for(const [path,title] of Object.entries(expectedTitles)){
   const out=reconcilePublicDocument(page(),path);
-  assert(out.includes('<title>'+title+'</title>'));
+  const encodedTitle=title.replaceAll('&','&amp;').replaceAll("'",'&#39;');
+  assert(out.includes('<title>'+encodedTitle+'</title>'));
   assert.match(out,/content="Old description"/);
   assert.match(out,/<h1>Keep body<\/h1>/);
  }
