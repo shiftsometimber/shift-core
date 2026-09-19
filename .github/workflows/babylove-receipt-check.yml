@@ -1,4 +1,4 @@
-name: BabyLoveGrowth Receipt Check
+name: BabyLoveGrowth Editorial Draft Revision
 on:
   push:
     branches: [audit/babylove-receipt-20260919]
@@ -47,8 +47,14 @@ jobs:
         run: |
           set -euo pipefail
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT a.title,a.slug,a.status,a.summary,a.body,r.created_at AS received_at_utc FROM babylove_receipts r JOIN knowledge_articles a ON a.slug=r.slug WHERE r.slug='wegovy-cost-uk';" > babylove-receipt-proof/article.json
+      - name: Save and verify the revised draft only
+        run: |
+          node --check babylove/editorial/update-draft.mjs
+          node babylove/editorial/update-draft.mjs
       - uses: actions/upload-artifact@v4
         with:
-          name: babylove-receipt-proof
-          path: babylove-receipt-proof/
+          name: babylove-editorial-draft-proof
+          path: |
+            babylove-receipt-proof/
+            babylove-draft-revision-proof/
           retention-days: 30
