@@ -9,14 +9,14 @@ const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeo
 const pages=[],links=new Set();
 for(const path of CONTINUITY_PATHS){
  const {r,html}=await get(path);assert.equal((html.match(/<h1\b/g)||[]).length,1,path);assert.equal((html.match(/rel="canonical"/g)||[]).length,1,path);assert.ok(html.includes('href="'+production+path+'"'));assert.ok(html.includes(continuityPages[path].heading));assert.ok(html.includes('/consent-v4a.js'));assert.equal((html.match(/id="shift-public-news"/g)||[]).length,1,path);assert.ok(!/complete interactive route loads below|noindex/i.test(html));assert.equal(r.headers.get('x-robots-tag')?.includes('noindex')||false,preview);
- const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=['/clinic-gone-quiet','/provider-switch','/husband-help'].includes(path)?180:400;assert.ok(words>minimum,path);
+ const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];assert.ok(main.includes(continuityPages[path].body),path+' must contain the exact approved body');const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=['/clinic-gone-quiet','/provider-switch','/husband-help'].includes(path)?180:400;assert.ok(words>minimum,path);
  for(const m of main.matchAll(/href="(\/[^"#]*)/g))links.add(m[1].split('#')[0]);
  pages.push({path,status:r.status,words,sha256:hash(html)});
  for(const method of ['GET','HEAD']){const redirect=await fetch(origin+path+'.html?from=proof',{method,redirect:'manual'});assert.equal(redirect.status,301);assert.equal(redirect.headers.get('location'),origin+path+'?from=proof')}
 }
 const related=[];
 for(const path of Object.keys(continuityEntries)){
- const {html}=await get(path);const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
+ const {html}=await get(path);assert.ok(html.includes(continuityEntries[path]),path+' must retain its exact approved Continuity block');const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
  if(path==='/programme')assert.ok(html.includes(NEW_LIFE_LINK));
  if(preview){const before=await (await fetch(production+path)).text();assert.equal(preserved.toString(),preserveContinuityContent(path,Buffer.from(before)).toString(),path+' changed beyond exact approved additions')}
  related.push({path,sha256:hash(html),preservedSha256:hash(preserved)});
