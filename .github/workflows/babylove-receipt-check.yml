@@ -43,6 +43,10 @@ jobs:
           SQL
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$(cat babylove-receipt-proof/query.sql)" > babylove-receipt-proof/receipt.json
           cat babylove-receipt-proof/receipt.json
+      - name: Read the received article for editorial review
+        run: |
+          set -euo pipefail
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT a.title,a.slug,a.status,a.summary,a.body,r.created_at AS received_at_utc FROM babylove_receipts r JOIN knowledge_articles a ON a.slug=r.slug WHERE r.slug='wegovy-cost-uk';" > babylove-receipt-proof/article.json
       - uses: actions/upload-artifact@v4
         with:
           name: babylove-receipt-proof
