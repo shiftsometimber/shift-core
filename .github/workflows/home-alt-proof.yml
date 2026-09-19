@@ -22,7 +22,7 @@ jobs:
           if(!r.ok)throw Error('homepage http '+r.status);
           const html=await r.text();
           const imgs=[...html.matchAll(/<img\b[^>]*>/gi)].map(m=>m[0]);
-          const missing=imgs.filter(tag=>!/(?:^|\s)alt\s*=\s*["'][^"']*["']/i.test(tag));
-          console.log(JSON.stringify({status:r.status,images:imgs.length,missingCount:missing.length,missing},null,2));
+          const missing=imgs.filter(tag=>!/(?:^|\s)alt\s*=\s*["'][^"']+["']/i.test(tag));
+          console.log(JSON.stringify({status:r.status,images:imgs.length,missingCount:missing.length,missing,all:imgs},null,2));
           if(missing.length)process.exitCode=2;
           NODE
