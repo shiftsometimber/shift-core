@@ -1,0 +1,24 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {bootstrap,measurementAsset} from './assets.mjs';
+function browser(url='https://shiftsometimber.co.uk/programme',{consent=null}={}){
+ const injected=[],listeners={},data=new Map();if(consent!==null)data.set('sstConsentV3',JSON.stringify({analytics:consent}));
+ const win={dataLayer:[],addEventListener(name,fn){(listeners[name]??=[]).push(fn)}};
+ const location=new URL(url),document={head:{appendChild(el){injected.push(el)}},createElement(){return{}}};
+ const ctx={window:win,document,location,URLSearchParams,localStorage:{getItem:k=>data.get(k)||null},Date};vm.createContext(ctx);vm.runInContext(bootstrap,ctx);
+ return {win,ctx,injected,emit(name,value){for(const fn of listeners[name]||[])fn(value)},grant(value){win.shiftUpdateGoogleConsent(value)}};
+}
+test('browser runtime parses without server imports or build helpers',()=>{new vm.Script(bootstrap);assert.doesNotMatch(bootstrap,/\b(?:import|require|__name)\b/)});
+test('no consent means no external script',()=>{const b=browser();assert.equal(b.injected.length,0);assert.equal(b.win['ga-disable-G-Y7BV5KY6RR'],true)});
+test('necessary-only remains off across page loads',()=>{assert.equal(browser(undefined,{consent:false}).injected.length,0)});
+test('public opt-in loads the existing GTM exactly once, not another tracker',()=>{const b=browser();b.grant(true);b.grant(true);b.emit('sst:analytics-consent',{detail:{analytics:true}});vm.runInContext(bootstrap,b.ctx);assert.equal(b.injected.length,1);assert.equal(b.injected[0].src,'https://www.googletagmanager.com/gtm.js?id=GTM-PSJVW9XR')});
+test('stored opt-in is respected on a permitted public page',()=>{assert.equal(browser(undefined,{consent:true}).injected.length,1)});
+for(const path of ['/member-login','/member-register','/member/dashboard','/my-timber','/member/life-back','/reset-password.html?token=PRIVATE','/shift-health/testosterone-energy','/treatment-order','/hq','/v1/me','/health-mot'])test('private surface never loads GTM: '+path,()=>{const b=browser('https://shiftsometimber.co.uk'+path,{consent:true});b.grant(true);assert.equal(b.injected.length,0);assert.equal(b.win.SST_ANALYTICS_SUPPRESSED,true)});
+for(const query of ['?email=private@example.com','?token=private','?next=/member/dashboard','?utm_campaign=private@example.com','?utm_source=private','?gclid=private','#private-email@example.com'])test('unrecognised query/hash is excluded before loading: '+query,()=>{const b=browser('https://shiftsometimber.co.uk/programme'+query,{consent:true});assert.equal(b.injected.length,0)});
+test('bounded source/medium attribution allowed, global location has no query',()=>{const b=browser('https://shiftsometimber.co.uk/programme?utm_source=google&utm_medium=organic',{consent:true});assert.equal(b.injected.length,1);const set=b.win.dataLayer.find(x=>x[0]==='set');assert.equal(set[1].page_location,'https://shiftsometimber.co.uk/programme');assert.equal(set[1].page_referrer,'');assert.equal(set[1].allow_google_signals,false)});
+test('withdrawal disables GA and grants no advertising consent',()=>{const b=browser(undefined,{consent:true});b.grant(false);assert.equal(b.win['ga-disable-G-Y7BV5KY6RR'],true);const updates=b.win.dataLayer.filter(x=>x[0]==='consent');for(const u of updates){assert.equal(u[2].ad_storage,'denied');assert.equal(u[2].ad_user_data,'denied');assert.equal(u[2].ad_personalization,'denied')}assert.equal(updates.at(-1)[2].analytics_storage,'denied')});
+test('cross-tab withdrawal disables future GA collection',()=>{const b=browser(undefined,{consent:true});b.emit('storage',{key:'sstConsentV3',newValue:JSON.stringify({analytics:false})});assert.equal(b.win['ga-disable-G-Y7BV5KY6RR'],true)});
+test('preview hosts do not contaminate production analytics',()=>{for(const host of ['localhost','example.workers.dev','shiftsometimber.co.uk.evil.example'])assert.equal(browser('https://'+host+'/programme',{consent:true}).injected.length,0)});
+test('normal and cache-query script requests use same authoritative runtime; HEAD is empty',async()=>{for(const path of ['/analytics-bootstrap-v1.js','/analytics-bootstrap-v1.js?v=52']){const r=measurementAsset(new Request('https://shiftsometimber.co.uk'+path));assert.equal(await r.text(),bootstrap);assert.equal(r.headers.get('Cache-Control'),'no-store')}assert.equal(await measurementAsset(new Request('https://shiftsometimber.co.uk/analytics-bootstrap-v1.js',{method:'HEAD'})).text(),'');assert.equal(measurementAsset(new Request('https://shiftsometimber.co.uk/unrelated.js')),null)});
+test('excluded pages cannot load the manager even when existing event helpers queue an event',()=>{const b=browser('https://shiftsometimber.co.uk/member/dashboard',{consent:true});b.win.gtag('event','login',{method:'website'});b.win.dataLayer.push({event:'shift_action'});assert.equal(b.injected.length,0);assert.equal(b.win['ga-disable-G-Y7BV5KY6RR'],true)});

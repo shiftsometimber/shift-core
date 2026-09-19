@@ -6,59 +6,84 @@ on:
     branches: [main]
     paths:
       - 'activation-measurement/**'
+      - 'journey-analytics-v1.js'
+      - 'auth-email-verification-v1.js'
+      - 'turnstile-auth-v1.js'
+      - 'worker-entry-v6.js'
       - '.github/workflows/activation-measurement-proof.yml'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: activation-measurement-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   proof:
+    if: github.repository == 'shiftsometimber/shift-core' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Retain exact tracked source, excluding credentials and personal records
+      - name: Apply only the exact readable three-file patch in this isolated working tree
         run: |
           mkdir -p activation-proof
           python3 - <<'PY'
-          import pathlib,subprocess,zipfile,json,hashlib
-          files=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          manifest={}
-          with zipfile.ZipFile('activation-proof/source.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for value in files:
-              p=pathlib.Path(value)
-              if p.is_file() and p.suffix.lower() in {'.js','.mjs','.cjs','.json','.jsonc','.sql','.yml','.yaml','.html','.css','.md','.txt'} and not any(x in p.name.lower() for x in ['.env','credential','secret','token-cache']):
-                z.write(p,str(p));manifest[str(p)]=hashlib.sha256(p.read_bytes()).hexdigest()
-          pathlib.Path('activation-proof/source-manifest.json').write_text(json.dumps({'sha':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':manifest},indent=2))
+          import pathlib,subprocess,hashlib,json
+          p=pathlib.Path('activation-measurement/runtime.patch')
+          if p.exists():
+            assert hashlib.sha256(p.read_bytes()).hexdigest()=='b1137b12873e50d9c3ee81e980fd7fe3b2db6687c0188287bd0701c5e1b6086b'
+            expected={'worker-entry-v6.js':'166027863b0a6d2f37e0c8f6d532421a2fe3f01c8096227fda31c520882bf7b3','auth-email-verification-v1.js':'e586bd59a9e1b9a470816af6be3050df623f0c5b993f49e1a7487d010c6bb140','turnstile-auth-v1.js':'7379b3a314f3ef66cee2012d1ef3a70198ebd990727bb6176aa6a7dca325330e'}
+            for f,sha in expected.items():assert hashlib.sha256(pathlib.Path(f).read_bytes()).hexdigest()==sha,f+' base changed'
+            subprocess.check_call(['git','apply','--check',str(p)])
+            subprocess.check_call(['git','apply',str(p)])
+            assert set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())==set(expected)
           PY
-      - name: Capture anonymous entry pages and their first-party scripts only
+      - run: npm ci --no-audit --no-fund
+      - name: Actual account, consent, database and existing member regression tests
         run: |
-          node --input-type=module <<'NODE'
-          import {mkdirSync,writeFileSync} from 'node:fs';
-          import {createHash} from 'node:crypto';
-          const dir='activation-proof/public',origin='https://shiftsometimber.co.uk';mkdirSync(dir,{recursive:true});
-          const queue=new Set(['/start-here','/member-login','/member-register','/member/dashboard','/programme','/privacy','/cookies']),report=[];
-          for(const path of queue){
-            if(queue.size>60)throw Error('Capture bound exceeded');
-            try{
-              const r=await fetch(origin+path,{redirect:'follow',signal:AbortSignal.timeout(15000)}),body=Buffer.from(await r.arrayBuffer()),type=r.headers.get('content-type')||'',file=encodeURIComponent(path);
-              if(body.length>3000000)throw Error('Body too large');
-              writeFileSync(dir+'/'+file,body);report.push({path,url:r.url,file,status:r.status,type,sha256:createHash('sha256').update(body).digest('hex'),headers:Object.fromEntries(['cache-control','content-security-policy','x-robots-tag'].map(k=>[k,r.headers.get(k)]))});
-              if(type.includes('text/html'))for(const m of body.toString().matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)){const u=new URL(m[1],origin+path);if(u.origin===origin)queue.add(u.pathname+u.search);}
-            }catch(e){report.push({path,error:e.message});}
-          }
-          writeFileSync(dir+'/manifest.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report.map(({path,status,error})=>({path,status,error})),null,2));
-          NODE
-      - name: Implemented acceptance suite
+          set -o pipefail
+          node --test activation-measurement/*.test.mjs tests/member-auth*.test.mjs tests/turnstile-auth-v1.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee activation-proof/regressions.tap
+          for f in gate1-email-verification-e2e.mjs auth-recovery-registration-gate.mjs g5-012-login-fastpath-gate.mjs my-journey-integration-gate.mjs my-timber-final-source-gate.mjs gate5-trust-scale-gate.mjs; do node "$f"; done | tee activation-proof/source-gates.log
+      - name: Compile the real Worker without deployment credentials
         run: |
-          if test -f activation-measurement/proof.mjs; then npm ci --no-audit --no-fund && node activation-measurement/proof.mjs; fi
+          set -o pipefail
+          npx wrangler deploy --dry-run --outdir activation-proof/worker | tee activation-proof/compile.log
+      - name: Install isolated browser runner
+        run: |
+          python3 -m pip install playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+      - name: Test browser consent and privacy boundaries without third-party delivery
+        run: python3 activation-measurement/browser-proof.py
+      - name: Commit verified patch to this branch only
+        if: github.event_name == 'push' && github.ref == 'refs/heads/fix/activation-measurement-20260919'
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          if test -f activation-measurement/runtime.patch; then
+            test "$(git ls-remote origin refs/heads/fix/activation-measurement-20260919 | cut -f1)" = "$EXPECTED_HEAD"
+            test "$(git ls-remote origin refs/heads/main | cut -f1)" = "c478c969ae74a67906b0d3beac2d22a079a3ce71"
+            git add -- worker-entry-v6.js auth-email-verification-v1.js turnstile-auth-v1.js
+            git rm -- activation-measurement/runtime.patch
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Apply the tested activation and privacy runtime changes'
+            git push origin HEAD:refs/heads/fix/activation-measurement-20260919
+          fi
+      - name: Retain exact tested source and readable change
+        if: always()
+        run: |
+          mkdir -p activation-proof
+          git rev-parse HEAD > activation-proof/source-sha.txt
+          git diff c478c969ae74a67906b0d3beac2d22a079a3ce71 -- activation-measurement/ worker-entry-v6.js auth-email-verification-v1.js turnstile-auth-v1.js journey-analytics-v1.js > activation-proof/candidate.patch
+          cp activation-measurement/README.md activation-proof/README.md
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          files=list(pathlib.Path('activation-measurement').glob('*'))+[pathlib.Path(p) for p in ['worker-entry-v6.js','auth-email-verification-v1.js','turnstile-auth-v1.js','journey-analytics-v1.js']]
+          pathlib.Path('activation-proof/source-hashes.json').write_text(json.dumps({str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()},indent=2))
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
