@@ -1,0 +1,34 @@
+name: BabyLoveGrowth Webhook Gate
+on:
+  push:
+    branches: [integrations/babylovegrowth-20260919]
+  pull_request:
+    paths:
+      - 'babylove/**'
+      - 'knowledge-editorial-v1.js'
+      - '.github/workflows/babylove-webhook-gate.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Export source-only integration context (no credentials or customer records)
+        run: |
+          mkdir -p /tmp/babylove-source
+          git ls-files > /tmp/babylove-source/paths.txt
+          git ls-files -z '*.js' '*.mjs' '*.json' '*.jsonc' '*.sql' '*.yml' '*.yaml' 'package-lock.json' | python3 -c 'import sys,pathlib,shutil; root=pathlib.Path("/tmp/babylove-source"); files=sys.stdin.buffer.read().decode().split("\0"); [( (root/p).parent.mkdir(parents=True,exist_ok=True), shutil.copy2(p,root/p)) for p in files if p and pathlib.Path(p).is_file() and pathlib.Path(p).stat().st_size<1200000 and not p.startswith(("frontend/","assets/","public/"))]'
+      - name: Test BabyLoveGrowth receiver when present
+        run: |
+          if test -f babylove/webhook.test.mjs; then node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: babylove-source-context
+          path: /tmp/babylove-source
+          include-hidden-files: true
+          retention-days: 2
