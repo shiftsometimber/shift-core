@@ -3,6 +3,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {readRadarFreshness} from './radar-freshness-v2.js';
 import {ensureRadarSchema} from './radar-integration-v1.js';
 import {runRadarScheduledScan} from './radar-scheduled-scan-v1.js';
+import {GPHC_RSS,NICE_TOPIC} from './radar-source-policy-v1.js';
 
 class S {
   constructor(db,sql,p=[]){this.db=db;this.sql=sql;this.p=p;}
@@ -35,6 +36,10 @@ globalThis.fetch=async url=>{
  if(value.includes('esummary.fcgi'))return Response.json({result:{'42673585':{uid:'42673585',title:'Peer-reviewed GLP-1 and retatrutide weight-loss review',pubdate:'2026 Sep 1'}}});
  if(value.includes('clinicaltrials.gov/api/'))return Response.json({studies:[]});
  if(value.includes('europepmc/webservices/'))return Response.json({resultList:{result:[]}});
+ // Synthetic successful-source fixtures, not claims about current external access.
+ if(value===GPHC_RSS)return new Response('<rss><channel><item><title>Weight-loss prescribing standards update</title><link>https://www.pharmacyregulation.org/news/weight-loss-standards</link><pubDate>2026-09-18</pubDate><description>Online pharmacy safety update.</description></item></channel></rss>',{headers:{'Content-Type':'application/rss+xml'}});
+ if(value===NICE_TOPIC)return new Response('<html><a href="'+new URL(NICE_TOPIC).pathname+'/products?Status=Published&amp;Status=Terminated">Published and terminated products</a></html>');
+ if(value.startsWith(NICE_TOPIC+'/products?'))return new Response('<html><a href="/guidance/ng246">Overweight and obesity management</a></html>');
  if(/asa\.org|pharmacyregulation\.org|nice\.org|investor\.lilly|novonordisk|chemistanddruggist/.test(value)&&!value.includes('news.google.com'))return new Response('<html><a href="/news/weight-loss-update">Weight-loss advertising update</a></html>');
  return new Response(`<?xml version="1.0"?><feed><entry><title>Authoritative GLP-1 weight-management medicine update</title><link href="${new URL(value).origin}/item-1"/><updated>2026-08-12T17:00:00Z</updated><summary>Regulatory update concerning obesity treatment.</summary></entry></feed>`,{status:200});
 };
@@ -44,6 +49,11 @@ try {
   assert.ok(result.scan.sources.length>=4);
   assert.ok(result.scan.newEvents>=4);
   assert.equal(result.freshness.freshnessDue,0);
+  assert.equal(result.scan.sources.find(x=>x.source==='gphc-news')?.ok,true);
+  assert.equal(result.scan.sources.find(x=>x.source==='nice-diet-nutrition-obesity')?.ok,true);
+  const niceEvent=await DB.prepare("SELECT source_evidence_json FROM radar_events WHERE event_type='uk_guidance_discovery'").first();
+  assert.ok(niceEvent);
+  assert.equal(JSON.parse(niceEvent.source_evidence_json)[0].guidance_stage,'published_or_terminated_requires_individual_check');
 
   const scan=await DB.prepare(`SELECT * FROM radar_audit WHERE action='scan' ORDER BY id DESC LIMIT 1`).first();
   assert.ok(scan);
@@ -60,7 +70,8 @@ try {
   assert.ok(after.ages.scan<=after.sloHours.scanHours);
 
   console.log(JSON.stringify({before:before.status,scan:result.scan,events:Number(events.c),after:after.status},null,2));
-  console.log('PASS M03 scheduled Radar performs authoritative-source retrieval, provenance ingestion, scan audit and freshness transition');
+  console.log('PASS M03 scheduled Radar performs authoritative-source retrieval, provenance ingestion, scan audit and freshness transition using synthetic source fixtures');
 } finally {
   globalThis.fetch=oldFetch;
+  DB.sqlite.close();
 }

@@ -1,3 +1,4 @@
+import {sourceReusePolicy} from './radar-source-policy-v1.js';
 // Owner-authorised 17 September 2026: routine attributed news and SHIFT's take
 // may publish after automated checks, without repeat personal sign-off.
 // This policy grants no authority to change medicines, send messages or revive holds.
@@ -7,7 +8,7 @@ export const AUTO_NEWS_DESTINATIONS=['medicine_news','ticker_knowledge','ticker_
 const parse=(value,fallback)=>{try{return JSON.parse(value)}catch{return fallback}};
 const https=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password}catch{return false}};
 export function autoNewsEligibility(row,pkg,patch={},now=Date.now()){
- const reasons=[],raw=parse(row.source_evidence_json,[]),evidence=Array.isArray(raw)?raw:[];
+ const reasons=[...sourceReusePolicy(row).reasons],raw=parse(row.source_evidence_json,[]),evidence=Array.isArray(raw)?raw:[];
  if(!pkg||typeof pkg!=='object'||Array.isArray(pkg))return{ok:false,reasons:['invalid_package'],evidence};
  if(row.status!=='ready_for_review'||row.reviewed_at||row.reviewed_by||Number(row.source_review_generation||0)!==0)reasons.push('existing_decision_or_correction');
  if(pkg.editorial_policy!==AUTO_NEWS_POLICY)reasons.push('legacy_package');

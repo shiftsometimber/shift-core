@@ -12,13 +12,12 @@ on:
       - 'worker-entry-v6.js'
       - '.github/workflows/activation-measurement-proof.yml'
 permissions:
-  contents: write
+  contents: read
 concurrency:
-  group: activation-measurement-${{ github.ref }}
+  group: activation-measurement-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   proof:
-    if: github.repository == 'shiftsometimber/shift-core' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -26,30 +25,30 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Apply only the exact five-line production regression gate addition
+      - name: Record exact current source without repository or production writes
         run: |
           mkdir -p activation-proof
+          test ! -f activation-measurement/release-gate.patch
+          git rev-parse HEAD > activation-proof/source-sha.txt
           python3 - <<'PY'
-          import pathlib,subprocess,hashlib
-          p=pathlib.Path('activation-measurement/release-gate.patch')
-          if p.exists():
-            assert hashlib.sha256(p.read_bytes()).hexdigest()=='9d183e84dc4682aa171032b1816f39e15bd4a0a5f89e5822902007523617855d'
-            f=pathlib.Path('.github/workflows/cloudflare-production-promote.yml')
-            assert hashlib.sha256(f.read_bytes()).hexdigest()=='8d1b571c1e152f1709f8b4774024324538c1e61bef4b66c5c525b79c8746948c'
-            subprocess.check_call(['git','apply','--check',str(p)])
-            subprocess.check_call(['git','apply',str(p)])
-            assert subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()==[str(f)]
+          import pathlib,subprocess,zipfile
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          with zipfile.ZipFile('activation-proof/current-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for value in paths:
+              p=pathlib.Path(value)
+              if p.is_file() and p.suffix in {'.js','.mjs','.json','.jsonc','.sql','.yml','.html','.css','.md','.py'}:z.write(p,str(p))
           PY
       - run: npm ci --no-audit --no-fund
-      - name: Actual account, consent, database and existing member regression tests
+      - name: Actual account, consent, database and existing member regressions
         run: |
           set -o pipefail
           node --test activation-measurement/*.test.mjs tests/member-auth*.test.mjs tests/turnstile-auth-v1.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee activation-proof/regressions.tap
           for f in gate1-email-verification-e2e.mjs auth-recovery-registration-gate.mjs g5-012-login-fastpath-gate.mjs my-journey-integration-gate.mjs my-timber-final-source-gate.mjs gate5-trust-scale-gate.mjs; do node "$f"; done | tee activation-proof/source-gates.log
-      - name: Compile the real Worker without deployment credentials
+      - name: Compile without deployment credentials
         run: |
           set -o pipefail
           npx wrangler deploy --dry-run --outdir activation-proof/worker | tee activation-proof/compile.log
@@ -57,44 +56,29 @@ jobs:
         run: |
           python3 -m pip install playwright==1.55.0
           python3 -m playwright install --with-deps chromium
-      - name: Test browser consent and privacy boundaries without third-party delivery
+      - name: Browser consent boundaries without Google transmission
         run: python3 activation-measurement/browser-proof.py
-      - name: Read-only capture of five existing pages for the approved editorial work
+      - name: Capture the current public signup and tracking sources without submitting forms
         run: |
           node --input-type=module <<'NODE'
           import {mkdirSync,writeFileSync} from 'node:fs';
           import {createHash} from 'node:crypto';
-          mkdirSync('activation-proof/editorial',{recursive:true});const rows=[];
-          for(const path of ['/comparisons/medications/mounjaro-vs-saxenda','/comparisons/medications/mounjaro-vs-orlistat','/guides/nhs-weight-loss-medication-pathways','/mental-health/mental-health-and-weight','/research/uk-mens-weight-health-statistics']){
-            try{const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(15000)});const body=Buffer.from(await r.arrayBuffer());if(body.length>3000000)throw Error('Body too large');const file=encodeURIComponent(path)+'.html';writeFileSync('activation-proof/editorial/'+file,body);rows.push({path,status:r.status,url:r.url,file,sha256:createHash('sha256').update(body).digest('hex')});}catch(e){rows.push({path,error:e.message});}
+          const origin='https://shiftsometimber.co.uk',dir='activation-proof/public-baseline';mkdirSync(dir,{recursive:true});
+          const pages=['/start-here','/programme','/member-login','/member/dashboard'],queue=new Set([...pages,'/analytics-bootstrap-v1.js','/consent-v4a.js','/analytics-v3a.js','/analytics-events-v31b.js']),records=[];
+          for(const path of queue){
+            if(queue.size>75)throw Error('Asset capture bound exceeded');
+            try{const r=await fetch(origin+path,{signal:AbortSignal.timeout(15000),credentials:'omit'}),body=Buffer.from(await r.arrayBuffer());if(body.length>3000000)throw Error('Body too large');const file=encodeURIComponent(path);writeFileSync(dir+'/'+file,body);records.push({path,status:r.status,url:r.url,file,contentType:r.headers.get('content-type'),sha256:createHash('sha256').update(body).digest('hex')});
+              if(pages.includes(path))for(const m of body.toString().matchAll(/<script\b[^>]*src=["']([^"']+)["']/gi)){const u=new URL(m[1],origin+path);if(u.origin===origin)queue.add(u.pathname+u.search)}
+            }catch(e){records.push({path,error:e.message})}
           }
-          writeFileSync('activation-proof/editorial/manifest.json',JSON.stringify(rows,null,2));console.log(JSON.stringify(rows,null,2));
+          writeFileSync(dir+'/manifest.json',JSON.stringify(records,null,2));console.log('Read-only source capture:',records.length,'responses. No signup submitted.');
           NODE
-      - name: Retain tested release-gate source on this branch only
-        if: github.event_name == 'push' && github.ref == 'refs/heads/fix/activation-measurement-20260919'
-        env:
-          EXPECTED_HEAD: ${{ github.sha }}
-        run: |
-          if test -f activation-measurement/release-gate.patch; then
-            test "$(git ls-remote origin refs/heads/fix/activation-measurement-20260919 | cut -f1)" = "$EXPECTED_HEAD"
-            test "$(git ls-remote origin refs/heads/main | cut -f1)" = "c478c969ae74a67906b0d3beac2d22a079a3ce71"
-            git add -- .github/workflows/cloudflare-production-promote.yml
-            git rm -- activation-measurement/release-gate.patch
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Gate activation and measurement changes before production'
-            git push origin HEAD:refs/heads/fix/activation-measurement-20260919
-          fi
-      - name: Retain exact tested source and readable change
+      - name: Retain readable change and documentation
         if: always()
         run: |
           mkdir -p activation-proof
-          git rev-parse HEAD > activation-proof/source-sha.txt
-          git diff c478c969ae74a67906b0d3beac2d22a079a3ce71 -- activation-measurement/ worker-entry-v6.js auth-email-verification-v1.js turnstile-auth-v1.js journey-analytics-v1.js .github/workflows/cloudflare-production-promote.yml > activation-proof/candidate.patch
+          git diff 06d2a952c02263abcd443c91c59ec6fca75cccd1 -- activation-measurement/ worker-entry-v6.js auth-email-verification-v1.js turnstile-auth-v1.js journey-analytics-v1.js .github/workflows/ > activation-proof/candidate.patch
           cp activation-measurement/README.md activation-proof/README.md
-          python3 - <<'PY'
-          import hashlib,json,pathlib
-          files=list(pathlib.Path('activation-measurement').glob('*'))+[pathlib.Path(p) for p in ['worker-entry-v6.js','auth-email-verification-v1.js','turnstile-auth-v1.js','journey-analytics-v1.js']]
-          pathlib.Path('activation-proof/source-hashes.json').write_text(json.dumps({str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()},indent=2))
-          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
