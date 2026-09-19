@@ -18,9 +18,10 @@ test('source policy blocks process, approval and publication before any AI call 
 });
 test('a permission-held source does not consume the next eligible preparation slot',async()=>{
  const DB=memoryDB();await ensureRadarSchema(DB);await seed(DB,1,'GPhC','https://www.pharmacyregulation.org/news/test');await seed(DB,2,'MHRA','https://www.gov.uk/news/test');
- const r=await prepareVerifiedRadarQueue({DB},{limit:1});assert.equal(r.prepared.length,1);assert.equal(r.prepared[0].id,2);assert.equal(r.prepared[0].status,'workers_ai_not_bound');
+ const r=await prepareVerifiedRadarQueue({DB},{limit:1});assert.equal(r.prepared.length,1);assert.equal(r.prepared[0].id,2);assert.equal(r.prepared[0].status,'verified');assert.equal(r.prepared[0].ok,false);
+ assert.equal((await DB.prepare('SELECT status FROM radar_events WHERE id=1').first()).status,'verified');
 });
-test('live source configuration migrates only GPhC, and 403 remains failed during the hourly pause',async()=>{
+test('source configuration migrates only GPhC, and 403 remains failed during the hourly pause',async()=>{
  const DB=memoryDB();await ensureRadarSchema(DB);await loadRadarSources(DB);await DB.prepare("UPDATE radar_sources SET active=0 WHERE id!='gphc-news'").run();
  let calls=0;const original=globalThis.fetch;globalThis.fetch=async url=>{calls++;assert.equal(String(url),GPHC_RSS);return new Response('Forbidden',{status:403})};
  try{const one=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});const two=await runAuthoritativeRadarScan({DB,RADAR_SUPPRESS_NOTIFICATIONS:true});assert.equal(calls,1);assert.equal(one.sources[0].error,'http_403');assert.equal(two.sources[0].error,'http_403');assert.equal(two.sources[0].skipped,true);assert.equal(two.sources[0].ok,false);assert.equal((await DB.prepare('SELECT COUNT(*) c FROM radar_events').first()).c,0)}finally{globalThis.fetch=original}
