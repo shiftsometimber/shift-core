@@ -7,6 +7,10 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/cloudflare-production-promote.yml"
+      - "editorial/five-articles/**"
+      - "editorial-resources-v1.js"
+      - "tests/five-article-evidence.test.mjs"
+      - "tests/editorial-resources-v1.test.mjs"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
       - "health-passport/**"
@@ -193,6 +197,8 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Verify five source-specific articles without changing unrelated pages
+        run: node --test tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs
       - name: Verify member experience and Grub account integration
         run: |
           node member-experience/prepare-life-back.mjs
@@ -316,6 +322,15 @@ jobs:
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Verify five revised articles, metadata, downloads and sitemap on live traffic
+        run: node editorial/five-articles/proof.mjs --live
+      - name: Retain five-article live proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-article-live-${{ github.run_id }}
+          path: five-article-live/
+          if-no-files-found: warn
       - name: Prove activated Passport delivery and private routes
         run: node health-passport/production-live.mjs
       - name: Retain Passport migration and live evidence
