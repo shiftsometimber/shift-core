@@ -1,0 +1,67 @@
+name: Activation and Measurement Proof
+on:
+  push:
+    branches: ['fix/activation-measurement-20260919']
+  pull_request:
+    branches: [main]
+    paths:
+      - 'activation-measurement/**'
+      - '.github/workflows/activation-measurement-proof.yml'
+permissions:
+  contents: read
+concurrency:
+  group: activation-measurement-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Retain exact tracked source, excluding credentials and personal records
+        run: |
+          mkdir -p activation-proof
+          python3 - <<'PY'
+          import pathlib,subprocess,zipfile,json,hashlib
+          files=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={}
+          with zipfile.ZipFile('activation-proof/source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for value in files:
+              p=pathlib.Path(value)
+              if p.is_file() and p.suffix.lower() in {'.js','.mjs','.cjs','.json','.jsonc','.sql','.yml','.yaml','.html','.css','.md','.txt'} and not any(x in p.name.lower() for x in ['.env','credential','secret','token-cache']):
+                z.write(p,str(p));manifest[str(p)]=hashlib.sha256(p.read_bytes()).hexdigest()
+          pathlib.Path('activation-proof/source-manifest.json').write_text(json.dumps({'sha':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':manifest},indent=2))
+          PY
+      - name: Capture anonymous entry pages and their first-party scripts only
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const dir='activation-proof/public',origin='https://shiftsometimber.co.uk';mkdirSync(dir,{recursive:true});
+          const queue=new Set(['/start-here','/member-login','/member-register','/member/dashboard','/programme','/privacy','/cookies']),report=[];
+          for(const path of queue){
+            if(queue.size>60)throw Error('Capture bound exceeded');
+            try{
+              const r=await fetch(origin+path,{redirect:'follow',signal:AbortSignal.timeout(15000)}),body=Buffer.from(await r.arrayBuffer()),type=r.headers.get('content-type')||'',file=encodeURIComponent(path);
+              if(body.length>3000000)throw Error('Body too large');
+              writeFileSync(dir+'/'+file,body);report.push({path,url:r.url,file,status:r.status,type,sha256:createHash('sha256').update(body).digest('hex'),headers:Object.fromEntries(['cache-control','content-security-policy','x-robots-tag'].map(k=>[k,r.headers.get(k)]))});
+              if(type.includes('text/html'))for(const m of body.toString().matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)){const u=new URL(m[1],origin+path);if(u.origin===origin)queue.add(u.pathname+u.search);}
+            }catch(e){report.push({path,error:e.message});}
+          }
+          writeFileSync(dir+'/manifest.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report.map(({path,status,error})=>({path,status,error})),null,2));
+          NODE
+      - name: Implemented acceptance suite
+        run: |
+          if test -f activation-measurement/proof.mjs; then npm ci --no-audit --no-fund && node activation-measurement/proof.mjs; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: activation-measurement-${{ github.event.pull_request.head.sha || github.sha }}
+          path: activation-proof/
+          retention-days: 30
