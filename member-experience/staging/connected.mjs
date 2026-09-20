@@ -12,7 +12,7 @@ const bootstrap="window.SST_API_BASE=location.origin;";
 const status=String.raw`const stageNav=()=>document.querySelectorAll('a[href^="/member/"]').forEach(a=>{const u=new URL(a.href);const name=u.pathname.slice(8);if(['dashboard','grub','fit','check-in','settings','life-back'].includes(name))a.href='/staging/member-connected/'+name+u.search+u.hash;});stageNav();new MutationObserver(stageNav).observe(document.body,{childList:true,subtree:true});const account=document.querySelector('#connected-account');if(account&&window.SST_API?.getProfile)SST_API.getProfile().then(r=>{account.textContent='Fictional test account: '+r.profile.email}).catch(()=>{account.textContent='Sign in to a fictional account to save. No live account is used.'});`;
 export async function connectedMemberRoutes(request,env){
  const u=new URL(request.url),path=u.pathname;
- if(path==='/staging/member-auth'||path==='/staging/member-auth/dashboard'){
+ if(path==='/staging/member-auth'||path==='/staging/member-auth/dashboard'||path==='/member-login'){
   const asset=path.endsWith('/dashboard')?source+'member/dashboard.html':'/staging/member-auth.html';
   const r=await env.STAGING_ASSETS.fetch(new Request(new URL(asset,u)));if(!r.ok)return r;
   let html=await r.text();const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).filter(js=>js.includes('async function existing()'));

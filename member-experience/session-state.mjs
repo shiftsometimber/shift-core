@@ -35,6 +35,7 @@ export function withSessionState(html){
   if(start<0||!Number.isFinite(stop))return html;
   html=html.slice(0,start)+'async function existing(){await window.SST_MEMBER_SESSION.check(showMember)}\n      '+html.slice(stop);
   html=html.replace('async function showMember(){','async function showMember(){window.SST_MEMBER_SESSION.ready();');
+  html=html.replace('const destination=requestedDestination();',String.raw`const destination=requestedDestination()||(/^\/member-login(?:\.html)?\/?$/.test(location.pathname)?'/member/dashboard'+location.hash:'');`);
   html=html.replace(/(<section\b[^>]*id="previewAuth")([^>]*>)/,'$1 hidden$2');
  }
  return html.replace(/<body\b([^>]*)>/,'<body$1 data-member-session="pending"><section id="memberSessionStatus" aria-label="Account access"><p role="status">Checking your sign-in…</p></section>')
