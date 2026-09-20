@@ -181,6 +181,7 @@ function isMemberProductPath(path) {
     path.startsWith("/v1/plan/") ||
     path.startsWith("/v1/progress/") ||
     path === "/v1/progress" ||
+    path === "/v1/check-ins" ||
     path === "/v1/member-state" ||
     path.startsWith("/v1/auth/") ||
     path.startsWith("/v1/privacy/") ||

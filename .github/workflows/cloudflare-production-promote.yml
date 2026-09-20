@@ -206,6 +206,7 @@ jobs:
         run: node --test tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs
       - name: Verify member experience and Grub account integration
         run: |
+          node --test tests/member-checkin-preflight.test.mjs
           node member-experience/prepare-life-back.mjs
           git diff --exit-code -- member-experience/life-back-assets.mjs
           node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs

@@ -50,6 +50,7 @@ jobs:
         run: python -m pip install openpyxl==3.1.5
       - name: Test connected member journey
         run: |
+          node --test tests/member-checkin-preflight.test.mjs
           node member-experience/prepare-life-back.mjs
           node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs medicines-watch/*.test.mjs tests/ai-connected*.test.mjs tests/adaptive-treatment-integrity.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/schema-readiness.test.mjs tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
           node gate4-one-shift-brain-gate.mjs
@@ -86,6 +87,8 @@ jobs:
         run: node work/staging/member-chrome-browser-proof.mjs
       - name: Verify profile password reset controls with fictional requests only
         run: node work/staging/password-settings-browser-proof.mjs
+      - name: Verify consented check-in save and next-step response on fictional accounts
+        run: node work/staging/checkin-save-browser-proof.mjs
       - name: Verify real remote persistence and access boundaries
         run: node work/staging/probe.mjs
       - name: Save non-secret verification evidence only
@@ -103,4 +106,5 @@ jobs:
             work/staging/generated/member-chrome-proof/report.json
             work/staging/generated/member-chrome-proof/*.png
             work/staging/generated/password-settings-proof/**
+            work/staging/generated/checkin-save-proof/**
           if-no-files-found: error
