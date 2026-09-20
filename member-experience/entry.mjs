@@ -1,3 +1,5 @@
+import {dayGuideMarkup,dayGuideStyles,dayGuideRuntime} from './day-guide.mjs';
+import {withSessionState,sessionRuntime} from './session-state.mjs';
 import {checkinFollowupRuntime,checkinFollowupStyles} from './checkin-followup-client.mjs';
 import {memberNavigation,memberChromeStyles,memberChromeClient,addMemberChrome,lifeBackChrome} from './chrome.mjs';
 import {restoreDashboardTools,dashboardToolsRuntime,dashboardToolsStyles} from './dashboard-tools.mjs';
@@ -19,6 +21,12 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(path==='/assets/member-experience/session.mjs')return new Response(request.method==='HEAD'?null:sessionRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/member/life-changed-preview'||path==='/member/life-changed-preview.html'){
+    const modes={'working-late':'working_late','limited-food':'next_three_hours','ten-minutes':'no_time','eating-out':'eating_out','quick-breakfast':'missed_lunch','travel':'plans_cancelled','plans-changed':'plans_cancelled'};
+    const mode=modes[new URL(request.url).searchParams.get('mode')]||'next_three_hours';
+    return new Response(null,{status:302,headers:{...privateHeaders,Location:'/member/dashboard?reviewChange='+mode+'#today'}});
+  }
   if(path==='/assets/member-experience/checkin-followup.mjs')return new Response(request.method==='HEAD'?null:checkinFollowupRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/checkin-followup.css')return new Response(request.method==='HEAD'?null:checkinFollowupStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/password-settings.mjs')return new Response(request.method==='HEAD'?null:passwordSettingsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
@@ -33,7 +41,7 @@ export function memberExperienceRoutes(request, env) {
     const body=a.base64?Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0)):name==='index.html'?lifeBackChrome(a.body,env.WORK_V1_ENABLED==='true'):a.body;
     return new Response(request.method==='HEAD'?null:body,{headers:{...privateHeaders,'Content-Type':a.type}});
   }
-  const asset = {'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
+  const asset = {'/assets/member-experience/day-guide.mjs':[dayGuideRuntime,'text/javascript'],'/assets/member-experience/day-guide.css':[dayGuideStyles,'text/css'],'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
   if (!asset) return null;
   return new Response(request.method === 'HEAD' ? null : asset[0]+(path==='/assets/member-experience/v1.css'?grubIntelligenceCSS:''),{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
 }
@@ -59,7 +67,7 @@ export async function memberExperienceEntry(request, env, response) {
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
   if(name === 'dashboard')html=restoreDashboardTools(html);
-  if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=my-timber-master-20260916').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
+  if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=member-walk-20260920').replace(/\/member-my-journey-v2\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-journey-v2.js?v=member-walk-20260920').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
   if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');
   if(['dashboard','fit','check-in','settings'].includes(name)){
@@ -72,12 +80,14 @@ export async function memberExperienceEntry(request, env, response) {
   if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');
   if(['dashboard','check-in'].includes(name)){
     const followup='<section id="dailyCheckinFollowup" aria-label="Your saved next-step feedback" hidden></section>';
-    if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+followup);
-    else html=html.replace(/(<main\b[^>]*>)/,'$1'+followup);
+    if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+dayGuideMarkup+followup);
+    else html=html.replace(/(<main\b[^>]*>)/,'$1'+dayGuideMarkup+followup);
     html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/checkin-followup.css"><script defer src="/assets/member-experience/checkin-followup.mjs"></script></body>');
   }
+  if(name==='dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/day-guide.css"><script defer src="/assets/member-experience/day-guide.mjs"></script></body>');
   if(name === 'settings') html=withPasswordSettings(html);
   html=addMemberChrome(html,name);
+  if(!env.MEMBER_SESSION_REVIEW_ONLY)html=withSessionState(html);
   const headers = new Headers(response.headers);
   for (const [key,value] of Object.entries(privateHeaders)) headers.set(key,value);
   headers.set('Vary', [...new Set((headers.get('Vary')||'').split(',').map(x=>x.trim()).filter(Boolean).concat('Cookie'))].join(', '));

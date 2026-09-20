@@ -16,6 +16,7 @@ import {withPublicSeoCloseout} from './public-seo-closeout.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
+import { withSessionState } from './member-experience/session-state.mjs';
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
 import { workRoutes } from "./work/routes.mjs";
@@ -775,11 +776,10 @@ const worker = {
     ) {
       if (!env.MEMBER_ASSETS)
         return new Response("preview shell unavailable", { status: 503 });
-      return privatePageHeaders(
-        await env.MEMBER_ASSETS.fetch(
-          new Request(new URL("/my-timber-preview", request.url), request),
-        ),
-      );
+      const response=await env.MEMBER_ASSETS.fetch(new Request(new URL("/my-timber-preview", request.url),request));
+      if(request.method==='HEAD'||!response.ok||env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return privatePageHeaders(response);
+      const headers=new Headers(response.headers);for(const name of ['Content-Length','ETag','Last-Modified'])headers.delete(name);
+      return privatePageHeaders(new Response(withSessionState(await response.text()),{status:response.status,headers}));
     }
     if (
       (request.method === "GET" || request.method === "HEAD") &&

@@ -22,7 +22,7 @@ test('retained tools are additive inside the authenticated shell and leave origi
 
 test('utility links expose restored tools, with private and feature-gated assets',async()=>{
  const r=await memberExperienceEntry(new Request('https://shiftsometimber.co.uk/member/dashboard'),enabled,new Response(baseline,{headers:{'Content-Type':'text/html'}})),html=await r.text();
- assert.match(html,/<summary>More<\/summary><div><a class="mp-tab" data-panel="visualise"/);
+ assert.match(html,/<a href="\/member\/dashboard#visualise">Progress<\/a>/);
  assert.match(html,/data-panel="plans" href="\/member\/dashboard#plans"/);
  for(const path of ['/assets/member-experience/tools.mjs','/assets/member-experience/tools.css']){
   assert.equal(memberExperienceRoutes(new Request('https://shiftsometimber.co.uk'+path),{}),null);

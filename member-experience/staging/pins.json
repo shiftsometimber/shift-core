@@ -81,11 +81,12 @@
   },
   {
     "path": "member-my-journey-v2.js",
-    "sha256": "d63cd880043ed09553af0deac48478f781d4be15fe0a7381dd14b14fe600993c"
+    "sha256": "48b71ff5b1160f43832af6b02817c2e6c247999bb77eb4b0cbc955627992e44a",
+    "source": "worker"
   },
   {
     "path": "member-my-timber-problem-v1.js",
-    "sha256": "67060520c52f16fe576360270abc8f79991fe3bb61980474f5e71ec2ed7dafdd",
+    "sha256": "8cb021ea566b10a95ea0d370b8e379462caa01dd3d1f2ab18f374a53a6c4b1fd",
     "source": "worker"
   },
   {
@@ -129,5 +130,17 @@
   {
     "path": "shift-fit-approved-v1.js",
     "sha256": "01735bbe9657a03354f4452bafcaa79697f0c5cda2ac0a985597f91526ef6ab7"
+  },
+  {
+    "path": "assets/ask-timber-phase8.js",
+    "sha256": "4b18d1c98d4c548505d629a9fea9aeb8be8689cccf819ba2f672736930f8c9d8"
+  },
+  {
+    "path": "member/ask-timber.html",
+    "sha256": "22994c67d700797a3b4acacbffe6c174dad153975638174ccbead78d5cc89e98"
+  },
+  {
+    "path": "assets/ask-timber-phase8.css",
+    "sha256": "9c3af57a7648516fb634279931b93fcc956b77a165f5b12096051813b10f7c8d"
   }
 ]

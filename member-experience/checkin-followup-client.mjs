@@ -26,7 +26,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
  }
  function actionLink(a){const link=element('a',a.label||'Open this next step');link.href=typeof a.href==='string'&&/^\/(?!\/)/.test(a.href)?a.href:'/member/dashboard#today';return link}
  function render(edit=false){
-  host.replaceChildren();host.hidden=!record;if(!record)return;
+  document.dispatchEvent(new CustomEvent('sst:daily-feedback',{detail:record}));host.replaceChildren();host.hidden=!record;if(!record)return;
   host.append(element('h2','Did it help?'),element('p','Your next step from the check-in on '+new Date(record.createdAt).toLocaleDateString('en-GB')+':'),element('strong',record.action.title),element('p',record.action.detail),actionLink(record.action));
   const status=element('p');status.id='dailyFeedbackStatus';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
   if(record.feedback&&!edit){status.textContent='Feedback saved: '+labels[record.feedback]+'.';const update=element('button','Update answer');update.type='button';update.addEventListener('click',()=>render(true));host.append(status,update);return}
@@ -54,6 +54,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
    ++generation;host.hidden=true;
    const card=document.querySelector('#checkinResult .checkin-action');if(!card||!offered)return;
    card.replaceChildren(element('small','YOUR SAVED NEXT STEP'),element('strong',offered.action.title),element('p',offered.action.detail),actionLink(offered.action));
+   const handoff=element('p','Saved to your private check-in history. After trying this step, return to Today or reopen Check-in to tell us whether it helped.');const back=element('a','Back to Today →');back.href='/member/dashboard#today';card.append(handoff,back);
   });
   load();window.addEventListener('pageshow',event=>{if(event.persisted)load()});window.addEventListener('hashchange',()=>{if(location.hash==='#today')load()});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
  }

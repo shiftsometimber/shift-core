@@ -7,10 +7,10 @@ import vm from 'node:vm';
 
 const source=readFileSync(process.env.JOURNEY_BOOTSTRAP_SOURCE||new URL('../../frontend/member/member-my-journey-v2.js',import.meta.url),'utf8');
 
-test('pinned Journey V2 preserves the served source outside exact startup and consented-priority repairs',()=>{
+test('pinned Journey V2 preserves the served source outside the approved progressive setup, honest empty ratings, startup and consented-priority repairs',()=>{
  const original="activate(['journey','lifeback','progress'].includes(location.hash.slice(1))?'journey':'today',false);";
  const repaired="const requested=location.hash.slice(1),initial=['journey','lifeback','progress'].includes(requested)?'journey':document.body?.dataset.memberTools==='v1'&&['plans','visualise'].includes(requested)&&$('#panel-'+requested)?requested:'today';activate(initial,false);";
- assert.equal(createHash('sha256').update(source.replace(CURRENT_HEALTH_BLOCK,LEGACY_HEALTH_BLOCK).replace(repaired,original)).digest('hex'),'d63cd880043ed09553af0deac48478f781d4be15fe0a7381dd14b14fe600993c');
+ assert.equal(createHash('sha256').update(source.replace(CURRENT_HEALTH_BLOCK,LEGACY_HEALTH_BLOCK).replace(repaired,original)).digest('hex'),'c1a3b897b6563ffed64bc82a9a3c0eafa3676efea144c0de217da0486ade73b2');
  const worker=readFileSync(new URL('../../worker-entry-v6.js',import.meta.url),'utf8');
  assert.match(worker,/\["\/member-my-journey-v2\.js", "application\/javascript; charset=utf-8"\]/);
 });

@@ -1,3 +1,4 @@
+import {preserveLoginSession} from './session-preservation.mjs';
 import {preserveBabyLoveKnowledge} from '../babylove/public-article.mjs';
 import {preservePassportHead} from '../health-passport/production-preservation.mjs';
 import {preserveHealthCardOrder} from '../testosterone-hub-order.mjs';
@@ -17,7 +18,8 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,body,{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
+ let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,body,{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
+ preserved=preserveLoginSession(path,preserved);
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';

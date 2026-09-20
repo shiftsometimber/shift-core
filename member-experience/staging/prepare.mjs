@@ -18,3 +18,5 @@ console.log('Verified immutable member preview sources. No live member data is u
 const currentHashes={};
 for(const name of currentToolAssets){const data=readFileSync(resolve('frontend/member',name));const out='work/staging/generated/assets/staging/member-current/'+name;mkdirSync(dirname(out),{recursive:true});writeFileSync(out,data);currentHashes[name]=createHash('sha256').update(data).digest('hex')}
 writeFileSync('work/staging/generated/current-tool-assets.json',JSON.stringify(currentHashes,null,2));
+
+writeFileSync('work/staging/generated/assets/staging/member-auth.html',readFileSync('frontend/member/my-timber-preview.html'));

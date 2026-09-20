@@ -25,7 +25,7 @@ try{
     const nav=document.querySelector('nav.sst-member-tabs');
     return {title:hero.querySelector('h1,h2')?.textContent.trim(),heroWidth:hero.getBoundingClientRect().width,image:getComputedStyle(hero,'::after').backgroundImage,imageVisible:getComputedStyle(hero,'::after').display,navs:document.querySelectorAll('nav.sst-member-tabs').length,labels:[...nav.querySelectorAll('.member-nav-tools a')].map(a=>a.textContent),overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,forms:document.querySelectorAll('form').length};
    });
-   assert.ok(row.title,name+' heading');assert.equal(row.navs,1,name+' shared navigation');assert.deepEqual(row.labels,['Today','Journey','Grub','Fit','Check-in','Life Back']);
+   assert.ok(row.title,name+' heading');assert.equal(row.navs,1,name+' shared navigation');assert.deepEqual(row.labels,['Today','Journey','Grub','Fit','Check-in','Progress']);
    assert.ok(row.image.includes('home-hero-men-v32o.jpg'),name+' existing approved image');assert.notEqual(row.imageVisible,'none');
    assert.ok(row.overflow<=1,name+' horizontal overflow: '+row.overflow);
    if(name==='plans'){

@@ -104,7 +104,7 @@ try{
    await open(page);const before=await today(page);assert(before.hero?.includes('MY TIMBER'));assert(before.care?.includes('Feeling rough'));assert(before.meal?.includes(chosen.name));assert.equal(before.avatar,false);assert.equal(before.tapRoom,false);row.todayBefore=before;
    await geometry(page,row,'today');await page.screenshot({path:join(out,name+'-today.png'),fullPage:true});
    row.phase='render-progress-via-more';
-   await page.locator('.member-nav-more > summary').click();await page.locator('.member-nav-more [data-panel="visualise"]').click();
+   await page.locator('.member-nav-tools a').filter({hasText:/^Progress$/}).click();
    await page.waitForFunction(()=>document.querySelector('#panel-visualise')?.classList.contains('active')&&document.querySelector('#shiftProgressStory')?.getAttribute('aria-busy')==='false');
    const story=await page.locator('#shiftProgressStory').innerText();row.progressText=clean(story);
    assert(story.includes('2 check-ins retained'),'Missing retained progress count');

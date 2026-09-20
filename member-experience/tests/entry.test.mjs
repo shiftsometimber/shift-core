@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {withSessionState} from '../session-state.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {memberExperienceEntry,memberExperienceRoutes} from '../entry.mjs';
@@ -20,11 +21,11 @@ test('Journey aliases lead to the real dashboard record with a reversible privat
  }
  assert.equal(memberExperienceRoutes(new Request('https://shiftsometimber.co.uk/member/journey',{method:'POST'}),enabled),null);
 });
-test('real dashboard keeps original scripts, IDs, forms and auth logic with a versioned Today asset',async()=>{
+test('real dashboard keeps original scripts, IDs, forms and credential handlers with explicit session checking and a versioned Today asset',async()=>{
  const r=await memberExperienceEntry(request('/member/dashboard'),enabled,page(dashboard)),html=await r.text();
  const scripts=s=>[...s.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/g)].map(x=>x[0]);
- const versionedDashboard=dashboard.replace('/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-timber-problem-v1.js?v=my-timber-master-20260916');
- assert.deepEqual(scripts(html).filter(x=>!x.includes("/assets/member-experience/")),scripts(versionedDashboard));
+ const versionedDashboard=dashboard.replace('/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-timber-problem-v1.js?v=member-walk-20260920').replace('/member-my-journey-v2.js','/member-my-journey-v2.js?v=member-walk-20260920');
+ assert.deepEqual(scripts(html).filter(x=>!x.includes("/assets/member-experience/")),scripts(withSessionState(versionedDashboard)).filter(x=>!x.includes('/assets/member-experience/')));
  const ids=s=>[...s.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
  const originalIds=ids(dashboard);assert.deepEqual(ids(html).filter(id=>originalIds.includes(id)),originalIds);
  assert.equal(new Set(ids(html)).size,ids(html).length,'restoration must not duplicate existing IDs');
