@@ -30,8 +30,8 @@
 
     const o=d.daily_output||{},meal=o.meal||{},workout=o.workout||{},next=o.next||{},why=o.why||d.reasons||[],ready=o.status==='ready',fitHandoff=fitTodayHandoff(o);
     const mealActions=meal.ready&&!meal.accepted?`<div class="mt-meal-actions" aria-label="Choose this meal or change it"><button data-meal="accept">I’ll have that</button><button data-alternatives>Swap it — choose what matters</button><button data-meal="reject">Don’t suggest again</button></div>`:meal.accepted?'<strong class="mt-plan-done">Kept for today ✓</strong>':'';
-    const nextHref=(()=>{const u=new URL(next.href||'/member/dashboard#today',window.location.origin);if(next.dailyActionId)u.searchParams.set('step',next.dailyActionId);else if(next.loopId)u.searchParams.set('shift',next.loopId);return u.pathname+u.search+u.hash})();
-    const nextAction=next.action?`<button class="mt-now-action" type="button" data-next-action="${esc(next.action)}">${esc(next.cta||'Do it')}</button>`:`<a class="mt-now-action" href="${esc(fitHandoff&&next.href==='/member/fit'?fitHandoff.href:nextHref)}">${esc(fitHandoff&&next.href==='/member/fit'?fitHandoff.cta:next.cta||'Open')}</a>`;
+    const nextHref=(()=>{const u=new URL(fitHandoff&&next.href==='/member/fit'?fitHandoff.href:next.href||'/member/dashboard#today',window.location.origin);if(next.dailyActionId)u.searchParams.set('step',next.dailyActionId);else if(next.loopId)u.searchParams.set('shift',next.loopId);return u.pathname+u.search+u.hash})();
+    const nextAction=next.action?`<button class="mt-now-action" type="button" data-next-action="${esc(next.action)}">${esc(next.cta||'Do it')}</button>`:`<a class="mt-now-action" href="${esc(nextHref)}">${esc(fitHandoff&&next.href==='/member/fit'?fitHandoff.cta:next.cta||'Open')}</a>`;
     const workoutList=(workout.exercises||[]).length?`<ul class="mt-workout-list">${workout.exercises.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:'';
     const memory=(o.memory||[]).length?`<section class="mt-learning"><small>SHIFT REMEMBERED</small>${o.memory.map(item=>`<p>${esc(item)}</p>`).join('')}</section>`:'';
     const treatment=o.treatment_support?`<details class="mt-treatment-aware"><summary>${esc(o.treatment_support.headline)}</summary><ul>${(o.treatment_support.notes||[]).map(item=>`<li>${esc(item)}</li>`).join('')}</ul><p>${esc(o.treatment_support.escalation)}</p></details>`:'';
@@ -80,7 +80,7 @@
       }
       if(primary){const change=document.createElement('a');change.href='#more-for-today';change.textContent='Choose something else';change.className='mtm-change-step';primary.append(change);}
       const reveal=()=>{const box=root.querySelector(location.hash);if(box?.tagName==='DETAILS')box.open=true};
-      root.querySelectorAll('a[href="#more-for-today"]').forEach(a=>a.addEventListener('click',()=>{if(more)more.open=true}));
+      root.querySelectorAll('a[href$="#more-for-today"]').forEach(a=>a.addEventListener('click',()=>{if(more)more.open=true}));
       if(location.hash==='#more-for-today')reveal();
       const scoreBox=root.querySelector('.mt-connected-life'),win=scoreBox?.querySelector('.mtm-win');if(win)scoreBox.prepend(win);
       const loopLink=primary?.querySelector('.mtm-loop-controls a');if(loopLink)loopLink.href='#dailyCheckinFollowup';
