@@ -27,7 +27,7 @@ async function open(page,row){
  assert.equal(await page.locator('#memberPasswordStatus').textContent(),'');
  assert.equal(await page.locator('#memberPasswordSignIn').isVisible(),false);
  assert.equal(row.resetRequests.length,0,'Opening settings must not request a reset');
- assert.equal(row.meRequests,0,'Account email is read only after an explicit reset action');
+ assert.equal(row.meRequests,1,'Exactly one account lookup establishes the page session; no reset occurs');
  const layout=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,navs:document.querySelectorAll('nav.sst-member-tabs').length,page:document.body.dataset.memberPage,healthControls:!!document.querySelector('#healthConsentManager'),passwordInputs:document.querySelectorAll('#memberPasswordReset input').length}));
  assert.ok(layout.overflow<=1,'Settings has horizontal overflow');assert.equal(layout.navs,1);assert.equal(layout.page,'settings');assert.equal(layout.healthControls,true);assert.equal(layout.passwordInputs,0);
  row.layout=layout;
@@ -71,7 +71,7 @@ try{
    assert.equal(asset.status(),200);assert.match(asset.headers()['content-type'],/javascript/);assert.equal(sha(await asset.text()),report.sourceHashes.passwordRuntime);
    row.servedRuntimeMatchesSource=true;
    await open(page,row);
-   row.checks.push('Actual canonical settings page serves the exact candidate runtime; existing navigation and privacy controls remain; no account lookup or reset on load');
+   row.checks.push('Actual canonical settings page serves the exact candidate runtime; existing navigation and privacy controls remain; one session check and no reset on load');
    const form=page.locator('#memberPasswordReset'),button=form.locator('button'),status=page.locator('#memberPasswordStatus');
    await page.locator('[data-member-password-settings]').scrollIntoViewIfNeeded();
    await page.screenshot({path:out+'/settings-'+name+'.png',fullPage:false});
@@ -85,7 +85,7 @@ try{
    // An extra submit event while the first request is unresolved must be ignored.
    await form.evaluate(element=>element.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));
    await page.waitForTimeout(150);
-   assert.equal(row.resetRequests.length,1);assert.equal(row.meRequests,1);assert.equal(row.securityConfigs,1);
+   assert.equal(row.resetRequests.length,1);assert.equal(row.meRequests,2);assert.equal(row.securityConfigs,1);
    assert.deepEqual(row.resetRequests[0],{method:'POST',path:'/v1/auth/request-password-reset',payload:{email}});
    state='success';releasePending();
    await page.waitForFunction(()=>document.querySelector('#memberPasswordStatus')?.dataset.state==='success');
@@ -103,15 +103,15 @@ try{
    assert.equal(await page.locator('#memberPasswordSignIn').isVisible(),false);assert.equal(row.resetRequests.length,1);
    state='success';await button.click();
    await page.waitForFunction(()=>document.querySelector('#memberPasswordStatus')?.dataset.state==='success');
-   assert.equal(row.resetRequests.length,2);assert.equal(row.meRequests,2);
+   assert.equal(row.resetRequests.length,2);assert.equal(row.meRequests,3);
    for(const request of row.resetRequests)assert.deepEqual(request.payload,{email});
    row.retryRequestCount=row.resetRequests.length;row.checks.push('A failed request reports the error, restores the control, and one deliberate retry succeeds');
 
-   row.resetRequests=[];row.meRequests=0;expired=true;
-   await open(page,row);await button.click();
+   row.resetRequests=[];row.meRequests=0;expired=false;
+   await open(page,row);expired=true;await button.click();
    await page.waitForFunction(()=>document.querySelector('#memberPasswordStatus')?.dataset.state==='error');
    assert.match(await status.textContent(),/sign in again before resetting/);assert.equal(await button.isEnabled(),true);assert.equal(await page.locator('#memberPasswordSignIn').isVisible(),true);assert.equal(await page.locator('#memberPasswordSignIn').getAttribute('href'),'/member-login');
-   assert.equal(row.resetRequests.length,0);assert.equal(row.meRequests,1);assert.equal(await form.getAttribute('aria-busy'),null);
+   assert.equal(row.resetRequests.length,0);assert.equal(row.meRequests,2);assert.equal(await form.getAttribute('aria-busy'),null);
    row.checks.push('Expired session shows sign-in guidance and makes no reset request');
    await page.screenshot({path:out+'/session-expired-'+name+'.png',fullPage:false});
    assert.deepEqual(row.unexpectedApi,[],'Unexpected API request in settings fixture');assert.deepEqual(row.blockedWrites,[],'Unexpected write outside the intercepted reset request');assert.deepEqual(row.pageErrors,[],'Browser runtime errors');
