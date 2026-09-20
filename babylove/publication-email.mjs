@@ -10,8 +10,18 @@ export async function notifyArticlePublication(env,{fetcher=fetch}={}){
  if(!claim.meta?.changes)return{sent:false,reason:'already_claimed'};
  let sending=false;
  try{
-  const response=await fetcher(oral.proposed_url,{redirect:'manual',signal:AbortSignal.timeout(15000)}),html=await response.text();
-  if(response.status!==200||!html.includes(oral.body)||!html.includes('rel="canonical" href="'+oral.proposed_url+'"'))throw Error('live_article_not_verified');
+  // Same-zone Worker fetches can bypass Worker routes and see the old origin.
+  // The release runner checks the public front door from outside the zone and
+  // stores a short-lived attestation bound to this exact body and canonical URL.
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS knowledge_publication_live_proof(slug TEXT PRIMARY KEY,body_sha256 TEXT NOT NULL,url TEXT NOT NULL,verified_at TEXT NOT NULL,workflow_sha TEXT NOT NULL)").run();
+  const proof=await env.DB.prepare('SELECT * FROM knowledge_publication_live_proof WHERE slug=?').bind(oral.slug).first();
+  const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(oral.body))),x=>x.toString(16).padStart(2,'0')).join('');
+  const age=Date.now()-Date.parse(proof?.verified_at);
+  const attested=proof?.body_sha256===hash&&proof?.url===oral.proposed_url&&/^[a-f0-9]{40}$/.test(proof?.workflow_sha||'')&&age>=0&&age<30*60*1000;
+  if(!attested){
+   const response=await fetcher(oral.proposed_url,{redirect:'manual',signal:AbortSignal.timeout(15000)}),html=await response.text();
+   if(response.status!==200||!html.includes(oral.body)||!html.includes('rel="canonical" href="'+oral.proposed_url+'"'))throw Error('live_article_not_verified');
+  }
   if(!await oralPublication(env))throw Error('publication_changed');
   await env.DB.prepare("UPDATE knowledge_publication_email SET status='sending' WHERE slug=? AND status='checking'").bind(oral.slug).run();sending=true;
   const subject='Now live: '+oral.title;
