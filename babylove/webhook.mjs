@@ -43,9 +43,9 @@ export async function babyLoveRoutes(request,env){
   const raw=JSON.stringify(payload),hash=Array.from(await digest(raw),x=>x.toString(16).padStart(2,'0')).join('');
   try{
     await env.DB.prepare(`CREATE TABLE IF NOT EXISTS babylove_receipts(source_id TEXT PRIMARY KEY,slug TEXT NOT NULL UNIQUE,payload_hash TEXT NOT NULL,payload_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`).run();
-    const existing=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
+    const existing=await env.DB.prepare('SELECT source_id,slug,payload_hash,payload_json FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
     if(existing){
-      if(existing.source_id===article.id&&existing.slug===article.slug&&existing.payload_hash===hash)return reply({success:true,status:'received',duplicate:true,published:false});
+      if(existing.source_id===article.id&&existing.slug===article.slug&&(existing.payload_hash===hash||sameArticleDelivery(JSON.parse(existing.payload_json),payload)))return reply({success:true,status:'received',duplicate:true,published:false});
       return reply({success:false,error:'article_conflict_requires_review'},409);
     }
     // D1 batches are atomic: collision rolls back the receipt as well.
@@ -64,4 +64,11 @@ export async function babyLoveRoutes(request,env){
     }catch{}
     return reply({success:false,error:'storage_unavailable'},503);
   }
+}
+
+// Compare content, not JSON property order or delivery bookkeeping. HTML and images
+// are deliberately included: a changed article still requires editorial review.
+export function sameArticleDelivery(a,b){
+ const fields=['id','slug','title','metaDescription','content_markdown','content_html','heroImageUrl','heroImageAlt','featureImageEnabled'];
+ return fields.every(key=>String(a[key]??'')===String(b[key]??''));
 }

@@ -200,6 +200,8 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Verify article retry, publication and notification contracts
+        run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs
       - name: Verify acquisition consent and same-account activation join
         run: node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs
       - name: Verify five source-specific articles without changing unrelated pages
@@ -337,6 +339,11 @@ jobs:
         run: sleep 10
       - name: Publish the exact owner-approved illustrated Wegovy guide
         run: node babylove/publish-approved-article.mjs
+      - name: Publish and verify the reconciled oral semaglutide guide
+        run: |
+          mkdir -p babylove-proof
+          node babylove/publish-oral.mjs
+          node babylove/verify-oral-live.mjs
       - name: Verify the Wegovy guide, three images, author, Knowledge listing and sitemap
         run: node babylove/verify-publication-live.mjs
       - name: Verify five revised articles, metadata, downloads and sitemap on live traffic
@@ -401,6 +408,7 @@ jobs:
         with:
           name: member-public-preservation-${{ github.run_id }}
           path: |
+            babylove-proof/
             babylove-publication-proof.json
             babylove-live-proof.json
             public-*.json
