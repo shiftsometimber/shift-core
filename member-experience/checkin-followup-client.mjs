@@ -13,7 +13,7 @@ export const checkinFollowupStyles=`
 #dailyCheckinFollowup :focus-visible{outline:3px solid #487739;outline-offset:3px}
 #checkinResult .checkin-action strong,#checkinResult .checkin-action small,#checkinResult .checkin-action p{color:#f5f2e9}
 `;
-export const checkinFollowupRuntime='('+function(){
+export const checkinFollowupRuntime=String.raw`(()=>{
  'use strict';
  const labels={'helped':'It helped','not-fit':'It did not fit','not-tried':'I have not tried it yet','skip':'Skip this question'};
  let host,record,pending=false,generation=0,offered=null;
@@ -58,4 +58,4 @@ export const checkinFollowupRuntime='('+function(){
   load();window.addEventListener('pageshow',event=>{if(event.persisted)load()});window.addEventListener('hashchange',()=>{if(location.hash==='#today')load()});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-}.toString()+')();';
+})();`;
