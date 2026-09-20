@@ -25,3 +25,26 @@ jobs:
         with:
           name: babylove-repair-snapshot
           path: babylove-proof/
+
+  preview:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify publication, retries, email and existing editorial gates
+        run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+      - name: Deploy isolated article preview and verify real D1 import/retry
+        run: node babylove/repair-preview.mjs
+      - name: Build full production candidate without deployment
+        run: npx wrangler deploy --dry-run --config wrangler.jsonc
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: babylove-repair-preview
+          path: babylove/generated/preview-proof.json
