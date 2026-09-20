@@ -24,7 +24,7 @@ test('Journey aliases lead to the real dashboard record with a reversible privat
 test('real dashboard keeps original scripts, IDs, forms and credential handlers with explicit session checking and a versioned Today asset',async()=>{
  const r=await memberExperienceEntry(request('/member/dashboard'),enabled,page(dashboard)),html=await r.text();
  const scripts=s=>[...s.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/g)].map(x=>x[0]);
- const versionedDashboard=dashboard.replace('/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-timber-problem-v1.js?v=my-timber-master-20260916');
+ const versionedDashboard=dashboard.replace('/member-my-timber-problem-v1.js?v=daily-shift-v2','/member-my-timber-problem-v1.js?v=member-walk-20260920').replace('/member-my-journey-v2.js','/member-my-journey-v2.js?v=member-walk-20260920');
  assert.deepEqual(scripts(html).filter(x=>!x.includes("/assets/member-experience/")),scripts(withSessionState(versionedDashboard)).filter(x=>!x.includes('/assets/member-experience/')));
  const ids=s=>[...s.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
  const originalIds=ids(dashboard);assert.deepEqual(ids(html).filter(id=>originalIds.includes(id)),originalIds);

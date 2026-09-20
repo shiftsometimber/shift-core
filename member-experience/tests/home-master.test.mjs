@@ -24,7 +24,7 @@ test('master styling applies only to the dashboard and serves the approved image
  assert.equal(image.headers.get('Content-Type'),'image/webp');assert.equal(new TextDecoder().decode((await image.arrayBuffer()).slice(0,4)),'RIFF');
  const shell='<html><head></head><body><script>const s=document.createElement("script");s.src="/member-my-timber-problem-v1.js?v=daily-shift-v2";s.defer=true;</script></body></html>';
  const upgraded=await(await memberExperienceEntry(request('/member/dashboard'),env,new Response(shell,{headers:{'Content-Type':'text/html'}}))).text();
- assert.match(upgraded,/s\.src="\/member-my-timber-problem-v1\.js\?v=my-timber-master-20260916";s\.defer=true/);
+ assert.match(upgraded,/s\.src="\/member-my-timber-problem-v1\.js\?v=member-walk-20260920";s\.defer=true/);
  assert.doesNotMatch(upgraded,/daily-shift-v2/);
 });
 
