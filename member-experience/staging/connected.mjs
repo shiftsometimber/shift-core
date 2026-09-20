@@ -1,3 +1,4 @@
+import {withSessionState} from '../session-state.mjs';
 import {memberExperienceEntry,memberExperienceRoutes} from '../entry.mjs';
 import {healthRuntime} from '../health-runtime.mjs';
 import {fitRuntime} from '../fit-approved-runtime.mjs';
@@ -5,12 +6,21 @@ import {currentToolAssets} from './tool-assets.mjs';
 const prefix='/staging/member-connected/';
 const source='/staging/member-source/';
 const headers={'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://shiftsometimber.co.uk; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'"};
-const scripts={dashboard:['member-my-timber-problem-v1.js','member-my-journey-v2.js','member-my-journey-checkin-v1.js'],grub:[],fit:['fit.js'],'check-in':['mood.js','assets/member-checkin-experience-v1.js'],settings:[]};
+const scripts={dashboard:['member-my-timber-problem-v1.js','member-my-journey-v2.js','member-my-journey-checkin-v1.js'],grub:[],fit:['fit.js'],'check-in':['mood.js','assets/member-checkin-experience-v1.js'],settings:[],'ask-timber':['assets/ask-timber-phase8.js']};
 const extra=['api-adapter-v33d.js',...Object.values(scripts).flat()];
 const bootstrap="window.SST_API_BASE=location.origin;";
-const status=String.raw`const stageNav=()=>document.querySelectorAll('a[href^="/member/"]').forEach(a=>{const u=new URL(a.href);const name=u.pathname.slice(8);if(['dashboard','grub','fit','check-in','settings','life-back'].includes(name))a.href='/staging/member-connected/'+name+u.hash;});stageNav();new MutationObserver(stageNav).observe(document.body,{childList:true,subtree:true});const account=document.querySelector('#connected-account');if(account&&window.SST_API?.getProfile)SST_API.getProfile().then(r=>{account.textContent='Fictional test account: '+r.profile.email}).catch(()=>{account.textContent='Sign in to a fictional account to save. No live account is used.'});`;
+const status=String.raw`const stageNav=()=>document.querySelectorAll('a[href^="/member/"]').forEach(a=>{const u=new URL(a.href);const name=u.pathname.slice(8);if(['dashboard','grub','fit','check-in','settings','life-back'].includes(name))a.href='/staging/member-connected/'+name+u.search+u.hash;});stageNav();new MutationObserver(stageNav).observe(document.body,{childList:true,subtree:true});const account=document.querySelector('#connected-account');if(account&&window.SST_API?.getProfile)SST_API.getProfile().then(r=>{account.textContent='Fictional test account: '+r.profile.email}).catch(()=>{account.textContent='Sign in to a fictional account to save. No live account is used.'});`;
 export async function connectedMemberRoutes(request,env){
  const u=new URL(request.url),path=u.pathname;
+ if(path==='/staging/member-auth'||path==='/staging/member-auth/dashboard'){
+  const asset=path.endsWith('/dashboard')?source+'member/dashboard.html':'/staging/member-auth.html';
+  const r=await env.STAGING_ASSETS.fetch(new Request(new URL(asset,u)));if(!r.ok)return r;
+  let html=await r.text();const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).filter(js=>js.includes('async function existing()'));
+  if(scripts.length!==1)return new Response('Expected exact auth owner',{status:503});
+  html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace('</body>','<script>window.SST_API_BASE=location.origin;</script><script src="'+prefix+'script/api-adapter-v33d.js"></script><script>'+scripts[0]+'</script></body>');
+  return new Response(withSessionState(html),{headers:{...headers,'Content-Security-Policy':headers['Content-Security-Policy'].replace("script-src 'self'","script-src 'self' 'unsafe-inline'"),'Content-Type':'text/html'}});
+ }
+
  if(request.method==='GET'&&currentToolAssets.includes(path.slice(1))){
   const response=await env.STAGING_ASSETS.fetch(new Request(new URL('/staging/member-current'+path,u)));
   return new Response(response.body,{status:response.status,headers:{...headers,'Content-Type':path.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}});
@@ -37,7 +47,7 @@ export async function connectedMemberRoutes(request,env){
   const response=await env.STAGING_ASSETS.fetch(new Request(new URL(source+(asset==='mood.js'?'app.js':asset),u)));
   if(!response.ok)return new Response('Pinned script unavailable',{status:503,headers});
   let js=await response.text();
-  if(asset==='member-my-timber-problem-v1.js')js='(()=>{const location={pathname:"/member/dashboard",hash:window.location.hash,href:window.location.href};'+js+'})();';
+  if(asset==='member-my-timber-problem-v1.js')js='(()=>{const location={pathname:"/member/dashboard",hash:window.location.hash,search:window.location.search,href:window.location.href};'+js+'})();';
   if(asset==='member-my-journey-v2.js')js=js.replace('if(!/^\\/member\\/dashboard(?:\\.html)?$/.test(location.pathname))return;', 'if(!/^\\/(?:member|staging\\/member-connected)\\/dashboard(?:\\.html)?$/.test(location.pathname))return;');
   if(asset==='mood.js')js=js.slice(js.indexOf('// Mood — canonical account-backed check-in.'),js.indexOf('// My Why',js.indexOf('// Mood —')));
   return new Response(js,{headers:jsHeaders});

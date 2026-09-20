@@ -82,7 +82,7 @@ export async function memberReviewRoutes(request,env){
  html=html.replace('</head>',(name==='grub'?'':'<script defer src="'+prefix+'fixture.mjs"></script>')+scripts[name].map(s=>'<script defer src="'+prefix+'script/'+s+'"></script>').join('')+'</head>');
  html=html.replace(/(<body\b[^>]*>)/,'$1<p id="memberReviewNote" style="margin:0;padding:10px 20px;background:#dce2d0;color:#25351e;font:13px/1.5 Arial">Design review · fictional data · saves disabled · live site unchanged</p>');
  if(name==='grub')html=html.replace('Design review · fictional data · saves disabled · live site unchanged','Private food trial · real recipe and saving flow · fictional accounts only');
- const response=await memberExperienceEntry(new Request(new URL('/member/'+name,url)),{MEMBER_EXPERIENCE_V1_ENABLED:'true',WORK_V1_ENABLED:'true'},new Response(html,{headers:{'Content-Type':'text/html'}}));
+ const response=await memberExperienceEntry(new Request(new URL('/member/'+name,url)),{MEMBER_EXPERIENCE_V1_ENABLED:'true',WORK_V1_ENABLED:'true',MEMBER_SESSION_REVIEW_ONLY:true},new Response(html,{headers:{'Content-Type':'text/html'}}));
  const pageHeaders={...headers,'Content-Type':'text/html; charset=utf-8'};
  if(name==='grub'){pageHeaders['Content-Security-Policy']=headers['Content-Security-Policy'].replace("connect-src 'none'","connect-src 'self'").replace("form-action 'none'","form-action 'self'");let body=await response.text();body=body.replace('data-member-page="grub"','data-member-page="grub" data-food-staging="true"').replace('href="/member/dashboard">Sign in','href="/staging/sign-in">Sign in');return new Response(body,{headers:pageHeaders})}
  return new Response(response.body,{headers:pageHeaders});

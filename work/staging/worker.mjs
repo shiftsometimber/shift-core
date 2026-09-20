@@ -8,6 +8,7 @@ const isHost=(h,env)=>env.SHIFT_ENVIRONMENT==='stabilisation-preview-20260917'?/
 export default {async fetch(request,env,ctx){
  const u=new URL(request.url),p=u.pathname;
  if(!['work-staging-20260912','stabilisation-preview-20260917'].includes(env.SHIFT_ENVIRONMENT)||!isHost(u.hostname,env)||!env.STAGING_EXPIRES_AT||!Number.isFinite(Date.parse(env.STAGING_EXPIRES_AT))||Date.now()>=Date.parse(env.STAGING_EXPIRES_AT))return new Response('Staging is unavailable.',{status:404});
+ if(p==='/member/life-changed-preview'||p==='/member/life-changed-preview.html')return core.fetch(request,env,ctx);
  const memberReview=await memberReviewRoutes(request,env);if(memberReview)return memberReview;
  const layout=layoutResponse(request);if(layout)return layout;
  const banner='<aside class="work-panel"><strong>Fictional staging environment</strong><p>Separate test accounts and databases. No real employees, health information, email delivery, payment or test ordering. Your fictional invitation code can be loaded below after signing in. This environment expires automatically.</p><a href="/staging/sign-in">Test sign-in</a> · <a href="/staging/register">Create a fictional test account</a> <button type="button" id="stage-logout">Sign out of test account</button></aside>';

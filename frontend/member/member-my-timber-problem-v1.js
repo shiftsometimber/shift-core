@@ -11,7 +11,7 @@
     ['struggling','I am struggling today','Make today smaller and find the right support.'],
     ['plan','Show my plan','See the choices My Timber has remembered.']
   ];
-  let connectedMode=false;
+  let connectedMode=false,reviewOpened=false;
   const changeModes=[
     ['working_late','Working late'],['feeling_rough','Feeling rough'],['rough_guts','Guts playing up'],['knackered','Absolutely knackered'],['eating_out','Eating out'],['pub_tonight','Going to the pub'],['missed_lunch','Missed lunch'],['no_time','No time to train'],['plans_cancelled','Plans cancelled'],['next_three_hours','Sort my next three hours']
   ];
@@ -72,9 +72,12 @@
     root.querySelectorAll('[data-meal]').forEach(button=>button.addEventListener('click',()=>decideMeal(button.dataset.meal,meal.id)));
     root.querySelectorAll('[data-feedback]').forEach(button=>button.addEventListener('click',()=>saveFeedback(button,meal,o.adjustment)));
     root.querySelector('[data-menu]').addEventListener('click',problemMenu);root.dataset.todayDecisionReady='true';revealRoot();
+    const requested=new URLSearchParams(location.search).get('reviewChange');
+    if(!reviewOpened&&changeModes.some(([key])=>key===requested)){reviewOpened=true;openChangeSheet(requested);const url=new URL(location.href);url.searchParams.delete('reviewChange');history.replaceState(null,'',url.pathname+url.search+url.hash);}
   }
-  function openChangeSheet(){
+  function openChangeSheet(preferred){
     const sheet=document.createElement('div');sheet.className='mt-sheet-wrap';sheet.innerHTML=`<button class="mt-sheet-scrim" aria-label="Close"></button><section class="mt-sheet" role="dialog" aria-modal="true" aria-labelledby="mtSheetTitle"><div class="mt-sheet-handle"></div><header><div><small>LIFE CHANGED?</small><h2 id="mtSheetTitle">What happened?</h2></div><button data-close aria-label="Close">×</button></header><div class="mt-sheet-grid">${changeModes.map(([key,label])=>`<button data-adjust="${key}" class="${key==='next_three_hours'?'signature':''}">${esc(label)}</button>`).join('')}</div></section>`;document.body.appendChild(sheet);const close=()=>sheet.remove();sheet.querySelector('[data-close]').addEventListener('click',close);sheet.querySelector('.mt-sheet-scrim').addEventListener('click',close);sheet.querySelectorAll('[data-adjust]').forEach(button=>button.addEventListener('click',()=>adjustDay(button.dataset.adjust,button,sheet)));
+    if(typeof preferred==='string'){const button=sheet.querySelector('[data-adjust="'+preferred+'"]');if(button){const note=document.createElement('p');note.textContent='From Ask Timber: '+button.textContent+'. Choose this option to save an adjustment to Today. Your saved meal and Fit plan stay unchanged.';sheet.querySelector('.mt-sheet-grid').before(note);button.focus();}}
   }
   function openAlternatives(meal){const options=meal.alternatives||[],sheet=document.createElement('div');sheet.className='mt-sheet-wrap';sheet.innerHTML=`<button class="mt-sheet-scrim" aria-label="Close"></button><section class="mt-sheet" role="dialog" aria-modal="true" aria-labelledby="mtAltTitle"><div class="mt-sheet-handle"></div><header><div><small>CHANGE DINNER</small><h2 id="mtAltTitle">Choose by what matters now</h2></div><button data-close aria-label="Close">×</button></header><div class="mt-alternative-list">${options.map(item=>`<button data-option="${esc(item.key)}"><strong>${esc(item.label)}</strong><span>${esc(item.name)}</span><small>${esc(item.consequence)}</small></button>`).join('')}</div></section>`;document.body.appendChild(sheet);const close=()=>sheet.remove();sheet.querySelector('[data-close]').addEventListener('click',close);sheet.querySelector('.mt-sheet-scrim').addEventListener('click',close);sheet.querySelectorAll('[data-option]').forEach(button=>button.addEventListener('click',()=>decideMeal('alternative',meal.id,button.dataset.option,sheet)))}
   function metaMeal(meal){return[meal.type,meal.minutes&&`${meal.minutes} min`,meal.kcal&&`${meal.kcal} kcal`,meal.protein_g&&`${meal.protein_g}g protein`].filter(Boolean).join(' · ')||'Chosen from your real Grub plan.'}

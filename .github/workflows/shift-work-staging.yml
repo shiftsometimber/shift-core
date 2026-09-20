@@ -1,7 +1,7 @@
 name: SHIFT for Work isolated hosted staging
 on:
   push:
-    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916, fix/readiness-preservation-20260916, feat/member-shared-header-20260917, codex/profile-password-reset, codex/checkin-followup]
+    branches: [feature/shift-for-work-20260912, feature/member-completion-20260912, preview/life-back-connected-20260915, feature/shift-ai-connected-20260915, feat/my-timber-master-live-20260916, fix/readiness-preservation-20260916, feat/member-shared-header-20260917, codex/profile-password-reset, codex/checkin-followup, codex/member-walk-fixes]
     paths:
       - 'work/staging/**'
       - 'worker.js'
@@ -89,6 +89,8 @@ jobs:
         run: node work/staging/password-settings-browser-proof.mjs
       - name: Verify consented check-in save and next-step response on fictional accounts
         run: node work/staging/checkin-save-browser-proof.mjs
+      - name: Prove reported member-walk repairs on desktop and mobile
+        run: node work/staging/member-walk-browser-proof.mjs
       - name: Verify real remote persistence and access boundaries
         run: node work/staging/probe.mjs
       - name: Save non-secret verification evidence only
@@ -106,5 +108,6 @@ jobs:
             work/staging/generated/member-chrome-proof/report.json
             work/staging/generated/member-chrome-proof/*.png
             work/staging/generated/password-settings-proof/**
+            work/staging/generated/member-walk-proof/
             work/staging/generated/checkin-save-proof/**
           if-no-files-found: error

@@ -1,3 +1,4 @@
+import {withSessionState,sessionRuntime} from './session-state.mjs';
 import {checkinFollowupRuntime,checkinFollowupStyles} from './checkin-followup-client.mjs';
 import {memberNavigation,memberChromeStyles,memberChromeClient,addMemberChrome,lifeBackChrome} from './chrome.mjs';
 import {restoreDashboardTools,dashboardToolsRuntime,dashboardToolsStyles} from './dashboard-tools.mjs';
@@ -19,6 +20,12 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(path==='/assets/member-experience/session.mjs')return new Response(request.method==='HEAD'?null:sessionRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/member/life-changed-preview'||path==='/member/life-changed-preview.html'){
+    const modes={'working-late':'working_late','limited-food':'next_three_hours','ten-minutes':'no_time','eating-out':'eating_out','quick-breakfast':'missed_lunch','travel':'plans_cancelled','plans-changed':'plans_cancelled'};
+    const mode=modes[new URL(request.url).searchParams.get('mode')]||'next_three_hours';
+    return new Response(null,{status:302,headers:{...privateHeaders,Location:'/member/dashboard?reviewChange='+mode+'#today'}});
+  }
   if(path==='/assets/member-experience/checkin-followup.mjs')return new Response(request.method==='HEAD'?null:checkinFollowupRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/checkin-followup.css')return new Response(request.method==='HEAD'?null:checkinFollowupStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/password-settings.mjs')return new Response(request.method==='HEAD'?null:passwordSettingsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
@@ -78,6 +85,7 @@ export async function memberExperienceEntry(request, env, response) {
   }
   if(name === 'settings') html=withPasswordSettings(html);
   html=addMemberChrome(html,name);
+  if(!env.MEMBER_SESSION_REVIEW_ONLY)html=withSessionState(html);
   const headers = new Headers(response.headers);
   for (const [key,value] of Object.entries(privateHeaders)) headers.set(key,value);
   headers.set('Vary', [...new Set((headers.get('Vary')||'').split(',').map(x=>x.trim()).filter(Boolean).concat('Cookie'))].join(', '));

@@ -54,6 +54,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
    ++generation;host.hidden=true;
    const card=document.querySelector('#checkinResult .checkin-action');if(!card||!offered)return;
    card.replaceChildren(element('small','YOUR SAVED NEXT STEP'),element('strong',offered.action.title),element('p',offered.action.detail),actionLink(offered.action));
+   const handoff=element('p','Saved to your private check-in history. After trying this step, return to Today or reopen Check-in to tell us whether it helped.');const back=element('a','Back to Today →');back.href='/member/dashboard#today';card.append(handoff,back);
   });
   load();window.addEventListener('pageshow',event=>{if(event.persisted)load()});window.addEventListener('hashchange',()=>{if(location.hash==='#today')load()});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
  }
