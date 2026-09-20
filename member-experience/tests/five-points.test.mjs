@@ -57,3 +57,10 @@ test('feedback is available exactly once at both action destinations and clients
  new vm.Script(checkinFollowupRuntime);new vm.Script(dayGuideRuntime);
  for(const name of ['dashboard','check-in','grub','fit']){const r=await memberExperienceEntry(new Request('https://shiftsometimber.co.uk/member/'+name),{MEMBER_EXPERIENCE_V1_ENABLED:'true'},new Response('<html><head></head><body><main><section id="panel-today"></section></main></body></html>',{headers:{'Content-Type':'text/html'}}));const html=await r.text();assert.equal((html.match(/id="dailyCheckinFollowup"/g)||[]).length,1,name);}
 });
+test('first useful action can start and receive feedback without a mood, goal or ratings questionnaire',()=>{
+ const initial=emptyLifeBack(),input={action:'start-shift',kind:'food',operationId:'first-action-no-mood-123'};
+ const started=applyLifeBackOperation(initial,input,at);assert.equal(started.entries.length,0);assert.equal(started.nextShift.checkinId,null);assert.deepEqual(applyLifeBackOperation(started,input,at),started);
+ const reviewed=applyLifeBackOperation(started,{action:'shift-feedback',shiftId:started.nextShift.id,outcome:'helped',operationId:'first-feedback-no-mood-123'},at);
+ assert.equal(reviewed.entries.length,0);assert.equal(reviewed.shiftHistory[0].reviews[0].outcome,'helped');assert.equal(reviewed.nextShift.kind,'food');
+ assert.throws(()=>applyLifeBackOperation(started,{...input,operationId:'different-first-action-123'},at),e=>e.status===409);
+});

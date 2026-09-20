@@ -49,6 +49,12 @@ export function advanceNextShift(state,input,entry,at){
  const action=(outcome==='not-fit'?simpler:actions)[kind];
  state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:entry.id,status:'planned',reviews:[],reason:changed?'Chosen from the support topic you selected.':outcome==='helped'?'You said this helped. Keep the useful part.':outcome==='not-fit'?'You said it did not fit. This step is smaller.':requested==='auto'?'Chosen from your own check-in, not a medical assessment.':'Chosen from the support topic you selected.'};
 }
+export function startNextShift(state,input,at){
+ if(!['food','movement'].includes(input.kind))fail('Choose food or movement.');
+ if(state.nextShift)fail('You already have a saved step. Reload before choosing another.',409);
+ state.supportNeed=input.kind;
+ state.nextShift={...actions[input.kind],id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:null,status:'planned',reviews:[],reason:'You chose this step. No check-in is needed to get started.'};
+}
 export function reviewNextShift(state,input,at){
  const active=state.nextShift;
  if(!active||active.id!==input.shiftId||!feedbackOutcomes.includes(input.outcome))fail('Your next Shift changed. Reload before answering.',409);

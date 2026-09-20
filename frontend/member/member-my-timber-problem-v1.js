@@ -66,6 +66,18 @@
       wrap(root.querySelector('.mtm-care'),'optional-checkin','How are you feeling? Optional check-in');
       const more=wrap(root.querySelector('.mt-real-plan'),'more-for-today','More for today — food, movement or a quieter day');
       if(more){const p=document.createElement('p');p.textContent='Choose what fits. Your saved choices stay here; taking a quieter day is fine.';more.querySelector('summary').after(p);const a=document.createElement('a');a.href='/member/check-in';a.textContent='A quieter day or practical support →';more.append(a);}
+      if(primary&&!next.loopId&&!next.dailyActionId&&/^\/member\/(grub|fit)(?:[?#]|$)/.test(next.href||'')){
+        const start=primary.querySelector('.mt-now-action');
+        start.addEventListener('click',async event=>{
+          event.preventDefault();if(start.dataset.saving)return;start.dataset.saving='true';
+          try{
+            if(!window.SST_HEALTH_CONSENT||!await SST_HEALTH_CONSENT.ensure()){window.location.assign(start.href);return;}
+            const r=await fetch('/v1/life-back',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'start-shift',kind:next.href.includes('/grub')?'food':'movement',operationId:start.dataset.operation||(start.dataset.operation=crypto.randomUUID())})});
+            const data=await r.json();if(!r.ok)throw Error(data.error||'Could not save this step. Please retry.');
+            const u=new URL(start.href);u.searchParams.set('shift',data.progress.nextShift.id);window.location.assign(u.href);
+          }catch(e){root.querySelector('#mtFrontStatus').textContent=e.message;delete start.dataset.saving;}
+        });
+      }
       if(primary){const change=document.createElement('a');change.href='#more-for-today';change.textContent='Choose something else';change.className='mtm-change-step';primary.append(change);}
       const reveal=()=>{const box=root.querySelector(location.hash);if(box?.tagName==='DETAILS')box.open=true};
       root.querySelectorAll('a[href="#more-for-today"]').forEach(a=>a.addEventListener('click',()=>{if(more)more.open=true}));

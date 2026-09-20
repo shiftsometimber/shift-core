@@ -37,7 +37,7 @@ jobs:
         run: node preview/stabilisation/prepare.mjs
       - name: Provision isolated fictional-account databases
         run: |
-          node preview/stabilisation/provision.mjs
+          node preview/five-points/provision.mjs
           npx wrangler d1 execute DB --remote --config work/staging/generated/config.json --file member-experience/checkin-followup.sql
       - name: Deploy the single preview only
         run: npx wrangler deploy --config work/staging/generated/config.json
