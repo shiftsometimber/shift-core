@@ -1,3 +1,4 @@
+import {checkinFollowupRuntime,checkinFollowupStyles} from './checkin-followup-client.mjs';
 import {memberNavigation,memberChromeStyles,memberChromeClient,addMemberChrome,lifeBackChrome} from './chrome.mjs';
 import {restoreDashboardTools,dashboardToolsRuntime,dashboardToolsStyles} from './dashboard-tools.mjs';
 import lifeBackAssets from './life-back-assets.mjs';
@@ -18,6 +19,8 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(path==='/assets/member-experience/checkin-followup.mjs')return new Response(request.method==='HEAD'?null:checkinFollowupRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/assets/member-experience/checkin-followup.css')return new Response(request.method==='HEAD'?null:checkinFollowupStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/password-settings.mjs')return new Response(request.method==='HEAD'?null:passwordSettingsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/home-art.webp')return new Response(request.method==='HEAD'?null:Uint8Array.from(atob(homeArt.split(',')[1]),c=>c.charCodeAt(0)),{headers:{...privateHeaders,'Content-Type':'image/webp'}});
   if(path==='/assets/member-experience/home.css')return new Response(request.method==='HEAD'?null:homeStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
@@ -67,6 +70,12 @@ export async function memberExperienceEntry(request, env, response) {
   if(['fit','check-in'].includes(name))html=html.replace('</main>','<section class="member-journey-handoff"><h2>Keep your story together.</h2><p>Your saved activity and check-ins feed the same My Timber history.</p><a href="/member/life-back#check-in">Log how life feels</a> · <a href="/member/dashboard#today">Back to Today</a></section></main>');
   if(name === 'check-in') html = html.replace(/(<p class="eyebrow">Daily check-in<\/p>[\s\S]*?<p class="checkin-intro">[\s\S]*?<\/p>)/,'<header class="member-tool-hero">$1</header>');
   if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');
+  if(['dashboard','check-in'].includes(name)){
+    const followup='<section id="dailyCheckinFollowup" aria-label="Your saved next-step feedback" hidden></section>';
+    if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+followup);
+    else html=html.replace(/(<main\b[^>]*>)/,'$1'+followup);
+    html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/checkin-followup.css"><script defer src="/assets/member-experience/checkin-followup.mjs"></script></body>');
+  }
   if(name === 'settings') html=withPasswordSettings(html);
   html=addMemberChrome(html,name);
   const headers = new Headers(response.headers);

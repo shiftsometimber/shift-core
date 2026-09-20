@@ -1,3 +1,4 @@
+import {saveCheckinWithAction,latestCheckinAction,reviewCheckinAction} from './checkin-followup.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {saveHealthInterest,HEALTH_INTERESTS,normaliseHealthInterest} from './health-interest-store.mjs';
 export {HEALTH_INTERESTS,normaliseHealthInterest};
@@ -10,7 +11,7 @@ export async function appendHealthExport(request,env,response){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/privacy/export'||request.method!=='POST'||!response.ok)return response;
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
  const payload=await response.json();
- for(const [key,table]of [['journeyWeeklyCheckIns','my_journey_weekly_checkins'],['savedPlans','shift_plans']]){
+ for(const [key,table]of [['journeyWeeklyCheckIns','my_journey_weekly_checkins'],['savedPlans','shift_plans'],['dailyCheckinActions','daily_checkin_actions']]){
   const exists=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").bind(table).first();
   payload[key]=exists?(await env.DB.prepare(`SELECT * FROM ${table} WHERE user_id=? ORDER BY id`).bind(auth.userId).all()).results:[];
  }
@@ -39,7 +40,7 @@ export async function persistFitReplacement(request,env,response,input){
 export async function memberHealthRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
  const path=new URL(request.url).pathname.replace(/\/+$/,''),method=request.method;
- const owned=['/v1/check-ins','/v1/fit/activity','/v1/health-passport/interest'].includes(path);
+ const owned=['/v1/check-ins','/v1/check-ins/follow-up','/v1/fit/activity','/v1/health-passport/interest'].includes(path);
  const protectedWrite=(method==='POST'&&['/v1/progress','/v1/health-mot','/v1/journey/weekly-check-in'].includes(path))||(method==='PATCH'&&['/v1/journey','/v1/my-journey'].includes(path));
  if(!owned&&!protectedWrite)return null;
  if(!['GET','POST','PATCH'].includes(method))return owned?json({error:'method_not_allowed'},405):null;
@@ -59,6 +60,14 @@ export async function memberHealthRoutes(request,env){
   try{return json(await saveHealthInterest(env.DB,auth.userId,body?.slug),201)}
   catch(error){return json({error:error.code||'health_priority_unavailable',message:error.status?error.message:'The save could not be verified. Reload your Journey before retrying.'},error.status||503)}
  }
+ if(path==='/v1/check-ins/follow-up'){
+  if(method==='GET')return json({followUp:await trackingConsent(env.DB,auth.userId)?await latestCheckinAction(env.DB,auth.userId):null});
+  if(method!=='POST')return json({error:'method_not_allowed'},405);
+  const origin=request.headers.get('Origin');
+  if(origin&&![new URL(request.url).origin,'https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(origin))return json({error:'origin_not_allowed'},403);
+  try{return json({ok:true,followUp:await reviewCheckinAction(env.DB,auth.userId,body)})}
+  catch(error){return json({error:'feedback_not_saved',message:error.status?error.message:'Your feedback could not be saved. Please try again.'},error.status||503)}
+ }
  if(path==='/v1/check-ins'){
   if(method==='GET'){
    const {results=[]}=await env.DB.prepare('SELECT id,wellbeing_score,notes,submitted_at FROM check_ins WHERE user_id=? AND case_id IS NULL ORDER BY id DESC LIMIT 100').bind(auth.userId).all();
@@ -69,8 +78,10 @@ export async function memberHealthRoutes(request,env){
   if(index<0)return json({error:'mood_required',message:'Choose how today feels before saving.'},400);
   const note=String(body.note??body.notes??'').trim();if(note.length>2000)return json({error:'note_too_long',message:'Keep the note under 2,000 characters.'},400);
   const at=new Date().toISOString();
-  const result=await env.DB.prepare('INSERT INTO check_ins(user_id,wellbeing_score,notes,submitted_at) VALUES(?,?,?,?)').bind(auth.userId,index+1,note,at).run();
-  return json({ok:true,checkIn:{id:result.meta.last_row_id,mood:moods[index],note,checkedAt:at}},201);
+  try{
+   const saved=await saveCheckinWithAction(env.DB,auth.userId,index,note,at);
+   return json({ok:true,checkIn:{id:saved.id,mood:moods[index],note,checkedAt:at},nextStep:saved.nextStep},201);
+  }catch(error){return json({error:'checkin_not_saved',message:error.status?error.message:'Your check-in could not be saved. Please try again.'},error.status||503)}
  }
  const row=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first();
  const current=parse(row?.preferences).fitJourney||{entries:{},sessionReviews:{}};
