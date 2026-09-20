@@ -9,6 +9,7 @@ import {memberClient} from './client.mjs';
 import {healthRuntime} from './health-runtime.mjs';
 import {fitRuntime} from './fit-approved-runtime.mjs';
 import {grubIntelligenceCSS} from './grub-intelligence-client.mjs';
+import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -17,6 +18,7 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(path==='/assets/member-experience/password-settings.mjs')return new Response(request.method==='HEAD'?null:passwordSettingsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/home-art.webp')return new Response(request.method==='HEAD'?null:Uint8Array.from(atob(homeArt.split(',')[1]),c=>c.charCodeAt(0)),{headers:{...privateHeaders,'Content-Type':'image/webp'}});
   if(path==='/assets/member-experience/home.css')return new Response(request.method==='HEAD'?null:homeStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if (['/member/journey','/member/journey.html'].includes(path)) {
@@ -65,6 +67,7 @@ export async function memberExperienceEntry(request, env, response) {
   if(['fit','check-in'].includes(name))html=html.replace('</main>','<section class="member-journey-handoff"><h2>Keep your story together.</h2><p>Your saved activity and check-ins feed the same My Timber history.</p><a href="/member/life-back#check-in">Log how life feels</a> · <a href="/member/dashboard#today">Back to Today</a></section></main>');
   if(name === 'check-in') html = html.replace(/(<p class="eyebrow">Daily check-in<\/p>[\s\S]*?<p class="checkin-intro">[\s\S]*?<\/p>)/,'<header class="member-tool-hero">$1</header>');
   if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');
+  if(name === 'settings') html=withPasswordSettings(html);
   html=addMemberChrome(html,name);
   const headers = new Headers(response.headers);
   for (const [key,value] of Object.entries(privateHeaders)) headers.set(key,value);

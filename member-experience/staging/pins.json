@@ -2,7 +2,7 @@
   {
     "path": "api-adapter-v33d.js",
     "source": "worker",
-    "sha256": "dba8205f66c55e51eae2256b8a2ecaa7b3ae1c65a8f84ea2006cd24eb4942aec"
+    "sha256": "89f39ecb8ff192bb4700079aa5ecfa32cc7dd7a98efea4ff93dbcf99160ebf05"
   },
   {
     "path": "app.js",
@@ -76,7 +76,7 @@
   },
   {
     "path": "member-my-journey-v1.css",
-    "sha256": "1dbb3c95e84c96bb59f7989cce8ecceadf272ada5a9cd708fb643bdd8228cfcd",
+    "sha256": "64efe8cd8fb3338e236ab58edf055c84d34c1165c756c9e58317c5e4d297e7d7",
     "source": "worker"
   },
   {
