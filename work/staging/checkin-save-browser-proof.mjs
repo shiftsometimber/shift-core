@@ -77,9 +77,10 @@ try{
    const saved=await response.json();assert.equal(saved.ok,true);assert.equal(saved.checkIn.mood,'OK');assert.equal(saved.checkIn.note,note);
    const result=page.locator('#checkinResult');await result.waitFor({state:'visible',timeout:30000});
    assert.equal(await result.locator('h2').textContent(),'Middle-of-the-road still counts.');
-   const target=new URL(await result.locator('a').getAttribute('href'),origin);
+   const target=new URL(await result.getByRole('link',{name:saved.nextStep.action.label||'Open this next step',exact:true}).getAttribute('href'),origin);
    assert.equal(target.origin,origin);assert.equal(target.pathname.replace('/staging/member-connected/','/member/')+target.hash,saved.nextStep.action.href);
    assert.equal(await result.locator('.checkin-action strong').textContent(),saved.nextStep.action.title);
+   assert(await result.getByRole('link',{name:'Back to Today →',exact:true}).isVisible());assert((await result.innerText()).includes('return to Today or reopen Check-in'));
    assert.equal(saved.nextStep.checkInId,saved.checkIn.id);assert.equal(saved.nextStep.feedback,null);
    assert.match(await page.locator('#saveMood').textContent(),/CHECK-IN SAVED/);
    const after=(await api(context,'/v1/check-ins')).checkIns,newRows=after.filter(x=>!beforeIds.has(String(x.id)));
@@ -90,7 +91,7 @@ try{
    row.checks.push('Existing Life Back progress and durable Next Shift remain unchanged');
    await result.scrollIntoViewIfNeeded();await screenshot(page,'checkin-saved-'+name);
    row.phase='action-return-feedback';
-   await result.locator('a').click();await page.waitForLoadState('domcontentloaded');
+   await result.getByRole('link',{name:saved.nextStep.action.label||'Open this next step',exact:true}).click();await page.waitForLoadState('domcontentloaded');
    assert.equal(new URL(page.url()).pathname.replace('/staging/member-connected/','/member/'),new URL(saved.nextStep.action.href,origin).pathname);
    assert.equal((await api(context,'/v1/check-ins/follow-up')).followUp.feedback,null,'Opening the action must not count as completion or helpfulness');
    await page.goto(origin+'/member/dashboard#today',{waitUntil:'domcontentloaded'});

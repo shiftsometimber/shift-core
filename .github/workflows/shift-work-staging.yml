@@ -83,14 +83,14 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify restored tools and preserve current Today at desktop and 390px
         run: node work/staging/member-tools-browser-proof.mjs
+      - name: Prove reported member-walk repairs on desktop and mobile
+        run: node work/staging/member-walk-browser-proof.mjs
       - name: Verify shared member headers and banners at desktop and phone width
         run: node work/staging/member-chrome-browser-proof.mjs
       - name: Verify profile password reset controls with fictional requests only
         run: node work/staging/password-settings-browser-proof.mjs
       - name: Verify consented check-in save and next-step response on fictional accounts
         run: node work/staging/checkin-save-browser-proof.mjs
-      - name: Prove reported member-walk repairs on desktop and mobile
-        run: node work/staging/member-walk-browser-proof.mjs
       - name: Verify real remote persistence and access boundaries
         run: node work/staging/probe.mjs
       - name: Save non-secret verification evidence only
