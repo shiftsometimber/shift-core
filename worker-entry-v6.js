@@ -777,7 +777,7 @@ const worker = {
       if (!env.MEMBER_ASSETS)
         return new Response("preview shell unavailable", { status: 503 });
       const response=await env.MEMBER_ASSETS.fetch(new Request(new URL("/my-timber-preview", request.url),request));
-      if(request.method==='HEAD'||!response.ok)return privatePageHeaders(response);
+      if(request.method==='HEAD'||!response.ok||env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return privatePageHeaders(response);
       return privatePageHeaders(new Response(withSessionState(await response.text()),{status:response.status,headers:response.headers}));
     }
     if (
