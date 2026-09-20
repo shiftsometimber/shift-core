@@ -11,7 +11,7 @@ export const fitSessionCues=String.raw`
     timing.textContent=session.dataset.sessionMinutes?'Planned session: '+session.dataset.sessionMinutes+' minutes. Take the rest shown for each movement.':'Follow the repetitions or timing shown for each movement. Take the listed rest.';
     if(current<0){title.textContent='Session recorded';detail.textContent='Your Done and Skip choices are saved. Return to Today to see them and say whether your next step helped.';const back=document.createElement('a');back.href='/member/dashboard#today';back.textContent='Back to Today →';back.style.color='#050505';cue.append(title,detail,back);return}
     const card=cards[current];title.textContent='Movement '+(current+1)+' of '+cards.length+' · '+card.querySelector('h4').textContent;
-    detail.textContent=(card.querySelector('details li')?.textContent||'Open the movement instructions below.')+' Mark Done when finished, or Skip or Swap if it does not fit.';
+    detail.textContent=(card.querySelector('.sf-exercise-main > details > ol > li')?.textContent||'Open the movement instructions below.')+' Mark Done when finished, or Skip or Swap if it does not fit.';
     cue.append(title,detail,timing);
   }
 `;
