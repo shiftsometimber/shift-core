@@ -5,7 +5,7 @@ export const CLINIC_QUIET_PATH='/clinic-gone-quiet';
 export const PROVIDER_SWITCH_PATH='/provider-switch';
 export const PARTNER_HELP_PATH='/husband-help';
 export const CONTINUITY_PATHS=[LIFE_BACK_PATH,FOOD_NOISE_PATH,CLINIC_QUIET_PATH,PROVIDER_SWITCH_PATH,PARTNER_HELP_PATH];
-export const CONTINUITY_REDIRECTS=Object.freeze({'/coming-off':'/articles/stopping-glp1','/food-noise':FOOD_NOISE_PATH});
+export const CONTINUITY_REDIRECTS=Object.freeze({'/coming-off':'/articles/stopping-glp1','/food-noise':FOOD_NOISE_PATH,'/articles/how-to-help-husband-lose-weight':PARTNER_HELP_PATH});
 const origin='https://shiftsometimber.co.uk';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sources={noise:'https://pmc.ncbi.nlm.nih.gov/articles/PMC10674813/',step:'https://pmc.ncbi.nlm.nih.gov/articles/PMC9542252/',nhs:'https://www.nhs.uk/conditions/overweight-and-obesity/',eating:'https://www.nhs.uk/mental-health/conditions/binge-eating/overview/'};
