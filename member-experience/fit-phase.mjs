@@ -7,3 +7,12 @@ export function fitPhaseAllowed(row,group=''){
  const slot=String(group).toLowerCase().replace(/[_ ]/g,'-');
  return !phase||slot===phase;
 }
+
+// Legacy variants encode their difficulty in the reviewed variation identity.
+// Do not offer a higher-level variant than the member selected.
+export function fitLevelAllowed(row,level='beginner'){
+ const variant=String(row.data?.variation_identity||'').toLowerCase().match(/-(beginner|standard|advanced)$/)?.[1];
+ if(!variant)return true;
+ const ranks={beginner:0,standard:1,intermediate:1,advanced:2};
+ return ranks[variant]<=(ranks[String(level).toLowerCase()]??0);
+}

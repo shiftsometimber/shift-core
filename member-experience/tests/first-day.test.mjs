@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
-import {fitPhaseAllowed} from '../fit-phase.mjs';
+import {fitPhaseAllowed,fitLevelAllowed} from '../fit-phase.mjs';
 import {buildIndustrialCatalogue} from '../../industrial-catalogue-v14.js';
 
 test('main-session slots reject every legacy warm-up and cool-down variant; matching phases remain eligible',()=>{
@@ -35,4 +35,11 @@ test('saving just a goal preserves missing measurements and never invents a well
  assert.equal(out.weight.startKg,null);assert.equal(out.weight.currentKg,null);
  assert(Object.values(out.lifeBack.baseline.scores).every(v=>v===null));
  assert.deepEqual(Array.from(out.healthInterests),['health-mot']);
+});
+
+test('legacy Fit variants respect the selected difficulty without changing source records',()=>{
+ for(const data of buildIndustrialCatalogue().exercises){
+  const level=data.variation_identity?.match(/-(beginner|standard|advanced)$/)?.[1];if(!level)continue;
+  const row={id:data.id,data};assert.equal(fitLevelAllowed(row,'beginner'),level==='beginner',data.id);assert.equal(fitLevelAllowed(row,'advanced'),true,data.id);
+ }
 });

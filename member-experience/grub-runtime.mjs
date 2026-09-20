@@ -32,16 +32,16 @@ function draw(){
  $$('[data-food-save]').forEach(b=>{const on=workspace.saved.includes(b.dataset.foodSave);b.textContent=on?'Remove saved recipe':'Save recipe';b.setAttribute('aria-pressed',String(on))});lock();
 }
 async function load(){if(busy)return;busy=true;lock();message('Loading your saved food…');try{workspace=await api('workspace');pending=null;for(const [id,key] of [['grubDays','days'],['grubStyle','style'],['grubServings','servings'],['grubPrefs','exclude']])if(workspace.options?.[key]!==undefined)$('#'+id).value=workspace.options[key];draw();showToday();message('Your food is up to date. Changes save to your private account.')}catch(e){workspace=null;if($('#grubRecommendation'))$('#grubRecommendation').textContent='Sign in or retry to load your meal recommendation.';$('#grubSaved').textContent='Sign in or retry loading your saved recipes.';$('#grubWeekOutput').textContent='Your saved week is unavailable until your account loads.';$('#shoppingList').textContent='Your shopping list is unavailable until your account loads.';message(e.message,true)}finally{busy=false;lock()}}
-function receipt(action,text){
+function receipt(action,text,trigger){
  const destinations=action==='choose-today'?[['See your meal on Today','/member/dashboard#today'],['Review movement in Fit','/member/fit']]:action==='save'?[['Open saved recipes','#saved']]:[['Open your week','#week'],['Open shopping list','#shopping']];
  const box=$('#grubActionReceipt');box.replaceChildren();box.hidden=false;const p=document.createElement('p');p.textContent=text;box.append(p);
  for(const [label,href]of destinations){const a=document.createElement('a');a.textContent=label+' →';a.href=href;box.append(a,document.createTextNode(' '))}
- const active=document.activeElement?.closest('.grub-card,article');if(active){const copy=box.cloneNode(true);copy.removeAttribute('id');active.querySelector('[data-food-receipt]')?.remove();copy.dataset.foodReceipt='true';active.append(copy)}
+ const active=trigger?.closest('.grub-card,article');if(active){const copy=box.cloneNode(true);copy.removeAttribute('id');active.querySelector('[data-food-receipt]')?.remove();copy.dataset.foodReceipt='true';active.append(copy)}
 }
 async function mutate(action,success){
  if(busy||!workspace)return false;const focus=document.activeElement,focusData=focus?.dataset?{...focus.dataset}:null;busy=true;lock();message('Saving to your account…');
  const signature=JSON.stringify(action);if(!pending||pending.signature!==signature)pending={signature,body:{...action,revision:workspace.revision,operationId:crypto.randomUUID()}};
- try{workspace=await api('workspace',pending.body);pending=null;draw();message(success);receipt(action.action,success);return true}
+ try{workspace=await api('workspace',pending.body);pending=null;draw();message(success);receipt(action.action,success,focus?.isConnected?focus:$$('[data-food-write]').find(b=>b.getClientRects().length&&focusData&&Object.entries(focusData).every(([k,v])=>b.dataset[k]===v)));return true}
  catch(e){message(e.message+' Your screen has not been marked as saved.',true);if(e.status===401){workspace=null;known.clear();$('#grubSaved').textContent='Sign in to view saved recipes.';$('#grubWeekOutput').textContent='Sign in to view your week.';$('#shoppingList').textContent='Sign in to view your shopping list.'}if(e.status===409)pending=null;return false}
  finally{busy=false;lock();if(focusData&&!focus.isConnected){const target=$$('[data-food-write]').find(b=>b.getClientRects().length&&Object.entries(focusData).every(([k,v])=>b.dataset[k]===v))||$$('[data-grub-tab]').find(b=>b.getAttribute('aria-selected')==='true');target?.focus({preventScroll:true})}}
 }
