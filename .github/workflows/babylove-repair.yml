@@ -1,7 +1,7 @@
 name: BabyLove publication repair evidence
 on:
   push:
-    branches: [fix/babylove-publication, fix/babylove-email-proof]
+    branches: [fix/babylove-publication, fix/babylove-email-proof, fix/oral-article-image]
 permissions:
   contents: read
 jobs:

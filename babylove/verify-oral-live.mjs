@@ -4,13 +4,14 @@ import assert from 'node:assert/strict';
 import {writeFileSync,mkdirSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {ARTICLE,KNOWLEDGE_CARD} from './oral-public.mjs';
+import {verifyOralImage} from './verify-oral-image.mjs';
 mkdirSync('babylove-proof',{recursive:true});
 const checks=[];
 for(const suffix of ['', '/', '.html']){
  const r=await fetch(ARTICLE.proposed_url+suffix,{redirect:'manual'});assert.equal(r.status,suffix?301:200);if(suffix)assert.equal(r.headers.get('location'),ARTICLE.proposed_url);else{const html=await r.text();assert(html.includes(ARTICLE.body));assert.equal((html.match(/rel="canonical"/g)||[]).length,1);assert(html.includes('Matt O’Brien'));writeFileSync('babylove-proof/live.html',html);}checks.push({url:ARTICLE.proposed_url+suffix,status:r.status});
 }
 for(const [path,expected] of [['/explore-knowledge',KNOWLEDGE_CARD],['/sitemap.xml','<loc>'+ARTICLE.proposed_url+'</loc>']]){const r=await fetch('https://shiftsometimber.co.uk'+path);assert.equal(r.status,200);assert((await r.text()).includes(expected));checks.push({path,status:200});}
-const image=await fetch(ARTICLE.images[0].url);assert.equal(image.status,200);assert.match(image.headers.get('content-type'),/^image\//);checks.push({image:true,status:200});
+checks.push(await verifyOralImage(ARTICLE.proposed_url));
 // Attest only after the exact public HTML, aliases, listing, sitemap and image pass.
 assert.equal(process.env.GITHUB_EVENT_NAME,'push');assert.equal(process.env.GITHUB_ACTOR_ID,'315011648');await assertCurrentMain();
 const quote=v=>"'"+String(v).replace(/'/g,"''")+"'";

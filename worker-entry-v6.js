@@ -90,6 +90,7 @@ const MEMBER_ORIGINS = new Set([
 ]);
 const HQ_ORIGINS = new Set(["https://hq.shiftsometimber.co.uk"]);
 const GIT_MEMBER_ASSETS = new Map([
+  ["/assets/articles/oral-semaglutide-for-weight-loss/title-card-v1.jpg", "image/jpeg"],
   ["/assets/programme-v1/programme.css", "text/css; charset=utf-8"],
   ["/assets/programme-v1/programme.mjs", "text/javascript; charset=utf-8"],
   ["/turnstile-auth-v1.js", "application/javascript; charset=utf-8"],
