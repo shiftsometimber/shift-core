@@ -17,6 +17,7 @@ export function fixture({filename=':memory:',seed=true}={}){
  CREATE TABLE medicine_orders(id INTEGER PRIMARY KEY,user_id INTEGER,order_number TEXT,medicine_name TEXT,strength_label TEXT,status TEXT,clinical_status TEXT,created_at TEXT,updated_at TEXT);
  CREATE TABLE shift_treatment_context(user_id INTEGER PRIMARY KEY,medicine TEXT,route TEXT,dose TEXT,status TEXT,updated_at TEXT);`);
  db.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));
+ db.exec(readFileSync(new URL('../member-experience/checkin-followup.sql',import.meta.url),'utf8'));
  const sessions=new Map();
  for(const id of [1,2]){
   const token='test-only-member-'+id;sessions.set(id,token);

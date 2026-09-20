@@ -327,6 +327,8 @@ jobs:
           path: deployment-before.json
       - name: Prepare exact additive Passport schema and rollback
         run: node health-passport/production-release.mjs
+      - name: Prepare additive daily check-in feedback store
+        run: npx wrangler d1 execute DB --remote --config wrangler.jsonc --file member-experience/checkin-followup.sql
       - name: Deploy current main to production
         run: |
           node scripts/catalogue-publication-client.mjs --verify-main

@@ -12,9 +12,9 @@ const out='work/staging/generated/checkin-save-proof';mkdirSync(out,{recursive:t
 const note='walked to the shops';
 const clean=value=>String(value).replaceAll(fixture.password,'[redacted]').replace(/(?:probe|hq)\d+@example\.invalid/g,'[fictional account]').slice(0,1200);
 const report={checkedAt:new Date().toISOString(),origin,commit:process.env.GITHUB_SHA||null,browser:'Chromium',cases:[],failures:[],limits:[
- 'Real isolated staging API and D1 writes using existing fictional accounts; no API mocks or production member writes',
+ 'Real isolated staging API and D1 writes using existing fictional accounts; one mobile feedback503 fault injection checks retry; no production member writes',
  'Connected staging uses a same-origin API and does not prove the production cross-origin preflight; the local Worker entry tests and post-deploy raw OPTIONS check verify that separately',
- 'Daily mood save returns its existing static next-step card and dashboard link; it does not create a durable Life Back Next Shift or did-it-help response',
+ 'Daily check-in snapshots its offered action; the saved feedback is attached to that action without modifying Life Back ratings or history',
  'Desktop and phone viewports in Chromium, not physical Safari or iPhone evidence'
 ]};
 const save=()=>writeFileSync(out+'/report.json',JSON.stringify(report,null,2));
@@ -30,11 +30,12 @@ try{
  for(const [index,[name,viewport]]of Object.entries({desktop:{width:1440,height:1000},mobile390:{width:390,height:844}}).entries()){
   const row={name,viewport,phase:'login',checks:[],apiRequests:[],blockedExternalWrites:[],pageErrors:[]};report.cases.push(row);
   const context=await browser.newContext({viewport,reducedMotion:'reduce',serviceWorkers:'block'});
-  let page;
+  let page,injectFeedbackFailure=false;
   try{
    await context.route('**/*',route=>{
     const request=route.request(),url=new URL(request.url());
     if(url.origin!==origin&&!['GET','HEAD'].includes(request.method())){row.blockedExternalWrites.push({host:url.host,path:url.pathname,method:request.method()});return route.abort('blockedbyclient')}
+    if(injectFeedbackFailure&&url.pathname==='/v1/check-ins/follow-up'&&request.method()==='POST'){injectFeedbackFailure=false;row.feedbackFaultInjected=true;return route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Temporary test interruption. Try again.'})})}
     return route.continue();
    });
    const id=fixture.browserIds[index];
@@ -77,15 +78,39 @@ try{
    const result=page.locator('#checkinResult');await result.waitFor({state:'visible',timeout:30000});
    assert.equal(await result.locator('h2').textContent(),'Middle-of-the-road still counts.');
    const target=new URL(await result.locator('a').getAttribute('href'),origin);
-   assert.equal(target.origin,origin);assert(['/member/dashboard','/staging/member-connected/dashboard'].includes(target.pathname));assert.equal(target.hash,'#today');
+   assert.equal(target.origin,origin);assert.equal(target.pathname.replace('/staging/member-connected/','/member/')+target.hash,saved.nextStep.action.href);
+   assert.equal(await result.locator('.checkin-action strong').textContent(),saved.nextStep.action.title);
+   assert.equal(saved.nextStep.checkInId,saved.checkIn.id);assert.equal(saved.nextStep.feedback,null);
    assert.match(await page.locator('#saveMood').textContent(),/CHECK-IN SAVED/);
    const after=(await api(context,'/v1/check-ins')).checkIns,newRows=after.filter(x=>!beforeIds.has(String(x.id)));
    assert.equal(after.length,before.length+1,'One click adds exactly one saved check-in');assert.equal(newRows.length,1);assert.equal(String(newRows[0].id),String(saved.checkIn.id));assert.equal(newRows[0].mood,'OK');assert.equal(newRows[0].note,note);
    assert.deepEqual((await api(context,'/v1/life-back')).progress,lifeBackBefore,'Daily mood save must preserve the existing Life Back record and Next Shift');
    row.historyCounts={before:before.length,after:after.length};row.nextStepTitle=await result.locator('h2').textContent();row.nextStepTarget=target.pathname+target.hash;
-   row.checks.push('OK plus the fictional note saves through the real POST with HTTP 201; exactly one record is added; the existing next-step card and dashboard link render');
+   row.checks.push('OK plus the fictional note saves through real POST201; one record and its exact offered action are stored atomically and shown');
    row.checks.push('Existing Life Back progress and durable Next Shift remain unchanged');
    await result.scrollIntoViewIfNeeded();await screenshot(page,'checkin-saved-'+name);
+   row.phase='action-return-feedback';
+   await result.locator('a').click();await page.waitForLoadState('domcontentloaded');
+   assert.equal(new URL(page.url()).pathname.replace('/staging/member-connected/','/member/'),new URL(saved.nextStep.action.href,origin).pathname);
+   assert.equal((await api(context,'/v1/check-ins/follow-up')).followUp.feedback,null,'Opening the action must not count as completion or helpfulness');
+   await page.goto(origin+'/member/dashboard#today',{waitUntil:'domcontentloaded'});
+   const followup=page.locator('#dailyCheckinFollowup');await followup.getByRole('heading',{name:'Did it help?',exact:true}).waitFor({state:'visible',timeout:30000});
+   assert.equal(await followup.locator('strong').textContent(),saved.nextStep.action.title);
+   await followup.scrollIntoViewIfNeeded();await screenshot(page,'return-prompt-'+name);
+   const outcome=index===0?'helped':'not-fit',feedbackLabel=index===0?'It helped':'It did not fit';
+   await followup.getByLabel(feedbackLabel,{exact:true}).check();
+   if(index===1){injectFeedbackFailure=true;await followup.getByRole('button',{name:'Save feedback',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#dailyFeedbackStatus')?.textContent.includes('Temporary test interruption'));assert.equal((await api(context,'/v1/check-ins/follow-up')).followUp.feedback,null);assert(await followup.getByRole('button',{name:'Save feedback',exact:true}).isEnabled())}
+   const feedbackResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/check-ins/follow-up'&&r.request().method()==='POST');
+   await followup.getByRole('button',{name:'Save feedback',exact:true}).click();assert.equal((await feedbackResponse).status(),200);
+   await page.waitForFunction(()=>document.querySelector('#dailyFeedbackStatus')?.textContent.startsWith('Feedback saved:'));
+   const reviewed=(await api(context,'/v1/check-ins/follow-up')).followUp;assert.equal(reviewed.id,saved.nextStep.id);assert.equal(reviewed.feedback,outcome);assert.equal(reviewed.revision,1);
+   await screenshot(page,'feedback-saved-'+name);
+   await api(context,'/v1/auth/logout',{});await api(context,'/v1/auth/login',{email:'probe'+id+'@example.invalid',password:fixture.password});
+   await page.goto(origin+'/member/dashboard#today',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('#dailyFeedbackStatus')?.textContent.startsWith('Feedback saved:'));
+   assert.equal(await followup.locator('strong').textContent(),saved.nextStep.action.title);assert((await followup.textContent()).includes(feedbackLabel));
+   row.feedback={outcome,revision:reviewed.revision,retainedAfterFreshSignIn:true};row.checks.push('Follow the exact stored action, return to Today, answer did-it-help, and retain the same feedback after fresh sign-in; opening a link does not infer completion');
+   await page.goto(origin+'/member/check-in',{waitUntil:'domcontentloaded'});
+   await page.waitForFunction(()=>document.querySelector('#dailyFeedbackStatus')?.textContent.startsWith('Feedback saved:'));
    row.phase='reload-retained-history';
    await page.reload({waitUntil:'domcontentloaded',timeout:30000});
    const history=page.locator('#moodHistory');
@@ -105,4 +130,4 @@ try{
  }
 }finally{await browser.close();report.status=report.failures.length?'fail':'pass';save()}
 assert.equal(report.failures.length,0,'Isolated rendered check-in save proof failed; see sanitized report');
-console.log('PASS: real fictional-account check-in save, visible consent, next-step response, reload and Life Back preservation on desktop/mobile. Same-origin staging does not prove production CORS.');
+console.log('PASS: fictional check-in, exact saved action, return prompt, did-it-help persistence, fresh sign-in, failure/retry and Life Back preservation on desktop/mobile.');

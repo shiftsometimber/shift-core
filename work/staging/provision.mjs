@@ -17,3 +17,5 @@ const columns=new Set(info.flatMap(x=>x.results||[]).map(x=>x.name));
 if(columns.size)for(const [name,type] of [['version','INTEGER NOT NULL DEFAULT 1'],['review_json',"TEXT NOT NULL DEFAULT '{}'"],['created_at','TEXT'],['updated_at','TEXT']])if(!columns.has(name))run(['d1','execute','DB','--remote','--command','ALTER TABLE structured_content ADD COLUMN '+name+' '+type,'--config',file]);
 for(const [binding,sql]of [['DB','auth.sql'],['WORK_DB','work.sql']])run(['d1','execute',binding,'--remote','--file','work/staging/generated/'+sql,'--config',file]);
 console.log('Initialised only the two explicitly named staging databases.');
+
+run(['d1','execute','DB','--remote','--file','member-experience/checkin-followup.sql','--config',file]);
