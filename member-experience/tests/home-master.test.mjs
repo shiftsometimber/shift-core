@@ -37,7 +37,7 @@ test('support entry loads the real solution and exposes its urgent alternative',
  const root={innerHTML:'',dataset:{},classList:{add(){},remove(){}},closest:()=>({classList:{remove(){}}}),scrollIntoView(){},querySelector:s=>({addEventListener(){}}),querySelectorAll:s=>s==='[data-route]'?[button]:[]};
  const title={hidden:true,textContent:''};
  const api={getMyTimberHelp:async need=>{calls.push(need);return{solution:{need,title:'Help',summary:'Known guidance',why:'Known rationale',actions:[],alternatives:[{key:'urgent',label:'I cannot keep fluids down'}]}}}};
- const context={window:{SST_API:api},SST_API:api,document:{getElementById:id=>id==='todayActions'?root:title,querySelector:()=>title},requestAnimationFrame:f=>f(),console};
+ const context={window:{SST_API:api},SST_API:api,document:{addEventListener(){},getElementById:id=>id==='todayActions'?root:title,querySelector:()=>title},requestAnimationFrame:f=>f(),console};
  const harness=source.replace(/  home\(\);\n\}\)\(\);\s*$/,'  window.testLoad=load;\n})();');
  vm.runInNewContext(harness,context);assert.equal(typeof context.window.testLoad,'function');
  await context.window.testLoad('guts');assert.deepEqual(calls,['guts']);assert.equal(title.hidden,false);

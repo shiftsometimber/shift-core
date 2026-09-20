@@ -78,10 +78,10 @@ export async function memberExperienceEntry(request, env, response) {
   if(['fit','check-in'].includes(name))html=html.replace('</main>','<section class="member-journey-handoff"><h2>Keep your story together.</h2><p>Your saved activity and check-ins feed the same My Timber history.</p><a href="/member/life-back#check-in">Log how life feels</a> · <a href="/member/dashboard#today">Back to Today</a></section></main>');
   if(name === 'check-in') html = html.replace(/(<p class="eyebrow">Daily check-in<\/p>[\s\S]*?<p class="checkin-intro">[\s\S]*?<\/p>)/,'<header class="member-tool-hero">$1</header>');
   if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');
-  if(['dashboard','check-in'].includes(name)){
+  if(['dashboard','check-in','grub','fit'].includes(name)){
     const followup='<section id="dailyCheckinFollowup" aria-label="Your saved next-step feedback" hidden></section>';
     if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+dayGuideMarkup+followup);
-    else html=html.replace(/(<main\b[^>]*>)/,'$1'+dayGuideMarkup+followup);
+    else html=html.replace(/(<main\b[^>]*>)/,'$1'+(name==='check-in'?dayGuideMarkup:'')+followup);
     html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/checkin-followup.css"><script defer src="/assets/member-experience/checkin-followup.mjs"></script></body>');
   }
   if(name==='dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/day-guide.css"><script defer src="/assets/member-experience/day-guide.mjs"></script></body>');

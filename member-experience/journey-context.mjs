@@ -16,6 +16,19 @@ export async function connectedDay(DB,userId,prefs,date=ukDate()){
  const progress=prefs.lifeBack?.progress,state=lifeBackState(progress),s=summary(state),last=state.entries.filter(e=>e.goalId===state.goalId).at(-1);
  const mood=await DB.prepare('SELECT wellbeing_score,notes,submitted_at FROM check_ins WHERE user_id=? AND case_id IS NULL ORDER BY id DESC LIMIT 1').bind(userId).first();
  const done=activity.filter(e=>e.status==='done').length,skipped=activity.filter(e=>e.status==='skipped').length,checkedToday=!!last&&ukDate(new Date(last.at))===date;
- const next=nextShiftCard(progress)||(!meal?{title:'Choose your next meal',detail:'Pick a reviewed recipe and choose it for today.',href:'/member/grub',label:'Open Grub'}:done===0?{title:'Make room for movement',detail:'Your saved time, equipment and limitations stay in place.',href:'/member/fit',label:'Open Fit'}:!checkedToday?{title:'How are you feeling now?',detail:'Your movement is recorded. Add a Life Back reflection when it suits you.',href:'/member/life-back#check-in',label:'Add a check-in'}:{title:'Notice what you’re getting back',detail:'Your choices and latest reflection are saved. You can return whenever you want.',href:'/member/life-back',label:'See Life Back'});
+ let next=nextShiftCard(progress)||(!meal?{title:'Choose your next meal',detail:'Pick a reviewed recipe and choose it for today.',href:'/member/grub',label:'Open Grub'}:done===0?{title:'Make room for movement',detail:'Your saved time, equipment and limitations stay in place.',href:'/member/fit',label:'Open Fit'}:!checkedToday?{title:'How are you feeling now?',detail:'Your movement is recorded. Add a Life Back reflection when it suits you.',href:'/member/life-back#check-in',label:'Add a check-in'}:{title:'Notice what you’re getting back',detail:'Your choices and latest reflection are saved. You can return whenever you want.',href:'/member/life-back',label:'See Life Back'});
+ const allowed=await DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
+ if(Number(allowed?.granted)===1&&await DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='daily_checkin_actions'").first()){
+  const row=await DB.prepare('SELECT action_json,id,feedback,created_at FROM daily_checkin_actions WHERE user_id=? ORDER BY checkin_id DESC LIMIT 1').bind(userId).first();
+  if(row){
+   const offered=JSON.parse(row.action_json),linked=offered.loopId;
+   // Explicitly selected Life Back support supersedes an older standalone offer.
+   if((linked&&linked===progress?.nextShift?.id)||(!linked&&(!progress?.nextShift||row.created_at>=progress.nextShift.createdAt))){
+    next={...offered,dailyActionId:row.id};
+    if(row.feedback==='not-fit')next={...next,title:'Choose a smaller step',detail:'That step did not fit. Pick food, movement or a quieter day from More for today.',href:'/member/dashboard#more-for-today',label:'Choose what fits now',dailyActionId:null};
+    if(row.feedback==='helped')next={...next,title:'Keep the useful part',detail:'You said this step helped. Open it again if it still fits today, or choose something else.',dailyActionId:null};
+   }
+  }
+ }
  return {date,meal,week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
 }

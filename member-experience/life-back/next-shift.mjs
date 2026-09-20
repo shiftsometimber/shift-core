@@ -6,7 +6,7 @@ const actions={
  movement:{kind:'movement',title:'Make a small movement plan',detail:'Open your existing Fit plan and choose one manageable activity. Keep your saved limitations in place; this does not change your programme.',href:'/member/fit',label:'Review my activity in Fit'},
  routine:{kind:'routine',title:'Choose one wind-down cue',detail:'Pick one ordinary cue for winding down this evening, such as putting your phone aside. Try it once, then tell SHIFT whether it fitted your week.',href:'/member/dashboard#journey',label:'Keep my goal in view'},
  confidence:{kind:'confidence',title:'Make room for your own goal',detail:'Choose one small, practical step towards the goal you saved. Put it into your week; it does not need to be impressive.',href:'/member/dashboard#journey',label:'Open my Journey'},
- 'clinic-quiet':{kind:'clinic-quiet',title:'Prepare one question for your prescriber',detail:'Write down what you need clarified and contact your prescriber or pharmacist. A quiet clinic does not mean you should stop or change treatment. SHIFT can help with finding its tools, not clinical decisions.',href:'/contact',label:'Find SHIFT contact details'},
+ 'clinic-quiet':{kind:'clinic-quiet',title:'Prepare one question for your prescriber',detail:'Write down what you need clarified and contact your prescriber or pharmacist. A quiet clinic does not mean you should stop or change treatment. SHIFT can help with finding its tools, not clinical decisions.',href:'/clinic-gone-quiet',label:'Prepare with the clinic-quiet guide'},
  'coming-off':{kind:'coming-off',title:'Prepare your next support conversation',detail:'Read the coming-off guide and note one question for your prescriber. Do not change, restart or improvise a taper from a check-in.',href:'/articles/stopping-glp1',label:'Read the coming-off guide'},
  steady:{kind:'steady',title:'Repeat one thing that fitted your week',detail:'Choose one practical thing you already found manageable and make room for it again. A steady week counts too.',href:'/member/dashboard#journey',label:'Open my Journey'}
 };
@@ -49,6 +49,12 @@ export function advanceNextShift(state,input,entry,at){
  const action=(outcome==='not-fit'?simpler:actions)[kind];
  state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:entry.id,status:'planned',reviews:[],reason:changed?'Chosen from the support topic you selected.':outcome==='helped'?'You said this helped. Keep the useful part.':outcome==='not-fit'?'You said it did not fit. This step is smaller.':requested==='auto'?'Chosen from your own check-in, not a medical assessment.':'Chosen from the support topic you selected.'};
 }
+export function reviewNextShift(state,input,at){
+ const active=state.nextShift;
+ if(!active||active.id!==input.shiftId||!feedbackOutcomes.includes(input.outcome))fail('Your next Shift changed. Reload before answering.',409);
+ const entry={id:null,ratings:state.entries.findLast(e=>e.goalId===state.goalId)?.ratings||{}};
+ advanceNextShift(state,{operationId:input.operationId,shiftFeedback:{shiftId:input.shiftId,outcome:input.outcome}},entry,at);
+}
 export function markNextShift(state,input,at){
  if(!['attempted','done'].includes(input.status))fail('Choose tried or done.');
  const active=state.nextShift;
@@ -59,10 +65,10 @@ export function markNextShift(state,input,at){
 export function nextShiftCard(progress){
  const a=progress?.nextShift;
  if(!a||a.goalId!==progress.goalId)return null;
- return {title:a.title,detail:a.detail,href:a.href,label:a.label,loopId:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal};
+ return {title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal};
 }
 export function lifeBackUsage(progress){
  const entries=progress?.entries||[],shifts=[...(progress?.shiftHistory||[]),...(progress?.nextShift?[progress.nextShift]:[])];
- const feedback=entries.map(e=>e.shiftFeedback).filter(Boolean);
+ const feedback=shifts.flatMap(s=>s.reviews||[]);
  return {checkins:entries.length,repeatCheckin:entries.length>1,actionsOffered:shifts.length,actionsAttempted:shifts.filter(s=>s.attemptedAt).length,actionsCompleted:shifts.filter(s=>s.completedAt).length,helpfulAnswers:feedback.filter(f=>f.outcome==='helped').length,notFitAnswers:feedback.filter(f=>f.outcome==='not-fit').length,notTriedAnswers:feedback.filter(f=>f.outcome==='not-tried').length};
 }
