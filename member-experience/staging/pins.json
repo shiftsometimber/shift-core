@@ -138,5 +138,9 @@
   {
     "path": "member/ask-timber.html",
     "sha256": "22994c67d700797a3b4acacbffe6c174dad153975638174ccbead78d5cc89e98"
+  },
+  {
+    "path": "assets/ask-timber-phase8.css",
+    "sha256": "9c3af57a7648516fb634279931b93fcc956b77a165f5b12096051813b10f7c8d"
   }
 ]
