@@ -117,4 +117,8 @@ html body.sst-member-experience[data-member-page="dashboard"] #sstTodayContext{b
 html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home > .mtm-next{padding:22px!important;margin:0 0 20px!important;border:1px solid #707762!important;border-radius:16px!important}
 .mtm-change-step{display:inline-block;margin:12px 0 0 18px;min-height:44px;padding:10px 0;box-sizing:border-box;text-decoration:underline}
 #more-for-today summary,#optional-checkin summary{min-height:44px;cursor:pointer;padding:12px 0;font-weight:700}
+
+html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home #dailyCheckinFollowup{background:#050505!important;color:#e7e3da!important}
+html body.sst-member-experience[data-member-page="dashboard"] #todayActions.mtm-home #dailyCheckinFollowup :is(legend,summary){color:#e7e3da!important}
+#dailyCheckinFollowup summary{min-height:44px;cursor:pointer;font-weight:700;line-height:1.5}
 `;
