@@ -61,7 +61,7 @@ export async function memberHealthRoutes(request,env){
   catch(error){return json({error:error.code||'health_priority_unavailable',message:error.status?error.message:'The save could not be verified. Reload your Journey before retrying.'},error.status||503)}
  }
  if(path==='/v1/check-ins/follow-up'){
-  if(method==='GET')return json({followUp:await trackingConsent(env.DB,auth.userId)?await latestCheckinAction(env.DB,auth.userId):null});
+  if(method==='GET'){const enabled=await trackingConsent(env.DB,auth.userId);return json({trackingEnabled:enabled,followUp:enabled?await latestCheckinAction(env.DB,auth.userId,new URL(request.url).searchParams.get('actionId')):null});}
   if(method!=='POST')return json({error:'method_not_allowed'},405);
   const origin=request.headers.get('Origin');
   if(origin&&![new URL(request.url).origin,'https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(origin))return json({error:'origin_not_allowed'},403);

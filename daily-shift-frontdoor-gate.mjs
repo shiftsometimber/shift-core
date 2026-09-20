@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import {composeDailyOutput} from './member-product-v8.js';
 const need=(ok,message)=>{if(!ok)throw new Error(message)};
 const ui=fs.readFileSync('frontend/member/member-my-timber-problem-v1.js','utf8'),css=fs.readFileSync('frontend/member/member-today-premium-v1.css','utf8'),api=fs.readFileSync('frontend/member/api-adapter-v33d.js','utf8'),backend=fs.readFileSync('member-product-v8.js','utf8');
-for(const marker of ['Today, handled.','NEXT · FOOD','LATER · MOVEMENT','Working late','Life changed?','Sort my next three hours','DO THIS NOW','mt-real-plan','mt-now-action'])need(ui.includes(marker),`real Today value marker missing: ${marker}`);
+for(const marker of ['Today, handled.','NEXT · FOOD','LATER · MOVEMENT','Working late','Life changed?','Sort my next three hours','ONE USEFUL THING','mt-real-plan','mt-now-action'])need(ui.includes(marker),`real Today value marker missing: ${marker}`);
 for(const marker of ['getDailyShift','adjustDailyShift','saveDailyMeal','saveDailyShiftAction','getFitReminder','saveFitReminder','I’ll have that','Swap it','Don’t suggest again','data-adjust','data-water','data-next-action','revealRoot','Morning plan reminder','mountReminder'])need(ui.includes(marker),`real Today action missing: ${marker}`);
 for(const marker of ['getDailyShift','adjustDailyShift','saveDailyMeal'])need(api.includes(marker),`Today API adapter missing: ${marker}`);
 for(const marker of ['/v1/shift/daily-plan','/v1/shift/daily-adjust','/v1/shift/daily-meal','composeDailyOutput','working_late','shift_plans','shift_meal_preferences','daily_meal_rejected'])need(backend.includes(marker),`joined Today contract missing: ${marker}`);

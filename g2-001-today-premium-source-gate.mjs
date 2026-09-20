@@ -8,7 +8,7 @@ const workerNormalised=worker.replace(/"/g,"'");
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
 
 must(js.includes('SST_API.getDailyShift'),'Today layer reads the canonical joined Daily Shift API');
-must(js.includes('NOW')&&js.includes('NEXT · FOOD')&&js.includes('LATER · MOVEMENT'),'Today presents one interpreted living day rather than another check-in ceremony');
+must(js.includes('ONE USEFUL THING')&&js.includes('NEXT · FOOD')&&js.includes('LATER · MOVEMENT'),'Today presents one interpreted living day rather than another check-in ceremony');
 must(js.includes('meal.name')&&js.includes('workout.title')&&js.includes('workout.exercises'),'Today renders named meal and movement decisions from the canonical Daily Shift response');
 must(js.includes('SST_API.saveDailyMeal')&&js.includes('SST_API.adjustDailyShift'),'Today choices and real-life recalculations persist through the existing member API adapter');
 must(js.includes('problemMenu')&&js.includes('askTimber'),'Optional problem-first and Ask Timber branches remain available');
