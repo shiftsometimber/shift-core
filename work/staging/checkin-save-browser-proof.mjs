@@ -69,7 +69,9 @@ try{
    row.phase='daily-checkin-save';
    assert.equal((await page.goto(origin+'/member/check-in',{waitUntil:'domcontentloaded',timeout:30000})).status(),200);
    await page.waitForFunction(()=>window.SST_API?.saveCheckIn&&window.SST_HEALTH_CONSENT,null,{timeout:15000});
-   await page.locator('[data-mood="OK"]').click();await page.locator('#moodNote').fill(note);
+   for(const mood of ['Good','OK','Good','OK']){await page.locator('[data-mood="'+mood+'"]').click();await page.waitForFunction(value=>{const active=[...document.querySelectorAll('[data-mood].active')],pressed=[...document.querySelectorAll('[data-mood][aria-pressed="true"]')];return active.length===1&&pressed.length===1&&active[0].dataset.mood===value&&pressed[0]===active[0]},mood);}
+   row.checks.push('Repeated Good/OK switching keeps exactly one visual and accessible choice; final OK is checked against the real saved record');
+   await page.locator('#moodNote').fill(note);
    const responsePromise=page.waitForResponse(r=>new URL(r.url()).origin===origin&&new URL(r.url()).pathname==='/v1/check-ins'&&r.request().method()==='POST',{timeout:30000});
    await page.locator('#saveMood').click();
    const response=await responsePromise;row.saveStatus=response.status();

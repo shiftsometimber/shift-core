@@ -27,7 +27,7 @@ test('both real dashboard and login shell keep credential handlers but start hid
  }
 });
 test('every legacy Ask Timber mode redirects to a review, never performs a write or accepts an external target',()=>{
- for(const [mode,expected]of [['working-late','working_late'],['ten-minutes','no_time'],['eating-out','eating_out'],['travel','plans_cancelled'],['https://evil.example','next_three_hours']]){
+ for(const [mode,expected]of [['working-late','working_late'],['ten-minutes','no_time'],['limited-food','next_three_hours'],['quick-breakfast','missed_lunch'],['plans-changed','plans_cancelled'],['eating-out','eating_out'],['travel','plans_cancelled'],['https://evil.example','next_three_hours']]){
   const r=memberExperienceRoutes(new Request('https://shiftsometimber.co.uk/member/life-changed-preview?mode='+encodeURIComponent(mode)),{MEMBER_EXPERIENCE_V1_ENABLED:'true'});assert.equal(r.status,302);assert.equal(r.headers.get('Location'),'/member/dashboard?reviewChange='+expected+'#today');assert.match(r.headers.get('Cache-Control'),/no-store/);
  }
 });

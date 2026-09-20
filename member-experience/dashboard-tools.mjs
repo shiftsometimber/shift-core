@@ -1,7 +1,7 @@
 // Restore the two approved retained-record tools inside the current member shell.
 // This never replaces the auth form, Today, Journey, public chrome or API owner.
 export const dashboardToolsMarkup = String.raw`      <section class="mp-panel" id="panel-visualise" aria-labelledby="progressPictureTitle">
-        <p class="eyebrow">PRIVATE PROGRESS</p>
+        <section class="member-progress-map" aria-label="Your progress explained"><h2>Progress</h2><p>Today is where you act. Come here to look back: your measurements, how life feels, and photos you choose to save.</p><h3>Choose what you want to see</h3><p><a href="/member/life-back">Life Back: personal goals, ratings and small wins →</a></p><p><a href="/member/dashboard#journey">Journey: optional measurements and weekly records →</a></p><p>A baseline is your first saved record. A trend needs repeated records over time. The Life Back score averages your own six ratings; it is not a clinical assessment.</p><p><a href="/member/dashboard#today">Back to Today →</a></p></section><p class="eyebrow">PRIVATE PROGRESS PHOTOS</p>
         <h2 id="progressPictureTitle">Progress Picture</h2>
         <p>Save a real progress photo privately, then choose whether to create clearly labelled AI illustrations. Nothing here is a prediction or clinical assessment.</p>
         <div class="mp-photo">

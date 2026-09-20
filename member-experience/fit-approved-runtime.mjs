@@ -1,3 +1,4 @@
+import {fitSessionCues} from './fit-session-cues.mjs';
 import {fitRuntime as baseFitRuntime} from './fit-runtime.mjs';
 import {fitTodayHandoffSource} from './fit-today-handoff.mjs';
 
@@ -154,4 +155,11 @@ for (const [hook, replacement] of handoffHooks) {
   fitRuntime = fitRuntime.replace(hook, replacement);
 }
 
-export {fitRuntime};
+const cueHooks=[
+ ['  function init() {',fitSessionCues+'\n  function init() {'],
+ ['    const start = session.querySelector("[data-sf-start]"),','    refreshSessionCue(session);\n    const start = session.querySelector("[data-sf-start]"),'],
+ ['    applyJourney();\n    (document.getElementById("fitTodayHandoff")', '    applyJourney();\n    output.querySelectorAll(".sf-session").forEach(refreshSessionCue);\n    (document.getElementById("fitTodayHandoff")'],
+ ['      if (effort) adjustSession(effort);','      if (effort) {adjustSession(effort);refreshSessionCue(effort.closest(".sf-session"));}'],
+ ];
+ for(const [hook,replacement]of cueHooks){if(!fitRuntime.includes(hook))throw Error('Fit session cue integration hook missing');fitRuntime=fitRuntime.replace(hook,replacement)}
+ export {fitRuntime};

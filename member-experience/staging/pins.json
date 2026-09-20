@@ -81,12 +81,12 @@
   },
   {
     "path": "member-my-journey-v2.js",
-    "sha256": "777526628308d6923e8540903810ce3ce7e5e38ee3e2e5085d4fe338244343fb",
+    "sha256": "667162ffffb4cd85f4d35208bf5aac6d33f1269ca3c14569ef58b4de2ac97995",
     "source": "worker"
   },
   {
     "path": "member-my-timber-problem-v1.js",
-    "sha256": "d58b0cd7f7a92b5590ee99eee908a6649b5cf199894b1820f9c3d579ea7e8ce7",
+    "sha256": "8cb021ea566b10a95ea0d370b8e379462caa01dd3d1f2ab18f374a53a6c4b1fd",
     "source": "worker"
   },
   {

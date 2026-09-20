@@ -1,3 +1,4 @@
+import {dayGuideMarkup,dayGuideStyles,dayGuideRuntime} from './day-guide.mjs';
 import {withSessionState,sessionRuntime} from './session-state.mjs';
 import {checkinFollowupRuntime,checkinFollowupStyles} from './checkin-followup-client.mjs';
 import {memberNavigation,memberChromeStyles,memberChromeClient,addMemberChrome,lifeBackChrome} from './chrome.mjs';
@@ -40,7 +41,7 @@ export function memberExperienceRoutes(request, env) {
     const body=a.base64?Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0)):name==='index.html'?lifeBackChrome(a.body,env.WORK_V1_ENABLED==='true'):a.body;
     return new Response(request.method==='HEAD'?null:body,{headers:{...privateHeaders,'Content-Type':a.type}});
   }
-  const asset = {'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
+  const asset = {'/assets/member-experience/day-guide.mjs':[dayGuideRuntime,'text/javascript'],'/assets/member-experience/day-guide.css':[dayGuideStyles,'text/css'],'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
   if (!asset) return null;
   return new Response(request.method === 'HEAD' ? null : asset[0]+(path==='/assets/member-experience/v1.css'?grubIntelligenceCSS:''),{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
 }
@@ -79,10 +80,11 @@ export async function memberExperienceEntry(request, env, response) {
   if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');
   if(['dashboard','check-in'].includes(name)){
     const followup='<section id="dailyCheckinFollowup" aria-label="Your saved next-step feedback" hidden></section>';
-    if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+followup);
-    else html=html.replace(/(<main\b[^>]*>)/,'$1'+followup);
+    if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+dayGuideMarkup+followup);
+    else html=html.replace(/(<main\b[^>]*>)/,'$1'+dayGuideMarkup+followup);
     html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/checkin-followup.css"><script defer src="/assets/member-experience/checkin-followup.mjs"></script></body>');
   }
+  if(name==='dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/day-guide.css"><script defer src="/assets/member-experience/day-guide.mjs"></script></body>');
   if(name === 'settings') html=withPasswordSettings(html);
   html=addMemberChrome(html,name);
   if(!env.MEMBER_SESSION_REVIEW_ONLY)html=withSessionState(html);

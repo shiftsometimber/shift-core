@@ -12,3 +12,5 @@ button:disabled{opacity:.6;cursor:wait}#accountError{padding:48px 0}#accountErro
 
 /* Scoped controls within the existing check-in, not a dashboard redesign. */
 #supportNeed{box-sizing:border-box;width:100%;min-height:44px;padding:12px;margin:8px 0 20px;background:#e7e3da;color:#050505;border:1px solid #707762;border-radius:8px;font:inherit}.shift-followup{padding:16px;margin:0 0 20px;border:1px solid #707762;border-radius:8px}.shift-followup label{display:flex;align-items:center;gap:10px;min-height:44px}.shift-followup input[type=radio]{width:20px;height:20px;flex:none}.shift-followup fieldset{border:0;padding:0}.shift-followup legend{font-weight:700}
+
+.history-loading{min-height:340px;padding:28px;border:1px solid #707762;border-radius:16px;background:#11140f;color:#e7e3da}.history-skeleton{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.history-skeleton span{display:block;height:140px;background:#70776233;border:1px solid #707762;border-radius:12px}#historyLoading[hidden]{display:none}#firstRecordPrompt button{padding:12px;background:#e7e3da;color:#050505;border:1px solid #707762;border-radius:8px;font:inherit}

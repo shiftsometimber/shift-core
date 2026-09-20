@@ -26,7 +26,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
  }
  function actionLink(a){const link=element('a',a.label||'Open this next step');link.href=typeof a.href==='string'&&/^\/(?!\/)/.test(a.href)?a.href:'/member/dashboard#today';return link}
  function render(edit=false){
-  host.replaceChildren();host.hidden=!record;if(!record)return;
+  document.dispatchEvent(new CustomEvent('sst:daily-feedback',{detail:record}));host.replaceChildren();host.hidden=!record;if(!record)return;
   host.append(element('h2','Did it help?'),element('p','Your next step from the check-in on '+new Date(record.createdAt).toLocaleDateString('en-GB')+':'),element('strong',record.action.title),element('p',record.action.detail),actionLink(record.action));
   const status=element('p');status.id='dailyFeedbackStatus';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
   if(record.feedback&&!edit){status.textContent='Feedback saved: '+labels[record.feedback]+'.';const update=element('button','Update answer');update.type='button';update.addEventListener('click',()=>render(true));host.append(status,update);return}
