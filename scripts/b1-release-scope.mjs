@@ -8,7 +8,7 @@ export const RELEASE_PATHS=new Set(['scripts/verify-public-continuity-live.mjs',
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
- assert.equal(manifest.applicationCommit,'62936c4b55fd512fcae794c9fec27f7f3344b049');
+ assert.equal(manifest.applicationCommit,'23ae68e8f20592204ac521f5d40c70a7729e6fa1');
  assert.equal(manifest.baseCommit,'d61ff3f21e264377ec97f5a2bd4bed04daf64aff');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
