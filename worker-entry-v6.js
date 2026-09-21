@@ -69,7 +69,7 @@ import {
 } from "./fit-reminders-v1.js";
 import { tapRoomRoutes } from "./tap-room-v1.js";
 import { myJourneyRoutes } from "./my-journey-v1.js";
-import { penDayRoutes } from "./pen-day-v1.js";
+import { penDayRoutes, appendPenDayExport } from "./pen-day-v1.js";
 import {
   myJourneyCheckInRoutes,
   myJourneyTrendRoutes,
@@ -90,6 +90,7 @@ const MEMBER_ORIGINS = new Set([
 ]);
 const HQ_ORIGINS = new Set(["https://hq.shiftsometimber.co.uk"]);
 const GIT_MEMBER_ASSETS = new Map([
+  ["/assets/ask-timber-intent-v2.js", "application/javascript; charset=utf-8"],
   ["/assets/articles/oral-semaglutide-for-weight-loss/title-card-v1.jpg", "image/jpeg"],
   ["/assets/programme-v1/programme.css", "text/css; charset=utf-8"],
   ["/assets/programme-v1/programme.mjs", "text/javascript; charset=utf-8"],
@@ -962,6 +963,7 @@ const worker = {
       await hq.fetch(request, env, ctx),
     );
     fallback = await appendHealthExport(request, env, fallback);
+    fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);

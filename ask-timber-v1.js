@@ -37,7 +37,6 @@ export async function askTimberRoutes(request,env){
   if(request.method!=='POST')return json({ok:false,error:'method_not_allowed'},405,request);
   const requestId=crypto.randomUUID();
   if(!allowedOrigin(request))return json({ok:false,error:'origin_not_allowed',requestId},403,request);
-  if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);
   const body=await request.json().catch(()=>null);
   const message=clean(body?.message,MAX_MESSAGE);
   if(message.length<3)return json({ok:false,error:'message_required',requestId},400,request);
@@ -46,6 +45,8 @@ export async function askTimberRoutes(request,env){
     console.log('ask_timber_safe_redirect',JSON.stringify({requestId,category:urgent.category}));
     return json({ok:true,requestId,mode:'safety',...urgent},200,request);
   }
+  // Static urgent-help signposting must survive missing AI/database bindings.
+  if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);
   const reviewedDirect=directReviewedAnswer(message);
   if(reviewedDirect&&body.useJourney!==true)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
@@ -142,13 +143,13 @@ Return one JSON object with exactly these fields:
 {"answer":"2-5 short paragraphs with inline [n] citations","keyPoints":["up to 4 concise points"],"nextSteps":["up to 3 safe actions"],"followUps":["up to 3 useful questions the user might ask next"],"confidence":"high|medium|low","limitations":"one plain-English sentence"}`;}
 
 function urgentResponse(message){
-  const q=message.toLowerCase();
-  if(/\b(suicid|kill myself|end my life|self[- ]?harm|don't want to live|do not want to live)\b/.test(q))return{
+  const q=message.toLowerCase().replace(/[’‘]/g,"'").replace(/[‐‑–—]/g,'-');
+  if(/\b(suicid(?:e|al|ality)?|kill (?:myself|himself|herself|themselves)|end (?:my|his|her|their) life|self[- ]?harm(?:ing|ed)?|don't want to live|do not want to live)\b/.test(q))return{
     category:'mental_health_emergency',confidence:'high',
-    answer:"I’m really sorry you’re dealing with this. Ask Timber isn’t the right place to handle an immediate crisis. If you may act now or are in danger, call 999 or go to A&E. You can also call Samaritans free on 116 123, day or night.",
-    keyPoints:['Do not stay alone if you may be at immediate risk.'],nextSteps:['Call 999 or go to A&E if there is immediate danger.','Call Samaritans on 116 123.'],followUps:[],sources:[],limitations:'This response is emergency signposting, not a clinical assessment.'
+    answer:"Ask Timber cannot assess a mental health crisis. If you cannot keep yourself or someone else safe, call 999 or go to A&E now. For urgent mental health help, call NHS 111 and select the mental health option. You can also call Samaritans free on 116 123, day or night.",
+    keyPoints:['Do not wait for an online reply if someone may be in danger.'],nextSteps:['Call 999 or go to A&E if you cannot keep yourself or someone else safe.','Call NHS 111 for urgent mental health help.','Call Samaritans on 116 123 for someone to talk to.'],followUps:[],sources:[],limitations:'This response is emergency signposting, not a clinical assessment.'
   };
-  if(/\b(chest pain|cannot breathe|can't breathe|severe shortness of breath|unconscious|not breathing|stroke|face droop|severe allergic|anaphyl|overdose|collapsed|fainted and|vomiting blood)\b/.test(q))return{
+  if(/\b(chest pain|cannot breathe|can't breathe|severe shortness of breath|unconscious|not breathing|stroke|face droop|severe allergic|anaphyl(?:axis|actic)?|overdos(?:e|ed|ing)|collapsed|fainted and|vomiting blood)\b/.test(q))return{
     category:'medical_emergency',confidence:'high',
     answer:"This could need urgent medical attention. Call 999 now if symptoms are severe, sudden, worsening, or someone is unconscious or struggling to breathe. Do not wait for an online reply.",
     keyPoints:['Ask Timber cannot safely assess an emergency.'],nextSteps:['Call 999 now for immediate danger.','For urgent but non-life-threatening help, use NHS 111.'],followUps:[],sources:[],limitations:'This response is emergency signposting, not a diagnosis.'

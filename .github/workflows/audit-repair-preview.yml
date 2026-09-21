@@ -1,7 +1,7 @@
 name: September audit repair preview
 on:
   push:
-    branches: [fix/audit-21sep]
+    branches: [fix/audit-21sep, fix/discovery-audit-21sep]
 permissions:
   contents: read
 concurrency:
@@ -30,6 +30,7 @@ jobs:
       - name: Member, consent, context and preservation regressions
         run: |
           node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs tests/ai-connected*.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/progress-summary-audit.test.mjs tests/progress-renderer-audit.test.mjs tests/rendered-member-acceptance-support.test.mjs
+          node --test tests/discovery-repairs.test.mjs tests/pen-day-v1.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/public-ticker-contrast-safety.test.mjs
           node my-timber-final-source-gate.mjs
           node daily-shift-frontdoor-gate.mjs
           node gate4-one-shift-brain-gate.mjs
@@ -53,6 +54,9 @@ jobs:
       - name: Verify audited Progress and retained Fit in phone and desktop browsers
         if: ${{ !cancelled() && steps.browsers.outcome == 'success' }}
         run: node preview/audit-repair/browser-proof.mjs
+      - name: Verify discovery repairs across desktop and phone browsers
+        if: ${{ !cancelled() && steps.browsers.outcome == 'success' }}
+        run: node preview/discovery-repair/browser-proof.mjs
       - name: Read Pages provenance with existing preview access
         if: always()
         run: node preview/audit-repair/source-proof.mjs

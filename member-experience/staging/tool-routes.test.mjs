@@ -6,7 +6,7 @@ import {currentToolAssets} from './tool-assets.mjs';
 const origin='https://shift-core-work-staging.test.workers.dev';
 const html='<html><head></head><body><nav class="sst-member-tabs"></nav><main><div id="previewMember" hidden class="preview-member"><section id="panel-today"><h2 id="todayTitle">Today</h2><div id="todayActions"></div></section><section id="panel-journey"></section></div></main></body></html>';
 const requests=[];
-const env={STAGING_ASSETS:{fetch:async request=>{const path=new URL(request.url).pathname;requests.push(path);if(path==='/staging/member-source/member/dashboard.html')return new Response(html);if(path.startsWith('/staging/member-current/'))return new Response(readFileSync('frontend/member/'+path.split('/').at(-1)));return new Response('Missing',{status:404})}}};
+const env={STAGING_ASSETS:{fetch:async request=>{const path=new URL(request.url).pathname;requests.push(path);if(path==='/staging/member-source/member/dashboard.html')return new Response(html);if(path.startsWith('/staging/member-current/'))return new Response(readFileSync('frontend/member/'+path.slice('/staging/member-current/'.length)));return new Response('Missing',{status:404})}}};
 await test('Canonical isolated dashboard renders the actual restored tools and same-origin bootstrap',async()=>{
  const response=await connectedMemberRoutes(new Request(origin+'/member/dashboard'),env);assert.equal(response.status,200);const body=await response.text();
  for(const marker of ['data-member-tools="v1"','id="panel-visualise"','id="panel-plans"','/assets/member-experience/tools.mjs','id="todayActions"','Checking fictional account'])assert(body.includes(marker),marker);

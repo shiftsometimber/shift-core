@@ -17,7 +17,7 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
   if(!userId)return json({ok:false,error:'unauthorised'},401);
 
   const required=['progress_entries','check_ins'];
-  const optional=['daily_checkin_actions','health_passport_records','health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2'];
+  const optional=['daily_checkin_actions','health_passport_records','health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2','member_pen_day_notes'];
   const present=await existingTables(env.DB,[...required,...optional]);
   const missingRequired=required.filter(name=>!present.has(name));
   if(missingRequired.length)return json({ok:false,error:'health_erasure_schema_incomplete',missing:missingRequired},503);
@@ -27,6 +27,10 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
     if(!present.has(table))continue;
     statements.push(env.DB.prepare(`DELETE FROM ${table} WHERE user_id=?${table==='check_ins'?' AND case_id IS NULL':''}`).bind(userId));
     deleted.push({table});
+  }
+  if(await tableExists(env.DB,'product_events')){
+    statements.push(env.DB.prepare("DELETE FROM product_events WHERE user_id=? AND event_name IN ('pen_day_done','pen_day_rough','pen_day_status_saved','pen_day_door_click')").bind(userId));
+    deleted.push({table:'product_events',scopes:['pen_day']});
   }
   statements.push(env.DB.prepare("UPDATE member_state SET preferences=json_remove(preferences,'$.myJourney','$.lifeBack','$.fitJourney'),updated_at=? WHERE user_id=?").bind(new Date().toISOString(),userId));
   deleted.push({table:'member_state',scopes:['myJourney','lifeBack','fitJourney']});
