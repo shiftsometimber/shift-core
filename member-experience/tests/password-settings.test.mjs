@@ -20,7 +20,7 @@ test('only settings aliases gain the password card; original preference and cons
     const response=await memberExperienceEntry(new Request('https://site.test'+path),env,new Response(source,{headers:{'Content-Type':'text/html'}}));
     const html=await response.text();
     assert.match(html,/data-member-password-settings/);assert.doesNotMatch(html,/Account security/);
-    assert.match(html,/<select id="prefWeight"><\/select>/);assert.match(html,/<div id="healthConsentManager">Privacy controls<\/div>/);
+    assert.match(html,/<select id="prefWeight" disabled><option value="stone_lb">/);assert.match(html,/<div id="healthConsentManager">Privacy controls<\/div>/);
     assert.equal((html.match(/src="\/api-adapter-v33d.js"/g)||[]).length,1);
     assert.equal((html.match(/src="\/turnstile-auth-v1.js/g)||[]).length,1);
     assert.match(response.headers.get('Cache-Control'),/no-store/);

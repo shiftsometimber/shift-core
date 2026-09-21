@@ -27,3 +27,13 @@ The initial approval block was resolved by explicit user authorization. Command-
 ## Preserved decisions and unresolved scope
 
 Treatments stays; no drawer reset; no ticker placement changes; no stock, ordering or clinical-service activation. Latest Today implementation is preserved pending final requirement reconciliation. Payment/question order, Pages provenance, real-device checks, source/feed freshness, email delivery and operational/clinical sign-off remain open as recorded in the audit. No production payments, messages or customer-data writes were performed.
+
+## Continuation: Settings, Fit rebuild and Continuity measurement
+
+The second repair adds atomic Settings unit writes to the canonical Journey weight preference, protects height display preferences from stale whole-state saves, excludes Hotel variants from new home sessions, and extends hosted browser proof to explicit Fit rebuilding with historical-plan and activity preservation.
+
+A separate HQ Continuity report is available at `/v1/hq/continuity` and within the existing Journey report. First Today exposure is recorded prospectively after the authenticated Today panel is visible. Returns use saved check-ins, completed actions and linked feedback, with Europe/London calendar windows and mature denominators. Help episodes are deduplicated across linked check-in and Life Back records using the latest answer, retaining neutral/negative answers and unanswered counts.
+
+Local validation: 216 regression tests pass, including London/DST boundaries, immature cohorts, source/account exclusions, episode deduplication and atomic unit persistence. Three existing source gates pass. Hosted verification is pending for this continuation; earlier preview evidence does not certify these new changes.
+
+Data/decision dependencies remain explicit: historical first Today exposure cannot be reconstructed; the product does not evidence actual eating; medication-elsewhere segmentation and recruitment counts have no explicit register; thresholds, the member P0 register and human clinical/business decisions cannot be invented. These return unavailable/not assessed, never fabricated zeroes or a success status. This is aggregate product-use reporting, not evidence of clinical efficacy.

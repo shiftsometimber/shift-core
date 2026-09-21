@@ -1,3 +1,4 @@
+import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
 import legacy from './hq-ai.js';
 import {watchtowerSnapshot} from './watchtower-v1.js';
 import {outcomesSnapshot} from './outcomes-v1.js';
@@ -5,13 +6,14 @@ import {memberJourneySnapshot} from './journey-analytics-v1.js';
 
 export default{async fetch(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
-  const readPaths=['/v1/hq/watchtower','/v1/hq/outcomes','/v1/hq/journey','/v1/hq/attention'];
+  const readPaths=['/v1/hq/continuity','/v1/hq/watchtower','/v1/hq/outcomes','/v1/hq/journey','/v1/hq/attention'];
   const ack=path.match(/^\/v1\/hq\/attention\/([a-zA-Z0-9_-]+)\/ack$/);
   if((request.method==='GET'&&readPaths.includes(path))||(request.method==='POST'&&ack)){
     const auth=await legacy.fetch(new Request(new URL('/v1/hq/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!auth.ok)return auth;
     const authData=await auth.clone().json().catch(()=>({}));const actor=authData.user||{};
     if(request.method==='POST'&&ack)return acknowledgeAttention(env,actor,ack[1],await readJson(request));
     if(path==='/v1/hq/outcomes')return json(await outcomesSnapshot(env.DB));
+    if(path==='/v1/hq/continuity')return json(await continuityScorecard(env.DB,{days:new URL(request.url).searchParams.get('days')??90}));
     if(path==='/v1/hq/journey')return json(await memberJourneySnapshot(env.DB,{days:new URL(request.url).searchParams.get('days')??30}));
     const w=await watchtowerSnapshot(env);
     if(path==='/v1/hq/attention')return json(await attentionWithActions(env,w));

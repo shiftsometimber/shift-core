@@ -16,3 +16,8 @@ export function fitLevelAllowed(row,level='beginner'){
  const ranks={beginner:0,standard:1,intermediate:1,advanced:2};
  return ranks[variant]<=(ranks[String(level).toLowerCase()]??0);
 }
+
+export function fitSettingAllowed(row,location='home'){
+ const identity=[row.id,row.title,row.data?.variation_identity].filter(Boolean).join(' ');
+ return location!=='home'||!/hotel/i.test(identity);
+}
