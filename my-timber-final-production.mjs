@@ -72,6 +72,10 @@ try{
   await page.locator('[data-life-changed]').click();
   const late=page.locator('[data-adjust="working_late"]');await late.waitFor({state:'visible',timeout:10000});await late.click();
   await page.waitForSelector('.mtm-announcement[role="status"]',{state:'visible',timeout:20000});
+  // Rebuilding Today creates a fresh collapsed disclosure. Open it through
+  // its visible control before asserting the rendered meal and movement.
+  if(await more.getAttribute('open')===null)await more.locator(':scope > summary').click();
+  await page.locator('.mt-workout').waitFor({state:'visible',timeout:10000});
   await page.waitForFunction(()=>/10 minutes/i.test(document.querySelector('.mt-workout')?.textContent||''),null,{timeout:10000});
   const rebuilt=await body(page);await screenshot(page,'02-working-late-rebuilt');
   if(!/10 minutes/i.test(rebuilt))fail('working late movement','not compressed to ten minutes');else pass('Working late compresses movement to 10 minutes');
