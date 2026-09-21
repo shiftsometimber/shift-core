@@ -15,7 +15,9 @@ export function validate(payload){
   if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))throw new Error('invalid_slug');
   const title=field(payload.title,300,true),summary=field(payload.metaDescription,3000),body=field(payload.content_markdown,100000,true);
   field(payload.content_html,200000);
-  return {id:String(id),slug,title,summary,body};
+  const vendorStatus=String(payload.status||'published').toLowerCase();
+  if(!['published','draft'].includes(vendorStatus))throw new Error('invalid_status');
+  return {id:String(id),slug,title,summary,body,publish:vendorStatus==='published'};
 }
 async function readPayload(request){
   const reader=request.body?.getReader();if(!reader)throw new Error('invalid_payload');
@@ -45,16 +47,19 @@ export async function babyLoveRoutes(request,env){
     await env.DB.prepare(`CREATE TABLE IF NOT EXISTS babylove_receipts(source_id TEXT PRIMARY KEY,slug TEXT NOT NULL UNIQUE,payload_hash TEXT NOT NULL,payload_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`).run();
     const existing=await env.DB.prepare('SELECT source_id,slug,payload_hash,payload_json FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
     if(existing){
-      if(existing.source_id===article.id&&existing.slug===article.slug&&(existing.payload_hash===hash||sameArticleDelivery(JSON.parse(existing.payload_json),payload)))return reply({success:true,status:'received',duplicate:true,published:false});
+      if(existing.source_id===article.id&&existing.slug===article.slug&&(existing.payload_hash===hash||sameArticleDelivery(JSON.parse(existing.payload_json),payload))){
+        const saved=await env.DB.prepare('SELECT status FROM knowledge_articles WHERE slug=?').bind(article.slug).first().catch(()=>null);
+        return reply({success:true,status:'received',duplicate:true,published:saved?.status==='published',link:saved?.status==='published'?'/articles/'+article.slug:undefined});
+      }
       return reply({success:false,error:'article_conflict_requires_review'},409);
     }
     // D1 batches are atomic: collision rolls back the receipt as well.
     // Raw HTML, hero image and schema are retained in the receipt, not rendered.
     await env.DB.batch([
       env.DB.prepare('INSERT INTO babylove_receipts(source_id,slug,payload_hash,payload_json) VALUES(?,?,?,?)').bind(article.id,article.slug,hash,raw),
-      env.DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at) VALUES(?,?,'Knowledge','SHIFT Team','draft',?,?,?,NULL)`).bind(article.title,article.slug,article.summary,article.body,article.title)
+      env.DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at) VALUES(?,?,'Knowledge','SHIFT Team',?,?,?,?,?,?)`).bind(article.title,article.slug,article.publish?'published':'draft',article.summary,article.body,article.title,article.publish?new Date().toISOString():null)
     ]);
-    return reply({success:true,status:'draft',published:false});
+    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined});
   }catch{
     try{
       const receipt=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
@@ -69,6 +74,6 @@ export async function babyLoveRoutes(request,env){
 // Compare content, not JSON property order or delivery bookkeeping. HTML and images
 // are deliberately included: a changed article still requires editorial review.
 export function sameArticleDelivery(a,b){
- const fields=['id','slug','title','metaDescription','content_markdown','content_html','heroImageUrl','heroImageAlt','featureImageEnabled'];
+ const fields=['id','slug','title','metaDescription','content_markdown','content_html','heroImageUrl','heroImageAlt','featureImageEnabled','status'];
  return fields.every(key=>String(a[key]??'')===String(b[key]??''));
 }
