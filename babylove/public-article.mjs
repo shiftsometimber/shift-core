@@ -1,5 +1,6 @@
 import {ARTICLE,MAIN,STYLES,ASSETS,KNOWLEDGE_CARD} from './editorial/public-bundle.mjs';
 import {publicHeader,publicDrawer,publicFooter} from '../public-shell-contract.mjs';
+import {withArticleResponsePolicy} from './response-policy.mjs';
 export {ARTICLE,KNOWLEDGE_CARD};
 const HOSTS=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -26,7 +27,7 @@ export async function babyLovePublicRoute(request,env){
  const row=await publication(env);
  if(!row)return new Response('Article not published',{status:404,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
  if(u.pathname!==ARTICLE.path||u.hostname!=='shiftsometimber.co.uk')return Response.redirect(ARTICLE.proposed_url,301);
- return new Response(request.method==='HEAD'?null:articleHTML(row.publish_at),{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Revision':'wegovy-cost-uk-20260919-matt-images-contrast'}});
+ return withArticleResponsePolicy(new Response(request.method==='HEAD'?null:articleHTML(row.publish_at),{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Revision':'wegovy-cost-uk-20260919-matt-images-contrast'}}));
 }
 export async function withBabyLoveDiscovery(response,request,env){
  const u=new URL(request.url),path=u.pathname.replace(/\.html$/,'').replace(/\/$/,'');

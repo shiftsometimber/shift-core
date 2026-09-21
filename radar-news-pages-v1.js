@@ -12,7 +12,7 @@ const publishedAt=newsPublicationDate;
 export const NEWSROOM_ROWS_SQL="SELECT e.id,e.headline,e.region,e.regulator,e.event_type,e.content_package_json,e.source_evidence_json,e.reviewed_at,e.updated_at,e.created_at,p.first_published_at FROM radar_events e LEFT JOIN (SELECT event_id,MIN(created_at) first_published_at FROM radar_audit WHERE action='published' GROUP BY event_id) p ON p.event_id=e.id WHERE e.status='published' ORDER BY COALESCE(p.first_published_at,e.reviewed_at,e.updated_at) DESC,e.id DESC LIMIT 250";
 function markdown(source){
  const lines=String(source||"").replace(/\r/g,"").split("\n"),out=[];let list=false;
- const inline=value=>esc(value).replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g,'<a href="$2" rel="noopener noreferrer">$1</a>').replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+ const inline=value=>esc(value).replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+|\/(?!\/)[^\s)]*)\)/g,(_,label,href)=>'<a href="'+href+'"'+(href.startsWith('https:')?' rel="noopener noreferrer"':'')+'>'+label+'</a>').replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
  for(const raw of lines){const line=raw.trim();if(!line){if(list){out.push("</ul>");list=false}continue}
   if(/^###\s+/.test(line)){if(list){out.push("</ul>");list=false}out.push("<h3>"+inline(line.replace(/^###\s+/,""))+"</h3>")}
   else if(/^##\s+/.test(line)){if(list){out.push("</ul>");list=false}out.push("<h2>"+inline(line.replace(/^##\s+/,""))+"</h2>")}
@@ -78,8 +78,18 @@ export function newsroomHead(html){
 }
 export async function radarNewsPageRoutes(request,env){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,"")||"/";if(request.method!=="GET"&&request.method!=="HEAD")return null;if(!["shiftsometimber.co.uk","www.shiftsometimber.co.uk"].includes(url.hostname))return null;if(path!=="/shift-newsroom"&&path!=="/medicine-news"&&!path.startsWith("/medicine-news/"))return null;if(path==="/medicine-news")return Response.redirect(new URL("/shift-newsroom",url).href,301);
- const base=await shell(request);if(!base.ok)return base;let html=await base.text();
- const {results=[]}=await env.DB.prepare(NEWSROOM_ROWS_SQL).all(),rows=results.filter(row=>parse(row.content_package_json,{}).destinations?.includes("medicine_news")).filter((row,index,list)=>articleSlug(row)&&list.findIndex(item=>articleSlug(item)===articleSlug(row))===index);
+ // These independent reads previously ran serially on every newsroom request.
+ // Keep publication decisions fresh: no shared HTML or database-result cache.
+ const started=performance.now();let shellMs=0,dbMs=0;
+ const [[received,source],{results=[]}]=await Promise.all([
+  shell(request).then(async response=>{const text=response.ok?await response.text():null;shellMs=performance.now()-started;return [response,text]}),
+  env.DB.prepare(NEWSROOM_ROWS_SQL).all().then(result=>{dbMs=performance.now()-started;return result}),
+ ]);
+ if(!received.ok)return received;
+ const base=new Response(null,{status:received.status,headers:received.headers});
+ base.headers.set('Server-Timing','news_shell;dur='+shellMs.toFixed(1)+', news_db;dur='+dbMs.toFixed(1));
+ let html=source;
+ const rows=results.filter(row=>parse(row.content_package_json,{}).destinations?.includes("medicine_news")).filter((row,index,list)=>articleSlug(row)&&list.findIndex(item=>articleSlug(item)===articleSlug(row))===index);
  html=html.replace("</head>",newsroomStyle+NEWSROOM_FILTER_STYLE+"</head>");
  if(path==="/shift-newsroom"){
   html=html.replace(/<body\b([^>]*)>/i,(_,attrs)=>'<body'+attrs.replace(/\sclass=["'][^"']*["']/i,'')+' class="newsroom-page">');
