@@ -82,6 +82,7 @@ on:
       - "tests/newsroom-publication*.test.mjs"
       - "tests/grub-expansion*.test.mjs"
       - "fit-reminders-v1.js"
+      - "my-timber-pwa/**"
       - "scheduled-intelligence.js"
       - "tests/scheduled-intelligence-delivery.test.mjs"
       - "tests/fit-reminders-delivery.test.mjs"
@@ -231,6 +232,8 @@ jobs:
           node --test tests/catalogue-publication*.test.mjs tests/fit-expansion*.test.mjs tests/fit-v3-closeout.test.mjs
       - name: Verify reminder delivery and proactive acknowledgement before promotion
         run: node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
+      - name: Verify approved PWA, device consent and exact presentation preservation
+        run: node --test my-timber-pwa/*.test.mjs
       - name: Prove Daily Shift is a fluid one-thumb front door
         run: node daily-shift-frontdoor-gate.mjs
       - name: Prove My Timber has reached the 75 percent all-green bar
@@ -431,6 +434,8 @@ jobs:
         run: node scripts/verify-shift-take-live.mjs
       - name: Prove exact member scripts and authentication on live traffic
         run: node member-experience/verify-production-member.mjs
+      - name: Verify exact PWA assets, full-account entry and device privacy on live traffic
+        run: node my-timber-pwa/verify-live.mjs
       - name: Prove Medicines Watch and its source checks on live traffic
         run: node medicines-watch/verify-live.mjs
       - name: Prove repaired access sources are reviewed and current on live traffic

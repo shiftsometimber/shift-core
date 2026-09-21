@@ -1,11 +1,11 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "23ae68e8f20592204ac521f5d40c70a7729e6fa1",
-  "baseCommit": "d61ff3f21e264377ec97f5a2bd4bed04daf64aff",
-  "reason": "Add one-at-a-time ingredient entry with catalogue suggestions and connect the legacy My Timber sign-in to canonical password recovery. Runtime only: retain the published Grub catalogue, prices, stock, customer records, Pages and service holds.",
+  "applicationCommit": "1cda701a7eb2b5a9aa70c28b32bd5070c258e428",
+  "baseCommit": "1af0b7bb9e2d354198bcee918cbbd2da2b11b7fc",
+  "reason": "Owner approved compact full-account PWA setup and footer on 21 September, followed by Go. Exact reviewed PWA candidate only; preserve existing Pages, catalogue, prices, stock, services and member records. Physical-device acceptance remains a separate gate.",
   "runtimeSchemaAdditions": [
-    "checkout_attempts",
-    "commerce_receipt_delivery"
+    "my_timber_push_devices",
+    "my_timber_push_deliveries"
   ],
   "enforceApplicationPin": true
 }
