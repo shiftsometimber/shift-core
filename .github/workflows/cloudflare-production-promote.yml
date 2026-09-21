@@ -269,6 +269,8 @@ jobs:
           node g3-006-knowledge-editorial-staging.mjs
       - name: Verify exact current main before production mutations
         run: node scripts/catalogue-publication-client.mjs --verify-main
+      - name: Verify discovery privacy, crisis and reporting regressions
+        run: node --test tests/discovery-repairs.test.mjs
       - name: Apply pharmacy-readiness database additions
         shell: bash
         run: |
@@ -422,6 +424,15 @@ jobs:
             seo-template-live-proof/
       - name: Prove deployed public audit repairs
         run: node scripts/verify-public-audit-live.mjs
+      - name: Prove discovery repair source and anonymous boundaries on live traffic
+        run: node scripts/verify-discovery-repairs-live.mjs
+      - name: Retain discovery repair live proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovery-repairs-live-${{ github.run_id }}
+          path: discovery-repairs-live.json
+          if-no-files-found: warn
       - name: Prove deployed Progress client matches current Git authority
         run: node g2-012-production-proof.mjs
       - name: Record Radar metadata repair and remaining source failures without writes

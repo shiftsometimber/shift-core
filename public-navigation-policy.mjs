@@ -39,9 +39,9 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 export const contrastSafetyVersion='public-contrast-20260917-r2';
 // The shared bridge can be inserted after load. Set the actual paint colour,
 // not just `color`, because reading-page styles also set text-fill explicitly.
+export const serviceBridgePaintStyle='<style data-shift-service-bridge-paint>html body main#main-content .sst-service-bridge .sst-service-bridge__main{background:#E7E3DA!important;color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content .sst-service-bridge .sst-service-bridge__main :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content .sst-service-bridge a.sst-service-bridge__cta,html body main#main-content .sst-service-bridge a.sst-service-bridge__cta *{background:#050505!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}</style>';
 export function repairServiceBridgePaint(html){
-  const style='<style data-shift-service-bridge-paint>html body main#main-content .sst-service-bridge .sst-service-bridge__main{background:#E7E3DA!important;color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content .sst-service-bridge .sst-service-bridge__main :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content .sst-service-bridge a.sst-service-bridge__cta,html body main#main-content .sst-service-bridge a.sst-service-bridge__cta *{background:#050505!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}</style>';
-  return html.includes('data-shift-service-bridge-paint')?html:html.replace(/<\/head>/i,style+'</head>');
+  return html.includes('data-shift-service-bridge-paint')?html:html.replace(/<\/head>/i,serviceBridgePaintStyle+'</head>');
 }
 export const contrastSafetyStyles=String.raw`
 /* Brand-only repair for computed-colour collisions found by the 532-URL live audit. */

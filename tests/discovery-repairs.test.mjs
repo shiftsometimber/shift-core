@@ -10,6 +10,8 @@ import {receiveAccountDeletion} from '../privacy-account-request-v1.js';
 import {recordProductEvent,analyticsSnapshot,ensureAnalyticsSchema} from '../product-analytics-v1.js';
 import {composeDailyOutput} from '../member-product-v8.js';
 import {savedFitIssues} from '../member-experience/fit-saved-review.mjs';
+import {repairServiceBridgePaint} from '../public-navigation-policy.mjs';
+import {preserveServiceBridgePaint} from '../public-service-bridge-preservation.mjs';
 
 function database(t){
  const sqlite=new DatabaseSync(':memory:');t.after(()=>sqlite.close());
@@ -131,4 +133,16 @@ test('24-hour reporting has exact cutoff, midnight and future boundaries for all
   for(const [i,at]of [cutoff-1,cutoff,cutoff+1,Date.parse(now),Date.parse(now)+1].entries())sqlite.prepare("INSERT INTO product_events(user_id,event_name,surface,occurred_at) VALUES(?,'error_presented','test',?)").run(i+1,new Date(at).toISOString());
   const r=await analyticsSnapshot(DB,{hours:24,now});assert.equal(r.errors,3);assert.equal(r.activeMembers,3);assert.equal(r.events[0].count,3);assert.equal(r.surfaces[0].count,3);
  }
+});
+
+test('public release preserves every byte outside the exact authorised paint repair',()=>{
+ const original='<html><head><title>Retained</title></head><body><main>Retained page content</main></body></html>';
+ const repaired=repairServiceBridgePaint(original);
+ assert.equal(repairServiceBridgePaint(repaired),repaired);
+ assert.equal(preserveServiceBridgePaint(Buffer.from(repaired),{required:true}).toString(),original);
+ assert.equal(preserveServiceBridgePaint(Buffer.from(original)).toString(),original);
+ assert.throws(()=>preserveServiceBridgePaint(Buffer.from(original),{required:true}),/Missing/);
+ assert.throws(()=>preserveServiceBridgePaint(Buffer.from(repaired.replace('#050505','#FFFFFF')),{required:true}),/Unexpected/);
+ assert.throws(()=>preserveServiceBridgePaint(Buffer.from(repaired+repaired)),/Unexpected/);
+ assert.notEqual(preserveServiceBridgePaint(Buffer.from(repaired.replace('Retained page content','Changed content'))).toString(),original);
 });

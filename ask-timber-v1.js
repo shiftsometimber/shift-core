@@ -146,8 +146,8 @@ function urgentResponse(message){
   const q=message.toLowerCase().replace(/[’‘]/g,"'").replace(/[‐‑–—]/g,'-');
   if(/\b(suicid(?:e|al|ality)?|kill (?:myself|himself|herself|themselves)|end (?:my|his|her|their) life|self[- ]?harm(?:ing|ed)?|don't want to live|do not want to live)\b/.test(q))return{
     category:'mental_health_emergency',confidence:'high',
-    answer:"Ask Timber cannot assess a mental health crisis. If you cannot keep yourself or someone else safe, call 999 or go to A&E now. For urgent mental health help, call NHS 111 and select the mental health option. You can also call Samaritans free on 116 123, day or night.",
-    keyPoints:['Do not wait for an online reply if someone may be in danger.'],nextSteps:['Call 999 or go to A&E if you cannot keep yourself or someone else safe.','Call NHS 111 for urgent mental health help.','Call Samaritans on 116 123 for someone to talk to.'],followUps:[],sources:[],limitations:'This response is emergency signposting, not a clinical assessment.'
+    answer:"Ask Timber cannot assess a mental health crisis. If you cannot keep yourself or someone else safe, call 999 or go to A&E now. For urgent mental health help in England, call NHS 111 and select the mental health option. You can also call Samaritans free on 116 123, day or night.",
+    keyPoints:['Do not wait for an online reply if someone may be in danger.'],nextSteps:['Call 999 or go to A&E if you cannot keep yourself or someone else safe.','In England, call NHS 111 for urgent mental health help.','Call Samaritans on 116 123 for someone to talk to.'],followUps:[],sources:[],limitations:'This response is emergency signposting, not a clinical assessment.'
   };
   if(/\b(chest pain|cannot breathe|can't breathe|severe shortness of breath|unconscious|not breathing|stroke|face droop|severe allergic|anaphyl(?:axis|actic)?|overdos(?:e|ed|ing)|collapsed|fainted and|vomiting blood)\b/.test(q))return{
     category:'medical_emergency',confidence:'high',

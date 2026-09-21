@@ -27,11 +27,11 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
  const login=()=>json('/v1/auth/login','POST',{email:'probe'+id+'@example.invalid',password:fixture.password});
  const consent=granted=>json('/v1/consents','POST',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted});
  const ready=async path=>{await page.goto(origin+path);await page.waitForFunction(()=>document.body.dataset.memberSession==='ready')};
- const today=async()=>{await ready('/member/dashboard#today');await page.locator('#more-for-today').waitFor();const d=page.locator('#more-for-today');if(await d.getAttribute('open')===null)await d.locator(':scope > summary').click();await page.locator('.mt-workout').waitFor()};
+ const today=async()=>{await ready('/member/dashboard#today');await page.waitForFunction(()=>document.querySelector('#todayActions')?.dataset.todayDecisionReady==='true');await page.locator('#more-for-today').waitFor();const d=page.locator('#more-for-today');if(await d.getAttribute('open')===null)await d.locator(':scope > summary').click();await page.locator('.mt-workout').waitFor()};
  try{
   await ctx.route('**/*',route=>{const r=route.request();return new URL(r.url()).origin!==origin&&!['GET','HEAD'].includes(r.method())?route.abort():route.continue()});
   phase('public-crisis-rendering');
-  await page.goto(origin+'/ask-timber');
+  await page.goto(origin+'/ask-timber');await page.getByRole('button',{name:'Necessary only',exact:true}).click();
   for(const message of ['I feel suicidal and cannot eat dinner','Someone has anaphylaxis']){
    await page.locator('#timberQuestion').fill(message);const reply=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/ai/chat'&&r.request().method()==='POST');await page.locator('#timberSubmit').click();
    const response=await reply;assert.equal(response.status(),200);assert.equal((await response.json()).mode,'safety');
@@ -61,6 +61,8 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
   const notes=await json('/v1/pen-day');assert.equal(notes.today,null);assert.deepEqual(notes.history,[]);assert.equal((await call('/v1/pen-day','POST',{status:'done'})).status(),409);
   row.checks.push('Hosted consent blocks Pen Day saves; export includes retained notes after withdrawal; Settings erasure removes them');
   phase('deletion-cancel-and-failure');await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.getByRole('button',{name:'Cancel',exact:true}).click();assert.equal(await page.locator('#accountDeletionForm').isVisible(),false);
+  const expired=route=>route.fulfill({status:401,contentType:'application/json',body:JSON.stringify({error:'session_expired'})});await ctx.route('**/v1/privacy/account',expired);
+  await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.locator('#accountDeletionConfirm').check();await page.getByRole('button',{name:'Send deletion request',exact:true}).click();await page.locator('#accountDeletionSignIn').waitFor();await ctx.unroute('**/v1/privacy/account',expired);await page.getByRole('button',{name:'Cancel',exact:true}).click();
   const reject=route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'fictional_dependency_failure'})});await ctx.route('**/v1/privacy/account',reject);
   await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.locator('#accountDeletionConfirm').check();await page.getByRole('button',{name:'Send deletion request',exact:true}).click();await page.locator('#accountDeletionStatus[data-state="error"]').waitFor();assert((await call('/v1/me')).ok());
   assert.equal(await page.getByRole('button',{name:'Send deletion request',exact:true}).isEnabled(),true);await ctx.unroute('**/v1/privacy/account',reject);
