@@ -31,7 +31,7 @@ export default {async fetch(request,env,ctx){
   if(r.ok){
    let body=await r.text();
    if(path==='/member-login'){
-    body=body.replace(/<script\b[^>]*src=["'][^"']*(?:member-|my-timber-|turnstile-auth-|shift-me-api-)[^"']*["'][^>]*>[\s\S]*?<\/script>/gi,'');
+    body=body.replace(/<script\b[^>]*src=["'][^"']*(?:member-|my-timber-|turnstile-auth-|shift-me-api-)[^"']*["'][^>]*>[\s\S]*?<\/script>/gi,script=>script.includes('/assets/member-experience/session.mjs')?script:'');
     if(!/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i.test(body)){
      const adapter='<script src="/api-adapter-v33d.js" data-shift-auth-adapter></script>',baseScript=/<script\b[^>]*>\s*window\.SST_API_BASE\s*=\s*location\.origin\s*;?\s*<\/script>/i;
      body=baseScript.test(body)?body.replace(baseScript,match=>match+adapter):body.replace('</head>',()=>adapter+'</head>');

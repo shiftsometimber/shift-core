@@ -21,6 +21,7 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
  const trigger='b1_failure_'+f.id;
  try{
   await context.route('**/*',route=>{const r=route.request();return new URL(r.url()).origin!==origin&&!['GET','HEAD'].includes(r.method())?route.abort():route.continue()});
+  mark('signed-out-recovery-entry');await page.goto(origin+'/member-login');await page.getByRole('button',{name:'Forgotten your password?',exact:true}).click();await page.locator('#previewReset input[name=email]').waitFor();await page.getByRole('button',{name:'Back to sign in',exact:true}).click();await page.locator('#previewRegister input[name=password]').waitFor();row.checks.push('Signed-out public login loads with its session runtime; Forgot password and return controls work');
   mark('ordinary-login-and-parallel-saves');await login(fixture.oldPassword);
   for(let i=0;i<5;i++){const r=await Promise.all([patch({myWhy:{why:'Fictional walk '+i,promise:'Fictional promise'}}),patch({roadmap:{step:'Fictional step '+i}})]);assert.deepEqual(r.map(x=>x.status()),[200,200]);const s=await state();assert.equal(s.myWhy.why,'Fictional walk '+i);assert.equal(s.roadmap.step,'Fictional step '+i)}
   const baseline=await state();row.checks.push('Five overlapping partial saves retain both fields in independent D1 read-back');

@@ -8,7 +8,17 @@ assert(process.env.GITHUB_ACTIONS==='true'&&/^https:\/\/shift-stabilisation-prev
 assert.equal(JSON.parse(readFileSync(config)).d1_databases.find(x=>x.binding==='DB')?.database_name,'shift-stabilisation-preview-auth-20260917');
 const report={source:process.env.GITHUB_SHA,at:new Date().toISOString(),productionWrites:0,inboxReceipt:'requires independent connected-mailbox evidence',status:'requesting'},save=()=>writeFileSync(dir+'/actual-email-report.json',JSON.stringify(report,null,2));
 const post=async(path,body)=>{const r=await fetch(origin+path,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(body)});return {status:r.status,body:await r.json()}};
-report.request=await post('/v1/auth/request-password-reset',{email:fixture.email});assert.equal(report.request.status,200);
+const {chromium}=await import('playwright');
+const requestBrowser=await chromium.launch(),requestContext=await requestBrowser.newContext({viewport:{width:390,height:844}}),requestPage=await requestContext.newPage();
+try{
+ await requestPage.goto(origin+'/member-login');await requestPage.getByRole('button',{name:'Forgotten your password?',exact:true}).click();
+ const form=requestPage.locator('#previewReset'),email=form.locator('input[name=email]'),send=form.getByRole('button',{name:'Send reset link',exact:true});await email.fill(fixture.email);
+ await requestPage.route('**/v1/auth/request-password-reset',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({ok:false,message:'Temporary email request failure. Please retry.'})}));
+ await send.click();await form.getByText('Temporary email request failure. Please retry.',{exact:true}).waitFor();assert.equal(await email.inputValue(),fixture.email);assert(await send.isEnabled());
+ await requestPage.unroute('**/v1/auth/request-password-reset');const requested=requestPage.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/request-password-reset');await send.click();const response=await requested;report.request={status:response.status(),body:await response.json(),entry:'Rendered Forgot password -> Send reset link; failed request retained email and retried'};assert.equal(report.request.status,200);
+ await form.getByText('If that account exists, reset instructions will be sent shortly.',{exact:true}).waitFor();await requestPage.screenshot({path:dir+'/actual-email-request-confirmation.png',fullPage:true});
+}finally{await requestContext.close();await requestBrowser.close()}
+
 const rows=JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config',config,'--command',`SELECT event_type,status,provider_id,error_code,created_at FROM auth_delivery_events WHERE user_id=${fixture.emailId} AND event_type='password_reset' ORDER BY id DESC LIMIT 1`,'--json'],{encoding:'utf8'}))[0].results;
 report.provider=rows[0]||null;report.status=report.provider?.status==='sent'?'waiting_for_received_link_reset':'delivery_failed';save();console.log(JSON.stringify(report));assert.equal(report.provider?.status,'sent','Actual provider acceptance failed');
 // Receive only an encrypted proof payload on a separate evidence branch. This
@@ -23,12 +33,13 @@ for(let i=0;i<90;i++){
 assert(inbox,'Actual inbox link remains unverified');assert.equal(inbox.candidate,process.env.GITHUB_SHA);assert.equal(inbox.mailbox,fixture.email);
 const link=new URL(inbox.url);assert.equal(link.origin,origin);assert.equal(link.pathname,'/reset-password.html');const token=link.searchParams.get('token');assert(token&&/^[A-Za-z0-9_-]{40,64}$/.test(token));
 report.inboxReceipt={verified:true,receivedAt:inbox.receivedAt,origin:link.origin,evidence:'Connected owner mailbox; token encrypted directly to this runner; no DB token extraction'};
-const {chromium}=await import('playwright');const browser=await chromium.launch(),context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
+const browser=await chromium.launch(),context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
 try{
  await context.route('**/*',route=>{const r=route.request();return new URL(r.url()).origin!==origin&&!['GET','HEAD'].includes(r.method())?route.abort():route.continue()});
  await page.goto(link.href);const fields=page.locator('input[type=password]');await fields.first().waitFor();for(let i=0;i<await fields.count();i++)await fields.nth(i).fill(fixture.emailNewPassword);
  const result=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/reset-password');await page.locator('button[type=submit],input[type=submit]').first().click();report.renderedResetStatus=(await result).status();assert.equal(report.renderedResetStatus,200);
  await page.screenshot({path:dir+'/actual-email-reset-success.png',fullPage:true});
+ await page.waitForURL(/\/member-login/);const signin=page.locator('#previewRegister');await signin.locator('input[name=email]').fill(fixture.email);await signin.locator('input[name=password]').fill(fixture.emailNewPassword);await signin.locator('[data-auth-submit]').click();await page.waitForURL(/\/member\/dashboard/);await page.waitForFunction(()=>document.body.dataset.memberSession==='ready');report.renderedSignIn=true;await page.screenshot({path:dir+'/actual-email-signin-success.png',fullPage:true});
  report.oldLogin=(await post('/v1/auth/login',{email:fixture.email,password:fixture.oldPassword})).status;report.newLogin=(await post('/v1/auth/login',{email:fixture.email,password:fixture.emailNewPassword})).status;
  report.reuse=(await post('/v1/auth/reset-password',{token,password:fixture.emailNewPassword+'-reused'})).status;
  assert.equal(report.oldLogin,401);assert.equal(report.newLogin,200);assert.equal(report.reuse,400);report.status='inbox_rendered_reset_and_ordinary_login_pass';

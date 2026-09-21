@@ -36,7 +36,9 @@ jobs:
           node gate4-one-shift-brain-gate.mjs
       - name: B1 atomicity, ordinary authentication and recovery regressions
         run: |
-          node --test tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/turnstile-auth-v1.test.mjs tests/my-journey-health-interest-atomic.test.mjs health-passport/records.test.mjs activation-measurement/ordinary-auth.test.mjs
+          node --test tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-auth-regression.test.mjs tests/turnstile-auth-v1.test.mjs tests/my-journey-health-interest-atomic.test.mjs health-passport/records.test.mjs activation-measurement/ordinary-auth.test.mjs
+          node member-state-fast-source-gate.mjs
+          node frontend-member-source-gate.mjs
           node auth-recovery-registration-gate.mjs
           node gate1-email-verification-e2e.mjs
           node g5-012-login-fastpath-gate.mjs

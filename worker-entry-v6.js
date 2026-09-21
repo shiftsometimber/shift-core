@@ -48,6 +48,7 @@ import { commissioningOpsRoutes } from "./commissioning-ops-v1.js";
 import { handleCommissioningIdentity } from "./commissioning-identity-v1.js";
 import { handleEmailVerification } from "./auth-email-verification-v1.js";
 import { handleAuthRecovery } from "./auth-recovery-v1.js";
+import {repairPasswordResetResponse} from "./auth-recovery-page-v1.mjs";
 import { memberContrastStatic } from "./member-contrast-static-v1.js";
 import { fastMemberRegister } from "./member-register-fastpath-v2.js";
 import { fastMemberLogin } from "./member-login-fastpath-v1.js";
@@ -363,7 +364,7 @@ const PUBLIC_MEDICINE_TICKER_PATCH = `;(()=>{const run=async()=>{const path=loca
 // ACT2B_PAGES_CONTENT_FALLTHROUGH
 async function act2bPagesContent(request) {
   const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
-  return fetch(new Request(u,request));
+  return repairPasswordResetResponse(await fetch(new Request(u,request)),request);
 }
 async function publicSiteConfigWithLoungeChrome(request) {
   const upstream = new URL(request.url);
