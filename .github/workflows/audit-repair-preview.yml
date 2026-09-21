@@ -44,12 +44,14 @@ jobs:
       - name: Deploy the single preview only
         run: npx wrangler deploy --config work/staging/generated/config.json
       - name: Install phone and desktop browser engines
+        id: browsers
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
       - name: Prove five-point journey with real saves in Chromium and WebKit
         run: node preview/five-points/browser-proof.mjs
       - name: Verify audited Progress and retained Fit in phone and desktop browsers
+        if: ${{ !cancelled() && steps.browsers.outcome == 'success' }}
         run: node preview/audit-repair/browser-proof.mjs
       - name: Read Pages provenance with existing preview access
         if: always()
