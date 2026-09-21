@@ -1,3 +1,4 @@
+import {withNutritionSignposting} from './public-nutrition-mytimber.mjs';
 import {repairPromiseResponse} from './public-promise-accuracy-v1.mjs';
 import {notifyArticlePublication} from './babylove/publication-email.mjs';
 import {oralPublicRoute,withOralDiscovery} from './babylove/oral-public.mjs';
@@ -1156,6 +1157,6 @@ export default {
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
-    return withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env);
+    return withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
   },
 };

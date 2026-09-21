@@ -1,3 +1,7 @@
+import {CATALOGUE_PUBLICATION_RELEASE as approvedCatalogueRelease} from '../../catalogue-publication-release-v1.mjs';
+import {validateCatalogueRelease} from '../../catalogue-publication-core.mjs';
+import {GRUB_EXPANSION_SERVING_AUTHORITY} from '../../grub-expansion-serving-manifest-v1.mjs';
+import {CATALOGUE_COLUMNS} from '../../catalogue-publication-shared.mjs';
 import {readFileSync,writeFileSync,mkdirSync,copyFileSync,cpSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash,randomBytes,pbkdf2Sync,randomUUID} from 'node:crypto';
@@ -28,6 +32,12 @@ auth+=readFileSync('member-experience/staging/catalogue-schema.sql','utf8');
 execFileSync(process.execPath,['final-v1-production-publication.mjs'],{stdio:'inherit',env:{...process.env,GRUB_PUBLISHABLE_FILE:dir+'/grub-approved/grub-v1-publishable.json',FINAL_V1_PUBLICATION_DIR:dir+'/accepted-fit'}});
 const publication=readFileSync(dir+'/accepted-fit/final-v1-production-publication.sql','utf8');
 auth+='\n'+publication.split('\n').filter(line=>line.startsWith('INSERT INTO structured_content')).join('\n');
+// Add only the exact previously owner-authorised Grub rows to this disposable
+// fixture. Original rows and Fit remain intact; this does not access production.
+if(GRUB_EXPANSION_SERVING_AUTHORITY.status==='approved'){
+ const additions=(await validateCatalogueRelease(approvedCatalogueRelease)).filter(row=>row.content_type==='recipe');
+ for(const row of additions)auth+='\nINSERT OR IGNORE INTO structured_content ('+CATALOGUE_COLUMNS.join(',')+') VALUES('+CATALOGUE_COLUMNS.map(key=>quote(row[key])).join(',')+');';
+}
 // Keep the accepted publication rows intact. UI-enriched search fixtures must
 // never replace their review_json and final acceptance provenance.
 const catalogueDB=new DatabaseSync(':memory:');catalogueDB.exec(auth);

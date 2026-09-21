@@ -21,12 +21,27 @@ const excluded=(r,text)=>text.split(',').map(x=>x.trim().toLowerCase()).filter(B
 });
 function candidates(recipes,options,slot){return recipes.filter(r=>(r.meal_type===slot||(slot==='dinner'&&options.style==='fast'&&r.meal_type==='lunch'))&&filterRecipe(r,styles[options.style])&&!excluded(r,options.exclude))}
 function choose(pool,used,seed){const fresh=pool.filter(r=>!used.has(r.id));const list=fresh.length?fresh:pool;return list[seed%list.length]}
+export function mealFamily(recipe){
+ const format=String(recipe.food_format||'').toLowerCase(),name=String(recipe.name||'').toLowerCase();
+ if(/wrap|sandwich|buttie|toastie|panini|baguette|pitta|bagel/.test(format+' '+name))return 'bread';
+ if(/traybake/.test(format+' '+name))return 'traybake';
+ if(/slow.cook/.test(format+' '+name))return 'slow-cooker';
+ return format||name;
+}
+function chooseVaried(pool,used,counts,seed){
+ const fresh=pool.filter(r=>!used.has(r.id));let choices=fresh.length?fresh:pool;
+ const nonBread=choices.filter(r=>mealFamily(r)!=='bread');
+ if((counts.get('bread')||0)>=2&&nonBread.length)choices=nonBread;
+ const lowest=Math.min(...choices.map(r=>counts.get(mealFamily(r))||0));
+ choices=choices.filter(r=>(counts.get(mealFamily(r))||0)===lowest);
+ return choices[seed%choices.length];
+}
 export function buildWeek(recipes,input,seed=0,learning={}){
- const options=planOptions(input),used=new Set(learning.recent||[]),week=[];
+ const options=planOptions(input),used=new Set(learning.recent||[]),week=[],families={breakfast:new Map(),main:new Map()};
  recipes=recipes.filter(r=>!(learning.nay||[]).includes(r.id));
  for(let day=1;day<=options.days;day++)for(const slot of slots){
   const pool=candidates(recipes,options,slot);if(!pool.length)fail('No '+slot+' recipes meet all these choices. Change the style or ingredients to leave out. Your saved week has not changed.');
-  const r=choose(pool,used,seed+day*7+slots.indexOf(slot));used.add(r.id);week.push({key:day+':'+slot,day,slot,recipeId:r.id,servings:options.servings});
+  const counts=families[slot==='breakfast'?'breakfast':'main'],r=chooseVaried(pool,used,counts,seed+day*7+slots.indexOf(slot));used.add(r.id);counts.set(mealFamily(r),(counts.get(mealFamily(r))||0)+1);week.push({key:day+':'+slot,day,slot,recipeId:r.id,servings:options.servings});
  }
  return {week,options};
 }

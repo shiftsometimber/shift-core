@@ -35,3 +35,11 @@ test('protected price/stock/config mismatch fails rather than reporting success'
 });
 
 test('unpinned normal release classification from concurrent main remains available',()=>{for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js']){const result=validateScope({...manifest,enforceApplicationPin:false},[path]);assert.equal(result.runtimeOnly,false);assert.deepEqual(result.applicationChanges,[path])}});
+
+test('Grub publication is an exact separate exception; the combined Fit publication stays disabled',()=>{
+ assert.equal(manifest.mode,'runtime-with-approved-grub');assert.equal(manifest.grubPublication.publishFit,false);
+ assert.throws(()=>validateScope({...manifest,grubPublication:{...manifest.grubPublication,additions:1874}},[]));
+ const step=steps.find(s=>s.startsWith('name: Publish only the exact previously authorised Grub recipe expansion'));
+ assert.match(step,/if: steps.scope.outputs.grub_publication == 'true'/);assert.match(step,/--grub-sql/);assert.match(step,/--grub-verify/);
+ assert.equal((step.match(/--verify-main/g)||[]).length,2);assert.ok(step.indexOf('--grub-verify')>step.indexOf('--file'));
+});

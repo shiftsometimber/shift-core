@@ -31,10 +31,10 @@ function score(r,state,context){
   +(r.id==='industrial-dinner-chicken-traybake'?5:0);
 }
 export function recommendationFor(state,recipes,context={}){
- const pool=recipes.filter(r=>r.image&&mainMeal(r)&&eligible(r,state,context));
+ const pool=recipes.filter(r=>mainMeal(r)&&eligible(r,state,context));
  const stored=pool.find(r=>r.id===state.recommendation?.recipeId);
  const recipe=stored||[...pool].sort((a,b)=>score(b,state,context)-score(a,state,context)||a.id.localeCompare(b.id))[0];
- if(!recipe)return {recipe:null,message:context.dietaryReviewRequired?'Your saved dietary requirements need checking before we suggest a meal. Use your agreed food plan and check recipes and labels.':'No illustrated meal matches your saved choices right now. Your full recipe library and saved plan are still available.'};
+ if(!recipe)return {recipe:null,message:context.dietaryReviewRequired?'Your saved dietary requirements need checking before we suggest a meal. Use your agreed food plan and check recipes and labels.':'No reviewed meal matches your saved choices right now. Your recipe library and saved plan are still available in My Timber.'};
  const base=pool.find(r=>r.id===state.recommendation?.baseId)||recipe;
  const selected=state.recommendation?.mode||'planned';
  const reasons=[];
@@ -45,7 +45,7 @@ export function recommendationFor(state,recipes,context={}){
  const preference={protein:'high protein',budget:'budget',fast:'fast'}[state.options?.style];
  if(preference&&filterRecipe(recipe,preference))reasons.push('It matches your '+({protein:'higher-protein',budget:'budget',fast:'quick-meal'}[state.options.style])+' preference.');
  if(!(state.learning?.recent||[]).includes(recipe.id))reasons.push('It is outside your recently selected meals.');
- const delta=recipe.id===base.id?'Original recommendation.':`${round(recipe.kcal-base.kcal)>0?'+':''}${round(recipe.kcal-base.kcal)} kcal · ${round(recipe.protein_g-base.protein_g)>0?'+':''}${round(recipe.protein_g-base.protein_g)}g protein · ${round(recipe.minutes-base.minutes)>0?'+':''}${round(recipe.minutes-base.minutes)} min compared with your original pick.`;
+ const delta=recipe.id===base.id?'Your current recommendation.':`${round(recipe.kcal-base.kcal)>0?'+':''}${round(recipe.kcal-base.kcal)} kcal · ${round(recipe.protein_g-base.protein_g)>0?'+':''}${round(recipe.protein_g-base.protein_g)}g protein · ${round(recipe.minutes-base.minutes)>0?'+':''}${round(recipe.minutes-base.minutes)} min compared with your previous pick.`;
  return {recipe,baseId:base.id,mode:selected,reasons,delta,servings:state.options?.servings||1,
   benefit:`${recipe.protein_g}g protein per serving${fibre(recipe)!==null?' and '+fibre(recipe)+'g fibre':''}. Meal portions and your overall eating pattern matter for weight management.`,
   fit:context.fitCompleted?'You logged movement in Fit today. A protein-containing meal can be part of recovery; no exercise calories have been deducted.':'Fit and Grub support the same routine: manageable movement and meals you can repeat. No guessed exercise calories are deducted.',
@@ -54,12 +54,14 @@ export function recommendationFor(state,recipes,context={}){
 export function adjustRecommendation(state,mode,recipes,context={}){
  if(!grubModes.includes(mode))throw Error('Choose one of the meal adjustments shown.');
  const current=recommendationFor(state,recipes,context);if(!current.recipe)throw Error(current.message);
- const base=recipes.find(r=>r.id===current.baseId)||current.recipe;
- let pool=recipes.filter(r=>r.image&&mainMeal(r)&&eligible(r,state,context)&&r.id!==base.id);
- const checks={lighter:r=>number(r.kcal)&&r.kcal<base.kcal,protein:r=>number(r.protein_g)&&r.protein_g>base.protein_g,fuller:r=>fibre(r)!==null&&fibre(base)!==null&&fibre(r)>fibre(base),quicker:r=>number(r.minutes)&&r.minutes<base.minutes,budget:r=>filterRecipe(r,'budget')};
+ // Adjust the meal the member can see. An old baseline can falsely claim
+ // improvement or select the same meal again. Images are optional presentation.
+ const base=current.recipe;
+ let pool=recipes.filter(r=>mainMeal(r)&&eligible(r,state,context)&&r.id!==base.id);
+ const checks={lighter:r=>number(base.kcal)&&number(r.kcal)&&r.kcal<base.kcal,protein:r=>number(base.protein_g)&&number(r.protein_g)&&r.protein_g>base.protein_g,fuller:r=>fibre(r)!==null&&fibre(base)!==null&&fibre(r)>fibre(base),quicker:r=>number(base.minutes)&&number(r.minutes)&&r.minutes<base.minutes,budget:r=>filterRecipe(r,'budget')};
  pool=pool.filter(checks[mode]);
  pool.sort((a,b)=>mode==='lighter'?a.kcal-b.kcal:mode==='protein'?b.protein_g-a.protein_g:mode==='fuller'?fibre(b)-fibre(a):mode==='quicker'?a.minutes-b.minutes:score(b,state,context)-score(a,state,context));
- if(!pool.length)return {...state.recommendation,recipeId:current.recipe.id,baseId:base.id,message:'No '+({lighter:'lower-calorie',protein:'higher-protein',fuller:'higher-fibre',quicker:'quicker',budget:'different budget'}[mode])+' illustrated alternative fits your saved choices. Your meal is unchanged.'};
+ if(!pool.length)return {...state.recommendation,recipeId:base.id,baseId:base.id,message:'No '+({lighter:'lower-calorie',protein:'higher-protein',fuller:'higher-fibre',quicker:'quicker',budget:'different budget'}[mode])+' reviewed alternative fits your saved choices. Your meal is unchanged.'};
  return {recipeId:pool[0].id,baseId:base.id,mode,message:mode==='budget'?'A catalogue budget choice. Retailer prices vary; no cash saving is promised.':mode==='fuller'?'Chosen for more fibre. Protein and energy can change too; compare the figures below.':''};
 }
 export function nutritionForWeek(state,recipes){
