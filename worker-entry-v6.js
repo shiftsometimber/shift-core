@@ -1,4 +1,5 @@
 import {pwaAssets,withPwa} from './my-timber-pwa/presentation.mjs';
+import {siteAddressAsset,withSiteAddressLookups} from './member-experience/site-addresses.mjs';
 import {pwaReminderRoutes,runPwaReminders,appendPwaExport} from './my-timber-pwa/reminders.mjs';
 import {withNutritionSignposting} from './public-nutrition-mytimber.mjs';
 import {repairPromiseResponse} from './public-promise-accuracy-v1.mjs';
@@ -563,6 +564,7 @@ async function coreAuthFetch(request, env, ctx) {
 
 const worker = {
   async fetch(request, env, ctx) {
+    const lookupAsset=siteAddressAsset(request);if(lookupAsset)return lookupAsset;
     const requestUrl = new URL(request.url);
     if (requestUrl.protocol === "http:") {
       requestUrl.protocol = "https:";
@@ -1166,6 +1168,7 @@ export default {
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
     const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
-    return env.MY_TIMBER_PWA_ENABLED==='true'?withPwa(request,final):final;
+    const addresses=await withSiteAddressLookups(request,final);
+    return env.MY_TIMBER_PWA_ENABLED==='true'?withPwa(request,addresses):addresses;
   },
 };
