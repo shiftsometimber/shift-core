@@ -44,11 +44,11 @@ test('metadata-only retry acknowledges the existing record without replacing rev
 test('vendor can explicitly request draft without accidental publication',async()=>{const env=setup();try{const r=await babyLoveRoutes(request({...payload,status:'draft'}),env);const body=await r.json();assert.equal(body.published,false);assert.equal(env.DB.sqlite.prepare('SELECT status FROM knowledge_articles').get().status,'draft');}finally{env.DB.sqlite.close();}});
 
 test('each new LoveGrowth post emails the configured owner exactly once, including drafts',async()=>{
- const env=setup();const sent=[];env.env.RADAR_PUBLICATION_EMAIL_TO='matt@shiftsometimber.co.uk';env.env.EMAIL={async send(message){sent.push(message);return{messageId:'arrival-1'}}};
+ const env=setup();const sent=[];env.RADAR_PUBLICATION_EMAIL_TO='matt@shiftsometimber.co.uk';env.EMAIL={async send(message){sent.push(message);return{messageId:'arrival-1'}}};
  try{
-  const first=await babyLoveRoutes(request({...payload,id:77,slug:'arrival-test',title:'Arrival test',status:'published'}),env.env);assert.equal(first.status,200);
+  const first=await babyLoveRoutes(request({...payload,id:77,slug:'arrival-test',title:'Arrival test',status:'published'}),env);assert.equal(first.status,200);
   assert.equal(sent.length,1);assert.equal(sent[0].to,'matt@shiftsometimber.co.uk');assert.match(sent[0].subject,/LoveGrowth post received/);assert.match(sent[0].text,/Status: Published/);assert.match(sent[0].text,/articles\/arrival-test/);
-  const retry=await babyLoveRoutes(request({...payload,id:77,slug:'arrival-test',title:'Arrival test',status:'published'}),env.env);assert.equal(retry.status,200);assert.equal(sent.length,1);
-  const draft=await babyLoveRoutes(request({...payload,id:78,slug:'arrival-draft',title:'Arrival draft',status:'draft'}),env.env);assert.equal(draft.status,200);assert.equal(sent.length,2);assert.match(sent[1].text,/Status: Draft/);
- }finally{env.sqlite.close()}
+  const retry=await babyLoveRoutes(request({...payload,id:77,slug:'arrival-test',title:'Arrival test',status:'published'}),env);assert.equal(retry.status,200);assert.equal(sent.length,1);
+  const draft=await babyLoveRoutes(request({...payload,id:78,slug:'arrival-draft',title:'Arrival draft',status:'draft'}),env);assert.equal(draft.status,200);assert.equal(sent.length,2);assert.match(sent[1].text,/Status: Draft/);
+ }finally{env.DB.sqlite.close()}
 });
