@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /lounge
-Disallow: /v1/lounge
-Disallow: /tap-room
-Disallow: /v1/tap-room
