@@ -244,7 +244,7 @@ jobs:
       - name: Prove persistent member login remains secure
         run: node g5-012-login-fastpath-gate.mjs
       - name: Prove Ask Timber handles every explicit request part
-        run: node --test ask-timber-multi-intent-gate.mjs
+        run: node --test ask-timber-multi-intent-gate.mjs tests/ask-timber-public.test.mjs
       - name: Block SEO deployment regressions
         run: node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs
       - name: Prove Health rendering, canonical uniqueness and public endpoint security

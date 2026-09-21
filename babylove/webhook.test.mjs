@@ -42,3 +42,13 @@ test('malformed verifier fails closed even when a legacy token is available',asy
 test('metadata-only retry acknowledges the existing record without replacing reviewed content',async()=>{const env=setup();try{await babyLoveRoutes(request(),env);env.DB.sqlite.prepare("UPDATE knowledge_articles SET body='Editorial correction',status='published'").run();const result=await babyLoveRoutes(request({...payload,createdAt:'new delivery timestamp',keywords:['changed bookkeeping'],jsonLd:{updated:true}}),env);assert.equal(result.status,200);assert.equal((await result.json()).duplicate,true);assert.equal(env.DB.sqlite.prepare('SELECT body FROM knowledge_articles').get().body,'Editorial correction');assert.equal((await babyLoveRoutes(request({...payload,heroImageUrl:'https://example.invalid/changed.jpg'}),env)).status,409);}finally{env.DB.sqlite.close()}});
 
 test('vendor can explicitly request draft without accidental publication',async()=>{const env=setup();try{const r=await babyLoveRoutes(request({...payload,status:'draft'}),env);const body=await r.json();assert.equal(body.published,false);assert.equal(env.DB.sqlite.prepare('SELECT status FROM knowledge_articles').get().status,'draft');}finally{env.DB.sqlite.close();}});
+
+test('each new LoveGrowth post emails the configured owner exactly once, including drafts',async()=>{
+ const env=setup();const sent=[];env.RADAR_PUBLICATION_EMAIL_TO='matt@shiftsometimber.co.uk';env.EMAIL={async send(message){sent.push(message);return{messageId:'arrival-1'}}};
+ try{
+  const first=await babyLoveRoutes(request({...payload,id:77,slug:'arrival-test',title:'Arrival test',status:'published'}),env);assert.equal(first.status,200);
+  assert.equal(sent.length,1);assert.equal(sent[0].to,'matt@shiftsometimber.co.uk');assert.match(sent[0].subject,/LoveGrowth post received/);assert.match(sent[0].text,/Status: Published/);assert.match(sent[0].text,/articles\/arrival-test/);
+  const retry=await babyLoveRoutes(request({...payload,id:77,slug:'arrival-test',title:'Arrival test',status:'published'}),env);assert.equal(retry.status,200);assert.equal(sent.length,1);
+  const draft=await babyLoveRoutes(request({...payload,id:78,slug:'arrival-draft',title:'Arrival draft',status:'draft'}),env);assert.equal(draft.status,200);assert.equal(sent.length,2);assert.match(sent[1].text,/Status: Draft/);
+ }finally{env.DB.sqlite.close()}
+});

@@ -1,12 +1,16 @@
 import {publicHeader,publicDrawer,publicFooter} from '../public-shell-contract.mjs';
 
 const HOSTS=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);
+const IMAGE_HOSTS=new Set(['csuxjmfbwmkxiegfpljm.supabase.co']);
+const IMAGE_PATH_PREFIX='/storage/v1/object/public/blog-images/organization-55073/';
+function trustedImage(raw){try{const u=new URL(String(raw));return u.protocol==='https:'&&IMAGE_HOSTS.has(u.hostname)&&u.pathname.startsWith(IMAGE_PATH_PREFIX)?u:null}catch{return null}}
+function proxiedImage(raw,slug){const u=trustedImage(raw);return u&&slug?'/articles/'+slug+'/image?src='+encodeURIComponent(u.href):(u?.href||safeUrl(raw))}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100);
 function safeUrl(raw){try{const u=new URL(String(raw),'https://shiftsometimber.co.uk');return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch{return'#'}}
-function inline(raw){
+function inline(raw,slug=''){
  let s=esc(raw);
- s=s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(safeUrl(url))+'" alt="'+alt+'" referrerpolicy="no-referrer">');
+ s=s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(proxiedImage(url,slug))+'" alt="'+alt+'">');
  s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g,(_,label,url)=>'<a href="'+esc(safeUrl(url))+'"'+(String(url).startsWith('http')?' rel="noopener noreferrer"':'')+'>'+label+'</a>');
  s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
  s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
@@ -15,19 +19,19 @@ function inline(raw){
 }
 function isTableSep(line){return /^\s*\|?(?:\s*:?-{3,}:?\s*\|)+\s*:?-{3,}:?\s*\|?\s*$/.test(line)}
 function cells(line){return line.trim().replace(/^\||\|$/g,'').split('|').map(x=>x.trim())}
-export function renderMarkdown(markdown,title=''){
+export function renderMarkdown(markdown,title='',slug=''){
  const lines=String(markdown||'').replace(/\r/g,'').split('\n');let out='',i=0,firstH1=true;
  const blockStart=l=>/^#{1,6}\s|^\s*(?:[-*+] |\d+\. |>\s?|\*\*\*\s*$|---\s*$)/.test(l)||/^\s*\|/.test(l);
  while(i<lines.length){let line=lines[i];
   if(!line.trim()){i++;continue}
   const h=/^(#{1,6})\s+(.+)$/.exec(line);
-  if(h){const level=h[1].length,text=h[2].trim();if(level===1&&firstH1&&text===title){firstH1=false;i++;continue}firstH1=false;out+='<h'+level+' id="'+slugify(text)+'">'+inline(text)+'</h'+level+'>';i++;continue}
+  if(h){const level=h[1].length,text=h[2].trim();if(level===1&&firstH1&&text===title){firstH1=false;i++;continue}firstH1=false;out+='<h'+level+' id="'+slugify(text)+'">'+inline(text,slug)+'</h'+level+'>';i++;continue}
   if(/^\s*(?:\*\*\*|---)\s*$/.test(line)){out+='<hr>';i++;continue}
-  if(/^\s*>/.test(line)){const q=[];while(i<lines.length&&/^\s*>/.test(lines[i]))q.push(lines[i++].replace(/^\s*>\s?/,''));out+='<blockquote>'+q.map(inline).join('<br>')+'</blockquote>';continue}
-  if(i+1<lines.length&&line.includes('|')&&isTableSep(lines[i+1])){const head=cells(line);i+=2;const rows=[];while(i<lines.length&&lines[i].includes('|')&&lines[i].trim()){rows.push(cells(lines[i++]));}out+='<div class="sst-table-wrap"><table><thead><tr>'+head.map(x=>'<th>'+inline(x)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(x=>'<td>'+inline(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';continue}
+  if(/^\s*>/.test(line)){const q=[];while(i<lines.length&&/^\s*>/.test(lines[i]))q.push(lines[i++].replace(/^\s*>\s?/,''));out+='<blockquote>'+q.map(x=>inline(x,slug)).join('<br>')+'</blockquote>';continue}
+  if(i+1<lines.length&&line.includes('|')&&isTableSep(lines[i+1])){const head=cells(line);i+=2;const rows=[];while(i<lines.length&&lines[i].includes('|')&&lines[i].trim()){rows.push(cells(lines[i++]));}out+='<div class="sst-table-wrap"><table><thead><tr>'+head.map(x=>'<th>'+inline(x,slug)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(x=>'<td>'+inline(x,slug)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';continue}
   const ul=/^\s*[-*+]\s+(.+)$/.exec(line),ol=/^\s*\d+\.\s+(.+)$/.exec(line);
-  if(ul||ol){const tag=ol?'ol':'ul',items=[];while(i<lines.length){const m=(tag==='ol'?/^\s*\d+\.\s+(.+)$/:/^\s*[-*+]\s+(.+)$/).exec(lines[i]);if(!m)break;items.push(m[1]);i++;}out+='<'+tag+'>'+items.map(x=>'<li>'+inline(x)+'</li>').join('')+'</'+tag+'>';continue}
-  const p=[line.trim()];i++;while(i<lines.length&&lines[i].trim()&&!blockStart(lines[i]))p.push(lines[i++].trim());out+='<p>'+inline(p.join(' '))+'</p>';
+  if(ul||ol){const tag=ol?'ol':'ul',items=[];while(i<lines.length){const m=(tag==='ol'?/^\s*\d+\.\s+(.+)$/:/^\s*[-*+]\s+(.+)$/).exec(lines[i]);if(!m)break;items.push(m[1]);i++;}out+='<'+tag+'>'+items.map(x=>'<li>'+inline(x,slug)+'</li>').join('')+'</'+tag+'>';continue}
+  const p=[line.trim()];i++;while(i<lines.length&&lines[i].trim()&&!blockStart(lines[i]))p.push(lines[i++].trim());out+='<p>'+inline(p.join(' '),slug)+'</p>';
  }
  return out;
 }
@@ -43,12 +47,25 @@ export function articleHTML(row){
  const shellCss=['programme-treatment-handoff-v1.css?v=1','shift-recovery-v6.css?v=cos-live-recovery-20260909-r2','shift-compact-entry-v1.css?v=1','ask-timber-drawer-v2.css?v=8','v136-desolation-recovery.css?v=1','v137-estate-closeout.css?v=footer-wire-20260911b','header-navigation-v2.css'].map(x=>'<link rel="stylesheet" href="/assets/'+x+'">').join('');
  const scripts=['/analytics-bootstrap-v1.js','/site-config-v3a.js','/analytics-v3a.js','/app.js?v=phase8v10','/assets/v42.js?v=cos-live-recovery-20260909-r2','/consent-v4a.js','/analytics-events-v31b.js'].map(x=>'<script defer src="'+x+'"></script>').join('');
  const css='<style>.sst-dynamic-article{max-width:860px;margin:0 auto;padding:48px 22px 80px}.sst-dynamic-article h1{font-size:clamp(2.1rem,6vw,4.6rem);line-height:.98;margin:0 0 18px}.sst-dynamic-article h2{margin-top:46px}.sst-dynamic-article h3{margin-top:30px}.sst-dynamic-article p,.sst-dynamic-article li{font-size:1.05rem;line-height:1.72}.sst-dynamic-article img{display:block;max-width:100%;height:auto;margin:28px auto;border-radius:18px}.sst-dynamic-article blockquote{margin:26px 0;padding:18px 22px;border-left:4px solid #707762;background:#e7e3da;color:#050505}.sst-table-wrap{overflow-x:auto}.sst-dynamic-article table{width:100%;border-collapse:collapse;margin:24px 0}.sst-dynamic-article th,.sst-dynamic-article td{padding:12px;border-bottom:1px solid #707762;text-align:left;vertical-align:top}.sst-dynamic-article a{text-decoration:underline}.sst-article-meta{color:#707762;margin-bottom:30px}</style>';
- const body=renderMarkdown(row.body,title);
+ const body=renderMarkdown(row.body,title,row.slug);
  return '<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050505"><title>'+esc(row.seo_title||title)+'</title><meta name="description" content="'+esc(summary)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+canonical+'"><meta property="og:type" content="article"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(summary)+'"><meta property="og:url" content="'+canonical+'"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">'+JSON.stringify(schema).replace(/</g,'\\u003c')+'</script>'+shellCss+css+'</head><body class="sst-fullsite-v35 sst-site-v31 contrast-v30o6f contrast-v30o6g one-shift sst-reading-page"><a class="skip-link-v30f" href="#main-content">Skip to main content</a>'+publicHeader+publicDrawer+'<div class="drawer-backdrop" hidden></div><main id="main-content" class="sst-dynamic-article"><h1>'+esc(title)+'</h1><p class="sst-article-meta">Published '+esc(published)+' · '+esc(author)+'</p>'+body+'</main>'+publicFooter+scripts+'</body></html>';
 }
 export async function dynamicBabyLovePublicRoute(request,env){
  const u=new URL(request.url);if(!HOSTS.has(u.hostname)||!['GET','HEAD'].includes(request.method))return null;
- const m=u.pathname.replace(/\/$/,'').match(/^\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);if(!m)return null;
+ const clean=u.pathname.replace(/\/$/,'');
+ const imageMatch=clean.match(/^\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)\/image$/);
+ if(imageMatch){
+  const row=await dynamicBabyLovePublication(env,imageMatch[1]);if(!row)return null;
+  const source=trustedImage(u.searchParams.get('src'));
+  if(!source||!String(row.body||'').includes(source.href))return new Response('Image not allowed',{status:404,headers:{'Cache-Control':'no-store'}});
+  try{
+   const upstream=await fetch(source.href,{headers:{Accept:'image/avif,image/webp,image/*,*/*;q=0.8'}});
+   if(!upstream.ok)return new Response('Image unavailable',{status:502,headers:{'Cache-Control':'no-store'}});
+   const type=upstream.headers.get('Content-Type')||'';if(!type.startsWith('image/'))return new Response('Invalid image response',{status:502,headers:{'Cache-Control':'no-store'}});
+   return new Response(request.method==='HEAD'?null:upstream.body,{headers:{'Content-Type':type,'Cache-Control':'public, max-age=86400','X-Content-Type-Options':'nosniff'}});
+  }catch{return new Response('Image unavailable',{status:502,headers:{'Cache-Control':'no-store'}})}
+ }
+ const m=clean.match(/^\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);if(!m)return null;
  const row=await dynamicBabyLovePublication(env,m[1]);if(!row)return null;
  if(u.hostname!=='shiftsometimber.co.uk'||u.pathname.endsWith('/'))return Response.redirect('https://shiftsometimber.co.uk/articles/'+row.slug,301);
  return new Response(request.method==='HEAD'?null:articleHTML(row),{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Source':'babylovegrowth'}});

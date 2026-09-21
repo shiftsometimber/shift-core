@@ -1,0 +1,55 @@
+name: Ask Timber public repair preview
+on:
+  push:
+    branches: [fix/ask-timber-public-auth-20260921]
+  pull_request:
+    paths: ['frontend/member/assets/ask-timber-v1.js', 'tests/ask-timber-public.test.mjs', 'shift-brain-v1.js', 'preview/ask-timber/**', '.github/workflows/ask-timber-repair-preview.yml']
+permissions:
+  contents: read
+concurrency:
+  group: ask-timber-public-repair-${{ github.event_name }}
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Public request, relevance, member privacy, safety and shell regressions
+        run: node --test tests/ask-timber-public.test.mjs tests/ai-connected*.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs
+      - name: Snapshot current public evidence without production writes or member data
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node preview/ask-timber/build.mjs
+      - name: Deploy isolated candidate with public evidence and AI only
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: npx wrangler deploy --config preview/ask-timber/wrangler.jsonc
+      - name: Install project browser test engines
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+      - name: Submit questions and failure/retry checks in desktop and phone browsers
+        run: node preview/ask-timber/browser-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ask-timber-repair-${{ github.sha }}
+          path: preview/ask-timber/generated/evidence/
+          retention-days: 14
+  regression:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node --test tests/ask-timber-public.test.mjs tests/ai-connected*.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs
