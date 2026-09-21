@@ -1,5 +1,8 @@
 import {mkdirSync,writeFileSync,readFileSync,copyFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import {withSessionState} from '../../member-experience/session-state.mjs';
+import {memberExperienceEntry} from '../../member-experience/entry.mjs';
+import {reconcilePublicDocument} from '../../public-shell-contract.mjs';
 const dir='preview/ask-timber/generated';mkdirSync(dir+'/assets/assets',{recursive:true});mkdirSync(dir+'/evidence',{recursive:true});
 const queries={
  legacy:"SELECT c.id,c.document_id,c.content,d.title,d.source_uri,d.trust_tier,d.status FROM ai_knowledge_chunks c JOIN ai_knowledge_documents d ON d.id=c.document_id WHERE d.status='approved' ORDER BY d.trust_tier,c.id LIMIT 3000",
@@ -20,6 +23,12 @@ html=html.replace(/<body([^>]*)>/i,'<body$1><aside style="padding:12px;backgroun
 writeFileSync(dir+'/assets/index.html',html);
 for(const name of ['ask-timber-v1.js','ask-timber-intent-v2.js'])copyFileSync('frontend/member/assets/'+name,dir+'/assets/assets/'+name);
 copyFileSync('frontend/member/api-adapter-v33d.js',dir+'/assets/api-adapter-v33d.js');
+const loginSource=readFileSync('frontend/member/my-timber-preview.html','utf8');
+writeFileSync(dir+'/assets/login.html',reconcilePublicDocument(withSessionState(loginSource),'/member-login'));
+const dashboard=await memberExperienceEntry(new Request('https://shiftsometimber.co.uk/member/dashboard'),{MEMBER_EXPERIENCE_V1_ENABLED:'true'},new Response(withSessionState(loginSource),{headers:{'Content-Type':'text/html'}}));
+writeFileSync(dir+'/assets/dashboard.html',await dashboard.text());
+const memberAssetNames=[...new Set([...loginSource.matchAll(/(?:src|href)=["']\/([^"'?]+)(?:\?[^"']*)?["']/g)].map(m=>m[1]).filter(path=>/\.(?:css|js)$/.test(path)&&!path.includes('/')))];
+for(const name of memberAssetNames){try{copyFileSync('frontend/member/'+name,dir+'/assets/'+name)}catch{/* Unowned public assets retain the pinned Pages origin. */}}
 writeFileSync(dir+'/snapshot.json',JSON.stringify(snapshot));
 const identity={createdAt:new Date().toISOString(),commit:process.env.GITHUB_SHA,pages:'0da69833-83f7-4c70-9c7a-bceab7de1660',pageSha256:pageHash,publicSnapshotSha256:sha256(JSON.stringify(snapshot)),counts:Object.fromEntries(Object.entries(snapshot).map(([k,v])=>[k,v.length])),productionWrites:0,privateRecords:0,preview:'https://shift-ask-timber-preview.matobrien.workers.dev'};
 writeFileSync(dir+'/identity.json',JSON.stringify(identity));writeFileSync(dir+'/evidence/identity.json',JSON.stringify(identity,null,2));console.log(JSON.stringify(identity));
