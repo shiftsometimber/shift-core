@@ -34,8 +34,10 @@ jobs:
             sleep 5
           done
           test "$ok" = "1"
-          curl -fsS https://shiftsometimber.co.uk/sitemap.xml | grep -q "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk"
-          curl -fsS https://shiftsometimber.co.uk/explore-knowledge | grep -q 'data-babylove-dynamic="mounjaro-cost-uk"'
+          curl -fsS -o /tmp/sitemap.xml https://shiftsometimber.co.uk/sitemap.xml
+          grep -q "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk" /tmp/sitemap.xml
+          curl -fsS -o /tmp/knowledge.html https://shiftsometimber.co.uk/explore-knowledge
+          grep -q 'data-babylove-dynamic="mounjaro-cost-uk"' /tmp/knowledge.html
       - uses: actions/upload-artifact@v4
         if: always()
         with:
