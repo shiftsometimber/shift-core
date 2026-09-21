@@ -1,7 +1,7 @@
 name: BabyLove publication repair evidence
 on:
   push:
-    branches: [fix/babylove-publication, fix/babylove-email-proof, fix/oral-article-image]
+    branches: [fix/babylove-publication, fix/babylove-email-proof, fix/oral-article-image, verify/babylove-image-live]
 permissions:
   contents: read
 jobs:
@@ -43,6 +43,15 @@ jobs:
         run: node babylove/repair-preview.mjs
       - name: Build full production candidate without deployment
         run: npx wrangler deploy --dry-run --config wrangler.jsonc
+      - name: Verify Mounjaro image is served by SHIFT on live traffic
+        run: |
+          curl -fsS -o /tmp/article.html https://shiftsometimber.co.uk/articles/mounjaro-cost-uk
+          test "$(grep -c 'img loading="lazy" src="https://csuxjmfbwmkxiegfpljm.supabase.co' /tmp/article.html || true)" = "0"
+          src=$(grep -o '/articles/mounjaro-cost-uk/image?src=[^"]*' /tmp/article.html | head -1)
+          test -n "$src"
+          curl -fsS -D /tmp/image.headers -o /tmp/image.bin "https://shiftsometimber.co.uk$src"
+          grep -qi '^content-type: image/' /tmp/image.headers
+          test "$(wc -c < /tmp/image.bin)" -gt 1000
       - name: Verify recovered Mounjaro article on live traffic
         run: |
           curl -fsS -o /tmp/article.html https://shiftsometimber.co.uk/articles/mounjaro-cost-uk
