@@ -4,12 +4,12 @@ import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'no
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
-export const RELEASE_PATHS=new Set(['release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
+export const RELEASE_PATHS=new Set(['scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
 export function validateScope(manifest,changed){
- assert.equal(manifest.mode,'runtime-with-approved-grub');
- assert.deepEqual(manifest.grubPublication,{rowsSha256:'c4f65a111e984da0f4bc35195a6fdda44c9ececd05b72deb8f4e66b6cde417de',additions:1873,revisions:12,protectedRecipes:798,publishFit:false});
- assert.equal(manifest.applicationCommit,'d3913a23861e07ffc5525444818916e054135544');
- assert.equal(manifest.baseCommit,'058b204d900bc9e95f8093e506958dffc240aeec');
+ assert.equal(manifest.mode,'runtime-only');
+ assert.equal(manifest.grubPublication,undefined);
+ assert.equal(manifest.applicationCommit,'23ae68e8f20592204ac521f5d40c70a7729e6fa1');
+ assert.equal(manifest.baseCommit,'d61ff3f21e264377ec97f5a2bd4bed04daf64aff');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
@@ -23,10 +23,10 @@ export function verifyScope(){
  git('merge-base','--is-ancestor',manifest.baseCommit,manifest.applicationCommit);
  git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
  const changed=git('diff','--name-only',manifest.applicationCommit,'HEAD').split('\n').filter(Boolean);
- const report={...validateScope(manifest,changed),releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,runtimeSchemaAdditions:manifest.runtimeSchemaAdditions||[],contentPublication:manifest.grubPublication};
+ const report={...validateScope(manifest,changed),releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,runtimeSchemaAdditions:manifest.runtimeSchemaAdditions||[],contentPublication:false};
  assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
  mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
- if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\ngrub_publication=true\n');
+ if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\ngrub_publication=false\n');
  return report;
 }
 const sha=value=>createHash('sha256').update(value).digest('hex');

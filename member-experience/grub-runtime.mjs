@@ -1,3 +1,4 @@
+import {ingredientClient} from './grub-ingredients.mjs';
 import {recipeSource} from './grub-client.mjs';
 import {grubIntelligenceClient} from './grub-intelligence-client.mjs';
 export const grubRuntime=String.raw`(()=>{'use strict';
@@ -51,10 +52,9 @@ $('#grubSearchGo').onclick=discover;$('#grubSearch').onkeydown=e=>{if(e.key==='E
 $('#grubSearch').addEventListener('input',()=>{activeFilter='';++sequence;$$('[data-filter]').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')})});
 $$('[data-filter]').forEach(b=>b.onclick=()=>{activeFilter=activeFilter===b.dataset.filter?'':b.dataset.filter;$$('[data-filter]').forEach(x=>{const on=x.dataset.filter===activeFilter;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});discover()});
 function drawChips(){$('#sgIngredientChips').innerHTML=ingredients.map((x,i)=>'<button data-remove="'+i+'">'+esc(x)+' ×</button>').join('')}
-$('#sgAddIngredient').onclick=()=>{const field=$('#sgIngredientInput');for(const x of field.value.split(/[,;]+/).map(x=>x.trim()).filter(Boolean))if(!ingredients.includes(x)&&ingredients.length<40)ingredients.push(x);field.value='';drawChips()};
-$('#sgIngredientInput').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#sgAddIngredient').click()}};
+`+ingredientClient+String.raw`
 $('#sgIngredientChips').onclick=e=>{const b=e.target.closest('[data-remove]');if(b){ingredients.splice(+b.dataset.remove,1);drawChips()}};
-$('#grubGenerate').onclick=async()=>{if($('#sgIngredientInput').value.trim())$('#sgAddIngredient').click();$('#grubStatus').textContent='Finding matches…';try{const r=await api('search',{mode:'fridge',items:ingredients});renderResults($('#grubOutput'),r);$('#grubStatus').textContent=r.message}catch(e){$('#grubStatus').textContent=e.message}};
+$('#grubGenerate').onclick=async()=>{if($('#sgIngredientInput').value.trim()&&!addIngredient())return;$('#grubStatus').textContent='Finding matches…';try{const r=await api('search',{mode:'fridge',items:ingredients});renderResults($('#grubOutput'),r);$('#grubStatus').textContent=r.message}catch(e){$('#grubStatus').textContent=e.message}};
 $('#grubWeekGenerate').onclick=async()=>{const action={action:'plan',options:{days:+$('#grubDays').value,style:$('#grubStyle').value,servings:+$('#grubServings').value,exclude:$('#grubPrefs').value}};if(workspace?.week.length){$('#grubReplaceDialog').showModal();$('#grubConfirmReplace').onclick=async()=>{if(await mutate(action,'Your week and its ingredient list are saved.')){$('#grubReplaceDialog').close();$('#grubWeekStatus').textContent='Breakfast, lunch and dinner saved. Swap any meal below.'}}}else if(await mutate(action,'Your week and its ingredient list are saved.'))$('#grubWeekStatus').textContent='Breakfast, lunch and dinner saved. Swap any meal below.'};
 const dialog=$('#grubAddDialog');let chosen='';
 document.addEventListener('click',async e=>{
