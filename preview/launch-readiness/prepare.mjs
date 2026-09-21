@@ -3,7 +3,7 @@ import {createHash,randomBytes} from 'node:crypto';
 import {repairTreatmentCentre,repairTreatmentOrderController} from '../../public-promise-accuracy-v1.mjs';
 const dir='work/staging/generated',config=JSON.parse(readFileSync(dir+'/config.json'));
 if(process.env.GITHUB_ACTIONS!=='true'||config.name!=='shift-stabilisation-preview'||config.routes||config.d1_databases.some(d=>readFileSync('wrangler.jsonc','utf8').includes(d.database_id)))throw Error('Isolated preview required');
-delete config.send_email;config.vars.PREVIEW_B1_MAILBOX='';config.vars.LAUNCH_REPAIR_PREVIEW='true';config.vars.LAUNCH_PROOF_KEY=randomBytes(32).toString('hex');writeFileSync(dir+'/config.json',JSON.stringify(config,null,2));
+delete config.send_email;config.vars.PREVIEW_B1_MAILBOX='';config.vars.LAUNCH_REPAIR_PREVIEW='true';config.vars.LAUNCH_PROOF_KEY=randomBytes(32).toString('hex');console.log('::add-mask::'+config.vars.LAUNCH_PROOF_KEY);writeFileSync(dir+'/config.json',JSON.stringify(config,null,2));
 const evidence=dir+'/five-points-evidence/launch';mkdirSync(evidence,{recursive:true});
 const source='https://0da69833.projectshift.pages.dev',hash=s=>createHash('sha256').update(s).digest('hex'),proof=[];
 for(const path of ['/treatment-centre','/treatment-order','/treatment-order-prototype-v1.js']){
