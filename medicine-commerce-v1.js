@@ -1,3 +1,4 @@
+import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
 import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';
@@ -340,28 +341,30 @@ function memberTreatmentView(order, setupComplete) {
   };
 }
 
-async function reconcileExpiredReservations(env) {
-  const cutoff = new Date(Date.now() - 40 * 60 * 1000).toISOString();
-  const { results = [] } = await env.DB.prepare(
-    `SELECT id,order_number,variant_id FROM medicine_orders WHERE status IN ('pending','checkout_open') AND created_at<? ORDER BY id LIMIT 100`,
-  ).bind(cutoff).all();
-  for (const order of results) {
-    const expired = await env.DB.prepare(
-      `UPDATE medicine_orders SET status='expired',updated_at=? WHERE id=? AND status IN ('pending','checkout_open')`,
-    ).bind(now(), order.id).run();
-    if (Number(expired.meta?.changes || 0) === 1) {
-      await updateOrderReferenceStatus(env.DB,order.order_number,'expired');
-      await env.DB.prepare(
-        `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`,
-      ).bind(now(), order.variant_id).run();
-    }
+export async function reconcileExpiredReservations(env) {
+  // Age is a signal to check, not evidence that Stripe cannot still take payment.
+  if(!env.STRIPE_SECRET_KEY)return 0;
+  const {results=[]}=await env.DB.prepare(`SELECT id,order_number,variant_id,stripe_checkout_session_id FROM medicine_orders WHERE status IN ('pending','checkout_open') AND created_at<? ORDER BY id LIMIT 20`).bind(new Date(Date.now()-40*60*1000).toISOString()).all();
+  let count=0;
+  for(const order of results){
+    if(!order.stripe_checkout_session_id)continue;
+    let session;
+    try{const response=await fetch('https://api.stripe.com/v1/checkout/sessions/'+encodeURIComponent(order.stripe_checkout_session_id),{headers:{authorization:`Bearer ${env.STRIPE_SECRET_KEY}`},signal:AbortSignal.timeout(8000)});if(!response.ok)continue;session=await response.json()}catch{continue}
+    if(session.id!==order.stripe_checkout_session_id||session.status!=='expired'||session.payment_status==='paid')continue;
+    await ensureOrderReferenceRegistry(env.DB);await ensureCheckoutAttempts(env.DB);
+    const date=now(),condition="EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND status IN ('pending','checkout_open'))";
+    const result=await env.DB.batch([
+      env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=? AND ${condition}`).bind(date,order.variant_id,order.id),
+      env.DB.prepare(`UPDATE order_reference_registry SET status='expired',updated_at=? WHERE order_number=? AND ${condition}`).bind(date,order.order_number,order.id),
+      env.DB.prepare(`UPDATE checkout_attempts SET active=0,state='expired',updated_at=? WHERE order_number=? AND ${condition}`).bind(date,order.order_number,order.id),
+      env.DB.prepare("UPDATE medicine_orders SET status='expired',updated_at=? WHERE id=? AND status IN ('pending','checkout_open')").bind(date,order.id)
+    ]);count+=Number(result[3]?.meta?.changes||0);
   }
-  return results.length;
+  return count;
 }
 
 async function catalogue(env) {
   await schema(env);
-  await reconcileExpiredReservations(env);
   const rows =
     (
       await env.DB.prepare(
@@ -472,194 +475,59 @@ function stripeForm(order, item, user, env) {
 }
 
 async function checkout(request, env) {
-  const user = await member(request, env);
-  if (!user)
-    return json(
-      {
-        ok: false,
-        error: "account_required",
-        message: "Create or sign in to My Shift before ordering.",
-      },
-      401,
-      cors(request),
-    );
-  if (Number(user.email_verified || 0) !== 1)
-    return json(
-      { ok: false, error: "email_verification_required" },
-      403,
-      cors(request),
-    );
-  if (!env.STRIPE_SECRET_KEY)
-    return json(
-      { ok: false, error: "payments_not_configured" },
-      503,
-      cors(request),
-    );
-  const mode = String(env.STRIPE_MODE || "test").toLowerCase(),
-    key = String(env.STRIPE_SECRET_KEY);
-  if (
-    (mode === "test" && !key.startsWith("sk_test_")) ||
-    (mode === "live" && !key.startsWith("sk_live_"))
-  )
-    return json(
-      { ok: false, error: "stripe_mode_mismatch" },
-      503,
-      cors(request),
-    );
+  const user=await member(request,env);
+  if(!user)return json({ok:false,error:'account_required',message:'Create or sign in to My Shift before ordering.'},401,cors(request));
+  if(Number(user.email_verified||0)!==1)return json({ok:false,error:'email_verification_required'},403,cors(request));
+  if(!env.STRIPE_SECRET_KEY)return json({ok:false,error:'payments_not_configured'},503,cors(request));
+  const mode=String(env.STRIPE_MODE||'test').toLowerCase(),key=String(env.STRIPE_SECRET_KEY);
+  if(!['test','live'].includes(mode)||!key.startsWith(mode==='live'?'sk_live_':'sk_test_'))return json({ok:false,error:'stripe_mode_mismatch'},503,cors(request));
   await schema(env);
-  await reconcileExpiredReservations(env);
-  const input = await body(request),
-    variantId = Number(input?.variantId);
-  if (!Number.isInteger(variantId) || variantId < 1)
-    return json({ ok: false, error: "invalid_variant" }, 400, cors(request));
-  let reorderOf = null;
-  const reorderNumber = clean(input?.reorderOfOrderNumber, 80);
-  if (reorderNumber) {
-    reorderOf = await env.DB.prepare(
-      `SELECT id,variant_id,clinical_status,reorder_eligible_at FROM medicine_orders WHERE order_number=? AND user_id=?`,
-    ).bind(reorderNumber, user.id).first();
-    if (!reorderOf || reorderOf.clinical_status !== "fulfilled" || (reorderOf.reorder_eligible_at && Date.parse(reorderOf.reorder_eligible_at) > Date.now()))
-      return json({ ok: false, error: "reorder_not_eligible" }, 409, cors(request));
-    if (Number(reorderOf.variant_id) !== variantId)
-      return json({ ok: false, error: "reorder_variant_mismatch" }, 400, cors(request));
-  }
-  const verificationToken=clean(input?.verificationToken,160);
-  let verification=null,verificationHash='';
-  if (!reorderOf) {
-    if (!verificationToken) return json({ok:false,error:"prepay_verification_required",message:"Complete verification before payment."},409,cors(request));
-    verificationHash=await sha256(verificationToken);
-    verification=await env.DB.prepare(`SELECT token_hash,partner_reference,expires_at FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?`).bind(verificationHash,user.id,variantId,now()).first();
-    if (!verification) return json({ok:false,error:"invalid_or_expired_verification",message:"Verification has expired or does not match this treatment. Complete it again before payment."},409,cors(request));
-  }
-  const item = await env.DB.prepare(
-    `SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.name,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`,
-  )
-    .bind(variantId)
-    .first();
-  const checkoutTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
-  if (!checkoutTruth?.canBuy)
-    return json(
-      { ok: false, error: "out_of_stock", message: "Currently out of stock." },
-      409,
-      cors(request),
-    );
-  const held = await env.DB.prepare(
-    `UPDATE medicine_inventory SET reserved=reserved+1,updated_at=? WHERE variant_id=? AND stock_on_hand-reserved>0`,
-  )
-    .bind(now(), variantId)
-    .run();
-  if (Number(held.meta?.changes || 0) !== 1)
-    return json(
-      { ok: false, error: "out_of_stock", message: "Currently out of stock." },
-      409,
-      cors(request),
-    );
-  const verificationClaimedAt=verification?now():'';
-  if (verification) {
-    const claimed=await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=? WHERE token_hash=? AND used_at IS NULL AND expires_at>?`).bind(verificationClaimedAt,verificationHash,verificationClaimedAt).run();
-    if (Number(claimed.meta?.changes||0)!==1) {
-      await env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`).bind(now(),variantId).run();
-      return json({ok:false,error:"verification_already_used",message:"This verification has already been used."},409,cors(request));
-    }
-  }
-  const offer = await discount(
-    env,
-    input?.discountCode,
-    Number(item.selling_price_pence),
-  );
-  if (input?.discountCode && !offer) {
-    await env.DB.prepare(
-      `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`,
-    )
-      .bind(now(), variantId)
-      .run();
-    if(verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?`).bind(verificationHash,verificationClaimedAt).run();
-    return json(
-      { ok: false, error: "invalid_discount_code" },
-      400,
-      cors(request),
-    );
-  }
-  let reference;
-  try{reference=await reserveOrderReference(env.DB,{channel:'medicine',userId:user.id})}catch(error){
-    await env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`).bind(now(),variantId).run();
-    if(verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?`).bind(verificationHash,verificationClaimedAt).run();
-    console.error('order_reference_reservation_failed',{channel:'medicine',message:error?.message});
-    return json({ok:false,error:'order_reference_unavailable'},503,cors(request));
-  }
-  const order = {
-    orderNumber: reference,
-    totalPence: Number(item.selling_price_pence) - Number(offer?.amount || 0),
+  const input=await body(request),variantId=Number(input?.variantId);
+  if(!Number.isInteger(variantId)||variantId<1)return json({ok:false,error:'invalid_variant'},400,cors(request));
+  const reorderNumber=clean(input?.reorderOfOrderNumber,80),verificationToken=clean(input?.verificationToken,160),verificationHash=verificationToken?await sha256(verificationToken):'';
+  const acquired=await acquireCheckoutAttempt(env.DB,{userId:user.id,channel:'medicine',selection:{variantId,reorderNumber,verificationHash,discountCode:clean(input?.discountCode,80).toUpperCase()}});
+  if(acquired.conflict)return json(checkoutProblem({error:'checkout_selection_conflict'}),409,cors(request));
+  let attempt=acquired.attempt;
+  const reject=async(error,status=409,message)=>{
+    await env.DB.prepare("UPDATE checkout_attempts SET active=0,state='unavailable',updated_at=? WHERE id=? AND state='preparing'").bind(now(),attempt.id).run();
+    return json({ok:false,error,...(message?{message}:{})},status,cors(request));
   };
-  const stamp = now();
-  const inserted = await env.DB.prepare(
-    `INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
-  )
-    .bind(
-      order.orderNumber,
-      user.id,
-      user.email,
-      item.medicine_id,
-      variantId,
-      item.name,
-      item.strength_label,
-      item.selling_price_pence,
-      offer?.code || null,
-      offer?.amount || 0,
-      order.totalPence,
-      reorderOf?.id || null,
-      verification ? stamp : null,
-      stamp,
-      stamp,
-    )
-    .run();
-  await attachOrderReference(env.DB,order.orderNumber,{sourceTable:'medicine_orders',sourceId:inserted.meta.last_row_id,status:'pending'});
-  const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${key}`,
-        "content-type": "application/x-www-form-urlencoded",
-        "idempotency-key": order.orderNumber,
-      },
-      body: stripeForm(order, item, user, env),
-    }),
-    session = await response.json().catch(() => null);
-  if (!response.ok || !session?.id || !session?.url) {
-    await env.DB.batch([
-      env.DB.prepare(
-        `UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=?`,
-      ).bind(now(), variantId),
-      env.DB.prepare(
-        `UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=?`,
-      ).bind(now(), inserted.meta.last_row_id),
-    ]);
-    if(verification) await env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=NULL WHERE token_hash=? AND used_at=?`).bind(verificationHash,verificationClaimedAt).run();
-    const stripeError={status:response.status,type:clean(session?.error?.type||'unknown',100),code:clean(session?.error?.code||'',100),param:clean(session?.error?.param||'',160),message:clean(session?.error?.message||'Stripe did not create a checkout session.',300),keyMode:key.startsWith('sk_live_')?'live':key.startsWith('sk_test_')?'test':'invalid'};
-    console.error('medicine_stripe_checkout_create_failed',{orderNumber:order.orderNumber,...stripeError});
-    await env.DB.prepare(`UPDATE medicine_orders SET stripe_error_json=?,updated_at=? WHERE id=?`).bind(JSON.stringify(stripeError),now(),inserted.meta.last_row_id).run().catch(()=>{});
-    await updateOrderReferenceStatus(env.DB,order.orderNumber,'failed');
-    return json(
-      { ok: false, error: "checkout_unavailable",...(mode==='test'?{diagnostic:stripeError}:{}) },
-      502,
-      cors(request),
-    );
+  if(attempt.state==='preparing'){
+    let reorderOf=null,verification=null;
+    if(reorderNumber){
+      reorderOf=await env.DB.prepare('SELECT id,variant_id,clinical_status,reorder_eligible_at FROM medicine_orders WHERE order_number=? AND user_id=?').bind(reorderNumber,user.id).first();
+      if(!reorderOf||reorderOf.clinical_status!=='fulfilled'||(reorderOf.reorder_eligible_at&&Date.parse(reorderOf.reorder_eligible_at)>Date.now()))return reject('reorder_not_eligible');
+      if(Number(reorderOf.variant_id)!==variantId)return reject('reorder_variant_mismatch',400);
+    }else{
+      if(!verificationToken)return reject('prepay_verification_required',409,'Complete verification before payment.');
+      verification=await env.DB.prepare('SELECT token_hash,partner_reference,expires_at FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?').bind(verificationHash,user.id,variantId,now()).first();
+      if(!verification)return reject('invalid_or_expired_verification',409,'Verification has expired or does not match this treatment. Complete it again before payment.');
+    }
+    const item=await env.DB.prepare(`SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.name,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();
+    const truth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+    if(!truth?.canBuy)return reject('out_of_stock',409,'Currently out of stock.');
+    const offer=await discount(env,input?.discountCode,Number(item.selling_price_pence));
+    if(input?.discountCode&&!offer)return reject('invalid_discount_code',400);
+    const order={orderNumber:attempt.order_number,totalPence:Number(item.selling_price_pence)-Number(offer?.amount||0)},date=now();
+    await ensureOrderReferenceRegistry(env.DB);
+    const availableSql=`EXISTS(SELECT 1 FROM medicine_inventory WHERE variant_id=? AND stock_on_hand-reserved>0)`+(verification?` AND EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?)`:'');
+    attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:[variantId,...(verification?[verificationHash,user.id,variantId,date]:[])],form:stripeForm(order,item,user,env),statements:guard=>[
+      env.DB.prepare(`INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,created_at,updated_at) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,?,? WHERE ${guard}`).bind(order.orderNumber,user.id,user.email,item.medicine_id,variantId,item.name,item.strength_label,item.selling_price_pence,offer?.code||null,offer?.amount||0,order.totalPence,reorderOf?.id||null,verification?date:null,date,date),
+      env.DB.prepare(`INSERT INTO order_reference_registry(order_number,channel,user_id,source_table,source_id,status,created_at,updated_at) SELECT ?,'medicine',?,'medicine_orders',(SELECT id FROM medicine_orders WHERE order_number=?),'pending',?,? WHERE ${guard}`).bind(order.orderNumber,user.id,order.orderNumber,date,date),
+      env.DB.prepare(`UPDATE medicine_inventory SET reserved=reserved+1,updated_at=? WHERE variant_id=? AND ${guard}`).bind(date,variantId),
+      ...(verification?[env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=? WHERE token_hash=? AND ${guard}`).bind(date,verificationHash)]:[])
+    ]});
+    if(attempt.state==='preparing')return reject('stock_or_verification_changed',409,'Stock or verification changed. Please check your selection before trying again.');
   }
-  await env.DB.prepare(
-    `UPDATE medicine_orders SET stripe_checkout_session_id=?,status='checkout_open',updated_at=? WHERE id=?`,
-  )
-    .bind(session.id, now(), inserted.meta.last_row_id)
-    .run();
-  await updateOrderReferenceStatus(env.DB,order.orderNumber,'checkout_open');
-  return json(
-    {
-      ok: true,
-      checkoutUrl: session.url,
-      orderNumber: order.orderNumber,
-      totalPence: order.totalPence,
-    },
-    201,
-    cors(request),
-  );
+  const session=await requestCheckoutSession(env,attempt);
+  if(!session.ok)return json(checkoutProblem(session),session.status,cors(request));
+  const date=now();
+  await env.DB.batch([
+    env.DB.prepare("UPDATE medicine_orders SET stripe_checkout_session_id=?,status=CASE WHEN status='pending' THEN 'checkout_open' ELSE status END,updated_at=? WHERE order_number=?").bind(session.id,date,attempt.order_number),
+    env.DB.prepare("UPDATE order_reference_registry SET status='checkout_open',updated_at=? WHERE order_number=? AND status='pending'").bind(date,attempt.order_number)
+  ]);
+  const order=await env.DB.prepare('SELECT total_pence FROM medicine_orders WHERE order_number=? AND user_id=?').bind(attempt.order_number,user.id).first();
+  return json({ok:true,checkoutUrl:session.url,orderNumber:attempt.order_number,totalPence:order.total_pence},201,cors(request));
 }
 
 async function webhook(request, env, ctx) {
@@ -698,6 +566,7 @@ async function webhook(request, env, ctx) {
   // A transient lookup failure must stay retryable, not be acknowledged as complete.
   if (!order) return json({ ok: false, error: "medicine_order_not_found" }, 503);
   await ensureOrderReferenceRegistry(env.DB);
+  await ensureCheckoutAttempts(env.DB);
   let notifyPaid = false;
   try {
     const stamp = now(), statements = [];
@@ -720,6 +589,7 @@ async function webhook(request, env, ctx) {
         env.DB.prepare(`UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=? AND ${reserved}`).bind(stamp,order.id)
       );
     }
+    if(paid||event.type==='checkout.session.expired')statements.push(env.DB.prepare("UPDATE checkout_attempts SET active=0,state=?,updated_at=? WHERE order_number=?").bind(paid?'paid':'expired',stamp,number));
     // The event is complete only when order, inventory and registry commit together.
     statements.push(env.DB.prepare("UPDATE medicine_stripe_events SET processed_at=?,processing_error=NULL WHERE stripe_event_id=?").bind(stamp,event.id));
     const result = await env.DB.batch(statements);

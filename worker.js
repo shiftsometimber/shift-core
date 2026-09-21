@@ -1,3 +1,5 @@
+import {fastMemberLogin} from './member-login-fastpath-v1.js';
+import {shopRecoveryStatus,retryPendingShopReceipts} from './commerce-stripe-v1.js';
 import {receiveAccountDeletion} from './privacy-account-request-v1.js';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
 import {publicHealthResponse} from './public-health-v1.js';
@@ -181,34 +183,9 @@ async function register(request, env) {
 }
 
 async function login(request, env) {
-  const body = await readJson(request);
-  const email = normalizeEmail(body.email);
-  const password = String(body.password || '');
-  const row = await env.DB.prepare(`
-    SELECT u.*, a.password_hash, a.email_verified, a.failed_login_attempts, a.locked_until
-    FROM users u JOIN user_auth a ON a.user_id=u.id
-    WHERE lower(u.email)=?
-  `).bind(email).first();
-
-  if (!row) return json({ ok: false, error: 'invalid_credentials' }, 401);
-  if (row.locked_until && new Date(row.locked_until).getTime() > Date.now()) return json({ ok: false, error: 'temporarily_locked' }, 423);
-
-  const valid = await verifyPassword(password, row.password_hash);
-  if (!valid) {
-    const attempts = Number(row.failed_login_attempts || 0) + 1;
-    const lockedUntil = attempts >= 8 ? new Date(Date.now() + 15 * 60 * 1000).toISOString() : null;
-    await env.DB.prepare('UPDATE user_auth SET failed_login_attempts=?, locked_until=?, updated_at=? WHERE user_id=?')
-      .bind(lockedUntil ? 0 : attempts, lockedUntil, isoNow(), row.id).run();
-    return json({ ok: false, error: 'invalid_credentials' }, 401);
-  }
-
-  await env.DB.batch([
-    env.DB.prepare('UPDATE user_auth SET failed_login_attempts=0, locked_until=NULL, last_login_at=?, updated_at=? WHERE user_id=?').bind(isoNow(), isoNow(), row.id),
-    env.DB.prepare('UPDATE member_status SET last_activity_at=?, updated_at=? WHERE user_id=?').bind(isoNow(), isoNow(), row.id)
-  ]);
-  await audit(env, row.id, 'auth.login', 'user', String(row.id), request);
-  const session = await createSession(env,row.id,request,body.rememberMe===true);
-  const response=json({ ok: true, user: publicUser(row), emailVerified: !!row.email_verified }, 200, { 'Set-Cookie': session.cookie });appendLegacyHostCookieClear(response,request);return response;
+  // Legacy/trailing-slash entry shares the canonical guarded login transaction.
+  const url=new URL(request.url);url.pathname='/v1/auth/login';
+  return fastMemberLogin(new Request(url,request),env);
 }
 
 async function logout(request, env) {
@@ -1311,6 +1288,16 @@ async function adminRoutes(request, env, path, method) {
     await hqAudit(env,hqActor,'commerce.product_updated','product',String(id),{name,status,pricePence});return json({ok:true,id});
   }
 
+  if(method==='GET'&&path==='/v1/hq/orders/recovery')return json(await shopRecoveryStatus(env));
+  const receiptRetry=path.match(/^\/v1\/hq\/orders\/(\d+)\/retry-pending-receipts$/);
+  if(method==='POST'&&receiptRetry){
+    const orderId=Number(receiptRetry[1]);
+    const found=await retryPendingShopReceipts(env,orderId);
+    if(!found)return json({ok:false,error:'paid_order_not_found'},404);
+    await hqAudit(env,hqActor,'commerce.pending_receipts_retried','order',String(orderId),{uncertainReceiptsResent:false});
+    return json({ok:true,recovery:await shopRecoveryStatus(env)});
+  }
+
   if (method === 'GET' && path === '/v1/hq/orders') {
     const { results } = await env.DB.prepare(`SELECT o.*,p.name product_name,p.sku,d.size,d.delivery_pence,d.shipping_name,d.shipping_address_json,d.stripe_checkout_session_id,d.stripe_payment_intent_id,d.stripe_payment_status,(SELECT json_group_array(json_object('sku',oi.sku,'name',oi.product_name,'colour',oi.colour,'size',oi.size,'quantity',oi.quantity,'unitPricePence',oi.unit_price_pence)) FROM commerce_order_items oi WHERE oi.order_id=o.id) items_json,CASE WHEN d.stripe_checkout_session_id LIKE 'cs_live_%' THEN 'live' WHEN d.stripe_checkout_session_id LIKE 'cs_test_%' THEN 'test' ELSE 'manual' END environment,COALESCE((SELECT SUM(r.amount_pence) FROM commerce_refunds r WHERE r.order_id=o.id),0) refunded_pence FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id ORDER BY o.id DESC LIMIT 1000`).all();
     return json({orders:results||[],mode:String(env.STRIPE_MODE||'test').toLowerCase()});
@@ -1415,7 +1402,8 @@ async function requireUser(request, env) {
   if (!token) return { response: json({ ok:false, error:'authentication_required' }, 401) };
   const hash = await sha256Hex(token);
   const row = await env.DB.prepare(`SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?`).bind(hash).first();
-  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return { response: json({ok:false,error:'session_expired'},401,{ 'Set-Cookie':clearSessionCookie(request) }) };
+  // Do not let a delayed old-session read erase a newer login cookie.
+  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return { response: json({ok:false,error:'session_expired'},401) };
   await env.DB.prepare('UPDATE user_sessions SET last_used_at=? WHERE id=?').bind(isoNow(),row.session_id).run();
   return { user: row };
 }

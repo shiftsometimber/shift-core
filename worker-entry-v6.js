@@ -1,3 +1,4 @@
+import {repairPromiseResponse} from './public-promise-accuracy-v1.mjs';
 import {notifyArticlePublication} from './babylove/publication-email.mjs';
 import {oralPublicRoute,withOralDiscovery} from './babylove/oral-public.mjs';
 import {babyLovePublicRoute,withBabyLoveDiscovery} from './babylove/public-article.mjs';
@@ -367,7 +368,7 @@ const PUBLIC_MEDICINE_TICKER_PATCH = `;(()=>{const run=async()=>{const path=loca
 // ACT2B_PAGES_CONTENT_FALLTHROUGH
 async function act2bPagesContent(request) {
   const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
-  return repairPasswordResetResponse(await fetch(new Request(u,request)),request);
+  return repairPromiseResponse(await repairPasswordResetResponse(await fetch(new Request(u,request)),request),request);
 }
 async function publicSiteConfigWithLoungeChrome(request) {
   const upstream = new URL(request.url);

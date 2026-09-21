@@ -6,6 +6,7 @@ const ok=m=>console.log(`PASS ${m}`);
 const read=p=>fs.readFileSync(p,'utf8');
 
 const worker=read('worker.js');
+const login=read('member-login-fastpath-v1.js');
 const entry=read('worker-entry-v6.js');
 const entryCompact=entry.replace(/"/g,"'").replace(/\s+/g,'');
 const security=read('security-privacy-v1.js');
@@ -37,7 +38,10 @@ forbid(identity,/AUTO_VERIFY_EMAIL|verificationRequired\s*:\s*false[\s\S]*email\
 
 for(const marker of ['RESET_TTL_MS=30*60*1000','password.length<12','constantTimeBytesEqual','token_type=\'password_reset\'']) requireText(recovery,marker,`recovery security ${marker}`);
 
-for(const marker of ['failed_login_attempts','attempts >= 8','15 * 60 * 1000','PBKDF2','iterations = 100000','HttpOnly','Secure','SameSite=Lax']) requireText(worker,marker,`auth defence ${marker}`);
+for(const marker of ['PBKDF2','iterations = 100000','HttpOnly','Secure','SameSite=Lax']) requireText(worker,marker,`auth defence ${marker}`);
+
+for(const marker of ['failed_login_attempts','const LOCK_AFTER=8','attempts>=LOCK_AFTER','const LOCK_MS=15*60*1000','Date.now()+LOCK_MS','WHERE user_id=? AND password_hash=? AND email_verified=1','Number(committed[0]?.meta?.changes)!==1']) requireText(login,marker,`canonical login defence ${marker}`);
+requireText(worker,'return fastMemberLogin(new Request(url,request),env)','legacy login shares guarded canonical authentication');
 
 if(failed)process.exit(1);
 console.log('G1-010 / M05 RELEASE SECURITY-PRIVACY SOURCE GATE PASS');

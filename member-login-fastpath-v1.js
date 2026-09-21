@@ -20,7 +20,7 @@ export async function fastMemberLogin(request,env){
   if(!valid){
     const attempts=Number(row.failed_login_attempts||0)+1,now=new Date().toISOString();
     const lockedUntil=attempts>=LOCK_AFTER?new Date(Date.now()+LOCK_MS).toISOString():null;
-    await env.DB.prepare('UPDATE user_auth SET failed_login_attempts=?,locked_until=?,updated_at=? WHERE user_id=?').bind(lockedUntil?0:attempts,lockedUntil,now,row.id).run();
+    await env.DB.prepare('UPDATE user_auth SET failed_login_attempts=?,locked_until=?,updated_at=? WHERE user_id=? AND password_hash=?').bind(lockedUntil?0:attempts,lockedUntil,now,row.id,row.password_hash).run();
     return json({ok:false,error:'invalid_credentials'},401);
   }
   if(!Number(row.email_verified||0)){
@@ -31,12 +31,15 @@ export async function fastMemberLogin(request,env){
   const rememberMe=body?.rememberMe===true,ttlMs=rememberMe?REMEMBER_DAYS*24*60*60*1000:STANDARD_HOURS*60*60*1000;
   const now=new Date().toISOString(),expires=new Date(Date.now()+ttlMs).toISOString();
   const token=randomToken(32),tokenHash=await sha256Hex(token),ip=request.headers.get('CF-Connecting-IP')||'',ipHash=ip?`sha256:${await sha256Hex(ip)}`:null;
-  await env.DB.batch([
-    env.DB.prepare('UPDATE user_auth SET failed_login_attempts=0,locked_until=NULL,last_login_at=?,updated_at=? WHERE user_id=?').bind(now,now,row.id),
-    env.DB.prepare('UPDATE member_status SET last_activity_at=?,updated_at=? WHERE user_id=?').bind(now,now,row.id),
-    env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)').bind(row.id,'auth.login','user',String(row.id),'{}',ipHash,now),
-    env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)').bind(row.id,tokenHash,expires,now,now)
+  // Password/reset and verification can change while PBKDF2 is running. The
+  // session itself is the conditional commit marker for all success effects.
+  const committed=await env.DB.batch([
+    env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT ?,?,?,?,? FROM user_auth WHERE user_id=? AND password_hash=? AND email_verified=1 AND (locked_until IS NULL OR locked_until<=?)').bind(row.id,tokenHash,expires,now,now,row.id,row.password_hash,now),
+    env.DB.prepare('UPDATE user_auth SET failed_login_attempts=0,locked_until=NULL,last_login_at=?,updated_at=? WHERE user_id=? AND EXISTS(SELECT 1 FROM user_sessions WHERE token_hash=?)').bind(now,now,row.id,tokenHash),
+    env.DB.prepare('UPDATE member_status SET last_activity_at=?,updated_at=? WHERE user_id=? AND EXISTS(SELECT 1 FROM user_sessions WHERE token_hash=?)').bind(now,now,row.id,tokenHash),
+    env.DB.prepare('INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) SELECT ?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM user_sessions WHERE token_hash=?)').bind(row.id,'auth.login','user',String(row.id),'{}',ipHash,now,tokenHash)
   ]);
+  if(Number(committed[0]?.meta?.changes)!==1)return json({ok:false,error:'invalid_credentials'},401);
   const response=json({ok:true,user:publicUser(row),emailVerified:true,remembered:rememberMe},200);clearLegacyHostCookie(response,request);response.headers.append('Set-Cookie',sessionCookie(token,expires,request,rememberMe));return response;
 }
 

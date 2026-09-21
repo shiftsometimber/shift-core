@@ -22,7 +22,19 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
  try{
   await context.route('**/*',route=>{const r=route.request();return new URL(r.url()).origin!==origin&&!['GET','HEAD'].includes(r.method())?route.abort():route.continue()});
   mark('signed-out-recovery-entry');await page.goto(origin+'/member-login');const necessary=page.getByRole('button',{name:'Necessary only',exact:true});if(await necessary.isVisible())await necessary.click();await page.getByRole('button',{name:'Forgotten your password?',exact:true}).click();await page.locator('#previewReset input[name=email]').waitFor();await page.getByRole('button',{name:'Back to sign in',exact:true}).click();await page.locator('#previewRegister input[name=password]').waitFor();row.checks.push('Signed-out public login loads with its session runtime; Forgot password and return controls work');
-  mark('ordinary-login-and-parallel-saves');await login(fixture.oldPassword);
+  mark('delayed-revoked-response-after-new-login');await login(fixture.oldPassword);
+  const oldCookie=(await context.cookies()).filter(c=>c.name==='sst_session').map(c=>c.name+'='+c.value).join('; ');assert(oldCookie);
+  assert.equal((await post('/v1/auth/logout',{})).status(),200);
+  const isolatedReader=await browser.newContext(),staleResponses=[];
+  try{for(const path of ['/v1/member-state','/v1/me']){const r=await isolatedReader.request.get(origin+path,{headers:{Cookie:oldCookie}});assert.equal(r.status(),401);const headers=r.headers();delete headers['content-length'];delete headers['content-encoding'];delete headers['transfer-encoding'];staleResponses.push({status:r.status(),headers,body:await r.text()})}}finally{await isolatedReader.close()}
+  await login(fixture.oldPassword);await state();
+  for(const stale of staleResponses){
+   await page.route('**/__preview/replay-stale-auth',route=>route.fulfill(stale));
+   assert.equal(await page.evaluate(async()=>{const r=await fetch('/__preview/replay-stale-auth',{credentials:'include',cache:'no-store'});return r.status}),401);
+   await page.unroute('**/__preview/replay-stale-auth');await state();assert.equal(stale.headers['set-cookie'],undefined,'Expired reads must not clear a newer cookie');
+  }
+  row.checks.push('Actual revoked-session responses from member-state and me replayed after new login cannot erase its cookie; old requests remain 401');
+  mark('ordinary-login-and-parallel-saves');
   for(let i=0;i<5;i++){const r=await Promise.all([patch({myWhy:{why:'Fictional walk '+i,promise:'Fictional promise'}}),patch({roadmap:{step:'Fictional step '+i}})]);assert.deepEqual(r.map(x=>x.status()),[200,200]);const s=await state();assert.equal(s.myWhy.why,'Fictional walk '+i);assert.equal(s.roadmap.step,'Fictional step '+i)}
   const baseline=await state();row.checks.push('Five overlapping partial saves retain both fields in independent D1 read-back');
   mark('real-d1-rollback-and-retry');
@@ -57,8 +69,9 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
   await page.route('**/v1/auth/reset-password',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({ok:false,message:'Temporary test failure. Please try again.'})}));
   await submit.click();await page.getByText('Temporary test failure. Please try again.',{exact:false}).waitFor();assert.equal(await inputs.first().inputValue(),newPassword);assert.equal(await submit.isEnabled(),true);await page.screenshot({path:dir+'/'+name+'-reset-retry.png',fullPage:true});
   await page.unroute('**/v1/auth/reset-password');const done=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/reset-password');await submit.click();assert.equal((await done).status(),200);
+  await page.waitForURL('**/member-login#sign-in');await page.locator('#previewRegister input[name=password]').waitFor();
   assert.equal((await post('/v1/auth/reset-password',{token:f.token,password:'B1-reuse-must-not-work!'})).status(),400);assert.equal((await post('/v1/auth/login',{email:f.email,password:winning})).status(),401);await login(newPassword);assert.equal((await state()).myWhy.why,'Fictional network retry');
-  assert.equal((await (await context.request.get(origin+'/v1/life-back')).json()).progress.goal,'Fictional visible retry');
+  const retained=await context.request.get(origin+'/v1/life-back'),retainedBody=await retained.json();row.postResetLifeBack={status:retained.status(),error:retainedBody.error||null};assert.equal(retained.status(),200,JSON.stringify(row.postResetLifeBack));assert.equal(retainedBody.progress.goal,'Fictional visible retry');
   row.checks.push('Pinned rendered reset form retains password on visible failure, retries successfully; reused link rejected; ordinary new-password login retains member data');
   mark('rendered-expired-and-reused-link');
   for(const token of [f.token,f.expired]){await page.goto(origin+'/reset-password.html?token='+encodeURIComponent(token));await inputs.first().waitFor();for(let i=0;i<await inputs.count();i++)await inputs.nth(i).fill('B1-link-rejection-password!');const rejected=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/reset-password');await submit.click();assert.equal((await rejected).status(),400);await page.getByText('That reset link has expired or has already been used.',{exact:true}).waitFor();assert(await submit.isEnabled())}

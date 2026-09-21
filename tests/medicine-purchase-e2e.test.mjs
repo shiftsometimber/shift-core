@@ -126,8 +126,9 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.equal(seen.stripe,true);
 
     const reuse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,verificationToken:intake.verificationToken})}),env,{});
-    assert.equal(reuse.status,409);
-    assert.equal((await reuse.json()).error,'invalid_or_expired_verification');
+    assert.equal(reuse.status,201);
+    assert.equal((await reuse.json()).orderNumber,checkout.orderNumber,'retry resumes the same verified purchase');
+    assert.equal((await DB.prepare('SELECT COUNT(*) count FROM medicine_orders').first()).count,1);
 
     const timestamp=Math.floor(Date.now()/1000),event={id:'evt_shift_e2e_paid',type:'checkout.session.completed',data:{object:{id:'cs_test_shift_e2e_1',client_reference_id:checkout.orderNumber,payment_status:'paid',payment_intent:'pi_shift_e2e',metadata:{order_type:'medicine',order_number:checkout.orderNumber}}}},payload=JSON.stringify(event),signature=createHmac('sha256',env.STRIPE_WEBHOOK_SECRET).update(`${timestamp}.${payload}`).digest('hex');
     const webhook=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/commerce/stripe/webhook',{method:'POST',headers:{'stripe-signature':`t=${timestamp},v1=${signature}`},body:payload}),env,{});

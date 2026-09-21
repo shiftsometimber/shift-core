@@ -6,8 +6,9 @@ const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json'
 const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
 const steps=workflow.split(/\n      - /);
 test('exact preview application plus only reviewed release plumbing is accepted',()=>{assert.equal(validateScope(manifest,[...RELEASE_PATHS]).runtimeOnly,true)});
-test('application changes leave B1 runtime-only mode while malformed B1 authority still fails closed',()=>{
- for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js']){const result=validateScope(manifest,[path]);assert.equal(result.runtimeOnly,false);assert.deepEqual(result.applicationChanges,[path]);}
+test('explicitly pinned launch application, stock, workflow and configuration drift fails closed',()=>{
+ assert.equal(manifest.enforceApplicationPin,true);
+ for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js'])assert.throws(()=>validateScope(manifest,[path]),/drift/);
  for(const patch of [{mode:'full'},{applicationCommit:'f'.repeat(40)},{baseCommit:'f'.repeat(40)}])assert.throws(()=>validateScope({...manifest,...patch},[]));
 });
 test('every legacy publication, seed and migration step is unreachable for runtime-only release',()=>{
@@ -32,3 +33,5 @@ test('protected price/stock/config mismatch fails rather than reporting success'
  for(const table of Object.keys(before.tables)){const changed=structuredClone(before);changed.tables[table].sha256='changed';assert.throws(()=>assertPreserved(before,changed),/changed/)}
  assert.throws(()=>assertPreserved(before,{...before,configurationSha256:'changed'}),/configuration/);
 });
+
+test('unpinned normal release classification from concurrent main remains available',()=>{for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js']){const result=validateScope({...manifest,enforceApplicationPin:false},[path]);assert.equal(result.runtimeOnly,false);assert.deepEqual(result.applicationChanges,[path])}});

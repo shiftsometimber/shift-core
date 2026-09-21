@@ -58,7 +58,7 @@ test('checkout is verification-first while stock remains server-gated',async()=>
   assert.match(source,/stock_on_hand-reserved>0/);
   assert.doesNotMatch(source,/MEDICINE_PREPAY_VERIFICATION_REQUIRED/);
   assert.match(source,/invalid_or_expired_verification/);
-  assert.match(source,/verification_already_used/);
+  assert.match(source,/stock_or_verification_changed/);
   assert.match(source,/Date\.now\(\)\+30\*60\*1000/);
   assert.doesNotMatch(source,/JSON\.stringify\(input\.assessment\).*INSERT/i);
 });
