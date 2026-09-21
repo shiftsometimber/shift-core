@@ -10,6 +10,8 @@ function finish(response){const h=new Headers(response.headers);for(const[k,v]of
 export default{async fetch(request,env){
  const url=new URL(request.url),path=url.pathname;
  if(Date.now()>Date.parse(identity.createdAt)+3*86400000)return new Response('Preview expired',{status:410,headers});
+ // Synthetic recovery UI only: there are no accounts, emails or auth endpoints here.
+ if(path==='/v1/auth/turnstile-config')return finish(Response.json({enabled:false,required:false,preview:true}));
  if(path==='/v1/me')return finish(Response.json({error:'unauthorised'},{status:401}));
  if(path==='/v1/auth/request-password-reset'&&request.method==='POST')return finish(Response.json({ok:true,message:'Preview check complete. No reset email has been sent.'}));
  if(path==='/__identity')return finish(Response.json(identity));

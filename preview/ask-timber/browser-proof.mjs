@@ -48,7 +48,7 @@ try{
     await page.locator('#previewRegister input[name=email]').fill('fictional-recovery@example.invalid');
     await forgot.click();await page.locator('#previewReset').waitFor({state:'visible'});assert.equal(await page.locator('#previewReset input[name=email]').inputValue(),'fictional-recovery@example.invalid');
     await page.getByRole('button',{name:'Back to sign in',exact:true}).click();await forgot.waitFor({state:'visible'});
-    await forgot.click();await page.getByRole('button',{name:'Send reset link',exact:true}).click();await page.getByText('Preview check complete. No reset email has been sent.',{exact:true}).waitFor();
+    await forgot.click();const resetResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/auth/request-password-reset');await page.getByRole('button',{name:'Send reset link',exact:true}).click();const resetResult=await resetResponse;assert.equal(new URL(resetResult.url()).origin,base);assert.equal(resetResult.status(),200);await page.getByText('Preview check complete. No reset email has been sent.',{exact:true}).waitFor();
     row.checks.push(path+' visible recovery button, reveal, email carry-over, back and synthetic request');
    }
   }catch(error){row.pass=false;row.error=error.stack;await page.screenshot({path:dir+'/'+prefix+'-failure.png',fullPage:true});throw error}finally{console.log(JSON.stringify(row));await browser.close();writeFileSync(dir+'/browser-report.json',JSON.stringify(report,null,2))}
