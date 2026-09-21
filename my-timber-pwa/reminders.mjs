@@ -67,7 +67,10 @@ export async function sendPwaPush(env,row,transport=fetch){
  // Pin the current RFC 8291/8292 format. The existing Fit-only library emits
  // legacy aesgcm/WebPush headers; keep its behavior unchanged in this patch.
  const payload=webpush.generateRequestDetails(subscription,JSON.stringify({kind:'my-timber-checkin',title:'Time for your check-in',body:'A minute for you. Open My Timber when you’re ready.',url:'/member/dashboard#today'}),{TTL:1800,urgency:'normal',contentEncoding:'aes128gcm',vapidDetails:identity});
- let response;try{response=await transport(row.endpoint,{method:payload.method,headers:payload.headers,body:payload.body,redirect:'error',signal:AbortSignal.timeout(10000)})}catch{throw Object.assign(Error('Push transport failed'),{pwaStage:'transport'})}
+ // Workers rejects redirect:'error' before making any network request.
+ // Manual mode never forwards the subscription or VAPID headers elsewhere;
+ // all 3xx responses fall through to rejected below.
+ let response;try{response=await transport(row.endpoint,{method:payload.method,headers:payload.headers,body:payload.body,redirect:'manual',signal:AbortSignal.timeout(10000)})}catch{throw Object.assign(Error('Push transport failed'),{pwaStage:'transport'})}
  return response.ok?'accepted':[404,410].includes(response.status)?'expired':'rejected';
 }
 async function revoke(DB,endpoint){await DB.batch([DB.prepare('DELETE FROM my_timber_push_deliveries WHERE endpoint=?').bind(endpoint),DB.prepare('DELETE FROM my_timber_push_devices WHERE endpoint=?').bind(endpoint)])}
