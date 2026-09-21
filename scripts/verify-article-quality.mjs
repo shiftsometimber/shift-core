@@ -6,7 +6,7 @@ const paths=['/articles/wegovy-cost-uk','/articles/oral-semaglutide-for-weight-l
 const report={checked_at:new Date().toISOString(),origin,source_sha:process.env.GITHUB_SHA||null,checks:[]};
 const meta=(html,key)=>html.match(new RegExp('<meta\\b[^>]*(?:name|property)=["\']'+key+'["\'][^>]*content=["\']([^"\']*)'))?.[1];
 const schema=html=>[...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const o=JSON.parse(m[1]);return o['@graph']||o}).find(o=>['Article','BlogPosting','NewsArticle'].includes(o['@type']));
-const mainText=html=>(html.match(/<main\b[\s\S]*?<\/main>/i)?.[0]||'').replace(/<[^>]+>/g,' ').replace(/\[([^\]]+)\]\((?:https:\/\/|\/)[^\s)]+\)/g,'$1').replace(/\s+/g,' ').trim();
+const mainText=html=>(html.match(/<main\b[\s\S]*?<\/main>/i)?.[0]||'').replace(/<\/?(?:main|section|div|p|h[1-6]|ul|ol|li|table|tr|td|th|blockquote)\b[^>]*>/gi,' ').replace(/<[^>]+>/g,'').replace(/\[([^\]]+)\]\((?:https:\/\/|\/)[^\s)]+\)/g,'$1').replace(/\s+/g,' ').trim();
 try{
  for(const path of paths){
   const response=await fetch(origin+path,{signal:AbortSignal.timeout(25000)});assert.equal(response.status,200,path);

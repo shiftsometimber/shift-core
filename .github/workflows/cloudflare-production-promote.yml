@@ -8,6 +8,8 @@ on:
     paths:
       - ".github/workflows/cloudflare-production-promote.yml"
       - "babylove/**"
+      - "scripts/verify-article-quality.mjs"
+      - "scripts/measure-public-latency.mjs"
       - "editorial/five-articles/**"
       - "editorial-resources-v1.js"
       - "tests/five-article-evidence.test.mjs"
@@ -441,6 +443,8 @@ jobs:
         run: node scripts/verify-seo-template.mjs --live
       - name: Prove automatic article metadata and the shared security policy
         run: node scripts/verify-article-quality.mjs
+      - name: Record independent public HTTP latency after promotion
+        run: node scripts/measure-public-latency.mjs
       - name: Retain public preservation evidence
         if: always()
         uses: actions/upload-artifact@v4
