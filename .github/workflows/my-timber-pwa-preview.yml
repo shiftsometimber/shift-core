@@ -46,3 +46,7 @@ jobs:
         env:
           PREVIEW_URL: https://shift-my-timber-pwa-preview.matobrien.workers.dev
         run: node my-timber-pwa/preview/verify-entry.mjs
+      - name: Verify real push transport using a nonexistent destination
+        env:
+          PREVIEW_URL: https://shift-my-timber-pwa-preview.matobrien.workers.dev
+        run: node my-timber-pwa/preview/verify-push.mjs
