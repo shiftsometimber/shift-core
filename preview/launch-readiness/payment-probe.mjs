@@ -1,3 +1,4 @@
+import {proveResetLoginRace} from './auth-race-probe.mjs';
 // Isolated preview only. This module is never imported by production.
 import {ensureOrderReferenceRegistry} from '../../order-reference-v1.js';
 import {commerceStripeRoutes} from '../../commerce-stripe-v1.js';
@@ -53,6 +54,7 @@ export async function launchPaymentProbe(request,env){
  const prepare=()=>prepareCheckoutAttempt(DB,attempt,{availableSql:'1=1',form:'mode=payment&metadata%5Bfixture%5D=fictional',statements:guard=>[DB.prepare(`INSERT INTO preview_checkout_projection(attempt_id,marker) SELECT ?,'fictional' WHERE ${guard}`).bind(attempt.id)]});
  await Promise.all([prepare(),prepare()]);
  assert((await DB.prepare('SELECT COUNT(*) count FROM preview_checkout_projection WHERE attempt_id=?').bind(attempt.id).first()).count===1,'Concurrent D1 preparation happens once');
- return Response.json({ok:true,at,realIsolatedD1:true,providerCalls:0,emailsSent:0,productionWrites:0,checks:['transaction rollback','same callback redelivery','concurrent distinct success','late failure protection','durable missing-binding receipts','concurrent checkout preparation'],inventory},{headers:{'Cache-Control':'no-store'}});
+ stage='reset-login-race';const authRace=at===0?await proveResetLoginRace(env):null;
+ return Response.json({ok:true,at,authRace,realIsolatedD1:true,providerCalls:0,emailsSent:0,productionWrites:0,checks:['transaction rollback','same callback redelivery','concurrent distinct success','late failure protection','durable missing-binding receipts','concurrent checkout preparation'],inventory},{headers:{'Cache-Control':'no-store'}});
  }catch(error){return Response.json({ok:false,stage,error:String(error?.message||error).slice(0,1200)},{status:500,headers:{'Cache-Control':'no-store'}})}
 }
