@@ -11,6 +11,7 @@ import {authenticateMember} from '../member-state-fast-v1.js';
 import {memberHealthRoutes} from '../member-experience/health-routes.mjs';
 import {myJourneyRoutes} from '../my-journey-v1.js';
 import {activationScorecard} from '../activation-measurement/scorecard.mjs';
+import {sessionRuntime} from '../member-experience/session-state.mjs';
 const f=fixture(),origin='https://shiftsometimber.co.uk';
 const json=(d,s=200)=>Response.json(d,{status:s});
 async function dispatch(request){
@@ -25,6 +26,7 @@ async function dispatch(request){
   f.db.prepare("INSERT INTO consents(user_id,consent_type,granted) VALUES(?,'my_shift_health_tracking',1)").run(a.userId);return json({ok:true});
  }
  const asset=measurementAsset(request);if(asset)return asset;
+ if(p==='/assets/member-experience/session.mjs')return new Response(sessionRuntime,{headers:{'Content-Type':'application/javascript'}});
  if(p==='/api-adapter-v33d.js')return new Response(readFileSync('frontend/member/api-adapter-v33d.js'),{headers:{'Content-Type':'application/javascript'}});
  if(p.startsWith('/v1/')){
   const login=await fastMemberLogin(request,f.env);if(login)return login;
@@ -41,7 +43,7 @@ async function dispatch(request){
  const name=p==='/member-login'||p==='/member-login.html'?'member-login.html':p==='/start-here'?'start-here.html':'programme.html';
  let html=readFileSync('acquisition-proof/baseline/'+name,'utf8');
  // Keep the actual inline public registration form/controller, not a fake register API.
- html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi,tag=>name==='member-login.html'&&tag.includes('SST_API[mode](data)')?tag:'');
+ html=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi,tag=>name==='member-login.html'&&(tag.includes('SST_API[mode](data)')||tag.includes('src="/assets/member-experience/session.mjs"'))?tag:'');
  html=html.replace(/<head([^>]*)>/i,'<head$1><script>window.SST_API_BASE=location.origin;</script><script src="/analytics-bootstrap-v1.js"></script><script src="/api-adapter-v33d.js"></script>');
  html=html.replace('</body>','<script src="/consent-v4a.js"></script></body>');
  return new Response(html,{headers:{'Content-Type':'text/html','Cache-Control':'no-store'}});

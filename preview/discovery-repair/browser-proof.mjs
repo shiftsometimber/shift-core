@@ -18,7 +18,8 @@ const badPlan={location:'home',minutes_per_day:20,sessions:[{day:1,title:'Discov
 const matrix=[['chromium-desktop',chromium,{width:1440,height:1000}],['chromium-phone',chromium,{width:390,height:844}],['webkit-desktop',webkit,{width:1440,height:1000}],['webkit-phone',webkit,{width:390,height:844}]];
 for(const [index,[name,engine,viewport]]of matrix.entries()){
  const id=fixture.browserIds[index];assert(Number.isSafeInteger(id)&&id>1e10);
- const browser=await engine.launch(),ctx=await browser.newContext({viewport}),page=await ctx.newPage(),row={name,checks:[]};report.cases.push(row);
+ const browser=await engine.launch(),ctx=await browser.newContext({viewport,serviceWorkers:'block'}),page=await ctx.newPage(),row={name,checks:[]};report.cases.push(row);
+ let deletionFailure=0;
  ctx.setDefaultTimeout(30000);ctx.setDefaultNavigationTimeout(30000);
  const phase=value=>{row.phase=value;save();console.log(JSON.stringify({name,phase:value,at:new Date().toISOString()}))};
  const deadline=setTimeout(()=>{row.deadlineExceeded=true;ctx.close().catch(()=>{});browser.close().catch(()=>{})},300000);
@@ -29,7 +30,9 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
  const ready=async path=>{await page.goto(origin+path);await page.waitForFunction(()=>document.body.dataset.memberSession==='ready')};
  const today=async()=>{await ready('/member/dashboard#today');await page.waitForFunction(()=>document.querySelector('#todayActions')?.dataset.todayDecisionReady==='true');await page.locator('#more-for-today').waitFor();const d=page.locator('#more-for-today');if(await d.getAttribute('open')===null)await d.locator(':scope > summary').click();await page.locator('.mt-workout').waitFor()};
  try{
-  await ctx.route('**/*',route=>{const r=route.request();return new URL(r.url()).origin!==origin&&!['GET','HEAD'].includes(r.method())?route.abort():route.continue()});
+  // Install one router before navigation: late-added context routes were not
+  // intercepting DELETE reliably in WebKit. Keep the failure visible in HTTP evidence.
+  await ctx.route('**/*',route=>{const r=route.request(),url=new URL(r.url());if(url.origin!==origin&&!['GET','HEAD'].includes(r.method()))return route.abort();if(url.origin===origin&&url.pathname==='/v1/privacy/account'&&r.method()==='DELETE'&&deletionFailure)return route.fulfill({status:deletionFailure,contentType:'application/json',body:JSON.stringify({error:deletionFailure===401?'session_expired':'fictional_dependency_failure'})});return route.continue()});
   phase('public-crisis-rendering');
   await page.goto(origin+'/ask-timber');await page.getByRole('button',{name:'Necessary only',exact:true}).click();
   for(const message of ['I feel suicidal and cannot eat dinner','Someone has anaphylaxis']){
@@ -61,11 +64,11 @@ for(const [index,[name,engine,viewport]]of matrix.entries()){
   const notes=await json('/v1/pen-day');assert.equal(notes.today,null);assert.deepEqual(notes.history,[]);assert.equal((await call('/v1/pen-day','POST',{status:'done'})).status(),409);
   row.checks.push('Hosted consent blocks Pen Day saves; export includes retained notes after withdrawal; Settings erasure removes them');
   phase('deletion-cancel-and-failure');await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.getByRole('button',{name:'Cancel',exact:true}).click();assert.equal(await page.locator('#accountDeletionForm').isVisible(),false);
-  const expired=route=>route.fulfill({status:401,contentType:'application/json',body:JSON.stringify({error:'session_expired'})});await ctx.route('**/v1/privacy/account',expired);
-  await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.locator('#accountDeletionConfirm').check();await page.getByRole('button',{name:'Send deletion request',exact:true}).click();await page.locator('#accountDeletionSignIn').waitFor();await ctx.unroute('**/v1/privacy/account',expired);await page.getByRole('button',{name:'Cancel',exact:true}).click();
-  const reject=route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'fictional_dependency_failure'})});await ctx.route('**/v1/privacy/account',reject);
-  await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.locator('#accountDeletionConfirm').check();await page.getByRole('button',{name:'Send deletion request',exact:true}).click();await page.locator('#accountDeletionStatus[data-state="error"]').waitFor();assert((await call('/v1/me')).ok());
-  assert.equal(await page.getByRole('button',{name:'Send deletion request',exact:true}).isEnabled(),true);await ctx.unroute('**/v1/privacy/account',reject);
+  deletionFailure=401;
+  await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.locator('#accountDeletionConfirm').check();let failed=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/privacy/account'&&r.request().method()==='DELETE');await page.getByRole('button',{name:'Send deletion request',exact:true}).click();assert.equal((await failed).status(),401);await page.locator('#accountDeletionSignIn').waitFor();await page.getByRole('button',{name:'Cancel',exact:true}).click();
+  deletionFailure=503;
+  await page.getByRole('button',{name:'Request account deletion',exact:true}).click();await page.locator('#accountDeletionConfirm').check();failed=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/privacy/account'&&r.request().method()==='DELETE');await page.getByRole('button',{name:'Send deletion request',exact:true}).click();assert.equal((await failed).status(),503);await page.locator('#accountDeletionStatus[data-state="error"]').waitFor();assert((await call('/v1/me')).ok());
+  assert.equal(await page.getByRole('button',{name:'Send deletion request',exact:true}).isEnabled(),true);deletionFailure=0;
   phase('deletion-receipt');const submitted=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/privacy/account'&&r.request().method()==='DELETE');await page.getByRole('button',{name:'Send deletion request',exact:true}).click();assert.equal((await submitted).status(),202);
   await page.locator('#accountDeletionStatus[data-state="received"]').waitFor();assert.match(await page.locator('#accountDeletionStatus').innerText(),/has not yet been deleted/);assert.equal((await call('/v1/me')).status(),401);
   const records=sql(`SELECT status,completed_at FROM data_requests WHERE user_id=${id} AND request_type='deletion'; SELECT status,title FROM hq_tasks WHERE user_id=${id} AND title='Review account deletion request';`);assert.equal(records[0].results.length,1);assert.equal(records[0].results[0].status,'received');assert.equal(records[0].results[0].completed_at,null);assert.equal(records[1].results[0].status,'open');
