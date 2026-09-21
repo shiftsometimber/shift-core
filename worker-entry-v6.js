@@ -1,6 +1,7 @@
 import {notifyArticlePublication} from './babylove/publication-email.mjs';
 import {oralPublicRoute,withOralDiscovery} from './babylove/oral-public.mjs';
 import {babyLovePublicRoute,withBabyLoveDiscovery} from './babylove/public-article.mjs';
+import {dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery} from './babylove/dynamic-public.mjs';
 import {babyLoveRoutes} from './babylove/webhook.mjs';
 import {measurementAsset} from './activation-measurement/assets.mjs';
 import {passportRoutes,appendPassportExport} from './health-passport/routes.mjs';
@@ -564,6 +565,7 @@ const worker = {
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
     const oralPage = await oralPublicRoute(request,env); if(oralPage){if(oralPage.status===200&&request.method==='GET')ctx.waitUntil(notifyArticlePublication(env));return oralPage;}
     const articlePage = await babyLovePublicRoute(request,env); if(articlePage)return articlePage;
+    const dynamicArticlePage = await dynamicBabyLovePublicRoute(request,env); if(dynamicArticlePage)return dynamicArticlePage;
     const babyLove = await babyLoveRoutes(request,env); if(babyLove)return babyLove;
     const measurement = measurementAsset(request); if(measurement)return measurement;
     const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
@@ -1151,6 +1153,6 @@ export default {
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
-    return withOralDiscovery(await withBabyLoveDiscovery(response,request,env),request,env);
+    return withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env);
   },
 };
