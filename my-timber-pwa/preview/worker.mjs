@@ -56,7 +56,7 @@ export default{async fetch(request,env){
  if(request.method!=='GET')return new Response('Method not allowed',{status:405});
  if(path==='/__preview/review'){
   const r=await withPwa(new Request(u.origin+'/member/dashboard'),page('<h1>Install instructions preview</h1><p>Tap the compact box above to see the setup steps. The small footer link opens the same box.</p><aside>Layout preview only. On the live site, this opens your full My Timber account: check-ins, Grub, Fit and saved progress. Real account sign-in and automatic reminders are not connected to this test site.</aside><p><a href="/">Return to the device test</a></p>'));
-  const html=(await r.text()).replace('href="/member/dashboard#myTimberApp"','href="/__preview/review#myTimberApp"').replace('href="/member-login?returnTo=%2Fmember%2Fdashboard%23myTimberApp"','href="/__preview/review#preview-sign-in"').replace('Sign in to My Timber</a>','Sign-in connects to your account on the live site</a>').replace('<aside>Layout preview only.','<aside id="preview-sign-in">Layout preview only.');
+  const html=(await r.text()).replace('href="/member/dashboard?setup=app#myTimberApp"','href="/__preview/review#myTimberApp"').replace('href="/member-login?returnTo=%2Fmember%2Fdashboard%3Fsetup%3Dapp%23myTimberApp"','href="/__preview/review#preview-sign-in"').replace('Sign in to My Timber</a>','Sign-in connects to your account on the live site</a>').replace('<aside>Layout preview only.','<aside id="preview-sign-in">Layout preview only.');
   return new Response(html,r);
  }
  if(['/','/my-timber','/member/dashboard','/member/check-in','/__preview/review'].includes(path)){

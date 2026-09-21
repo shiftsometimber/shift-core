@@ -12,7 +12,7 @@ async function api(path,body,method=body?'POST':'GET'){
  return r;
 }
 try{
- const meta=await(await api('/__preview/meta')).json();assert.equal(meta.source,process.env.GITHUB_SHA);assert.equal(meta.productionBindings,false);
+ let meta;for(let i=0;i<15;i++){meta=await(await api('/__preview/meta')).json();if(meta.source===process.env.GITHUB_SHA)break;await new Promise(resolve=>setTimeout(resolve,3000));}assert.equal(meta.source,process.env.GITHUB_SHA);assert.equal(meta.productionBindings,false);
  assert.equal((await api('/v1/my-timber-pwa/status',{})).status,401);
  assert.equal((await api('/v1/auth/login',{email,password:fixture.password})).status,200);
  const profile=await(await api('/v1/profile')).json();assert.equal(profile.profile.email,email);checks.push('real login and same-account profile');

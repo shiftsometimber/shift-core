@@ -56,6 +56,9 @@ el('pwaTest').onclick=async()=>{if(busy)return;busy=true;state();try{await api('
 el('pwaRetry').onclick=load;box.addEventListener('toggle',()=>{if(box.open&&!loaded)load()});
 function openSetup(){if(location.hash==='#myTimberApp'){box.open=true;box.scrollIntoView?.({block:'start'})}}
 addEventListener('hashchange',openSetup);openSetup();
+// Dashboard tab initialisation may replace the incoming fragment with #today.
+// Keep this one-time setup entry independent of the Today tab's fragment.
+if(new URLSearchParams(location.search).get('setup')==='app'){box.open=true;box.scrollIntoView?.({block:'start'})}
 if(box.open)load();
 // Clear this device’s indicator when it is opened, never infer completion from it.
 if(standalone()&&navigator.clearAppBadge)navigator.clearAppBadge().catch(()=>{});
