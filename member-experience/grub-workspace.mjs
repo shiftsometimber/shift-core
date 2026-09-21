@@ -1,3 +1,4 @@
+import {ingredientOptions} from './grub-ingredients.mjs';
 import {memberRecipe,filterRecipe} from './grub-search.mjs';
 import {recommendationFor,adjustRecommendation,nutritionForWeek} from './grub-intelligence.mjs';
 
@@ -108,5 +109,5 @@ export function applyGrubOperation(current,input,recipes,context={}){
 }
 export function workspaceView(state,recipes,context={}){
  const lookup=new Map(recipes.map(r=>[r.id,r]));
- return {today:state.today||null,revision:state.revision,saved:state.saved,week:state.week,shopping:state.shopping,options:state.options,recipes:[...new Set([...state.saved,...state.week.map(x=>x.recipeId),state.today?.recipeId])].map(id=>lookup.get(id)).filter(Boolean),unavailable:state.saved.filter(id=>!lookup.has(id)),recommendation:recommendationFor(state,recipes,context),nutritionContext:nutritionForWeek(state,recipes)};
+ return {ingredientOptions:ingredientOptions(recipes),today:state.today||null,revision:state.revision,saved:state.saved,week:state.week,shopping:state.shopping,options:state.options,recipes:[...new Set([...state.saved,...state.week.map(x=>x.recipeId),state.today?.recipeId])].map(id=>lookup.get(id)).filter(Boolean),unavailable:state.saved.filter(id=>!lookup.has(id)),recommendation:recommendationFor(state,recipes,context),nutritionContext:nutritionForWeek(state,recipes)};
 }
