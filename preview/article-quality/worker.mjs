@@ -11,6 +11,15 @@ export default {async fetch(request){
  const url=new URL(request.url),path=url.pathname;
  const headers={'X-Robots-Tag':'noindex, nofollow','Cache-Control':'no-store'};
  if(!['GET','HEAD'].includes(request.method))return new Response('Read-only preview',{status:405,headers});
+ if(path==='/__image-diagnostic'){
+  const raw=articles.find(r=>r.slug==='mounjaro-cost-uk').body.match(/!\[[^\]]*\]\((https?:\/\/[^\s)]+)\)/)[1];
+  const results=[];
+  for(const redirect of ['manual','follow']){
+   try{const r=await fetch(raw,{redirect,headers:{Accept:'image/avif,image/webp,image/*,*/*;q=0.8'}});results.push({redirect,status:r.status,type:r.headers.get('content-type'),location:r.headers.get('location')});await r.body?.cancel()}
+   catch(error){results.push({redirect,error:error.message})}
+  }
+  return Response.json(results,{headers});
+ }
  const article=paths.has(path.replace(/\/$/,''));
  const image=/^\/articles\/mounjaro-cost-uk\/image$/.test(path);
  const asset=/^\/assets\/[a-zA-Z0-9/_.,-]+\.(?:js|css|jpg|jpeg|png|webp|svg|woff2?|ico)$/.test(path)||/^\/[a-zA-Z0-9_-]+\.(?:js|css)$/.test(path);
