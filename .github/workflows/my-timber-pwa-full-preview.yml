@@ -18,6 +18,18 @@ jobs:
       PREVIEW_URL: https://shift-stabilisation-preview.matobrien.workers.dev
     steps:
       - uses: actions/checkout@v4
+      - name: Retain the exact tracked candidate for release recovery
+        shell: bash
+        run: |
+          mkdir -p work/release-recovery
+          git rev-parse HEAD > work/release-recovery/SOURCE_SHA.txt
+          git archive --format=tar.gz HEAD > work/release-recovery/source.tar.gz
+          (cd work/release-recovery && sha256sum source.tar.gz > SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-candidate-source-${{ github.sha }}
+          path: work/release-recovery/
+          retention-days: 14
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
