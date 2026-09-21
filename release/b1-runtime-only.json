@@ -1,6 +1,6 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "96d590a32073afb8e415aedee61e1a67334cfdd1",
+  "applicationCommit": "113a3beeee34f836587a4aa80e5135acda8700db",
   "baseCommit": "2d5931d9250f66c5196cf3629f52687dce6bdbb6",
   "reason": "Launch-readiness Worker candidate. Preserve current Pages, prices, stock and service holds. No bulk migrations, seeds or publication. Additive checkout_attempts and commerce_receipt_delivery stores initialise only in their reviewed runtime paths. Production requires Matt approval.",
   "runtimeSchemaAdditions": [
