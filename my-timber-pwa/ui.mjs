@@ -3,11 +3,12 @@ export const client=String.raw`(()=>{
 const box=document.getElementById('myTimberApp');if(!box)return;
 const el=id=>document.getElementById(id),standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const android=/Android/i.test(navigator.userAgent);
 let prompt=null,registration=null,settings=null,subscription=null,busy=false,loaded=false;
 const status=text=>{el('pwaStatus').textContent=text};
 function installCopy(){
  el('pwaInstall').hidden=standalone();
- el('pwaInstallHelp').textContent=standalone()?'You’re using the My Timber app.':ios?'On iPhone: open this page in Safari, tap Share → Add to Home Screen → Open as Web App → Add. Then open the S-in-a-circle icon.':prompt?'Add the S-in-a-circle icon to open My Timber in its own window.':'Use your browser’s Install app or Add to Home screen menu. If it is unavailable, try Safari on iPhone or Chrome on Android.';
+ el('pwaInstallHelp').textContent=standalone()?'You’re using the My Timber app.':ios?'On iPhone: open this page in Safari, tap Share → Add to Home Screen → Open as Web App → Add. Then open the S-in-a-circle icon.':android?'On Android: open My Timber in Chrome, tap ⋮ → Add to Home screen → Install. Then open the S-in-a-circle icon.':prompt?'Use the button above to install My Timber and open it in its own window.':'On a computer: use your browser’s Install app option if available. On your phone, open My Timber in Safari on iPhone or Chrome on Android.';
 }
 addEventListener('beforeinstallprompt',event=>{event.preventDefault();prompt=event;installCopy()});
 addEventListener('appinstalled',()=>{prompt=null;el('pwaInstall').hidden=true;el('pwaInstallHelp').textContent='My Timber has been installed.'});
@@ -53,6 +54,8 @@ el('pwaEnable').onclick=async()=>{
 el('pwaDisable').onclick=async()=>{if(busy)return;busy=true;state();try{await api('/subscription','DELETE',{endpoint:subscription?.endpoint||''});settings.enabled=false;status('Check-in reminders are off on this device. Your other notification choices are unchanged.')}catch(error){status(error.message)}finally{busy=false;state()}};
 el('pwaTest').onclick=async()=>{if(busy)return;busy=true;state();try{await api('/test','POST',{endpoint:subscription?.endpoint||''});status('Test accepted by the push service. Check your device for the notification; acceptance alone does not prove arrival.')}catch(error){status(error.message)}finally{busy=false;state()}};
 el('pwaRetry').onclick=load;box.addEventListener('toggle',()=>{if(box.open&&!loaded)load()});
+function openSetup(){if(location.hash==='#myTimberApp'){box.open=true;box.scrollIntoView?.({block:'start'})}}
+addEventListener('hashchange',openSetup);openSetup();
 if(box.open)load();
 // Clear this device’s indicator when it is opened, never infer completion from it.
 if(standalone()&&navigator.clearAppBadge)navigator.clearAppBadge().catch(()=>{});
