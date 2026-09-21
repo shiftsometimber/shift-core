@@ -17,3 +17,17 @@ Evidence URLs: https://shiftsometimber.co.uk/ ; https://shiftsometimber.co.uk/pr
 ## LR-N03 — Uncertain receipt acceptance (confirmed source gap; deduplicated into WR04/11)
 
 Original shop receipt work ran outside settlement, skipped silently with no email binding and retained failures only in console logs. Candidate persists recipient-specific pending/sending/accepted/uncertain states with settlement and exposes aggregate signals through existing Watchtower. Provider acceptance is not Inbox delivery. No automatic retry for uncertain acceptance. Full operator acknowledgement remains a separate unverified commissioning gate.
+
+## LR-N04 — Unexplained preference fallback (confirmed, high confidence; WR19)
+
+A fresh Start Here answer sequence on 21 September (Lose weight → Jabs → Private → Under £100, optional handoff retention unchecked) navigated to Orlistat at £79, while the receipt said capsules match the selected format. Either/Private/Under £100 also chose Orlistat and met that budget. Served `start-here-v72.js?v=direct-detail-20260912` explicitly chooses Orlistat for any Under budget, without an injection exception, and otherwise does not numerically compare catalogue prices. Earlier £100–£150 observation remains distinct; this source inspection establishes the missing budget comparison, not every rendered case. Existing treatment-stage storage was present, but does not control this source branch. The candidate now describes the displayed format without asserting it matches the answer, relabels the option summary and explicitly explains that format/access/budget preferences may not all be met. A complete hosted Start Here fallback path is queued. Numeric preference enforcement remains a separately scoped decision; no speculative recommender added. Owner Codex; acceptance: current configured cost and format either meet the chosen constraints or clearly explain the mismatch before selection. Preserve all prices and clinical eligibility boundaries.
+
+## WR22 evidence update — Lounge redirects Home
+
+Direct browser navigation to `/lounge` on 21 September ended at `/` with homepage title and canonical URL. The 7 September compatibility lock requires the Lounge name and legacy redirect, but does not establish current publication/access policy. Worker source delegates `/lounge` to the pinned Pages site. Authenticated interior and latest product retirement/publication decision remain unverified; no speculative resurrection or route change made.
+
+## LR-N05 — D1 runtime schema syntax mismatch (confirmed, high confidence; WR04/05)
+
+Real isolated D1 run 35623368574 at commit 9743f5b8 failed with `D1_EXEC_ERROR ... CREATE TABLE IF NOT EXISTS order_reference_registry (: incomplete input`. Cloudflare documents newline-separated queries for `D1Database.exec`; the existing reference helper and new checkout/receipt helpers split one DDL statement across lines. SQLite's unrestricted exec accepted it, so prior local tests were insufficient. A strict newline execution regression reproduced the failure before correction. Smallest change makes each known constant DDL statement occupy one exec line, retaining schema, values, indexes and ordering. Acceptance: strict local regressions plus all eight hosted rollback/retry probes pass against real D1; reference uniqueness, checkout identity and receipt intent remain intact. No production schema write performed.
+
+Source: https://developers.cloudflare.com/d1/worker-api/d1-database/#exec . This materially blocks transactional launch until the hosted gate passes.

@@ -58,6 +58,13 @@ for(const [name,engine,viewport]of [['chromium-desktop',chromium,{width:1440,hei
   }
   await page.reload();await page.locator('[data-op-price]').getByText('£59.00',{exact:true}).waitFor();assert.match(await page.locator('[data-receipt-list]').innerText(),/42 capsules/);
   await page.screenshot({path:dir+'/'+name+'-orlistat.png',fullPage:true});row.checks.push('42/84/168 pack, configured price, receipt and reload agree; exact OOS retained');
+  phase('preference-fallback-explained');await page.goto(origin+'/start-here');
+  await page.getByRole('button',{name:'Lose weight I want to shift some timber.',exact:true}).click();await page.getByRole('button',{name:'Continue →',exact:true}).click();
+  await page.getByRole('button',{name:'Jabs I’m open to injections.',exact:true}).click();await page.getByRole('button',{name:'Private',exact:true}).click();await page.getByRole('button',{name:'Continue →',exact:true}).click();
+  await page.getByRole('button',{name:'Under £100 Keep it lean',exact:true}).click();await page.getByRole('button',{name:'Show me my plan →',exact:true}).click();
+  await page.waitForURL('**/treatment-order?medicine=orlistat&view=spec&from=start-here');await page.locator('.op-lead').getByText(/may not match every format, access or budget/).waitFor();
+  assert.doesNotMatch(await page.locator('[data-receipt-list]').innerText(),/matches the format selected/);assert.equal(await page.locator('[data-stock-status]').innerText(),'No stock available today');
+  row.checks.push('Injection/under-£100 fallback reaches explicit preference limitation, comparison choices and retained OOS, without false format-match receipt');
   phase('centre-claims');await page.goto(origin+'/treatment-centre');
   assert.equal(await page.getByText('Use the free Health MOT to organise your current picture and identify sensible priorities.',{exact:true}).count(),0);
   assert.equal(await page.locator('.treatment-card').filter({hasText:'Emerging treatments'}).filter({hasText:'Orforglipron'}).count(),0);
