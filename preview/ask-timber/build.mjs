@@ -21,7 +21,7 @@ let html=await page.text();const pageHash=sha256(html);
 html=html.replace(/<head([^>]*)>/i,'<head$1><meta name="robots" content="noindex,nofollow"><script>window.SST_API_BASE=location.origin;</script>');
 html=html.replace(/<body([^>]*)>/i,'<body$1><aside style="padding:12px;background:#e7e3da;color:#050505;text-align:center">Ask Timber repair preview — public information only. No member account or saved history is connected.</aside>');
 writeFileSync(dir+'/assets/index.html',html);
-for(const name of ['ask-timber-v1.js','ask-timber-intent-v2.js'])copyFileSync('frontend/member/assets/'+name,dir+'/assets/assets/'+name);
+for(const name of ['ask-timber-v1.js','ask-timber-v1.css','ask-timber-intent-v2.js'])copyFileSync('frontend/member/assets/'+name,dir+'/assets/assets/'+name);
 copyFileSync('frontend/member/api-adapter-v33d.js',dir+'/assets/api-adapter-v33d.js');
 const loginSource=readFileSync('frontend/member/my-timber-preview.html','utf8');
 writeFileSync(dir+'/assets/login.html',reconcilePublicDocument(withSessionState(loginSource),'/member-login'));

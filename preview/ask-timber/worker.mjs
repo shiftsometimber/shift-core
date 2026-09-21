@@ -23,7 +23,7 @@ export default{async fetch(request,env){
  if(['/member-login','/member-login.html','/member/dashboard','/member/dashboard.html'].includes(path))return finish(await env.ASSETS.fetch(new Request(new URL(path.includes('dashboard')?'/dashboard.html':'/login.html',url))));
  const memberAsset=memberExperienceRoutes(request,{MEMBER_EXPERIENCE_V1_ENABLED:'true'});if(memberAsset)return finish(memberAsset);
  if(path==='/'||path==='/ask-timber')return finish(await env.ASSETS.fetch(new Request(new URL('/index.html',url))));
- if(['/assets/ask-timber-v1.js','/assets/ask-timber-intent-v2.js','/api-adapter-v33d.js'].includes(path))return finish(await env.ASSETS.fetch(request));
+ if(['/assets/ask-timber-v1.js','/assets/ask-timber-v1.css','/assets/ask-timber-intent-v2.js','/api-adapter-v33d.js'].includes(path))return finish(await env.ASSETS.fetch(request));
  if(path==='/__qa'){
   const width=Number(url.searchParams.get('width'));if(![390,768,1024,1440].includes(width))return new Response('Invalid width',{status:400,headers});
   return finish(new Response(`<html><body style="margin:0;background:#333"><iframe title="Ask Timber responsive preview" src="/ask-timber" style="display:block;width:${width}px;height:1400px;border:0"></iframe></body></html>`,{headers:{'Content-Type':'text/html'}}));

@@ -19,6 +19,8 @@ try{
    async function ask(message){await field.fill(message);const pending=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/ai/chat',{timeout:75000});await button.click();const response=await pending;const data=await response.json();await page.locator('#timberResponse .at-copy, #timberResponse .at-error').waitFor({timeout:5000});assert.equal(await button.isEnabled(),true);return{status:response.status(),data}}
    const answer=await ask(question);row.answer=answer;assert.equal(answer.status,200);assert.equal(answer.data.ok,true);assert.match(answer.data.answer,/one manageable change today/);assert.equal(answer.data.sources[0].url,'https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/');assert.doesNotMatch(answer.data.answer,/psychiatric morbidity|mental.health survey/i);assert(row.requests.every(r=>r.useJourney===false));
    row.checks.push('reported question public payload and relevant answer');
+   row.answerPaint=await page.locator('#timberResponse').evaluate(el=>({background:getComputedStyle(el).backgroundColor,text:getComputedStyle(el.querySelector('.at-copy p')).color,source:getComputedStyle(el.querySelector('.at-source')).color}));
+   assert.equal(row.answerPaint.background,'rgb(231, 227, 218)');assert.equal(row.answerPaint.text,'rgb(5, 5, 5)');assert.equal(row.answerPaint.source,'rgb(52, 57, 45)');row.checks.push('readable answer and source contrast');
    await page.screenshot({path:dir+'/'+prefix+'-answer.png',fullPage:true});
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);assert.equal(overflow,false);row.checks.push('no horizontal overflow');
    for(const [fault,pattern]of [['503',/temporarily unavailable/],['network',/Check your connection/]]){
@@ -29,12 +31,15 @@ try{
    const second=await ask('I have eggy burps after Mounjaro');assert.equal(second.status,200);assert.equal(second.data.mode,'reviewed_direct');assert(second.data.sources.length);assert.match(second.data.sources[0].url,/glp1-side-effects/);row.checks.push('second ordinary question and reviewed source');
    assert(row.requests.every(r=>r.useJourney===false));row.pass=true;
    for(const path of ['/member-login','/member/dashboard']){
-    await page.goto('https://shiftsometimber.co.uk'+path,{waitUntil:'networkidle'});
-    const previous=page.getByRole('button',{name:'Forgotten your password?',exact:true});await previous.waitFor({state:'visible'});
-    const previousPaint=await previous.evaluate(el=>{const s=getComputedStyle(el),panel=getComputedStyle(el.closest('.preview-auth'));return{color:s.color,background:s.backgroundColor,panel:panel.backgroundColor}});
-    row.productionRecoveryPaint??={};row.productionRecoveryPaint[path]=previousPaint;
-    await page.screenshot({path:dir+'/'+prefix+'-before-'+(path.includes('dashboard')?'dashboard':'login')+'.png',fullPage:true});
-    await page.goto(base+path,{waitUntil:'networkidle'});
+    // Production comparison is diagnostic; candidate recovery acceptance below is mandatory.
+    try{
+     await page.goto('https://shiftsometimber.co.uk'+path,{waitUntil:'domcontentloaded',timeout:15000});
+     const previous=page.getByRole('button',{name:'Forgotten your password?',exact:true});await previous.waitFor({state:'visible',timeout:5000});
+     const previousPaint=await previous.evaluate(el=>{const s=getComputedStyle(el),panel=getComputedStyle(el.closest('.preview-auth'));return{color:s.color,background:s.backgroundColor,panel:panel.backgroundColor}});
+     row.productionRecoveryPaint??={};row.productionRecoveryPaint[path]=previousPaint;
+     await page.screenshot({path:dir+'/'+prefix+'-before-'+(path.includes('dashboard')?'dashboard':'login')+'.png',fullPage:true});
+    }catch(error){row.productionComparisonUnavailable??={};row.productionComparisonUnavailable[path]=error.message;}
+    await page.goto(base+path,{waitUntil:'domcontentloaded'});
     const forgot=page.getByRole('button',{name:'Forgotten your password?',exact:true});await forgot.waitFor({state:'visible'});
     const paint=await forgot.evaluate(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return{color:s.color,background:s.backgroundColor,height:r.height}});
     assert.equal(paint.color,'rgb(5, 5, 5)');assert.equal(paint.background,'rgb(231, 227, 218)');assert(paint.height>=44);
