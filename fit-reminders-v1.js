@@ -4,6 +4,9 @@ import {recordProductEvent} from './product-analytics-v1.js';
 import {buildPushPayload} from '@block65/webcrypto-web-push';
 import {buildDailyReminderMessage} from './daily-reminder-copy-v1.js';
 
+// Reuse the existing VAPID identity; never create a second competing push key.
+export {getVapid as getMemberPushIdentity,ensureSchema as ensureMemberPushIdentitySchema};
+
 const PATH='/v1/fit/reminders',PUSH_PATH='/v1/fit/push-subscription',SITE='https://shiftsometimber.co.uk';
 export async function fitReminderRoutes(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';if(path!==PATH&&path!==PUSH_PATH)return null;

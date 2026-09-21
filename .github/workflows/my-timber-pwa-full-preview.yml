@@ -1,0 +1,58 @@
+name: My Timber full-account PWA preview
+on:
+  push:
+    branches: [feat/my-timber-pwa-20260921]
+permissions:
+  contents: read
+concurrency:
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      PREVIEW_SOURCE_SHA: ${{ github.sha }}
+      PREVIEW_URL: https://shift-stabilisation-preview.matobrien.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retain the exact tracked candidate for release recovery
+        shell: bash
+        run: |
+          mkdir -p work/release-recovery
+          git rev-parse HEAD > work/release-recovery/SOURCE_SHA.txt
+          git archive --format=tar.gz HEAD > work/release-recovery/source.tar.gz
+          (cd work/release-recovery && sha256sum source.tar.gz > SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-candidate-source-${{ github.sha }}
+          path: work/release-recovery/
+          retention-days: 14
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Verify PWA, member and recovery regressions
+        run: node --test my-timber-pwa/*.test.mjs member-experience/tests/*.test.mjs tests/member-auth-ui-v2.test.mjs tests/member-auth-regression.test.mjs tests/b1-reset-page.test.mjs
+      - name: Prepare full pages from the authoritative source
+        run: node preview/stabilisation/prepare.mjs
+      - name: Provision only existing fictional-account databases
+        run: node preview/five-points/provision.mjs
+      - name: Add PWA to full staging with no scheduled or email delivery
+        run: node my-timber-pwa/full-preview/prepare.mjs
+      - name: Deploy whole-account preview
+        run: npx wrangler deploy --config work/staging/generated/config.json
+      - name: Verify complete account, persistence and notification session boundaries
+        run: node my-timber-pwa/full-preview/verify.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pwa-full-account-${{ github.sha }}
+          path: work/staging/generated/five-points-evidence/pwa/
+          retention-days: 14

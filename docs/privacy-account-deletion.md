@@ -7,3 +7,12 @@ The HQ operator must review the task and the pending request for that member, ve
 Review the HQ task queue each working day, including older pending `data_requests` which predate this repair. The code change does not certify previous request completion, appoint an operator, or establish that an external processor has deleted data. Those operational checks remain open from the discovery audit.
 
 Optional health-history erasure is a separate immediate, authenticated operation. It retains the account and necessary consent/audit history, and removes optional Pen Day notes and their legacy analytics with other optional health stores. Do not treat that narrower operation as account deletion.
+
+My Timber PWA check-in subscriptions are device-specific in
+`my_timber_push_devices`. Session revocation pauses delivery immediately; it is
+not erasure of the subscription. Include these device rows and their related
+`my_timber_push_deliveries` rows in account erasure (deliveries first), as well as
+the pre-existing `fit_push_subscriptions` and reminder stores where applicable.
+Device endpoints and encryption material must not be included in ordinary logs
+or screenshots. The PWA control can remove the current device's check-in
+subscription directly without changing unrelated Fit/email choices.

@@ -1,0 +1,12 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const dir='work/staging/generated',path=dir+'/config.json',config=JSON.parse(readFileSync(path));
+assert.equal(config.name,'shift-stabilisation-preview');
+assert.equal(config.d1_databases.find(d=>d.binding==='DB').database_name,'shift-stabilisation-preview-auth-20260917');
+assert(!config.routes&&!config.triggers&&!config.send_email);
+config.main='../../../my-timber-pwa/full-preview/worker.mjs';config.compatibility_flags=['nodejs_compat'];
+config.vars.MY_TIMBER_PWA_ENABLED='true';config.vars.PUBLIC_SITE_URL='https://shift-stabilisation-preview.matobrien.workers.dev';config.vars.ALLOWED_ORIGINS=config.vars.PUBLIC_SITE_URL;
+mkdirSync(dir+'/assets/b1',{recursive:true});
+const r=await fetch('https://0da69833.projectshift.pages.dev/reset-password.html');assert(r.ok);writeFileSync(dir+'/assets/b1/reset-password.html',await r.text());
+writeFileSync(path,JSON.stringify(config,null,2));
+console.log('Full My Timber + PWA staging prepared. Separate databases, no email, payments or scheduled sends.');

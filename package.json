@@ -26,7 +26,8 @@
     "wrangler": "4.112.0"
   },
   "dependencies": {
-    "@block65/webcrypto-web-push": "1.0.2"
+    "@block65/webcrypto-web-push": "1.0.2",
+    "web-push": "3.6.7"
   },
   "shiftReleaseMarker": "act2b-canonical-html-2026-09-09"
 }
