@@ -63,7 +63,7 @@ export async function dynamicBabyLovePublicRoute(request,env){
    if(!upstream.ok)return new Response('Image unavailable',{status:502,headers:{'Cache-Control':'no-store'}});
    const type=upstream.headers.get('Content-Type')||'';if(!type.startsWith('image/'))return new Response('Invalid image response',{status:502,headers:{'Cache-Control':'no-store'}});
    return new Response(request.method==='HEAD'?null:upstream.body,{headers:{'Content-Type':type,'Cache-Control':'public, max-age=86400','X-Content-Type-Options':'nosniff'}});
-  }catch{return new Response('Image unavailable',{status:502,headers:{'Cache-Control':'no-store'})}
+  }catch{return new Response('Image unavailable',{status:502,headers:{'Cache-Control':'no-store'}})}
  }
  const m=clean.match(/^\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);if(!m)return null;
  const row=await dynamicBabyLovePublication(env,m[1]);if(!row)return null;
