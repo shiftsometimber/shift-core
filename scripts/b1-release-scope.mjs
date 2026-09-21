@@ -7,8 +7,8 @@ import {pathToFileURL} from 'node:url';
 export const RELEASE_PATHS=new Set(['release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs']);
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
- assert.equal(manifest.applicationCommit,'9cc79e05dd8bfd1f22171a232aef1bc3ca49a649');
- assert.equal(manifest.baseCommit,'eb39d3a00480404817a0d52e41965d75d133ffe6');
+ assert.equal(manifest.applicationCommit,'ab8eac8270228c7c785b952d24bc94981c1669e8');
+ assert.equal(manifest.baseCommit,'f5c592d90f6784daffbfb5c3ab14353c21f8854f');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
