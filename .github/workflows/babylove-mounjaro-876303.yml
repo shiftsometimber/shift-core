@@ -1,0 +1,29 @@
+name: BabyLove Mounjaro 876303 production snapshot
+on:
+  push:
+    branches: [fix/babylove-mounjaro-876303]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Snapshot receipt and article metadata only
+        run: |
+          mkdir -p babylove-proof
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT source_id,slug,payload_hash,created_at FROM babylove_receipts WHERE source_id='876303' OR slug='mounjaro-cost-uk'; SELECT id,title,slug,author,status,seo_title,publish_at,created_at,updated_at,length(body) AS body_length FROM knowledge_articles WHERE slug='mounjaro-cost-uk';" > babylove-proof/876303-before.json
+          cat babylove-proof/876303-before.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: babylove-mounjaro-876303-snapshot
+          path: babylove-proof/876303-before.json
+          retention-days: 14
