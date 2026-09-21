@@ -56,6 +56,16 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node preview/audit-repair/source-proof.mjs
+      - name: Verify inherited article publication with read-only complete downloads
+        run: |
+          mkdir -p work/staging/generated/five-points-evidence/publication
+          curl -fsS --max-time 30 https://shiftsometimber.co.uk/articles/mounjaro-cost-uk -o work/staging/generated/five-points-evidence/publication/article.html
+          grep -q 'NICE List vs Private Prices: Mounjaro Cost in the UK' work/staging/generated/five-points-evidence/publication/article.html
+          grep -q 'primary-care rollout' work/staging/generated/five-points-evidence/publication/article.html
+          curl -fsS --max-time 30 https://shiftsometimber.co.uk/sitemap.xml -o work/staging/generated/five-points-evidence/publication/sitemap.xml
+          grep -q 'https://shiftsometimber.co.uk/articles/mounjaro-cost-uk' work/staging/generated/five-points-evidence/publication/sitemap.xml
+          curl -fsS --max-time 30 https://shiftsometimber.co.uk/explore-knowledge -o work/staging/generated/five-points-evidence/publication/knowledge.html
+          grep -q 'data-babylove-dynamic="mounjaro-cost-uk"' work/staging/generated/five-points-evidence/publication/knowledge.html
       - name: Prepare current source and read-only public pages
         run: node preview/stabilisation/prepare.mjs
       - name: Provision isolated fictional-account databases

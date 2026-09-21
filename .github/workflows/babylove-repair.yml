@@ -43,6 +43,15 @@ jobs:
         run: node babylove/repair-preview.mjs
       - name: Build full production candidate without deployment
         run: npx wrangler deploy --dry-run --config wrangler.jsonc
+      - name: Verify recovered Mounjaro article on live traffic
+        run: |
+          curl -fsS -o /tmp/article.html https://shiftsometimber.co.uk/articles/mounjaro-cost-uk
+          grep -q "NICE List vs Private Prices: Mounjaro Cost in the UK" /tmp/article.html
+          grep -q "primary-care rollout" /tmp/article.html
+          curl -fsS -o /tmp/sitemap.xml https://shiftsometimber.co.uk/sitemap.xml
+          grep -q "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk" /tmp/sitemap.xml
+          curl -fsS -o /tmp/knowledge.html https://shiftsometimber.co.uk/explore-knowledge
+          grep -q 'data-babylove-dynamic="mounjaro-cost-uk"' /tmp/knowledge.html
       - uses: actions/upload-artifact@v4
         if: always()
         with:
