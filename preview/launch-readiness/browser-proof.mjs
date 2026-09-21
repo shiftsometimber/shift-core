@@ -66,7 +66,7 @@ for(const [name,engine,viewport]of [['chromium-desktop',chromium,{width:1440,hei
   await page.waitForURL('**/treatment-order?medicine=orlistat&view=spec&from=start-here');await page.locator('.op-lead').getByText(/may not match every format, access or budget/).waitFor();
   assert.doesNotMatch(await page.locator('[data-receipt-list]').innerText(),/matches the format selected/);assert.equal(await page.locator('[data-stock-status]').innerText(),'No stock available today');
   row.checks.push('Injection/under-£100 fallback reaches explicit preference limitation, comparison choices and retained OOS, without false format-match receipt');
-  phase('centre-claims');await page.goto(origin+'/treatment-centre');
+  phase('centre-claims');await page.goto(origin+'/treatment-centre');await page.getByRole('button',{name:'Browse every treatment',exact:true}).click();
   assert.equal(await page.getByText('Use the free Health MOT to organise your current picture and identify sensible priorities.',{exact:true}).count(),0);
   assert.equal(await page.locator('.treatment-card').filter({hasText:'Emerging treatments'}).filter({hasText:'Orforglipron'}).count(),0);
   const mot=page.getByRole('link',{name:'Explore the Health MOT',exact:true});assert.equal(await mot.getAttribute('href'),'/shift-health/health-mot');
