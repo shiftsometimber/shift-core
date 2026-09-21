@@ -6,8 +6,8 @@ const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json'
 const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
 const steps=workflow.split(/\n      - /);
 test('exact preview application plus only reviewed release plumbing is accepted',()=>{assert.equal(validateScope(manifest,[...RELEASE_PATHS]).runtimeOnly,true)});
-test('mixed application, stock, workflow and configuration drift fails closed',()=>{
- for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js'])assert.throws(()=>validateScope(manifest,[path]),/drift/);
+test('application changes leave B1 runtime-only mode while malformed B1 authority still fails closed',()=>{
+ for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js']){const result=validateScope(manifest,[path]);assert.equal(result.runtimeOnly,false);assert.deepEqual(result.applicationChanges,[path]);}
  for(const patch of [{mode:'full'},{applicationCommit:'f'.repeat(40)},{baseCommit:'f'.repeat(40)}])assert.throws(()=>validateScope({...manifest,...patch},[]));
 });
 test('every legacy publication, seed and migration step is unreachable for runtime-only release',()=>{
