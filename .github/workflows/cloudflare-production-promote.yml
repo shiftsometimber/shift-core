@@ -192,6 +192,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
@@ -200,6 +201,11 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Verify B1 release scope before any production mutation
+        id: scope
+        run: |
+          node --test tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs
+          node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs
       - name: Verify acquisition consent and same-account activation join
@@ -272,6 +278,7 @@ jobs:
       - name: Verify discovery privacy, crisis and reporting regressions
         run: node --test tests/discovery-repairs.test.mjs
       - name: Apply pharmacy-readiness database additions
+        if: steps.scope.outputs.runtime_only != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -302,6 +309,7 @@ jobs:
           run_d1_file migrations/020_radar_duplicate_cleanup.sql
           run_d1_file medicines-watch/migration.sql
       - name: Initialise Medicines Watch source observations
+        if: steps.scope.outputs.runtime_only != 'true'
         run: |
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
@@ -321,6 +329,7 @@ jobs:
       - name: Capture current Worker deployment for rollback
         run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
       - name: Seed recent discovery snapshots without publishing or sending notifications
+        if: steps.scope.outputs.runtime_only != 'true'
         run: node scripts/radar-discovery-collector.mjs --store
       - name: Capture current public pages before this member release
         run: node member-experience/public-preservation.mjs public-before.json
@@ -330,21 +339,30 @@ jobs:
           name: worker-deployment-before-${{ github.run_id }}
           path: deployment-before.json
       - name: Prepare exact additive Passport schema and rollback
+        env:
+          PASSPORT_SCHEMA_READ_ONLY: ${{ steps.scope.outputs.runtime_only }}
         run: node health-passport/production-release.mjs
       - name: Prepare additive daily check-in feedback store
+        if: steps.scope.outputs.runtime_only != 'true'
         run: npx wrangler d1 execute DB --remote --config wrangler.jsonc --file member-experience/checkin-followup.sql
+      - name: Capture protected catalogue and stock without customer records
+        run: node scripts/b1-release-scope.mjs --snapshot before
       - name: Deploy current main to production
         run: |
           node scripts/catalogue-publication-client.mjs --verify-main
+          node scripts/b1-release-scope.mjs
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
       - name: Publish the exact owner-approved illustrated Wegovy guide
+        if: steps.scope.outputs.runtime_only != 'true'
         run: node babylove/publish-approved-article.mjs
-      - name: Publish and verify the reconciled oral semaglutide guide
+      - name: Publish the reconciled oral semaglutide guide
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: node babylove/publish-oral.mjs
+      - name: Verify the reconciled oral semaglutide guide
         run: |
           mkdir -p babylove-proof
-          node babylove/publish-oral.mjs
           node babylove/verify-oral-live.mjs
       - name: Verify the Wegovy guide, three images, author, Knowledge listing and sitemap
         run: node babylove/verify-publication-live.mjs
@@ -367,6 +385,7 @@ jobs:
           path: passport-release/
           if-no-files-found: warn
       - name: Publish only the fixed owner-authorised catalogue when approved
+        if: steps.scope.outputs.runtime_only != 'true'
         env:
           CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json
         run: |
@@ -385,6 +404,7 @@ jobs:
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-after.json"
           node scripts/catalogue-exact-d1-import.mjs --verify "$RUNNER_TEMP/catalogue-before.json" "$RUNNER_TEMP/catalogue-after.json"
       - name: Publish the exact owner-authorised newsroom batch when approved
+        if: steps.scope.outputs.runtime_only != 'true'
         run: node scripts/newsroom-publication-client.mjs
       - name: Prove existing public content and login asset are preserved outside exact approved additions
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
@@ -488,3 +508,13 @@ jobs:
             [ "$type" = "image/webp" ] || exit 1
           done
           echo 'All SHIFT Health editorial images are published as WebP assets.'
+
+      - name: Verify B1 protected catalogue and stock remain identical
+        run: node scripts/b1-release-scope.mjs --snapshot after
+      - name: Retain B1 runtime-only release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1-runtime-release-${{ github.run_id }}
+          path: b1-runtime-release/
+          if-no-files-found: error

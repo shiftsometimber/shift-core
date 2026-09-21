@@ -18,6 +18,8 @@ jobs:
       PREVIEW_URL: https://shift-stabilisation-preview.matobrien.workers.dev
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -27,6 +29,10 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
+      - name: Verify runtime-only release scope
+        run: |
+          node --test tests/b1-release-scope.test.mjs
+          node scripts/b1-release-scope.mjs
       - name: Member, consent, context and preservation regressions
         run: |
           node --test member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs tests/ai-connected*.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/progress-summary-audit.test.mjs tests/progress-renderer-audit.test.mjs tests/rendered-member-acceptance-support.test.mjs
