@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: ask-timber-public-repair-preview
+  group: ask-timber-public-repair-${{ github.event_name }}
   cancel-in-progress: false
 jobs:
   preview:
