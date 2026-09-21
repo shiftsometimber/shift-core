@@ -1,6 +1,10 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "0baa62f380629a55cdb9c8b672741c607ded0de6",
-  "baseCommit": "f6c9e47629383e3ecb560648e58d92b7e7cab8e1",
-  "reason": "B1 member saves and password reset only. No schema, pricing, stock, seeding or publication changes. Later application changes require a new reviewed release scope."
+  "applicationCommit": "96d590a32073afb8e415aedee61e1a67334cfdd1",
+  "baseCommit": "2d5931d9250f66c5196cf3629f52687dce6bdbb6",
+  "reason": "Launch-readiness Worker candidate. Preserve current Pages, prices, stock and service holds. No bulk migrations, seeds or publication. Additive checkout_attempts and commerce_receipt_delivery stores initialise only in their reviewed runtime paths. Production requires Matt approval.",
+  "runtimeSchemaAdditions": [
+    "checkout_attempts",
+    "commerce_receipt_delivery"
+  ]
 }

@@ -1,7 +1,7 @@
 name: September audit repair preview
 on:
   push:
-    branches: [fix/audit-21sep, fix/discovery-audit-21sep, fix/b1-member-recovery-21sep]
+    branches: [fix/audit-21sep, fix/discovery-audit-21sep, fix/b1-member-recovery-21sep, fix/launch-readiness-21sep]
 permissions:
   contents: read
 concurrency:
@@ -48,6 +48,10 @@ jobs:
           node auth-recovery-registration-gate.mjs
           node gate1-email-verification-e2e.mjs
           node g5-012-login-fastpath-gate.mjs
+      - name: Launch payment recovery and public accuracy regressions
+        run: |
+          node --test tests/checkout-recovery.test.mjs tests/shop-recovery.test.mjs tests/promise-accuracy.test.mjs tests/commerce-recovery-health.test.mjs tests/commerce-stripe-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-stripe-retry-v1.test.mjs tests/order-reference-v1.test.mjs tests/hq-commerce-content-v1.test.mjs
+          node gate5-watchtower-analytics-gate.mjs
       - name: Read current Pages provenance without modifying production
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -62,8 +66,12 @@ jobs:
         run: node preview/audit-repair/fixtures.mjs
       - name: Prepare B1 isolated reset and email fixtures
         run: node preview/b1-repair/prepare.mjs
+      - name: Prepare bounded launch fixtures and disable external delivery
+        run: node preview/launch-readiness/prepare.mjs
       - name: Deploy the single preview only
         run: npx wrangler deploy --config work/staging/generated/config.json
+      - name: Verify payment atomicity and retry in real isolated D1
+        run: node preview/launch-readiness/payment-proof.mjs
       - name: Install phone and desktop browser engines
         id: browsers
         run: |
@@ -79,10 +87,12 @@ jobs:
       - name: Verify discovery repairs across desktop and phone browsers
         if: ${{ !cancelled() && steps.browsers.outcome == 'success' }}
         run: node preview/discovery-repair/browser-proof.mjs
-      - name: Actual reset email and received-link password login
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: node preview/b1-repair/email-proof.mjs
+      - name: Verify photo recovery and public accuracy across desktop and phone
+        if: ${{ !cancelled() && steps.browsers.outcome == 'success' }}
+        run: node preview/launch-readiness/browser-proof.mjs
+      - name: Prove fictional D1 export and isolated data restore
+        if: ${{ !cancelled() && steps.browsers.outcome == 'success' }}
+        run: node preview/launch-readiness/restore-proof.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

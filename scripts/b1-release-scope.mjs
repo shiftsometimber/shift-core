@@ -7,8 +7,8 @@ import {pathToFileURL} from 'node:url';
 export const RELEASE_PATHS=new Set(['release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs']);
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
- assert.equal(manifest.applicationCommit,'0baa62f380629a55cdb9c8b672741c607ded0de6');
- assert.equal(manifest.baseCommit,'f6c9e47629383e3ecb560648e58d92b7e7cab8e1');
+ assert.equal(manifest.applicationCommit,'96d590a32073afb8e415aedee61e1a67334cfdd1');
+ assert.equal(manifest.baseCommit,'2d5931d9250f66c5196cf3629f52687dce6bdbb6');
  assert.ok(changed.every(p=>RELEASE_PATHS.has(p)),'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly:true,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:changed};
 }
@@ -21,7 +21,7 @@ export function verifyScope(){
  git('merge-base','--is-ancestor',manifest.baseCommit,manifest.applicationCommit);
  git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
  const changed=git('diff','--name-only',manifest.applicationCommit,'HEAD').split('\n').filter(Boolean);
- const report={...validateScope(manifest,changed),releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
+ const report={...validateScope(manifest,changed),releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,runtimeSchemaAdditions:manifest.runtimeSchemaAdditions||[],contentPublication:false};
  assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
  mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
  if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\n');
