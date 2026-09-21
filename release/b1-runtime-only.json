@@ -1,8 +1,8 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "f4100f28d1b5b759d6c5d758b269320e379ed96e",
-  "baseCommit": "f5c592d90f6784daffbfb5c3ab14353c21f8854f",
-  "reason": "Launch-readiness Worker candidate. Preserve current Pages, prices, stock and service holds. No bulk migrations, seeds or publication. Additive checkout_attempts and commerce_receipt_delivery stores initialise only in their reviewed runtime paths. Production requires Matt approval.",
+  "applicationCommit": "9b4bfc968a93ab3587e9ef8f8b1f388c068c2e77",
+  "baseCommit": "25ac6410861bb57a15fcac3620b73a76c9e759f1",
+  "reason": "Authorised launch-readiness repairs reconciled with released Ask Timber and BabyLove updates. Preserve Pages, prices, stock, service holds and all customer records. No bulk migrations, seeds or publication. Exact combined preview and production verification required.",
   "runtimeSchemaAdditions": [
     "checkout_attempts",
     "commerce_receipt_delivery"

@@ -40,6 +40,7 @@ jobs:
           node my-timber-final-source-gate.mjs
           node daily-shift-frontdoor-gate.mjs
           node gate4-one-shift-brain-gate.mjs
+          node --test tests/ask-timber-public.test.mjs ask-timber-multi-intent-gate.mjs babylove/*.test.mjs
       - name: B1 atomicity, ordinary authentication and recovery regressions
         run: |
           node --test tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-auth-regression.test.mjs tests/turnstile-auth-v1.test.mjs tests/my-journey-health-interest-atomic.test.mjs health-passport/records.test.mjs activation-measurement/ordinary-auth.test.mjs
