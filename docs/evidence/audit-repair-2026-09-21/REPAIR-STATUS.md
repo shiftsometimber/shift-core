@@ -1,7 +1,7 @@
 # Audit repair status — 21 September 2026
 
 Base: shift-core 50558b77c4d38835b1981b9030f701f7e9721c55.
-Local branch: fix/audit-21sep. No production changes; no remote branch exists at the last read-only check.
+Branch: fix/audit-21sep; draft PR #767. No production changes. The user explicitly authorized publication on 21 September and the branch is now published.
 
 | Audit item | Local change | Remaining verification / work |
 |---|---|---|
@@ -20,9 +20,9 @@ Also executed successfully: `my-timber-final-source-gate.mjs`, `daily-shift-fron
 
 A branch-specific preview workflow is prepared. It deploys only the existing isolated stabilisation preview with fictional-account databases, then runs the existing Chromium/WebKit five-point persistence proof. It has not run for this repair branch. Additional targeted rendered Progress and legacy Fit evidence is still required before release.
 
-## Publication block
+## Publication and first hosted run
 
-Automatic approval review rejected the GitHub branch push because external source publication was not explicitly authorized. No alternate publication route was attempted. Explicit approval to push `fix/audit-21sep` to `shiftsometimber/shift-core` is required before hosted preview work can continue.
+The initial approval block was resolved by explicit user authorization. Command-line Git lacked credentials, so the connected GitHub account published the branch. Run 35574456798 deployed 40825ecd5895b1c08823bbdd2be1bddb3ee68d2d and passed the four Chromium/WebKit desktop/phone persistence cases. The new audit probe failed because it selected only the production Progress URL, while the isolated preview rewrites navigation under /staging/member-connected/. The test now selects the actual Progress link in the member navigation. API evidence already showed one 103 kg reading, stone/lb preference, null trend and no invented optional measurements. Full corrected browser proof is pending; the failed run is retained, not marked green.
 
 ## Preserved decisions and unresolved scope
 
