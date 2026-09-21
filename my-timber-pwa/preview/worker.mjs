@@ -1,16 +1,25 @@
 // Deliberately small, separate device test. No production routes, records or cron.
 import {pwaAssets,withPwa} from '../presentation.mjs';
-import {ensurePwaSchema,pwaReminderRoutes} from '../reminders.mjs';
+import {ensurePwaSchema,pwaReminderRoutes,sendPwaPush} from '../reminders.mjs';
 import {authenticateMember} from '../../member-state-fast-v1.js';
-const pinnedPages='https://0da69833.projectshift.pages.dev';
+import webpush from 'web-push';
+import {createECDH,randomBytes} from 'node:crypto';
 const page=(content)=>new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Timber — PWA device test</title><style>body{margin:0;background:#050505;color:#e7e3da;font:17px/1.6 Arial}header,main,footer{max-width:1080px;margin:auto;padding:20px}a{color:inherit}button{min-height:44px;background:#e7e3da;color:#050505;padding:12px 18px;border:1px solid #707762;border-radius:8px;font:inherit}header{border-bottom:1px solid #707762}header img{width:48px;vertical-align:middle;margin-right:12px}aside{border:1px solid #707762;padding:16px}h1{font-size:32px}form{margin:20px 0}</style></head><body><header><img src="/assets/apple-touch-icon.png" alt="S in a circle">My Timber · device test</header><main>${content}</main><footer>Separate preview. No live account, health record, email or scheduled reminder is used.</footer></body></html>`,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff'}});
 export default{async fetch(request,env){
  const u=new URL(request.url),path=u.pathname;
  if(!/^shift-my-timber-pwa-preview\.[a-z0-9-]+\.workers\.dev$/.test(u.hostname))return new Response('Preview host required',{status:403});
  if(Date.now()>Date.parse(env.PREVIEW_EXPIRES_AT))return new Response('This device preview has expired. The live website is unchanged.',{status:410});
  if(path==='/__preview/meta')return Response.json({source:env.PREVIEW_SOURCE_SHA,productionBindings:false,scheduledReminders:false,expiresAt:env.PREVIEW_EXPIRES_AT},{headers:{'Cache-Control':'no-store'}});
+ if(path==='/__preview/protocol'&&request.method==='GET'){
+  // Exercise the real deployed crypto runtime using ephemeral fixture keys,
+  // no database writes, no returned keys and a non-network transport.
+  const vapid=webpush.generateVAPIDKeys(),client=createECDH('prime256v1');client.generateKeys();let proof;
+  const fakeDB={prepare(){return{}},batch:async()=>[],exec:async()=>{}};
+  const result=await sendPwaPush({DB:fakeDB,VAPID_PUBLIC_KEY:vapid.publicKey,VAPID_PRIVATE_KEY:vapid.privateKey},{endpoint:'https://web.push.apple.com/synthetic-no-network',p256dh:client.getPublicKey().toString('base64url'),auth:randomBytes(16).toString('base64url')},async(_,options)=>{const h=new Headers(options.headers);proof={encoding:h.get('Content-Encoding'),modernVapid:h.get('Authorization')?.startsWith('vapid t='),encrypted:options.body.length>86};return new Response(null,{status:201})});
+  return Response.json({...proof,transportMocked:true,result},{headers:{'Cache-Control':'no-store'}});
+ }
  if(['/assets/favicon.svg','/assets/apple-touch-icon.png'].includes(path)&&['GET','HEAD'].includes(request.method)){
-  const r=await fetch(pinnedPages+path,{method:request.method,redirect:'error'});const h=new Headers(r.headers);h.set('Cache-Control','public,max-age=300');h.delete('Set-Cookie');return new Response(r.body,{status:r.status,headers:h});
+  return env.PREVIEW_ASSETS.fetch(request);
  }
  const asset=pwaAssets(request);if(asset)return asset;
  if(path.startsWith('/v1/my-timber-pwa/'))return pwaReminderRoutes(request,env);

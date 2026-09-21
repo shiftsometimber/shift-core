@@ -1,6 +1,6 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {getMemberPushIdentity,ensureMemberPushIdentitySchema} from '../fit-reminders-v1.js';
-import {buildPushPayload} from '@block65/webcrypto-web-push';
+import webpush from 'web-push';
 
 const root='/v1/my-timber-pwa';
 const json=(value,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
@@ -60,12 +60,14 @@ export async function pwaReminderRoutes(request,env){
  if(!claim.meta.changes)return json({error:'test_rate_limited',message:'Wait a minute before sending another test.'},429);
  try{const result=await sendPwaPush(env,row);if(result==='accepted')return json({ok:true,status:'accepted_not_receipt'});if(result==='expired')await revoke(env.DB,endpoint);return json({error:'push_not_accepted',message:'The test was not accepted. Retry setup if this device subscription has expired.'},503)}catch{return json({error:'push_failed',message:'The test could not be sent. Wait a minute and retry.'},503)}
 }
-export async function sendPwaPush(env,row){
+export async function sendPwaPush(env,row,transport=fetch){
  if(!validEndpoint(row.endpoint))return 'expired';
  await ensureMemberPushIdentitySchema(env.DB);const identity=await getMemberPushIdentity(env);if(!identity)throw Error('push identity unavailable');
  const subscription={endpoint:row.endpoint,expirationTime:null,keys:{p256dh:row.p256dh,auth:row.auth}};
- const payload=await buildPushPayload({data:{kind:'my-timber-checkin',title:'Time for your check-in',body:'A minute for you. Open My Timber when you’re ready.',url:'/member/dashboard#today'},options:{ttl:1800,urgency:'normal'}},subscription,identity);
- const response=await fetch(row.endpoint,{...payload,redirect:'error',signal:AbortSignal.timeout(10000)});
+ // Pin the current RFC 8291/8292 format. The existing Fit-only library emits
+ // legacy aesgcm/WebPush headers; keep its behavior unchanged in this patch.
+ const payload=webpush.generateRequestDetails(subscription,JSON.stringify({kind:'my-timber-checkin',title:'Time for your check-in',body:'A minute for you. Open My Timber when you’re ready.',url:'/member/dashboard#today'}),{TTL:1800,urgency:'normal',contentEncoding:'aes128gcm',vapidDetails:identity});
+ const response=await transport(row.endpoint,{method:payload.method,headers:payload.headers,body:payload.body,redirect:'error',signal:AbortSignal.timeout(10000)});
  return response.ok?'accepted':[404,410].includes(response.status)?'expired':'rejected';
 }
 async function revoke(DB,endpoint){await DB.batch([DB.prepare('DELETE FROM my_timber_push_deliveries WHERE endpoint=?').bind(endpoint),DB.prepare('DELETE FROM my_timber_push_devices WHERE endpoint=?').bind(endpoint)])}

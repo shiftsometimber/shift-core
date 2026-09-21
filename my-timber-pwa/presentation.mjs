@@ -16,7 +16,7 @@ export const card=`<details id="myTimberApp"><summary><img src="/assets/apple-to
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow'};
 export function pwaAssets(request){
  const path=new URL(request.url).pathname;
- const asset={'/my-timber.webmanifest':[JSON.stringify(manifest),'application/manifest+json'],'/assets/my-timber-pwa.js':[client,'application/javascript'],'/assets/my-timber-pwa.css':[styles,'text/css'],'/shift-push-sw-v1.js':[serviceWorker,'application/javascript']}[path];
+ const asset={'/manifest.webmanifest':[JSON.stringify(manifest),'application/manifest+json'],'/my-timber.webmanifest':[JSON.stringify(manifest),'application/manifest+json'],'/assets/my-timber-pwa.js':[client,'application/javascript'],'/assets/my-timber-pwa.css':[styles,'text/css'],'/shift-push-sw-v1.js':[serviceWorker,'application/javascript']}[path];
  if(!asset)return null;
  if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405,headers:{...headers,Allow:'GET, HEAD'}});
  return new Response(request.method==='HEAD'?null:asset[0],{headers:{...headers,'Content-Type':asset[1]+'; charset=utf-8',...(path==='/shift-push-sw-v1.js'?{'Service-Worker-Allowed':'/'}:{})}});

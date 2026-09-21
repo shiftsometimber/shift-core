@@ -22,7 +22,7 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
       - name: PWA, push, account, session, privacy, navigation and Grub regressions
-        run: node --test my-timber-pwa/pwa.test.mjs tests/fit-reminders-delivery.test.mjs member-experience/tests/*.test.mjs tests/member-auth-ui-v2.test.mjs tests/member-auth-regression.test.mjs tests/production-acceptance-session-cookie-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-shell-contract.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/nutrition-mytimber.test.mjs
+        run: node --test my-timber-pwa/*.test.mjs tests/fit-reminders-delivery.test.mjs member-experience/tests/*.test.mjs tests/member-auth-ui-v2.test.mjs tests/member-auth-regression.test.mjs tests/production-acceptance-session-cookie-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-shell-contract.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/nutrition-mytimber.test.mjs
       - name: Compile actual production candidate without deploying it
         run: npx wrangler deploy --dry-run --outdir my-timber-pwa/preview/generated/build --config wrangler.jsonc
       - name: Provision only separate device-test database
@@ -38,6 +38,7 @@ jobs:
           const origin=process.env.PREVIEW_URL;
           let m,last='';for(let n=0;n<12;n++){const r=await fetch(origin+'/__preview/meta',{headers:{'cache-control':'no-cache'}});m=await r.json().catch(()=>null);if(r.ok&&m?.source===process.env.GITHUB_SHA)break;last='status '+r.status+' source '+m?.source;await new Promise(resolve=>setTimeout(resolve,3000));}assert.equal(m?.source,process.env.GITHUB_SHA,last);assert.equal(m.productionBindings,false);assert.equal(m.scheduledReminders,false);
           const manifest=await(await fetch(origin+'/my-timber.webmanifest')).json();assert.equal(manifest.start_url,'/member/dashboard#today');
+          const protocol=await(await fetch(origin+'/__preview/protocol')).json();assert.equal(protocol.encoding,'aes128gcm');assert.equal(protocol.modernVapid,true);assert.equal(protocol.encrypted,true);assert.equal(protocol.transportMocked,true);
           for(const path of ['/assets/favicon.svg','/assets/apple-touch-icon.png','/shift-push-sw-v1.js']){const r=await fetch(origin+path);assert.equal(r.status,200,path);assert((await r.arrayBuffer()).byteLength>100,path);}
           console.log('PASS: exact preview source, Today launch, approved icon resources, service worker. Physical-device delivery remains unproved.');
           NODE

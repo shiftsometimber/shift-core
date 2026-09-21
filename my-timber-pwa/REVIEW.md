@@ -12,8 +12,17 @@ install manifest, Apple home-screen icon and notification icon.
 
 - Reconciled main `1af0b7bb9e2d354198bcee918cbbd2da2b11b7fc` (Grub repair and
   ingredient/recovery repairs preserved).
-- 258 Node tests passed: PWA/SQL/service-worker/UI states, existing Fit delivery,
+- 258 Node tests passed before protocol correction: PWA/SQL/service-worker/UI states, existing Fit delivery,
   member experiences, auth, session cookies, public navigation and privacy.
+- A real-library protocol smoke caught the existing Fit library's legacy
+  `aesgcm`/`WebPush` format. New PWA sends now use pinned `web-push@3.6.7`,
+  explicitly `aes128gcm` and modern signed `vapid` headers, with existing keys.
+  `push-protocol.test.mjs` verifies actual encryption framing/headers and signature
+  with transport mocked. This is not device-delivery proof. Fit's own sender is
+  intentionally unchanged and must not be described as iPhone-delivery verified.
+- After correction and adding the public-manifest alias: **260 tests passed**.
+  CI additionally exercises the real Cloudflare crypto runtime with ephemeral
+  fixture keys and a non-network transport; no notification is sent by that gate.
 - Actual production Worker compiled with Wrangler dry-run. No production deploy.
 - Candidate uses existing sign-in and launches Today; only My Timber HTML gets
   the small install/reminder disclosure. Header/navigation are not rewritten.
