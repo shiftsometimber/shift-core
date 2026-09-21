@@ -1,0 +1,47 @@
+name: Read current Pages provenance
+on:
+  push:
+    branches: [fix/audit-21sep]
+    paths: ['.github/workflows/pages-provenance-read.yml']
+permissions:
+  contents: read
+jobs:
+  read:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Read only the current project metadata using existing release access
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          const report={at:new Date().toISOString(),candidate:process.env.GITHUB_SHA,project:'projectshift',credential:'existing_release_credential',productionWrites:0};
+          try {
+            if(!process.env.CLOUDFLARE_API_TOKEN) throw Error('missing credential');
+            const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',{
+              method:'GET',redirect:'error',signal:AbortSignal.timeout(20000),headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}
+            });
+            report.httpStatus=r.status;
+            const data=await r.json();
+            if(!r.ok||!data.success){report.available=false;report.errorCodes=(data.errors||[]).map(e=>e.code);report.reason='Existing release access cannot read Pages project metadata.'}
+            else {
+              const p=data.result,d=p.canonical_deployment,s=p.source?.config;
+              report.available=Boolean(d?.id);
+              report.deployment=d?{id:d.id,url:d.url,environment:d.environment,createdOn:d.created_on,commit:d.deployment_trigger?.metadata?.commit_hash,branch:d.deployment_trigger?.metadata?.branch,trigger:d.deployment_trigger?.type,status:d.latest_stage?.status}:null;
+              report.source=s?{type:p.source.type,owner:s.owner,repo:s.repo_name,productionBranch:s.production_branch}:{type:'unavailable',reason:'No connected source repository returned; the current approved upload artifact must be established.'};
+              report.sameAsVerifiedPreviewBaseline=d?.url?.replace(/\/$/,'')==='https://95e283ac.projectshift.pages.dev';
+            }
+          } catch {report.available=false;report.reason='The read-only Pages metadata request could not complete.'}
+          mkdirSync('pages-provenance',{recursive:true});
+          writeFileSync('pages-provenance/report.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          if(!report.available) process.exitCode=1;
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pages-provenance-${{ github.sha }}
+          path: pages-provenance/report.json
+          retention-days: 30
