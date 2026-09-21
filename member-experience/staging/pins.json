@@ -100,27 +100,27 @@
   },
   {
     "path": "member/check-in.html",
-    "sha256": "1473e97ad7d26afc722d7c8b7c2c3caabec6a64314d9a743883909249ec392e0"
+    "sha256": "3b723a54654e593b5b8521afbcc8160224b6675e0d1d1ec03c2c49d53f2e56e4"
   },
   {
     "path": "member/dashboard.html",
-    "sha256": "e030aee40a5d72441c7060a540ca8c1702b76ff76ff6bca94b4db53ded8a7d78"
+    "sha256": "800ca075ac766caf0867692a23c56071b9c07330a8feed1b30438ded11bcefeb"
   },
   {
     "path": "member/fit.html",
-    "sha256": "32e74e079a5e8942e574c69db8daccbabc967f4b35e6f627c82f3db58a3d6f27"
+    "sha256": "5ec62e14eb130dd9c621135ca7ae88b45be623062617f4ec49dc3a2fbe80c405"
   },
   {
     "path": "member/grub.html",
-    "sha256": "11230d6932a6990e2d8987b61d634f2868163fb3ccf7df5b4b02c12652f5da0e"
+    "sha256": "49cc848e5c67af2a5bad2e69be0642d3ff9e703bcfe27cd2dce25223265d58fa"
   },
   {
     "path": "member/saved.html",
-    "sha256": "3250a0d2d4bcbdf3c325b431b056ee6a986eafe6a4c187cebd6901240da10381"
+    "sha256": "f5365cbeb8375c69d90e2a934e6f286902c2ecbd5bbf1dbf2e480cfdc0e96d1a"
   },
   {
     "path": "member/settings.html",
-    "sha256": "40a14777a6d4f66a56c8998a9fa831bfc0e56f3bc25059a49fc22bb823490cc2"
+    "sha256": "e6a1ef2081c7c1193a50aba185807c26762dcdfbcb367edbd0ea7563e4c03e62"
   },
   {
     "path": "my-timber-v11.css",
@@ -137,10 +137,14 @@
   },
   {
     "path": "member/ask-timber.html",
-    "sha256": "22994c67d700797a3b4acacbffe6c174dad153975638174ccbead78d5cc89e98"
+    "sha256": "7defa4ced238977f6ca75cfd3f2afd821b72eaa28b81f124a601906b9d1b9d80"
   },
   {
     "path": "assets/ask-timber-phase8.css",
     "sha256": "9c3af57a7648516fb634279931b93fcc956b77a165f5b12096051813b10f7c8d"
+  },
+  {
+    "path": "assets/header-navigation-v2.css",
+    "sha256": "fede0fcbc334af6c4183765006c2fde71909ed5e3bd0db365f77a8e21e2fefc4"
   }
 ]
