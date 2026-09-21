@@ -60,9 +60,12 @@
 }
 @media(prefers-reduced-motion:reduce){.at-loading i{animation:none}}
 
-/* Keep answer text readable inside the site's shared dark theme. */
+/* Keep question and answer text readable inside the site's shared dark theme. */
 #timberResponse{background:#e7e3da!important;color:#050505!important}
 #timberResponse :is(h2,h3,p,li,strong){color:#050505!important}
 #timberResponse :is(.at-panels,.at-panel,.at-sources,.at-source){background:transparent!important}
 #timberResponse :is(a,.at-source span,.at-confidence,.at-loading){color:#34392d!important}
 #timberResponse a:focus-visible{outline:3px solid #707762;outline-offset:3px}
+#timberForm{background:#e7e3da!important;color:#050505!important}
+#timberForm :is(label,span,small){color:#050505!important}
+#timberResponse .at-confidence{color:#050505!important}
