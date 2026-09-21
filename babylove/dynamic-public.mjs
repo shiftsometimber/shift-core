@@ -1,6 +1,10 @@
 import {publicHeader,publicDrawer,publicFooter} from '../public-shell-contract.mjs';
 
-const HOSTS=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);\nconst IMAGE_HOSTS=new Set(['csuxjmfbwmkxiegfpljm.supabase.co']);\nconst IMAGE_PATH_PREFIX='/storage/v1/object/public/blog-images/organization-55073/';\nfunction trustedImage(raw){try{const u=new URL(String(raw));return u.protocol==='https:'&&IMAGE_HOSTS.has(u.hostname)&&u.pathname.startsWith(IMAGE_PATH_PREFIX)?u:null}catch{return null}}\nfunction proxiedImage(raw,slug){const u=trustedImage(raw);return u&&slug?'/articles/'+slug+'/image?src='+encodeURIComponent(u.href):(u?.href||safeUrl(raw))}
+const HOSTS=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);
+const IMAGE_HOSTS=new Set(['csuxjmfbwmkxiegfpljm.supabase.co']);
+const IMAGE_PATH_PREFIX='/storage/v1/object/public/blog-images/organization-55073/';
+function trustedImage(raw){try{const u=new URL(String(raw));return u.protocol==='https:'&&IMAGE_HOSTS.has(u.hostname)&&u.pathname.startsWith(IMAGE_PATH_PREFIX)?u:null}catch{return null}}
+function proxiedImage(raw,slug){const u=trustedImage(raw);return u&&slug?'/articles/'+slug+'/image?src='+encodeURIComponent(u.href):(u?.href||safeUrl(raw))}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100);
 function safeUrl(raw){try{const u=new URL(String(raw),'https://shiftsometimber.co.uk');return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch{return'#'}}
