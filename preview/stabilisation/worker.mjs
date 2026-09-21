@@ -1,3 +1,4 @@
+import {launchPaymentProbe} from '../launch-readiness/payment-probe.mjs';
 // Isolated preview host. Never imported by production; no production bindings or routes.
 import staging from '../../work/staging/worker.mjs';
 import {b1PreviewRoutes} from '../b1-repair/routes.mjs';
@@ -9,6 +10,7 @@ const review='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta n
 export default {async fetch(request,env,ctx){
  const u=new URL(request.url),path=u.pathname;
  if(env.SHIFT_ENVIRONMENT!=='stabilisation-preview-20260917'||!/^shift-stabilisation-preview(?:-v2)?\.[a-z0-9-]+\.workers\.dev$/.test(u.hostname)||!env.STAGING_EXPIRES_AT||Date.now()>=Date.parse(env.STAGING_EXPIRES_AT))return new Response('Preview unavailable',{status:404,headers:privateHeaders});
+ const launchProof=await launchPaymentProbe(request,env);if(launchProof)return launchProof;
  const b1=await b1PreviewRoutes(request,env,ctx);if(b1)return b1;
  if(env.LAUNCH_REPAIR_PREVIEW==='true'&&path==='/v1/catalogue/medicines'&&request.method==='GET')return env.STAGING_ASSETS.fetch(new Request(new URL('/launch/catalogue.json',u)));
  if(env.LAUNCH_REPAIR_PREVIEW==='true'&&path==='/treatment-order-prototype-v1.js'&&request.method==='GET')return env.STAGING_ASSETS.fetch(new Request(new URL('/launch/treatment-order-prototype-v1.js',u)));
