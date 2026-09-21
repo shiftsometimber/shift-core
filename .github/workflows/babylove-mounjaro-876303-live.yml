@@ -1,0 +1,44 @@
+name: BabyLove Mounjaro 876303 live closeout
+on:
+  workflow_run:
+    workflows: ["Cloudflare Production Promote"]
+    types: [completed]
+permissions:
+  contents: read
+jobs:
+  closeout:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Promote only the verified 876303 receipt and apply source corrections
+        run: node babylove/repair-mounjaro-876303.mjs
+      - name: Verify public page, Knowledge discovery and sitemap
+        run: |
+          set -euo pipefail
+          URL="https://shiftsometimber.co.uk/articles/mounjaro-cost-uk"
+          ok=0
+          for i in $(seq 1 12); do
+            code=$(curl -sS -o /tmp/article.html -w "%{http_code}" "$URL" || true)
+            if [ "$code" = "200" ] && grep -q "NICE List vs Private Prices: Mounjaro Cost in the UK" /tmp/article.html && grep -q "primary-care rollout" /tmp/article.html; then ok=1; break; fi
+            sleep 5
+          done
+          test "$ok" = "1"
+          curl -fsS https://shiftsometimber.co.uk/sitemap.xml | grep -q "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk"
+          curl -fsS https://shiftsometimber.co.uk/explore-knowledge | grep -q 'data-babylove-dynamic="mounjaro-cost-uk"'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: babylove-mounjaro-876303-live-proof
+          path: babylove-proof/
+          retention-days: 30
