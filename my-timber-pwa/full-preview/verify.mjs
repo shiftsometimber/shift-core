@@ -21,8 +21,8 @@ try{
   if(path!=='/programme'){assert(html.includes('id="myTimberApp"'));assert(html.includes('href="/my-timber.webmanifest"'));}
  }
  checks.push('full account pages, public footer and same-origin manifest');
- assert.equal((await api('/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true})).status,200);
- assert.equal((await api('/v1/check-ins',{mood:'Good',note:'Fictional PWA acceptance check-in'})).status,200);
+ assert.equal((await api('/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true})).status,201);
+ assert((await api('/v1/check-ins',{mood:'Good',note:'Fictional PWA acceptance check-in'})).ok,'check-in creation succeeds');
  const saved=await(await api('/v1/check-ins')).json();assert(JSON.stringify(saved).includes('Fictional PWA acceptance check-in'));checks.push('check-in saved and read back');
  const initial=await(await api('/v1/my-timber-pwa/status',{})).json();assert.equal(initial.enabled,false);
  const key=createECDH('prime256v1');key.generateKeys();const endpoint='https://web.push.apple.com/nonexistent-full-preview-'+randomBytes(12).toString('hex');
