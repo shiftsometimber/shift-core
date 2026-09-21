@@ -14,7 +14,7 @@ export function repairTreatmentOrderController(source){
     const receipt=$('[data-receipt-list]');
     if(item.fixedDose&&receipt){
       receipt.replaceChildren();
-      for(const text of [item.form+' matches the format selected for comparison.',label+' is your selected pack size.','The inclusive pack price is visible before clinical assessment.']){const li=document.createElement('li');li.textContent=text;receipt.appendChild(li)}
+      for(const text of [item.form+' is the format of this option. Compare it with your preferences.',label+' is your selected pack size.','The inclusive pack price is visible before clinical assessment.']){const li=document.createElement('li');li.textContent=text;receipt.appendChild(li)}
     }`;
  return source.replace(anchor,anchor+'\n'+repair).replace('<dt>Live monthly price</dt>',"<dt>${other.fixedDose?'Live pack price':'Live monthly price'}</dt>");
 }
