@@ -1,4 +1,4 @@
-// Three bounded accuracy repairs against the pinned Pages source. No amounts,
+// Bounded accuracy repairs against the pinned Pages source. No amounts,
 // purchase gates, intended services or navigation are changed.
 export function repairTreatmentCentre(html){
  return html.replace('Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.','Retatrutide, CagriSema, Amycretin, MariTide and the next generation of weight-management treatments.')
@@ -10,13 +10,15 @@ export function repairTreatmentOrderController(source){
  const marker='    // Selected pack and receipt share the current selection (WR07).';
  if(source.includes(marker))return source;
  const repair=`${marker}
+    const lead=$('.op-lead');if(lead?.textContent==='This option was carried across from your preference filters. You can compare it with every other treatment route below.')lead.textContent='This is an option to compare. It may not match every format, access or budget preference you chose. Check the displayed price and compare the other treatment routes below.';
+    const filterTitle=$('.op-recommendation strong');if(filterTitle?.textContent==='YOUR SELECTED FILTERS')filterTitle.textContent='THIS OPTION';
     const priceHeading=$('.op-price small');if(priceHeading)priceHeading.textContent=item.fixedDose?'PACK PRICE':'MONTHLY PRICE';
     const receipt=$('[data-receipt-list]');
     if(item.fixedDose&&receipt){
       receipt.replaceChildren();
       for(const text of [item.form+' is the format of this option. Compare it with your preferences.',label+' is your selected pack size.','The inclusive pack price is visible before clinical assessment.']){const li=document.createElement('li');li.textContent=text;receipt.appendChild(li)}
     }`;
- return source.replace(anchor,anchor+'\n'+repair).replace('<dt>Live monthly price</dt>',"<dt>${other.fixedDose?'Live pack price':'Live monthly price'}</dt>");
+ return source.replace(anchor,anchor+'\n'+repair).replace('matches the format selected for comparison.','is the format of this option. Compare it with your preferences.').replace('<dt>Live monthly price</dt>',"<dt>${other.fixedDose?'Live pack price':'Live monthly price'}</dt>");
 }
 export async function repairPromiseResponse(response,request){
  const path=new URL(request.url).pathname;

@@ -45,6 +45,7 @@ for(const [name,engine,viewport]of [['chromium-desktop',chromium,{width:1440,hei
   phase('orlistat-pack-accuracy');
   await page.goto(origin+'/treatment-order?medicine=orlistat&view=spec&from=treatment-centre');
   await page.locator('[data-op-price]').getByText('£79.00',{exact:true}).waitFor();
+  assert.match(await page.locator('.op-lead').innerText(),/may not match every format, access or budget/);assert.equal(await page.locator('.op-recommendation strong').innerText(),'THIS OPTION');
   await page.locator('input[name="treatment-stage"][value="continuing"]').check();
   for(const [count,amount]of [[42,'£59.00'],[84,'£79.00'],[168,'£129.00'],[42,'£59.00']]){
    const value=await page.locator('[data-dose-select] option').evaluateAll((nodes,n)=>nodes.find(o=>o.textContent.includes(n+' capsules'))?.value,count);assert(value);

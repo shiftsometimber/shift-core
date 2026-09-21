@@ -277,7 +277,7 @@ async function ensureReceiptSchema(env){
     order_id INTEGER NOT NULL, recipient_role TEXT NOT NULL,
     state TEXT NOT NULL DEFAULT 'pending', provider_id TEXT, last_error TEXT,
     updated_at TEXT NOT NULL, PRIMARY KEY(order_id,recipient_role)
-  )`);
+  )`.replace(/\s+/g,' '));
 }
 async function deliverReceipt(env,order,role,message){
   if(!env.EMAIL){

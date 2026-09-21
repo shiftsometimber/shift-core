@@ -8,7 +8,7 @@ export async function ensureCheckoutAttempts(DB){
   state TEXT NOT NULL DEFAULT 'preparing',active INTEGER NOT NULL DEFAULT 1,
   order_number TEXT NOT NULL UNIQUE,form_body TEXT,claim_token TEXT,
   session_id TEXT,checkout_url TEXT,last_error TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL
- );CREATE UNIQUE INDEX IF NOT EXISTS idx_checkout_attempt_active ON checkout_attempts(user_id,channel) WHERE active=1;`);
+ );CREATE UNIQUE INDEX IF NOT EXISTS idx_checkout_attempt_active ON checkout_attempts(user_id,channel) WHERE active=1;`.replace(/\s+/g,' ').replaceAll(';',';\n')); // One complete statement per D1 exec line.
 }
 export async function acquireCheckoutAttempt(DB,{userId,channel,selection}){
  await ensureCheckoutAttempts(DB);

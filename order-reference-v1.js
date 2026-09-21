@@ -15,7 +15,7 @@ export async function ensureOrderReferenceRegistry(DB){
   CREATE UNIQUE INDEX IF NOT EXISTS idx_order_reference_source
     ON order_reference_registry(source_table,source_id)
     WHERE source_table IS NOT NULL AND source_id IS NOT NULL;
-  CREATE INDEX IF NOT EXISTS idx_order_reference_user ON order_reference_registry(user_id,created_at);`);
+  CREATE INDEX IF NOT EXISTS idx_order_reference_user ON order_reference_registry(user_id,created_at);`.replace(/\s+/g,' ').replaceAll(';',';\n')); // D1 exec separates statements by newline.
 }
 
 function candidate(){
