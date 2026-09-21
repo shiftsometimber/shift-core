@@ -51,17 +51,17 @@ async function post(body,auth=token){
 function record(label,result,code){assert.equal(result.http,code,label+': '+JSON.stringify(result));report.checks.push({label,...result});}
 record('unauthorised request',await post(payload,'invalid'),401);
 const first=await post(payload);
-record('new article stored as draft',first,200);
-for(const result of await Promise.all([post(payload),post(payload),post(payload)])){record('concurrent exact retry',result,200);assert.equal(result.body.duplicate,true);assert.equal(result.body.published,false);assert.equal(result.body.link,undefined);}
+record('new article auto-published',first,200);assert.equal(first.body.published,true);
+for(const result of await Promise.all([post(payload),post(payload),post(payload)])){record('concurrent exact retry',result,200);assert.equal(result.body.duplicate,true);assert.equal(result.body.published,true);assert.equal(result.body.link,'/articles/'+slug);}
 record('changed delivery cannot overwrite',await post({...payload,title:'Changed'}),409);
 record('existing article preserved',await post({...payload,id:'collision-'+suffix,slug:'preserved-existing'}),409);
 record('invalid path cannot become a slug',await post({...payload,slug:'../home'}),400);
 record('malformed body rejected',await post({...payload,content_markdown:''}),400);
 const rows=JSON.parse(run(['d1','execute','DB','--remote','--config',configPath,'--json','--command',`SELECT slug,status,title,body FROM knowledge_articles WHERE slug IN ('${slug}','preserved-existing'); SELECT count(*) AS receipt_count FROM babylove_receipts WHERE source_id='preview-${suffix}';`]));
 const results=rows.flatMap(x=>x.results||[]);const saved=results.find(x=>x.slug===slug),kept=results.find(x=>x.slug==='preserved-existing');
-assert.equal(saved.status,'draft');assert.equal(saved.body,payload.content_markdown);assert.equal(kept.status,'published');assert.equal(kept.body,'Unchanged fixture body');assert.equal(results.find(x=>x.receipt_count!=null).receipt_count,1);
+assert.equal(saved.status,'published');assert.equal(saved.body,payload.content_markdown);assert.equal(kept.status,'published');assert.equal(kept.body,'Unchanged fixture body');assert.equal(results.find(x=>x.receipt_count!=null).receipt_count,1);
 assert(report.checks.every(x=>x.ms<5000),'Webhook request exceeded the wizard five-second target');
-report.persistence={one_receipt:true,draft_only:true,existing_article_unchanged:true};
+report.persistence={one_receipt:true,auto_published:true,existing_article_unchanged:true};
 report.image=await verifyOralImage(origin);
 report.receiver_sha256=createHash('sha256').update(readFileSync('babylove/webhook.mjs')).digest('hex');
 writeFileSync(dir+'/preview-proof.json',JSON.stringify(report,null,2));
