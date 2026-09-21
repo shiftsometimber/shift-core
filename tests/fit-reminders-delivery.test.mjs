@@ -8,7 +8,7 @@ import {buildDailyReminderMessage} from '../daily-reminder-copy-v1.js';
 // Execute the real scheduler and SQL with isolated dependencies. No network,
 // production bindings, member records or real push keys are used.
 const source=readFileSync(new URL('../fit-reminders-v1.js',import.meta.url),'utf8')
-  .replace(/^import .*;\n/gm,'').replace(/^export /gm,'');
+  .replace(/^import .*;\n/gm,'').replace(/^export \{.*\};\n/gm,'').replace(/^export /gm,'');
 const slots=[
   {name:'morning',instant:'2026-09-14T06:00:00Z',date:'2026-09-14',email:'email',push:'push_morning',enabled:'enabled'},
   {name:'evening',instant:'2026-09-14T17:00:00Z',date:'2026-09-14',email:'email_evening',push:'push_evening',enabled:'evening_enabled'},

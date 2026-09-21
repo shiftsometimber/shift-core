@@ -1,3 +1,5 @@
+import {pwaAssets,withPwa} from './my-timber-pwa/presentation.mjs';
+import {pwaReminderRoutes,runPwaReminders,appendPwaExport} from './my-timber-pwa/reminders.mjs';
 import {withNutritionSignposting} from './public-nutrition-mytimber.mjs';
 import {repairPromiseResponse} from './public-promise-accuracy-v1.mjs';
 import {notifyArticlePublication} from './babylove/publication-email.mjs';
@@ -970,6 +972,7 @@ const worker = {
       await hq.fetch(request, env, ctx),
     );
     fallback = await appendHealthExport(request, env, fallback);
+    fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
@@ -986,13 +989,14 @@ const worker = {
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
       }));
-      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email"];
+      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin"];
       const settled = await Promise.allSettled([
         runScheduledIntelligence(env),
         runRadarScheduledScan(env),
         runKnowledgeFlywheel(env, { limit: 1000 }),
         runFitMorningReminders(env),
         notifyArticlePublication(env),
+        env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true}),
       ]);
       const scheduled = settled.map((result, index) =>
         result.status === "fulfilled"
@@ -1152,11 +1156,16 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 export default {
   ...worker,
   async fetch(request, env, ctx) {
+    if(env.MY_TIMBER_PWA_ENABLED==='true'){
+      const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);
+      if(pwa)return pwa;
+    }
     const page = await continuityPublicRoute(request, () => {
       const url = new URL(request.url); url.pathname = '/programme'; url.search = '';
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
-    return withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
+    const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
+    return env.MY_TIMBER_PWA_ENABLED==='true'?withPwa(request,final):final;
   },
 };
