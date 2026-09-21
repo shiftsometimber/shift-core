@@ -6,5 +6,6 @@
   "runtimeSchemaAdditions": [
     "checkout_attempts",
     "commerce_receipt_delivery"
-  ]
+  ],
+  "enforceApplicationPin": true
 }

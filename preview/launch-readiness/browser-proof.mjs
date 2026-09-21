@@ -21,9 +21,10 @@ for(const [name,engine,viewport]of [['chromium-desktop',chromium,{width:1440,hei
   await page.goto(origin+'/member/dashboard#visualise',{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>document.body.dataset.memberSession==='ready');
   assert(await page.locator('#photoInput').isDisabled(),'cannot select a photo before handler readiness');
-  await page.screenshot({path:dir+'/'+name+'-photo-loading.png',fullPage:true});release();
+  row.photoDisabledBeforeController=true;release();
   await page.waitForFunction(()=>document.querySelector('#photoInput')?.dataset.photoReady==='true');
   assert(await page.locator('#photoInput').isEnabled());await page.unroute('**/member-product-v33d.js*');
+  await page.screenshot({path:dir+'/'+name+'-photo-ready.png',fullPage:true});
   row.checks.push('Slow controller load cannot lose a selection; control enables only after binding');
   phase('photo-error-and-retry');
   await page.locator('#photoInput').setInputFiles({name:'broken.png',mimeType:'image/png',buffer:Buffer.from('not an image')});

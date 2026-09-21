@@ -9,8 +9,9 @@ export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.applicationCommit,'9cc79e05dd8bfd1f22171a232aef1bc3ca49a649');
  assert.equal(manifest.baseCommit,'eb39d3a00480404817a0d52e41965d75d133ffe6');
- assert.ok(changed.every(p=>RELEASE_PATHS.has(p)),'Application/source drift: review a new candidate and scope before release');
- return {runtimeOnly:true,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:changed};
+ const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
+ if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
+ return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
 }
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';

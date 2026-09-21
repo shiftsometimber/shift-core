@@ -14,6 +14,8 @@ on:
       - "tests/editorial-resources-v1.test.mjs"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
+      - "scripts/b1-release-scope.mjs"
+      - "tests/b1-release-scope.test.mjs"
       - "acquisition-activation/**"
       - "activation-measurement/**"
       - "health-passport/**"
