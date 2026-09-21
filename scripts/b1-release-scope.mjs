@@ -4,7 +4,7 @@ import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'no
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
-export const RELEASE_PATHS=new Set(['release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml']);
+export const RELEASE_PATHS=new Set(['release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','tests/promise-accuracy.test.mjs']);
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.applicationCommit,'47c39ffd0e29ae5e907cc2a48fcac886fbacca25');

@@ -5,3 +5,16 @@ test('every selected pack uses the same count in receipt without changing any pr
 test('unrelated responses pass through unchanged',async()=>{const r=new Response('£59',{headers:{'Content-Type':'text/html'}});assert.equal(await repairPromiseResponse(r,new Request('https://example.test/other')),r)});
 
 test('displayed option does not claim all answers are enforced',()=>{const source='function updateSelection(){\n    const {label,price}=selection();\n}';const lead={textContent:'This option was carried across from your preference filters. You can compare it with every other treatment route below.'},title={textContent:'YOUR SELECTED FILTERS'};vm.runInNewContext(repairTreatmentOrderController(source)+';updateSelection()',{item:{fixedDose:false},selection:()=>({}),$:s=>s==='.op-lead'?lead:s==='.op-recommendation strong'?title:null});assert.match(lead.textContent,/may not match every format, access or budget/);assert.equal(title.textContent,'THIS OPTION')});
+
+import {preserveTreatmentCentreAccuracy} from '../public-promise-preservation.mjs';
+test('release fingerprint permits only exact reviewed Centre corrections',()=>{
+ const source=Buffer.from('<p>Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.</p><p>Use the free Health MOT to organise your current picture and identify sensible priorities.</p><a href="/shift-health/health-mot">Take the Health MOT</a><p>No stock available today · £129.00</p>');
+ const changed=Buffer.from(repairTreatmentCentre(source.toString()));
+ assert.deepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',source),source);
+ assert.deepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',changed,{required:true}),source);
+ assert.equal(preserveTreatmentCentreAccuracy('/other',changed,{required:true}),changed);
+ assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',source,{required:true}));
+ assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.concat([changed,changed]),{required:true}));
+ assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.from(changed.toString().replace('Explore the SHIFT Health MOT home blood test and what it covers.','different claim')),{required:true}));
+ assert.notDeepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.from(changed.toString().replace('£129.00','£130.00')),{required:true}),source,'unrelated price drift remains visible to complete-page comparison');
+});
