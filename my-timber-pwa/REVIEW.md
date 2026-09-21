@@ -1,5 +1,27 @@
 # PWA candidate review — 21 September 2026
 
+## Preview-entry regression reported by Matt
+
+The iPhone screenshot showed `Same origin required` after the native Start form.
+The preview page sent `Referrer-Policy: no-referrer`, which nulls `Origin` for
+native form POSTs; the same preview correctly rejected that null origin. The
+regression test reproduced a 403 instead of the expected 303 before correction.
+
+The preview now uses `Referrer-Policy: same-origin`. Native own-site forms retain
+their origin, while external destinations still receive no referrer. The exact
+Origin checks remain unchanged: foreign, missing and null origins are rejected.
+Blocked entries now get a branded return/retry page rather than a bare error.
+The [Origin header documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Origin)
+describes the policy interaction.
+
+Three added request/SQLite tests pass: complete entry → session → default-off
+settings → repeat entry → fixture-only cleanup; cross-origin/null/missing-origin
+negatives; and preview expiry. The full local suite passes (263 tests). Hosted CI
+now repeats the fixture entry/cleanup checks without a push subscription or send.
+A native-form diagnostic at `/__preview/entry-check` exercises the same policy
+without creating an account or changing any stored data. Physical iPhone push
+receipt and whole-site installed-mode acceptance remain separate pending gates.
+
 Draft PR: https://github.com/shiftsometimber/shift-core/pull/784
 
 Approved icon: existing `/assets/favicon.svg` and `/assets/apple-touch-icon.png`.

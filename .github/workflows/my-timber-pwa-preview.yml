@@ -42,3 +42,7 @@ jobs:
           for(const path of ['/assets/favicon.svg','/assets/apple-touch-icon.png','/shift-push-sw-v1.js']){const r=await fetch(origin+path);assert.equal(r.status,200,path);assert((await r.arrayBuffer()).byteLength>100,path);}
           console.log('PASS: exact preview source, Today launch, approved icon resources, service worker. Physical-device delivery remains unproved.');
           NODE
+      - name: Verify complete preview entry and cleanup with an isolated fixture
+        env:
+          PREVIEW_URL: https://shift-my-timber-pwa-preview.matobrien.workers.dev
+        run: node my-timber-pwa/preview/verify-entry.mjs
