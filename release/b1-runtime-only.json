@@ -1,8 +1,8 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "9b4bfc968a93ab3587e9ef8f8b1f388c068c2e77",
-  "baseCommit": "25ac6410861bb57a15fcac3620b73a76c9e759f1",
-  "reason": "Authorised launch-readiness repairs reconciled with released Ask Timber and BabyLove updates. Preserve Pages, prices, stock, service holds and all customer records. No bulk migrations, seeds or publication. Exact combined preview and production verification required.",
+  "applicationCommit": "ea17f0a66370aa976f4060b8cb1f1bd83239ff68",
+  "baseCommit": "1339233cf0b29c79a3a4c291774eabaca6a84973",
+  "reason": "Urgent removal of client-invented kebab advice; current food question, exact hosted sequence and forgotten-password UI verification. Runtime only; preserve Pages, customer records, catalogue, prices, stock and service holds.",
   "runtimeSchemaAdditions": [
     "checkout_attempts",
     "commerce_receipt_delivery"

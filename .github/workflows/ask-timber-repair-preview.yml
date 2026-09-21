@@ -1,9 +1,9 @@
 name: Ask Timber public repair preview
 on:
   push:
-    branches: [fix/ask-timber-public-auth-20260921]
+    branches: [fix/ask-timber-public-auth-20260921, fix/ask-timber-food-relevance-20260921]
   pull_request:
-    paths: ['frontend/member/assets/ask-timber-v1.js', 'tests/ask-timber-public.test.mjs', 'shift-brain-v1.js', 'preview/ask-timber/**', '.github/workflows/ask-timber-repair-preview.yml']
+    paths: ['frontend/member/assets/ask-timber-v1.js', 'frontend/member/assets/ask-timber-intent-v2.js', 'tests/ask-timber-public.test.mjs', 'ask-timber-food-evidence.mjs', 'shift-brain-v1.js', 'preview/ask-timber/**', '.github/workflows/ask-timber-repair-preview.yml']
 permissions:
   contents: read
 concurrency:

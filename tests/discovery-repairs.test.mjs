@@ -47,7 +47,7 @@ test('public chat preserves safety responses even when the question also mention
  const response={ok:true,mode:'safety',answer:'Call 999 if you cannot stay safe.',nextSteps:['Call 999.'],keyPoints:[],followUps:[]};
  const result=context.AskTimberIntent.complete('I feel suicidal and cannot eat dinner',response);
  assert.equal(JSON.stringify(result),JSON.stringify(response));
- assert.match(context.AskTimberIntent.complete('Can I have a kebab?',{answer:'Here is some information.'}).answer,/food bit/,'Existing ordinary-answer behaviour retained');
+ assert.equal(context.AskTimberIntent.complete('Can I have a kebab?',{answer:'Here is some information.'}).answer,'Here is some information.','Intent checks cannot fabricate food advice');
 });
 
 async function memberFixture(t){
