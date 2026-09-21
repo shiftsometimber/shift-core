@@ -111,6 +111,21 @@ export async function askTimberRoutes(request,env){
 
 function directReviewedAnswer(message){
   const q=message.toLowerCase();
+  // General getting-started intent needs practical public guidance. News reports
+  // sharing the word 'weight' are not a substitute for a how-to source.
+  const starter=/(?:how|where|want|need|start|begin|help).{0,80}\b(?:lose|loose|losing)\s+(?:some\s+)?weight\b|\bweight[ -]loss\s+(?:tips|basics|help)|\bstart\b.{0,30}\bweight[ -]loss\b/.test(q);
+  const specific=/\b(mounjaro|wegovy|orlistat|foundayo|semaglutide|tirzepatide|medicine|medication|treatment|jab|injection|dose|side effect|pain|vomit|sick|diabet|pregnan|cancer|kidney|thyroid|heart|surgery|eating disorder|bulimi|anorexi|underweight|fasting|starv|unexplained|unintentional|why|child|teen|son|daughter)\w*\b|without trying|not eating|(?:i am|i'm)\s+(?:1[0-7]|[5-9])\b/.test(q);
+  if(starter&&!specific){
+    const url='https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/';
+    return {
+      answer:'I get wanting it off quickly. The NHS recommends gradual weight loss of around 0.5–1 kg (1–2 lb) a week, rather than trying to lose weight suddenly with a diet. [1]\n\nStart with one manageable change today: swap a sugary drink for water, keep regular meals, or fit in a short spell of activity that is suitable for you. You do not have to change everything at once. [1]',
+      keyPoints:['Choose one change you can repeat. [1]','Avoid skipping meals to force faster weight loss. [1]'],
+      nextSteps:['Pick your first food, drink or movement change for today. [1]','Read the NHS guide below; ask your GP surgery about local weight-management support if you need more help. [1]'],
+      followUps:[],
+      sources:[{id:1,title:'NHS: Tips to help you lose weight',url,authority:90,reviewState:'source_checked',citation:url,reviewedAt:'2023-03-17',checkedAt:'2026-09-21'}],
+      limitations:'General information for adults, not an individual assessment or treatment recommendation. NHS page last reviewed 17 March 2023; source checked 21 September 2026.'
+    };
+  }
   if(!/\b(eggy|sulphur|sulfur)\b/.test(q)||!/\b(burp|burps|breath)\b/.test(q))return null;
   const source=REVIEWED_SITE_EVIDENCE[0];
   return{
