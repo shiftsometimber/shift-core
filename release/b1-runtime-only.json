@@ -1,6 +1,6 @@
 {
   "mode": "runtime-with-approved-grub",
-  "applicationCommit": "aa16143b94cff8e1b0db779a2d1dea551482e5a2",
+  "applicationCommit": "d3913a23861e07ffc5525444818916e054135544",
   "baseCommit": "058b204d900bc9e95f8093e506958dffc240aeec",
   "reason": "Repair Grub adjustments and week variety, signpost recipes inside My Timber, and publish only the exact previously owner-authorised Grub rows. Preserve all existing catalogue rows, Fit, customer records, Pages, medicine prices, stock and service holds. Legacy bulk migrations and publication remain disabled.",
   "runtimeSchemaAdditions": [

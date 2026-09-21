@@ -8,7 +8,7 @@ export const RELEASE_PATHS=new Set(['release/b1-runtime-only.json','scripts/b1-r
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-with-approved-grub');
  assert.deepEqual(manifest.grubPublication,{rowsSha256:'c4f65a111e984da0f4bc35195a6fdda44c9ececd05b72deb8f4e66b6cde417de',additions:1873,revisions:12,protectedRecipes:798,publishFit:false});
- assert.equal(manifest.applicationCommit,'aa16143b94cff8e1b0db779a2d1dea551482e5a2');
+ assert.equal(manifest.applicationCommit,'d3913a23861e07ffc5525444818916e054135544');
  assert.equal(manifest.baseCommit,'058b204d900bc9e95f8093e506958dffc240aeec');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
