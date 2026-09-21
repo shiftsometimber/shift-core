@@ -77,7 +77,7 @@ export async function dynamicBabyLovePublicRoute(request,env){
   try{
    // Public, allowlisted images only. Never forward cookies/authorization or follow
    // a redirect to an arbitrary host; do not cache publication state or HTML.
-   const upstream=await fetch(source.href,{redirect:'error',headers:{Accept:'image/avif,image/webp,image/*,*/*;q=0.8'},cf:{cacheTtlByStatus:{'200-299':86400,'400-599':-1}}});
+   const upstream=await fetch(source.href,{redirect:'manual',headers:{Accept:'image/avif,image/webp,image/*,*/*;q=0.8'}});
    if(!upstream.ok)return new Response('Image unavailable',{status:502,headers:{'Cache-Control':'no-store'}});
    const type=upstream.headers.get('Content-Type')||'';if(!type.startsWith('image/'))return new Response('Invalid image response',{status:502,headers:{'Cache-Control':'no-store'}});
    return new Response(request.method==='HEAD'?null:upstream.body,{headers:{'Content-Type':type,'Cache-Control':'public, max-age=86400','X-Content-Type-Options':'nosniff'}});

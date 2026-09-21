@@ -36,6 +36,7 @@ jobs:
       - name: Verify preview metadata, headers and preserved public content
         run: node scripts/verify-article-quality.mjs https://shift-article-quality-preview.matobrien.workers.dev
       - name: Measure live HTTP phases independently of the audit proxy
+        if: always()
         run: node scripts/measure-public-latency.mjs
       - uses: actions/upload-artifact@v4
         if: always()

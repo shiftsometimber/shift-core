@@ -44,9 +44,9 @@ test('all three article renderers use one public header policy for GET and HEAD'
  const wrapped=withArticleResponsePolicy(Response.redirect('https://shiftsometimber.co.uk/',301));
  assert.equal(wrapped.status,301);assert.equal(wrapped.headers.get('location'),'https://shiftsometimber.co.uk/');
 });
-test('image cache cannot outlive the publication guard; only public trusted upstream requests cache',async()=>{
+test('image proxy keeps the fresh publication guard and never forwards credentials or follows redirects',async()=>{
  const old=globalThis.fetch;let calls=0;
- globalThis.fetch=async(url,options)=>{calls++;assert.equal(url,image);assert.equal(options.redirect,'error');assert.equal(options.headers.Cookie,undefined);assert.equal(options.headers.Authorization,undefined);assert.equal(options.cf.cacheTtlByStatus['400-599'],-1);return new Response('image',{headers:{'Content-Type':'image/jpeg'}})};
+ globalThis.fetch=async(url,options)=>{calls++;assert.equal(url,image);assert.equal(options.redirect,'manual');assert.equal(options.headers.Cookie,undefined);assert.equal(options.headers.Authorization,undefined);assert.equal(options.cf,undefined);return new Response('image',{headers:{'Content-Type':'image/jpeg'}})};
  try{
   const request=new Request('https://shiftsometimber.co.uk/articles/future-article/image?src='+encodeURIComponent(image));
   assert.equal((await dynamicBabyLovePublicRoute(request,db(row))).status,200);
