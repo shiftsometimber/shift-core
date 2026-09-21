@@ -6,8 +6,8 @@ const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,'and').replace(/[^a-z0
 function safeUrl(raw){try{const u=new URL(String(raw),'https://shiftsometimber.co.uk');return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch{return'#'}}
 function inline(raw){
  let s=esc(raw);
- s=s.replace(/![([^]]*)]((https?:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(safeUrl(url))+'" alt="'+alt+'" referrerpolicy="no-referrer">');
- s=s.replace(/[([^]]+)]((https?:\/\/[^\s)]+|\/[^\s)]*))/g,(_,label,url)=>'<a href="'+esc(safeUrl(url))+'"'+(String(url).startsWith('http')?' rel="noopener noreferrer"':'')+'>'+label+'</a>');
+ s=s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(safeUrl(url))+'" alt="'+alt+'" referrerpolicy="no-referrer">');
+ s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g,(_,label,url)=>'<a href="'+esc(safeUrl(url))+'"'+(String(url).startsWith('http')?' rel="noopener noreferrer"':'')+'>'+label+'</a>');
  s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
  s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
  s=s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g,'<em>$1</em>');
