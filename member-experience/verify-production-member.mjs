@@ -4,6 +4,7 @@ import {memberClient} from './client.mjs';
 import {checkinFollowupRuntime} from './checkin-followup-client.mjs';
 import {memberChromeStyles,memberChromeClient,lifeBackChrome} from './chrome.mjs';
 import {withPublicTicker} from '../public-navigation-policy.mjs';
+import {withPwa} from '../my-timber-pwa/presentation.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {writeFileSync,readFileSync} from 'node:fs';
@@ -45,8 +46,10 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
   // The live Worker applies this exact response wrapper after member rendering.
   // Member tickers stay excluded; the approved contrast style still applies.
   // Generate the complete expected response rather than strip or ignore a diff.
-  const rendered=await withPublicTicker(new Request(origin+path),new Response(expected,{headers:{'Content-Type':asset.type}}));
-  expected=Buffer.from(await rendered.arrayBuffer());
+  const request=new Request(origin+path);
+  const rendered=await withPublicTicker(request,new Response(expected,{headers:{'Content-Type':asset.type}}));
+  const wrapped=await withPwa(request,rendered);
+  expected=Buffer.from(await wrapped.arrayBuffer());
  }
  assert.deepEqual(actual,expected,path+' must match exact rendered source');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),expectedSha256:createHash('sha256').update(expected).digest('hex'),matchesSource:true});
