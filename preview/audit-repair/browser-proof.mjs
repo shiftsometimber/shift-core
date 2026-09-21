@@ -1,10 +1,19 @@
 import {chromium,webkit} from 'playwright';
+import {execFileSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {savedFitIssues} from '../../member-experience/fit-saved-review.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 const origin=process.env.PREVIEW_URL;
 assert(process.env.GITHUB_ACTIONS==='true'&&/^https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev$/.test(origin||''),'Isolated preview only');
 const fixture=JSON.parse(readFileSync('work/staging/generated/probe.json')),dir='work/staging/generated/five-points-evidence/audit';mkdirSync(dir,{recursive:true});
+const configPath='work/staging/generated/config.json',config=JSON.parse(readFileSync(configPath));
+assert.equal(config.name,'shift-stabilisation-preview');assert(!config.routes);assert.equal(config.d1_databases.find(d=>d.binding==='DB')?.database_name,'shift-stabilisation-preview-auth-20260917');
+assert(Number.isSafeInteger(fixture.ids[0])&&fixture.ids[0]>1e10);
+const exposureCount=()=>{
+ const sql=`SELECT COUNT(*) AS count FROM product_events WHERE user_id=${fixture.ids[0]} AND event_name='continuity_today_exposed' AND source='member_client'`;
+ const result=JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config',configPath,'--command',sql,'--json'],{encoding:'utf8',timeout:30000}));
+ return Number(result[0].results[0].count);
+};
 const report={source:process.env.GITHUB_SHA,at:new Date().toISOString(),cases:[],productionWrites:0};
 const matrix=[['chromium-desktop',chromium,{width:1440,height:1000}],['chromium-phone',chromium,{width:390,height:844}],['webkit-desktop',webkit,{width:1440,height:1000}],['webkit-phone',webkit,{width:390,height:844}]];
 for(const [name,engine,viewport]of matrix){
@@ -21,9 +30,9 @@ for(const [name,engine,viewport]of matrix){
   await login();
   const progress=(await json('/v1/progress/summary')).progress;
   assert.deepEqual(progress.metrics.map(x=>x.key),['weight']);assert.equal(progress.metrics[0].delta,null);assert.equal(progress.units,'stone_lb');row.summary=progress;
-  mark('today-exposure');
+  mark('today-exposure');const exposuresBefore=exposureCount();
   const exposure=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/events'&&r.request().method()==='POST'&&r.request().postDataJSON()?.event_name==='continuity_today_exposed',{timeout:30000});
-  await page.goto(origin+'/member/dashboard#today');const exposureResponse=await exposure;assert(exposureResponse.ok(),'Today exposure save');assert((await exposureResponse.json()).event.id>0);row.checks.push('Visible authenticated Today exposure is saved before any completed loop');await page.waitForFunction(()=>document.body.dataset.memberSession==='ready');
+  await page.goto(origin+'/member/dashboard#today');const exposureResponse=await exposure;assert.equal(exposureResponse.status(),201,'Today exposure acknowledged');const exposuresAfter=exposureCount();assert(exposuresAfter>exposuresBefore,'Visible Today event persisted in isolated database');row.todayEvents={before:exposuresBefore,after:exposuresAfter};row.checks.push('Visible authenticated Today exposure is saved before any completed loop');await page.waitForFunction(()=>document.body.dataset.memberSession==='ready');
   mark('progress');const link=page.locator('.sst-member-tabs a[href$="/dashboard#visualise"]').first();await link.click();await page.locator('#panel-visualise.active').waitFor();
   const story=page.locator('#shiftProgressStory');await story.getByText('16 st 3.1 lb',{exact:true}).waitFor();assert.equal(await story.locator('.shift-progress-metric').count(),1);assert(!(await story.innerText()).includes('Holding steady'));
   row.colours=await story.locator('.shift-progress-metric').evaluate(el=>({background:getComputedStyle(el).backgroundColor,text:getComputedStyle(el.querySelector('strong')).color}));assert.equal(row.colours.background,'rgb(231, 227, 218)');assert.equal(row.colours.text,'rgb(5, 5, 5)');
