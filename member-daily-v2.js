@@ -3,7 +3,7 @@ import core from './worker.js';
 const OWNED=new Set(['/v1/shift/today','/v1/progress/summary','/v1/plan/list']);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const safe=v=>{try{return typeof v==='string'?JSON.parse(v):v||{}}catch{return{}}};
-const num=v=>Number.isFinite(Number(v))?Number(v):null;
+const num=v=>(typeof v==='number'||typeof v==='string'&&v.trim()!=='')&&Number.isFinite(Number(v))?Number(v):null;
 const localDate=()=>new Date().toISOString().slice(0,10);
 
 export async function memberDailyV2Routes(request,env,ctx){
@@ -54,15 +54,23 @@ function progressNarrative(first,last){const a=num(first?.weight_kg),b=num(last?
 function oneUsefulAction(latest,active){const steps=num(latest?.steps)||0;if(steps<3500)return{domain:'today',priority:60,eyebrow:'ONE THING',title:'Get ten minutes outside if you can',detail:'Nothing heroic. A short walk is useful and easy to repeat.',cta:{label:'Done later',target:'today'}};if(!active.grub)return{domain:'today',priority:60,eyebrow:'ONE THING',title:'Sort tonight’s food before tonight sorts you',detail:'Build a Grub plan while you still have choices.',cta:{label:'Plan food',target:'grub'}};return{domain:'today',priority:60,eyebrow:'ONE THING',title:'Keep today boringly achievable',detail:'Consistency beats a perfect day you cannot repeat.',cta:{label:'Ask Shift',target:'ai'}};}
 function daypart(){const h=new Date().getHours();return h<12?'Morning':h<18?'Afternoon':'Evening';}
 
-async function progressSummary(env,uid){
+export async function progressSummary(env,uid){
   const {results=[]}=await env.DB.prepare(`SELECT * FROM progress_entries WHERE user_id=? ORDER BY recorded_on ASC,id ASC LIMIT 1000`).bind(uid).all();
   if(!results.length)return{state:'empty',headline:'Your progress story starts with the first check-in.',metrics:[],milestones:[]};
   const first=results[0],latest=results[results.length-1];
-  const metrics=[
-    metric('weight','Weight',first.weight_kg,latest.weight_kg,'kg',true),metric('waist','Waist',first.waist_cm,latest.waist_cm,'cm',true),metric('systolic','Systolic BP',first.systolic,latest.systolic,'mmHg',null),metric('diastolic','Diastolic BP',first.diastolic,latest.diastolic,'mmHg',null),metric('steps','Steps',first.steps,latest.steps,'steps',false),metric('sleep','Sleep',first.sleep_hours,latest.sleep_hours,'hours',false),metric('mood','Mood',first.mood_score,latest.mood_score,'/10',false)
-  ].filter(Boolean);
-  const weight=num(latest.weight_kg);const imperial=weight?kgToStone(weight):null;
-  return{state:'ready',headline:'Since you started',started_on:first.recorded_on,latest_on:latest.recorded_on,entries:results.length,latest_weight:weight?{kg:weight,stone:imperial.stone,lb:imperial.lb}:null,metrics,milestones:milestones(metrics),message:'Progress is bigger than weight. Shift keeps the useful signals together without turning every day into a test.'};
+  const state=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(uid).first();
+  const selected=safe(state?.preferences)?.myJourney?.setup?.units;
+  const units=['stone_lb','kg','lb'].includes(selected)?selected:'stone_lb';
+  const definitions=[['weight','Weight','weight_kg','kg',true],['waist','Waist','waist_cm','cm',true],['systolic','Systolic BP','systolic','mmHg',null],['diastolic','Diastolic BP','diastolic','mmHg',null],['steps','Steps','steps','steps',false],['sleep','Sleep','sleep_hours','hours',false],['mood','Mood','mood_score','/10',false]];
+  const metrics=definitions.map(([key,label,field,unit,lower])=>{
+    const readings=results.filter(row=>num(row[field])!==null);
+    if(!readings.length)return null;
+    const firstReading=readings[0],lastReading=readings.at(-1);
+    const result=metric(key,label,readings.length>1?firstReading[field]:null,lastReading[field],unit,lower);
+    return {...result,observations:readings.length,started_on:firstReading.recorded_on,latest_on:lastReading.recorded_on};
+  }).filter(Boolean);
+  const weight=metrics.find(m=>m.key==='weight')?.latest??null;const imperial=weight?kgToStone(weight):null;
+  return{state:'ready',units,headline:'Since you started',started_on:first.recorded_on,latest_on:latest.recorded_on,entries:results.length,latest_weight:weight?{kg:weight,stone:imperial.stone,lb:imperial.lb}:null,metrics,milestones:milestones(metrics),message:'Progress is bigger than weight. Shift keeps the useful signals together without turning every day into a test.'};
 }
 function metric(key,label,start,end,unit,lowerIsBetter){const a=num(start),b=num(end);if(a===null&&b===null)return null;const delta=a!==null&&b!==null?+(b-a).toFixed(1):null;let direction='not_enough_data';if(delta!==null){if(Math.abs(delta)<0.05)direction='same';else if(lowerIsBetter===true)direction=delta<0?'improving':'up';else if(lowerIsBetter===false)direction=delta>0?'improving':'down';else direction=delta<0?'down':'up';}return{key,label,start:a,latest:b,delta,unit,direction};}
 function milestones(metrics){return metrics.filter(m=>m.direction==='improving').slice(0,4).map(m=>({key:m.key,label:`${m.label} moving the right way`,detail:m.delta===null?'':`${m.delta>0?'+':''}${m.delta} ${m.unit} since first log`}));}

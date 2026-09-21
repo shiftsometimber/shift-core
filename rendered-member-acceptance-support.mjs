@@ -46,7 +46,7 @@ export async function requireMemberPanel(page,panel,{evidenceDir}={}){
   try{
   const host=page.locator(`#panel-${panel}`);
   if(!await host.count())throw new Error(`Missing member capability: #panel-${panel} is absent from the current dashboard`);
-  const candidates=page.locator(`[data-portal-panel="${panel}"],.mp-tab[data-panel="${panel}"]`);
+  const candidates=page.locator(`[data-portal-panel="${panel}"],.mp-tab[data-panel="${panel}"],a[href="/member/dashboard#${panel}"],a[href="#${panel}"]`);
   let control;
   for(let i=0;i<await candidates.count();i++)if(await candidates.nth(i).isVisible()){control=candidates.nth(i);break;}
   // Current utilities live in More. Open the real disclosure as a member would;
@@ -69,7 +69,7 @@ export async function requireMemberPanel(page,panel,{evidenceDir}={}){
     const state=await page.evaluate(name=>{
       const visible=element=>!!element&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden';
       const more=document.querySelector('.member-nav-more');
-      return{path:location.pathname,hash:location.hash,more:more?{open:more.open,visible:visible(more),summaryVisible:visible(more.querySelector('summary'))}:null,candidates:[...document.querySelectorAll(`[data-portal-panel="${name}"],.mp-tab[data-panel="${name}"]`)].slice(0,10).map(element=>({tag:element.tagName,visible:visible(element),inMore:!!element.closest('.member-nav-more'),disclosureOpen:element.closest('details')?.open??null})),activePanels:[...document.querySelectorAll('.mp-panel.active')].map(element=>element.id),scriptPaths:[...document.scripts].filter(script=>script.src).map(script=>new URL(script.src,location.href).pathname).slice(0,50)};
+      return{path:location.pathname,hash:location.hash,more:more?{open:more.open,visible:visible(more),summaryVisible:visible(more.querySelector('summary'))}:null,candidates:[...document.querySelectorAll(`[data-portal-panel="${name}"],.mp-tab[data-panel="${name}"],a[href="/member/dashboard#${name}"],a[href="#${name}"]`)].slice(0,10).map(element=>({tag:element.tagName,visible:visible(element),inMore:!!element.closest('.member-nav-more'),disclosureOpen:element.closest('details')?.open??null})),activePanels:[...document.querySelectorAll('.mp-panel.active')].map(element=>element.id),scriptPaths:[...document.scripts].filter(script=>script.src).map(script=>new URL(script.src,location.href).pathname).slice(0,50)};
     },panel).catch(()=>({path:new URL(page.url()).pathname,hash:new URL(page.url()).hash,documentUnavailable:true}));
     if(evidenceDir)await page.screenshot({path:join(evidenceDir,`navigation-failure-${panel}-${Date.now()}.png`),fullPage:true}).catch(()=>{});
     throw new Error(`Member navigation state: ${JSON.stringify(state)}; cause: ${error?.message||error}`);

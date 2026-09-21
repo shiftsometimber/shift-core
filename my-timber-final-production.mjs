@@ -59,6 +59,9 @@ try{
   await page.waitForFunction(()=>document.querySelector('#panel-today')?.classList.contains('active'),null,{timeout:10000});
   await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
   await page.waitForSelector('.mt-now-action',{state:'visible',timeout:10000});
+  const more=page.locator('#more-for-today');
+  await more.locator(':scope > summary').click();
+  await page.locator('.mt-meal').waitFor({state:'visible'});
   const initial=await body(page),initialGeometry=await geometry(page);await screenshot(page,'01-billy-today');
   for(const marker of ['MY TIMBER','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
   if(!(await page.locator('.mtm-hero').isVisible()))fail('approved My Timber home','Current illustrated home header is missing');else pass('Approved My Timber home is preserved');
