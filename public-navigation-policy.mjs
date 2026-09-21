@@ -37,6 +37,12 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 @media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr);gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}}`;
 export const contrastSafetyVersion='public-contrast-20260917-r2';
+// The shared bridge can be inserted after load. Set the actual paint colour,
+// not just `color`, because reading-page styles also set text-fill explicitly.
+export const serviceBridgePaintStyle='<style data-shift-service-bridge-paint>html body main#main-content .sst-service-bridge .sst-service-bridge__main{background:#E7E3DA!important;color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content .sst-service-bridge .sst-service-bridge__main :is(h1,h2,h3,h4,p,span,strong,small,li){color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content .sst-service-bridge a.sst-service-bridge__cta,html body main#main-content .sst-service-bridge a.sst-service-bridge__cta *{background:#050505!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}</style>';
+export function repairServiceBridgePaint(html){
+  return html.includes('data-shift-service-bridge-paint')?html:html.replace(/<\/head>/i,serviceBridgePaintStyle+'</head>');
+}
 export const contrastSafetyStyles=String.raw`
 /* Brand-only repair for computed-colour collisions found by the 532-URL live audit. */
 .sst-reading-article-v31 :is(.road-card,.uni-panel,.uni-fighter,.uni-card,.social-community-card-v2223,.eu-card,.dec-panel,.ready-panel,.ready-card,.resource-card-v3b2,.faqcard,.founding-panel-v3b1,.fifa-card,.future-card,.compare-panel),
@@ -150,7 +156,7 @@ export async function withPublicTicker(request, response) {
   if (!response.ok || !['GET','HEAD'].includes(request.method) || !/text\/html/i.test(response.headers.get('Content-Type') || '')) return response;
   const source = await response.text();
   if (!/<\/head>/i.test(source) || !/<\/body>/i.test(source)) return new Response(request.method === 'HEAD' ? null : source, response);
-  const contrastSource=source.includes('data-shift-public-contrast')?source:source.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`);
+  const contrastSource=repairServiceBridgePaint(source.includes('data-shift-public-contrast')?source:source.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`));
   const guardedSource=contrastSource.includes('data-shift-contrast-guard')?contrastSource:contrastSource.replace(/<\/body>/i,`<script data-shift-contrast-guard="${contrastSafetyVersion}">${contrastSafetyClient}</script></body>`);
   const enabled = tickerAllowed(new URL(request.url).pathname);
   let html = guardedSource

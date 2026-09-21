@@ -1,3 +1,4 @@
+import {receiveAccountDeletion} from './privacy-account-request-v1.js';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
 import {publicHealthResponse} from './public-health-v1.js';
 
@@ -466,10 +467,11 @@ async function privacyExport(request, env) {
 }
 
 async function privacyDeleteRequest(request, env) {
+  const origin=request.headers.get('Origin');
+  if(origin&&origin!==new URL(request.url).origin&&!['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com'].includes(origin))return json({ok:false,error:'origin_not_allowed'},403);
   const auth = await requireUser(request, env);
   if (auth.response) return auth.response;
-  await env.DB.prepare(`INSERT INTO data_requests(user_id,request_type,status,received_at) VALUES(?,?,?,?)`).bind(auth.user.id,'deletion','received',isoNow()).run();
-  await env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL').bind(isoNow(), auth.user.id).run();
+  await receiveAccountDeletion(env.DB,auth.user.id);
   await audit(env, auth.user.id, 'privacy.deletion_requested', 'user', String(auth.user.id), request);
   const response=json({ ok:true, status:'received' }, 202, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;
 }

@@ -12,6 +12,7 @@ const security=read('security-privacy-v1.js');
 const analytics=read('product-analytics-v1.js');
 const identity=read('commissioning-identity-v1.js');
 const recovery=read('auth-recovery-v1.js');
+const deletion=read('privacy-account-request-v1.js');
 
 const requireText=(src,text,label)=>src.includes(text)?ok(label):fail(`${label}: missing ${text}`);
 const forbid=(src,re,label)=>re.test(src)?fail(label):ok(label);
@@ -19,7 +20,10 @@ const forbid=(src,re,label)=>re.test(src)?fail(label):ok(label);
 for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Control', 'no-store')","headers.set('X-Content-Type-Options', 'nosniff')"]) requireText(worker,marker,`core response envelope ${marker}`);
 for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Control','no-store')","headers.set('X-Content-Type-Options','nosniff')"]) requireText(entryCompact,marker.replace(/\s+/g,''),`member response envelope ${marker}`);
 
-for(const marker of ["if (method === 'POST' && path === '/v1/privacy/export')","if (method === 'DELETE' && path === '/v1/privacy/account')","const auth = await requireUser(request, env)","UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL"]) requireText(worker,marker,`privacy boundary ${marker}`);
+for(const marker of ["if (method === 'POST' && path === '/v1/privacy/export')","if (method === 'DELETE' && path === '/v1/privacy/account')","const auth = await requireUser(request, env)","await receiveAccountDeletion(env.DB,auth.user.id)"]) requireText(worker,marker,`privacy boundary ${marker}`);
+
+requireText(worker,"import {receiveAccountDeletion} from './privacy-account-request-v1.js'",'deletion handler import');
+for(const marker of ['await DB.batch([','INSERT INTO data_requests','INSERT INTO hq_tasks','UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL'])requireText(deletion,marker,'atomic deletion receipt '+marker);
 
 for(const marker of ["httpOnly:true","secure:true","sameSite:'Lax'","exportRequired:true","deleteRequired:true","hqWritesRequired:true","clientExposureForbidden:true","assertMemberBoundary","rejectMaliciousText"]) requireText(security,marker,`security policy ${marker}`);
 

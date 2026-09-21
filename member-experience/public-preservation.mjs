@@ -1,3 +1,4 @@
+import {preserveServiceBridgePaint} from '../public-service-bridge-preservation.mjs';
 import {preserveOralKnowledge} from '../babylove/oral-public.mjs';
 import {preserveLoginSession} from './session-preservation.mjs';
 import {preserveBabyLoveKnowledge} from '../babylove/public-article.mjs';
@@ -20,7 +21,7 @@ for(const path of paths){
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
  let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,preserveOralKnowledge(path,body),{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
- preserved=preserveLoginSession(path,preserved);
+ preserved=preserveServiceBridgePaint(preserveLoginSession(path,preserved),{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';

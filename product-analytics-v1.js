@@ -17,7 +17,6 @@ const ALLOWED_EVENTS=new Set([
   'hydration_logged','progress_logged','progress_picture_saved','progress_picture_deleted','shift_ai_message',
   'plan_viewed','error_presented','feature_completed','treatment_checkin','member_returned',
   'daily_shift_rebuilt','daily_recovery_completed','daily_meal_accepted','daily_meal_swapped','daily_meal_rejected','daily_recommendation_feedback',
-  'pen_day_done','pen_day_rough','pen_day_status_saved','pen_day_door_click'
 ]);
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 
@@ -38,14 +37,16 @@ export async function recordProductEvent(env,{userId=null,eventName,surface='unk
   return{id:Number(r?.meta?.last_row_id||0),event_name:name,surface,occurred_at};
 }
 
-export async function analyticsSnapshot(DB,{hours=24}={}){
+export async function analyticsSnapshot(DB,{hours=24,now=new Date()}={}){
   await ensureAnalyticsSchema(DB);hours=Math.max(1,Math.min(24*90,Number(hours)||24));
-  const since=`-${hours} hours`;
+  // Writers store canonical UTC ISO timestamps. Use the same representation
+  // for both bounds so the cutoff day does not become an extra partial day.
+  const until=new Date(now).toISOString(),since=new Date(Date.parse(until)-hours*3600000).toISOString();
   const [events,active,features,errors]=await Promise.all([
-    DB.prepare(`SELECT event_name,COUNT(*) count FROM product_events WHERE occurred_at>=datetime('now',?) GROUP BY event_name ORDER BY count DESC`).bind(since).all(),
-    DB.prepare(`SELECT COUNT(DISTINCT user_id) count FROM product_events WHERE user_id IS NOT NULL AND occurred_at>=datetime('now',?)`).bind(since).first(),
-    DB.prepare(`SELECT surface,COUNT(*) count FROM product_events WHERE occurred_at>=datetime('now',?) GROUP BY surface ORDER BY count DESC LIMIT 20`).bind(since).all(),
-    DB.prepare(`SELECT COUNT(*) count FROM product_events WHERE event_name='error_presented' AND occurred_at>=datetime('now',?)`).bind(since).first()
+    DB.prepare(`SELECT event_name,COUNT(*) count FROM product_events WHERE occurred_at>=? AND occurred_at<=? GROUP BY event_name ORDER BY count DESC`).bind(since,until).all(),
+    DB.prepare(`SELECT COUNT(DISTINCT user_id) count FROM product_events WHERE user_id IS NOT NULL AND occurred_at>=? AND occurred_at<=?`).bind(since,until).first(),
+    DB.prepare(`SELECT surface,COUNT(*) count FROM product_events WHERE occurred_at>=? AND occurred_at<=? GROUP BY surface ORDER BY count DESC LIMIT 20`).bind(since,until).all(),
+    DB.prepare(`SELECT COUNT(*) count FROM product_events WHERE event_name='error_presented' AND occurred_at>=? AND occurred_at<=?`).bind(since,until).first()
   ]);
   return{windowHours:hours,activeMembers:Number(active?.count||0),errors:Number(errors?.count||0),events:events?.results||[],surfaces:features?.results||[]};
 }

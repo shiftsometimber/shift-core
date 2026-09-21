@@ -1,6 +1,7 @@
 // Explicit current-source dependencies for the restored retained-record tools.
 // These are read from this checkout, never from production or an old preview.
 export const currentToolAssets = [
+  'assets/ask-timber-intent-v2.js',
   'member-my-timber-problem-v1.js',
   'member-my-journey-v2.js',
   'member-product-v33d.js',
