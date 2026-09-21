@@ -76,7 +76,8 @@ export async function babyLoveRoutes(request,env){
       env.DB.prepare('INSERT INTO babylove_receipts(source_id,slug,payload_hash,payload_json) VALUES(?,?,?,?)').bind(article.id,article.slug,hash,raw),
       env.DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at) VALUES(?,?,'Knowledge','SHIFT Team',?,?,?,?,?)`).bind(article.title,article.slug,article.publish?'published':'draft',article.summary,article.body,article.title,article.publish?new Date().toISOString():null)
     ]);
-    await notifyArrival(env,article);\n    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined});
+    await notifyArrival(env,article);
+    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined});
   }catch{
     try{
       const receipt=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
