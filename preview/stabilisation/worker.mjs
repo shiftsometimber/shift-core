@@ -13,7 +13,7 @@ export default {async fetch(request,env,ctx){
  const tickerAsset=publicTickerAsset(request);if(tickerAsset)return tickerAsset;
  if(path==='/robots.txt')return new Response('User-agent: *\nDisallow: /\n',{headers:privateHeaders});
  if(path==='/__review'&&request.method==='GET')return html(review);
- if(path==='/__preview/meta'&&request.method==='GET')return Response.json({previewOnly:true,source:env.PREVIEW_SOURCE_SHA,expires:env.STAGING_EXPIRES_AT,productionBindings:false},{headers:privateHeaders});
+ if(path==='/__preview/meta'&&request.method==='GET')return Response.json({previewOnly:true,source:env.PREVIEW_SOURCE_SHA,expires:env.STAGING_EXPIRES_AT,productionBindings:false,b1InboxProofPublicKey:env.B1_INBOX_PROOF_PUBLIC_KEY||null},{headers:privateHeaders});
  if(path==='/__preview/start'&&request.method==='POST'){
   if(request.headers.get('Origin')!==u.origin)return new Response('Same-origin only',{status:403});
   const id=crypto.randomUUID().replaceAll('-',''),body={email:'review-'+id+'@example.invalid',password:crypto.randomUUID()+'!',firstName:'Fictional reviewer'};
