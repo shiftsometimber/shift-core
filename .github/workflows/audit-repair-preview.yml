@@ -51,6 +51,9 @@ jobs:
         run: node preview/five-points/browser-proof.mjs
       - name: Verify audited Progress and retained Fit in phone and desktop browsers
         run: node preview/audit-repair/browser-proof.mjs
+      - name: Read Pages provenance with existing preview access
+        if: always()
+        run: node preview/audit-repair/source-proof.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

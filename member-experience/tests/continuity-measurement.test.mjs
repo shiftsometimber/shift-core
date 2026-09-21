@@ -34,3 +34,8 @@ test('report adapter excludes staff/tests, login/page views and untrusted source
  const r=await continuityScorecard(DB,{now:'2026-09-29',days:90});assert.equal(r.todayStarters,1);assert.equal(r.week1.numerator,0);assert.equal(r.week1.denominator,1);assert(!JSON.stringify(r).includes('real.example'));
  db.exec("INSERT INTO check_ins VALUES(1,1,NULL,'2026-09-03')");assert.equal((await continuityScorecard(DB,{now:'2026-09-29',days:90})).week1.numerator,1);
 });
+
+test('skipping a question is unanswered and supersedes an earlier positive response',()=>{
+ const r=summariseContinuity({asOf:'2026-09-20',episodes:[{userId:1,id:'a',at:'2026-09-01',reviews:[{at:'2026-09-02',outcome:'helped'},{at:'2026-09-03',outcome:'skip'}]}]});
+ assert.equal(r.helped.denominator,0);assert.equal(r.feedbackCoverage.numerator,0);assert.equal(r.feedbackCoverage.unanswered,1);
+});

@@ -16,7 +16,8 @@ for(const [name,engine,viewport]of matrix){
   await login();
   const progress=(await json('/v1/progress/summary')).progress;
   assert.deepEqual(progress.metrics.map(x=>x.key),['weight']);assert.equal(progress.metrics[0].delta,null);assert.equal(progress.units,'stone_lb');row.summary=progress;
-  await page.goto(origin+'/member/dashboard#today');await page.waitForFunction(()=>document.body.dataset.memberSession==='ready');
+  const exposure=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/events'&&r.request().method()==='POST'&&r.request().postDataJSON()?.event_name==='continuity_today_exposed');
+  await page.goto(origin+'/member/dashboard#today');const exposureResponse=await exposure;assert(exposureResponse.ok(),'Today exposure save');assert((await exposureResponse.json()).event.id>0);row.checks.push('Visible authenticated Today exposure is saved before any completed loop');await page.waitForFunction(()=>document.body.dataset.memberSession==='ready');
   const link=page.locator('.sst-member-tabs a[href$="/dashboard#visualise"]').first();await link.click();await page.locator('#panel-visualise.active').waitFor();
   const story=page.locator('#shiftProgressStory');await story.getByText('16 st 3.1 lb',{exact:true}).waitFor();assert.equal(await story.locator('.shift-progress-metric').count(),1);assert(!(await story.innerText()).includes('Holding steady'));
   row.colours=await story.locator('.shift-progress-metric').evaluate(el=>({background:getComputedStyle(el).backgroundColor,text:getComputedStyle(el.querySelector('strong')).color}));assert.equal(row.colours.background,'rgb(231, 227, 218)');assert.equal(row.colours.text,'rgb(5, 5, 5)');
@@ -28,7 +29,7 @@ for(const [name,engine,viewport]of matrix){
   await page.reload();await page.waitForFunction(()=>document.getElementById('prefWeight')?.value==='kg'&&!document.getElementById('prefWeight').disabled);
   assert.deepEqual((await json('/v1/settings/units')).units,{weight:'kg',height:'cm'});
   const expectedPreferences=structuredClone(preferencesBefore);expectedPreferences.myJourney.setup.units='kg';expectedPreferences.displayUnits={height:'cm'};assert.deepEqual((await json('/v1/member-state')).state.preferences,expectedPreferences);
-  await page.goto(origin+'/member/dashboard#visualise');await page.locator('#shiftProgressStory').getByText('103 kg',{exact:true}).waitFor();
+  await page.goto(origin+'/member/dashboard#visualise');await page.locator('#shiftProgressStory').getByText('103.0kg',{exact:true}).waitFor();
   await context.request.post(origin+'/v1/auth/logout',{headers:{Origin:origin},data:{}});await login();assert.equal((await json('/v1/settings/units')).units.weight,'kg');
   await page.goto(origin+'/member/settings');await page.waitForFunction(()=>document.getElementById('prefWeight')&&!document.getElementById('prefWeight').disabled);await page.locator('#prefWeight').selectOption('stone_lb');await page.locator('#prefHeight').selectOption('ft_in');await page.getByRole('button',{name:'Save units',exact:true}).click();await page.locator('[data-unit-status]').getByText('Units saved.',{exact:true}).waitFor();
   await page.screenshot({path:dir+'/'+name+'-settings.png',fullPage:true});row.checks.push('Settings saves canonical units, preserves other records, survives reload/new login, updates Progress');
@@ -40,9 +41,9 @@ for(const [name,engine,viewport]of matrix){
   row.checks.push('Inconsistent saved Fit blocked after reload and fresh login; stored plan and activity unchanged');
   }else await page.goto(origin+'/member/fit');
   const oldList=(await json('/v1/plan/list')).plans,currentId=oldList.current.find(p=>p.type==='fit').id;
-  await page.locator('#fitGenerate').waitFor();await page.locator('#fitDays').selectOption('1');await page.locator('#fitMinutes').selectOption('20');
+  await page.locator('#fitGenerate').waitFor();await page.locator('#fitDays').selectOption('1');await page.locator('#fitMinutes').selectOption('20');await page.locator('#fitLocation').selectOption('home');
   const generated=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/fit/plan'&&r.request().method()==='POST');await page.locator('#fitGenerate').click();const result=await generated;assert.equal(result.status(),200,await result.text());await page.locator('.sf-current-step').first().waitFor();
-  const rebuilt=await json('/v1/fit/activity');assert.deepEqual(savedFitIssues(rebuilt.plan),[]);assert.equal(rebuilt.plan.sessions[0].requested_minutes,20);assert.deepEqual(rebuilt.fitJourney,retained.fitJourney);
+  const rebuilt=await json('/v1/fit/activity');assert.deepEqual(savedFitIssues(rebuilt.plan),[]);assert.equal(rebuilt.plan.sessions[0].requested_minutes,20);assert.equal(rebuilt.plan.sessions[0].location||rebuilt.plan.location,'home');assert.deepEqual(rebuilt.fitJourney,retained.fitJourney);
   assert((await json('/v1/plan/list')).plans.replaced.some(p=>p.id===currentId));
   const exported=await context.request.post(origin+'/v1/privacy/export',{headers:{Origin:origin},data:{}});assert(exported.ok());const records=await exported.json();assert(records.savedPlans.some(p=>p.id===currentId&&JSON.stringify(JSON.parse(p.plan_json))===JSON.stringify(retained.plan)),'Original plan remains unchanged in export');
   await page.reload();await page.locator('.sf-current-step').first().waitFor();assert.deepEqual(await json('/v1/fit/activity'),rebuilt);
