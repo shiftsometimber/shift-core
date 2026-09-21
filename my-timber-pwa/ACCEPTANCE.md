@@ -10,7 +10,9 @@ Pages remains the recorded authoritative deployment
 Separate branch `feat/my-timber-pwa-20260921`. Grub PR782 merged while this work
 was in progress. Reconciled with main `d61ff3f21e264377ec97f5a2bd4bed04daf64aff`,
 retaining both its nutrition response wrapper and the new PWA wrapper. Refresh
-main again before any production release.
+main again before any production release. Also reconciled the subsequent food
+entry/recovery PR783 at main `1af0b7bb9e2d354198bcee918cbbd2da2b11b7fc`; all
+258 regression tests passed against that combined tree.
 
 The isolated device preview uses a deliberately small test shell, not a copy of
 the complete dashboard. The actual production integration is compiled/tested but

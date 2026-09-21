@@ -36,7 +36,7 @@ jobs:
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           const origin=process.env.PREVIEW_URL;
-          const m=await(await fetch(origin+'/__preview/meta')).json();assert.equal(m.source,process.env.GITHUB_SHA);assert.equal(m.productionBindings,false);assert.equal(m.scheduledReminders,false);
+          let m,last='';for(let n=0;n<12;n++){const r=await fetch(origin+'/__preview/meta',{headers:{'cache-control':'no-cache'}});m=await r.json().catch(()=>null);if(r.ok&&m?.source===process.env.GITHUB_SHA)break;last='status '+r.status+' source '+m?.source;await new Promise(resolve=>setTimeout(resolve,3000));}assert.equal(m?.source,process.env.GITHUB_SHA,last);assert.equal(m.productionBindings,false);assert.equal(m.scheduledReminders,false);
           const manifest=await(await fetch(origin+'/my-timber.webmanifest')).json();assert.equal(manifest.start_url,'/member/dashboard#today');
           for(const path of ['/assets/favicon.svg','/assets/apple-touch-icon.png','/shift-push-sw-v1.js']){const r=await fetch(origin+path);assert.equal(r.status,200,path);assert((await r.arrayBuffer()).byteLength>100,path);}
           console.log('PASS: exact preview source, Today launch, approved icon resources, service worker. Physical-device delivery remains unproved.');

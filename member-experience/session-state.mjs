@@ -23,10 +23,11 @@ export const sessionRuntime=String.raw`(()=>{
   finally{clearTimeout(timer);running=false;}
  }
  window.SST_MEMBER_SESSION={check,ready:()=>state('ready')};
- document.addEventListener('DOMContentLoaded',()=>{if(!document.getElementById('previewAuth'))check()},{once:true});
+ document.addEventListener('DOMContentLoaded',()=>{if(!document.getElementById('previewAuth'))check();if(location.hash==='#forgot-password')document.querySelector('[data-forgot-password]')?.click()},{once:true});
 })();`;
 
 export function withSessionState(html){
+ if(html.includes('id="previewRegister"')&&!html.includes('data-forgot-password')&&!html.includes('data-dashboard-password-recovery'))html=html.replace(/(<label>Password<input\b[^>]*name="password"[^>]*><\/label>)/,'$1<a data-dashboard-password-recovery href="/member-login?returnTo=%2Fmember%2Fdashboard#forgot-password" style="display:block;padding:12px 16px;margin:8px 0;border:1px solid #707762;border-radius:8px;background:#e7e3da!important;color:#050505!important;-webkit-text-fill-color:#050505!important;text-decoration:underline">Forgotten your password?</a>');
  if(html.includes('id="memberSessionStatus"'))return html;
  const dashboard=html.includes('id="previewAuth"');
  if(dashboard){

@@ -47,7 +47,7 @@ export function filterRecipe(r,filter){
 }
 export function searchGrubRecipes(input,records){
  const mode=input?.mode==='fridge'?'fridge':'discover',filter=normalise(input?.filter||'');
- const items=(Array.isArray(input?.items)?input.items:[]).flatMap(x=>String(x).split(/[,;\n]+/)).map(x=>x.trim()).filter(Boolean).slice(0,40);
+ const items=(Array.isArray(input?.items)?input.items:[]).map(x=>String(x).trim()).filter(Boolean).slice(0,40);
  const query=String(input?.query||'').trim().slice(0,300);
  const queryParts=query.split(/[,;\n]+/).map(x=>words(x).filter(w=>!ignored.has(w))).filter(x=>x.length);
  const usable=records.map(r=>memberRecipe(r,mode==='fridge'?items:[])).filter(Boolean);
