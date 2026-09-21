@@ -1,11 +1,11 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "1cda701a7eb2b5a9aa70c28b32bd5070c258e428",
+  "applicationCommit": "2f555aa3998ce70195ba1377d3a50a95b88f5208",
   "baseCommit": "1af0b7bb9e2d354198bcee918cbbd2da2b11b7fc",
-  "reason": "Owner approved compact full-account PWA setup and footer on 21 September, followed by Go. Exact reviewed PWA candidate only; preserve existing Pages, catalogue, prices, stock, services and member records. Physical-device acceptance remains a separate gate.",
+  "reason": "Matt approved the automatic article quality and newsroom latency preview in PR #785. Application tree 2cb28d7979609971159b6f73c879bda23d14d91d is identical to tested preview b27e5cf4bf235a78b8d2dbcfc3d86845d738fc3d. Runtime only: preserve article prose, publication dates, sitemap, published catalogue, prices, stock, customer records, Pages, consent and service holds. No database writes or content publication.",
   "runtimeSchemaAdditions": [
-    "my_timber_push_devices",
-    "my_timber_push_deliveries"
+    "checkout_attempts",
+    "commerce_receipt_delivery"
   ],
   "enforceApplicationPin": true
 }

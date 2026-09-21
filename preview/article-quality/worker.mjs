@@ -1,0 +1,30 @@
+import {articles,news} from '../../babylove/generated/quality-fixtures.mjs';
+import {babyLovePublicRoute} from '../../babylove/public-article.mjs';
+import {oralPublicRoute} from '../../babylove/oral-public.mjs';
+import {dynamicBabyLovePublicRoute} from '../../babylove/dynamic-public.mjs';
+import {radarNewsPageRoutes} from '../../radar-news-pages-v1.js';
+import {withPublicShellContract} from '../../public-shell-contract.mjs';
+const origin='https://shiftsometimber.co.uk';
+const paths=new Set(articles.map(row=>'/articles/'+row.slug));
+const DB={prepare(){return{bind(slug){this.slug=slug;return this},async first(){return articles.find(row=>row.slug===this.slug)||null},async all(){return {results:news}}}}};
+export default {async fetch(request){
+ const url=new URL(request.url),path=url.pathname;
+ const headers={'X-Robots-Tag':'noindex, nofollow','Cache-Control':'no-store'};
+ if(!['GET','HEAD'].includes(request.method))return new Response('Read-only preview',{status:405,headers});
+ const article=paths.has(path.replace(/\/$/,''));
+ const image=/^\/articles\/mounjaro-cost-uk\/image$/.test(path);
+ const asset=/^\/assets\/[a-zA-Z0-9/_.,-]+\.(?:js|css|jpg|jpeg|png|webp|svg|woff2?|ico)$/.test(path)||/^\/[a-zA-Z0-9_-]+\.(?:js|css)$/.test(path);
+ const newsPage=path==='/medicine-news/bolt-pharmacy-ads-banned-asa';
+ if(!article&&!image&&!asset&&!newsPage)return new Response('Outside preview',{status:404,headers});
+ // Never forward preview cookies or credentials to production.
+ const canonicalRequest=new Request(origin+path+url.search,{method:request.method});
+ let response;
+ if(article||image)response=await oralPublicRoute(canonicalRequest,{DB})||await babyLovePublicRoute(canonicalRequest,{DB})||await dynamicBabyLovePublicRoute(canonicalRequest,{DB});
+ else if(newsPage)response=await radarNewsPageRoutes(canonicalRequest,{DB});
+ else response=await fetch(canonicalRequest,{redirect:'manual'});
+ if(!response)return new Response('Missing fixture',{status:404,headers});
+ if(article||newsPage)response=await withPublicShellContract(canonicalRequest,response);
+ const out=new Headers(response.headers);for(const [key,value] of Object.entries(headers))out.set(key,value);
+ out.delete('Set-Cookie');out.set('X-Shift-Preview','article-quality-20260921');
+ return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers:out});
+}};

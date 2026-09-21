@@ -1,6 +1,7 @@
 import {ARTICLE,MAIN,KNOWLEDGE_CARD} from './editorial/oral-bundle.mjs';
 import {STYLES} from './editorial/public-bundle.mjs';
 import {articleHTML} from './public-article.mjs';
+import {withArticleResponsePolicy} from './response-policy.mjs';
 export {ARTICLE,KNOWLEDGE_CARD};
 export async function oralPublication(env){
  const row=await env.DB.prepare('SELECT a.title,a.author,a.body,a.status,a.publish_at,r.decision FROM knowledge_articles a LEFT JOIN knowledge_article_reviews r ON r.article_id=a.id WHERE a.slug=?').bind(ARTICLE.slug).first();
@@ -14,7 +15,7 @@ export async function oralPublicRoute(request,env){
  const row=await oralPublication(env);
  if(!row)return new Response('Article not published',{status:404,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex'}});
  if(u.pathname!==ARTICLE.path||u.hostname!=='shiftsometimber.co.uk')return Response.redirect(ARTICLE.proposed_url,301);
- return new Response(request.method==='HEAD'?null:oralHTML(row.publish_at),{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Shift-Article-Revision':'oral-semaglutide-20260920'}});
+ return withArticleResponsePolicy(new Response(request.method==='HEAD'?null:oralHTML(row.publish_at),{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Shift-Article-Revision':'oral-semaglutide-20260920'}}));
 }
 export async function withOralDiscovery(response,request,env){
  const u=new URL(request.url),path=u.pathname.replace(/\.html$/,'').replace(/\/$/,'');
