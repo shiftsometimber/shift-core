@@ -34,3 +34,8 @@ Provider behaviour: [Stripe idempotent requests](https://docs.stripe.com/api/ide
 ## Protected release and rollback
 
 No production deployment during this task before approval. Keep exact stock wording, prices, intended services, home-test-only model and current feature flags. Keep the current Pages artifact. Release only the reviewed Worker candidate after hosted gates and preservation checks. Roll back code to the captured previous Worker if needed; preserve accepted payments, saved records, receipt claims and auth-token/session changes. New additive recovery tables are retained on rollback for reconciliation; the old application cannot be assumed to understand them.
+
+
+LR-N06 session recovery: expired/invalid reads reject access without clearing a cookie that a newer login may have issued. Explicit logout/account deletion still clear cookies; server expiry/revocation remain authoritative. The final browser matrix must replay actual stale responses after new login. No password, email-delivery or reset-token algorithm is changed.
+
+Include checkout_attempts.form_body and commerce_receipt_delivery in the existing account-data/retention inventory before transactional commissioning. Stored provider parameters can contain email/purchase metadata and must not appear in public diagnostics. Privacy/merchant owners must define appropriate retention and request handling alongside existing order/provider records.

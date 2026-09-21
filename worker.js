@@ -1426,7 +1426,8 @@ async function requireUser(request, env) {
   if (!token) return { response: json({ ok:false, error:'authentication_required' }, 401) };
   const hash = await sha256Hex(token);
   const row = await env.DB.prepare(`SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?`).bind(hash).first();
-  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return { response: json({ok:false,error:'session_expired'},401,{ 'Set-Cookie':clearSessionCookie(request) }) };
+  // Do not let a delayed old-session read erase a newer login cookie.
+  if (!row || row.revoked_at || new Date(row.expires_at).getTime() <= Date.now()) return { response: json({ok:false,error:'session_expired'},401) };
   await env.DB.prepare('UPDATE user_sessions SET last_used_at=? WHERE id=?').bind(isoNow(),row.session_id).run();
   return { user: row };
 }
