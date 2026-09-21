@@ -8,7 +8,7 @@ import '../../member-experience/staging/prepare.mjs';
 import '../../member-experience/staging/grub-catalogue.mjs';
 const dir=resolve('work/staging/generated');mkdirSync(dir+'/assets/staging',{recursive:true});
 const pins=JSON.parse(readFileSync('work/staging/pinned-assets.json'));
-for(const p of pins){const data=process.env.SHIFT_WORK_PAGES_ROOT?readFileSync(resolve(process.env.SHIFT_WORK_PAGES_ROOT,p.path)):Buffer.from(await (await fetch('https://95e283ac.projectshift.pages.dev/'+p.path)).arrayBuffer());if(createHash('sha256').update(data).digest('hex')!==p.sha256)throw Error('Pinned asset mismatch: '+p.path);const dest=dir+'/assets/'+p.path;mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,data)}
+for(const p of pins){const data=process.env.SHIFT_WORK_PAGES_ROOT?readFileSync(resolve(process.env.SHIFT_WORK_PAGES_ROOT,p.path)):Buffer.from(await (await fetch('https://0da69833.projectshift.pages.dev/'+p.path)).arrayBuffer());if(createHash('sha256').update(data).digest('hex')!==p.sha256)throw Error('Pinned asset mismatch: '+p.path);const dest=dir+'/assets/'+p.path;mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,data)}
 cpSync('frontend/member/fit-v3-images',dir+'/assets/fit-v3-images',{recursive:true});
 cpSync('frontend/member/assets/member-experience/food',dir+'/assets/assets/member-experience/food',{recursive:true});
 copyFileSync('frontend/member/sst-logo-official.png',dir+'/assets/sst-logo-official.png');

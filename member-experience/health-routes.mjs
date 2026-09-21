@@ -1,3 +1,4 @@
+import {unitSettingsRoute} from './unit-settings.mjs';
 import {saveCheckinWithAction,latestCheckinAction,reviewCheckinAction} from './checkin-followup.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {saveHealthInterest,HEALTH_INTERESTS,normaliseHealthInterest} from './health-interest-store.mjs';
@@ -39,6 +40,7 @@ export async function persistFitReplacement(request,env,response,input){
 }
 export async function memberHealthRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
+ const units=await unitSettingsRoute(request,env);if(units)return units;
  const path=new URL(request.url).pathname.replace(/\/+$/,''),method=request.method;
  const owned=['/v1/check-ins','/v1/check-ins/follow-up','/v1/fit/activity','/v1/health-passport/interest'].includes(path);
  const protectedWrite=(method==='POST'&&['/v1/progress','/v1/health-mot','/v1/journey/weekly-check-in'].includes(path))||(method==='PATCH'&&['/v1/journey','/v1/my-journey'].includes(path));

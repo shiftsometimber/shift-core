@@ -1,3 +1,4 @@
+import {savedFitReviewRuntime} from './fit-saved-review.mjs';
 import {fitSessionCues} from './fit-session-cues.mjs';
 import {fitRuntime as baseFitRuntime} from './fit-runtime.mjs';
 import {fitTodayHandoffSource} from './fit-today-handoff.mjs';
@@ -154,6 +155,15 @@ for (const [hook, replacement] of handoffHooks) {
   if (!fitRuntime.includes(hook)) throw new Error('Fit Today handoff could not find its reviewed runtime hook.');
   fitRuntime = fitRuntime.replace(hook, replacement);
 }
+
+const savedReviewHook='    if (!sessions.length) {';
+if(!fitRuntime.includes(savedReviewHook))throw Error('Saved Fit review hook missing');
+fitRuntime=fitRuntime.replace('  function render(result) {',savedFitReviewRuntime+'\n  function render(result) {');
+fitRuntime=fitRuntime.replace(savedReviewHook,`    if (savedFitIssues(plan).length) {
+      output.innerHTML='<section class="sf-session" role="status"><h3>This saved session needs replacing</h3><p>Its movement choices or instructions do not match the saved session settings. We have kept your record and completed activity, but will not ask you to follow inconsistent instructions.</p><p>Review your time, place, equipment and limitations above, then choose Build today’s session to replace it.</p></section>';
+      return;
+    }
+`+savedReviewHook);
 
 const cueHooks=[
  ['  function init() {',fitSessionCues+'\n  function init() {'],

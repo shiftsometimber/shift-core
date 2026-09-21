@@ -3,6 +3,7 @@ import core from './worker.js';
 // These existing member events record usage only. Keep their health details
 // and free text in the member record, never in analytics properties.
 const MY_TIMBER_USAGE_PROPERTIES=new Map([
+  ['continuity_today_exposed',[]],
   ['my_timber_today_viewed',['date','mealSaved','moveSaved']],
   ['my_timber_meal_saved',['date']],
   ['my_timber_move_saved',['date']],
