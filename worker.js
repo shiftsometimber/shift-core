@@ -1,3 +1,4 @@
+import {shopRecoveryStatus,retryPendingShopReceipts} from './commerce-stripe-v1.js';
 import {receiveAccountDeletion} from './privacy-account-request-v1.js';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
 import {publicHealthResponse} from './public-health-v1.js';
@@ -1309,6 +1310,16 @@ async function adminRoutes(request, env, path, method) {
       await env.DB.prepare('UPDATE commerce_product_details SET featured_colour=?,colours_json=?,updated_at=? WHERE product_id=?').bind(featured,JSON.stringify(colours),isoNow(),id).run();
     }
     await hqAudit(env,hqActor,'commerce.product_updated','product',String(id),{name,status,pricePence});return json({ok:true,id});
+  }
+
+  if(method==='GET'&&path==='/v1/hq/orders/recovery')return json(await shopRecoveryStatus(env));
+  const receiptRetry=path.match(/^\/v1\/hq\/orders\/(\d+)\/retry-pending-receipts$/);
+  if(method==='POST'&&receiptRetry){
+    const orderId=Number(receiptRetry[1]);
+    const found=await retryPendingShopReceipts(env,orderId);
+    if(!found)return json({ok:false,error:'paid_order_not_found'},404);
+    await hqAudit(env,hqActor,'commerce.pending_receipts_retried','order',String(orderId),{uncertainReceiptsResent:false});
+    return json({ok:true,recovery:await shopRecoveryStatus(env)});
   }
 
   if (method === 'GET' && path === '/v1/hq/orders') {

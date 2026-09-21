@@ -297,7 +297,20 @@ function bootProduct(){
  function aiMessage(role,text){const row=document.createElement('div');row.className='mp-ai-message '+role;row.innerHTML=`<strong>${role==='user'?'You':'Shift'}</strong><p>${esc(text)}</p>`;aiThread.appendChild(row);row.scrollIntoView({block:'nearest',behavior:'smooth'})}
  if(aiForm)aiForm.onsubmit=async e=>{e.preventDefault();const message=aiInput.value.trim();if(!message)return;aiMessage('user',message);aiInput.value='';aiSend.disabled=true;status('#shiftAiStatus','Shift is thinking…');try{const r=await SST_API.askShiftAI({message});aiMessage('assistant',r.answer||r.message||'I could not form a useful answer just then.');status('#shiftAiStatus',r.sources?.length?`Answered using ${r.sources.length} reviewed Shift source${r.sources.length===1?'':'s'}.`:'Answered from your current Shift context.')}catch(err){if(err.status===401){location.replace('/member-login?next='+encodeURIComponent('/member/dashboard#ai'));return}aiMessage('assistant',err.message||'I could not answer just then. Please try again.');status('#shiftAiStatus','Shift AI is unavailable just now.',true)}finally{aiSend.disabled=false;aiInput.focus()}};
  $('#shiftAiClear')?.addEventListener('click',()=>{aiThread.innerHTML='<div class="mp-ai-message assistant"><strong>Shift</strong><p>What would be useful right now?</p></div>';status('#shiftAiStatus','Cleared from this screen. Your saved Shift context is unchanged.')});
- $('#photoInput').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const img=$('#photoPreview');img.src=URL.createObjectURL(f);img.style.display='block';$('#visualConsentWrap').style.display='block'};
+ const photoInput=$('#photoInput');let photoUrl=null,photoTimer=null;
+ function previewPhoto(){
+  const f=photoInput.files?.[0],img=$('#photoPreview'),consent=$('#visualConsentWrap');
+  clearTimeout(photoTimer);if(photoUrl){URL.revokeObjectURL(photoUrl);photoUrl=null}
+  img.onload=null;img.onerror=null;img.style.display='none';consent.style.display='none';$('#savePhotoConsent').checked=false;
+  if(!f){status('#visualStatus','Choose a clear current photo to begin.');return}
+  if(!['image/jpeg','image/png','image/webp'].includes(f.type)){photoInput.value='';status('#visualStatus','Choose a JPEG, PNG or WebP photo.',true);return}
+  const selected=URL.createObjectURL(f);photoUrl=selected;
+  const failed=()=>{if(photoUrl!==selected)return;clearTimeout(photoTimer);img.style.display='none';consent.style.display='none';URL.revokeObjectURL(selected);photoUrl=null;photoInput.value='';status('#visualStatus','We could not open that photo. Choose it again, or try a JPEG, PNG or WebP image.',true)};
+  img.onload=()=>{if(photoUrl!==selected)return;clearTimeout(photoTimer);img.style.display='block';consent.style.display='block';status('#visualStatus','Photo ready. Choose whether to save it privately.')};
+  img.onerror=failed;photoTimer=setTimeout(failed,15000);status('#visualStatus','Opening your photo…');img.src=selected;
+ }
+ photoInput.onchange=previewPhoto;photoInput.disabled=false;photoInput.dataset.photoReady='true';
+ if(photoInput.files?.length)previewPhoto();else status('#visualStatus','Choose a clear current photo to begin.');
  $$('.visual-gen').forEach(b=>b.onclick=()=>generateVisual(b.dataset.visual));
  $('#saveOriginal').onclick=saveOriginal;
  $('#photoWeightUnit').onchange=syncWeightInputs; syncWeightInputs(); $('#photoWaistUnit').onchange=retainedToolsOnly?syncWaistInputs:e=>localStorage.setItem('shiftWaistUnit',e.target.value);

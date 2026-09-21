@@ -6,7 +6,7 @@ export const dashboardToolsMarkup = String.raw`      <section class="mp-panel" i
         <p>Save a real progress photo privately, then choose whether to create clearly labelled AI illustrations. Nothing here is a prediction or clinical assessment.</p>
         <div class="mp-photo">
           <label for="photoInput">Choose a progress photo</label>
-          <input accept="image/jpeg,image/png,image/webp" capture="user" id="photoInput" type="file">
+          <input accept="image/jpeg,image/png,image/webp" capture="user" id="photoInput" type="file" disabled aria-describedby="visualStatus">
           <img alt="Your selected original progress photo" id="photoPreview">
           <div id="visualConsentWrap" style="display:none">
             <div class="mp-two">
@@ -20,7 +20,7 @@ export const dashboardToolsMarkup = String.raw`      <section class="mp-panel" i
             <button class="mp-btn secondary" id="saveOriginal" type="button">Save original as Progress Photo</button>
             <label class="consent"><input id="visualConsent" type="checkbox"> I understand generated versions are illustrative AI images, not clinical evidence or predictions.</label>
           </div>
-          <div class="mp-status" id="visualStatus">Choose a clear current photo to begin.</div>
+          <div class="mp-status" id="visualStatus" role="status" aria-live="polite">Loading your photo controls…</div>
         </div>
         <h3>Weight illustrations</h3>
         <div class="mp-visual-options">
@@ -77,7 +77,7 @@ export const dashboardToolsRuntime=String.raw`(()=>{
   'use strict';
   if(document.body.dataset.memberTools!=='v1')return;
   const member=document.getElementById('previewMember');
-  const scripts=['/member-product-v33d.js?v=member-tools-20260916','/member-progress-picture-premium-v1.js?v=2','/member-progress-v1.js?v=1','/member-plans-premium-v1.js?v=1'];
+  const scripts=['/member-product-v33d.js?v=member-tools-20260921','/member-progress-picture-premium-v1.js?v=2','/member-progress-v1.js?v=1','/member-plans-premium-v1.js?v=1'];
   let started=false;
   function isReady(){return member?.classList.contains('is-ready')&&!member.hidden;}
   function activate(name,closeMenu=true){

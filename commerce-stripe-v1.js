@@ -1,4 +1,5 @@
-import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus} from './order-reference-v1.js';
+import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
+import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 
 const ALLOWED_ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const APPAREL_SIZES=['XS','S','M','L','XL','XXL','3XL','4XL','5XL'];
@@ -216,45 +217,36 @@ async function createCheckout(request,env){
     if(!allowedSizes.includes(size)||!allowedColours.includes(colour))return json({ok:false,error:'invalid_variant',sku},400,corsHeaders(request));
     items.push({...product,size,colour,quantity,inventoryKey:sku===SHIRT_SKU?size:`${size}|${colour}`});
   }
-  const reserved=[];
-  for(const item of items){
-    if(!await reserveStock(env,item.id,item.inventoryKey,item.quantity)){
-      await Promise.all(reserved.map(held=>releaseStock(env,held.id,held.inventoryKey,held.quantity)));
-      return json({ok:false,error:'out_of_stock',sku:item.sku,message:`${item.name} in ${item.colour}, ${item.size} is currently out of stock.`},409,corsHeaders(request));
-    }
-    reserved.push(item);
-  }
-  let number;
-  try{number=await reserveOrderReference(env.DB,{channel:'apparel',userId:member.id})}catch(error){
-    await Promise.all(reserved.map(item=>releaseStock(env,item.id,item.inventoryKey,item.quantity)));
-    console.error('order_reference_reservation_failed',{channel:'apparel',message:error?.message});
-    return json({ok:false,error:'order_reference_unavailable'},503,corsHeaders(request));
-  }
-  const createdAt=now(),subtotal=items.reduce((sum,item)=>sum+Number(item.price_pence)*item.quantity,0),total=subtotal+DELIVERY_PRICE,totalQuantity=items.reduce((sum,item)=>sum+item.quantity,0),first=items[0];
+  // Aggregate repeated cart lines before checking/reserving their stock.
+  const combined=new Map();
+  for(const item of items){const k=item.id+':'+item.inventoryKey;const existing=combined.get(k);if(existing)existing.quantity+=item.quantity;else combined.set(k,{...item})}
+  const cart=[...combined.values()].sort((a,b)=>(a.sku+a.inventoryKey).localeCompare(b.sku+b.inventoryKey));
+  if(cart.some(i=>i.quantity>9))return json({ok:false,error:'invalid_quantity'},400,corsHeaders(request));
+  const acquired=await acquireCheckoutAttempt(env.DB,{userId:member.id,channel:'apparel',selection:cart.map(i=>({sku:i.sku,size:i.size,colour:i.colour,quantity:i.quantity}))});
+  if(acquired.conflict)return json(checkoutProblem({error:'checkout_selection_conflict'}),409,corsHeaders(request));
+  let attempt=acquired.attempt;
+  const number=attempt.order_number,createdAt=now(),subtotal=cart.reduce((sum,item)=>sum+Number(item.price_pence)*item.quantity,0),total=subtotal+DELIVERY_PRICE,totalQuantity=cart.reduce((sum,item)=>sum+item.quantity,0),first=cart[0];
   const memberName=clean([member.first_name,member.last_name].filter(Boolean).join(' '),200);
-  const inserted=await env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,'GBP','new','pending',?,?,?)`)
-    .bind(number,member.id,member.email,memberName,first.id,totalQuantity,subtotal,total,JSON.stringify({channel:'stripe_checkout',itemCount:items.length}),createdAt,createdAt).run();
-  const orderId=inserted.meta.last_row_id;
-  await attachOrderReference(env.DB,number,{sourceTable:'orders',sourceId:orderId,status:'pending'});
-  await env.DB.prepare(`INSERT INTO commerce_order_details(order_id,size,delivery_pence,created_at,updated_at) VALUES(?,?,?,?,?)`)
-    .bind(orderId,items.length===1?first.size:'Multiple',DELIVERY_PRICE,createdAt,createdAt).run();
-  await env.DB.batch(items.map(item=>env.DB.prepare(`INSERT INTO commerce_order_items(order_id,product_id,sku,product_name,colour,size,quantity,unit_price_pence,created_at) VALUES(?,?,?,?,?,?,?,?,?)`).bind(orderId,item.id,item.sku,item.name,item.colour,item.size,item.quantity,item.price_pence,createdAt)));
-
-  const response=await fetch('https://api.stripe.com/v1/checkout/sessions',{
-    method:'POST',
-    headers:{Authorization:`Bearer ${env.STRIPE_SECRET_KEY}`,'Content-Type':'application/x-www-form-urlencoded','Idempotency-Key':number},
-    body:stripeForm({order_number:number},items,member,env)
-  });
-  const session=await response.json().catch(()=>null);
-  if(!response.ok||!session?.id||!session?.url){
-    await Promise.all(items.map(item=>releaseStock(env,item.id,item.inventoryKey,item.quantity)));
-    await env.DB.prepare(`UPDATE orders SET status='cancelled',payment_status='failed',updated_at=? WHERE id=?`).bind(now(),orderId).run();
-    await updateOrderReferenceStatus(env.DB,number,'failed');
-    console.error('stripe_checkout_create_failed',{orderNumber:number,status:response.status,type:session?.error?.type||'unknown'});
-    const diagnostic=stripeMode==='test'?{stripeCode:clean(session?.error?.code||session?.error?.type,100),stripeParam:clean(session?.error?.param,160),stripeMessage:clean(session?.error?.message,300)}:undefined;
-    return json({ok:false,error:'checkout_unavailable',...(diagnostic?{diagnostic}:{})},502,corsHeaders(request));
+  if(attempt.state==='preparing'){
+    await ensureOrderReferenceRegistry(env.DB);
+    const availableSql=cart.map(()=>`EXISTS(SELECT 1 FROM commerce_inventory WHERE product_id=? AND size=? AND active=1 AND (stock_on_hand IS NULL OR stock_on_hand-reserved>=?))`).join(' AND ');
+    attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:cart.flatMap(i=>[i.id,i.inventoryKey,i.quantity]),form:stripeForm({order_number:number},cart,member,env),statements:guard=>[
+      env.DB.prepare(`INSERT INTO orders(order_number,user_id,customer_email,customer_name,product_id,quantity,subtotal_pence,total_pence,currency,status,payment_status,notes,created_at,updated_at) SELECT ?,?,?,?,?,?,?,?,'GBP','new','pending',?,?,? WHERE ${guard}`).bind(number,member.id,member.email,memberName,first.id,totalQuantity,subtotal,total,JSON.stringify({channel:'stripe_checkout',itemCount:cart.length}),createdAt,createdAt),
+      env.DB.prepare(`INSERT INTO order_reference_registry(order_number,channel,user_id,source_table,source_id,status,created_at,updated_at) SELECT ?,'apparel',?,'orders',(SELECT id FROM orders WHERE order_number=?),'pending',?,? WHERE ${guard}`).bind(number,member.id,number,createdAt,createdAt),
+      env.DB.prepare(`INSERT INTO commerce_order_details(order_id,size,delivery_pence,created_at,updated_at) SELECT (SELECT id FROM orders WHERE order_number=?),?,?,?,? WHERE ${guard}`).bind(number,cart.length===1?first.size:'Multiple',DELIVERY_PRICE,createdAt,createdAt),
+      ...cart.flatMap(item=>[
+        env.DB.prepare(`INSERT INTO commerce_order_items(order_id,product_id,sku,product_name,colour,size,quantity,unit_price_pence,created_at) SELECT (SELECT id FROM orders WHERE order_number=?),?,?,?,?,?,?,?,? WHERE ${guard}`).bind(number,item.id,item.sku,item.name,item.colour,item.size,item.quantity,item.price_pence,createdAt),
+        env.DB.prepare(`UPDATE commerce_inventory SET reserved=reserved+?,updated_at=? WHERE product_id=? AND size=? AND ${guard}`).bind(item.quantity,createdAt,item.id,item.inventoryKey)
+      ])
+    ]});
+    if(attempt.state==='preparing'){
+      await env.DB.prepare("UPDATE checkout_attempts SET active=0,state='unavailable',updated_at=? WHERE id=? AND state='preparing'").bind(now(),attempt.id).run();
+      return json({ok:false,error:'out_of_stock',message:'This selection is currently out of stock.'},409,corsHeaders(request));
+    }
   }
-  await env.DB.prepare(`UPDATE commerce_order_details SET stripe_checkout_session_id=?,updated_at=? WHERE order_id=?`).bind(session.id,now(),orderId).run();
+  const session=await requestCheckoutSession(env,attempt);
+  if(!session.ok)return json(checkoutProblem(session),session.status,corsHeaders(request));
+  await env.DB.prepare('UPDATE commerce_order_details SET stripe_checkout_session_id=?,updated_at=? WHERE order_id=(SELECT id FROM orders WHERE order_number=?)').bind(session.id,now(),number).run();
   return json({ok:true,checkoutUrl:session.url,orderNumber:number},201,corsHeaders(request));
 }
 
@@ -278,60 +270,91 @@ export async function validStripeSignature(payload,header,secret,clockSeconds=Ma
   return signatures.some(signature=>safeEqual(signature,expected));
 }
 
-async function completeOrder(env,session,eventType,ctx){
-  const number=clean(session?.metadata?.order_number||session?.client_reference_id,80);
-  if(!number)return;
-  const order=await env.DB.prepare(`SELECT o.*,p.name product_name,d.size FROM orders o JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.order_number=?`).bind(number).first();
-  if(!order)return;
-  if(order.payment_status==='paid')return;
-  const details=session.customer_details||{},shipping=session.shipping_details||session.collected_information?.shipping_details||{};
-  const email=clean(details.email,320),name=clean(details.name||shipping.name,200),updatedAt=now();
-  await env.DB.batch([
-    env.DB.prepare(`UPDATE orders SET customer_email=?,customer_name=?,status='paid',payment_status='paid',updated_at=? WHERE id=?`).bind(email,name,updatedAt,order.id),
-    env.DB.prepare(`UPDATE commerce_order_details SET stripe_payment_intent_id=?,shipping_name=?,shipping_address_json=?,stripe_payment_status='paid',last_stripe_event_type=?,updated_at=? WHERE order_id=?`).bind(clean(session.payment_intent,200),clean(shipping.name||name,200),JSON.stringify(shipping.address||details.address||{}),eventType,updatedAt,order.id)
-  ]);
-  await updateOrderReferenceStatus(env.DB,number,'paid');
-  const {results:items}=await env.DB.prepare(`SELECT product_id,sku,product_name,colour,size,quantity,unit_price_pence FROM commerce_order_items WHERE order_id=? ORDER BY id`).bind(order.id).all();
-  if(items?.length){
-    await Promise.all(items.map(item=>commitStock(env,item.product_id,item.sku===SHIRT_SKU?item.size:`${item.size}|${item.colour}`,Number(item.quantity||1))));
-    order.product_name=items.length===1?items[0].product_name:`${items.length} Timber Mill items`;
-    order.size=items.map(item=>`${item.product_name} · ${item.colour} · ${item.size} × ${item.quantity}`).join('; ');
-  }else await commitStock(env,order.product_id,order.size,Number(order.quantity||1));
-  if(ctx?.waitUntil)ctx.waitUntil(sendOrderEmails(env,{...order,customer_email:email,customer_name:name}).catch(error=>console.error('order_email_failed',{orderNumber:number,message:error?.message})));
+// A receipt is separate from settlement. Unknown provider acceptance must never
+// trigger an automatic resend. Operators reconcile sending/uncertain records.
+async function ensureReceiptSchema(env){
+  await env.DB.exec(`CREATE TABLE IF NOT EXISTS commerce_receipt_delivery (
+    order_id INTEGER NOT NULL, recipient_role TEXT NOT NULL,
+    state TEXT NOT NULL DEFAULT 'pending', provider_id TEXT, last_error TEXT,
+    updated_at TEXT NOT NULL, PRIMARY KEY(order_id,recipient_role)
+  )`);
 }
-
-async function failOrder(env,event,eventType){
-  const object=event.data?.object||{},number=clean(object?.metadata?.order_number||object?.client_reference_id,80);
-  if(!number)return;
-  const order=await env.DB.prepare(`SELECT o.id,o.product_id,o.quantity,o.payment_status,d.size FROM orders o LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.order_number=?`).bind(number).first();
-  if(order&&order.payment_status!=='paid'){
-    const {results:items}=await env.DB.prepare(`SELECT product_id,sku,colour,size,quantity FROM commerce_order_items WHERE order_id=?`).bind(order.id).all();
-    if(items?.length)await Promise.all(items.map(item=>releaseStock(env,item.product_id,item.sku===SHIRT_SKU?item.size:`${item.size}|${item.colour}`,Number(item.quantity||1))));
-    else await releaseStock(env,order.product_id,order.size,Number(order.quantity||1));
+async function deliverReceipt(env,order,role,message){
+  if(!env.EMAIL){
+    await env.DB.prepare("UPDATE commerce_receipt_delivery SET last_error='email_binding_unavailable',updated_at=? WHERE order_id=? AND recipient_role=? AND state='pending'").bind(now(),order.id,role).run();
+    return;
   }
-  const status=eventType==='checkout.session.expired'?'cancelled':'new';
-  await env.DB.prepare(`UPDATE orders SET status=?,payment_status='failed',updated_at=? WHERE order_number=? AND payment_status<>'paid'`).bind(status,now(),number).run();
-  await updateOrderReferenceStatus(env.DB,number,status);
+  const claim=await env.DB.prepare("UPDATE commerce_receipt_delivery SET state='sending',last_error=NULL,updated_at=? WHERE order_id=? AND recipient_role=? AND state='pending'").bind(now(),order.id,role).run();
+  if(Number(claim.meta?.changes)!==1)return;
+  try{
+    const accepted=await env.EMAIL.send(message);
+    await env.DB.prepare("UPDATE commerce_receipt_delivery SET state='accepted',provider_id=?,updated_at=? WHERE order_id=? AND recipient_role=? AND state='sending'").bind(clean(accepted?.id||accepted?.messageId,200)||null,now(),order.id,role).run();
+  }catch(error){
+    await env.DB.prepare("UPDATE commerce_receipt_delivery SET state='uncertain',last_error='provider_acceptance_requires_reconciliation',updated_at=? WHERE order_id=? AND recipient_role=? AND state='sending'").bind(now(),order.id,role).run().catch(()=>{});
+    console.error('order_receipt_requires_reconciliation',{orderNumber:order.order_number,role});
+  }
 }
-
+async function settleShopEvent(env,event){
+  const session=event.data?.object||{},number=clean(session.metadata?.order_number||session.client_reference_id,80);
+  const paid=['checkout.session.completed','checkout.session.async_payment_succeeded'].includes(event.type)&&session.payment_status==='paid';
+  const failed=['checkout.session.async_payment_failed','checkout.session.expired','payment_intent.payment_failed'].includes(event.type);
+  if(!paid&&!failed){
+    await env.DB.prepare('UPDATE stripe_events SET processed_at=?,processing_error=NULL WHERE stripe_event_id=?').bind(now(),event.id).run();
+    return null;
+  }
+  const order=number?await env.DB.prepare(`SELECT o.*,p.name product_name,d.size FROM orders o JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.order_number=?`).bind(number).first():null;
+  if(!order)throw Error('shop_order_not_found');
+  await ensureOrderReferenceRegistry(env.DB);
+  await ensureReceiptSchema(env);
+  await ensureCheckoutAttempts(env.DB);
+  const rows=await env.DB.prepare('SELECT product_id,sku,product_name,colour,size,quantity,unit_price_pence FROM commerce_order_items WHERE order_id=? ORDER BY id').bind(order.id).all();
+  const items=rows.results?.length?rows.results:[{product_id:order.product_id,sku:SHIRT_SKU,size:order.size,quantity:order.quantity,product_name:order.product_name}];
+  const stamp=now(),statements=[];
+  const payable="payment_status IN ('pending','failed')";
+  const reserved="payment_status='pending'";
+  for(const item of items){
+    const inventoryKey=item.sku===SHIRT_SKU?item.size:`${item.size}|${item.colour}`,quantity=Number(item.quantity||1);
+    statements.push(paid?
+      env.DB.prepare(`UPDATE commerce_inventory SET stock_on_hand=CASE WHEN stock_on_hand IS NULL THEN NULL ELSE MAX(0,stock_on_hand-?) END,reserved=MAX(0,reserved-CASE WHEN EXISTS(SELECT 1 FROM orders WHERE id=? AND ${reserved}) THEN ? ELSE 0 END),updated_at=? WHERE product_id=? AND size=? AND EXISTS(SELECT 1 FROM orders WHERE id=? AND ${payable})`).bind(quantity,order.id,quantity,stamp,item.product_id,inventoryKey,order.id):
+      env.DB.prepare(`UPDATE commerce_inventory SET reserved=MAX(0,reserved-?),updated_at=? WHERE product_id=? AND size=? AND EXISTS(SELECT 1 FROM orders WHERE id=? AND ${reserved})`).bind(quantity,stamp,item.product_id,inventoryKey,order.id));
+  }
+  const condition=paid?payable:reserved;
+  statements.push(env.DB.prepare(`UPDATE order_reference_registry SET status=?,updated_at=? WHERE order_number=? AND EXISTS(SELECT 1 FROM orders WHERE id=? AND ${condition})`).bind(paid?'paid':'failed',stamp,number,order.id));
+  const details=session.customer_details||{},shipping=session.shipping_details||session.collected_information?.shipping_details||{};
+  const email=clean(details.email||order.customer_email,320),name=clean(details.name||shipping.name||order.customer_name,200);
+  if(paid){
+    statements.push(env.DB.prepare(`UPDATE commerce_order_details SET stripe_payment_intent_id=?,shipping_name=?,shipping_address_json=?,stripe_payment_status='paid',last_stripe_event_type=?,updated_at=? WHERE order_id=? AND EXISTS(SELECT 1 FROM orders WHERE id=? AND ${payable})`).bind(clean(session.payment_intent,200),clean(shipping.name||name,200),JSON.stringify(shipping.address||details.address||{}),event.type,stamp,order.id,order.id));
+    for(const role of ['customer','operator'])statements.push(env.DB.prepare(`INSERT OR IGNORE INTO commerce_receipt_delivery(order_id,recipient_role,state,updated_at) SELECT ?,?,'pending',? WHERE EXISTS(SELECT 1 FROM orders WHERE id=? AND ${payable})`).bind(order.id,role,stamp,order.id));
+    statements.push(env.DB.prepare(`UPDATE orders SET customer_email=?,customer_name=?,status='paid',payment_status='paid',updated_at=? WHERE id=? AND ${payable}`).bind(email,name,stamp,order.id));
+  }else{
+    statements.push(env.DB.prepare(`UPDATE commerce_order_details SET stripe_payment_status='failed',last_stripe_event_type=?,updated_at=? WHERE order_id=? AND EXISTS(SELECT 1 FROM orders WHERE id=? AND ${reserved})`).bind(event.type,stamp,order.id,order.id));
+    statements.push(env.DB.prepare(`UPDATE orders SET status=?,payment_status='failed',updated_at=? WHERE id=? AND ${reserved}`).bind(event.type==='checkout.session.expired'?'cancelled':'new',stamp,order.id));
+  }
+  if(paid||event.type==='checkout.session.expired')statements.push(env.DB.prepare("UPDATE checkout_attempts SET state=?,active=0,updated_at=? WHERE order_number=?").bind(paid?'paid':'expired',stamp,number));
+  statements.push(env.DB.prepare('UPDATE stripe_events SET processed_at=?,processing_error=NULL WHERE stripe_event_id=?').bind(stamp,event.id));
+  await env.DB.batch(statements);
+  return paid?{...order,customer_email:email,customer_name:name,product_name:items.length===1?items[0].product_name:`${items.length} Timber Mill items`,size:items.map(item=>`${item.product_name} · ${item.colour||''} · ${item.size} × ${item.quantity}`).join('; ')}:null;
+}
 async function webhook(request,env,ctx){
   if(!env.STRIPE_WEBHOOK_SECRET)return json({ok:false,error:'webhook_not_configured'},503);
-  const declared=Number(request.headers.get('content-length')||0);if(declared>1_000_000)return json({ok:false,error:'payload_too_large'},413);
+  if(Number(request.headers.get('content-length')||0)>1_000_000)return json({ok:false,error:'payload_too_large'},413);
   const payload=await request.text();
   if(new TextEncoder().encode(payload).length>1_000_000)return json({ok:false,error:'payload_too_large'},413);
-  const valid=await validStripeSignature(payload,request.headers.get('stripe-signature'),env.STRIPE_WEBHOOK_SECRET);
-  if(!valid)return json({ok:false,error:'invalid_signature'},400);
-  const event=JSON.parse(payload),receivedAt=now();
-  const result=await env.DB.prepare(`INSERT OR IGNORE INTO stripe_events(stripe_event_id,event_type,payload,received_at) VALUES(?,?,?,?)`).bind(clean(event.id,200),clean(event.type,100),payload,receivedAt).run();
-  if(!result.meta.changes)return json({ok:true,duplicate:true});
+  if(!await validStripeSignature(payload,request.headers.get('stripe-signature'),env.STRIPE_WEBHOOK_SECRET))return json({ok:false,error:'invalid_signature'},400);
+  let event;try{event=JSON.parse(payload)}catch{return json({ok:false,error:'invalid_event'},400)}
+  if(!event?.id||!event?.type||!event?.data?.object)return json({ok:false,error:'invalid_event'},400);
+  if(typeof event.livemode==='boolean'&&event.livemode!==(String(env.STRIPE_MODE||'test').toLowerCase()==='live'))return json({ok:false,error:'stripe_mode_mismatch'},400);
+  const result=await env.DB.prepare('INSERT OR IGNORE INTO stripe_events(stripe_event_id,event_type,payload,received_at) VALUES(?,?,?,?)').bind(clean(event.id,200),clean(event.type,100),payload,now()).run();
+  if(!Number(result.meta?.changes)){
+    const previous=await env.DB.prepare('SELECT processed_at FROM stripe_events WHERE stripe_event_id=?').bind(event.id).first();
+    if(previous?.processed_at)return json({ok:true,duplicate:true});
+  }
   try{
-    if(event.type==='checkout.session.completed'&&event.data?.object?.payment_status==='paid')await completeOrder(env,event.data.object,event.type,ctx);
-    else if(event.type==='checkout.session.async_payment_succeeded')await completeOrder(env,event.data?.object||{},event.type,ctx);
-    else if(['checkout.session.async_payment_failed','checkout.session.expired','payment_intent.payment_failed'].includes(event.type))await failOrder(env,event,event.type);
-    await env.DB.prepare(`UPDATE stripe_events SET processed_at=? WHERE stripe_event_id=?`).bind(now(),event.id).run();
+    const order=await settleShopEvent(env,event);
+    if(order){const work=sendOrderEmails(env,order).catch(()=>console.error('order_receipt_pending',{orderNumber:order.order_number}));if(ctx?.waitUntil)ctx.waitUntil(work);else await work;}
   }catch(error){
-    await env.DB.prepare(`UPDATE stripe_events SET processing_error=? WHERE stripe_event_id=?`).bind(clean(error?.message,1000),event.id).run();
-    console.error('stripe_webhook_processing_failed',{eventId:event.id,type:event.type,message:error?.message});
+    await env.DB.prepare('UPDATE stripe_events SET processing_error=? WHERE stripe_event_id=? AND processed_at IS NULL').bind(clean(error?.message,1000),event.id).run().catch(()=>{});
+    console.error('stripe_webhook_processing_failed',{eventId:event.id,type:event.type});
     return json({ok:false,error:'processing_failed'},500);
   }
   return json({ok:true});
@@ -365,7 +388,6 @@ function parseJson(value){try{return JSON.parse(value||'{}')}catch{return {}}}
 function escapeHtml(value){return clean(value,500).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}
 
 async function sendOrderEmails(env,order){
-  if(!env.EMAIL)return;
   const admin=String(env.ORDER_NOTIFICATION_EMAIL||env.ADMIN_NOTIFICATION_EMAIL||'orders@shiftsometimber.co.uk');
   const customer=order.customer_email;
   const summary=`${order.product_name} · Size ${order.size} · Quantity ${order.quantity} · £${(order.total_pence/100).toFixed(2)}`;
@@ -376,10 +398,10 @@ async function sendOrderEmails(env,order){
   if(customer){
     const subtotal=(order.subtotal_pence/100).toFixed(2),delivery=((order.total_pence-order.subtotal_pence)/100).toFixed(2),total=(order.total_pence/100).toFixed(2);
     const body=`<p style="margin:0 0 24px;color:#E7E3DA;line-height:1.7">Hi ${escapeHtml(order.customer_name||'there')}, your payment has gone through and we’ve got your order. Here’s everything in one place.</p><div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#707762;color:#050505"><p style="margin:0 0 12px;color:#050505;font-weight:700">Order reference</p><p style="margin:0 0 22px;color:#050505;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;color:#050505;font-size:15px;line-height:1.6"><tr><td style="padding:5px 0;font-weight:800">${escapeHtml(order.product_name)}</td><td align="right" style="padding:5px 0;font-weight:800">£${subtotal}</td></tr><tr><td style="padding:5px 0">Size ${escapeHtml(order.size)} · Quantity ${order.quantity}</td><td></td></tr><tr><td style="padding:12px 0 5px;border-top:1px solid #050505">UK delivery</td><td align="right" style="padding:12px 0 5px;border-top:1px solid #050505">£${delivery}</td></tr><tr><td style="padding:12px 0 0;border-top:2px solid #050505;font-size:18px;font-weight:900">Total paid</td><td align="right" style="padding:12px 0 0;border-top:2px solid #050505;font-size:18px;font-weight:900">£${total}</td></tr></table></div><div style="margin-top:26px;padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><h2 style="margin:0 0 14px;color:#E7E3DA;font-size:21px">What happens next?</h2><p style="margin:0 0 10px;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">1.</strong> We prepare and check your order.</p><p style="margin:0 0 10px;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">2.</strong> We’ll email you when it has been dispatched.</p><p style="margin:0;color:#E7E3DA;line-height:1.7"><strong style="color:#707762">3.</strong> Questions or changes? Reply to this email or contact orders@shiftsometimber.co.uk.</p></div><p style="margin:28px 0 12px;color:#E7E3DA;font-weight:800">Keep up with Shift</p><p style="margin:0 0 22px;color:#aaa69d;line-height:1.6">Real talk, useful updates and the occasional reminder that none of us has to be perfect.</p><div><a href="https://instagram.com/ShiftSomeTimber" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">Instagram</a><a href="https://facebook.com/ShiftSomeTimber" style="display:inline-block;margin:0 8px 8px 0;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">Facebook</a><a href="https://x.com/ShiftSomeTimber" style="display:inline-block;margin:0 0 8px;padding:11px 16px;border-radius:999px;background:#707762;color:#050505;text-decoration:none;font-weight:900">X</a></div>`;
-    work.push(env.EMAIL.send({from:customerFrom,to:customer,subject:`Your Shift order is confirmed · ${order.order_number}`,html:shell(`Payment confirmed for ${order.order_number}`,'Nice one. Your order is confirmed.',body),text:`Shift Some Timber order confirmation\n\nOrder ${order.order_number}\n${summary}\n\nPayment confirmed. We will email you again when your order is dispatched.\n\nQuestions: orders@shiftsometimber.co.uk\nShift Some Timber Ltd · Company no. 17393135`}));
+    work.push(deliverReceipt(env,order,'customer',{from:customerFrom,to:customer,subject:`Your Shift order is confirmed · ${order.order_number}`,html:shell(`Payment confirmed for ${order.order_number}`,'Nice one. Your order is confirmed.',body),text:`Shift Some Timber order confirmation\n\nOrder ${order.order_number}\n${summary}\n\nPayment confirmed. We will email you again when your order is dispatched.\n\nQuestions: orders@shiftsometimber.co.uk\nShift Some Timber Ltd · Company no. 17393135`}));
   }
   const adminBody=`<div style="padding:22px;border:1px solid #707762;border-radius:16px;background:#10110e"><p style="margin:0 0 12px;color:#E7E3DA;font-size:22px;font-weight:900">${escapeHtml(order.order_number)}</p><p style="margin:0 0 18px;color:#E7E3DA;line-height:1.7">${escapeHtml(summary)}</p><p style="margin:0;color:#E7E3DA;line-height:1.7">Customer: ${escapeHtml(order.customer_name)}<br>${escapeHtml(customer)}</p></div>`;
-  work.push(env.EMAIL.send({from:adminFrom,to:admin,subject:`ST INTERNAL — NEW ORDER — ${order.order_number}`,html:shell(`New paid shop order ${order.order_number}`,'New paid order.',adminBody),text:`New paid Shift shop order\n\n${order.order_number}\n${summary}\nCustomer: ${order.customer_name} · ${customer}` }));
+  work.push(deliverReceipt(env,order,'operator',{from:adminFrom,to:admin,subject:`ST INTERNAL — NEW ORDER — ${order.order_number}`,html:shell(`New paid shop order ${order.order_number}`,'New paid order.',adminBody),text:`New paid Shift shop order\n\n${order.order_number}\n${summary}\nCustomer: ${order.customer_name} · ${customer}` }));
   await Promise.all(work);
 }
 
@@ -405,3 +427,21 @@ export async function commerceStripeRoutes(request,env,ctx){
 }
 
 export const commerceCatalogue={sku:SHIRT_SKU,name:'Shift Some Timber T-shirt',pricePence:SHIRT_PRICE,deliveryPence:DELIVERY_PRICE,sizes:[...SIZES]};
+
+// Called only after existing HQ commerce permission checks.
+export async function shopRecoveryStatus(env){
+ const exists=async name=>Boolean(await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").bind(name).first());
+ const receipts=await exists('commerce_receipt_delivery')?await env.DB.prepare("SELECT o.order_number,r.recipient_role,r.state,r.provider_id,r.last_error,r.updated_at FROM commerce_receipt_delivery r JOIN orders o ON o.id=r.order_id WHERE r.state<>'accepted' ORDER BY r.updated_at LIMIT 100").all():{results:[]};
+ const attempts=await exists('checkout_attempts')?await env.DB.prepare('SELECT order_number,channel,state,last_error,created_at,updated_at FROM checkout_attempts WHERE active=1 ORDER BY created_at LIMIT 100').all():{results:[]};
+ const events=await exists('stripe_events')?await env.DB.prepare('SELECT stripe_event_id,event_type,received_at,processing_error FROM stripe_events WHERE processed_at IS NULL ORDER BY received_at LIMIT 100').all():{results:[]};
+ return {receipts:receipts.results||[],attempts:attempts.results||[],events:events.results||[],limitPerQueue:100,oldestFirst:true,receiptAcceptanceIsNotDelivery:true,uncertainReceiptsRequireProviderReconciliation:true};
+}
+export async function retryPendingShopReceipts(env,orderId){
+ const order=await env.DB.prepare("SELECT o.*,p.name product_name,d.size FROM orders o JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.id=? AND o.payment_status='paid'").bind(orderId).first();
+ if(!order)return false;
+ await ensureReceiptSchema(env);
+ const {results=[]}=await env.DB.prepare('SELECT product_name,colour,size,quantity FROM commerce_order_items WHERE order_id=? ORDER BY id').bind(order.id).all();
+ if(results.length){order.product_name=results.length===1?results[0].product_name:`${results.length} Timber Mill items`;order.size=results.map(i=>`${i.product_name} · ${i.colour} · ${i.size} × ${i.quantity}`).join('; ')}
+ await sendOrderEmails(env,order);
+ return true;
+}
