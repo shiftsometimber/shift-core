@@ -1,11 +1,11 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "2f555aa3998ce70195ba1377d3a50a95b88f5208",
-  "baseCommit": "1af0b7bb9e2d354198bcee918cbbd2da2b11b7fc",
-  "reason": "Matt approved the automatic article quality and newsroom latency preview in PR #785. Application tree 2cb28d7979609971159b6f73c879bda23d14d91d is identical to tested preview b27e5cf4bf235a78b8d2dbcfc3d86845d738fc3d. Runtime only: preserve article prose, publication dates, sitemap, published catalogue, prices, stock, customer records, Pages, consent and service holds. No database writes or content publication.",
+  "applicationCommit": "533dc32cf4629391081f06d382af3529c55a068c",
+  "baseCommit": "f689b291c48df390a9fff5cc47fd80f5c041040f",
+  "reason": "Matt approved the compact My Timber phone setup and footer and asked for it live. This candidate reconciles PR #784 onto current main without reverting the newer article-quality release. Runtime-only release: preserve Pages, catalogue, prices, stock, services, customer/member records and unrelated public content. PWA reminder tables are additive and created only when the feature is used.",
   "runtimeSchemaAdditions": [
-    "checkout_attempts",
-    "commerce_receipt_delivery"
+    "my_timber_push_devices",
+    "my_timber_push_deliveries"
   ],
   "enforceApplicationPin": true
 }
