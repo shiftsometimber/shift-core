@@ -41,11 +41,15 @@ async function resetPassword(request,env){
   const row=await env.DB.prepare(`SELECT id,user_id,expires_at,used_at FROM auth_tokens WHERE token_hash=? AND token_type='password_reset' ORDER BY id DESC LIMIT 1`).bind(tokenHash).first();
   if(!row||row.used_at||new Date(row.expires_at).getTime()<=Date.now())return cors(json({ok:false,error:'reset_expired',message:'That reset link has expired or has already been used.'},400),request,env);
   const hash=await hashPassword(password),stamp=new Date().toISOString();
-  await env.DB.batch([
-    env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(hash,stamp,row.user_id),
-    env.DB.prepare('UPDATE auth_tokens SET used_at=? WHERE id=?').bind(stamp,row.id),
-    env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL').bind(stamp,row.user_id)
+  // D1 batch is one transaction. Claim at execution time, after hashing. Each
+  // following UPDATE is gated by the previous statement's affected-row count;
+  // a losing claimant can neither change the password nor revoke sessions.
+  const results=await env.DB.batch([
+    env.DB.prepare(`UPDATE auth_tokens SET used_at=? WHERE id=? AND user_id=? AND token_type='password_reset' AND used_at IS NULL AND julianday(expires_at)>julianday('now') AND EXISTS(SELECT 1 FROM user_auth WHERE user_id=?)`).bind(stamp,row.id,row.user_id,row.user_id),
+    env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=? AND changes()=1').bind(hash,stamp,row.user_id),
+    env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL AND changes()=1').bind(stamp,row.user_id)
   ]);
+  if(Number(results[0]?.meta?.changes)!==1)return cors(json({ok:false,error:'reset_expired',message:'That reset link has expired or has already been used.'},400),request,env);
   return cors(json({ok:true,message:'Password changed. You can sign in now.'}),request,env);
 }
 

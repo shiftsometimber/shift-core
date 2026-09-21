@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
 
 const source=fs.readFileSync('member-state-fast-v1.js','utf8');
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
@@ -10,7 +11,10 @@ need(/!\['\/v1\/member-state','\/v1\/profile'\]\.includes\(path\)\|\|!\['GET','P
 need(/sst_session=/.test(source)&&/SHA-256/.test(source),'session cookie is not hashed before lookup');
 need(/revoked_at/.test(source)&&/expires_at/.test(source),'revoked and expired sessions are not rejected');
 need(/WHERE s\.token_hash=\?/.test(source)&&/WHERE user_id=\?/.test(source),'D1 lookups are not parameterised');
-need(/body\.myWhy\?\?safe\(current\?\.my_why\)/.test(source)&&/body\.preferences\?\?safe\(current\?\.preferences\)/.test(source),'partial writes do not preserve existing member state');
+// Behaviour replaces the old source-string check, which required the stale snapshot responsible for WR01.
+const persistence=spawnSync(process.execPath,['--test','--test-name-pattern=WR01','tests/b1-reliability.test.mjs'],{encoding:'utf8'});
+need(persistence.status===0,'partial-save concurrency, ownership, rollback, retry or account isolation regression failed');
+if(persistence.status!==0)console.error(persistence.stdout+persistence.stderr);
 need(!/console\.(?:log|warn|error)/.test(source),'fast member-state route writes runtime data to logs');
 need(/await env\.DB\.prepare\('UPDATE user_sessions/.test(source)&&/await env\.DB\.prepare\('UPDATE member_status/.test(source),'D1 side effects are not awaited');
 need(entryCompact.includes('fastMemberStateRoute(request,env)'),'worker entry does not invoke the fast member-state route');

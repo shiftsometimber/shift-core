@@ -38,6 +38,7 @@ async function prepare(){
  const proof={release:process.env.GITHUB_SHA,checkedAt:new Date().toISOString(),migrationSha256:hash(source),previousVersion:version,rollbackCommand:`npx wrangler rollback ${version} --config wrangler.jsonc --message "Restore pre-Passport application; retain additive data"`,databaseRollback:'Do not drop the table or restore the whole database: retain newly saved member records.',startHereBefore:hash(old),startHereExpected:hash(expected),schemaBefore:hash(JSON.stringify(before)),userRowsRead:false,userRowsChanged:false};
  writeFileSync(OUT+'/release.json',JSON.stringify(proof,null,2));
  await readCurrentMain();
+ if(process.env.PASSPORT_SCHEMA_READ_ONLY==='true')assertSchema(existing,source);
  if(!existing.length)cli(['d1','execute','DB','--remote','--config','wrangler.jsonc','--file','health-passport/schema.sql']);
  const after=query(metadata);assertSchema(after.filter(own),source);assertNoOtherSchemaChanges(before,after);
  Object.assign(proof,{schemaAfter:hash(JSON.stringify(after)),schemaReady:true,migrationApplied:!existing.length});
