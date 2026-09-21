@@ -24,7 +24,7 @@ function nutritionContextMarkup(){
 document.addEventListener('click',async event=>{
  const button=event.target.closest('[data-grub-adjust],[data-grub-feedback]');if(!button||button.disabled)return;
  const action=button.hasAttribute('data-grub-adjust')?{action:'recommendation-adjust',mode:button.dataset.grubAdjust}:{action:'recommendation-feedback',recipeId:button.dataset.recipeId,sentiment:button.dataset.grubFeedback};
- if(await mutate(action,action.action==='recommendation-adjust'?'Recommendation updated. Review it, then choose a day to add it to your week.':'Your preference is saved and will shape future recommendations.'))$('#grubRecommendation').scrollIntoView({behavior:'auto',block:'start'});
+ await mutate(action,action.action==='recommendation-adjust'?'Recommendation updated. Review it, then choose a day to add it to your week.':'Your preference is saved and will shape future recommendations.');
 });
 `;
 

@@ -1,3 +1,5 @@
+import {GRUB_EXPANSION_SERVING_AUTHORITY as productionManifest} from '../grub-expansion-serving-manifest-v1.mjs';
+import {CATALOGUE_PUBLICATION_RELEASE as ownerRelease} from '../catalogue-publication-release-v1.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -185,7 +187,7 @@ test('six-hour overnight recipes retain total timing and cannot pass the fast fi
   assert.equal(memberRecipe(legacy).minutes,15); assert.equal(reviewedRecipeMinutes(legacy.data),15);
 });
 
-test('the default pending manifest accepts all 798 real retained V1 records without inventing new approval', async () => {
+test('pending authority retains 798 originals; approved authority requires the complete exact owner batch', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(),'grub-retained-serving-'));
   try {
     execFileSync(process.execPath,['grub-v1-publication-pack.mjs'],{stdio:'pipe',env:{...process.env,COFID_INDEX:path.resolve('tests/fixtures/grub-cofid-2021-governed-subset.json'),GRUB_PUBLICATION_DIR:dir,GRUB_DECISIONS_FILE:path.resolve('evidence/grub-v1-final-decisions-2026-08-14.json')}});
@@ -193,10 +195,14 @@ test('the default pending manifest accepts all 798 real retained V1 records with
     const human = JSON.parse(fs.readFileSync('evidence/matt-v1-final-content-acceptance-2026-08-14.json','utf8'));
     const raw = new Map(buildIndustrialCatalogue().recipes.map(row => [row.id,row]));
     const rows = payload.items.map(item => ({...item,data:{...raw.get(item.id),...item.data,provenance:{final_v1_acceptance:{accepted:true,proof:human.proof,reviewer:human.reviewer,accepted_at:human.accepted_at}}}}));
-    const result = await selectGovernedGrubRows(rows);
+    const pending={...productionManifest,status:'pending',additions:[],revisions:[]};
+    const result = await selectGovernedGrubRows(rows,pending);
     assert.equal(result.incomplete,false,result.reason); assert.equal(result.rows.length,798); assert.equal(result.expansionAccepted,0);
+    assert.equal((await selectGovernedGrubRows(rows)).incomplete,true,'Approved runtime must reject missing owner-authorised additions');
+    rows.push(...ownerRelease.additions.filter(row=>row.content_type==='recipe').map(row=>({...row,data:JSON.parse(row.data_json),review:JSON.parse(row.review_json)})));
+    const complete=await selectGovernedGrubRows(rows);assert.equal(complete.incomplete,false,complete.reason);assert.equal(complete.rows.length,2671);
     const queryFile = path.join(dir,'read-only-production-query-fixture.json');
-    const queryResult = [{success:true,results:rows.map(row => ({id:row.id,title:row.title,data_json:JSON.stringify(row.data),review_json:JSON.stringify(row.review)}))}];
+    const queryResult = [{success:true,results:rows.map(row => ({id:row.id,title:row.title,version:row.version||1,data_json:JSON.stringify(row.data),review_json:JSON.stringify(row.review)}))}];
     fs.writeFileSync(queryFile,JSON.stringify(queryResult));
     const verified = JSON.parse(execFileSync(process.execPath,['member-experience/verify-production-catalogue.mjs',queryFile],{encoding:'utf8'}));
     assert.equal(verified.exactServingAuthority,true); assert.equal(verified.originalAccepted,798); assert.equal(verified.databaseWrites,false);

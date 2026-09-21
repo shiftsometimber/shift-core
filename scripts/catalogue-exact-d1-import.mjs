@@ -22,9 +22,11 @@ export function readSnapshot(file){
   if(!Array.isArray(data)||data.length!==1||data[0]?.success!==true||!Array.isArray(data[0].results))throw Error('catalogue_snapshot_query_invalid');
   return data[0].results;
 }
-export async function buildCatalogueImport(rows,release=fixedRelease){
+export async function buildCatalogueImport(rows,release=fixedRelease,selection='all'){
   if(release.status!=='approved')throw Error('catalogue_release_not_approved');
-  const additions=await validateCatalogueRelease(release);
+  if(!['all','recipe'].includes(selection))throw Error('catalogue_selection_invalid');
+  const approved=await validateCatalogueRelease(release);
+  const additions=approved.filter(row=>selection==='all'||row.content_type==='recipe');
   const snapshot=await validateCatalogueSnapshot(release,rows);
   // A fully published release needs no import session. Validation above still
   // rejects changed originals and conflicting additions; the caller must take
@@ -40,8 +42,10 @@ export async function buildCatalogueImport(rows,release=fixedRelease){
   // Remote Wrangler file imports provide rollback; explicit BEGIN is forbidden by D1.
   return sql;
 }
-export async function verifyCatalogueImport(beforeRows,afterRows,release=fixedRelease){
-  const additions=await validateCatalogueRelease(release);
+export async function verifyCatalogueImport(beforeRows,afterRows,release=fixedRelease,selection='all'){
+  if(!['all','recipe'].includes(selection))throw Error('catalogue_selection_invalid');
+  const approved=await validateCatalogueRelease(release);
+  const additions=approved.filter(row=>selection==='all'||row.content_type==='recipe');
   const before=await validateCatalogueSnapshot(release,beforeRows);
   const after=await validateCatalogueSnapshot(release,afterRows);
   const expected=new Map(before.map(row=>[row.id,row]));
@@ -51,16 +55,16 @@ export async function verifyCatalogueImport(beforeRows,afterRows,release=fixedRe
   const protectedIds=new Set(release.protected_originals.map(row=>row.id));
   const originalHash=await catalogueRowsSha256(before.filter(row=>protectedIds.has(row.id)));
   if(originalHash!==await catalogueRowsSha256(after.filter(row=>protectedIds.has(row.id))))throw Error('catalogue_original_bytes_changed');
-  return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,rows_sha256:release.rows_sha256,inserted,already_present:additions.length-inserted,protected_originals:protectedIds.size,original_rows_unchanged:true,all_existing_rows_unchanged:true,exact_additions_verified:true,transactional:true,before_count:before.length,after_count:after.length,before_sha256:await catalogueRowsSha256(before),after_sha256:await catalogueRowsSha256(after),protected_originals_sha256:originalHash,workflow_sha:process.env.GITHUB_SHA||null,verified_via:'wrangler_snapshot_exact_comparison',completed_at:new Date().toISOString()};
+  return {ok:true,proof:'CATALOGUE_PUBLICATION_RESULT_V1',release_id:release.release_id,selection,rows_sha256:await catalogueRowsSha256(additions),approved_release_rows_sha256:release.rows_sha256,inserted,already_present:additions.length-inserted,protected_originals:protectedIds.size,original_rows_unchanged:true,all_existing_rows_unchanged:true,exact_additions_verified:true,transactional:true,before_count:before.length,after_count:after.length,before_sha256:await catalogueRowsSha256(before),after_sha256:await catalogueRowsSha256(after),protected_originals_sha256:originalHash,workflow_sha:process.env.GITHUB_SHA||null,verified_via:'wrangler_snapshot_exact_comparison',completed_at:new Date().toISOString()};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const [mode,beforeFile,afterFile]=process.argv.slice(2);
-  if(mode==='--sql'){
-    const statements=await buildCatalogueImport(readSnapshot(beforeFile));
+  if(mode==='--sql'||mode==='--grub-sql'){
+    const statements=await buildCatalogueImport(readSnapshot(beforeFile),fixedRelease,mode==='--grub-sql'?'recipe':'all');
     if(statements.length)process.stdout.write(statements.join('\n')+'\n');
   }
-  else if(mode==='--verify'){
-    const report=await verifyCatalogueImport(readSnapshot(beforeFile),readSnapshot(afterFile));
+  else if(mode==='--verify'||mode==='--grub-verify'){
+    const report=await verifyCatalogueImport(readSnapshot(beforeFile),readSnapshot(afterFile),fixedRelease,mode==='--grub-verify'?'recipe':'all');
     if(process.env.CATALOGUE_PUBLICATION_REPORT)fs.writeFileSync(process.env.CATALOGUE_PUBLICATION_REPORT,JSON.stringify(report,null,2)+'\n');
     console.log(JSON.stringify(report,null,2));
   }else throw Error('usage: catalogue-exact-d1-import.mjs --sql before.json | --verify before.json after.json');

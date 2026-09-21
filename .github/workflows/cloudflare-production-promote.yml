@@ -315,6 +315,19 @@ jobs:
         run: |
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
+      - name: Publish only the exact previously authorised Grub recipe expansion
+        if: steps.scope.outputs.grub_publication == 'true'
+        run: |
+          node --test tests/catalogue-publication-d1-import.test.mjs tests/nutrition-mytimber.test.mjs member-experience/tests/grub-current-adjustment.test.mjs member-experience/tests/grub-week-variety.test.mjs
+          node scripts/catalogue-publication-client.mjs --verify-main
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,content_type,title,version,status,data_json,review_json,created_at,updated_at FROM structured_content WHERE content_type IN ('recipe','exercise') ORDER BY id" > "$RUNNER_TEMP/grub-before.json"
+          node scripts/catalogue-exact-d1-import.mjs --grub-sql "$RUNNER_TEMP/grub-before.json" > "$RUNNER_TEMP/grub-approved.sql"
+          node scripts/catalogue-publication-client.mjs --verify-main
+          if [ -s "$RUNNER_TEMP/grub-approved.sql" ]; then
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/grub-approved.sql"
+          fi
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,content_type,title,version,status,data_json,review_json,created_at,updated_at FROM structured_content WHERE content_type IN ('recipe','exercise') ORDER BY id" > "$RUNNER_TEMP/grub-after.json"
+          CATALOGUE_PUBLICATION_REPORT=b1-runtime-release/grub-publication.json node scripts/catalogue-exact-d1-import.mjs --grub-verify "$RUNNER_TEMP/grub-before.json" "$RUNNER_TEMP/grub-after.json"
       - name: Verify existing production food catalogue without account writes
         if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
         run: |

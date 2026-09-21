@@ -65,3 +65,21 @@ test('direct D1 import preserves 2128 existing rows and proves exact additions a
   assert.throws(importFile,/malformed JSON/);assert.equal(dump().length,2128);
   console.log(JSON.stringify({snapshot_rows:before.length,final_rows:after.length,statements:statements.length,max_statement_bytes:Math.max(...statements.map(s=>Buffer.byteLength(s))),exact_proof:report}));
 });
+
+test('Grub-only import adds exactly the approved 1885 recipe rows and cannot publish Fit',async t=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'grub-only-import-')),db=new DatabaseSync(':memory:');t.after(()=>{db.close();fs.rmSync(dir,{recursive:true,force:true})});
+ execFileSync(process.execPath,['grub-v1-publication-pack.mjs'],{stdio:'pipe',env:{...process.env,COFID_INDEX:path.resolve('tests/fixtures/grub-cofid-2021-governed-subset.json'),GRUB_PUBLICATION_DIR:dir,GRUB_DECISIONS_FILE:path.resolve('evidence/grub-v1-final-decisions-2026-08-14.json')}});
+ execFileSync(process.execPath,['final-v1-production-publication.mjs'],{stdio:'pipe',env:{...process.env,GRUB_PUBLISHABLE_FILE:path.join(dir,'grub-v1-publishable.json'),FINAL_V1_PUBLICATION_DIR:dir}});
+ db.exec(fs.readFileSync(path.join(dir,'final-v1-production-publication.sql'),'utf8'));
+ const dump=()=>db.prepare('SELECT * FROM structured_content ORDER BY id').all();const before=dump();
+ const sql=(await buildCatalogueImport(before,release,'recipe')).join('\n');
+ db.exec('BEGIN');try{db.exec(sql);db.exec('COMMIT')}catch(e){db.exec('ROLLBACK');throw e}
+ const after=dump(),report=await verifyCatalogueImport(before,after,release,'recipe');
+ assert.equal(report.inserted,1885);assert.equal(report.selection,'recipe');assert.equal(report.after_count-report.before_count,1885);assert.equal(report.all_existing_rows_unchanged,true);
+ assert.deepEqual(after.filter(r=>r.content_type==='exercise'),before.filter(r=>r.content_type==='exercise'));
+ assert.equal(after.filter(r=>r.content_type==='recipe').length,2683);assert.deepEqual(await buildCatalogueImport(after,release,'recipe'),[]);
+ const changed=structuredClone(after);changed.find(r=>r.content_type==='exercise').title='Unexpected Fit change';await assert.rejects(verifyCatalogueImport(before,changed,release,'recipe'));
+ await assert.rejects(buildCatalogueImport(before,release,'exercise'),/selection/);
+ const onlyRecipes=before.filter(r=>r.content_type==='recipe');await assert.rejects(buildCatalogueImport(onlyRecipes,release,'recipe'),/original/);
+ console.log(JSON.stringify({proof:'EXACT_GRUB_ONLY_IMPORT',...report}));
+});

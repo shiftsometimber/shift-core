@@ -20,7 +20,11 @@ const recommendation=recommendationFor(emptyGrub(),recipes);
 assert(recommendation.recipe?.image,'No illustrated production recommendation');
 for(const mode of grubModes){
  const selected=adjustRecommendation(emptyGrub(),mode,recipes);
- assert(recipes.find(r=>r.id===selected.recipeId)?.image,'Adjustment lost its image: '+mode);
+ const recipe=recipes.find(r=>r.id===selected.recipeId);
+ assert(recipe&&recipe.nutrition.status==='validated'&&recipe.ingredients.length&&recipe.method.length>1,'Adjustment lost its reviewed recipe: '+mode);
+ if(recipe.id===recommendation.recipe.id)assert.match(selected.message,/unchanged/);
+ else if(mode==='quicker')assert(recipe.minutes<recommendation.recipe.minutes,'Quicker must improve the displayed meal');
+ else if(mode==='protein')assert(recipe.protein_g>recommendation.recipe.protein_g,'Higher protein must improve the displayed meal');
 }
 const found=searchGrubRecipes({query:'Chicken, beef, noodles, bread'},records);
 assert(found.top.length>0,'The reported ingredient search has no production results');
