@@ -1,0 +1,21 @@
+name: BabyLove image diagnosis
+on:
+  push:
+    branches: [fix/babylove-image-repair]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Inspect affected article image references
+        run: |
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT substr(body,1,2500) AS body_start FROM knowledge_articles WHERE slug='mounjaro-cost-uk'; SELECT substr(payload_json,1,4000) AS receipt_start FROM babylove_receipts WHERE slug='mounjaro-cost-uk';"
