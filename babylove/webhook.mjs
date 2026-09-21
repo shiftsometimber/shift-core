@@ -26,6 +26,23 @@ async function readPayload(request){
   const bytes=new Uint8Array(length);let offset=0;for(const part of chunks){bytes.set(part,offset);offset+=part.byteLength;}
   try{return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}catch{throw new Error('invalid_json');}
 }
+async function notifyArrival(env,article){
+ const to=env.RADAR_PUBLICATION_EMAIL_TO;
+ if(!env.EMAIL?.send||!to)return;
+ await env.DB.prepare("CREATE TABLE IF NOT EXISTS babylove_arrival_email(source_id TEXT PRIMARY KEY,status TEXT NOT NULL,recipient TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,sent_at TEXT,provider_message_id TEXT,last_error TEXT)").run();
+ const claim=await env.DB.prepare("INSERT OR IGNORE INTO babylove_arrival_email(source_id,status,recipient) VALUES(?,'sending',?)").bind(article.id,to).run();
+ if(!claim.meta?.changes)return;
+ const link=article.publish?'https://shiftsometimber.co.uk/articles/'+article.slug:null;
+ const subject='LoveGrowth post received: '+article.title;
+ const text=['Hi Matt','','A new LoveGrowth post has arrived in SHIFT.','',article.title,'Status: '+(article.publish?'Published':'Draft'),link||'', '', 'Source ID: '+article.id].filter(Boolean).join('\n');
+ try{
+  const result=await env.EMAIL.send({from:{email:env.ADMIN_EMAIL_FROM||'hq@shiftsometimber.co.uk',name:'SHIFT'},to,subject,text});
+  await env.DB.prepare("UPDATE babylove_arrival_email SET status='sent',sent_at=CURRENT_TIMESTAMP,provider_message_id=? WHERE source_id=? AND status='sending'").bind(result?.messageId||null,article.id).run();
+ }catch(error){
+  await env.DB.prepare("UPDATE babylove_arrival_email SET status='delivery_unknown',last_error=? WHERE source_id=? AND status='sending'").bind(String(error?.message||error).slice(0,200),article.id).run().catch(()=>{});
+ }
+}
+
 export async function babyLoveRoutes(request,env){
   if(new URL(request.url).pathname.replace(/\/+$/,'')!==PATH)return null;
   if(request.method!=='POST')return reply({success:false,error:'method_not_allowed'},405);
@@ -59,7 +76,7 @@ export async function babyLoveRoutes(request,env){
       env.DB.prepare('INSERT INTO babylove_receipts(source_id,slug,payload_hash,payload_json) VALUES(?,?,?,?)').bind(article.id,article.slug,hash,raw),
       env.DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at) VALUES(?,?,'Knowledge','SHIFT Team',?,?,?,?,?)`).bind(article.title,article.slug,article.publish?'published':'draft',article.summary,article.body,article.title,article.publish?new Date().toISOString():null)
     ]);
-    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined});
+    await notifyArrival(env,article);\n    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined});
   }catch{
     try{
       const receipt=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
