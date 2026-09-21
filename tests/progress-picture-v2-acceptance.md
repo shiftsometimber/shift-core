@@ -1,1 +1,0 @@
-Acceptance: member product POST routes must answer credentialed browser preflight; Grub/Fit/Hydration/Conundrum must remain wired; Progress Picture supports +10/Same/-5/-10/-15/-20/-25; original progress photos are saved separately from generated illustrations.
