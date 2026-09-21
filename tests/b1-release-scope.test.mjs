@@ -22,7 +22,7 @@ test('gates, fresh source check, rollback capture and exactly one deploy remain 
  const scope=workflow.indexOf('id: scope'),deploy=workflow.indexOf('npx wrangler deploy --config wrangler.jsonc');
  assert.equal(workflow.match(/npx wrangler deploy --config wrangler.jsonc/g)?.length,1);
  for(const gate of ['Verify exact current main before production mutations','Verify security-check timeouts and retry before promotion','Capture current Worker deployment for rollback','Capture protected catalogue and stock without customer records']){const index=workflow.indexOf('name: '+gate);assert.ok(index>scope&&index<deploy,gate)}
- assert.match(workflow,/node scripts\/catalogue-publication-client.mjs --verify-main\n          node scripts\/b1-release-scope.mjs\n          npx wrangler deploy/);
+ assert.match(workflow,/node scripts\/b1-release-scope.mjs\n          node scripts\/catalogue-publication-client.mjs --verify-main\n          npx wrangler deploy/);
  assert.ok(workflow.indexOf('Verify B1 protected catalogue and stock remain identical')>deploy);
  for(const step of steps.filter(s=>/name: (Verify|Prove|Block) /.test(s)))assert.ok(!step.includes("runtime_only != 'true'"),'Verification must not be skipped: '+step.split('\n')[0]);
 });

@@ -349,8 +349,8 @@ jobs:
         run: node scripts/b1-release-scope.mjs --snapshot before
       - name: Deploy current main to production
         run: |
-          node scripts/catalogue-publication-client.mjs --verify-main
           node scripts/b1-release-scope.mjs
+          node scripts/catalogue-publication-client.mjs --verify-main
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
