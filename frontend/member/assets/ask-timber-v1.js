@@ -36,7 +36,7 @@
     if(!window.SST_API?.askShiftAI)throw new Error('The answer service has not loaded.');
     const detectedIntents=window.AskTimberIntent?.detect(message)||[];
     let data=await window.SST_API.askShiftAI({message,history,detectedIntents,requireIntentCoverage:true,useJourney:false});
-    if(window.AskTimberIntent)data=window.AskTimberIntent.complete(message,data);
+    // Render the service answer unchanged. Client-side intent helpers are diagnostics only.
     render(data);history=[...history,{role:'user',content:message},{role:'assistant',content:data.answer||''}].slice(-6);
   }catch(err){failure(err)}
   finally{submit.disabled=false}

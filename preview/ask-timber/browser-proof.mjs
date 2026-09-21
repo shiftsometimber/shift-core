@@ -30,6 +30,15 @@ try{
     const retry=await ask('I have severe chest pain and cannot breathe');assert.equal(retry.status,200);assert.equal(retry.data.mode,'safety');assert.match(retry.data.answer,/999/);row.checks.push(fault+' input retained and successful safety retry');
    }
    const second=await ask('I have eggy burps after Mounjaro');assert.equal(second.status,200);assert.equal(second.data.mode,'reviewed_direct');assert(second.data.sources.length);assert.match(second.data.sources[0].url,/glp1-side-effects/);row.checks.push('second ordinary question and reviewed source');
+   for(const message of ['Can I have a kebab?','Can I eat chocolate after a jab?','Can I eat chocolate after Mounjaro?','How do I start walking?']){
+    const reply=await ask(message);assert.equal(reply.status,200);const rendered=await page.locator('#timberResponse .at-copy').innerText();
+    assert.equal(rendered.replace(/\s+/g,' ').trim(),reply.data.answer.replace(/\s+/g,' ').trim(),'Browser must render only the current service answer');
+    assert.doesNotMatch(rendered,/If you want the kebab, have the kebab|And the food bit|Order the kebab/);
+    if(message.includes('chocolate'))assert.doesNotMatch(rendered,/kebab|chicken shish|pitta/i);
+    if(message==='Can I eat chocolate after a jab?')assert.equal(reply.data.mode,'clarification');
+    if(message==='Can I eat chocolate after Mounjaro?'){assert(reply.data.sources.some(source=>source.url.includes('cuh.nhs.uk')));assert.match(rendered,/chocolate|food/i);}
+    row.checks.push('current answer only: '+message);
+   }
    assert(row.requests.every(r=>r.useJourney===false));row.pass=true;
    for(const path of ['/member-login','/member/dashboard']){
     // Production comparison is diagnostic; candidate recovery acceptance below is mandatory.

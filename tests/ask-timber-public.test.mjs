@@ -69,3 +69,31 @@ test('forgotten password is a high-contrast action immediately after password on
  assert.match(html,/\.auth-link:focus-visible/);
  assert.match(html,/data-forgot-password[^\n]+addEventListener\('click',\(\)=>\{resetForm.hidden=false;form.hidden=true/);
 });
+
+test('consecutive food questions render only the current service answer, even with a stale intent helper',async()=>{
+ const replies=['Reviewed takeaway information.','Which injection do you mean? I cannot confirm chocolate advice without knowing that.','A short walk can be a manageable starting point.'];let index=0;
+ const c=client(async()=>Response.json({ok:true,answer:replies[index++],keyPoints:[],nextSteps:[],sources:[],confidence:'low'}));
+ c.window.AskTimberIntent={detect:()=>['food'],complete:()=>({ok:true,answer:'If you want the kebab, have the kebab.'})};
+ for(const [i,q]of ['Can I have a kebab?','Can I eat chocolate after a jab?','How do I start walking?'].entries()){
+  c.nodes.timberQuestion.value=q;await c.submit();assert.match(c.nodes.timberResponse.innerHTML,new RegExp(replies[i].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));assert.doesNotMatch(c.nodes.timberResponse.innerHTML,/have the kebab|chicken shish|Order the kebab/);
+ }
+});
+test('intent diagnostics never add unreviewed food advice or claim missing coverage is complete',()=>{
+ const context=vm.createContext({});vm.runInContext(readFileSync(new URL('../frontend/member/assets/ask-timber-intent-v2.js',import.meta.url),'utf8'),context);
+ for(const q of ['Can I have a kebab?','Can I eat chocolate after a jab?','Can I eat pizza?','What about breakfast?']){
+  const original={ok:true,mode:'grounded',answer:'I cannot reliably answer this yet.',keyPoints:[],nextSteps:[],sources:[],limitations:'No relevant reviewed source.'};
+  const result=context.AskTimberIntent.complete(q,original);assert.equal(result.answer,original.answer);assert.equal(JSON.stringify(result.keyPoints),'[]');assert.equal(JSON.stringify(result.nextSteps),'[]');assert.equal(result.intentCoverage.complete,false);assert.equal(context.AskTimberIntent.foodAddendum(q),null);
+ }
+});
+
+test('food after an unidentified injection asks which injection without assuming treatment or reusing history',async()=>{
+ for(const message of ['Can I eat chocolate after a jab?','Can I have chocolate after my injection?','Can I have a takeaway after a jab?']){
+  const DB=database(),response=await askTimberRoutes(new Request('https://shiftsometimber.co.uk/v1/ai/chat',{method:'POST',body:JSON.stringify({message,useJourney:false,history:[{role:'user',content:'Can I have a kebab?'},{role:'assistant',content:'Have a kebab.'}]})}),{DB,AI:{run:async()=>{throw Error('must clarify before generation')}}});
+  const data=await response.json();assert.equal(data.mode,'clarification');assert.match(data.answer,/Which jab/);assert.doesNotMatch(data.answer,/kebab|safe|chicken shish/);assert.equal(DB.reads.length,0);
+ }
+});
+test('named Mounjaro food question supplies relevant primary evidence and anchors the current question',async()=>{
+ let prompt;
+ const response=await askTimberRoutes(new Request('https://shiftsometimber.co.uk/v1/ai/chat',{method:'POST',body:JSON.stringify({message:'Can I eat chocolate after Mounjaro?',useJourney:false})}),{DB:database({legacy:[]}),AI:{run:async(_,input)=>{prompt=input.messages;return{response:{answer:'Food guidance [1]',confidence:'medium'}}}}});
+ const data=await response.json();assert.match(prompt.at(-1).content,/QUESTION:\nCan I eat chocolate after Mounjaro\?/);assert.match(prompt.at(-1).content,/with or without food/);assert.match(prompt[0].content,/Answer the current QUESTION/);assert.equal(data.sources[0].url,'https://www.cuh.nhs.uk/patient-information/your-obesity-treatment-tirzepatide-mounjaro/');
+});
