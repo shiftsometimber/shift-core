@@ -1,3 +1,5 @@
+import {singleDispatchHtmlAsset} from '../../activation-measurement/single-dispatch.mjs';
+import {withStartupStability} from '../../public-startup-stability.mjs';
 // Private fictional preview entry only; never imported by production.
 import staging from '../stabilisation/worker.mjs';
 import core from '../../worker-entry-v6.js';
@@ -21,5 +23,5 @@ export default {async fetch(request,env,ctx){
  if(path==='/__review/gp-form'&&request.method==='GET'){const r=await env.STAGING_ASSETS.fetch(new Request(new URL('/review-gp-assessment.html',u)));return page(await r.text(),r.status);}
  if(path==='/__preview/clinical-disabled')return new Response('Clinical submission is disabled in this preview.',{status:403,headers});
  const asset=pwaAssets(request);if(asset)return asset;
- return withPwa(request,await staging.fetch(request,env,ctx));
+ return withStartupStability(request,await singleDispatchHtmlAsset(request,await withPwa(request,await staging.fetch(request,env,ctx))));
 }};
