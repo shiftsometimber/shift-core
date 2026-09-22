@@ -1,11 +1,14 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "533dc32cf4629391081f06d382af3529c55a068c",
-  "baseCommit": "f689b291c48df390a9fff5cc47fd80f5c041040f",
-  "reason": "Matt approved the compact My Timber phone setup and footer and asked for it live. This candidate reconciles PR #784 onto current main without reverting the newer article-quality release. Runtime-only release: preserve Pages, catalogue, prices, stock, services, customer/member records and unrelated public content. PWA reminder tables are additive and created only when the feature is used.",
-  "runtimeSchemaAdditions": [
-    "my_timber_push_devices",
-    "my_timber_push_deliveries"
-  ],
+  "applicationCommit": "fe59a3fdc22afa951c10932cb2ba7056ba5d0913",
+  "baseCommit": "e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4",
+  "reason": "Matt requested restoration of Calculators & Tools in the public footer and Menu. PR #787 contains that repair and its tests; preview source 962e6c5a55b8cf1e08a1b01fe2762607abfb2208 passed workflow 35697884843 with eight public page samples and thirty successful footer/drawer navigations across desktop Chromium, phone Chromium and phone WebKit. This manifest pins the resulting squash-merged application exactly, without relaxing source-drift checks or enabling publication, migrations or catalogue writes. Preserve all existing My Timber/PWA repairs, Pages, prices, stock, services, customer/member records and other public content.",
+  "previewEvidence": {
+    "sourceCommit": "962e6c5a55b8cf1e08a1b01fe2762607abfb2208",
+    "workflowRun": 35697884843,
+    "artifactId": 10681467089,
+    "sha256": "08024895a97c817edfab6056ab0e843f08957a59fcd1994b04643ab1ec0b37d1"
+  },
+  "runtimeSchemaAdditions": [],
   "enforceApplicationPin": true
 }
