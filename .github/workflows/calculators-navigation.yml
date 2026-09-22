@@ -1,0 +1,45 @@
+name: Calculators navigation verification
+on:
+  push:
+    branches: [fix/calculators-navigation-20260922, main]
+    paths:
+      - 'public-shell-contract.mjs'
+      - 'tests/calculators-navigation.test.mjs'
+      - 'scripts/verify-calculators-navigation.mjs'
+      - '.github/workflows/calculators-navigation.yml'
+permissions:
+  contents: read
+concurrency:
+  group: calculators-navigation-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CALCULATORS_BASELINE: ${{ github.ref == 'refs/heads/fix/calculators-navigation-20260922' && 'e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4' || '' }}
+      CALCULATORS_MODE: ${{ github.ref == 'refs/heads/main' && 'live' || 'preview' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify shared shell, calculators and retained public contracts
+        run: |
+          node --check public-shell-contract.mjs
+          node --test tests/public-shell-contract.test.mjs tests/calculators-navigation.test.mjs tests/public-continuity.test.mjs
+      - name: Install existing browser-test toolchain
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+      - name: Verify real footer and drawer clicks on desktop and phones
+        run: node scripts/verify-calculators-navigation.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: calculators-navigation-${{ github.sha }}
+          path: calculators-navigation-evidence/
+          retention-days: 14
