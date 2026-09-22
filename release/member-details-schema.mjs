@@ -22,9 +22,9 @@ export function assertOnlyAddition(before,after){
  assertExisting(after);assert(after.some(x=>x.type==='table'&&x.name===TABLE));
  assert.deepEqual(after.filter(x=>x.name!==TABLE),before.filter(x=>x.name!==TABLE),'Unrelated database schema changed');
 }
-// --file prints upload progress even with --json in the pinned CLI. The exact
-// small, already-hashed SQL statement uses its command transport instead.
-export function schemaCommandArgs(){assertSchemaFile();return ['d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',sql];}
+// --file prints upload progress even with --json in the pinned CLI. Binding
+// --command=value also keeps leading SQL comments from becoming CLI options.
+export function schemaCommandArgs(){assertSchemaFile();return ['d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command='+sql];}
 function cli(args){return JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args],{encoding:'utf8',maxBuffer:16*1024*1024}));}
 function schema(){const result=cli(['d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',"SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY type,name"]);assert(result.length&&result.every(x=>x.success));return result.flatMap(x=>x.results||[]);}
 async function main(){
