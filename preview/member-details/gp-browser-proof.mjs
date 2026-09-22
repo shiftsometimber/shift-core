@@ -1,5 +1,5 @@
 import {chromium,webkit} from 'playwright';
-import {writeFileSync,mkdirSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import assert from 'node:assert/strict';
 const origin=process.env.PREVIEW_URL;
 assert.equal(origin,'https://shift-stabilisation-preview.matobrien.workers.dev');
@@ -9,7 +9,8 @@ const lookup=origin+'/v1/member/details/gp-search**';
 const result=name=>({practices:[{name,postcode:'SK10 1AA',code:'A12345'}]});
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const values=page=>page.evaluate(()=>Object.fromEntries([...new FormData(document.querySelector('#assessment'))].filter(([,v])=>typeof v==='string')));
-async function start(page){await page.goto(origin+'/__review',{waitUntil:'domcontentloaded'});await page.getByRole('button',{name:'Start a fictional member preview'}).click();await page.waitForURL('**/member/settings#memberDetailsPanel');await page.goto(origin+'/__review/gp-form',{waitUntil:'domcontentloaded'});await page.locator('#assessmentGpLookup').waitFor();}
+const fixture=JSON.parse(readFileSync('work/staging/generated/probe.json','utf8'));
+async function start(page){const r=await page.context().request.post(origin+'/v1/auth/login',{headers:{Origin:origin},data:{email:'probe'+fixture.browserIds[0]+'@example.invalid',password:fixture.password}});assert.equal(r.status(),200,'Seeded fictional GP test sign-in');await page.goto(origin+'/__review/gp-form',{waitUntil:'domcontentloaded'});await page.locator('#assessmentGpLookup').waitFor();}
 for(const [name,engine,size]of [['chromium-desktop',chromium,{width:1365,height:900}],['chromium-phone',chromium,{width:390,height:844}],['webkit-desktop',webkit,{width:1365,height:900}],['webkit-phone',webkit,{width:390,height:844}]]){
  const browser=await engine.launch({headless:true}),context=await browser.newContext({viewport:size}),page=await context.newPage(),row={name,checks:[],errors:[],status:'running'};report.cases.push(row);
  const external=[];page.on('pageerror',e=>row.errors.push(e.message));await page.route('**/*',route=>{if(new URL(route.request().url()).origin!==origin){external.push(new URL(route.request().url()).host);return route.abort();}return route.continue();});
