@@ -1,0 +1,13 @@
+// Public/anonymous exact live delivery proof; no customer credentials or writes.
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import {memberDetailsRuntime,memberDetailsStyles} from '../member-experience/member-details.mjs';
+import {gpFormRuntime} from '../member-experience/gp-form.mjs';
+const base='https://shiftsometimber.co.uk',checks=[],h=s=>createHash('sha256').update(s).digest('hex');
+async function get(path){const r=await fetch(base+path,{signal:AbortSignal.timeout(30000),headers:{'Cache-Control':'no-cache'}});const text=await r.text();return{r,text};}
+for(const[path,expected]of [['/assets/member-experience/member-details.mjs',memberDetailsRuntime],['/assets/member-experience/member-details.css',memberDetailsStyles],['/assets/member-experience/gp-form.mjs',gpFormRuntime]]){const{r,text}=await get(path);assert.equal(r.status,200,path);assert.equal(text,expected,path+' source mismatch');assert.match(r.headers.get('Cache-Control'),/no-store/);checks.push({path,status:r.status,sha256:h(text)});}
+for(const path of ['/v1/member/details','/v1/member/details/gp-search?q=Blackdown','/v1/member/details/address-search?postcode=SW1A%201AA']){const{r}=await get(path);assert.equal(r.status,401,path+' must reject anonymous access');checks.push({path,status:r.status});}
+for(const path of ['/programme','/member-login']){const{r,text}=await get(path);assert.equal(r.status,200);assert.equal(r.headers.get('X-Shift-Startup-Layout'),'stable-v1');if(path==='/programme')assert.equal((text.match(/class="sst-service-bridge"/g)||[]).length,1);else{assert(text.includes('data-login-layout="stable-v1"'));assert(text.includes('data-member-session="pending"'));assert(text.includes('data-forgot-password'));}checks.push({path,status:r.status,layout:r.headers.get('X-Shift-Startup-Layout'),sha256:h(text)});}
+const asset=await get('/analytics-events-v31b.js');assert.equal(asset.r.status,200);assert.equal(asset.r.headers.get('X-Shift-Analytics-Dispatch'),'data-layer-only-v1');assert.equal(h(asset.text),'135750c70453438dadfdfc8ace5027f80de99b12052a27cf65f8e1d791739873');checks.push({path:'/analytics-events-v31b.js',sha256:h(asset.text)});
+mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/member-details-live.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,checks,productionCustomerWrites:0,authenticatedProductionJourney:'not performed by this read-only script'},null,2));console.log('Verified '+checks.length+' exact live asset/layout/anonymous boundaries.');

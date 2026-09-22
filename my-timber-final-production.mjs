@@ -29,6 +29,26 @@ const context=await browser.newContext({viewport:{width:390,height:844},deviceSc
 const page=await context.newPage();
 try{
   await login(page);
+  // PR790: real new fictional-account contact save on production; no customer
+  // account or clinical/payment operation. Existing OIDC/registration guard stays.
+  await page.goto(SITE+'/member/settings#memberDetailsPanel',{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>{const f=document.querySelector('#memberDetailsFields');return f&&!f.disabled},null,{timeout:30000});
+  assert.equal(await page.inputValue('#memberEmail'),email);
+  assert(await page.locator('#memberEmail').getAttribute('readonly')!==null);
+  const contactHeaders={Origin:SITE};
+  const priorState=await context.request.get(SITE+'/v1/member-state'),priorConsents=await context.request.get(SITE+'/v1/consents');
+  const preservedState=await priorState.json(),preservedConsents=await priorConsents.json();
+  await page.fill('#memberAddress1','1 Fictional Release Road');await page.fill('#memberTown','Macclesfield');await page.fill('#memberPostcode','SK10 1AA');await page.fill('#memberPhone','07700 900123');
+  await page.locator('#memberDetailsSave').click();await page.getByText('Member details saved.',{exact:true}).waitFor({timeout:30000});
+  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000});
+  assert.equal(await page.inputValue('#memberAddress1'),'1 Fictional Release Road');assert.equal(await page.inputValue('#memberPhone'),'07700 900123');
+  const liveDetails=await (await context.request.get(SITE+'/v1/member/details')).json();assert.equal(liveDetails.gpLookupConfigured,true);
+  assert.equal(liveDetails.details.address1,'1 Fictional Release Road');
+  assert.deepEqual(await (await context.request.get(SITE+'/v1/member-state')).json(),preservedState);assert.deepEqual(await (await context.request.get(SITE+'/v1/consents')).json(),preservedConsents);
+  await screenshot(page,'00-member-details-live');
+  const logout=await context.request.post(SITE+'/v1/auth/logout',{headers:contactHeaders,data:{}});assert(logout.ok());assert.equal((await context.request.get(SITE+'/v1/member/details')).status(),401);
+  await login(page);await page.goto(SITE+'/member/settings#memberDetailsPanel',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000});assert.equal(await page.inputValue('#memberAddress1'),'1 Fictional Release Road');
+  pass('PR790 real fictional-account details persist after reload and fresh login','Manual home address and phone saved; GP lookup configured; email protected; original preferences/consents unchanged.');
   // Leave the signed-out document before attaching strict listeners: Chromium can
   // otherwise deliver its already-buffered, expected /v1/me 401 after login.
   await page.goto('about:blank');
