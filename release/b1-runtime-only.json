@@ -1,8 +1,8 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "580b23b2fb80b0e6a37543c39943bb560d441d8a",
+  "applicationCommit": "51f50285a7365516fd5ba53f585f7459be47efa4",
   "baseCommit": "a14f759ab8653868c5ef210eff431bdf29bfa106",
-  "reason": "Matt authorises tested PR790 account and frontend repairs. Preserve all green/live functionality. Only the reviewed additive contact table and GP lookup setting are commissioned; no legacy migration, publication, stock/price edit or clinical activation. Retain exact source pin, full preservation, live verification and code-only rollback.",
+  "reason": "Owner-authorised PR790 release follow-through. The first attempt stopped before Worker deployment on progress text emitted by Wrangler file import. The exact same hashed additive statement now uses command JSON; existing table is validated before any idempotent preparation. No website runtime, schema definition, configuration, data policy or release guard is changed by this follow-through.",
   "previewEvidence": {
     "sourceCommit": "d066bfbfd3512cf74ce292a2f86b7595fa9a3d3e",
     "workflowRun": 35777023553,
@@ -16,10 +16,15 @@
       "sha256": "62935660fa882827ef3f1a514d0821963c63852b5feff08588002ef61d33f4c8",
       "conclusion": "success",
       "applicationUnchanged": true
+    },
+    "schemaTransportCorrection": {
+      "applicationCommit": "51f50285a7365516fd5ba53f585f7459be47efa4",
+      "failedBeforeDeploymentRun": 35787622659,
+      "websiteRuntimeUnchanged": true,
+      "schemaDefinitionUnchanged": true,
+      "requiresExactCommandProof": true
     }
   },
-  "runtimeSchemaAdditions": [
-    "member_account_details"
-  ],
+  "runtimeSchemaAdditions": ["member_account_details"],
   "enforceApplicationPin": true
 }
