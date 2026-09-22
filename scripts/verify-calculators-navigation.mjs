@@ -27,6 +27,16 @@ async function dismissCookieNotice(page){
   await acknowledgement.waitFor({state:'hidden'});
  }
 }
+async function followToolsLink(page,link){
+ // These are ordinary document links, including a reload when already on /tools.
+ // Arm the navigation wait before clicking so the next test cannot abort it.
+ await Promise.all([
+  page.waitForNavigation({waitUntil:'domcontentloaded',timeout:60000}),
+  link.click()
+ ]);
+ assert.equal(new URL(page.url()).pathname,'/tools');
+ await page.locator('main').waitFor({state:'visible'});
+}
 try{
  if(live){
   // The existing gated production workflow runs independently after merge.
@@ -83,9 +93,7 @@ try{
     assert.ok(await footer.isVisible(),name+' '+path+' footer visible');
     await footer.click({trial:true});
     if(path==='/')await page.screenshot({path:out+'/'+name+'-footer.png'});
-    await footer.click();
-    await page.waitForURL(origin+'/tools');
-    await page.locator('main').waitFor({state:'visible'});
+    await followToolsLink(page,footer);
     await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:60000});
     await dismissCookieNotice(page);
     await page.locator('button.menu-trigger').click();
@@ -94,9 +102,7 @@ try{
     await drawer.scrollIntoViewIfNeeded();
     assert.ok(await drawer.isVisible(),name+' '+path+' drawer visible');
     if(path==='/')await page.screenshot({path:out+'/'+name+'-drawer.png'});
-    await drawer.click();
-    await page.waitForURL(origin+'/tools');
-    await page.locator('main').waitFor({state:'visible'});
+    await followToolsLink(page,drawer);
     checks.push({path,footerClick:true,drawerClick:true});
    }
    report.browsers.push({name,viewport,checks,pass:true});
