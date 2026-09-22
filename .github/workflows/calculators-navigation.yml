@@ -1,7 +1,7 @@
 name: Calculators navigation verification
 on:
   push:
-    branches: [fix/calculators-navigation-20260922, main]
+    branches: [fix/calculators-navigation-20260922, release/calculators-navigation-20260922, main]
     paths:
       - 'public-shell-contract.mjs'
       - 'public-calculators-menu.mjs'
@@ -11,6 +11,9 @@ on:
       - 'tests/calculators-*.test.mjs'
       - 'scripts/verify-calculators-navigation.mjs'
       - '.github/workflows/calculators-navigation.yml'
+      - 'release/b1-runtime-only.json'
+      - 'scripts/b1-release-scope.mjs'
+      - 'tests/b1-release-scope.test.mjs'
 permissions:
   contents: read
 concurrency:
@@ -21,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      CALCULATORS_BASELINE: ${{ github.ref == 'refs/heads/fix/calculators-navigation-20260922' && 'e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4' || '' }}
+      CALCULATORS_BASELINE: ${{ github.ref != 'refs/heads/main' && 'e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4' || '' }}
       CALCULATORS_MODE: ${{ github.ref == 'refs/heads/main' && 'live' || 'preview' }}
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +34,25 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
+      - name: Verify exact reviewed application and unchanged release safeguards
+        run: |
+          node --test tests/b1-release-scope.test.mjs
+          node scripts/b1-release-scope.mjs
+          git diff --exit-code 962e6c5a55b8cf1e08a1b01fe2762607abfb2208 fe59a3fdc22afa951c10932cb2ba7056ba5d0913
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {readFileSync} from 'node:fs';
+          import {validateScope} from './scripts/b1-release-scope.mjs';
+          const manifest=JSON.parse(readFileSync('release/b1-runtime-only.json'));
+          assert.equal(manifest.enforceApplicationPin,true);
+          assert.deepEqual(manifest.runtimeSchemaAdditions,[]);
+          for(const path of ['public-shell-contract.mjs','public-calculators-menu.mjs','radar-newsroom-menu-v1.js','wrangler.jsonc'])assert.throws(()=>validateScope(manifest,[path]),/drift/);
+          const changes=execFileSync('git',['diff','--name-only',manifest.applicationCommit,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const expected=['.github/workflows/calculators-navigation.yml','release/b1-runtime-only.json','scripts/b1-release-scope.mjs'];
+          assert.deepEqual(changes.sort(),expected.sort());
+          console.log('PASS: exact previously tested application; only the three reviewed release files changed.');
+          NODE
       - name: Verify shared shell, calculators and retained public contracts
         run: |
           node --check public-shell-contract.mjs
@@ -47,5 +69,7 @@ jobs:
         if: always()
         with:
           name: calculators-navigation-${{ github.sha }}
-          path: calculators-navigation-evidence/
+          path: |
+            calculators-navigation-evidence/
+            b1-runtime-release/scope.json
           retention-days: 14
