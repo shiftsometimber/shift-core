@@ -1,4 +1,4 @@
-name: Member details isolated preview # 22 Sep v2
+name: Member details isolated preview
 on:
   push:
     branches: [fix/member-details-20260922]
@@ -14,23 +14,47 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      WRANGLER_SEND_METRICS: 'false'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
       - run: npm ci --no-audit --no-fund
+      - name: Retain exact source and installed toolchain for reproducible local review
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/member-details-source
+          git archive --format=tar.gz --output=/tmp/member-details-source/source.tar.gz HEAD
+          tar -czf /tmp/member-details-source/node_modules.tar.gz node_modules
+          git rev-parse HEAD > /tmp/member-details-source/source-sha.txt
+          sha256sum /tmp/member-details-source/*.tar.gz > /tmp/member-details-source/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: member-details-exact-source-${{ github.run_id }}
+          retention-days: 7
+          compression-level: 0
+          path: /tmp/member-details-source/
       - name: Focused source and member regressions
         run: |
           set -euo pipefail
+          mkdir -p work/staging/generated/review-evidence
           node --check member-experience/member-details.mjs
-          node --test member-experience/tests/*.test.mjs
+          node --test member-experience/tests/*.test.mjs 2>&1 | tee work/staging/generated/review-evidence/member-tests.tap
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
       - name: Prepare isolated fictional-account preview
-        run: node preview/stabilisation/prepare.mjs
+        run: |
+          node preview/stabilisation/prepare.mjs
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const path='work/staging/generated/config.json',c=JSON.parse(fs.readFileSync(path));
+          c.compatibility_flags=[...new Set([...(c.compatibility_flags||[]),'nodejs_compat'])];
+          fs.writeFileSync(path,JSON.stringify(c,null,2));
+          JS
       - name: Provision preview-only databases
         run: node preview/stabilisation/provision.mjs
       - name: Deploy isolated preview
@@ -41,12 +65,29 @@ jobs:
           node --input-type=module - <<'JS'
           import fs from 'node:fs';import assert from 'node:assert/strict';
           const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
-          assert.equal(c.name,'shift-stabilisation-preview');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email);
+          assert.equal(c.name,'shift-stabilisation-preview');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
           JS
-          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json | tee "$RUNNER_TEMP/deploy.txt"
-          grep -Eo 'https://shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev' "$RUNNER_TEMP/deploy.txt" | head -1 | sed 's#$#/__review#' >> "$GITHUB_STEP_SUMMARY"
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/deploy.txt" 2>&1 || { tail -n 80 "$RUNNER_TEMP/deploy.txt"; exit 1; }
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const text=fs.readFileSync(process.env.RUNNER_TEMP+'/deploy.txt','utf8');
+          const url=text.match(/https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev/)?.[0];
+          if(!url)throw Error('Preview deployment URL absent');
+          fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+url+'\nPREVIEW_SOURCE_SHA='+process.env.GITHUB_SHA+'\n');
+          fs.writeFileSync('work/staging/generated/review-evidence/deployment.json',JSON.stringify({previewOnly:true,url,source:process.env.GITHUB_SHA,productionWrites:0},null,2));
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'Preview only: '+url+'/__review\nSource: '+process.env.GITHUB_SHA+'\nAcceptance remains pending browser evidence.');
+          JS
       - name: Hosted member browser proof
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
           node preview/stabilisation/browser-proof.mjs
+      - name: Retain preview evidence including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: member-details-preview-evidence-${{ github.run_id }}
+          retention-days: 14
+          path: work/staging/generated/review-evidence/**
+          if-no-files-found: warn
