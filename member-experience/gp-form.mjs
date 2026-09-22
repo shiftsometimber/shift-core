@@ -8,7 +8,9 @@ const host=document.createElement('div');host.id='assessmentGpLookup';
 host.innerHTML='<p id="assessmentGpHelp" role="status" aria-live="polite">Type three or more letters for NHS GP practice suggestions in England and Wales. Manual entry always works.</p><label id="assessmentGpChoice" hidden>Choose a matching GP practice<select id="assessmentGpSelect"><option value="">Choose a practice…</option></select></label>';
 practice.closest('label').after(host);
 const help=host.querySelector('p'),choice=host.querySelector('label'),select=host.querySelector('select');
-host.style.maxWidth='100%';select.style.maxWidth='100%';select.style.minHeight='44px';
+// Keep native select option widths from widening the existing GP fieldset.
+host.style.contain='inline-size';host.style.width='100%';host.style.minWidth='0';host.style.maxWidth='100%';
+select.style.width='100%';select.style.minWidth='0';select.style.maxWidth='100%';select.style.boxSizing='border-box';select.style.minHeight='44px';
 function visible(show){choice.hidden=!show;choice.style.display=show?'block':'none';}visible(false);
 practice.setAttribute('aria-describedby',[practice.getAttribute('aria-describedby'),help.id].filter(Boolean).join(' '));
 let timer=null,serial=0,controller=null,results=[];
