@@ -1,0 +1,97 @@
+name: Closeout bounded repair proof
+on:
+  push:
+    branches: [fix/member-details-20260922]
+    paths: ['.github/workflows/closeout-repair.yml','activation-measurement/single-dispatch.mjs','public-startup-stability.mjs','preview/member-details/repair-proof.mjs']
+permissions:
+  contents: write
+concurrency:
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Integrate only the two exact reviewed source call sites
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/member-details-20260922
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import{createHash}from'node:crypto';
+          const hash=s=>createHash('sha256').update(s).digest('hex');
+          const patches=[
+          ['worker-entry-v6.js','d23bfe66bee16350cfe4fb2456c708ea72605ba6418f49c23ef4d628dfda6c18','2243da110a8a5007336bf8150a68df841e70f077e065540f202288ee372ceff4',"import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';\nimport {withStartupStability} from './public-startup-stability.mjs';\n","return env.MY_TIMBER_PWA_ENABLED==='true'?withPwa(request,final):final;","return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));"],
+          ['preview/member-details/worker.mjs','4ddf14cfe9d8ee58ee472f572a8b24829dc322ddf71811800425f9b1194428cf','2844a579448bd69a05fbea7ead2323dcb2be0bafed9ffd499a51df32d662064c',"import {singleDispatchHtmlAsset} from '../../activation-measurement/single-dispatch.mjs';\nimport {withStartupStability} from '../../public-startup-stability.mjs';\n","return withPwa(request,await staging.fetch(request,env,ctx));","return withStartupStability(request,await singleDispatchHtmlAsset(request,await withPwa(request,await staging.fetch(request,env,ctx))));"]];
+          for(const[path,before,after,prefix,old,replacement]of patches){const text=fs.readFileSync(path,'utf8');if(hash(text)===after)continue;assert.equal(hash(text),before,path+' source drift');assert.equal(text.split(old).length,2);const next=prefix+text.replace(old,replacement);assert.equal(hash(next),after);fs.writeFileSync(path,next);}
+          JS
+          if ! git diff --quiet -- worker-entry-v6.js preview/member-details/worker.mjs; then
+            git config user.name 'SHIFT preview verification'
+            git config user.email 'it@shiftsometimber.co.uk'
+            git add worker-entry-v6.js preview/member-details/worker.mjs
+            git commit -m 'Wire only the verified analytics dispatch and startup presentation repairs'
+            git push origin HEAD:refs/heads/fix/member-details-20260922
+          fi
+          echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Source and member regressions
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/shift-closeout
+          npm ci --no-audit --no-fund
+          node --test member-experience/tests/*.test.mjs activation-measurement/analytics.test.mjs > /tmp/shift-closeout/tests.tap
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/shift-compile > /tmp/shift-closeout/compile.txt 2>&1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Prepare and provision the existing isolated fictional preview
+        run: |
+          node preview/member-details/prepare.mjs
+          node preview/member-details/provision.mjs
+      - name: Guard and deploy preview only
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/member-details-20260922
+          test "$(git ls-remote origin refs/heads/fix/member-details-20260922 | cut -f1)" = "$PREVIEW_SOURCE_SHA"
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);
+          JS
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > /tmp/shift-closeout/preview-deploy.txt 2>&1
+          echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
+      - name: Browser regressions and actual repaired-event/layout comparisons
+        run: |
+          set -euo pipefail
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+          node preview/member-details/browser-proof.mjs
+          node preview/member-details/gp-browser-proof.mjs
+          node preview/member-details/repair-proof.mjs
+      - name: Retain all completed and failed evidence
+        if: always()
+        run: |
+          mkdir -p /tmp/shift-closeout
+          git rev-parse HEAD > /tmp/shift-closeout/source-sha.txt
+          git archive --format=tar.gz --output=/tmp/shift-closeout/source.tar.gz HEAD
+          if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence /tmp/shift-closeout/; fi
+          if test -d /tmp/shift-repair-proof; then cp -R /tmp/shift-repair-proof /tmp/shift-closeout/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: closeout-repair-${{ github.run_id }}
+          retention-days: 14
+          path: /tmp/shift-closeout
+          if-no-files-found: error
