@@ -1,0 +1,48 @@
+name: Member details isolated preview
+on:
+  push:
+    branches: [fix/member-details-20260922]
+permissions:
+  contents: read
+concurrency:
+  group: member-details-preview-20260922
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Focused source and member regressions
+        run: |
+          set -euo pipefail
+          node --check member-experience/member-details.mjs
+          node --test member-experience/tests/*.test.mjs
+      - name: Prepare isolated fictional-account preview
+        run: node preview/stabilisation/prepare.mjs
+      - name: Provision preview-only databases
+        run: node preview/stabilisation/provision.mjs
+      - name: Deploy isolated preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email);
+          JS
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json | tee "$RUNNER_TEMP/deploy.txt"
+          grep -Eo 'https://shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev' "$RUNNER_TEMP/deploy.txt" | head -1 | sed 's#$#/__review#' >> "$GITHUB_STEP_SUMMARY"
+      - name: Hosted member browser proof
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+          node preview/stabilisation/browser-proof.mjs
