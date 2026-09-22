@@ -38,3 +38,5 @@ for(const [name,engine,size]of [['chromium-desktop',chromium,{width:1365,height:
  finally{await context.close();await browser.close();writeFileSync(dir+'/gp-form-browser.json',JSON.stringify(report,null,2));}
 }
 console.log(JSON.stringify(report,null,2));if(report.failures.length)process.exitCode=1;
+// Continue the authorised evidence-only close-out after the retained GP matrix.
+await import('./assurance-proof.mjs');
