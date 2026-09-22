@@ -16,3 +16,12 @@ assert.equal(login.split(":'/member/work'").length-1,1,'Unexpected staging landi
 writeFileSync(loginPath,login.replace(":'/member/work'",":'/member/dashboard'"));
 mkdirSync(dir+'/review-evidence',{recursive:true});
 console.log('Prepared account-details preview from pinned current sources, no production bindings.');
+
+// Lookup-only rendering of the current clinical form; its production handler is not run.
+let assessment=readFileSync('frontend/member/treatment-assessment.html','utf8');
+assert.equal((assessment.match(/<script src="\/treatment-assessment\.js[^>]*><\/script>/g)||[]).length,1);
+assessment=assessment.replace(/<script src="\/treatment-assessment\.js[^>]*><\/script>/,'');
+assessment=assessment.replace('<form id="assessment"','<form method="post" action="/__preview/clinical-disabled" id="assessment"');
+assessment=assessment.replace('<button type="submit">','<button type="submit" disabled>');
+assessment=assessment.replace('<main>','<main><p role="note"><strong>FICTIONAL LOOKUP PREVIEW ONLY. Clinical submission and payment are disabled. Use fictional details only.</strong> <a href="/__review">Back to review</a></p>');
+writeFileSync(dir+'/assets/review-gp-assessment.html',assessment);

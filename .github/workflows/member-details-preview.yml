@@ -106,6 +106,8 @@ jobs:
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
           node preview/member-details/browser-proof.mjs
+      - name: Verify GP form rollout without clinical submission
+        run: node preview/member-details/gp-browser-proof.mjs
       - name: Retain exact candidate and all passing or failing evidence
         if: always()
         shell: bash
