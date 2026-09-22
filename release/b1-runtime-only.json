@@ -8,7 +8,15 @@
     "workflowRun": 35777023553,
     "artifactId": 10716881317,
     "sha256": "265c7406491483190517b2ecdff1d549bdefbe7774ccd81420a297880ebb6c52",
-    "finalReadinessRun": "35785107012"
+    "preparationRun": 35785107012,
+    "finalReadiness": {
+      "sourceCommit": "53b02fd69a08c10082d61aa2d8097afd03bcc3f1",
+      "workflowRun": 35785367345,
+      "artifactId": 10720642344,
+      "sha256": "62935660fa882827ef3f1a514d0821963c63852b5feff08588002ef61d33f4c8",
+      "conclusion": "success",
+      "applicationUnchanged": true
+    }
   },
   "runtimeSchemaAdditions": [
     "member_account_details"
