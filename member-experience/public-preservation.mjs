@@ -1,3 +1,4 @@
+import {preserveCalculatorsNavigation} from '../public-calculators-preservation.mjs';
 import {preserveNutritionSignposting} from '../public-nutrition-mytimber.mjs';
 import {preservePwaPresentation} from '../my-timber-pwa/preservation.mjs';
 import {preserveTreatmentCentreAccuracy} from '../public-promise-preservation.mjs';
@@ -28,6 +29,7 @@ for(const path of paths){
  preserved=preserveServiceBridgePaint(preserveLoginSession(path,preserved),{required:Boolean(before)});
  preserved=preserveTreatmentCentreAccuracy(path,preserved,{required:Boolean(before)});
  preserved=preserveNutritionSignposting(path,preserved);
+ preserved=preserveCalculatorsNavigation(path,preserved,{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';
