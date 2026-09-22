@@ -4,6 +4,8 @@ on:
     branches: [fix/calculators-navigation-20260922, main]
     paths:
       - 'public-shell-contract.mjs'
+      - 'public-calculators-menu.mjs'
+      - 'radar-newsroom-menu-v1.js'
       - 'public-calculators-preservation.mjs'
       - 'member-experience/public-preservation.mjs'
       - 'tests/calculators-*.test.mjs'
@@ -33,6 +35,7 @@ jobs:
         run: |
           node --check public-shell-contract.mjs
           node --check public-calculators-preservation.mjs
+          node --check public-calculators-menu.mjs
           node --test tests/public-shell-contract.test.mjs tests/calculators-*.test.mjs tests/public-continuity.test.mjs
       - name: Install existing browser-test toolchain
         run: |
