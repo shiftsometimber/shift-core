@@ -1,8 +1,8 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "51f50285a7365516fd5ba53f585f7459be47efa4",
+  "applicationCommit": "b0d765029047e9ec655038e1ab32fd9c7b1dbabe",
   "baseCommit": "a14f759ab8653868c5ef210eff431bdf29bfa106",
-  "reason": "Owner-authorised PR790 release follow-through. The first attempt stopped before Worker deployment on progress text emitted by Wrangler file import. The exact same hashed additive statement now uses command JSON; existing table is validated before any idempotent preparation. No website runtime, schema definition, configuration, data policy or release guard is changed by this follow-through.",
+  "reason": "Owner-authorised PR790 release follow-through. The first attempt stopped before Worker deployment on progress text emitted by Wrangler file import. The exact same hashed additive statement now uses a bound command JSON argument, preserving leading SQL comments. Existing table is validated before idempotent preparation. Website runtime, schema definition, configuration, data policy and release guards are unchanged.",
   "previewEvidence": {
     "sourceCommit": "d066bfbfd3512cf74ce292a2f86b7595fa9a3d3e",
     "workflowRun": 35777023553,
@@ -18,8 +18,9 @@
       "applicationUnchanged": true
     },
     "schemaTransportCorrection": {
-      "applicationCommit": "51f50285a7365516fd5ba53f585f7459be47efa4",
+      "applicationCommit": "b0d765029047e9ec655038e1ab32fd9c7b1dbabe",
       "failedBeforeDeploymentRun": 35787622659,
+      "retainedPreviewTransportFailure": 35788608697,
       "websiteRuntimeUnchanged": true,
       "schemaDefinitionUnchanged": true,
       "requiresExactCommandProof": true
