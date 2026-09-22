@@ -1,4 +1,4 @@
-name: Member details isolated preview
+name: Member details isolated preview # 22 Sep
 on:
   push:
     branches: [fix/member-details-20260922]
