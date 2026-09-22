@@ -13,7 +13,7 @@ html body[data-login-layout="stable-v1"] #memberSessionStatus{position:absolute;
 export function stabilisePublicHtml(path,html){
  if(!html.includes('</head>'))return html;
  if(['/programme','/programme.html'].includes(path)){
-  if(html.includes('data-programme-layout="stable-v1"')||html.includes('class="sst-service-bridge"')||!html.includes('data-template="shift-programme"')||!html.includes('<main class="programme-five-beat" id="main-content">')||html.split(intro).length!==2)return html;
+  if(html.includes('data-programme-layout="stable-v1"')||html.includes('class="sst-service-bridge"')||!html.includes('data-template="shift-programme"')||!/<main\b(?=[^>]*\bid="main-content")(?=[^>]*\bclass="programme-five-beat")[^>]*>/.test(html)||html.split(intro).length!==2)return html;
   return html.replace(intro,intro+programmeBridge).replace('</head>','<link data-programme-layout="stable-v1" rel="stylesheet" href="/assets/shift-service-bridge-v1.css?v=2"></head>');
  }
  if(['/member-login','/member-login.html'].includes(path)){
