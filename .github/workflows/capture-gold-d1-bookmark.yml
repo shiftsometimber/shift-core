@@ -1,0 +1,35 @@
+name: Capture GOLD D1 restore bookmark
+on:
+  push:
+    branches: [backup/production-good-20260922-1032]
+    paths: [.github/workflows/capture-gold-d1-bookmark.yml]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: backup/production-good-20260922-1032
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Read current production D1 bookmark only
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN"
+          node node_modules/wrangler/bin/wrangler.js d1 time-travel info shift-core-db --json > d1-gold-bookmark.json
+          node node_modules/wrangler/bin/wrangler.js d1 info shift-core-db --json > d1-gold-info.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gold-d1-restore-point-20260922
+          retention-days: 90
+          path: |
+            d1-gold-bookmark.json
+            d1-gold-info.json
