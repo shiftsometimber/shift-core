@@ -96,7 +96,7 @@ export async function memberExperienceEntry(request, env, response) {
   }
   if(name==='dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/day-guide.css"><script defer src="/assets/member-experience/day-guide.mjs"></script></body>');
   if(name==='dashboard')html=html.replace('</body>','<script defer src="/assets/member-experience/continuity-exposure.mjs"></script></body>');
-  if(name === 'settings') html=withAccountDeletion(withUnitSettings(withPasswordSettings(html)));
+  if(name === 'settings') html=withMemberDetails(withAccountDeletion(withUnitSettings(withPasswordSettings(html))));
   html=addMemberChrome(html,name);
   if(!env.MEMBER_SESSION_REVIEW_ONLY)html=withSessionState(html);
   const headers = new Headers(response.headers);

@@ -1,3 +1,5 @@
+import {memberDetailsRoute,appendMemberDetailsExport} from './member-experience/member-details-routes.mjs';
+import {memberDetailsLookupRoute} from './member-experience/member-details-lookups.mjs';
 import {pwaAssets,withPwa} from './my-timber-pwa/presentation.mjs';
 import {pwaReminderRoutes,runPwaReminders,appendPwaExport} from './my-timber-pwa/reminders.mjs';
 import {withNutritionSignposting} from './public-nutrition-mytimber.mjs';
@@ -897,6 +899,10 @@ const worker = {
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
     if (grubWorkspace) return withMemberCors(grubWorkspace, request);
+    const accountDetails = await memberDetailsRoute(request, env);
+    if (accountDetails) return accountDetails;
+    const accountLookup = await memberDetailsLookupRoute(request, env);
+    if (accountLookup) return accountLookup;
     const fastMemberState = await fastMemberStateRoute(request, env);
     if (fastMemberState) return withMemberCors(fastMemberState, request);
     const myJourney = await myJourneyRoutes(request, env);
@@ -972,6 +978,7 @@ const worker = {
       await hq.fetch(request, env, ctx),
     );
     fallback = await appendHealthExport(request, env, fallback);
+    fallback = await appendMemberDetailsExport(request, env, fallback);
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
