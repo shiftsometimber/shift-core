@@ -63,6 +63,14 @@ export const memberDetailsStyles=String.raw`
 #memberDetailsPanel .md-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 #memberDetailsPanel #memberDetailsStatus{min-height:24px;font-weight:700;margin-bottom:0}
 #memberDetailsPanel .md-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+/* Retained theme styles use important rules. Define both sides of the colour
+   pair only on this new card; never recolour the shared shell or old settings. */
+html body[data-member-page="settings"] #memberDetailsPanel{background:#050505!important;color:#e7e3da!important}
+html body[data-member-page="settings"] #memberDetailsPanel :is(h2,h3,p,label,legend,small,span,a){color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important}
+html body[data-member-page="settings"] #memberDetailsPanel :is(input,select){background:#e7e3da!important;color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body[data-member-page="settings"] #memberDetailsPanel button{background:#e7e3da!important;color:#050505!important;-webkit-text-fill-color:#050505!important;border-color:#707762!important;opacity:1!important}
+html body[data-member-page="settings"] #memberDetailsPanel button:disabled{border-style:dashed!important;cursor:not-allowed}
+html body[data-member-page="settings"] #memberDetailsPanel :is(input,select,button,a):focus-visible{outline-color:#e7e3da!important;box-shadow:none!important}
 #memberDetailsPanel [hidden]{display:none!important}
 @media(max-width:600px){#memberDetailsPanel{padding:20px 16px}#memberDetailsPanel h2{font-size:28px}#memberDetailsPanel .md-grid{grid-template-columns:1fr}#memberDetailsPanel .md-postcode{grid-template-columns:1fr;gap:0}#memberDetailsPanel .md-actions>button,#memberDetailsPanel .md-postcode button{width:100%}}
 `;
