@@ -1,14 +1,25 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "fe59a3fdc22afa951c10932cb2ba7056ba5d0913",
-  "baseCommit": "e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4",
-  "reason": "Matt requested restoration of Calculators & Tools in the public footer and Menu. PR #787 contains that repair and its tests; preview source 962e6c5a55b8cf1e08a1b01fe2762607abfb2208 passed workflow 35697884843 with eight public page samples and thirty successful footer/drawer navigations across desktop Chromium, phone Chromium and phone WebKit. This manifest pins the resulting squash-merged application exactly, without relaxing source-drift checks or enabling publication, migrations or catalogue writes. Preserve all existing My Timber/PWA repairs, Pages, prices, stock, services, customer/member records and other public content.",
+  "applicationCommit": "580b23b2fb80b0e6a37543c39943bb560d441d8a",
+  "baseCommit": "a14f759ab8653868c5ef210eff431bdf29bfa106",
+  "reason": "Matt authorises tested PR790 account and frontend repairs. Preserve all green/live functionality. Only the reviewed additive contact table and GP lookup setting are commissioned; no legacy migration, publication, stock/price edit or clinical activation. Retain exact source pin, full preservation, live verification and code-only rollback.",
   "previewEvidence": {
-    "sourceCommit": "962e6c5a55b8cf1e08a1b01fe2762607abfb2208",
-    "workflowRun": 35697884843,
-    "artifactId": 10681467089,
-    "sha256": "08024895a97c817edfab6056ab0e843f08957a59fcd1994b04643ab1ec0b37d1"
+    "sourceCommit": "d066bfbfd3512cf74ce292a2f86b7595fa9a3d3e",
+    "workflowRun": 35777023553,
+    "artifactId": 10716881317,
+    "sha256": "265c7406491483190517b2ecdff1d549bdefbe7774ccd81420a297880ebb6c52",
+    "preparationRun": 35785107012,
+    "finalReadiness": {
+      "sourceCommit": "53b02fd69a08c10082d61aa2d8097afd03bcc3f1",
+      "workflowRun": 35785367345,
+      "artifactId": 10720642344,
+      "sha256": "62935660fa882827ef3f1a514d0821963c63852b5feff08588002ef61d33f4c8",
+      "conclusion": "success",
+      "applicationUnchanged": true
+    }
   },
-  "runtimeSchemaAdditions": [],
+  "runtimeSchemaAdditions": [
+    "member_account_details"
+  ],
   "enforceApplicationPin": true
 }

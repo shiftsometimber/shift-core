@@ -17,6 +17,7 @@ import {healthRuntime} from './health-runtime.mjs';
 import {fitRuntime} from './fit-approved-runtime.mjs';
 import {grubIntelligenceCSS} from './grub-intelligence-client.mjs';
 import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.mjs';
+import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -37,6 +38,8 @@ export function memberExperienceRoutes(request, env) {
   if(path==='/assets/member-experience/unit-settings.mjs')return new Response(request.method==='HEAD'?null:unitSettingsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/account-deletion.mjs')return new Response(request.method==='HEAD'?null:accountDeletionRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/password-settings.mjs')return new Response(request.method==='HEAD'?null:passwordSettingsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/assets/member-experience/member-details.mjs')return new Response(request.method==='HEAD'?null:memberDetailsRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/assets/member-experience/member-details.css')return new Response(request.method==='HEAD'?null:memberDetailsStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/home-art.webp')return new Response(request.method==='HEAD'?null:Uint8Array.from(atob(homeArt.split(',')[1]),c=>c.charCodeAt(0)),{headers:{...privateHeaders,'Content-Type':'image/webp'}});
   if(path==='/assets/member-experience/home.css')return new Response(request.method==='HEAD'?null:homeStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if (['/member/journey','/member/journey.html'].includes(path)) {
@@ -93,7 +96,7 @@ export async function memberExperienceEntry(request, env, response) {
   }
   if(name==='dashboard')html=html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/day-guide.css"><script defer src="/assets/member-experience/day-guide.mjs"></script></body>');
   if(name==='dashboard')html=html.replace('</body>','<script defer src="/assets/member-experience/continuity-exposure.mjs"></script></body>');
-  if(name === 'settings') html=withAccountDeletion(withUnitSettings(withPasswordSettings(html)));
+  if(name === 'settings') html=withMemberDetails(withAccountDeletion(withUnitSettings(withPasswordSettings(html))));
   html=addMemberChrome(html,name);
   if(!env.MEMBER_SESSION_REVIEW_ONLY)html=withSessionState(html);
   const headers = new Headers(response.headers);

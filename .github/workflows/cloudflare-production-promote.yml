@@ -209,7 +209,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs
+          node --test tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs
@@ -367,13 +367,18 @@ jobs:
         run: npx wrangler d1 execute DB --remote --config wrangler.jsonc --file member-experience/checkin-followup.sql
       - name: Capture protected catalogue and stock without customer records
         run: node scripts/b1-release-scope.mjs --snapshot before
+      - name: Prepare only the explicitly approved Member Details contact table
+        run: node release/member-details-schema.mjs
       - name: Deploy current main to production
+        id: runtime_deploy
         run: |
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Verify exact Member Details and frontend repair delivery
+        run: node release/member-details-live.mjs
       - name: Publish the exact owner-approved illustrated Wegovy guide
         if: steps.scope.outputs.runtime_only != 'true'
         run: node babylove/publish-approved-article.mjs
@@ -538,6 +543,9 @@ jobs:
 
       - name: Verify B1 protected catalogue and stock remain identical
         run: node scripts/b1-release-scope.mjs --snapshot after
+      - name: Restore the captured runtime if a post-deployment gate failed
+        if: ${{ failure() && steps.runtime_deploy.outcome == 'success' }}
+        run: node release/member-details-rollback.mjs
       - name: Retain B1 runtime-only release evidence
         if: always()
         uses: actions/upload-artifact@v4

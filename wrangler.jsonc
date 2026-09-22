@@ -533,6 +533,7 @@
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
     "MY_TIMBER_PWA_ENABLED": "true",
+    "MEMBER_GP_LOOKUP_ENABLED": "true",
     "BABYLOVE_WEBHOOK_TOKEN_SHA256": "ab300f37dbd07d803773ecd6a8bd8f8225d60fbfa67e897af124fa809f34f088",
     "MEMBER_EXPERIENCE_V1_ENABLED": "true",
     "HEALTH_PASSPORT_V1_ENABLED": "true",

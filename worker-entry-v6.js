@@ -1,3 +1,7 @@
+import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';
+import {withStartupStability} from './public-startup-stability.mjs';
+import {memberDetailsRoute,appendMemberDetailsExport} from './member-experience/member-details-routes.mjs';
+import {memberDetailsLookupRoute} from './member-experience/member-details-lookups.mjs';
 import {pwaAssets,withPwa} from './my-timber-pwa/presentation.mjs';
 import {pwaReminderRoutes,runPwaReminders,appendPwaExport} from './my-timber-pwa/reminders.mjs';
 import {withNutritionSignposting} from './public-nutrition-mytimber.mjs';
@@ -897,6 +901,10 @@ const worker = {
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
     if (grubWorkspace) return withMemberCors(grubWorkspace, request);
+    const accountDetails = await memberDetailsRoute(request, env);
+    if (accountDetails) return accountDetails;
+    const accountLookup = await memberDetailsLookupRoute(request, env);
+    if (accountLookup) return accountLookup;
     const fastMemberState = await fastMemberStateRoute(request, env);
     if (fastMemberState) return withMemberCors(fastMemberState, request);
     const myJourney = await myJourneyRoutes(request, env);
@@ -972,6 +980,7 @@ const worker = {
       await hq.fetch(request, env, ctx),
     );
     fallback = await appendHealthExport(request, env, fallback);
+    fallback = await appendMemberDetailsExport(request, env, fallback);
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
@@ -1166,6 +1175,6 @@ export default {
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
     const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
-    return env.MY_TIMBER_PWA_ENABLED==='true'?withPwa(request,final):final;
+    return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));
   },
 };
