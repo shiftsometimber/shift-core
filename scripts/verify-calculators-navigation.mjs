@@ -81,21 +81,23 @@ try{
   let page;
   try{
    const context=await browser.newContext({viewport});
-   // Serve only captured documents and the candidate shared navigation asset.
-   // Block writes and third-party tracking. Live mode makes no content changes.
+   // Preview substitutes candidate documents and the candidate navigation asset.
+   // Live GETs go directly to production, retaining real response/security headers.
+   // Both modes block writes and third-party tracking.
    await context.route('**/*',async route=>{
     const request=route.request();
     const url=new URL(request.url());
     if(!['GET','HEAD'].includes(request.method()))return route.abort();
     if(url.origin!==origin)return route.abort();
-    if(request.isNavigationRequest()&&pages.has(url.pathname))return route.fulfill({status:200,contentType:'text/html',body:pages.get(url.pathname)});
-    if(url.pathname==='/assets/v42.js')return route.fulfill({status:200,contentType:'application/javascript',body:candidateAsset});
+    if(!live&&request.isNavigationRequest()&&pages.has(url.pathname))return route.fulfill({status:200,contentType:'text/html',body:pages.get(url.pathname)});
+    if(!live&&url.pathname==='/assets/v42.js')return route.fulfill({status:200,contentType:'application/javascript',body:candidateAsset});
     return route.continue();
    });
    page=await context.newPage();
    page.setDefaultTimeout(15000);
    const checks=[];
    for(const path of ['/','/tools','/programme','/shift-health','/articles/mounjaro-cost-uk']){
+    console.log('Checking '+name+' '+path);
     await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:60000});
     await dismissCookieNotice(page);
     const footer=page.locator('footer.site-footer a[href="/tools"]');
@@ -121,7 +123,10 @@ try{
    report.browsers.push({name,viewport,checks,pass:true});
    await context.close();
   }catch(error){
-   if(page&&!page.isClosed())await page.screenshot({path:out+'/'+name+'-failure.png'}).catch(()=>{});
+   if(page&&!page.isClosed()){
+    await page.screenshot({path:out+'/'+name+'-failure.png'}).catch(()=>{});
+    await writeFile(out+'/'+name+'-failure.html',await page.content()).catch(()=>{});
+   }
    throw error;
   }finally{await browser.close();}
  }
