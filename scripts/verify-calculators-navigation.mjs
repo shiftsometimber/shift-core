@@ -3,8 +3,10 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {chromium,webkit} from 'playwright';
 import {reconcilePublicDocument} from '../public-shell-contract.mjs';
+import {CALCULATORS_MENU_SCRIPT} from '../public-calculators-menu.mjs';
 
-// Read-only verification. Preview uses actual public HTML and the candidate shell.
+// Read-only verification. Preview uses actual public HTML, the candidate shell
+// and the candidate addition to the existing v42 asset. Live mode changes none.
 // No sign-in, form submission, customer writes or production configuration changes.
 const origin='https://shiftsometimber.co.uk';
 const live=process.env.CALCULATORS_MODE==='live';
@@ -65,19 +67,27 @@ try{
   await writeFile(out+'/'+slug(path)+'.html',html);
   report.pages.push({path,status:response.status,originalSHA256:digest(before),verifiedSHA256:digest(html),worker:response.headers.get('x-shift-build')||response.headers.get('x-shift-source-sha'),pass:true});
  }
+ const assetResponse=await fetch(origin+'/assets/v42.js',{signal:AbortSignal.timeout(45000)});
+ assert.equal(assetResponse.status,200,'existing shared navigation asset');
+ const originalAsset=await assetResponse.text();
+ const candidateAsset=live?originalAsset:originalAsset+'\n'+CALCULATORS_MENU_SCRIPT;
+ if(live)assert.ok(originalAsset.includes(CALCULATORS_MENU_SCRIPT),'Production browser-menu repair must be present, not injected by the test.');
+ await writeFile(out+'/v42.js',candidateAsset);
+ report.navigationAsset={path:'/assets/v42.js',originalSHA256:digest(originalAsset),verifiedSHA256:digest(candidateAsset),candidateApplied:!live};
  for(const [name,engine,viewport] of [['desktop-chromium',chromium,{width:1440,height:1000}],['phone-chromium',chromium,{width:375,height:812}],['phone-webkit',webkit,{width:390,height:844}]]){
   const browser=await engine.launch({headless:true});
   let page;
   try{
    const context=await browser.newContext({viewport});
-   // Serve the captured candidate only for public document GETs; other resources
-   // retain their production origin. Block writes and third-party tracking.
+   // Serve only captured documents and the candidate shared navigation asset.
+   // Block writes and third-party tracking. Live mode makes no content changes.
    await context.route('**/*',async route=>{
     const request=route.request();
     const url=new URL(request.url());
     if(!['GET','HEAD'].includes(request.method()))return route.abort();
     if(url.origin!==origin)return route.abort();
     if(request.isNavigationRequest()&&pages.has(url.pathname))return route.fulfill({status:200,contentType:'text/html',body:pages.get(url.pathname)});
+    if(url.pathname==='/assets/v42.js')return route.fulfill({status:200,contentType:'application/javascript',body:candidateAsset});
     return route.continue();
    });
    page=await context.newPage();
@@ -99,6 +109,7 @@ try{
     await page.locator('button.menu-trigger').click();
     const drawer=page.locator('#site-drawer a[href="/tools"]');
     assert.equal(await drawer.count(),1,name+' '+path+' drawer count');
+    assert.equal((await drawer.textContent()).trim(),'Calculators & Tools');
     await drawer.scrollIntoViewIfNeeded();
     assert.ok(await drawer.isVisible(),name+' '+path+' drawer visible');
     if(path==='/')await page.screenshot({path:out+'/'+name+'-drawer.png'});
