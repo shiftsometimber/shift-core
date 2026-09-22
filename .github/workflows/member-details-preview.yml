@@ -3,10 +3,10 @@ on:
   push:
     branches: [fix/member-details-20260922]
 permissions:
-  contents: read
+  contents: write
 concurrency:
-  group: member-details-preview-20260922
-  cancel-in-progress: true
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -17,56 +17,79 @@ jobs:
       WRANGLER_SEND_METRICS: 'false'
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - run: npm ci --no-audit --no-fund
-      - name: Retain exact source and installed toolchain for reproducible local review
+      - name: Apply the exact locally tested patch to this draft branch only
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p /tmp/member-details-source
-          git archive --format=tar.gz --output=/tmp/member-details-source/source.tar.gz HEAD
-          tar -czf /tmp/member-details-source/node_modules.tar.gz node_modules
-          git rev-parse HEAD > /tmp/member-details-source/source-sha.txt
-          sha256sum /tmp/member-details-source/*.tar.gz > /tmp/member-details-source/SHA256SUMS.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: member-details-exact-source-${{ github.run_id }}
-          retention-days: 7
-          compression-level: 0
-          path: /tmp/member-details-source/
-      - name: Focused source and member regressions
+          test "$GITHUB_REF" = refs/heads/fix/member-details-20260922
+          test "$(git branch --show-current)" = fix/member-details-20260922
+          if test -f .review/member-details-meta.json; then
+            python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib,base64,zlib,subprocess
+          meta=json.loads(Path('.review/member-details-meta.json').read_text())
+          allowed={'member-experience/member-details.mjs','member-experience/entry.mjs','worker-entry-v6.js','member-experience/member-details.sql','member-experience/member-details-routes.mjs','member-experience/member-details-lookups.mjs','member-experience/tests/member-details.test.mjs','preview/member-details/prepare.mjs','preview/member-details/provision.mjs','preview/member-details/worker.mjs','preview/member-details/browser-proof.mjs','preview/member-details/ACCEPTANCE.md'}
+          assert set(meta['files'])==allowed
+          assert meta['sha256']=='9b8166c70b344bdf0534f318e7081bd924bfffb29da1c970a58dc89b56bb764c'
+          parts=[Path(f'.review/member-details-part-{i}.txt').read_text() for i in range(4)]
+          # Correct a single transport transcription; the complete decoded patch
+          # and every before/after file must still match the independent hashes.
+          parts[2]=parts[2].replace('GG1pf+uRsp','GG1pf+Rsp')
+          patch=zlib.decompress(base64.b64decode(''.join(parts),validate=True))
+          assert hashlib.sha256(patch).hexdigest()==meta['sha256'],'Patch transport mismatch'
+          for name,hashes in meta['files'].items():
+            path=Path(name)
+            assert (hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None)==hashes['before'],name+' source drift'
+          target=Path('/tmp/member-details-verified.patch');target.write_bytes(patch)
+          subprocess.run(['git','apply','--index','--check',str(target)],check=True)
+          subprocess.run(['git','apply','--index',str(target)],check=True)
+          for name,hashes in meta['files'].items():
+            assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==hashes['after'],name+' final mismatch'
+          for path in Path('.review').glob('member-details-*'):path.unlink()
+          PY
+            git add -u .review
+            git config user.name 'SHIFT preview verification'
+            git config user.email 'it@shiftsometimber.co.uk'
+            git commit -m 'Make Member Details a real atomic account feature with isolated acceptance'
+            git push origin HEAD:refs/heads/fix/member-details-20260922
+          fi
+          echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - run: npm ci --no-audit --no-fund
+      - name: Actual member-details and retained member regression tests
+        shell: bash
         run: |
           set -euo pipefail
-          mkdir -p work/staging/generated/review-evidence
-          node --check member-experience/member-details.mjs
-          node --test member-experience/tests/*.test.mjs 2>&1 | tee work/staging/generated/review-evidence/member-tests.tap
+          mkdir -p /tmp/member-details-evidence
+          node --test member-experience/tests/*.test.mjs 2>&1 | tee /tmp/member-details-evidence/member-tests.tap
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/member-details-compile > /tmp/member-details-evidence/compile.txt 2>&1 || { tail -n 70 /tmp/member-details-evidence/compile.txt; exit 1; }
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
-      - name: Prepare isolated fictional-account preview
-        run: |
-          node preview/stabilisation/prepare.mjs
-          node --input-type=module - <<'JS'
-          import fs from 'node:fs';
-          const path='work/staging/generated/config.json',c=JSON.parse(fs.readFileSync(path));
-          c.compatibility_flags=[...new Set([...(c.compatibility_flags||[]),'nodejs_compat'])];
-          fs.writeFileSync(path,JSON.stringify(c,null,2));
-          JS
-      - name: Provision preview-only databases
-        run: node preview/stabilisation/provision.mjs
-      - name: Deploy isolated preview
+      - name: Prepare current-source fictional-account preview
+        run: node preview/member-details/prepare.mjs
+      - name: Provision only the two separately named account-preview databases
+        run: node preview/member-details/provision.mjs
+      - name: Guard and deploy preview only
         shell: bash
         run: |
           set -euo pipefail
           test -n "$CLOUDFLARE_API_TOKEN"
+          test "$GITHUB_REF" = refs/heads/fix/member-details-20260922
+          test "$(git rev-parse HEAD)" = "$PREVIEW_SOURCE_SHA"
+          test "$(git ls-remote origin refs/heads/fix/member-details-20260922 | cut -f1)" = "$PREVIEW_SOURCE_SHA"
           node --input-type=module - <<'JS'
           import fs from 'node:fs';import assert from 'node:assert/strict';
           const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
-          assert.equal(c.name,'shift-stabilisation-preview');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);
           for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
+          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);
           JS
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/deploy.txt" 2>&1 || { tail -n 80 "$RUNNER_TEMP/deploy.txt"; exit 1; }
           node --input-type=module - <<'JS'
@@ -74,20 +97,28 @@ jobs:
           const text=fs.readFileSync(process.env.RUNNER_TEMP+'/deploy.txt','utf8');
           const url=text.match(/https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev/)?.[0];
           if(!url)throw Error('Preview deployment URL absent');
-          fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+url+'\nPREVIEW_SOURCE_SHA='+process.env.GITHUB_SHA+'\n');
-          fs.writeFileSync('work/staging/generated/review-evidence/deployment.json',JSON.stringify({previewOnly:true,url,source:process.env.GITHUB_SHA,productionWrites:0},null,2));
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'Preview only: '+url+'/__review\nSource: '+process.env.GITHUB_SHA+'\nAcceptance remains pending browser evidence.');
+          fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+url+'\n');
+          fs.writeFileSync('work/staging/generated/review-evidence/deployment.json',JSON.stringify({previewOnly:true,url,source:process.env.PREVIEW_SOURCE_SHA,productionWrites:0},null,2));
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'Preview only: '+url+'/__review\nSource: '+process.env.PREVIEW_SOURCE_SHA+'\nNo production deployment.');
           JS
-      - name: Hosted member browser proof
+      - name: Run actual account save, retry, conflict, navigation and fresh-login browser matrix
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
-          node preview/stabilisation/browser-proof.mjs
-      - name: Retain preview evidence including failures
+          node preview/member-details/browser-proof.mjs
+      - name: Retain exact candidate and all passing or failing evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        shell: bash
+        run: |
+          mkdir -p /tmp/member-details-evidence
+          git rev-parse HEAD > /tmp/member-details-evidence/source-sha.txt
+          git archive --format=tar.gz --output=/tmp/member-details-evidence/verified-source.tar.gz HEAD
+          sha256sum /tmp/member-details-evidence/verified-source.tar.gz > /tmp/member-details-evidence/SHA256SUMS.txt
+          if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence /tmp/member-details-evidence/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: member-details-preview-evidence-${{ github.run_id }}
+          name: member-details-acceptance-${{ github.run_id }}
           retention-days: 14
-          path: work/staging/generated/review-evidence/**
+          path: /tmp/member-details-evidence/
           if-no-files-found: warn

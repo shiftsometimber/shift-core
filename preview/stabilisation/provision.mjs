@@ -17,12 +17,7 @@ for(const binding of ['DB','WORK_DB']){
  const tablesResult=JSON.parse(run(['d1','execute',binding,'--remote','--command',"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY name",'--json','--config',file]));
  const tables=tablesResult.flatMap(x=>x.results||[]).map(x=>x.name).filter(Boolean);
  if(tables.some(name=>!/^[A-Za-z0-9_]+$/.test(name)))throw Error('Unsafe staging table name');
- if(tables.length){
-  // Foreign-key relationships in older reusable preview DBs can reference
-  // retired tables. Do not bulk-delete a stale schema; the fixture SQL below
-  // owns the rows it needs. This remains preview-only and never binds prod IDs.
-  console.log('Retaining existing isolated preview rows; fixture initialisation follows.');
- }
+ if(tables.length)run(['d1','execute',binding,'--remote','--command',tables.map(name=>`DELETE FROM "${name}"`).join(';'),'--config',file]);
 }
 // Older isolated Grub staging used a minimal catalogue. Add only missing columns
 // in this explicitly named staging database before loading retained Fit decisions.
