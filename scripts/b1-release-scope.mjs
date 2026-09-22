@@ -4,12 +4,12 @@ import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'no
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
-export const RELEASE_PATHS=new Set(['scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
+export const RELEASE_PATHS=new Set(['.github/workflows/calculators-navigation.yml','scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
- assert.equal(manifest.applicationCommit,'533dc32cf4629391081f06d382af3529c55a068c');
- assert.equal(manifest.baseCommit,'f689b291c48df390a9fff5cc47fd80f5c041040f');
+ assert.equal(manifest.applicationCommit,'fe59a3fdc22afa951c10932cb2ba7056ba5d0913');
+ assert.equal(manifest.baseCommit,'e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
