@@ -1,0 +1,37 @@
+name: Closeout read-only diagnosis
+on:
+  push:
+    branches: [fix/member-details-20260922]
+    paths: ['preview/member-details/diagnose.mjs', '.github/workflows/closeout-diagnose.yml']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install isolated browser tooling
+        run: |
+          npm install --prefix /tmp/shift-diag --ignore-scripts --no-audit --no-fund playwright@1.58.2
+          /tmp/shift-diag/node_modules/.bin/playwright install --with-deps chromium
+      - name: Anonymous browser and read-only recovery inventory
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          DIAG_OUT: /tmp/shift-diagnosis
+        run: |
+          mkdir -p /tmp/shift-diagnosis/layout-{390,1440}
+          node preview/member-details/diagnose.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: closeout-diagnosis-${{ github.run_id }}
+          retention-days: 14
+          path: /tmp/shift-diagnosis
+          if-no-files-found: error
