@@ -1,11 +1,8 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "533dc32cf4629391081f06d382af3529c55a068c",
-  "baseCommit": "f689b291c48df390a9fff5cc47fd80f5c041040f",
-  "reason": "Matt approved the compact My Timber phone setup and footer and asked for it live. This candidate reconciles PR #784 onto current main without reverting the newer article-quality release. Runtime-only release: preserve Pages, catalogue, prices, stock, services, customer/member records and unrelated public content. PWA reminder tables are additive and created only when the feature is used.",
-  "runtimeSchemaAdditions": [
-    "my_timber_push_devices",
-    "my_timber_push_deliveries"
-  ],
+  "applicationCommit": "fe59a3fdc22afa951c10932cb2ba7056ba5d0913",
+  "baseCommit": "e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4",
+  "reason": "Matt requested restoring Calculators & Tools to the shared footer Explore section and Menu drawer, both linking to /tools. PR #787 is the only application change since the successful production baseline e2f5ce12 (run 35662181300). The candidate tree exactly matches preview 962e6c5a, verified by run 35697884843: eight public document checks, 30 successful browser navigations and six reviewed screenshots. Evidence artifact 10681467089 SHA256 08024895a97c817edfab6056ab0e843f08957a59fcd1994b04643ab1ec0b37d1. Preserve Pages, catalogue, prices, stock, services, customer/member records and all unrelated public content. No schema, configuration or content publication changes are authorised by this release.",
+  "runtimeSchemaAdditions": [],
   "enforceApplicationPin": true
 }
