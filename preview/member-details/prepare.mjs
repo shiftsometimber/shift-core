@@ -9,5 +9,10 @@ c.vars.MEMBER_GP_LOOKUP_ENABLED='true';c.vars.PUBLIC_SITE_URL='https://shift-sta
 // No address-provider key is invented, borrowed from production, or exposed.
 delete c.triggers;delete c.send_email;delete c.ai;delete c.routes;delete c.route;
 writeFileSync(file,JSON.stringify(c,null,2));
+// The retained staging sign-in belonged to the old Work trial. Only its captured
+// preview asset changes landing; real login, cookies and production are unchanged.
+const loginPath=dir+'/assets/staging/login.mjs',login=readFileSync(loginPath,'utf8');
+assert.equal(login.split(":'/member/work'").length-1,1,'Unexpected staging landing source');
+writeFileSync(loginPath,login.replace(":'/member/work'",":'/member/dashboard'"));
 mkdirSync(dir+'/review-evidence',{recursive:true});
 console.log('Prepared account-details preview from pinned current sources, no production bindings.');
