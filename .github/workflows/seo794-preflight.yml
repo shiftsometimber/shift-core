@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: f3d3bb4275f7ad0b55f92fef7e663953c2190551
+          ref: 13e74ceafc70dee7bc786de8c2584f84f3b06da1
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -38,6 +38,24 @@ jobs:
           (cd approved-preview && sha256sum -c SHA256SUMS)
           tar xzf approved-preview/candidate-support.tar.gz preview/seo-repairs/generated/changes.json preview/seo-repairs/generated/render-manifest.json
           node --check release/seo794-followthrough.mjs
+      - name: Prove exact login-page difference using recorded failed-release hashes
+        run: |
+          node --input-type=module <<'JS'
+          import {createHash} from 'node:crypto';
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          const r=await fetch('https://shiftsometimber.co.uk/member-login');
+          assert.equal(r.status,200);
+          const html=await r.text(),old='<a href="/good-to-talk">Good to Talk</a>',current='<a href="/mens-mental-health">Good to Talk</a>';
+          const hash=s=>createHash('sha256').update(s).digest('hex');
+          const expectedBefore='c8a4c3dad41bd68c15bb1ead0c98054a6e22bff8b97157e1ac940581964c7673',expectedAfter='2fdc0eeb500fc7992712b15533bd2a59beb0eafb19ea9937c0cbe1d6d64d1a59';
+          const proof={checkedAt:new Date().toISOString(),before:hash(html),afterExactTwoSupportLinks:hash(html.replaceAll(old,current)),count:html.split(old).length-1,expectedBefore,expectedAfter};
+          mkdirSync('seo794-release-proof',{recursive:true});
+          writeFileSync('seo794-release-proof/login-difference.json',JSON.stringify(proof,null,2));
+          writeFileSync('seo794-release-proof/login-before.html',html);
+          assert.equal(proof.count,2);assert.equal(proof.before,expectedBefore);assert.equal(proof.afterExactTwoSupportLinks,expectedAfter);
+          console.log('PASS: recorded production difference is exactly two approved support-link destinations; all other response bytes identical.');
+          JS
       - name: Read live identity and exact public records before authorised release
         env:
           CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
