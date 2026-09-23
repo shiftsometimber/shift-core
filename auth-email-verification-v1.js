@@ -1,5 +1,6 @@
 import {acquisitionRoutes,acquisitionAccountDelete} from './acquisition-activation/server.mjs';
 import {recordAuthDelivery} from './auth-delivery-v1.js';
+import {queueSignupAlert} from './member-signup-alert.mjs';
 
 const VERIFY_TTL_MS=24*60*60*1000;
 const DEFAULT_FROM='hello@shiftsometimber.co.uk';
@@ -21,6 +22,7 @@ async function registerWithVerification(request,env,ctx,next){
   const response=await next(request,env,ctx);
   if(!response.ok)return response;
   let data={};try{data=await response.clone().json()}catch{return response}
+  if(response.status===201&&data.ok===true)await queueSignupAlert(env,Number(data?.user?.id||0),ctx);
   if(data.emailVerified!==false)return response;
 
   const userId=Number(data?.user?.id||0),email=String(data?.user?.email||supplied.email||'').trim().toLowerCase();

@@ -1,28 +1,18 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "03131a81d17e14db3a528dc085148c06c74cdd32",
-  "baseCommit": "77e1d0fb673277b77b46c2a924a4dafb0af75404",
-  "reason": "Prepared PR792 account release; not production approval. Owner removed postcode lookup: home/delivery addresses are manual, free NHS GP suggestions retained. Runtime configuration matches current released main. Preserve Reta source, customer records, historical orders, catalogue, stock, prices and clinical/payment holds. Separate delivery editing remains; Stripe prefill is not included. Real email changes stay disabled. Runtime-only rollback preserves data; exact additive delivery-preservation trigger refuses incompatible legacy saves. Preserve the intervening released Medicines Watch source exactly; only the account candidate release pin replaces its previous release pin.",
+  "applicationCommit": "95cf0aaff3ed02afc4cc2e26e703c430ea83b9cd",
+  "baseCommit": "c00cfcc50099aca9f690069e2278480df4c0c837",
+  "reason": "Owner requested signup alerts to hello@ and paid-order alerts to orders@. Existing paid-order routing retained. Enable only the new signup alert flag, with exact additive delivery tracking, no backfill and runtime-only rollback. Preview and actual labelled test-email acceptance required before production approval.",
   "previewEvidence": {
-    "retainedAccountSource": "2afcd65015ab8ca7334d8c69a9f4bb3ce4707cd3",
-    "retainedAccountWorkflow": 35849691581,
-    "reconciledSource": "be20c3a73869883b921971db5405fc00749f9d71",
-    "reconciliationWorkflow": 35880432037,
-    "localMemberAndReleaseTests": 263,
-    "proposedApplicationSource": "03131a81d17e14db3a528dc085148c06c74cdd32",
-    "finalHostedVerification": "Required for the final branch head; no success claimed by this manifest.",
-    "productionApproval": "Owner preview/release acceptance remains required.",
-    "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth",
-    "addressDecision": "Owner explicitly chose manual address entry; no provider signup, key, trial or cost. New hosted verification required.",
-    "retainedMedicinesWatch": {
-      "releasedMain": "77e1d0fb673277b77b46c2a924a4dafb0af75404",
-      "sourceCommit": "1bba374cd9e31bfc2187fe207483ea168b1a7a5e",
-      "exactFiles": 4
-    }
+    "ownerRequest": "New member signup to hello@; new order to orders@",
+    "productionApproval": "Owner preview-before-live sign-off remains required",
+    "hostedProof": "Must pass at this final source",
+    "existingOrderRouting": "Preserved byte-identically; signed callback/retry tests included"
   },
   "runtimeSchemaAdditions": [
     "member_account_details",
-    "member_account_details_preserve_delivery"
+    "member_account_details_preserve_delivery",
+    "member_signup_alerts"
   ],
   "enforceApplicationPin": true
 }

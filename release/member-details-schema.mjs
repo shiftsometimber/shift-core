@@ -30,8 +30,8 @@ export function schemaCommandArgs(){assertSchemaFile();return ['d1','execute','D
 function cli(args){return JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args],{encoding:'utf8',maxBuffer:16*1024*1024}));}
 function schema(){const result=cli(['d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',"SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY type,name"]);assert(result.length&&result.every(x=>x.success));return result.flatMap(x=>x.results||[]);}
 async function main(){
- assert.equal(process.env.GITHUB_REF,'refs/heads/main');const scope=verifyScope();assert.deepEqual(scope.runtimeSchemaAdditions,[TABLE,TRIGGER]);assertSchemaFile();
- const releasedConfig=execFileSync('git',['show','323f2409c0bd7f719abb05969fe9aeb2a827261b:wrangler.jsonc'],{encoding:'utf8'});assert.equal(readFileSync('wrangler.jsonc','utf8'),releasedConfig,'Unexpected configuration change');
+ assert.equal(process.env.GITHUB_REF,'refs/heads/main');const scope=verifyScope();assert.deepEqual(scope.runtimeSchemaAdditions,[TABLE,TRIGGER,'member_signup_alerts']);assertSchemaFile();
+ const releasedConfig=execFileSync('git',['show','c00cfcc50099aca9f690069e2278480df4c0c837:wrangler.jsonc'],{encoding:'utf8'});assert.equal(readFileSync('wrangler.jsonc','utf8').replace('    "MEMBER_SIGNUP_ALERTS_ENABLED": "true",\n',''),releasedConfig,'Unexpected configuration change outside the reviewed signup-alert flag');
  mkdirSync('b1-runtime-release',{recursive:true});const before=schema(),exists=assertExisting(before),triggerExists=before.some(x=>x.type==='trigger'&&x.name===TRIGGER);
  const bookmark=cli(['d1','time-travel','info','shift-core-db','--json']);
  writeFileSync('b1-runtime-release/member-details-schema-before.json',JSON.stringify({schema:before,bookmark},null,2));
