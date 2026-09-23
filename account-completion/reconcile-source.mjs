@@ -15,6 +15,16 @@ const accountFiles = files(common,account);
 assert.equal(releaseFiles.filter(p=>accountFiles.includes(p)).length,0,'Release/account paths overlap; manual review required');
 const reconciliationFiles = new Set([
   '.github/workflows/account-completion-preview.yml',
+  'member-experience/ideal-address.mjs',
+  'member-experience/photon-address.mjs',
+  'member-experience/photon-address-client.mjs',
+  'member-experience/member-details-routes.mjs',
+  'member-experience/member-delivery-routes.mjs',
+  'member-experience/member-details.mjs',
+  'member-experience/member-delivery-client.mjs',
+  'member-experience/tests/ideal-address.test.mjs',
+  'member-experience/tests/photon-selection-order.test.mjs',
+  'docs/decisions/2026-09-23-postcode-replacement.md',
   'account-completion/reconcile-source.mjs',
   'account-completion/ACCEPTANCE.md',
   'release/member-details-live.mjs',
@@ -40,7 +50,7 @@ assert.equal(config.split(providerFlag).length,2,'Exactly one proposed Photon fl
 assert.equal(config.replace(providerFlag,''),execFileSync('git',['show',released+':wrangler.jsonc'],{encoding:'utf8'}),'Unreviewed runtime configuration');
 assert(!config.includes('"MEMBER_EMAIL_CHANGE_ENABLED": "true"'),'Real email-change gate must remain closed');
 const report = {source:git('rev-parse','HEAD'),accountBaseline:account,releasedBaseline:released,
-  releaseFiles,accountFiles,accountFilesPreserved:accountFiles.filter(p=>!reconciliationFiles.has(p)),reviewedSchemaChange:"Add delivery-preservation trigger for legacy runtime saves",applicationRouteChanges:false,proposedConfigurationChange:"MEMBER_ADDRESS_PROVIDER=photon",productionWrites:0,passed:true};
+  releaseFiles,accountFiles,accountFilesPreserved:accountFiles.filter(p=>!reconciliationFiles.has(p)),reviewedSchemaChange:"Add delivery-preservation trigger for legacy runtime saves",applicationRouteChanges:true,reviewedAddressChange:"Explicit disabled-by-default Ideal Postcodes adapter; provider-specific disclosure and safe line-2 selection",proposedConfigurationChange:"MEMBER_ADDRESS_PROVIDER=photon",productionWrites:0,passed:true};
 fs.mkdirSync('account-completion-evidence',{recursive:true});
 fs.writeFileSync('account-completion-evidence/source-reconciliation.json',JSON.stringify(report,null,2));
 console.log(JSON.stringify({source:report.source,releasedFilesPreserved:releaseFiles.length,accountFilesPreserved:report.accountFilesPreserved.length,passed:true}));

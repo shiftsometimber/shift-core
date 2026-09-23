@@ -1,6 +1,9 @@
 // Optional, no-key Photon/OpenStreetMap address suggestions. Never postal validation.
+import {idealEnabled,createIdealSearch} from './ideal-address.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 export const photonEnabled=env=>env?.MEMBER_ADDRESS_PROVIDER==='photon';
+export const addressLookupProvider=env=>idealEnabled(env)?'ideal-postcodes':photonEnabled(env)?'photon':null;
+export const addressLookupEnabled=env=>addressLookupProvider(env)!==null;
 const H={'Cache-Control':'no-store, private','Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow','Vary':'Cookie'};
 const json=(b,status=200)=>new Response(JSON.stringify(b),{status,headers:H});
 const fail=(code,message,status=400)=>json({ok:false,error:code,message},status);
@@ -58,7 +61,7 @@ export function createPhotonSearch({transport=fetch,now=Date.now}={}){
   }catch(e){blockedUntil=now()+(e.code==='provider_throttled'?60000:30000);throw e;}finally{pending=false;}
  };
 }
-const search=createPhotonSearch();
+const search=createPhotonSearch(),idealSearch=createIdealSearch();
 async function readBody(request){
  const reader=request.body?.getReader();if(!reader)throw error('invalid_search',400);let size=0;const chunks=[];
  try{for(;;){const r=await reader.read();if(r.done)break;size+=r.value.length;if(size>1024)throw error('too_large',413);chunks.push(r.value);}}
@@ -73,8 +76,8 @@ export async function photonAddressRoute(request,env){
  if(!/^application\/json(?:\s*;|$)/i.test(request.headers.get('Content-Type')||''))return fail('json_required','Send JSON address-search fields.',415);
  try{
   const auth=await authenticateMember(request,env);if(auth.response)return new Response(auth.response.body,{status:auth.response.status,headers:H});
-  if(!photonEnabled(env))return fail('address_lookup_unavailable','Address suggestions are unavailable. Enter and save your address manually.',503);
-  const input=validatePhotonInput(await readBody(request));return json(await search(input,auth.userId));
+  if(!addressLookupEnabled(env))return fail('address_lookup_unavailable','Address suggestions are unavailable. Enter and save your address manually.',503);
+  const input=validatePhotonInput(await readBody(request));return json(await (idealEnabled(env)?idealSearch(input,auth.userId,env):search(input,auth.userId)));
  }catch(e){
   if(e.code==='invalid_postcode')return fail(e.code,'Enter a complete UK postcode, or use manual address entry.');
   if(e.code==='invalid_search')return fail(e.code,'Use only a postcode and optional building or street search. Do not enter email or personal notes.');
