@@ -1,6 +1,7 @@
 import {SEO_IMAGES, SEO_ASSETS} from './public-seo-assets-data.mjs';
 
 // Same artwork and palette; no analytics, consent, clinical copy or layout changes.
+const menuContrast = "html body header.site-header[data-header-v2] .menu-trigger{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}html body header.site-header[data-header-v2] .menu-trigger:is(:hover,:focus-visible,[aria-expanded=\"true\"]){background:#E7E3DA!important;color:#050505!important;-webkit-text-fill-color:#050505!important}";
 const css = Object.freeze({
  '/': 'html body .home-hero-copy .actions a.button:not(.primary),html body .home-platform .action-grid a,html body .home-platform .feature-grid a :is(strong,span),html body .matters .eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}',
  '/guides/retatrutide-uk-guide': 'html body .reta-hero .eyebrow,html body .reta-hero .byline-v12 a,html body .reta-status a,html body .reta-body a,html body .reta-body th{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}',
@@ -28,7 +29,7 @@ export function repairSeoPresentation(html, rawPath) {
   const keep=tag.replace(/\s(?:src|srcset|sizes|width|height|loading|decoding|fetchpriority)=["'][^"']*["']/gi,'').replace(/\/?\s*>$/,'');
   return keep+' src="'+SEO_IMAGES.heroLarge.path+'" srcset="'+SEO_IMAGES.heroSmall.path+' 768w, '+SEO_IMAGES.heroLarge.path+' 1536w" sizes="(max-width:760px) 100vw, 50vw" width="1536" height="1024" loading="eager" decoding="async" fetchpriority="high">';
  });
- if(css[path]&&!html.includes('data-seo-contrast-20260923'))html=html.replace(/<\/head>/i,'<style data-seo-contrast-20260923>'+css[path]+'</style></head>');
+ if(!html.includes('data-seo-contrast-20260923'))html=html.replace(/<\/head>/i,'<style data-seo-contrast-20260923>'+menuContrast+(css[path]||'')+'</style></head>');
  return html;
 }
 

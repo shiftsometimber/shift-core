@@ -7,7 +7,7 @@
     },
     "public-navigation-policy.mjs": {
       "before_sha256": "3ed776d719991ce7a29e0a37b7fd8b550b62ffeb9f9f3608ca3c245c47daf94d",
-      "after_sha256": "73e8f68070ca851df638ff853f28577d197a2556d7c512bab7f36e84e0d6cd2d"
+      "after_sha256": "bbb83b0b2edc966c09af2c56f47aee6be035bf1b02fe7af80c28da784ba81e24"
     },
     "shift-health-public.mjs": {
       "before_sha256": "7f9b4af40ddfcf3ecca44d38148eacd40a30f6980ef3b083c12e03c511d41e29",

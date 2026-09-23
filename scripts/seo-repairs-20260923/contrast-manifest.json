@@ -1,0 +1,18 @@
+{
+  "public-navigation-policy.mjs": {
+    "before_sha256": "73e8f68070ca851df638ff853f28577d197a2556d7c512bab7f36e84e0d6cd2d",
+    "after_sha256": "bbb83b0b2edc966c09af2c56f47aee6be035bf1b02fe7af80c28da784ba81e24"
+  },
+  "public-seo-presentation.mjs": {
+    "before_sha256": "44747a8d31a712a04de642f9659e052480f70267f09d0d99760675809ff1783a",
+    "after_sha256": "082e6072c709c54e3c6841ca8d4e299da4fcd4395c86f86c2a5a0c743b129c7f"
+  },
+  "preview/seo-repairs/verify.cjs": {
+    "before_sha256": "df2cafb23bb74c22d1019d6081037c6e8a72d9bab86d7644821125f64695ce92",
+    "after_sha256": "b7133723e6b2fbfe6cda5e03dd0f5c5ce7b86b7d38b7d519ec51b002de9de349"
+  },
+  "tests/seo-repairs-20260923.test.mjs": {
+    "before_sha256": "186ab0d10deb5ee650e37dda6d2005eae5c7444e423fda9ca43c575ba586e63e",
+    "after_sha256": "1d8b07aed4567139b0bc680e88401ac6128c4ce60adc14d199ec56955c443473"
+  }
+}

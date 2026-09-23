@@ -23,7 +23,7 @@ test('public presentation is idempotent; same links/labels and protected data su
 test('Good to Talk aliases share one destination; no content removal or ticker-policy expansion',()=>{
  assert.equal(legacyAuthorityRedirects['/good-to-talk'],'/mens-mental-health');assert.equal(legacyAuthorityRedirects['/good-to-talk.html'],'/mens-mental-health');
  for(const path of ['/','/mens-mental-health','/good-to-talk','/about','/start-here','/member/dashboard'])assert.equal(tickerAllowed(path),false,path);
- assert.match(tickerStyles,/background:#050505;color:#E7E3DA/);assert.match(tickerStyles,/90s linear infinite/);
+ assert.match(tickerStyles,/background:#050505!important;color:#E7E3DA!important/);assert.match(tickerStyles,/90s linear infinite/);
 });
 test('asset originals and optimized bytes are reproducible, cacheable, read-only and smaller',async()=>{
  const limits={logo:135518,heroSmall:210578,heroLarge:210578};
@@ -73,4 +73,10 @@ test('the data plan is all-or-none on stale content, preserves review decisions,
  function setup(){const db=new DatabaseSync(':memory:');db.exec('CREATE TABLE radar_events(id INTEGER PRIMARY KEY,status TEXT,content_package_json TEXT,source_evidence_json TEXT,updated_at TEXT,reviewed_at TEXT);CREATE TABLE radar_audit(event_id INTEGER,action TEXT,actor TEXT,detail_json TEXT);');const insert=db.prepare("INSERT INTO radar_events VALUES(?,'published',?,?,?,?)");for(const {before:r} of candidate.changes)insert.run(r.id,r.content_package_json,r.source_evidence_json,r.updated_at,r.reviewed_at);return db;}
  const sql=correctionSQL(candidate.changes,candidate.modifiedAt);let db=setup();db.exec(sql);assert.equal(db.prepare('SELECT COUNT(*) n FROM radar_audit').get().n,13);for(const x of candidate.changes)assert.equal(db.prepare('SELECT content_package_json c FROM radar_events WHERE id=?').get(x.id).c,x.after.content_package_json);db.exec(sql);assert.equal(db.prepare('SELECT COUNT(*) n FROM radar_audit').get().n,13);db.close();
  db=setup();db.prepare('UPDATE radar_events SET content_package_json=? WHERE id=?').run('newer editorial change',candidate.changes.at(-1).id);db.exec(sql);assert.equal(db.prepare('SELECT COUNT(*) n FROM radar_audit').get().n,0);assert.equal(db.prepare('SELECT content_package_json c FROM radar_events WHERE id=?').get(candidate.changes[0].id).c,candidate.changes[0].before.content_package_json);db.close();
+});
+
+test('menu hover and keyboard focus retain a high-contrast pair without resizing the header',()=>{
+ const html=repairSeoPresentation(shell,'/programme');
+ assert.match(html,/menu-trigger:is\(:hover,:focus-visible,\[aria-expanded="true"\]\)\{background:#E7E3DA!important;color:#050505!important/);
+ assert.match(html,/data-header-v2/);assert.match(html,/Good to Talk/);
 });
