@@ -39,8 +39,16 @@ try{
    const table=page.locator('.reta-table-wrap');await table.scrollIntoViewIfNeeded();await table.focus();result.table=await table.evaluate(e=>({width:e.clientWidth,scrollWidth:e.scrollWidth,focusable:document.activeElement===e,role:e.getAttribute('role')}));assert.equal(result.table.focusable,true);
    await page.screenshot({path:path.join(out,name+'-evidence.png'),animations:'disabled'});result.checks.push('Evidence table keyboard-focusable within scrolling region');await page.screenshot({path:path.join(out,name+'-full.png'),fullPage:true,animations:'disabled',timeout:45000});
    for(const hub of ['/explore-knowledge','/glp1-knowledge-centre']){
-    await page.goto(new URL(hub,base).href,{waitUntil:'load',timeout:45000});const link=page.locator('main a[href="'+guide+'"]');assert.equal(await link.count(),1,'Duplicate or absent discovery link: '+hub);assert.equal(await link.isVisible(),true,'Discovery hidden from readers: '+hub);
-    await link.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,name+'-'+hub.slice(1)+'.png'),animations:'disabled'});await link.click();await page.waitForURL('**'+guide);assert.equal(await page.locator('[data-reta-guide] h1').isVisible(),true);result.checks.push('Visible discovery link works: '+hub);
+    await page.goto(new URL(hub,base).href,{waitUntil:'load',timeout:45000});const link=page.locator('main a[href="'+guide+'"]');assert.equal(await link.count(),1,'Duplicate or absent discovery link: '+hub);
+    // GLP-1's existing reading library is a native disclosure, not a broken link.
+    // Use its real reader control; do not force-click or alter DOM visibility.
+    if(hub==='/glp1-knowledge-centre'&&!await link.isVisible()){
+     const disclosure=page.locator('details.shift-guided-library > summary');
+     assert.equal(await disclosure.innerText(),'Browse the full GLP-1 library');
+     await disclosure.click();assert.equal(await page.locator('details.shift-guided-library').evaluate(e=>e.open),true);
+     result.checks.push('Existing GLP-1 library opens through its reader control');
+    }
+    assert.equal(await link.isVisible(),true,'Discovery hidden from readers: '+hub);await link.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,name+'-'+hub.slice(1)+'.png'),animations:'disabled'});await link.click();await page.waitForURL('**'+guide);assert.equal(await page.locator('[data-reta-guide] h1').isVisible(),true);result.checks.push('Visible discovery link works: '+hub);
    }
    result.status='PASS';
   }catch(e){result.status='FAIL';result.error=String(e.stack||e);report.failures.push(name+': '+e.message);await page.screenshot({path:path.join(out,name+'-failure.png'),animations:'disabled'}).catch(()=>{});await writeFile(path.join(out,name+'-failure.html'),await page.content()).catch(()=>{});}
