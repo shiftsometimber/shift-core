@@ -34,9 +34,13 @@ test('No app-specific accounts, store checkout, notification grants or automatic
  assert.ok(java.includes('Intent.ACTION_OPEN_DOCUMENT'));
  assert.doesNotMatch(ui,/\bfetch\(|XMLHttpRequest|localStorage|sessionStorage|indexedDB|caches\./);
 });
-test('Both Release builds are blocked pending explicit commissioning',()=>{
- assert.ok(read('android/app/build.gradle').includes('Store release blocked'));
- assert.ok(read('ios/Sources/AppDelegate.swift').startsWith('#if !DEBUG\n#error('));
+test('Final store identities are prepared but submission remains explicitly disabled',()=>{
+ const gradle=read('android/app/build.gradle'),project=read('ios/project.yml');
+ assert.match(gradle,/applicationId 'uk\.co\.shiftsometimber\.mytimber'/);
+ assert.match(gradle,/applicationIdSuffix '\.preview'/);
+ assert.match(project,/Release:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber/);
+ assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.preview/);
+ assert.equal(contract.storeSubmissionAllowed,false);
 });
 function fixture(origin){
  const elements=new Map();
