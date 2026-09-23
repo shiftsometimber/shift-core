@@ -1,0 +1,137 @@
+name: My Timber app — deploy-readiness builds
+on:
+  push:
+    branches: [feat/my-timber-store-20260923]
+    paths:
+      - 'my-timber-app/**'
+      - '.github/workflows/my-timber-app-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: my-timber-app-preview-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+          accept-android-sdk-licenses: false
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - name: Source and presentation checks
+        run: |
+          mkdir -p my-timber-app/evidence
+          node --test my-timber-app/tests/source.test.mjs | tee my-timber-app/evidence/source-tests.txt
+          git rev-parse HEAD > my-timber-app/evidence/commit.txt
+          java -version 2> my-timber-app/evidence/java-version.txt
+          gradle --version > my-timber-app/evidence/gradle-version.txt
+      - name: Prepare exact existing icon and app resources
+        run: |
+          python3 my-timber-app/scripts/prepare.py --platform android
+          sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - name: Build development-signed Android APK (no deployment)
+        run: |
+          cd my-timber-app/android
+          if ! gradle --no-daemon :app:assembleDebug > ../evidence/android-build.txt 2>&1; then
+            tail -n 100 ../evidence/android-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/android-build.txt
+          sha256sum app/build/outputs/apk/debug/app-debug.apk > ../evidence/android-apk.sha256
+      - name: Compile unsigned Android release bundle (store identity, no signing/upload)
+        run: |
+          cd my-timber-app/android
+          if ! gradle --no-daemon :app:bundleRelease > ../evidence/android-release-build.txt 2>&1; then
+            tail -n 120 ../evidence/android-release-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/android-release-build.txt
+          sha256sum app/build/outputs/bundle/release/app-release.aab > ../evidence/android-release-aab.sha256
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-timber-android-readiness-${{ github.sha }}
+          path: |
+            my-timber-app/android/app/build/outputs/apk/debug/app-debug.apk
+            my-timber-app/android/app/build/outputs/bundle/release/app-release.aab
+            my-timber-app/evidence/
+          retention-days: 14
+          if-no-files-found: error
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Source and native-policy checks
+        run: |
+          mkdir -p my-timber-app/evidence
+          node --test my-timber-app/tests/source.test.mjs | tee my-timber-app/evidence/source-tests.txt
+          python3 my-timber-app/tests/run-policies.py | tee my-timber-app/evidence/native-policy-tests.txt
+          git rev-parse HEAD > my-timber-app/evidence/commit.txt
+          xcodebuild -version > my-timber-app/evidence/xcode-version.txt
+      - name: Prepare existing approved icon and Xcode project
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen --version > my-timber-app/evidence/xcodegen-version.txt
+          python3 my-timber-app/scripts/prepare.py --platform ios
+          cd my-timber-app/ios
+          xcodegen generate
+      - name: Build unsigned iOS SIMULATOR app (not iPhone IPA)
+        run: |
+          cd my-timber-app/ios
+          if ! xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Debug \
+            -sdk iphonesimulator -derivedDataPath build CODE_SIGNING_ALLOWED=NO build \
+            > ../evidence/ios-build.txt 2>&1; then
+            tail -n 100 ../evidence/ios-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/ios-build.txt
+          ditto -c -k --sequesterRsrc --keepParent build/Build/Products/Debug-iphonesimulator/MyTimber.app ../evidence/MyTimber-simulator.zip
+          shasum -a 256 ../evidence/MyTimber-simulator.zip > ../evidence/ios-simulator.sha256
+      - name: Compile unsigned iOS Release candidate (simulator, no signing/upload)
+        run: |
+          cd my-timber-app/ios
+          if ! xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Release \
+            -sdk iphonesimulator -derivedDataPath release-build CODE_SIGNING_ALLOWED=NO build \
+            > ../evidence/ios-release-build.txt 2>&1; then
+            tail -n 120 ../evidence/ios-release-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/ios-release-build.txt
+          ditto -c -k --sequesterRsrc --keepParent release-build/Build/Products/Release-iphonesimulator/MyTimber.app ../evidence/MyTimber-release-simulator.zip
+          shasum -a 256 ../evidence/MyTimber-release-simulator.zip > ../evidence/ios-release-simulator.sha256
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-timber-ios-readiness-${{ github.sha }}
+          path: my-timber-app/evidence/
+          retention-days: 14
+          if-no-files-found: error
