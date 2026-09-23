@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      APPROVED_MERGE_SHA: d68688b8f7e7f5a40407b424c548fa87289b45a9
-      EXPECTED_MAIN_SHA: d68688b8f7e7f5a40407b424c548fa87289b45a9
-      CANDIDATE_SHA: d68688b8f7e7f5a40407b424c548fa87289b45a9
+      APPROVED_MERGE_SHA: 39aab9d99259c4dd927709ff235b5548b35d2a9d
+      EXPECTED_MAIN_SHA: 39aab9d99259c4dd927709ff235b5548b35d2a9d
+      CANDIDATE_SHA: 39aab9d99259c4dd927709ff235b5548b35d2a9d
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: d68688b8f7e7f5a40407b424c548fa87289b45a9
+          ref: 39aab9d99259c4dd927709ff235b5548b35d2a9d
           persist-credentials: false
           fetch-depth: 0
       - uses: actions/setup-node@v4
@@ -32,7 +32,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import urllib.request,os,json
-          url='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/35908600307'
+          url='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/35908989068'
           req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'User-Agent':'SHIFT-approved-SEO-release'})
           with urllib.request.urlopen(req) as f:r=json.load(f)
           assert r['head_sha']==os.environ['APPROVED_MERGE_SHA'] and r['conclusion']=='success'
