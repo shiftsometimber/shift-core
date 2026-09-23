@@ -22,7 +22,7 @@ async function snapshot(phase){
  const workers=await cf('workers/scripts/shift-core/deployments');
  const fp=JSON.parse((await publicRead('/DEPLOYMENT-FINGERPRINT.json')).body);assert.equal(fp.aggregate_sha256,'e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496');
  const sitemap=await publicRead('/sitemap.xml');writeFileSync(out+'/'+phase+'-sitemap.xml',sitemap.body);const sitemapUrls=[...sitemap.body.matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>x[1]);
- const r={at:new Date().toISOString(),phase,source:process.env.GITHUB_SHA,pages:{id:pages.id,url:pages.url},workers,protectedTables,configurationSha256:sha(readFileSync('wrangler.jsonc')),sitemapUrls,fingerprint:fp.aggregate_sha256,customerRowsRead:0};save(phase+'-state.json',r);return {news,state:r};
+ const r={at:new Date().toISOString(),phase,source:process.env.APPROVED_MERGE_SHA||execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),pages:{id:pages.id,url:pages.url},workers,protectedTables,configurationSha256:sha(readFileSync('wrangler.jsonc')),sitemapUrls,fingerprint:fp.aggregate_sha256,customerRowsRead:0};save(phase+'-state.json',r);return {news,state:r};
 }
 if(mode==='before'){
  const {news,state}=await snapshot('before');for(const x of changes){const r=news.find(y=>y.id===x.id);assert(r,'Missing public record '+x.id);assert(equal(r,x.before),'Stale approved record '+x.id);}
