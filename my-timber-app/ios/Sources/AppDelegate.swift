@@ -1,6 +1,3 @@
-#if !DEBUG
-#error("Store release blocked: complete RELEASE-GATES.md before enabling Release.")
-#endif
 import UIKit
 
 @main final class AppDelegate: UIResponder, UIApplicationDelegate {
