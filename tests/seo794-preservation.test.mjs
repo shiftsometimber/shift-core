@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {preserveSeo794} from '../release/seo794-preservation.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
+import {stabilisePublicHtml} from '../public-startup-stability.mjs';
+import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
 const raw='<html><head></head><body><header><img src="/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png" alt="SHIFT"></header><main><h1>Existing page</h1><p>Keep this whole paragraph.</p><a href="/good-to-talk">Good to Talk</a></main></body></html>';
 test('approved images and styles compare equal while unrelated content remains protected',()=>{
  const candidate=repairSeoPresentation(raw.replace('href="/good-to-talk"','href="/mens-mental-health"'),'/');
@@ -15,4 +17,12 @@ test('post-release missing or altered approved presentation fails closed',()=>{
 test('member and non-document assets are left byte-for-byte unchanged',()=>{
  const input=Buffer.from(raw);assert.deepEqual(preserveSeo794('/member-login',input,{required:true}),input);
  const script=Buffer.from('const account="private";');assert.deepEqual(preserveSeo794('/asset.js',script,{required:true}),script);
+});
+test('exact startup restoration precedes SEO normalisation for actual production wrapper order',()=>{
+ const source='<html><head></head><body data-template="shift-programme"><main id="main-content" class="programme-five-beat"><p>One practical journey for losing weight, living better while doing it and protecting what you gain.</p></main></body></html>';
+ const before=stabilisePublicHtml('/programme',source),after=stabilisePublicHtml('/programme',repairSeoPresentation(source,'/programme'));
+ const normalise=(html,required)=>preserveSeo794('/programme',preserveApprovedStartup('/programme',Buffer.from(html)),{required});
+ assert.deepEqual(normalise(before,false),normalise(after,true));
+ assert.throws(()=>preserveApprovedStartup('/programme',preserveSeo794('/programme',Buffer.from(before))),/Unknown startup transformation/);
+ assert.throws(()=>normalise(after.replace('Turn useful information','Unapproved change'),true),/Unexpected startup preservation signature/);
 });
