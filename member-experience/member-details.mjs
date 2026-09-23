@@ -1,3 +1,4 @@
+import {emailChangeMarkup,emailChangeRuntime} from './member-email-client.mjs';
 import {deliveryMarkup,deliveryRuntime} from './member-delivery-client.mjs';
 // Additive, scoped account controls. Existing settings/security/consent controls remain.
 export function withMemberDetails(html){
@@ -32,7 +33,7 @@ export function withMemberDetails(html){
    </fieldset>
    <div class="md-actions"><button id="memberDetailsSave" type="submit" disabled>Save member details</button><button id="memberDetailsReload" type="button" class="md-secondary" hidden>Reload saved details</button></div>
    <p id="memberDetailsStatus" role="status" aria-live="polite">Loading your saved details…</p>
-  </form>${deliveryMarkup}</section>`;
+  </form>${deliveryMarkup}${emailChangeMarkup}</section>`;
  // This is one card inside Settings, not a replacement page, header or dashboard.
  return html.replace(/(<main\b[^>]*>)/,'$1'+panel).replace('</body>','<link rel="stylesheet" href="/assets/member-experience/member-details.css"><script defer src="/assets/member-experience/member-details.mjs"></script></body>');
 }
@@ -99,4 +100,4 @@ $('memberGpSelect').addEventListener('change',event=>{if(event.target.value===''
 $('memberGpPostcode').addEventListener('input',()=>{$('memberGpCode').value='';$('memberGpSelected').textContent='Manual practice details.';});
 window.addEventListener('memberDeliverySaved',()=>{if(!busy&&!dirty)load();else message('Delivery address saved. Reload account details before saving unsaved home edits.');});
 load();
-})();`+deliveryRuntime;
+})();`+deliveryRuntime+emailChangeRuntime;

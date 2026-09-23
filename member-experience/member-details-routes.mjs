@@ -1,3 +1,4 @@
+import {memberEmailChangeRoute} from './member-email-change.mjs';
 import {memberDeliveryRoute} from './member-delivery-routes.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 
@@ -44,6 +45,7 @@ const view=(s,env)=> ({ok:true,details:{...s.details,email:s.u.email},revision:s
 // The user ID is always derived from the existing authenticated session. No client
 // account selector, order write, preference replacement, AI request or analytics call.
 export async function memberDetailsRoute(request,env){
+ const email=await memberEmailChangeRoute(request,env);if(email)return email;
  const delivery=await memberDeliveryRoute(request,env);if(delivery)return delivery;
  const path=pathOf(request);if(path!=='/v1/member/details')return null;
  if(!['GET','PATCH'].includes(request.method))return error('method_not_allowed','Use GET or PATCH for member details.',405);
