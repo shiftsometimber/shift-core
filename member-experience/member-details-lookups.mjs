@@ -1,3 +1,4 @@
+import {photonAddressRoute} from './photon-address.mjs';
 import {gpFormRuntime} from './gp-form.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {normalisePostcode} from './member-details-routes.mjs';
@@ -29,6 +30,7 @@ export async function searchGpPractices(query,transport=fetch){
  const practices=body.Organisations.filter(x=>x.Status==='Active'&&x.PrimaryRoleId==='RO177'&&/^[A-Z0-9]{3,12}$/.test(x.OrgId||'')&&typeof x.Name==='string'&&typeof x.PostCode==='string').slice(0,12).map(x=>({name:x.Name.slice(0,160),code:x.OrgId,postcode:x.PostCode.slice(0,12)}));
  return {practices,source:'NHS Organisation Data Service',coverage:'England and Wales',checkedAt:new Date().toISOString()};
 }
+// Legacy isolated adapter contract only; no active route calls this paid provider.
 export async function searchPostcode(postcode,key,transport=fetch){
  if(!key)return null;
  // Full licensed address results only. A postcode centroid is not a street address.
@@ -39,18 +41,14 @@ export async function searchPostcode(postcode,key,transport=fetch){
  return {addresses:body.result.slice(0,100).filter(a=>typeof a.line_1==='string'&&typeof a.post_town==='string'&&typeof a.postcode==='string').map(a=>({address1:a.line_1.slice(0,120),address2:[a.line_2,a.line_3].filter(Boolean).join(', ').slice(0,120),town:a.post_town.slice(0,100),county:String(a.county||'').slice(0,100),postcode:a.postcode.slice(0,12),label:[a.line_1,a.line_2,a.line_3,a.post_town,a.postcode].filter(Boolean).join(', ')})),source:'Ideal Postcodes',limitedToFirst100:true,mayHaveMore:body.result.length>=100};
 }
 export async function memberDetailsLookupRoute(request,env){
+ const address=await photonAddressRoute(request,env);if(address)return address;
  const u=new URL(request.url),path=u.pathname.replace(/\/+$/,'');
  if(path==='/assets/member-experience/gp-form.mjs'&&['GET','HEAD'].includes(request.method))return new Response(request.method==='HEAD'?null:gpFormRuntime,{headers:{...headers,'Content-Type':'text/javascript; charset=utf-8'}});
- if(!['/v1/member/details/gp-search','/v1/member/details/address-search'].includes(path))return null;
+ if(path!=='/v1/member/details/gp-search')return null;
  if(request.method!=='GET')return json({error:'method_not_allowed'},405);
  if(request.headers.get('Sec-Fetch-Site')==='cross-site'||(request.headers.get('Origin')&&request.headers.get('Origin')!==u.origin))return json({error:'origin_not_allowed'},403);
  let auth;try{auth=await authenticateMember(request,env);}catch{return json({error:'account_unavailable'},503);}if(auth.response)return auth.response;
  if(rateLimited(auth.userId))return json({error:'slow_down',message:'Please wait a moment before searching again. Manual entry is always available.'},429);
- if(path.endsWith('address-search')){
-  const postcode=normalisePostcode(String(u.searchParams.get('postcode')||'').trim());if(!/^(?:GIR 0AA|[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2})$/.test(postcode))return json({error:'invalid_postcode',message:'Enter a valid UK postcode.'},400);
-  if(!env.MEMBER_ADDRESS_API_KEY)return json({error:'address_lookup_not_configured',message:'Address lookup is not connected yet. Enter your full address below; you can still save it.'},503);
-  try{return json(await searchPostcode(postcode,env.MEMBER_ADDRESS_API_KEY));}catch{return json({error:'lookup_unavailable',message:'Address lookup is unavailable. You can enter and save your address manually.'},503);}
- }
  const query=String(u.searchParams.get('q')||'').trim();if(query.length<3||query.length>80||/[\u0000-\u001f]/.test(query))return json({error:'invalid_search',message:'Enter at least three characters of your GP practice name.'},400);
  if(env.MEMBER_GP_LOOKUP_ENABLED!=='true')return json({error:'gp_lookup_unavailable',message:'GP suggestions are unavailable here. Enter your practice manually.'},503);
  const key=query.toLowerCase(),cached=gpCache.get(key);if(cached&&cached.until>Date.now())return json(cached.value);

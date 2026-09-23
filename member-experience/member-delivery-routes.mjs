@@ -1,3 +1,4 @@
+import {photonEnabled} from './photon-address.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 const HEADERS={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','Vary':'Cookie'};
 const json=(body,status=200)=>Response.json(body,{status,headers:HEADERS});
@@ -27,7 +28,7 @@ async function state(env,userId){
  const home={recipient:[user.first_name,user.last_name].filter(Boolean).join(' '),address1:contact.address1||'',address2:contact.address2||'',town:contact.town||'',county:contact.county||'',postcode:user.postcode||''};
  return {user,row,contact,delivery,home,revision:await hash({version:row?.revision||0,body:row?.body_json||'{}',home})};
 }
-function view(s,env){return {ok:true,delivery:s.delivery,home:s.home,effectiveAddress:s.delivery.useHome?s.home:Object.fromEntries(Object.keys(fields).map(k=>[k,s.delivery[k]])),configured:Boolean(s.contact.delivery),revision:s.revision,addressLookupConfigured:Boolean(env.MEMBER_ADDRESS_API_KEY),orderAddressChanged:false};}
+function view(s,env){return {ok:true,delivery:s.delivery,home:s.home,effectiveAddress:s.delivery.useHome?s.home:Object.fromEntries(Object.keys(fields).map(k=>[k,s.delivery[k]])),configured:Boolean(s.contact.delivery),revision:s.revision,addressLookupConfigured:photonEnabled(env),orderAddressChanged:false};}
 export async function memberDeliveryRoute(request,env){
  if(new URL(request.url).pathname.replace(/\/+$/,'')!=='/v1/member/details/delivery')return null;
  if(!['GET','PUT'].includes(request.method))return fail('method_not_allowed','Use GET or PUT.',405);
