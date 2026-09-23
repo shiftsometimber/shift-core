@@ -17,9 +17,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          ref: 40e9aeec83bb8d2e4fc5fd5477fa757e7d36e31a
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - name: Load release-only tooling from its committed authority
+        run: |
+          git fetch origin 8257612a46c1d9ae460529e14429fa2f7247a18f
+          git show FETCH_HEAD:release/seo794-followthrough.mjs > release/seo794-followthrough.mjs
       - run: npm ci --no-audit --no-fund
       - uses: actions/download-artifact@v4
         with:
