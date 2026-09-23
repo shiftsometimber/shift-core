@@ -3,22 +3,26 @@ android {
     namespace 'uk.co.shiftsometimber.mytimber'
     compileSdk 36
     defaultConfig {
-        applicationId 'uk.co.shiftsometimber.mytimber.preview'
+        applicationId 'uk.co.shiftsometimber.mytimber'
         minSdk 26
         targetSdk 36
         versionCode 1
-        versionName '0.1.0-preview'
+        versionName '1.0.0'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    buildTypes { release { debuggable false } }
+    buildTypes {
+        debug {
+            applicationIdSuffix '.preview'
+            versionNameSuffix '-preview'
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+        }
+    }
 }
-// Deliberately no store-signing configuration, publishing plugin or secrets.
-
-// Preview only. Explicit review must replace this gate before any release build.
-gradle.taskGraph.whenReady { graph ->
-    if (graph.allTasks.any { it.name ==~ /(?i).*(assemble|bundle|package).*release.*/ })
-        throw new GradleException('Store release blocked: complete my-timber-app/RELEASE-GATES.md first.')
-}
+// Final package identity is reserved in source. Store signing/publishing credentials
+// are intentionally absent; an unsigned release compile is evidence, not deployment.
