@@ -1,12 +1,12 @@
 import {SEO_IMAGES, SEO_ASSETS} from './public-seo-assets-data.mjs';
 
-// Same artwork and palette; no analytics, consent, clinical copy or layout changes.
+// Same artwork and palette; no analytics, consent or clinical copy changes.
 const menuContrast = "html body header.site-header[data-header-v2] .menu-trigger{transition:none!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}html body header.site-header[data-header-v2] .menu-trigger:is(:hover,:focus-visible,[aria-expanded=\"true\"]){background:#E7E3DA!important;color:#050505!important;-webkit-text-fill-color:#050505!important}";
 const css = Object.freeze({
- '/': 'html body .home-hero-copy .actions a.button:not(.primary),html body .home-platform .action-grid a :is(strong,span),html body .home-platform .action-grid a,html body .home-platform .feature-grid a :is(strong,span),html body .matters .eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}',
+ '/': 'html body .home-hero-copy .actions a.button:not(.primary),html body .home-platform .action-grid a,html body .home-platform .feature-grid a :is(strong,span),html body .matters .eyebrow{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}',
  '/guides/retatrutide-uk-guide': 'html body .reta-hero .eyebrow,html body .reta-hero .byline-v12 a,html body .reta-status a,html body .reta-body a,html body .reta-body th{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}',
  '/shift-health': 'html body main[data-shift-health]>.wrap>.eyebrow,html body main[data-shift-health] .continuity-links a{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}',
- '/articles/mounjaro-cost-uk': 'html body main#main-content>p.sst-article-meta{color:#050505!important;-webkit-text-fill-color:#050505!important}'
+ '/articles/mounjaro-cost-uk': 'html body main#main-content>p.sst-article-meta{color:#050505!important;-webkit-text-fill-color:#050505!important}html body main#main-content>p>img[fetchpriority="high"][src^="/articles/mounjaro-cost-uk/image"]{width:100%;height:auto;aspect-ratio:auto 3 / 2}'
 });
 const clean = path => path.replace(/\/+$/, '') || '/';
 const excluded = path => /^\/(?:member(?:[/-]|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|auth(?:\/|$)|treatment-order(?:[/.]|$)|checkout(?:\/|$)|payment(?:\/|$))/.test(path);
