@@ -1,4 +1,4 @@
-name: My Timber app — preview builds only
+name: My Timber app — deploy-readiness builds
 on:
   push:
     branches: [feat/my-timber-store-20260923]
@@ -57,12 +57,22 @@ jobs:
           fi
           tail -n 25 ../evidence/android-build.txt
           sha256sum app/build/outputs/apk/debug/app-debug.apk > ../evidence/android-apk.sha256
+      - name: Compile unsigned Android release bundle (store identity, no signing/upload)
+        run: |
+          cd my-timber-app/android
+          if ! gradle --no-daemon :app:bundleRelease > ../evidence/android-release-build.txt 2>&1; then
+            tail -n 120 ../evidence/android-release-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/android-release-build.txt
+          sha256sum app/build/outputs/bundle/release/app-release.aab > ../evidence/android-release-aab.sha256
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: my-timber-android-preview-${{ github.sha }}
+          name: my-timber-android-readiness-${{ github.sha }}
           path: |
             my-timber-app/android/app/build/outputs/apk/debug/app-debug.apk
+            my-timber-app/android/app/build/outputs/bundle/release/app-release.aab
             my-timber-app/evidence/
           retention-days: 14
           if-no-files-found: error
@@ -106,10 +116,22 @@ jobs:
           tail -n 25 ../evidence/ios-build.txt
           ditto -c -k --sequesterRsrc --keepParent build/Build/Products/Debug-iphonesimulator/MyTimber.app ../evidence/MyTimber-simulator.zip
           shasum -a 256 ../evidence/MyTimber-simulator.zip > ../evidence/ios-simulator.sha256
+      - name: Compile unsigned iOS Release candidate (simulator, no signing/upload)
+        run: |
+          cd my-timber-app/ios
+          if ! xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Release \\
+            -sdk iphonesimulator -derivedDataPath release-build CODE_SIGNING_ALLOWED=NO build \\
+            > ../evidence/ios-release-build.txt 2>&1; then
+            tail -n 120 ../evidence/ios-release-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/ios-release-build.txt
+          ditto -c -k --sequesterRsrc --keepParent release-build/Build/Products/Release-iphonesimulator/MyTimber.app ../evidence/MyTimber-release-simulator.zip
+          shasum -a 256 ../evidence/MyTimber-release-simulator.zip > ../evidence/ios-release-simulator.sha256
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: my-timber-ios-simulator-${{ github.sha }}
+          name: my-timber-ios-readiness-${{ github.sha }}
           path: my-timber-app/evidence/
           retention-days: 14
           if-no-files-found: error
