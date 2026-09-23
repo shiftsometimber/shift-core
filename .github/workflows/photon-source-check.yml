@@ -1,0 +1,55 @@
+name: Photon source and public API check
+on:
+  push:
+    branches: [chore/photon-source-check-20260923]
+    paths: ['.github/workflows/photon-source-check.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: a09a339c0cb312cca78dea9063eace8688843eda
+      - name: Archive exact tracked text source
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = a09a339c0cb312cca78dea9063eace8688843eda
+          mkdir -p photon-source
+          git rev-parse HEAD > photon-source/source-sha.txt
+          git ls-tree -r HEAD > photon-source/git-tree.txt
+          python3 - <<'PY'
+          import subprocess,tarfile,pathlib,hashlib,json
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={}
+          with tarfile.open('photon-source/exact-text-source.tar.gz','w:gz') as t:
+            for p in paths:
+              f=pathlib.Path(p)
+              if not p or not f.is_file() or not (f.suffix in {'.js','.mjs','.json','.jsonc','.html','.css','.sql','.md','.txt','.yml','.yaml','.toml','.py','.xml','.csv'} or p in {'.nvmrc','.gitignore'}): continue
+              t.add(p,arcname=p,recursive=False);manifest[p]=hashlib.sha256(f.read_bytes()).hexdigest()
+          pathlib.Path('photon-source/SHA256.json').write_text(json.dumps(manifest,indent=2))
+          print('Exact tracked text files:',len(manifest))
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Four spaced public-landmark searches only; no personal addresses or credentials
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';const out=[];
+          for(const q of ['SW1A 1AA','Buckingham Palace SW1A 1AA','Belfast City Hall BT1 5GS','Manchester Town Hall M2 5DB']){
+            const u=new URL('https://photon.komoot.io/api/');u.search=new URLSearchParams({q,countrycode:'GB',limit:'12',lang:'en'});
+            try{const r=await fetch(u,{headers:{Accept:'application/json','User-Agent':'ShiftSomeTimber-preview/1.0 (https://shiftsometimber.co.uk)'},redirect:'manual',signal:AbortSignal.timeout(10000)});const text=await r.text();out.push({q,status:r.status,body:text.length<=80000?text:'response_over_sample_limit'});}catch(e){out.push({q,error:e.name});}
+            await new Promise(r=>setTimeout(r,1800));
+          }
+          fs.writeFileSync('photon-source/public-api-sample.json',JSON.stringify({checkedAt:new Date().toISOString(),productionWrites:0,requests:4,containsMemberData:false,results:out},null,2));console.log(JSON.stringify(out));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: photon-exact-source-${{ github.run_id }}
+          path: photon-source
+          retention-days: 7
+          if-no-files-found: error
