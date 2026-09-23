@@ -1,0 +1,56 @@
+name: SEO consent and alias proof 23 September 2026 (read only)
+on:
+  push:
+    branches: [audit/full-seo-20260923]
+    paths: [.github/workflows/seo-consent-proof-20260923.yml]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: |
+          npm install --prefix "$RUNNER_TEMP/seo-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/seo-tools/node_modules/.bin/playwright" install --with-deps chromium
+          echo "TOOLS=$RUNNER_TEMP/seo-tools" >> "$GITHUB_ENV"
+      - name: Fresh, accepted, persisted and revoked consent; no analytics delivery or account writes
+        run: |
+          mkdir -p seo-consent
+          cat > seo-consent/check.cjs <<'JS'
+          const fs=require('fs');const {chromium}=require(process.env.TOOLS+'/node_modules/playwright');
+          (async()=>{const browser=await chromium.launch();const report={checkedAt:new Date().toISOString(),scope:'Anonymous browser only. Non-GET/HEAD and measurement delivery blocked; consent stored only in disposable local browser contexts. No clinical, account, payment or production mutations.',consent:[],aliases:[],assets:[]};
+          for(const route of ['/','/guides/retatrutide-uk-guide']){const ctx=await browser.newContext({viewport:{width:390,height:844}});const page=await ctx.newPage();let phase='fresh',requests=[];await ctx.route('**/*',r=>{const q=r.request(),u=q.url();const analytics=/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com|\/g\/collect|\/collect\?/.test(u);if(analytics||u.includes('googletagmanager.com')){let p=new URL(u);requests.push({phase,host:p.host,path:p.pathname,method:q.method(),tid:p.searchParams.get('tid'),id:p.searchParams.get('id'),gcs:p.searchParams.get('gcs'),gcd:p.searchParams.get('gcd'),blocked:analytics||!['GET','HEAD'].includes(q.method())});}if(!['GET','HEAD'].includes(q.method())||analytics)return r.abort();return r.continue();});
+          let row={route,stages:[]};async function snap(){row.stages.push({phase,url:page.url(),...(await page.evaluate(()=>({dataLayer:JSON.parse(JSON.stringify(window.dataLayer||[])),gtmScripts:[...document.scripts].map(x=>x.src).filter(x=>x.includes('googletagmanager.com/gtm.js')),gaScripts:[...document.scripts].map(x=>x.src).filter(x=>x.includes('googletagmanager.com/gtag/js')),cookieButtons:[...document.querySelectorAll('.cookie-banner-v3a button,#sstCookieSettings')].map(x=>({text:x.textContent.trim(),id:x.id,visible:!!x.getBoundingClientRect().height})),cookieNames:document.cookie.split(';').map(x=>x.trim().split('=')[0]).filter(Boolean)})))});}
+          try{await page.goto('https://shiftsometimber.co.uk'+route,{waitUntil:'domcontentloaded'});await page.waitForTimeout(1800);await snap();phase='accepted';await page.getByRole('button',{name:'Accept analytics',exact:true}).click();await page.waitForTimeout(2500);await snap();phase='accepted-reload';await page.reload({waitUntil:'domcontentloaded'});await page.waitForTimeout(2000);await snap();phase='choices-open';await page.locator('#sstCookieSettings').click();await page.waitForTimeout(300);await snap();const buttons=await page.locator('.cookie-banner-v3a button').allTextContents();row.choiceButtons=buttons;const reject=page.locator('.cookie-banner-v3a button').filter({hasText:/essential|reject|necessary|decline/i});if(await reject.count()){phase='revoked';await reject.first().click();await page.waitForTimeout(500);await snap();phase='revoked-reload';await page.reload({waitUntil:'domcontentloaded'});await page.waitForTimeout(2000);await snap();}else row.revokeUnavailable='No explicit reject/necessary-only control matched; no guessed click made';}catch(e){row.error=String(e);}row.requests=requests;report.consent.push(row);await ctx.close();}
+          const ctx=await browser.newContext({viewport:{width:390,height:844}});await ctx.route('**/*',r=>!['GET','HEAD'].includes(r.request().method())||/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com/.test(r.request().url())?r.abort():r.continue());for(const route of ['/good-to-talk','/comparisons/surgery/gastric-band-vs-sleeve.html']){const page=await ctx.newPage();try{const response=await page.goto('https://shiftsometimber.co.uk'+route,{waitUntil:'domcontentloaded'});await page.waitForTimeout(1600);report.aliases.push({route,status:response.status(),url:page.url(),...(await page.evaluate(()=>({h1:[...document.querySelectorAll('h1')].map(x=>({text:x.textContent.trim(),visible:!!x.getBoundingClientRect().height})),canonical:document.querySelector('link[rel=canonical]')?.href,mainText:(document.querySelector('main')||document.body).innerText}))) });}catch(e){report.aliases.push({route,error:String(e)});}await page.close();}
+          for(const route of ['/analytics-bootstrap-v1.js','/consent-v4a.js']){const r=await ctx.request.get('https://shiftsometimber.co.uk'+route);const t=await r.text();fs.writeFileSync('seo-consent/'+route.slice(1),t);report.assets.push({route,status:r.status(),gtmIds:[...new Set(t.match(/GTM-[A-Z0-9]+/g)||[])],gaIds:[...new Set(t.match(/G-[A-Z0-9]{6,}/g)||[])]});}await ctx.close();await browser.close();fs.writeFileSync('seo-consent/results.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));})();
+          JS
+          node seo-consent/check.cjs
+      - name: Original bibliographic metadata for source-date anomalies
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,pathlib,urllib.parse
+          rows=[]
+          for term in ['EXT_ID:42707648 AND SRC:MED','EXT_ID:42492687 AND SRC:MED','DOI:10.1016/j.bj.2026.101037','DOI:10.32388/i85yu1']:
+            url='https://www.ebi.ac.uk/europepmc/webservices/rest/search?'+urllib.parse.urlencode({'query':term,'format':'json','resultType':'core','pageSize':1})
+            try:
+              with urllib.request.urlopen(url,timeout=25) as f:data=json.load(f)
+              rows.append({'query':term,'url':url,'result':data})
+            except Exception as e:rows.append({'query':term,'url':url,'error':str(e)})
+          pathlib.Path('seo-consent/bibliographic-metadata.json').write_text(json.dumps(rows,indent=2));print(json.dumps([{'query':x['query'],'error':x.get('error'),'hitCount':x.get('result',{}).get('hitCount')} for x in rows]))
+          PY
+      - name: Checksums
+        if: always()
+        run: |
+          cd seo-consent
+          find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-consent-proof-${{ github.sha }}
+          path: seo-consent/
+          retention-days: 30
