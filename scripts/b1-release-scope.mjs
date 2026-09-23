@@ -4,12 +4,15 @@ import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'no
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
-export const RELEASE_PATHS=new Set(['scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
+export const RELEASE_PATHS=new Set(['.github/workflows/seo-repair-final-preview.yml','release/seo794-preservation.mjs','tests/seo794-preservation.test.mjs','scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
- assert.equal(manifest.applicationCommit,'95cf0aaff3ed02afc4cc2e26e703c430ea83b9cd');
- assert.equal(manifest.baseCommit,'c00cfcc50099aca9f690069e2278480df4c0c837');
+ assert.equal(manifest.applicationCommit,'ce7080fe9c2da09572c7a98fca5a8c0863d0f44e');
+ assert.equal(manifest.approvedScope,'seo794-integrated');
+ assert.equal(manifest.previewEvidence.workflowRun,35873626050);
+ assert.equal(manifest.previewEvidence.sha256,'891e09d329bc49182b65d95c67327b79460d77ca4c7c8604de1edecabe206828');
+ assert.equal(manifest.baseCommit,'ecd0250f2c0b35d9efb128ce429136242de37304');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
