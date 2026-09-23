@@ -50,7 +50,7 @@ test('SW push uses generic text and approved icon; external notification URLs ar
 test('SW handles member offline navigation without intercepting writes or token URLs',async()=>{const listeners={},self={location:{origin},addEventListener:(type,fn)=>listeners[type]=fn};runInNewContext(serviceWorker,{self,URL,Response,fetch:async()=>{throw Error('offline')}});let response;listeners.fetch({request:{url:origin+'/member/dashboard',method:'GET',mode:'navigate'},respondWith:p=>{response=p}});assert.equal((await response).status,503);for(const request of [{url:origin+'/v1/check-ins',method:'POST',mode:'cors'},{url:origin+'/member/dashboard?token=secret',method:'GET',mode:'navigate'}])listeners.fetch({request,respondWith:()=>assert.fail('must not intercept')});});
 test('browser client has no automatic permission prompt, test-notification control or offline save claims',()=>{
  new Function(client);
- assert(client.indexOf('Notification.requestPermission()')>client.indexOf("el('pwaEnable').onclick"));
+ assert(client.includes('Notification.requestPermission()'));
  assert(!/localStorage|sessionStorage|caches\./.test(client));
  assert(!client.includes('pwaTest'));
  assert(!client.includes("api('/test'"));
@@ -58,26 +58,45 @@ test('browser client has no automatic permission prompt, test-notification contr
 });
 async function uiFixture(options={}){
  const fields={},calls={permission:0,subscribe:0,unsubscribe:0,requests:[]};
- const hidden=new Set(['pwaChange','pwaDisable','pwaRetry']);
+ const hidden=new Set(['pwaChange','pwaDisable','pwaRetry','pwaReminderFirstRun']);
  const disabled=new Set(['pwaHour','pwaEnable']);
- const ids=['myTimberApp','pwaInstall','pwaInstallHelp','pwaReminderSettings','pwaReminderSummary','pwaReminderEditor','pwaHour','pwaEnable','pwaChange','pwaDisable','pwaRetry','pwaReminderStatus'];
+ const ids=['myTimberApp','pwaInstall','pwaInstallHelp','pwaReminderSettings','pwaReminderSummary','pwaReminderEditor','pwaHour','pwaEnable','pwaChange','pwaDisable','pwaRetry','pwaReminderStatus','pwaReminderFirstRun','pwaReminderYes','pwaReminderNo','pwaReminderFirstRunStatus'];
  for(const id of ids)fields[id]={hidden:hidden.has(id),disabled:disabled.has(id),value:'19',textContent:'',open:false,focus(){this.focused=true},scrollIntoView(){},addEventListener(){}};
  if(options.noReminders)delete fields.pwaReminderSettings;
+ if(!options.firstRun)delete fields.pwaReminderFirstRun;
  const notification={permission:options.permission||'default',requestPermission:()=>{calls.permission++;notification.permission=options.choice||'granted';return Promise.resolve(notification.permission)}};
  const subscription={endpoint,toJSON:()=>({endpoint,keys}),unsubscribe:async()=>{calls.unsubscribe++;return true}};
  const registration={pushManager:{getSubscription:async()=>options.active?subscription:null,subscribe:async()=>{calls.subscribe++;if(options.subscribeError)throw Error('Subscription failed. Please retry.');return subscription}}};
  const window={PushManager:{},Notification:notification};
  const navigator={userAgent:options.ios?'iPhone':options.android?'Android Chrome':'Chrome',platform:options.ios?'iPhone':'Linux',maxTouchPoints:0,serviceWorker:{register:async()=>registration,ready:Promise.resolve(registration)}};
- const context={window,navigator,URLSearchParams,location:{hash:options.hash||'',search:options.search||''},Notification:notification,document:{getElementById:id=>fields[id]||null},matchMedia:()=>({matches:!!options.standalone}),isSecureContext:true,addEventListener:()=>{},setTimeout:(fn)=>{if(options.runTimers)fn();return 0},atob,Uint8Array,AbortSignal,fetch:async(path,init)=>{calls.requests.push({path,method:init.method});if(options.failure&&path.endsWith(options.failure.path))return Response.json({message:'Could not confirm save.'},{status:options.failure.status});return Response.json(path.endsWith('/status')?{enabled:!!options.active,hour:19,publicKey:keys.p256dh}:{enabled:true,hour:Number(fields.pwaHour?.value||19),publicKey:keys.p256dh})}};
+ const document={cookie:options.cookie||'',getElementById:id=>fields[id]||null};
+ const context={window,navigator,URLSearchParams,location:{hash:options.hash||'',search:options.search||''},Notification:notification,document,matchMedia:()=>({matches:!!options.standalone}),isSecureContext:true,addEventListener:()=>{},setTimeout:(fn)=>{if(options.runTimers)fn();return 0},atob,Uint8Array,AbortSignal,fetch:async(path,init)=>{calls.requests.push({path,method:init.method,body:init.body});if(options.failure&&path.endsWith(options.failure.path))return Response.json({message:'Could not confirm save.'},{status:options.failure.status});return Response.json(path.endsWith('/status')?{enabled:!!options.active,hour:19,publicKey:keys.p256dh}:{enabled:true,hour:Number(fields.pwaHour?.value||19),publicKey:keys.p256dh})}};
  runInNewContext(client,context);await new Promise(setImmediate);
- return{fields,calls,notification};
+ return{fields,calls,notification,document};
 }
-test('notification controls live in Settings only; install card has no reminder/test controls',async()=>{
- const html='<html><head></head><body><header>x</header><main>settings</main><footer>x</footer></body></html>';
+test('notification management lives in Settings; Today has only the one-time choice',async()=>{
+ const html='<html><head></head><body><header>x</header><main>content</main><footer>x</footer></body></html>';
  const settings=await(await withPwa(new Request(origin+'/member/settings'),new Response(html,{headers:{'Content-Type':'text/html'}}))).text();
- assert(settings.includes('id="pwaReminderSettings"'));assert(settings.includes('Turn on notifications'));assert(!settings.includes('Send test notification'));
+ assert(settings.includes('id="pwaReminderSettings"'));assert(settings.includes('Turn on notifications'));assert(!settings.includes('id="pwaReminderFirstRun"'));assert(!settings.includes('Send test notification'));
  const dashboard=await(await withPwa(new Request(origin+'/member/dashboard'),new Response(html,{headers:{'Content-Type':'text/html'}}))).text();
- assert(!dashboard.includes('id="pwaReminderSettings"'));assert(!dashboard.includes('Send test notification'));
+ assert(dashboard.includes('id="pwaReminderFirstRun"'));assert(dashboard.includes('Yes, remind me'));assert(dashboard.includes('No thanks'));assert(!dashboard.includes('id="pwaReminderSettings"'));assert(!dashboard.includes('Send test notification'));
+});
+test('first PWA Today asks once; Yes enables default reminder then disappears into Settings',async()=>{
+ const f=await uiFixture({firstRun:true,noReminders:true,standalone:true});
+ assert.equal(f.calls.permission,0);assert.equal(f.fields.pwaReminderFirstRun.hidden,false);
+ await f.fields.pwaReminderYes.onclick();
+ assert.equal(f.calls.permission,1);assert.equal(f.calls.subscribe,1);assert.equal(f.fields.pwaReminderFirstRun.hidden,true);
+ const put=f.calls.requests.find(r=>r.method==='PUT');assert(put);assert.equal(JSON.parse(put.body).hour,19);assert.match(f.document.cookie,/sst_pwa_reminder_prompt=v1/);
+});
+test('first PWA Today No thanks records the choice without asking permission; it stays gone on revisit',async()=>{
+ const f=await uiFixture({firstRun:true,noReminders:true,standalone:true});await f.fields.pwaReminderNo.onclick();
+ assert.equal(f.calls.permission,0);assert.equal(f.calls.subscribe,0);assert.equal(f.fields.pwaReminderFirstRun.hidden,true);assert.match(f.document.cookie,/sst_pwa_reminder_prompt=v1/);
+ const revisit=await uiFixture({firstRun:true,noReminders:true,standalone:true,cookie:'sst_pwa_reminder_prompt=v1'});
+ assert.equal(revisit.fields.pwaReminderFirstRun.hidden,true);assert.equal(revisit.calls.permission,0);
+});
+test('first-run choice is PWA-only and an existing active reminder suppresses it',async()=>{
+ const browser=await uiFixture({firstRun:true,noReminders:true,standalone:false});assert.equal(browser.fields.pwaReminderFirstRun.hidden,true);
+ const active=await uiFixture({firstRun:true,noReminders:true,standalone:true,active:true});assert.equal(active.fields.pwaReminderFirstRun.hidden,true);assert.match(active.document.cookie,/sst_pwa_reminder_prompt=v1/);
 });
 test('Settings asks permission only on explicit enable and collapses to compact on state',async()=>{
  const f=await uiFixture();assert.equal(f.calls.permission,0);assert.equal(f.fields.pwaReminderSummary.textContent,'Reminders off');
