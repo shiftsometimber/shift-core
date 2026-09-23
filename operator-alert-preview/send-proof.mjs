@@ -2,7 +2,18 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const config=JSON.parse(fs.readFileSync('operator-alert-preview/generated/wrangler.json'));
 const url='https://shift-operator-alert-preview.matobrien.workers.dev';
-const meta=await(await fetch(url,{signal:AbortSignal.timeout(20000)})).json();assert.equal(meta.source,config.vars.PROOF_SOURCE);
+let ready=false;const readiness=[];
+for(let attempt=0;attempt<10;attempt++){
+ try{
+  const response=await fetch(url,{signal:AbortSignal.timeout(10000)}),text=await response.text();
+  let meta;try{meta=JSON.parse(text)}catch{}
+  readiness.push({status:response.status,type:response.headers.get('content-type'),source:meta?.source||null,...(!meta?{bodyStart:text.slice(0,160)}:{})});
+  if(response.status===200&&meta?.source===config.vars.PROOF_SOURCE){ready=true;break;}
+ }catch(e){readiness.push({error:e.name});}
+ await new Promise(resolve=>setTimeout(resolve,3000));
+}
+fs.writeFileSync('operator-alert-evidence/readiness.json',JSON.stringify(readiness,null,2));
+assert(ready,'Preview did not become ready: '+JSON.stringify(readiness));
 const anonymous=await fetch(url+'/__send-proof',{method:'POST'});assert.equal(anonymous.status,401);
 const reports=[];
 for(let i=0;i<2;i++){

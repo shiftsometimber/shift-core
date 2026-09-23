@@ -6,6 +6,7 @@ const run=args=>JSON.parse(execFileSync(process.execPath,['node_modules/wrangler
 const databases=run(['d1','list','--json']).filter(d=>d.name==='shift-member-details-auth-20260922');assert.equal(databases.length,1);
 const d=databases[0],id=d.uuid||d.id||d.database_id;assert(id&&!fs.readFileSync('wrangler.jsonc','utf8').includes(id));
 const source=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),token=randomBytes(32).toString('hex');console.log('::add-mask::'+token);
+console.log('::add-mask::'+token.slice(0,32));
 const messages=['signup','order'].map(name=>JSON.parse(fs.readFileSync('operator-alert-evidence/'+name+'-preview.json','utf8')));
 messages.forEach(m=>{m.subject='TEST — SHIFT alert check — '+(m.to.startsWith('hello@')?'new member signup':'new paid order');m.text='TEST ONLY — fictional data. No real member or order was created.\n\n'+m.text;m.html=m.html.replace('<body','<body').replace(/(<main[^>]*>|<div style="max-width:640px[^>]*>)/,'$1<p style="padding:12px;background:#E7E3DA;color:#050505;font-weight:bold">TEST ONLY — fictional data. No real member or order was created.</p>');});
 fs.mkdirSync('operator-alert-preview/generated',{recursive:true});
