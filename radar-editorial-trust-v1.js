@@ -12,7 +12,15 @@ export function articleTrust(content,row){
  const publication=evidenceDate(published),update=evidenceDate(modified);
  return '<div class="radar-news-meta" data-editorial-trust><p>By '+esc(seo.author||'SHIFT Newsroom')+(publication?' · Published '+esc(publication):'')+(update&&update!==publication?' · Updated '+esc(update):'')+'</p>'+(content.automatic_review?'<p>AI-prepared summary with an automated accuracy check. Source findings and SHIFT’s interpretation are distinct. For information, not personal medical advice.</p>':'')+'<p><a href="/editorial-standards#newsroom">How we prepare and check newsroom articles</a> · <a href="/editorial-standards#corrections">Report a correction</a></p></div>';
 }
-export function sourceDateLabel(source){const date=evidenceDate(source.source_date||source.source_published_at||source.published_at);return date?' <span class="radar-news-meta">— Source date: '+esc(date)+'</span>':' <span class="radar-news-meta">— Source date not recorded</span>'}
+export function sourceDateLabel(source){
+ const type=String(source.evidence_type||'').trim(),online=evidenceDate(source.online_publication_date),issue=evidenceDate(source.issue_date);
+ const parts=[];
+ if(type)parts.push(esc(type));
+ if(online)parts.push('First published online: '+esc(online));
+ if(issue)parts.push('Journal issue: '+esc(issue));
+ if(!online&&!issue){const date=evidenceDate(source.source_date||source.source_published_at||source.published_at);parts.push(date?'Source date: '+esc(date):'Source date not recorded');}
+ return ' <span class="radar-news-meta">— '+parts.join(' · ')+'</span>';
+}
 export function newsSitemapDates(rows){
  const dates=new Map();
  for(const row of rows){let content;try{content=typeof row.content_package_json==='string'?JSON.parse(row.content_package_json):row.content_package_json}catch{continue}

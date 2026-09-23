@@ -8,7 +8,8 @@ import {withPublicShellContract} from '../../public-shell-contract.mjs';
 import {withPublicTicker} from '../../public-navigation-policy.mjs';
 import {withPwa} from '../../my-timber-pwa/presentation.mjs';
 
-const origin='https://shiftsometimber.co.uk',realFetch=globalThis.fetch;
+const origin='https://shiftsometimber.co.uk',sourceFetch=globalThis.fetch;
+const realFetch=(input,options={})=>sourceFetch(input,{...options,headers:{'User-Agent':'SHIFT-Owner-SEO-Repair/1.0',...(options.headers||{})}});
 const sha=s=>createHash('sha256').update(s).digest('hex');
 const changed=JSON.parse(readFileSync('preview/seo-repairs/generated/changes.json','utf8'));
 const paths=[...new Set(['/', '/guides/retatrutide-uk-guide','/shift-health','/articles/mounjaro-cost-uk','/mens-mental-health','/programme','/about','/start-here','/treatment-centre','/mounjaro','/wegovy','/foundayo','/shop','/explore-knowledge','/glp1-knowledge-centre','/articles/stopping-glp1','/shift-health/testosterone-energy','/clinic-gone-quiet','/provider-switch','/shift-newsroom',...changed.map(x=>'/'+x.slug)])];
@@ -42,7 +43,7 @@ for(const path of paths){
   const title=rendered.match(/<title>([\s\S]*?)<\/title>/i)[1];
   candidate=candidate.replace(/<title>[\s\S]*?<\/title>/i,'<title>'+title+'</title>')
    .replace(/(<meta\b[^>]*(?:name|property)=["'](?:og:title|twitter:title)["'][^>]*content=["'])[^"']*(["'])/gi,'$1'+title+'$2')
-   .replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,tag=>tag.replaceAll('SHIFT Health | Wider Men’s Health',title));
+   .replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,tag=>tag.replaceAll('SHIFT Health | Wider Men’s Health',title.replaceAll('&amp;','&')));
  }
  let response=await withPublicTicker(request,new Response(candidate,{headers:{'Content-Type':'text/html; charset=utf-8'}}));
  response=await withPublicShellContract(request,response);response=await withPwa(request,response);candidate=await response.text();

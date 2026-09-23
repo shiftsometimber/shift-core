@@ -49,7 +49,7 @@ export function correctionSQL(changes,modifiedAt){
 }
 if(process.argv[1]?.endsWith('/build-news.mjs')){
  const input=process.argv[2]||'seo-news-snapshot/published.json',out=process.argv[3]||'preview/seo-repairs/generated';
- const snapshot=JSON.parse(readFileSync(input,'utf8'));const candidate=prepareNews(snapshot,'2026-09-23T14:00:00.000Z');
+ const snapshot=JSON.parse(readFileSync(input,'utf8'));const candidate=prepareNews(snapshot,new Date().toISOString());
  mkdirSync(out,{recursive:true});
  writeFileSync(out+'/fixtures.mjs','export const news='+JSON.stringify(candidate.news)+';\nexport const articles='+JSON.stringify(candidate.articles)+';\n');
  writeFileSync(out+'/changes.json',JSON.stringify(candidate.changes,null,2));
