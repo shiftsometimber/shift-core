@@ -67,6 +67,7 @@ import { shiftMeRoutes } from "./shift-me-v1.js";
 import { shiftMe3DProofRoutes } from "./shift-me-3d-proof-v1.js";
 import { sportClubhouseRoutes } from "./sport-clubhouse-v1.js";
 import { privacyHealthErasureRoute } from "./privacy-health-erasure-route-v1.js";
+import { accountDeletionPublicRoute } from "./app-store-public-v1.js";
 import { commerceStripeRoutes } from "./commerce-stripe-v1.js";
 import { medicineCommerceRoutes } from "./medicine-commerce-v1.js";
 import {
@@ -1167,6 +1168,7 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 export default {
   ...worker,
   async fetch(request, env, ctx) {
+    const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return appStorePublic;
     if(env.MY_TIMBER_PWA_ENABLED==='true'){
       const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);
       if(pwa)return pwa;
