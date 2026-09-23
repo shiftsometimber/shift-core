@@ -22,8 +22,11 @@ test('delivery participates in existing own-account export and FK hard-deletion 
 test('real validation rejects incomplete, oversized, invalid or ambiguous delivery data',()=>{assert.equal(validateDelivery({...separate(),postcode:'sw1a1aa'}).postcode,'SW1A 1AA');for(const patch of [{useHome:'false'},{recipient:''},{address1:''},{town:''},{postcode:'NOPE'},{county:'x'.repeat(101)},{recipient:'A\nB'},{extra:'no'}])assert.throws(()=>validateDelivery({...separate(),...patch}));});
 test('both retained assessment templates load the shared GP component exactly once',()=>{for(const path of ['../../frontend/member/treatment-assessment.html','../../frontend/medicine-front-door/treatment-assessment.html']){const s=readFileSync(new URL(path,import.meta.url),'utf8');assert.equal((s.match(/src="\/assets\/member-experience\/gp-form\.mjs"/g)||[]).length,1);assert(s.includes('name="gpContactConsent"'));assert(s.includes('name="gpAddress"'));}});
 
-// Load the exact previously released handler, not a current-handler simulation.
-const legacySource=(await import('node:child_process')).execFileSync('git',['show','323f2409c0bd7f719abb05969fe9aeb2a827261b:member-experience/member-details-routes.mjs'],{encoding:'utf8'}).replace("'../member-state-fast-v1.js'",JSON.stringify(new URL('../../member-state-fast-v1.js',import.meta.url).href));
+// Byte-exact released handler fixture: available even in shallow CI checkouts.
+// The source reconciliation gate also compares its Git blob to released main.
+const legacyBytes=readFileSync(new URL('./fixtures/released-member-details-323f240.txt',import.meta.url));
+assert.equal((await import('node:crypto')).createHash('sha256').update(legacyBytes).digest('hex'),'d8651df53414daa57e9606a9977bc5d79624e048b5e1da615ad2ee7be8688155');
+const legacySource=legacyBytes.toString('utf8').replace("'../member-state-fast-v1.js'",JSON.stringify(new URL('../../member-state-fast-v1.js',import.meta.url).href));
 const {memberDetailsRoute:legacyDetailsRoute}=await import('data:text/javascript;base64,'+Buffer.from(legacySource).toString('base64'));
 async function legacySave(f,d=details(),body){const state=await(await legacyDetailsRoute(homeRequest(),f.env)).json();body ||= {details:d,revision:state.revision,operationId:crypto.randomUUID()};return {body,response:await legacyDetailsRoute(homeRequest('PATCH',body),f.env)};}
 test('actual released runtime reproduces delivery loss without guard and rejects destructive save with guard',async t=>{

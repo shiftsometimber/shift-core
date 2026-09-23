@@ -24,6 +24,7 @@ const reconciliationFiles = new Set([
   'release/member-details-schema.mjs',
   'member-experience/member-details.sql',
   'member-experience/tests/member-delivery.test.mjs',
+  'member-experience/tests/fixtures/released-member-details-323f240.txt',
   'member-experience/tests/schema-cli-json.test.mjs',
   'tests/member-details-release.test.mjs',
   'release/b1-runtime-only.json',
@@ -32,6 +33,7 @@ const reconciliationFiles = new Set([
 for (const path of releaseFiles) assert.equal(git('rev-parse',`HEAD:${path}`),git('rev-parse',`${released}:${path}`),`Released source changed: ${path}`);
 for (const path of accountFiles.filter(p=>!reconciliationFiles.has(p))) assert.equal(git('rev-parse',`HEAD:${path}`),git('rev-parse',`${account}:${path}`),`Verified account source changed: ${path}`);
 for (const path of files(account,'HEAD')) assert(releaseFiles.includes(path)||reconciliationFiles.has(path),`Unreviewed reconciliation change: ${path}`);
+assert.equal(git('rev-parse','HEAD:member-experience/tests/fixtures/released-member-details-323f240.txt'),git('rev-parse',released+':member-experience/member-details-routes.mjs'),'Legacy rollback fixture is not byte-exact released source');
 const providerFlag = '    "MEMBER_ADDRESS_PROVIDER": "photon",\n';
 const config=fs.readFileSync('wrangler.jsonc','utf8');
 assert.equal(config.split(providerFlag).length,2,'Exactly one proposed Photon flag required');
