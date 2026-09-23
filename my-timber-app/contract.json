@@ -1,0 +1,20 @@
+{
+  "name": "My Timber",
+  "version": "1.0.0",
+  "build": 1,
+  "origin": "https://shiftsometimber.co.uk",
+  "startPath": "/member/dashboard#today",
+  "previewApplicationId": "uk.co.shiftsometimber.mytimber.preview",
+  "plannedStoreApplicationId": "uk.co.shiftsometimber.mytimber",
+  "plannedStoreName": "My Timber",
+  "legalEntity": "SHIFT SOME TIMBER LTD",
+  "sourceCommit": "f3a98e20dc7e26981f46e1cba7de6ab569234ef1",
+  "iconUrl": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+  "backend": "existing production service; NOT an isolated test database",
+  "dunsAvailable": true,
+  "nativePushReady": false,
+  "storeAccountsVerified": false,
+  "storeSubmissionAllowed": false,
+  "v1NativeNotifications": false,
+  "v1Scope": "store app mirrors My Timber member experience; PWA-only install/reminder controls omitted"
+}
