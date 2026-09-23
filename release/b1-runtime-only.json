@@ -1,6 +1,6 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "77354ed6c1d2a1a073e5124e6fabc0ec35fb32e9",
+  "applicationCommit": "95cf0aaff3ed02afc4cc2e26e703c430ea83b9cd",
   "baseCommit": "c00cfcc50099aca9f690069e2278480df4c0c837",
   "reason": "Owner requested signup alerts to hello@ and paid-order alerts to orders@. Existing paid-order routing retained. Enable only the new signup alert flag, with exact additive delivery tracking, no backfill and runtime-only rollback. Preview and actual labelled test-email acceptance required before production approval.",
   "previewEvidence": {
