@@ -1,0 +1,13 @@
+{
+  "name": "My Timber",
+  "version": "0.1.0",
+  "build": 1,
+  "origin": "https://shiftsometimber.co.uk",
+  "startPath": "/member/dashboard#today",
+  "previewApplicationId": "uk.co.shiftsometimber.mytimber.preview",
+  "sourceCommit": "f3a98e20dc7e26981f46e1cba7de6ab569234ef1",
+  "iconUrl": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+  "backend": "existing production service; NOT an isolated test database",
+  "nativePushReady": false,
+  "storeSubmissionAllowed": false
+}

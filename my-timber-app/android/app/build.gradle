@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'uk.co.shiftsometimber.mytimber'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'uk.co.shiftsometimber.mytimber.preview'
+        minSdk 26
+        targetSdk 36
+        versionCode 1
+        versionName '0.1.0-preview'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes { release { debuggable false } }
+}
+// Deliberately no store-signing configuration, publishing plugin or secrets.
+
+// Preview only. Explicit review must replace this gate before any release build.
+gradle.taskGraph.whenReady { graph ->
+    if (graph.allTasks.any { it.name ==~ /(?i).*(assemble|bundle|package).*release.*/ })
+        throw new GradleException('Store release blocked: complete my-timber-app/RELEASE-GATES.md first.')
+}
