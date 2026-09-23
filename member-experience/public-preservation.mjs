@@ -1,4 +1,5 @@
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
+import {preserveSeo794} from '../release/seo794-preservation.mjs';
 import {preserveCalculatorsNavigation} from '../public-calculators-preservation.mjs';
 import {preserveNutritionSignposting} from '../public-nutrition-mytimber.mjs';
 import {preservePwaPresentation} from '../my-timber-pwa/preservation.mjs';
@@ -25,7 +26,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,body),{required:Boolean(before)});
+ const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveSeo794(path,body,{required:Boolean(before)})),{required:Boolean(before)});
  let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,preserveOralKnowledge(path,pwaPreserved),{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
  preserved=preserveServiceBridgePaint(preserveLoginSession(path,preserved),{required:Boolean(before)});
  preserved=preserveTreatmentCentreAccuracy(path,preserved,{required:Boolean(before)});
