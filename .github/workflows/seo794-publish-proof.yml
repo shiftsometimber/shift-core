@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      APPROVED_MERGE_SHA: 13e74ceafc70dee7bc786de8c2584f84f3b06da1
-      EXPECTED_MAIN_SHA: 13e74ceafc70dee7bc786de8c2584f84f3b06da1
-      CANDIDATE_SHA: 13e74ceafc70dee7bc786de8c2584f84f3b06da1
+      APPROVED_MERGE_SHA: f3a98e20dc7e26981f46e1cba7de6ab569234ef1
+      EXPECTED_MAIN_SHA: f3a98e20dc7e26981f46e1cba7de6ab569234ef1
+      CANDIDATE_SHA: f3a98e20dc7e26981f46e1cba7de6ab569234ef1
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 13e74ceafc70dee7bc786de8c2584f84f3b06da1
+          ref: f3a98e20dc7e26981f46e1cba7de6ab569234ef1
           persist-credentials: false
           fetch-depth: 0
       - uses: actions/setup-node@v4
@@ -32,7 +32,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import urllib.request,os,json
-          url='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/35909637787'
+          url='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/35910551982'
           req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'User-Agent':'SHIFT-approved-SEO-release'})
           with urllib.request.urlopen(req) as f:r=json.load(f)
           assert r['head_sha']==os.environ['APPROVED_MERGE_SHA'] and r['conclusion']=='success'
@@ -54,8 +54,8 @@ jobs:
         with:
           github-token: ${{ github.token }}
           repository: shiftsometimber/shift-core
-          run-id: 35909492851
-          name: seo794-preflight-e3063eee0815c0c38da4277c42aa153df80a7364
+          run-id: 35910415270
+          name: seo794-preflight-b72054b530d7f9108626ea5c6da7d74a8e83d29a
           path: seo794-preflight
       - name: Verify exact approved public fixtures and rollback backup
         run: |
