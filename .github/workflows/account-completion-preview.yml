@@ -45,29 +45,19 @@ jobs:
           const meta=await(await fetch('https://shift-stabilisation-preview.matobrien.workers.dev/__preview/meta',{signal:AbortSignal.timeout(20000)})).json();assert.equal(meta.productionBindings,false);
           fs.writeFileSync('account-completion-evidence/access-before.json',JSON.stringify({readOnly:true,productionWrites:0,previousPreview:meta,previousHardcodedLimit:20,capacity},null,2));console.log(JSON.stringify({previousLimit:20,capacity,source:meta.source}));
           JS
-      - name: Apply only guarded preview-access changes
-        run: node preview/member-details/apply-access-repair.mjs
+      - name: Verify exact account and newer released-source preservation
+        run: node account-completion/reconcile-source.mjs
       - name: Run retained member and new preview-access tests
         shell: bash
         run: |
           set -euo pipefail
           node --test member-experience/tests/*.test.mjs 2>&1 | tee account-completion-evidence/account-tests.tap
           node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/account-completion-compile > account-completion-evidence/compile.txt 2>&1 || { tail -n 70 account-completion-evidence/compile.txt; exit 1; }
-      - name: Preserve the application and commit exact tested preview changes to draft only
+      - name: Record the unchanged tested candidate
         run: |
           set -euo pipefail
-          node --input-type=module - <<'JS'
-          import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
-          const allowed=new Set(['work/staging/worker.mjs','preview/member-details/worker.mjs','preview/member-details/prepare.mjs','preview/member-details/browser-proof.mjs']);
-          const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of changed)assert(allowed.has(p),'Unexpected source change: '+p);if(changed.length)execFileSync('git',['add','--',...changed]);
-          const all=execFileSync('git',['diff','60c50c135560201436204a21717b226623fec621','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of all)assert(p.startsWith('preview/member-details/')||p.startsWith('work/staging/')||p==='member-experience/tests/preview-access.test.mjs'||p==='.github/workflows/account-completion-preview.yml','Unrelated application or production change: '+p);
-          JS
-          if ! git diff --cached --quiet; then
-            git config user.name 'SHIFT preview verification'
-            git config user.email 'it@shiftsometimber.co.uk'
-            git commit -m 'Repair bounded fictional preview capacity and reuse returning reviewer sessions'
-            git push origin HEAD:refs/heads/fix/account-completion-20260923
-          fi
+          git diff --exit-code
+          node account-completion/reconcile-source.mjs
           echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           git rev-parse HEAD > account-completion-evidence/source-sha.txt
       - uses: actions/setup-python@v5
