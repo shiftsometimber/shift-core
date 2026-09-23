@@ -7,7 +7,7 @@ settings:
     SWIFT_VERSION: '5.0'
     TARGETED_DEVICE_FAMILY: '1,2'
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 0.1.0
+    MARKETING_VERSION: 1.0.0
     ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 targets:
   MyTimber:
@@ -18,8 +18,12 @@ targets:
       - Resources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber.preview
         CODE_SIGN_STYLE: Automatic
+      configs:
+        Debug:
+          PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber.preview
+        Release:
+          PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber
     info:
       path: GeneratedInfo.plist
       properties:
