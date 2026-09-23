@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 
 const account = '2afcd65015ab8ca7334d8c69a9f4bb3ce4707cd3';
-const released = '323f2409c0bd7f719abb05969fe9aeb2a827261b';
+const released = '77e1d0fb673277b77b46c2a924a4dafb0af75404';
 const common = '4c014edce24bd9a37645dfbd6bad204ed3270091';
 const git = (...args) => execFileSync('git', args, {encoding:'utf8'}).trim();
 const files = (...args) => git('diff','--name-only',...args).split('\n').filter(Boolean);
@@ -50,7 +50,9 @@ const reconciliationFiles = new Set([
   'release/b1-runtime-only.json',
   'scripts/b1-release-scope.mjs'
 ]);
-for (const path of releaseFiles) assert.equal(git('rev-parse',`HEAD:${path}`),git('rev-parse',`${released}:${path}`),`Released source changed: ${path}`);
+const releasePinPaths=new Set(['release/b1-runtime-only.json','scripts/b1-release-scope.mjs']);
+const releaseFilesPreserved=releaseFiles.filter(path=>!releasePinPaths.has(path));
+for (const path of releaseFilesPreserved) assert.equal(git('rev-parse',`HEAD:${path}`),git('rev-parse',`${released}:${path}`),`Released source changed: ${path}`);
 for (const path of accountFiles.filter(p=>!reconciliationFiles.has(p))) assert.equal(git('rev-parse',`HEAD:${path}`),git('rev-parse',`${account}:${path}`),`Verified account source changed: ${path}`);
 for (const path of files(account,'HEAD')) assert(releaseFiles.includes(path)||reconciliationFiles.has(path),`Unreviewed reconciliation change: ${path}`);
 assert.equal(git('rev-parse','HEAD:member-experience/tests/fixtures/released-member-details-323f240.txt'),git('rev-parse',released+':member-experience/member-details-routes.mjs'),'Legacy rollback fixture is not byte-exact released source');
@@ -58,7 +60,7 @@ const config=fs.readFileSync('wrangler.jsonc','utf8');
 assert.equal(config,execFileSync('git',['show',released+':wrangler.jsonc'],{encoding:'utf8'}),'Unreviewed runtime configuration');
 assert(!config.includes('"MEMBER_EMAIL_CHANGE_ENABLED": "true"'),'Real email-change gate must remain closed');
 const report = {source:git('rev-parse','HEAD'),accountBaseline:account,releasedBaseline:released,
-  releaseFiles,accountFiles,accountFilesPreserved:accountFiles.filter(p=>!reconciliationFiles.has(p)),reviewedSchemaChange:"Add delivery-preservation trigger for legacy runtime saves",applicationRouteChanges:true,reviewedAddressChange:"Remove address lookup and retain manual home/delivery entry; GP suggestions retained",proposedConfigurationChange:"None: configuration matches released main exactly",productionWrites:0,passed:true};
+  releaseFiles,releaseFilesPreserved,reviewedReleasePinPaths:[...releasePinPaths],accountFiles,accountFilesPreserved:accountFiles.filter(p=>!reconciliationFiles.has(p)),reviewedSchemaChange:"Add delivery-preservation trigger for legacy runtime saves",applicationRouteChanges:true,reviewedAddressChange:"Remove address lookup and retain manual home/delivery entry; GP suggestions retained",proposedConfigurationChange:"None: configuration matches released main exactly",productionWrites:0,passed:true};
 fs.mkdirSync('account-completion-evidence',{recursive:true});
 fs.writeFileSync('account-completion-evidence/source-reconciliation.json',JSON.stringify(report,null,2));
-console.log(JSON.stringify({source:report.source,releasedFilesPreserved:releaseFiles.length,accountFilesPreserved:report.accountFilesPreserved.length,passed:true}));
+console.log(JSON.stringify({source:report.source,releasedFilesPreserved:releaseFilesPreserved.length,accountFilesPreserved:report.accountFilesPreserved.length,passed:true}));

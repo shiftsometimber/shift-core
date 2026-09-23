@@ -9,7 +9,7 @@ export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
  assert.equal(manifest.applicationCommit,'0ec37c4d296e42781a6807b5ad6555fa2f86c88c');
- assert.equal(manifest.baseCommit,'323f2409c0bd7f719abb05969fe9aeb2a827261b');
+ assert.equal(manifest.baseCommit,'77e1d0fb673277b77b46c2a924a4dafb0af75404');
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};

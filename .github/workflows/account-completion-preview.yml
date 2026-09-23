@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 35
     env:
       WRANGLER_SEND_METRICS: 'false'
-      EXPECTED_MAIN: 323f2409c0bd7f719abb05969fe9aeb2a827261b
+      EXPECTED_MAIN: 77e1d0fb673277b77b46c2a924a4dafb0af75404
     steps:
       - uses: actions/checkout@v4
         with:

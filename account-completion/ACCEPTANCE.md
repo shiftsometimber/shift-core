@@ -2,6 +2,10 @@
 
 Owner request: full postcode-to-address lookup, site-wide GP assistance, secure self-service sign-in email changes and separate delivery-address editing must not remain repeatedly deferred.
 
+## Newer main preserved
+
+The first manual-address preview attempt stopped before deployment when main advanced to `77e1d0fb673277b77b46c2a924a4dafb0af75404` (Medicines Watch PR795/796). This candidate merges that exact main, preserves all four added/changed Medicines Watch files and the ten Reta files byte-for-byte, and replaces only the reviewed application release pin. The retained rollback handler fixture is unchanged.
+
 ## Current owner decision — manual address entry
 
 On 23 September the owner rejected paid postcode lookup and instructed its removal. Home and delivery addresses are now typed manually. Both free Photon and the proposed paid replacement are superseded; no provider signup/key/activation is required. Free NHS GP suggestions remain, with manual GP entry. Existing saved addresses, separate delivery preference, validation, and explicit save/reload behaviour are preserved. New hosted evidence is required for this changed candidate. See `docs/decisions/2026-09-23-manual-addresses.md`.

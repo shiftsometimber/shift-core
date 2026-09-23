@@ -1,8 +1,8 @@
 {
   "mode": "runtime-only",
   "applicationCommit": "0ec37c4d296e42781a6807b5ad6555fa2f86c88c",
-  "baseCommit": "323f2409c0bd7f719abb05969fe9aeb2a827261b",
-  "reason": "Prepared PR792 account release; not production approval. Owner removed postcode lookup: home/delivery addresses are manual, free NHS GP suggestions retained. Runtime configuration matches current released main. Preserve Reta source, customer records, historical orders, catalogue, stock, prices and clinical/payment holds. Separate delivery editing remains; Stripe prefill is not included. Real email changes stay disabled. Runtime-only rollback preserves data; exact additive delivery-preservation trigger refuses incompatible legacy saves.",
+  "baseCommit": "77e1d0fb673277b77b46c2a924a4dafb0af75404",
+  "reason": "Prepared PR792 account release; not production approval. Owner removed postcode lookup: home/delivery addresses are manual, free NHS GP suggestions retained. Runtime configuration matches current released main. Preserve Reta source, customer records, historical orders, catalogue, stock, prices and clinical/payment holds. Separate delivery editing remains; Stripe prefill is not included. Real email changes stay disabled. Runtime-only rollback preserves data; exact additive delivery-preservation trigger refuses incompatible legacy saves. Preserve the intervening released Medicines Watch source exactly; only the account candidate release pin replaces its previous release pin.",
   "previewEvidence": {
     "retainedAccountSource": "2afcd65015ab8ca7334d8c69a9f4bb3ce4707cd3",
     "retainedAccountWorkflow": 35849691581,
@@ -13,7 +13,12 @@
     "finalHostedVerification": "Required for the final branch head; no success claimed by this manifest.",
     "productionApproval": "Owner preview/release acceptance remains required.",
     "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth",
-    "addressDecision": "Owner explicitly chose manual address entry; no provider signup, key, trial or cost. New hosted verification required."
+    "addressDecision": "Owner explicitly chose manual address entry; no provider signup, key, trial or cost. New hosted verification required.",
+    "retainedMedicinesWatch": {
+      "releasedMain": "77e1d0fb673277b77b46c2a924a4dafb0af75404",
+      "sourceCommit": "1bba374cd9e31bfc2187fe207483ea168b1a7a5e",
+      "exactFiles": 4
+    }
   },
   "runtimeSchemaAdditions": [
     "member_account_details",
