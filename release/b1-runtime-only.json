@@ -1,18 +1,19 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "9d601079ee0e465be00dc67320be8437c669a578",
+  "applicationCommit": "2bcb3d50d7e83ddaedd1895b42f5b987bc90cdc6",
   "baseCommit": "323f2409c0bd7f719abb05969fe9aeb2a827261b",
-  "reason": "Prepared PR792 account-address release, not production approval. Preserve the current released Reta source, all tested account code, customer records, historical orders, catalogue, stock, price and clinical/payment holds. Only the Photon runtime flag is added. Separate delivery editing is included; Stripe shipping prefill is not. Secure email change stays disabled pending real-mail evidence; no email schema migration. Runtime-only rollback preserves all data. The exact additive delivery-preservation trigger refuses incompatible legacy home saves during rollback; compatible current saves remain available after recovery.",
+  "reason": "Prepared PR792 account-address release, not production approval. Preserve the current released Reta source, all tested account code, customer records, historical orders, catalogue, stock, price and clinical/payment holds. Only the Photon runtime flag is added. Separate delivery editing is included; Stripe shipping prefill is not. Secure email change stays disabled pending real-mail evidence; no email schema migration. Runtime-only rollback preserves all data. The exact additive delivery-preservation trigger refuses incompatible legacy home saves during rollback; compatible current saves remain available after recovery. Residential lookup acceptance failed; release remains held. Prepared Ideal Postcodes support is disabled without explicit provider selection and an approved server key. No replacement provider is activated by this candidate.",
   "previewEvidence": {
     "retainedAccountSource": "2afcd65015ab8ca7334d8c69a9f4bb3ce4707cd3",
     "retainedAccountWorkflow": 35849691581,
     "reconciledSource": "be20c3a73869883b921971db5405fc00749f9d71",
     "reconciliationWorkflow": 35880432037,
-    "localMemberAndReleaseTests": 283,
-    "proposedApplicationSource": "9d601079ee0e465be00dc67320be8437c669a578",
+    "localMemberAndReleaseTests": 294,
+    "proposedApplicationSource": "2bcb3d50d7e83ddaedd1895b42f5b987bc90cdc6",
     "finalHostedVerification": "Required for the final branch head; no success claimed by this manifest.",
     "productionApproval": "Owner preview/release acceptance remains required.",
-    "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth"
+    "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth",
+    "replacementProvider": "Public provider demo returned 68 results for the reported postcode; replacement not deployed or verified in SHIFT preview."
   },
   "runtimeSchemaAdditions": [
     "member_account_details",
