@@ -48,24 +48,58 @@ test('already handled first page cannot starve later devices',async t=>{const f=
 test('privacy export includes only own preferences/history without push bearer material',async t=>{const f=await fixture(t);await f.enable();await f.enable(2,'https://fcm.googleapis.com/other');await f.run();const req=new Request(origin+'/v1/privacy/export',{method:'POST',headers:{Cookie:'sst_session=fictional-1'}}),r=await f.mod.appendPwaExport(req,f.env,Response.json({existing:'retained'})),data=await r.json();assert.equal(data.existing,'retained');assert.equal(data.myTimberNotifications.devices.length,1);assert.equal(data.myTimberNotifications.deliveries.length,1);for(const forbidden of ['p256dh','session_id','endpoint','never-export'])assert(!JSON.stringify(data).includes(forbidden));});
 test('SW push uses generic text and approved icon; external notification URLs are rejected',async()=>{const listeners={},shown=[];const self={location:{origin},navigator:{},registration:{showNotification:async(...a)=>shown.push(a)},addEventListener:(type,fn)=>listeners[type]=fn};runInNewContext(serviceWorker,{self,URL,Response,fetch});let pending;listeners.push({data:{json:()=>({kind:'my-timber-checkin',title:'sensitive',body:'sensitive',url:'https://evil.invalid'})},waitUntil:p=>{pending=p}});await pending;assert.equal(shown[0][0],'Time for your check-in');assert.equal(shown[0][1].icon,'/assets/apple-touch-icon.png');assert.equal(shown[0][1].data.url,origin+'/member/dashboard#today');assert(!JSON.stringify(shown).includes('sensitive'));assert(!serviceWorker.includes('caches.'));});
 test('SW handles member offline navigation without intercepting writes or token URLs',async()=>{const listeners={},self={location:{origin},addEventListener:(type,fn)=>listeners[type]=fn};runInNewContext(serviceWorker,{self,URL,Response,fetch:async()=>{throw Error('offline')}});let response;listeners.fetch({request:{url:origin+'/member/dashboard',method:'GET',mode:'navigate'},respondWith:p=>{response=p}});assert.equal((await response).status,503);for(const request of [{url:origin+'/v1/check-ins',method:'POST',mode:'cors'},{url:origin+'/member/dashboard?token=secret',method:'GET',mode:'navigate'}])listeners.fetch({request,respondWith:()=>assert.fail('must not intercept')});});
-test('browser client has no automatic permission prompt, local storage or offline save claims',()=>{new Function(client);assert(client.indexOf('Notification.requestPermission()')>client.indexOf("el('pwaEnable').onclick"));assert(!/localStorage|sessionStorage|caches\./.test(client));assert(client.includes('accepted by the push service'));assert(client.includes("settings=null"));});
+test('browser client has no automatic permission prompt, test-notification control or offline save claims',()=>{
+ new Function(client);
+ assert(client.indexOf('Notification.requestPermission()')>client.indexOf("el('pwaEnable').onclick"));
+ assert(!/localStorage|sessionStorage|caches\./.test(client));
+ assert(!client.includes('pwaTest'));
+ assert(!client.includes("api('/test'"));
+ assert(client.includes("settings=null"));
+});
 async function uiFixture(options={}){
- const fields={},events={},calls={permission:0,subscribe:0,unsubscribe:0,requests:[]};
- const ids=['myTimberApp','pwaStatus','pwaInstall','pwaInstallHelp','pwaHour','pwaEnable','pwaDisable','pwaTest','pwaRetry','pwaCapability'];for(const id of ids)fields[id]={hidden:['pwaDisable','pwaTest','pwaRetry'].includes(id),disabled:['pwaHour','pwaEnable'].includes(id),value:'19',textContent:'',open:false,addEventListener:(name,fn)=>events[name]=fn};
+ const fields={},calls={permission:0,subscribe:0,unsubscribe:0,requests:[]};
+ const hidden=new Set(['pwaChange','pwaDisable','pwaRetry']);
+ const disabled=new Set(['pwaHour','pwaEnable']);
+ const ids=['myTimberApp','pwaInstall','pwaInstallHelp','pwaReminderSettings','pwaReminderSummary','pwaReminderEditor','pwaHour','pwaEnable','pwaChange','pwaDisable','pwaRetry','pwaReminderStatus'];
+ for(const id of ids)fields[id]={hidden:hidden.has(id),disabled:disabled.has(id),value:'19',textContent:'',open:false,focus(){this.focused=true},scrollIntoView(){},addEventListener(){}};
+ if(options.noReminders)delete fields.pwaReminderSettings;
  const notification={permission:options.permission||'default',requestPermission:()=>{calls.permission++;notification.permission=options.choice||'granted';return Promise.resolve(notification.permission)}};
  const subscription={endpoint,toJSON:()=>({endpoint,keys}),unsubscribe:async()=>{calls.unsubscribe++;return true}};
  const registration={pushManager:{getSubscription:async()=>options.active?subscription:null,subscribe:async()=>{calls.subscribe++;if(options.subscribeError)throw Error('Subscription failed. Please retry.');return subscription}}};
  const window={PushManager:{},Notification:notification};
  const navigator={userAgent:options.ios?'iPhone':options.android?'Android Chrome':'Chrome',platform:options.ios?'iPhone':'Linux',maxTouchPoints:0,serviceWorker:{register:async()=>registration,ready:Promise.resolve(registration)}};
- const context={window,navigator,URLSearchParams,location:{hash:options.hash||'',search:options.search||''},Notification:notification,document:{getElementById:id=>fields[id]},matchMedia:()=>({matches:false}),isSecureContext:true,addEventListener:()=>{},setTimeout:()=>0,atob,Uint8Array,AbortSignal,fetch:async(path,init)=>{calls.requests.push({path,method:init.method});if(options.failure&&path.endsWith(options.failure.path))return Response.json({message:'Could not confirm save.'},{status:options.failure.status});return Response.json(path.endsWith('/status')?{enabled:!!options.active,hour:19,publicKey:keys.p256dh}:{enabled:true,hour:19,publicKey:keys.p256dh})}};
- runInNewContext(client,context);assert.equal(calls.permission,0);fields.myTimberApp.open=true;events.toggle();await new Promise(setImmediate);
+ const context={window,navigator,URLSearchParams,location:{hash:options.hash||'',search:options.search||''},Notification:notification,document:{getElementById:id=>fields[id]||null},matchMedia:()=>({matches:!!options.standalone}),isSecureContext:true,addEventListener:()=>{},setTimeout:(fn)=>{if(options.runTimers)fn();return 0},atob,Uint8Array,AbortSignal,fetch:async(path,init)=>{calls.requests.push({path,method:init.method});if(options.failure&&path.endsWith(options.failure.path))return Response.json({message:'Could not confirm save.'},{status:options.failure.status});return Response.json(path.endsWith('/status')?{enabled:!!options.active,hour:19,publicKey:keys.p256dh}:{enabled:true,hour:Number(fields.pwaHour?.value||19),publicKey:keys.p256dh})}};
+ runInNewContext(client,context);await new Promise(setImmediate);
  return{fields,calls,notification};
 }
-test('UI asks once on explicit tap; enabling then disabling waits for confirmed saves',async()=>{const f=await uiFixture();assert.equal(f.calls.permission,0);assert.equal(f.fields.pwaEnable.disabled,false);await f.fields.pwaEnable.onclick();assert.equal(f.calls.permission,1);assert.equal(f.calls.subscribe,1);assert.equal(f.fields.pwaDisable.hidden,false);await f.fields.pwaDisable.onclick();assert.equal(f.fields.pwaDisable.hidden,true);assert.match(f.fields.pwaStatus.textContent,/are off/);});
-test('UI handles iPhone browser, denied and dismissed permission without a saved opt-in',async()=>{const iphone=await uiFixture({ios:true});assert.equal(iphone.calls.requests.length,0);assert.match(iphone.fields.pwaCapability.textContent,/install My Timber first/);const denied=await uiFixture({permission:'denied'});assert.equal(denied.fields.pwaEnable.disabled,true);const dismissed=await uiFixture({choice:'default'});await dismissed.fields.pwaEnable.onclick();assert.equal(dismissed.calls.subscribe,0);assert(!dismissed.calls.requests.some(r=>r.method==='PUT'));assert.match(dismissed.fields.pwaStatus.textContent,/not allowed/);});
-test('UI subscription and API failure stay retryable; a new unsaved subscription is rolled back',async()=>{for(const options of [{subscribeError:true},{failure:{path:'/subscription',status:503}}]){const f=await uiFixture(options);await f.fields.pwaEnable.onclick();assert.equal(f.fields.pwaRetry.hidden,false);assert.equal(f.fields.pwaDisable.hidden,true);assert(!f.fields.pwaStatus.textContent.startsWith('Saved.'));if(!options.subscribeError)assert.equal(f.calls.unsubscribe,1);}const auth=await uiFixture({failure:{path:'/status',status:401}});assert.equal(auth.fields.pwaEnable.disabled,true);assert.match(auth.fields.pwaCapability.textContent,/Sign in/);});
-test('UI preserves active preference on failed turn-off and reports test as acceptance only',async()=>{const f=await uiFixture({active:true,failure:{path:'/subscription',status:503}});await f.fields.pwaDisable.onclick();assert.equal(f.fields.pwaDisable.hidden,false);assert(!f.fields.pwaStatus.textContent.includes('are off'));await f.fields.pwaTest.onclick();assert.match(f.fields.pwaStatus.textContent,/acceptance alone does not prove arrival/);});
-
-test('setup instructions match device and footer anchor opens the full-account setup without a permission prompt',async()=>{const android=await uiFixture({android:true,hash:'#myTimberApp'});assert.match(android.fields.pwaInstallHelp.textContent,/On Android:.*Chrome/);assert.equal(android.fields.myTimberApp.open,true);assert.equal(android.calls.permission,0);const iphone=await uiFixture({ios:true});assert.match(iphone.fields.pwaInstallHelp.textContent,/On iPhone:/);const desktop=await uiFixture();assert.match(desktop.fields.pwaInstallHelp.textContent,/On a computer:/);});
-
-test('setup entry survives dashboard initialising its Today fragment',async()=>{const f=await uiFixture({hash:'#today',search:'?setup=app'});assert.equal(f.fields.myTimberApp.open,true);assert.equal(f.calls.permission,0);});
+test('notification controls live in Settings only; install card has no reminder/test controls',async()=>{
+ const html='<html><head></head><body><header>x</header><main>settings</main><footer>x</footer></body></html>';
+ const settings=await(await withPwa(new Request(origin+'/member/settings'),new Response(html,{headers:{'Content-Type':'text/html'}}))).text();
+ assert(settings.includes('id="pwaReminderSettings"'));assert(settings.includes('Turn on notifications'));assert(!settings.includes('Send test notification'));
+ const dashboard=await(await withPwa(new Request(origin+'/member/dashboard'),new Response(html,{headers:{'Content-Type':'text/html'}}))).text();
+ assert(!dashboard.includes('id="pwaReminderSettings"'));assert(!dashboard.includes('Send test notification'));
+});
+test('Settings asks permission only on explicit enable and collapses to compact on state',async()=>{
+ const f=await uiFixture();assert.equal(f.calls.permission,0);assert.equal(f.fields.pwaReminderSummary.textContent,'Reminders off');
+ await f.fields.pwaEnable.onclick();assert.equal(f.calls.permission,1);assert.equal(f.calls.subscribe,1);assert.equal(f.fields.pwaReminderSummary.textContent,'Reminders on · 19:00');assert.equal(f.fields.pwaReminderEditor.hidden,true);assert.equal(f.fields.pwaChange.hidden,false);assert.equal(f.fields.pwaDisable.hidden,false);
+});
+test('active Settings shows Change/Turn off; Change exposes time; confirmed off restores setup',async()=>{
+ const f=await uiFixture({active:true});assert.equal(f.fields.pwaReminderEditor.hidden,true);assert.equal(f.fields.pwaChange.hidden,false);
+ f.fields.pwaChange.onclick();assert.equal(f.fields.pwaReminderEditor.hidden,false);assert.equal(f.fields.pwaHour.focused,true);
+ await f.fields.pwaDisable.onclick();assert.equal(f.fields.pwaReminderSummary.textContent,'Reminders off');assert.equal(f.fields.pwaReminderEditor.hidden,false);assert.equal(f.fields.pwaDisable.hidden,true);
+});
+test('denied, iPhone browser and failures remain truthful and retryable',async()=>{
+ const denied=await uiFixture({permission:'denied'});assert.equal(denied.fields.pwaEnable.disabled,true);assert.match(denied.fields.pwaReminderSummary.textContent,/blocked/);
+ const iphone=await uiFixture({ios:true});assert.equal(iphone.calls.requests.length,0);assert.match(iphone.fields.pwaReminderSummary.textContent,/Install My Timber/);
+ const failed=await uiFixture({failure:{path:'/status',status:401}});assert.equal(failed.fields.pwaEnable.disabled,true);assert.equal(failed.fields.pwaRetry.hidden,false);assert.match(failed.fields.pwaReminderSummary.textContent,/Sign in/);
+});
+test('failed enable rolls back a new subscription; failed turn-off preserves active state',async()=>{
+ const enable=await uiFixture({failure:{path:'/subscription',status:503}});await enable.fields.pwaEnable.onclick();assert.equal(enable.calls.unsubscribe,1);assert.equal(enable.fields.pwaDisable.hidden,true);assert.equal(enable.fields.pwaRetry.hidden,false);
+ const off=await uiFixture({active:true,failure:{path:'/subscription',status:503}});await off.fields.pwaDisable.onclick();assert.equal(off.fields.pwaDisable.hidden,false);assert.match(off.fields.pwaReminderSummary.textContent,/Reminders on/);
+});
+test('setup instructions remain device-specific without asking notification permission',async()=>{
+ const android=await uiFixture({android:true,noReminders:true,hash:'#myTimberApp'});assert.match(android.fields.pwaInstallHelp.textContent,/On Android:.*Chrome/);assert.equal(android.fields.myTimberApp.open,true);assert.equal(android.calls.permission,0);
+ const iphone=await uiFixture({ios:true,noReminders:true});assert.match(iphone.fields.pwaInstallHelp.textContent,/On iPhone:/);
+ const desktop=await uiFixture({noReminders:true});assert.match(desktop.fields.pwaInstallHelp.textContent,/On a computer:/);
+});
+test('setup entry survives dashboard initialising its Today fragment',async()=>{const f=await uiFixture({noReminders:true,hash:'#today',search:'?setup=app'});assert.equal(f.fields.myTimberApp.open,true);assert.equal(f.calls.permission,0);});
