@@ -39,9 +39,11 @@ jobs:
           PY
       - name: Load only committed release tooling
         run: |
-          git fetch origin ae5e5520b2a32dd65fc3e4c06b80a650311ba972
+          git fetch origin 6872b62ae7473b56415d5334344b54b65de30e23
           git show FETCH_HEAD:release/seo794-followthrough.mjs > release/seo794-followthrough.mjs
           git show FETCH_HEAD:release/seo794-live-browser.cjs > release/seo794-live-browser.cjs
+          git show FETCH_HEAD:release/seo794-parameterized-sql.mjs > release/seo794-parameterized-sql.mjs
+          git show FETCH_HEAD:release/seo794-parameterized-test.py > release/seo794-parameterized-test.py
       - run: npm ci --no-audit --no-fund
       - uses: actions/download-artifact@v4
         with:
@@ -62,6 +64,16 @@ jobs:
           (cd approved-preview && sha256sum -c SHA256SUMS)
           (cd seo794-preflight && sha256sum -c SHA256SUMS)
           tar xzf approved-preview/candidate-support.tar.gz preview/seo-repairs/generated/changes.json preview/seo-repairs/generated/render-manifest.json
+      - name: Verify exact bound SQL and all-or-none stale-record protection
+        run: |
+          mkdir -p seo794-release-proof
+          node --input-type=module <<'JS'
+          import {parameterizedCorrection} from './release/seo794-parameterized-sql.mjs';
+          import {readFileSync,writeFileSync} from 'node:fs';
+          const batch=parameterizedCorrection(readFileSync('seo794-preflight/approved-correction.sql','utf8'));
+          writeFileSync('seo794-release-proof/executed-parameterized-correction.json',JSON.stringify(batch));
+          JS
+          python3 release/seo794-parameterized-test.py
       - name: Apply thirteen guarded public editorial corrections and verify readback
         env:
           CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
