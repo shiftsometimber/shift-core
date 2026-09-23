@@ -64,6 +64,7 @@ jobs:
            p.write_text(s)
           PY
           SEO_PAGES_ROOT="$PWD/pages-artwork" python3 scripts/seo-repairs-20260923/prepare-source.py | tee seo-repair-proof/source-prepare.log
+          python3 scripts/seo-repairs-20260923/finalise-contrast.py | tee seo-repair-proof/contrast-prepare.log
           node scripts/seo-repairs-20260923/build-news.mjs | tee seo-repair-proof/news-prepare.log
       - name: Scoped tests, regression tests and production-bundle compile only
         run: |
@@ -77,16 +78,16 @@ jobs:
           git fetch --quiet origin fix/seo-repairs-20260923 main
           test "$(git rev-parse origin/fix/seo-repairs-20260923)" = "$GITHUB_SHA"
           test "$(git rev-parse origin/main)" = 323f2409c0bd7f719abb05969fe9aeb2a827261b
-          git add public-shell-contract.mjs public-navigation-policy.mjs shift-health-public.mjs radar-editorial-trust-v1.js radar-auto-news-v1.js public-seo-assets-data.mjs scripts/seo-repairs-20260923/source-manifest.json scripts/seo-repairs-20260923/build-news.mjs preview/seo-repairs/build.mjs
+          git add public-shell-contract.mjs public-navigation-policy.mjs shift-health-public.mjs radar-editorial-trust-v1.js radar-auto-news-v1.js public-seo-assets-data.mjs public-seo-presentation.mjs scripts/seo-repairs-20260923/source-manifest.json scripts/seo-repairs-20260923/contrast-manifest.json scripts/seo-repairs-20260923/build-news.mjs preview/seo-repairs/build.mjs preview/seo-repairs/verify.cjs tests/seo-repairs-20260923.test.mjs
           python3 - <<'PY'
           import subprocess
-          allowed={'public-shell-contract.mjs','public-navigation-policy.mjs','shift-health-public.mjs','radar-editorial-trust-v1.js','radar-auto-news-v1.js','public-seo-assets-data.mjs','scripts/seo-repairs-20260923/source-manifest.json','scripts/seo-repairs-20260923/build-news.mjs','preview/seo-repairs/build.mjs'}
+          allowed={'public-shell-contract.mjs','public-navigation-policy.mjs','shift-health-public.mjs','radar-editorial-trust-v1.js','radar-auto-news-v1.js','public-seo-assets-data.mjs','public-seo-presentation.mjs','scripts/seo-repairs-20260923/source-manifest.json','scripts/seo-repairs-20260923/contrast-manifest.json','scripts/seo-repairs-20260923/build-news.mjs','preview/seo-repairs/build.mjs','preview/seo-repairs/verify.cjs','tests/seo-repairs-20260923.test.mjs'}
           staged=set(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines());assert staged<=allowed,staged-allowed
           PY
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           if ! git diff --cached --quiet; then
-            git commit -m 'Retain tested SEO repairs and byte-identified optimised existing artwork'
+            git commit -m 'Retain tested SEO repairs including measured ticker and menu contrast corrections'
             git push origin HEAD:refs/heads/fix/seo-repairs-20260923
           fi
           echo "CANDIDATE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
@@ -134,7 +135,7 @@ jobs:
           git rev-parse HEAD > seo-repair-proof/candidate-commit.txt
           python3 - <<'PY'
           import pathlib,hashlib,json,os
-          p=pathlib.Path('seo-repair-proof');(p/'execution.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'triggerCommit':os.environ['GITHUB_SHA'],'candidateCommit':os.environ.get('CANDIDATE_SHA'),'preview':'https://shift-seo-repair-preview.matobrien.workers.dev','production_deployments':0,'database_writes':0,'earlier_public_fetch_failure_run':'35869389897'},indent=2));files=sorted(x for x in p.rglob('*') if x.is_file() and x.name!='SHA256SUMS');(p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in files))
+          p=pathlib.Path('seo-repair-proof');(p/'execution.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'triggerCommit':os.environ['GITHUB_SHA'],'candidateCommit':os.environ.get('CANDIDATE_SHA'),'preview':'https://shift-seo-repair-preview.matobrien.workers.dev','production_deployments':0,'database_writes':0,'earlier_public_fetch_failure_run':'35869389897','earlier_contrast_and_prefixed_lab_evidence':'35869940946'},indent=2));files=sorted(x for x in p.rglob('*') if x.is_file() and x.name!='SHA256SUMS');(p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in files))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
