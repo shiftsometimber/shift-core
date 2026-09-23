@@ -45,12 +45,15 @@ test('review expiry, changed content and failures still fail closed', () => {
   }
 });
 
-test('changed SmPC metadata does not renew unrelated sources or the medicine catalogue', () => {
+test('changed SmPC metadata preserves the medicine catalogue and separately evidenced renewals', () => {
   assert.equal(REVIEWED_AT, '2026-09-15T21:28:30Z');
   assert.equal(sources.find(s => s.id === 'wegovy-injection-smpc').sourcePublishedAt, '2026-09-22');
   assert.equal(medicines.find(m => m.id === 'wegovy-injection').reviewedAt, undefined);
-  for (const id of ['mounjaro-smpc', 'wegovy-tablet-smpc', 'orlistat-120-smpc', 'orlistat-60-smpc', 'foundayo-smpc']) {
-    assert.equal(sources.find(s => s.id === id).reviewedAt, '2026-09-16T17:44:34Z');
+  const renewal = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-information-renewal.json', import.meta.url)));
+  for (const proof of renewal.sources) {
+    assert.equal(proof.previousReviewedAt, '2026-09-16T17:44:34Z');
+    assert.equal(sources.find(s => s.id === proof.id).reviewedAt, proof.reviewedAt);
+    assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, '2026-09-18T16:36:50Z');
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, '2026-09-17T05:45:00Z');

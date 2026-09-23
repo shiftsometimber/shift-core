@@ -29,6 +29,7 @@ const reviewedFingerprints = {
 // Source-specific factual review; the rest of the catalogue keeps its prior date.
 // Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
 // Renewed source-only reviews: reviews/2026-09-23-source-review.json.
+// Separate product-information renewal: reviews/2026-09-23-product-information-renewal.json.
 const sourceReviewedDates = {
   'mounjaro-mhra': '2026-09-23T15:45:00Z',
   'mounjaro-nice': '2026-09-23T15:45:00Z',
@@ -43,12 +44,12 @@ const sourceReviewedDates = {
   'retatrutide-lilly': '2026-09-23T15:45:00Z',
   'mounjaro-nhs': '2026-09-17T05:45:00Z',
   'wegovy-tablet-private': '2026-09-18T16:36:50Z',
-  'mounjaro-smpc': '2026-09-16T17:44:34Z',
+  'mounjaro-smpc': '2026-09-23T18:04:00Z',
   'wegovy-injection-smpc': '2026-09-23T15:45:00Z',
-  'wegovy-tablet-smpc': '2026-09-16T17:44:34Z',
-  'orlistat-120-smpc': '2026-09-16T17:44:34Z',
-  'orlistat-60-smpc': '2026-09-16T17:44:34Z',
-  'foundayo-smpc': '2026-09-16T17:44:34Z',
+  'wegovy-tablet-smpc': '2026-09-23T18:04:00Z',
+  'orlistat-120-smpc': '2026-09-23T18:04:00Z',
+  'orlistat-60-smpc': '2026-09-23T18:04:00Z',
+  'foundayo-smpc': '2026-09-23T18:04:00Z',
 };
 
 const source = (id, title, url, sourcePublishedAt, requiredTerms, extra = {}) => ({
