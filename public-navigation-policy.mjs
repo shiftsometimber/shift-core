@@ -1,3 +1,4 @@
+import {seoAssetResponse} from './public-seo-presentation.mjs';
 // Owner's 17 September 2026 instruction supersedes earlier ticker allowlists.
 export const tickerVersion = 'public-news-20260917-r4';
 export const tickerAsset = '/assets/public-news-ticker-v1.js';
@@ -26,8 +27,8 @@ export function myTimberRedirect(request) {
 }
 const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/shift-newsroom">Medicine news and evidence →</a></span></div></div></section>`;
 export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker]){display:none!important}
-#shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#707762;color:#050505;border-block:1px solid #050505;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
-#shift-public-news a{color:#050505;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible{outline:2px solid #050505;outline-offset:3px}
+#shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#050505!important;color:#E7E3DA!important;border-block:1px solid #707762!important;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
+#shift-public-news a{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible{outline:2px solid #E7E3DA;outline-offset:3px}
 #shift-public-news .shift-news-label{font-weight:900;white-space:nowrap}#shift-public-news .shift-news-window{min-width:0;overflow:hidden}#shift-public-news .shift-news-track{display:flex;width:max-content;max-width:none}#shift-public-news .shift-news-copy{display:flex;align-items:center;gap:24px;white-space:nowrap;padding-right:24px;flex-shrink:0}
 #shift-public-news:not([data-ready]) .shift-news-track{width:auto}#shift-public-news:not([data-ready]) .shift-news-copy{flex:1;min-width:0;max-width:100%;padding:0;white-space:normal;flex-wrap:wrap;gap:8px 18px}
 #shift-public-news[data-ready] .shift-news-track{animation:shiftPublicNews 90s linear infinite}#shift-public-news .shift-news-track:has(a:focus-visible){animation-play-state:paused}
@@ -149,6 +150,7 @@ export const tickerClient = String.raw`(function bootTicker() {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true}); else start();
 })();`;
 export function publicTickerAsset(request) {
+  const seo=seoAssetResponse(request);if(seo)return seo;
   if (new URL(request.url).pathname !== tickerAsset || !['GET','HEAD'].includes(request.method)) return null;
   return new Response(request.method === 'HEAD' ? null : tickerClient, {headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'public, max-age=300','X-Content-Type-Options':'nosniff'}});
 }

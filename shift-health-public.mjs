@@ -7,10 +7,10 @@ export function renderShiftHealthDocument(shell,slug=''){
   const item=healthProducts[slug];if(slug&&!item)return null;
   const path='/shift-health'+(slug?'/'+slug:''),canonical='https://shiftsometimber.co.uk'+path;
   const testosterone=slug==='testosterone-energy';
-  const title=testosterone?'Testosterone & Energy: Assessment, TRT & Fertility | SHIFT Health':item?item.name+' | SHIFT Health':'SHIFT Health | Wider Men’s Health';
+  const title=testosterone?'Testosterone & Energy: Assessment, TRT & Fertility | SHIFT Health':item?item.name+' | SHIFT Health':'Men’s Health: Energy, Sleep & Wellbeing | SHIFT Health';
   const description=testosterone?'Understand testosterone assessment, TRT, fertility and monitoring. Clear next steps for persistent symptoms. SHIFT does not prescribe; testing is not bookable.':item?item.intro:'Straight-talking wider men’s health guidance from SHIFT. Choose one useful next step for energy, sleep, confidence and health.';
   if(!/<main\b[\s\S]*?<\/main>/i.test(shell))throw Error('Canonical public shell missing main');
-  let html=shell.replace(/<main\b[\s\S]*?<\/main>/i,()=>'<main id="main-content" data-shift-health'+(testosterone?' class="th"':slug?' data-product':'')+'>'+ (testosterone?testosteroneContent:item?renderHealthProduct(slug):promoteTestosteroneCard(hubMain))+'</main>')
+  let html=shell.replace(/<main\b[\s\S]*?<\/main>/i,()=>'<main id="main-content" data-shift-health'+(testosterone?' class="th"':slug?' data-product':'')+'>'+ (testosterone?testosteroneContent:item?renderHealthProduct(slug):promoteTestosteroneCard(hubMain).replace('<h1>What would you like to sort?</h1>','<h1>SHIFT Health: what would you like to sort?</h1>'))+'</main>')
     .replace(/<title>[\s\S]*?<\/title>/gi,'')
     .replace(/<link\b(?=[^>]*\brel\s*=\s*(?:"canonical"|'canonical'|canonical(?=[\s/>])))[^>]*>/gi,'')
     .replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi,'')

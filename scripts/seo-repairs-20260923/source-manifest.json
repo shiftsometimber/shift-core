@@ -1,0 +1,60 @@
+{
+  "baseline_commit": "323f2409c0bd7f719abb05969fe9aeb2a827261b",
+  "files": {
+    "public-shell-contract.mjs": {
+      "before_sha256": "2904f16b7869ff50385eb9bb18cb658b74032a99b12d686878b4677e1df1e298",
+      "after_sha256": "5ca120dc45fea2e10f9d77839809285c9a21b332b351b91a7803176ba14966ae"
+    },
+    "public-navigation-policy.mjs": {
+      "before_sha256": "3ed776d719991ce7a29e0a37b7fd8b550b62ffeb9f9f3608ca3c245c47daf94d",
+      "after_sha256": "bbb83b0b2edc966c09af2c56f47aee6be035bf1b02fe7af80c28da784ba81e24"
+    },
+    "shift-health-public.mjs": {
+      "before_sha256": "7f9b4af40ddfcf3ecca44d38148eacd40a30f6980ef3b083c12e03c511d41e29",
+      "after_sha256": "b9f725b302b498c997f09c19dcc59f0c1310f424c2227b1b29cfdf540659ac55"
+    },
+    "radar-editorial-trust-v1.js": {
+      "before_sha256": "21a221cea717d9f2c237157d2b1c97ee81ab6f1b306fc8c4a47713534ebc87cb",
+      "after_sha256": "820f32dbe4570ff757a511ce5b23aa87c0a1c6d1c123169491f62ae1bd633a65"
+    },
+    "radar-auto-news-v1.js": {
+      "before_sha256": "0f8fb63bf67b75e07e2976fc295726fb3707b63e7b25ac54d08e85d99e283ce3",
+      "after_sha256": "21eae4ddaf310d7b03eafabffa20f110edc989ef94d99f26d5792877d5141d93"
+    }
+  },
+  "images": [
+    {
+      "key": "logo",
+      "source": "https://036d3a83.projectshift.pages.dev/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png",
+      "original_sha256": "6dcb70ae70d67d9b8bd41b5788d0c06b45808b8f99682364c084bab552adb2e9",
+      "original_bytes": 135518,
+      "path": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "width": 719,
+      "height": 243,
+      "bytes": 24156,
+      "sha256": "ce5904c700ef27878108db625877e10db9b7662ebd56e9f4b12cf2770f9af233"
+    },
+    {
+      "key": "heroSmall",
+      "source": "https://036d3a83.projectshift.pages.dev/assets/home-hero-men-v32o.jpg",
+      "original_sha256": "137245a0725c0f3241a9b5e19f47e694a6998d2d3ce59b49ec1b8a333f974fc4",
+      "original_bytes": 210578,
+      "path": "/assets/seo-20260923/heroSmall-54d52bf31ac3389a.webp",
+      "width": 768,
+      "height": 512,
+      "bytes": 33446,
+      "sha256": "54d52bf31ac3389a3910f16aebb93f2b0fd323f6878346990757b1c3e8ba1502"
+    },
+    {
+      "key": "heroLarge",
+      "source": "https://036d3a83.projectshift.pages.dev/assets/home-hero-men-v32o.jpg",
+      "original_sha256": "137245a0725c0f3241a9b5e19f47e694a6998d2d3ce59b49ec1b8a333f974fc4",
+      "original_bytes": 210578,
+      "path": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 108374,
+      "sha256": "22b76937213e5741101ea33c7d8cf345a7bfc8d106da202cc964f1178cabf9ae"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+name: SEO repairs final committed-source preview
+# Reverify approved SEO with current released account/notification source.
+on:
+  push:
+    branches: [fix/seo-repairs-20260923]
+    paths: [.github/workflows/seo-repair-final-preview.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: seo-repair-preview-20260923
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35866531018
+          name: seo-news-snapshot-9c806f3e6c7b769d2df70f471c6a5553c6ca2130
+          path: seo-news-snapshot
+      - name: Verify exact committed repairs; generate only isolated public-data fixtures
+        run: |
+          set -euo pipefail
+          mkdir -p seo-repair-proof/source
+          (cd seo-news-snapshot && sha256sum -c SHA256SUMS)
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          p=pathlib.Path('scripts/seo-repairs-20260923')
+          for name,r in json.loads((p/'source-manifest.json').read_text())['files'].items():assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==r['after_sha256'],name
+          for name,r in json.loads((p/'contrast-manifest.json').read_text()).items():assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==r['after_sha256'],name
+          print('Committed source manifests match. No application code generated or rewritten.')
+          PY
+          npm ci --no-audit --no-fund
+          echo "CANDIDATE_SHA=$GITHUB_SHA" >> "$GITHUB_ENV"
+          node scripts/seo-repairs-20260923/build-news.mjs | tee seo-repair-proof/news-prepare.log
+          node --test tests/seo-repairs-20260923.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/member-signup-alert.test.mjs member-experience/tests/*.test.mjs | tee seo-repair-proof/scoped-tests.log
+          node --test babylove/*.test.mjs tests/radar-newsroom-*.test.mjs tests/radar-auto-news*.test.mjs tests/radar-editorial-trust*.test.mjs tests/public-shell-contract.test.mjs tests/public-navigation-policy*.test.mjs tests/public-seo-closeout.test.mjs tests/seo-release-integrity.test.mjs tests/shift-health*.test.mjs | tee seo-repair-proof/regression-tests.log
+          npx wrangler deploy --dry-run --outdir seo-repair-proof/worker-dry-run | tee seo-repair-proof/dry-run.log
+      - name: Build frozen baseline and candidate with their real pathnames preserved
+        run: |
+          set -euo pipefail
+          node preview/seo-repairs/build.mjs | tee seo-repair-proof/render-build.log
+          node --input-type=module <<'JS'
+          import {pages} from './preview/seo-repairs/generated/pages.mjs';
+          import {writeFileSync} from 'node:fs';import assert from 'node:assert/strict';
+          const main=h=>h.match(/<main\b[\s\S]*?<\/main>/i)[0],text=h=>main(h).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+          const records=[];
+          for(const [path,pair] of Object.entries(pages)){
+           const expectedChange=path==='/shift-health'||path==='/shift-newsroom'||path.startsWith('/medicine-news/');
+           const unchanged=text(pair.baseline)===text(pair.candidate);if(!expectedChange)assert(unchanged,path+': unexpected main-copy change');
+           records.push({path,expectedChange,mainCopyUnchanged:unchanged});
+          }
+          const r=pages['/guides/retatrutide-uk-guide'];const ids=h=>[...main(h).matchAll(/\bid=["']([^"']+)["']/g)].map(x=>x[1]);assert.deepEqual(ids(r.baseline),ids(r.candidate));
+          writeFileSync('seo-repair-proof/main-preservation.json',JSON.stringify({records,retaAnchorsPreserved:true,retaAnchorCount:ids(r.baseline).length},null,2));
+          JS
+      - name: Update the same isolated preview; never the production Worker
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config preview/seo-repairs/wrangler.jsonc --var "CANDIDATE_SHA:$GITHUB_SHA" | tee seo-repair-proof/preview-deploy.log
+      - name: Isolated browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/seo-tools" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+          "$RUNNER_TEMP/seo-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "SEO_TOOLS=$RUNNER_TEMP/seo-tools" >> "$GITHUB_ENV"
+      - name: Full scoped browser acceptance, image reservation and repeated mobile labs
+        run: |
+          set -euo pipefail
+          node preview/seo-repairs/verify.cjs | tee seo-repair-proof/browser-summary.log
+          node preview/seo-repairs/verify-media.cjs | tee seo-repair-proof/image-summary.log
+          node preview/seo-repairs/lab.cjs | tee seo-repair-proof/mobile-summary.log
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('seo-repair-proof');r=json.loads((p/'mobile-comparison.json').read_text());checks=[]
+          for page in r['pages']:
+           old,new=page['baseline']['median'],page['candidate']['median']
+           checks.append({'page':page['page'],'allContrastChecksPass':all(x['contrastScore']==1 for x in page['candidate']['runs']),'noMaterialLcpRegression':new['lcpMs']<=old['lcpMs']*1.10,'noMaterialClsRegression':new['cls']<=old['cls']+0.02})
+          (p/'mobile-acceptance.json').write_text(json.dumps({'scope':'Sampled laboratory non-regression and contrast only. Not field CWV or a promise of production load time.','checks':checks},indent=2));print(json.dumps(checks,indent=2));assert all(x['allContrastChecksPass'] and x['noMaterialLcpRegression'] and x['noMaterialClsRegression'] for x in checks)
+          PY
+      - name: Confirm no production Pages change was made
+        if: always()
+        env:
+          CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,pathlib,os
+          req=urllib.request.Request('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',headers={'Authorization':'Bearer '+os.environ['CF_READ_TOKEN'],'User-Agent':'SHIFT-Owner-SEO-Repair/1.0'})
+          with urllib.request.urlopen(req,timeout=30) as f:p=json.load(f)
+          assert p['success'];d=p['result']['canonical_deployment'];r={'deployment':{k:d.get(k) for k in ['id','url','environment','created_on','deployment_trigger']},'unchanged':d['id']=='036d3a83-2a22-4d52-8e83-b29ad6905898','productionDeployments':0,'databaseWrites':0,'analyticsChanges':0};pathlib.Path('seo-repair-proof/production-preservation.json').write_text(json.dumps(r,indent=2));assert r['unchanged']
+          PY
+      - name: Exact source, original failures and evidence checksums
+        if: always()
+        run: |
+          mkdir -p seo-repair-proof/source
+          for file in public-shell-contract.mjs public-navigation-policy.mjs shift-health-public.mjs radar-editorial-trust-v1.js radar-auto-news-v1.js public-seo-assets-data.mjs public-seo-presentation.mjs; do cp "$file" seo-repair-proof/source/; done
+          tar -czf seo-repair-proof/candidate-support.tar.gz scripts/seo-repairs-20260923 preview/seo-repairs editorial/seo-repairs-20260923 tests/seo-repairs-20260923.test.mjs
+          git rev-parse HEAD > seo-repair-proof/candidate-commit.txt
+          python3 - <<'PY'
+          import pathlib,hashlib,json,os
+          p=pathlib.Path('seo-repair-proof');(p/'execution.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'candidateCommit':os.environ['GITHUB_SHA'],'preview':'https://shift-seo-repair-preview.matobrien.workers.dev','production_deployments':0,'database_writes':0,'retainedEarlierRuns':['35869389897','35869940946','35871723833'],'earlierPrefixBaselineSuperseded':True},indent=2));files=sorted(x for x in p.rglob('*') if x.is_file() and x.name!='SHA256SUMS');(p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in files))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-repair-final-${{ github.sha }}
+          path: seo-repair-proof/
+          retention-days: 30
+          if-no-files-found: error

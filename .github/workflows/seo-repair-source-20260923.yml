@@ -1,0 +1,79 @@
+name: SEO repair source proof (read only)
+on:
+  push:
+    branches: [fix/seo-repairs-20260923]
+    paths: [.github/workflows/seo-repair-source-20260923.yml]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: c733bf03834d93154a51a0db6ef05dbebb3c7cb3
+          path: pages-authority
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Reproduce the exact currently published Pages candidate
+        run: |
+          mkdir -p seo-repair-source
+          (cd pages-authority && python3 release/public-pages-20260911/prepare-start-here.py && python3 release/public-pages-20260911/prepare-work-public.py && python3 release/header-20260912/prepare-header.py)
+          python3 editorial/retatrutide/build-preview.py --pages-root pages-authority --out seo-repair-source/reproduction
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          p=pathlib.Path('pages-authority/release/public-pages-20260911');c=json.loads((p/'control.json').read_text())
+          assert c['source_fingerprint']=='e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496'
+          assert hashlib.sha256((p/'source.json.gz').read_bytes()).hexdigest()==c['payload_sha256']=='cf2616703cd5a7f4bcee9a97fff176988469d810c6e2e1342a9438a4959aa6ab'
+          c.update(mode='preview',expected_live_fingerprint=c['source_fingerprint'])
+          (p/'control.json').write_text(json.dumps(c,indent=2)+'\n')
+          PY
+      - name: Verify current deployment and materialise only matching bytes; no upload
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+          python3 - <<'PY'
+          import urllib.request,json,os,pathlib
+          req=urllib.request.Request('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})
+          with urllib.request.urlopen(req,timeout=30) as f:p=json.load(f)
+          assert p['success'];d=p['result']['canonical_deployment'];assert d['id']=='036d3a83-2a22-4d52-8e83-b29ad6905898','Production changed; stop stale repair'
+          pathlib.Path('seo-repair-source/identity.json').write_text(json.dumps({k:d.get(k) for k in ['id','url','environment','created_on','deployment_trigger']},indent=2));print('Exact deployed source verified')
+          PY
+      - name: Retain authoritative files and selected public assets for local inspection
+        run: |
+          tar -czf seo-repair-source/pages-current.tar.gz -C "$SST_RELEASE_DIR" .
+          git archive --format=tar 323f2409c0bd7f719abb05969fe9aeb2a827261b | gzip > seo-repair-source/repo-current.tar.gz
+          cp pages-authority/release/public-pages-20260911/{control.json,source.json.gz,assemble-pages.py} seo-repair-source/
+          python3 - <<'PY'
+          import urllib.request,pathlib,json,hashlib,concurrent.futures
+          out=pathlib.Path('seo-repair-source/live');out.mkdir()
+          paths=['/shift-health','/good-to-talk','/assets/shift-service-bridge-v1.js?v=2','/medicine-news/glp-1-analogs-research-update','/medicine-news/glp-1-nutritional-paradox','/medicine-news/high-potency-incretin-therapy-risks','/articles/mounjaro-cost-uk','/sitemap.xml']
+          def get(path):
+            try:
+              with urllib.request.urlopen('https://shiftsometimber.co.uk'+path,timeout=30) as f:data=f.read();status=f.status
+              fn=hashlib.sha256(path.encode()).hexdigest()[:12]+'.txt';(out/fn).write_bytes(data);return {'path':path,'file':fn,'status':status,'sha256':hashlib.sha256(data).hexdigest()}
+            except Exception as e:return {'path':path,'error':str(e)}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:rows=list(pool.map(get,paths))
+          (out/'manifest.json').write_text(json.dumps(rows,indent=2))
+          PY
+          du -sh seo-repair-source/*
+      - name: Checksums
+        if: always()
+        run: |
+          cd seo-repair-source
+          find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-repair-source-${{ github.sha }}
+          path: seo-repair-source/
+          retention-days: 14

@@ -1,18 +1,22 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "95cf0aaff3ed02afc4cc2e26e703c430ea83b9cd",
-  "baseCommit": "c00cfcc50099aca9f690069e2278480df4c0c837",
-  "reason": "Owner requested signup alerts to hello@ and paid-order alerts to orders@. Existing paid-order routing retained. Enable only the new signup alert flag, with exact additive delivery tracking, no backfill and runtime-only rollback. Preview and actual labelled test-email acceptance required before production approval.",
+  "applicationCommit": "ce7080fe9c2da09572c7a98fca5a8c0863d0f44e",
+  "baseCommit": "ecd0250f2c0b35d9efb128ce429136242de37304",
+  "reason": "Owner-approved PR794 SEO application f4052fff combined with current released main ecd0250. All newer account and signup-alert source preserved. Only release-verification files may change after this integrated pin; no old source rollback.",
   "previewEvidence": {
-    "ownerRequest": "New member signup to hello@; new order to orders@",
-    "productionApproval": "Owner preview-before-live sign-off remains required",
-    "hostedProof": "Must pass at this final source",
-    "existingOrderRouting": "Preserved byte-identically; signed callback/retry tests included"
+    "sourceCommit": "f4052fff7670609f37e86f6324023cdf4baaea9a",
+    "workflowRun": 35873626050,
+    "artifactId": 10756887534,
+    "sha256": "891e09d329bc49182b65d95c67327b79460d77ca4c7c8604de1edecabe206828",
+    "integrationBase": "ecd0250f2c0b35d9efb128ce429136242de37304",
+    "integratedApplicationCommit": "ce7080fe9c2da09572c7a98fca5a8c0863d0f44e",
+    "integrationPreviewRequired": true
   },
   "runtimeSchemaAdditions": [
     "member_account_details",
     "member_account_details_preserve_delivery",
     "member_signup_alerts"
   ],
-  "enforceApplicationPin": true
+  "enforceApplicationPin": true,
+  "approvedScope": "seo794-integrated"
 }
