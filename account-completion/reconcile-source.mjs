@@ -22,6 +22,9 @@ const reconciliationFiles = new Set([
   'member-experience/tests/release-anonymous.test.mjs',
   'wrangler.jsonc',
   'release/member-details-schema.mjs',
+  'member-experience/member-details.sql',
+  'member-experience/tests/member-delivery.test.mjs',
+  'member-experience/tests/schema-cli-json.test.mjs',
   'tests/member-details-release.test.mjs',
   'release/b1-runtime-only.json',
   'scripts/b1-release-scope.mjs'
@@ -35,7 +38,7 @@ assert.equal(config.split(providerFlag).length,2,'Exactly one proposed Photon fl
 assert.equal(config.replace(providerFlag,''),execFileSync('git',['show',released+':wrangler.jsonc'],{encoding:'utf8'}),'Unreviewed runtime configuration');
 assert(!config.includes('"MEMBER_EMAIL_CHANGE_ENABLED": "true"'),'Real email-change gate must remain closed');
 const report = {source:git('rev-parse','HEAD'),accountBaseline:account,releasedBaseline:released,
-  releaseFiles,accountFiles,applicationCodeChanges:false,proposedConfigurationChange:"MEMBER_ADDRESS_PROVIDER=photon",productionWrites:0,passed:true};
+  releaseFiles,accountFiles,accountFilesPreserved:accountFiles.filter(p=>!reconciliationFiles.has(p)),reviewedSchemaChange:"Add delivery-preservation trigger for legacy runtime saves",applicationRouteChanges:false,proposedConfigurationChange:"MEMBER_ADDRESS_PROVIDER=photon",productionWrites:0,passed:true};
 fs.mkdirSync('account-completion-evidence',{recursive:true});
 fs.writeFileSync('account-completion-evidence/source-reconciliation.json',JSON.stringify(report,null,2));
-console.log(JSON.stringify({source:report.source,releasedFilesPreserved:releaseFiles.length,accountFilesPreserved:accountFiles.length,passed:true}));
+console.log(JSON.stringify({source:report.source,releasedFilesPreserved:releaseFiles.length,accountFilesPreserved:report.accountFilesPreserved.length,passed:true}));
