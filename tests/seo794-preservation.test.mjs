@@ -21,8 +21,15 @@ test('post-release missing or altered approved presentation fails closed',()=>{
  assert.throws(()=>preserveSeo794('/',Buffer.from(raw),{required:true}),/contrast/);
  const candidate=repairSeoPresentation(raw,'/');assert.throws(()=>preserveSeo794('/',Buffer.from(candidate.replace('transition:none!important','transition:all!important')),{required:true}),/contrast/);
 });
-test('member and non-document assets are left byte-for-byte unchanged',()=>{
- const input=Buffer.from(raw);assert.deepEqual(preserveSeo794('/member-login',input,{required:true}),input);
+test('login allows exactly the two reviewed shared support links and retains every other byte',()=>{
+ const before=raw.replace('</main>','<a href="/good-to-talk">Good to Talk</a></main>'),after=before.replaceAll('href="/good-to-talk"','href="/mens-mental-health"');
+ assert.deepEqual(preserveSeo794('/member-login',Buffer.from(before)),preserveSeo794('/member-login',Buffer.from(after),{required:true}));
+ for(const changed of [after.replace('Keep this whole paragraph.','Lost login copy'),after.replace('alt="SHIFT"','alt="wrong"')])assert.notDeepEqual(preserveSeo794('/member-login',Buffer.from(before)),preserveSeo794('/member-login',Buffer.from(changed),{required:true}));
+ assert.throws(()=>preserveSeo794('/member-login',Buffer.from(before),{required:true}),/direct support links/);
+ assert.throws(()=>preserveSeo794('/member-login',Buffer.from(after.replace('href="/mens-mental-health"','href="/unrelated"')),{required:true}),/both exact/);
+});
+test('private member and non-document assets are left byte-for-byte unchanged',()=>{
+ const input=Buffer.from(raw);assert.deepEqual(preserveSeo794('/member/dashboard',input,{required:true}),input);
  const script=Buffer.from('const account="private";');assert.deepEqual(preserveSeo794('/asset.js',script,{required:true}),script);
 });
 test('exact startup restoration precedes SEO normalisation for actual production wrapper order',()=>{
