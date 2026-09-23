@@ -53,11 +53,11 @@ function fixture(origin){
  vm.runInNewContext(ui,{location:{origin},document:doc,MutationObserver:class{constructor(cb){callback=cb;}observe(){}}});
  return {box,title,elements,again:()=>callback?.()};
 }
-test('Native presentation changes install card only and is idempotent',()=>{
- const f=fixture(contract.origin);assert.equal(f.title.textContent,'My Timber on this phone');
- assert.equal(f.box.children.length,1);f.again();f.again();assert.equal(f.box.children.length,1);
- assert.match(f.elements.get('native-reminder-notice').textContent,/not connected yet/);
- assert.match(f.elements.get('my-timber-native-style').textContent,/#pwaReminders/);
+test('Native presentation hides PWA-only install/reminder card and is idempotent',()=>{
+ const f=fixture(contract.origin);assert.equal(f.box.dataset.nativeCandidate,'1');
+ assert.equal(f.box.children.length,0);f.again();f.again();assert.equal(f.box.children.length,0);
+ assert.match(f.elements.get('my-timber-native-style').textContent,/#myTimberApp/);
+ assert.match(f.elements.get('my-timber-native-style').textContent,/display:none/);
 });
 test('Native presentation does not run on untrusted origins',()=>{
  const f=fixture('https://shiftsometimber.co.uk.evil.example');
