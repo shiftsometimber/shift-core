@@ -9,7 +9,7 @@ required for automated authenticated journey testing.
 
 | Gate | Required evidence | Current status |
 |---|---|---|
-| Owner-controlled store accounts | Apple and Google organisation verification, assigned secure roles; app/package name availability | D-U-N-S confirmed; Apple Organisation enrolment submitted 23 Sep 2026 and is processing authority verification; Google Organisation account still not verified |
+| Owner-controlled store accounts | Apple and Google organisation verification, assigned secure roles; app/package name availability | D-U-N-S confirmed; Apple Organisation enrolment submitted and processing authority verification; Google Play Organisation account created and document verification pending, owner-confirmed 23 Sep 2026 |
 | Signing and identities | Team ID, bundle ID, Android Play signing; no secrets in repository/chat | Planned final ID `uk.co.shiftsometimber.mytimber`; not registered/signed yet |
 | Native notifications | APNs/FCM transport, opt-in/out/time using existing member session; same saved-check-in suppression, revocation and deduplication; closed/locked physical iPhone AND Android receipt/tap/off | NOT implemented; UI explicitly says so; browser PWA unaffected |
 | Login and security challenges | Physical phone login, Turnstile, cookie persistence, expiry, logout, forgot/reset, return destination | Not tested |
