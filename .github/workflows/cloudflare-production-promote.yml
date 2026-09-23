@@ -212,7 +212,7 @@ jobs:
           node --test tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
-        run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs
+        run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
       - name: Verify acquisition consent and same-account activation join
         run: node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs
       - name: Verify five source-specific articles without changing unrelated pages
@@ -369,6 +369,8 @@ jobs:
         run: node scripts/b1-release-scope.mjs --snapshot before
       - name: Prepare only the explicitly approved Member Details contact table
         run: node release/member-details-schema.mjs
+      - name: Prepare the exact additive signup-alert delivery store
+        run: node release/member-signup-alert-schema.mjs
       - name: Deploy current main to production
         id: runtime_deploy
         run: |
