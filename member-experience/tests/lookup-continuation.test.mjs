@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 const {searchPostcode,searchGpPractices,memberDetailsLookupRoute}=await import(process.env.LOOKUP_TEST_MODULE||'../member-details-lookups.mjs');
 import {gpFormRuntime} from '../gp-form.mjs';
@@ -37,10 +38,13 @@ test('large postcode result explicitly admits remaining pages instead of claimin
 test('optional GP form script asset is same origin, no-store and supports empty HEAD',async()=>{
  for(const method of ['GET','HEAD']){const r=await memberDetailsLookupRoute(new Request('https://shiftsometimber.co.uk/assets/member-experience/gp-form.mjs',{method}),{});assert.equal(r.status,200);assert.match(r.headers.get('Content-Type'),/javascript/);assert.match(r.headers.get('Cache-Control'),/no-store/);assert.equal(await r.text(),method==='HEAD'?'':gpFormRuntime);}
 });
-test('assessment markup addition leaves original named fields and submit script unchanged',()=>{
- const html=readFileSync(new URL('../../frontend/member/treatment-assessment.html',import.meta.url),'utf8');
- const baseline=readFileSync(new URL('../../frontend/medicine-front-door/treatment-assessment.html',import.meta.url),'utf8');
- assert.equal(html.replace('<script defer src="/assets/member-experience/gp-form.mjs"></script>\n',''),baseline);
+test('both assessment additions preserve the immutable original fields, content and submit script',()=>{
+ const script='<script defer src="/assets/member-experience/gp-form.mjs"></script>\n';
+ for(const path of ['../../frontend/member/treatment-assessment.html','../../frontend/medicine-front-door/treatment-assessment.html']){
+  const html=readFileSync(new URL(path,import.meta.url),'utf8');assert.equal(html.split(script).length,2);
+  const original=html.replace(script,'');const blob=createHash('sha1').update('blob '+Buffer.byteLength(original)+'\0').update(original).digest('hex');
+  assert.equal(blob,'0603847db45d10ae20d2924278c95a0ff47a2849','Clinical content changed outside the exact GP script addition: '+path);
+ }
  assert(!gpFormRuntime.includes("addEventListener('submit'"));assert(!gpFormRuntime.includes('localStorage'));assert(!gpFormRuntime.includes('sessionStorage'));assert(!gpFormRuntime.includes('/v1/profile'));assert(!gpFormRuntime.includes('/v1/commerce/'));assert(!gpFormRuntime.includes('innerHTML=body'));new vm.Script(gpFormRuntime);
 });
 test('preview clinical submission remains disabled with original production handler excluded',()=>{
