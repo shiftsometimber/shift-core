@@ -1,8 +1,8 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "b0d765029047e9ec655038e1ab32fd9c7b1dbabe",
+  "applicationCommit": "1bba374cd9e31bfc2187fe207483ea168b1a7a5e",
   "baseCommit": "a14f759ab8653868c5ef210eff431bdf29bfa106",
-  "reason": "Owner-authorised PR790 release follow-through. The first attempt stopped before Worker deployment on progress text emitted by Wrangler file import. The exact same hashed additive statement now uses a bound command JSON argument, preserving leading SQL comments. Existing table is validated before idempotent preparation. Website runtime, schema definition, configuration, data policy and release guards are unchanged.",
+  "reason": "Owner-authorised Medicines Watch PR795 release. Pin the exact merged candidate after reviewing all intervening changes: PR791 release records, PR793 already-published Pages-only editorial tooling, and PR795 source-review records/tests. The only Worker application change is medicines-watch/data.mjs. Keep enforcement enabled, existing release gates, current-main checks, protected catalogue snapshots and rollback. No medical wording, clinical approval, navigation, checkout, configuration or schema definition changes.",
   "previewEvidence": {
     "sourceCommit": "d066bfbfd3512cf74ce292a2f86b7595fa9a3d3e",
     "workflowRun": 35777023553,
@@ -26,6 +26,26 @@
       "requiresExactCommandProof": true
     }
   },
-  "runtimeSchemaAdditions": ["member_account_details"],
-  "enforceApplicationPin": true
+  "runtimeSchemaAdditions": [
+    "member_account_details"
+  ],
+  "enforceApplicationPin": true,
+  "medicinesWatchRelease": {
+    "previousApplicationCommit": "b0d765029047e9ec655038e1ab32fd9c7b1dbabe",
+    "candidateCommit": "1bba374cd9e31bfc2187fe207483ea168b1a7a5e",
+    "candidateTree": "de5ad623730487dd1cb8fccb2ce7ae53e9133ebd",
+    "approvedPullRequest": 795,
+    "sourceReview": "medicines-watch/reviews/2026-09-23-source-review.json",
+    "passingReviewRuns": [
+      35884193699,
+      35884193693,
+      35884193769
+    ],
+    "failedBeforeDeploymentRun": 35889145993,
+    "runtimeChangedFiles": [
+      "medicines-watch/data.mjs"
+    ],
+    "clinicalApproval": false,
+    "legacyPublicationEnabled": false
+  }
 }
