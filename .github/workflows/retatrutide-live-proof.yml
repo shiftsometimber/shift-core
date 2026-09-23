@@ -1,0 +1,114 @@
+name: Retatrutide published-site proof (read only)
+on:
+  push:
+    branches: [seo/retatrutide-evidence-20260923]
+    paths: ['.github/workflows/retatrutide-live-proof.yml']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: retatrutide-published-proof
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35841568844
+          name: retatrutide-production-b4e024df69d8f1924fee8c3a172ee9b10acd9c65
+          path: retatrutide-production-proof
+      - name: Verify original evidence integrity and retain the exact failed assertion
+        env:
+          GH_READ_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import pathlib,hashlib,urllib.request,os,json
+          out=pathlib.Path('retatrutide-production-proof')
+          for line in (out/'SHA256SUMS').read_text().splitlines():
+            expected,name=line.split('  ',1);p=out/name;assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==expected,name
+          assert json.loads((out/'before.json').read_text())['status']=='PASS'
+          try:
+            req=urllib.request.Request('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/107117614513/logs',headers={'Authorization':'Bearer '+os.environ['GH_READ_TOKEN'],'User-Agent':'SHIFT-read-only-release-proof'})
+            with urllib.request.urlopen(req,timeout=40) as f:log=f.read().decode('utf-8','replace')
+            lines=log.splitlines();contexts=[]
+            for i,l in enumerate(lines):
+              if 'Traceback' in l or 'AssertionError' in l:contexts.append('\n'.join(lines[max(0,i-3):i+8]))
+            (out/'original-failure-context.txt').write_text('\n\n'.join(contexts));print('\n\n'.join(contexts))
+          except Exception as e:(out/'original-log-retrieval.txt').write_text(str(e));print('Original log retrieval unavailable; preserved original run remains failed')
+          print('Original evidence file checksums verified; no deployment requested')
+          PY
+      - name: Read current production identity and compare all six approved hosted files
+        env:
+          CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import pathlib,hashlib,urllib.request,json,os,datetime
+          out=pathlib.Path('retatrutide-production-proof');report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'method':'Read-only GETs; no upload, deployment, rollback or database operation','checks':[],'failures':[]}
+          def get(url,auth=False):
+            h={'User-Agent':'SHIFT-published-proof/1','Cache-Control':'no-cache'}
+            if auth:h['Authorization']='Bearer '+os.environ['CF_READ_TOKEN']
+            with urllib.request.urlopen(urllib.request.Request(url,headers=h),timeout=40) as f:return f.read()
+          try:
+            p=json.loads(get('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',True));assert p['success'];d=p['result']['canonical_deployment']
+            report['deployment']={k:d.get(k) for k in ['id','url','environment','created_on','deployment_trigger','latest_stage']};print(json.dumps(report['deployment'],indent=2))
+            origin=d['url'];assert origin=='https://a0aa2a31.projectshift.pages.dev', 'Canonical deployment is not the authorised upload: '+origin
+            assert d['environment']=='production' and d['id']!='0da69833-83f7-4c70-9c7a-bceab7de1660'
+            for file in ['guides/retatrutide-uk-guide.html','explore-knowledge.html','glp1-knowledge-centre.html','sitemap.xml','release-body-integrity.json','DEPLOYMENT-FINGERPRINT.json']:
+              expected=(out/'assembly'/'after'/file).read_bytes();actual=get(origin+'/'+file.removesuffix('.html'));row={'file':file,'expectedSha256':hashlib.sha256(expected).hexdigest(),'actualSha256':hashlib.sha256(actual).hexdigest(),'exactMatch':actual==expected};report['checks'].append(row)
+              if actual!=expected:
+                failure=out/'current-mismatch'/file;failure.parent.mkdir(parents=True,exist_ok=True);failure.write_bytes(actual);report['failures'].append('Different hosted file: '+file)
+            for host in ['https://projectshift.pages.dev','https://shiftsometimber.co.uk']:
+              raw=get(host+'/DEPLOYMENT-FINGERPRINT.json');fp=json.loads(raw);report['checks'].append({'url':host+'/DEPLOYMENT-FINGERPRINT.json','sha256':hashlib.sha256(raw).hexdigest(),'fingerprint':fp})
+              if fp.get('aggregate_sha256')!='e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496':report['failures'].append('Unexpected public fingerprint: '+host)
+            assert not report['failures'], '; '.join(report['failures'])
+            report['status']='PASS'
+          except Exception as e:report['status']='FAIL';report['failures'].append(str(e));raise
+          finally:(out/'pages-after.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+          PY
+      - name: Prepare locked deployment-read and isolated browser toolchains
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --prefix "$RUNNER_TEMP/reta-browser" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/reta-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "PW_MODULE=$RUNNER_TEMP/reta-browser/node_modules/playwright" >> "$GITHUB_ENV"
+          echo "SST_RELEASE_DIR=$GITHUB_WORKSPACE/retatrutide-production-proof/assembly/after" >> "$GITHUB_ENV"
+      - name: Finish live content, sitemap, protected-page and four-profile browser verification
+        run: node release/retatrutide-20260923/verify-live.mjs after
+      - name: Verify standalone Worker deployment still matches the pre-release identity
+        if: always()
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if test -x node_modules/.bin/wrangler; then
+            npx wrangler deployments list --config wrangler.jsonc --json > retatrutide-production-proof/worker-current.json
+            python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('retatrutide-production-proof');assert json.loads((p/'worker-before.json').read_text())==json.loads((p/'worker-current.json').read_text()),'Worker deployment moved';(p/'worker-current-preservation.json').write_text(json.dumps({'unchanged':True,'baseline':'worker-before.json','current':'worker-current.json'},indent=2)+'\n')
+          PY
+          fi
+      - name: Retain original failure, current results and checksums
+        if: always()
+        run: |
+          cp .github/workflows/retatrutide-live-proof.yml retatrutide-production-proof/implementation/
+          python3 - <<'PY'
+          import pathlib,hashlib,json,os
+          p=pathlib.Path('retatrutide-production-proof');(p/'reconciliation-run.json').write_text(json.dumps({'source_commit':os.environ['GITHUB_SHA'],'run':os.environ['GITHUB_RUN_ID'],'original_publish_run':'35841568844','additional_production_uploads':0},indent=2)+'\n');files=sorted(x for x in p.rglob('*') if x.is_file() and x.name!='SHA256SUMS');(p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in files))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-live-proof-${{ github.sha }}
+          path: retatrutide-production-proof/
+          retention-days: 90
+          if-no-files-found: error
