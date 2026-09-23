@@ -1,6 +1,6 @@
 {
   "name": "My Timber",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "build": 1,
   "origin": "https://shiftsometimber.co.uk",
   "startPath": "/member/dashboard#today",
@@ -14,5 +14,7 @@
   "dunsAvailable": true,
   "nativePushReady": false,
   "storeAccountsVerified": false,
-  "storeSubmissionAllowed": false
+  "storeSubmissionAllowed": false,
+  "v1NativeNotifications": false,
+  "v1Scope": "store app mirrors My Timber member experience; PWA-only install/reminder controls omitted"
 }
