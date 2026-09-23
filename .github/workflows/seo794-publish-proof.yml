@@ -1,0 +1,102 @@
+name: PR794 approved editorial publication and live proof
+on:
+  push:
+    branches: [release/seo794-20260923]
+    paths: [.github/workflows/seo794-publish-proof.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  publish-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      APPROVED_MERGE_SHA: d68688b8f7e7f5a40407b424c548fa87289b45a9
+      EXPECTED_MAIN_SHA: d68688b8f7e7f5a40407b424c548fa87289b45a9
+      CANDIDATE_SHA: d68688b8f7e7f5a40407b424c548fa87289b45a9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d68688b8f7e7f5a40407b424c548fa87289b45a9
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require successful governed production release of this exact source
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request,os,json
+          url='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/35908600307'
+          req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'User-Agent':'SHIFT-approved-SEO-release'})
+          with urllib.request.urlopen(req) as f:r=json.load(f)
+          assert r['head_sha']==os.environ['APPROVED_MERGE_SHA'] and r['conclusion']=='success'
+          PY
+      - name: Load only committed release tooling
+        run: |
+          git fetch origin ae5e5520b2a32dd65fc3e4c06b80a650311ba972
+          git show FETCH_HEAD:release/seo794-followthrough.mjs > release/seo794-followthrough.mjs
+          git show FETCH_HEAD:release/seo794-live-browser.cjs > release/seo794-live-browser.cjs
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35873626050
+          name: seo-repair-final-f4052fff7670609f37e86f6324023cdf4baaea9a
+          path: approved-preview
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35907466415
+          name: seo794-preflight-0df0dade9c3db549982e5ff605cc63d834ba8705
+          path: seo794-preflight
+      - name: Verify exact approved public fixtures and rollback backup
+        run: |
+          (cd approved-preview && sha256sum -c SHA256SUMS)
+          (cd seo794-preflight && sha256sum -c SHA256SUMS)
+          tar xzf approved-preview/candidate-support.tar.gz preview/seo-repairs/generated/changes.json preview/seo-repairs/generated/render-manifest.json
+      - name: Apply thirteen guarded public editorial corrections and verify readback
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node release/seo794-followthrough.mjs apply
+      - name: Verify single production deployment, protected commercial records and sitemap
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node release/seo794-followthrough.mjs after
+      - name: Install isolated browser verification tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/seo-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/seo-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "SEO_TOOLS=$RUNNER_TEMP/seo-tools" >> "$GITHUB_ENV"
+      - name: Verify real public pages, headings, menus, redirects and corrected articles
+        run: node release/seo794-live-browser.cjs
+      - name: Retain exact production source, delta, rollback and evidence hashes
+        if: always()
+        run: |
+          mkdir -p seo794-release-proof
+          git archive --format=tar "$APPROVED_MERGE_SHA" | gzip > seo794-release-proof/exact-worker-source.tar.gz
+          git diff ecd0250f2c0b35d9efb128ce429136242de37304 "$APPROVED_MERGE_SHA" > seo794-release-proof/release.diff
+          cp -r seo794-preflight seo794-release-proof/preflight
+          python3 - <<'PY'
+          import pathlib,hashlib,os,json
+          p=pathlib.Path('seo794-release-proof')
+          (p/'execution.json').write_text(json.dumps({'releaseCommit':os.environ['APPROVED_MERGE_SHA'],'workflowRun':os.environ['GITHUB_RUN_ID'],'approvedPreview':'40e9aeec83bb8d2e4fc5fd5477fa757e7d36e31a','originalApprovedSEO':'f4052fff7670609f37e86f6324023cdf4baaea9a','preservedPriorMain':'ecd0250f2c0b35d9efb128ce429136242de37304','scope':'One Worker promotion plus bounded public editorial corrections. No Pages deploy or customer writes.'},indent=2))
+          (p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in sorted(p.rglob('*')) if x.is_file() and x.name!='SHA256SUMS'))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo794-production-${{ github.run_id }}
+          path: seo794-release-proof/
+          retention-days: 90
+          if-no-files-found: error
