@@ -1,0 +1,45 @@
+name: Retatrutide exact Pages authority proof
+on:
+  push:
+    branches: [seo/retatrutide-evidence-20260923]
+    paths: [.github/workflows/retatrutide-authority-proof.yml]
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: c733bf03834d93154a51a0db6ef05dbebb3c7cb3
+          persist-credentials: false
+          path: pages-authority
+      - name: Reproduce the exact currently deployed Pages master
+        run: python3 pages-authority/release/header-20260912/prepare-header.py
+      - name: Prove the article and discovery sources match the current immutable deployment
+        run: |
+          python3 - <<'PY'
+          import pathlib,gzip,json,hashlib,urllib.request,shutil
+          root=pathlib.Path('pages-authority'); out=pathlib.Path('retatrutide-authority-proof');out.mkdir()
+          payload=json.loads(gzip.decompress((root/'release/public-pages-20260911/source.json.gz').read_bytes()))
+          assert payload['source_fingerprint']=='1ec46ba5f5383cf02c5379cabc6ad20877a8dc6193abd8cc852b1ede43a9dcc0'
+          entries={e['path']:e for e in payload['files']}
+          report={'pages_commit':'c733bf03834d93154a51a0db6ef05dbebb3c7cb3','deployment_id':'0da69833-83f7-4c70-9c7a-bceab7de1660','fingerprint':payload['source_fingerprint'],'checks':[]}
+          for name in ['guides/retatrutide-uk-guide.html','explore-knowledge.html','glp1-knowledge-centre.html','sitemap.xml']:
+            data=payload['overrides'][name].encode()
+            assert hashlib.sha256(data).hexdigest()==entries[name]['sha256']
+            req=urllib.request.Request('https://0da69833.projectshift.pages.dev/'+name,headers={'User-Agent':'SHIFT-ReadOnly-Authority-Proof/1'})
+            with urllib.request.urlopen(req,timeout=35) as r: live=r.read()
+            assert live==data,name+': source is not currently served bytes'
+            report['checks'].append({'path':name,'sha256':entries[name]['sha256'],'bytes':len(data),'exact_served_match':True})
+          for path in ['release/public-pages-20260911/source.json.gz','release/public-pages-20260911/control.json','release/public-pages-20260911/assemble-pages.py','release/header-20260912/header-source-proof.json']:
+            target=out/path;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(root/path,target)
+          (out/'authority.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-authority-${{ github.sha }}
+          path: retatrutide-authority-proof/
+          retention-days: 30
