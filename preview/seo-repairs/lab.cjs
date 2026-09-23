@@ -6,7 +6,8 @@ const routes={home:'/',reta:'/guides/retatrutide-uk-guide',health:'/shift-health
 const out='seo-repair-proof/lighthouse';fs.mkdirSync(out,{recursive:true});
 const failures=[];
 for(let repeat=1;repeat<=3;repeat++)for(const [key,route] of Object.entries(routes))for(const mode of (repeat%2?['baseline','candidate']:['candidate','baseline'])){
- const file=path.join(out,`${key}-${mode}-${repeat}.json`),url=base+(mode==='baseline'?'/__baseline':'')+route;
+ const file=path.join(out,`${key}-${mode}-${repeat}.json`),url=base+route+(mode==='baseline'?'?__seo_baseline=1':'');
+ assert.equal(new URL(url).pathname,route,'Route-aware scripts require the same pathname in both modes');
  const run=spawnSync(process.execPath,[tools+'/node_modules/lighthouse/cli/index.js',url,'--only-categories=performance,accessibility','--output=json','--output-path='+file,'--chrome-flags=--headless --no-sandbox','--quiet','--blocked-url-patterns=*google-analytics.com*,*analytics.google.com*,*doubleclick.net*,*googleadservices.com*,*/v1/acquisition/*'],{env:{...process.env,CHROME_PATH:chromium.executablePath()},encoding:'utf8',timeout:90000});
  if(run.status!==0){failures.push({file,status:run.status,error:String(run.stderr||run.error||'Lab failed')});continue;}
  const d=JSON.parse(fs.readFileSync(file));if(d.runtimeError)failures.push({file,error:d.runtimeError});
@@ -26,6 +27,6 @@ for(const [key,route] of Object.entries(routes)){
  }
  groups.push(group);
 }
-fs.writeFileSync('seo-repair-proof/mobile-comparison.json',JSON.stringify({scope:'Three simulated-mobile runs per page and mode, same frozen shell and preview host. Alternating mode order. Not field CrUX, not live production uplift, and not a guarantee of load time.',failures,pages:groups},null,2));
+fs.writeFileSync('seo-repair-proof/mobile-comparison.json',JSON.stringify({scope:'Three simulated-mobile runs per page and mode, identical pathnames, frozen shell and preview host. Alternating mode order. A query switch chooses original HTML without changing route-aware script behaviour. Not field CrUX, not live production uplift, and not a guarantee of load time. Earlier prefixed-path results are superseded for comparisons.',failures,pages:groups},null,2));
 console.log(JSON.stringify(groups.map(x=>({page:x.page,baseline:x.baseline.median,candidate:x.candidate.median})),null,2));
 if(failures.length||groups.some(x=>!x.baseline.median||!x.candidate.median))process.exitCode=1;
