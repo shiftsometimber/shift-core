@@ -1,3 +1,4 @@
+import {memberDeliveryRoute} from './member-delivery-routes.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 
 const HEADERS={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','Vary':'Cookie'};
@@ -43,6 +44,7 @@ const view=(s,env)=> ({ok:true,details:{...s.details,email:s.u.email},revision:s
 // The user ID is always derived from the existing authenticated session. No client
 // account selector, order write, preference replacement, AI request or analytics call.
 export async function memberDetailsRoute(request,env){
+ const delivery=await memberDeliveryRoute(request,env);if(delivery)return delivery;
  const path=pathOf(request);if(path!=='/v1/member/details')return null;
  if(!['GET','PATCH'].includes(request.method))return error('method_not_allowed','Use GET or PATCH for member details.',405);
  if(request.method==='PATCH'){
@@ -61,7 +63,8 @@ export async function memberDetailsRoute(request,env){
   return json(view(current,env));
  }
  if(body.revision!==current.revision)return error('details_changed','Your details changed in another window. Your edits are still here. Reload saved details before saving again.',409);
- const contact=JSON.stringify(Object.fromEntries(CONTACT.map(k=>[k,values[k]]))),at=new Date().toISOString(),version=current.row?.revision??0,nonce=crypto.randomUUID();
+ const savedContact=JSON.parse(current.row?.body_json||'{}');
+ const contact=JSON.stringify({...Object.fromEntries(CONTACT.map(k=>[k,values[k]])),...(savedContact.delivery?{delivery:savedContact.delivery}:{})}),at=new Date().toISOString(),version=current.row?.revision??0,nonce=crypto.randomUUID();
  // Match the core values again inside the transaction, not just at the earlier read.
  // The operation claim guards every subsequent write. A stale batch changes zero rows.
  const coreMatch=CORE.map(k=>k+' IS ?').join(' AND '),condition='EXISTS(SELECT 1 FROM member_account_details WHERE user_id=? AND write_nonce=?)';
