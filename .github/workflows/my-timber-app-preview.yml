@@ -119,8 +119,8 @@ jobs:
       - name: Compile unsigned iOS Release candidate (simulator, no signing/upload)
         run: |
           cd my-timber-app/ios
-          if ! xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Release \\
-            -sdk iphonesimulator -derivedDataPath release-build CODE_SIGNING_ALLOWED=NO build \\
+          if ! xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Release \
+            -sdk iphonesimulator -derivedDataPath release-build CODE_SIGNING_ALLOWED=NO build \
             > ../evidence/ios-release-build.txt 2>&1; then
             tail -n 120 ../evidence/ios-release-build.txt
             exit 1
