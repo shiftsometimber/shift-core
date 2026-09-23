@@ -1,6 +1,6 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "9f5a47854a842a19289bce1c116ec174432b6ed0",
+  "applicationCommit": "9d601079ee0e465be00dc67320be8437c669a578",
   "baseCommit": "323f2409c0bd7f719abb05969fe9aeb2a827261b",
   "reason": "Prepared PR792 account-address release, not production approval. Preserve the current released Reta source, all tested account code, customer records, historical orders, catalogue, stock, price and clinical/payment holds. Only the Photon runtime flag is added. Separate delivery editing is included; Stripe shipping prefill is not. Secure email change stays disabled pending real-mail evidence; no email schema migration. Runtime-only rollback preserves all data. The exact additive delivery-preservation trigger refuses incompatible legacy home saves during rollback; compatible current saves remain available after recovery.",
   "previewEvidence": {
@@ -9,9 +9,10 @@
     "reconciledSource": "be20c3a73869883b921971db5405fc00749f9d71",
     "reconciliationWorkflow": 35880432037,
     "localMemberAndReleaseTests": 283,
-    "proposedApplicationSource": "9f5a47854a842a19289bce1c116ec174432b6ed0",
+    "proposedApplicationSource": "9d601079ee0e465be00dc67320be8437c669a578",
     "finalHostedVerification": "Required for the final branch head; no success claimed by this manifest.",
-    "productionApproval": "Owner preview/release acceptance remains required."
+    "productionApproval": "Owner preview/release acceptance remains required.",
+    "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth"
   },
   "runtimeSchemaAdditions": [
     "member_account_details",
