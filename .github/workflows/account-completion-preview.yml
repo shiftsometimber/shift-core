@@ -51,7 +51,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node --test member-experience/tests/*.test.mjs 2>&1 | tee account-completion-evidence/account-tests.tap
+          node scripts/b1-release-scope.mjs
+          node --test member-experience/tests/*.test.mjs tests/member-details-release.test.mjs tests/b1-release-scope.test.mjs 2>&1 | tee account-completion-evidence/account-tests.tap
           node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/account-completion-compile > account-completion-evidence/compile.txt 2>&1 || { tail -n 70 account-completion-evidence/compile.txt; exit 1; }
       - name: Record the unchanged tested candidate
         run: |

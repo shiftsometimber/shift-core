@@ -29,7 +29,7 @@ function cli(args){return JSON.parse(execFileSync(process.execPath,['node_module
 function schema(){const result=cli(['d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',"SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY type,name"]);assert(result.length&&result.every(x=>x.success));return result.flatMap(x=>x.results||[]);}
 async function main(){
  assert.equal(process.env.GITHUB_REF,'refs/heads/main');const scope=verifyScope();assert.deepEqual(scope.runtimeSchemaAdditions,[TABLE]);assertSchemaFile();
- const goldConfig=execFileSync('git',['show','a14f759ab8653868c5ef210eff431bdf29bfa106:wrangler.jsonc'],{encoding:'utf8'});assert.equal(readFileSync('wrangler.jsonc','utf8').replace('    "MEMBER_GP_LOOKUP_ENABLED": "true",\n',''),goldConfig,'Unexpected configuration change');
+ const releasedConfig=execFileSync('git',['show','323f2409c0bd7f719abb05969fe9aeb2a827261b:wrangler.jsonc'],{encoding:'utf8'});assert.equal(readFileSync('wrangler.jsonc','utf8').replace('    "MEMBER_ADDRESS_PROVIDER": "photon",\n',''),releasedConfig,'Unexpected configuration change');
  mkdirSync('b1-runtime-release',{recursive:true});const before=schema(),exists=assertExisting(before);
  const bookmark=cli(['d1','time-travel','info','shift-core-db','--json']);
  writeFileSync('b1-runtime-release/member-details-schema-before.json',JSON.stringify({schema:before,bookmark},null,2));
