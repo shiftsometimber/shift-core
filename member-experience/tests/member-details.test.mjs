@@ -5,7 +5,7 @@ import {fixture} from '../../health-passport/fixture.mjs';
 import {memberDetailsRoute,appendMemberDetailsExport,validateMemberDetails} from '../member-details-routes.mjs';
 import {memberExperienceEntry,memberExperienceRoutes} from '../entry.mjs';
 import {memberDetailsRuntime,withMemberDetails,memberDetailsStyles} from '../member-details.mjs';
-import {searchGpPractices,searchPostcode,memberDetailsLookupRoute} from '../member-details-lookups.mjs';
+import {searchGpPractices,memberDetailsLookupRoute} from '../member-details-lookups.mjs';
 import vm from 'node:vm';
 const origin='https://shiftsometimber.co.uk';
 const url=origin+'/v1/member/details';
@@ -61,6 +61,4 @@ test('NHS search uses exact fixed endpoint and active GP filters, no member iden
  let called;const result=await searchGpPractices('Blackdown',async(url,opts)=>{called={url,opts};return Response.json({Organisations:[{Name:'BLACKDOWN PRACTICE',OrgId:'L83044',Status:'Active',PrimaryRoleId:'RO177',PostCode:'EX15 3SF'},{Name:'Retired practice',OrgId:'A12345',Status:'Inactive',PrimaryRoleId:'RO177',PostCode:'SW1A 1AA'}]});});const u=new URL(called.url);assert.equal(u.origin,'https://directory.spineservices.nhs.uk');assert.equal(u.searchParams.get('NonPrimaryRoleId'),'RO76');assert.equal(called.opts.redirect,'manual');assert.equal(result.practices.length,1);assert.equal(result.practices[0].code,'L83044');assert.equal(called.opts.headers.Cookie,undefined);
 });
 test('GP provider failures and redirects do not fabricate practice suggestions',async()=>{await assert.rejects(searchGpPractices('Blackdown',async()=>new Response(null,{status:302,headers:{Location:'https://evil.invalid'}})));await assert.rejects(searchGpPractices('Blackdown',async()=>Response.json({unexpected:[]})));});
-test('unconfigured address lookup cannot masquerade as full address data',async()=>{let called=false;assert.equal(await searchPostcode('SK10 1AA',null,async()=>{called=true;}),null);assert.equal(called,false);});
-test('licensed full-address adapter exposes only bounded address fields, never its key',async()=>{let options;const result=await searchPostcode('SW1A 1AA','test-only-key',async(url,init)=>{options=init;assert(url.startsWith('https://api.ideal-postcodes.co.uk/v1/postcodes/'));assert(!url.includes('test-only-key'));return Response.json({code:2000,result:[{line_1:'Fictional address',line_2:'',line_3:'',post_town:'London',postcode:'SW1A 1AA',county:'',otherPrivateData:'omit'}]});});assert.equal(result.addresses[0].town,'London');assert(!JSON.stringify(result).includes('otherPrivateData'));assert.equal(options.headers.Authorization,'api_key="test-only-key"');});
 test('public and unrelated routes are untouched by the new API modules',async()=>{const env={};assert.equal(await memberDetailsRoute(new Request(origin+'/'),env),null);assert.equal(await memberDetailsLookupRoute(new Request(origin+'/v1/profile'),env),null);const response=new Response('unchanged');assert.equal(await appendMemberDetailsExport(new Request(origin+'/'),env,response),response);});

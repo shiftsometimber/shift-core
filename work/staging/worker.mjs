@@ -1,3 +1,4 @@
+import {previewAccountCapacity} from './account-capacity.mjs';
 // Separate staging entry; never imported by the production entry.
 import core from '../../worker-entry-v6.js';
 import {memberReviewRoutes} from '../../member-experience/staging/routes.mjs';
@@ -28,7 +29,7 @@ export default {async fetch(request,env,ctx){
   if(p==='/v1/auth/register'){
    const b=await request.clone().json().catch(()=>null);
    if(!b||b.firstName!=='Fictional reviewer'||!/^[-a-zA-Z0-9._]+@example\.invalid$/.test(b.email??'')||Object.keys(b).some(k=>!['email','password','firstName'].includes(k)))return Response.json({error:'Use fictional @example.invalid test details only.'},{status:400});
-   const count=await env.DB.prepare('SELECT COUNT(*) n FROM users WHERE first_name="Fictional reviewer"').first();if(count.n>=20)return Response.json({error:'Staging account limit reached.'},{status:409});
+   const count=await env.DB.prepare('SELECT COUNT(*) n FROM users WHERE first_name="Fictional reviewer"').first();if(!previewAccountCapacity(Number(count.n),env,u.hostname).available)return Response.json({error:'The fictional preview account limit has been reached. Return to your existing test account using Test sign-in; no live account has been affected.'},{status:409,headers:{'Cache-Control':'no-store'}});
   }
  }
  // Staging-only diagnostics contain no request headers, prompts or model text.

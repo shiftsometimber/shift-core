@@ -15,10 +15,13 @@ for(const[binding,name]of [['DB','shift-member-details-auth-20260922'],['WORK_DB
 assert.notEqual(c.d1_databases[0].database_id,c.d1_databases[1].database_id);writeFileSync(file,JSON.stringify(c,null,2));
 // Existing preview account IDs are retained. New probe IDs are unique per build.
 for(const[binding,sql]of [['DB','auth.sql'],['WORK_DB','work.sql']])run(['d1','execute',binding,'--remote','--file','work/staging/generated/'+sql,'--config',file]);
-for(const sql of ['member-experience/checkin-followup.sql','member-experience/member-details.sql'])run(['d1','execute','DB','--remote','--file',sql,'--config',file]);
+for(const sql of ['member-experience/checkin-followup.sql','member-experience/member-details.sql','member-experience/member-email-change.sql'])run(['d1','execute','DB','--remote','--file',sql,'--config',file]);
 // Retain automated review records but stop counting the exact completed fixture
 // as an untouched human-review slot. No account or data is deleted.
 const completedReviewSql=`UPDATE users SET first_name='Fictional automated reviewer' WHERE first_name='Fictional reviewer' AND last_name='Preview' AND email LIKE 'review-%@example.invalid' AND EXISTS (SELECT 1 FROM member_account_details d WHERE d.user_id=users.id AND json_extract(d.body_json,'$.address1')='4 Fictional Road')`;
 run(['d1','execute','DB','--remote','--command',completedReviewSql,'--config',file]);
 writeFileSync('work/staging/generated/review-evidence/isolation.json',JSON.stringify({previewOnly:true,databases:c.d1_databases,productionIdsRejected:true,bulkDeletion:false,noEmails:true,noPayments:true,noScheduledWork:true},null,2));
 console.log('Initialised only named member-details preview databases; no records deleted.');
+
+// Ephemeral fictional email receipts for candidate proof only; never a real mail binding.
+run(['d1','execute','DB','--remote','--command',"CREATE TABLE IF NOT EXISTS preview_email_change_mail(id INTEGER PRIMARY KEY,user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,recipient TEXT NOT NULL,subject TEXT NOT NULL,body_text TEXT NOT NULL,created_at TEXT NOT NULL)",'--config',file]);

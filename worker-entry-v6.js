@@ -60,6 +60,7 @@ import { handleAuthRecovery } from "./auth-recovery-v1.js";
 import {repairPasswordResetResponse} from "./auth-recovery-page-v1.mjs";
 import { memberContrastStatic } from "./member-contrast-static-v1.js";
 import { fastMemberRegister } from "./member-register-fastpath-v2.js";
+import {retryPendingSignupAlerts} from './member-signup-alert.mjs';
 import { fastMemberLogin } from "./member-login-fastpath-v1.js";
 import { publicTurnstileConfig, turnstileGuard } from "./turnstile-auth-v1.js";
 import { shiftMeRoutes } from "./shift-me-v1.js";
@@ -998,7 +999,7 @@ const worker = {
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
       }));
-      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin"];
+      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin", "member-signup-alerts"];
       const settled = await Promise.allSettled([
         runScheduledIntelligence(env),
         runRadarScheduledScan(env),
@@ -1006,6 +1007,7 @@ const worker = {
         runFitMorningReminders(env),
         notifyArticlePublication(env),
         env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true}),
+        retryPendingSignupAlerts(env),
       ]);
       const scheduled = settled.map((result, index) =>
         result.status === "fulfilled"
