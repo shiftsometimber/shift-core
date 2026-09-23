@@ -34,7 +34,17 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
             stack.trailingAnchor.constraint(equalTo:view.safeAreaLayoutGuide.trailingAnchor),
             stack.bottomAnchor.constraint(equalTo:view.keyboardLayoutGuide.topAnchor)
         ])
+        let startup=StartupOverlay(frame:.zero)
+        startup.translatesAutoresizingMaskIntoConstraints=false
+        view.addSubview(startup)
+        NSLayoutConstraint.activate([
+            startup.leadingAnchor.constraint(equalTo:view.leadingAnchor),
+            startup.trailingAnchor.constraint(equalTo:view.trailingAnchor),
+            startup.topAnchor.constraint(equalTo:view.topAnchor),
+            startup.bottomAnchor.constraint(equalTo:view.bottomAnchor)
+        ])
         loadToday()
+        startup.playAndRemove()
     }
     private func loadToday(){
         web.load(URLRequest(url:NavigationPolicy.start,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
