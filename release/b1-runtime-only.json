@@ -1,18 +1,19 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "9d601079ee0e465be00dc67320be8437c669a578",
+  "applicationCommit": "0ec37c4d296e42781a6807b5ad6555fa2f86c88c",
   "baseCommit": "323f2409c0bd7f719abb05969fe9aeb2a827261b",
-  "reason": "Prepared PR792 account-address release, not production approval. Preserve the current released Reta source, all tested account code, customer records, historical orders, catalogue, stock, price and clinical/payment holds. Only the Photon runtime flag is added. Separate delivery editing is included; Stripe shipping prefill is not. Secure email change stays disabled pending real-mail evidence; no email schema migration. Runtime-only rollback preserves all data. The exact additive delivery-preservation trigger refuses incompatible legacy home saves during rollback; compatible current saves remain available after recovery.",
+  "reason": "Prepared PR792 account release; not production approval. Owner removed postcode lookup: home/delivery addresses are manual, free NHS GP suggestions retained. Runtime configuration matches current released main. Preserve Reta source, customer records, historical orders, catalogue, stock, prices and clinical/payment holds. Separate delivery editing remains; Stripe prefill is not included. Real email changes stay disabled. Runtime-only rollback preserves data; exact additive delivery-preservation trigger refuses incompatible legacy saves.",
   "previewEvidence": {
     "retainedAccountSource": "2afcd65015ab8ca7334d8c69a9f4bb3ce4707cd3",
     "retainedAccountWorkflow": 35849691581,
     "reconciledSource": "be20c3a73869883b921971db5405fc00749f9d71",
     "reconciliationWorkflow": 35880432037,
-    "localMemberAndReleaseTests": 283,
-    "proposedApplicationSource": "9d601079ee0e465be00dc67320be8437c669a578",
+    "localMemberAndReleaseTests": 263,
+    "proposedApplicationSource": "0ec37c4d296e42781a6807b5ad6555fa2f86c88c",
     "finalHostedVerification": "Required for the final branch head; no success claimed by this manifest.",
     "productionApproval": "Owner preview/release acceptance remains required.",
-    "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth"
+    "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth",
+    "addressDecision": "Owner explicitly chose manual address entry; no provider signup, key, trial or cost. New hosted verification required."
   },
   "runtimeSchemaAdditions": [
     "member_account_details",
