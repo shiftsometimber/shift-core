@@ -32,6 +32,7 @@ for(const path of paths){
  preserved=preserveTreatmentCentreAccuracy(path,preserved,{required:Boolean(before)});
  preserved=preserveNutritionSignposting(path,preserved);
  preserved=preserveCalculatorsNavigation(path,preserved,{required:Boolean(before)});
+ // Includes only the two exact shared support links on the public login page.
  preserved=preserveSeo794(path,preserved,{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }

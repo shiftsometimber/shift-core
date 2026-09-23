@@ -12,6 +12,15 @@ const oldTicker=tickerStyles.replace('background:#050505!important;color:#E7E3DA
 // remaining page bytes in the existing full-response preservation comparison.
 export function preserveSeo794(path,input,{required=false}={}){
  let html=input.toString('utf8');if(!/<html\b/i.test(html)||!/<main\b/i.test(html))return input;
+ // The public login shell has the two shared support links, but deliberately
+ // receives none of the public SEO styles or image transformations.
+ if(path==='/member-login'){
+  const old='<a href="/good-to-talk">Good to Talk</a>',current='<a href="/mens-mental-health">Good to Talk</a>';
+  const oldCount=html.split(old).length-1,currentCount=html.split(current).length-1;
+  assert.equal(oldCount+currentCount,2,'Login must retain both exact shared support links');
+  if(required)assert.equal(currentCount,2,'Login must use both approved direct support links');
+  return Buffer.from(html.replaceAll(old,current));
+ }
  const sample=repairSeoPresentation('<html><head></head><body><main></main></body></html>',path);
  const style=sample.match(/<style data-seo-contrast-20260923>[\s\S]*?<\/style>/)?.[0];
  if(!style)return input;
