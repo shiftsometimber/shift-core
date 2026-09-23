@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 35
     env:
       WRANGLER_SEND_METRICS: 'false'
+      EXPECTED_MAIN: 323f2409c0bd7f719abb05969fe9aeb2a827261b
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,35 +26,46 @@ jobs:
         run: |
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
-          git merge-base --is-ancestor 4c014edce24bd9a37645dfbd6bad204ed3270091 HEAD
-          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 4c014edce24bd9a37645dfbd6bad204ed3270091
+          git merge-base --is-ancestor 60c50c135560201436204a21717b226623fec621 HEAD
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN"
           mkdir -p account-completion-evidence
+          git ls-remote origin refs/heads/main > account-completion-evidence/production-main-before.txt
           npm ci --no-audit --no-fund
-      - name: Apply guarded candidate source only on this draft branch
+      - name: Read current preview capacity before any repair or fixture provisioning
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
         run: |
-          node account-completion/apply.mjs
-          node account-completion/apply-email.mjs
-          node account-completion/refine-email-gp.mjs
-          node account-completion/apply-photon.mjs
-      - name: Run retained member and new address/email security tests
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
+          const cli='node_modules/wrangler/bin/wrangler.js',call=args=>JSON.parse(execFileSync(process.execPath,[cli,...args],{encoding:'utf8'}));
+          const db=call(['d1','list','--json']).filter(d=>d.name==='shift-member-details-auth-20260922');assert.equal(db.length,1);const id=db[0].uuid||db[0].id||db[0].database_id;assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(id));
+          fs.writeFileSync('/tmp/preview-access-read.json',JSON.stringify({name:'shift-stabilisation-preview',compatibility_date:'2026-08-09',d1_databases:[{binding:'DB',database_name:db[0].name,database_id:id}]}));
+          const capacity=call(['d1','execute','DB','--remote','--json','--command',"SELECT count(*) AS n FROM users WHERE first_name='Fictional reviewer'",'--config','/tmp/preview-access-read.json']);
+          const meta=await(await fetch('https://shift-stabilisation-preview.matobrien.workers.dev/__preview/meta',{signal:AbortSignal.timeout(20000)})).json();assert.equal(meta.productionBindings,false);
+          fs.writeFileSync('account-completion-evidence/access-before.json',JSON.stringify({readOnly:true,productionWrites:0,previousPreview:meta,previousHardcodedLimit:20,capacity},null,2));console.log(JSON.stringify({previousLimit:20,capacity,source:meta.source}));
+          JS
+      - name: Apply only guarded preview-access changes
+        run: node preview/member-details/apply-access-repair.mjs
+      - name: Run retained member and new preview-access tests
         shell: bash
         run: |
           set -euo pipefail
           node --test member-experience/tests/*.test.mjs 2>&1 | tee account-completion-evidence/account-tests.tap
           node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/account-completion-compile > account-completion-evidence/compile.txt 2>&1 || { tail -n 70 account-completion-evidence/compile.txt; exit 1; }
-      - name: Commit exact tested modifications to the draft only
+      - name: Preserve the application and commit exact tested preview changes to draft only
         run: |
           set -euo pipefail
           node --input-type=module - <<'JS'
           import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
-          const allowed=new Set(['member-experience/member-details-routes.mjs','member-experience/member-details.mjs','frontend/medicine-front-door/treatment-assessment.html','preview/member-details/worker.mjs','preview/member-details/provision.mjs','member-experience/member-email-change.mjs','member-experience/tests/member-email-change.test.mjs','preview/member-details/prepare.mjs','preview/member-details/gp-browser-proof.mjs','account-completion/delivery-browser.mjs','member-experience/member-delivery-client.mjs','member-experience/member-delivery-routes.mjs','member-experience/member-details-lookups.mjs','preview/member-details/browser-proof.mjs']);
-          const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of changed)assert(allowed.has(p),'Unexpected change: '+p);
-          if(changed.length)execFileSync('git',['add','--',...changed]);
+          const allowed=new Set(['work/staging/worker.mjs','preview/member-details/worker.mjs','preview/member-details/prepare.mjs','preview/member-details/browser-proof.mjs']);
+          const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of changed)assert(allowed.has(p),'Unexpected source change: '+p);if(changed.length)execFileSync('git',['add','--',...changed]);
+          const all=execFileSync('git',['diff','60c50c135560201436204a21717b226623fec621','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of all)assert(p.startsWith('preview/member-details/')||p.startsWith('work/staging/')||p==='member-experience/tests/preview-access.test.mjs'||p==='.github/workflows/account-completion-preview.yml','Unrelated application or production change: '+p);
           JS
           if ! git diff --cached --quiet; then
             git config user.name 'SHIFT preview verification'
             git config user.email 'it@shiftsometimber.co.uk'
-            git commit -m 'Integrate tested open-source address suggestions in the existing account preview'
+            git commit -m 'Repair bounded fictional preview capacity and reuse returning reviewer sessions'
             git push origin HEAD:refs/heads/fix/account-completion-20260923
           fi
           echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
@@ -81,7 +93,7 @@ jobs:
           import fs from 'node:fs';import assert from 'node:assert/strict';const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
           assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
           assert.deepEqual(c.d1_databases.map(x=>x.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
-          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);assert.equal(c.vars.MEMBER_ADDRESS_PROVIDER,'photon');assert(!c.vars.MEMBER_ADDRESS_API_KEY);
+          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);assert.equal(c.vars.MEMBER_ADDRESS_PROVIDER,'photon');assert(!c.vars.MEMBER_ADDRESS_API_KEY);assert.equal(c.vars.STAGING_REVIEW_ACCOUNT_LIMIT,'100');
           JS
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > account-completion-evidence/deploy.txt 2>&1 || { tail -n 70 account-completion-evidence/deploy.txt; exit 1; }
           echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
@@ -97,21 +109,26 @@ jobs:
         env:
           GP_FORM_TEST_PATH: /__review/gp-form-alternate
         run: node preview/member-details/gp-browser-proof.mjs
-      - name: Optional Photon suggestions; two real provider calls plus fixture failure cases
+      - name: Optional Photon suggestions; two real calls plus fixture failures
         run: node account-completion/photon-browser.mjs
       - name: Separate delivery address browser matrix
         run: node account-completion/delivery-browser.mjs
       - name: Dual-mailbox email-change browser matrix with simulated mail only
         run: node account-completion/email-browser.mjs
-      - name: Retain actual reports and unchanged production identity
+      - name: Test both actual reviewer entry paths, repeat start, save and fresh login
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: node preview/member-details/reviewer-access-proof.mjs
+      - name: Retain results and confirm production source has not moved
         if: always()
         run: |
           mkdir -p account-completion-evidence
           git rev-parse HEAD > account-completion-evidence/source-sha.txt
           git ls-remote origin refs/heads/main > account-completion-evidence/production-main.txt
           if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence account-completion-evidence/; fi
-          git diff 4c014edce24bd9a37645dfbd6bad204ed3270091 --stat > account-completion-evidence/delta.txt
-          git diff a09a339c0cb312cca78dea9063eace8688843eda --stat > account-completion-evidence/photon-delta.txt
+          git diff 60c50c135560201436204a21717b226623fec621 --stat > account-completion-evidence/access-delta.txt
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
