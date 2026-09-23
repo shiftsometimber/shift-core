@@ -1,6 +1,6 @@
 // Shared home/delivery controls. Search is explicit, not an external call per keystroke.
 export function photonSearchMarkup(prefix){
- return `<label for="${prefix}AddressQuery">Building or street <span class="md-optional">(optional)</span><input id="${prefix}AddressQuery" maxlength="100" autocomplete="off" placeholder="Add a house number, building or street to narrow the search" aria-describedby="${prefix}AddressSource"></label><p class="md-help" id="${prefix}AddressSource">Optional free suggestions from Photon. Pressing Search sends only this postcode and these search terms—not your account, contact or health details. Some addresses are missing; always check the result.<br>Address data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors (ODbL)</a>.</p><button id="${prefix}AddressManual" type="button" class="md-secondary">Enter address manually</button>`;
+ return `<label for="${prefix}AddressQuery">Building or street <span class="md-optional">(optional)</span><input id="${prefix}AddressQuery" maxlength="100" autocomplete="off" placeholder="Add a house number, building or street to narrow the search" aria-describedby="${prefix}AddressSource"></label><p class="md-help" id="${prefix}AddressSource">Optional free suggestions from Photon. Pressing Search sends only this postcode and these search terms—not your name, email, phone or health information. Some addresses are missing; always check the result.<br>Address data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors (ODbL)</a>.</p><button id="${prefix}AddressManual" type="button" class="md-secondary">Enter address manually</button>`;
 }
 export const photonAddressRuntime=String.raw`(()=>{
 'use strict';
@@ -12,7 +12,7 @@ for(const c of configs){
  const fingerprint=()=>[query.value,...[c.postcode,c.address1,c.town,c.county].map(id=>$(id).value)].join('\u0000');
  function clear(){serial++;abort?.abort();abort=null;results=[];choices.hidden=true;select.replaceChildren(new Option('Choose an address suggestion…',''));button.disabled=!enabled;}
  window.addEventListener(c.event,e=>{enabled=e.detail?.enabled===true;clear();help.textContent=enabled?'Enter your postcode. Add a building or street when needed, then search. Manual entry always works.':'Address suggestions are unavailable. Enter and save your address manually.';});
- form.addEventListener('input',()=>{if(!selecting)clear();});form.addEventListener('change',e=>{if(e.target!==select&&!selecting)clear();});
+ form.addEventListener('input',e=>{if(e.target!==select&&!selecting)clear();});form.addEventListener('change',e=>{if(e.target!==select&&!selecting)clear();});
  form.addEventListener('submit',clear);
  manual.addEventListener('click',()=>{clear();help.textContent='Enter your address below. No address search is required.';$(c.address1).focus();});
  button.addEventListener('click',async()=>{
