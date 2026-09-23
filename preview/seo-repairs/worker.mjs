@@ -5,7 +5,7 @@ import {publicTickerAsset} from '../../public-navigation-policy.mjs';
 const origin='https://shiftsometimber.co.uk';
 const headers={'X-Robots-Tag':'noindex, nofollow','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'};
 export default {async fetch(request,env){
- const url=new URL(request.url),raw=url.pathname,baseline=raw.startsWith('/__baseline/'),path=baseline?raw.slice('/__baseline'.length):raw;
+ const url=new URL(request.url),raw=url.pathname,prefixed=raw.startsWith('/__baseline/'),baseline=prefixed||url.searchParams.get('__seo_baseline')==='1',path=prefixed?raw.slice('/__baseline'.length):raw;
  const h={...headers,'X-Shift-Preview':'seo-repairs-20260923','X-Shift-Preview-Commit':env.CANDIDATE_SHA||'unidentified'};
  if(!['GET','HEAD'].includes(request.method))return new Response('Read-only preview',{status:405,headers:{...h,Allow:'GET, HEAD'}});
  if(raw==='/robots.txt')return new Response('User-agent: *\nDisallow: /\n',{headers:{...h,'Content-Type':'text/plain'}});
