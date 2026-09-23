@@ -8,9 +8,12 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+defaults:
+  run:
+    shell: bash
 concurrency:
   group: my-timber-app-preview-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   android:
     runs-on: ubuntu-latest
@@ -27,6 +30,10 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+          accept-android-sdk-licenses: false
+          log-accepted-android-sdk-licenses: false
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
@@ -44,7 +51,11 @@ jobs:
       - name: Build development-signed Android APK (no deployment)
         run: |
           cd my-timber-app/android
-          gradle --no-daemon :app:assembleDebug | tee ../evidence/android-build.txt
+          if ! gradle --no-daemon :app:assembleDebug > ../evidence/android-build.txt 2>&1; then
+            tail -n 100 ../evidence/android-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/android-build.txt
           sha256sum app/build/outputs/apk/debug/app-debug.apk > ../evidence/android-apk.sha256
       - uses: actions/upload-artifact@v4
         if: always()
@@ -86,9 +97,13 @@ jobs:
       - name: Build unsigned iOS SIMULATOR app (not iPhone IPA)
         run: |
           cd my-timber-app/ios
-          xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Debug \
+          if ! xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Debug \
             -sdk iphonesimulator -derivedDataPath build CODE_SIGNING_ALLOWED=NO build \
-            | tee ../evidence/ios-build.txt
+            > ../evidence/ios-build.txt 2>&1; then
+            tail -n 100 ../evidence/ios-build.txt
+            exit 1
+          fi
+          tail -n 25 ../evidence/ios-build.txt
           ditto -c -k --sequesterRsrc --keepParent build/Build/Products/Debug-iphonesimulator/MyTimber.app ../evidence/MyTimber-simulator.zip
           shasum -a 256 ../evidence/MyTimber-simulator.zip > ../evidence/ios-simulator.sha256
       - uses: actions/upload-artifact@v4
