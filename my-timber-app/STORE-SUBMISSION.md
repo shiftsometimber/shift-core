@@ -11,8 +11,8 @@ come from the exact physical-device candidate; do not substitute mock-ups.
 - Version: **1.0.0** / build 1
 - Primary language: English (UK)
 - Website: https://shiftsometimber.co.uk/
-- Privacy URL when PR #803 is released: https://shiftsometimber.co.uk/my-timber/privacy
-- Account deletion URL when PR #803 is released: https://shiftsometimber.co.uk/account-deletion
+- Privacy URL (live and production-verified 23 Sep 2026): https://shiftsometimber.co.uk/my-timber/privacy
+- Account deletion URL (live and production-verified 23 Sep 2026): https://shiftsometimber.co.uk/account-deletion
 - Support email: support@shiftsometimber.co.uk
 - Privacy email: privacy@shiftsometimber.co.uk
 
