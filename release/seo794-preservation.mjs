@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
 import {tickerStyles} from '../public-navigation-policy.mjs';
+export function expectedSeo794ArticleBody(html,path){
+ if(path!=='/mental-health/mental-health-and-weight')return html;
+ const old='<a href="/good-to-talk">SHIFT: Good to Talk</a>',current='<a href="/mens-mental-health">SHIFT: Good to Talk</a>';
+ assert.equal(html.split(old).length-1,1,'Expected exactly the reviewed Good to Talk source link');
+ return html.replace(old,current);
+}
 const oldTicker=tickerStyles.replace('background:#050505!important;color:#E7E3DA!important;border-block:1px solid #707762!important','background:#707762;color:#050505;border-block:1px solid #050505').replace('color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important;text-decoration:none','color:#050505;text-decoration:none').replace('outline:2px solid #E7E3DA;outline-offset:3px','outline:2px solid #050505;outline-offset:3px');
 // Forward-normalise only the exact owner-approved presentation delta. Keep all
 // remaining page bytes in the existing full-response preservation comparison.

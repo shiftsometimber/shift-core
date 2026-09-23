@@ -1,10 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {preserveSeo794} from '../release/seo794-preservation.mjs';
+import {preserveSeo794,expectedSeo794ArticleBody} from '../release/seo794-preservation.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
 import {stabilisePublicHtml} from '../public-startup-stability.mjs';
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
 const raw='<html><head></head><body><header><img src="/assets/7B503EDB-D4E0-4F92-B45D-1D5A50AE2597.png" alt="SHIFT"></header><main><h1>Existing page</h1><p>Keep this whole paragraph.</p><a href="/good-to-talk">Good to Talk</a></main></body></html>';
+test('live article expectation allows only the exact reviewed direct support link',()=>{
+ const source='<main><p>Keep this.</p><a href="/good-to-talk">SHIFT: Good to Talk</a></main>',expected='<main><p>Keep this.</p><a href="/mens-mental-health">SHIFT: Good to Talk</a></main>';
+ assert.equal(expectedSeo794ArticleBody(source,'/mental-health/mental-health-and-weight'),expected);
+ assert.equal(expectedSeo794ArticleBody(source,'/unrelated'),source);
+ assert.notEqual(expectedSeo794ArticleBody(source,'/mental-health/mental-health-and-weight'),expected.replace('Keep this.','Lost copy'));
+ assert.throws(()=>expectedSeo794ArticleBody(source.replace('SHIFT: Good to Talk','Other label'),'/mental-health/mental-health-and-weight'),/exactly/);
+});
 test('approved images and styles compare equal while unrelated content remains protected',()=>{
  const candidate=repairSeoPresentation(raw.replace('href="/good-to-talk"','href="/mens-mental-health"'),'/');
  assert.deepEqual(preserveSeo794('/',Buffer.from(raw)),preserveSeo794('/',Buffer.from(candidate),{required:true}));
