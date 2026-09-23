@@ -1,4 +1,3 @@
-import {photonEnabled} from './photon-address.mjs';
 import {memberEmailChangeRoute} from './member-email-change.mjs';
 import {memberDeliveryRoute} from './member-delivery-routes.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
@@ -42,7 +41,7 @@ async function record(env,userId){
  const revision=await hash({core:CORE.map(k=>u[k]??null),version:row?.revision??0,body:row?.body_json??'{}'});
  return {u,row,details,revision};
 }
-const view=(s,env)=> ({ok:true,details:{...s.details,email:s.u.email},revision:s.revision,updatedAt:s.row?.updated_at||null,addressLookupConfigured:photonEnabled(env),gpLookupConfigured:env?.MEMBER_GP_LOOKUP_ENABLED==='true'});
+const view=(s,env)=> ({ok:true,details:{...s.details,email:s.u.email},revision:s.revision,updatedAt:s.row?.updated_at||null,addressLookupConfigured:false,gpLookupConfigured:env?.MEMBER_GP_LOOKUP_ENABLED==='true'});
 // The user ID is always derived from the existing authenticated session. No client
 // account selector, order write, preference replacement, AI request or analytics call.
 export async function memberDetailsRoute(request,env){

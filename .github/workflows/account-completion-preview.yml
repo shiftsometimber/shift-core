@@ -84,7 +84,7 @@ jobs:
           import fs from 'node:fs';import assert from 'node:assert/strict';const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
           assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
           assert.deepEqual(c.d1_databases.map(x=>x.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
-          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);assert.equal(c.vars.MEMBER_ADDRESS_PROVIDER,'photon');assert(!c.vars.MEMBER_ADDRESS_API_KEY);assert.equal(c.vars.STAGING_REVIEW_ACCOUNT_LIMIT,'100');
+          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);assert(!c.vars.MEMBER_ADDRESS_PROVIDER);assert(!c.vars.MEMBER_ADDRESS_API_KEY);assert.equal(c.vars.STAGING_REVIEW_ACCOUNT_LIMIT,'100');
           JS
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > account-completion-evidence/deploy.txt 2>&1 || { tail -n 70 account-completion-evidence/deploy.txt; exit 1; }
           echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
@@ -100,9 +100,7 @@ jobs:
         env:
           GP_FORM_TEST_PATH: /__review/gp-form-alternate
         run: node preview/member-details/gp-browser-proof.mjs
-      - name: Optional Photon suggestions; two real calls plus fixture failures
-        run: node account-completion/photon-browser.mjs
-      - name: Separate delivery address browser matrix
+      - name: Manual home and delivery address browser matrix
         run: node account-completion/delivery-browser.mjs
       - name: Dual-mailbox email-change browser matrix with simulated mail only
         run: node account-completion/email-browser.mjs

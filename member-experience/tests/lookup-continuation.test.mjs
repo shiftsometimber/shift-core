@@ -3,15 +3,11 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
-const {searchPostcode,searchGpPractices,memberDetailsLookupRoute}=await import(process.env.LOOKUP_TEST_MODULE||'../member-details-lookups.mjs');
+const {searchGpPractices,memberDetailsLookupRoute}=await import(process.env.LOOKUP_TEST_MODULE||'../member-details-lookups.mjs');
 import {gpFormRuntime} from '../gp-form.mjs';
 const gp={Name:'Fictional Practice',OrgId:'A12345',Status:'Active',PrimaryRoleId:'RO177',PostCode:'SK10 1AA'};
-test('documented unfound postcode HTTP 404/code 4040 is an honest empty result',async()=>{
- assert.deepEqual(await searchPostcode('SK10 1AA','test-only-key',async()=>Response.json({code:4040},{status:404})),{addresses:[]});
-});
-test('other provider 404 and 401 errors remain failures, not false empty address lists',async()=>{
- for(const status of [401,403,404,429,503])await assert.rejects(searchPostcode('SK10 1AA','test-only-key',async()=>Response.json({code:5000},{status})),/provider_unavailable/);
-});
+
+
 test('provider Content-Length limit rejects before consuming a large body',async()=>{
  let pulls=0,cancelled=false;const body=new ReadableStream({pull(c){pulls++;c.enqueue(new TextEncoder().encode('{}'));c.close();},cancel(){cancelled=true;}},{highWaterMark:0});
  await assert.rejects(searchGpPractices('Example',async()=>new Response(body,{headers:{'Content-Length':'200001'}})),/provider_too_large/);
@@ -31,10 +27,7 @@ test('malformed JSON and redirects are never GP suggestions',async()=>{
  await assert.rejects(searchGpPractices('Example',async()=>new Response('not JSON')));
  await assert.rejects(searchGpPractices('Example',async()=>new Response(null,{status:302,headers:{Location:'https://untrusted.invalid/'}})),/provider_unavailable/);
 });
-test('large postcode result explicitly admits remaining pages instead of claiming completeness',async()=>{
- const row={line_1:'1 Fictional Road',post_town:'Macclesfield',postcode:'SK10 1AA'};
- const result=await searchPostcode('SK10 1AA','not-a-real-key',async()=>Response.json({code:2000,result:Array.from({length:100},()=>row)}));assert.equal(result.addresses.length,100);assert.equal(result.mayHaveMore,true);
-});
+
 test('optional GP form script asset is same origin, no-store and supports empty HEAD',async()=>{
  for(const method of ['GET','HEAD']){const r=await memberDetailsLookupRoute(new Request('https://shiftsometimber.co.uk/assets/member-experience/gp-form.mjs',{method}),{});assert.equal(r.status,200);assert.match(r.headers.get('Content-Type'),/javascript/);assert.match(r.headers.get('Cache-Control'),/no-store/);assert.equal(await r.text(),method==='HEAD'?'':gpFormRuntime);}
 });

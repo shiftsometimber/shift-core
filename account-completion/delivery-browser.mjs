@@ -4,11 +4,14 @@ const fixture=JSON.parse(fs.readFileSync('work/staging/generated/probe.json','ut
 const dir='account-completion-evidence/delivery-browser';fs.mkdirSync(dir,{recursive:true});const results=[];
 let index=0;
 for(const [name,engine,width,height]of [['chromium-desktop',chromium,1280,900],['chromium-phone',chromium,390,844],['webkit-desktop',webkit,1280,900],['webkit-phone',webkit,390,844]]){
- const browser=await engine.launch(),context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),email='probe'+fixture.browserIds[index++]+'@example.invalid';const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const browser=await engine.launch(),context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),email='probe'+fixture.browserIds[index++]+'@example.invalid';const errors=[],addressRequests=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{const u=new URL(r.url());if(u.pathname.includes('address-search')||/photon|ideal-postcodes/.test(u.hostname))addressRequests.push(u.origin+u.pathname);});
  async function login(){await page.goto(base+'/staging/sign-in');await page.locator('input[name="email"]').fill(email);await page.locator('input[name="password"]').fill(fixture.password);await page.locator('#stage-auth button[type="submit"]').click();await page.waitForURL('**/member/dashboard');await page.goto(base+'/member/settings#memberDetailsPanel');await page.waitForFunction(()=>document.getElementById('memberDetailsFields')?.disabled===false&&document.getElementById('memberDeliveryFields')?.disabled===false);}
  try{
   // Use this build's existing fictional fixture, not the finite slots reserved for Matt.
   await login();
+  assert.equal(await page.locator('#memberFindAddress,#memberAddressSelect,#memberAddressQuery,#memberDeliveryFind,#memberDeliverySelect,#memberDeliveryAddressQuery').count(),0);
+  assert.match(await page.locator('#memberAddressHelp').innerText(),/Enter your full address/);
+  const retired=await context.request.post(base+'/v1/member/details/address-search',{headers:{Origin:base},data:{postcode:'SW1A 1AA',query:''}});assert.equal(retired.status(),410);
   for(const [id,value]of [['memberAddress1','1 Fictional Close'],['memberTown','Macclesfield'],['memberPostcode','SK10 1AA']])await page.locator('#'+id).fill(value);
   await page.locator('#memberDetailsSave').click();await page.waitForFunction(()=>document.getElementById('memberDetailsStatus').textContent==='Member details saved.'&&document.getElementById('memberDeliveryFields').disabled===false);
   await page.locator('#memberDeliveryMode').selectOption('separate');
@@ -26,7 +29,7 @@ for(const [name,engine,width,height]of [['chromium-desktop',chromium,1280,900],[
   await page.waitForFunction(()=>document.getElementById('memberDetailsFields')?.disabled===false&&document.getElementById('memberDeliveryFields')?.disabled===false);await page.locator('#memberDeliveryPanel').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/'+name+'-separate.png',fullPage:true});
   await page.locator('#memberDeliveryMode').selectOption('home');await page.locator('#memberDeliverySave').click();await page.waitForFunction(()=>document.getElementById('memberDeliveryStatus').textContent.startsWith('Delivery address saved.'));assert((await page.locator('#memberDeliveryHome').textContent()).includes('3 Fictional Close'));
   await page.reload();await page.waitForFunction(()=>document.getElementById('memberDeliveryFields')?.disabled===false);assert.equal(await page.locator('#memberDeliveryMode').inputValue(),'home');
-  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);results.push({name,status:'PASS',separateSaveReload:true,freshSignIn:true,homePreserved:true,oldClientSavePreservesDelivery:true,failureRetry:true,sameAsHome:true,noOverflow:true,pageErrors:errors});
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);assert.deepEqual(addressRequests,[]);results.push({name,status:'PASS',addressLookupControls:false,addressLookupRequests:0,retiredLookupStatus:410,separateSaveReload:true,freshSignIn:true,homePreserved:true,oldClientSavePreservesDelivery:true,failureRetry:true,sameAsHome:true,noOverflow:true,pageErrors:errors});
  }catch(e){results.push({name,status:'FAIL',message:e.message.replaceAll(fixture.password,'[REDACTED]'),pageErrors:errors});await page.screenshot({path:dir+'/'+name+'-failure.png',fullPage:true}).catch(()=>{});}finally{await context.close();await browser.close();fs.writeFileSync(dir+'/results.json',JSON.stringify({previewOnly:true,physicalDeviceTest:false,providerLive:false,results},null,2));}
 }
 console.log(JSON.stringify(results,null,2));assert.equal(results.filter(r=>r.status==='FAIL').length,0);
