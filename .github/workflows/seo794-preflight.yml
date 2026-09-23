@@ -1,0 +1,54 @@
+name: Approved PR794 release preflight
+on:
+  push:
+    branches: [release/seo794-20260923]
+    paths: [.github/workflows/seo794-preflight.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35873626050
+          name: seo-repair-final-f4052fff7670609f37e86f6324023cdf4baaea9a
+          path: approved-preview
+      - name: Verify original evidence and unpack only approved public-data fixtures
+        run: |
+          (cd approved-preview && sha256sum -c SHA256SUMS)
+          tar xzf approved-preview/candidate-support.tar.gz preview/seo-repairs/generated/changes.json preview/seo-repairs/generated/render-manifest.json
+          node --check release/seo794-followthrough.mjs
+      - name: Read live identity and exact public records before authorised release
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node release/seo794-followthrough.mjs before
+      - name: Checksum evidence
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,hashlib
+          p=pathlib.Path('seo794-release-proof');p.mkdir(exist_ok=True)
+          (p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in sorted(p.rglob('*')) if x.is_file() and x.name!='SHA256SUMS'))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo794-preflight-${{ github.sha }}
+          path: seo794-release-proof/
+          retention-days: 90
