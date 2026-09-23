@@ -78,11 +78,24 @@ public final class MainActivity extends Activity {
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());
+                if (!request.isForMainFrame()) {
+                    // Let HTTPS challenge frames use normal browser isolation.
+                    // Never open phone/email/native schemes from embedded frames.
+                    return !"https".equalsIgnoreCase(request.getUrl().getScheme())
+                        || decision == NavigationPolicy.Decision.DENY;
+                }
                 if (decision == NavigationPolicy.Decision.INTERNAL) return false;
-                if (request.isForMainFrame()) openOutside(request.getUrl().toString());
+                openOutside(request.getUrl().toString());
                 return true;
             }
             @Override public void onPageStarted(WebView view, String url, android.graphics.Bitmap icon) {
+                // Also guard navigations (including forms) not passed to the URL override.
+                if (NavigationPolicy.classify(url) != NavigationPolicy.Decision.INTERNAL) {
+                    timer.removeCallbacks(timeout);
+                    view.stopLoading();
+                    openOutside(url);
+                    return;
+                }
                 pageFailed=false; failure.setVisibility(View.GONE);
                 timer.removeCallbacks(timeout); timer.postDelayed(timeout,30000);
             }
