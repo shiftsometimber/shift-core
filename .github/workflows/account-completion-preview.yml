@@ -34,6 +34,7 @@ jobs:
           node account-completion/apply.mjs
           node account-completion/apply-email.mjs
           node account-completion/refine-email-gp.mjs
+          node account-completion/apply-photon.mjs
       - name: Run retained member and new address/email security tests
         shell: bash
         run: |
@@ -45,14 +46,14 @@ jobs:
           set -euo pipefail
           node --input-type=module - <<'JS'
           import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
-          const allowed=new Set(['member-experience/member-details-routes.mjs','member-experience/member-details.mjs','frontend/medicine-front-door/treatment-assessment.html','preview/member-details/worker.mjs','preview/member-details/provision.mjs','member-experience/member-email-change.mjs','member-experience/tests/member-email-change.test.mjs','preview/member-details/prepare.mjs','preview/member-details/gp-browser-proof.mjs','account-completion/delivery-browser.mjs']);
+          const allowed=new Set(['member-experience/member-details-routes.mjs','member-experience/member-details.mjs','frontend/medicine-front-door/treatment-assessment.html','preview/member-details/worker.mjs','preview/member-details/provision.mjs','member-experience/member-email-change.mjs','member-experience/tests/member-email-change.test.mjs','preview/member-details/prepare.mjs','preview/member-details/gp-browser-proof.mjs','account-completion/delivery-browser.mjs','member-experience/member-delivery-client.mjs','member-experience/member-delivery-routes.mjs','member-experience/member-details-lookups.mjs','preview/member-details/browser-proof.mjs']);
           const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of changed)assert(allowed.has(p),'Unexpected change: '+p);
           if(changed.length)execFileSync('git',['add','--',...changed]);
           JS
           if ! git diff --cached --quiet; then
             git config user.name 'SHIFT preview verification'
             git config user.email 'it@shiftsometimber.co.uk'
-            git commit -m 'Integrate tested account security and complete retained GP form preview coverage'
+            git commit -m 'Integrate tested open-source address suggestions in the existing account preview'
             git push origin HEAD:refs/heads/fix/account-completion-20260923
           fi
           echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
@@ -80,7 +81,7 @@ jobs:
           import fs from 'node:fs';import assert from 'node:assert/strict';const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
           assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
           assert.deepEqual(c.d1_databases.map(x=>x.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
-          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);
+          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);assert.equal(c.vars.MEMBER_ADDRESS_PROVIDER,'photon');assert(!c.vars.MEMBER_ADDRESS_API_KEY);
           JS
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > account-completion-evidence/deploy.txt 2>&1 || { tail -n 70 account-completion-evidence/deploy.txt; exit 1; }
           echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
@@ -96,6 +97,8 @@ jobs:
         env:
           GP_FORM_TEST_PATH: /__review/gp-form-alternate
         run: node preview/member-details/gp-browser-proof.mjs
+      - name: Optional Photon suggestions; two real provider calls plus fixture failure cases
+        run: node account-completion/photon-browser.mjs
       - name: Separate delivery address browser matrix
         run: node account-completion/delivery-browser.mjs
       - name: Dual-mailbox email-change browser matrix with simulated mail only
@@ -108,6 +111,7 @@ jobs:
           git ls-remote origin refs/heads/main > account-completion-evidence/production-main.txt
           if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence account-completion-evidence/; fi
           git diff 4c014edce24bd9a37645dfbd6bad204ed3270091 --stat > account-completion-evidence/delta.txt
+          git diff a09a339c0cb312cca78dea9063eace8688843eda --stat > account-completion-evidence/photon-delta.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
