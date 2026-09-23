@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: 40e9aeec83bb8d2e4fc5fd5477fa757e7d36e31a
+          ref: f3d3bb4275f7ad0b55f92fef7e663953c2190551
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
