@@ -1,4 +1,5 @@
 name: SEO repairs final committed-source preview
+# Reverify approved SEO with current released account/notification source.
 on:
   push:
     branches: [fix/seo-repairs-20260923]
@@ -42,7 +43,7 @@ jobs:
           npm ci --no-audit --no-fund
           echo "CANDIDATE_SHA=$GITHUB_SHA" >> "$GITHUB_ENV"
           node scripts/seo-repairs-20260923/build-news.mjs | tee seo-repair-proof/news-prepare.log
-          node --test tests/seo-repairs-20260923.test.mjs | tee seo-repair-proof/scoped-tests.log
+          node --test tests/seo-repairs-20260923.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/member-signup-alert.test.mjs member-experience/tests/*.test.mjs | tee seo-repair-proof/scoped-tests.log
           node --test babylove/*.test.mjs tests/radar-newsroom-*.test.mjs tests/radar-auto-news*.test.mjs tests/radar-editorial-trust*.test.mjs tests/public-shell-contract.test.mjs tests/public-navigation-policy*.test.mjs tests/public-seo-closeout.test.mjs tests/seo-release-integrity.test.mjs tests/shift-health*.test.mjs | tee seo-repair-proof/regression-tests.log
           npx wrangler deploy --dry-run --outdir seo-repair-proof/worker-dry-run | tee seo-repair-proof/dry-run.log
       - name: Build frozen baseline and candidate with their real pathnames preserved
