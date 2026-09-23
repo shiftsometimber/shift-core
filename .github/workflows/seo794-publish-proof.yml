@@ -39,7 +39,7 @@ jobs:
           PY
       - name: Load only committed release tooling
         run: |
-          git fetch origin 6872b62ae7473b56415d5334344b54b65de30e23
+          git fetch origin 256959619df84d094bcf3e6c3aa87d75bd8a3634
           git show FETCH_HEAD:release/seo794-followthrough.mjs > release/seo794-followthrough.mjs
           git show FETCH_HEAD:release/seo794-live-browser.cjs > release/seo794-live-browser.cjs
           git show FETCH_HEAD:release/seo794-parameterized-sql.mjs > release/seo794-parameterized-sql.mjs
