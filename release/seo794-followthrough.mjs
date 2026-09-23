@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {parameterizedCorrection} from './seo794-parameterized-sql.mjs';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -38,7 +39,7 @@ if(mode==='apply'){
  const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/git/ref/heads/main',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,'User-Agent':'SHIFT-release'}});assert(r.ok);assert.equal((await r.json()).object.sha,process.env.APPROVED_MERGE_SHA,'Main advanced; stop stale release');
  const live=query(NEWSROOM_ROWS_SQL),allBefore=changes.every(x=>equal(live.find(r=>r.id===x.id)||{},x.before)),allAfter=changes.every(x=>equal(live.find(r=>r.id===x.id)||{},x.after));assert(allBefore||allAfter,'Mixed or stale source; no writes performed');
  save('immediate-prewrite-public-news.json',live);
- if(allBefore){const sql=correctionSQL(changes,modifiedAt);assert.equal(sql,readFileSync('seo794-preflight/approved-correction.sql','utf8'));writeFileSync(out+'/executed-correction.sql',sql);const log=execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config','wrangler.jsonc','--file',out+'/executed-correction.sql'],{encoding:'utf8',maxBuffer:3e6});writeFileSync(out+'/editorial-apply.log',log);}
+ if(allBefore){const sql=correctionSQL(changes,modifiedAt);assert.equal(sql,readFileSync('seo794-preflight/approved-correction.sql','utf8'));writeFileSync(out+'/executed-correction.sql',sql);const batch=parameterizedCorrection(sql);save('executed-parameterized-correction.json',batch);const response=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query',{method:'POST',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'},body:JSON.stringify(batch)});const result=await response.json();save('editorial-batch-result.json',result);assert(response.ok&&result.success&&result.result?.length===2&&result.result.every(x=>x.success),'Bound editorial batch failed; inspect saved response before retrying');}
  const after=query(NEWSROOM_ROWS_SQL);save('immediate-postwrite-public-news.json',after);for(const x of changes)assert(equal(after.find(r=>r.id===x.id)||{},x.after),'Correction missing '+x.id);
  for(const row of live.filter(x=>!ids.includes(x.id)))assert.deepEqual(after.find(x=>x.id===row.id),row,'Unrelated public article changed');
  const audit=query("SELECT event_id,action,actor,detail_json FROM radar_audit WHERE action='editorial_correction' AND actor='owner-authorised-seo-20260923' AND event_id IN ("+ids.join(',')+") ORDER BY event_id").filter(x=>JSON.parse(x.detail_json).candidate_modified_at===modifiedAt);assert.equal(audit.length,13);save('editorial-audit.json',audit);
