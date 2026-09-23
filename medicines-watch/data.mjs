@@ -8,7 +8,7 @@ const reviewedFingerprints = {
   'mounjaro-nhs': '0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff',
   'wegovy-tablet-private': '592a1cba16592bd8b948f173ecc7d7dea28bbf0fe6a00ea11ccc97a8eac225e6',
   'mounjaro-smpc': 'c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55',
-  'wegovy-injection-smpc': '21124f70931fd9c9d69938b8a1a9c0e94b6680a6cb42e4dc49ba218224da7855',
+  'wegovy-injection-smpc': '2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6',
   'wegovy-tablet-smpc': '142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e',
   'orlistat-120-smpc': '029e3b4179df1b22b4b3594bd54b5be4ca95c43983411a18433c97d2cf77e114',
   'orlistat-60-smpc': '423e9d82afdb18cda4f8bc7b727df90424606f2c648c465098586283779abddd',
@@ -28,11 +28,23 @@ const reviewedFingerprints = {
 
 // Source-specific factual review; the rest of the catalogue keeps its prior date.
 // Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
+// Renewed source-only reviews: reviews/2026-09-23-source-review.json.
 const sourceReviewedDates = {
+  'mounjaro-mhra': '2026-09-23T15:45:00Z',
+  'mounjaro-nice': '2026-09-23T15:45:00Z',
+  'wegovy-injection-access': '2026-09-23T15:45:00Z',
+  'wegovy-weight-nice': '2026-09-23T15:45:00Z',
+  'wegovy-cardiovascular-nice': '2026-09-23T15:45:00Z',
+  'wegovy-tablet-mhra': '2026-09-23T15:45:00Z',
+  'orlistat-nhs': '2026-09-23T15:45:00Z',
+  'foundayo-mhra': '2026-09-23T15:45:00Z',
+  'foundayo-nice': '2026-09-23T15:45:00Z',
+  'retatrutide-mhra': '2026-09-23T15:45:00Z',
+  'retatrutide-lilly': '2026-09-23T15:45:00Z',
   'mounjaro-nhs': '2026-09-17T05:45:00Z',
   'wegovy-tablet-private': '2026-09-18T16:36:50Z',
   'mounjaro-smpc': '2026-09-16T17:44:34Z',
-  'wegovy-injection-smpc': '2026-09-16T17:44:34Z',
+  'wegovy-injection-smpc': '2026-09-23T15:45:00Z',
   'wegovy-tablet-smpc': '2026-09-16T17:44:34Z',
   'orlistat-120-smpc': '2026-09-16T17:44:34Z',
   'orlistat-60-smpc': '2026-09-16T17:44:34Z',
@@ -69,7 +81,7 @@ export const sources = [
   source('mounjaro-nice', 'NICE TA1026: tirzepatide for weight management',
     'https://www.nice.org.uk/guidance/ta1026', '2025-09-01', ['tirzepatide', 'TA1026'],
     { sourceDateLabel: 'Guidance updated' }),
-  smpc('wegovy-injection-smpc', 'Wegovy injection: UK product information', '13803', '2026-09-01',
+  smpc('wegovy-injection-smpc', 'Wegovy injection: UK product information', '13803', '2026-09-22',
     ['Wegovy', 'semaglutide', 'weight management']),
   source('wegovy-injection-access', 'DHSC: NHS and private Wegovy access',
     'https://healthmedia.blog.gov.uk/2023/09/04/accessing-wegovy-for-weight-loss-everything-you-need-to-know/',
