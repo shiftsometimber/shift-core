@@ -1,6 +1,6 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "0ec37c4d296e42781a6807b5ad6555fa2f86c88c",
+  "applicationCommit": "03131a81d17e14db3a528dc085148c06c74cdd32",
   "baseCommit": "77e1d0fb673277b77b46c2a924a4dafb0af75404",
   "reason": "Prepared PR792 account release; not production approval. Owner removed postcode lookup: home/delivery addresses are manual, free NHS GP suggestions retained. Runtime configuration matches current released main. Preserve Reta source, customer records, historical orders, catalogue, stock, prices and clinical/payment holds. Separate delivery editing remains; Stripe prefill is not included. Real email changes stay disabled. Runtime-only rollback preserves data; exact additive delivery-preservation trigger refuses incompatible legacy saves. Preserve the intervening released Medicines Watch source exactly; only the account candidate release pin replaces its previous release pin.",
   "previewEvidence": {
@@ -9,7 +9,7 @@
     "reconciledSource": "be20c3a73869883b921971db5405fc00749f9d71",
     "reconciliationWorkflow": 35880432037,
     "localMemberAndReleaseTests": 263,
-    "proposedApplicationSource": "0ec37c4d296e42781a6807b5ad6555fa2f86c88c",
+    "proposedApplicationSource": "03131a81d17e14db3a528dc085148c06c74cdd32",
     "finalHostedVerification": "Required for the final branch head; no success claimed by this manifest.",
     "productionApproval": "Owner preview/release acceptance remains required.",
     "legacyRollbackFixture": "Byte-exact released handler, SHA256 checked; independent of Git checkout depth",
