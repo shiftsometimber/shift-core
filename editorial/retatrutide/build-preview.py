@@ -84,8 +84,8 @@ def rewrite_guide(old: str, main: str) -> tuple[str,dict]:
   if types=='FAQPage': counts['removed_faq']+=1; return ''
   if types in ['Article','MedicalWebPage']:
    original_dates.append({'type':types,'published':obj.get('datePublished'),'modified':obj.get('dateModified')})
-   obj['description']=DESCRIPTION;obj['dateModified']=DATE
-   if types=='Article': obj['headline']=TITLE;counts['article']+=1
+   obj['description']=DESCRIPTION;obj['dateModified']=DATE;obj['headline']=TITLE
+   if types=='Article': counts['article']+=1
    else: obj['name']=TITLE;counts['medical_webpage']+=1
    return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+'</script>'
   return match.group(0)
@@ -97,7 +97,6 @@ def rewrite_guide(old: str, main: str) -> tuple[str,dict]:
  plain=lambda text:html.unescape(re.sub('<[^>]*>','',text))
  faq={'@context':'https://schema.org','@type':'FAQPage','@id':URL+'#faq','mainEntity':[{'@type':'Question','name':plain(q),'acceptedAnswer':{'@type':'Answer','text':plain(a)}} for q,a in pairs]}
  new=new.replace('</head>',CSS+'<script type="application/ld+json" data-retatrutide-faq>'+json.dumps(faq,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+'</script></head>',1)
- # Preserve all site shell behaviour, header/footer and non-schema scripts exactly.
  for label,pattern in [('header',r'<header\b[\s\S]*?</header>'),('drawer',r'<aside\b[^>]*id="site-drawer"[\s\S]*?</aside>'),('footer',r'<footer\b[\s\S]*?</footer>')]:
   assert re.findall(pattern,new)==re.findall(pattern,old),label+' changed'
  scripts=lambda s:re.findall(r'<script\b[\s\S]*?</script>',SCHEMA.sub('',s),re.I)
@@ -106,7 +105,6 @@ def rewrite_guide(old: str, main: str) -> tuple[str,dict]:
  after_schema=[json.loads(m.group(1)) for m in SCHEMA.finditer(new)]
  for typ in ['Article','MedicalWebPage']:
   assert next(x for x in before_schema if x.get('@type')==typ).get('datePublished')==next(x for x in after_schema if x.get('@type')==typ).get('datePublished'),'publication history changed'
- # Verify the negative case rather than merely documenting the source guard.
  try: rewrite_source_guard(old+' ')
  except ValueError: pass
  else: raise AssertionError('source drift was not rejected')
@@ -137,7 +135,6 @@ def build(pages_root: pathlib.Path, out: pathlib.Path) -> None:
  assert len(base['files'])==877
  for name,sha in EXPECTED.items(): assert digest(base['overrides'][name].encode())==sha,name
  source=copy.deepcopy(base); original={x['path']:x for x in base['files']}; updates={};checks={}
- # Normalise the source-list numbering (there are eight references, not nine).
  main=pathlib.Path(__file__).with_name('guide-main.html').read_text().strip().replace('href="#r9"','href="#r8"').replace('id="r9"','id="r8"').replace('[9]','[8]')
  updates[GUIDE],checks['editorial']=rewrite_guide(base['overrides'][GUIDE],main)
  checks['guide']=check_guide(updates[GUIDE],main)
