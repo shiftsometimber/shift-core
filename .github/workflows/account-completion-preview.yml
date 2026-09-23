@@ -30,8 +30,10 @@ jobs:
           mkdir -p account-completion-evidence
           npm ci --no-audit --no-fund
       - name: Apply guarded candidate source only on this draft branch
-        run: node account-completion/apply.mjs
-      - name: Run retained member tests and new delivery isolation tests
+        run: |
+          node account-completion/apply.mjs
+          node account-completion/apply-email.mjs
+      - name: Run retained member and new address/email security tests
         shell: bash
         run: |
           set -euo pipefail
@@ -42,14 +44,14 @@ jobs:
           set -euo pipefail
           node --input-type=module - <<'JS'
           import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
-          const allowed=new Set(['member-experience/member-details-routes.mjs','member-experience/member-details.mjs','frontend/medicine-front-door/treatment-assessment.html']);
+          const allowed=new Set(['member-experience/member-details-routes.mjs','member-experience/member-details.mjs','frontend/medicine-front-door/treatment-assessment.html','preview/member-details/worker.mjs','preview/member-details/provision.mjs']);
           const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of changed)assert(allowed.has(p),'Unexpected change: '+p);
           JS
           if ! git diff --quiet; then
-            git add member-experience/member-details-routes.mjs member-experience/member-details.mjs frontend/medicine-front-door/treatment-assessment.html
+            git add member-experience/member-details-routes.mjs member-experience/member-details.mjs frontend/medicine-front-door/treatment-assessment.html preview/member-details/worker.mjs preview/member-details/provision.mjs
             git config user.name 'SHIFT preview verification'
             git config user.email 'it@shiftsometimber.co.uk'
-            git commit -m 'Integrate tested delivery preferences and retained GP template coverage'
+            git commit -m 'Integrate tested email-change candidate with isolated fictional-mail acceptance'
             git push origin HEAD:refs/heads/fix/account-completion-20260923
           fi
           echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
@@ -81,13 +83,14 @@ jobs:
           JS
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > account-completion-evidence/deploy.txt 2>&1 || { tail -n 70 account-completion-evidence/deploy.txt; exit 1; }
           echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
-      - name: Existing browser regressions and new delivery journey
+      - name: Existing browser regressions and new delivery/email journeys
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
           node preview/member-details/browser-proof.mjs
           node preview/member-details/gp-browser-proof.mjs
           node account-completion/delivery-browser.mjs
+          node account-completion/email-browser.mjs
       - name: Retain actual reports and unchanged production identity
         if: always()
         run: |
