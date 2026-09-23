@@ -15,8 +15,11 @@ jobs:
           ref: c733bf03834d93154a51a0db6ef05dbebb3c7cb3
           persist-credentials: false
           path: pages-authority
-      - name: Reproduce the exact currently deployed Pages master
-        run: python3 pages-authority/release/header-20260912/prepare-header.py
+      - name: Reproduce the recorded current Pages build sequence without deployment
+        run: |
+          python3 pages-authority/release/public-pages-20260911/prepare-start-here.py
+          python3 pages-authority/release/public-pages-20260911/prepare-work-public.py
+          python3 pages-authority/release/header-20260912/prepare-header.py
       - name: Prove the article and discovery sources match the current immutable deployment
         run: |
           python3 - <<'PY'
