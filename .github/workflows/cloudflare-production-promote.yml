@@ -209,7 +209,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
+          node --test tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs
