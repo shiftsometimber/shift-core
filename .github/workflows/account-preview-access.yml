@@ -1,0 +1,72 @@
+name: Preserve account preview access
+on:
+  push:
+    branches: [chore/account-preview-access-20260923]
+    paths: ['.github/workflows/account-preview-access.yml']
+permissions:
+  contents: read
+concurrency:
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prepare only the known disposable preview database binding
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/chore/account-preview-access-20260923
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 4c014edce24bd9a37645dfbd6bad204ed3270091
+          npm ci --no-audit --no-fund
+          mkdir -p preview-access-evidence
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const id='b449abb4-4be1-4ad1-bb43-fabd567e692c';assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(id));
+          fs.writeFileSync('/tmp/account-preview-access.json',JSON.stringify({name:'shift-stabilisation-preview',compatibility_date:'2026-08-09',workers_dev:true,d1_databases:[{binding:'DB',database_name:'shift-member-details-auth-20260922',database_id:id}]}));
+          JS
+      - name: Reclassify only the exact completed automated review fixture
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          node --input-type=module - <<'JS'
+          import {execFileSync} from 'node:child_process';import fs from 'node:fs';
+          const run=sql=>JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--json','--command='+sql,'--config','/tmp/account-preview-access.json'],{encoding:'utf8'}));
+          const count=()=>run("SELECT count(*) AS human_review_slots_used FROM users WHERE first_name='Fictional reviewer'");
+          const before=count();
+          const result=run("UPDATE users SET first_name='Fictional automated reviewer' WHERE first_name='Fictional reviewer' AND last_name='Preview' AND email LIKE 'review-%@example.invalid' AND EXISTS (SELECT 1 FROM member_account_details d WHERE d.user_id=users.id AND json_extract(d.body_json,'$.address1')='4 Fictional Road')");
+          fs.writeFileSync('preview-access-evidence/capacity.json',JSON.stringify({previewDatabaseOnly:true,productionWrites:0,accountsDeleted:0,guard:'Same exact completed-fixture predicate already used by preview/member-details/provision.mjs; the twenty-account cap is unchanged.',before,result,after:count()},null,2));
+          JS
+      - name: Check the actual review entry and release its automated slot afterwards
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium
+          node --input-type=module - <<'JS'
+          import {chromium} from 'playwright';import fs from 'node:fs';import assert from 'node:assert/strict';
+          const origin='https://shift-stabilisation-preview.matobrien.workers.dev',report={previewOnly:true,productionWrites:0,source:null,entry:false,delivery:false,email:false,ownTestSlotReleased:false};
+          const browser=await chromium.launch(),context=await browser.newContext(),page=await context.newPage();
+          try{
+            const meta=await(await context.request.get(origin+'/__preview/meta')).json();assert.equal(meta.source,'a09a339c0cb312cca78dea9063eace8688843eda');assert.equal(meta.productionBindings,false);report.source=meta.source;
+            await page.goto(origin+'/__review');await page.getByRole('button',{name:'Start a fictional member preview'}).click();await page.waitForURL('**/member/settings#memberDetailsPanel');
+            await page.waitForFunction(()=>document.getElementById('memberDetailsFields')?.disabled===false&&document.getElementById('memberDeliveryFields')?.disabled===false);await page.locator('#memberEmailChangePanel').waitFor({state:'visible'});
+            report.entry=true;report.delivery=true;report.email=true;
+            const details=await(await context.request.get(origin+'/v1/member/details')).json();assert(/^review-.*@example\.invalid$/.test(details.details.email));assert.equal(details.details.firstName,'Fictional reviewer');
+            await page.screenshot({path:'preview-access-evidence/actual-review-entry.png',fullPage:true});
+            const r=await context.request.patch(origin+'/v1/profile',{headers:{Origin:origin},data:{firstName:'Fictional automated reviewer'}});assert(r.ok());
+            const saved=await(await context.request.get(origin+'/v1/member/details')).json();assert.equal(saved.details.firstName,'Fictional automated reviewer');report.ownTestSlotReleased=true;
+          }catch(e){report.error=e.message;process.exitCode=1;await page.screenshot({path:'preview-access-evidence/failure.png',fullPage:true}).catch(()=>{});}finally{fs.writeFileSync('preview-access-evidence/entry.json',JSON.stringify(report,null,2));await context.close();await browser.close();}
+          console.log(JSON.stringify(report));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: account-preview-access-${{ github.run_id }}
+          path: preview-access-evidence
+          retention-days: 14
+          if-no-files-found: error
