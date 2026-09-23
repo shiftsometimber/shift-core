@@ -3,65 +3,103 @@ on:
   push:
     branches: [fix/account-completion-20260923]
 permissions:
-  contents: read
+  contents: write
 concurrency:
-  group: account-completion-preview-20260923
+  group: stabilisation-life-back-preview-only
   cancel-in-progress: false
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 35
+    env:
+      WRANGLER_SEND_METRICS: 'false'
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: fix/account-completion-20260923
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Prove current-release ancestry and inspect form coverage
-        shell: bash
+      - name: Guard source and install retained test toolchain
         run: |
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
+          git merge-base --is-ancestor 4c014edce24bd9a37645dfbd6bad204ed3270091 HEAD
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 4c014edce24bd9a37645dfbd6bad204ed3270091
           mkdir -p account-completion-evidence
-          node --input-type=module - <<'JS'
-          import fs from 'node:fs';import {execFileSync} from 'node:child_process';
-          const files=execFileSync('git',['ls-files'],{encoding:'utf8'}).trim().split('\n');
-          const hits=[];
-          for(const path of files){
-            if(!/\.(?:html|mjs|js)$/.test(path)||/^(?:docs|work|preview|evidence|archive|dist|node_modules)\//.test(path)||/(?:test|fixture|proof|evidence|snapshot|generated)/i.test(path))continue;
-            const text=fs.readFileSync(path,'utf8');
-            if(/(?:<(?:input|textarea|select)[^>]*(?:gp|address|postcode)|deliveryAddress|delivery_address|shippingAddress|shipping_address|gpPractice|gp_practice)/i.test(text)){
-              const lines=text.split('\n');const examples=[];
-              for(let i=0;i<lines.length&&examples.length<6;i++)if(/(?:<(?:input|textarea|select)[^>]*(?:gp|address|postcode)|deliveryAddress|delivery_address|shippingAddress|shipping_address|gpPractice|gp_practice)/i.test(lines[i]))examples.push({line:i+1,text:lines[i].slice(0,450)});
-              hits.push({path,examples});
-            }
-          }
-          const routing=fs.readFileSync('worker-entry-v6.js','utf8').split('\n').flatMap((text,i)=>/memberDetailsRoute|memberDetailsLookupRoute|gp-form|GP_LOOKUP/.test(text)?[{line:i+1,text}]:[]);
-          const report={source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),baseline:'4c014edce24bd9a37645dfbd6bad204ed3270091',runtimeChanged:false,hits,routing};
-          fs.writeFileSync('account-completion-evidence/form-inventory.json',JSON.stringify(report,null,2));
-          console.log(JSON.stringify(report,null,2));
-          JS
-      - name: Check existing provider binding metadata without exposing values
-        env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          npm ci --no-audit --no-fund
+      - name: Apply guarded candidate source only on this draft branch
+        run: node account-completion/apply.mjs
+      - name: Run retained member tests and new delivery isolation tests
+        shell: bash
         run: |
+          set -euo pipefail
+          node --test member-experience/tests/*.test.mjs 2>&1 | tee account-completion-evidence/account-tests.tap
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/account-completion-compile > account-completion-evidence/compile.txt 2>&1 || { tail -n 70 account-completion-evidence/compile.txt; exit 1; }
+      - name: Commit exact tested modifications to the draft only
+        run: |
+          set -euo pipefail
           node --input-type=module - <<'JS'
-          import fs from 'node:fs';
-          let report={checked:false,reason:'credential_unavailable',productionWrites:0};
-          if(process.env.CF_TOKEN){
-            try{
-              const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core/settings',{headers:{Authorization:'Bearer '+process.env.CF_TOKEN},signal:AbortSignal.timeout(15000)});
-              const b=await r.json();
-              report={checked:r.ok&&b.success===true,status:r.status,productionWrites:0,bindings:(b.result?.bindings||[]).filter(x=>['MEMBER_ADDRESS_API_KEY','IDEAL_POSTCODES_API_KEY','GETADDRESS_API_KEY','LOQATE_API_KEY','MEMBER_GP_LOOKUP_ENABLED','EMAIL','AUTH_EMAIL_FROM'].includes(x.name)).map(x=>({name:x.name,type:x.type}))};
-            }catch{report={checked:false,reason:'metadata_read_failed',productionWrites:0};}
-          }
-          fs.writeFileSync('account-completion-evidence/provider-bindings.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
+          const allowed=new Set(['member-experience/member-details-routes.mjs','member-experience/member-details.mjs','frontend/medicine-front-door/treatment-assessment.html']);
+          const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);for(const p of changed)assert(allowed.has(p),'Unexpected change: '+p);
           JS
-      - name: Retain existing account regression baseline
-        run: node --test member-experience/tests/*.test.mjs > account-completion-evidence/baseline-tests.tap 2>&1
+          if ! git diff --quiet; then
+            git add member-experience/member-details-routes.mjs member-experience/member-details.mjs frontend/medicine-front-door/treatment-assessment.html
+            git config user.name 'SHIFT preview verification'
+            git config user.email 'it@shiftsometimber.co.uk'
+            git commit -m 'Integrate tested delivery preferences and retained GP template coverage'
+            git push origin HEAD:refs/heads/fix/account-completion-20260923
+          fi
+          echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          git rev-parse HEAD > account-completion-evidence/source-sha.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Prepare and provision the existing fictional-account preview only
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          node preview/member-details/prepare.mjs
+          node preview/member-details/provision.mjs
+      - name: Guard and deploy only the named isolated preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
+          test "$(git rev-parse HEAD)" = "$PREVIEW_SOURCE_SHA"
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.deepEqual(c.d1_databases.map(x=>x.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
+          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);
+          JS
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > account-completion-evidence/deploy.txt 2>&1 || { tail -n 70 account-completion-evidence/deploy.txt; exit 1; }
+          echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
+      - name: Existing browser regressions and new delivery journey
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+          node preview/member-details/browser-proof.mjs
+          node preview/member-details/gp-browser-proof.mjs
+          node account-completion/delivery-browser.mjs
+      - name: Retain actual reports and unchanged production identity
+        if: always()
+        run: |
+          mkdir -p account-completion-evidence
+          git rev-parse HEAD > account-completion-evidence/source-sha.txt
+          git ls-remote origin refs/heads/main > account-completion-evidence/production-main.txt
+          if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence account-completion-evidence/; fi
+          git diff 4c014edce24bd9a37645dfbd6bad204ed3270091 --stat > account-completion-evidence/delta.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: account-completion-inspection-${{ github.run_id }}
+          name: account-completion-preview-${{ github.run_id }}
           path: account-completion-evidence/
           retention-days: 14
           if-no-files-found: error
