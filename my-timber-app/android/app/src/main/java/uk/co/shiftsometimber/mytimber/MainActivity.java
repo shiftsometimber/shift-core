@@ -52,7 +52,12 @@ public final class MainActivity extends Activity {
         web = new WebView(this);
         web.setBackgroundColor(Color.rgb(5,5,5));
         root.addView(web, new LinearLayout.LayoutParams(-1,0,1));
-        setContentView(root);
+        FrameLayout shell = new FrameLayout(this);
+        shell.setBackgroundColor(Color.rgb(5,5,5));
+        shell.addView(root,new FrameLayout.LayoutParams(-1,-1));
+        StartupOverlay startup = new StartupOverlay(this);
+        shell.addView(startup,new FrameLayout.LayoutParams(-1,-1));
+        setContentView(shell);
         try (InputStream stream = getAssets().open("native-presentation.js")) {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             byte[] block = new byte[4096]; int n;
