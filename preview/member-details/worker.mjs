@@ -23,6 +23,7 @@ export default {async fetch(request,env,ctx){
  }
  if(path.startsWith('/v1/member/details')||path==='/assets/member-experience/gp-form.mjs')return core.fetch(request,env,ctx);
  if(path==='/__review/gp-form'&&request.method==='GET'){const r=await env.STAGING_ASSETS.fetch(new Request(new URL('/review-gp-assessment.html',u)));return page(await r.text(),r.status);}
+ if(path==='/__review/gp-form-alternate'&&request.method==='GET'){const r=await env.STAGING_ASSETS.fetch(new Request(new URL('/review-gp-assessment-alternate.html',u)));return page(await r.text(),r.status);}
  if(path==='/__preview/clinical-disabled')return new Response('Clinical submission is disabled in this preview.',{status:403,headers});
  const asset=pwaAssets(request);if(asset)return asset;
  return withStartupStability(request,await singleDispatchHtmlAsset(request,await withPwa(request,await staging.fetch(request,env,ctx))));

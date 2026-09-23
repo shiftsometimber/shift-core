@@ -25,3 +25,12 @@ assessment=assessment.replace('<form id="assessment"','<form method="post" actio
 assessment=assessment.replace('<button type="submit">','<button type="submit" disabled>');
 assessment=assessment.replace('<main>','<main><p role="note"><strong>FICTIONAL LOOKUP PREVIEW ONLY. Clinical submission and payment are disabled. Use fictional details only.</strong> <a href="/__review">Back to review</a></p>');
 writeFileSync(dir+'/assets/review-gp-assessment.html',assessment);
+
+// Separately render the other existing assessment template, never its submission handler.
+let alternate=readFileSync('frontend/medicine-front-door/treatment-assessment.html','utf8');
+assert.equal((alternate.match(/<script src="\/treatment-assessment\.js[^>]*><\/script>/g)||[]).length,1);
+alternate=alternate.replace(/<script src="\/treatment-assessment\.js[^>]*><\/script>/,'');
+alternate=alternate.replace('<form id="assessment"','<form method="post" action="/__preview/clinical-disabled" id="assessment"');
+alternate=alternate.replace('<button type="submit">','<button type="submit" disabled>');
+alternate=alternate.replace('<main>','<main><p role="note"><strong>ALTERNATE EXISTING FORM: FICTIONAL LOOKUP ONLY. Clinical submission and payment are disabled.</strong></p>');
+writeFileSync(dir+'/assets/review-gp-assessment-alternate.html',alternate);

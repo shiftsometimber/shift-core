@@ -36,8 +36,11 @@ function sourceOrigin(request,env){
  if(origin==='https://shift-stabilisation-preview.matobrien.workers.dev'&&env.SHIFT_ENVIRONMENT==='stabilisation-preview-20260917')return origin;
  return null;
 }
+export function renderEmailChangeMessage(text){
+ return '<div style="font-family:Arial,sans-serif;max-width:620px;white-space:pre-wrap">'+escape(text).replace(/https:\/\/(?:shiftsometimber\.co\.uk|www\.shiftsometimber\.co\.uk|shift-stabilisation-preview\.matobrien\.workers\.dev)\/member\/email-change#token=[a-f0-9]{64}&amp;action=(?:confirm|cancel)/g,url=>'<a href="'+url+'">Open secure confirmation</a>')+'</div>';
+}
 async function send(env,to,subject,text){
- return env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||'hello@shiftsometimber.co.uk'),name:'Shift Some Timber'},to,subject,text,html:'<div style="font-family:Arial,sans-serif;max-width:620px;white-space:pre-wrap">'+escape(text)+'</div>'});
+ return env.EMAIL.send({from:{email:String(env.AUTH_EMAIL_FROM||'hello@shiftsometimber.co.uk'),name:'Shift Some Timber'},to,subject,text,html:renderEmailChangeMessage(text)});
 }
 async function rowFor(env,id){return env.DB.prepare('SELECT * FROM member_email_changes WHERE user_id=?').bind(id).first();}
 function statusView(row){
@@ -46,7 +49,7 @@ function statusView(row){
 }
 async function cancelRow(env,id,requestId){return env.DB.prepare("UPDATE member_email_changes SET status='cancelled',old_email='',new_email='',password_fingerprint='',old_token_hash=NULL,new_token_hash=NULL,cancel_token_hash=NULL,updated_at=? WHERE user_id=? AND request_id=? AND status IN ('sending','pending')").bind(at(),id,requestId).run();}
 async function requestChange(request,env,auth,body){
- if(Object.keys(body).some(k=>!['currentPassword','newEmail','confirmEmail','operationId'].includes(k))||typeof body.currentPassword!=='string'||body.currentPassword.length<1||body.currentPassword.length>1024||!validEmail(body.newEmail?.trim())||body.newEmail.trim().toLowerCase()!==body.confirmEmail?.trim().toLowerCase()||typeof body.operationId!=='string'||!/^[a-f0-9-]{36}$/.test(body.operationId))return err('invalid_request','Enter your current password and the same valid new email twice.');
+ if(Object.keys(body).some(k=>!['currentPassword','newEmail','confirmEmail','operationId'].includes(k))||typeof body.currentPassword!=='string'||body.currentPassword.length<1||body.currentPassword.length>1024||typeof body.newEmail!=='string'||typeof body.confirmEmail!=='string'||!validEmail(body.newEmail.trim())||body.newEmail.trim().toLowerCase()!==body.confirmEmail?.trim().toLowerCase()||typeof body.operationId!=='string'||!/^[a-f0-9-]{36}$/.test(body.operationId))return err('invalid_request','Enter your current password and the same valid new email twice.');
  const newEmail=body.newEmail.trim().toLowerCase(),oldEmail=String(auth.user.email).toLowerCase(),id=auth.userId;
  if(newEmail===oldEmail)return err('email_unchanged','That is already your sign-in email.');
  const previous=await rowFor(env,id);
