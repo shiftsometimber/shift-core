@@ -1,0 +1,67 @@
+name: Account completion isolated verification
+on:
+  push:
+    branches: [fix/account-completion-20260923]
+permissions:
+  contents: read
+concurrency:
+  group: account-completion-preview-20260923
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prove current-release ancestry and inspect form coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
+          mkdir -p account-completion-evidence
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import {execFileSync} from 'node:child_process';
+          const files=execFileSync('git',['ls-files'],{encoding:'utf8'}).trim().split('\n');
+          const hits=[];
+          for(const path of files){
+            if(!/\.(?:html|mjs|js)$/.test(path)||/^(?:docs|work|preview|evidence|archive|dist|node_modules)\//.test(path)||/(?:test|fixture|proof|evidence|snapshot|generated)/i.test(path))continue;
+            const text=fs.readFileSync(path,'utf8');
+            if(/(?:<(?:input|textarea|select)[^>]*(?:gp|address|postcode)|deliveryAddress|delivery_address|shippingAddress|shipping_address|gpPractice|gp_practice)/i.test(text)){
+              const lines=text.split('\n');const examples=[];
+              for(let i=0;i<lines.length&&examples.length<6;i++)if(/(?:<(?:input|textarea|select)[^>]*(?:gp|address|postcode)|deliveryAddress|delivery_address|shippingAddress|shipping_address|gpPractice|gp_practice)/i.test(lines[i]))examples.push({line:i+1,text:lines[i].slice(0,450)});
+              hits.push({path,examples});
+            }
+          }
+          const routing=fs.readFileSync('worker-entry-v6.js','utf8').split('\n').flatMap((text,i)=>/memberDetailsRoute|memberDetailsLookupRoute|gp-form|GP_LOOKUP/.test(text)?[{line:i+1,text}]:[]);
+          const report={source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),baseline:'4c014edce24bd9a37645dfbd6bad204ed3270091',runtimeChanged:false,hits,routing};
+          fs.writeFileSync('account-completion-evidence/form-inventory.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          JS
+      - name: Check existing provider binding metadata without exposing values
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          let report={checked:false,reason:'credential_unavailable',productionWrites:0};
+          if(process.env.CF_TOKEN){
+            try{
+              const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core/settings',{headers:{Authorization:'Bearer '+process.env.CF_TOKEN},signal:AbortSignal.timeout(15000)});
+              const b=await r.json();
+              report={checked:r.ok&&b.success===true,status:r.status,productionWrites:0,bindings:(b.result?.bindings||[]).filter(x=>['MEMBER_ADDRESS_API_KEY','IDEAL_POSTCODES_API_KEY','GETADDRESS_API_KEY','LOQATE_API_KEY','MEMBER_GP_LOOKUP_ENABLED','EMAIL','AUTH_EMAIL_FROM'].includes(x.name)).map(x=>({name:x.name,type:x.type}))};
+            }catch{report={checked:false,reason:'metadata_read_failed',productionWrites:0};}
+          }
+          fs.writeFileSync('account-completion-evidence/provider-bindings.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          JS
+      - name: Retain existing account regression baseline
+        run: node --test member-experience/tests/*.test.mjs > account-completion-evidence/baseline-tests.tap 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: account-completion-inspection-${{ github.run_id }}
+          path: account-completion-evidence/
+          retention-days: 14
+          if-no-files-found: error
