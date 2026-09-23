@@ -1,0 +1,206 @@
+name: Full live SEO audit 23 September 2026 (read only)
+on:
+  push:
+    branches: [audit/full-seo-20260923]
+    paths: [.github/workflows/full-seo-readonly-20260923.yml]
+permissions:
+  contents: read
+concurrency:
+  group: full-seo-readonly-20260923
+  cancel-in-progress: false
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 -m pip install --quiet requests==2.32.4 beautifulsoup4==4.13.4
+      - name: Crawl complete sitemap and bounded public link graph without writes
+        run: |
+          mkdir -p seo-audit/raw
+          cat > seo-audit/crawl.py <<'PY'
+          import requests, pathlib, json, hashlib, time, datetime, concurrent.futures, re, collections, os
+          from urllib.parse import urlparse,urljoin,urldefrag
+          from urllib.robotparser import RobotFileParser
+          from xml.etree import ElementTree as ET
+          from bs4 import BeautifulSoup
+          OUT=pathlib.Path('seo-audit');BASE='https://shiftsometimber.co.uk';HOST='shiftsometimber.co.uk';UA='SHIFT-Owner-SEO-Audit/20260923'
+          requests_count=0
+          def dump(name,data): (OUT/name).write_text(json.dumps(data,indent=2,ensure_ascii=False))
+          def norm(u):
+            p=urlparse(u)
+            return p._replace(fragment='',query='').geturl()
+          def safe(u):
+            p=urlparse(u)
+            return p.scheme in ['http','https'] and p.hostname in [HOST,'www.'+HOST] and not re.search(r'^/(?:v1|api|auth|hq|admin|account|member/|checkout|payment|logout|signout|unsubscribe|delete|reset-password|verify-email)(?:/|$)',p.path,re.I) and not p.query
+          def fetch(u,method='GET',agent=UA):
+            t=time.monotonic();row={'url':u,'method':method,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+            try:
+              r=requests.request(method,u,headers={'User-Agent':agent,'Accept':'text/html,application/xml;q=0.9,*/*;q=0.1'},timeout=(10,25),allow_redirects=True)
+              if r.status_code in [429,502,503,504]:
+                row['firstStatus']=r.status_code;time.sleep(2);r=requests.request(method,u,headers={'User-Agent':agent},timeout=(10,25),allow_redirects=True)
+              row.update(status=r.status_code,finalUrl=r.url,redirects=[{'url':x.url,'status':x.status_code,'location':x.headers.get('location')} for x in r.history],headers={k:v for k,v in r.headers.items() if k.lower() not in ['set-cookie']},elapsedMs=round((time.monotonic()-t)*1000),bytes=len(r.content),sha256=hashlib.sha256(r.content).hexdigest())
+              if method=='GET':
+                fname='raw/'+hashlib.sha256(u.encode()).hexdigest()[:20]+'.txt';(OUT/fname).write_bytes(r.content);row['file']=fname;row['_body']=r.content.decode('utf-8','replace')
+            except Exception as e: row.update(error=str(e),elapsedMs=round((time.monotonic()-t)*1000))
+            time.sleep(.18);return row
+          def clean(r): return {k:v for k,v in r.items() if not k.startswith('_')}
+          robots=fetch(BASE+'/robots.txt');rp=RobotFileParser();rp.parse(robots.get('_body','').splitlines());dump('robots.json',clean(robots))
+          specials=[fetch(BASE+x) for x in ['/DEPLOYMENT-FINGERPRINT.json','/llms.txt','/ai.txt']];dump('identity-before.json',[clean(x) for x in specials])
+          smrows=[];smurls=[]
+          def sitemap(u,depth=0):
+            r=fetch(u);smrows.append(clean(r));root=ET.fromstring(r.get('_body',''))
+            if root.tag.endswith('sitemapindex'):
+              assert depth<3,'Sitemap nesting cap'
+              for loc in root.findall('.//{*}loc'):
+                assert urlparse(loc.text).hostname==HOST;sitemap(loc.text,depth+1)
+            else:
+              for entry in root.findall('{*}url'):
+                smurls.append({'url':entry.findtext('{*}loc'),'lastmod':entry.findtext('{*}lastmod')})
+          sitemap(BASE+'/sitemap.xml');assert 0<len(smurls)<=2000,'Unexpected sitemap size';dump('sitemap.json',{'responses':smrows,'entries':smurls,'count':len(smurls),'uniqueCount':len(set(x['url'] for x in smurls))})
+          types=lambda x: [x] if isinstance(x,str) else x if isinstance(x,list) else []
+          def analyse(u):
+            r=fetch(u);body=r.get('_body','');r['robotsAllowed']=rp.can_fetch(UA,u);r['googlebotAllowed']=rp.can_fetch('Googlebot',u)
+            if 'html' not in r.get('headers',{}).get('Content-Type',r.get('headers',{}).get('content-type','')).lower(): return r
+            s=BeautifulSoup(body,'html.parser');r['title']=[x.get_text(' ',strip=True) for x in s.find_all('title')];r['h1']=[x.get_text(' ',strip=True) for x in s.find_all('h1')]
+            r['metas']=[{'name':x.get('name') or x.get('property'),'content':x.get('content','')} for x in s.find_all('meta') if x.get('name') or x.get('property')];r['canonical']=[urljoin(r.get('finalUrl',u),x.get('href','')) for x in s.find_all('link',rel=lambda a:a and 'canonical' in a)];r['lang']=(s.html or {}).get('lang','');r['jsonld']=[];r['schemaErrors']=[]
+            for x in s.find_all('script',type='application/ld+json'):
+              try:r['jsonld'].append(json.loads(x.get_text()))
+              except Exception as e:r['schemaErrors'].append(str(e))
+            r['images']=[{'src':urljoin(u,x.get('src','')),'alt':x.get('alt'),'width':x.get('width'),'height':x.get('height'),'loading':x.get('loading')} for x in s.find_all('img')]
+            r['scripts']=[urljoin(u,x.get('src')) for x in s.find_all('script',src=True)];r['gtmIds']=sorted(set(re.findall(r'GTM-[A-Z0-9]+',body)));r['gaIds']=sorted(set(re.findall(r'G-[A-Z0-9]{6,}',body)));r['mixedContent']=sorted(set(re.findall(r'(?:src|href)=[\"\x27](http://[^\"\x27]+)',body)))
+            r['links']=[]
+            for a in s.find_all('a',href=True):
+              dest=urljoin(u,a['href']);p=urlparse(dest)
+              if p.scheme in ['http','https']:r['links'].append({'url':dest,'text':a.get_text(' ',strip=True),'internal':p.hostname in [HOST,'www.'+HOST],'inMain':a.find_parent(['main','article']) is not None,'rel':a.get('rel',[])})
+            main=s.find('main') or s.find('article') or s.body or s
+            for x in main.select('script,style,header,footer,nav,noscript'):x.decompose()
+            text=main.get_text(' ',strip=True);r['mainText']=text;r['wordCount']=len(text.split());r['textHash']=hashlib.sha256(text.encode()).hexdigest();r['headings']=[x.get_text(' ',strip=True) for x in main.find_all(['h2','h3'])];r['paragraphs']=[x.get_text(' ',strip=True) for x in main.find_all('p')];r['authorLinks']=[x for x in r['links'] if '/authors/' in x['url']];r['indexDirectives']=[x for x in r['metas'] if x['name'].lower() in ['robots','googlebot']]
+            return r
+          urls=list(dict.fromkeys(x['url'] for x in smurls));rows=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
+            for i,r in enumerate(pool.map(analyse,urls)):
+              rows.append(r)
+              if i%100==0:print('Sitemap checked',i+1,flush=True)
+          seen=set(urls);extras=set()
+          for r in rows:
+            for a in r.get('links',[]):
+              u=norm(a['url']);p=urlparse(u)
+              if a['internal'] and safe(u) and not re.search(r'\.(?:png|jpg|jpeg|gif|svg|webp|pdf|zip|ico|css|js|woff2?|ttf|mp4)$',p.path,re.I) and u not in seen:extras.add(u)
+          extras=sorted(extras);dump('discovery.json',{'oneHopPublicUrls':extras,'limit':1000,'truncated':len(extras)>1000})
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:rows+=list(pool.map(analyse,extras[:1000]))
+          by={r['url']:r for r in rows};smap=set(urls);inlinks=collections.defaultdict(set);mainlinks=collections.defaultdict(set)
+          for r in rows:
+            for a in r.get('links',[]):
+              if a['internal']:
+                k=norm(a['url']);inlinks[k].add(r['url'])
+                if a['inMain']:mainlinks[k].add(r['url'])
+          issues=[]
+          def issue(r,kind,detail):issues.append({'url':r['url'],'inSitemap':r['url'] in smap,'kind':kind,'detail':detail})
+          for r in rows:
+            r['inSitemap']=r['url'] in smap;r['inlinks']=len(inlinks[r['url']]);r['contextualInlinks']=len(mainlinks[r['url']])
+            if r.get('error'):issue(r,'fetch_error',r['error']);continue
+            if r.get('status',0)>=400:issue(r,'http_error',r['status']);continue
+            if r.get('redirects') and r['inSitemap']:issue(r,'sitemap_redirect',r['redirects'])
+            if not r.get('title'):continue
+            noindex='noindex' in (' '.join(str(x) for x in r.get('indexDirectives',[]))+' '+r['headers'].get('X-Robots-Tag','')).lower();r['noindex']=noindex
+            if r['inSitemap'] and noindex:issue(r,'sitemap_noindex',r.get('indexDirectives'))
+            if r['inSitemap'] and not r['googlebotAllowed']:issue(r,'sitemap_robots_block','robots.txt')
+            if len(r['title'])!=1 or not r['title'][0]:issue(r,'title_missing_or_multiple',r['title'])
+            if len(r['h1'])!=1:issue(r,'h1_count',r['h1'])
+            if len(r['canonical'])!=1:issue(r,'canonical_count',r['canonical'])
+            elif norm(r['canonical'][0])!=norm(r['finalUrl']):issue(r,'nonself_canonical',r['canonical'])
+            desc=[m['content'] for m in r['metas'] if m['name'].lower()=='description']
+            if len(desc)!=1 or not desc[0].strip():issue(r,'description_missing_or_multiple',desc)
+            r['description']=desc
+            if r['schemaErrors']:issue(r,'invalid_jsonld',r['schemaErrors'])
+            if r['inSitemap'] and not noindex and r['inlinks']==0:issue(r,'no_inlinks_in_crawl','Bounded static HTML graph only')
+            meta={m['name'].lower():m['content'] for m in r['metas']}
+            for k in ['og:title','og:description','og:image','twitter:card']:
+              if not meta.get(k):issue(r,'missing_'+k,'Social metadata; not a ranking requirement')
+            if not meta.get('viewport'):issue(r,'missing_viewport','')
+            missing=[x for x in r['images'] if x['alt'] is None]
+            if missing:issue(r,'missing_alt',missing)
+            if re.search(r'^https://[^/]+/(?:articles|medicine-news|guides|mental-health)/',r['url']) and r['wordCount']<200:issue(r,'short_editorial_review',r['wordCount'])
+          duplicates={}
+          for field in ['title','description','textHash']:
+            g=collections.defaultdict(list)
+            for r in rows:
+              if r.get('status')!=200 or r.get('noindex') or r.get('redirects') or not r.get(field):continue
+              val=r[field][0] if isinstance(r[field],list) else r[field]
+              if val:g[val].append(r['url'])
+            duplicates[field]=[{'value':k,'urls':v} for k,v in g.items() if len(v)>1]
+          assets=set()
+          for r in rows:
+            for im in r.get('images',[]):
+              if urlparse(im['src']).hostname==HOST:assets.add(im['src'])
+          assetrows=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:assetrows=list(pool.map(lambda u:fetch(u,'HEAD'),sorted(assets)[:400]))
+          dump('image-heads.json',[clean(x) for x in assetrows])
+          variants=[BASE+'/seo-audit-nonexistent-20260923', 'http://'+HOST+'/', 'https://www.'+HOST+'/', 'http://www.'+HOST+'/',BASE+'/guides/retatrutide-uk-guide/',BASE+'/guides/retatrutide-uk-guide.html',BASE+'/medicine-news',BASE+'/pricing-membership',BASE+'/my-timber',BASE+'/switching-provider',BASE+'/continuity',BASE+'/good-to-talk',BASE+'/guides/orforglipron-uk-guide',BASE+'/member-login',BASE+'/member/dashboard']
+          variantrows=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:variantrows=list(pool.map(analyse,variants))
+          dump('variants.json',[clean(x) for x in variantrows]);dump('pages.json',[clean(x) for x in rows]);dump('issues.json',issues);dump('duplicates.json',duplicates)
+          end=fetch(BASE+'/DEPLOYMENT-FINGERPRINT.json');dump('identity-after.json',clean(end));summary={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'baseCommit':os.getenv('GITHUB_SHA'),'sitemapCount':len(smurls),'sitemapUniqueCount':len(smap),'sitemapFetched':len([r for r in rows if r['url'] in smap]),'extraPagesFetched':len(rows)-len(smap),'totalPagesFetched':len(rows),'statuses':dict(collections.Counter(str(r.get('status','ERROR')) for r in rows)),'issueCounts':dict(collections.Counter(x['kind'] for x in issues)),'duplicateGroups':{k:len(v) for k,v in duplicates.items()},'imageHeads':len(assetrows),'failedImageHeads':[clean(x) for x in assetrows if x.get('status',0)>=400 or x.get('error')],'fingerprintUnchanged':specials[0].get('sha256')==end.get('sha256'),'scope':'Anonymous GET/HEAD only; sitemap plus one hop; static DOM. Fetch durations are not Core Web Vitals. Short content flags require editorial inspection. No production or private-data changes.'};dump('summary.json',summary);print(json.dumps(summary,indent=2))
+          PY
+          python3 seo-audit/crawl.py
+      - name: Evidence checksums
+        if: always()
+        run: |
+          cd seo-audit
+          find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-seo-crawl-${{ github.sha }}
+          path: seo-audit/
+          retention-days: 30
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Isolated browser and lab tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/seo-tools" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+          "$RUNNER_TEMP/seo-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "TOOLS=$RUNNER_TEMP/seo-tools" >> "$GITHUB_ENV"
+      - name: Read-only rendered mobile and desktop checks
+        run: |
+          mkdir -p seo-browser
+          cat > seo-browser/check.cjs <<'JS'
+          const fs=require('fs'),path=require('path');const {chromium,webkit}=require(process.env.TOOLS+'/node_modules/playwright');
+          const routes=['/','/guides/retatrutide-uk-guide','/explore-knowledge','/glp1-knowledge-centre','/programme','/shift-health','/shift-health/testosterone-energy','/clinic-gone-quiet','/articles/stopping-glp1','/articles/mounjaro-cost-uk','/medicine-news','/mens-mental-health','/tools/bmi','/start-here','/member-login'];
+          (async()=>{const results=[];for(const [engine,width] of [[chromium,390],[chromium,1440],[webkit,390]]){const browser=await engine.launch({headless:true});for(const route of routes){if(engine===webkit&&!['/','/guides/retatrutide-uk-guide','/articles/mounjaro-cost-uk'].includes(route))continue;const ctx=await browser.newContext({viewport:{width,height:900}});let blocked=[],errors=[],analytics=[];await ctx.route('**/*',async r=>{const req=r.request(),url=req.url();if(/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com/.test(url))analytics.push({url,method:req.method()});if(!['GET','HEAD'].includes(req.method())||/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com/.test(url)){blocked.push({url,method:req.method()});return r.abort();}return r.continue();});const page=await ctx.newPage();page.on('pageerror',e=>errors.push(String(e)));let row={route,width,engine:engine===webkit?'webkit':'chromium'};try{const response=await page.goto('https://shiftsometimber.co.uk'+route,{waitUntil:'domcontentloaded',timeout:35000});await page.waitForTimeout(1800);row.status=response.status();row.url=page.url();row.dom=await page.evaluate(()=>({title:document.title,h1:[...document.querySelectorAll('h1')].map(x=>({text:x.textContent.trim(),visible:!!x.getBoundingClientRect().height})),canonical:[...document.querySelectorAll('link[rel=canonical]')].map(x=>x.href),robots:[...document.querySelectorAll('meta[name=robots]')].map(x=>x.content),viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,mainWords:(document.querySelector('main')||document.body).innerText.split(/\s+/).length,images:[...document.images].map(x=>({src:x.currentSrc,alt:x.getAttribute('alt'),loaded:x.complete&&x.naturalWidth>0,width:x.getBoundingClientRect().width})),gtmScripts:[...document.scripts].map(x=>x.src).filter(x=>x.includes('googletagmanager.com/gtm.js')),dataLayer:JSON.parse(JSON.stringify(window.dataLayer||[])),cookieButtons:[...document.querySelectorAll('button,a')].filter(x=>/cookie|accept|reject|essential|privacy/i.test(x.textContent)).map(x=>({text:x.textContent.trim().slice(0,120),id:x.id,visible:!!x.getBoundingClientRect().height})).slice(0,30),timing:performance.getEntriesByType('navigation').map(x=>({ttfb:x.responseStart,domContentLoaded:x.domContentLoadedEventEnd,load:x.loadEventEnd})),links:[...document.querySelectorAll('main a[href]')].map(x=>({href:x.getAttribute('href'),text:x.textContent.trim()})).filter(x=>/retatrutide/.test(x.href||''))}));if(['/','/guides/retatrutide-uk-guide','/shift-health','/articles/mounjaro-cost-uk'].includes(route)){const file=(engine===webkit?'webkit':'chromium')+'-'+width+'-'+(route==='/'?'home':route.replace(/\W+/g,'_'))+'.png';await page.screenshot({path:'seo-browser/'+file});row.screenshot=file;}}catch(e){row.error=String(e);}row.pageErrors=errors;row.analyticsRequestsBeforeConsent=analytics;row.blockedRequests=blocked;results.push(row);await ctx.close();}await browser.close();}fs.writeFileSync('seo-browser/results.json',JSON.stringify({checkedAt:new Date().toISOString(),scope:'Fresh anonymous browser contexts. Non-GET/HEAD and analytics delivery blocked. This observes attempted tags/consent; not verified GA delivery, physical Safari, or authenticated journeys.',results},null,2));console.log(JSON.stringify(results.map(({route,width,engine,status,error,dom,pageErrors})=>({route,width,engine,status,error,h1:dom?.h1,overflow:dom?dom.scrollWidth>dom.viewport:false,pageErrors})),null,2));})();
+          JS
+          node seo-browser/check.cjs
+      - name: Four mobile Lighthouse laboratory runs (not field CWV)
+        run: |
+          export CHROME_PATH=$(node -e "console.log(require(process.env.TOOLS+'/node_modules/playwright').chromium.executablePath())")
+          for route in home reta health news; do
+            case "$route" in
+              home) url='https://shiftsometimber.co.uk/' ;;
+              reta) url='https://shiftsometimber.co.uk/guides/retatrutide-uk-guide' ;;
+              health) url='https://shiftsometimber.co.uk/shift-health' ;;
+              news) url='https://shiftsometimber.co.uk/articles/mounjaro-cost-uk' ;;
+            esac
+            "$TOOLS/node_modules/.bin/lighthouse" "$url" --only-categories=performance,seo,accessibility --output=json --output-path="seo-browser/lighthouse-$route.json" --chrome-flags='--headless --no-sandbox' --quiet --blocked-url-patterns='*google-analytics.com*,*analytics.google.com*,*doubleclick.net*,*googleadservices.com*' || echo "Lighthouse $route unavailable" > "seo-browser/lighthouse-$route-error.txt"
+          done
+      - name: Evidence checksums
+        if: always()
+        run: |
+          cd seo-browser
+          find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-seo-browser-${{ github.sha }}
+          path: seo-browser/
+          retention-days: 30
