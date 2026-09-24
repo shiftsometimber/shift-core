@@ -1,8 +1,19 @@
-import urllib.request,xml.etree.ElementTree as ET,json,pathlib,sys
+import urllib.request,urllib.error,xml.etree.ElementTree as ET,json,pathlib,sys,time
 base=sys.argv[1].rstrip('/')
+attempts=[]
 def get(url,method='GET'):
-    with urllib.request.urlopen(urllib.request.Request(url,method=method,headers={'User-Agent':'SHIFT-Article-Sitemap-Verification/1.0','Accept':'application/xml,text/xml,*/*'}),timeout=60) as r:
-        return r.status,dict(r.headers),r.read()
+    # New route deployment can reach different edges at different times.
+    # Keep every observation and still fail unless the final response is correct.
+    for attempt in range(7):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url,method=method,headers={'User-Agent':'SHIFT-Article-Sitemap-Verification/1.0','Accept':'application/xml,text/xml,*/*'}),timeout=60) as r:
+                attempts.append({'url':url,'method':method,'status':r.status,'attempt':attempt+1})
+                return r.status,dict(r.headers),r.read()
+        except urllib.error.HTTPError as e:
+            detail={'url':url,'finalUrl':e.url,'method':method,'status':e.code,'attempt':attempt+1,'headers':dict(e.headers)}
+            attempts.append(detail);print(json.dumps(detail),flush=True)
+            if '/sitemap-articles.xml' not in url or e.code!=404 or attempt==6: raise
+            time.sleep(10)
 ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 def parse(body):
     root=ET.fromstring(body)
@@ -20,5 +31,5 @@ assert hh.get('X-Shift-Article-Count')==str(len(entries))
 sample=next(iter(entries)); assert get(sample)[0]==200
 p=pathlib.Path('article-sitemap-proof');p.mkdir(exist_ok=True)
 (p/'articles.xml').write_bytes(body);(p/'main.xml').write_bytes(full)
-(p/'verification.json').write_text(json.dumps({'base':base,'articleCount':len(entries),'mainCount':len(all_entries),'exactArticleSubset':True,'datesPreserved':True,'headPass':True,'sample':sample,'sampleStatus':200},indent=2))
+(p/'verification.json').write_text(json.dumps({'base':base,'articleCount':len(entries),'mainCount':len(all_entries),'exactArticleSubset':True,'datesPreserved':True,'headPass':True,'sample':sample,'sampleStatus':200,'requests':attempts},indent=2))
 print((p/'verification.json').read_text())

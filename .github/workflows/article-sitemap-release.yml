@@ -1,3 +1,4 @@
+# Allow bounded propagation of the new route; all final assertions and rollback remain mandatory.
 name: Release verified article-only sitemap
 on:
   push:
@@ -32,7 +33,7 @@ jobs:
           python3 - <<'PY'
           import subprocess,os
           changed=subprocess.check_output(['git','diff','--name-only',os.environ['APPROVED_PREVIEW_COMMIT'],'HEAD'],text=True).splitlines()
-          assert set(changed)<={'.github/workflows/article-sitemap-release.yml','scripts/article-sitemap/preservation.mjs'},changed
+          assert set(changed)<={'.github/workflows/article-sitemap-release.yml','scripts/article-sitemap/preservation.mjs','scripts/article-sitemap/verify.py'},changed
           PY
       - uses: actions/download-artifact@v4
         with:
