@@ -1,7 +1,7 @@
 import urllib.request,xml.etree.ElementTree as ET,json,pathlib,sys
 base=sys.argv[1].rstrip('/')
 def get(url,method='GET'):
-    with urllib.request.urlopen(urllib.request.Request(url,method=method),timeout=60) as r:
+    with urllib.request.urlopen(urllib.request.Request(url,method=method,headers={'User-Agent':'SHIFT-Article-Sitemap-Verification/1.0','Accept':'application/xml,text/xml,*/*'}),timeout=60) as r:
         return r.status,dict(r.headers),r.read()
 ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 def parse(body):
