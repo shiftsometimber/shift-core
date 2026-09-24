@@ -23,7 +23,7 @@ export function createConnectedHealthRoutes(authenticate) {
       const identity=await authenticate(request,env);
       if(identity.response)return json({ok:false,error:'authentication_required'},401);
       const auth={userId:identity.userId,sessionId:identity.user?.session_id};
-      if(request.method==='GET'&&path===BASE)return json({ok:true,accountId:auth.userId,...await state(env.DB,auth)});
+      if(request.method==='GET'&&path===BASE)return json({ok:true,accountId:auth.userId,accountLabel:identity.user?.email||'',...await state(env.DB,auth)});
       if(request.method!=='POST')return json({ok:false,error:'method_not_allowed'},405);
       if(!origin)throw fail('origin_required',403);
       const body=await readBody(request);

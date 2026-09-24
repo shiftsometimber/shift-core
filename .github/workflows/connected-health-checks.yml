@@ -22,8 +22,34 @@ jobs:
         run: |
           mkdir -p connected-health-evidence
           set -o pipefail
-          node --test connected-health/tests/connected-health.test.mjs | tee connected-health-evidence/tests.tap
-          find connected-health -type f -print0 | sort -z | xargs -0 sha256sum > connected-health-evidence/source.sha256
+          node --test connected-health/tests/*.test.mjs | tee connected-health-evidence/tests.tap
+      - name: Prepare exact existing app and privacy integration candidate
+        run: |
+          node connected-health/prepare-integration.mjs
+          git diff --check
+          git diff > connected-health-evidence/integration.patch
+      - name: Compile composed Worker without deployment or credentials
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm ci --ignore-scripts
+          npx --no-install wrangler deploy --config connected-health/compile.jsonc --dry-run --outdir connected-health-evidence/worker
+      - name: Install isolated browser test dependencies
+        run: |
+          python3 -m pip install 'playwright==1.57.0'
+          python3 -m playwright install --with-deps chromium
+      - name: Exercise actual UI and database on loopback with fictional accounts
+        run: |
+          node connected-health/tests/browser-server.mjs > connected-health-evidence/browser-server.log 2>&1 &
+          fixture_pid=$!
+          trap 'kill "$fixture_pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/member/settings >/dev/null && break || sleep 1; done
+          python3 connected-health/tests/browser-proof.py
+      - name: Record candidate source identity
+        if: always()
+        run: |
+          mkdir -p connected-health-evidence
+          find connected-health -type f -not -path '*/build/*' -not -path '*/.gradle/*' -print0 | sort -z | xargs -0 sha256sum > connected-health-evidence/source.sha256
           git rev-parse HEAD > connected-health-evidence/commit.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -31,33 +57,68 @@ jobs:
           name: connected-health-core-evidence
           path: connected-health-evidence/
           retention-days: 7
-  ios-reader:
+  ios-app:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Compile actual reader against simulator HealthKit SDK - no signing or device access
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile actual native reader and consent coordinator
         run: |
           xcrun swiftc -parse-as-library -emit-module -module-name TimberHealthReader \
             -sdk "$(xcrun --sdk iphonesimulator --show-sdk-path)" \
             -target arm64-apple-ios16.0-simulator \
             connected-health/native/ios/HealthReader.swift \
+            connected-health/native/ios/ConnectedHealthController.swift \
             -o "$RUNNER_TEMP/TimberHealthReader.swiftmodule"
-  android-reader:
+      - name: Compose with the existing My Timber iOS app
+        run: |
+          node connected-health/prepare-integration.mjs
+          python3 my-timber-app/scripts/prepare.py --platform ios
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          cd my-timber-app/ios
+          xcodegen generate
+          xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Debug -sdk iphonesimulator -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: connected-health-ios-compile-evidence
+          path: connected-health-evidence/
+          retention-days: 7
+  android-app:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;35.0.0'
+          log-accepted-android-sdk-licenses: false
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
-      - name: Compile reader library only - no APK, live service or store credentials
+      - name: Compile actual Health Connect reader and consent coordinator
         working-directory: connected-health/native/android
         run: gradle --no-daemon assembleDebug
+      - name: Compose with the existing My Timber Android app
+        run: |
+          node connected-health/prepare-integration.mjs
+          python3 my-timber-app/scripts/prepare.py --platform android
+          gradle --no-daemon -p my-timber-app/android :app:assembleDebug
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: connected-health-android-compile-evidence
+          path: connected-health-evidence/
+          retention-days: 7

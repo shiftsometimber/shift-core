@@ -1,0 +1,9 @@
+{
+  // Compile-only candidate: no production bindings, routes, cron or credentials.
+  "name": "my-timber-connected-health-compile",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "vars": {"CONNECTED_HEALTH_V1_ENABLED": "true"}
+}
