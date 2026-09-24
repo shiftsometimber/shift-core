@@ -4,7 +4,6 @@
   "build": 1,
   "origin": "https://shiftsometimber.co.uk",
   "startPath": "/member/dashboard#today",
-  "previewApplicationId": "uk.co.shiftsometimber.mytimber.preview",
   "plannedStoreApplicationId": "uk.co.shiftsometimber.mytimber",
   "plannedStoreName": "My Timber",
   "legalEntity": "SHIFT SOME TIMBER LTD",
@@ -16,5 +15,6 @@
   "storeAccountsVerified": false,
   "storeSubmissionAllowed": false,
   "v1NativeNotifications": false,
-  "v1Scope": "store app mirrors My Timber member experience; PWA-only install/reminder controls omitted"
+  "v1Scope": "store app mirrors My Timber member experience; PWA-only install/reminder controls omitted",
+  "developmentApplicationId": "uk.co.shiftsometimber.mytimber.dev"
 }
