@@ -5,6 +5,7 @@ import {sources, medicines, REVIEWED_AT} from './data.mjs';
 import {projectSourceHealth, REVIEW_INTERVAL_MS} from './monitor.mjs';
 
 const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-information-renewal.json', import.meta.url)));
+const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjaro-nhs-renewal.json', import.meta.url)));
 const ids = ['mounjaro-smpc', 'wegovy-tablet-smpc', 'orlistat-120-smpc', 'orlistat-60-smpc', 'foundayo-smpc'];
 const time = Date.parse(receipt.reviewedAt);
 const observation = (source, now = time) => ({
@@ -53,7 +54,7 @@ test('renewal does not renew the catalogue, medicine claims, NHS or provider rev
   assert.equal(REVIEWED_AT, '2026-09-15T21:28:30Z');
   assert.equal(medicines.find(m => m.id === 'mounjaro').reviewedAt, '2026-09-17T05:45:00Z');
   assert.ok(medicines.filter(m => m.id !== 'mounjaro').every(m => m.reviewedAt === undefined));
-  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, '2026-09-17T05:45:00Z');
+  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, nhsReceipt.reviewedAt);
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, '2026-09-18T16:36:50Z');
   assert.equal(sources.find(s => s.id === 'wegovy-injection-smpc').reviewedAt, '2026-09-23T15:45:00Z');
 });
