@@ -18,7 +18,7 @@ permissions:
 
 concurrency:
   group: my-timber-final-production
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   billy-iphone-candidate:
@@ -37,6 +37,7 @@ jobs:
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
       - name: Install MP4 evidence encoder
+        if: github.event_name != 'push'
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Acquire short-lived Shift commissioning identity
         id: oidc
@@ -47,7 +48,7 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Prove activated Passport with synthetic production accounts
-        if: ${{ hashFiles('health-passport/production-browser.mjs') != '' }}
+        if: ${{ github.event_name != 'push' && hashFiles('health-passport/production-browser.mjs') != '' }}
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           PASSPORT_RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -60,15 +61,16 @@ jobs:
           path: passport-production-evidence
           if-no-files-found: warn
           retention-days: 30
-      - name: Record and prove Billy's live production journey
+      - name: Capture Google Play screens and prove Billy's live production journey
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
-        run: |
-          node my-timber-final-production.mjs
-          ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
+        run: node my-timber-final-production.mjs
+      - name: Encode walkthrough video
+        if: github.event_name != 'push'
+        run: ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
       - name: Upload production candidate and phone video
         if: always()
         uses: actions/upload-artifact@v4
