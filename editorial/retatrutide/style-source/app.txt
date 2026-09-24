@@ -1,0 +1,643 @@
+window.SST_KNOWLEDGE_INDEX=[{"t":"The Dad Bod Nobody Talks About","u":"/articles/dad-bod-nobody-talks-about","k":"Article","p":"brand","d":"When the dad-bod joke stops being funny because weight starts affecting health, mobility or confidence.","m":6},{"t":"Heart Health for Men Carrying Extra Weight","u":"/articles/heart-health-men","k":"Article","p":"health","d":"Blood pressure, cholesterol, diabetes risk, smoking and movement.","m":6},{"t":"Getting Back to Football After 40","u":"/articles/football-fitness-after-40","k":"Article","p":"fitness","d":"A sensible return to movement if five-a-side has been missing for a while.","m":6},{"t":"A Healthier BBQ Without Ruining the BBQ","u":"/articles/healthy-bbq-men","k":"Article","p":"nutrition","d":"Simple swaps that keep the good bits.","m":6},{"t":"Sleep and Weight: What Blokes Need to Know","u":"/articles/sleep-and-weight-men","k":"Article","p":"weight","d":"How poor sleep can affect appetite, choices, energy and motivation.","m":6},{"t":"Easy Air Fryer Meals for Blokes Trying to Eat Better","u":"/articles/air-fryer-meals-men","k":"Article","p":"nutrition","d":"Practical meal ideas built around protein, veg and sensible portions.","m":6},{"t":"Waist Size and Men's Health","u":"/articles/waist-size-men","k":"Article","p":"health","d":"Why waist measurement can add useful context beyond weight alone.","m":6},{"t":"Men's Mental Health and Weight","u":"/articles/mens-mental-health-and-weight","k":"Article","p":"health","d":"Confidence, mood, stigma and the relationship between physical and mental wellbeing.","m":6},{"t":"Why Is It Harder for Men to Lose Weight After 40?","u":"/articles/men-weight-loss-after-40","k":"Article","p":"weight","d":"Age, activity, muscle mass, sleep and lifestyle all influence weight management in midlife.","m":6},{"t":"Healthy Habits That Actually Last","u":"/articles/healthy-habits-that-last-men","k":"Article","p":"weight","d":"Why repeatable habits beat heroic Monday-morning plans.","m":6},{"t":"Mounjaro vs Wegovy: What's the Difference?","u":"/articles/mounjaro-vs-wegovy","k":"Article","p":"GLP-1","d":"How tirzepatide and semaglutide differ without pretending one treatment suits everyone.","m":6},{"t":"What Is Wegovy?","u":"/articles/what-is-wegovy","k":"Article","p":"GLP-1","d":"A plain-English introduction to semaglutide for weight management.","m":6},{"t":"Why Does Weight Loss Plateau?","u":"/articles/weight-loss-plateau-men","k":"Article","p":"weight","d":"Why progress can slow and why weight change is rarely perfectly linear.","m":6},{"t":"Can Walking Help Men Lose Weight?","u":"/articles/walking-for-weight-management-men","k":"Article","p":"weight","d":"Why regular walking can support health and weight management.","m":6},{"t":"Why Blokes Put Everyone Else First","u":"/articles/why-blokes-put-everyone-else-first","k":"Article","p":"brand","d":"Why work, kids and everyday pressure can push men's own health down the list.","m":6},{"t":"Why We Built Shift Some Timber","u":"/articles/why-we-built-shift-some-timber","k":"Article","p":"brand","d":"Why Shift is built around real life, straightforward language and useful health information.","m":6},{"t":"Cholesterol for Blokes: The Basics","u":"/articles/cholesterol-men","k":"Article","p":"health","d":"Understanding HDL, LDL and overall cardiovascular risk.","m":6},{"t":"Eating Out While Managing Your Weight","u":"/articles/eating-out-weight-management-men","k":"Article","p":"nutrition","d":"How to enjoy meals out without treating them like failure.","m":6},{"t":"Why Men's Health Isn't About Six-Packs","u":"/articles/health-isnt-about-six-packs","k":"Article","p":"brand","d":"Better health can mean more energy, better sleep and being able to do ordinary things comfortably.","m":6},{"t":"Alcohol and Weight Gain in Men","u":"/articles/alcohol-and-weight-men","k":"Article","p":"weight","d":"Calories, appetite, sleep and why drinks can quietly add up.","m":6},{"t":"Better Takeaway Choices Without Ordering a Salad","u":"/articles/healthy-takeaways-men","k":"Article","p":"nutrition","d":"How to make a takeaway fit into a healthier week.","m":6},{"t":"Helping Ordinary Blokes Feel Like Themselves Again","u":"/articles/helping-ordinary-blokes-feel-like-themselves-again","k":"Article","p":"brand","d":"Why men's weight management is often about getting everyday life, confidence and energy back.","m":6},{"t":"Sleep Apnoea, Snoring and Weight","u":"/articles/sleep-apnoea-weight-men","k":"Article","p":"health","d":"When loud snoring and daytime tiredness deserve more than a joke.","m":6},{"t":"Exercise While Taking GLP-1 Medication","u":"/articles/exercise-on-glp1","k":"Article","p":"GLP-1","d":"Why movement and strength still matter.","m":6},{"t":"A Beginner Walking Plan for Men","u":"/articles/beginner-walking-plan-men","k":"Article","p":"fitness","d":"Start where you are and build gradually.","m":6},{"t":"Simple Strength Training at Home","u":"/articles/home-strength-men","k":"Article","p":"fitness","d":"Basic resistance work without needing a bodybuilding identity.","m":6},{"t":"Why Blokes Put Off Asking for Help","u":"/articles/asking-for-help-men","k":"Article","p":"mind","d":"Normalising earlier conversations about health.","m":6},{"t":"Motivation Is Overrated: Build a Routine","u":"/articles/motivation-vs-routine-men","k":"Article","p":"mind","d":"Why systems and environment often matter more than motivation.","m":6},{"t":"Protein for Men Trying to Manage Their Weight","u":"/articles/protein-for-men-weight-management","k":"Article","p":"weight","d":"Why protein matters for fullness, muscle and practical meal planning.","m":6},{"t":"What Is Mounjaro?","u":"/articles/what-is-mounjaro","k":"Article","p":"GLP-1","d":"A plain-English introduction to tirzepatide and why clinical assessment matters.","m":6},{"t":"Testosterone and Weight in Men","u":"/articles/testosterone-weight-men","k":"Article","p":"health","d":"A careful look at the relationship without assuming every tired bloke needs testosterone.","m":6},{"t":"Confidence, Weight and Feeling Like Yourself Again","u":"/articles/confidence-and-weight-men","k":"Article","p":"mind","d":"Why health change can be about identity as much as a number.","m":6},{"t":"Weight and Aching Knees","u":"/articles/knee-pain-weight-men","k":"Article","p":"health","d":"How load, strength and activity can interact with knee discomfort.","m":6},{"t":"Can Men Build or Keep Muscle on GLP-1 Treatment?","u":"/articles/muscle-on-glp1","k":"Article","p":"GLP-1","d":"Protein, resistance training and maintaining strength.","m":6},{"t":"Calories Explained Without the Nonsense","u":"/articles/calories-explained-men","k":"Article","p":"weight","d":"What calories are, why energy balance matters and why real life is more complicated than a slogan.","m":6},{"t":"What Happens When You Stop GLP-1 Treatment?","u":"/articles/stopping-glp1","k":"Article","p":"GLP-1","d":"Why maintenance planning matters after treatment.","m":6},{"t":"Prediabetes in Men: What Does It Mean?","u":"/articles/prediabetes-men","k":"Article","p":"health","d":"A straightforward guide to prediabetes and risk.","m":6},{"t":"Stress, Eating and Weight Gain in Men","u":"/articles/stress-and-weight-men","k":"Article","p":"weight","d":"How stress can influence eating, alcohol, sleep and activity.","m":6},{"t":"Meal Prep for Busy Blokes","u":"/articles/meal-prep-busy-men","k":"Article","p":"nutrition","d":"Simple repeatable meals for busy weeks.","m":6},{"t":"Can You Drink Alcohol While Taking GLP-1 Medication?","u":"/articles/alcohol-on-glp1","k":"Article","p":"GLP-1","d":"Why alcohol, appetite, dehydration and individual health all matter.","m":6},{"t":"Common GLP-1 Myths","u":"/articles/glp1-myths","k":"Article","p":"GLP-1","d":"Separating sensible information from social-media nonsense.","m":6},{"t":"Weight and High Blood Pressure in Men","u":"/articles/weight-and-blood-pressure-men","k":"Article","p":"health","d":"Why weight, waist size, activity and blood pressure often overlap.","m":6},{"t":"BMI Explained for Men","u":"/articles/bmi-men","k":"Article","p":"health","d":"What BMI can tell you, what it cannot and why context matters.","m":6},{"t":"GLP-1 Side Effects Explained","u":"/articles/glp1-side-effects","k":"Article","p":"GLP-1","d":"Common side effects, monitoring and when to seek professional advice.","m":6},{"t":"Why Do Men Gain Weight Around the Stomach?","u":"/articles/men-belly-fat","k":"Article","p":"weight","d":"Understanding central body fat, waist measurement and why the middle matters.","m":6},{"t":"Are carbs bad for weight loss?","u":"/faq/are-carbs-bad","k":"FAQ","p":"FAQs","d":"No. Carbohydrate is not automatically fattening. Overall energy intake, food quality and portions matter.","m":4},{"t":"Is fat bad for weight loss?","u":"/faq/is-fat-bad","k":"FAQ","p":"FAQs","d":"No. Dietary fat is essential but energy dense, so portions and the wider diet matter.","m":4},{"t":"Does sleep affect weight?","u":"/faq/does-sleep-affect-weight","k":"FAQ","p":"FAQs","d":"Yes. Sleep can influence appetite, food choices, energy, mood and activity.","m":4},{"t":"Do I need a gym to lose weight?","u":"/faq/need-gym-to-lose-weight","k":"FAQ","p":"FAQs","d":"No. Walking, home exercise, sport, cycling and ordinary daily movement can all contribute.","m":4},{"t":"Should men count calories?","u":"/faq/should-men-count-calories","k":"FAQ","p":"FAQs","d":"Calorie tracking can be useful for some men, but it is not compulsory.","m":4},{"t":"Is Shift Some Timber a replacement for my GP?","u":"/faq/is-sst-gp-replacement","k":"FAQ","p":"FAQs","d":"No. It is not a replacement for NHS primary care, emergency services or individual medical assessment.","m":4},{"t":"How often should I weigh myself?","u":"/faq/how-often-weigh","k":"FAQ","p":"FAQs","d":"There is no single right frequency. The useful part is looking at the trend rather than reacting to one reading.","m":4},{"t":"What is the 20% Club?","u":"/faq/what-is-20-percent-club","k":"FAQ","p":"FAQs","d":"A milestone some people use to describe losing 20% of their starting body weight. It is not a universal target.","m":4},{"t":"What is a healthy waist-to-height ratio?","u":"/faq/healthy-waist-height-ratio","k":"FAQ","p":"FAQs","d":"NHS guidance uses the simple message of trying to keep your waist below half your height.","m":4},{"t":"Why do men get belly fat?","u":"/faq/why-do-men-get-belly-fat","k":"FAQ","p":"FAQs","d":"Men commonly store a greater proportion of fat centrally. Genetics, age, hormones, energy balance, activity, sleep and alcohol can all contribute.","m":4},{"t":"Is 20% weight loss realistic for everyone?","u":"/faq/is-20-percent-realistic","k":"FAQ","p":"FAQs","d":"No. A 20% reduction is a major milestone, not a universal target.","m":4},{"t":"Can I have a BBQ while losing weight?","u":"/faq/bbq-and-weight-loss","k":"FAQ","p":"FAQs","d":"Absolutely. A barbecue can fit into a healthy week.","m":4},{"t":"Why do my knees hurt more after gaining weight?","u":"/faq/weight-knee-pain","k":"FAQ","p":"FAQs","d":"Greater body mass can increase load through weight-bearing joints, but knee pain can have several causes.","m":4},{"t":"Is Wegovy the same as Ozempic?","u":"/faq/wegovy-vs-ozempic","k":"FAQ","p":"FAQs","d":"They both contain semaglutide, but they are distinct branded products with different licensed uses and dosing pathways.","m":4},{"t":"How quickly should a man lose weight?","u":"/faq/how-quickly-should-men-lose-weight","k":"FAQ","p":"FAQs","d":"There is no single perfect weekly rate for every man. A sustainable rate depends on starting weight, health, food intake, activity and treatment.","m":4},{"t":"How much protein do men need?","u":"/faq/how-much-protein-men","k":"FAQ","p":"FAQs","d":"Protein needs vary with body size, age, health, activity and goals. A calculator is only a planning estimate.","m":4},{"t":"Can men take Mounjaro?","u":"/faq/can-men-take-mounjaro","k":"FAQ","p":"FAQs","d":"Yes, men can be prescribed tirzepatide (Mounjaro) when it is clinically appropriate and they meet the relevant prescribing criteria.","m":4},{"t":"Does losing weight raise testosterone?","u":"/faq/weight-testosterone","k":"FAQ","p":"FAQs","d":"Weight loss may improve testosterone levels in some men living with obesity, but symptoms alone cannot diagnose testosterone deficiency.","m":4},{"t":"Can walking help weight loss?","u":"/faq/can-walking-help-weight-loss","k":"FAQ","p":"FAQs","d":"Yes. Walking increases activity and energy expenditure and can be a sustainable part of weight management.","m":4},{"t":"Can women use the public tools?","u":"/faq/can-women-use-tools","k":"FAQ","p":"FAQs","d":"The public calculators are general information tools, although the brand voice is designed around adult men.","m":4},{"t":"Is the Health MOT a medical assessment?","u":"/faq/is-health-mot-medical","k":"FAQ","p":"FAQs","d":"No. It is an informational self-check and does not diagnose a condition or establish treatment eligibility.","m":4},{"t":"Can weight loss lower blood pressure?","u":"/faq/weight-loss-lower-bp","k":"FAQ","p":"FAQs","d":"For many people carrying excess weight, weight loss can contribute to lower blood pressure alongside other measures.","m":4},{"t":"Is BMI accurate for men?","u":"/faq/is-bmi-accurate-for-men","k":"FAQ","p":"FAQs","d":"BMI is a useful screening measure, but it does not distinguish muscle from fat and does not directly show where body fat is stored.","m":4},{"t":"Do I need breakfast to lose weight?","u":"/faq/need-breakfast-weight-loss","k":"FAQ","p":"FAQs","d":"No. The best eating pattern is one that supports good nutrition and can be maintained.","m":4},{"t":"Does alcohol cause belly fat?","u":"/faq/does-alcohol-cause-belly-fat","k":"FAQ","p":"FAQs","d":"Alcohol provides calories and can influence appetite, food choices and sleep.","m":4},{"t":"Why does my weight change day to day?","u":"/faq/daily-weight-fluctuation","k":"FAQ","p":"FAQs","d":"Water, salt, carbohydrate intake, bowel contents, exercise, alcohol and timing can all move scale weight.","m":4},{"t":"Can I exercise on GLP-1 treatment?","u":"/faq/exercise-on-glp1","k":"FAQ","p":"FAQs","d":"Many people can remain active, but exercise should match health, fitness and treatment effects.","m":4},{"t":"Does belly fat increase health risk?","u":"/faq/does-belly-fat-increase-risk","k":"FAQ","p":"FAQs","d":"Higher levels of central or visceral fat are associated with increased cardiometabolic risk.","m":4},{"t":"Does Shift Some Timber prescribe medication yet?","u":"/faq/does-sst-prescribe","k":"FAQ","p":"FAQs","d":"No. Shift Some Timber is an independent information and support service and does not prescribe or supply medication.","m":4},{"t":"Can weight affect sleep apnoea?","u":"/faq/weight-sleep-apnoea","k":"FAQ","p":"FAQs","d":"Yes. Excess weight is an important risk factor for obstructive sleep apnoea, although it is not the only cause.","m":4},{"t":"Can losing weight reduce diabetes risk?","u":"/faq/weight-loss-diabetes-risk","k":"FAQ","p":"FAQs","d":"For people at increased risk of type 2 diabetes, weight loss and lifestyle change can reduce risk.","m":4},{"t":"What is a Founding Shifter?","u":"/faq/what-is-founding-shifter","k":"FAQ","p":"FAQs","d":"Someone who joins Shift and wants useful updates.","m":4},{"t":"Will GLP-1 treatment make me lose muscle?","u":"/faq/glp1-muscle-loss","k":"FAQ","p":"FAQs","d":"Weight loss can include some lean tissue. Adequate nutrition and resistance exercise can help support muscle and strength.","m":4},{"t":"Will my Health MOT data be saved?","u":"/faq/is-health-mot-saved","k":"FAQ","p":"FAQs","d":"Public Health MOT answers are not saved to a member health history unless you use an account-backed feature that clearly tells you it will save them.","m":4},{"t":"Is GLP-1 treatment only for women?","u":"/faq/is-glp1-only-for-women","k":"FAQ","p":"FAQs","d":"No. GLP-1 and related prescription weight-management medicines are not women's treatments.","m":4},{"t":"Can stress make me gain weight?","u":"/faq/can-stress-cause-weight-gain","k":"FAQ","p":"FAQs","d":"Stress can contribute indirectly by affecting eating, alcohol, sleep and activity.","m":4},{"t":"Can men take Wegovy?","u":"/faq/can-men-take-wegovy","k":"FAQ","p":"FAQs","d":"Yes. Wegovy (semaglutide) can be prescribed to eligible adult men following appropriate clinical assessment.","m":4},{"t":"Can I eat takeaways and still lose weight?","u":"/faq/takeaways-and-weight-loss","k":"FAQ","p":"FAQs","d":"Yes. Takeaways can fit into a weight-management plan depending on frequency, portions, sides and drinks.","m":4},{"t":"What is a weight-loss plateau?","u":"/faq/what-is-weight-loss-plateau","k":"FAQ","p":"FAQs","d":"A plateau is a period when body weight changes very little despite continued efforts.","m":4},{"t":"Can weight loss improve cholesterol?","u":"/faq/weight-loss-cholesterol","k":"FAQ","p":"FAQs","d":"Weight management, diet and activity can improve parts of the lipid profile for some people.","m":4},{"t":"What is The Timber Mill?","u":"/faq/what-is-timber-mill","k":"FAQ","p":"FAQs","d":"The Shift Some Timber shop for clothing, useful gear, guides and future member rewards.","m":4},{"t":"What happens if I stop GLP-1 treatment?","u":"/faq/what-happens-stopping-glp1","k":"FAQ","p":"FAQs","d":"Appetite and weight may change after stopping treatment, so maintenance planning and follow-up matter.","m":4},{"t":"Can I drink alcohol on GLP-1 medication?","u":"/faq/alcohol-on-glp1","k":"FAQ","p":"FAQs","d":"There is no one answer for everybody. Alcohol may worsen dehydration or gastrointestinal symptoms for some people, so discuss your situation with your prescriber.","m":4},{"t":"Is Mounjaro the same as Ozempic?","u":"/faq/mounjaro-vs-ozempic","k":"FAQ","p":"FAQs","d":"No. Mounjaro contains tirzepatide; Ozempic contains semaglutide.","m":4},{"t":"The Men's Health MOT Guide","u":"/guides/mens-health-mot-guide","k":"Ultimate Guide","p":"Guides","d":"A broader look at the measurements and habits that can help build a more useful picture than weight alone.","m":12},{"t":"The Complete Men's Weight Management Guide","u":"/guides/mens-weight-management-guide","k":"Ultimate Guide","p":"Guides","d":"A practical UK guide to weight, waist, calories, food, activity, sleep, habits and treatment options for men.","m":12},{"t":"The Complete GLP-1 Weight Management Guide for Men","u":"/guides/glp1-guide","k":"Ultimate Guide","p":"Guides","d":"A plain-English UK guide to GLP-1 and related weight-management medicines, including Mounjaro and Wegovy.","m":12},{"t":"The Blood Pressure Guide for Men","u":"/guides/blood-pressure-guide","k":"Ultimate Guide","p":"Guides","d":"What blood pressure numbers mean, what affects them and when to get proper medical advice.","m":12},{"t":"The Complete Walking Guide for Men","u":"/guides/walking-guide","k":"Ultimate Guide","p":"Guides","d":"How to use walking to improve fitness, health and weight management without turning life into boot camp.","m":12},{"t":"The Practical Men's Nutrition Guide","u":"/guides/nutrition-guide","k":"Ultimate Guide","p":"Guides","d":"A no-nonsense guide to protein, calories, portions, takeaways, alcohol and eating well in real life.","m":12},{"t":"Daily Calorie Calculator","u":"/tools/calories","k":"Calculator","p":"Tools","d":"Estimate maintenance calories using a recognised equation.","m":2},{"t":"Protein Calculator","u":"/tools/protein","k":"Calculator","p":"Tools","d":"A practical protein planning estimate.","m":2},{"t":"Walking Calorie Calculator","u":"/tools/walking","k":"Calculator","p":"Tools","d":"Estimate energy used during a walk.","m":2},{"t":"Healthy Weight Range","u":"/tools/healthy-weight","k":"Calculator","p":"Tools","d":"See the standard BMI-based reference range for your height.","m":2},{"t":"Step Converter","u":"/tools/steps","k":"Calculator","p":"Tools","d":"Convert steps to approximate distance.","m":2},{"t":"Sleep Calculator","u":"/tools/sleep","k":"Calculator","p":"Tools","d":"Work backwards to a target bedtime.","m":2},{"t":"BMI Calculator","u":"/tools/bmi","k":"Calculator","p":"Tools","d":"Calculate BMI using UK/imperial or metric measurements.","m":2},{"t":"Alcohol Unit Calculator","u":"/tools/alcohol","k":"Calculator","p":"Tools","d":"Estimate UK alcohol units.","m":2},{"t":"Waist-to-Height Ratio","u":"/tools/waist-height","k":"Calculator","p":"Tools","d":"Compare your waist measurement with your height.","m":2},{"t":"Water Calculator","u":"/tools/water","k":"Calculator","p":"Tools","d":"A rough daily fluid starting point.","m":2},{"t":"UK Men's Weight & Waist Statistics: 2024 Health Survey","u":"/research/uk-mens-weight-health-statistics","k":"Research","p":"Research","d":"Official 2024 men's weight and waist data summary.","m":8}];
+
+const menu=document.querySelector('.menu-btn'),nav=document.querySelector('.navlinks');
+if(menu&&nav){menu.onclick=()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)}}
+document.querySelectorAll('[data-founding-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const fd=new FormData(form);const subject=encodeURIComponent('New Founding Shifter - '+(fd.get('firstName')||''));const body=encodeURIComponent(`New Founding Shifter\n\nFirst name: ${fd.get('firstName')||''}\nEmail: ${fd.get('email')||''}\nMobile: ${fd.get('mobile')||''}\nMarketing consent: ${fd.get('consent')?'Yes':'No'}\nSource: ${location.pathname}`);location.href='mailto:hello@shiftsometimber.co.uk?subject='+subject+'&body='+body;}));
+const search=document.querySelector('[data-search]');if(search)search.addEventListener('input',()=>{const q=search.value.toLowerCase();document.querySelectorAll('[data-item]').forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q)?'block':'none')});
+
+function resultHTML(official, human, links){
+ return `<div class="official"><p class="eyebrow">Your useful number</p>${official}<p class="result-caveat"><strong>Useful estimate—not a diagnosis or verdict.</strong></p></div>
+ <div class="sst-view"><p class="eyebrow">What this means for real life</p><h3>Here’s the bit that matters.</h3><p>${human}</p></div>
+ <div class="whats-next"><p class="eyebrow">Choose what happens next</p><h3>Turn the result into something useful.</h3><div class="nextlinks">${links.slice(0,2).map(x=>`<a href="${x[1]}">${x[0]} →</a>`).join('')}</div><a class="sst-result-cta" href="/start-here">Build my Shift plan <span aria-hidden="true">→</span></a></div>`;
+}
+function show(id,html){const e=document.getElementById(id);if(e){e.innerHTML=html;e.classList.add('show')}}
+
+function populate(id,min,max,step=1,suffix=''){const s=document.getElementById(id);if(!s)return;for(let v=min;v<=max+1e-9;v+=step){let o=document.createElement('option');let val=Math.round(v*10)/10;o.value=val;o.textContent=val+suffix;s.appendChild(o)}}
+document.addEventListener('DOMContentLoaded',()=>{
+ ['heightCm','bmiHeightCm','calHeightCm','whHeightCm','rangeHeightCm'].forEach(id=>populate(id,140,220,1,' cm'));
+ ['heightFt','bmiHeightFt','calHeightFt','whHeightFt','rangeHeightFt'].forEach(id=>populate(id,4,7,1,' ft'));
+ ['heightIn','bmiHeightIn','calHeightIn','whHeightIn','rangeHeightIn'].forEach(id=>populate(id,0,11,1,' in'));
+ ['weightKg','bmiWeightKg','calWeightKg','proteinWeightKg','walkWeightKg','waterWeightKg'].forEach(id=>populate(id,45,200,1,' kg'));
+ ['weightSt','bmiWeightSt','calWeightSt','proteinWeightSt','walkWeightSt','waterWeightSt'].forEach(id=>populate(id,7,30,1,' st'));
+ ['weightLb','bmiWeightLb','calWeightLb','proteinWeightLb','walkWeightLb','waterWeightLb'].forEach(id=>populate(id,0,13,1,' lb'));
+ populate('waistCm',60,180,1,' cm');populate('waistIn',24,70,1,' in');
+ populate('age',18,90,1,'');
+});
+
+function kg(st,lb){return (+st*14 + +lb)*0.45359237}
+function cm(ft,inch){return (+ft*12 + +inch)*2.54}
+function setUnit(container,unit){
+ container.querySelectorAll('.unit-tab').forEach(x=>x.classList.toggle('active',x.dataset.unit===unit));
+ container.querySelectorAll('[data-unit-fields]').forEach(x=>x.style.display=x.dataset.unitFields===unit?'grid':'none');
+}
+document.querySelectorAll('[data-unit-box]').forEach(box=>box.querySelectorAll('.unit-tab').forEach(b=>b.onclick=()=>setUnit(box,b.dataset.unit)));
+
+const bmi=document.getElementById('bmiForm');if(bmi)bmi.onsubmit=e=>{e.preventDefault();let metric=bmi.querySelector('.unit-tab.active').dataset.unit==='metric';let h=metric?+bmi.bmiHeightCm.value:cm(bmi.bmiHeightFt.value,bmi.bmiHeightIn.value);let w=metric?+bmi.bmiWeightKg.value:kg(bmi.bmiWeightSt.value,bmi.bmiWeightLb.value);let v=w/((h/100)**2);let band=v<18.5?'below the standard reference range':v<25?'within the standard healthy reference range':v<30?'within the standard overweight range':v<35?'within obesity class I':v<40?'within obesity class II':'within obesity class III';show('bmiR',resultHTML(`<h2>BMI: ${v.toFixed(1)}</h2><p class="wave2-inline-limit"><strong>Screening reference only:</strong> not a diagnosis, NHS-access decision or treatment-eligibility result.</p><p>Using standard adult BMI classifications, this falls ${band}.</p>`,`BMI is one clue, not your identity. It cannot see your muscle mass, your journey so far, how well you sleep, whether your blood pressure has improved, or whether you can finally kick a ball around without feeling knackered. Use it as a signpost, not a verdict.`,[['Read: BMI Explained for Men','/articles/bmi-men'],['Take the wider Health MOT','/health-mot']]));}
+
+const cal=document.getElementById('calForm');if(cal)cal.onsubmit=e=>{e.preventDefault();let metric=cal.querySelector('.unit-tab.active').dataset.unit==='metric';let h=metric?+cal.calHeightCm.value:cm(cal.calHeightFt.value,cal.calHeightIn.value),w=metric?+cal.calWeightKg.value:kg(cal.calWeightSt.value,cal.calWeightLb.value),age=+cal.calAge.value,a=+cal.activity.value;let t=(10*w+6.25*h-5*age+5)*a;show('calR',resultHTML(`<h2>Approx. ${Math.round(t)} kcal/day</h2><p class="wave2-inline-limit"><strong>Planning estimate only:</strong> not a prescribed intake, guaranteed deficit or treatment target.</p><p>Estimated maintenance energy using the Mifflin-St Jeor equation for adult men and your chosen activity level.</p>`,`This is a starting estimate, not a daily exam you can pass or fail. Real energy needs move around with activity, body composition, illness, sleep and plenty else. Aim for useful consistency rather than obsessing over one number.`,[['Read: Calories Without the Nonsense','/articles/calories-explained-men'],['Read: Healthy Habits That Last','/articles/healthy-habits-that-last-men']]));}
+
+const prot=document.getElementById('proteinForm');if(prot)prot.onsubmit=e=>{e.preventDefault();let metric=prot.querySelector('.unit-tab.active').dataset.unit==='metric';let w=metric?+prot.proteinWeightKg.value:kg(prot.proteinWeightSt.value,prot.proteinWeightLb.value),mult=+prot.level.value,g=w*mult;show('proteinR',resultHTML(`<h2>Approx. ${Math.round(g)} g protein/day</h2><p class="wave2-inline-limit"><strong>Planning estimate only:</strong> not an individual clinical prescription; health and body-weight context can change what is appropriate.</p><p>Based on the selected grams-per-kilogram planning level.</p>`,`Protein can help with fullness and maintaining muscle, but you do not need to turn every meal into a bodybuilding advert. Build a sensible pattern you can actually live with.`,[['Read: Protein for Men','/articles/protein-for-men-weight-management'],['Read: Easy Air Fryer Meals','/articles/air-fryer-meals-men']]));}
+
+const wh=document.getElementById('whForm');if(wh)wh.onsubmit=e=>{e.preventDefault();let metric=wh.querySelector('.unit-tab.active').dataset.unit==='metric';let h=metric?+wh.whHeightCm.value:cm(wh.whHeightFt.value,wh.whHeightIn.value);let waist=metric?+wh.waistCm.value:(+wh.waistIn.value*2.54);let r=waist/h;let band=r<0.4?'below the standard reference band':r<0.5?'healthy central adiposity':r<0.6?'increased central adiposity':'high central adiposity';show('whR',resultHTML(`<h2>Waist-to-height ratio: ${r.toFixed(2)}</h2><p class="wave2-inline-limit"><strong>Risk signpost only:</strong> not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.</p><p>Using NICE adult reference bands, this indicates ${band}. A ratio of 0.50 is in the increased band.</p>`,`This measure can add useful context to BMI, but it is still only one snapshot. A tape measure does not know whether you have already taken five inches off your waist or how much fitter you feel than six months ago.`,[["Read: Waist Size and Men\'s Health","/articles/waist-size-men"],["Read: Why Men Carry Weight Around the Middle","/articles/men-belly-fat"]]));}
+
+const range=document.getElementById('rangeForm');if(range)range.onsubmit=e=>{e.preventDefault();let metric=range.querySelector('.unit-tab.active').dataset.unit==='metric';let h=metric?+range.rangeHeightCm.value:cm(range.rangeHeightFt.value,range.rangeHeightIn.value);let m=h/100,lo=18.5*m*m,hi=24.9*m*m;let loLb=lo/0.45359237,hiLb=hi/0.45359237;let fmt=x=>`${Math.floor(x/14)} st ${Math.round(x%14)} lb`;show('rangeR',resultHTML(`<h2>${lo.toFixed(1)}–${hi.toFixed(1)} kg</h2><p>Approximately ${fmt(loLb)}–${fmt(hiLb)}, corresponding to BMI 18.5–24.9 for your height.</p>`,`“Healthy weight” is a reference range, not a finish line carved in stone. Health is wider than body mass, and the best goal is one that makes sense for your body, your history and your overall wellbeing.`,[['Read: BMI Explained for Men','/articles/bmi-men'],['Take the Health MOT','/health-mot']]));}
+
+const water=document.getElementById('waterForm');if(water)water.onsubmit=e=>{e.preventDefault();let metric=water.querySelector('.unit-tab.active').dataset.unit==='metric';let w=metric?+water.waterWeightKg.value:kg(water.waterWeightSt.value,water.waterWeightLb.value),litres=w*30/1000,pints=litres/0.568261;show('waterR',resultHTML(`<h2>Rough starting point: ${litres.toFixed(1)} L (${pints.toFixed(1)} UK pints)</h2><p>Illustrative estimate using 30 ml/kg.</p>`,`Hydration is not a competition. Weather, exercise, health conditions, food and medication can all change your needs. Aim to build a sensible routine rather than forcing litres because a calculator told you to.`,[['Read: Healthy Habits That Last','/articles/healthy-habits-that-last-men'],['Take the Health MOT','/health-mot']]));}
+
+const walk=document.getElementById('walkForm');if(walk)walk.onsubmit=e=>{e.preventDefault();let metric=walk.querySelector('.unit-tab.active').dataset.unit==='metric';let w=metric?+walk.walkWeightKg.value:kg(walk.walkWeightSt.value,walk.walkWeightLb.value),mins=+walk.minutes.value,met=+walk.pace.value,kcal=met*3.5*w/200*mins;show('walkR',resultHTML(`<h2>Approx. ${Math.round(kcal)} kcal</h2><p>Estimated using standard MET values for your selected walking pace.</p>`,`The calories are the least interesting bit. If walking gets you moving more, clears your head, improves your fitness or lets you keep up with the kids, those wins count too.`,[['Read: Can Walking Help Men Lose Weight?','/articles/walking-for-weight-management-men'],['Try the Beginner Walking Guide','/articles/beginner-walking-plan-men']]));}
+
+const feel=document.getElementById('feelForm');if(feel)feel.onsubmit=e=>{
+ e.preventDefault();
+ const fd=new FormData(feel);
+ const areas={
+  energy:{label:'Energy',value:+fd.get('energy')||0,action:'Get outside for ten minutes today. No pace target and no heroic workout — just give your body and head a change of scene.',link:'/articles/beginner-walking-plan-men',linkText:'Start with a ten-minute walk'},
+  confidence:{label:'Confidence',value:+fd.get('confidence')||0,action:'Choose one small promise you can keep today. Finishing something achievable builds more confidence than planning a perfect new life.',link:'/articles/confidence-and-weight-men',linkText:'Rebuild confidence without the nonsense'},
+  motivation:{label:'Motivation',value:+fd.get('motivation')||0,action:'Make the next step too easy to argue with: one decent meal, your shoes by the door, or tomorrow’s breakfast sorted tonight.',link:'/articles/motivation-vs-routine-men',linkText:'Build a routine that survives real life'},
+  stress:{label:'Stress',value:+fd.get('stress')||0,action:'Take fifteen minutes with no job attached to it. If your head is still noisy, tell one person you trust that the week feels heavy.',link:'/mental-health/stress-overwhelm',linkText:'Get practical help with stress'},
+  sleep:{label:'Sleep',value:+fd.get('sleep')||0,action:'Protect tonight’s landing: pick a realistic switch-off time and move one thing that normally keeps you awake out of the way.',link:'/tools/sleep',linkText:'Set a realistic sleep target'}
+ };
+ const list=Object.values(areas),score=list.reduce((sum,item)=>sum+item.value,0),priority=list.reduce((a,b)=>b.value<a.value?b:a);
+ const band=score<=8?{
+  eyebrow:'A heavy week',headline:'Let’s make today lighter — not perfect.',summary:'Several parts of the week look like they are taking more out of you than they are giving back. That is a signal to reduce the load and get some support, not another reason to give yourself grief.',cta:'Open Good to Talk',href:'/good-to-talk'
+ }:score<=14?{
+  eyebrow:'Some pressure showing',headline:'You don’t need a life overhaul. You need one useful win.',summary:`You are holding things together, but ${priority.label.toLowerCase()} looks like the bit costing you most at the moment. Start there and let one manageable improvement do some work.`,cta:'Build my wider starting point',href:'/start-here'
+ }:{
+  eyebrow:'A decent base',headline:'There’s something working here. Protect it.',summary:`Most of your answers look steady. ${priority.label} is the area with the most room to improve, so use that as your next edge rather than inventing a crisis or chasing perfection.`,cta:'Turn this into a proper plan',href:'/programme'
+ };
+ const status=value=>value<=1?'Needs attention':value===2?'A bit stretched':value===3?'Holding steady':'Going well';
+ const snapshot=list.map(item=>`<div class="sst-feel-signal sst-feel-signal--${item.value}"><span>${item.label}</span><strong>${status(item.value)}</strong><i aria-hidden="true"><b style="width:${item.value*25}%"></b></i></div>`).join('');
+ show('feelR',`<div class="sst-feel-result-head"><p class="eyebrow">${band.eyebrow}</p><h2>${band.headline}</h2><p>${band.summary}</p></div>
+  <div class="sst-feel-result-grid"><div class="sst-feel-priority"><p class="eyebrow">Your best first move</p><h3>Start with ${priority.label.toLowerCase()}.</h3><p>${priority.action}</p><a href="${priority.link}">${priority.linkText} →</a></div><div class="sst-feel-snapshot"><p class="eyebrow">Your week at a glance</p>${snapshot}</div></div>
+  <div class="sst-feel-result-actions"><a class="btn btn-primary" href="${band.href}">${band.cta} →</a><a class="btn" href="/how-are-you-feeling">Check in again</a></div>
+  ${score<=8?`<div class="sst-feel-support"><strong>Don’t white-knuckle a properly difficult week.</strong><p>This is not a diagnosis. If you are struggling, Good to Talk gives you practical routes to support. If you or someone else is in immediate danger, call 999 or go to A&amp;E.</p><a href="/mental-health/urgent-mental-health-help">See urgent support options →</a></div>`:''}`);
+ document.body.classList.add('sst-feel-has-result');
+}
+
+// V2.11A Knowledge Experience
+(function(){
+ const cards=[...document.querySelectorAll('[data-kitem]')];
+ if(!cards.length) return;
+ const search=document.getElementById('knowledgeSearch');
+ const type=document.getElementById('knowledgeType');
+ const sort=document.getElementById('knowledgeSort');
+ const count=document.getElementById('resultCount');
+ let topic='All';
+
+ function apply(){
+   const q=(search?.value||'').toLowerCase().trim();
+   const typ=type?.value||'All';
+   let shown=cards.filter(c=>{
+     const okQ=!q || c.dataset.search.includes(q);
+     const okType=typ==='All'||c.dataset.type===typ;
+     const okTopic=topic==='All'||c.dataset.topic===topic;
+     return okQ&&okType&&okTopic;
+   });
+   cards.forEach(c=>c.style.display='none');
+   const mode=sort?.value||'default';
+   shown.sort((a,b)=>{
+     if(mode==='az') return a.dataset.title.localeCompare(b.dataset.title);
+     if(mode==='za') return b.dataset.title.localeCompare(a.dataset.title);
+     return (+a.dataset.index)-(+b.dataset.index);
+   });
+   const grid=document.getElementById('knowledgeResults');
+   shown.forEach(c=>{c.style.display='block';grid.appendChild(c)});
+   if(count) count.textContent=`Showing ${shown.length} of ${cards.length} resources`;
+ }
+ search&&search.addEventListener('input',apply); type&&type.addEventListener('change',apply); sort&&sort.addEventListener('change',apply);
+ document.querySelectorAll('[data-topic-filter]').forEach(b=>b.addEventListener('click',()=>{
+   document.querySelectorAll('[data-topic-filter]').forEach(x=>x.classList.remove('active'));
+   b.classList.add('active');topic=b.dataset.topicFilter;apply();
+ }));
+ const inspire=document.getElementById('inspireBtn');
+ inspire&&inspire.addEventListener('click',()=>{
+   const available=cards.filter(c=>c.style.display!=='none');
+   const pick=(available.length?available:cards)[Math.floor(Math.random()*(available.length||cards.length))];
+   document.getElementById('inspireResult').innerHTML=`<strong>${pick.dataset.title}</strong><br><a href="${pick.querySelector('a').getAttribute('href')}">Open this one →</a>`;
+ });
+ const aiBtn=document.getElementById('aiKnowledgeBtn'), aiQ=document.getElementById('aiKnowledgeQuery'), aiA=document.getElementById('aiKnowledgeAnswer');
+ aiBtn&&aiBtn.addEventListener('click',()=>{
+   const q=(aiQ.value||'').toLowerCase().trim();
+   if(!q){aiA.textContent='Tell me roughly what is on your mind and I’ll point you somewhere useful.';aiA.classList.add('show');return}
+   let terms=[];
+   if(/mounjaro|wegovy|glp|ozempic|injection|side effect/.test(q)) terms=['glp','mounjaro','wegovy','protein'];
+   else if(/knee|joint|walk|walking|football|fit|exercise/.test(q)) terms=['walking','knee','fitness'];
+   else if(/blood pressure|heart|cholesterol|diabetes|health/.test(q)) terms=['blood','heart','health','waist'];
+   else if(/belly|weight|lose|fat|bmi|stone/.test(q)) terms=['weight','belly','bmi'];
+   else if(/stress|anxiety|confidence|motivation|fed up|feel/.test(q)) terms=['confidence','stress','motivation','feeling'];
+   else if(/food|protein|meal|takeaway|calorie|nutrition/.test(q)) terms=['protein','calorie','nutrition','meal'];
+   else terms=q.split(/\s+/).filter(x=>x.length>2);
+   const scored=cards.map(c=>({c,score:terms.reduce((n,t)=>n+(c.dataset.search.includes(t)?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,4);
+   if(scored.length){
+      aiA.innerHTML=`<strong>Based on what you typed, I'd start here:</strong><div class="nextlinks">${scored.map(x=>`<a href="${x.c.querySelector('a').getAttribute('href')}">${x.c.dataset.title} →</a>`).join('')}</div><p style="margin-top:12px;font-size:12px">This is a Knowledge Hub finder, not medical advice or a clinical AI assessment.</p>`;
+   }else{
+      aiA.innerHTML=`I couldn't find a strong match. Try the <a href="/health-mot"><strong>Health MOT</strong></a> or browse the Knowledge Hub below.`;
+   }
+   aiA.classList.add('show');
+ });
+ apply();
+})();
+
+// V2.11B commercial enquiry forms
+document.querySelectorAll('[data-commercial-form]').forEach(form=>{
+ form.addEventListener('submit',e=>{
+   e.preventDefault();
+   if(!form.reportValidity()) return;
+   const fd=new FormData(form);
+   const subject=encodeURIComponent(form.dataset.subject||'Website enquiry');
+   let lines=[];
+   for(const [k,v] of fd.entries()){ if(v) lines.push(`${k}: ${v}`); }
+   const body=encodeURIComponent(lines.join('\n'));
+   location.href=`mailto:hello@shiftsometimber.co.uk?subject=${subject}&body=${body}`;
+ });
+});
+
+// V2.12A Member Platform
+(function(){
+ const key='sst_member_demo_v212a';
+ const load=()=>{try{return JSON.parse(localStorage.getItem(key)||'{}')}catch(e){return{}}};
+ const save=(d)=>localStorage.setItem(key,JSON.stringify(d));
+ const now=()=>new Date().toLocaleString('en-GB');
+
+ // Demo login
+ const dl=document.getElementById('demoLogin');
+ if(dl) dl.addEventListener('submit',e=>{e.preventDefault(); location.href='/member/dashboard';});
+
+ // Focus tasks
+ document.querySelectorAll('[data-focus]').forEach((el,i)=>{
+   const d=load(); el.checked=!!(d.focus&&d.focus[i]);
+   el.addEventListener('change',()=>{const x=load();x.focus=x.focus||{};x.focus[i]=el.checked;save(x);});
+ });
+
+ // Dashboard
+ const dd=load();
+ const dashWeight=document.getElementById('dashWeight');
+ if(dashWeight && dd.trackers?.weight?.length) dashWeight.textContent=dd.trackers.weight.slice(-1)[0].value;
+ const dashMood=document.getElementById('dashMood');
+ if(dashMood && dd.moods?.length) dashMood.textContent=`Last check-in: ${dd.moods.slice(-1)[0].mood}`;
+
+ // Trackers
+ document.querySelectorAll('[data-save-tracker]').forEach(btn=>btn.addEventListener('click',()=>{
+   const type=btn.dataset.saveTracker, d=load(); d.trackers=d.trackers||{}; d.trackers[type]=d.trackers[type]||[];
+   let value='';
+   if(type==='weight') value=(document.getElementById('weightValue')?.value||'')+' '+(document.getElementById('weightUnit')?.value||'');
+   if(type==='waist') value=document.getElementById('waistValue')?.value||'';
+   if(type==='bp') value=`${document.getElementById('bpSys')?.value||''}/${document.getElementById('bpDia')?.value||''}`;
+   if(type==='water') value=(document.getElementById('waterValue')?.value||'')+' L';
+   if(type==='walk') value=(document.getElementById('walkValue')?.value||'')+' mins';
+   if(type==='protein') value=(document.getElementById('proteinValue')?.value||'')+' g';
+   if(!value.trim()) return;
+   d.trackers[type].push({value,date:now()}); save(d); renderTrackerHistory(); alert('Saved on this device.');
+ }));
+ function renderTrackerHistory(){
+   const box=document.getElementById('trackerHistory'); if(!box) return; const d=load(); let rows=[];
+   Object.entries(d.trackers||{}).forEach(([type,arr])=>arr.forEach(x=>rows.push({type,...x})));
+   rows=rows.slice(-20).reverse();
+   box.innerHTML=rows.length?rows.map(x=>`<div class="saved-item"><strong>${x.type}</strong> — ${x.value}<div class="smallprint">${x.date}</div></div>`).join(''):'<p>No entries yet.</p>';
+ } renderTrackerHistory();
+
+ // Mood — canonical account-backed check-in. No localStorage write.
+ let selectedMood='';
+ document.querySelectorAll('[data-mood]').forEach(b=>b.addEventListener('click',()=>{
+   document.querySelectorAll('[data-mood]').forEach(x=>x.classList.remove('active')); b.classList.add('active'); selectedMood=b.dataset.mood;
+ }));
+ const escMood=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const checkRows=payload=>Array.isArray(payload)?payload:(payload?.check_ins||payload?.checkIns||payload?.items||payload?.entries||[]);
+ const checkTime=x=>x?.created_at||x?.createdAt||x?.checked_at||x?.checkedAt||x?.at||x?.date||'';
+ const checkMood=x=>x?.mood||x?.feeling||x?.status||x?.check_in||x?.checkIn||'';
+ const checkNote=x=>x?.note||x?.notes||x?.comment||'';
+ async function renderMood(){
+   const box=document.getElementById('moodHistory');if(!box)return;
+   if(!window.SST_API?.getCheckIns){box.innerHTML='<p>Check-in history is temporarily unavailable.</p>';return;}
+   try{
+     const rows=checkRows(await SST_API.getCheckIns()).slice().sort((a,b)=>Date.parse(checkTime(b)||0)-Date.parse(checkTime(a)||0)).slice(0,14);
+     box.innerHTML=rows.length?rows.map(x=>`<div class="saved-item"><strong>${escMood(checkMood(x))}</strong><div>${escMood(checkNote(x))}</div><div class="smallprint">${escMood(checkTime(x)?new Date(checkTime(x)).toLocaleString('en-GB'):'')}</div></div>`).join(''):'<p>No check-ins yet.</p>';
+   }catch(e){box.innerHTML='<p>Could not load check-ins just now.</p>';}
+ }
+ const sm=document.getElementById('saveMood');
+ if(sm) sm.addEventListener('click',async()=>{
+   if(!selectedMood){document.dispatchEvent(new CustomEvent('shift:mood-required'));return;}
+   const note=document.getElementById('moodNote')?.value||'';
+   if(!window.SST_API?.saveCheckIn){sm.textContent='CHECK-IN UNAVAILABLE — TRY AGAIN';return;}
+   sm.disabled=true;sm.textContent='SAVING…';
+   try{
+     await SST_API.saveCheckIn({mood:selectedMood,note,checkedAt:new Date().toISOString(),source:'member-check-in'});
+     await renderMood();
+     document.dispatchEvent(new CustomEvent('shift:mood-saved',{detail:{mood:selectedMood,note}}));
+   }catch(e){sm.textContent=e?.status===401?'SIGN IN TO SAVE':'COULD NOT SAVE — TRY AGAIN';}
+   finally{sm.disabled=false;}
+ });
+ renderMood();
+
+ // My Why
+ const wf=document.getElementById('whyForm');
+ function renderWhy(){const d=load();const w=document.getElementById('whyDisplay'),p=document.getElementById('promiseDisplay');if(w&&d.why)w.textContent=d.why;if(p&&d.promise)p.textContent=d.promise;}
+ if(wf) wf.addEventListener('submit',e=>{e.preventDefault();const d=load();d.why=document.getElementById('whyText').value;d.promise=document.getElementById('promiseText').value;save(d);renderWhy();});
+ renderWhy();
+
+ // Health MOT measurement dropdowns (V3.2G)
+ function addOptions(id,start,end,selected,suffix){
+   const el=document.getElementById(id); if(!el) return;
+   el.innerHTML='';
+   for(let n=start;n<=end;n++){
+     const o=document.createElement('option');o.value=String(n);o.textContent=suffix?`${n} ${suffix}`:String(n);if(n===selected)o.selected=true;el.appendChild(o);
+   }
+ }
+ function metricNumber(v){const n=Number(v);return Number.isFinite(n)?n:0;}
+ addOptions('motHeightFeet',4,7,5,'ft'); addOptions('motHeightInches',0,11,9,'in'); addOptions('motHeightCm',120,230,175,'cm');
+ addOptions('motWeightStoneValue',6,35,14,'st'); addOptions('motWeightPounds',0,13,4,'lb'); addOptions('motWeightKg',35,300,90,'kg');
+ addOptions('motWaistIn',20,100,40,'in'); addOptions('motWaistCm',50,250,102,'cm');
+ function syncMotMeasurements(){
+   const hu=document.getElementById('motHeightUnit')?.value||'imperial';
+   const wu=document.getElementById('motWeightUnit')?.value||'stone';
+   const wau=document.getElementById('motWaistUnit')?.value||'in';
+   const hi=document.getElementById('motHeightImperial'), hm=document.getElementById('motHeightMetric');
+   const ws=document.getElementById('motWeightStone'), wk=document.getElementById('motWeightKgWrap');
+   const wi=document.getElementById('motWaistInWrap'), wc=document.getElementById('motWaistCmWrap');
+   if(hi)hi.hidden=hu!=='imperial'; if(hm)hm.hidden=hu==='imperial';
+   if(ws)ws.hidden=wu!=='stone'; if(wk)wk.hidden=wu==='stone';
+   if(wi)wi.hidden=wau!=='in'; if(wc)wc.hidden=wau==='in';
+   const h=hu==='imperial'?`${document.getElementById('motHeightFeet')?.value||5} ft ${document.getElementById('motHeightInches')?.value||9} in`:`${document.getElementById('motHeightCm')?.value||175} cm`;
+   const w=wu==='stone'?`${document.getElementById('motWeightStoneValue')?.value||14} st ${document.getElementById('motWeightPounds')?.value||4} lb`:`${document.getElementById('motWeightKg')?.value||90} kg`;
+   const waist=wau==='in'?`${document.getElementById('motWaistIn')?.value||40} in`:`${document.getElementById('motWaistCm')?.value||102} cm`;
+   const hh=document.getElementById('motHeight'), ww=document.getElementById('motWeight'), wa=document.getElementById('motWaist');
+   if(hh)hh.value=h;if(ww)ww.value=w;if(wa)wa.value=waist;
+ }
+ ['motHeightUnit','motWeightUnit','motWaistUnit','motHeightFeet','motHeightInches','motHeightCm','motWeightStoneValue','motWeightPounds','motWeightKg','motWaistIn','motWaistCm'].forEach(id=>document.getElementById(id)?.addEventListener('change',syncMotMeasurements));
+ syncMotMeasurements();
+
+ // Health MOT steps
+ const panels=[...document.querySelectorAll('.mot-panel')], steps=[...document.querySelectorAll('.mot-step')]; let step=0;
+ function motShow(){panels.forEach((p,i)=>p.classList.toggle('active',i===step));steps.forEach((p,i)=>p.classList.toggle('active',i===step));const prev=document.getElementById('motPrev'),next=document.getElementById('motNext'),finish=document.getElementById('motFinish');if(prev)prev.style.visibility=step===0?'hidden':'visible';if(next)next.style.display=step===panels.length-1?'none':'inline-block';if(finish)finish.style.display=step===panels.length-1?'inline-block':'none';}
+ document.getElementById('motNext')?.addEventListener('click',()=>{if(step<panels.length-1){step++;motShow();}});
+ document.getElementById('motPrev')?.addEventListener('click',()=>{if(step>0){step--;motShow();}});
+ const mf=document.getElementById('motForm');
+ if(mf) mf.addEventListener('submit',e=>{e.preventDefault();const d=load();d.mot={
+   height:document.getElementById('motHeight')?.value||'',weight:document.getElementById('motWeight')?.value||'',waist:document.getElementById('motWaist')?.value||'',
+   heightUnit:document.getElementById('motHeightUnit')?.value||'imperial',weightUnit:document.getElementById('motWeightUnit')?.value||'stone',waistUnit:document.getElementById('motWaistUnit')?.value||'in',
+   heightCm:(document.getElementById('motHeightUnit')?.value==='metric'?metricNumber(document.getElementById('motHeightCm')?.value):Math.round((metricNumber(document.getElementById('motHeightFeet')?.value)*12+metricNumber(document.getElementById('motHeightInches')?.value))*2.54)),
+   weightKg:(document.getElementById('motWeightUnit')?.value==='kg'?metricNumber(document.getElementById('motWeightKg')?.value):Math.round(((metricNumber(document.getElementById('motWeightStoneValue')?.value)*14+metricNumber(document.getElementById('motWeightPounds')?.value))*0.45359237)*10)/10),
+   waistCm:(document.getElementById('motWaistUnit')?.value==='cm'?metricNumber(document.getElementById('motWaistCm')?.value):Math.round(metricNumber(document.getElementById('motWaistIn')?.value)*2.54*10)/10),
+   bp:document.getElementById('motBP')?.value||'',activity:document.getElementById('motActivity')?.value||'',sleep:document.getElementById('motSleep')?.value||'',
+   alcohol:document.getElementById('motAlcohol')?.value||'',energy:document.getElementById('motEnergy')?.value||'',confidence:document.getElementById('motConfidence')?.value||'',
+   goal:document.getElementById('motGoal')?.value||'',date:now()
+ };save(d);const out=document.getElementById('motSummary');out.style.display='block';out.innerHTML=`<h3>Your MOT summary</h3><p><strong>Main goal:</strong> ${d.mot.goal||'Not set'}</p><p><strong>What we'd focus on first:</strong> build one realistic action around your current activity, sleep and energy rather than trying to fix everything at once.</p><p><strong>Useful next step:</strong> <a href="/explore-knowledge">Explore the Knowledge Hub</a> or review your progress in the member dashboard.</p><p class="smallprint">This is an informational summary, not a diagnosis or clinical assessment.</p>`;});
+ motShow();
+
+ // Settings
+ document.getElementById('clearMemberData')?.addEventListener('click',()=>{if(confirm('Clear all local V2.12A demo member data on this device?')){localStorage.removeItem(key);location.reload();}});
+})();
+
+// V2.12B Knowledge + Ask Timber
+(function(){
+ const idx=[{"t": "The Dad Bod Nobody Talks About", "u": "/articles/dad-bod-nobody-talks-about", "k": "Article", "p": "brand", "d": "When the dad-bod joke stops being funny because weight starts affecting health, mobility or confidence.", "m": 6}, {"t": "Heart Health for Men Carrying Extra Weight", "u": "/articles/heart-health-men", "k": "Article", "p": "health", "d": "Blood pressure, cholesterol, diabetes risk, smoking and movement.", "m": 6}, {"t": "Getting Back to Football After 40", "u": "/articles/football-fitness-after-40", "k": "Article", "p": "fitness", "d": "A sensible return to movement if five-a-side has been missing for a while.", "m": 6}, {"t": "A Healthier BBQ Without Ruining the BBQ", "u": "/articles/healthy-bbq-men", "k": "Article", "p": "nutrition", "d": "Simple swaps that keep the good bits.", "m": 6}, {"t": "Sleep and Weight: What Blokes Need to Know", "u": "/articles/sleep-and-weight-men", "k": "Article", "p": "weight", "d": "How poor sleep can affect appetite, choices, energy and motivation.", "m": 6}, {"t": "Easy Air Fryer Meals for Blokes Trying to Eat Better", "u": "/articles/air-fryer-meals-men", "k": "Article", "p": "nutrition", "d": "Practical meal ideas built around protein, veg and sensible portions.", "m": 6}, {"t": "Waist Size and Men's Health", "u": "/articles/waist-size-men", "k": "Article", "p": "health", "d": "Why waist measurement can add useful context beyond weight alone.", "m": 6}, {"t": "Men's Mental Health and Weight", "u": "/articles/mens-mental-health-and-weight", "k": "Article", "p": "health", "d": "Confidence, mood, stigma and the relationship between physical and mental wellbeing.", "m": 6}, {"t": "Why Is It Harder for Men to Lose Weight After 40?", "u": "/articles/men-weight-loss-after-40", "k": "Article", "p": "weight", "d": "Age, activity, muscle mass, sleep and lifestyle all influence weight management in midlife.", "m": 6}, {"t": "Healthy Habits That Actually Last", "u": "/articles/healthy-habits-that-last-men", "k": "Article", "p": "weight", "d": "Why repeatable habits beat heroic Monday-morning plans.", "m": 6}, {"t": "Mounjaro vs Wegovy: What's the Difference?", "u": "/articles/mounjaro-vs-wegovy", "k": "Article", "p": "GLP-1", "d": "How tirzepatide and semaglutide differ without pretending one treatment suits everyone.", "m": 6}, {"t": "What Is Wegovy?", "u": "/articles/what-is-wegovy", "k": "Article", "p": "GLP-1", "d": "A plain-English introduction to semaglutide for weight management.", "m": 6}, {"t": "Why Does Weight Loss Plateau?", "u": "/articles/weight-loss-plateau-men", "k": "Article", "p": "weight", "d": "Why progress can slow and why weight change is rarely perfectly linear.", "m": 6}, {"t": "Can Walking Help Men Lose Weight?", "u": "/articles/walking-for-weight-management-men", "k": "Article", "p": "weight", "d": "Why regular walking can support health and weight management.", "m": 6}, {"t": "Why Blokes Put Everyone Else First", "u": "/articles/why-blokes-put-everyone-else-first", "k": "Article", "p": "brand", "d": "Why work, kids and everyday pressure can push men's own health down the list.", "m": 6}, {"t": "Why We Built Shift Some Timber", "u": "/articles/why-we-built-shift-some-timber", "k": "Article", "p": "brand", "d": "Why Shift is built around real life, straightforward language and useful health information.", "m": 6}, {"t": "Cholesterol for Blokes: The Basics", "u": "/articles/cholesterol-men", "k": "Article", "p": "health", "d": "Understanding HDL, LDL and overall cardiovascular risk.", "m": 6}, {"t": "Eating Out While Managing Your Weight", "u": "/articles/eating-out-weight-management-men", "k": "Article", "p": "nutrition", "d": "How to enjoy meals out without treating them like failure.", "m": 6}, {"t": "Why Men's Health Isn't About Six-Packs", "u": "/articles/health-isnt-about-six-packs", "k": "Article", "p": "brand", "d": "Better health can mean more energy, better sleep and being able to do ordinary things comfortably.", "m": 6}, {"t": "Alcohol and Weight Gain in Men", "u": "/articles/alcohol-and-weight-men", "k": "Article", "p": "weight", "d": "Calories, appetite, sleep and why drinks can quietly add up.", "m": 6}, {"t": "Better Takeaway Choices Without Ordering a Salad", "u": "/articles/healthy-takeaways-men", "k": "Article", "p": "nutrition", "d": "How to make a takeaway fit into a healthier week.", "m": 6}, {"t": "Helping Ordinary Blokes Feel Like Themselves Again", "u": "/articles/helping-ordinary-blokes-feel-like-themselves-again", "k": "Article", "p": "brand", "d": "Why men's weight management is often about getting everyday life, confidence and energy back.", "m": 6}, {"t": "Sleep Apnoea, Snoring and Weight", "u": "/articles/sleep-apnoea-weight-men", "k": "Article", "p": "health", "d": "When loud snoring and daytime tiredness deserve more than a joke.", "m": 6}, {"t": "Exercise While Taking GLP-1 Medication", "u": "/articles/exercise-on-glp1", "k": "Article", "p": "GLP-1", "d": "Why movement and strength still matter.", "m": 6}, {"t": "A Beginner Walking Plan for Men", "u": "/articles/beginner-walking-plan-men", "k": "Article", "p": "fitness", "d": "Start where you are and build gradually.", "m": 6}, {"t": "Simple Strength Training at Home", "u": "/articles/home-strength-men", "k": "Article", "p": "fitness", "d": "Basic resistance work without needing a bodybuilding identity.", "m": 6}, {"t": "Why Blokes Put Off Asking for Help", "u": "/articles/asking-for-help-men", "k": "Article", "p": "mind", "d": "Normalising earlier conversations about health.", "m": 6}, {"t": "Motivation Is Overrated: Build a Routine", "u": "/articles/motivation-vs-routine-men", "k": "Article", "p": "mind", "d": "Why systems and environment often matter more than motivation.", "m": 6}, {"t": "Protein for Men Trying to Manage Their Weight", "u": "/articles/protein-for-men-weight-management", "k": "Article", "p": "weight", "d": "Why protein matters for fullness, muscle and practical meal planning.", "m": 6}, {"t": "What Is Mounjaro?", "u": "/articles/what-is-mounjaro", "k": "Article", "p": "GLP-1", "d": "A plain-English introduction to tirzepatide and why clinical assessment matters.", "m": 6}, {"t": "Testosterone and Weight in Men", "u": "/articles/testosterone-weight-men", "k": "Article", "p": "health", "d": "A careful look at the relationship without assuming every tired bloke needs testosterone.", "m": 6}, {"t": "Confidence, Weight and Feeling Like Yourself Again", "u": "/articles/confidence-and-weight-men", "k": "Article", "p": "mind", "d": "Why health change can be about identity as much as a number.", "m": 6}, {"t": "Weight and Aching Knees", "u": "/articles/knee-pain-weight-men", "k": "Article", "p": "health", "d": "How load, strength and activity can interact with knee discomfort.", "m": 6}, {"t": "Can Men Build or Keep Muscle on GLP-1 Treatment?", "u": "/articles/muscle-on-glp1", "k": "Article", "p": "GLP-1", "d": "Protein, resistance training and maintaining strength.", "m": 6}, {"t": "Calories Explained Without the Nonsense", "u": "/articles/calories-explained-men", "k": "Article", "p": "weight", "d": "What calories are, why energy balance matters and why real life is more complicated than a slogan.", "m": 6}, {"t": "What Happens When You Stop GLP-1 Treatment?", "u": "/articles/stopping-glp1", "k": "Article", "p": "GLP-1", "d": "Why maintenance planning matters after treatment.", "m": 6}, {"t": "Prediabetes in Men: What Does It Mean?", "u": "/articles/prediabetes-men", "k": "Article", "p": "health", "d": "A straightforward guide to prediabetes and risk.", "m": 6}, {"t": "Stress, Eating and Weight Gain in Men", "u": "/articles/stress-and-weight-men", "k": "Article", "p": "weight", "d": "How stress can influence eating, alcohol, sleep and activity.", "m": 6}, {"t": "Meal Prep for Busy Blokes", "u": "/articles/meal-prep-busy-men", "k": "Article", "p": "nutrition", "d": "Simple repeatable meals for busy weeks.", "m": 6}, {"t": "Can You Drink Alcohol While Taking GLP-1 Medication?", "u": "/articles/alcohol-on-glp1", "k": "Article", "p": "GLP-1", "d": "Why alcohol, appetite, dehydration and individual health all matter.", "m": 6}, {"t": "Common GLP-1 Myths", "u": "/articles/glp1-myths", "k": "Article", "p": "GLP-1", "d": "Separating sensible information from social-media nonsense.", "m": 6}, {"t": "Weight and High Blood Pressure in Men", "u": "/articles/weight-and-blood-pressure-men", "k": "Article", "p": "health", "d": "Why weight, waist size, activity and blood pressure often overlap.", "m": 6}, {"t": "BMI Explained for Men", "u": "/articles/bmi-men", "k": "Article", "p": "health", "d": "What BMI can tell you, what it cannot and why context matters.", "m": 6}, {"t": "GLP-1 Side Effects Explained", "u": "/articles/glp1-side-effects", "k": "Article", "p": "GLP-1", "d": "Common side effects, monitoring and when to seek professional advice.", "m": 6}, {"t": "Why Do Men Gain Weight Around the Stomach?", "u": "/articles/men-belly-fat", "k": "Article", "p": "weight", "d": "Understanding central body fat, waist measurement and why the middle matters.", "m": 6}, {"t": "Are carbs bad for weight loss?", "u": "/faq/are-carbs-bad", "k": "FAQ", "p": "FAQs", "d": "No. Carbohydrate is not automatically fattening. Overall energy intake, food quality and portions matter.", "m": 4}, {"t": "Is fat bad for weight loss?", "u": "/faq/is-fat-bad", "k": "FAQ", "p": "FAQs", "d": "No. Dietary fat is essential but energy dense, so portions and the wider diet matter.", "m": 4}, {"t": "Does sleep affect weight?", "u": "/faq/does-sleep-affect-weight", "k": "FAQ", "p": "FAQs", "d": "Yes. Sleep can influence appetite, food choices, energy, mood and activity.", "m": 4}, {"t": "Do I need a gym to lose weight?", "u": "/faq/need-gym-to-lose-weight", "k": "FAQ", "p": "FAQs", "d": "No. Walking, home exercise, sport, cycling and ordinary daily movement can all contribute.", "m": 4}, {"t": "Should men count calories?", "u": "/faq/should-men-count-calories", "k": "FAQ", "p": "FAQs", "d": "Calorie tracking can be useful for some men, but it is not compulsory.", "m": 4}, {"t": "Is Shift Some Timber a replacement for my GP?", "u": "/faq/is-sst-gp-replacement", "k": "FAQ", "p": "FAQs", "d": "No. It is not a replacement for NHS primary care, emergency services or individual medical assessment.", "m": 4}, {"t": "How often should I weigh myself?", "u": "/faq/how-often-weigh", "k": "FAQ", "p": "FAQs", "d": "There is no single right frequency. The useful part is looking at the trend rather than reacting to one reading.", "m": 4}, {"t": "What is the 20% Club?", "u": "/faq/what-is-20-percent-club", "k": "FAQ", "p": "FAQs", "d": "A milestone some people use to describe losing 20% of their starting body weight. It is not a universal target.", "m": 4}, {"t": "What is a healthy waist-to-height ratio?", "u": "/faq/healthy-waist-height-ratio", "k": "FAQ", "p": "FAQs", "d": "NHS guidance uses the simple message of trying to keep your waist below half your height.", "m": 4}, {"t": "Why do men get belly fat?", "u": "/faq/why-do-men-get-belly-fat", "k": "FAQ", "p": "FAQs", "d": "Men commonly store a greater proportion of fat centrally. Genetics, age, hormones, energy balance, activity, sleep and alcohol can all contribute.", "m": 4}, {"t": "Is 20% weight loss realistic for everyone?", "u": "/faq/is-20-percent-realistic", "k": "FAQ", "p": "FAQs", "d": "No. A 20% reduction is a major milestone, not a universal target.", "m": 4}, {"t": "Can I have a BBQ while losing weight?", "u": "/faq/bbq-and-weight-loss", "k": "FAQ", "p": "FAQs", "d": "Absolutely. A barbecue can fit into a healthy week.", "m": 4}, {"t": "Why do my knees hurt more after gaining weight?", "u": "/faq/weight-knee-pain", "k": "FAQ", "p": "FAQs", "d": "Greater body mass can increase load through weight-bearing joints, but knee pain can have several causes.", "m": 4}, {"t": "Is Wegovy the same as Ozempic?", "u": "/faq/wegovy-vs-ozempic", "k": "FAQ", "p": "FAQs", "d": "They both contain semaglutide, but they are distinct branded products with different licensed uses and dosing pathways.", "m": 4}, {"t": "How quickly should a man lose weight?", "u": "/faq/how-quickly-should-men-lose-weight", "k": "FAQ", "p": "FAQs", "d": "There is no single perfect weekly rate for every man. A sustainable rate depends on starting weight, health, food intake, activity and treatment.", "m": 4}, {"t": "How much protein do men need?", "u": "/faq/how-much-protein-men", "k": "FAQ", "p": "FAQs", "d": "Protein needs vary with body size, age, health, activity and goals. A calculator is only a planning estimate.", "m": 4}, {"t": "Can men take Mounjaro?", "u": "/faq/can-men-take-mounjaro", "k": "FAQ", "p": "FAQs", "d": "Yes, men can be prescribed tirzepatide (Mounjaro) when it is clinically appropriate and they meet the relevant prescribing criteria.", "m": 4}, {"t": "Does losing weight raise testosterone?", "u": "/faq/weight-testosterone", "k": "FAQ", "p": "FAQs", "d": "Weight loss may improve testosterone levels in some men living with obesity, but symptoms alone cannot diagnose testosterone deficiency.", "m": 4}, {"t": "Can walking help weight loss?", "u": "/faq/can-walking-help-weight-loss", "k": "FAQ", "p": "FAQs", "d": "Yes. Walking increases activity and energy expenditure and can be a sustainable part of weight management.", "m": 4}, {"t": "Can women use the public tools?", "u": "/faq/can-women-use-tools", "k": "FAQ", "p": "FAQs", "d": "The public calculators are general information tools, although the brand voice is designed around adult men.", "m": 4}, {"t": "Is the Health MOT a medical assessment?", "u": "/faq/is-health-mot-medical", "k": "FAQ", "p": "FAQs", "d": "No. It is an informational self-check and does not diagnose a condition or establish treatment eligibility.", "m": 4}, {"t": "Can weight loss lower blood pressure?", "u": "/faq/weight-loss-lower-bp", "k": "FAQ", "p": "FAQs", "d": "For many people carrying excess weight, weight loss can contribute to lower blood pressure alongside other measures.", "m": 4}, {"t": "Is BMI accurate for men?", "u": "/faq/is-bmi-accurate-for-men", "k": "FAQ", "p": "FAQs", "d": "BMI is a useful screening measure, but it does not distinguish muscle from fat and does not directly show where body fat is stored.", "m": 4}, {"t": "Do I need breakfast to lose weight?", "u": "/faq/need-breakfast-weight-loss", "k": "FAQ", "p": "FAQs", "d": "No. The best eating pattern is one that supports good nutrition and can be maintained.", "m": 4}, {"t": "Does alcohol cause belly fat?", "u": "/faq/does-alcohol-cause-belly-fat", "k": "FAQ", "p": "FAQs", "d": "Alcohol provides calories and can influence appetite, food choices and sleep.", "m": 4}, {"t": "Why does my weight change day to day?", "u": "/faq/daily-weight-fluctuation", "k": "FAQ", "p": "FAQs", "d": "Water, salt, carbohydrate intake, bowel contents, exercise, alcohol and timing can all move scale weight.", "m": 4}, {"t": "Can I exercise on GLP-1 treatment?", "u": "/faq/exercise-on-glp1", "k": "FAQ", "p": "FAQs", "d": "Many people can remain active, but exercise should match health, fitness and treatment effects.", "m": 4}, {"t": "Does belly fat increase health risk?", "u": "/faq/does-belly-fat-increase-risk", "k": "FAQ", "p": "FAQs", "d": "Higher levels of central or visceral fat are associated with increased cardiometabolic risk.", "m": 4}, {"t": "Does Shift Some Timber prescribe medication yet?", "u": "/faq/does-sst-prescribe", "k": "FAQ", "p": "FAQs", "d": "No. Shift Some Timber is an independent information and support service and does not prescribe or supply medication.", "m": 4}, {"t": "Can weight affect sleep apnoea?", "u": "/faq/weight-sleep-apnoea", "k": "FAQ", "p": "FAQs", "d": "Yes. Excess weight is an important risk factor for obstructive sleep apnoea, although it is not the only cause.", "m": 4}, {"t": "Can losing weight reduce diabetes risk?", "u": "/faq/weight-loss-diabetes-risk", "k": "FAQ", "p": "FAQs", "d": "For people at increased risk of type 2 diabetes, weight loss and lifestyle change can reduce risk.", "m": 4}, {"t": "What is a Founding Shifter?", "u": "/faq/what-is-founding-shifter", "k": "FAQ", "p": "FAQs", "d": "Someone who joins Shift and wants useful updates.", "m": 4}, {"t": "Will GLP-1 treatment make me lose muscle?", "u": "/faq/glp1-muscle-loss", "k": "FAQ", "p": "FAQs", "d": "Weight loss can include some lean tissue. Adequate nutrition and resistance exercise can help support muscle and strength.", "m": 4}, {"t": "Will my Health MOT data be saved?", "u": "/faq/is-health-mot-saved", "k": "FAQ", "p": "FAQs", "d": "Public Health MOT answers are not saved to a member health history unless you use an account-backed feature that clearly tells you it will save them.", "m": 4}, {"t": "Is GLP-1 treatment only for women?", "u": "/faq/is-glp1-only-for-women", "k": "FAQ", "p": "FAQs", "d": "No. GLP-1 and related prescription weight-management medicines are not women's treatments.", "m": 4}, {"t": "Can stress make me gain weight?", "u": "/faq/can-stress-cause-weight-gain", "k": "FAQ", "p": "FAQs", "d": "Stress can contribute indirectly by affecting eating, alcohol, sleep and activity.", "m": 4}, {"t": "Can men take Wegovy?", "u": "/faq/can-men-take-wegovy", "k": "FAQ", "p": "FAQs", "d": "Yes. Wegovy (semaglutide) can be prescribed to eligible adult men following appropriate clinical assessment.", "m": 4}, {"t": "Can I eat takeaways and still lose weight?", "u": "/faq/takeaways-and-weight-loss", "k": "FAQ", "p": "FAQs", "d": "Yes. Takeaways can fit into a weight-management plan depending on frequency, portions, sides and drinks.", "m": 4}, {"t": "What is a weight-loss plateau?", "u": "/faq/what-is-weight-loss-plateau", "k": "FAQ", "p": "FAQs", "d": "A plateau is a period when body weight changes very little despite continued efforts.", "m": 4}, {"t": "Can weight loss improve cholesterol?", "u": "/faq/weight-loss-cholesterol", "k": "FAQ", "p": "FAQs", "d": "Weight management, diet and activity can improve parts of the lipid profile for some people.", "m": 4}, {"t": "What is The Timber Mill?", "u": "/faq/what-is-timber-mill", "k": "FAQ", "p": "FAQs", "d": "The Shift Some Timber shop for clothing, useful gear, guides and future member rewards.", "m": 4}, {"t": "What happens if I stop GLP-1 treatment?", "u": "/faq/what-happens-stopping-glp1", "k": "FAQ", "p": "FAQs", "d": "Appetite and weight may change after stopping treatment, so maintenance planning and follow-up matter.", "m": 4}, {"t": "Can I drink alcohol on GLP-1 medication?", "u": "/faq/alcohol-on-glp1", "k": "FAQ", "p": "FAQs", "d": "There is no one answer for everybody. Alcohol may worsen dehydration or gastrointestinal symptoms for some people, so discuss your situation with your prescriber.", "m": 4}, {"t": "Is Mounjaro the same as Ozempic?", "u": "/faq/mounjaro-vs-ozempic", "k": "FAQ", "p": "FAQs", "d": "No. Mounjaro contains tirzepatide; Ozempic contains semaglutide.", "m": 4}, {"t": "The Men's Health MOT Guide", "u": "/guides/mens-health-mot-guide", "k": "Ultimate Guide", "p": "Guides", "d": "A broader look at the measurements and habits that can help build a more useful picture than weight alone.", "m": 12}, {"t": "The Complete Men's Weight Management Guide", "u": "/guides/mens-weight-management-guide", "k": "Ultimate Guide", "p": "Guides", "d": "A practical UK guide to weight, waist, calories, food, activity, sleep, habits and treatment options for men.", "m": 12}, {"t": "The Complete GLP-1 Weight Management Guide for Men", "u": "/guides/glp1-guide", "k": "Ultimate Guide", "p": "Guides", "d": "A plain-English UK guide to GLP-1 and related weight-management medicines, including Mounjaro and Wegovy.", "m": 12}, {"t": "The Blood Pressure Guide for Men", "u": "/guides/blood-pressure-guide", "k": "Ultimate Guide", "p": "Guides", "d": "What blood pressure numbers mean, what affects them and when to get proper medical advice.", "m": 12}, {"t": "The Complete Walking Guide for Men", "u": "/guides/walking-guide", "k": "Ultimate Guide", "p": "Guides", "d": "How to use walking to improve fitness, health and weight management without turning life into boot camp.", "m": 12}, {"t": "The Practical Men's Nutrition Guide", "u": "/guides/nutrition-guide", "k": "Ultimate Guide", "p": "Guides", "d": "A no-nonsense guide to protein, calories, portions, takeaways, alcohol and eating well in real life.", "m": 12}, {"t": "Daily Calorie Calculator", "u": "/tools/calories", "k": "Calculator", "p": "Tools", "d": "Estimate maintenance calories using a recognised equation.", "m": 2}, {"t": "Protein Calculator", "u": "/tools/protein", "k": "Calculator", "p": "Tools", "d": "A practical protein planning estimate.", "m": 2}, {"t": "Walking Calorie Calculator", "u": "/tools/walking", "k": "Calculator", "p": "Tools", "d": "Estimate energy used during a walk.", "m": 2}, {"t": "Healthy Weight Range", "u": "/tools/healthy-weight", "k": "Calculator", "p": "Tools", "d": "See the standard BMI-based reference range for your height.", "m": 2}, {"t": "Step Converter", "u": "/tools/steps", "k": "Calculator", "p": "Tools", "d": "Convert steps to approximate distance.", "m": 2}, {"t": "Sleep Calculator", "u": "/tools/sleep", "k": "Calculator", "p": "Tools", "d": "Work backwards to a target bedtime.", "m": 2}, {"t": "BMI Calculator", "u": "/tools/bmi", "k": "Calculator", "p": "Tools", "d": "Calculate BMI using UK/imperial or metric measurements.", "m": 2}, {"t": "Alcohol Unit Calculator", "u": "/tools/alcohol", "k": "Calculator", "p": "Tools", "d": "Estimate UK alcohol units.", "m": 2}, {"t": "Waist-to-Height Ratio", "u": "/tools/waist-height", "k": "Calculator", "p": "Tools", "d": "Compare your waist measurement with your height.", "m": 2}, {"t": "Water Calculator", "u": "/tools/water", "k": "Calculator", "p": "Tools", "d": "A rough daily fluid starting point.", "m": 2}, {"t": "UK Men's Weight & Waist Statistics: 2024 Health Survey", "u": "/research/uk-mens-weight-health-statistics", "k": "Research", "p": "Research", "d": "Official 2024 men's weight and waist data summary.", "m": 8}];
+})();
+
+(function(){
+ const idx = window.SST_KNOWLEDGE_INDEX || null;
+})();
+
+(function(){
+ const index=window.SST_KNOWLEDGE_INDEX||[];
+ const logKey='sst_search_log_v212b';
+ const memberKey='sst_member_demo_v212a';
+ const readLog=()=>{try{return JSON.parse(localStorage.getItem(logKey)||'[]')}catch(e){return[]}};
+ const writeLog=x=>localStorage.setItem(logKey,JSON.stringify(x.slice(-250)));
+ function logSearch(query,count,source){
+   const a=readLog();a.push({q:query,count,source,date:new Date().toISOString()});writeLog(a);
+ }
+ function tokens(q){return q.toLowerCase().replace(/[^a-z0-9\s-]/g,' ').split(/\s+/).filter(x=>x.length>2)}
+ function expand(q){
+   q=q.toLowerCase(); let t=tokens(q);
+   const groups=[
+    [/mounjaro|tirzepatide|eggy|burp|injection|glp|wegovy|ozempic/,['glp','mounjaro','wegovy','side effects','protein','water']],
+    [/knee|joint|walking|walk|football|exercise|fit/,['knee','walking','fitness','activity']],
+    [/blood pressure|hypertension|heart|cholesterol/,['blood pressure','heart','cholesterol','waist']],
+    [/belly|stomach|weight|lose|fat|bmi|stone/,['weight','belly','bmi','waist']],
+    [/stress|anxiety|confidence|motivation|fed up|mood|feel/,['stress','confidence','motivation','mental','feeling']],
+    [/food|protein|meal|takeaway|calorie|nutrition|hungry/,['protein','calorie','nutrition','meal']],
+    [/sleep|snore|tired|fatigue/,['sleep','apnoea','energy']]
+   ];
+   groups.forEach(([r,a])=>{if(r.test(q))t.push(...a)});
+   return [...new Set(t)];
+ }
+ function rank(q){
+   const ts=expand(q);
+   return index.map((x,i)=>{
+     const hay=(x.t+' '+x.d+' '+x.p+' '+x.k).toLowerCase();
+     let score=0;ts.forEach(t=>{if(hay.includes(t))score+=t.includes(' ')?3:1});
+     if(hay.includes(q.toLowerCase()))score+=5;
+     return {...x,score,i};
+   }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.i-b.i);
+ }
+ function isHighRisk(q){
+   return /chest pain|can't breathe|cannot breathe|suicid|overdose|fainted|unconscious|severe allergic|anaphyl|blood pressure.*(200|190|180)|stroke/.test(q.toLowerCase());
+ }
+function answer(q){
+   if(isHighRisk(q)){
+      return {html:`<strong>This sounds more important than a website answer.</strong><p>I don't want to guess with potentially urgent symptoms. Please seek appropriate urgent medical help rather than relying on Ask Timber.</p>`,count:0};
+   }
+   const low=q.toLowerCase();
+   const wantsFood=/\b(kebab|takeaway|take away|burger|pizza|chips|chippy|curry|food|eat|eating|hungry|meal)\b/.test(low);
+   const hasPain=/\b(knee|joint|pain|hurts?|killing me|injur(?:y|ed)|swollen|swelling)\b/.test(low);
+   if(wantsFood&&hasPain){
+      const painLinks=rank('knee pain aching joints').slice(0,2).map(x=>`<a href="${x.u}">${x.t} <small>(${x.k})</small> →</a>`).join('');
+      const foodLinks=rank('kebab takeaway food nutrition').slice(0,2).map(x=>`<a href="${x.u}">${x.t} <small>(${x.k})</small> →</a>`).join('');
+      return {html:`<div class="ask-part"><h3>First, the knee</h3><p>I can point you to general information, but I can’t assess pain or an injury here. If it is severe, newly swollen, you cannot put weight on it, or you are worried, get medical advice rather than trying to walk it off.</p><div class="ask-sources">${painLinks}</div></div><div class="ask-part"><h3>And the kebab</h3><p>If you want the kebab, have the kebab. A chicken shish with salad and pitta is an easier everyday option; go lighter on creamy sauce and add chips only if you actually want them. No guilt and no punishment workout afterwards.</p><div class="ask-sources">${foodLinks}</div></div><p class="smallprint">General information—not a diagnosis or personalised medical assessment.</p>`,count:4};
+   }
+   const matches=rank(q).slice(0,5);
+   if(!matches.length){
+      return {html:`<strong>I haven't got a strong enough match for that yet.</strong><p>Rather than bluff, I'd suggest browsing the Knowledge Hub or starting with the Health MOT.</p><div class="ask-sources"><a href="/explore-knowledge">Explore Knowledge →</a><a href="/health-mot">Health MOT →</a></div>`,count:0};
+   }
+   let intro='I found a few things that look relevant.';
+   if(/eggy|burp/.test(low)) intro='That sounds like one of those less glamorous treatment questions. We do have GLP-1 side-effect content that may help.';
+   else if(/don't know where to start|dont know where to start|overwhelmed/.test(low)) intro='You do not need to sort everything today. I’d start with one simple step and build from there.';
+   else if(/knee|joint/.test(low)) intro='Pain and activity can become a frustrating cycle. These are the most relevant places I’d start.';
+   else if(/belly|weight|lose/.test(low)) intro='There’s no single magic page, but these should give you a sensible starting point.';
+   const links=matches.map(x=>`<a href="${x.u}">${x.t} <small>(${x.k})</small> →</a>`).join('');
+   return {html:`<strong>${intro}</strong><p>Based on our Knowledge Hub, these look most relevant:</p><div class="ask-sources">${links}</div><p class="smallprint">Ask Timber is a Knowledge finder, not a diagnosis or personalised medical assessment.</p>`,count:matches.length};
+ }
+ function ask(q,source,target){
+   const res=answer(q);logSearch(q,res.count,source);target.innerHTML=res.html;target.classList.add('show');return res;
+ }
+
+ // Floating drawer. Build it on any page that loads app.js so a page template
+ // cannot accidentally omit the launcher. The dedicated Ask Timber page keeps
+ // its full-page experience without a duplicate floating control.
+ if(document.body?.dataset?.template!=='ask-timber'&&!document.getElementById('askTimberLaunch')){
+   document.body.insertAdjacentHTML('beforeend',`<button class="ask-timber-launch" id="askTimberLaunch" type="button">Ask Shift</button><aside class="ask-drawer" id="askTimberDrawer" aria-hidden="true"><div class="ask-head"><div><small>SHIFT SOME TIMBER</small><h2>Ask Timber</h2></div><button class="ask-close" id="askTimberClose" type="button">Close</button></div><div class="ask-body" id="askTimberBody"><div class="ask-intro"><strong>Ask in your own words.</strong><p>I’ll use Shift Some Timber Knowledge to point you somewhere useful. I’m not a doctor and I won’t pretend to diagnose you.</p></div></div><div class="ask-input"><textarea id="askTimberInput" aria-label="What's on your mind?" placeholder="What's on your mind?"></textarea><button class="button primary" id="askTimberSend" type="button">Ask</button></div><div class="ask-start"><a href="/start-here">START HERE</a></div></aside>`);
+ }
+ const launch=document.getElementById('askTimberLaunch'),drawer=document.getElementById('askTimberDrawer'),close=document.getElementById('askTimberClose'),send=document.getElementById('askTimberSend'),input=document.getElementById('askTimberInput'),body=document.getElementById('askTimberBody');
+ if(drawer&&!document.querySelector('link[data-ask-timber-drawer-v2]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/assets/ask-timber-drawer-v2.css?v=8';css.dataset.askTimberDrawerV2='';document.head.appendChild(css);}
+ launch?.addEventListener('click',()=>{launch.classList.add('ask-timber-launch--used');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');input?.focus()});
+ close?.addEventListener('click',()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');launch?.classList.remove('ask-timber-launch--used')});
+ send?.addEventListener('click',()=>{
+   const q=(input?.value||'').trim();if(!q)return;
+   body.insertAdjacentHTML('beforeend',`<div class="ask-msg ask-user">${q.replace(/[<>&]/g,s=>'')}</div>`);
+   const holder=document.createElement('div');holder.className='ask-msg ask-timber';body.appendChild(holder);
+   const res=answer(q);logSearch(q,res.count,'drawer');holder.innerHTML=res.html;input.value='';body.scrollTop=body.scrollHeight;
+ });
+
+ // Full page Ask Timber
+ const pbtn=document.getElementById('askPageBtn'),pin=document.getElementById('askPageInput'),pout=document.getElementById('askPageResult');
+ pbtn?.addEventListener('click',()=>{const q=(pin.value||'').trim();if(q)ask(q,'ask-page',pout)});
+ document.querySelectorAll('[data-ask-example]').forEach(b=>b.addEventListener('click',()=>{if(pin){pin.value=b.dataset.askExample;pin.focus();}}));
+
+ // Member recommendations
+ const rec=document.getElementById('memberRecGrid');
+ if(rec){
+   let d={};try{d=JSON.parse(localStorage.getItem(memberKey)||'{}')}catch(e){}
+   let seeds=[];
+   if(d.mot?.goal)seeds.push(d.mot.goal);
+   if(d.moods?.length)seeds.push(d.moods.slice(-1)[0].mood);
+   if(d.trackers?.weight?.length)seeds.push('weight');
+   if(d.trackers?.walk?.length)seeds.push('walking');
+   if(d.trackers?.bp?.length)seeds.push('blood pressure');
+   if(d.trackers?.protein?.length)seeds.push('protein');
+   const q=seeds.join(' ');
+   const picks=(q?rank(q):index).slice(0,3);
+   rec.innerHTML=picks.map(x=>`<div class="rec-card"><small>${x.k}</small><strong>${x.t}</strong><p>${x.d||''}</p><a href="${x.u}">Open →</a></div>`).join('');
+ }
+
+ // Insights page
+ const insightList=document.getElementById('insightList');
+ if(insightList){
+   const logs=readLog();
+   const uniq=[...new Set(logs.map(x=>x.q.toLowerCase()))];
+   document.getElementById('insightTotal').textContent=logs.length;
+   document.getElementById('insightNoMatch').textContent=logs.filter(x=>x.count===0).length;
+   document.getElementById('insightUnique').textContent=uniq.length;
+   insightList.innerHTML=logs.slice(-40).reverse().map(x=>`<div class="saved-item"><strong>${x.q}</strong><div>${x.count} match${x.count===1?'':'es'} · ${x.source}</div><div class="smallprint">${new Date(x.date).toLocaleString('en-GB')}</div></div>`).join('')||'<p>No searches recorded on this device yet.</p>';
+ }
+
+ // Enhance Explore Knowledge search logging
+ const ks=document.getElementById('knowledgeSearch');
+ if(ks){
+   let timer;ks.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>{const q=ks.value.trim();if(q.length>2){const count=[...document.querySelectorAll('[data-kitem]')].filter(c=>c.style.display!=='none').length;logSearch(q,count,'knowledge-search');}},700);});
+ }
+})();
+
+// V2.12C Community + Polish
+(function(){
+ const memberKey='sst_member_demo_v212a';
+ const tapKey='sst_taproom_demo_v212c';
+ const circleKey='sst_circle_demo_v212c';
+ const searchKey='sst_search_log_v212b';
+ const get=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}};
+ const getArr=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
+ const set=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+ const stamp=()=>new Date().toLocaleString('en-GB');
+
+ // Tap Room
+ const tapForm=document.getElementById('tapPostForm');
+ function renderTap(){
+   const box=document.getElementById('tapThreads');if(!box)return;
+   let posts=getArr(tapKey);
+   if(!posts.length){
+     posts=[
+       {room:'At The Bar',title:'What was your win this week?',body:'Doesn’t have to be weight. Walked further? Slept better? Said no to the second takeaway? It all counts.',date:'Community starter',likes:4},
+       {room:'Get Moving',title:'Ten-minute walks absolutely count',body:'A reminder for anyone waiting until they have an hour free: ten minutes is still movement.',date:'Community starter',likes:7}
+     ];
+   }
+   box.innerHTML=posts.slice().reverse().map((p,i)=>`<article class="thread"><small>${p.room}</small><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.body)}</p><div class="thread-meta">${p.date}</div><div class="thread-actions"><button data-like="${posts.length-1-i}">👍 ${p.likes||0}</button><button disabled>Reply (backend required)</button><button disabled>Report (backend required)</button></div></article>`).join('');
+   box.querySelectorAll('[data-like]').forEach(b=>b.addEventListener('click',()=>{
+     const real=getArr(tapKey); if(!real.length)return;
+     const idx=+b.dataset.like;real[idx].likes=(real[idx].likes||0)+1;set(tapKey,real);renderTap();
+   }));
+ }
+ if(tapForm)tapForm.addEventListener('submit',e=>{
+   e.preventDefault();const arr=getArr(tapKey);arr.push({room:document.getElementById('tapRoomSelect').value,title:document.getElementById('tapPostTitle').value,body:document.getElementById('tapPostBody').value,date:stamp(),likes:0});set(tapKey,arr);tapForm.reset();renderTap();
+ });
+ function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+ renderTap();
+
+ // Timber Circle
+ function renderCircle(){
+   const box=document.getElementById('circlePeople');if(!box)return;const arr=getArr(circleKey);
+   box.innerHTML=arr.length?arr.map((x,i)=>`<div class="circle-person"><span><strong>${escapeHtml(x.name)}</strong><br><small>${escapeHtml(x.relation)}</small></span><button data-circle-remove="${i}">Remove</button></div>`).join(''):'<p>No one added yet.</p>';
+   box.querySelectorAll('[data-circle-remove]').forEach(b=>b.addEventListener('click',()=>{const a=getArr(circleKey);a.splice(+b.dataset.circleRemove,1);set(circleKey,a);renderCircle();}));
+ }
+ document.getElementById('circleForm')?.addEventListener('submit',e=>{e.preventDefault();const a=getArr(circleKey);if(a.length>=5)return alert('Timber Circle is limited to five people.');a.push({name:document.getElementById('circleName').value,relation:document.getElementById('circleRelation').value});set(circleKey,a);e.target.reset();renderCircle();});
+ renderCircle();
+
+ // Achievements and Timber Tokens
+ const member=get(memberKey); const logs=getArr(searchKey);
+ let unlocked=new Set(); let tokens=0;
+ const trackerCount=Object.values(member.trackers||{}).reduce((n,a)=>n+(Array.isArray(a)?a.length:0),0);
+ if(member.mot || trackerCount>0){unlocked.add('first_step');tokens+=10}
+ if((member.moods||[]).length){unlocked.add('checkin');tokens+=5}
+ if(trackerCount>=5){unlocked.add('consistency');tokens+=20}
+ const walkMins=(member.trackers?.walk||[]).reduce((n,x)=>n+(parseFloat(x.value)||0),0);
+ if(walkMins>=100){unlocked.add('walking100');tokens+=25}
+ if(logs.length>=5){unlocked.add('knowledge5');tokens+=15}
+ document.querySelectorAll('[data-badge]').forEach(b=>{if(unlocked.has(b.dataset.badge))b.classList.remove('locked')});
+ const tc=document.getElementById('tokenCount');if(tc)tc.textContent=tokens;
+
+ // Accessibility
+ const html=document.documentElement;
+ if(localStorage.getItem('sst_large_text')==='1')html.classList.add('large-text');
+ if(localStorage.getItem('sst_reduce_motion')==='1')html.classList.add('reduce-motion');
+ document.getElementById('toggleLargeText')?.addEventListener('click',()=>{html.classList.toggle('large-text');localStorage.setItem('sst_large_text',html.classList.contains('large-text')?'1':'0')});
+ document.getElementById('toggleMotion')?.addEventListener('click',()=>{html.classList.toggle('reduce-motion');localStorage.setItem('sst_reduce_motion',html.classList.contains('reduce-motion')?'1':'0')});
+
+ // Smarter Timber Mill recommendations based on local member activity
+ const shop=document.getElementById('timberMillRecs');
+ if(shop){
+   const bits=[];
+   if(member.trackers?.walk?.length)bits.push(`<div class="shop-rec"><div class="product-visual">WALK</div><h3>Because you track walking</h3><p>Walking footwear and outdoor kit will be prioritised here when the shop catalogue goes live.</p></div>`);
+   if(member.trackers?.bp?.length)bits.push(`<div class="shop-rec"><div class="product-visual">BP</div><h3>Because you track blood pressure</h3><p>Validated home-monitoring equipment can be surfaced here — never treatment advice.</p></div>`);
+   if(member.trackers?.protein?.length)bits.push(`<div class="shop-rec"><div class="product-visual">FOOD</div><h3>Because you track protein</h3><p>Useful food, kitchen and meal-prep products rather than random supplements.</p></div>`);
+   if(bits.length)shop.innerHTML=bits.slice(0,3).join('');
+ }
+})();
+
+// V2.12D Launch Readiness
+(function(){
+ const SST_KEYS=['sst_member_demo_v212a','sst_search_log_v212b','sst_taproom_demo_v212c','sst_circle_demo_v212c','sst_large_text','sst_reduce_motion'];
+
+ // Privacy centre export
+ document.getElementById('exportLocalData')?.addEventListener('click',()=>{
+   const payload={exported_at:new Date().toISOString(),version:'2.12D',data:{}};
+   SST_KEYS.forEach(k=>payload.data[k]=localStorage.getItem(k));
+   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+   const url=URL.createObjectURL(blob);
+   const a=document.createElement('a');a.href=url;a.download='shift-some-timber-local-data.json';a.click();
+   setTimeout(()=>URL.revokeObjectURL(url),500);
+ });
+ document.getElementById('clearAllLocalData')?.addEventListener('click',()=>{
+   if(confirm('Clear all Shift Some Timber prototype data from this browser?')){
+     SST_KEYS.forEach(k=>localStorage.removeItem(k));alert('Local prototype data cleared.');
+   }
+ });
+
+ // QA diagnostics
+ const setQa=(id,ok,label)=>{const el=document.getElementById(id);if(el){el.textContent=label;el.className=ok?'status-ok':'status-bad';}};
+ if(document.getElementById('qaJs')){
+   setQa('qaJs',true,'Loaded');
+   let storageOk=true;try{localStorage.setItem('__sstqa','1');localStorage.removeItem('__sstqa')}catch(e){storageOk=false}
+   setQa('qaStorage',storageOk,storageOk?'Available':'Unavailable');
+   fetch('/assets/knowledge-index.json',{cache:'no-store'}).then(r=>setQa('qaKnowledge',r.ok,r.ok?'Available':'Missing')).catch(()=>setQa('qaKnowledge',false,'Missing'));
+   const checks={
+     ask:()=>!!document.getElementById('askTimberLaunch'),
+     menu:()=>!!document.querySelector('.menu-btn'),
+     mot:()=>true,
+     tap:()=>true
+   };
+   document.querySelectorAll('[data-qa]').forEach(row=>{
+      const fn=checks[row.dataset.qa];const ok=fn?fn():false;const cell=row.lastElementChild;cell.textContent=ok?'OK':'Check';cell.className=ok?'status-ok':'status-warn';
+   });
+ }
+
+ // Register service worker
+ if('serviceWorker' in navigator){
+   window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));
+ }
+})();
+
+document.querySelectorAll('[data-programme-register]').forEach(form=>{
+ form.addEventListener('submit',e=>{
+  e.preventDefault(); if(!form.reportValidity())return;
+  const fd=new FormData(form), subject=encodeURIComponent('Register to Shift Some Timber');
+  const body=encodeURIComponent(`First name: ${fd.get('first_name')||''}\nEmail: ${fd.get('email')||''}\nUpdates consent: ${fd.get('updates')?'Yes':'No'}\n\nPlease add me to the Shift Programme interest list.`);
+  window.location.href=`mailto:hello@shiftsometimber.co.uk?subject=${subject}&body=${body}`;
+ });
+});
+
+(function(){
+ const K='sst_member_demo_v212a', load=()=>{try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return{}}}, save=d=>localStorage.setItem(K,JSON.stringify(d)), today=()=>new Date().toISOString().slice(0,10);
+ ['weightDate','waistDate','bpDate','heartDate','waterDate','walkDate','stepsDate','sleepDate','proteinDate','moodDateControlled','energyDate','hungerDate','exerciseDate'].forEach(id=>{const e=document.getElementById(id);if(e&&!e.value)e.value=today();});
+ let wm='stone',wam='in'; const sel={mood:'',energy:'',hunger:'',exercise:''};
+ document.querySelectorAll('[data-weight-mode]').forEach(b=>b.onclick=()=>{wm=b.dataset.weightMode;document.querySelectorAll('[data-weight-mode]').forEach(x=>x.classList.toggle('active',x===b));weightStoneControls.style.display=wm==='stone'?'grid':'none';weightKgControls.style.display=wm==='kg'?'block':'none';});
+ document.querySelectorAll('[data-waist-mode]').forEach(b=>b.onclick=()=>{wam=b.dataset.waistMode;document.querySelectorAll('[data-waist-mode]').forEach(x=>x.classList.toggle('active',x===b));waistInControls.style.display=wam==='in'?'block':'none';waistCmControls.style.display=wam==='cm'?'block':'none';});
+ function wire(id,key){const box=document.getElementById(id);if(!box)return;box.querySelectorAll('[data-choice-value]').forEach(b=>b.onclick=()=>{box.querySelectorAll('[data-choice-value]').forEach(x=>x.classList.remove('active'));b.classList.add('active');sel[key]=b.dataset.choiceValue;});}
+ wire('moodControlled','mood');wire('energyChoices','energy');wire('hungerChoices','hunger');wire('exerciseChoices','exercise');
+ function fb(t,m){const e=document.getElementById('feedback-'+t);if(e){e.textContent='Saved — '+m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),4000);}}
+ function push(t,v,d,m){const x=load();x.trackers=x.trackers||{};x.trackers[t]=x.trackers[t]||[];x.trackers[t].push({value:v,date:d||today(),loggedAt:new Date().toLocaleString('en-GB')});save(x);fb(t,m);render();}
+ document.querySelectorAll('[data-save-controlled]').forEach(b=>b.onclick=()=>{
+   const t=b.dataset.saveControlled;
+   if(t==='weight')push('weight',wm==='stone'?`${weightStone.value} st ${weightLb.value} lb`:`${weightKg.value} kg`,weightDate.value,'Weight logged. One weigh-in never defines the journey.');
+   if(t==='waist')push('waist',wam==='in'?`${waistIn.value} in`:`${waistCm.value} cm`,waistDate.value,'Waist logged. This can show progress even when the scales are stubborn.');
+   if(t==='bp')push('bp',`${bpSysControlled.value}/${bpDiaControlled.value} mmHg`,bpDate.value,'Blood pressure logged. Repeated readings matter more than one isolated number.');
+   if(t==='heart')push('heart',`${heartRate.value} bpm`,heartDate.value,'Heart rate logged.');
+   if(t==='water')push('water',`${waterControlled.value} L`,waterDate.value,'Water logged. Nice one.');
+   if(t==='walk')push('walk',`${walkControlled.value} mins`,walkDate.value,'Walk logged. Every bit of movement still counts.');
+   if(t==='steps')push('steps',`${stepsControlled.value} steps`,stepsDate.value,'Steps logged. Consistency beats chasing a perfect number.');
+   if(t==='sleep')push('sleep',`${sleepHours.value} h ${sleepMinutes.value} min`,sleepDate.value,'Sleep logged. Tomorrow is another chance if tonight was rough.');
+   if(t==='protein')push('protein',`${proteinControlled.value} g`,proteinDate.value,'Protein logged.');
+   if(t==='mood'){if(!sel.mood)return alert('Choose how you feel first.');push('mood',sel.mood,moodDateControlled.value,'Mood logged. Thanks for checking in with yourself.');}
+   if(t==='energy'){if(!sel.energy)return alert('Choose an energy score first.');push('energy',`${sel.energy}/10`,energyDate.value,'Energy logged.');}
+   if(t==='hunger'){if(!sel.hunger)return alert('Choose a hunger score first.');push('hunger',`${sel.hunger}/10`,hungerDate.value,'Hunger logged.');}
+   if(t==='exercise'){if(!sel.exercise)return alert('Choose an exercise intensity first.');push('exercise',sel.exercise,exerciseDate.value,'Exercise logged. Rest days count too.');}
+ });
+ function render(){const box=document.getElementById('controlledTrackerHistory');if(!box)return;const d=load();let rows=[];Object.entries(d.trackers||{}).forEach(([type,a])=>Array.isArray(a)&&a.forEach(x=>rows.push({type,...x})));rows=rows.slice(-40).reverse();box.innerHTML=rows.length?rows.map(x=>`<div class="saved-item"><strong>${x.type.replace('_',' ')}</strong> — ${x.value}<div class="smallprint">${x.date||''}${x.loggedAt?' · '+x.loggedAt:''}</div></div>`).join(''):'<p>No entries yet.</p>';} render();
+})();
+
+// The approved customer language is icon-led, not emoji-led. Older page copy
+// still contains a handful of legacy glyphs, so remove only those decorative
+// characters while preserving the surrounding link and contact text.
+(function removeLegacyEmoji(){
+ const blocked=/[💉🤷🔒☎✉]/gu;
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ const nodes=[];
+ while(walker.nextNode()) nodes.push(walker.currentNode);
+ nodes.forEach(node=>{if(blocked.test(node.nodeValue||'')) node.nodeValue=node.nodeValue.replace(blocked,'').replace(/\s{2,}/g,' ');blocked.lastIndex=0;});
+})();
+
+// V25 Start Here: one approved journey, with no legacy directory duplicated beneath it.
+(function authoritativeStartHere(){
+ if(!/^\/start-here(?:\.html)?$/.test(location.pathname))return;
+ const run=()=>{
+  // The V25 journey is the page, not an add-on beneath the legacy article
+  // treatment. Remove that older preamble and keep one clear H1.
+  const legacyIntro=document.querySelector('main > .pagehero');
+  if(legacyIntro)legacyIntro.remove();
+  const journeyTitle=document.querySelector('.sv-menu-landing-head-v7 h2');
+  if(journeyTitle){
+   const h1=document.createElement('h1');
+   h1.innerHTML=journeyTitle.innerHTML;
+   for(const attr of journeyTitle.attributes)h1.setAttribute(attr.name,attr.value);
+   journeyTitle.replaceWith(h1);
+  }
+  document.title='Start with what matters today | Shift Some Timber';
+  const grid=document.querySelector('.sv-menu-choice-grid-v7');
+  if(grid&&!grid.querySelector('[data-start-choice="explore"]')){
+   const card=document.createElement('a');
+   card.className='sv-menu-choice-v7 sv-menu-choice-v7--4';
+   card.href='/explore-knowledge';
+   card.dataset.startChoice='explore';
+   card.innerHTML='<span class="sv-menu-icon-v7" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="22" cy="22" r="13"></circle><path d="M31 31l9 9M16 22h12M22 16v12"></path></svg></span><span class="sv-menu-choice-copy-v7"><strong>I just want to look around</strong><small>Browse useful guides, tools and ideas without committing to a programme or treatment.</small><b>Explore Shift <span aria-hidden="true">→</span></b></span>';
+   grid.appendChild(card);
+  }
+  const legacy=document.querySelector('.sv-menu-landing-v7 + .section.white');
+  if(!legacy)return;
+  legacy.className='start-authority-v25';
+  legacy.innerHTML='<div class="wrap"><section class="start-popular-v25" aria-labelledby="popularTitle"><div class="start-head-v25"><p>POPULAR RIGHT NOW</p><h2 id="popularTitle">Useful places to start.</h2><span>Clear answers before big decisions.</span></div><div class="start-popular-grid-v25"><a href="/glp1-knowledge-centre"><strong>GLP-1 knowledge</strong><span>Medication, side effects and practical support.</span></a><a href="/tools/waist-height"><strong>Waist-to-height</strong><span>A useful measure that looks beyond weight alone.</span></a><a href="/mens-mental-health"><strong>When your head is full</strong><span>Direct, private mental-health guidance for men.</span></a><a href="/treatment-centre"><strong>Understand the options</strong><span>Compare lifestyle, medication and surgery routes.</span></a></div></section><section class="start-how-v25" aria-labelledby="howTitle"><div class="start-head-v25"><p>HOW SHIFT WORKS</p><h2 id="howTitle">One useful step at a time.</h2></div><ol><li><b>1</b><div><strong>Tell us roughly where you are</strong><span>No judgement and no perfect starting point required.</span></div></li><li><b>2</b><div><strong>See the useful options</strong><span>Evidence, tools and journeys in plain English.</span></div></li><li><b>3</b><div><strong>Choose what fits</strong><span>Browse freely or save progress inside My Timber.</span></div></li></ol></section><section class="start-evidence-v25"><strong>Evidence-led. UK-focused. Bloke-readable.</strong><span>Shift explains options and trade-offs without pretending a website replaces qualified clinical care.</span><a href="/editorial-standards">How we check our work →</a></section></div>';
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+})();
+
+// V27 approved full design layer. It is deliberately excluded from Shift Me,
+// which is owned and released independently.
+(function fullDesignV27(){
+ const path=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';
+ if(path==='/shift-me'||path.startsWith('/shift-me/'))return;
+ const publicPages={'/':'home','/start-here':'start','/timber-mill':'mill'};
+ const isMember=path==='/member/dashboard';
+ if(!publicPages[path]&&!isMember)return;
+ const link=document.createElement('link');
+ link.rel='stylesheet';link.href='/shift-full-design-v27.css?v=27b';
+ document.head.appendChild(link);
+ document.body.classList.add('shift-design-v27',isMember?'shift-page-member':`shift-page-${publicPages[path]}`);
+ const syncPanel=()=>{
+  if(!isMember)return;
+  [...document.body.classList].filter(x=>x.startsWith('shift-panel-')).forEach(x=>document.body.classList.remove(x));
+  document.body.classList.add(`shift-panel-${(location.hash||'#today').slice(1)}`);
+ };
+ syncPanel();window.addEventListener('hashchange',syncPanel);
+})();
+
+// SST_TOOL_FIXES_2201
+(function(){
+ const steps=document.getElementById('stepsForm');if(steps)steps.onsubmit=e=>{e.preventDefault();const n=Math.max(0,+steps.n.value||0),km=n*0.75/1000,miles=km*0.621371;show('stepsR',resultHTML(`<h2>Approx. ${km.toFixed(1)} km (${miles.toFixed(1)} miles)</h2><p>Estimated using a default average step length of 0.75 metres.</p>`,`Useful for spotting whether you are moving more — not for turning 10,000 into a pass mark. A ten-minute walk still counts. Repeatable movement beats chasing a perfect streak.`,[['Exercise guide','/guides/exercise-walking-strength-mobility'],['Walking calories','/tools/walking']]));};
+ const sleep=document.getElementById('sleepForm');if(sleep)sleep.onsubmit=e=>{e.preventDefault();const wake=sleep.wake.value,hrs=+sleep.hrs.value||8;if(!wake)return;const [hh,mm]=wake.split(':').map(Number);let mins=((hh*60+mm-Math.round(hrs*60))%1440+1440)%1440;const t=String(Math.floor(mins/60)).padStart(2,'0')+':'+String(mins%60).padStart(2,'0');show('sleepR',resultHTML(`<h2>Start aiming for sleep at ${t}</h2><p>That allows ${hrs} hours before your ${wake} wake-up.</p>`,`Treat this as a wind-down target, not lights-out law. If your brain needs half an hour to stop replaying the day, start the landing earlier. Consistent decent sleep beats one heroic early night.`,[['Sleep & maintenance guide','/guides/sleep-stress-mindset-emotional-eating-maintenance'],['Sleep apnoea guide','/articles/sleep-apnoea-weight-men']]));};
+ const alc=document.getElementById('alcForm');if(alc)alc.onsubmit=e=>{e.preventDefault();const ml=Math.max(0,+alc.ml.value||0),abv=Math.max(0,+alc.abv.value||0),n=Math.max(0,+alc.n.value||0),per=ml*abv/1000,total=per*n;show('alcR',resultHTML(`<h2>${total.toFixed(1)} units total</h2><p>${per.toFixed(1)} units per drink × ${n}.</p>`,total>14?`No lecture. If this is a normal week, though, the total is worth noticing — alcohol can quietly hit sleep, appetite, mood and progress. Cutting one or two drinks is still a useful shift.`:`That sits within the UK low-risk weekly guideline, but lower risk is not no risk. Notice what drinking does to your sleep, hunger and next-day energy — the useful answer is wider than the unit total.`,[['NHS alcohol guidance','https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/'],['Alcohol and weight','/articles/alcohol-and-weight-men']]));};
+})();
