@@ -1,0 +1,31 @@
+name: Reta speed and image scoped preview
+on:
+  push:
+    branches: [fix/reta-speed-image-20260924]
+    paths: ['.github/workflows/reta-speed-image-preview.yml']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --prefix "$RUNNER_TEMP/perf" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+      - run: '"$RUNNER_TEMP/perf/node_modules/.bin/playwright" install --with-deps chromium'
+      - name: Current production mobile diagnosis
+        run: |
+          mkdir -p reta-proof
+          export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/perf/node_modules/playwright').chromium.executablePath())")
+          for page in home reta; do
+            route=/; if [ "$page" = reta ]; then route=/guides/retatrutide-uk-guide; fi
+            node "$RUNNER_TEMP/perf/node_modules/lighthouse/cli/index.js" "https://shiftsometimber.co.uk$route" --only-categories=performance --output=json --output-path="reta-proof/$page-before.json" '--chrome-flags=--headless --no-sandbox' --quiet
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reta-diagnosis-${{ github.sha }}
+          path: reta-proof/
