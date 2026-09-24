@@ -20,6 +20,11 @@ async function shot(i,slug,label){await cookie();await page.evaluate(()=>{docume
 async function go(url){await page.goto(SITE+url,{waitUntil:'domcontentloaded',timeout:30000});await page.locator('main').first().waitFor({state:'visible',timeout:30000});await page.waitForTimeout(500);}
 try{
  await commissioningLogin(page,{site:SITE,api:API,oidc:OIDC,email,password});
+ const headers={Origin:SITE,'X-Shift-Local-Date':new Date().toISOString().slice(0,10),'X-Shift-Local-Hour':'18'};
+ const grub=await context.request.post(API+'/v1/grub/plan',{headers,data:{days:7,calories:2000,protein_g:120,preferences:'UK family food, healthy fakeaways, no mushrooms',max_minutes:45,household_size:2}});
+ if(!grub.ok())throw new Error('Grub seed HTTP '+grub.status());
+ const fit=await context.request.post(API+'/v1/fit/plan',{headers,data:{days:3,minutes_per_day:30,location:'home',equipment:['bodyweight','dumbbells'],preferences:'fat loss, build confidence',limitations:'no acute injuries'}});
+ if(!fit.ok())throw new Error('Fit seed HTTP '+fit.status());
  await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});await shot(1,'today','Today — one useful next step');
  await requireMemberPanel(page,'journey');await shot(2,'journey','Journey — programme progress');
  await requireMemberPanel(page,'visualise');await shot(3,'progress','Progress — visualise progress');
