@@ -33,7 +33,7 @@ export function repairRetaPresentation(html,path){
  html=html.replace(/<link\b[^>]*>/gi,tag=>{
   if(!/rel=["']stylesheet["']/i.test(tag))return tag;
   const href=tag.match(/href=["']([^"']+)["']/i)?.[1];
-  const css=knownLayout&&href?.startsWith('/assets/shift-recovery-v6.css?')?RETA_RECOVERY_CSS:RETA_STYLES[href];
+  const css=knownLayout&&href==='/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'?RETA_RECOVERY_CSS:RETA_STYLES[href];
   if(!css)return tag;
   const attrs=tag.replace(/^<link\b/i,'').replace(/\/?\s*>$/,'').replace(/\s(?:href|rel)=["'][^"']*["']/gi,'');
   return '<style'+attrs+' data-reta-inline-css="'+href+'">'+css.replace(/\/\*[\s\S]*?\*\//g,comment=>comment.replaceAll('<','&lt;'))+'</style>';

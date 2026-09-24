@@ -1,3 +1,4 @@
+import {frozenAssets} from './generated/assets.mjs';
 import {pages,ticker} from './generated/pages.mjs';
 import {seoAssetResponse} from '../../public-seo-presentation.mjs';
 import {legacyAuthorityRedirects} from '../../public-shell-contract.mjs';
@@ -20,6 +21,8 @@ export default {async fetch(request,env){
  if(page)return new Response(request.method==='HEAD'?null:page[baseline?'baseline':'candidate'],{headers:{...h,'Content-Type':'text/html; charset=utf-8','X-Shift-Preview-Mode':baseline?'baseline':'candidate'}});
  const publicAsset=/^\/assets\/[a-zA-Z0-9/_.,-]+\.(?:js|css|jpg|jpeg|png|webp|svg|woff2?|ico)$/.test(path)||/^\/[a-zA-Z0-9_-]+\.(?:js|css|webmanifest|ico)$/.test(path)||path==='/articles/mounjaro-cost-uk/image';
  if(!publicAsset)return new Response('Outside the approved public preview',{status:404,headers:h});
+ const frozen=frozenAssets[path+url.search]||frozenAssets[path];
+ if(frozen)return new Response(request.method==='HEAD'?null:Uint8Array.from(atob(frozen.base64),c=>c.charCodeAt(0)),{headers:{...h,'Content-Type':frozen.type}});
  // Anonymous public bytes only. Never forward cookies, credentials or POSTs.
  const source=await fetch(new Request(origin+path+url.search,{method:request.method}),{redirect:'manual'});
  const out=new Headers(source.headers);out.delete('Set-Cookie');out.set('X-Robots-Tag','noindex, nofollow');

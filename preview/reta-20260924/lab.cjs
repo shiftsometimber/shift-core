@@ -27,7 +27,7 @@ for(const [key,route] of Object.entries(routes)){
  }
  groups.push(group);
 }
-fs.writeFileSync('reta-proof/mobile-comparison.json',JSON.stringify({scope:'Three simulated-mobile runs per page and mode, identical pathnames, frozen shell and preview host. Alternating mode order. A query switch chooses original HTML without changing route-aware script behaviour. Not field CrUX, not live production uplift, and not a guarantee of load time. Earlier prefixed-path results are superseded for comparisons.',failures,pages:groups},null,2));
+fs.writeFileSync('reta-proof/mobile-comparison.json',JSON.stringify({scope:'Three simulated-mobile runs per page and mode, identical pathnames, frozen shell, identical frozen static assets and preview host. Alternating mode order. A query switch chooses original HTML without changing route-aware script behaviour. Not field CrUX, not live production uplift, and not a guarantee of load time. Earlier prefixed-path results are superseded for comparisons.',failures,pages:groups},null,2));
 console.log(JSON.stringify(groups.map(x=>({page:x.page,baseline:x.baseline.median,candidate:x.candidate.median})),null,2));
 if(failures.length||groups.some(x=>!x.baseline.median||!x.candidate.median))process.exitCode=1;
 
