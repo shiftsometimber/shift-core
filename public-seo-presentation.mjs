@@ -1,3 +1,5 @@
+import {repairRetaPresentation} from './reta-presentation-repair.mjs';
+import {RETA_IMAGE} from './reta-editorial-asset.mjs';
 import {SEO_IMAGES, SEO_ASSETS} from './public-seo-assets-data.mjs';
 
 // Same artwork and palette; no analytics, consent or clinical copy changes.
@@ -30,11 +32,11 @@ export function repairSeoPresentation(html, rawPath) {
   return keep+' src="'+SEO_IMAGES.heroLarge.path+'" srcset="'+SEO_IMAGES.heroSmall.path+' 768w, '+SEO_IMAGES.heroLarge.path+' 1536w" sizes="(max-width:760px) 100vw, 50vw" width="1536" height="1024" loading="eager" decoding="async" fetchpriority="high">';
  });
  if(!html.includes('data-seo-contrast-20260923'))html=html.replace(/<\/head>/i,'<style data-seo-contrast-20260923>'+menuContrast+(css[path]||'')+'</style></head>');
- return html;
+ return repairRetaPresentation(html,path);
 }
 
 export function seoAssetResponse(request) {
- const url=new URL(request.url),asset=SEO_ASSETS[url.pathname];
+ const url=new URL(request.url),asset=url.pathname===RETA_IMAGE.path?RETA_IMAGE:SEO_ASSETS[url.pathname];
  if(!asset)return null;
  if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
  const headers={'Content-Type':'image/webp','Cache-Control':'public, max-age=31536000, immutable','ETag':'"'+asset.sha256+'"','X-Content-Type-Options':'nosniff'};
