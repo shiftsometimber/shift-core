@@ -18,7 +18,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: my-timber-final-production-${{ github.event_name }}
+  group: my-timber-final-production-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
