@@ -16,7 +16,7 @@ const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:693},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce'});
 const page=await context.newPage(),screens=[];
 async function cookie(){const b=page.getByRole('button',{name:/Necessary only/i});if(await b.count()&&await b.first().isVisible().catch(()=>false))await b.first().click().catch(()=>{});}
-async function shot(i,slug,label){await cookie();await page.evaluate(()=>{document.getElementById('myTimberApp')?.remove();document.querySelectorAll('.my-timber-app-footer').forEach(x=>x.remove());scrollTo(0,0)});await page.waitForTimeout(250);const file=String(i).padStart(2,'0')+'-'+slug+'.png';await page.screenshot({path:path.join(dir,file),fullPage:false});screens.push({file,label,width:780,height:1386});}
+async function shot(i,slug,label){await cookie();await page.evaluate(()=>{document.querySelectorAll('#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings').forEach(x=>x.remove());scrollTo(0,0)});await page.waitForTimeout(250);const file=String(i).padStart(2,'0')+'-'+slug+'.png';await page.screenshot({path:path.join(dir,file),fullPage:false});screens.push({file,label,width:780,height:1386});}
 async function go(url){await page.goto(SITE+url,{waitUntil:'domcontentloaded',timeout:30000});await page.locator('main').first().waitFor({state:'visible',timeout:30000});await page.waitForTimeout(500);}
 try{
  await commissioningLogin(page,{site:SITE,api:API,oidc:OIDC,email,password});
