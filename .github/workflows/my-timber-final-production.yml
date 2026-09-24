@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'my-timber-final-production.mjs'
+      - 'my-timber-google-play-screenshots.mjs'
       - '.github/workflows/my-timber-final-production.yml'
   workflow_run:
     workflows: ['Cloudflare Production Promote']
@@ -61,7 +62,16 @@ jobs:
           path: passport-production-evidence
           if-no-files-found: warn
           retention-days: 30
-      - name: Capture Google Play screens and prove Billy's live production journey
+      - name: Capture eight Google Play screenshots
+        if: github.event_name == 'push'
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
+        run: node my-timber-google-play-screenshots.mjs
+      - name: Record and prove Billy's live production journey
+        if: github.event_name != 'push'
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
