@@ -1,0 +1,42 @@
+{
+  "reviewedAt": "2026-09-24T06:32:00Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "scope": "The NHS tirzepatide access page reached its separate seven-day review deadline after the five product-information reviews in this pull request. The complete NHS page was retrieved and read. Only this source review date is renewed; the approved fingerprint, NHS page review date, medicine wording, medicine-level review date and catalogue-wide REVIEWED_AT are unchanged.",
+  "baselineCommit": "96dfa1b924816b4648d8f846f0bc2d2698e8cdba",
+  "liveObservation": {
+    "lastSourceCheckAt": "2026-09-24T05:45:35.300Z",
+    "current": 13,
+    "reviewDue": 6,
+    "retrievalFailures": 0
+  },
+  "fingerprintMethod": "Unmodified monitor.mjs fingerprintSource logic applied to the complete HTTP 200 HTML response from the exact NHS URL. The normalized fingerprint matches the previously reviewed baseline. The full source sections on purpose, prescription routes, eligibility, use, safety, interactions and page-review metadata were read before renewing the date.",
+  "uncertainty": "Factual source review only, not qualified clinical approval, individual eligibility advice, an NHS funding determination beyond the linked source, prescribing advice or a pharmacy stock verification. Successful retrieval alone was not treated as review.",
+  "sources": [
+    {
+      "id": "mounjaro-nhs",
+      "url": "https://www.nhs.uk/medicines/tirzepatide/",
+      "checkUrl": "https://www.nhs.uk/medicines/tirzepatide/",
+      "retrievedAt": "2026-09-24T06:31:57Z",
+      "httpStatus": 200,
+      "bytes": 50891,
+      "responseSha256": "8320cd4e2ce6e53ea7aca1ddc076dacb07e7c2d94f4139bfe82588e130aa2f3c",
+      "reviewedFingerprint": "0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff",
+      "withdrawn": false,
+      "sourcePublishedAt": "2026-05-15",
+      "previousReviewedAt": "2026-09-17T05:45:00Z",
+      "previousReviewedFingerprint": "0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff",
+      "reviewedAt": "2026-09-24T06:32:00Z",
+      "disposition": "factual_review_renewed",
+      "wordingChanged": false,
+      "reviewedSections": [
+        "What tirzepatide is for",
+        "How to use tirzepatide",
+        "Side effects of tirzepatide",
+        "Who can and cannot use tirzepatide",
+        "Using tirzepatide with other medicines, food and drink",
+        "Page review metadata"
+      ],
+      "assessment": "The NHS page still states that tirzepatide is prescription-only through NHS or private routes, and that weight-management eligibility depends on whether prescribing is through a doctor or a specialist weight-management service. It retains weekly injection, assessment, safety and interaction information and advises using a registered pharmacy for private prescriptions. This supports the existing bounded NHS-access wording. It does not prove individual eligibility, commissioning in every area or current pharmacy stock."
+    }
+  ]
+}
