@@ -14,7 +14,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         let config=WKWebViewConfiguration()
         config.websiteDataStore = .default() // Existing credentials, separate app session.
         config.preferences.javaScriptCanOpenWindowsAutomatically=false
-        config.applicationNameForUserAgent="MyTimberNativePreview/0.1"
+        config.applicationNameForUserAgent="MyTimber/1.0.0"
         if let url=Bundle.main.url(forResource:"native-presentation",withExtension:"js"),
            let source=try? String(contentsOf:url,encoding:.utf8){
             config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
