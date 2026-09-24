@@ -9,7 +9,7 @@
       style.id = 'my-timber-native-style';
       // The installed native app must not advertise installing the PWA or expose
       // browser-push controls that WKWebView/Android WebView cannot honour.
-      style.textContent = '#myTimberApp,.my-timber-app-footer{display:none!important}';
+      style.textContent = '#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings{display:none!important}';
       document.head.appendChild(style);
     }
     const box = document.getElementById('myTimberApp');
