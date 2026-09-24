@@ -30,6 +30,7 @@ const reviewedFingerprints = {
 // Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
 // Renewed source-only reviews: reviews/2026-09-23-source-review.json.
 // Separate product-information renewal: reviews/2026-09-23-product-information-renewal.json.
+// Separate NHS tirzepatide renewal: reviews/2026-09-24-mounjaro-nhs-renewal.json.
 const sourceReviewedDates = {
   'mounjaro-mhra': '2026-09-23T15:45:00Z',
   'mounjaro-nice': '2026-09-23T15:45:00Z',
@@ -42,7 +43,7 @@ const sourceReviewedDates = {
   'foundayo-nice': '2026-09-23T15:45:00Z',
   'retatrutide-mhra': '2026-09-23T15:45:00Z',
   'retatrutide-lilly': '2026-09-23T15:45:00Z',
-  'mounjaro-nhs': '2026-09-17T05:45:00Z',
+  'mounjaro-nhs': '2026-09-24T06:32:00Z',
   'wegovy-tablet-private': '2026-09-18T16:36:50Z',
   'mounjaro-smpc': '2026-09-23T18:04:00Z',
   'wegovy-injection-smpc': '2026-09-23T15:45:00Z',
