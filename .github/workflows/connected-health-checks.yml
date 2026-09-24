@@ -1,0 +1,63 @@
+name: Connected health - isolated checks
+on:
+  pull_request:
+    paths: ['connected-health/**', '.github/workflows/connected-health-checks.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: connected-health-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Real SQLite transactions and synthetic account tests
+        run: |
+          mkdir -p connected-health-evidence
+          set -o pipefail
+          node --test connected-health/tests/connected-health.test.mjs | tee connected-health-evidence/tests.tap
+          find connected-health -type f -print0 | sort -z | xargs -0 sha256sum > connected-health-evidence/source.sha256
+          git rev-parse HEAD > connected-health-evidence/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: connected-health-core-evidence
+          path: connected-health-evidence/
+          retention-days: 7
+  ios-reader:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile actual reader against simulator HealthKit SDK - no signing or device access
+        run: |
+          xcrun swiftc -parse-as-library -emit-module -module-name TimberHealthReader \
+            -sdk "$(xcrun --sdk iphonesimulator --show-sdk-path)" \
+            -target arm64-apple-ios16.0-simulator \
+            connected-health/native/ios/HealthReader.swift \
+            -o "$RUNNER_TEMP/TimberHealthReader.swiftmodule"
+  android-reader:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - name: Compile reader library only - no APK, live service or store credentials
+        working-directory: connected-health/native/android
+        run: gradle --no-daemon assembleDebug
