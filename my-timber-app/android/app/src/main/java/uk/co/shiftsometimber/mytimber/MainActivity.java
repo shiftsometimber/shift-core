@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 
-/** Preview client for the existing hosted PWA. No account/API implementation. */
+/** Native client for the existing hosted My Timber service. No privileged JS bridge. */
 public final class MainActivity extends Activity {
     private WebView web;
     private LinearLayout failure;
@@ -63,7 +63,7 @@ public final class MainActivity extends Activity {
             byte[] block = new byte[4096]; int n;
             while ((n=stream.read(block)) != -1) bytes.write(block,0,n);
             presentation = bytes.toString(StandardCharsets.UTF_8.name());
-        } catch (Exception e) { showFailure("This test build is missing an app resource."); return; }
+        } catch (Exception e) { showFailure("My Timber could not start securely. Please close the app and try again."); return; }
         WebView.setWebContentsDebuggingEnabled(false);
         WebSettings settings = web.getSettings();
         settings.setJavaScriptEnabled(true); // Required by the existing PWA.
@@ -77,7 +77,7 @@ public final class MainActivity extends Activity {
         settings.setMediaPlaybackRequiresUserGesture(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
         settings.setSupportMultipleWindows(false);
-        settings.setUserAgentString(settings.getUserAgentString()+" MyTimberNativePreview/0.1");
+        settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.0.0");
         CookieManager.getInstance().setAcceptCookie(true);
         CookieManager.getInstance().setAcceptThirdPartyCookies(web,false);
         web.setWebViewClient(new WebViewClient() {
