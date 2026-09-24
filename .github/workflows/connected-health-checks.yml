@@ -28,6 +28,10 @@ jobs:
           node connected-health/prepare-integration.mjs
           git diff --check
           git diff > connected-health-evidence/integration.patch
+      - name: Verify real prepared privacy transaction and existing app safeguards
+        run: |
+          set -o pipefail
+          node --test connected-health/tests/prepared-privacy.mjs my-timber-app/tests/source.test.mjs | tee connected-health-evidence/prepared-tests.tap
       - name: Compile composed Worker without deployment or credentials
         env:
           WRANGLER_SEND_METRICS: 'false'

@@ -25,6 +25,7 @@ edit('my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/Mai
  ['+" MyTimberNativePreview/0.1"','+" MyTimberNativePreview/0.1 MyTimberConnectedHealthPreview/1"'],
  ['NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());','if (uk.co.shiftsometimber.mytimber.health.HealthEntry.openIfRequested(MainActivity.this,view,request)) return true;\n                NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());']
 ]);
+edit('my-timber-app/android/build.gradle',[["plugins { id 'com.android.application' version '8.13.2' apply false }","plugins { id 'com.android.application' version '8.13.2' apply false; id 'com.android.library' version '8.13.2' apply false }"]]);
 edit('my-timber-app/android/settings.gradle',[["include ':app'","include ':app', ':connectedHealth'\nproject(':connectedHealth').projectDir = new File(settingsDir, '../../connected-health/native/android')"]]);
 edit('my-timber-app/android/app/build.gradle',[["plugins { id 'com.android.application' }","plugins { id 'com.android.application' }\ndependencies { implementation project(':connectedHealth') }"]]);
 // AndroidX is required by Health Connect, without dropping Android 8 shell users.
