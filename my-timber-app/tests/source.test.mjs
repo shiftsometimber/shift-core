@@ -37,10 +37,12 @@ test('No app-specific accounts, store checkout, notification grants or automatic
 test('Final store identities are prepared but submission remains explicitly disabled',()=>{
  const gradle=read('android/app/build.gradle'),project=read('ios/project.yml');
  assert.match(gradle,/applicationId 'uk\.co\.shiftsometimber\.mytimber'/);
- assert.match(gradle,/applicationIdSuffix '\.preview'/);
+ assert.match(gradle,/applicationIdSuffix '\.dev'/);
  assert.match(project,/Release:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber/);
- assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.preview/);
+ assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.dev/);
  assert.equal(contract.storeSubmissionAllowed,false);
+ assert.doesNotMatch(java,/Preview|test build/i);assert.doesNotMatch(swift,/Preview|test build/i);
+ assert.doesNotMatch(gradle,/\.preview|-preview/);assert.doesNotMatch(project,/\.preview|-preview/);
 });
 function fixture(origin){
  const elements=new Map();
