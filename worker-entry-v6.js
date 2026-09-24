@@ -1,3 +1,4 @@
+import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
 import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';
 import {withStartupStability} from './public-startup-stability.mjs';
 import {memberDetailsRoute,appendMemberDetailsExport} from './member-experience/member-details-routes.mjs';
@@ -1167,7 +1168,11 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 
 export default {
   ...worker,
-  async fetch(request, env, ctx) {
+  fetch: async function publicFetch(request, env, ctx) {
+    if (new URL(request.url).pathname === '/sitemap-articles.xml') {
+      const source = new URL(request.url); source.pathname = '/sitemap.xml'; source.search = '';
+      return articleSitemapResponse(request, () => publicFetch(new Request(source, {method:'GET'}), env, ctx));
+    }
     const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return appStorePublic;
     if(env.MY_TIMBER_PWA_ENABLED==='true'){
       const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);
