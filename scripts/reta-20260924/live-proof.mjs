@@ -20,6 +20,13 @@ if(phase==='before'){
    const urls=h=>[...h.matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>x[1]).sort();assert.deepEqual(urls(pages[p].body),urls(old[p].body));checks.push({path:p,urlsBefore:urls(old[p].body).length,urlsAfter:urls(pages[p].body).length,removed:0,added:0});continue;
   }
   let expected=p===RETA_PATH?repairRetaPresentation(old[p].body,p):old[p].body;
+  if(p===RETA_PATH){
+   // The production PWA wrapper appends this exact stylesheet after the public
+   // SEO transform. Reproduce that order; do not discard any compared bytes.
+   const link='<link rel="stylesheet" href="/assets/my-timber-pwa.css">';
+   assert.equal(expected.split(link).length-1,1);
+   expected=expected.replace(link,'').replace('</head>',link+'</head>');
+  }
   writeFileSync('reta-proof/'+p.replace(/\W/g,'_')+'-after.html',pages[p].body);
   const same=clean(expected)===clean(pages[p].body);checks.push({path:p,expectedSha256:sha(clean(expected)),actualSha256:sha(clean(pages[p].body)),exactExpectedMatch:same});
  }

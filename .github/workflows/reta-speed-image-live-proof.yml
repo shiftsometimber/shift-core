@@ -1,0 +1,88 @@
+name: Complete Reta live verification without redeployment
+on:
+  push:
+    branches: [verify/reta-live-20260924]
+    paths: ['.github/workflows/reta-speed-image-live-proof.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require unchanged application and comparison-only correction
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          changed=subprocess.check_output(['git','diff','--name-only','6442efbd5c0c64769121dcb8ba9502c4356f97f0','HEAD'],text=True).splitlines()
+          assert set(changed)<={'scripts/reta-20260924/live-proof.mjs','.github/workflows/reta-speed-image-live-proof.yml'},changed
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35988250417
+          name: reta-live-6442efbd5c0c64769121dcb8ba9502c4356f97f0
+          path: reta-proof
+      - name: Preserve original failed comparison and verify all downloaded bytes
+        run: |
+          python3 - <<'PY'
+          import pathlib,hashlib,shutil
+          p=pathlib.Path('reta-proof')
+          for line in (p/'SHA256SUMS').read_text().splitlines():
+            digest,name=line.split('  ',1);assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==digest,name
+          shutil.copy(p/'live-preservation.json',p/'initial-comparison-order-failure.json')
+          PY
+      - run: npm ci --no-audit --no-fund
+      - name: Exact live preservation and remaining image/header checks
+        run: node scripts/reta-20260924/live-proof.mjs after
+      - run: npm install --prefix "$RUNNER_TEMP/perf" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+      - run: '"$RUNNER_TEMP/perf/node_modules/.bin/playwright" install --with-deps chromium webkit'
+      - name: Four browser profiles and three live mobile samples per page
+        run: |
+          export SEO_TOOLS="$RUNNER_TEMP/perf"
+          VERIFY_BASE=https://shiftsometimber.co.uk node preview/reta-20260924/verify.cjs
+          export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/perf/node_modules/playwright').chromium.executablePath())")
+          for repeat in 1 2 3; do
+            for page in home reta; do
+              route=/; if [ "$page" = reta ]; then route=/guides/retatrutide-uk-guide; fi
+              node "$RUNNER_TEMP/perf/node_modules/lighthouse/cli/index.js" "https://shiftsometimber.co.uk$route" --only-categories=performance --output=json --output-path="reta-proof/$page-live-$repeat.json" '--chrome-flags=--headless --no-sandbox' --quiet
+            done
+          done
+      - name: Summarise evidence and record unchanged deployment
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,statistics
+          p=pathlib.Path('reta-proof');rows=[]
+          for page in ['home','reta']:
+            row={'page':page}
+            for phase in ['baseline','live']:
+              runs=[]
+              for n in [1,2,3]:
+                d=json.loads((p/f'{page}-{phase}-{n}.json').read_text());assert not d.get('runtimeError')
+                a=d['audits'];runs.append({'performance':d['categories']['performance']['score']*100,'lcpMs':a['largest-contentful-paint']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue']})
+              row[phase]={'runs':runs,'median':{key:statistics.median(x[key] for x in runs) for key in runs[0]}}
+            rows.append(row)
+          (p/'live-performance-summary.json').write_text(json.dumps({'scope':'Three before and three after mobile lab runs per page. Identical tool versions/settings; separate hosted runners after comparison-order continuation. Not field Core Web Vitals.','pages':rows},indent=2))
+          (p/'verification-scope.json').write_text(json.dumps({'applicationCommit':'6442efbd5c0c64769121dcb8ba9502c4356f97f0','productionDeploymentsThisContinuation':0,'databaseWrites':0,'reason':'Exact production PWA/metadata ordering reproduced; all bytes still compared.'},indent=2))
+          print(json.dumps(rows,indent=2))
+          PY
+      - name: Checksums
+        if: always()
+        run: |
+          mkdir -p reta-proof
+          find reta-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > reta-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reta-live-verified-${{ github.sha }}
+          path: reta-proof/
+          retention-days: 30
