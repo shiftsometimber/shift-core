@@ -1,6 +1,11 @@
 name: My Timber Final Production Candidate
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'my-timber-final-production.mjs'
+      - '.github/workflows/my-timber-final-production.yml'
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
@@ -17,7 +22,7 @@ concurrency:
 
 jobs:
   billy-iphone-candidate:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
