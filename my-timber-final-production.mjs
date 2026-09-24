@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
-import {commissioningLogin,memberReady} from './rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,requireMemberPanel} from './rendered-member-acceptance-support.mjs';
 
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
@@ -12,7 +12,7 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],screens:[]};
+const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],screens:[],googlePlayScreens:[]};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
@@ -136,6 +136,32 @@ try{
   assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Building the shorter Fit session changed the chosen Grub meal');
   await screenshot(page,'05-shorter-fit-built');pass('Member explicitly builds the 10-minute Fit session with its image and chosen meal preserved');
   const finalGeometry=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,url:location.href}));if(finalGeometry.overflow!==0)fail('final horizontal overflow',JSON.stringify(finalGeometry));else pass('Journey finishes with zero horizontal overflow');
+  // Google Play store screenshots: real production My Timber UI, synthetic member
+  // only, no real member data. 390x693 at 2x = 780x1386 (exact 9:16);
+  // the retained PNGs can be losslessly/visually upscaled to 1080x1920 for the
+  // Play recommendation while remaining the same captured UI.
+  const storeDir=path.join(OUT,'google-play');fs.mkdirSync(storeDir,{recursive:true});
+  await page.setViewportSize({width:390,height:693});
+  async function dismissCookie(){
+    const necessary=page.getByRole('button',{name:/Necessary only/i});
+    if(await necessary.count()&&await necessary.first().isVisible().catch(()=>false))await necessary.first().click().catch(()=>{});
+    await page.waitForTimeout(250);
+  }
+  async function storeShot(index,slug,label){
+    await dismissCookie();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(350);
+    const file=path.join(storeDir,String(index).padStart(2,'0')+'-'+slug+'.png');
+    await page.screenshot({path:file,fullPage:false});
+    report.googlePlayScreens.push({index,file,label,width:780,height:1386});
+  }
+  await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions',{state:'visible',timeout:30000});await storeShot(1,'today','Today — one useful next step');
+  await requireMemberPanel(page,'journey');await storeShot(2,'journey','Journey — programme progress');
+  await requireMemberPanel(page,'visualise');await storeShot(3,'progress','Progress — visualise progress');
+  await page.goto(SITE+'/member/check-in',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await storeShot(4,'check-in','Check-in — quick member check-in');
+  await page.goto(SITE+'/member/grub',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(5,'grub','Grub — practical food support');
+  await page.goto(SITE+'/member/fit',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(6,'fit','Fit — practical movement support');
+  await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
+  await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
+  pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
 }catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800))}finally{
   const video=page.video();await context.close();if(video)await video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')).catch(error=>fail('video save',clean(error.message)));await browser.close();write();
 }
