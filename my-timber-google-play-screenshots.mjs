@@ -20,12 +20,12 @@ async function shot(i,slug,label){await cookie();await page.evaluate(()=>{docume
 async function go(url){await page.goto(SITE+url,{waitUntil:'domcontentloaded',timeout:30000});await page.locator('main').first().waitFor({state:'visible',timeout:30000});await page.waitForTimeout(500);}
 try{
  await commissioningLogin(page,{site:SITE,api:API,oidc:OIDC,email,password});
- await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions',{state:'visible',timeout:30000});await shot(1,'today','Today — one useful next step');
+ await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});await shot(1,'today','Today — one useful next step');
  await requireMemberPanel(page,'journey');await shot(2,'journey','Journey — programme progress');
  await requireMemberPanel(page,'visualise');await shot(3,'progress','Progress — visualise progress');
  await go('/member/check-in');await shot(4,'check-in','Check-in — quick member check-in');
- await go('/member/grub');await shot(5,'grub','Grub — practical food support');
- await go('/member/fit');await shot(6,'fit','Fit — practical movement support');
+ await go('/member/grub');await page.waitForFunction(()=>!/Loading your saved food/i.test(document.body.innerText),null,{timeout:15000}).catch(()=>{});await shot(5,'grub','Grub — practical food support');
+ await go('/member/fit');await page.waitForFunction(()=>!/Loading your recommendation/i.test(document.body.innerText),null,{timeout:15000}).catch(()=>{});await shot(6,'fit','Fit — practical movement support');
  await go('/member/life-back');await shot(7,'life-back','Life Back — goals and wins');
  await go('/member/settings');await shot(8,'settings','Settings — member details and privacy');
  fs.writeFileSync(path.join(dir,'manifest.json'),JSON.stringify({proof:'MY_TIMBER_GOOGLE_PLAY_SCREENSHOTS_V1',source:process.env.GITHUB_SHA,capturedAt:new Date().toISOString(),syntheticAccount:true,realMemberData:false,screens},null,2));
