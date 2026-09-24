@@ -1,0 +1,95 @@
+name: Release verified article-only sitemap
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/article-sitemap-release.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      APPROVED_PREVIEW_COMMIT: bdbd1316f77a206f6d8069b22cf71440f30c5eac
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require the exact preview-tested application and current main
+        run: |
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+          python3 - <<'PY'
+          import subprocess,os
+          changed=subprocess.check_output(['git','diff','--name-only',os.environ['APPROVED_PREVIEW_COMMIT'],'HEAD'],text=True).splitlines()
+          assert set(changed)<={'.github/workflows/article-sitemap-release.yml','scripts/article-sitemap/preservation.mjs'},changed
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 36044657563
+          name: article-sitemap-preview-bdbd1316f77a206f6d8069b22cf71440f30c5eac
+          path: approved-preview
+      - name: Require successful preview and verify all evidence checksums
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,pathlib,hashlib,os
+          req=urllib.request.Request('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36044657563',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN']})
+          run=json.load(urllib.request.urlopen(req));assert run['conclusion']=='success' and run['head_sha']==os.environ['APPROVED_PREVIEW_COMMIT']
+          p=pathlib.Path('approved-preview')
+          for line in (p/'SHA256SUMS').read_text().splitlines():
+            digest,name=line.split('  ',1);assert hashlib.sha256((p/name.removeprefix('article-sitemap-proof/')).read_bytes()).hexdigest()==digest
+          assert (p/'commit.txt').read_text().strip()==os.environ['APPROVED_PREVIEW_COMMIT']
+          result=json.loads((p/'verification.json').read_text());assert result['exactArticleSubset'] and result['headPass'] and result['articleCount']>0
+          PY
+      - run: npm ci --no-audit --no-fund
+      - name: Recheck public and member regression gates and compile exact source
+        run: |
+          mkdir -p article-sitemap-proof
+          node --test babylove/*.test.mjs tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs tests/public-navigation-policy*.test.mjs my-timber-pwa/*.test.mjs tests/member-signup-alert.test.mjs tests/app-store-public.test.mjs
+          npx wrangler deploy --dry-run --outdir article-sitemap-proof/compiled
+      - name: Capture existing pages and rollback version
+        run: |
+          node scripts/article-sitemap/preservation.mjs before
+          npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+          cp deployment-before.json article-sitemap-proof/
+      - name: Publish exact tested Worker; no data or Pages changes
+        id: publish
+        run: |
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+          npx wrangler deploy --config wrangler.jsonc
+      - name: Verify live XML and exact page preservation
+        run: |
+          sleep 10
+          python3 scripts/article-sitemap/verify.py https://shiftsometimber.co.uk
+          node scripts/article-sitemap/preservation.mjs after
+          npx wrangler deployments list --config wrangler.jsonc --json > article-sitemap-proof/deployment-after.json
+      - name: Restore previous runtime if live verification fails
+        if: ${{ failure() && steps.publish.outcome == 'success' }}
+        run: node release/member-details-rollback.mjs
+      - name: Record release evidence
+        if: always()
+        run: |
+          mkdir -p article-sitemap-proof
+          git rev-parse HEAD > article-sitemap-proof/commit.txt
+          find article-sitemap-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > article-sitemap-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: article-sitemap-live-${{ github.sha }}
+          path: article-sitemap-proof/
+          retention-days: 30
