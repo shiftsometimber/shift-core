@@ -1,4 +1,5 @@
 name: Reta speed and image scoped preview
+# Refined route-specific CSS, with full-CSS fallback if article content changes.
 on:
   push:
     branches: [fix/reta-speed-image-20260924]

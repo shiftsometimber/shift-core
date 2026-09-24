@@ -19,3 +19,9 @@ test('visible copy, links, scripts and header are unchanged except the declared 
 });
 test('idempotent, route-scoped and no new script dependencies',()=>{assert.equal(repairRetaPresentation(after,RETA_PATH),after);for(const p of ['/','/shift-health','/member/dashboard','/guides/another'])assert.equal(repairRetaPresentation(before,p),before);assert.equal((after.match(/data-reta-inline-css=/g)||[]).length,5)});
 test('original asset GET HEAD conditional and method semantics',async()=>{const url='https://shiftsometimber.co.uk'+RETA_IMAGE.path;let r=seoAssetResponse(new Request(url));assert.equal(r.status,200);assert.equal((await r.arrayBuffer()).byteLength,28088);assert.equal(r.headers.get('Content-Type'),'image/webp');assert.equal(seoAssetResponse(new Request(url,{method:'HEAD'})).body,null);assert.equal(seoAssetResponse(new Request(url,{headers:{'If-None-Match':'"'+RETA_IMAGE.sha256+'"'}})).status,304);assert.equal(seoAssetResponse(new Request(url,{method:'POST'})).status,405)});
+test('a later article revision automatically keeps the full original stylesheet',()=>{
+ const revised=before.replace('what we know so far','what we know now');
+ const changed=repairRetaPresentation(revised,RETA_PATH);
+ const css=h=>h.match(/<style[^>]*data-reta-inline-css="\/assets\/shift-recovery-v6[^>]*>([\s\S]*?)<\/style>/)[1];
+ assert(css(after).length<50000);assert(css(changed).length>200000);assert(changed.includes('what we know now'));
+});
