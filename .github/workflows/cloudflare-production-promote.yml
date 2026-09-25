@@ -447,7 +447,9 @@ jobs:
         run: node my-timber-pwa/verify-live.mjs
       - name: Prove Medicines Watch and its source checks on live traffic
         run: node medicines-watch/verify-live.mjs
-      - name: Prove repaired access sources are reviewed and current on live traffic
+      - name: Verify live access sources without granting clinical review for Orders display
+        env:
+          WATCH_ACCESS_ORDERS_DISPLAY_ONLY: ${{ steps.scope.outputs.runtime_only }}
         run: node scripts/verify-watch-access-closeout.mjs
       - name: Prove the complete SEO closeout on live traffic
         run: node scripts/verify-seo-closeout-live.mjs
