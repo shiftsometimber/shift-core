@@ -1,0 +1,6 @@
+NSHealthShareUsageDescription:
+My Timber reads only the weight, height, steps and sleep categories you choose to share. With your separate agreement, copies are stored in your My Timber account to show your progress across the app and website. You can stop syncing or delete imported data in Connected health data settings. This does not change your treatment or medical record.
+
+No NSHealthUpdateUsageDescription: read-only; no write types requested.
+Do not add HealthKit clinical-record or background-delivery entitlements.
+Merge the description/entitlement only with the signed native release and verified consent coordinator. This fragment alone does not enable an integration.

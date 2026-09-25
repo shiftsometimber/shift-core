@@ -1,0 +1,51 @@
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+import json, os
+out=Path('connected-health-evidence/browser');out.mkdir(parents=True,exist_ok=True)
+checks=[]
+with sync_playwright() as p:
+    options={'headless':True}
+    if os.environ.get('CHROME_BIN'): options['executable_path']=os.environ['CHROME_BIN']
+    browser=p.chromium.launch(**options)
+    context=browser.new_context(viewport={'width':390,'height':844},device_scale_factor=1)
+    context.add_cookies([{'name':'fixture','value':'a','url':'http://127.0.0.1:8765'}])
+    page=context.new_page()
+    page.route('**/*',lambda route:route.continue_() if route.request.url.startswith('http://127.0.0.1:8765') else route.abort())
+    page.goto('http://127.0.0.1:8765/member/settings')
+    page.get_by_text('90 kg',exact=False).wait_for()
+    assert page.get_by_text('No shared reading',exact=True).count()==2
+    checks.append('Missing steps/sleep remain no shared reading, not zero')
+    assert page.get_by_role('link',name='Connect or sync health data').count()==0
+    checks.append('No native Health link in ordinary browser/PWA')
+    assert page.evaluate('document.documentElement.scrollWidth<=window.innerWidth')
+    checks.append('390px viewport has no horizontal overflow')
+    page.screenshot(path=str(out/'mobile-settings.png'),full_page=True)
+    page.get_by_role('button',name='Confirm this height reading').click()
+    page.wait_for_function("document.querySelector('[role=status]').textContent.startsWith('Settings loaded') && !document.body.innerText.includes('Confirm this height reading')")
+    assert '174 cm' in page.inner_text('body')
+    checks.append('Height confirmed through real SQLite route; no manual profile overwrite')
+    page.get_by_role('button',name='Stop syncing',exact=True).click()
+    page.get_by_text('Sync is stopped.',exact=True).wait_for()
+    assert '90 kg' in page.inner_text('body')
+    checks.append('Stop syncing persists while preserving historical display')
+    context.add_cookies([{'name':'fixture','value':'b','url':'http://127.0.0.1:8765'}])
+    page.once('dialog',lambda d:d.accept())
+    page.get_by_role('button',name='Delete imported data').click()
+    page.get_by_text('This change was not confirmed.',exact=False).wait_for()
+    assert '90 kg' not in page.inner_text('body')
+    checks.append('Stale first-account delete rejected after cookie switches to second account')
+    context.add_cookies([{'name':'fixture','value':'a','url':'http://127.0.0.1:8765'}])
+    page.reload();page.get_by_text('90 kg',exact=False).wait_for()
+    checks.append('Rejected cross-account deletion left original account measurements intact')
+    page.once('dialog',lambda d:d.accept())
+    page.get_by_role('button',name='Delete imported data').click()
+    page.wait_for_function("document.querySelectorAll('[data-connected-health] dd').length===4 && Array.from(document.querySelectorAll('[data-connected-health] dd')).every(x=>x.textContent==='No shared reading')")
+    page.reload()
+    page.get_by_text('Imported readings are excluded from personalised progress.').wait_for()
+    assert '90 kg' not in page.inner_text('body')
+    checks.append('Confirmed deletion persists after refresh')
+    context.clear_cookies();page.reload();page.get_by_text('Sign in to view your connected health data.').wait_for()
+    checks.append('Signed-out view contains no imported values')
+    browser.close()
+(out/'browser-checks.json').write_text(json.dumps({'scope':'Chromium local fictional backend, not iPhone/Android device proof','passed':len(checks),'checks':checks},indent=2))
+print(json.dumps({'passed':len(checks),'checks':checks},indent=2))
