@@ -50,7 +50,7 @@ jobs:
           const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
           assert.equal(c.name,'shift-stabilisation-preview-v2');assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
           assert(c.workers_dev&&!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
-          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-orders-preview-auth-20260925','shift-orders-preview-data-20260925']);
+          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-orders-preview-auth-'+process.env.GITHUB_RUN_ID,'shift-orders-preview-data-'+process.env.GITHUB_RUN_ID]);
           NODE
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json
           echo 'PREVIEW_URL=https://shift-stabilisation-preview-v2.matobrien.workers.dev' >> "$GITHUB_ENV"
