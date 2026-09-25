@@ -18,6 +18,7 @@ import {fitRuntime} from './fit-approved-runtime.mjs';
 import {grubIntelligenceCSS} from './grub-intelligence-client.mjs';
 import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.mjs';
 import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
+import {ordersHTML,ordersStyles,ordersRuntime} from './orders.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -26,6 +27,9 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+  if(path==='/assets/member-experience/orders.mjs')return new Response(request.method==='HEAD'?null:ordersRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/assets/member-experience/orders.css')return new Response(request.method==='HEAD'?null:ordersStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/session.mjs')return new Response(request.method==='HEAD'?null:sessionRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/member/life-changed-preview'||path==='/member/life-changed-preview.html'){
     const modes={'working-late':'working_late','limited-food':'next_three_hours','ten-minutes':'no_time','eating-out':'eating_out','quick-breakfast':'missed_lunch','travel':'plans_cancelled','plans-changed':'plans_cancelled'};
