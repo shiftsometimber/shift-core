@@ -151,18 +151,18 @@ jobs:
         run: |
           node preview/stabilisation/prepare.mjs
           cat preview/stabilisation/orders-schema.sql >> work/staging/generated/auth.sql
-          node preview/stabilisation/provision.mjs
+          node preview/stabilisation/orders-provision.mjs
       - name: Verify preview boundaries and deploy
         run: |
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';import assert from 'node:assert/strict';
           const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
-          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
+          assert.equal(c.name,'shift-stabilisation-preview-v2');assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
           assert(c.workers_dev&&!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
-          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-stabilisation-preview-auth-20260917','shift-stabilisation-preview-data-20260917']);
+          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-orders-preview-auth-20260925','shift-orders-preview-data-20260925']);
           NODE
           node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json
-          echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
+          echo 'PREVIEW_URL=https://shift-stabilisation-preview-v2.matobrien.workers.dev' >> "$GITHUB_ENV"
       - name: Browser proof using fictional members
         run: |
           npm install --no-save --package-lock=false playwright@1.58.2
