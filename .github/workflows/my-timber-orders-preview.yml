@@ -9,6 +9,7 @@ on:
       - member-experience/tests/orders.test.mjs
       - work/staging/worker.mjs
       - preview/stabilisation/orders-proof.mjs
+      - preview/stabilisation/orders-provision.mjs
       - .github/workflows/my-timber-orders-preview.yml
 permissions:
   contents: read
