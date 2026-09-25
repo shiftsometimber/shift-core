@@ -9,8 +9,10 @@ assert.equal(config.name,'shift-stabilisation-preview');
 assert.equal(config.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
 assert.deepEqual(config.d1_databases,[]);
 config.name='shift-stabilisation-preview-v2';
+const runId=process.env.GITHUB_RUN_ID;
+assert.match(runId||'',/^\d+$/,'A single CI run identifies this isolated preview');
 const production=readFileSync('wrangler.jsonc','utf8');
-for(const [binding,name]of [['DB','shift-orders-preview-auth-20260925'],['WORK_DB','shift-orders-preview-data-20260925']]){
+for(const [binding,name]of [['DB','shift-orders-preview-auth-'+runId],['WORK_DB','shift-orders-preview-data-'+runId]]){
  let list=JSON.parse(run(['d1','list','--json']));
  if(list.some(d=>d.name===name))throw Error('Orders preview database already exists: preserve it and inspect the earlier run before retrying');
  run(['d1','create',name,'--location','weur']);
