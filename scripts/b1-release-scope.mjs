@@ -15,6 +15,7 @@ export function validateScope(manifest,changed){
  assert.equal(manifest.previewEvidence.sha256,'04873025b6b3ec99553d570135a5d06a375120148317c8d8b27e6d5e10e60073');
  assert.equal(manifest.baseCommit,'d5f650740bef17246b180b79617e3e94e43c02c1');
  assert.deepEqual(manifest.approvedApplicationPaths,APPROVED_ORDER_FILES);
+ assert.deepEqual(manifest.runtimeSchemaAdditions,['member_account_details','member_account_details_preserve_delivery','member_signup_alerts']);
  const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
