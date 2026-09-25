@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 
 const origin=process.env.PREVIEW_URL;
-assert(process.env.GITHUB_ACTIONS==='true'&&/^https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev$/.test(origin||''));
+assert(process.env.GITHUB_ACTIONS==='true'&&/^https:\/\/shift-stabilisation-preview-v2\.[a-z0-9-]+\.workers\.dev$/.test(origin||''));
 const fixture=JSON.parse(readFileSync('work/staging/generated/probe.json'));
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844}});
