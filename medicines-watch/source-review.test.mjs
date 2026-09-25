@@ -5,6 +5,7 @@ import {sources, medicines, REVIEWED_AT} from './data.mjs';
 import {projectSourceHealth, REVIEW_INTERVAL_MS} from './monitor.mjs';
 
 const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-source-review.json', import.meta.url)));
+const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjaro-nhs-renewal.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
   source_url: source.url, check_url: source.checkUrl,
@@ -45,13 +46,40 @@ test('review expiry, changed content and failures still fail closed', () => {
   }
 });
 
-test('changed SmPC metadata does not renew unrelated sources or the medicine catalogue', () => {
+test('separate NHS tirzepatide expiry is renewed only after reading the complete unchanged source', () => {
+  assert.equal(nhsReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
+  assert.equal(nhsReceipt.sources.length, 1);
+  const proof = nhsReceipt.sources[0];
+  const source = sources.find(s => s.id === proof.id);
+  assert.equal(proof.id, 'mounjaro-nhs');
+  for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
+    assert.equal(source[key], proof[key]);
+  }
+  assert.equal(proof.previousReviewedAt, '2026-09-17T05:45:00Z');
+  assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
+  assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
+  assert.equal(proof.httpStatus, 200);
+  assert.ok(proof.bytes > 1000 && proof.bytes <= 2 * 1024 * 1024);
+  assert.match(proof.responseSha256, /^[a-f0-9]{64}$/);
+  assert.equal(proof.withdrawn, false);
+  assert.equal(proof.wordingChanged, false);
+  assert.ok(proof.assessment.length > 150);
+  const time = Date.parse(proof.reviewedAt);
+  assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
+  const old = {...source, reviewedAt: proof.previousReviewedAt};
+  assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
+});
+
+test('changed SmPC metadata preserves the medicine catalogue and separately evidenced renewals', () => {
   assert.equal(REVIEWED_AT, '2026-09-15T21:28:30Z');
   assert.equal(sources.find(s => s.id === 'wegovy-injection-smpc').sourcePublishedAt, '2026-09-22');
   assert.equal(medicines.find(m => m.id === 'wegovy-injection').reviewedAt, undefined);
-  for (const id of ['mounjaro-smpc', 'wegovy-tablet-smpc', 'orlistat-120-smpc', 'orlistat-60-smpc', 'foundayo-smpc']) {
-    assert.equal(sources.find(s => s.id === id).reviewedAt, '2026-09-16T17:44:34Z');
+  const renewal = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-information-renewal.json', import.meta.url)));
+  for (const proof of renewal.sources) {
+    assert.equal(proof.previousReviewedAt, '2026-09-16T17:44:34Z');
+    assert.equal(sources.find(s => s.id === proof.id).reviewedAt, proof.reviewedAt);
+    assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, '2026-09-18T16:36:50Z');
-  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, '2026-09-17T05:45:00Z');
+  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, nhsReceipt.reviewedAt);
 });
