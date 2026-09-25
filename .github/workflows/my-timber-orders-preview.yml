@@ -38,7 +38,9 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install openpyxl==3.1.5
       - name: Prepare fictional preview and read-only public capture
-        run: node preview/stabilisation/prepare.mjs
+        run: |
+          node preview/stabilisation/prepare.mjs
+          cat preview/stabilisation/orders-schema.sql >> work/staging/generated/auth.sql
       - name: Provision separately named preview databases
         run: node preview/stabilisation/provision.mjs
       - name: Verify preview boundaries and deploy
