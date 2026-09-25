@@ -1,14 +1,15 @@
 name: Account completion isolated verification
 on:
   push:
-    branches: [fix/account-completion-20260923]
+    branches: [fix/account-completion-20260923, fix/my-timber-orders-20260925]
 permissions:
   contents: write
 concurrency:
-  group: stabilisation-life-back-preview-only
+  group: stabilisation-life-back-preview-only-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   verify:
+    if: github.ref == 'refs/heads/fix/account-completion-20260923'
     runs-on: ubuntu-latest
     timeout-minutes: 35
     env:
@@ -125,3 +126,52 @@ jobs:
           path: account-completion-evidence/
           retention-days: 14
           if-no-files-found: error
+  orders-preview:
+    if: github.ref == 'refs/heads/fix/my-timber-orders-20260925'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
+      - name: Test fictional member order isolation and shared chrome
+        run: node --test member-experience/tests/orders.test.mjs member-experience/tests/chrome.test.mjs member-experience/tests/entry.test.mjs tests/commerce-stripe-v1.test.mjs
+      - name: Require isolated preview credential
+        run: test -n "$CLOUDFLARE_API_TOKEN"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Prepare and provision fictional preview only
+        run: |
+          node preview/stabilisation/prepare.mjs
+          cat preview/stabilisation/orders-schema.sql >> work/staging/generated/auth.sql
+          node preview/stabilisation/provision.mjs
+      - name: Verify preview boundaries and deploy
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
+          assert(c.workers_dev&&!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.deepEqual(c.d1_databases.map(d=>d.database_name).sort(),['shift-stabilisation-preview-auth-20260917','shift-stabilisation-preview-data-20260917']);
+          NODE
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json
+          echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
+      - name: Browser proof using fictional members
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium
+          node preview/stabilisation/orders-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-timber-orders-preview-evidence
+          retention-days: 14
+          path: work/staging/generated/review-evidence/orders-proof.json
+          if-no-files-found: warn
