@@ -27,6 +27,12 @@ test('gates, fresh source check, rollback capture and exactly one deploy remain 
  assert.ok(workflow.indexOf('Verify B1 protected catalogue and stock remain identical')>deploy);
  for(const step of steps.filter(s=>/name: (Verify|Prove|Block) /.test(s)))assert.ok(!step.includes("runtime_only != 'true'"),'Verification must not be skipped: '+step.split('\n')[0]);
 });
+test('Orders display proof preserves pending clinical review',()=>{
+ const step=steps.find(s=>s.startsWith('name: Verify live access sources without granting clinical review for Orders display'));
+ assert.match(step,/WATCH_ACCESS_ORDERS_DISPLAY_ONLY: \$\{\{ steps.scope.outputs.runtime_only \}\}/);
+ const proof=readFileSync(new URL('../scripts/verify-watch-access-closeout.mjs',import.meta.url),'utf8');
+ for(const marker of ['pendingClinicalReview','source_changed','review_due','my-timber-orders-display'])assert.ok(proof.includes(marker));
+});
 test('protected price/stock/config mismatch fails rather than reporting success',()=>{
  const before={tables:{medicine_products:{rows:1,sha256:'a'},medicine_variants:{rows:2,sha256:'b'},medicine_inventory:{rows:2,sha256:'c'}},configurationSha256:'d'};
  assert.doesNotThrow(()=>assertPreserved(before,structuredClone(before)));
