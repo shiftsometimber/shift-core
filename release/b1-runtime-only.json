@@ -23,7 +23,11 @@
     "fictionalAccounts": true,
     "productionWrites": 0
   },
-  "runtimeSchemaAdditions": [],
+  "runtimeSchemaAdditions": [
+    "member_account_details",
+    "member_account_details_preserve_delivery",
+    "member_signup_alerts"
+  ],
   "enforceApplicationPin": true,
   "approvedScope": "my-timber-orders-display"
 }
