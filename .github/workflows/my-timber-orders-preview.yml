@@ -10,6 +10,7 @@ on:
       - work/staging/worker.mjs
       - preview/stabilisation/orders-proof.mjs
       - preview/stabilisation/orders-provision.mjs
+      - preview/stabilisation/orders-schema.sql
       - .github/workflows/my-timber-orders-preview.yml
 permissions:
   contents: read
