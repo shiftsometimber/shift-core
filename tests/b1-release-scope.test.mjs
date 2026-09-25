@@ -1,15 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {validateScope,assertPreserved,RELEASE_PATHS} from '../scripts/b1-release-scope.mjs';
+import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES} from '../scripts/b1-release-scope.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json',import.meta.url)));
 const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
 const steps=workflow.split(/\n      - /);
-test('exact preview application plus only reviewed release plumbing is accepted',()=>{assert.equal(validateScope(manifest,[...RELEASE_PATHS]).runtimeOnly,true)});
+test('exact preview application plus only reviewed release plumbing is accepted',()=>{assert.deepEqual(manifest.approvedApplicationPaths,APPROVED_ORDER_FILES);assert.equal(validateScope(manifest,[...RELEASE_PATHS]).runtimeOnly,true)});
 test('explicitly pinned launch application, stock, workflow and configuration drift fails closed',()=>{
  assert.equal(manifest.enforceApplicationPin,true);
  for(const path of ['worker-entry-v6.js','wrangler.jsonc','migrations/019_foundayo_option_stock_lock.sql','.github/workflows/unknown.yml','auth-recovery-v1.js'])assert.throws(()=>validateScope(manifest,[path]),/drift/);
- for(const patch of [{mode:'full'},{applicationCommit:'f'.repeat(40)},{baseCommit:'f'.repeat(40)}])assert.throws(()=>validateScope({...manifest,...patch},[]));
+ for(const patch of [{mode:'full'},{applicationCommit:'f'.repeat(40)},{baseCommit:'f'.repeat(40)},{approvedApplicationPaths:[]}])assert.throws(()=>validateScope({...manifest,...patch},[]));
 });
 test('every legacy publication, seed and migration step is unreachable for runtime-only release',()=>{
  const mutations=['Apply pharmacy-readiness database additions','Initialise Medicines Watch source observations','Seed recent discovery snapshots without publishing or sending notifications','Prepare additive daily check-in feedback store','Publish the exact owner-approved illustrated Wegovy guide','Publish the reconciled oral semaglutide guide','Publish only the fixed owner-authorised catalogue when approved','Publish the exact owner-authorised newsroom batch when approved'];

@@ -1,22 +1,29 @@
 {
   "mode": "runtime-only",
-  "applicationCommit": "ce7080fe9c2da09572c7a98fca5a8c0863d0f44e",
-  "baseCommit": "ecd0250f2c0b35d9efb128ce429136242de37304",
-  "reason": "Owner-approved PR794 SEO application f4052fff combined with current released main ecd0250. All newer account and signup-alert source preserved. Only release-verification files may change after this integrated pin; no old source rollback.",
-  "previewEvidence": {
-    "sourceCommit": "f4052fff7670609f37e86f6324023cdf4baaea9a",
-    "workflowRun": 35873626050,
-    "artifactId": 10756887534,
-    "sha256": "891e09d329bc49182b65d95c67327b79460d77ca4c7c8604de1edecabe206828",
-    "integrationBase": "ecd0250f2c0b35d9efb128ce429136242de37304",
-    "integratedApplicationCommit": "ce7080fe9c2da09572c7a98fca5a8c0863d0f44e",
-    "integrationPreviewRequired": true
-  },
-  "runtimeSchemaAdditions": [
-    "member_account_details",
-    "member_account_details_preserve_delivery",
-    "member_signup_alerts"
+  "applicationCommit": "6053dac56653303ee1617d181b3005da577a1cae",
+  "baseCommit": "d5f650740bef17246b180b79617e3e94e43c02c1",
+  "reason": "My Orders display approved in PR #811 on current main. This pin covers only its exact reviewed application delta; subsequent release plumbing may change, while publication steps remain disabled.",
+  "approvedApplicationPaths": [
+    ".github/workflows/my-timber-orders-preview.yml",
+    "member-experience/chrome.mjs",
+    "member-experience/entry.mjs",
+    "member-experience/orders.mjs",
+    "member-experience/tests/orders.test.mjs",
+    "my-timber-final-source-gate.mjs",
+    "preview/stabilisation/orders-proof.mjs",
+    "preview/stabilisation/orders-provision.mjs",
+    "preview/stabilisation/orders-schema.sql",
+    "work/staging/worker.mjs"
   ],
+  "previewEvidence": {
+    "sourceCommit": "fef4e2c06eaee685a08e23e15ad8234f3be82770",
+    "workflowRun": 36133785763,
+    "artifactId": 10861983959,
+    "sha256": "04873025b6b3ec99553d570135a5d06a375120148317c8d8b27e6d5e10e60073",
+    "fictionalAccounts": true,
+    "productionWrites": 0
+  },
+  "runtimeSchemaAdditions": [],
   "enforceApplicationPin": true,
-  "approvedScope": "seo794-integrated"
+  "approvedScope": "my-timber-orders-display"
 }
