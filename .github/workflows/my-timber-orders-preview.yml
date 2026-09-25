@@ -32,7 +32,7 @@ jobs:
           node-version-file: '.nvmrc'
       - run: npm ci --no-audit --no-fund
       - name: Focused and shared member checks
-        run: node --test member-experience/tests/orders.test.mjs member-experience/tests/chrome.test.mjs member-experience/tests/entry.test.mjs tests/commerce-stripe-v1.test.mjs
+        run: node --test member-experience/tests/*.test.mjs tests/commerce-stripe-v1.test.mjs
       - name: Require isolated preview credential
         run: test -n "$CLOUDFLARE_API_TOKEN"
       - uses: actions/setup-python@v5
@@ -66,5 +66,5 @@ jobs:
         with:
           name: my-timber-orders-preview-evidence
           retention-days: 14
-          path: work/staging/generated/review-evidence/orders-proof.json
+          path: work/staging/generated/review-evidence/orders-*
           if-no-files-found: warn
