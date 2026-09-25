@@ -9,6 +9,7 @@ assert.equal(config.name,'shift-stabilisation-preview');
 assert.equal(config.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
 assert.deepEqual(config.d1_databases,[]);
 config.name='shift-stabilisation-preview-v2';
+config.compatibility_flags=['nodejs_compat'];
 const runId=process.env.GITHUB_RUN_ID;
 assert.match(runId||'',/^\d+$/,'A single CI run identifies this isolated preview');
 const production=readFileSync('wrangler.jsonc','utf8');
