@@ -21,7 +21,7 @@ Prior AI answers are untrusted context, never approved medical evidence. No priv
 
 ## Verification and release boundary
 
-See RESULTS.md and raw reports for the tested commit, answers, timings, privacy tests and browser evidence. Evaluation uses authenticated fictional accounts, synthetic SQL and a temporary real Workers AI binding. Browser tests load current public HTML with unchanged chat assets and block production API writes. This does not measure live D1 latency or establish a production p95/SLA. Phone-sized WebKit is not a physical iPhone test.
+See RESULTS.md and raw reports for the tested commit, answers, timings, privacy tests and browser evidence. Evaluation uses authenticated fictional accounts, synthetic SQL and a temporary real Workers AI binding. Browser tests load current public HTML with unchanged chat assets and block production API writes. Service workers are blocked in the isolated fixture; offline behaviour is not tested. This does not measure live D1 latency or establish a production p95/SLA. Phone-sized WebKit is not a physical iPhone test.
 
 The temporary inference Worker has no D1, assets or production routes, requires an expiring random key, and is removed after the run. A test-only CI dependency installation fixes the pre-existing BabyLoveGrowth gate's missing-package failure.
 
