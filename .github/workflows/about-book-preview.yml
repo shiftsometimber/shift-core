@@ -1,4 +1,4 @@
-name: About typography release
+name: Book consistency preview
 on:
   push:
     branches: [copy/about-pages-20260926]
@@ -34,7 +34,7 @@ jobs:
           r=json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})))['result']
           d=r['canonical_deployment']
           print(json.dumps({'deployment':d['url'],'trigger':d['deployment_trigger'],'source':r.get('source')}))
-          assert d['deployment_trigger']['metadata']['commit_hash']=='5b38b3d5a4bf77796d5a73b8f26605b076dc20a6', 'Pages authority moved again'
+          assert d['deployment_trigger']['metadata']['commit_hash']=='c57c657c7fb5e62821ad99ce40fa1e83632fb634', 'Pages authority moved again'
           PY
       - name: Reproduce authoritative Pages source
         run: |
@@ -47,20 +47,14 @@ jobs:
           python3 release/about-20260926/prepare.py
           python3 release/about-20260926/spacing.py
           python3 release/about-20260926/typography.py
-          python3 - <<'PY'
-          import json,pathlib
-          p=pathlib.Path('release/public-pages-20260911/control.json');c=json.loads(p.read_text())
-          assert c['source_fingerprint']=='5821ddd27a33b2317d00c17c09e1585a9aea0f2702325a606c14a53043996e97'
-          c.update(mode='production',approved_preview_url='https://1233d69e.projectshift.pages.dev',preview_browser_checks_passed=True)
-          p.write_text(json.dumps(c,indent=2)+'\n')
-          PY
+          python3 release/about-20260926/consistency.py
           python3 release/public-pages-20260911/assemble-pages.py
       - run: npm ci --no-audit --no-fund
-      - name: Publish checked About typography
+      - name: Upload consistency preview
         run: |
           mkdir -p "$RUNNER_TEMP/about-command"
           cd "$RUNNER_TEMP/about-command"
-          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch main --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch book-consistency-20260926 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
