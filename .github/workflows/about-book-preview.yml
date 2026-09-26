@@ -19,6 +19,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          ref: 2311dc84089b0fdc853f5e86663c9e6acd7b7adc
+          path: reta-authority
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
@@ -30,8 +34,7 @@ jobs:
           r=json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})))['result']
           d=r['canonical_deployment']
           print(json.dumps({'deployment':d['url'],'trigger':d['deployment_trigger'],'source':r.get('source')}))
-          f=json.load(urllib.request.urlopen(d['url']+'/DEPLOYMENT-FINGERPRINT.json'))
-          print(json.dumps({'fingerprint':f['aggregate_sha256'],'about':[x for x in f['files'] if x['path']=='about.html']}))
+          assert d['deployment_trigger']['metadata']['commit_hash']=='2311dc84089b0fdc853f5e86663c9e6acd7b7adc', 'Pages authority moved again'
           PY
       - name: Reproduce authoritative Pages source
         run: |
@@ -40,6 +43,7 @@ jobs:
           python3 release/header-20260912/prepare-header.py
       - name: Apply book copy and verify complete source
         run: |
+          python3 reta-authority/editorial/retatrutide/build-preview.py --pages-root . --out retatrutide-baseline
           python3 release/about-20260926/prepare.py
           python3 release/public-pages-20260911/assemble-pages.py
       - run: npm ci --no-audit --no-fund
