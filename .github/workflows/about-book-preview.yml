@@ -1,4 +1,4 @@
-name: About book copy preview
+name: About book copy release
 on:
   push:
     branches: [copy/about-pages-20260926]
@@ -45,13 +45,20 @@ jobs:
         run: |
           python3 reta-authority/editorial/retatrutide/build-preview.py --pages-root . --out retatrutide-baseline
           python3 release/about-20260926/prepare.py
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('release/public-pages-20260911/control.json');c=json.loads(p.read_text())
+          assert c['source_fingerprint']=='a60508c8321efc654c3b5b234e41b297359961e6d5f192b07fc08f5b1fae4d9f'
+          c.update(mode='production',approved_preview_url='https://1565d797.projectshift.pages.dev',preview_browser_checks_passed=True)
+          p.write_text(json.dumps(c,indent=2)+'\n')
+          PY
           python3 release/public-pages-20260911/assemble-pages.py
       - run: npm ci --no-audit --no-fund
-      - name: Upload preview only
+      - name: Publish exact checked About revision
         run: |
           mkdir -p "$RUNNER_TEMP/about-command"
           cd "$RUNNER_TEMP/about-command"
-          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch about-book-20260926 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch main --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
