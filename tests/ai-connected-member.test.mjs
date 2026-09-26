@@ -283,8 +283,8 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  assert.equal(generated,cases.length,'Every scenario must use actual generation, not a fallback');
  assert(results.every(r=>!JSON.stringify(r).includes('OTHER_MEMBER_PRIVATE')),'No other-account data');
  assert.doesNotMatch(results.find(r=>r.scenario==='food-topic').answer,/kebab|lentil/i);
- assert(results.every(r=>r.answer.split(/\s+/).length<=110),'Answers must remain concise');
- assert(results.find(r=>r.scenario==='late-shift').answer.split(/\s+/).length>=35,'Practical help must explain an action, not just name it');
+ assert(results.every(r=>r.answer.split(/\s+/).length<=180),'Answers must stay focused');
+ assert(results.find(r=>r.scenario==='late-shift').answer.split(/\s+/).length>=60,'Practical help must explain how to carry out the action and an alternative');
  assert.match(results.find(r=>r.scenario==='saved-context').answer,/lentil/i);
  assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
 });

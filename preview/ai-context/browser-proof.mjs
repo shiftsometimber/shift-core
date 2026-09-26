@@ -66,6 +66,8 @@ try{
    const corrected=await ask('What time does my shift finish now?');assert.match(corrected.answer,/ten|10/i);
    const detail=await ask('What are the first two ingredients in my chosen recipe, with their quantities?');
    for(const ingredient of recipe.ingredients.slice(0,2))assert(detail.answer.toLowerCase().includes(ingredient.item.toLowerCase()),'Actual governed ingredient missing');
+   const plan=await ask('I get home at ten in the evening and have only ten minutes. Give me a proper practical plan for my chosen recipe, including what I can prepare beforehand and what to do if it cannot safely be ready in time.');
+   assert(plan.answer.split(/\s+/).length>=60,'Recipe planning must give useful detail');
    await page.screenshot({path:out+'/'+name+'.png',fullPage:true});report.screenshots.push(name+'.png');
    const other=await browser.newContext();await other.addCookies([{name:'sst_session',value:'synthetic-2',url:origin}]);
    const privateReply=await other.request.post(origin+'/v1/ai/chat',{data:{message:'What time did I say my late shift finishes?',useJourney:false}});const privateData=await privateReply.json();assert.doesNotMatch(privateData.answer,/midnight|ten in the evening|10\s*p/i);await other.close();

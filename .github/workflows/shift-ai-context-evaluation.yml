@@ -31,6 +31,8 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
+      - name: Backend context and preservation regressions
+        run: node --test tests/ai-practical-context.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/scheduled-intelligence-delivery.test.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

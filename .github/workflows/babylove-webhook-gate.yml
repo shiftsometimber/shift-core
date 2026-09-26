@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - run: npm ci --no-audit --no-fund
       - name: Export source-only integration context (no credentials or customer records)
         run: |
           mkdir -p /tmp/babylove-source
