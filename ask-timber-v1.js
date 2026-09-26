@@ -93,13 +93,15 @@ export async function askTimberRoutes(request,env){
   }));
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)}\n${clean(item.content,1800)}`).join('\n\n');
   const history=wantsJourney?[]:normaliseHistory(body?.history);
+  const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
+  const answerSchema=practicalDepth?{...PRACTICAL_SCHEMA,properties:{...PRACTICAL_SCHEMA.properties,answer:{...PRACTICAL_SCHEMA.properties.answer,minLength:420}}}:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA;
   const messages=[
     {role:'system',content:contextPilot?PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES:systemPrompt()},
     ...history,
-    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nMEMORY RECEIPT: ${messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'}\n\nReturn valid JSON only.`}
+    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}${contextPilot?'\n\nMEMORY RECEIPT: '+(messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'):''}${practicalDepth?'\n\nANSWER DEPTH: Give 80-140 useful words in the answer itself. Explain a concrete first step, how to carry it out with the stated constraints, and a fallback. Do not replace useful detail with a generic instruction to review options. Do not invent missing facts.':''}\n\nReturn valid JSON only.`}
   ];
   try{
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA}});
+    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');

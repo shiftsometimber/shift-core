@@ -46,6 +46,7 @@ try{
   await context.addCookies([{name:'sst_session',value:'synthetic-1',url:origin,httpOnly:true,sameSite:'Lax'}]);
   await context.route('**/*',route=>{const r=route.request(),u=new URL(r.url());if(u.hostname==='api.shiftsometimber.co.uk'||(u.origin!==origin&&!['GET','HEAD'].includes(r.method())))return route.abort();return route.continue()});
   const page=await context.newPage();await page.goto(origin+'/ask-timber',{waitUntil:'networkidle'});
+  const necessaryOnly=page.getByRole('button',{name:'Necessary only',exact:true});if(await necessaryOnly.isVisible())await necessaryOnly.click();
   // Any external API request would invalidate this isolated proof.
   await page.route('https://api.shiftsometimber.co.uk/**',route=>route.abort());
   async function ask(message){

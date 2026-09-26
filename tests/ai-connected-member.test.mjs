@@ -373,3 +373,10 @@ test('AI export includes only authenticated member records, including when memor
  assert(data.aiMemory.conversations.every(row=>row.user_id===1));assert.equal(data.aiMemory.privacy.auto_memory,0);
  assert(!JSON.stringify(data).includes('OTHER_ACCOUNT_CONVERSATION'));
 });
+
+test('disabled practical pilot preserves the original model prompt without memory instructions',async t=>{
+ const {env,calls,DB}=fixture(t);
+ await ask(env,{message:'How can protein help?',useJourney:true});
+ assert.doesNotMatch(prompt(calls),/MEMORY RECEIPT|conversationMemory/);
+ assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
+});
