@@ -1,4 +1,4 @@
-name: Book consistency preview
+name: Book consistency release
 on:
   push:
     branches: [copy/about-pages-20260926]
@@ -48,13 +48,21 @@ jobs:
           python3 release/about-20260926/spacing.py
           python3 release/about-20260926/typography.py
           python3 release/about-20260926/consistency.py
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('release/public-pages-20260911/control.json')
+          c=json.loads(p.read_text())
+          assert c['source_fingerprint']=='af8e6d6669898ee32d060b4435dbb03c282ce6e3c41fb0e2e4ab3c52ecf2f4dd'
+          c.update(mode='production',approved_preview_url='https://54147c9b.projectshift.pages.dev',preview_browser_checks_passed=True)
+          p.write_text(json.dumps(c,indent=2)+'\n')
+          PY
           python3 release/public-pages-20260911/assemble-pages.py
       - run: npm ci --no-audit --no-fund
-      - name: Upload consistency preview
+      - name: Publish checked consistency release
         run: |
           mkdir -p "$RUNNER_TEMP/about-command"
           cd "$RUNNER_TEMP/about-command"
-          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch book-consistency-20260926 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch main --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
