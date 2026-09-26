@@ -22,6 +22,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Read current Pages provenance
+        run: |
+          python3 - <<'PY'
+          import os,json,urllib.request
+          u='https://api.cloudflare.com/client/v4/accounts/'+os.environ['CLOUDFLARE_ACCOUNT_ID']+'/pages/projects/projectshift'
+          r=json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})))['result']
+          d=r['canonical_deployment']
+          print(json.dumps({'deployment':d['url'],'trigger':d['deployment_trigger'],'source':r.get('source')}))
+          f=json.load(urllib.request.urlopen(d['url']+'/DEPLOYMENT-FINGERPRINT.json'))
+          print(json.dumps({'fingerprint':f['aggregate_sha256'],'about':[x for x in f['files'] if x['path']=='about.html']}))
+          PY
       - name: Reproduce authoritative Pages source
         run: |
           python3 release/public-pages-20260911/prepare-start-here.py
