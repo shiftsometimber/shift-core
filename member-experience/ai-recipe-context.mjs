@@ -3,7 +3,7 @@ import {loadGrubCatalogue} from './grub-routes.mjs';
 // Reuse Grub's full publication authority. Never trust recipe bodies from a request.
 export async function attachSelectedRecipe(DB,journey,message){
  const id=journey?.grub?.chosenForToday?.recipeId;
- if(!id||!/(?:chosen|planned|recipe|meal|cook|ingredients)/i.test(message))return journey;
+ if(!id||!/(?:chosen|planned|recipe|ingredients|my\s+meal|this\s+meal|that\s+meal)/i.test(message))return journey;
  try{
   const row=(await loadGrubCatalogue(DB)).find(r=>r.id===id);
   const recipe=row?memberRecipe(row):null;
