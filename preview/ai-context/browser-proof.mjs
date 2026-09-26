@@ -37,11 +37,11 @@ let origin;const server=createServer(async(req,res)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));origin='http://127.0.0.1:'+server.address().port;
 const out='evidence/shift-ai-real-probe';mkdirSync(out,{recursive:true});
-const report={commit:process.env.SHIFT_AI_SOURCE_SHA,at:new Date().toISOString(),scope:'Unchanged public HTML and repo chat assets; local authenticated synthetic SQL; real hosted AI; no production writes',htmlSha256:createHash('sha256').update(html).digest('hex'),assetHashes,recipe:{id:recipe.id,name:recipe.name},cases:[],screenshots:[]};
+const report={commit:process.env.SHIFT_AI_SOURCE_SHA,at:new Date().toISOString(),scope:'Unchanged public HTML and repo chat assets; local authenticated synthetic SQL; real hosted AI; no production writes; service workers blocked for isolated fixture routes',htmlSha256:createHash('sha256').update(html).digest('hex'),assetHashes,recipe:{id:recipe.id,name:recipe.name},cases:[],screenshots:[]};
 let browser;
 try{
  for(const [engine,name,width,height] of [[chromium,'chromium-desktop',1440,1000],[webkit,'webkit-phone',390,844]]){
-  browser=await engine.launch({headless:true});const context=await browser.newContext({viewport:{width,height}});
+  browser=await engine.launch({headless:true});const context=await browser.newContext({viewport:{width,height},serviceWorkers:'block'});
   await context.addInitScript(()=>{window.SST_API_BASE=location.origin});
   await context.addCookies([{name:'sst_session',value:'synthetic-1',url:origin,httpOnly:true,sameSite:'Lax'}]);
   await context.route('**/*',route=>{const r=route.request(),u=new URL(r.url());if(u.hostname==='api.shiftsometimber.co.uk'||(u.origin!==origin&&!['GET','HEAD'].includes(r.method())))return route.abort();return route.continue()});
