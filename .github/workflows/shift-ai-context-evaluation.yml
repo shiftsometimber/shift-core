@@ -5,14 +5,21 @@ on:
     paths:
       - 'member-experience/ai-practical-context.mjs'
       - 'tests/ai-connected-member.test.mjs'
+      - 'preview/ai-context/**'
       - '.github/workflows/shift-ai-context-evaluation.yml'
 permissions:
   contents: read
+concurrency:
+  group: shift-ai-context-evaluation
+  cancel-in-progress: false
 jobs:
   synthetic-real-model:
     if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'preview/shift-ai-context-20260926'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,12 +27,35 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Real AI with isolated in-memory fictional member records
+      - run: npm ci --no-audit --no-fund
+      - name: Prepare temporary authenticated preview AI binding, no production bindings
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFileSync,appendFileSync} from 'node:fs';
+          import {randomBytes} from 'node:crypto';
+          const key=randomBytes(32).toString('hex');
+          console.log('::add-mask::'+key);
+          appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_KEY='+key+'\n');
+          writeFileSync('preview/ai-context/generated.json',JSON.stringify({name:'shift-ai-context-eval',main:'inference.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,ai:{binding:'AI'},vars:{EVAL_KEY:key,EXPIRES_AT:String(Date.now()+15*60000)}}));
+          NODE
+      - name: Deploy only temporary inference evaluator with existing preview credential
+        run: |
+          npx wrangler deploy --config preview/ai-context/generated.json > "$RUNNER_TEMP/shift-eval-deploy.txt" 2>&1 || { cat "$RUNNER_TEMP/shift-eval-deploy.txt"; exit 1; }
+          node --input-type=module <<'NODE'
+          import {readFileSync,appendFileSync} from 'node:fs';
+          const log=readFileSync(process.env.RUNNER_TEMP+'/shift-eval-deploy.txt','utf8');
+          const url=log.match(/https:\/\/shift-ai-context-eval\.[a-z0-9-]+\.workers\.dev/);
+          if(!url)throw Error('Isolated evaluator URL not returned');
+          appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_URL='+url[0]+'\n');
+          NODE
+      - name: Real AI with in-memory fictional member records
         env:
           SHIFT_AI_REAL_PROBE: 'true'
-          CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+          SHIFT_AI_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
         run: node --test --test-name-pattern='real-model practical pilot' tests/ai-connected-member.test.mjs
+      - name: Remove only the temporary evaluator
+        if: always() && env.SHIFT_EVAL_URL != ''
+        run: npx wrangler delete --config preview/ai-context/generated.json --force
       - uses: actions/upload-artifact@v4
         if: always()
         with:

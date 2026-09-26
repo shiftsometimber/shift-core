@@ -253,13 +253,13 @@ test('practical pilot falls back honestly when model fails',async t=>{
 
 test('real-model practical pilot evaluation with synthetic accounts only', {skip:process.env.SHIFT_AI_REAL_PROBE!=='true'}, async t=>{
  const {writeFileSync,mkdirSync}=await import('node:fs');
- const token=process.env.CLOUDFLARE_API_TOKEN,account=process.env.CLOUDFLARE_ACCOUNT_ID;
- assert(token&&account,'Real-model evaluation requires configured Workers AI credentials');
+ const token=process.env.SHIFT_EVAL_KEY,endpoint=process.env.SHIFT_EVAL_URL;
+ assert(token&&endpoint,'Real-model evaluation requires the isolated authenticated AI binding');
  const {env,DB}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
  env.AI={run:async(model,input)=>{
-  const r=await fetch(`https://api.cloudflare.com/client/v4/accounts/${account}/ai/run/${model}`,{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(45000)});
+  const r=await fetch(endpoint+'/run',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(45000)});
   if(!r.ok)throw Error('Workers AI HTTP '+r.status);
-  const data=await r.json();if(!data.success)throw Error('Workers AI unsuccessful');return data.result;
+  return r.json();
  }};
  const cases=[
   ['saved-context','What meal have I chosen today and what is my personal goal?'],
@@ -277,7 +277,7 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
   if(data.mode==='grounded'&&data.journeyUsed)generated++;
  }
  mkdirSync('evidence/shift-ai-real-probe',{recursive:true});
- const report={at:new Date().toISOString(),commit:process.env.GITHUB_SHA,scope:'Real Workers AI, in-memory synthetic SQL records, no production DB or deployment',generated,cases:results};
+ const report={at:new Date().toISOString(),commit:process.env.SHIFT_AI_SOURCE_SHA||process.env.GITHUB_SHA,scope:'Real Workers AI, in-memory synthetic SQL records, no production DB or deployment',generated,cases:results};
  writeFileSync('evidence/shift-ai-real-probe/results.json',JSON.stringify(report,null,2));
  console.log('SHIFT_AI_SYNTHETIC_RESULTS '+JSON.stringify(report));
  assert.equal(generated,cases.length,'Every scenario must use actual generation, not a fallback');
