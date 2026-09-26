@@ -277,12 +277,13 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
   if(data.mode==='grounded'&&data.journeyUsed)generated++;
  }
  mkdirSync('evidence/shift-ai-real-probe',{recursive:true});
- const report={at:new Date().toISOString(),commit:process.env.SHIFT_AI_SOURCE_SHA||process.env.GITHUB_SHA,scope:'Real Workers AI, in-memory synthetic SQL records, no production DB or deployment',generated,cases:results};
+ const report={at:new Date().toISOString(),commit:process.env.SHIFT_AI_SOURCE_SHA||process.env.GITHUB_SHA,scope:'Real Workers AI via temporary isolated binding; in-memory synthetic SQL; no production DB or production deployment',generated,cases:results};
  writeFileSync('evidence/shift-ai-real-probe/results.json',JSON.stringify(report,null,2));
  console.log('SHIFT_AI_SYNTHETIC_RESULTS '+JSON.stringify(report));
  assert.equal(generated,cases.length,'Every scenario must use actual generation, not a fallback');
  assert(results.every(r=>!JSON.stringify(r).includes('OTHER_MEMBER_PRIVATE')),'No other-account data');
- assert.doesNotMatch(results.find(r=>r.scenario==='food-topic').answer,/kebab/i);
+ assert.doesNotMatch(results.find(r=>r.scenario==='food-topic').answer,/kebab|lentil/i);
+ assert(results.every(r=>r.answer.split(/\s+/).length<=110),'Answers must remain concise');
  assert.match(results.find(r=>r.scenario==='saved-context').answer,/lentil/i);
  assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
 });
