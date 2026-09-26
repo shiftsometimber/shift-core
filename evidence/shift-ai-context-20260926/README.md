@@ -20,3 +20,16 @@ Still required before release:
 - User review of evidence before production release.
 
 Rollback: disable the flag. The current production flag is unchanged/off. No migration or data rollback is necessary.
+
+## Follow-up evaluation, 26 September
+
+Real-model workflow: https://github.com/shiftsometimber/shift-core/actions/runs/36271828193
+Evaluated source: ae8965a7faafa958ff761b6e6954e7eabc534a6b
+
+The configured preview credential received HTTP 401 from Workers AI REST. All seven scenarios returned explicit fallback answers; ZERO actual generations passed. These timings are fallback timings, not AI latency. Raw synthetic outcomes are in real-model-blocked.json. No alternate privileged credential was substituted. Required access: a preview-authorised credential with Workers AI invocation permission, or an explicitly authorised existing preview inference facility. Never paste credentials into a chat or commit them.
+
+Current consent UI source (member-experience/health-runtime.mjs) explicitly covers optional health information for My Timber progress tracking and personalisation. This is an implementation observation, not legal sign-off for training, pooled member data or indefinite transcript storage.
+
+Architecture finding: /v1/ai/chat is the Ask Timber route changed by this draft. shift-ai-v6.js implements a separate /v1/shift-ai/chat route with conversation history, intelligent-memory.js and memory-privacy.js. Its existence does not prove live use by the public widget. Reuse and reconcile those controls before adding new persistent memory. Its default-on memory settings and write path require a focused consent/erasure review before connecting it to this pilot; they have NOT been activated or modified here.
+
+Remote initial candidate checks passed: integration run 36270326731, preservation run 36270327273, route sweep run 36270326696. No hosted/browser acceptance or answer-quality pass is claimed. No production or frontend changes.
