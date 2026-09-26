@@ -1,0 +1,4 @@
+38d03eefd879b444d5fe8f6dd7c64d1e2b6256a6608732667a55a1716eb46570  evidence/shift-ai-context-20260926/real-model-baseline.json
+29dd2d21305bde548547fd7f964af17aa3610de80b9da0e3e6be0c19151d4206  evidence/shift-ai-context-20260926/real-model-final.json
+84c4b4956fc274afe2708cfa5b416b49b6b9812cb5b02ff36b28f7d06f613b88  evidence/shift-ai-context-20260926/local-tests.txt
+f181945e1fddf97ad6210731d5db45eddd6182af80b7655f8ad1bcb176179d06  evidence/shift-ai-context-20260926/RESULTS.md
