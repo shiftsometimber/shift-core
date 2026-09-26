@@ -380,3 +380,9 @@ test('disabled practical pilot preserves the original model prompt without memor
  assert.doesNotMatch(prompt(calls),/MEMORY RECEIPT|conversationMemory/);
  assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
 });
+
+test('explicit personalisation opt-out drops client history that could contain private replies',async t=>{
+ const {env,calls}=fixture(t);enableMemory(env);
+ await ask(env,{message:'How can protein help?',personalisation:false,history:[{role:'assistant',content:'OLD_PRIVATE_REPLY'}]});
+ assert.doesNotMatch(prompt(calls),/OLD_PRIVATE_REPLY|Synthetic Lentil Bowl|Enjoying weekend walks/);
+});

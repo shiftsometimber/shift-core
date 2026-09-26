@@ -92,7 +92,7 @@ export async function askTimberRoutes(request,env){
     limitations:item.limitations||null
   }));
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)}\n${clean(item.content,1800)}`).join('\n\n');
-  const history=wantsJourney?[]:normaliseHistory(body?.history);
+  const history=wantsJourney||(contextPilot&&body.personalisation===false)?[]:normaliseHistory(body?.history);
   const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
   const answerSchema=practicalDepth?{...PRACTICAL_SCHEMA,properties:{...PRACTICAL_SCHEMA.properties,answer:{...PRACTICAL_SCHEMA.properties.answer,minLength:420}}}:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA;
   const messages=[

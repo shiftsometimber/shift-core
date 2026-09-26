@@ -1,35 +1,28 @@
-# SHIFT AI context pilot — not released
+# SHIFT AI backend candidate — not released
 
-Base: b7684acb867e85386cea87ecbfb055847d0fa55d
+Base production/main commit: `b7684acb867e85386cea87ecbfb055847d0fa55d`.
+Draft PR: https://github.com/shiftsometimber/shift-core/pull/817
 
-Backend-only candidate. No frontend, production configuration, deployment workflow or database schema changes. The server flag SHIFT_AI_PRACTICAL_CONTEXT must be exactly "true"; absent/false retains the original behaviour.
+## What this changes
 
-The existing public widget sends useJourney:false. In this pilot an authenticated session can combine reviewed knowledge with that member's existing consented journey data, without a UI change. personalisation:false is a per-request opt-out. Existing tracking consent and paused-journey controls remain authoritative. Visitors and invalid automatic sessions receive public answers; explicit authenticated-member requests retain their authentication requirement. Request-supplied member IDs never select an account.
+Ask Timber can combine reviewed SHIFT knowledge with the signed-in member's consented journey, existing private preferences and recent saved conversations. It retrieves the selected recipe through the same governed publication checks as Grub, including real ingredients, quantities, method and safety details. Practical questions request actionable explanation and a fallback; simple saved facts can be brief.
 
-Adds practical judgement instructions and bounds repeated historic rows in the model briefing. Retains exclusions, dislikes, timestamps, existing next-step feedback and evidence citation rules. No new persistent conversation memory, feedback writes, autonomous learning, background knowledge ingestion, cross-member sharing or private response cache.
+No frontend files or production configuration are changed. `SHIFT_AI_PRACTICAL_CONTEXT` must equal `"true"` to enable the new context and answer behaviour. `SHIFT_AI_CONVERSATION_MEMORY` must also equal `"true"` to enable the conversation/recipe extension. Both remain off by default. With the practical flag off, the original model instructions and request/response contract are preserved.
 
-Validation: local-tests.txt contains 110 passing tests covering the candidate, existing food regression, auth, member separation, consent withdrawal, model failure, public shell and continuity. Model replies in these tests are stubs: this proves integration contracts, NOT real answer quality or response latency.
+The unchanged widget sends `useJourney:false`; in this server-controlled pilot, a valid session plus existing tracking consent permits personalisation. `personalisation:false`, withdrawn consent, memory-off and paused tracking remain authoritative. Request-supplied member IDs cannot select an account.
 
-Still required before release:
-- Isolated authenticated preview with synthetic accounts and real model binding.
-- Human review of late-shift/budget/correction/topic-change and medical-boundary answers.
-- Measure full response latency at p50/p95; existing UI waits for complete JSON, so first-token streaming is out of scope.
-- Browser/device compatibility checks on unchanged interface.
-- Verify consent wording covers this expanded automatic context use before activation.
-- Confirm feedback capture coverage and design any additional durable memory with correction/deletion; do not equate old AI output with approved evidence.
-- User review of evidence before production release.
+## Memory lifecycle
 
-Rollback: disable the flag. The current production flag is unchanged/off. No migration or data rollback is necessary.
+The bridge reuses `shift_ai_conversations`, `shift_ai_memory_v2` and `shift_ai_privacy_settings`. It saves user and assistant turns privately and supplies at most six recent messages from a 30-day window plus up to twelve existing high-confidence preferences. This is bounded conversation retrieval, not model retraining, permanent recall of every conversation, or autonomous background research. The new bridge does not extract new structured preferences or alter saved goals/plans.
 
-## Follow-up evaluation, 26 September
+New conversation records are tied to the current consent event. Withdrawal/re-consent cannot resurrect an old conversation epoch. Writes check current consent, memory permission and pause status; a privacy change during inference suppresses the personalised reply. Existing memory correction/deletion advances the conversation boundary atomically with the edit. Existing health-data erasure now clears both AI stores for that member. Account exports include private AI records even after memory has been switched off. Memory-off stops use/saving; it is not erasure. The retrieval window is not an automatic storage-deletion policy.
 
-Real-model workflow: https://github.com/shiftsometimber/shift-core/actions/runs/36271828193
-Evaluated source: ae8965a7faafa958ff761b6e6954e7eabc534a6b
+Prior AI answers are untrusted context, never approved medical evidence. No private conversation becomes public or joins shared knowledge automatically. Existing consent wording covers optional information for My Timber progress tracking and personalisation; shared training or broader data use is outside this candidate.
 
-The configured preview credential received HTTP 401 from Workers AI REST. All seven scenarios returned explicit fallback answers; ZERO actual generations passed. These timings are fallback timings, not AI latency. Raw synthetic outcomes are in real-model-blocked.json. No alternate privileged credential was substituted. Required access: a preview-authorised credential with Workers AI invocation permission, or an explicitly authorised existing preview inference facility. Never paste credentials into a chat or commit them.
+## Verification and release boundary
 
-Current consent UI source (member-experience/health-runtime.mjs) explicitly covers optional health information for My Timber progress tracking and personalisation. This is an implementation observation, not legal sign-off for training, pooled member data or indefinite transcript storage.
+See RESULTS.md and raw reports for the tested commit, answers, timings, privacy tests and browser evidence. Evaluation uses authenticated fictional accounts, synthetic SQL and a temporary real Workers AI binding. Browser tests load current public HTML with unchanged chat assets and block production API writes. This does not measure live D1 latency or establish a production p95/SLA. Phone-sized WebKit is not a physical iPhone test.
 
-Architecture finding: /v1/ai/chat is the Ask Timber route changed by this draft. shift-ai-v6.js implements a separate /v1/shift-ai/chat route with conversation history, intelligent-memory.js and memory-privacy.js. Its existence does not prove live use by the public widget. Reuse and reconcile those controls before adding new persistent memory. Its default-on memory settings and write path require a focused consent/erasure review before connecting it to this pilot; they have NOT been activated or modified here.
+The temporary inference Worker has no D1, assets or production routes, requires an expiring random key, and is removed after the run. A test-only CI dependency installation fixes the pre-existing BabyLoveGrowth gate's missing-package failure.
 
-Remote initial candidate checks passed: integration run 36270326731, preservation run 36270327273, route sweep run 36270326696. No hosted/browser acceptance or answer-quality pass is claimed. No production or frontend changes.
+Production activation remains subject to review. Rollback is to disable the two flags; this stops new behaviour, not deletion of previously stored conversations. Export and erasure support remain available.
