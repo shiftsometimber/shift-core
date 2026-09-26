@@ -64,6 +64,10 @@ export async function askTimberRoutes(request,env){
   const evidence=contextPilot&&!isWatchStatusQuestion(message)?retrievedEvidence.filter(item=>item.reviewState!=='unavailable'):retrievedEvidence;
   if(body.useJourney===true&&wantsJourney&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
   const journeyUsed=journey.status==='available';
+  if(contextPilot&&!journeyUsed&&body.useJourney!==true){
+    if(clarification)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
+    if(reviewedDirect)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
+  }
   if(!evidence.length&&!journeyUsed){
     console.log('ask_timber_insufficient_evidence',JSON.stringify({requestId}));
     return json({

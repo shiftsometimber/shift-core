@@ -284,6 +284,14 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  assert(results.every(r=>!JSON.stringify(r).includes('OTHER_MEMBER_PRIVATE')),'No other-account data');
  assert.doesNotMatch(results.find(r=>r.scenario==='food-topic').answer,/kebab|lentil/i);
  assert(results.every(r=>r.answer.split(/\s+/).length<=110),'Answers must remain concise');
+ assert(results.find(r=>r.scenario==='late-shift').answer.split(/\s+/).length>=35,'Practical help must explain an action, not just name it');
  assert.match(results.find(r=>r.scenario==='saved-context').answer,/lentil/i);
  assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
+});
+
+test('pilot stale public session retains the existing direct starter answer',async t=>{
+ const {env,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
+ const r=await ask(env,{message:'How can I lose weight?',useJourney:false},'expired-cookie');
+ const data=await r.json();assert.equal(r.status,200);assert.equal(data.mode,'reviewed_direct');
+ assert.match(data.answer,/one manageable change/);assert.equal(calls.length,0);
 });
