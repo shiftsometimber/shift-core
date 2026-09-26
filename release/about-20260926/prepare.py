@@ -3,7 +3,7 @@ import gzip, hashlib, json, pathlib, re
 here=pathlib.Path(__file__).resolve().parent
 source=here.parent/'public-pages-20260911'
 p=json.loads(gzip.decompress((source/'source.json.gz').read_bytes()))
-assert p['source_fingerprint']=='1ec46ba5f5383cf02c5379cabc6ad20877a8dc6193abd8cc852b1ede43a9dcc0'
+assert p['source_fingerprint']==json.loads(pathlib.Path('retatrutide-baseline/proof.json').read_text())['candidate_fingerprint']
 baseline=p['source_fingerprint']; old=p['overrides']['about.html']
 story=(here/'story.html').read_text()
 new,n=re.subn(r'(<article class="sst-reading-article-v31">).*?(</article>)',lambda m:m[1]+story+m[2],old,flags=re.S)
