@@ -1,0 +1,42 @@
+name: About book copy preview
+on:
+  push:
+    branches: [copy/about-pages-20260926]
+    paths: ['.github/workflows/about-book-preview.yml', 'release/about-20260926/**']
+permissions:
+  contents: read
+concurrency:
+  group: verified-public-pages-repair
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Reproduce authoritative Pages source
+        run: |
+          python3 release/public-pages-20260911/prepare-start-here.py
+          python3 release/public-pages-20260911/prepare-work-public.py
+          python3 release/header-20260912/prepare-header.py
+      - name: Apply book copy and verify complete source
+        run: |
+          python3 release/about-20260926/prepare.py
+          python3 release/public-pages-20260911/assemble-pages.py
+      - run: npm ci --no-audit --no-fund
+      - name: Upload preview only
+        run: |
+          mkdir -p "$RUNNER_TEMP/about-command"
+          cd "$RUNNER_TEMP/about-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch about-book-20260926 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/release/about-20260926/deploy.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: about-book-preview-evidence
+          path: release/about-20260926/
