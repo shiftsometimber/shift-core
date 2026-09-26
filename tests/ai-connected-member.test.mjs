@@ -204,14 +204,14 @@ test('shared brain exposes the same connected journey without duplicate raw owne
 test('practical pilot is server-only, preserves response contract and supports immediate switch-off',async t=>{
  const {env,calls}=fixture(t);
  const base=await(await ask(env,{SHIFT_AI_PRACTICAL_CONTEXT:true})).json();
- assert.doesNotMatch(prompt(calls),/PRACTICAL JUDGEMENT/);
+ assert.doesNotMatch(prompt(calls),/SHIFT's practical UK information assistant/);
  env.SHIFT_AI_PRACTICAL_CONTEXT='true';calls.length=0;
  const enabled=await(await ask(env)).json();
- assert.match(prompt(calls),/PRACTICAL JUDGEMENT/);
+ assert.match(prompt(calls),/SHIFT's practical UK information assistant/);
  assert.match(prompt(calls),/Current corrections override saved choices/);
  assert.deepEqual(Object.keys(enabled).sort(),Object.keys(base).sort());
  env.SHIFT_AI_PRACTICAL_CONTEXT='false';calls.length=0;
- await ask(env);assert.doesNotMatch(prompt(calls),/PRACTICAL JUDGEMENT/);
+ await ask(env);assert.doesNotMatch(prompt(calls),/SHIFT's practical UK information assistant/);
 });
 test('practical pilot retains privacy, erasure, no-write and emergency boundaries',async t=>{
  const {env,DB,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';

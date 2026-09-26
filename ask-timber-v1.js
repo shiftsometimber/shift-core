@@ -9,6 +9,7 @@ const MODEL_FALLBACK='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 const MAX_MESSAGE=900;
 const MAX_HISTORY=6;
 const ANSWER_SCHEMA={type:'object',properties:{answer:{type:'string'},keyPoints:{type:'array',items:{type:'string'}},nextSteps:{type:'array',items:{type:'string'}},followUps:{type:'array',items:{type:'string'}},confidence:{type:'string',enum:['high','medium','low']},limitations:{type:'string'}},required:['answer','keyPoints','nextSteps','followUps','confidence','limitations'],additionalProperties:false};
+const PRACTICAL_SCHEMA={...ANSWER_SCHEMA,properties:{...ANSWER_SCHEMA.properties,answer:{type:'string',description:'Answer the actual question. For practical problems give 3-4 concrete sentences (40-90 words): a usable action, how to do it given the constraints, and an alternative if useful. Simple saved facts and privacy refusals can be brief.'},keyPoints:{type:'array',items:{type:'string'},maxItems:1},nextSteps:{type:'array',items:{type:'string'},maxItems:1},followUps:{type:'array',items:{type:'string'},maxItems:1}}};
 // Clinic Gone Quiet ten-pack: one reviewed, fail-safe answer lane for each
 // stranded-member moment. These are information and support routes, never a
 // substitute prescriber or a disguised route to the till.
@@ -88,12 +89,12 @@ export async function askTimberRoutes(request,env){
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)}\n${clean(item.content,1800)}`).join('\n\n');
   const history=wantsJourney?[]:normaliseHistory(body?.history);
   const messages=[
-    {role:'system',content:(contextPilot?systemPrompt().replace('2-5 short paragraphs with inline [n] citations','1-2 short paragraphs, at most 90 words, with inline [n] citations where needed'):systemPrompt())+(contextPilot?'\n'+PRACTICAL_JUDGEMENT_RULES:'')},
+    {role:'system',content:contextPilot?PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES:systemPrompt()},
     ...history,
     {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nReturn valid JSON only.`}
   ];
   try{
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?420:900,temperature:0.2,response_format:{type:'json_schema',json_schema:ANSWER_SCHEMA}});
+    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');
