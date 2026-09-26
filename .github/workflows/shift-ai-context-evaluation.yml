@@ -3,7 +3,10 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'member-experience/ai-practical-context.mjs'
+      - 'member-experience/ai-*.mjs'
+      - 'memory-privacy.js'
+      - 'privacy-health-erasure-route-v1.js'
+      - 'tests/helpers/ai-member-fixture.mjs'
       - 'tests/ai-connected-member.test.mjs'
       - 'preview/ai-context/**'
       - '.github/workflows/shift-ai-context-evaluation.yml'
@@ -16,7 +19,7 @@ jobs:
   synthetic-real-model:
     if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'preview/shift-ai-context-20260926'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
     env:
       CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
@@ -28,6 +31,16 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare accepted recipe fixtures and browser engines
+        run: |
+          python -m pip install openpyxl==3.1.5
+          node member-experience/staging/grub-catalogue.mjs
+          GRUB_PUBLISHABLE_FILE=work/staging/generated/grub-approved/grub-v1-publishable.json FINAL_V1_PUBLICATION_DIR=preview/ai-context/generated/publication node final-v1-production-publication.mjs
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
       - name: Prepare temporary authenticated preview AI binding, no production bindings
         run: |
           node --input-type=module <<'NODE'
@@ -65,6 +78,10 @@ jobs:
           SHIFT_AI_REAL_PROBE: 'true'
           SHIFT_AI_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
         run: node --test --test-name-pattern='real-model practical pilot' tests/ai-connected-member.test.mjs
+      - name: Authenticated browser memory, recipe and erasure proof
+        env:
+          SHIFT_AI_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node preview/ai-context/browser-proof.mjs
       - name: Remove only the temporary evaluator
         if: always() && env.SHIFT_EVAL_URL != ''
         run: |

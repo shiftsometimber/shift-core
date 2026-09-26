@@ -1,3 +1,5 @@
+import {memoryAccess,saveConversationTurn,memoryStillAllowed} from './member-experience/ai-memory-bridge.mjs';
+import {attachSelectedRecipe} from './member-experience/ai-recipe-context.mjs';
 import {contextPilotEnabled,compactJourney,PRACTICAL_JUDGEMENT_RULES} from './member-experience/ai-practical-context.mjs';
 import {foodInjectionClarification,reviewedFoodEvidence} from './ask-timber-food-evidence.mjs';
 import {retrieveUnifiedKnowledge} from './shift-brain-v1.js';
@@ -61,7 +63,7 @@ export async function askTimberRoutes(request,env){
   const reviewedDirect=directReviewedAnswer(message);
   if(reviewedDirect&&!wantsJourney)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
-  const [retrievedEvidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney})]);
+  const [retrievedEvidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney},{memory:contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'})]);
   const evidence=contextPilot&&!isWatchStatusQuestion(message)?retrievedEvidence.filter(item=>item.reviewState!=='unavailable'):retrievedEvidence;
   if(body.useJourney===true&&wantsJourney&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
   const journeyUsed=journey.status==='available';
@@ -79,6 +81,9 @@ export async function askTimberRoutes(request,env){
       limitations:'No sufficiently relevant reviewed source was found.'
     },200,request);
   }
+  if(contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'&&journeyUsed)await attachSelectedRecipe(env.DB,journey,message);
+  const access=memoryAccess(journey);
+  const messageSaved=await saveConversationTurn(access,'user',message);
   const modelJourney=contextPilot?compactJourney(journey,message):journey;
   const sources=evidence.map((item,index)=>({
     id:index+1,title:clean(item.title,180)||'Reviewed Shift source',
@@ -91,7 +96,7 @@ export async function askTimberRoutes(request,env){
   const messages=[
     {role:'system',content:contextPilot?PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES:systemPrompt()},
     ...history,
-    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nReturn valid JSON only.`}
+    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nMEMORY RECEIPT: ${messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'}\n\nReturn valid JSON only.`}
   ];
   try{
     const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA}});
@@ -99,6 +104,8 @@ export async function askTimberRoutes(request,env){
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');
     const confidence=confidenceFor(evidence,generated.confidence);
+    if(!await memoryStillAllowed(access))return json({ok:true,requestId,mode:'grounded',confidence:'low',journeyUsed:false,answer:'Your privacy settings changed while I was answering. Please ask again so I can use your current choice.',keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'No personalised answer was returned after the change.'},200,request);
+    await saveConversationTurn(access,'assistant',clean(generated.answer,2800));
     console.log('ask_timber_answered',JSON.stringify({requestId,evidence:evidence.length,confidence}));
     return json({
       ok:true,requestId,mode:'grounded',confidence,journeyUsed,
