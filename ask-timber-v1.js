@@ -1,3 +1,4 @@
+import {contextPilotEnabled,compactJourney,PRACTICAL_JUDGEMENT_RULES} from './member-experience/ai-practical-context.mjs';
 import {foodInjectionClarification,reviewedFoodEvidence} from './ask-timber-food-evidence.mjs';
 import {retrieveUnifiedKnowledge} from './shift-brain-v1.js';
 import {isWatchStatusQuestion} from './medicines-watch/knowledge.mjs';
@@ -48,13 +49,19 @@ export async function askTimberRoutes(request,env){
   }
   // Static urgent-help signposting must survive missing AI/database bindings.
   if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);
+  const contextPilot=contextPilotEnabled(env);
+  // The legacy public widget hard-codes useJourney:false. In the pilot, the
+  // authenticated session plus existing saved consent decides availability.
+  // An explicit per-request personalisation opt-out always wins.
+  const autoJourney=contextPilot&&body.personalisation!==false&&/(?:^|;\s*)sst_session=/.test(request.headers.get('Cookie')||'');
+  const wantsJourney=body.personalisation!==false&&(body.useJourney===true||autoJourney);
   const clarification=foodInjectionClarification(message);
-  if(clarification&&body.useJourney!==true)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
+  if(clarification&&!wantsJourney)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
   const reviewedDirect=directReviewedAnswer(message);
-  if(reviewedDirect&&body.useJourney!==true)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
+  if(reviewedDirect&&!wantsJourney)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
-  const [evidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,body)]);
-  if(body.useJourney===true&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
+  const [evidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney})]);
+  if(body.useJourney===true&&wantsJourney&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
   const journeyUsed=journey.status==='available';
   if(!evidence.length&&!journeyUsed){
     console.log('ask_timber_insufficient_evidence',JSON.stringify({requestId}));
@@ -66,6 +73,7 @@ export async function askTimberRoutes(request,env){
       limitations:'No sufficiently relevant reviewed source was found.'
     },200,request);
   }
+  const modelJourney=contextPilot?compactJourney(journey):journey;
   const sources=evidence.map((item,index)=>({
     id:index+1,title:clean(item.title,180)||'Reviewed Shift source',
     url:publicSource(item.provenance),authority:Number(item.authority||0),
@@ -73,11 +81,11 @@ export async function askTimberRoutes(request,env){
     limitations:item.limitations||null
   }));
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)}\n${clean(item.content,1800)}`).join('\n\n');
-  const history=body.useJourney===true?[]:normaliseHistory(body?.history);
+  const history=wantsJourney?[]:normaliseHistory(body?.history);
   const messages=[
-    {role:'system',content:systemPrompt()},
+    {role:'system',content:systemPrompt()+(contextPilot?'\n'+PRACTICAL_JUDGEMENT_RULES:'')},
     ...history,
-    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(journey):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nReturn valid JSON only.`}
+    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nReturn valid JSON only.`}
   ];
   try{
     const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:900,temperature:0.2,response_format:{type:'json_schema',json_schema:ANSWER_SCHEMA}});

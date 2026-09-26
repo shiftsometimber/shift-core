@@ -200,3 +200,53 @@ test('shared brain exposes the same connected journey without duplicate raw owne
   for(const key of ['grubV2','fitJourney','lifeBack','myJourney'])assert.equal(brain.member.state.preferences[key],undefined);
   assert(getPrefs(DB).lifeBack.progress.entries.length===1,'building a brain must not mutate saved preferences');
 });
+
+test('practical pilot is server-only, preserves response contract and supports immediate switch-off',async t=>{
+ const {env,calls}=fixture(t);
+ const base=await(await ask(env,{SHIFT_AI_PRACTICAL_CONTEXT:true})).json();
+ assert.doesNotMatch(prompt(calls),/PRACTICAL JUDGEMENT/);
+ env.SHIFT_AI_PRACTICAL_CONTEXT='true';calls.length=0;
+ const enabled=await(await ask(env)).json();
+ assert.match(prompt(calls),/PRACTICAL JUDGEMENT/);
+ assert.match(prompt(calls),/Current corrections override saved choices/);
+ assert.deepEqual(Object.keys(enabled).sort(),Object.keys(base).sort());
+ env.SHIFT_AI_PRACTICAL_CONTEXT='false';calls.length=0;
+ await ask(env);assert.doesNotMatch(prompt(calls),/PRACTICAL JUDGEMENT/);
+});
+test('practical pilot retains privacy, erasure, no-write and emergency boundaries',async t=>{
+ const {env,DB,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
+ await ask(env,{userId:2,history:[{role:'assistant',content:'ERASED_PRIVATE_FACT'}]});
+ assert.doesNotMatch(prompt(calls),/OTHER_MEMBER_PRIVATE|ERASED_PRIVATE_FACT|PRIVATE_EMAIL/);
+ assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
+ calls.length=0;consent(DB,1,false);
+ await ask(env,{message:'How can protein help?'});
+ assert.doesNotMatch(prompt(calls),/Synthetic Lentil Bowl|Synthetic purpose|Enjoying weekend walks/);
+ calls.length=0;const data=await(await ask(env,{message:'I have chest pain and cannot breathe'})).json();
+ assert.equal(data.mode,'safety');assert.equal(calls.length,0);
+});
+test('practical pilot honours explicit personalisation opt-out even with an authenticated cookie',async t=>{
+ const {env,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
+ await ask(env,{message:'How can protein help?',useJourney:false,personalisation:false});
+ assert.doesNotMatch(prompt(calls),/Synthetic Lentil Bowl|Synthetic purpose|Enjoying weekend walks/);
+});
+test('practical pilot falls back honestly when model fails',async t=>{
+ const {env}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';env.AI.run=async()=>{throw Error('synthetic failure')};
+ const data=await(await ask(env)).json();assert.equal(data.mode,'saved_journey');assert.match(data.limitations,/engine is unavailable/);
+});
+
+ test('pilot joins reviewed public knowledge and consented member data for the unchanged public widget',async t=>{
+ const {env,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
+ const data=await(await ask(env,{message:'How can protein help with my chosen meal?',useJourney:false})).json();
+ assert.equal(data.journeyUsed,true);assert(data.sources.length>0);
+ assert.match(prompt(calls),/Synthetic Lentil Bowl/);assert.match(prompt(calls),/REVIEWED EVIDENCE/);
+ });
+ test('automatic member context fails closed on withdrawal, invalid sessions and signed-out visitors',async t=>{
+ const {env,DB,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
+ for(const token of [null,'invalid-session']){
+ calls.length=0;const r=await ask(env,{message:'How can protein help?',useJourney:false},token);
+ assert.equal(r.status,200);assert.doesNotMatch(prompt(calls),/Synthetic Lentil Bowl|Enjoying weekend walks/);
+ }
+ consent(DB,1,false);calls.length=0;
+ await ask(env,{message:'How can protein help?',useJourney:false,history:[{role:'assistant',content:'DELETED_PRIVATE_CONTEXT'}]});
+ assert.doesNotMatch(prompt(calls),/Synthetic Lentil Bowl|Enjoying weekend walks|DELETED_PRIVATE_CONTEXT/);
+ });

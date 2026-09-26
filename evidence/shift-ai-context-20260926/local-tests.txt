@@ -1,0 +1,202 @@
+ASK TIMBER MULTI-INTENT GATE PASS — knee and kebab both remain in scope.
+✔ keeps knee pain and kebab as two explicit request parts (2.335564ms)
+✔ does not split a single food phrase (0.17949ms)
+✔ preserves up to four practical intents (0.134368ms)
+✔ splits deliberately separated requests (0.11952ms)
+✔ legacy chat with withdrawn tracking suppresses progress, goals, plans, feedback, notes, memories and history (93.52686ms)
+✔ legacy chat with paused Journey suppresses optional records even with active consent (57.989763ms)
+✔ withdrawn then re-enabled tracking excludes pre-withdrawal dialogue and both memory stores (86.390601ms)
+✔ actual My Journey deletion fences old copies without requiring a consent withdrawal; newer audit wins (31.971305ms)
+ask_timber_answered {"requestId":"23e04cdb-d225-410e-9a18-78beb788989f","evidence":0,"confidence":"low"}
+✔ Ask Shift requests a schema and accepts the provider’s parsed response object (92.906769ms)
+ask_timber_generation_failed {"requestId":"150c45af-4fa6-41a5-a249-df2ec926a7e6","error":"invalid_model_response"}
+✔ invalid structured model output remains a fallback instead of becoming a fabricated answer (20.597523ms)
+✔ real SQL summary separates chosen meals, exercise events and self-reported scores (6.84197ms)
+✔ verified cookie scopes two members; forged body identifiers never choose the account (17.471985ms)
+ask_timber_insufficient_evidence {"requestId":"16b2d183-fb86-465b-bbfd-0f4afd86e2c3"}
+✔ anonymous, unknown, revoked and expired personal requests require a valid session (25.43747ms)
+✔ public opt-out never authenticates or reads member records despite a cookie and forged data (13.650229ms)
+ask_timber_answered {"requestId":"298f8094-7a5f-43bc-b5f2-e38b37e402c5","evidence":1,"confidence":"high"}
+✔ latest withdrawn or missing tracking consent excludes saved records and supplied history (13.939915ms)
+ask_timber_answered {"requestId":"b8256dc0-7d21-45b5-8e41-de5f7df181dd","evidence":1,"confidence":"high"}
+✔ paused Journey is excluded before optional member records reach the model (10.833146ms)
+✔ blank members and changed goals have no fabricated baseline or inherited old score (10.675794ms)
+✔ daily trends use UK dates, equal daily averages, only the current goal and no future entries (13.788507ms)
+✔ weekly context excludes unconfirmed, future and other-member rows (5.101078ms)
+ask_timber_answered {"requestId":"d26668d7-5ec7-47e1-8de5-d9840fabd03f","evidence":0,"confidence":"low"}
+✔ member Ask performs no persistence except recording verified session use (12.326146ms)
+ask_timber_answered {"requestId":"8bedfe0b-080b-45d7-9a9a-f8b48c74ee85","evidence":0,"confidence":"low"}
+✔ AI prompt has only bounded saved context, excludes identity and other members, treats saved text as data (7.598384ms)
+ask_timber_answered {"requestId":"7a12399c-260d-40ee-a328-80a6c2cf782b","evidence":0,"confidence":"low"}
+ask_timber_safe_redirect {"requestId":"75bacf3e-599a-4648-afac-2fde47b702a1","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"81c807d3-d61a-4dc3-acfd-e9836378685e","category":"medical_emergency"}
+✔ a personal records question can answer without general evidence and cannot claim high evidence confidence (27.229927ms)
+✔ emergency questions always use the deterministic safety path without personal retrieval or model use (7.6109ms)
+ask_timber_generation_failed {"requestId":"4c14aa0f-52ec-4d20-aadd-aba00863936a","error":"Synthetic engine unavailable"}
+✔ model failure returns honest saved records without inventing completion, treatment changes or new scores (8.177555ms)
+ask_timber_answered {"requestId":"e97d6fa0-1559-4eaa-a0c4-b78df7dfbeb2","evidence":0,"confidence":"low"}
+✔ erased and re-enabled tracking cannot restore private facts via client-supplied conversation history (8.568098ms)
+✔ shared brain exposes the same connected journey without duplicate raw owned preference branches (12.972946ms)
+ask_timber_answered {"requestId":"a78f4f9b-d927-423a-8ff0-bc80b9436dd6","evidence":0,"confidence":"low"}
+ask_timber_answered {"requestId":"fcb83da1-a814-443a-aebc-0604c17cdcbb","evidence":0,"confidence":"low"}
+ask_timber_answered {"requestId":"62a96d79-2748-45d7-9e88-02ab138b2ef0","evidence":0,"confidence":"low"}
+✔ practical pilot is server-only, preserves response contract and supports immediate switch-off (19.10938ms)
+ask_timber_answered {"requestId":"80b165f8-7261-475d-a427-f0f4cace8d43","evidence":0,"confidence":"low"}
+ask_timber_answered {"requestId":"e3d8d816-1082-4def-95f8-3546b50bf5d4","evidence":1,"confidence":"high"}
+ask_timber_safe_redirect {"requestId":"7991b68d-a26d-4e1f-b9ea-d81da7230e14","category":"medical_emergency"}
+ask_timber_answered {"requestId":"528f9277-a3a3-4cc2-b72d-74d9ec9d209f","evidence":1,"confidence":"high"}
+✔ practical pilot retains privacy, erasure, no-write and emergency boundaries (12.756017ms)
+✔ practical pilot honours explicit personalisation opt-out even with an authenticated cookie (2.894367ms)
+ask_timber_generation_failed {"requestId":"8822f91a-41eb-4e90-9896-f142d08fb5d9","error":"synthetic failure"}
+✔ practical pilot falls back honestly when model fails (9.807635ms)
+ask_timber_answered {"requestId":"068ce72f-235a-4545-be1f-69a4b5321238","evidence":1,"confidence":"high"}
+ask_timber_answered {"requestId":"7b18e68b-e579-4350-b78e-a7594d2c2c21","evidence":1,"confidence":"high"}
+✔ pilot joins reviewed public knowledge and consented member data for the unchanged public widget (8.160107ms)
+ask_timber_answered {"requestId":"e02a4bee-8d21-47c1-adbd-2defa92886f4","evidence":1,"confidence":"high"}
+ask_timber_answered {"requestId":"78b2541d-ece5-440f-8825-eea8adb89f13","evidence":1,"confidence":"high"}
+✔ automatic member context fails closed on withdrawal, invalid sessions and signed-out visitors (10.424142ms)
+ask_timber_answered {"requestId":"6d1a1c13-4ddc-4555-87da-b58318c42646","evidence":2,"confidence":"low"}
+ask_timber_answered {"requestId":"bfdb17f7-8bb2-4569-874f-2ab471c0c09e","evidence":2,"confidence":"low"}
+✔ ordinary purchase and launch questions cannot retrieve stale graph or legacy medicine status (10.164636ms)
+✔ mixed-medicine formulation qualifiers remain attached to the correct medicine (2.153086ms)
+✔ compound Ask Timber status questions cannot reintroduce stale evidence through a secondary request part (9.81368ms)
+✔ unavailable medicine evidence stays status-only in the model prompt and caps claimed confidence (16.215621ms)
+✔ a graph node identified as a Watch copy is excluded across every joined provenance row (2.132306ms)
+✔ expired and invalid-dated graph sources cannot survive or pollute a valid node’s provenance (1.4699ms)
+✔ source authority alone cannot make unrelated old health material relevant (1.040266ms)
+✔ pilot cannot activate through truthy values or absent configuration (6.602345ms)
+✔ compact context bounds repetition without losing exclusions, feedback, dates or dislikes (7.851953ms)
+✔ unavailable context cannot carry stale private data (0.237794ms)
+✔ Ask Timber permits credentialed requests from the public site (1.417297ms)
+✔ Shift Me respects hidden state above its overlay presentation rules (0.255442ms)
+ask_timber_insufficient_evidence {"requestId":"999b3cb0-5127-4224-8d19-ead5766d7f05"}
+ask_timber_safe_redirect {"requestId":"bf54165f-6180-4d70-a378-f5409a6c8153","category":"medical_emergency"}
+ask_timber_generation_failed {"requestId":"638616f8-752d-4bc1-a8a4-d352fdde0111","error":"synthetic failure"}
+ask_timber_insufficient_evidence {"requestId":"539395dd-6570-4217-b1f3-eea2f18f86ed"}
+ask_timber_insufficient_evidence {"requestId":"b754f699-8ad3-4616-b0f1-e01b5bd58cf5"}
+ask_timber_insufficient_evidence {"requestId":"380c7f62-7881-4879-86ff-d44e695c845c"}
+ask_timber_answered {"requestId":"bdc75824-7abf-4b82-8bf8-f564807a20b2","evidence":3,"confidence":"medium"}
+✔ reported public question traverses real adapter and route without private reads for absent or stale cookies (39.713837ms)
+✔ existing member callers retain private context and anonymous requests are still refused (13.266758ms)
+✔ unrelated authority, filler words, substring and metadata matches cannot become an answer (10.284371ms)
+✔ actual mental-health evidence remains retrievable when it is the question topic (1.830397ms)
+✔ public errors suppress internal messages, preserve input and support a successful retry (40.370903ms)
+✔ network failure keeps a useful message and retry works (4.245847ms)
+✔ general starter questions use a checked how-to source rather than news, without dropping specific clinical questions (28.631834ms)
+✔ forgotten password is a high-contrast action immediately after password on the authoritative shared sign-in shell (1.68583ms)
+✔ consecutive food questions render only the current service answer, even with a stale intent helper (5.209665ms)
+✔ intent diagnostics never add unreviewed food advice or claim missing coverage is complete (7.934137ms)
+✔ food after an unidentified injection asks which injection without assuming treatment or reusing history (3.180127ms)
+✔ named Mounjaro food question supplies relevant primary evidence and anchors the current question (3.171774ms)
+✔ WR01 independent concurrent saves persist; existing row=false (117.800774ms)
+✔ WR01 independent concurrent saves persist; existing row=true (108.939015ms)
+✔ WR01 dedicated preferences survive stale, omitted and null preferences in both flag modes (90.605742ms)
+✔ WR01 same-field replacement is last accepted write, empty payload preserves all, malformed input is rejected (89.051111ms)
+✔ WR01 rollback and retry at INSERT INTO member_state (51.6138ms)
+✔ WR01 rollback and retry at UPDATE member_status (48.734739ms)
+✔ WR01 lost acknowledgement is recoverable by read-back and safe retry; no duplicate or unrelated revert (44.967013ms)
+✔ WR01 account isolation and expired/revoked sessions protect stored work (38.121935ms)
+✔ WR02 concurrent reset has exactly one winner, only winner password works and own sessions revoked (180.551068ms)
+✔ WR02 complete rollback and successful retry at UPDATE auth_tokens (84.947132ms)
+✔ WR02 complete rollback and successful retry at UPDATE user_auth (90.706852ms)
+✔ WR02 complete rollback and successful retry at UPDATE user_sessions (110.633978ms)
+✔ WR02 invalid, expired, malformed expiry, missing and weak inputs cannot change authentication (77.630268ms)
+✔ WR02 token expiry after initial read/before atomic claim is enforced (124.957503ms)
+✔ WR02 dropped success acknowledgement does not permit second reset; new password still signs in (107.014327ms)
+auth_reset_email_failed synthetic_provider_outage
+auth_reset_email_binding_missing
+✔ WR02 real request path records mail outcomes, keeps enumeration response generic and supersedes old links (64.58751ms)
+✔ a login checked against the old password cannot mint a session after reset commits (141.145616ms)
+✔ legacy trailing-slash login shares reset-race protection (110.870077ms)
+✔ hosted reset/login probe exercises the real handlers and verifies a fresh session (315.612554ms)
+ask_timber_safe_redirect {"requestId":"1a8f391a-28c0-4792-abed-d27940fd9a75","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"035453b1-d042-421d-a06c-cf0a9c817e9f","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"a95882bf-ccbf-47fc-bd67-b6ed984e9e00","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"a731994d-d1cc-4243-851e-7a88ed7f1bd3","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"ff62bfd7-1fe4-4bf4-a836-0d9f6e9a4ddb","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"3aaec400-a6a6-4b9c-ae83-94f4c05d11bb","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"7d024f74-f055-4cee-bd2f-7c57854a3990","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"b139126b-ffbf-4fa1-a1a4-15f826e85aac","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"023ef140-5075-4604-ae1d-147eb47e9529","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"ea5b514c-a098-4b45-a1c9-beac2230befe","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"d18595b1-7836-4e92-b39d-e77a55a3aa66","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"1d222efe-0f78-4846-9e69-77052b632ecd","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"219f2a06-bfbf-4810-a1fb-46d216ce5f11","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"17dec715-dc7c-4c66-b205-90437777dde9","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"49a2ff22-d2a8-44d8-bb6a-9fc246e52774","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"b36ac8ed-bf60-4870-8b56-2e519a78a4bf","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"e11beb20-0c28-4631-8d84-23203b7d46ad","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"f6cd3070-39ac-4314-8c88-3ba9290bd2cb","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"a3169ce9-1565-4497-aa00-2bf8a081f196","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"7c5d03ea-cb19-450e-9e59-10439573c62b","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"aefdf9ba-dfc4-4256-ae66-3f951f65a122","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"dd952d08-ed8c-45e6-bd6d-d0ab27ed1c1b","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"bc6d3805-2892-49bd-af88-fd99db3471c4","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"9a46c51a-4998-40e9-a047-360b96fecd2e","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"b6e6fd7c-4888-47a3-b376-5592e07b1fd5","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"1dc5a268-9b62-454e-99d1-333b86da7561","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"e39bf984-e17c-43e7-b899-77e077a6e759","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"50ca800b-1cc8-4f0c-b58f-c0724c3b5fd8","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"8874aad4-f6bf-47fb-ad1b-4318c5f75c1d","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"c2fb317e-e564-4af6-bfe1-5314524d2e9f","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"7bbe6d6e-3726-4e23-8787-c66069739ea5","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"c9f55238-b5ab-4240-9813-fd9b9ccdefdd","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"a9e34dc3-f695-4013-b049-a3ae6f987f8b","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"850cbe9d-6a92-473c-9319-1b59ac682b1b","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"0462eb40-da80-429a-a520-561736125b9f","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"4abda435-3a25-4d52-b7e6-8db3a3516bdd","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"a1cd1010-5db3-4357-a60d-2c0584d68fc9","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"29f62b7b-60c0-4666-bbc7-8a46f921b939","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"2bfdc2d4-200d-4cc0-ba4c-60eb809cc248","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"f76ac37b-3099-4b9e-86e7-90e2a2829e4f","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"acb97449-aefe-4714-a3d4-d53ba11b60c5","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"5f6c95c5-1eae-4417-adfc-313c0aaaa777","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"922a8338-7f74-4200-9979-0043cd92fa0d","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"a637e098-5d54-4dc2-8eaa-5c59f44fe56c","category":"medical_emergency"}
+ask_timber_safe_redirect {"requestId":"3ca0dde2-d8ce-40cc-8ac9-a3a783e22fd0","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"d472a330-f9f2-4668-94d8-c94280942e22","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"f0f1ea8f-8e0c-4163-a37c-6a58b8f9de2d","category":"mental_health_emergency"}
+ask_timber_safe_redirect {"requestId":"8fe8e8ca-6e88-433d-a206-0ad6f4a798e7","category":"mental_health_emergency"}
+✔ crisis wording and inflections reach static help even with absent or failing dependencies (88.382956ms)
+✔ public chat preserves safety responses even when the question also mentions food (4.04862ms)
+✔ Pen Day honours consent at write time and has a complete export/erase lifecycle (32.373675ms)
+✔ Pen Day cannot race a concurrent withdrawal into a new saved note (2.755128ms)
+✔ deletion receipt reaches HQ and signs out all member sessions atomically, without claiming completion (1.43864ms)
+✔ a failed HQ task cannot leave a false receipt or revoke sessions (1.268936ms)
+✔ Today uses the same saved-session guard as Fit without changing the retained plan (2.726424ms)
+✔ 24-hour reporting has exact cutoff, midnight and future boundaries for all counts (1.997819ms)
+✔ public release preserves every byte outside the exact authorised paint repair (1.189433ms)
+✔ a stale duplicate cookie cannot hide the valid session cookie (41.269468ms)
+✔ an invalid session rejects access without mutating a possibly newer cookie (17.336459ms)
+✔ late expired response cannot erase a fresh login: /v1/member-state (9.16943ms)
+✔ late expired response cannot erase a fresh login: /v1/me (7.73075ms)
+✔ explicit logout still revokes and clears the parent and legacy host cookies (1.998347ms)
+✔ public pages retain shell and expose unique canonical, heading and accurate structured data (4.872946ms)
+✔ new aliases redirect canonically, HEAD has no body, failures do not turn into successful pages (19.319021ms)
+✔ only the exact authorised additions are removed for preservation; unrelated edits still fail comparison (2.357067ms)
+✔ sitemap gains exactly the two public pages once and retains every original entry (0.518703ms)
+✔ pretty Continuity aliases redirect to the existing canonical evidence pages without duplication (0.453959ms)
+✔ portable Continuity front doors are substantial, linked and do not invent a clinical partner or reviewer (4.642887ms)
+✔ preservation accepts the immediately previous approved Continuity block but rejects surrounding changes (0.581301ms)
+✔ agreed first five drawer links stay in order; remaining labels alphabetical (30.965518ms)
+✔ one footer has the retained destinations plus missing key routes, without duplicate anchors (2.652692ms)
+✔ repair is idempotent and preserves article content, titles, H1 and existing article routes (17.253731ms)
+✔ missing public login footer restored after main without rewriting login form (5.068092ms)
+✔ private My Timber, API and HQ responses are outside the public shell repair (1.659852ms)
+✔ all 23 current mental-health orphan guides have contextual homes, not sitemap-only discovery (0.27134ms)
+✔ legacy inaccurate pricing/workplace/localStorage methodology are not promoted or deleted (1.287118ms)
+✔ sitemap removes only the already-noindex workplace page; all mental-health entries survive (0.3949ms)
+✔ the shared final response strips stale body validators but preserves security headers (12.07679ms)
+✔ member login loads the existing auth adapter before any SST_API consumer and only once (8.486356ms)
+✔ surgical SEO overrides change only the agreed public title and description fields (10.554686ms)
+✔ homepage keeps its ranking title and adds a decorative alt only to the known missing-alt image (2.801913ms)
+✔ assumed-live treatment wording removes only obsolete information-only copy and keeps partner roles unnamed (2.146065ms)
+✔ unrelated pages and already-current treatment copy are not rewritten (3.730073ms)
+ℹ tests 110
+ℹ suites 0
+ℹ pass 110
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2347.520894
