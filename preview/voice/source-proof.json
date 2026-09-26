@@ -1,0 +1,21 @@
+{
+  "copyChanges": 23,
+  "sourceFiles": [
+    "preview/voice/about-source.html",
+    "public-continuity.mjs",
+    "public-startup-stability.mjs",
+    "radar-news-pages-v1.js",
+    "member-experience/checkin-followup-client.mjs",
+    "member-experience/grub-runtime.mjs",
+    "member-experience/fit-runtime.mjs",
+    "member-experience/entry.mjs"
+  ],
+  "reverseDiffExact": true,
+  "runtimeSyntax": [
+    "checkin",
+    "fit",
+    "grub"
+  ],
+  "productionBindings": 0,
+  "productionChanged": false
+}

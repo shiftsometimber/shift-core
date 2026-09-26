@@ -39,7 +39,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
   if(record.active===false){details.append(element('p','This step has moved on. Open Today for your current step.'));return;}
   const form=element('form'),choices=element('fieldset');choices.append(element('legend','What happened?'));
   for(const [value,label]of Object.entries(labels)){const row=element('label'),input=element('input');input.type='radio';input.name='dailyFeedback';input.value=value;input.required=true;input.checked=record.feedback===value;row.append(input,element('span',label));choices.append(row)}
-  const submit=element('button','Save feedback');submit.type='submit';form.append(choices,submit,status);details.append(element('p','Optional. Choosing a meal or opening Fit does not mean you ate it or completed a session. Answer after trying the step, or choose “I have not tried it yet”.'),form);
+  const submit=element('button','Save feedback');submit.type='submit';form.append(choices,submit,status);details.append(element('p','This question is optional. Choosing a meal or opening Fit doesn’t mean you ate it or completed a session. Answer after trying the step, or choose “I have not tried it yet”.'),form);
   form.addEventListener('change',()=>{dirty=true});
   form.addEventListener('submit',async event=>{
    event.preventDefault();if(pending)return;const selected=form.querySelector('input:checked');if(!selected)return;
@@ -82,7 +82,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
    ++generation;host.hidden=true;
    const card=document.querySelector('#checkinResult .checkin-action');if(!card||!offered)return;
    card.replaceChildren(element('small','YOUR SAVED NEXT STEP'),element('strong',offered.action.title),element('p',offered.action.detail),actionLink(offered.action,offered));
-   const handoff=element('p','Saved to your private check-in history. After trying a food or movement step, you can say whether it helped on that page. One useful thing is enough.');const back=element('a','Back to Today →');back.href='/member/dashboard#today';card.append(handoff,back);
+   const handoff=element('p','Your next step is saved. If it’s a food or movement step, try it, then return to the Grub or Fit page you used to say whether it helped.');const back=element('a','Back to Today →');back.href='/member/dashboard#today';card.append(handoff,back);
   });
   document.addEventListener('sst:today-rendered',()=>{const primary=document.querySelector('.mtm-next');if(primary)primary.after(host)});
   load();window.addEventListener('pageshow',event=>{if(event.persisted)load()});window.addEventListener('hashchange',()=>{if(location.hash==='#dailyCheckinFollowup'){const d=host.querySelector('details');if(d)d.open=true}else if(location.hash==='#today')load()});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});

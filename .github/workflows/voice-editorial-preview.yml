@@ -1,0 +1,38 @@
+name: Website voice editorial preview
+on:
+  push:
+    branches: [copy/voice-preview-20260926]
+    paths: ['preview/voice/**','.github/workflows/voice-editorial-preview.yml','public-continuity.mjs','public-startup-stability.mjs','radar-news-pages-v1.js','member-experience/**']
+permissions:
+  contents: read
+concurrency:
+  group: voice-editorial-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Check exact copy-only diff and runtime syntax
+        run: node preview/voice/check.mjs
+      - name: Publish isolated editorial preview only
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config preview/voice/wrangler.json 2>&1 | tee preview/voice/deploy.txt
+      - name: Check rendered copy and read-only boundary
+        run: node preview/voice/verify.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-preview-evidence
+          path: preview/voice/

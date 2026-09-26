@@ -1,0 +1,186 @@
+[
+  {
+    "source": "preview/voice/about-source.html",
+    "route": "/about",
+    "old": "Getting help mattered. So did the food, movement and ordinary decisions around it. I wasn't becoming a different bloke overnight. I was starting to look after the one who was already there.",
+    "new": "Getting help mattered. So did the changes to food, movement and the ordinary decisions around them.",
+    "reason": "Keep the confirmed actions; remove the polished identity flourish.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/life-back",
+    "old": "Try a simple weekly routine: open your goal, look at your latest check-in and choose one manageable action for the week ahead. You can make that choice even when the week has been messy. You do not need to manufacture a win or mark everything higher.",
+    "new": "Once a week, look at your goal and latest check-in. What helped? What got harder? Choose one manageable action for the week ahead. If something felt worse, record that too.",
+    "reason": "Replace reassurance with usable review questions.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/life-back",
+    "old": "Write a short personal goal in Life Back. Keep it specific enough that you can recognise progress in everyday life.",
+    "new": "Write down what you want to do more easily. Be specific enough that you can tell when something has changed.",
+    "reason": "Make goal-setting instruction concrete.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/life-back",
+    "old": "Your goal does not have to sound impressive. It has to belong to you.",
+    "new": "Choose something that matters to you, however ordinary it sounds.",
+    "reason": "Keep meaning without the formulaic contrast.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/life-back",
+    "old": "Add something that went better. It might be joining a walk, finding an easier routine or doing something you had put off. Saved check-ins help you look back.",
+    "new": "Record something that went better: joining a walk, finding an easier routine or doing something you'd put off. You can look back at your saved check-ins.",
+    "reason": "Natural phrasing; same examples and feature.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/articles/food-noise-after-stopping-glp1",
+    "old": "Before your next appointment or message to your prescriber, make a brief note of what has changed. You can use paper or your own notes app; you do not need another score to worry about.",
+    "new": "Before you speak or write to your prescriber, jot down what's changed. Paper or the notes on your phone will do. Use the points below to organise what you want to ask.",
+    "reason": "Clarify instruction without editing clinical advice.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/articles/food-noise-after-stopping-glp1",
+    "old": "Choose the part of the day that causes the most friction and make one plan for it: decide what is for dinner before the working day runs away with you, keep a shopping list, or ask someone you trust to help you prepare for an appointment. These are planning suggestions, not a proven treatment for food noise.",
+    "new": "Pick the part of the day that's hardest and make one plan for it. Decide what's for tea before work runs late, keep a shopping list, or ask someone you trust to help you prepare for an appointment. These are planning suggestions, not a proven treatment for food noise.",
+    "reason": "Replace abstraction; retain evidence limitation unchanged.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/clinic-gone-quiet",
+    "old": "Keep the everyday thing you are trying to get back to, even if the prescription or provider changes.",
+    "new": "Keep a note of what you want to get back to, even if your prescription or provider changes.",
+    "reason": "Specify what keeping a reason means.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/provider-switch",
+    "old": "This is about continuity of support, not promising a cheaper pen or automatic continuation of a prescription.",
+    "new": "Keep your practical support organised while a new clinician assesses your treatment. Changing provider doesn't guarantee a cheaper medicine or continuation of your prescription.",
+    "reason": "Explain the job; retain price and prescribing limits.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/husband-help",
+    "old": "It gives him some control without pretending you have the answer.",
+    "new": "Let his answer guide what you do next.",
+    "reason": "Respect agency without implying control is granted by a partner.",
+    "kind": "public"
+  },
+  {
+    "source": "public-continuity.mjs",
+    "route": "/shift-health",
+    "old": "the guides above explain the topic, the limitations and appropriate help.",
+    "new": "the guides above explain the concern, what remains uncertain and where to get help.",
+    "reason": "Make navigation description understandable.",
+    "kind": "public"
+  },
+  {
+    "source": "public-startup-stability.mjs",
+    "route": "/programme",
+    "old": "Explain your options, build your plan and support you through it.",
+    "new": "Explain your options and help you plan food, movement, sleep and check-ins.",
+    "reason": "Name existing practical support instead of an open-ended promise.",
+    "kind": "public"
+  },
+  {
+    "source": "radar-news-pages-v1.js",
+    "route": "/medicine-news/*",
+    "old": "SHIFT’s interpretation of the findings and what they could mean for members.",
+    "new": "What we think this could mean for you, and what remains uncertain.",
+    "reason": "Plain-language label; do not change reported findings or article data.",
+    "kind": "news"
+  },
+  {
+    "source": "member-experience/checkin-followup-client.mjs",
+    "route": "/member/check-in",
+    "old": "Saved to your private check-in history. After trying a food or movement step, you can say whether it helped on that page. One useful thing is enough.",
+    "new": "Your next step is saved. If it’s a food or movement step, try it, then return to the Grub or Fit page you used to say whether it helped.",
+    "reason": "Specify saved item and destination; retain conditional wording.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/checkin-followup-client.mjs",
+    "route": "/member/check-in",
+    "old": "Optional. Choosing a meal or opening Fit does not mean you ate it or completed a session. Answer after trying the step, or choose “I have not tried it yet”.",
+    "new": "This question is optional. Choosing a meal or opening Fit doesn’t mean you ate it or completed a session. Answer after trying the step, or choose “I have not tried it yet”.",
+    "reason": "A natural contraction; keep completion distinction and exact response label.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/grub-runtime.mjs",
+    "route": "/member/grub",
+    "old": "Your week is clear. Build a plan or choose a day from any recipe.",
+    "new": "No meals planned yet. Build a plan or choose a day from any recipe.",
+    "reason": "Make empty state explicit.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/grub-runtime.mjs",
+    "route": "/member/grub",
+    "old": "Your list is clear.",
+    "new": "Your shopping list is empty.",
+    "reason": "Make empty state explicit.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/grub-runtime.mjs",
+    "route": "/member/grub",
+    "old": "Your account response was incomplete. Reload before making changes.",
+    "new": "We couldn’t load all your saved food. Reload before making changes.",
+    "reason": "Describe user impact; preserve reload-before-write instruction.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/grub-runtime.mjs",
+    "route": "/member/grub",
+    "old": "Updating a meal rebuilds its ingredients. Items with changed quantities return to needed.",
+    "new": "When you change a meal, its ingredients update on your shopping list. If a quantity changes, that item is marked as needed again.",
+    "reason": "Explain shopping-list behaviour without changing it.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/fit-runtime.mjs",
+    "route": "/member/fit",
+    "old": "Your plan is ready. Start where you are and swap anything that does not suit.",
+    "new": "Your plan is ready. Read through the exercises and swap any that don’t suit you.",
+    "reason": "Replace slogan with the next action.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/fit-runtime.mjs",
+    "route": "/member/fit",
+    "old": "Shift could not build the plan just now.",
+    "new": "We couldn’t build your plan just now. Please try again.",
+    "reason": "Calm error and next action.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/fit-runtime.mjs",
+    "route": "/member/fit",
+    "old": "Prefer not to say cannot be combined with another limitation.",
+    "new": "Choose either “Prefer not to say” or the limitations you want to include.",
+    "reason": "Explain how to resolve the selection error.",
+    "kind": "member"
+  },
+  {
+    "source": "member-experience/entry.mjs",
+    "route": "/member/saved",
+    "old": "Recipes and meals you explicitly saved to your account.",
+    "new": "Recipes and meals you chose to save to your account.",
+    "reason": "Remove administrative phrasing.",
+    "kind": "member"
+  }
+]
