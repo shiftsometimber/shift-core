@@ -48,6 +48,18 @@ jobs:
           if(!url)throw Error('Isolated evaluator URL not returned');
           appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_URL='+url[0]+'\n');
           NODE
+      - name: Wait for authenticated preview propagation
+        run: |
+          node --input-type=module <<'NODE'
+          let ready=false;
+          for(let i=0;i<20;i++){
+            const r=await fetch(process.env.SHIFT_EVAL_URL+'/health',{headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY}});
+            if(r.ok&&(await r.json()).ready){ready=true;break}
+            if(r.status!==404)throw Error('Preview readiness HTTP '+r.status);
+            await new Promise(resolve=>setTimeout(resolve,3000));
+          }
+          if(!ready)throw Error('Preview did not propagate within 60 seconds');
+          NODE
       - name: Real AI with in-memory fictional member records
         env:
           SHIFT_AI_REAL_PROBE: 'true'
@@ -55,7 +67,12 @@ jobs:
         run: node --test --test-name-pattern='real-model practical pilot' tests/ai-connected-member.test.mjs
       - name: Remove only the temporary evaluator
         if: always() && env.SHIFT_EVAL_URL != ''
-        run: npx wrangler delete --config preview/ai-context/generated.json --force
+        run: |
+          node --input-type=module <<'NODE'
+          const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-ai-context-eval',{method:'DELETE',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
+          if(!r.ok)throw Error('Temporary evaluator cleanup HTTP '+r.status);
+          console.log('Temporary evaluator removed');
+          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
