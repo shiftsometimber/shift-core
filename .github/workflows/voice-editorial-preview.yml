@@ -24,7 +24,9 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
       - name: Check exact copy-only diff and runtime syntax
-        run: node preview/voice/check.mjs
+        run: |
+          node preview/voice/check.mjs
+          node --test member-experience/tests/checkin-followup.test.mjs member-experience/tests/grub-workspace.test.mjs member-experience/tests/fit-fixed-dose-runtime.test.mjs
       - name: Publish isolated editorial preview only
         run: |
           set -euo pipefail
