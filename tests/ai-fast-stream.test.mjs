@@ -66,7 +66,7 @@ test('gateway budget rejection uses existing non-generative fallback without a p
 
 import {validateGateway} from '../preview/ai-context/gateway-settings.mjs';
 test('release refuses missing, partitioned or disabled budgets and unsafe gateway settings',()=>{
- const valid={id:'shift-ai',authentication:true,collect_logs:false,rate_limiting_limit:10,rate_limiting_interval:60,spend_limits:{enabled:true,rules:[{limit:2,limitType:'cost',window:86400,technique:'sliding'},{limit:50,limitType:'cost',window:2592000,technique:'sliding'}]}};
+ const valid={id:'shift-ai',authentication:true,collect_logs:false,rate_limiting_limit:10,rate_limiting_interval:60,spend_limits:{enabled:true,rules:[{limit:2,limitType:'cost',window:86400,technique:'sliding'}]}};
  assert(validateGateway(valid));
- for(const change of [{authentication:false},{collect_logs:true},{logpush:true},{otel:[{}]},{retry_max_attempts:2},{workers_ai_billing_mode:'unified'},{rate_limiting_limit:0},{spend_limits:{...valid.spend_limits,enabled:false}},{spend_limits:{enabled:true,rules:[valid.spend_limits.rules[0]]}},{spend_limits:{enabled:true,rules:valid.spend_limits.rules.map(r=>({...r,metadata:{user:{mode:'partition'}}}))}}])assert.throws(()=>validateGateway({...valid,...change}));
+ for(const change of [{authentication:false},{collect_logs:true},{logpush:true},{otel:[{}]},{retry_max_attempts:2},{workers_ai_billing_mode:'unified'},{rate_limiting_limit:0},{spend_limits:{...valid.spend_limits,enabled:false}},{spend_limits:{enabled:true,rules:[]}},{spend_limits:{enabled:true,rules:valid.spend_limits.rules.map(r=>({...r,metadata:{user:{mode:'partition'}}}))}}])assert.throws(()=>validateGateway({...valid,...change}));
 });

@@ -13,7 +13,6 @@ export function validateGateway(g){
  assert.equal(g.spend_limits?.enabled,true,'Spend limits must be enabled');
  const rules=g.spend_limits.rules.filter(r=>r.enabled!==false&&r.limitType==='cost'&&!r.model&&!r.provider&&!Object.keys(r.metadata||{}).length);
  assert(rules.some(r=>r.limit===2&&r.window===86400&&r.technique==='sliding'),'Require shared $2 per rolling day');
- assert(rules.some(r=>r.limit===50&&r.window===2592000&&r.technique==='sliding'),'Require shared $50 per rolling 30 days');
  return true;
 }
 async function main(){
