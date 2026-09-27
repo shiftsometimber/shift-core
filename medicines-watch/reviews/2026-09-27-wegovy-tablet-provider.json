@@ -1,0 +1,43 @@
+{
+  "reviewedAt": "2026-09-27T06:57:00Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "captureRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36301503953",
+  "captureCommit": "f5bd6ecbab017871616913703492ed8ef1bded67",
+  "captureArtifact": {
+    "id": 10926190572,
+    "name": "medicines-watch-provider-review-20260927",
+    "sha256": "9673ca89172aebe6de96cb426a08620207fd52a0a9b30fab692d56c70ddb9769",
+    "retainedUntil": "2026-10-27T06:55:23Z"
+  },
+  "scope": "Factual re-review of the changed Asda Online Doctor oral Wegovy provider page. The provider's own private-service statement was checked; this does not approve clinical claims, confirm SHIFT stock, or establish NHS access.",
+  "source": {
+    "id": "wegovy-tablet-private",
+    "url": "https://onlinedoctor.asda.com/uk/wegovy-pill.html",
+    "sourcePageLastReviewed": "2026-08-05",
+    "retrievedAt": "2026-09-27T06:55:23.020Z",
+    "httpStatus": 200,
+    "bytes": 317043,
+    "responseSha256": "e3a0849deb99c7f4cd4acecc1cdf9ccbf7218cd16cd85ab11167ffa492a5ab89",
+    "previousResponseSha256": "9da1edbb581f7e4a71bec4d69edfcd6084f46a5a1b98cfd1a646804bda2c54d1",
+    "reviewedFingerprint": "42ac4017bdc14d4e089d32eb3e2c5014af1fab98d55dc434fc5475a0984c080e",
+    "previousReviewedFingerprint": "592a1cba16592bd8b948f173ecc7d7dea28bbf0fe6a00ea11ccc97a8eac225e6",
+    "withdrawn": false,
+    "reviewedSections": [
+      "Where can I buy the Wegovy pill?",
+      "Can I get the Wegovy pill on the NHS?",
+      "Are Wegovy pills available in the UK right now?",
+      "Provider stock and price panel"
+    ],
+    "observedClaims": {
+      "privateProvision": "The provider continues to offer a private prescription route after an online questionnaire and doctor review.",
+      "nhsAccess": "The provider continues to state that oral Wegovy is not currently available on the NHS.",
+      "providerStock": "The provider currently labels its own service in stock and lists prices from \u00a387.97. This is time-sensitive provider stock, not SHIFT stock and not a general UK supply guarantee."
+    },
+    "changeAssessment": "The complete normalized document differs from the 18 September approved response only by removal of '(tirzepatide)' after 'Mounjaro' in the related-products list. Title and all remaining normalized text are unchanged. Private provision and NHS-access sections were reread and remain unchanged. Provider speculation about future NHS approval and cross-trial efficacy comparisons are not adopted by the Watch.",
+    "catalogueImpact": "No catalogue wording, UK authorisation, research phase, NHS-access statement, SHIFT stock flag or purchaseability flag changes. Only the exact reviewed source fingerprint and this source-specific factual review date are renewed.",
+    "wordingChanged": false,
+    "uncertainty": "Provider availability and prices can change without notice. The Watch deliberately retains qualified private-provision wording and does not treat this page as proof of individual pharmacy or SHIFT supply."
+  },
+  "resolvesPendingReceipt": "2026-09-25-wegovy-tablet-provider-pending.json",
+  "baselineReceipt": "2026-09-18-wegovy-tablet-provider.json"
+}

@@ -6,7 +6,7 @@ export const REVIEWED_AT = '2026-09-15T21:28:30Z';
 // Blocked, empty or timed-out responses deliberately have no approved baseline.
 const reviewedFingerprints = {
   'mounjaro-nhs': '0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff',
-  'wegovy-tablet-private': '592a1cba16592bd8b948f173ecc7d7dea28bbf0fe6a00ea11ccc97a8eac225e6',
+  'wegovy-tablet-private': '42ac4017bdc14d4e089d32eb3e2c5014af1fab98d55dc434fc5475a0984c080e',
   'mounjaro-smpc': 'c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55',
   'wegovy-injection-smpc': '2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6',
   'wegovy-tablet-smpc': '142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e',
@@ -29,6 +29,8 @@ const reviewedFingerprints = {
 // Source-specific factual review; the rest of the catalogue keeps its prior date.
 // Claim mapping and response hashes: reviews/2026-09-16-product-information.json.
 // Renewed source-only reviews: reviews/2026-09-23-source-review.json.
+// Separate product-information renewal: reviews/2026-09-23-product-information-renewal.json.
+// Separate NHS tirzepatide renewal: reviews/2026-09-24-mounjaro-nhs-renewal.json.
 const sourceReviewedDates = {
   'mounjaro-mhra': '2026-09-23T15:45:00Z',
   'mounjaro-nice': '2026-09-23T15:45:00Z',
@@ -41,14 +43,14 @@ const sourceReviewedDates = {
   'foundayo-nice': '2026-09-23T15:45:00Z',
   'retatrutide-mhra': '2026-09-23T15:45:00Z',
   'retatrutide-lilly': '2026-09-23T15:45:00Z',
-  'mounjaro-nhs': '2026-09-17T05:45:00Z',
-  'wegovy-tablet-private': '2026-09-18T16:36:50Z',
-  'mounjaro-smpc': '2026-09-16T17:44:34Z',
+  'mounjaro-nhs': '2026-09-24T06:32:00Z',
+  'wegovy-tablet-private': '2026-09-27T06:57:00Z',
+  'mounjaro-smpc': '2026-09-23T18:04:00Z',
   'wegovy-injection-smpc': '2026-09-23T15:45:00Z',
-  'wegovy-tablet-smpc': '2026-09-16T17:44:34Z',
-  'orlistat-120-smpc': '2026-09-16T17:44:34Z',
-  'orlistat-60-smpc': '2026-09-16T17:44:34Z',
-  'foundayo-smpc': '2026-09-16T17:44:34Z',
+  'wegovy-tablet-smpc': '2026-09-23T18:04:00Z',
+  'orlistat-120-smpc': '2026-09-23T18:04:00Z',
+  'orlistat-60-smpc': '2026-09-23T18:04:00Z',
+  'foundayo-smpc': '2026-09-23T18:04:00Z',
 };
 
 const source = (id, title, url, sourcePublishedAt, requiredTerms, extra = {}) => ({
