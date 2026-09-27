@@ -178,6 +178,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   id-token: write
 
 concurrency:
@@ -204,6 +205,13 @@ jobs:
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Require the exact successful heading preview before production work
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36341844316',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
+          assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'90b1e29db85591b84dec642c3304641bc9545529');
+          JS
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
       - name: Verify B1 release scope before any production mutation
@@ -389,6 +397,16 @@ jobs:
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Verify rendered knowledge headings and direct About link live
+        run: |
+          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/heading-tools/node_modules/.bin/playwright" install --with-deps chromium
+          PREVIEW_URL=https://shiftsometimber.co.uk PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-knowledge-headings.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: knowledge-heading-live-${{ github.sha }}
+          path: heading-proof/
       - name: Verify live AI knowledge, response timing and exact reviewed chat assets
         run: node release/shift-ai-live.mjs after
       - name: Verify exact Member Details and frontend repair delivery

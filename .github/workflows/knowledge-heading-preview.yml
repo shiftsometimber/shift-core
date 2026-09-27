@@ -1,0 +1,40 @@
+name: Knowledge heading rendered preview gate
+on:
+  push:
+    branches: [fix/knowledge-heading-20260927]
+  pull_request:
+    paths: [knowledge-heading-repair.mjs, public-seo-closeout.mjs, scripts/verify-knowledge-headings.cjs]
+permissions:
+  contents: read
+concurrency:
+  group: knowledge-heading-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node --check worker-entry-v6.js && node --test tests/public-seo-closeout.test.mjs tests/seo-release-integrity.test.mjs tests/public-shell-contract.test.mjs
+      - name: Deploy isolated read-only preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          mkdir -p heading-proof
+          npx wrangler deploy --config preview/knowledge-heading/wrangler.jsonc | tee heading-proof/deploy.log
+          echo "PREVIEW_URL=$(grep -oE 'https://shift-knowledge-heading-preview\.[a-z0-9-]+\.workers\.dev' heading-proof/deploy.log | head -1)" >> "$GITHUB_ENV"
+      - name: Render desktop and mobile acceptance
+        run: |
+          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/heading-tools/node_modules/.bin/playwright" install --with-deps chromium
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-knowledge-headings.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: knowledge-heading-${{ github.sha }}
+          path: heading-proof/
