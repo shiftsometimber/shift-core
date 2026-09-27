@@ -41,3 +41,9 @@ test('streaming and JSON retain the proven model and respect explicit overrides'
  const payload={message:'How can I fit a walk around work?',useJourney:false};
  for(const [stream,flag,override,expected] of [[true,'true',undefined,'@cf/meta/llama-3.3-70b-instruct-fp8-fast'],[false,'true',undefined,'@cf/meta/llama-3.3-70b-instruct-fp8-fast'],[true,'false',undefined,'@cf/meta/llama-3.3-70b-instruct-fp8-fast'],[true,'true','synthetic-approved-override','synthetic-approved-override']]){env.SHIFT_AI_PRACTICAL_CONTEXT=flag;env.SHIFT_AI_MODEL=override;const r=await ask(env,{...payload,stream});await r.text();assert.equal(models.at(-1),expected)}
 });
+
+test('stream format instruction names real evidence markers without manufacturing private citations',async t=>{
+ const {env}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';const inputs=[];env.AI.run=async(_,input)=>{inputs.push(input);return new ReadableStream({start(c){c.enqueue(chunk('A focused answer.'));c.close()}})};
+ await(await ask(env,{message:'Can I eat chocolate while taking Mounjaro?',useJourney:false,stream:true})).text();assert.match(inputs.at(-1).messages.at(-1).content,/literal numbered markers: \[1\]/);
+ await(await ask(env,{message:'Remember that I cannot cook after midnight. Have you saved that for next week?',useJourney:false,stream:true})).text();assert.match(inputs.at(-1).messages.at(-1).content,/No general evidence sources were supplied/);assert.doesNotMatch(inputs.at(-1).messages.at(-1).content,/\[1\]/);
+});
