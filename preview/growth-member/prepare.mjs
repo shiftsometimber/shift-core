@@ -21,4 +21,6 @@ for(const change of copyChanges){
 writeFileSync(dir+'/growth-evidence/copy-manifest.json',JSON.stringify(evidence,null,2));
 const config=JSON.parse(readFileSync(dir+'/config.json'));
 config.main='../../../preview/growth-member/worker.mjs';
+// Match the current production runtime; notification dependencies import Node built-ins.
+config.compatibility_flags=['nodejs_compat'];
 writeFileSync(dir+'/config.json',JSON.stringify(config,null,2));
