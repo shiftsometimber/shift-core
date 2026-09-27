@@ -26,3 +26,21 @@ test('changing the support topic does not falsify feedback or delete the old tas
 for(const input of [{supportNeed:'double-dose'},{shiftFeedback:null},{shiftFeedback:{outcome:'cured',shiftId:'fake'}},{ratings:{...ratings,sleep:null}}])test('reject unsupported input '+JSON.stringify(input),()=>assert.throws(()=>check(goal(),'invalid-operation-123',input)));
 test('repeat use, explicit completion and helpfulness are separately countable',()=>{let s=check(goal());s=applyLifeBackOperation(s,{action:'shift-status',operationId:'status-operation-12345',shiftId:s.nextShift.id,status:'done'},at);s=check(s,'next-checkin-operation',{shiftFeedback:{shiftId:s.nextShift.id,outcome:'helped'}});assert.deepEqual(lifeBackUsage(s),{checkins:2,repeatCheckin:true,actionsOffered:2,actionsAttempted:1,actionsCompleted:1,helpfulAnswers:1,notFitAnswers:0,notTriedAnswers:0})});
 test('ratings are blank for a fresh check-in; notes and follow-up are optional; no new clinical or analytics loop',()=>{const js=readFileSync(new URL('../life-back/client.mjs',import.meta.url),'utf8'),html=readFileSync(new URL('../life-back/index.html',import.meta.url),'utf8'),today=readFileSync(new URL('../../frontend/member/member-my-timber-problem-v1.js',import.meta.url),'utf8');assert.match(js,/draft\?\.ratings\|\|Object\.fromEntries/);assert.match(html,/id="shiftFollowup"/);assert.match(js,/Skip this question/);assert.doesNotMatch(html,/<textarea[^>]*id="winInput"[^>]*required/);assert.equal((today.match(/MY NEXT SHIFT/g)||[]).length,1);assert.doesNotMatch(js,/gtag\(|localStorage|sessionStorage|saveMemberState/)});
+
+for(const topic of ['food','movement','routine','confidence','clinic-quiet','coming-off','steady'])test('repeated not-fit changes the actual task for '+topic,()=>{
+ let s=check(goal(),'initial-topic-operation',{supportNeed:topic});
+ for(let i=0;i<4;i++){
+  const before=s.nextShift;
+  s=applyLifeBackOperation(s,{action:'shift-feedback',operationId:'repeat-review-operation-'+i,shiftId:before.id,outcome:'not-fit'},at);
+  assert.notEqual(s.nextShift.detail,before.detail);
+  assert.equal(s.nextShift.kind,topic);
+  assert.equal(s.shiftHistory.at(-1).reviews.at(-1).outcome,'not-fit');
+ }
+});
+test('helpful feedback retains the adjusted task that actually helped',()=>{
+ let s=check(goal());
+ s=check(s,'smaller-check-operation',{shiftFeedback:{shiftId:s.nextShift.id,outcome:'not-fit'}});
+ const helpful=s.nextShift;
+ s=check(s,'helpful-check-operation',{shiftFeedback:{shiftId:s.nextShift.id,outcome:'helped'}});
+ assert.equal(s.nextShift.detail,helpful.detail);assert.equal(s.nextShift.title,helpful.title);
+});

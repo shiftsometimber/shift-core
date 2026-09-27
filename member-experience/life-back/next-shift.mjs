@@ -17,6 +17,20 @@ const simpler={
  confidence:{...actions.confidence,title:'Choose the smallest step',detail:'Look at your personal goal and choose the smallest part that feels manageable. Planning it is enough for this step.'},
  'clinic-quiet':actions['clinic-quiet'],'coming-off':actions['coming-off'],steady:actions.steady
 };
+// A second rejection must not return the same smaller task with a new ID.
+const alternatives={
+ food:{...actions.food,title:'Make one food decision easier',detail:'Choose one meal you already eat and write down what makes it awkward: time, cost or preparation. Use that to narrow your next choice in Grub.'},
+ movement:{...actions.movement,title:'Choose what would make movement manageable',detail:'Before picking an activity, check the time, equipment and limitations saved in Fit. Adjust the practical constraints to reflect your week; there is no session to complete for this step.'},
+ routine:{...actions.routine,title:'Remove one evening obstacle',detail:'Choose one small job you can do earlier so there is less to deal with at bedtime. Try it once; no perfect routine required.'},
+ confidence:{...actions.confidence,title:'Ask for one practical bit of help',detail:'Choose someone you trust and one small thing they could help with towards your goal. You decide whether to ask; you do not need to share your health details.'},
+ 'clinic-quiet':{...actions['clinic-quiet'],title:'Keep the facts for your next conversation',detail:'Make a short note of when you contacted your prescriber and the question still unanswered. Use the clinic-quiet guide to prepare your next contact. Medicine decisions stay with your prescriber or pharmacist.'},
+ 'coming-off':{...actions['coming-off'],title:'Choose one everyday concern to discuss',detail:'Note the food, routine or confidence concern that matters most to you, then take that question to your prescriber. This is preparation for a conversation, not a plan to change treatment.'},
+ steady:{...actions.steady,title:'Find one thing getting in the way',detail:'Look at your saved goal and name one practical obstacle this week. Choose one small adjustment that could make it easier; you do not have to repeat a step that was not useful.'}
+};
+const sameAction=(a,b)=>a?.title===b?.title&&a?.detail===b?.detail&&a?.href===b?.href;
+function adjustedAction(active,kind){
+ return [simpler[kind],alternatives[kind],actions[kind]].find(a=>!sameAction(a,active));
+}
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status})};
 export function chooseSupport(ratings,requested='auto'){
  if(requested!=='auto')return requested;
@@ -46,8 +60,8 @@ export function advanceNextShift(state,input,entry,at){
  }
  const outcome=feedback?.outcome;
  const kind=!changed&&active&&['helped','not-fit'].includes(outcome)?active.kind:chooseSupport(entry.ratings,requested);
- const action=(outcome==='not-fit'?simpler:actions)[kind];
- state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:entry.id,status:'planned',reviews:[],reason:changed?'Chosen from the support topic you selected.':outcome==='helped'?'You said this helped. Keep the useful part.':outcome==='not-fit'?'You said it did not fit. This step is smaller.':requested==='auto'?'Chosen from your own check-in, not a medical assessment.':'Chosen from the support topic you selected.'};
+ const action=outcome==='not-fit'&&!changed?adjustedAction(active,kind):outcome==='helped'&&!changed?{kind:active.kind,title:active.title,detail:active.detail,href:active.href,label:active.label}:actions[kind];
+ state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:entry.id,status:'planned',reviews:[],reason:changed?'Chosen from the support topic you selected.':outcome==='helped'?'You said this helped. Keep the useful part.':outcome==='not-fit'?(sameAction(action,simpler[kind])?'You said it did not fit. This step is smaller.':'You said it did not fit. Try a different practical approach.'):requested==='auto'?'Chosen from your own check-in, not a medical assessment.':'Chosen from the support topic you selected.'};
 }
 export function startNextShift(state,input,at){
  if(!['food','movement'].includes(input.kind))fail('Choose food or movement.');
