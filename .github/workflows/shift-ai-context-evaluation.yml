@@ -90,7 +90,13 @@ jobs:
         run: |
           node --input-type=module <<'NODE'
           import {mkdirSync,writeFileSync} from 'node:fs';
-          const r=await fetch(process.env.SHIFT_EVAL_URL+'/profile',{method:'POST',headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY},signal:AbortSignal.timeout(120000)});
+          let r;
+          for(let attempt=0;attempt<4;attempt++){
+            r=await fetch(process.env.SHIFT_EVAL_URL+'/profile',{method:'POST',headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY},signal:AbortSignal.timeout(120000)});
+            if(r.status!==404||attempt===3)break;
+            await r.body?.cancel();console.log('PROFILE_ROUTE_PROPAGATION_RETRY '+(attempt+1));
+            await new Promise(resolve=>setTimeout(resolve,1500));
+          }
           if(!r.ok)throw Error('Public runtime profile HTTP '+r.status+' '+(await r.text()).slice(0,500));
           const report=await r.json();mkdirSync('evidence/shift-ai-real-probe',{recursive:true});writeFileSync('evidence/shift-ai-real-probe/runtime-profile.json',JSON.stringify(report,null,2));console.log('SHIFT_RUNTIME_PROFILE '+JSON.stringify(report));
           NODE
