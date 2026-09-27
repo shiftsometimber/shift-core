@@ -56,3 +56,5 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  for(const changed of NICE_TIMEOUT_PATHS)assert.throws(()=>validateNiceTimeout((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
  assert.throws(()=>validateScope(manifest,['medicines-watch/data.mjs']),/drift/);
  });
+
+test('combined AI release validates exact NICE blobs before classifying its delta',()=>{const s=readFileSync(new URL('../scripts/b1-release-scope.mjs',import.meta.url),'utf8');assert.ok(s.indexOf('validateNiceTimeout((ref,path)')<s.indexOf('const approved=validateAiRelease'));assert.ok(s.includes("changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)&&path!=='tests/b1-release-scope.test.mjs')"));});
