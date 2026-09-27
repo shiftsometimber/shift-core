@@ -1,0 +1,57 @@
+name: Signup and order alert isolated proof
+on:
+  push:
+    branches: [fix/member-signup-alert-20260923]
+permissions:
+  contents: read
+concurrency:
+  group: shift-operator-alert-preview
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Guard current source and install pinned dependencies
+        run: |
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = c00cfcc50099aca9f690069e2278480df4c0c837
+          npm ci --no-audit --no-fund
+          mkdir -p operator-alert-evidence
+          node operator-alert-preview/source-gate.mjs > operator-alert-evidence/source-preservation.json
+          node scripts/b1-release-scope.mjs > operator-alert-evidence/release-scope.json
+      - name: Test real registration and signed payment event notification paths
+        env:
+          ALERT_PROOF_DIR: operator-alert-evidence
+        run: |
+          set -o pipefail
+          node --test tests/member-signup-alert.test.mjs tests/shop-recovery.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/order-reference-v1.test.mjs member-experience/tests/*.test.mjs | tee operator-alert-evidence/tests.tap
+          node gate1-email-verification-e2e.mjs | tee operator-alert-evidence/verification.txt
+          npx wrangler deploy --dry-run --outdir /tmp/operator-alert-compile --config wrangler.jsonc
+      - name: Prepare isolated preview and exact test-only email copies
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: node operator-alert-preview/prepare.mjs
+      - name: Deploy only the separate email proof preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: npx wrangler deploy --config operator-alert-preview/generated/wrangler.json
+      - name: Send the two owner-requested test alerts once and prove repeat protection
+        run: node operator-alert-preview/send-proof.mjs
+      - name: Confirm production source stayed unchanged
+        if: always()
+        run: test "$(git ls-remote origin refs/heads/main | cut -f1)" = c00cfcc50099aca9f690069e2278480df4c0c837
+      - name: Retain alert proof without preview credentials
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: signup-order-alert-proof-${{ github.run_id }}
+          path: operator-alert-evidence/
+          if-no-files-found: error

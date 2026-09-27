@@ -1,3 +1,4 @@
+import {repairSeoPresentation} from './public-seo-presentation.mjs';
 import {completePublicSharingImage,repairPublicSeoLinks} from './public-seo-closeout.mjs';
 // Accepted public shell captured from production on 17 September 2026.
 // Presentation contract only. No page-specific sizing, contact/auth changes or ticker motion changes.
@@ -323,6 +324,8 @@ function reconcileAssumedLiveTreatmentCopy(html,path){
  return html;
 }
 export const legacyAuthorityRedirects=Object.freeze({
+  '/good-to-talk':'/mens-mental-health',
+  '/good-to-talk.html':'/mens-mental-health',
   '/health-mot':'/shift-health/health-mot',
   '/health-mot.html':'/shift-health/health-mot',
   '/programme-benefits':'/programme',
@@ -381,7 +384,7 @@ export function reconcilePublicDocument(html,path){
   const body='<section data-shift-link-repair aria-label="Related existing guides">'+groups.filter(g=>g.links.length).map(g=>'<h2>'+escape(g.title)+'</h2><ul>'+g.links.map(a=>'<li><a href="'+escape(a.path)+'">'+escape(a.label)+'</a></li>').join('')+'</ul>').join('')+'</section>';
   html=html.replace('</main>',()=>body+'</main>');
  }
- return repairPublicSeoLinks(completePublicSharingImage(html,path));
+ return repairSeoPresentation(repairPublicSeoLinks(completePublicSharingImage(html,path)),path);
 }
 export function reconcileSitemap(xml){return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,block=>sitemapExcludedPaths.some(path=>block.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'))?'':block);}
 export async function withPublicShellContract(request,response){

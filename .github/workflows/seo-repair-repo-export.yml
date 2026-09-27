@@ -1,0 +1,41 @@
+name: SEO repair repository export (read only)
+on:
+  push:
+    branches: [fix/seo-repairs-20260923]
+    paths: [.github/workflows/seo-repair-repo-export.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 323f2409c0bd7f719abb05969fe9aeb2a827261b
+          persist-credentials: false
+      - name: Archive exact source and fetch original public research abstracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p seo-repair-repo
+          test "$(git rev-parse HEAD)" = 323f2409c0bd7f719abb05969fe9aeb2a827261b
+          git archive --format=tar HEAD | gzip > seo-repair-repo/repo.tar.gz
+          test "$(tar tzf seo-repair-repo/repo.tar.gz | wc -l)" -gt 50
+          python3 - <<'PY'
+          import urllib.request,urllib.parse,json,pathlib
+          rows=[]
+          for term in ['EXT_ID:42727920 AND SRC:MED','DOI:10.32388/i85yu1','EXT_ID:42707648 AND SRC:MED','EXT_ID:42492687 AND SRC:MED']:
+            url='https://www.ebi.ac.uk/europepmc/webservices/rest/search?'+urllib.parse.urlencode({'query':term,'format':'json','resultType':'core','pageSize':1})
+            try:
+              with urllib.request.urlopen(url,timeout=25) as r:data=json.load(r)
+              rows.append({'query':term,'url':url,'data':data})
+            except Exception as e:rows.append({'query':term,'error':str(e)})
+          pathlib.Path('seo-repair-repo/research.json').write_text(json.dumps(rows,indent=2));print('Source archive validated; original source records retained')
+          PY
+          (cd seo-repair-repo && sha256sum * > SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seo-repair-repo-${{ github.sha }}
+          path: seo-repair-repo/
+          retention-days: 14

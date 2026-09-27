@@ -1,3 +1,6 @@
+import {memoryAccess,saveConversationTurn,memoryStillAllowed} from './member-experience/ai-memory-bridge.mjs';
+import {attachSelectedRecipe} from './member-experience/ai-recipe-context.mjs';
+import {contextPilotEnabled,compactJourney,PRACTICAL_JUDGEMENT_RULES} from './member-experience/ai-practical-context.mjs';
 import {foodInjectionClarification,reviewedFoodEvidence} from './ask-timber-food-evidence.mjs';
 import {retrieveUnifiedKnowledge} from './shift-brain-v1.js';
 import {isWatchStatusQuestion} from './medicines-watch/knowledge.mjs';
@@ -8,6 +11,7 @@ const MODEL_FALLBACK='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 const MAX_MESSAGE=900;
 const MAX_HISTORY=6;
 const ANSWER_SCHEMA={type:'object',properties:{answer:{type:'string'},keyPoints:{type:'array',items:{type:'string'}},nextSteps:{type:'array',items:{type:'string'}},followUps:{type:'array',items:{type:'string'}},confidence:{type:'string',enum:['high','medium','low']},limitations:{type:'string'}},required:['answer','keyPoints','nextSteps','followUps','confidence','limitations'],additionalProperties:false};
+const PRACTICAL_SCHEMA={...ANSWER_SCHEMA,properties:{...ANSWER_SCHEMA.properties,answer:{type:'string',description:'Answer the actual question. For practical problems give 70-140 useful words: a concrete first step, how to carry it out within the constraints, why it fits, and a useful alternative. Use actual recipe details when provided. Give fuller explanations when asked. Simple saved facts and privacy refusals can be brief.'},keyPoints:{type:'array',items:{type:'string'},maxItems:1},nextSteps:{type:'array',items:{type:'string'},maxItems:1},followUps:{type:'array',items:{type:'string'},maxItems:1}}};
 // Clinic Gone Quiet ten-pack: one reviewed, fail-safe answer lane for each
 // stranded-member moment. These are information and support routes, never a
 // substitute prescriber or a disguised route to the till.
@@ -48,14 +52,25 @@ export async function askTimberRoutes(request,env){
   }
   // Static urgent-help signposting must survive missing AI/database bindings.
   if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);
+  const contextPilot=contextPilotEnabled(env);
+  // The legacy public widget hard-codes useJourney:false. In the pilot, the
+  // authenticated session plus existing saved consent decides availability.
+  // An explicit per-request personalisation opt-out always wins.
+  const autoJourney=contextPilot&&body.personalisation!==false&&/(?:^|;\s*)sst_session=/.test(request.headers.get('Cookie')||'');
+  const wantsJourney=body.personalisation!==false&&(body.useJourney===true||autoJourney);
   const clarification=foodInjectionClarification(message);
-  if(clarification&&body.useJourney!==true)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
+  if(clarification&&!wantsJourney)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
   const reviewedDirect=directReviewedAnswer(message);
-  if(reviewedDirect&&body.useJourney!==true)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
+  if(reviewedDirect&&!wantsJourney)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
-  const [evidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,body)]);
-  if(body.useJourney===true&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
+  const [retrievedEvidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney},{memory:contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'})]);
+  const evidence=contextPilot&&!isWatchStatusQuestion(message)?retrievedEvidence.filter(item=>item.reviewState!=='unavailable'):retrievedEvidence;
+  if(body.useJourney===true&&wantsJourney&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
   const journeyUsed=journey.status==='available';
+  if(contextPilot&&!journeyUsed&&body.useJourney!==true){
+    if(clarification)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
+    if(reviewedDirect)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
+  }
   if(!evidence.length&&!journeyUsed){
     console.log('ask_timber_insufficient_evidence',JSON.stringify({requestId}));
     return json({
@@ -66,6 +81,10 @@ export async function askTimberRoutes(request,env){
       limitations:'No sufficiently relevant reviewed source was found.'
     },200,request);
   }
+  if(contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'&&journeyUsed)await attachSelectedRecipe(env.DB,journey,message);
+  const access=memoryAccess(journey);
+  const messageSaved=await saveConversationTurn(access,'user',message);
+  const modelJourney=contextPilot?compactJourney(journey,message):journey;
   const sources=evidence.map((item,index)=>({
     id:index+1,title:clean(item.title,180)||'Reviewed Shift source',
     url:publicSource(item.provenance),authority:Number(item.authority||0),
@@ -73,18 +92,22 @@ export async function askTimberRoutes(request,env){
     limitations:item.limitations||null
   }));
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)}\n${clean(item.content,1800)}`).join('\n\n');
-  const history=body.useJourney===true?[]:normaliseHistory(body?.history);
+  const history=wantsJourney||(contextPilot&&body.personalisation===false)?[]:normaliseHistory(body?.history);
+  const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
+  const answerSchema=practicalDepth?{...PRACTICAL_SCHEMA,properties:{...PRACTICAL_SCHEMA.properties,answer:{...PRACTICAL_SCHEMA.properties.answer,minLength:420}}}:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA;
   const messages=[
-    {role:'system',content:systemPrompt()},
+    {role:'system',content:contextPilot?PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES:systemPrompt()},
     ...history,
-    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(journey):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}\n\nReturn valid JSON only.`}
+    {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}${contextPilot?'\n\nMEMORY RECEIPT: '+(messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'):''}${practicalDepth?'\n\nANSWER DEPTH: Give 80-140 useful words in the answer itself. Explain a concrete first step, how to carry it out with the stated constraints, and a fallback. Do not replace useful detail with a generic instruction to review options. Do not invent missing facts.':''}${practicalDepth&&modelJourney.grub?.recipe?'\n\nRECIPE PLAN REQUIREMENT: Use the actual selected recipe above. Include a specific preparation task using at least one of its named ingredients and preserve its cooking and safety instructions. If asked about preparing beforehand, answer that part explicitly as well as what to do tonight. A generic suggestion to check the kitchen or choose another meal is not a complete recipe plan. Do not invent ingredients, readiness, storage times or shorter cooking times.':''}\n\nReturn valid JSON only.`}
   ];
   try{
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:900,temperature:0.2,response_format:{type:'json_schema',json_schema:ANSWER_SCHEMA}});
+    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');
     const confidence=confidenceFor(evidence,generated.confidence);
+    if(!await memoryStillAllowed(access))return json({ok:true,requestId,mode:'grounded',confidence:'low',journeyUsed:false,answer:'Your privacy settings changed while I was answering. Please ask again so I can use your current choice.',keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'No personalised answer was returned after the change.'},200,request);
+    await saveConversationTurn(access,'assistant',clean(generated.answer,2800));
     console.log('ask_timber_answered',JSON.stringify({requestId,evidence:evidence.length,confidence}));
     return json({
       ok:true,requestId,mode:'grounded',confidence,journeyUsed,

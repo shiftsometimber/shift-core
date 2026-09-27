@@ -12,5 +12,12 @@ const promotion=read('.github/workflows/cloudflare-production-promote.yml');
 need(promotion.includes('frontend/member/member-progress-v1.js'),'Progress runtime changes do not trigger production promotion');
 need(workflow.includes('workflow_run:')&&workflow.includes("workflows: ['Cloudflare Production Promote']")&&workflow.includes("github.event.workflow_run.conclusion == 'success'"),'Final production journey must run after successful promotion');
 need(workflow.includes('ref: ${{ github.event.workflow_run.head_sha || github.sha }}'),'Final production journey must use the promoted source revision');
-need(!/^  push:/m.test(workflow),'Final live acceptance must not race deployment on a source push');
+const push=workflow.match(/^  push:\n([\s\S]*?)(?=^  workflow_run:)/m)?.[1];
+const screenshotOnlyPush="    branches: [main]\n    paths:\n      - 'my-timber-final-production.mjs'\n      - 'my-timber-google-play-screenshots.mjs'\n      - '.github/workflows/my-timber-final-production.yml'\n";
+need(!push||(
+  push===screenshotOnlyPush &&
+  workflow.includes("    if: github.event_name == 'push'\n        env:") &&
+  workflow.includes("    if: github.event_name != 'push'\n        env:") &&
+  workflow.includes("if: ${{ github.event_name != 'push' && hashFiles('health-passport/production-browser.mjs') != '' }}")
+),'Source push may capture screenshots only; authenticated live acceptance must wait for successful promotion');
 console.log('PASS My Timber final source gate: above-fold phone refinement, immediate-result contract, genuine authenticated Billy journey, dead-end/CTA/overflow assertions and production video evidence are fail-closed.');

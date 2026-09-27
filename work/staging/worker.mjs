@@ -1,3 +1,4 @@
+import {previewAccountCapacity} from './account-capacity.mjs';
 // Separate staging entry; never imported by the production entry.
 import core from '../../worker-entry-v6.js';
 import {memberReviewRoutes} from '../../member-experience/staging/routes.mjs';
@@ -22,13 +23,13 @@ export default {async fetch(request,env,ctx){
  if(request.method==='GET'&&/^(?:\/fit-v3-images\/[a-z0-9-]+\.png|\/assets\/member-experience\/food\/[a-z0-9-]+\.webp)$/.test(p))return env.STAGING_ASSETS.fetch(request);
  const photoRoute=/^\/v1\/shift\/progress-photo(?:\/\d+(?:\/image)?)?$/.test(p)&&((p.endsWith('/image')&&request.method==='GET')||(p==='/v1/shift/progress-photo'&&['GET','POST'].includes(request.method))||(/^\/v1\/shift\/progress-photo\/\d+$/.test(p)&&request.method==='DELETE'));
  const allowed=['/v1/pen-day','/v1/privacy/account','/v1/events','/v1/settings/units','/v1/progress/summary','/v1/plan/latest','/v1/grub/plan','/v1/ai/chat','/v1/shift/brain/context','/v1/shift-ai/chat','/v1/shift-ai/status','/v1/hydration/log','/v1/hydration/today','/v1/fit/reminders','/v1/shift/daily-action','/v1/shift/daily-adjust','/v1/shift/today/help','/v1/life-back','/v1/shift/daily-plan','/v1/profile','/v1/me','/v1/consents','/v1/check-ins','/v1/check-ins/follow-up','/v1/health-mot','/v1/health-passport/interest','/v1/progress','/v1/journey','/v1/journey/weekly-check-in','/v1/journey/trends','/v1/journey/export','/v1/privacy/health-tracking','/v1/privacy/export','/v1/fit/activity','/v1/fit/plan','/v1/fit/replace','/v1/fit/feedback','/v1/plan/list','/v1/grub/workspace','/v1/grub/search','/v1/member-state','/member/work','/employer/work','/hq/work','/assets/work/work.css','/assets/work/work.mjs','/v1/work','/v1/work/join','/v1/work/review','/v1/work/withdraw','/v1/work/export','/v1/work/testing','/v1/employer/work','/v1/hq/work','/v1/auth/login','/v1/auth/register','/v1/auth/logout','/v1/hq/auth/login','/v1/hq/auth/logout'];
- if(!allowed.includes(p)&&!photoRoute)return new Response('Only workplace verification routes are available here.',{status:404});
+ if(!allowed.includes(p)&&!photoRoute&&!['/member/orders','/member/orders.html','/assets/member-experience/orders.mjs','/assets/member-experience/orders.css','/assets/member-experience/session.mjs','/assets/member-experience/chrome.css','/assets/member-experience/chrome.mjs'].includes(p)&&!(p==='/v1/commerce/orders'&&request.method==='GET'))return new Response('Only workplace verification routes are available here.',{status:404});
  if(['POST','PATCH','DELETE'].includes(request.method)){
   if(request.headers.get('Origin')!==u.origin)return new Response('Same-origin requests only.',{status:403});
   if(p==='/v1/auth/register'){
    const b=await request.clone().json().catch(()=>null);
    if(!b||b.firstName!=='Fictional reviewer'||!/^[-a-zA-Z0-9._]+@example\.invalid$/.test(b.email??'')||Object.keys(b).some(k=>!['email','password','firstName'].includes(k)))return Response.json({error:'Use fictional @example.invalid test details only.'},{status:400});
-   const count=await env.DB.prepare('SELECT COUNT(*) n FROM users WHERE first_name="Fictional reviewer"').first();if(count.n>=20)return Response.json({error:'Staging account limit reached.'},{status:409});
+   const count=await env.DB.prepare('SELECT COUNT(*) n FROM users WHERE first_name="Fictional reviewer"').first();if(!previewAccountCapacity(Number(count.n),env,u.hostname).available)return Response.json({error:'The fictional preview account limit has been reached. Return to your existing test account using Test sign-in; no live account has been affected.'},{status:409,headers:{'Cache-Control':'no-store'}});
   }
  }
  // Staging-only diagnostics contain no request headers, prompts or model text.

@@ -1,27 +1,57 @@
+import {AI_CANDIDATE,AI_BASE,validateAiRelease} from '../release/shift-ai-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
-export const RELEASE_PATHS=new Set(['scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs']);
+export const RELEASE_PATHS=new Set(['editorial/five-articles/proof.mjs','.github/workflows/seo-repair-final-preview.yml','release/seo794-preservation.mjs','tests/seo794-preservation.test.mjs','scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs','scripts/verify-watch-access-closeout.mjs']);
+export const APPROVED_ORDER_FILES=[".github/workflows/my-timber-orders-preview.yml","member-experience/chrome.mjs","member-experience/entry.mjs","member-experience/orders.mjs","member-experience/tests/orders.test.mjs","my-timber-final-source-gate.mjs","preview/stabilisation/orders-proof.mjs","preview/stabilisation/orders-provision.mjs","preview/stabilisation/orders-schema.sql","work/staging/worker.mjs"];
+export const NICE_TIMEOUT_COMMIT='68616d2730e27b03fb54e232eb06961169cdc615';
+export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs'];
+export function validateNiceTimeout(read){
+ for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
+}
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
- assert.equal(manifest.applicationCommit,'1bba374cd9e31bfc2187fe207483ea168b1a7a5e');
- assert.equal(manifest.baseCommit,'a14f759ab8653868c5ef210eff431bdf29bfa106');
- const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
+ assert.equal(manifest.applicationCommit,'6053dac56653303ee1617d181b3005da577a1cae');
+ assert.equal(manifest.approvedScope,'my-timber-orders-display');
+ assert.equal(manifest.previewEvidence.workflowRun,36133785763);
+ assert.equal(manifest.previewEvidence.sha256,'04873025b6b3ec99553d570135a5d06a375120148317c8d8b27e6d5e10e60073');
+ assert.equal(manifest.baseCommit,'d5f650740bef17246b180b79617e3e94e43c02c1');
+ assert.deepEqual(manifest.approvedApplicationPaths,APPROVED_ORDER_FILES);
+ assert.deepEqual(manifest.runtimeSchemaAdditions,['member_account_details','member_account_details_preserve_delivery','member_signup_alerts']);
+ const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p)||NICE_TIMEOUT_PATHS.includes(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
 }
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
 export function verifyScope(){
+ if(existsSync('release/shift-ai-live.json')){
+  git('merge-base','--is-ancestor',AI_BASE,AI_CANDIDATE);
+  git('merge-base','--is-ancestor',AI_CANDIDATE,'HEAD');
+  assert.equal(git('diff','--name-only',AI_BASE,AI_CANDIDATE,'--','frontend','public','assets','wrangler.jsonc','package.json','package-lock.json'),'','AI candidate changed protected presentation/configuration');
+  const manifest=JSON.parse(readFileSync('release/shift-ai-live.json'));
+  const changed=git('diff','--name-only',AI_CANDIDATE,'HEAD').split('\n').filter(Boolean);
+  git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
+  validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
+  const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
+  mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
+  if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\ngrub_publication=false\n');
+  return report;
+ }
  assert.ok(existsSync('release/b1-runtime-only.json'),'Explicit release scope is required');
  const manifest=JSON.parse(readFileSync('release/b1-runtime-only.json'));
  // Verify ancestry as well as file equality: no alternate historic source.
  git('merge-base','--is-ancestor',manifest.baseCommit,manifest.applicationCommit);
  git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
+ assert.deepEqual(git('diff','--name-only',manifest.baseCommit,manifest.applicationCommit).split('\n').filter(Boolean),APPROVED_ORDER_FILES,'Pinned Orders application delta changed');
+ git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
+ validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
  const changed=git('diff','--name-only',manifest.applicationCommit,'HEAD').split('\n').filter(Boolean);
  const report={...validateScope(manifest,changed),releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,runtimeSchemaAdditions:manifest.runtimeSchemaAdditions||[],contentPublication:false};
  assert.equal(git('diff','--name-only'),'','Working source changed during release gates');

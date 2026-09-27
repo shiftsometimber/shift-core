@@ -1,0 +1,46 @@
+name: Reta speed and image scoped preview
+# Frozen identical public assets for both variants remove preview proxy jitter.
+on:
+  push:
+    branches: [fix/reta-speed-image-20260924]
+    paths: ['.github/workflows/reta-speed-image-preview.yml']
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Scoped source and existing regression checks
+        run: |
+          node --test tests/reta-presentation-repair.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs tests/seo-release-integrity.test.mjs tests/public-navigation-policy*.test.mjs babylove/*.test.mjs my-timber-pwa/*.test.mjs tests/app-store-public.test.mjs
+          npx wrangler deploy --dry-run --outdir reta-proof/compiled
+      - run: node preview/reta-20260924/build.mjs
+      - name: Deploy isolated GET-only preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: npx wrangler deploy --config preview/reta-20260924/wrangler.jsonc --var "CANDIDATE_SHA:$GITHUB_SHA"
+      - run: npm install --prefix "$RUNNER_TEMP/perf" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+      - run: '"$RUNNER_TEMP/perf/node_modules/.bin/playwright" install --with-deps chromium webkit'
+      - name: Browser preservation and three alternating matched mobile labs
+        run: |
+          export SEO_TOOLS="$RUNNER_TEMP/perf"
+          node preview/reta-20260924/verify.cjs
+          node preview/reta-20260924/lab.cjs
+      - name: Record exact candidate and checksums
+        if: always()
+        run: |
+          mkdir -p reta-proof
+          git rev-parse HEAD > reta-proof/commit.txt
+          find reta-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > reta-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reta-preview-${{ github.sha }}
+          path: reta-proof/

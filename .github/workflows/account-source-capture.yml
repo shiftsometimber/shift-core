@@ -1,0 +1,42 @@
+name: Account draft source capture
+on:
+  push:
+    branches: [fix/account-completion-20260923]
+    paths: ['.github/workflows/account-source-capture.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Archive tracked draft text source and exact Git identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
+          mkdir -p account-source-capture
+          git rev-parse HEAD > account-source-capture/source-sha.txt
+          git ls-tree -r HEAD > account-source-capture/git-tree.txt
+          python3 - <<'PY'
+          import subprocess,tarfile,pathlib,hashlib,json
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={}
+          with tarfile.open('account-source-capture/exact-text-source.tar.gz','w:gz') as t:
+            for p in paths:
+              f=pathlib.Path(p)
+              if not p or not f.is_file() or not (f.suffix in {'.js','.mjs','.json','.jsonc','.html','.css','.sql','.md','.txt','.yml','.yaml','.toml','.py','.xml','.csv'} or p in {'.nvmrc','.gitignore'}): continue
+              t.add(p,arcname=p,recursive=False)
+              manifest[p]=hashlib.sha256(f.read_bytes()).hexdigest()
+          pathlib.Path('account-source-capture/SHA256.json').write_text(json.dumps(manifest,indent=2))
+          print('Tracked source text files:',len(manifest))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: account-draft-exact-source-${{ github.run_id }}
+          path: account-source-capture
+          retention-days: 7
+          if-no-files-found: error

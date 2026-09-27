@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {randomBytes} from 'node:crypto';
+import assert from 'node:assert/strict';
+const run=args=>JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args],{encoding:'utf8'}));
+const databases=run(['d1','list','--json']).filter(d=>d.name==='shift-member-details-auth-20260922');assert.equal(databases.length,1);
+const d=databases[0],id=d.uuid||d.id||d.database_id;assert(id&&!fs.readFileSync('wrangler.jsonc','utf8').includes(id));
+const source=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),token=randomBytes(32).toString('hex');console.log('::add-mask::'+token);
+console.log('::add-mask::'+token.slice(0,32));
+const messages=['signup','order'].map(name=>JSON.parse(fs.readFileSync('operator-alert-evidence/'+name+'-preview.json','utf8')));
+messages.forEach(m=>{m.subject='TEST — SHIFT alert check — '+(m.to.startsWith('hello@')?'new member signup':'new paid order');m.text='TEST ONLY — fictional data. No real member or order was created.\n\n'+m.text;m.html=m.html.replace('<body','<body').replace(/(<main[^>]*>|<div style="max-width:640px[^>]*>)/,'$1<p style="padding:12px;background:#E7E3DA;color:#050505;font-weight:bold">TEST ONLY — fictional data. No real member or order was created.</p>');});
+fs.mkdirSync('operator-alert-preview/generated',{recursive:true});
+fs.writeFileSync('operator-alert-preview/generated/messages.mjs','export default '+JSON.stringify(messages)+';\n');
+const config={name:'shift-operator-alert-preview',main:'../worker.mjs',compatibility_date:'2026-09-23',workers_dev:true,d1_databases:[{binding:'DB',database_name:d.name,database_id:id}],send_email:[{name:'EMAIL'}],vars:{PROOF_SOURCE:source,PROOF_TOKEN:token,PROOF_EXPIRES:String(Date.now()+30*60*1000)}};
+fs.writeFileSync('operator-alert-preview/generated/wrangler.json',JSON.stringify(config,null,2));
+fs.writeFileSync('operator-alert-evidence/preview-identity.json',JSON.stringify({source,worker:config.name,previewDatabase:d.name,productionBindings:false,recipients:messages.map(m=>m.to)},null,2));

@@ -17,3 +17,26 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: node --test medicines-watch/*.test.mjs
+      - name: Capture public provider evidence for factual review only
+        run: |
+          mkdir -p provider-evidence
+          node --input-type=module <<'NODE'
+          import {writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          import {sources} from './medicines-watch/data.mjs';
+          import {fingerprintSource} from './medicines-watch/monitor.mjs';
+          const source=sources.find(s=>s.id==='wegovy-tablet-private');
+          const response=await fetch(source.checkUrl,{signal:AbortSignal.timeout(20000)});
+          const body=await response.text();
+          if(!response.ok||Buffer.byteLength(body)>2097152)throw Error('Invalid public evidence response '+response.status);
+          const result=await fingerprintSource(source,body,response.headers.get('content-type'));
+          writeFileSync('provider-evidence/asda.html',body);
+          const receipt={url:source.checkUrl,retrievedAt:new Date().toISOString(),httpStatus:response.status,bytes:Buffer.byteLength(body),responseSha256:createHash('sha256').update(body).digest('hex'),...result};
+          writeFileSync('provider-evidence/receipt.json',JSON.stringify(receipt,null,2));
+          console.log(JSON.stringify(receipt));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: medicines-watch-provider-review-20260927
+          path: provider-evidence/
+          retention-days: 30

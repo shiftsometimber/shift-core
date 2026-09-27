@@ -1,3 +1,5 @@
+import {appendAiMemoryExport} from './member-experience/ai-memory-bridge.mjs';
+import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
 import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';
 import {withStartupStability} from './public-startup-stability.mjs';
 import {memberDetailsRoute,appendMemberDetailsExport} from './member-experience/member-details-routes.mjs';
@@ -60,12 +62,14 @@ import { handleAuthRecovery } from "./auth-recovery-v1.js";
 import {repairPasswordResetResponse} from "./auth-recovery-page-v1.mjs";
 import { memberContrastStatic } from "./member-contrast-static-v1.js";
 import { fastMemberRegister } from "./member-register-fastpath-v2.js";
+import {retryPendingSignupAlerts} from './member-signup-alert.mjs';
 import { fastMemberLogin } from "./member-login-fastpath-v1.js";
 import { publicTurnstileConfig, turnstileGuard } from "./turnstile-auth-v1.js";
 import { shiftMeRoutes } from "./shift-me-v1.js";
 import { shiftMe3DProofRoutes } from "./shift-me-3d-proof-v1.js";
 import { sportClubhouseRoutes } from "./sport-clubhouse-v1.js";
 import { privacyHealthErasureRoute } from "./privacy-health-erasure-route-v1.js";
+import { accountDeletionPublicRoute } from "./app-store-public-v1.js";
 import { commerceStripeRoutes } from "./commerce-stripe-v1.js";
 import { medicineCommerceRoutes } from "./medicine-commerce-v1.js";
 import {
@@ -984,6 +988,7 @@ const worker = {
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
+    fallback = await appendAiMemoryExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)
@@ -998,7 +1003,7 @@ const worker = {
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
       }));
-      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin"];
+      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin", "member-signup-alerts"];
       const settled = await Promise.allSettled([
         runScheduledIntelligence(env),
         runRadarScheduledScan(env),
@@ -1006,6 +1011,7 @@ const worker = {
         runFitMorningReminders(env),
         notifyArticlePublication(env),
         env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true}),
+        retryPendingSignupAlerts(env),
       ]);
       const scheduled = settled.map((result, index) =>
         result.status === "fulfilled"
@@ -1164,7 +1170,12 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 
 export default {
   ...worker,
-  async fetch(request, env, ctx) {
+  fetch: async function publicFetch(request, env, ctx) {
+    if (new URL(request.url).pathname === '/sitemap-articles.xml') {
+      const source = new URL(request.url); source.pathname = '/sitemap.xml'; source.search = '';
+      return articleSitemapResponse(request, () => publicFetch(new Request(source, {method:'GET'}), env, ctx));
+    }
+    const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return appStorePublic;
     if(env.MY_TIMBER_PWA_ENABLED==='true'){
       const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);
       if(pwa)return pwa;

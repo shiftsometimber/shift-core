@@ -1,0 +1,7 @@
+{
+  "name": "shift-seo-repair-preview",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-08-09",
+  "workers_dev": true,
+  "preview_urls": false
+}

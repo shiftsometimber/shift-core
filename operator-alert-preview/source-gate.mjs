@@ -1,0 +1,12 @@
+import {execFileSync} from 'node:child_process';
+import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const base='c00cfcc50099aca9f690069e2278480df4c0c837';
+const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+git('merge-base','--is-ancestor',base,'HEAD');
+const allowed=new Set(['member-signup-alert.mjs','auth-email-verification-v1.js','worker-entry-v6.js','wrangler.jsonc','tests/member-signup-alert.test.mjs','tests/shop-recovery.test.mjs','release/member-signup-alert-schema.mjs','release/member-details-schema.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/member-signup-alert-preview.yml','operator-alert-preview/worker.mjs','operator-alert-preview/prepare.mjs','operator-alert-preview/send-proof.mjs','operator-alert-preview/source-gate.mjs','docs/decisions/2026-09-23-operator-alerts.md']);
+const changed=git('diff','--name-only',base,'HEAD').split('\n').filter(Boolean);assert(changed.every(p=>allowed.has(p)),'Unreviewed unrelated source change');
+const baseConfig=execFileSync('git',['show',base+':wrangler.jsonc'],{encoding:'utf8'});
+assert.equal(readFileSync('wrangler.jsonc','utf8').replace('    "MEMBER_SIGNUP_ALERTS_ENABLED": "true",\n',''),baseConfig,'Unexpected configuration change');
+for(const p of ['commerce-stripe-v1.js','medicine-commerce-v1.js','transactional-email-v1.js','member-register-fastpath-v2.js','worker.js','member-experience/member-details.mjs','member-experience/member-delivery-client.mjs'])assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',base+':'+p),'Unrelated runtime changed: '+p);
+console.log(JSON.stringify({base,source:git('rev-parse','HEAD'),changed,existingCheckoutAndRegistrationCorePreserved:true,onlyConfigurationAddition:'MEMBER_SIGNUP_ALERTS_ENABLED=true'}));

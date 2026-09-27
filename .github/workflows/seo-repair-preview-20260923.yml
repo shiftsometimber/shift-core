@@ -1,0 +1,158 @@
+name: Scoped SEO repairs preview and evidence
+on:
+  push:
+    branches: [fix/seo-repairs-20260923]
+    paths: [.github/workflows/seo-repair-preview-20260923.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: seo-repair-preview-20260923
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/seo-repairs-20260923
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Verify isolated source and initialise evidence
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse origin/main)" = 323f2409c0bd7f719abb05969fe9aeb2a827261b
+          mkdir -p seo-repair-proof/source
+          npm ci --no-audit --no-fund
+          python3 -m pip install --quiet Pillow==11.3.0
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35866531018
+          name: seo-news-snapshot-9c806f3e6c7b769d2df70f471c6a5553c6ca2130
+          path: seo-news-snapshot
+      - name: Prepare guarded candidate source and public-record fixtures only
+        run: |
+          set -euo pipefail
+          (cd seo-news-snapshot && sha256sum -c SHA256SUMS)
+          python3 - <<'PY'
+          import pathlib
+          p=pathlib.Path('scripts/seo-repairs-20260923/build-news.mjs');s=p.read_text();old="prepareNews(snapshot,'2026-09-23T14:00:00.000Z')";new='prepareNews(snapshot,new Date().toISOString())'
+          assert old in s or new in s
+          p.write_text(s.replace(old,new))
+          p=pathlib.Path('preview/seo-repairs/build.mjs');s=p.read_text();old="tag.replaceAll('SHIFT Health | Wider Men’s Health',title)";new="tag.replaceAll('SHIFT Health | Wider Men’s Health',title.replaceAll('&amp;','&'))"
+          assert old in s or new in s
+          p.write_text(s.replace(old,new))
+          PY
+          python3 scripts/seo-repairs-20260923/prepare-source.py | tee seo-repair-proof/source-prepare.log
+          node scripts/seo-repairs-20260923/build-news.mjs | tee seo-repair-proof/news-prepare.log
+      - name: Test bounded repairs and established regression contracts
+        run: |
+          set -euo pipefail
+          node --test tests/seo-repairs-20260923.test.mjs | tee seo-repair-proof/scoped-tests.log
+          node --test babylove/*.test.mjs tests/radar-newsroom-*.test.mjs tests/radar-auto-news*.test.mjs tests/radar-editorial-trust*.test.mjs tests/public-shell-contract.test.mjs tests/public-navigation-policy*.test.mjs tests/public-seo-closeout.test.mjs tests/seo-release-integrity.test.mjs tests/shift-health*.test.mjs | tee seo-repair-proof/regression-tests.log
+          npx wrangler deploy --dry-run --outdir seo-repair-proof/worker-dry-run | tee seo-repair-proof/dry-run.log
+      - name: Retain generated implementation on the authorised repair branch only
+        run: |
+          set -euo pipefail
+          git fetch origin fix/seo-repairs-20260923 main
+          test "$(git rev-parse origin/fix/seo-repairs-20260923)" = "$GITHUB_SHA"
+          test "$(git rev-parse origin/main)" = 323f2409c0bd7f719abb05969fe9aeb2a827261b
+          git add public-shell-contract.mjs public-navigation-policy.mjs shift-health-public.mjs radar-editorial-trust-v1.js radar-auto-news-v1.js public-seo-assets-data.mjs scripts/seo-repairs-20260923/source-manifest.json scripts/seo-repairs-20260923/build-news.mjs preview/seo-repairs/build.mjs
+          python3 - <<'PY'
+          import subprocess
+          allowed={'public-shell-contract.mjs','public-navigation-policy.mjs','shift-health-public.mjs','radar-editorial-trust-v1.js','radar-auto-news-v1.js','public-seo-assets-data.mjs','scripts/seo-repairs-20260923/source-manifest.json','scripts/seo-repairs-20260923/build-news.mjs','preview/seo-repairs/build.mjs'}
+          staged=set(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines());assert staged<=allowed,staged-allowed
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if ! git diff --cached --quiet; then
+            git commit -m 'Retain verified scoped SEO implementation and SHA-identified existing artwork'
+            git push origin HEAD:refs/heads/fix/seo-repairs-20260923
+          fi
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Capture the frozen public baseline and actual candidate renderers
+        run: node preview/seo-repairs/build.mjs | tee seo-repair-proof/render-build.log
+      - name: Publish isolated read-only preview with no production bindings
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          npx wrangler deploy --config preview/seo-repairs/wrangler.jsonc --var "CANDIDATE_SHA:$CANDIDATE_SHA" | tee seo-repair-proof/preview-deploy.log
+      - name: Install isolated browser and laboratory tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/seo-tools" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+          "$RUNNER_TEMP/seo-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "SEO_TOOLS=$RUNNER_TEMP/seo-tools" >> "$GITHUB_ENV"
+      - name: Check desktop, mobile, source labels, redirects and protected navigation
+        run: |
+          set -euo pipefail
+          node preview/seo-repairs/verify.cjs https://shift-seo-repair-preview.matobrien.workers.dev | tee seo-repair-proof/browser-summary.log
+      - name: Repeated matched mobile lab measurements, not field Core Web Vitals
+        run: |
+          set -euo pipefail
+          export CHROME_PATH=$(node -e "console.log(require(process.env.SEO_TOOLS+'/node_modules/playwright').chromium.executablePath())")
+          mkdir -p seo-repair-proof/lighthouse
+          for repeat in 1 2 3; do
+            for item in home reta health cost; do
+              case "$item" in
+                home) route='/' ;;
+                reta) route='/guides/retatrutide-uk-guide' ;;
+                health) route='/shift-health' ;;
+                cost) route='/articles/mounjaro-cost-uk' ;;
+              esac
+              for mode in baseline candidate; do
+                prefix=''; test "$mode" != baseline || prefix='/__baseline'
+                "$SEO_TOOLS/node_modules/.bin/lighthouse" "https://shift-seo-repair-preview.matobrien.workers.dev$prefix$route" --only-categories=performance,accessibility --output=json --output-path="seo-repair-proof/lighthouse/$item-$mode-$repeat.json" --chrome-flags='--headless --no-sandbox' --quiet --blocked-url-patterns='*google-analytics.com*,*analytics.google.com*,*doubleclick.net*,*googleadservices.com*,*/v1/acquisition/*'
+              done
+            done
+          done
+          python3 - <<'PY'
+          import pathlib,json,statistics
+          out=pathlib.Path('seo-repair-proof');rows=[]
+          for item in ['home','reta','health','cost']:
+            group={'page':item}
+            for mode in ['baseline','candidate']:
+              runs=[]
+              for p in sorted((out/'lighthouse').glob(item+'-'+mode+'-*.json')):
+                d=json.loads(p.read_text());assert not d.get('runtimeError'),d.get('runtimeError');a=d['audits']
+                runs.append({'file':p.name,'performance':d['categories']['performance']['score']*100,'accessibility':d['categories']['accessibility']['score']*100,'lcpMs':a['largest-contentful-paint']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue'],'tbtMs':a['total-blocking-time']['numericValue'],'bytes':a['total-byte-weight']['numericValue'],'contrastScore':a['color-contrast']['score'],'contrastFailures':a['color-contrast'].get('details',{}).get('items',[])})
+              assert len(runs)==3
+              group[mode]={'runs':runs,'median':{k:statistics.median(x[k] for x in runs) for k in ['performance','accessibility','lcpMs','cls','tbtMs','bytes']}}
+            rows.append(group)
+          (out/'mobile-comparison.json').write_text(json.dumps({'scope':'Three same-host, same-tool simulated mobile runs per page and mode. No field CrUX or causal production uplift claimed. Asset fallback is shared; outer HTML frozen.', 'pages':rows},indent=2));print(json.dumps([{k:v for k,v in x.items() if k=='page'}|{mode:x[mode]['median'] for mode in ['baseline','candidate']} for x in rows],indent=2))
+          PY
+      - name: Confirm protected production identity remains unchanged
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,pathlib
+          with urllib.request.urlopen('https://shiftsometimber.co.uk/DEPLOYMENT-FINGERPRINT.json',timeout=30) as r:fp=json.load(r)
+          expected='e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496'
+          pathlib.Path('seo-repair-proof/production-preservation.json').write_text(json.dumps({'checkedFingerprint':fp,'expected':expected,'unchanged':fp.get('aggregate_sha256')==expected,'productionDeployments':0,'databaseWrites':0,'analyticsChanges':0},indent=2));assert fp.get('aggregate_sha256')==expected
+          PY
+      - name: Retain exact candidate, failures and checksums
+        if: always()
+        run: |
+          mkdir -p seo-repair-proof/source
+          for file in public-shell-contract.mjs public-navigation-policy.mjs shift-health-public.mjs radar-editorial-trust-v1.js radar-auto-news-v1.js public-seo-assets-data.mjs public-seo-presentation.mjs; do test ! -f "$file" || cp "$file" seo-repair-proof/source/; done
+          cp -r scripts/seo-repairs-20260923 preview/seo-repairs editorial/seo-repairs-20260923 seo-repair-proof/source/ 2>/dev/null || true
+          git diff 323f2409c0bd7f719abb05969fe9aeb2a827261b -- . ':!public-seo-assets-data.mjs' > seo-repair-proof/candidate.diff
+          git rev-parse HEAD > seo-repair-proof/candidate-commit.txt
+          python3 - <<'PY'
+          import pathlib,hashlib,json,os
+          p=pathlib.Path('seo-repair-proof');(p/'execution.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'triggerCommit':os.environ['GITHUB_SHA'],'candidateCommit':os.environ.get('CANDIDATE_SHA'),'preview':'https://shift-seo-repair-preview.matobrien.workers.dev','production_deployments':0,'database_writes':0},indent=2));files=sorted(x for x in p.rglob('*') if x.is_file() and x.name!='SHA256SUMS');(p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in files))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-repair-preview-${{ github.sha }}
+          path: seo-repair-proof/
+          retention-days: 30
+          if-no-files-found: error
