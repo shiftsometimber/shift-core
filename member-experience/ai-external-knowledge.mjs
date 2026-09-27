@@ -11,7 +11,7 @@ export async function externalKnowledge(query,{fetcher=fetch,cache=globalThis.ca
  const signal=AbortSignal.timeout(2500);
  const result=await fetcher('https://www.nhs.uk/search/results?q='+encodeURIComponent(topic),{redirect:'error',signal,headers:{Accept:'text/html'}});if(!result.ok)return[];
  const html=await result.text();if(html.length>1000000)return[];
- const candidates=[...html.matchAll(/href=["']([^"']+)["']/gi)].flatMap(m=>{try{const u=new URL(m[1],'https://www.nhs.uk');return allowed(u)&&!/(?:children|babies|pregnancy)/.test(u.pathname)?[u.href]:[]}catch{return[]}});
+ const candidates=[...html.matchAll(/href=["']([^"']+)["']/gi)].flatMap(m=>{try{let u=new URL(m[1].replace(/&amp;/g,'&'),'https://www.nhs.uk');if(u.origin==='https://www.nhs.uk'&&u.pathname==='/search/click'){const target=u.searchParams.get('url');if(!target)return[];u=new URL(target,'https://www.nhs.uk');}return allowed(u)&&!/(?:children|babies|pregnancy)/.test(u.pathname)?[u.href]:[]}catch{return[]}});
  const url=[...new Set(candidates)].find(u=>topic.split(' ').some(t=>t.length>3&&u.includes(t)));if(!url)return[];
  const page=await fetcher(url,{redirect:'error',signal,headers:{Accept:'text/html'}});if(!page.ok)return[];const text=await page.text();if(text.length>1500000)return[];
  const title=plainText(text.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||'');const main=text.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||'';
