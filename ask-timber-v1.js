@@ -1,4 +1,4 @@
-import {publicAnswerCache,publicExplanationEligible} from './member-experience/ai-public-answer-cache.mjs';
+import {publicAnswerCache} from './member-experience/ai-public-answer-cache.mjs';
 import {fastPublicAnswer,savedFactKind,savedFactAnswer} from './member-experience/ai-fast-answers.mjs';
 import {answerStream} from './member-experience/ai-stream.mjs';
 import {externalKnowledge} from './member-experience/ai-external-knowledge.mjs';
@@ -6,7 +6,7 @@ import {retrievePublishedSite} from './member-experience/ai-site-knowledge.mjs';
 import {foundationEvidence} from './member-experience/ai-foundation.mjs';
 import {memoryAccess,saveConversationTurn,memoryStillAllowed} from './member-experience/ai-memory-bridge.mjs';
 import {attachSelectedRecipe} from './member-experience/ai-recipe-context.mjs';
-import {contextPilotEnabled,compactJourney,PRACTICAL_JUDGEMENT_RULES,PUBLIC_EXPLANATION_RULES} from './member-experience/ai-practical-context.mjs';
+import {contextPilotEnabled,compactJourney,PRACTICAL_JUDGEMENT_RULES} from './member-experience/ai-practical-context.mjs';
 import {foodInjectionClarification,reviewedFoodEvidence} from './ask-timber-food-evidence.mjs';
 import {retrieveUnifiedKnowledge} from './shift-brain-v1.js';
 import {isWatchStatusQuestion} from './medicines-watch/knowledge.mjs';
@@ -14,6 +14,7 @@ import {requestMemberJourney,JOURNEY_RULES,journeyFallback} from './member-exper
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const MODEL_FALLBACK='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
+const STREAM_MODEL='@cf/mistralai/mistral-small-3.1-24b-instruct';
 const MAX_MESSAGE=900;
 const MAX_HISTORY=6;
 const ANSWER_SCHEMA={type:'object',properties:{answer:{type:'string'},keyPoints:{type:'array',items:{type:'string'}},nextSteps:{type:'array',items:{type:'string'}},followUps:{type:'array',items:{type:'string'}},confidence:{type:'string',enum:['high','medium','low']},limitations:{type:'string'}},required:['answer','keyPoints','nextSteps','followUps','confidence','limitations'],additionalProperties:false};
@@ -59,6 +60,7 @@ export async function askTimberRoutes(request,env){
   // Static urgent-help signposting must survive missing AI/database bindings.
   if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);
   const contextPilot=contextPilotEnabled(env);
+  const model=env.SHIFT_AI_MODEL||(contextPilot&&body.stream===true?STREAM_MODEL:MODEL_FALLBACK);
   // The legacy public widget hard-codes useJourney:false. In the pilot, the
   // authenticated session plus existing saved consent decides availability.
   // An explicit per-request personalisation opt-out always wins.
@@ -102,26 +104,26 @@ export async function askTimberRoutes(request,env){
     reviewState:item.reviewState,citation:item.citation,provenance:item.provenance,
     limitations:item.limitations||null
   }));
-  const publicCache=contextPilot?await publicAnswerCache({request,body,message,evidence,model:env.SHIFT_AI_MODEL||MODEL_FALLBACK,cache:env.SHIFT_AI_PUBLIC_CACHE||globalThis.caches?.default}):null;
+  const publicCache=contextPilot?await publicAnswerCache({request,body,message,evidence,model:env.SHIFT_AI_MODEL||(MODEL_FALLBACK+'|'+STREAM_MODEL),cache:env.SHIFT_AI_PUBLIC_CACHE||globalThis.caches?.default}):null;
   const cached=await publicCache?.read();if(cached)return json({...cached,requestId,delivery:'cached_public'},200,request);
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)} [${clean(item.reviewState,50)}]\n${clean(item.content,1800)}`).join('\n\n');
   const history=wantsJourney||(contextPilot&&body.personalisation===false)?[]:normaliseHistory(body?.history);
   const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
   const answerSchema=practicalDepth?{...PRACTICAL_SCHEMA,properties:{...PRACTICAL_SCHEMA.properties,answer:{...PRACTICAL_SCHEMA.properties.answer,minLength:420}}}:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA;
   const messages=[
-    {role:'system',content:contextPilot?(!journeyUsed&&!practicalDepth&&!history.length&&publicExplanationEligible({request,body,message,evidence})?PUBLIC_EXPLANATION_RULES:PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES):systemPrompt()},
+    {role:'system',content:contextPilot?PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES:systemPrompt()},
     ...history,
     {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}${contextPilot?'\n\nMEMORY RECEIPT: '+(messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'):''}${practicalDepth?'\n\nANSWER DEPTH: Give 80-140 useful words in the answer itself. Explain a concrete first step, how to carry it out with the stated constraints, and a fallback. Do not replace useful detail with a generic instruction to review options. Do not invent missing facts.':''}${practicalDepth&&modelJourney.grub?.recipe?'\n\nRECIPE PLAN REQUIREMENT: Use the actual selected recipe above. Include a specific preparation task using at least one of its named ingredients and preserve its cooking and safety instructions. If asked about preparing beforehand, answer that part explicitly as well as what to do tonight. A generic suggestion to check the kitchen or choose another meal is not a complete recipe plan. Do not invent ingredients, readiness, storage times or shorter cooking times.':''}\n\nReturn valid JSON only.`}
   ];
   try{
     if(contextPilot&&body.stream===true){
       const streamedMessages=messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));
-      streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve all source citations, privacy boundaries and safety rules.'});
-      const upstream=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
+      streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve privacy boundaries and safety rules. '+(sources.length?'Use these exact numeric citations inline when using their evidence: '+sources.map(s=>'['+s.id+']').join(', ')+'. Never use empty [] citations or internal source status labels.':'No general evidence sources were supplied: do not invent citations or health claims.')});
+      const upstream=await env.AI.run(model,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
       if(!upstream?.getReader)throw Error('stream_unavailable');
       return answerStream(upstream,{headers:cors(request),requestId,access,request,onComplete:answer=>publicCache?.write(answer),meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
     }
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
+    const result=await env.AI.run(model,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');

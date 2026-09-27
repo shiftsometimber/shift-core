@@ -258,9 +258,9 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  assert(token&&endpoint,'Real-model evaluation requires the isolated authenticated AI binding');
  const {env,DB}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
  env.AI={run:async(model,input)=>{
-  const r=await previewInference(input);
+  const r=await previewInference({...input,benchmarkModel:model});
   if(!r.ok)throw Error('Workers AI HTTP '+r.status);
-  return r.json();
+  return input.stream?r.body:r.json();
  }};
  const cases=[
   ['saved-context','What meal have I chosen today and what is my personal goal?'],
@@ -272,22 +272,27 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
   ['no-fake-save','Remember that I cannot cook after midnight. Have you saved that for next week?']
  ];
  const results=[];let generated=0;
- for(const [scenario,message] of cases){
-  const start=performance.now();const r=await ask(env,{message,useJourney:false});const data=await r.json();
-  results.push({scenario,message,elapsedMs:Math.round(performance.now()-start),status:r.status,...data});
+ for(const stream of [false,true])for(const [scenario,message] of cases){
+  const start=performance.now();const r=await ask(env,{message,useJourney:false,stream});let data;
+  if(r.headers.get('content-type')?.includes('text/event-stream')){let buffer='';const decoder=new TextDecoder();for await(const chunk of r.body){buffer+=decoder.decode(chunk,{stream:true});let end;while((end=buffer.indexOf('\n\n'))>=0){const frame=buffer.slice(0,end);buffer=buffer.slice(end+2);const event=frame.match(/^event: (.+)$/m)?.[1],raw=frame.match(/^data: (.+)$/m)?.[1];assert.notEqual(event,'error','Reasoning stream interrupted');if(event==='done')data=JSON.parse(raw);}}assert(data?.ok,'Stream must complete');}else data=await r.json();
+  results.push({transport:stream?'stream':'json',scenario,message,elapsedMs:Math.round(performance.now()-start),status:r.status,...data});
   if(data.mode==='grounded'&&data.journeyUsed&&data.delivery!=='saved_fact')generated++;
  }
  mkdirSync('evidence/shift-ai-real-probe',{recursive:true});
  const report={at:new Date().toISOString(),commit:process.env.SHIFT_AI_SOURCE_SHA||process.env.GITHUB_SHA,scope:'Real Workers AI via temporary isolated binding; in-memory synthetic SQL; no production DB or production deployment',generated,cases:results};
  writeFileSync('evidence/shift-ai-real-probe/results.json',JSON.stringify(report,null,2));
  console.log('SHIFT_AI_SYNTHETIC_RESULTS '+JSON.stringify(report));
- assert.equal(generated,cases.length-1,'All reasoning scenarios must generate; exact saved facts bypass inference');
- assert.equal(results.find(r=>r.scenario==='saved-context').delivery,'saved_fact');
- assert(results.every(r=>!JSON.stringify(r).includes('OTHER_MEMBER_PRIVATE')),'No other-account data');
- assert.doesNotMatch(results.find(r=>r.scenario==='food-topic').answer,/kebab|lentil/i);
- assert(results.every(r=>r.answer.split(/\s+/).length<=180),'Answers must stay focused');
- assert(results.find(r=>r.scenario==='late-shift').answer.split(/\s+/).length>=60,'Practical help must explain how to carry out the action and an alternative');
- assert.match(results.find(r=>r.scenario==='saved-context').answer,/lentil/i);
+ assert.equal(generated,2*(cases.length-1),'All reasoning scenarios must generate; exact saved facts bypass inference');
+ for(const transport of ['json','stream']){const subset=results.filter(r=>r.transport===transport);
+ assert.equal(subset.find(r=>r.scenario==='saved-context').delivery,'saved_fact');
+ assert(subset.every(r=>!JSON.stringify(r).includes('OTHER_MEMBER_PRIVATE')),'No other-account data');
+ assert.doesNotMatch(subset.find(r=>r.scenario==='food-topic').answer,/kebab|lentil/i);
+ assert(subset.every(r=>r.answer.split(/\s+/).length<=180),'Answers must stay focused');
+ assert(subset.find(r=>r.scenario==='late-shift').answer.split(/\s+/).length>=60,'Practical help must explain how to carry out the action and an alternative');
+ assert.match(subset.find(r=>r.scenario==='saved-context').answer,/lentil/i);
+ assert.match(subset.find(r=>r.scenario==='correction').answer,/garden/i,'Current correction must guide the answer');
+ if(transport==='stream')assert.match(subset.find(r=>r.scenario==='food-topic').answer,/\[1\]/,'Streamed food guidance needs its supplied citation');
+ }
  assert(DB.writes.every(sql=>/^UPDATE user_sessions SET last_used_at=/i.test(sql)));
 });
 
