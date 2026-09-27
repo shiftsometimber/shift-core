@@ -1,0 +1,56 @@
+name: Read-only live mobile speed measurement
+on:
+  push:
+    branches: [verify/mobile-speed-20260927]
+    paths: ['.github/workflows/mobile-speed-20260927.yml']
+permissions:
+  contents: read
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --prefix "$RUNNER_TEMP/perf" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+      - run: '"$RUNNER_TEMP/perf/node_modules/.bin/playwright" install --with-deps chromium'
+      - name: Measure three fresh mobile samples per page
+        run: |
+          mkdir -p speed-proof
+          export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/perf/node_modules/playwright').chromium.executablePath())")
+          for repeat in 1 2 3; do
+            for page in home reta; do
+              route=/; if [ "$page" = reta ]; then route=/guides/retatrutide-uk-guide; fi
+              node "$RUNNER_TEMP/perf/node_modules/lighthouse/cli/index.js" "https://shiftsometimber.co.uk$route" --only-categories=performance --output=json --output-path="speed-proof/$page-$repeat.json" '--chrome-flags=--headless --no-sandbox' --quiet
+            done
+          done
+      - name: Summarise measured results
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,statistics
+          rows=[]
+          for page in ['home','reta']:
+            runs=[]
+            for n in [1,2,3]:
+              d=json.loads(pathlib.Path(f'speed-proof/{page}-{n}.json').read_text())
+              assert not d.get('runtimeError'),d.get('runtimeError')
+              a=d['audits']
+              runs.append({'date':d['fetchTime'],'score':round(d['categories']['performance']['score']*100),'lcpMs':a['largest-contentful-paint']['numericValue'],'fcpMs':a['first-contentful-paint']['numericValue'],'tbtMs':a['total-blocking-time']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue'],'speedIndexMs':a['speed-index']['numericValue']})
+            rows.append({'page':page,'runs':runs,'median':{k:statistics.median(x[k] for x in runs) for k in runs[0] if k!='date'}})
+          result={'scope':'Fresh live mobile Lighthouse 12.8.2; three samples each; simulated mobile default throttling. Lab, not field. No deployment or production content changes. Separate runner from historic evidence; not a controlled before/after.','pages':rows}
+          pathlib.Path('speed-proof/summary.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Checksums
+        if: always()
+        run: find speed-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > speed-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-mobile-speed-20260927
+          path: speed-proof/
+          retention-days: 90
