@@ -1,7 +1,7 @@
 name: Matched homepage speed preview
 on:
   push:
-    branches: [fix/home-speed-20260927]
+    branches: [fix/home-speed-subset-20260927]
 permissions:
   contents: read
 jobs:

@@ -218,7 +218,7 @@ jobs:
           import assert from 'node:assert/strict';
           import {createHash} from 'node:crypto';
           import {RETA_STYLES} from './reta-styles-data.mjs';
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36344794727',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'7b9b4bdced65e82c29b51b02c1b438a116d63451');
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36346000573',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'7a7a646082996ef1e41d644407d7cf83b063dc9e');
           const sha=x=>createHash('sha256').update(x).digest('hex');
           for(const [path,css] of Object.entries(RETA_STYLES)){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}
           JS
@@ -425,8 +425,8 @@ jobs:
           mkdir -p home-speed-live
           export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
           node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';
-          const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();const p=await fetch('https://shift-home-speed-preview.matobrien.workers.dev/');assert(p.ok);const preview=await p.text();const paths=s=>[...s.matchAll(/data-home-inline-css="([^"]+)"/g)].map(m=>m[1]);assert(paths(preview).includes('/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'));assert.deepEqual(paths(html),paths(preview),'Live stylesheet list differs from tested preview');writeFileSync('home-speed-live/home.html',html);writeFileSync('home-speed-live/style-list.json',JSON.stringify(paths(html)));
+          import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';import {HOME_RECOVERY_CSS} from './home-critical-styles.mjs';
+          const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();const p=await fetch('https://shift-home-speed-preview.matobrien.workers.dev/');assert(p.ok);const preview=await p.text();const paths=s=>[...s.matchAll(/data-home-inline-css="([^"]+)"/g)].map(m=>m[1]);assert(paths(preview).includes('/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'));assert.deepEqual(paths(html),paths(preview),'Live stylesheet list differs from tested preview');assert(html.includes(HOME_RECOVERY_CSS),'Guarded CSS not present live');writeFileSync('home-speed-live/home.html',html);writeFileSync('home-speed-live/style-list.json',JSON.stringify(paths(html)));
           JS
           for n in 1 2 3; do
             node "$RUNNER_TEMP/heading-tools/node_modules/lighthouse/cli/index.js" https://shiftsometimber.co.uk/ --only-categories=performance --output=json --output-path="home-speed-live/home-$n.json" '--chrome-flags=--headless --no-sandbox' --quiet
