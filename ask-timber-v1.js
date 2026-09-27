@@ -1,3 +1,4 @@
+import {publicAnswerCache} from './member-experience/ai-public-answer-cache.mjs';
 import {fastPublicAnswer,savedFactKind,savedFactAnswer} from './member-experience/ai-fast-answers.mjs';
 import {answerStream} from './member-experience/ai-stream.mjs';
 import {externalKnowledge} from './member-experience/ai-external-knowledge.mjs';
@@ -101,6 +102,8 @@ export async function askTimberRoutes(request,env){
     reviewState:item.reviewState,citation:item.citation,provenance:item.provenance,
     limitations:item.limitations||null
   }));
+  const publicCache=contextPilot?await publicAnswerCache({request,body,message,evidence,model:env.SHIFT_AI_MODEL||MODEL_FALLBACK,cache:env.SHIFT_AI_PUBLIC_CACHE||globalThis.caches?.default}):null;
+  const cached=await publicCache?.read();if(cached)return json({...cached,requestId,delivery:'cached_public'},200,request);
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)} [${clean(item.reviewState,50)}]\n${clean(item.content,1800)}`).join('\n\n');
   const history=wantsJourney||(contextPilot&&body.personalisation===false)?[]:normaliseHistory(body?.history);
   const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
@@ -116,7 +119,7 @@ export async function askTimberRoutes(request,env){
       streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve all source citations, privacy boundaries and safety rules.'});
       const upstream=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
       if(!upstream?.getReader)throw Error('stream_unavailable');
-      return answerStream(upstream,{headers:cors(request),requestId,access,request,meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
+      return answerStream(upstream,{headers:cors(request),requestId,access,request,onComplete:answer=>publicCache?.write(answer),meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
     }
     const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
@@ -126,15 +129,16 @@ export async function askTimberRoutes(request,env){
     if(!await memoryStillAllowed(access))return json({ok:true,requestId,mode:'grounded',confidence:'low',journeyUsed:false,answer:'Your privacy settings changed while I was answering. Please ask again so I can use your current choice.',keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'No personalised answer was returned after the change.'},200,request);
     await saveConversationTurn(access,'assistant',clean(generated.answer,2800));
     console.log('ask_timber_answered',JSON.stringify({requestId,evidence:evidence.length,confidence}));
-    return json({
+    const completed={
       ok:true,requestId,mode:'grounded',confidence,journeyUsed,
-      answer:clean(generated.answer,2800),
+      answer:clean(generated.answer.replace(/\[\s*\]/g,''),2800),
       keyPoints:list(generated.keyPoints,4,320),
       nextSteps:list(generated.nextSteps,3,320),
       followUps:list(generated.followUps,3,120),
       sources,
       limitations:clean(generated.limitations,500)||'General information only; it does not replace individual medical advice or a clinical assessment.'
-    },200,request);
+    };
+    await publicCache?.write(completed);return json(completed,200,request);
   }catch(error){
     console.error('ask_timber_generation_failed',JSON.stringify({requestId,error:String(error?.message||error).slice(0,160)}));
     const direct=evidence[0];
@@ -224,7 +228,10 @@ async function retrieveForParts(env,message,parts){
   const db=env.DB;
   if(isWatchStatusQuestion(message))return retrieveUnifiedKnowledge(db,message,12);
   const queries=[...new Set([message,...parts])];
-  const [site,batches]=await Promise.all([retrievePublishedSite(db,message),Promise.all(queries.map((query,index)=>retrieveUnifiedKnowledge(db,query,index===0?8:5)))]);
+  const siteBatches=await Promise.all(queries.map(query=>retrievePublishedSite(db,query)));
+  // A source that answers one part must not suppress evidence for another part.
+  const batches=await Promise.all(queries.map((query,index)=>siteBatches[index].length?Promise.resolve([]):retrieveUnifiedKnowledge(db,query,index===0?8:5)));
+  const site=[...new Map(siteBatches.flat().map(item=>[item.citation,item])).values()];
   const seen=new Set(),merged=[];
   for(const item of batches.flat()){
     const key=String(item?.citation||item?.title||'')+'|'+clean(item?.content,240);
