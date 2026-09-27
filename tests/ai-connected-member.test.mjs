@@ -1,3 +1,4 @@
+import {previewInference} from '../preview/ai-context/inference-client.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
@@ -257,7 +258,7 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  assert(token&&endpoint,'Real-model evaluation requires the isolated authenticated AI binding');
  const {env,DB}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
  env.AI={run:async(model,input)=>{
-  const r=await fetch(endpoint+'/run',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(45000)});
+  const r=await previewInference(input);
   if(!r.ok)throw Error('Workers AI HTTP '+r.status);
   return r.json();
  }};

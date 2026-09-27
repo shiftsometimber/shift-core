@@ -1,3 +1,4 @@
+import {previewInference} from './inference-client.mjs';
 import {createServer} from 'node:http';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -14,7 +15,7 @@ env.SHIFT_AI_PRACTICAL_CONTEXT='true';env.SHIFT_AI_CONVERSATION_MEMORY='true';
 const recipe=await seedCatalogue(DB),prefs=getPrefs(DB);
 prefs.grubV2.today={date:ukDate(new Date()),recipeId:recipe.id,name:recipe.name,minutes:recipe.minutes,chosenAt:new Date().toISOString(),kcal:recipe.kcal,protein_g:recipe.protein_g};putPrefs(DB,prefs);
 DB.sqlite.exec('ALTER TABLE member_state ADD COLUMN updated_at TEXT; ALTER TABLE consents ADD COLUMN consent_version TEXT; ALTER TABLE consents ADD COLUMN granted_at TEXT; ALTER TABLE consents ADD COLUMN withdrawn_at TEXT; CREATE TABLE progress_entries(id INTEGER PRIMARY KEY,user_id INTEGER);');
-env.AI={run:async(model,input)=>{const r=await fetch(process.env.SHIFT_EVAL_URL+'/run',{method:'POST',headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Inference HTTP '+r.status);return input.stream?r.body:r.json()}};
+env.AI={run:async(model,input)=>{const r=await previewInference(input);if(!r.ok)throw Error('Inference HTTP '+r.status);return input.stream?r.body:r.json()}};
 const htmlResponse=await fetch('https://shiftsometimber.co.uk/ask-timber');assert(htmlResponse.ok);
 const html=await htmlResponse.text();
 const assets={'/assets/ask-timber-v1.js':'frontend/member/assets/ask-timber-v1.js','/assets/ask-timber-v1.css':'frontend/member/assets/ask-timber-v1.css','/assets/ask-timber-intent-v2.js':'frontend/member/assets/ask-timber-intent-v2.js','/api-adapter-v33d.js':'frontend/member/api-adapter-v33d.js'};
