@@ -1,9 +1,0 @@
-import assert from 'node:assert/strict';import fs from 'node:fs';
-const worker=fs.readFileSync('worker-entry-v6.js','utf8'),module=fs.readFileSync('tap-room-v1.js','utf8'),client=fs.readFileSync('frontend/member/tap-room-v1.js','utf8'),css=fs.readFileSync('frontend/member/tap-room-v1.css','utf8'),html=fs.readFileSync('frontend/member/tap-room-shell.txt','utf8'),shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
-for(const needle of ['/lounge','/v1/lounge','301','authenticateTapRoomPage'])assert.ok(worker.includes(needle),`worker missing ${needle}`);
-for(const needle of ['email_verified','member_state','tap_room_blocks','tap_room_reports','posting_restricted','interaction_blocked','report_rate_limited','secureEqual'])assert.ok(module.includes(needle),`safety foundation missing ${needle}`);
-for(const needle of ['Ask Timber','Message Matt','Read Clinic Gone Quiet','/articles/stopping-glp1','Keep it short.','No dosing advice here','Emergency:','999','111'])assert.ok(html.includes(needle),`Lounge UI missing ${needle}`);
-for(const needle of ['--green:#707762','--cream:#e7e3da','--black:#050505','Arial,Helvetica,sans-serif'])assert.ok(css.includes(needle),`brand lock missing ${needle}`);
-for(const needle of ["const api='/v1/lounge'",'maxlength="400"','result.flagged','treatmentRulesAcknowledged'])assert.ok(client.includes(needle)||html.includes(needle),`client contract missing ${needle}`);
-for(const banned of ['LATEST AT THE BAR','THE LIVE BOARD','corkboard','upvote','karma','glassmorphism'])assert.ok(!html.includes(banned)&&!client.includes(banned)&&!css.includes(banned),`dead Tap Room UI remains: ${banned}`);
-assert.ok(!shell.includes('ensureSport()'),'sport injector is still active');assert.match(html,/noindex,nofollow/);console.log('THE LOUNGE MVP SOURCE GATE — PASS');

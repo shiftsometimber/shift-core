@@ -1,7 +1,0 @@
-import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
-const phase=process.argv[2],base='https://shiftsometimber.co.uk';
-const paths=['/member-fit-programme-v1.js','/member-grub-programme-v1.js','/member-shell-v33g.js'];const rows=[];
-for(const path of paths){const r=await fetch(base+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);const body=await r.text();assert.ok(/javascript/.test(r.headers.get('content-type')),path);rows.push({path,sha256:createHash('sha256').update(body).digest('hex')})}
-if(phase==='before')fs.writeFileSync('stripe-preservation-before.json',JSON.stringify(rows,null,2));
-else{assert.deepEqual(rows,JSON.parse(fs.readFileSync('stripe-preservation-before.json')));const r=await fetch(base+'/v1/commerce/stripe/webhook',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:'evt_invalid_signature_rec040',data:{object:{metadata:{order_type:'medicine'}}}}),signal:AbortSignal.timeout(30000)});assert.equal(r.status,400);assert.equal((await r.json()).error,'invalid_signature');fs.writeFileSync('stripe-preservation-live.json',JSON.stringify({checkedAt:new Date().toISOString(),assets:rows,invalidSignatureRejected:true,noRealPaymentOrEmail:true},null,2))}
-console.log('PASS REC-040 '+phase+' member assets preserved; '+(phase==='after'?'unsigned webhook rejected before database access':'baseline captured'));

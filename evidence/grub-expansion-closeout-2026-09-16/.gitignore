@@ -1,7 +1,0 @@
-# Generated review artifacts are retained by CI, not committed as source.
-/grub-additive-candidate.json.gz
-/grub-expansion-review.html
-/content-fingerprints.json
-/review-phone.png
-/tests.tap
-/v1-preservation.log

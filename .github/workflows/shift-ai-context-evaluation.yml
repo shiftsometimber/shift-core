@@ -67,13 +67,22 @@ jobs:
         run: |
           node --input-type=module <<'NODE'
           let ready=false;
+          const retryable=new Set([404,500,502,503,504]);
           for(let i=0;i<20;i++){
-            const r=await fetch(process.env.SHIFT_EVAL_URL+'/health',{headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY}});
-            if(r.ok&&(await r.json()).ready){ready=true;break}
-            if(r.status!==404)throw Error('Preview readiness HTTP '+r.status);
+            const headers={Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY};
+            const r=await fetch(process.env.SHIFT_EVAL_URL+'/health',{headers,signal:AbortSignal.timeout(10000)});
+            if(r.ok&&(await r.json()).ready){
+              const probe=await fetch(process.env.SHIFT_EVAL_URL+'/run',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:'Reply with the single word READY.'}],max_tokens:16,temperature:0}),signal:AbortSignal.timeout(15000)});
+              if(probe.ok){
+                const result=await probe.json();
+                if(typeof result.response==='string'&&result.response.trim()){ready=true;break}
+                throw Error('Preview inference returned no usable response');
+              }
+              if(!retryable.has(probe.status))throw Error('Preview inference readiness HTTP '+probe.status);
+            }else if(!retryable.has(r.status))throw Error('Preview readiness HTTP '+r.status);
             await new Promise(resolve=>setTimeout(resolve,3000));
           }
-          if(!ready)throw Error('Preview did not propagate within 60 seconds');
+          if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
           NODE
       - name: Real AI with in-memory fictional member records
         env:
