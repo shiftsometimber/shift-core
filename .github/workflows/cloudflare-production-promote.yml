@@ -426,7 +426,7 @@ jobs:
           export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';
-          const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();assert.equal((html.match(/data-home-inline-css=/g)||[]).length,5);writeFileSync('home-speed-live/home.html',html);
+          const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();const p=await fetch('https://shift-home-speed-preview.matobrien.workers.dev/');assert(p.ok);const preview=await p.text();const paths=s=>[...s.matchAll(/data-home-inline-css="([^"]+)"/g)].map(m=>m[1]);assert(paths(preview).includes('/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'));assert.deepEqual(paths(html),paths(preview),'Live stylesheet list differs from tested preview');writeFileSync('home-speed-live/home.html',html);writeFileSync('home-speed-live/style-list.json',JSON.stringify(paths(html)));
           JS
           for n in 1 2 3; do
             node "$RUNNER_TEMP/heading-tools/node_modules/lighthouse/cli/index.js" https://shiftsometimber.co.uk/ --only-categories=performance --output=json --output-path="home-speed-live/home-$n.json" '--chrome-flags=--headless --no-sandbox' --quiet
