@@ -35,6 +35,10 @@ export function validateScope(manifest,changed){
 }
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
+const SPEED_CANDIDATE='bd3c3f8aa43bf05585bd8618e5b1890fb01e1415';
+const SPEED_PATHS=["home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
+function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',SPEED_CANDIDATE+':'+path),'Home speed source drift: '+path);}
+
 // Owner authorised this exact preview-tested repair on 27 September.
 const HEADING_CANDIDATE='90b1e29db85591b84dec642c3304641bc9545529';
 const HEADING_PATHS=['knowledge-heading-repair.mjs','public-seo-closeout.mjs','worker-entry-v6.js','preview/knowledge-heading/worker.mjs','preview/knowledge-heading/wrangler.jsonc','scripts/verify-knowledge-headings.cjs','.github/workflows/knowledge-heading-preview.yml'];
@@ -56,7 +60,8 @@ export function verifyScope(){
   git('merge-base','--is-ancestor',MEDICINES_REVIEW_COMMIT,'HEAD');
   validateMedicinesReview((ref,path)=>git('rev-parse',ref+':'+path));
   verifyHeadingRepair();
-  const approved=validateAiRelease(manifest,changed.filter(path=>!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  verifyHomeSpeed();
+  const approved=validateAiRelease(manifest,changed.filter(path=>!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
