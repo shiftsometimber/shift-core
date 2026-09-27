@@ -1,3 +1,4 @@
+import {FOUNDATION_CANDIDATE,FOUNDATION_PATHS,validateFoundation} from '../release/shift-ai-scope.mjs';
 import {AI_CANDIDATE,AI_BASE,validateAiRelease} from '../release/shift-ai-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -37,7 +38,9 @@ export function verifyScope(){
   const changed=git('diff','--name-only',AI_CANDIDATE,'HEAD').split('\n').filter(Boolean);
   git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
   validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
-  const approved=validateAiRelease(manifest,changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  git('merge-base','--is-ancestor',FOUNDATION_CANDIDATE,'HEAD');
+  validateFoundation((ref,path)=>git('rev-parse',ref+':'+path));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));

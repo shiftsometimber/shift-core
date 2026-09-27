@@ -14,3 +14,6 @@ test('application drift, frontend changes, missing flags and unrelated config ch
  assert.throws(()=>validateAiRelease({...manifest,productionActivationAuthorised:false},[],config,base));
  assert.equal(config.replace(AI_FLAGS,''),base);
 });
+
+import {validateFoundation,FOUNDATION_PATHS} from '../release/shift-ai-scope.mjs';
+test('foundation release requires exact source equality for every pinned application file',()=>{assert.doesNotThrow(()=>validateFoundation((ref,path)=>path));for(const changed of FOUNDATION_PATHS)assert.throws(()=>validateFoundation((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Foundation source drift/);});
