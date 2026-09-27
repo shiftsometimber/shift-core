@@ -45,7 +45,7 @@ jobs:
           GRUB_PUBLISHABLE_FILE=work/staging/generated/grub-approved/grub-v1-publishable.json FINAL_V1_PUBLICATION_DIR=preview/ai-context/generated/publication node final-v1-production-publication.mjs
           npm install --no-save --package-lock=false playwright@1.58.2
           npx playwright install --with-deps chromium webkit
-      - name: Prepare temporary authenticated preview AI binding, no production bindings
+      - name: Prepare temporary evaluator with public-index-only diagnostic binding
         run: |
           node --input-type=module <<'NODE'
           import {writeFileSync,appendFileSync} from 'node:fs';
@@ -53,7 +53,7 @@ jobs:
           const key=randomBytes(32).toString('hex');
           console.log('::add-mask::'+key);
           appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_KEY='+key+'\n');
-          writeFileSync('preview/ai-context/generated.json',JSON.stringify({name:'shift-ai-context-eval',main:'inference.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,ai:{binding:'AI'},vars:{EVAL_KEY:key,EXPIRES_AT:String(Date.now()+15*60000)}}));
+          writeFileSync('preview/ai-context/generated.json',JSON.stringify({name:'shift-ai-context-eval',main:'inference.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,ai:{binding:'AI'},d1_databases:[{binding:'PUBLIC_KNOWLEDGE_DB',database_name:'shift-core-db',database_id:'88f40aed-cb23-4372-8c94-8a73f48bc847'}],vars:{PROFILE_ID:process.env.GITHUB_RUN_ID,EVAL_KEY:key,EXPIRES_AT:String(Date.now()+15*60000)}}));
           NODE
       - name: Deploy only temporary inference evaluator with existing preview credential
         run: |
@@ -85,6 +85,20 @@ jobs:
             await new Promise(resolve=>setTimeout(resolve,3000));
           }
           if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
+          NODE
+      - name: Profile hosted public knowledge, model and reuse without customer access
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          let r;
+          for(let attempt=0;attempt<4;attempt++){
+            r=await fetch(process.env.SHIFT_EVAL_URL+'/profile',{method:'POST',headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY},signal:AbortSignal.timeout(120000)});
+            if(r.status!==404||attempt===3)break;
+            await r.body?.cancel();console.log('PROFILE_ROUTE_PROPAGATION_RETRY '+(attempt+1));
+            await new Promise(resolve=>setTimeout(resolve,1500));
+          }
+          if(!r.ok)throw Error('Public runtime profile HTTP '+r.status+' '+(await r.text()).slice(0,500));
+          const report=await r.json();mkdirSync('evidence/shift-ai-real-probe',{recursive:true});writeFileSync('evidence/shift-ai-real-probe/runtime-profile.json',JSON.stringify(report,null,2));console.log('SHIFT_RUNTIME_PROFILE '+JSON.stringify(report));
           NODE
       - name: Prove published-site retrieval, Matt voice and external-source fallback
         run: node preview/ai-context/site-answer-proof.mjs
