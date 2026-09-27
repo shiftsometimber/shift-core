@@ -47,3 +47,26 @@ test('stream format instruction names real evidence markers without manufacturin
  await(await ask(env,{message:'Can I eat chocolate while taking Mounjaro?',useJourney:false,stream:true})).text();assert.match(inputs.at(-1).messages.at(-1).content,/literal numbered markers: \[1\]/);
  await(await ask(env,{message:'Remember that I cannot cook after midnight. Have you saved that for next week?',useJourney:false,stream:true})).text();assert.match(inputs.at(-1).messages.at(-1).content,/No general evidence sources were supplied/);assert.doesNotMatch(inputs.at(-1).messages.at(-1).content,/\[1\]/);
 });
+
+// Both response modes must use the budgeted gateway, including legacy mode.
+test('all chat generations use shift-ai and never cache private prompts at the gateway',async t=>{
+ for(const flag of ['true','false'])for(const stream of [false,true]){
+  const {env}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT=flag;let count=0;
+  env.AI.run=async(model,input,options)=>{count++;assert.deepEqual(options,{gateway:{id:'shift-ai',skipCache:true}});return input.stream?new ReadableStream({start(c){c.enqueue(chunk('A useful answer.'));c.close()}}):{response:{answer:'A useful answer.',confidence:'low'}}};
+  await(await ask(env,{message:'How can I fit a walk around work?',useJourney:false,stream})).text();assert.equal(count,1);
+ }
+});
+test('gateway budget rejection uses existing non-generative fallback without a paid retry',async t=>{
+ for(const stream of [false,true]){
+  const {env}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';let count=0;
+  env.AI.run=async(_,input,options)=>{count++;assert.equal(options.gateway.id,'shift-ai');throw Object.assign(new Error('429 spend limit exceeded'),{status:429})};
+  const response=await ask(env,{message:'How can I fit a walk around work?',useJourney:false,stream});const data=await response.json();assert.equal(count,1);assert.equal(response.status,200);assert.equal(data.ok,true);assert(['saved_journey','reviewed_direct'].includes(data.mode));assert(data.answer);
+ }
+});
+
+import {validateGateway} from '../preview/ai-context/gateway-settings.mjs';
+test('release refuses missing, partitioned or disabled budgets and unsafe gateway settings',()=>{
+ const valid={id:'shift-ai',authentication:true,collect_logs:false,rate_limiting_limit:10,rate_limiting_interval:60,spend_limits:{enabled:true,rules:[{limit:2,limitType:'cost',window:86400,technique:'sliding'},{limit:50,limitType:'cost',window:2592000,technique:'sliding'}]}};
+ assert(validateGateway(valid));
+ for(const change of [{authentication:false},{collect_logs:true},{logpush:true},{otel:[{}]},{retry_max_attempts:2},{workers_ai_billing_mode:'unified'},{rate_limiting_limit:0},{spend_limits:{...valid.spend_limits,enabled:false}},{spend_limits:{enabled:true,rules:[valid.spend_limits.rules[0]]}},{spend_limits:{enabled:true,rules:valid.spend_limits.rules.map(r=>({...r,metadata:{user:{mode:'partition'}}}))}}])assert.throws(()=>validateGateway({...valid,...change}));
+});
