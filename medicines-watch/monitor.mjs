@@ -3,6 +3,16 @@ import { sources as catalogueSources, medicines as catalogueMedicines } from './
 export const CHECK_INTERVAL_MS = 60 * 60 * 1000;
 export const REVIEW_INTERVAL_MS = 7 * 24 * CHECK_INTERVAL_MS;
 const DEADLINE_MS = 8000;
+const NICE_DEADLINE_MS = 20000;
+// NICE guidance responses have taken 6.3–7.6 seconds on successful reads.
+// Allow bounded headroom without extending other origins or retrying denials.
+export function sourceDeadlineMs(source, requested) {
+  const url = new URL(source.checkUrl || source.url);
+  const limit = url.protocol === 'https:' && url.hostname === 'www.nice.org.uk'
+    && !url.port && url.pathname.startsWith('/guidance/') && source.format === 'html'
+    ? NICE_DEADLINE_MS : DEADLINE_MS;
+  return Math.max(1, Math.min(limit, Number.isFinite(requested) ? requested : limit));
+}
 // The complete Mounjaro emc SmPC exceeds 1 MiB (1,258,162 bytes observed
 // 2026-09-15). Retain a hard bound without truncating the evidence document.
 const MAX_BYTES = 2 * 1024 * 1024;
@@ -229,7 +239,7 @@ export function projectSourceHealth(source, storedRow, now = Date.now()) {
   let checkStatus = 'never_checked';
   if (row?.attempt_status === 'failed') { checkStatus = 'check_delayed'; reasons.push('last_check_failed'); }
   else if (row?.attempt_status === 'checking') {
-    checkStatus = Number.isFinite(attempt) && time - attempt <= DEADLINE_MS ? 'checking' : 'check_delayed';
+    checkStatus = Number.isFinite(attempt) && time - attempt <= sourceDeadlineMs(source) ? 'checking' : 'check_delayed';
     if (checkStatus === 'check_delayed') reasons.push('check_incomplete');
   } else if (Number.isFinite(success)) {
     checkStatus = time >= success && time - success <= CHECK_INTERVAL_MS + CRON_GRACE_MS ? 'current' : 'check_delayed';
@@ -274,12 +284,11 @@ export async function readWatchHealth(env, options = {}) {
     lastAttemptAt: attempts.at(-1) || null, sources, medicines };
 }
 
-/** Scheduled writer: at most three concurrent requests, eight seconds and 2 MiB each. */
+/** Scheduled writer: at most three concurrent requests, 8 seconds (20 for NICE guidance) and 2 MiB each. */
 export async function checkSources(env, options = {}) {
   if (!env?.DB) throw new Error('medicines_watch_database_missing');
   const sourceList = options.sources ?? catalogueSources;
   const now = nowValue(options.now), attemptedAt = iso(now), nextCheckAt = iso(now + CHECK_INTERVAL_MS);
-  const timeoutMs = Math.max(1, Math.min(DEADLINE_MS, options.timeoutMs ?? DEADLINE_MS));
   const maxBytes = Math.max(1, Math.min(MAX_BYTES, options.maxBytes ?? MAX_BYTES));
   const fetchImpl = options.fetchImpl ?? fetch;
   for (const source of sourceList) validSource(source);
@@ -308,7 +317,7 @@ export async function checkSources(env, options = {}) {
         AND (next_check_at IS NULL OR next_check_at<=?)`)
         .bind(attemptedAt, nextCheckAt, source.id, source.url, checkUrl, attemptedAt).run();
       if (!claim.meta?.changes) { outcomes[index] = { id: source.id, status: 'not_due' }; continue; }
-      const result = await retrieve(source, fetchImpl, timeoutMs, maxBytes);
+      const result = await retrieve(source, fetchImpl, sourceDeadlineMs(source, options.timeoutMs), maxBytes);
       if (result.error) {
         await env.DB.prepare(`UPDATE medicines_watch_checks SET last_failure_at=?,
           attempt_status='failed',last_http_status=?,last_error=?

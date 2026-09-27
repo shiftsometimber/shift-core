@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync } from 'node:fs';
 import { checkSources, readWatchHealth, fingerprintSource, projectSourceHealth,
-  CHECK_INTERVAL_MS, REVIEW_INTERVAL_MS } from './monitor.mjs';
+  CHECK_INTERVAL_MS, REVIEW_INTERVAL_MS, sourceDeadlineMs } from './monitor.mjs';
 
 const NOW = Date.parse('2026-09-15T22:00:00Z');
 const source = {
@@ -332,4 +332,45 @@ test('migration and writer initialize compatible owned schemas without Radar tab
   await env.DB.exec(readFileSync(new URL('./migration.sql', import.meta.url), 'utf8'));
   await scan(env);
   assert.deepEqual(env.DB.db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map(row => row.name), ['medicines_watch_checks']);
+});
+
+
+test('NICE deadline is bounded to exact HTTPS guidance origin; ongoing checks use the same bound', () => {
+  const nice = {...source, format: 'html', checkUrl: 'https://www.nice.org.uk/guidance/ta875'};
+  assert.equal(sourceDeadlineMs(nice, 60000), 20000);
+  assert.equal(sourceDeadlineMs(nice, 15), 15);
+  for (const checkUrl of ['https://www.nice.org.uk.evil.example/guidance/ta875', 'https://www.nice.org.uk/other', 'https://www.nice.org.uk:8443/guidance/ta875', source.checkUrl]) {
+    assert.equal(sourceDeadlineMs({...nice, checkUrl}), 8000);
+  }
+  const row = {source_url: nice.url, check_url: nice.checkUrl, attempt_status: 'checking', last_attempt_at: new Date(NOW).toISOString()};
+  assert.equal(projectSourceHealth(nice, row, NOW + 9000).checkStatus, 'checking');
+  assert.equal(projectSourceHealth(nice, row, NOW + 20001).checkStatus, 'check_delayed');
+});
+
+test('complete NICE response after the old deadline is retrieved without renewing review', async t => {
+  const env = setup(t);
+  const nice = {...source, format: 'html', checkUrl: 'https://www.nice.org.uk/guidance/ta875'};
+  const html = '<html><title>Example medicine</title><main>Example medicine authorised for a specific indication. Eligibility and individual assessment remain essential.</main></html>';
+  let requests = 0;
+  const result = await scan(env, nice, {fetchImpl: async () => {
+    requests++;
+    await new Promise(resolve => setTimeout(resolve, 8500));
+    return new Response(html, {headers: {'content-type': 'text/html'}});
+  }});
+  assert.equal(result.checked, 1); assert.equal(requests, 1);
+  const state = (await health(env, nice)).sources[0];
+  assert.equal(state.reviewedAt, nice.reviewedAt);
+  assert.equal(state.reviewStatus, 'verification_pending');
+});
+
+test('NICE timeout, access denial and server failure remain failed without retries', async t => {
+  const nice = {...source, format: 'html', checkUrl: 'https://www.nice.org.uk/guidance/ta875'};
+  for (const status of [403, 429, 500]) {
+    let requests = 0; const env = setup(t);
+    const result = await scan(env, nice, {fetchImpl: async () => { requests++; return new Response('Unavailable', {status}); }});
+    assert.equal(result.outcomes[0].error, `http_${status}`); assert.equal(requests, 1);
+    assert.equal((await health(env, nice)).sources[0].lastSuccessAt, null);
+  }
+  const result = await scan(setup(t), nice, {timeoutMs: 10, fetchImpl: () => new Promise(() => {})});
+  assert.equal(result.outcomes[0].error, 'check_timeout');
 });
