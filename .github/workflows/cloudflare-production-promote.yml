@@ -209,7 +209,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
+          node --test tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
@@ -346,6 +346,8 @@ jobs:
           node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
       - name: Verify retained SHIFT interpretations throughout the archive
         run: node scripts/verify-shift-take-archive.mjs
+      - name: Capture AI frontend and aggregate knowledge foundation before release
+        run: node release/shift-ai-live.mjs before
       - name: Capture current Worker deployment for rollback
         run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
       - name: Seed recent discovery snapshots without publishing or sending notifications
@@ -379,6 +381,8 @@ jobs:
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Verify live AI activation, public inference and unchanged chat assets
+        run: node release/shift-ai-live.mjs after
       - name: Verify exact Member Details and frontend repair delivery
         run: node release/member-details-live.mjs
       - name: Publish the exact owner-approved illustrated Wegovy guide

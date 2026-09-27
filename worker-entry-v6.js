@@ -1,3 +1,4 @@
+import {appendAiMemoryExport} from './member-experience/ai-memory-bridge.mjs';
 import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
 import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';
 import {withStartupStability} from './public-startup-stability.mjs';
@@ -987,6 +988,7 @@ const worker = {
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
+    fallback = await appendAiMemoryExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)

@@ -1,3 +1,4 @@
+import {attachConversationMemory} from './ai-memory-bridge.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 import {connectedDay,ukDate} from './journey-context.mjs';
@@ -40,13 +41,14 @@ export async function buildMemberJourneyContext(DB,userId,{preferences,now=new D
       provenance:{source:'member_state + check_ins + my_journey_weekly_checkins',scope:'authenticated_member_only',sharedKnowledge:false}};
   }catch{return {status:'unavailable'}}
 }
-export async function requestMemberJourney(request,env,body={}){
+export async function requestMemberJourney(request,env,body={},options={}){
   if(body.useJourney!==true)return {status:'not_requested'};
   if(!request.headers.get('Cookie')?.includes('sst_session='))return {status:'signed_out'};
   try{
     const auth=await authenticateMember(request,env);
     if(auth.response)return {status:'signed_out'};
-    return buildMemberJourneyContext(env.DB,auth.userId);
+    const journey=await buildMemberJourneyContext(env.DB,auth.userId);
+    return options.memory?attachConversationMemory(env.DB,auth.userId,journey):journey;
   }catch{return {status:'unavailable'}}
 }
 export function journeyFallback(journey){

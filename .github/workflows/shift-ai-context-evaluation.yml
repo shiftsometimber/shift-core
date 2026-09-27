@@ -1,0 +1,109 @@
+name: SHIFT AI backend context evaluation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'member-experience/ai-*.mjs'
+      - 'memory-privacy.js'
+      - 'privacy-health-erasure-route-v1.js'
+      - 'tests/helpers/ai-member-fixture.mjs'
+      - 'tests/ai-connected-member.test.mjs'
+      - 'preview/ai-context/**'
+      - '.github/workflows/shift-ai-context-evaluation.yml'
+permissions:
+  contents: read
+concurrency:
+  group: shift-ai-context-evaluation
+  cancel-in-progress: false
+jobs:
+  synthetic-real-model:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'preview/shift-ai-context-20260926'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Backend context and preservation regressions
+        run: node --test tests/ai-practical-context.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/scheduled-intelligence-delivery.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare accepted recipe fixtures and browser engines
+        run: |
+          python -m pip install openpyxl==3.1.5
+          node member-experience/staging/grub-catalogue.mjs
+          GRUB_PUBLISHABLE_FILE=work/staging/generated/grub-approved/grub-v1-publishable.json FINAL_V1_PUBLICATION_DIR=preview/ai-context/generated/publication node final-v1-production-publication.mjs
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+      - name: Prepare temporary authenticated preview AI binding, no production bindings
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFileSync,appendFileSync} from 'node:fs';
+          import {randomBytes} from 'node:crypto';
+          const key=randomBytes(32).toString('hex');
+          console.log('::add-mask::'+key);
+          appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_KEY='+key+'\n');
+          writeFileSync('preview/ai-context/generated.json',JSON.stringify({name:'shift-ai-context-eval',main:'inference.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,ai:{binding:'AI'},vars:{EVAL_KEY:key,EXPIRES_AT:String(Date.now()+15*60000)}}));
+          NODE
+      - name: Deploy only temporary inference evaluator with existing preview credential
+        run: |
+          npx wrangler deploy --config preview/ai-context/generated.json > "$RUNNER_TEMP/shift-eval-deploy.txt" 2>&1 || { cat "$RUNNER_TEMP/shift-eval-deploy.txt"; exit 1; }
+          node --input-type=module <<'NODE'
+          import {readFileSync,appendFileSync} from 'node:fs';
+          const log=readFileSync(process.env.RUNNER_TEMP+'/shift-eval-deploy.txt','utf8');
+          const url=log.match(/https:\/\/shift-ai-context-eval\.[a-z0-9-]+\.workers\.dev/);
+          if(!url)throw Error('Isolated evaluator URL not returned');
+          appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_URL='+url[0]+'\n');
+          NODE
+      - name: Wait for authenticated preview propagation
+        run: |
+          node --input-type=module <<'NODE'
+          let ready=false;
+          const retryable=new Set([404,500,502,503,504]);
+          for(let i=0;i<20;i++){
+            const headers={Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY};
+            const r=await fetch(process.env.SHIFT_EVAL_URL+'/health',{headers,signal:AbortSignal.timeout(10000)});
+            if(r.ok&&(await r.json()).ready){
+              const probe=await fetch(process.env.SHIFT_EVAL_URL+'/run',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:'Reply with the single word READY.'}],max_tokens:16,temperature:0}),signal:AbortSignal.timeout(15000)});
+              if(probe.ok){
+                const result=await probe.json();
+                if(typeof result.response==='string'&&result.response.trim()){ready=true;break}
+                throw Error('Preview inference returned no usable response');
+              }
+              if(!retryable.has(probe.status))throw Error('Preview inference readiness HTTP '+probe.status);
+            }else if(!retryable.has(r.status))throw Error('Preview readiness HTTP '+r.status);
+            await new Promise(resolve=>setTimeout(resolve,3000));
+          }
+          if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
+          NODE
+      - name: Real AI with in-memory fictional member records
+        env:
+          SHIFT_AI_REAL_PROBE: 'true'
+          SHIFT_AI_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node --test --test-name-pattern='real-model practical pilot' tests/ai-connected-member.test.mjs
+      - name: Authenticated browser memory, recipe and erasure proof
+        env:
+          SHIFT_AI_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node preview/ai-context/browser-proof.mjs
+      - name: Remove only the temporary evaluator
+        if: always() && env.SHIFT_EVAL_URL != ''
+        run: |
+          node --input-type=module <<'NODE'
+          const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-ai-context-eval',{method:'DELETE',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
+          if(!r.ok)throw Error('Temporary evaluator cleanup HTTP '+r.status);
+          console.log('Temporary evaluator removed');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shift-ai-synthetic-real-model-${{ github.event.pull_request.head.sha }}
+          path: evidence/shift-ai-real-probe/
+          retention-days: 14
