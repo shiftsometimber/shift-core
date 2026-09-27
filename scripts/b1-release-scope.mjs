@@ -1,3 +1,4 @@
+import {AI_CANDIDATE,AI_BASE,validateAiRelease} from '../release/shift-ai-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'node:fs';
@@ -23,6 +24,19 @@ export function validateScope(manifest,changed){
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
 export function verifyScope(){
+ if(existsSync('release/shift-ai-live.json')){
+  git('merge-base','--is-ancestor',AI_BASE,AI_CANDIDATE);
+  git('merge-base','--is-ancestor',AI_CANDIDATE,'HEAD');
+  assert.equal(git('diff','--name-only',AI_BASE,AI_CANDIDATE,'--','frontend','public','assets','wrangler.jsonc','package.json','package-lock.json'),'','AI candidate changed protected presentation/configuration');
+  const manifest=JSON.parse(readFileSync('release/shift-ai-live.json'));
+  const changed=git('diff','--name-only',AI_CANDIDATE,'HEAD').split('\n').filter(Boolean);
+  const approved=validateAiRelease(manifest,changed,readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
+  const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
+  mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
+  if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\ngrub_publication=false\n');
+  return report;
+ }
  assert.ok(existsSync('release/b1-runtime-only.json'),'Explicit release scope is required');
  const manifest=JSON.parse(readFileSync('release/b1-runtime-only.json'));
  // Verify ancestry as well as file equality: no alternate historic source.

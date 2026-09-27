@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
+import {verifyScope} from '../scripts/b1-release-scope.mjs';
+const phase=process.argv[2],dir='b1-runtime-release';
+assert(['before','after'].includes(phase));assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyScope();mkdirSync(dir,{recursive:true});
+const paths=['/assets/ask-timber-v1.js','/assets/ask-timber-v1.css','/assets/ask-timber-intent-v2.js','/api-adapter-v33d.js'];
+const assets={};for(const path of paths){const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);assets[path]=createHash('sha256').update(Buffer.from(await r.arrayBuffer())).digest('hex')}
+const report={phase,at:new Date().toISOString(),source:process.env.GITHUB_SHA,assets,customerRecordsRead:0,customerRecordsWritten:0};
+if(phase==='before'){
+ const query=sql=>{const r=JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',sql],{encoding:'utf8',maxBuffer:4*1024*1024}));assert(r.every(x=>x.success));return r.flatMap(x=>x.results||[])};
+ const tables=new Set(query("SELECT name FROM sqlite_schema WHERE type='table' AND name IN ('ai_knowledge_documents','shift_knowledge_nodes','shift_knowledge_sources','structured_content')").map(r=>r.name));
+ const knowledge={};
+ const queries={ai_knowledge_documents:'SELECT status,COUNT(*) total FROM ai_knowledge_documents GROUP BY status',shift_knowledge_nodes:'SELECT node_type,domain,status,COUNT(*) total FROM shift_knowledge_nodes GROUP BY node_type,domain,status',shift_knowledge_sources:'SELECT source_type,COUNT(*) source_rows,COUNT(DISTINCT node_id) distinct_nodes FROM shift_knowledge_sources GROUP BY source_type',structured_content:'SELECT content_type,status,COUNT(*) total FROM structured_content GROUP BY content_type,status'};
+ for(const [table,sql]of Object.entries(queries))knowledge[table]=tables.has(table)?query(sql):{unavailable:true};
+ report.knowledge=knowledge;report.knowledgeMeaning='Aggregate inventory, not proof of clinical freshness. Approved-document sync and source discovery are scheduled every fifteen minutes; only reviewed eligible content may support answers.';
+}else{
+ assert.deepEqual(assets,JSON.parse(readFileSync(dir+'/shift-ai-before.json')).assets,'Ask Timber frontend assets changed');
+ const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core/settings',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,'Worker settings verification');
+ const data=await r.json();assert(data.success);report.flags={};
+ for(const name of ['SHIFT_AI_PRACTICAL_CONTEXT','SHIFT_AI_CONVERSATION_MEMORY']){const binding=data.result.bindings.find(x=>x.name===name);assert.equal(binding?.text,'true',name+' is not active in production');report.flags[name]=true;}
+ const start=Date.now();const answer=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message:'How can I make protein practical when appetite is low?',useJourney:false}),signal:AbortSignal.timeout(45000)});assert.equal(answer.status,200);const body=await answer.json();assert.equal(body.ok,true);assert.equal(body.mode,'grounded');assert(body.answer?.length>30);assert(body.sources?.length>0);assert.notEqual(body.journeyUsed,true);report.publicAnswer={elapsedMs:Date.now()-start,...body};
+ const page=await fetch('https://shiftsometimber.co.uk/ask-timber');assert.equal(page.status,200);assert((await page.text()).includes('timberQuestion'));
+ report.authenticatedProductionConversation='No customer session used. Private-memory behaviour verified in authenticated synthetic browser acceptance; live configuration and public inference verified here.';
+}
+writeFileSync(dir+'/shift-ai-'+phase+'.json',JSON.stringify(report,null,2));console.log('SHIFT_AI_LIVE_PROOF '+JSON.stringify(report));

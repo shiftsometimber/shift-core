@@ -1,0 +1,9 @@
+{
+  "approvedScope": "shift-ai-context-and-memory",
+  "mode": "runtime-only",
+  "applicationCommit": "ccb02aef21cb3eecf1e9c96cdb640063c4590cc6",
+  "baseCommit": "b7684acb867e85386cea87ecbfb055847d0fa55d",
+  "previewWorkflowRun": 36281269294,
+  "productionActivationAuthorised": true,
+  "reason": "Owner explicitly requested live activation on 27 September 2026; frontend unchanged. Reviewed candidate plus exact backend activation flags only."
+}
