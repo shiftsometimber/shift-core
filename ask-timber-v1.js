@@ -1,4 +1,4 @@
-import {publicAnswerCache} from './member-experience/ai-public-answer-cache.mjs';
+import {publicAnswerCache,publicExplanationEligible} from './member-experience/ai-public-answer-cache.mjs';
 import {fastPublicAnswer,savedFactKind,savedFactAnswer} from './member-experience/ai-fast-answers.mjs';
 import {answerStream} from './member-experience/ai-stream.mjs';
 import {externalKnowledge} from './member-experience/ai-external-knowledge.mjs';
@@ -109,7 +109,7 @@ export async function askTimberRoutes(request,env){
   const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
   const answerSchema=practicalDepth?{...PRACTICAL_SCHEMA,properties:{...PRACTICAL_SCHEMA.properties,answer:{...PRACTICAL_SCHEMA.properties.answer,minLength:420}}}:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA;
   const messages=[
-    {role:'system',content:contextPilot?(!journeyUsed&&!practicalDepth&&!history.length?PUBLIC_EXPLANATION_RULES:PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES):systemPrompt()},
+    {role:'system',content:contextPilot?(!journeyUsed&&!practicalDepth&&!history.length&&publicExplanationEligible({request,body,message,evidence})?PUBLIC_EXPLANATION_RULES:PRACTICAL_JUDGEMENT_RULES+'\n'+JOURNEY_RULES):systemPrompt()},
     ...history,
     {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}${contextPilot?'\n\nMEMORY RECEIPT: '+(messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'):''}${practicalDepth?'\n\nANSWER DEPTH: Give 80-140 useful words in the answer itself. Explain a concrete first step, how to carry it out with the stated constraints, and a fallback. Do not replace useful detail with a generic instruction to review options. Do not invent missing facts.':''}${practicalDepth&&modelJourney.grub?.recipe?'\n\nRECIPE PLAN REQUIREMENT: Use the actual selected recipe above. Include a specific preparation task using at least one of its named ingredients and preserve its cooking and safety instructions. If asked about preparing beforehand, answer that part explicitly as well as what to do tonight. A generic suggestion to check the kitchen or choose another meal is not a complete recipe plan. Do not invent ingredients, readiness, storage times or shorter cooking times.':''}\n\nReturn valid JSON only.`}
   ];
