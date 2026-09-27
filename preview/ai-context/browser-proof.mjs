@@ -50,9 +50,10 @@ try{
   // Any external API request would invalidate this isolated proof.
   await page.route('https://api.shiftsometimber.co.uk/**',route=>route.abort());
   async function ask(message){
+   await page.evaluate(()=>{window.__aiLastResult=null;if(!window.SST_API.__probeWrapped){const original=window.SST_API.askShiftAI;window.SST_API.askShiftAI=async(...args)=>{const data=await original(...args);window.__aiLastResult=data;return data};window.SST_API.__probeWrapped=true;}});
    const start=Date.now();await page.locator('#timberQuestion').fill(message);
    const response=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/ai/chat');
-   await page.locator('#timberSubmit').click();const firstText=page.locator('#timberResponse .at-copy').waitFor({state:'visible',timeout:45000}).then(()=>Date.now()-start);const r=await response,raw=await r.text();const data=r.headers()['content-type']?.includes('text/event-stream')?JSON.parse(raw.split('event: done\ndata: ')[1]?.split('\n')[0]||'{}'):JSON.parse(raw);
+   await page.locator('#timberSubmit').click();const firstText=page.locator('#timberResponse .at-copy').waitFor({state:'visible',timeout:45000}).then(()=>Date.now()-start);const r=await response;await page.waitForFunction(()=>window.__aiLastResult,{},{timeout:60000});const data=await page.evaluate(()=>window.__aiLastResult);
    assert.equal(r.status(),200);assert.equal(data.mode,'grounded');assert.equal(data.journeyUsed,true);
    await page.waitForFunction(answer=>document.querySelector('#timberResponse')?.textContent.includes(answer.slice(0,35)),data.answer);
    const rendered=await page.locator('#timberResponse .at-copy').innerText();assert.equal(rendered.replace(/\s+/g,' ').trim(),data.answer.replace(/\s+/g,' ').trim());

@@ -7,8 +7,9 @@ const entities=s=>s.replace(/&(?:amp|lt|gt|quot|apos|nbsp|#39|#x27);/gi,x=>({'&a
 export function plainText(html){return entities(String(html).replace(/<(script|style|nav|header|footer|form|aside)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ')).replace(/\s+/g,' ').trim()}
 export function extractPublicPage(html,url){
  if(!publicKnowledgeUrl(url)||/\bnoindex\b/i.test(html.match(/<meta\b[^>]*name=["']robots["'][^>]*>/i)?.[0]||''))return null;
- const title=plainText(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||'');
- const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];if(!main||!title)return null;
+ const heading=plainText(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||'');
+ const title=plainText(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||heading);
+ const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];if(!main||!title||!heading)return null;
  const text=plainText(main);if(text.length<150)return null;
  // Keep consecutive sections together; never infer clinical approval from publication.
  const sentences=text.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g)||[text];const chunks=[];let chunk='';
@@ -36,7 +37,7 @@ export async function retrievePublishedSite(DB,query,limit=4){
  const terms=queryTerms(query);if(!terms.length)return[];
  try{const conditions=terms.map(()=>"c.search_text LIKE ? ESCAPE '\\'").join(' OR ');const sql=`SELECT d.id,d.title,d.source_uri,d.updated_at,c.chunk_index,c.content,c.search_text FROM ai_knowledge_documents d JOIN ai_knowledge_chunks c ON c.document_id=d.id WHERE d.category=? AND d.status='published_site' AND julianday(d.updated_at)>=julianday('now','-2 days') AND (${conditions}) LIMIT 100`;
  const rows=(await DB.prepare(sql).bind(CATEGORY,...terms.map(t=>'%'+t+'%')).all()).results||[];
- const ranked=rows.map(r=>{const words=new Set(String(r.search_text).toLowerCase().split(/[^a-z0-9]+/)),title=new Set(queryTerms(r.title));const matched=terms.filter(t=>words.has(t));return{...r,score:matched.length+terms.filter(t=>title.has(t)).length*3,matched:matched.length}}).filter(r=>r.matched>=Math.min(2,terms.length)&&publicKnowledgeUrl(r.source_uri)).sort((a,b)=>b.score-a.score||a.chunk_index-b.chunk_index);
+ const ranked=rows.map(r=>{const words=new Set(String(r.search_text).toLowerCase().split(/[^a-z0-9]+/)),title=new Set(String(r.title).toLowerCase().split(/[^a-z0-9]+/));const matched=terms.filter(t=>words.has(t));return{...r,score:matched.length+terms.filter(t=>title.has(t)).length*3,matched:matched.length}}).filter(r=>r.matched>=Math.min(2,terms.length)&&publicKnowledgeUrl(r.source_uri)).sort((a,b)=>b.score-a.score||a.chunk_index-b.chunk_index);
  const seen=new Set();return ranked.filter(r=>{if(seen.has(r.id))return false;seen.add(r.id);return true}).slice(0,limit).map(r=>({id:'site:'+r.id,sourceWorld:'published_shift_site',title:r.title,content:r.content,authority:75,reviewState:'published_site',citation:r.source_uri,provenance:[{type:'shift_website',ref:r.source_uri,checkedAt:r.updated_at}],limitations:'Published SHIFT website information. Publication is not evidence of individual clinical review.'}));
  }catch{return[]}
 }

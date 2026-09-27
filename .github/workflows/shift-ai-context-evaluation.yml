@@ -86,6 +86,8 @@ jobs:
           }
           if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
           NODE
+      - name: Prove published-site retrieval, Matt voice and external-source fallback
+        run: node preview/ai-context/site-answer-proof.mjs
       - name: Real AI with in-memory fictional member records
         env:
           SHIFT_AI_REAL_PROBE: 'true'
