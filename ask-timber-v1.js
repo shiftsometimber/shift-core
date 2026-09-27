@@ -14,7 +14,6 @@ import {requestMemberJourney,JOURNEY_RULES,journeyFallback} from './member-exper
 
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 const MODEL_FALLBACK='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
-const STREAM_MODEL='@cf/mistralai/mistral-small-3.1-24b-instruct';
 const MAX_MESSAGE=900;
 const MAX_HISTORY=6;
 const ANSWER_SCHEMA={type:'object',properties:{answer:{type:'string'},keyPoints:{type:'array',items:{type:'string'}},nextSteps:{type:'array',items:{type:'string'}},followUps:{type:'array',items:{type:'string'}},confidence:{type:'string',enum:['high','medium','low']},limitations:{type:'string'}},required:['answer','keyPoints','nextSteps','followUps','confidence','limitations'],additionalProperties:false};
@@ -60,7 +59,6 @@ export async function askTimberRoutes(request,env){
   // Static urgent-help signposting must survive missing AI/database bindings.
   if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);
   const contextPilot=contextPilotEnabled(env);
-  const model=env.SHIFT_AI_MODEL||(contextPilot&&body.stream===true?STREAM_MODEL:MODEL_FALLBACK);
   // The legacy public widget hard-codes useJourney:false. In the pilot, the
   // authenticated session plus existing saved consent decides availability.
   // An explicit per-request personalisation opt-out always wins.
@@ -104,8 +102,8 @@ export async function askTimberRoutes(request,env){
     reviewState:item.reviewState,citation:item.citation,provenance:item.provenance,
     limitations:item.limitations||null
   }));
-  const publicCache=contextPilot?await publicAnswerCache({request,body,message,evidence,model:env.SHIFT_AI_MODEL||(MODEL_FALLBACK+'|'+STREAM_MODEL),cache:env.SHIFT_AI_PUBLIC_CACHE||globalThis.caches?.default}):null;
-  const cached=await publicCache?.read();if(cached)return json({...cached,requestId,delivery:'cached_public'},200,request);
+  const publicCache=contextPilot?await publicAnswerCache({request,body,message,evidence,model:env.SHIFT_AI_MODEL||MODEL_FALLBACK,cache:env.SHIFT_AI_PUBLIC_CACHE||globalThis.caches?.default}):null;
+  const cached=await publicCache?.read();if(cached)return json({...cached,requestId,sources,delivery:'cached_public'},200,request);
   const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)} [${clean(item.reviewState,50)}]\n${clean(item.content,1800)}`).join('\n\n');
   const history=wantsJourney||(contextPilot&&body.personalisation===false)?[]:normaliseHistory(body?.history);
   const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
@@ -118,12 +116,12 @@ export async function askTimberRoutes(request,env){
   try{
     if(contextPilot&&body.stream===true){
       const streamedMessages=messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));
-      streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve privacy boundaries and safety rules. '+(sources.length?'Use these exact numeric citations inline when using their evidence: '+sources.map(s=>'['+s.id+']').join(', ')+'. Never use empty [] citations or internal source status labels.':'No general evidence sources were supplied: do not invent citations or health claims.')});
-      const upstream=await env.AI.run(model,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
+      streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve all source citations, privacy boundaries and safety rules.'});
+      const upstream=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
       if(!upstream?.getReader)throw Error('stream_unavailable');
       return answerStream(upstream,{headers:cors(request),requestId,access,request,onComplete:answer=>publicCache?.write(answer),meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
     }
-    const result=await env.AI.run(model,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
+    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');

@@ -1,5 +1,3 @@
-import {PRACTICAL_JUDGEMENT_RULES as BASELINE_RULES} from './prompt-baseline.mjs';
-import {JOURNEY_RULES} from '../../member-experience/ai-context.mjs';
 import {publishedSiteQuery} from '../../member-experience/ai-site-knowledge.mjs';
 import {askTimberRoutes} from '../../ask-timber-v1.js';
 // Auth/expiry is enforced by inference.mjs. No request-controlled SQL or question.
@@ -9,13 +7,13 @@ export async function runtimeProfile(bindings){
  const cache=globalThis.caches?.default;
 
  const scenarios=[['checked','How can I make protein practical when appetite is low?',false]];
- for(const [round,variants] of [[1,['baseline','candidate']],[2,['candidate','baseline']],[3,['baseline','candidate']]])for(const variant of variants)scenarios.push([variant+'-'+round,'What is Life Back?',true]);
+ for(let i=1;i<=3;i++)scenarios.push(['candidate-'+i,'What is Life Back?',true]);
  for(let i=1;i<=5;i++)scenarios.push(['repeat-'+i,'What is Life Back?',false]);
+ scenarios.push(['repeat-normalised','WHAT  IS LIFE BACK',false]);
  for(const [scenario,message,fresh] of scenarios){
-  const baseline=scenario.startsWith('baseline-');
-  const key=k=>new Request(k.url+'?isolated_profile='+encodeURIComponent(bindings.PROFILE_ID)+(baseline?'_baseline':'_candidate'));
+  const key=k=>new Request(k.url+'?isolated_profile='+encodeURIComponent(bindings.PROFILE_ID));
   const timings={database:[],cache:[],model:[]},started=Date.now();let denied=0;
-  const env={SHIFT_AI_PRACTICAL_CONTEXT:'true',AI:{async run(model,input){if(baseline)input={...input,messages:input.messages.map((m,i)=>i?m:{...m,content:(BASELINE_RULES+'\n'+JOURNEY_RULES).replace(/Return the required JSON\./g,'Return only the answer as natural prose.')})};const start=Date.now();const selectedModel=baseline?'@cf/meta/llama-3.3-70b-instruct-fp8-fast':model;const result=await bindings.AI.run(selectedModel,input);timings.model.push({model:selectedModel,headersMs:Date.now()-start,inputCharacters:input.messages.reduce((n,m)=>n+m.content.length,0),stream:input.stream===true});return result}},DB:{prepare(sql){
+  const env={SHIFT_AI_PRACTICAL_CONTEXT:'true',AI:{async run(model,input){const start=Date.now();const selectedModel=model;const result=await bindings.AI.run(selectedModel,input);timings.model.push({model:selectedModel,headersMs:Date.now()-start,inputCharacters:input.messages.reduce((n,m)=>n+m.content.length,0),stream:input.stream===true});return result}},DB:{prepare(sql){
    const allowed=publishedSiteQuery(message);if(!allowed||sql!==allowed.sql){denied++;throw Error('profile_non_public_query_blocked')}
    return{bind(...args){if(JSON.stringify(args)!==JSON.stringify(allowed.args)){denied++;throw Error('profile_category_blocked')}return{async all(){const start=Date.now();const value=await bindings.PUBLIC_KNOWLEDGE_DB.prepare(sql).bind(...args).all();timings.database.push({wallMs:Date.now()-start,engineMs:value.meta?.duration,rowsRead:value.meta?.rows_read,rowsReturned:value.results?.length,responseBytes:JSON.stringify(value.results||[]).length});return value}}}}}},SHIFT_AI_PUBLIC_CACHE:cache?{async match(k){const t=Date.now();const r=await cache.match(key(k));timings.cache.push({operation:'match',ms:Date.now()-t,hit:!!r});return r},async put(k,v){const t=Date.now();await cache.put(key(k),v);timings.cache.push({operation:'put',ms:Date.now()-t})}}:undefined};
   const response=await askTimberRoutes(new Request('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',...(fresh?{'Cache-Control':'no-cache'}:{})},body:JSON.stringify({message,useJourney:false,stream:true})}),env);
