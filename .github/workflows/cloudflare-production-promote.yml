@@ -373,6 +373,14 @@ jobs:
         run: node release/member-details-schema.mjs
       - name: Prepare the exact additive signup-alert delivery store
         run: node release/member-signup-alert-schema.mjs
+      - name: Index existing public SHIFT pages for AI without publishing website content
+        run: |
+          node scripts/b1-release-scope.mjs
+          node scripts/catalogue-publication-client.mjs --verify-main
+          node preview/ai-context/site-index.mjs
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file evidence/shift-ai-site-index/index.sql
+          cp evidence/shift-ai-site-index/index.json b1-runtime-release/shift-ai-public-index.json
+          sha256sum evidence/shift-ai-site-index/index.sql > b1-runtime-release/shift-ai-public-index.sha256
       - name: Deploy current main to production
         id: runtime_deploy
         run: |
@@ -381,7 +389,7 @@ jobs:
           npx wrangler deploy --config wrangler.jsonc
       - name: Wait briefly for route propagation
         run: sleep 10
-      - name: Verify live AI activation, public inference and unchanged chat assets
+      - name: Verify live AI knowledge, response timing and exact reviewed chat assets
         run: node release/shift-ai-live.mjs after
       - name: Verify exact Member Details and frontend repair delivery
         run: node release/member-details-live.mjs

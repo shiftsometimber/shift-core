@@ -1,3 +1,7 @@
+import {fastPublicAnswer,savedFactKind,savedFactAnswer} from './member-experience/ai-fast-answers.mjs';
+import {answerStream} from './member-experience/ai-stream.mjs';
+import {externalKnowledge} from './member-experience/ai-external-knowledge.mjs';
+import {retrievePublishedSite} from './member-experience/ai-site-knowledge.mjs';
 import {foundationEvidence} from './member-experience/ai-foundation.mjs';
 import {memoryAccess,saveConversationTurn,memoryStillAllowed} from './member-experience/ai-memory-bridge.mjs';
 import {attachSelectedRecipe} from './member-experience/ai-recipe-context.mjs';
@@ -61,10 +65,13 @@ export async function askTimberRoutes(request,env){
   const wantsJourney=body.personalisation!==false&&(body.useJourney===true||autoJourney);
   const clarification=foodInjectionClarification(message);
   if(clarification&&!wantsJourney)return json({ok:true,requestId,mode:'clarification',confidence:'low',...clarification},200,request);
+  const quick=contextPilot&&!wantsJourney&&!body?.history?.length?fastPublicAnswer(message):null;
+  if(quick)return json({ok:true,requestId,mode:'grounded',journeyUsed:false,...quick},200,request);
+  const factKind=contextPilot?savedFactKind(message):null;
   const reviewedDirect=directReviewedAnswer(message);
   if(reviewedDirect&&!wantsJourney)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
-  const [retrievedEvidence,journey]=await Promise.all([retrieveForParts(env.DB,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney},{memory:contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'})]);
+  const [retrievedEvidence,journey]=await Promise.all([factKind?Promise.resolve([]):retrieveForParts(env,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney},{memory:contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'})]);
   const evidence=contextPilot&&!isWatchStatusQuestion(message)?retrievedEvidence.filter(item=>item.reviewState!=='unavailable'):retrievedEvidence;
   if(body.useJourney===true&&wantsJourney&&journey.status==='signed_out')return json({ok:false,error:'authentication_required',requestId},401,request);
   const journeyUsed=journey.status==='available';
@@ -85,6 +92,8 @@ export async function askTimberRoutes(request,env){
   if(contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'&&journeyUsed)await attachSelectedRecipe(env.DB,journey,message);
   const access=memoryAccess(journey);
   const messageSaved=await saveConversationTurn(access,'user',message);
+  const fact=savedFactAnswer(factKind,journey);
+  if(fact&&await memoryStillAllowed(access)){await saveConversationTurn(access,'assistant',fact);if(await memoryStillAllowed(access))return json({ok:true,requestId,mode:'grounded',confidence:'low',journeyUsed:true,answer:fact,keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'Your saved records; not a clinical assessment.',delivery:'saved_fact'},200,request);}
   const modelJourney=contextPilot?compactJourney(journey,message):journey;
   const sources=evidence.map((item,index)=>({
     id:index+1,title:clean(item.title,180)||'Reviewed Shift source',
@@ -92,7 +101,7 @@ export async function askTimberRoutes(request,env){
     reviewState:item.reviewState,citation:item.citation,provenance:item.provenance,
     limitations:item.limitations||null
   }));
-  const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)}\n${clean(item.content,1800)}`).join('\n\n');
+  const context=evidence.map((item,index)=>`SOURCE [${index+1}] — ${clean(item.title,180)} [${clean(item.reviewState,50)}]\n${clean(item.content,1800)}`).join('\n\n');
   const history=wantsJourney||(contextPilot&&body.personalisation===false)?[]:normaliseHistory(body?.history);
   const practicalDepth=contextPilot&&/(?:how (?:can|could|do|should)|help me|suggest|practical|plan for|make.*easier)/i.test(message);
   const answerSchema=practicalDepth?{...PRACTICAL_SCHEMA,properties:{...PRACTICAL_SCHEMA.properties,answer:{...PRACTICAL_SCHEMA.properties.answer,minLength:420}}}:contextPilot?PRACTICAL_SCHEMA:ANSWER_SCHEMA;
@@ -102,6 +111,13 @@ export async function askTimberRoutes(request,env){
     {role:'user',content:`QUESTION:\n${message}\n\nREQUEST PARTS — answer every numbered part:\n${requestParts.map((part,index)=>`${index+1}. ${part}`).join('\n')}\n\nREVIEWED EVIDENCE:\n${context||'No reviewed general evidence available. Do not make health or medicine claims.'}\n\nPRIVATE MEMBER JOURNEY:\n${journeyUsed?JSON.stringify(modelJourney):'Unavailable. Do not infer saved member facts from chat history or request metadata.'}${contextPilot?'\n\nMEMORY RECEIPT: '+(messageSaved?'Current member message was saved successfully for future private conversation context.':'Current message was NOT saved. Do not claim it will be remembered.'):''}${practicalDepth?'\n\nANSWER DEPTH: Give 80-140 useful words in the answer itself. Explain a concrete first step, how to carry it out with the stated constraints, and a fallback. Do not replace useful detail with a generic instruction to review options. Do not invent missing facts.':''}${practicalDepth&&modelJourney.grub?.recipe?'\n\nRECIPE PLAN REQUIREMENT: Use the actual selected recipe above. Include a specific preparation task using at least one of its named ingredients and preserve its cooking and safety instructions. If asked about preparing beforehand, answer that part explicitly as well as what to do tonight. A generic suggestion to check the kitchen or choose another meal is not a complete recipe plan. Do not invent ingredients, readiness, storage times or shorter cooking times.':''}\n\nReturn valid JSON only.`}
   ];
   try{
+    if(contextPilot&&body.stream===true){
+      const streamedMessages=messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));
+      streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve all source citations, privacy boundaries and safety rules.'});
+      const upstream=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
+      if(!upstream?.getReader)throw Error('stream_unavailable');
+      return answerStream(upstream,{headers:cors(request),requestId,access,request,meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
+    }
     const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
@@ -204,16 +220,18 @@ export function splitRequestParts(message){
   const parts=original.split(/\s+(?:and|but)\s+(?=(?:i|i'm|i’ve|i've|my|we|can|could|what|how)\b)|[;]+\s*/i).map(x=>clean(x,420)).filter(x=>x.length>=3);
   return parts.length>1?parts.slice(0,4):[original];
 }
-async function retrieveForParts(db,message,parts){
+async function retrieveForParts(env,message,parts){
+  const db=env.DB;
   if(isWatchStatusQuestion(message))return retrieveUnifiedKnowledge(db,message,12);
   const queries=[...new Set([message,...parts])];
-  const batches=await Promise.all(queries.map((query,index)=>retrieveUnifiedKnowledge(db,query,index===0?8:5)));
+  const [site,batches]=await Promise.all([retrievePublishedSite(db,message),Promise.all(queries.map((query,index)=>retrieveUnifiedKnowledge(db,query,index===0?8:5)))]);
   const seen=new Set(),merged=[];
   for(const item of batches.flat()){
     const key=String(item?.citation||item?.title||'')+'|'+clean(item?.content,240);
     if(seen.has(key))continue;seen.add(key);merged.push(item);
   }
-  return [...reviewedFoodEvidence(message),...foundationEvidence(message),...reviewedSiteEvidence(message),...merged].slice(0,12);
+  const items=[...reviewedFoodEvidence(message),...foundationEvidence(message),...site,...reviewedSiteEvidence(message),...merged].slice(0,12);
+  return items.length?items:contextPilotEnabled(env)?externalKnowledge(message,{fetcher:env.SHIFT_AI_EXTERNAL_FETCH||fetch}):[];
 }
 function reviewedSiteEvidence(query){const q=String(query||'').toLowerCase();return [...CLINIC_GONE_QUIET_PACK,...REVIEWED_SITE_EVIDENCE].filter(item=>item.terms.some(term=>q.includes(term))).map(item=>({title:item.title,content:item.content,authority:75,reviewState:'verified',citation:item.url,provenance:[{ref:item.url}]}));}
 function normaliseHistory(value){if(!Array.isArray(value))return[];return value.slice(-MAX_HISTORY).map(x=>({role:x?.role==='assistant'?'assistant':'user',content:clean(x?.content,500)})).filter(x=>x.content);}

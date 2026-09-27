@@ -1,3 +1,4 @@
+import {previewInference} from './inference-client.mjs';
 import {createServer} from 'node:http';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -14,7 +15,7 @@ env.SHIFT_AI_PRACTICAL_CONTEXT='true';env.SHIFT_AI_CONVERSATION_MEMORY='true';
 const recipe=await seedCatalogue(DB),prefs=getPrefs(DB);
 prefs.grubV2.today={date:ukDate(new Date()),recipeId:recipe.id,name:recipe.name,minutes:recipe.minutes,chosenAt:new Date().toISOString(),kcal:recipe.kcal,protein_g:recipe.protein_g};putPrefs(DB,prefs);
 DB.sqlite.exec('ALTER TABLE member_state ADD COLUMN updated_at TEXT; ALTER TABLE consents ADD COLUMN consent_version TEXT; ALTER TABLE consents ADD COLUMN granted_at TEXT; ALTER TABLE consents ADD COLUMN withdrawn_at TEXT; CREATE TABLE progress_entries(id INTEGER PRIMARY KEY,user_id INTEGER);');
-env.AI={run:async(model,input)=>{const r=await fetch(process.env.SHIFT_EVAL_URL+'/run',{method:'POST',headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Inference HTTP '+r.status);return r.json()}};
+env.AI={run:async(model,input)=>{const r=await previewInference(input);if(!r.ok)throw Error('Inference HTTP '+r.status);return input.stream?r.body:r.json()}};
 const htmlResponse=await fetch('https://shiftsometimber.co.uk/ask-timber');assert(htmlResponse.ok);
 const html=await htmlResponse.text();
 const assets={'/assets/ask-timber-v1.js':'frontend/member/assets/ask-timber-v1.js','/assets/ask-timber-v1.css':'frontend/member/assets/ask-timber-v1.css','/assets/ask-timber-intent-v2.js':'frontend/member/assets/ask-timber-intent-v2.js','/api-adapter-v33d.js':'frontend/member/api-adapter-v33d.js'};
@@ -32,12 +33,12 @@ let origin;const server=createServer(async(req,res)=>{
   response??=Response.json({ok:false,error:'preview_route_not_enabled'},{status:404});
  }else if(req.method==='GET')response=await fetch('https://shiftsometimber.co.uk'+url.pathname+url.search);
  else response=new Response('Not available',{status:404});
- const headers=new Headers(response.headers);for(const key of ['content-encoding','content-length','transfer-encoding'])headers.delete(key);res.writeHead(response.status,Object.fromEntries(headers));res.end(Buffer.from(await response.arrayBuffer()));
+ const headers=new Headers(response.headers);for(const key of ['content-encoding','content-length','transfer-encoding'])headers.delete(key);res.writeHead(response.status,Object.fromEntries(headers));if(response.body){for await(const chunk of response.body)res.write(Buffer.from(chunk));}res.end();
  }catch(e){res.writeHead(500);res.end('Preview failure');console.error('preview_request_failed',e.message)}
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));origin='http://127.0.0.1:'+server.address().port;
 const out='evidence/shift-ai-real-probe';mkdirSync(out,{recursive:true});
-const report={commit:process.env.SHIFT_AI_SOURCE_SHA,at:new Date().toISOString(),scope:'Unchanged public HTML and repo chat assets; local authenticated synthetic SQL; real hosted AI; no production writes; service workers blocked for isolated fixture routes',htmlSha256:createHash('sha256').update(html).digest('hex'),assetHashes,recipe:{id:recipe.id,name:recipe.name},cases:[],screenshots:[]};
+const report={commit:process.env.SHIFT_AI_SOURCE_SHA,at:new Date().toISOString(),scope:'Unchanged public HTML/CSS and candidate chat transport assets; local authenticated synthetic SQL; real hosted AI; no production writes; service workers blocked for isolated fixture routes',htmlSha256:createHash('sha256').update(html).digest('hex'),assetHashes,recipe:{id:recipe.id,name:recipe.name},cases:[],screenshots:[]};
 let browser;
 try{
  for(const [engine,name,width,height] of [[chromium,'chromium-desktop',1440,1000],[webkit,'webkit-phone',390,844]]){
@@ -50,13 +51,14 @@ try{
   // Any external API request would invalidate this isolated proof.
   await page.route('https://api.shiftsometimber.co.uk/**',route=>route.abort());
   async function ask(message){
+   await page.evaluate(()=>{window.__aiLastResult=null;if(!window.SST_API.__probeWrapped){const original=window.SST_API.askShiftAI;window.SST_API.askShiftAI=async(...args)=>{const data=await original(...args);window.__aiLastResult=data;return data};window.SST_API.__probeWrapped=true;}});
    const start=Date.now();await page.locator('#timberQuestion').fill(message);
    const response=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/ai/chat');
-   await page.locator('#timberSubmit').click();const r=await response,data=await r.json();
+   await page.locator('#timberSubmit').click();const firstText=page.locator('#timberResponse .at-copy').waitFor({state:'visible',timeout:45000}).then(()=>Date.now()-start);const r=await response;await page.waitForFunction(()=>window.__aiLastResult,{},{timeout:60000});const data=await page.evaluate(()=>window.__aiLastResult);
    assert.equal(r.status(),200);assert.equal(data.mode,'grounded');assert.equal(data.journeyUsed,true);
    await page.waitForFunction(answer=>document.querySelector('#timberResponse')?.textContent.includes(answer.slice(0,35)),data.answer);
    const rendered=await page.locator('#timberResponse .at-copy').innerText();assert.equal(rendered.replace(/\s+/g,' ').trim(),data.answer.replace(/\s+/g,' ').trim());
-   const row={browser:name,message,elapsedMs:Date.now()-start,answer:data.answer};report.cases.push(row);return data;
+   const row={browser:name,message,firstTextMs:await firstText,elapsedMs:Date.now()-start,delivery:data.delivery,answer:data.answer};report.cases.push(row);return data;
   }
   if(name==='chromium-desktop'){
    await ask('Remember that my late shift ends at midnight and I prefer meals I can assemble.');

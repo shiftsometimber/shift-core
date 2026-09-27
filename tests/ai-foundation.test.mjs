@@ -6,7 +6,7 @@ import {askTimberRoutes} from '../ask-timber-v1.js';
 const unrelated={id:'radar:1',label:'Access to a GP appointment',domain:'health',data_json:JSON.stringify({summary:'Make practical use of an appointment today.'}),authority:100,verified_at:'2026-09-20',source_ref:'https://example.test/unrelated'};
 function database(){return{prepare(sql){const st={bind:()=>st,first:async()=>null,all:async()=>({results:sql.includes('FROM shift_knowledge_nodes')?[unrelated]:[]})};return st}}}
 test('public protein question excludes authoritative but irrelevant news and includes usable primary sources',async()=>{
- const message='How can I make protein practical when appetite is low?';
+ const message='How can I make protein practical when appetite is low without using supplements?';
  assert.deepEqual(await retrieveUnifiedKnowledge(database(),message),[]);
  let prompt;
  const response=await askTimberRoutes(new Request('https://shiftsometimber.co.uk/v1/ai/chat',{method:'POST',body:JSON.stringify({message,useJourney:false})}),{DB:database(),SHIFT_AI_PRACTICAL_CONTEXT:'true',AI:{run:async(_,input)=>{prompt=input.messages;return{response:{answer:'A small portion of eggs or beans is one manageable protein choice [1].',confidence:'medium'}}}}});

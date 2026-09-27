@@ -14,7 +14,7 @@
  function render(data){
   if(!data?.ok)throw new Error(data?.message||'Ask Timber is unavailable.');
   const sources=(data.sources||[]).map(s=>{
-    const inside='<strong>['+esc(s.id)+'] '+esc(s.title)+'</strong><span>'+esc(s.reviewState==='verified'?'Verified source':'Reviewed source')+'</span>';
+    const inside='<strong>['+esc(s.id)+'] '+esc(s.title)+'</strong><span>'+esc(({verified:'Verified source',approved:'Reviewed source',source_checked:'Source checked',published_site:'Published SHIFT page',external_unreviewed:'External NHS information'})[s.reviewState]||'Source information')+'</span>';
     return s.url?'<a class="at-source" href="'+esc(s.url)+'" target="_blank" rel="noopener">'+inside+'</a>':'<div class="at-source">'+inside+'</div>';
   }).join('');
   output.innerHTML='<div class="at-answer-head"><h2>Here’s the straight answer.</h2><span class="at-confidence">'+esc(data.confidence||'reviewed')+' confidence</span></div>'+
@@ -35,7 +35,7 @@
   try{
     if(!window.SST_API?.askShiftAI)throw new Error('The answer service has not loaded.');
     const detectedIntents=window.AskTimberIntent?.detect(message)||[];
-    let data=await window.SST_API.askShiftAI({message,history,detectedIntents,requireIntentCoverage:true,useJourney:false});
+    let data=await window.SST_API.askShiftAI({message,history,detectedIntents,requireIntentCoverage:true,useJourney:false},(answer,meta)=>{render({ok:true,...meta,answer});});
     // Render the service answer unchanged. Client-side intent helpers are diagnostics only.
     render(data);history=[...history,{role:'user',content:message},{role:'assistant',content:data.answer||''}].slice(-6);
   }catch(err){failure(err)}

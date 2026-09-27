@@ -1,3 +1,4 @@
+import {previewInference} from '../preview/ai-context/inference-client.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
@@ -257,7 +258,7 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  assert(token&&endpoint,'Real-model evaluation requires the isolated authenticated AI binding');
  const {env,DB}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
  env.AI={run:async(model,input)=>{
-  const r=await fetch(endpoint+'/run',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(45000)});
+  const r=await previewInference(input);
   if(!r.ok)throw Error('Workers AI HTTP '+r.status);
   return r.json();
  }};
@@ -274,13 +275,14 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  for(const [scenario,message] of cases){
   const start=performance.now();const r=await ask(env,{message,useJourney:false});const data=await r.json();
   results.push({scenario,message,elapsedMs:Math.round(performance.now()-start),status:r.status,...data});
-  if(data.mode==='grounded'&&data.journeyUsed)generated++;
+  if(data.mode==='grounded'&&data.journeyUsed&&data.delivery!=='saved_fact')generated++;
  }
  mkdirSync('evidence/shift-ai-real-probe',{recursive:true});
  const report={at:new Date().toISOString(),commit:process.env.SHIFT_AI_SOURCE_SHA||process.env.GITHUB_SHA,scope:'Real Workers AI via temporary isolated binding; in-memory synthetic SQL; no production DB or production deployment',generated,cases:results};
  writeFileSync('evidence/shift-ai-real-probe/results.json',JSON.stringify(report,null,2));
  console.log('SHIFT_AI_SYNTHETIC_RESULTS '+JSON.stringify(report));
- assert.equal(generated,cases.length,'Every scenario must use actual generation, not a fallback');
+ assert.equal(generated,cases.length-1,'All reasoning scenarios must generate; exact saved facts bypass inference');
+ assert.equal(results.find(r=>r.scenario==='saved-context').delivery,'saved_fact');
  assert(results.every(r=>!JSON.stringify(r).includes('OTHER_MEMBER_PRIVATE')),'No other-account data');
  assert.doesNotMatch(results.find(r=>r.scenario==='food-topic').answer,/kebab|lentil/i);
  assert(results.every(r=>r.answer.split(/\s+/).length<=180),'Answers must stay focused');
