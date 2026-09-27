@@ -16,3 +16,7 @@ export function validateAiRelease(manifest,changed,config,baseConfig){
  assert.equal(withoutAiFlags(config),baseConfig,'Unexpected configuration change outside the two AI flags');
  return {runtimeOnly:true,applicationCommit:AI_CANDIDATE,baseCommit:AI_BASE,approvedScope:manifest.approvedScope,releaseOnlyChanges:changed,applicationChanges:[],runtimeSchemaAdditions:['member_account_details','member_account_details_preserve_delivery','member_signup_alerts']};
 }
+
+export const FOUNDATION_CANDIDATE='de27e77e2d3adb979677f181c682e979ef56538b';
+export const FOUNDATION_PATHS=['ask-timber-v1.js','shift-brain-v1.js','member-experience/ai-foundation.mjs','tests/ai-foundation.test.mjs','.github/workflows/shift-ai-context-evaluation.yml'];
+export function validateFoundation(read){for(const path of FOUNDATION_PATHS)assert.equal(read('HEAD',path),read(FOUNDATION_CANDIDATE,path),'Foundation source drift: '+path)}
