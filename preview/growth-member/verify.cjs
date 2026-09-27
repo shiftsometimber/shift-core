@@ -17,6 +17,8 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
    assert.equal(await page.locator('h1').count(),1);
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    assert.equal(await page.locator('.desktop-nav a').count(),5);
+   const newLink=page.locator(path==='/programme'?'.growth-week a':'.growth-promise a').first();
+   assert.equal(await newLink.evaluate(el=>getComputedStyle(el).color),'rgb(231, 227, 218)','New links retain cream contrast');
    await page.screenshot({path:dir+'/'+name+'-'+width+path.replaceAll('/','-')+'.png',fullPage:true});
    const menu=page.locator('.menu-trigger');await menu.click();assert.equal(await menu.getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
    row.checks.push(path+': content, one H1, no horizontal overflow, five nav links and menu open/close');
