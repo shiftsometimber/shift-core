@@ -99,6 +99,7 @@ jobs:
           }
           if(!r.ok)throw Error('Public runtime profile HTTP '+r.status+' '+(await r.text()).slice(0,500));
           const report=await r.json();mkdirSync('evidence/shift-ai-real-probe',{recursive:true});writeFileSync('evidence/shift-ai-real-probe/runtime-profile.json',JSON.stringify(report,null,2));console.log('SHIFT_RUNTIME_PROFILE '+JSON.stringify(report));
+          if(!report.qualityPassed)throw Error('Public model answer quality failed; see saved runtime-profile.json');
           NODE
       - name: Prove published-site retrieval, Matt voice and external-source fallback
         run: node preview/ai-context/site-answer-proof.mjs
