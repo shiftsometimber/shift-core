@@ -84,6 +84,8 @@ jobs:
           }
           if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
           NODE
+      - name: Compare full-answer and first-text inference latency
+        run: node preview/ai-context/latency-probe.mjs
       - name: Real AI with in-memory fictional member records
         env:
           SHIFT_AI_REAL_PROBE: 'true'

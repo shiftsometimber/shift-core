@@ -8,7 +8,11 @@ export default {async fetch(request,env){
  const text=await request.text();if(text.length>60000)return new Response('Too large',{status:413,headers});
  try{
  const input=JSON.parse(text);input.max_tokens=Math.min(900,Number(input.max_tokens)||900);
- const result=await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast',input);
+ const model=['@cf/meta/llama-3.3-70b-instruct-fp8-fast','@cf/meta/llama-3.1-8b-instruct'].includes(input.benchmarkModel)?input.benchmarkModel:'@cf/meta/llama-3.3-70b-instruct-fp8-fast';
+ const stream=input.benchmarkStream===true;delete input.benchmarkModel;delete input.benchmarkStream;
+ if(stream){delete input.response_format;input.stream=true;input.messages=input.messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));input.messages.push({role:'user',content:'For this benchmark return the answer as plain text only, not JSON. Preserve all evidence, privacy and safety rules.'});}
+ const result=await env.AI.run(model,input);
+ if(stream)return new Response(result,{headers:{...headers,'Content-Type':'text/event-stream'}});
  return Response.json(result,{headers});
  }catch{return Response.json({error:'evaluation_generation_failed'},{status:502,headers})}
 }};
