@@ -1,5 +1,6 @@
 import {runtimeProfile} from './runtime-profile.mjs';
-// Temporary synthetic evaluation only: no D1, member data, assets or site routes.
+// Temporary evaluation only: fixed public-index reads and synthetic AI inputs.
+// No member data, database writes, assets or site routes.
 export default {async fetch(request,env){
  const headers={'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'};
  if(!env.EVAL_KEY||request.headers.get('Authorization')!==`Bearer ${env.EVAL_KEY}`)return new Response('Unauthorised',{status:401,headers});
