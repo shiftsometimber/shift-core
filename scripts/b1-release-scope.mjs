@@ -61,7 +61,8 @@ export function verifyScope(){
   validateMedicinesReview((ref,path)=>git('rev-parse',ref+':'+path));
   verifyHeadingRepair();
   verifyHomeSpeed();
-  const approved=validateAiRelease(manifest,changed.filter(path=>!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','e039574f02eb067d6c233194f50cc71317fda1d7:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
+  const approved=validateAiRelease(manifest,changed.filter(path=>path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
