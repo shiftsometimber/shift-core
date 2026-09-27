@@ -117,11 +117,11 @@ export async function askTimberRoutes(request,env){
     if(contextPilot&&body.stream===true){
       const streamedMessages=messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));
       streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve all privacy and safety rules. '+(sources.length?'Cite the supplied evidence with these literal numbered markers: '+sources.map(s=>'['+s.id+']').join(', ')+'. Put the marker immediately after the claim it supports; never use empty brackets. Saved member records are not medical evidence.':'No general evidence sources were supplied. Do not invent citations or health claims.')});
-      const upstream=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true});
+      const upstream=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:streamedMessages,max_tokens:420,temperature:0.2,stream:true},{gateway:{id:'shift-ai',skipCache:true}});
       if(!upstream?.getReader)throw Error('stream_unavailable');
       return answerStream(upstream,{headers:cors(request),requestId,access,request,onComplete:answer=>publicCache?.write(answer),meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
     }
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}});
+    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}},{gateway:{id:'shift-ai',skipCache:true}});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');

@@ -259,7 +259,7 @@ test('real-model practical pilot evaluation with synthetic accounts only', {skip
  const {env,DB}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
  env.AI={run:async(model,input)=>{
   const r=await previewInference({...input,benchmarkModel:model});
-  if(!r.ok)throw Error('Workers AI HTTP '+r.status);
+  if(!r.ok){const failure=await r.json().catch(()=>({}));throw Error('Workers AI HTTP '+r.status+' '+String(failure.detail||failure.error||'').slice(0,200));}
   return input.stream?r.body:r.json();
  }};
  const cases=[

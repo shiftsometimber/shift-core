@@ -364,6 +364,8 @@ jobs:
           node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
       - name: Verify retained SHIFT interpretations throughout the archive
         run: node scripts/verify-shift-take-archive.mjs
+      - name: Verify AI Gateway budgets before production deployment
+        run: node preview/ai-context/gateway-settings.mjs b1-runtime-release
       - name: Capture AI frontend and aggregate knowledge foundation before release
         run: node release/shift-ai-live.mjs before
       - name: Capture current Worker deployment for rollback

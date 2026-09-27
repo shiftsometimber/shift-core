@@ -33,6 +33,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Backend context and preservation regressions
         run: node --test tests/ai-fast-stream.test.mjs tests/ai-site-knowledge.test.mjs tests/ai-external-knowledge.test.mjs tests/ai-foundation.test.mjs tests/ai-practical-context.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/scheduled-intelligence-delivery.test.mjs
+      - name: Verify owner-configured AI budgets and privacy before any inference
+        run: node preview/ai-context/gateway-settings.mjs
       - name: Build public SHIFT information index without member records or production writes
         run: node preview/ai-context/site-index.mjs
       - uses: actions/setup-python@v5

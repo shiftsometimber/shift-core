@@ -15,7 +15,7 @@ export default {async fetch(request,env){
  const benchmarkStream=input.benchmarkStream===true,stream=benchmarkStream||input.stream===true;delete input.benchmarkModel;delete input.benchmarkStream;
  if(stream){delete input.response_format;input.stream=true;}
  if(benchmarkStream){input.messages=input.messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));input.messages.push({role:'user',content:'For this benchmark return the answer as plain text only, not JSON. Preserve all evidence, privacy and safety rules.'});}
- const result=await env.AI.run(model,input);
+ const result=await env.AI.run(model,input,{gateway:{id:'shift-ai',skipCache:true}});
  if(stream)return new Response(result,{headers:{...headers,'Content-Type':'text/event-stream'}});
  return Response.json(result,{headers});
  }catch(error){return Response.json({error:'evaluation_generation_failed',detail:String(error?.message||error).slice(0,500)},{status:502,headers})}
