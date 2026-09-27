@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {HOME_RECOVERY_CSS} from '../home-critical-styles.mjs';
+import {RETA_STYLES} from '../reta-styles-data.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
 import {tickerStyles} from '../public-navigation-policy.mjs';
 export function expectedSeo794ArticleBody(html,path){
@@ -42,5 +44,8 @@ export function preserveSeo794(path,input,{required=false}={}){
   html=html.replace('<title>'+oldTitle+'</title>','<title>'+title+'</title>').replaceAll('content="'+oldTitle+'"','content="'+title+'"');
   html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,tag=>tag.replaceAll(oldTitle,title.replaceAll('&amp;','&')));
  }
+ // Compare the exact approved CSS subset as its full original bytes. Every
+ // other byte remains in the preservation hash; unknown CSS is not normalised.
+ if(path==='/')html=html.replace(/(<style\b[^>]*data-home-inline-css="\/assets\/shift-recovery-v6.css[^>]*>)([\s\S]*?)(<\/style>)/, (tag,start,css,end)=>css===HOME_RECOVERY_CSS?start+RETA_STYLES['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'))+end:tag);
  return Buffer.from(html);
 }
