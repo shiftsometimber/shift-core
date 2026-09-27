@@ -1,3 +1,4 @@
+import {repairHomeSpeed} from './home-speed-repair.mjs';
 // NEXT-PERF-01: preserve the approved settled DOM; prepare it before first paint.
 // These two exact routes/signatures are the only eligible transformations.
 const intro='<p>One practical journey for losing weight, living better while doing it and protecting what you gain.</p>';
@@ -12,6 +13,7 @@ html body[data-login-layout="stable-v1"] #memberSessionStatus{position:absolute;
 `;
 export function stabilisePublicHtml(path,html){
  if(!html.includes('</head>'))return html;
+ if(path==='/')return repairHomeSpeed(html,path);
  if(['/programme','/programme.html'].includes(path)){
   if(html.includes('data-programme-layout="stable-v1"')||html.includes('class="sst-service-bridge"')||!html.includes('data-template="shift-programme"')||!/<main\b(?=[^>]*\bid="main-content")(?=[^>]*\bclass="programme-five-beat")[^>]*>/.test(html)||html.split(intro).length!==2)return html;
   return html.replace(intro,intro+programmeBridge).replace('</head>','<link data-programme-layout="stable-v1" rel="stylesheet" href="/assets/shift-service-bridge-v1.css?v=2"></head>');
@@ -25,7 +27,7 @@ export function stabilisePublicHtml(path,html){
 }
 export async function withStartupStability(request,response){
  const path=new URL(request.url).pathname;
- if(request.method!=='GET'||response.status!==200||!['/programme','/programme.html','/member-login','/member-login.html'].includes(path)||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
+ if(request.method!=='GET'||response.status!==200||!['/','/programme','/programme.html','/member-login','/member-login.html'].includes(path)||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
  const before=await response.text(),after=stabilisePublicHtml(path,before),headers=new Headers(response.headers);
  if(after!==before){headers.delete('Content-Length');headers.delete('ETag');headers.delete('Content-Encoding');headers.set('X-Shift-Startup-Layout','stable-v1');}
  return new Response(after,{status:response.status,statusText:response.statusText,headers});
