@@ -8,6 +8,7 @@ const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<'
 export const PUBLIC_TWITTER_IMAGE='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">';
 export const SHARING_IMAGE_PATHS=Object.freeze(['/commercial-principles','/contact','/downloads-resources','/partner-with-us','/press-centre','/shift-promise','/waiting-list-journey','/programme']);
 export const PUBLIC_LINK_TARGETS=Object.freeze({
+  '/my-timber':'/member/dashboard',
   '/articles/mounjaro-vs-wegovy':'/compare-weight-loss-treatments',
   '/member/journey':'/member/dashboard#journey',
   '/member/progress':'/member/dashboard#journey',
@@ -23,7 +24,7 @@ export function completePublicSharingImage(html,path){
 export function repairPublicSeoLinks(html){
   // Anchors only: never rewrite scripts, forms, API requests or external hosts.
   return html.replace(/<(script|style|textarea)\b[^>]*>[\s\S]*?<\/\1\s*>|<!--[\s\S]*?-->|<a\b[^>]*>/gi,tag=>!/^<a\b/i.test(tag)?tag:tag.replace(/(\s)href\s*=\s*(["'])(.*?)\2/i,(attr,space,quote,href)=>{
-    if(!href.includes('/member/')&&!href.includes('/articles/mounjaro-vs-wegovy'))return attr;
+    if(!href.includes('/member/')&&!href.includes('/my-timber')&&!href.includes('/articles/mounjaro-vs-wegovy'))return attr;
     let url;try{url=new URL(href,'https://shiftsometimber.co.uk')}catch{return attr}
     if(!['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(url.origin))return attr;
     const target=PUBLIC_LINK_TARGETS[url.pathname];if(!target)return attr;

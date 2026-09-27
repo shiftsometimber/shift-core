@@ -26,6 +26,7 @@ import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
 import {withPublicSeoCloseout} from './public-seo-closeout.mjs';
+import {withKnowledgeAssetRepair} from './knowledge-heading-repair.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
@@ -379,7 +380,7 @@ const PUBLIC_MEDICINE_TICKER_PATCH = `;(()=>{const run=async()=>{const path=loca
 // ACT2B_PAGES_CONTENT_FALLTHROUGH
 async function act2bPagesContent(request) {
   const u=new URL(request.url); u.protocol='https:'; u.hostname='projectshift.pages.dev'; u.port='';
-  return repairPromiseResponse(await repairPasswordResetResponse(await fetch(new Request(u,request)),request),request);
+  return withKnowledgeAssetRepair(await repairPromiseResponse(await repairPasswordResetResponse(await fetch(new Request(u,request)),request),request),request);
 }
 async function publicSiteConfigWithLoungeChrome(request) {
   const upstream = new URL(request.url);
