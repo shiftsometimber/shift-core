@@ -3,7 +3,7 @@ import {queryTerms} from './ai-site-knowledge.mjs';
 // Source content and freshness are checked before lookup; changed/withdrawn pages
 // cannot reuse a previous answer. No member or free-form personal queries enter it.
 export async function publicAnswerCache({request,body,message,evidence,model,cache}){
- if(!cache||request.headers.get('Cookie')||request.headers.get('Authorization')||body.useJourney===true||body.history?.length||message.length>180||! /^(what (?:is|are)|how (?:does|do)|explain)\b/i.test(message)||/\b(i|me|my|mine|we|our|us|you|your)\b/i.test(message)||!evidence.length||evidence.some(s=>s.reviewState!=='published_site'))return null;
+ if(!cache||/(?:^|;\s*)sst_session=/.test(request.headers.get('Cookie')||'')||request.headers.get('Authorization')||body.useJourney===true||body.history?.length||message.length>180||! /^(what (?:is|are)|how (?:does|do)|explain)\b/i.test(message)||/\b(i|me|my|mine|we|our|us|you|your)\b/i.test(message)||!evidence.length||evidence.some(s=>s.reviewState!=='published_site'))return null;
  const terms=queryTerms(message),titles=new Set(evidence.flatMap(s=>queryTerms(s.title)));
  if(!terms.length||terms.some(t=>!titles.has(t)&&!['work','works'].includes(t)))return null;
  const fingerprint=JSON.stringify({version:1,model,message:message.toLowerCase().trim(),sources:evidence.map(s=>[s.citation,s.title,s.content,s.provenance])});
