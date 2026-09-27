@@ -14,5 +14,5 @@ export default {async fetch(request,env){
  const result=await env.AI.run(model,input);
  if(stream)return new Response(result,{headers:{...headers,'Content-Type':'text/event-stream'}});
  return Response.json(result,{headers});
- }catch{return Response.json({error:'evaluation_generation_failed'},{status:502,headers})}
+ }catch(error){return Response.json({error:'evaluation_generation_failed',detail:String(error?.message||error).slice(0,500)},{status:502,headers})}
 }};
