@@ -33,11 +33,21 @@ export async function refreshPublicKnowledge(env,{limit=12,fetcher=fetch}={}){
  return{ok:failed===0,discovered:urls.length,refreshed,withdrawn,failed};
  }catch{return{ok:false,reason:'public_knowledge_refresh_failed'}}
 }
+// Rank and deduplicate at the database so discarded passage bodies never cross
+// the network. Every request still checks publication status and source freshness.
+export function publishedSiteQuery(query,limit=4){
+ const terms=queryTerms(query);if(!terms.length)return null;
+ const conditions=terms.map(()=>"c.search_text LIKE ?").join(' OR ');
+ const rough=terms.map(()=>"(CASE WHEN lower(d.title) LIKE ? THEN 4 ELSE 0 END + CASE WHEN c.search_text LIKE ? THEN 1 ELSE 0 END)").join(' + ');
+ // GLOB's negated ASCII class exactly matches the JS token boundary /[^a-z0-9]/.
+ const matches=column=>terms.map(t=>`CASE WHEN (' ' || lower(${column}) || ' ') GLOB '*[^a-z0-9]${t}[^a-z0-9]*' THEN 1 ELSE 0 END`).join(' + ');
+ const canonical=`(source_uri IN ('${ORIGIN}/life-back','${ORIGIN}/clinic-gone-quiet','${ORIGIN}/provider-switch','${ORIGIN}/husband-help','${ORIGIN}/programme','${ORIGIN}/grub','${ORIGIN}/fit','${ORIGIN}/about') OR (${['articles','guides','faq','mental-health','shift-health'].map(path=>`(source_uri LIKE '${ORIGIN}/${path}/%' AND length(source_uri)>${(ORIGIN+'/'+path+'/').length})`).join(' OR ')} ) AND substr(source_uri,${ORIGIN.length+1}) NOT GLOB '*[^a-z0-9/-]*')`;
+ const sql=`WITH candidates AS (SELECT d.id,d.title,d.source_uri,d.updated_at,c.chunk_index,c.content,c.search_text,(${rough}) AS rough_score FROM ai_knowledge_documents d JOIN ai_knowledge_chunks c ON c.document_id=d.id WHERE d.category=? AND d.status='published_site' AND julianday(d.updated_at)>=julianday('now','-2 days') AND (${conditions}) ORDER BY rough_score DESC,c.chunk_index ASC LIMIT 100), scored AS (SELECT *,(${matches('search_text')}) AS matched,(${matches('search_text')})+3*(${matches('title')}) AS score FROM candidates), eligible AS (SELECT * FROM scored WHERE matched>=? AND ${canonical}), ranked AS (SELECT *,ROW_NUMBER() OVER (PARTITION BY id ORDER BY score DESC,chunk_index ASC,rough_score DESC) AS position FROM eligible) SELECT id,title,source_uri,updated_at,chunk_index,content FROM ranked WHERE position=1 AND score>=max(2,(SELECT max(score)*0.85 FROM eligible)) ORDER BY score DESC,chunk_index ASC,rough_score DESC,id ASC LIMIT ?`;
+ return{sql,args:[...terms.flatMap(t=>['%'+t+'%','%'+t+'%']),CATEGORY,...terms.map(t=>'%'+t+'%'),Math.min(2,terms.length),Math.max(1,Math.min(100,Math.trunc(limit)||4))]};
+}
 export async function retrievePublishedSite(DB,query,limit=4){
- const terms=queryTerms(query);if(!terms.length)return[];
- try{const conditions=terms.map(()=>"c.search_text LIKE ? ESCAPE '\\'").join(' OR ');const order=terms.map(()=>"(CASE WHEN lower(d.title) LIKE ? THEN 4 ELSE 0 END + CASE WHEN c.search_text LIKE ? THEN 1 ELSE 0 END)").join(' + ');const sql=`SELECT d.id,d.title,d.source_uri,d.updated_at,c.chunk_index,c.content,c.search_text FROM ai_knowledge_documents d JOIN ai_knowledge_chunks c ON c.document_id=d.id WHERE d.category=? AND d.status='published_site' AND julianday(d.updated_at)>=julianday('now','-2 days') AND (${conditions}) ORDER BY (${order}) DESC,c.chunk_index ASC LIMIT 100`;
- const rows=(await DB.prepare(sql).bind(CATEGORY,...terms.map(t=>'%'+t+'%'),...terms.flatMap(t=>['%'+t+'%','%'+t+'%'])).all()).results||[];
- const ranked=rows.map(r=>{const words=new Set(String(r.search_text).toLowerCase().split(/[^a-z0-9]+/)),title=new Set(String(r.title).toLowerCase().split(/[^a-z0-9]+/));const matched=terms.filter(t=>words.has(t));return{...r,score:matched.length+terms.filter(t=>title.has(t)).length*3,matched:matched.length}}).filter(r=>r.matched>=Math.min(2,terms.length)&&publicKnowledgeUrl(r.source_uri)).sort((a,b)=>b.score-a.score||a.chunk_index-b.chunk_index);
- const seen=new Set();return ranked.filter(r=>{if(r.score<Math.max(2,(ranked[0]?.score||0)*0.85)||seen.has(r.id))return false;seen.add(r.id);return true}).slice(0,limit).map(r=>({id:'site:'+r.id,sourceWorld:'published_shift_site',title:r.title,content:r.content,authority:75,reviewState:'published_site',citation:r.source_uri,provenance:[{type:'shift_website',ref:r.source_uri,checkedAt:r.updated_at}],limitations:'Published SHIFT website information. Publication is not evidence of individual clinical review.'}));
+ const statement=publishedSiteQuery(query,limit);if(!statement)return[];
+ try{const rows=(await DB.prepare(statement.sql).bind(...statement.args).all()).results||[];
+ return rows.filter(r=>publicKnowledgeUrl(r.source_uri)).map(r=>({id:'site:'+r.id,sourceWorld:'published_shift_site',title:r.title,content:r.content,authority:75,reviewState:'published_site',citation:r.source_uri,provenance:[{type:'shift_website',ref:r.source_uri,checkedAt:r.updated_at}],limitations:'Published SHIFT website information. Publication is not evidence of individual clinical review.'}));
  }catch{return[]}
 }

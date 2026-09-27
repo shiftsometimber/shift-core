@@ -8,3 +8,16 @@ test('atomic refresh is idempotent; retrieval excludes withdrawn and stale copie
 test('removed sitemap pages are withdrawn without reading member data',async t=>{const{DB,sqlite}=db(t);await storePublicPage(DB,{url,title:'Protein meals',chunks:['Protein meals.']});const out=await refreshPublicKnowledge({DB},{fetcher:async u=>u.endsWith('sitemap.xml')?new Response('<urlset><loc>https://shiftsometimber.co.uk/articles/another-page</loc></urlset>'):new Response('',{status:404})});assert.equal(out.withdrawn,1);assert.equal(sqlite.prepare('SELECT status FROM ai_knowledge_documents').get().status,'withdrawn')});
 
 test('dedicated page ranks before a hundred broad body matches',async t=>{const{DB}=db(t);for(let i=0;i<110;i++)await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/articles/page-'+i,title:'General wellbeing',chunks:['Getting life back is a common aim.']});await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/life-back',title:'Life Back | Progress Beyond Weight | SHIFT',chunks:['Life Back records the activities you want to return to.']});const rows=await retrievePublishedSite(DB,'What is Life Back?');assert.equal(rows[0].citation,'https://shiftsometimber.co.uk/life-back');});
+
+test('database ranking preserves whole-word relevance and returns only useful passage bodies',async t=>{
+ const {DB,sqlite}=db(t);
+ for(let i=0;i<110;i++)await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/articles/broad-'+i,title:'General wellbeing',chunks:['Getting life back matters. '+('Long unrelated passage. '.repeat(80))]});
+ await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/life-back',title:'Life Back | SHIFT',chunks:['Life—Back: record useful small wins.','Life Back: another passage.']});
+ await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/articles/substring',title:'Lifetime backache',chunks:['Lifetime backache is a different topic.']});
+ // Invalid URLs must not suppress legitimate results, even if they rank highly.
+ sqlite.exec("INSERT INTO ai_knowledge_documents(title,source_uri,category,status,updated_at) VALUES('Life Back','https://evil.test/life-back','shift_public_site','published_site',CURRENT_TIMESTAMP);INSERT INTO ai_knowledge_chunks(document_id,chunk_index,content,search_text) VALUES(last_insert_rowid(),0,'Life Back','life back');");
+ const returned=[];const measured={prepare(sql){const statement=DB.prepare(sql);return{bind(...args){const bound=statement.bind(...args);return{async all(){const result=await bound.all();returned.push(...result.results);return result}}}}}};
+ const evidence=await retrievePublishedSite(measured,'What is Life Back?');
+ assert.deepEqual(evidence.map(s=>s.citation),['https://shiftsometimber.co.uk/life-back']);assert.equal(evidence[0].content,'Life—Back: record useful small wins.');assert.equal(returned.length,1);assert(!('search_text' in returned[0]));assert(JSON.stringify(returned).length<1000);
+ await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/life-back',title:'Life Back | SHIFT',chunks:['Life Back: updated source.']});assert.equal((await retrievePublishedSite(DB,'What is Life Back?'))[0].content,'Life Back: updated source.');
+});
