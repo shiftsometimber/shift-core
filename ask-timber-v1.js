@@ -1,3 +1,4 @@
+import {foundationEvidence} from './member-experience/ai-foundation.mjs';
 import {memoryAccess,saveConversationTurn,memoryStillAllowed} from './member-experience/ai-memory-bridge.mjs';
 import {attachSelectedRecipe} from './member-experience/ai-recipe-context.mjs';
 import {contextPilotEnabled,compactJourney,PRACTICAL_JUDGEMENT_RULES} from './member-experience/ai-practical-context.mjs';
@@ -212,8 +213,7 @@ async function retrieveForParts(db,message,parts){
     const key=String(item?.citation||item?.title||'')+'|'+clean(item?.content,240);
     if(seen.has(key))continue;seen.add(key);merged.push(item);
   }
-  if(!merged.length)merged.push(...reviewedSiteEvidence(message));
-  return [...reviewedFoodEvidence(message),...merged].slice(0,12);
+  return [...reviewedFoodEvidence(message),...foundationEvidence(message),...reviewedSiteEvidence(message),...merged].slice(0,12);
 }
 function reviewedSiteEvidence(query){const q=String(query||'').toLowerCase();return [...CLINIC_GONE_QUIET_PACK,...REVIEWED_SITE_EVIDENCE].filter(item=>item.terms.some(term=>q.includes(term))).map(item=>({title:item.title,content:item.content,authority:75,reviewState:'verified',citation:item.url,provenance:[{ref:item.url}]}));}
 function normaliseHistory(value){if(!Array.isArray(value))return[];return value.slice(-MAX_HISTORY).map(x=>({role:x?.role==='assistant'?'assistant':'user',content:clean(x?.content,500)})).filter(x=>x.content);}
