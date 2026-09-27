@@ -1,4 +1,5 @@
 import {repairRetaPresentation} from './reta-presentation-repair.mjs';
+import {repairHomeSpeed} from './home-speed-repair.mjs';
 import {RETA_IMAGE} from './reta-editorial-asset.mjs';
 import {SEO_IMAGES, SEO_ASSETS} from './public-seo-assets-data.mjs';
 
@@ -32,7 +33,7 @@ export function repairSeoPresentation(html, rawPath) {
   return keep+' src="'+SEO_IMAGES.heroLarge.path+'" srcset="'+SEO_IMAGES.heroSmall.path+' 768w, '+SEO_IMAGES.heroLarge.path+' 1536w" sizes="(max-width:760px) 100vw, 50vw" width="1536" height="1024" loading="eager" decoding="async" fetchpriority="high">';
  });
  if(!html.includes('data-seo-contrast-20260923'))html=html.replace(/<\/head>/i,'<style data-seo-contrast-20260923>'+menuContrast+(css[path]||'')+'</style></head>');
- return repairRetaPresentation(html,path);
+ return repairHomeSpeed(repairRetaPresentation(html,path),path);
 }
 
 export function seoAssetResponse(request) {

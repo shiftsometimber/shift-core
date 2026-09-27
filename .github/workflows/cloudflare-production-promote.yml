@@ -212,6 +212,16 @@ jobs:
           const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36341844316',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
           assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'90b1e29db85591b84dec642c3304641bc9545529');
           JS
+      - name: Require verified homepage speed candidate and current CSS bytes
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {RETA_STYLES} from './reta-styles-data.mjs';
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36344794727',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'7b9b4bdced65e82c29b51b02c1b438a116d63451');
+          const sha=x=>createHash('sha256').update(x).digest('hex');
+          for(const [path,css] of Object.entries(RETA_STYLES)){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}
+          JS
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
       - name: Verify B1 release scope before any production mutation
@@ -407,6 +417,32 @@ jobs:
         with:
           name: knowledge-heading-live-${{ github.sha }}
           path: heading-proof/
+      - name: Measure and retain live homepage mobile speed
+        run: |
+          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund lighthouse@12.8.2
+          mkdir -p home-speed-live
+          export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';
+          const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();assert.equal((html.match(/data-home-inline-css=/g)||[]).length,5);writeFileSync('home-speed-live/home.html',html);
+          JS
+          for n in 1 2 3; do
+            node "$RUNNER_TEMP/heading-tools/node_modules/lighthouse/cli/index.js" https://shiftsometimber.co.uk/ --only-categories=performance --output=json --output-path="home-speed-live/home-$n.json" '--chrome-flags=--headless --no-sandbox' --quiet
+          done
+          python3 - <<'PY'
+          import pathlib,json,statistics
+          rows=[]
+          for n in [1,2,3]:
+            d=json.loads(pathlib.Path(f'home-speed-live/home-{n}.json').read_text());assert not d.get('runtimeError');a=d['audits'];rows.append({'lcp':a['largest-contentful-paint']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue'],'tbt':a['total-blocking-time']['numericValue'],'score':d['categories']['performance']['score']*100})
+          out={'runs':rows,'median':{k:statistics.median(x[k] for x in rows) for k in rows[0]}};print(json.dumps(out));pathlib.Path('home-speed-live/summary.json').write_text(json.dumps(out,indent=2))
+          PY
+          find home-speed-live -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > home-speed-live/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-speed-live-${{ github.sha }}
+          path: home-speed-live/
+          retention-days: 90
       - name: Verify live AI knowledge, response timing and exact reviewed chat assets
         run: node release/shift-ai-live.mjs after
       - name: Verify exact Member Details and frontend repair delivery
