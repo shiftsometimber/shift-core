@@ -1,0 +1,44 @@
+name: Publication confirmation email preview
+on:
+  push:
+    branches: [feat/news-live-email-20260917]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify ordering, filtering, publication guards and recovered public journeys
+        run: node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs tests/radar-newsroom-*.test.mjs tests/public-navigation-policy.test.mjs tests/public-continuity.test.mjs tests/radar-published-ticker-v1.test.mjs tests/radar-freshness-v2.test.mjs
+      - name: Verify every published article has a retained SHIFT take
+        run: node scripts/verify-shift-take-archive.mjs
+      - name: Build a preview from published articles without database writes
+        run: node preview/newsroom-sort/build.mjs
+      - name: Publish the isolated read-only preview
+        run: npx wrangler deploy --config preview/newsroom-sort/wrangler.jsonc
+      - name: Allow the preview version to propagate
+        run: sleep 10
+      - name: Verify the deployed candidate
+        env:
+          NEWSROOM_BASE: https://shift-newsroom-sort-preview.matobrien.workers.dev
+        run: node scripts/verify-newsroom-order-live.mjs
+      - name: Record remaining source health without writes
+        run: node scripts/radar-feed-diagnostics.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newsroom-order-preview-evidence
+          path: |
+            preview/newsroom-sort/public/report.json
+            newsroom-order-proof.json
+            shift-take-archive-proof.json
+            radar-feed-diagnostics.json

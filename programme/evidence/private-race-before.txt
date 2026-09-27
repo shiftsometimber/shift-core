@@ -1,0 +1,2362 @@
+✖ A delayed initial read cannot restore private data after page exit (30.364016ms)
+✖ A delayed save is discarded after page exit even if the transport ignores abort (13.331369ms)
+✖ A delayed preview rejects after private state is cleared (1.489175ms)
+✖ A delayed existing-tool response is rejected after clearing the account (0.675859ms)
+✖ Session expiry clears the member view and cancels other outstanding requests (0.819656ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 132.294265
+
+✖ failing tests:
+
+test at programme/tests/private-requests.test.mjs:21:1
+✖ A delayed initial read cannot restore private data after page exit (30.364016ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   acquired: {
+  +     '2026-09-14..2026-09-20': {
+  +       'mince|g': {
+  +         quantity: 1000,
+  +         status: 'bought'
+  +       }
+  +     }
+  +   },
+  +   anchor: '2026-08-30',
+  +   catalogue: [
+  +     {
+  +       allergens: [],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'chilli',
+  +       ingredients: [
+  +         {
+  +           id: 'mince',
+  +           name: 'Beef mince',
+  +           quantity: 500,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'beans',
+  +           name: 'Drained kidney beans',
+  +           quantity: 240,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'tomatoes',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'onion',
+  +           name: 'Onion',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'rice',
+  +           name: 'Dry rice',
+  +           quantity: 300,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'cumin',
+  +           name: 'Ground cumin',
+  +           quantity: 2,
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 40,
+  +       name: 'Beef and bean chilli',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Chop the onion. Soften it in the oil, then add the mince and cook thoroughly.',
+  +         'Add cumin, beans and tomatoes; simmer until fully cooked.',
+  +         'Cook the rice according to its packet. Serve the chosen portions.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [
+  +         'wheat',
+  +         'celery'
+  +       ],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'ragu',
+  +       ingredients: [
+  +         {
+  +           id: 'mince',
+  +           name: 'Beef mince',
+  +           quantity: 500,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'passata',
+  +           name: 'Passata',
+  +           quantity: 500,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'carrot',
+  +           name: 'Carrot',
+  +           quantity: 2,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'celery',
+  +           name: 'Celery',
+  +           quantity: 2,
+  +           unit: 'stalk'
+  +         },
+  +         {
+  +           id: 'onion',
+  +           name: 'Onion',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'pasta',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 45,
+  +       name: 'Beef ragù',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Chop the vegetables and soften in the oil. Add the mince and cook thoroughly.',
+  +         'Add passata and simmer until the vegetables and meat are fully cooked.',
+  +         'Cook pasta according to the packet and combine.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'chickpea',
+  +       ingredients: [
+  +         {
+  +           id: 'chickpeas',
+  +           name: 'Drained chickpeas',
+  +           quantity: 480,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'tomatoes',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'onion',
+  +           name: 'Onion',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'rice',
+  +           name: 'Dry rice',
+  +           quantity: 300,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'cumin',
+  +           name: 'Ground cumin',
+  +           quantity: 2,
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 25,
+  +       name: 'Chickpea and tomato rice',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Chop the onion and soften it in oil.',
+  +         'Add cumin, chickpeas and tomatoes. Simmer until hot throughout.',
+  +         'Cook rice according to the packet; serve together.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: true,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [
+  +         'fish',
+  +         'wheat'
+  +       ],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'tuna',
+  +       ingredients: [
+  +         {
+  +           id: 'tuna',
+  +           name: 'Drained tuna',
+  +           quantity: 220,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'sweetcorn',
+  +           name: 'Drained sweetcorn',
+  +           quantity: 160,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'tomatoes',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'pasta',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 15,
+  +       name: 'Tuna and sweetcorn pasta',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Cook the pasta according to its packet.',
+  +         'Heat tomatoes, tuna, sweetcorn and oil in a separate pan until hot throughout.',
+  +         'Drain the pasta and combine.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [
+  +         'wheat',
+  +         'egg'
+  +       ],
+  +       equipment: [],
+  +       id: 'wraps',
+  +       ingredients: [
+  +         {
+  +           id: 'wraps',
+  +           name: 'Wheat tortilla wraps',
+  +           quantity: 8,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'chicken',
+  +           name: 'Ready-to-eat cooked chicken',
+  +           quantity: 300,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'salad',
+  +           name: 'Ready-to-eat washed salad',
+  +           quantity: 120,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'mayo',
+  +           name: 'Mayonnaise',
+  +           quantity: 3,
+  +           unit: 'tbsp'
+  +         },
+  +         {
+  +           id: 'cucumber',
+  +           name: 'Cucumber',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         }
+  +       ],
+  +       minutes: 10,
+  +       name: 'Chicken and salad wraps',
+  +       noCook: true,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Use ready-to-eat cooked chicken and washed salad; check their storage and use-by instructions.',
+  +         'Slice cucumber. Divide all ingredients between the wraps and fold.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [],
+  +       equipment: [],
+  +       id: 'beanSalad',
+  +       ingredients: [
+  +         {
+  +           id: 'beans',
+  +           name: 'Drained kidney beans',
+  +           quantity: 480,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'sweetcorn',
+  +           name: 'Drained sweetcorn',
+  +           quantity: 320,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'cucumber',
+  +           name: 'Cucumber',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 2,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 10,
+  +       name: 'Bean and cucumber bowl',
+  +       noCook: true,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Use ready-to-eat tinned beans and sweetcorn; drain them.',
+  +         'Wash and chop the cucumber. Combine with beans, sweetcorn and oil.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: true,
+  +       version: 1
+  +     }
+  +   ],
+  +   clock: '2026-09-13',
+  +   conditions: [],
+  +   contentVersion: 'programme-fixtures-1',
+  +   cycle: 2,
+  +   decisions: [],
+  +   entitlement: {
+  +     active: true
+  +   },
+  +   fixtureMode: true,
+  +   focus: 'food',
+  +   freezes: {},
+  +   goal: 'More energy for the kids, with less planning after work.',
+  +   lists: [
+  +     {
+  +       end: '2026-09-20',
+  +       items: [
+  +         {
+  +           acquired: 1000,
+  +           id: 'mince',
+  +           key: 'mince|g',
+  +           name: 'Beef mince',
+  +           quantity: 1500,
+  +           remaining: 500,
+  +           status: 'bought',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'carrot',
+  +           key: 'carrot|whole',
+  +           name: 'Carrot',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'celery',
+  +           key: 'celery|stalk',
+  +           name: 'Celery',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'stalk'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'tomatoes',
+  +           key: 'tomatoes|g',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 1200,
+  +           remaining: 1200,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'chickpeas',
+  +           key: 'chickpeas|g',
+  +           name: 'Drained chickpeas',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'beans',
+  +           key: 'beans|g',
+  +           name: 'Drained kidney beans',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'rice',
+  +           key: 'rice|g',
+  +           name: 'Dry rice',
+  +           quantity: 900,
+  +           remaining: 900,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'pasta',
+  +           key: 'pasta|g',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           remaining: 400,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'cumin',
+  +           key: 'cumin|tsp',
+  +           name: 'Ground cumin',
+  +           quantity: 6,
+  +           remaining: 6,
+  +           status: 'unknown',
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'oil',
+  +           key: 'oil|tbsp',
+  +           name: 'Olive oil',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'tbsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'onion',
+  +           key: 'onion|whole',
+  +           name: 'Onion',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'passata',
+  +           key: 'passata|g',
+  +           name: 'Passata',
+  +           quantity: 500,
+  +           remaining: 500,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         }
+  +       ],
+  +       manual: [
+  +         {
+  +           id: 'fictional-manual-coffee',
+  +           name: 'Coffee — my own addition',
+  +           period: '2026-09-14..2026-09-20'
+  +         }
+  +       ],
+  +       start: '2026-09-14'
+  +     },
+  +     {
+  +       end: '2026-09-27',
+  +       items: [
+  +         {
+  +           acquired: 0,
+  +           id: 'mince',
+  +           key: 'mince|g',
+  +           name: 'Beef mince',
+  +           quantity: 1500,
+  +           remaining: 1500,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'carrot',
+  +           key: 'carrot|whole',
+  +           name: 'Carrot',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'celery',
+  +           key: 'celery|stalk',
+  +           name: 'Celery',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'stalk'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'tomatoes',
+  +           key: 'tomatoes|g',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 1200,
+  +           remaining: 1200,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'chickpeas',
+  +           key: 'chickpeas|g',
+  +           name: 'Drained chickpeas',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'beans',
+  +           key: 'beans|g',
+  +           name: 'Drained kidney beans',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'rice',
+  +           key: 'rice|g',
+  +           name: 'Dry rice',
+  +           quantity: 900,
+  +           remaining: 900,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'pasta',
+  +           key: 'pasta|g',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           remaining: 400,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'cumin',
+  +           key: 'cumin|tsp',
+  +           name: 'Ground cumin',
+  +           quantity: 6,
+  +           remaining: 6,
+  +           status: 'unknown',
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'oil',
+  +           key: 'oil|tbsp',
+  +           name: 'Olive oil',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'tbsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'onion',
+  +           key: 'onion|whole',
+  +           name: 'Onion',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'passata',
+  +           key: 'passata|g',
+  +           name: 'Passata',
+  +           quantity: 500,
+  +           remaining: 500,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         }
+  +       ],
+  +       manual: [],
+  +       start: '2026-09-21'
+  +     }
+  +   ],
+  +   manualItems: [
+  +     {
+  +       id: 'fictional-manual-coffee',
+  +       name: 'Coffee — my own addition',
+  +       period: '2026-09-14..2026-09-20'
+  +     }
+  +   ],
+  +   measures: [],
+  +   name: 'Dave',
+  +   preferences: {
+  +     activityLimitations: 'none',
+  +     allergies: 'none',
+  +     diet: 'any',
+  +     equipment: [
+  +       'hob'
+  +     ],
+  +     firstShift: 'early',
+  +     household: 'Two adults and two children',
+  +     shiftAnchor: '2026-08-31',
+  +     spending: 'Keep waste down',
+  +     time: '20 minutes after work',
+  +     workPattern: 'alternating'
+  +   },
+  +   reports: [
+  +     {
+  +       date: '2026-08-31',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'mon-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-03',
+  +       fit: 'unknown',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: 'no time',
+  +       shift: 'early',
+  +       slotKey: 'thu-dinner',
+  +       status: 'missed'
+  +     },
+  +     {
+  +       date: '2026-09-06',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'sun-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-01',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'tue-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-03',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'thu-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-05',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'sat-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-07',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'mon-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-10',
+  +       fit: 'unknown',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: 'no time',
+  +       shift: 'late',
+  +       slotKey: 'thu-dinner',
+  +       status: 'missed'
+  +     },
+  +     {
+  +       date: '2026-09-13',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'sun-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-08',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'tue-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-10',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'thu-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-12',
+  +       fit: 'unknown',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'sat-walk',
+  +       status: 'missed'
+  +     }
+  +   ],
+  +   requests: [],
+  +   review: null,
+  +   reviews: [],
+  +   revision: 0,
+  +   schemaVersion: 1,
+  +   setup: true,
+  +   slots: [
+  +     {
+  +       completed: false,
+  +       date: '2026-08-31',
+  +       id: '2026-08-31:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-03',
+  +       id: '2026-09-03:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-06',
+  +       id: '2026-09-06:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-01',
+  +       id: '2026-09-01:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-03',
+  +       id: '2026-09-03:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-05',
+  +       id: '2026-09-05:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-01',
+  +       id: '2026-09-01:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-08-31:mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-07',
+  +       id: '2026-09-07:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-10',
+  +       id: '2026-09-10:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-13',
+  +       id: '2026-09-13:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-08',
+  +       id: '2026-09-08:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-10',
+  +       id: '2026-09-10:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-12',
+  +       id: '2026-09-12:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-08',
+  +       id: '2026-09-08:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-09-07:mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-14',
+  +       id: '2026-09-14:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-17',
+  +       id: '2026-09-17:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-20',
+  +       id: '2026-09-20:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-15',
+  +       id: '2026-09-15:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-17',
+  +       id: '2026-09-17:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-19',
+  +       id: '2026-09-19:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-15',
+  +       id: '2026-09-15:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-09-14:mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-21',
+  +       id: '2026-09-21:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-24',
+  +       id: '2026-09-24:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-27',
+  +       id: '2026-09-27:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-22',
+  +       id: '2026-09-22:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-24',
+  +       id: '2026-09-24:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-26',
+  +       id: '2026-09-26:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-22',
+  +       id: '2026-09-22:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-09-21:mon-dinner'
+  +     }
+  +   ],
+  +   track: 'everyday'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/private-requests.test.mjs:23:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      schemaVersion: 1,
+      revision: 0,
+      clock: '2026-09-13',
+      cycle: 2,
+      anchor: '2026-08-30',
+      name: 'Dave',
+      preferences: { allergies: 'none', diet: 'any', equipment: [Array], activityLimitations: 'none', time: '20 minutes after work', household: 'Two adults and two children', spending: 'Keep waste down', workPattern: 'alternating', firstShift: 'early', shiftAnchor: '2026-08-31' },
+      goal: 'More energy for the kids, with less planning after work.',
+      focus: 'food',
+      track: 'everyday',
+      measures: [],
+      slots: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      reports: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ],
+      requests: [],
+      freezes: {},
+      acquired: { '2026-09-14..2026-09-20': [Object] },
+      manualItems: [ [Object] ],
+      reviews: [],
+      decisions: [],
+      setup: true,
+      entitlement: { active: true },
+      review: null,
+      conditions: [],
+      contentVersion: 'programme-fixtures-1',
+      catalogue: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+      lists: [ [Object], [Object] ],
+      fixtureMode: true
+    },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at programme/tests/private-requests.test.mjs:25:1
+✖ A delayed save is discarded after page exit even if the transport ignores abort (13.331369ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   acquired: {
+  +     '2026-09-14..2026-09-20': {
+  +       'mince|g': {
+  +         quantity: 1000,
+  +         status: 'bought'
+  +       }
+  +     }
+  +   },
+  +   anchor: '2026-08-30',
+  +   catalogue: [
+  +     {
+  +       allergens: [],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'chilli',
+  +       ingredients: [
+  +         {
+  +           id: 'mince',
+  +           name: 'Beef mince',
+  +           quantity: 500,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'beans',
+  +           name: 'Drained kidney beans',
+  +           quantity: 240,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'tomatoes',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'onion',
+  +           name: 'Onion',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'rice',
+  +           name: 'Dry rice',
+  +           quantity: 300,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'cumin',
+  +           name: 'Ground cumin',
+  +           quantity: 2,
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 40,
+  +       name: 'Beef and bean chilli',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Chop the onion. Soften it in the oil, then add the mince and cook thoroughly.',
+  +         'Add cumin, beans and tomatoes; simmer until fully cooked.',
+  +         'Cook the rice according to its packet. Serve the chosen portions.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [
+  +         'wheat',
+  +         'celery'
+  +       ],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'ragu',
+  +       ingredients: [
+  +         {
+  +           id: 'mince',
+  +           name: 'Beef mince',
+  +           quantity: 500,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'passata',
+  +           name: 'Passata',
+  +           quantity: 500,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'carrot',
+  +           name: 'Carrot',
+  +           quantity: 2,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'celery',
+  +           name: 'Celery',
+  +           quantity: 2,
+  +           unit: 'stalk'
+  +         },
+  +         {
+  +           id: 'onion',
+  +           name: 'Onion',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'pasta',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 45,
+  +       name: 'Beef ragù',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Chop the vegetables and soften in the oil. Add the mince and cook thoroughly.',
+  +         'Add passata and simmer until the vegetables and meat are fully cooked.',
+  +         'Cook pasta according to the packet and combine.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'chickpea',
+  +       ingredients: [
+  +         {
+  +           id: 'chickpeas',
+  +           name: 'Drained chickpeas',
+  +           quantity: 480,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'tomatoes',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'onion',
+  +           name: 'Onion',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'rice',
+  +           name: 'Dry rice',
+  +           quantity: 300,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'cumin',
+  +           name: 'Ground cumin',
+  +           quantity: 2,
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 25,
+  +       name: 'Chickpea and tomato rice',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Chop the onion and soften it in oil.',
+  +         'Add cumin, chickpeas and tomatoes. Simmer until hot throughout.',
+  +         'Cook rice according to the packet; serve together.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: true,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [
+  +         'fish',
+  +         'wheat'
+  +       ],
+  +       equipment: [
+  +         'hob'
+  +       ],
+  +       id: 'tuna',
+  +       ingredients: [
+  +         {
+  +           id: 'tuna',
+  +           name: 'Drained tuna',
+  +           quantity: 220,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'sweetcorn',
+  +           name: 'Drained sweetcorn',
+  +           quantity: 160,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'tomatoes',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'pasta',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 1,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 15,
+  +       name: 'Tuna and sweetcorn pasta',
+  +       noCook: false,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Cook the pasta according to its packet.',
+  +         'Heat tomatoes, tuna, sweetcorn and oil in a separate pan until hot throughout.',
+  +         'Drain the pasta and combine.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [
+  +         'wheat',
+  +         'egg'
+  +       ],
+  +       equipment: [],
+  +       id: 'wraps',
+  +       ingredients: [
+  +         {
+  +           id: 'wraps',
+  +           name: 'Wheat tortilla wraps',
+  +           quantity: 8,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'chicken',
+  +           name: 'Ready-to-eat cooked chicken',
+  +           quantity: 300,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'salad',
+  +           name: 'Ready-to-eat washed salad',
+  +           quantity: 120,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'mayo',
+  +           name: 'Mayonnaise',
+  +           quantity: 3,
+  +           unit: 'tbsp'
+  +         },
+  +         {
+  +           id: 'cucumber',
+  +           name: 'Cucumber',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         }
+  +       ],
+  +       minutes: 10,
+  +       name: 'Chicken and salad wraps',
+  +       noCook: true,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Use ready-to-eat cooked chicken and washed salad; check their storage and use-by instructions.',
+  +         'Slice cucumber. Divide all ingredients between the wraps and fold.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: false,
+  +       version: 1
+  +     },
+  +     {
+  +       allergens: [],
+  +       equipment: [],
+  +       id: 'beanSalad',
+  +       ingredients: [
+  +         {
+  +           id: 'beans',
+  +           name: 'Drained kidney beans',
+  +           quantity: 480,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'sweetcorn',
+  +           name: 'Drained sweetcorn',
+  +           quantity: 320,
+  +           unit: 'g'
+  +         },
+  +         {
+  +           id: 'cucumber',
+  +           name: 'Cucumber',
+  +           quantity: 1,
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           id: 'oil',
+  +           name: 'Olive oil',
+  +           quantity: 2,
+  +           unit: 'tbsp'
+  +         }
+  +       ],
+  +       minutes: 10,
+  +       name: 'Bean and cucumber bowl',
+  +       noCook: true,
+  +       reviewDate: null,
+  +       reviewStatus: 'test-fixture',
+  +       reviewedVersion: null,
+  +       reviewerId: null,
+  +       serves: 4,
+  +       steps: [
+  +         'Use ready-to-eat tinned beans and sweetcorn; drain them.',
+  +         'Wash and chop the cucumber. Combine with beans, sweetcorn and oil.'
+  +       ],
+  +       substitutions: 'No substitutions are pre-approved. Check every product label.',
+  +       vegetarian: true,
+  +       version: 1
+  +     }
+  +   ],
+  +   clock: '2026-09-13',
+  +   conditions: [],
+  +   contentVersion: 'programme-fixtures-1',
+  +   cycle: 2,
+  +   decisions: [],
+  +   entitlement: {
+  +     active: true
+  +   },
+  +   fixtureMode: true,
+  +   focus: 'food',
+  +   freezes: {},
+  +   goal: 'More energy for the kids, with less planning after work.',
+  +   lists: [
+  +     {
+  +       end: '2026-09-20',
+  +       items: [
+  +         {
+  +           acquired: 1000,
+  +           id: 'mince',
+  +           key: 'mince|g',
+  +           name: 'Beef mince',
+  +           quantity: 1500,
+  +           remaining: 500,
+  +           status: 'bought',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'carrot',
+  +           key: 'carrot|whole',
+  +           name: 'Carrot',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'celery',
+  +           key: 'celery|stalk',
+  +           name: 'Celery',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'stalk'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'tomatoes',
+  +           key: 'tomatoes|g',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 1200,
+  +           remaining: 1200,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'chickpeas',
+  +           key: 'chickpeas|g',
+  +           name: 'Drained chickpeas',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'beans',
+  +           key: 'beans|g',
+  +           name: 'Drained kidney beans',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'rice',
+  +           key: 'rice|g',
+  +           name: 'Dry rice',
+  +           quantity: 900,
+  +           remaining: 900,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'pasta',
+  +           key: 'pasta|g',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           remaining: 400,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'cumin',
+  +           key: 'cumin|tsp',
+  +           name: 'Ground cumin',
+  +           quantity: 6,
+  +           remaining: 6,
+  +           status: 'unknown',
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'oil',
+  +           key: 'oil|tbsp',
+  +           name: 'Olive oil',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'tbsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'onion',
+  +           key: 'onion|whole',
+  +           name: 'Onion',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'passata',
+  +           key: 'passata|g',
+  +           name: 'Passata',
+  +           quantity: 500,
+  +           remaining: 500,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         }
+  +       ],
+  +       manual: [
+  +         {
+  +           id: 'fictional-manual-coffee',
+  +           name: 'Coffee — my own addition',
+  +           period: '2026-09-14..2026-09-20'
+  +         }
+  +       ],
+  +       start: '2026-09-14'
+  +     },
+  +     {
+  +       end: '2026-09-27',
+  +       items: [
+  +         {
+  +           acquired: 0,
+  +           id: 'mince',
+  +           key: 'mince|g',
+  +           name: 'Beef mince',
+  +           quantity: 1500,
+  +           remaining: 1500,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'carrot',
+  +           key: 'carrot|whole',
+  +           name: 'Carrot',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'celery',
+  +           key: 'celery|stalk',
+  +           name: 'Celery',
+  +           quantity: 2,
+  +           remaining: 2,
+  +           status: 'unknown',
+  +           unit: 'stalk'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'tomatoes',
+  +           key: 'tomatoes|g',
+  +           name: 'Chopped tomatoes',
+  +           quantity: 1200,
+  +           remaining: 1200,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'chickpeas',
+  +           key: 'chickpeas|g',
+  +           name: 'Drained chickpeas',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'beans',
+  +           key: 'beans|g',
+  +           name: 'Drained kidney beans',
+  +           quantity: 480,
+  +           remaining: 480,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'rice',
+  +           key: 'rice|g',
+  +           name: 'Dry rice',
+  +           quantity: 900,
+  +           remaining: 900,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'pasta',
+  +           key: 'pasta|g',
+  +           name: 'Dry wheat pasta',
+  +           quantity: 400,
+  +           remaining: 400,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'cumin',
+  +           key: 'cumin|tsp',
+  +           name: 'Ground cumin',
+  +           quantity: 6,
+  +           remaining: 6,
+  +           status: 'unknown',
+  +           unit: 'tsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'oil',
+  +           key: 'oil|tbsp',
+  +           name: 'Olive oil',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'tbsp'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'onion',
+  +           key: 'onion|whole',
+  +           name: 'Onion',
+  +           quantity: 4,
+  +           remaining: 4,
+  +           status: 'unknown',
+  +           unit: 'whole'
+  +         },
+  +         {
+  +           acquired: 0,
+  +           id: 'passata',
+  +           key: 'passata|g',
+  +           name: 'Passata',
+  +           quantity: 500,
+  +           remaining: 500,
+  +           status: 'unknown',
+  +           unit: 'g'
+  +         }
+  +       ],
+  +       manual: [],
+  +       start: '2026-09-21'
+  +     }
+  +   ],
+  +   manualItems: [
+  +     {
+  +       id: 'fictional-manual-coffee',
+  +       name: 'Coffee — my own addition',
+  +       period: '2026-09-14..2026-09-20'
+  +     }
+  +   ],
+  +   measures: [],
+  +   name: 'Dave',
+  +   preferences: {
+  +     activityLimitations: 'none',
+  +     allergies: 'none',
+  +     diet: 'any',
+  +     equipment: [
+  +       'hob'
+  +     ],
+  +     firstShift: 'early',
+  +     household: 'Two adults and two children',
+  +     shiftAnchor: '2026-08-31',
+  +     spending: 'Keep waste down',
+  +     time: '20 minutes after work',
+  +     workPattern: 'alternating'
+  +   },
+  +   reports: [
+  +     {
+  +       date: '2026-08-31',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'mon-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-03',
+  +       fit: 'unknown',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: 'no time',
+  +       shift: 'early',
+  +       slotKey: 'thu-dinner',
+  +       status: 'missed'
+  +     },
+  +     {
+  +       date: '2026-09-06',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'sun-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-01',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'tue-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-03',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'thu-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-05',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-08-31',
+  +       reason: '',
+  +       shift: 'early',
+  +       slotKey: 'sat-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-07',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'mon-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-10',
+  +       fit: 'unknown',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: 'no time',
+  +       shift: 'late',
+  +       slotKey: 'thu-dinner',
+  +       status: 'missed'
+  +     },
+  +     {
+  +       date: '2026-09-13',
+  +       fit: 'manageable',
+  +       kind: 'meal',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'sun-dinner',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-08',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'tue-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-10',
+  +       fit: 'manageable',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'thu-walk',
+  +       status: 'done'
+  +     },
+  +     {
+  +       date: '2026-09-12',
+  +       fit: 'unknown',
+  +       kind: 'move',
+  +       note: '',
+  +       period: '2026-09-07',
+  +       reason: '',
+  +       shift: 'late',
+  +       slotKey: 'sat-walk',
+  +       status: 'missed'
+  +     }
+  +   ],
+  +   requests: [],
+  +   review: null,
+  +   reviews: [],
+  +   revision: 0,
+  +   schemaVersion: 1,
+  +   setup: true,
+  +   slots: [
+  +     {
+  +       completed: false,
+  +       date: '2026-08-31',
+  +       id: '2026-08-31:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-03',
+  +       id: '2026-09-03:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-06',
+  +       id: '2026-09-06:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-01',
+  +       id: '2026-09-01:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-03',
+  +       id: '2026-09-03:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-05',
+  +       id: '2026-09-05:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-01',
+  +       id: '2026-09-01:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-08-31:mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-07',
+  +       id: '2026-09-07:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-10',
+  +       id: '2026-09-10:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-13',
+  +       id: '2026-09-13:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-08',
+  +       id: '2026-09-08:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-10',
+  +       id: '2026-09-10:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-12',
+  +       id: '2026-09-12:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-08',
+  +       id: '2026-09-08:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-09-07:mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-14',
+  +       id: '2026-09-14:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-17',
+  +       id: '2026-09-17:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-20',
+  +       id: '2026-09-20:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-15',
+  +       id: '2026-09-15:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-17',
+  +       id: '2026-09-17:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-19',
+  +       id: '2026-09-19:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-15',
+  +       id: '2026-09-15:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-09-14:mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-21',
+  +       id: '2026-09-21:mon-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chilli',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 8,
+  +       slotKey: 'mon-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-24',
+  +       id: '2026-09-24:thu-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'ragu',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'thu-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-27',
+  +       id: '2026-09-27:sun-dinner',
+  +       kind: 'meal',
+  +       recipeId: 'chickpea',
+  +       recipeVersion: 1,
+  +       serveNow: 4,
+  +       servings: 4,
+  +       slotKey: 'sun-dinner'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-22',
+  +       id: '2026-09-22:tue-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'tue-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-24',
+  +       id: '2026-09-24:thu-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'thu-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-26',
+  +       id: '2026-09-26:sat-walk',
+  +       kind: 'move',
+  +       label: '20-minute walk',
+  +       minutes: 20,
+  +       slotKey: 'sat-walk'
+  +     },
+  +     {
+  +       completed: false,
+  +       date: '2026-09-22',
+  +       id: '2026-09-22:tue-leftovers',
+  +       kind: 'leftovers',
+  +       label: 'Chilli portions from Monday',
+  +       servings: 4,
+  +       slotKey: 'tue-leftovers',
+  +       sourceId: '2026-09-21:mon-dinner'
+  +     }
+  +   ],
+  +   track: 'everyday'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/private-requests.test.mjs:28:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      schemaVersion: 1,
+      revision: 0,
+      clock: '2026-09-13',
+      cycle: 2,
+      anchor: '2026-08-30',
+      name: 'Dave',
+      preferences: { allergies: 'none', diet: 'any', equipment: [Array], activityLimitations: 'none', time: '20 minutes after work', household: 'Two adults and two children', spending: 'Keep waste down', workPattern: 'alternating', firstShift: 'early', shiftAnchor: '2026-08-31' },
+      goal: 'More energy for the kids, with less planning after work.',
+      focus: 'food',
+      track: 'everyday',
+      measures: [],
+      slots: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      reports: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ],
+      requests: [],
+      freezes: {},
+      acquired: { '2026-09-14..2026-09-20': [Object] },
+      manualItems: [ [Object] ],
+      reviews: [],
+      decisions: [],
+      setup: true,
+      entitlement: { active: true },
+      review: null,
+      conditions: [],
+      contentVersion: 'programme-fixtures-1',
+      catalogue: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+      lists: [ [Object], [Object] ],
+      fixtureMode: true
+    },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at programme/tests/private-requests.test.mjs:30:1
+✖ A delayed preview rejects after private state is cleared (1.489175ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/private-requests.test.mjs:33:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at programme/tests/private-requests.test.mjs:35:1
+✖ A delayed existing-tool response is rejected after clearing the account (0.675859ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/private-requests.test.mjs:38:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at programme/tests/private-requests.test.mjs:40:1
+✖ Session expiry clears the member view and cancels other outstanding requests (0.819656ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/private-requests.test.mjs:44:45)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

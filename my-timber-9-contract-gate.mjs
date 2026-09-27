@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import {composeDailyOutput} from './member-product-v8.js';
+
+const need=(ok,message)=>{if(!ok)throw new Error(message)};
+const source=fs.readFileSync('member-product-v8.js','utf8');
+const ui=fs.readFileSync('frontend/member/member-my-timber-problem-v1.js','utf8');
+const css=fs.readFileSync('frontend/member/member-today-premium-v1.css','utf8');
+const analytics=fs.readFileSync('product-analytics-v1.js','utf8');
+const fixture={date:'2026-08-22',hour:17,grubStartsOn:'2026-08-22',grubPlan:{days:[{meals:[{id:'dinner',type:'Dinner',name:'Chicken balti',minutes:28,kcal:620,protein:42},{id:'quick',type:'Dinner',name:'Quick chicken jacket',minutes:12,kcal:540,protein:46},{id:'fakeaway',type:'Dinner',name:'Fakeaway kebab',minutes:18,kcal:590,protein:44}]}]},fitPlan:{sessions:[{title:'Home strength',estimated_minutes:30,exercises:[{name:'Chair squat'}]}]},hydrationMl:500,mode:'train',minutesCap:60,reasons:['Fluids were low yesterday'],completedToday:false,learning:{memory:['You normally reject berry breakfasts, so Shift has stopped suggesting them.'],prediction:{key:'busy_weekday',copy:'Thursday normally changes. The quickest dinner is in reserve.'},weekly:{headline:'Your week, without the spreadsheet.',copy:'Short evening sessions worked.',observation:'Three short sessions completed this week.'}},treatmentSupport:{headline:'Treatment-aware support is on.',notes:['Appetite is low.'],escalation:'Seek clinical advice for persistent symptoms.'}};
+const chaos=composeDailyOutput({...fixture,dayChange:'next_three_hours'});
+need(chaos.adjustment==='next_three_hours'&&chaos.workout.minutes===10&&/Chaos Mode/.test(chaos.subhead),'Chaos Mode must rebuild the remaining day');
+need(chaos.meal.alternatives.some(x=>x.key==='quickest')&&chaos.meal.alternatives.some(x=>x.key==='protein')&&chaos.meal.alternatives.some(x=>x.key==='takeaway'),'meal alternatives must be consequence-led');
+const chosenTakeaway=composeDailyOutput({...fixture,dayChange:'rough_guts',mealOverride:{id:'takeaway-simple',type:'Dinner',name:'Takeaway, kept simple',takeaway:true}});
+need(chosenTakeaway.meal.id==='takeaway-simple','a member alternative must remain authoritative after rescue-mode recalculation');
+const complete=composeDailyOutput({...fixture,hydrationMl:1500,mealAccepted:true,completedToday:true,recoveryDone:true,dayChange:'working_late'});
+need(complete.next.kind==='complete'&&complete.shifted?.headline==='Today shifted.'&&/changed day work/.test(complete.shifted.copy),'completion must reward adaptation');
+for(const marker of ['daily-feedback','shift_daily_feedback','buildDailyLearning','buildTreatmentSupport','rankMealAlternatives'])need(source.includes(marker),`backend contract missing ${marker}`);
+need(analytics.includes('daily_recommendation_feedback'),'feedback analytics event must be accepted before the member request returns');
+for(const marker of ['Love this','Not again','Too much effort','Too expensive','Wrong today','SHIFT SAW THIS COMING','TONIGHT'])need(ui.includes(marker),`consumer UI missing ${marker}`);
+for(const marker of ['Quickest','Highest protein','Family-friendly','Takeaway instead','Your week, without the spreadsheet.'])need((source+ui).includes(marker),`consumer contract missing ${marker}`);
+for(const marker of ['mt-alternative-list','mt-prediction','mt-shifted','mt-feedback'])need(css.includes(marker),`premium treatment missing ${marker}`);
+console.log('My Timber 9/10 contract gate: PASS');

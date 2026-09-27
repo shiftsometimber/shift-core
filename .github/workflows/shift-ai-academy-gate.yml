@@ -1,0 +1,40 @@
+name: Shift AI Academy Gate
+on:
+  pull_request:
+    paths:
+      - 'shift-ai*.js'
+      - 'shoulder-v2.js'
+      - 'intelligent-memory.js'
+      - 'relationship-intelligence.js'
+      - 'proactive-insights.js'
+      - 'academy*.js'
+      - 'scheduled-intelligence.js'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
+  push:
+    branches: [main]
+    paths:
+      - 'shift-ai*.js'
+      - 'shoulder-v2.js'
+      - 'intelligent-memory.js'
+      - 'relationship-intelligence.js'
+      - 'proactive-insights.js'
+      - 'academy*.js'
+      - 'scheduled-intelligence.js'
+      - 'worker-entry-v6.js'
+      - 'wrangler.jsonc'
+jobs:
+  academy-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check Shift AI
+        run: |
+          for f in shift-ai*.js shoulder-v2.js intelligent-memory.js relationship-intelligence.js proactive-insights.js academy*.js scheduled-intelligence.js worker-entry-v6.js; do
+            [ -f "$f" ] && node --check "$f"
+          done
+      - name: Shift Academy source gate
+        run: node academy-source-gate.mjs

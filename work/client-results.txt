@@ -1,0 +1,13 @@
+✔ Late private responses cannot repopulate the DOM after page exit, even if abort is ignored (3.720219ms)
+✔ Visibility closes old identity; only the newly authenticated response can render on return (1.900225ms)
+✔ Session expiry clears private data and escapes company-provided text (0.768215ms)
+✔ Hidden bfcache pages do not start another private load (0.545219ms)
+✔ Workplace dashboard entry preserves all original HTML and remains absent when disabled or signed out (4.730197ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.901437

@@ -1,0 +1,116 @@
+name: My Timber login PREVIEW v2 proof
+on:
+  push:
+    branches: [preview/stabilisation-life-back-20260917]
+    paths:
+      - '.github/workflows/preview-member-login-redeploy.yml'
+      - 'work/staging/worker.mjs'
+      - 'work/staging/login.mjs'
+      - 'preview/stabilisation/prepare.mjs'
+      - 'preview/stabilisation/provision.mjs'
+      - 'preview/stabilisation/registration-proof.mjs'
+permissions:
+  contents: read
+jobs:
+  redeploy-and-prove:
+    if: github.ref == 'refs/heads/preview/stabilisation-life-back-20260917'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: preview/stabilisation-life-back-20260917
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - run: test -n "$CLOUDFLARE_API_TOKEN"
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Regression gates
+        run: node --test --test-reporter=tap member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs tests/my-timber-analytics-privacy.test.mjs
+      - name: Prepare and verify isolated preview
+        run: |
+          node preview/stabilisation/prepare.mjs
+          node preview/stabilisation/verify-public.mjs
+      - name: Provision only separately named preview databases
+        run: node preview/stabilisation/provision.mjs
+      - name: Move generated config to a fresh isolated v2 Worker name
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const file='work/staging/generated/config.json',c=JSON.parse(fs.readFileSync(file));
+          assert.equal(c.name,'shift-stabilisation-preview');
+          assert.equal(c.vars.SHIFT_ENVIRONMENT,'stabilisation-preview-20260917');
+          assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);assert.equal(c.workers_dev,true);
+          c.name='shift-stabilisation-preview-v2';
+          fs.writeFileSync(file,JSON.stringify(c,null,2));
+          console.log('PASS: fresh v2 Worker uses only existing separately named preview bindings.');
+          NODE
+      - name: Deploy fresh isolated preview v2 only
+        shell: bash
+        run: |
+          set -euo pipefail
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > "$RUNNER_TEMP/deploy.txt" 2>&1
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';const log=fs.readFileSync(process.env.RUNNER_TEMP+'/deploy.txt','utf8');const m=log.match(/https:\/\/shift-stabilisation-preview-v2\.[a-z0-9-]+\.workers\.dev/);if(!m)throw Error('Fresh v2 preview URL missing');fs.appendFileSync(process.env.GITHUB_ENV,'PREVIEW_URL='+m[0]+'\n');console.log('PREVIEW V2 ONLY',m[0]);
+          NODE
+      - name: Wait for exact served build then prove real member-login adapter
+        run: |
+          node --input-type=module <<'NODE'
+          const origin=process.env.PREVIEW_URL,want=process.env.PREVIEW_SOURCE_SHA,sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          let last='';
+          for(let attempt=1;attempt<=18;attempt++){
+            try{
+              const mr=await fetch(origin+'/__preview/meta?verify='+Date.now(),{headers:{'cache-control':'no-cache'}}),mt=await mr.text();
+              let meta=null;try{meta=JSON.parse(mt)}catch{}
+              last=`meta status ${mr.status} type ${mr.headers.get('content-type')} source ${meta?.source||'none'} body ${mt.slice(0,120)}`;
+              if(mr.ok&&meta?.source===want&&meta.productionBindings===false){
+                const r=await fetch(origin+'/member-login?verify='+Date.now(),{headers:{'cache-control':'no-cache'}}),h=await r.text();
+                const m=h.match(/<script\b[^>]*\bsrc=["']\/api-adapter-v33d\.js(?:\?[^"']*)?["'][^>]*>/i),a=m?.index??-1,c=h.search(/\bSST_API(?:\.|\[)/);
+                if(r.ok&&a>=0&&c>=0&&a<c){console.log('PASS: exact v2 source propagated and login loads api-adapter-v33d.js before SST_API consumer on attempt',attempt);process.exit(0)}
+                last=`login status ${r.status} adapter ${a} consumer ${c}`;
+              }
+            }catch(error){last=String(error)}
+            console.log('Propagation wait',attempt,last);await sleep(5000);
+          }
+          throw Error('Fresh v2 preview did not settle on exact source in time: '+last);
+          NODE
+      - name: Prove preview auth routes reach core before browser install
+        run: |
+          node --input-type=module <<'NODE'
+          const origin=process.env.PREVIEW_URL;
+          const r=await fetch(origin+'/v1/auth/logout',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:'{}'});
+          if(r.status===404)throw Error('Preview staging guard still blocks /v1/auth/logout');
+          console.log('PASS: /v1/auth/logout reaches core; unauthenticated status',r.status);
+          NODE
+      - name: Permit browser proof to recognise the fresh v2 isolated hostname
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';const p='preview/stabilisation/browser-proof.mjs';let s=fs.readFileSync(p,'utf8');s=s.replace('shift-stabilisation-preview\\.','shift-stabilisation-preview(?:-v2)?\\.');fs.writeFileSync(p,s);
+          NODE
+      - name: Install Chromium and WebKit
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+      - name: Prove actual UI login logout re-login and full connected loop
+        run: node preview/stabilisation/browser-proof.mjs
+      - name: Prove brand-new account creation through visible preview UI
+        run: node preview/stabilisation/registration-proof.mjs
+      - name: Upload proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-timber-ui-login-preview-v2-evidence
+          retention-days: 14
+          path: |
+            work/staging/generated/public-proof.json
+            work/staging/generated/review-evidence/**
+          if-no-files-found: warn

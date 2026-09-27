@@ -1,0 +1,82 @@
+name: Activation and Measurement Proof
+on:
+  push:
+    branches: ['fix/activation-measurement-20260919']
+  pull_request:
+    branches: [main]
+    paths:
+      - 'activation-measurement/**'
+      - 'journey-analytics-v1.js'
+      - 'auth-email-verification-v1.js'
+      - 'turnstile-auth-v1.js'
+      - 'worker-entry-v6.js'
+      - '.github/workflows/activation-*.yml'
+permissions:
+  contents: read
+concurrency:
+  group: activation-measurement-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Record source without repository or production writes
+        run: |
+          mkdir -p activation-proof
+          test ! -f activation-measurement/release-gate.patch
+          git rev-parse HEAD > activation-proof/source-sha.txt
+      - run: npm ci --no-audit --no-fund
+      - name: Account, consent, database and member regressions
+        run: |
+          set -o pipefail
+          node --test activation-measurement/*.test.mjs tests/member-auth*.test.mjs tests/turnstile-auth-v1.test.mjs health-passport/*.test.mjs tests/my-journey*.test.mjs member-experience/tests/*.test.mjs tests/public-shell-contract.test.mjs tests/public-audit-repair.test.mjs | tee activation-proof/regressions.tap
+          for f in gate1-email-verification-e2e.mjs auth-recovery-registration-gate.mjs g5-012-login-fastpath-gate.mjs my-journey-integration-gate.mjs my-timber-final-source-gate.mjs gate5-trust-scale-gate.mjs; do node "$f"; done | tee activation-proof/source-gates.log
+      - name: Compile without deployment credentials
+        run: |
+          set -o pipefail
+          npx wrangler deploy --dry-run --outdir activation-proof/worker | tee activation-proof/compile.log
+      - name: Install isolated browser runner
+        run: |
+          python3 -m pip install playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+      - name: Browser consent boundaries without Google transmission
+        run: python3 activation-measurement/browser-proof.py
+      - name: Capture current public sources without submitting forms
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const origin='https://shiftsometimber.co.uk',dir='activation-proof/public-baseline';mkdirSync(dir,{recursive:true});
+          const pages=['/start-here','/programme','/member-login','/member/dashboard'],queue=new Set([...pages,'/analytics-bootstrap-v1.js','/consent-v4a.js','/analytics-v3a.js','/analytics-events-v31b.js']),records=[];
+          for(const path of queue){
+            if(queue.size>75)throw Error('Asset capture bound exceeded');
+            try{const r=await fetch(origin+path,{signal:AbortSignal.timeout(15000),credentials:'omit'}),body=Buffer.from(await r.arrayBuffer());if(body.length>3000000)throw Error('Body too large');const file=encodeURIComponent(path);writeFileSync(dir+'/'+file,body);records.push({path,status:r.status,url:r.url,file,contentType:r.headers.get('content-type'),sha256:createHash('sha256').update(body).digest('hex')});
+              if(pages.includes(path))for(const m of body.toString().matchAll(/<script\b[^>]*src=["']([^"']+)["']/gi)){const u=new URL(m[1],origin+path);if(u.origin===origin)queue.add(u.pathname+u.search)}
+            }catch(e){records.push({path,error:e.message})}
+          }
+          writeFileSync(dir+'/manifest.json',JSON.stringify(records,null,2));console.log('Read-only capture:',records.length,'responses; no signup submitted.');
+          NODE
+      - name: Actual current consent, config and event scripts tested together
+        run: python3 activation-measurement/consent-stack-proof.py
+      - name: Retain readable change and source
+        if: always()
+        run: |
+          mkdir -p activation-proof
+          git diff 06d2a952c02263abcd443c91c59ec6fca75cccd1 -- activation-measurement/ worker-entry-v6.js auth-email-verification-v1.js turnstile-auth-v1.js journey-analytics-v1.js .github/workflows/ > activation-proof/candidate.patch
+          cp activation-measurement/README.md activation-proof/README.md
+          cp activation-measurement/pilot-protocol.md activation-proof/pilot-protocol.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: activation-measurement-${{ github.event.pull_request.head.sha || github.sha }}
+          path: activation-proof/
+          retention-days: 30

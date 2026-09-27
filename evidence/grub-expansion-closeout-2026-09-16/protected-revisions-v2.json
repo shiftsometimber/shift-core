@@ -1,0 +1,2604 @@
+{
+  "proof": "GRUB_PROTECTED_RECIPE_REVISIONS_V2",
+  "revision_version": 2,
+  "source_cohort": 798,
+  "revision_count": 12,
+  "insertion_only": true,
+  "original_rows_mutated": false,
+  "publication_ready": false,
+  "source_urls": [
+    "https://www.gov.uk/government/publications/cooking-your-food/cooking-your-food",
+    "https://www.gov.uk/government/publications/home-food-fact-checker/home-food-fact-checker",
+    "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely",
+    "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+  ],
+  "candidates": [
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-bacon--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-bacon",
+      "expected_source_content_hash": "18c36918d5e39fcf96c8fc37a67c967a0474e9ea453956edd951beb8e07e5953",
+      "prior_quantity_proposal_digest": "f920b12ca80eb810ef016b6fa29a10d0a26a95f29609d9b4bad36f88591bed44",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata",
+        "raw_bacon_nutrition_identity"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-bacon--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Bacon Breakfast Buttie",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "90g",
+              "item": "lean back bacon"
+            },
+            {
+              "amount": "80g",
+              "item": "wholemeal bap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "90g",
+              "item": "tomato"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "Trim visible fat and weigh the listed 90g bacon raw, then cut into bite-size pieces. In the second frying pan, use 2ml of the measured olive oil and cook over a medium heat, turning for about 6–8 minutes until fully cooked. Check the thickest part with a clean food thermometer: it must reach 70°C and remain there for 2 minutes. Transfer to a clean plate while the vegetables cook.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3–4 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+            "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "toaster",
+            "food-thermometer"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 515.9,
+            "protein_g": 30.3,
+            "carbohydrate_g": 60.7,
+            "fat_g": 18.6,
+            "fibre_g": 8.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "lean back bacon",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "19-646",
+              "cofid_name": "Bacon rashers, back, fat trimmed, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "Raw back-bacon rashers with visible fat trimmed; weighed raw before cooking, matching the revised preparation instruction."
+            },
+            {
+              "item": "wholemeal bap",
+              "amount": "80g",
+              "grams": 80,
+              "cofid_code": "11-986",
+              "cofid_name": "Bread rolls, wholemeal",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "wholemeal bread roll is the direct generic analogue"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "tomato",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-517",
+              "cofid_name": "Tomatoes, standard, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-buttie",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "buttie"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-buttie",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "696ae9ce37c1ed89a59a57ada243dbf33246cfc546da39d376c9cfcdf06e69c6"
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-sausage",
+      "expected_source_content_hash": "1c66b272a60a1521457d489615629dd6290b05245486ded2f0eef646c72da3e0",
+      "prior_quantity_proposal_digest": "7c564627141f2b29f501914c1ac5efe5793c0406aa26b087d406a97a3938f15c",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-sausage--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Sausage Breakfast Buttie",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "2 / 100g",
+              "item": "reduced-fat pork sausages"
+            },
+            {
+              "amount": "80g",
+              "item": "wholemeal bap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "90g",
+              "item": "tomato"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, use 2ml of the measured olive oil and cook the listed sausages following their packet time, usually about 15–20 minutes, turning regularly so they cook through without burning. Check the thickest part with a clean food thermometer: it must reach 70°C and remain there for 2 minutes. Slice after cooking and transfer to a clean plate while the vegetables cook.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3–4 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+            "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "toaster",
+            "food-thermometer"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 534.5,
+            "protein_g": 27.8,
+            "carbohydrate_g": 69.4,
+            "fat_g": 18.2,
+            "fibre_g": 11.1,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "reduced-fat pork sausages",
+              "amount": "2 / 100g",
+              "grams": 100,
+              "cofid_code": "19-658",
+              "cofid_name": "Sausages, pork, reduced fat, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "wholemeal bap",
+              "amount": "80g",
+              "grams": 80,
+              "cofid_code": "11-986",
+              "cofid_name": "Bread rolls, wholemeal",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "wholemeal bread roll is the direct generic analogue"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "tomato",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-517",
+              "cofid_name": "Tomatoes, standard, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-buttie",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "buttie"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-buttie",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "586cd0b2228e17d89d2392a5c573cc7e4948a66a68e5922c45496c41167e1cc2"
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-egg--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-egg",
+      "expected_source_content_hash": "fc53c843ed10b0e935e6f53ab2bd8299e2324694a08ca7300f24705739a7b46b",
+      "prior_quantity_proposal_digest": "092fa23a7d20b7b5cfbdef506f9c9b03a24655871366a4760394b1cfbfd4d504",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata",
+        "egg_edible_weight_identity"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-egg--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Egg Breakfast Buttie",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "100g without shell (about 2 eggs)",
+              "item": "large eggs",
+              "allergens": [
+                "egg"
+              ]
+            },
+            {
+              "amount": "80g",
+              "item": "wholemeal bap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "90g",
+              "item": "tomato"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3–4 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+            "Crack the eggs, discard the shells and weigh 100g of edible egg into a clean bowl, then beat it. The gram amount governs the portion; two eggs is only an approximation. After cooking the vegetables as described above, add the reserved 2ml olive oil and the beaten eggs to that pan. Stir gently over a medium heat until both white and yolk are fully set, keeping the mixture moist rather than browned.",
+            "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "toaster"
+          ],
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 524.5,
+            "protein_g": 26,
+            "carbohydrate_g": 60.7,
+            "fat_g": 21.6,
+            "fibre_g": 8.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "large eggs",
+              "amount": "100g without shell (about 2 eggs)",
+              "grams": 100,
+              "cofid_code": "12-937",
+              "cofid_name": "Eggs, chicken, whole, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "wholemeal bap",
+              "amount": "80g",
+              "grams": 80,
+              "cofid_code": "11-986",
+              "cofid_name": "Bread rolls, wholemeal",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "wholemeal bread roll is the direct generic analogue"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "tomato",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-517",
+              "cofid_name": "Tomatoes, standard, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-buttie",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "buttie"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-buttie",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "0d954dad62bee902a8ea89c12be8bad2eec804cc26099daae221f40b4b8b9879"
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage",
+      "expected_source_content_hash": "66bce8b9e5774b89700749841ca126b0c284b494aaf1e271e4df1d574c9d1355",
+      "prior_quantity_proposal_digest": "b37d4b5deef3be25e6e44dcea18c0cfa37b2175a2393fa1597573cd380f9059a",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Chicken Breakfast Buttie",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "100g",
+              "item": "chicken breast"
+            },
+            {
+              "amount": "80g",
+              "item": "wholemeal bap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "90g",
+              "item": "tomato"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "Cut the listed 100g raw chicken breast into thin strips on a separate board. Wash hands and utensils after handling it. In the second frying pan, use 2ml of the measured olive oil and cook over a medium heat for about 8–10 minutes, turning regularly. Check the thickest part with a clean food thermometer: it must reach 70°C and remain there for 2 minutes. The centre should have no pink flesh and the juices should be clear. Transfer to a clean plate while the vegetables cook.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3–4 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+            "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "toaster",
+            "separate-raw-meat-chopping-board",
+            "food-thermometer"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 501.5,
+            "protein_g": 35.7,
+            "carbohydrate_g": 60.7,
+            "fat_g": 14.7,
+            "fibre_g": 8.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "chicken breast",
+              "amount": "100g",
+              "grams": 100,
+              "cofid_code": "18-488",
+              "cofid_name": "Chicken, meat, average, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw uncoated chicken breast/meat is the appropriate source before recipe cooking"
+            },
+            {
+              "item": "wholemeal bap",
+              "amount": "80g",
+              "grams": 80,
+              "cofid_code": "11-986",
+              "cofid_name": "Bread rolls, wholemeal",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "wholemeal bread roll is the direct generic analogue"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "tomato",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-517",
+              "cofid_name": "Tomatoes, standard, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-buttie",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "buttie"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-buttie",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "c26b3ded6bf13d1babe0fb4bb948e302e7e9ef3c32cf25341b82a2c051b1558d"
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-turkey--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-turkey",
+      "expected_source_content_hash": "6d2ff200fe19ccc03f6175c14bf1b6e5f69c34f0e935b0a6ed920c97b36586da",
+      "prior_quantity_proposal_digest": "5ae4d0639c3f9cf8802738884a59471060fb99563a8012e205a9e07bc60780aa",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-turkey--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Turkey Breakfast Buttie",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "100g",
+              "item": "cooked turkey breast"
+            },
+            {
+              "amount": "80g",
+              "item": "wholemeal bap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "90g",
+              "item": "tomato"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3–4 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+            "Keep the listed already-cooked turkey refrigerated until the vegetables have softened as described above. Slice it thinly, then add it to those vegetables with the reserved 2ml olive oil and stir over a medium heat until steaming hot all the way through. This uses the single reheating of the cooked turkey: assemble and eat immediately.",
+            "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+            "Eat immediately. Do not cool and reheat the turkey filling or assembled meal again."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "toaster"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "Keep the already-cooked turkey refrigerated until preparing this meal. Eat the finished meal immediately; do not store it for later reheating.",
+            "freezer": "Do not freeze the finished meal containing reheated turkey.",
+            "reheat": "The preparation already reheats cooked turkey once. Do not cool and reheat it again."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability.",
+            "The already-cooked turkey is reheated during preparation; do not reheat it again."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 548.5,
+            "protein_g": 48.4,
+            "carbohydrate_g": 60.7,
+            "fat_g": 14.3,
+            "fibre_g": 8.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "cooked turkey breast",
+              "amount": "100g",
+              "grams": 100,
+              "cofid_code": "18-356",
+              "cofid_name": "Turkey, breast, fillet, grilled, meat only",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "grilled turkey breast fillet meat-only is the appropriate cooked source"
+            },
+            {
+              "item": "wholemeal bap",
+              "amount": "80g",
+              "grams": 80,
+              "cofid_code": "11-986",
+              "cofid_name": "Bread rolls, wholemeal",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "wholemeal bread roll is the direct generic analogue"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "tomato",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-517",
+              "cofid_name": "Tomatoes, standard, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-buttie",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "buttie"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-buttie",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "4ba22f68159b149177815bdf44102f690b3c9a1a5ec277d1ba31e3d3afef94cd"
+    },
+    {
+      "id": "industrial-v3-breakfast-buttie-hash-brown-beans--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-buttie-hash-brown-beans",
+      "expected_source_content_hash": "bef349d0cb6b1e5d89ff0876cc558601420c24dadecc1a6783cdb09a2640b9da",
+      "prior_quantity_proposal_digest": "d1181cc013a4bfbbccfc5b01b7a28ebc37d3bbe77b192e576c84636bfde83a9c",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-buttie-hash-brown-beans--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Beans Breakfast Buttie",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "160g",
+              "item": "baked beans"
+            },
+            {
+              "amount": "80g",
+              "item": "wholemeal bap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "90g",
+              "item": "tomato"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3–4 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+            "Use the listed ready-cooked canned baked beans. After softening the vegetables as described above, add the beans and reserved 2ml olive oil to that pan. Heat gently, stirring, until steaming hot throughout; do not brown or dry out the beans.",
+            "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "toaster"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability.",
+            "Use ready-cooked canned baked beans, not raw dried beans."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 523.1,
+            "protein_g": 21.4,
+            "carbohydrate_g": 84.7,
+            "fat_g": 13.4,
+            "fibre_g": 16.6,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "baked beans",
+              "amount": "160g",
+              "grams": 160,
+              "cofid_code": "13-532",
+              "cofid_name": "Baked beans, canned in tomato sauce",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "baked beans are the direct canonical source"
+            },
+            {
+              "item": "wholemeal bap",
+              "amount": "80g",
+              "grams": 80,
+              "cofid_code": "11-986",
+              "cofid_name": "Bread rolls, wholemeal",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "wholemeal bread roll is the direct generic analogue"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "tomato",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-517",
+              "cofid_name": "Tomatoes, standard, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-buttie",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "buttie"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-buttie",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "ec2f6a7324711df14733c1bd0be57c345d1a0bf7a570031d5e302ed8d45fedaf"
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-bacon--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-bacon",
+      "expected_source_content_hash": "d921b5cf13a34d0ca267bc3d9f8d844858d1eab8b624a04a8b39e2a9cc3ea1b2",
+      "prior_quantity_proposal_digest": "a4ce618d147194943f901038645af0e72d19c77962349bab2cdb10d348564679",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata",
+        "raw_bacon_nutrition_identity"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-bacon--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Bacon Breakfast Wrap",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "90g",
+              "item": "lean back bacon"
+            },
+            {
+              "amount": "65g",
+              "item": "wholemeal wrap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "mixed peppers"
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "Trim visible fat and weigh the listed 90g bacon raw, then cut into bite-size pieces. In the second frying pan, use 2ml of the measured olive oil and cook over a medium heat, turning for about 6–8 minutes until fully cooked. Check the thickest part with a clean food thermometer: it must reach 70°C and remain there for 2 minutes. Transfer to a clean plate while the vegetables cook.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5–7 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+            "Warm the measured 65g wholemeal wrap in a clean dry pan for 20–30 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "food-thermometer"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 512.3,
+            "protein_g": 27.3,
+            "carbohydrate_g": 60,
+            "fat_g": 19.8,
+            "fibre_g": 7.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "lean back bacon",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "19-646",
+              "cofid_name": "Bacon rashers, back, fat trimmed, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "Raw back-bacon rashers with visible fat trimmed; weighed raw before cooking, matching the revised preparation instruction."
+            },
+            {
+              "item": "wholemeal wrap",
+              "amount": "65g",
+              "grams": 65,
+              "cofid_code": "11-925",
+              "cofid_name": "Tortilla, wheat, soft",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "medium",
+              "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap",
+              "mapping_limitation": "brand fibre content varies"
+            },
+            {
+              "item": "mixed peppers",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-524",
+              "cofid_name": "Pepper, capsicum, red, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion",
+              "mapping_limitation": "pepper colour mix can shift micronutrients"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-wrap",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "wrap"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-wrap",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "0b873837f47d81d0ab5d71425451986faef2d66dde89606f4d83cc5a10dc7d9a"
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-sausage",
+      "expected_source_content_hash": "03adfa88a911028f6bb995df7e0f2a901b6b89c522d5b20dd248fdb83e8e90dc",
+      "prior_quantity_proposal_digest": "056c51e4a3154386477bb854db4d71dbe47c3fed2b3cf18015effa8890220be0",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-sausage--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Sausage Breakfast Wrap",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "2 / 100g",
+              "item": "reduced-fat pork sausages"
+            },
+            {
+              "amount": "65g",
+              "item": "wholemeal wrap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "mixed peppers"
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, use 2ml of the measured olive oil and cook the listed sausages following their packet time, usually about 15–20 minutes, turning regularly so they cook through without burning. Check the thickest part with a clean food thermometer: it must reach 70°C and remain there for 2 minutes. Slice after cooking and transfer to a clean plate while the vegetables cook.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5–7 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+            "Warm the measured 65g wholemeal wrap in a clean dry pan for 20–30 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "food-thermometer"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 530.9,
+            "protein_g": 24.8,
+            "carbohydrate_g": 68.7,
+            "fat_g": 19.4,
+            "fibre_g": 10.1,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "reduced-fat pork sausages",
+              "amount": "2 / 100g",
+              "grams": 100,
+              "cofid_code": "19-658",
+              "cofid_name": "Sausages, pork, reduced fat, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "wholemeal wrap",
+              "amount": "65g",
+              "grams": 65,
+              "cofid_code": "11-925",
+              "cofid_name": "Tortilla, wheat, soft",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "medium",
+              "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap",
+              "mapping_limitation": "brand fibre content varies"
+            },
+            {
+              "item": "mixed peppers",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-524",
+              "cofid_name": "Pepper, capsicum, red, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion",
+              "mapping_limitation": "pepper colour mix can shift micronutrients"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-wrap",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "wrap"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-wrap",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "269d55d9736a6be0b4baae902d0d536d426ac90533e63c8dfc7a504f60f2725a"
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-egg--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-egg",
+      "expected_source_content_hash": "32c883ed0852c73ca863d5c6e3df9dc8bd4bbec54b12a76b39110761a7146792",
+      "prior_quantity_proposal_digest": "ecce9e9e5240c31d73dc8dbb662e04dd678c9ab5f079c8f70fa38df4d2345b78",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata",
+        "egg_edible_weight_identity"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-egg--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Egg Breakfast Wrap",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "100g without shell (about 2 eggs)",
+              "item": "large eggs",
+              "allergens": [
+                "egg"
+              ]
+            },
+            {
+              "amount": "65g",
+              "item": "wholemeal wrap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "mixed peppers"
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5–7 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+            "Crack the eggs, discard the shells and weigh 100g of edible egg into a clean bowl, then beat it. The gram amount governs the portion; two eggs is only an approximation. After cooking the vegetables as described above, add the reserved 2ml olive oil and the beaten eggs to that pan. Stir gently over a medium heat until both white and yolk are fully set, keeping the mixture moist rather than browned.",
+            "Warm the measured 65g wholemeal wrap in a clean dry pan for 20–30 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales"
+          ],
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 520.9,
+            "protein_g": 23,
+            "carbohydrate_g": 60,
+            "fat_g": 22.8,
+            "fibre_g": 7.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "large eggs",
+              "amount": "100g without shell (about 2 eggs)",
+              "grams": 100,
+              "cofid_code": "12-937",
+              "cofid_name": "Eggs, chicken, whole, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "wholemeal wrap",
+              "amount": "65g",
+              "grams": 65,
+              "cofid_code": "11-925",
+              "cofid_name": "Tortilla, wheat, soft",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "medium",
+              "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap",
+              "mapping_limitation": "brand fibre content varies"
+            },
+            {
+              "item": "mixed peppers",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-524",
+              "cofid_name": "Pepper, capsicum, red, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion",
+              "mapping_limitation": "pepper colour mix can shift micronutrients"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-wrap",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "wrap"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-wrap",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "3b10b7459ccdf0f6c3e5f673c7ce49bfc53f0eb75b6be34530ea96a466008bb5"
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-chicken-sausage--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-chicken-sausage",
+      "expected_source_content_hash": "963a0c24ef5759315ddacb6a603cdff9a8ca8ca154693ea4f9e86471bace5af6",
+      "prior_quantity_proposal_digest": "57d46abc4264c4f6b676580f51e91a45226fd14102541c9ecb007e3874d3bc99",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-chicken-sausage--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Chicken Breakfast Wrap",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "100g",
+              "item": "chicken breast"
+            },
+            {
+              "amount": "65g",
+              "item": "wholemeal wrap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "mixed peppers"
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "Cut the listed 100g raw chicken breast into thin strips on a separate board. Wash hands and utensils after handling it. In the second frying pan, use 2ml of the measured olive oil and cook over a medium heat for about 8–10 minutes, turning regularly. Check the thickest part with a clean food thermometer: it must reach 70°C and remain there for 2 minutes. The centre should have no pink flesh and the juices should be clear. Transfer to a clean plate while the vegetables cook.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5–7 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+            "Warm the measured 65g wholemeal wrap in a clean dry pan for 20–30 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales",
+            "separate-raw-meat-chopping-board",
+            "food-thermometer"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 497.9,
+            "protein_g": 32.7,
+            "carbohydrate_g": 60,
+            "fat_g": 15.9,
+            "fibre_g": 7.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "chicken breast",
+              "amount": "100g",
+              "grams": 100,
+              "cofid_code": "18-488",
+              "cofid_name": "Chicken, meat, average, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw uncoated chicken breast/meat is the appropriate source before recipe cooking"
+            },
+            {
+              "item": "wholemeal wrap",
+              "amount": "65g",
+              "grams": 65,
+              "cofid_code": "11-925",
+              "cofid_name": "Tortilla, wheat, soft",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "medium",
+              "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap",
+              "mapping_limitation": "brand fibre content varies"
+            },
+            {
+              "item": "mixed peppers",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-524",
+              "cofid_name": "Pepper, capsicum, red, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion",
+              "mapping_limitation": "pepper colour mix can shift micronutrients"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-wrap",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "wrap"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-wrap",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "91b6ee2e34e6e173e24704084cef2c5a5f5310717a98e469575f6bd367a8f10f"
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-turkey--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-turkey",
+      "expected_source_content_hash": "c7157b8bb82b534f82d08976d384b13ebd7b9713ee6311b82116c120a7628a55",
+      "prior_quantity_proposal_digest": "3ddbc26a0ef1c0c2c59b8d542e997664e1ec76b44febecd39224421e86f229b3",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-turkey--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Turkey Breakfast Wrap",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "100g",
+              "item": "cooked turkey breast"
+            },
+            {
+              "amount": "65g",
+              "item": "wholemeal wrap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "mixed peppers"
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5–7 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+            "Keep the listed already-cooked turkey refrigerated until the vegetables have softened as described above. Slice it thinly, then add it to those vegetables with the reserved 2ml olive oil and stir over a medium heat until steaming hot all the way through. This uses the single reheating of the cooked turkey: assemble and eat immediately.",
+            "Warm the measured 65g wholemeal wrap in a clean dry pan for 20–30 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+            "Eat immediately. Do not cool and reheat the turkey filling or assembled meal again."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "Keep the already-cooked turkey refrigerated until preparing this meal. Eat the finished meal immediately; do not store it for later reheating.",
+            "freezer": "Do not freeze the finished meal containing reheated turkey.",
+            "reheat": "The preparation already reheats cooked turkey once. Do not cool and reheat it again."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability.",
+            "The already-cooked turkey is reheated during preparation; do not reheat it again."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 544.9,
+            "protein_g": 45.4,
+            "carbohydrate_g": 60,
+            "fat_g": 15.5,
+            "fibre_g": 7.8,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "cooked turkey breast",
+              "amount": "100g",
+              "grams": 100,
+              "cofid_code": "18-356",
+              "cofid_name": "Turkey, breast, fillet, grilled, meat only",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "grilled turkey breast fillet meat-only is the appropriate cooked source"
+            },
+            {
+              "item": "wholemeal wrap",
+              "amount": "65g",
+              "grams": 65,
+              "cofid_code": "11-925",
+              "cofid_name": "Tortilla, wheat, soft",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "medium",
+              "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap",
+              "mapping_limitation": "brand fibre content varies"
+            },
+            {
+              "item": "mixed peppers",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-524",
+              "cofid_name": "Pepper, capsicum, red, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion",
+              "mapping_limitation": "pepper colour mix can shift micronutrients"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-wrap",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "wrap"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-wrap",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "9a1115efa6d9ae1a590df5b9c561ad0a1792b0e2b7b2168ae0a0150f4705c5f8"
+    },
+    {
+      "id": "industrial-v3-breakfast-wrap-hash-brown-beans--hash-brown-repair-v2",
+      "original_id": "industrial-v3-breakfast-wrap-hash-brown-beans",
+      "expected_source_content_hash": "8df50a18e9e262629b8e8c6a510364d234a5b0ef835bc4d3410e16d5c8e6eeb1",
+      "prior_quantity_proposal_digest": "9db3ac8050b12e46297d9deb1a5b986a9e396dff54c9a353a30bb8cf7fcfbc2d",
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "correction_scope": [
+        "compound_oil_quantity",
+        "raw_peeled_potato_identity",
+        "complete_potato_cooking",
+        "protein_specific_method",
+        "measured_oil_allocation",
+        "equipment",
+        "single_reheat_storage",
+        "serving_metadata"
+      ],
+      "structured_item_draft": {
+        "id": "industrial-v3-breakfast-wrap-hash-brown-beans--hash-brown-repair-v2",
+        "contentType": "recipe",
+        "title": "Shift Hash Brown Beans Breakfast Wrap",
+        "version": 2,
+        "status": "draft",
+        "data": {
+          "meal_type": "breakfast",
+          "servings": 1,
+          "ingredients": [
+            {
+              "amount": "160g",
+              "item": "baked beans"
+            },
+            {
+              "amount": "65g",
+              "item": "wholemeal wrap",
+              "allergens": [
+                "gluten"
+              ]
+            },
+            {
+              "amount": "90g",
+              "item": "mixed peppers"
+            },
+            {
+              "amount": "90g",
+              "item": "spinach"
+            },
+            {
+              "amount": "120g",
+              "item": "baby potatoes"
+            },
+            {
+              "amount": "20g",
+              "item": "onion"
+            },
+            {
+              "amount": "10ml",
+              "item": "olive oil"
+            }
+          ],
+          "method": [
+            "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+            "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8–10 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+            "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6–8 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+            "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5–7 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+            "Use the listed ready-cooked canned baked beans. After softening the vegetables as described above, add the beans and reserved 2ml olive oil to that pan. Heat gently, stirring, until steaming hot throughout; do not brown or dry out the beans.",
+            "Warm the measured 65g wholemeal wrap in a clean dry pan for 20–30 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+            "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+          ],
+          "equipment": [
+            "hob",
+            "saucepan",
+            "colander",
+            "two-frying-pans",
+            "bowl",
+            "knife",
+            "peeler",
+            "chopping-board",
+            "grater",
+            "fork-or-potato-masher",
+            "wide-spatula",
+            "spoon",
+            "clean-plate",
+            "measuring-spoon",
+            "kitchen-scales"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "storage": {
+            "chilled": "For preparing ahead, divide cooked components into small portions, cool promptly and refrigerate in covered containers within two hours of cooking. Keep the fridge at 0–5°C. Eat within 24 hours, or sooner if an ingredient use-by date requires it. Assemble just before eating.",
+            "freezer": "Do not freeze the assembled bap or wrap; these instructions cover fresh preparation and up to 24 hours refrigerated component storage.",
+            "reheat": "Reheat chilled cooked components once only until steaming hot throughout, then assemble and eat immediately."
+          },
+          "food_safety": [
+            "Wash hands and prevent cross-contamination between raw meat and ready-to-eat food.",
+            "Cook raw animal proteins fully; follow the specific method and packet instructions.",
+            "Check actual product labels for allergens and the shortest use-by date; recipe tags do not guarantee allergy suitability.",
+            "Use ready-cooked canned baked beans, not raw dried beans."
+          ],
+          "nutrition": {
+            "status": "validated",
+            "kcal": 519.5,
+            "protein_g": 18.4,
+            "carbohydrate_g": 84,
+            "fat_g": 14.6,
+            "fibre_g": 15.7,
+            "methodology": "CoFID 2021 ingredient-level exact decimal calculation; 10ml oil and raw trimmed bacon identity where applicable"
+          },
+          "ingredient_evidence": [
+            {
+              "item": "baked beans",
+              "amount": "160g",
+              "grams": 160,
+              "cofid_code": "13-532",
+              "cofid_name": "Baked beans, canned in tomato sauce",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "baked beans are the direct canonical source"
+            },
+            {
+              "item": "wholemeal wrap",
+              "amount": "65g",
+              "grams": 65,
+              "cofid_code": "11-925",
+              "cofid_name": "Tortilla, wheat, soft",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "medium",
+              "mapping_basis": "wheat soft tortilla is the closest CoFID analogue for a generic wholemeal wrap",
+              "mapping_limitation": "brand fibre content varies"
+            },
+            {
+              "item": "mixed peppers",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-524",
+              "cofid_name": "Pepper, capsicum, red, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "red capsicum raw is a suitable proximates proxy for a mixed fresh sweet-pepper portion",
+              "mapping_limitation": "pepper colour mix can shift micronutrients"
+            },
+            {
+              "item": "spinach",
+              "amount": "90g",
+              "grams": 90,
+              "cofid_code": "13-521",
+              "cofid_name": "Spinach, baby, raw",
+              "mapping_state": "approved_canonical_proxy",
+              "mapping_confidence": "high",
+              "mapping_basis": "raw baby spinach is the suitable canonical source for generic raw spinach"
+            },
+            {
+              "item": "baby potatoes",
+              "amount": "120g",
+              "grams": 120,
+              "cofid_code": "13-618",
+              "cofid_name": "Potatoes, new and salad, flesh only, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "onion",
+              "amount": "20g",
+              "grams": 20,
+              "cofid_code": "13-499",
+              "cofid_name": "Onions, raw",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            },
+            {
+              "item": "olive oil",
+              "amount": "10ml",
+              "grams": 9.2,
+              "cofid_code": "17-038",
+              "cofid_name": "Oil, olive",
+              "mapping_state": "exact",
+              "mapping_confidence": "high",
+              "mapping_basis": "direct canonical CoFID identity"
+            }
+          ],
+          "prep_minutes": 15,
+          "cook_minutes": 45,
+          "rest_minutes": 0,
+          "total_minutes": 60,
+          "timing_is_estimate": true,
+          "timing_basis": "Conservative estimate including potato preparation, two-pan cooking and assembly; packet instructions and doneness checks govern cooking.",
+          "food_format": "breakfast-wrap",
+          "tags": [
+            "breakfast",
+            "hash-brown",
+            "wrap"
+          ],
+          "taxonomy": {
+            "meal_type": "breakfast",
+            "food_format": "breakfast-wrap",
+            "prep_band": "standard"
+          },
+          "shift_says": "Keep the potato patties thin and let the surface turn golden before flipping. Serve any filling that will not fit comfortably alongside."
+        },
+        "review": {
+          "status": "pending",
+          "scope": "exact_protected_recipe_revision",
+          "author_ids": [
+            "/root/grub_closeout"
+          ],
+          "human_review_claimed": false
+        }
+      },
+      "source_unchanged": true,
+      "publication_ready": false,
+      "content_hash": "0473ff2b249eebc63f69e14bbcf207fb16ac3e0084ab2385532d487eeedcbd65"
+    }
+  ],
+  "candidate_digest": "ed9781c42f996c37143901d0bcaf0dbca117749d298e197b65aee9e617dfc073"
+}

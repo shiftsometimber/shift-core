@@ -1,0 +1,136 @@
+{
+  "/v1/work": {
+    "noticeVersion": "work-pilot-2026-09-12-v1",
+    "workplaces": [
+      {
+        "employerId": "fictional-member",
+        "name": "Example Logistics \u2014 fictional",
+        "start": "2026-09-14",
+        "end": "2026-12-07",
+        "seats": 50,
+        "feePence": null,
+        "testingAllowancePence": null,
+        "reporterIds": [],
+        "scope": "Company launch, a shared start, twelve self-guided weekly reviews and a reviewed closing report.",
+        "support": "Support scope and response times are agreed in the written pilot contract.",
+        "week": 4,
+        "active": true,
+        "status": "active",
+        "completedWeeks": [
+          1,
+          2,
+          3
+        ],
+        "testing": {
+          "available": false,
+          "message": "Home blood testing is not available. No test has been ordered."
+        }
+      }
+    ]
+  },
+  "/v1/hq/work": {
+    "employers": [
+      {
+        "id": "fictional-draft",
+        "revision": 0,
+        "config": {
+          "name": "Example Logistics \u2014 fictional",
+          "start": "2026-09-14",
+          "end": "2026-12-07",
+          "seats": 50,
+          "feePence": null,
+          "testingAllowancePence": null,
+          "reporterIds": [],
+          "scope": "Company launch, a shared start, twelve self-guided weekly reviews and a reviewed closing report.",
+          "support": "Support scope and response times are agreed in the written pilot contract."
+        },
+        "status": "draft",
+        "invites": [],
+        "audit": [],
+        "report": null,
+        "testing": {
+          "available": false
+        }
+      }
+    ]
+  },
+  "/v1/employer/work": {
+    "reports": [
+      {
+        "employerId": "fictional-closed",
+        "name": "Example Logistics \u2014 fictional",
+        "start": "2026-05-04",
+        "end": "2026-07-27",
+        "report": {
+          "employerId": "fictional-closed",
+          "programmeStart": "2026-05-04",
+          "programmeEnd": "2026-07-27",
+          "issuedAt": "2026-08-01T12:00:00.000Z",
+          "invitations": {
+            "status": "not-measured",
+            "reason": "Generic invitation codes do not measure invitations delivered."
+          },
+          "activations": {
+            "status": "reported",
+            "count": 35,
+            "precision": "Rounded down to five"
+          },
+          "engagement": {
+            "status": "reported",
+            "count": 25,
+            "precision": "Rounded down to five"
+          },
+          "completion": {
+            "status": "reported",
+            "count": 15,
+            "precision": "Rounded down to five"
+          },
+          "wellbeing": {
+            "status": "not-collected",
+            "reason": "No health scores or clinical results are collected by this workplace module."
+          },
+          "definitions": {
+            "engagement": "At least one self-guided weekly review marked complete.",
+            "completion": "All twelve weekly reviews marked complete."
+          }
+        }
+      },
+      {
+        "employerId": "fictional-small",
+        "name": "Example small cohort \u2014 fictional",
+        "start": "2026-05-04",
+        "end": "2026-07-27",
+        "report": {
+          "employerId": "fictional-small",
+          "programmeStart": "2026-05-04",
+          "programmeEnd": "2026-07-27",
+          "issuedAt": "2026-08-01T12:00:00.000Z",
+          "invitations": {
+            "status": "not-measured",
+            "reason": "Generic invitation codes do not measure invitations delivered."
+          },
+          "activations": {
+            "status": "withheld",
+            "reason": "Insufficient safely reportable participation."
+          },
+          "engagement": {
+            "status": "withheld",
+            "reason": "Insufficient safely reportable participation."
+          },
+          "completion": {
+            "status": "withheld",
+            "reason": "Insufficient safely reportable participation."
+          },
+          "wellbeing": {
+            "status": "not-collected",
+            "reason": "No health scores or clinical results are collected by this workplace module."
+          },
+          "definitions": {
+            "engagement": "At least one self-guided weekly review marked complete.",
+            "completion": "All twelve weekly reviews marked complete."
+          }
+        }
+      }
+    ]
+  }
+}

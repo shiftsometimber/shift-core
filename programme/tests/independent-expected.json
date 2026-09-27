@@ -1,0 +1,15 @@
+{
+  "input_sha256": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+  "locked_before_evaluation": true,
+  "method": "Root read the independently authored inputs, then recorded conservative expected outputs. Future recipe identities are not supplied in the histories: use declared test-plan mappings, never treat those mappings as participant facts. Free-text requests need confirmation; no unsupported microwave, portability, timing or clinical suitability inferred.",
+  "expected": {
+    "fictional-01": ["mon-dinner"],
+    "fictional-02": [],
+    "fictional-03": ["sat-walk"],
+    "fictional-04": [],
+    "fictional-05": ["thu-dinner"],
+    "fictional-06": ["sun-dinner"],
+    "fictional-07": ["thu-walk"],
+    "fictional-08": ["thu-dinner"]
+  }
+}

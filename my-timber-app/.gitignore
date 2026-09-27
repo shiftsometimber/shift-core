@@ -1,0 +1,17 @@
+.build/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+ios/build/
+ios/*.xcodeproj/
+ios/GeneratedInfo.plist
+android/app/src/main/assets/
+android/app/src/main/res/drawable/
+ios/Resources/
+evidence/
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+.env*

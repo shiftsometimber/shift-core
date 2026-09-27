@@ -1,0 +1,56 @@
+name: PR790 exact schema command proof
+on:
+  push:
+    branches: [fix/release-790-schema-json]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Repeat source and member regressions
+        run: |
+          mkdir -p /tmp/schema-json-proof
+          node --test tests/member-details-release.test.mjs tests/b1-release-scope.test.mjs member-experience/tests/*.test.mjs > /tmp/schema-json-proof/tests.tap
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/schema-json-proof/compile > /tmp/schema-json-proof/compile.log 2>&1
+      - name: Demonstrate strict JSON against the existing fictional preview database only
+        shell: bash
+        run: |
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          import {schemaCommandArgs,assertExisting,assertOnlyAddition} from './release/member-details-schema.mjs';
+          const wr=args=>JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args],{encoding:'utf8',maxBuffer:16e6}));
+          const found=wr(['d1','list','--json']).filter(x=>x.name==='shift-member-details-auth-20260922');assert.equal(found.length,1);
+          const id=found[0].uuid??found[0].database_id??found[0].id;assert(id&&!fs.readFileSync('wrangler.jsonc','utf8').includes(id),'Production ID is forbidden');
+          const file='/tmp/schema-json-proof/preview.json';fs.writeFileSync(file,JSON.stringify({name:'schema-json-fictional-proof',compatibility_date:'2026-09-22',d1_databases:[{binding:'DB',database_name:found[0].name,database_id:id}]}));
+          const query="SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY type,name";
+          const snapshot=()=>{const r=wr(['d1','execute','DB','--remote','--config',file,'--json','--command',query]);assert(r.length&&r.every(x=>x.success));return r.flatMap(x=>x.results||[]);};
+          const before=snapshot();assertExisting(before);
+          const args=schemaCommandArgs();args[args.indexOf('--config')+1]=file;
+          const response=wr(args);assert(response.length&&response.every(x=>x.success));
+          const after=snapshot();assertOnlyAddition(before,after);
+          fs.writeFileSync('/tmp/schema-json-proof/result.json',JSON.stringify({source:process.env.GITHUB_SHA,previewOnly:true,productionIdsRejected:true,strictJsonResponse:true,exactSchemaPreserved:true,customerRowsRead:0,customerRowsChanged:0,noWorkerDeployment:true},null,2));
+          JS
+      - name: Retain result and failure evidence
+        if: always()
+        run: git rev-parse HEAD > /tmp/schema-json-proof/source.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schema-json-proof-${{ github.run_id }}
+          path: /tmp/schema-json-proof
+          retention-days: 30

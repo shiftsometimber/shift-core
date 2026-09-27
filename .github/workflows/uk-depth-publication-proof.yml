@@ -1,0 +1,30 @@
+name: Verify UK newsroom publication
+on:
+  push:
+    branches: [feat/uk-newsroom-depth-20260913]
+    paths: ['.github/workflows/uk-depth-publication-proof.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Align publication metadata after audited HQ publication
+        run: node verification/rec037-align-publication-metadata.mjs --remote
+      - name: Verify every public article and sitemap entry
+        run: node verification/rec037-verify-published.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: REC-037-publication-proof
+          path: |
+            uk-depth-metadata-correction.json
+            uk-depth-live-proof.json

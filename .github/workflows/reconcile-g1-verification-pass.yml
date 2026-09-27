@@ -1,0 +1,43 @@
+name: Reconcile G1 Verification PASS
+on:
+  push:
+    branches:
+      - reconcile/g1-verification-pass
+    paths:
+      - 'scripts/reconcile-g1-verification-pass.mjs'
+      - '.github/workflows/reconcile-g1-verification-pass.yml'
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: reconcile/g1-verification-pass
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Reconcile earned G1 verification PASSes
+        run: node scripts/reconcile-g1-verification-pass.mjs
+      - name: Assert exact 57-row scoreboard
+        run: |
+          grep -qx 'A=6' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'B=0' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'C=3' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'AUDIT_PASS=48' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'AUDIT_AMBER=6' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -qx 'AUDIT_BLOCKED=3' docs/V1-RELEASE-BLOCKER-COUNTS.txt
+          grep -F '**Current reconciled scoreboard: 57 total / 48 PASS / 6 AMBER / 3 BLOCKED / 0 unmapped.**' docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md
+          grep -F '| G1-003 | Registration email lifecycle incomplete | **PASS** |' docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md
+          grep -F '| G1-004 | Email verification is effectively bypassed | **PASS** |' docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md
+      - name: Commit reconciliation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name shiftsometimber
+          git config user.email shiftsometimber@gmail.com
+          git add docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md docs/V1-RELEASE-BLOCKER-COUNTS.txt docs/V1-RELEASE-BLOCKER-BOARD-V2.md docs/COMMISSIONING-EVIDENCE.md docs/evidence/2026-08-14-g1-003-g1-004-real-verification-pass.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'G1: reconcile real verification lifecycle PASS'
+          git push origin HEAD:reconcile/g1-verification-pass

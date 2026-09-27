@@ -1,0 +1,127 @@
+name: Account completion isolated verification
+on:
+  push:
+    branches: [fix/account-completion-20260923]
+permissions:
+  contents: write
+concurrency:
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+      EXPECTED_MAIN: 77e1d0fb673277b77b46c2a924a4dafb0af75404
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/account-completion-20260923
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Guard source and install retained test toolchain
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
+          git merge-base --is-ancestor 60c50c135560201436204a21717b226623fec621 HEAD
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN"
+          mkdir -p account-completion-evidence
+          git ls-remote origin refs/heads/main > account-completion-evidence/production-main-before.txt
+          npm ci --no-audit --no-fund
+      - name: Read current preview capacity before any repair or fixture provisioning
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
+          const cli='node_modules/wrangler/bin/wrangler.js',call=args=>JSON.parse(execFileSync(process.execPath,[cli,...args],{encoding:'utf8'}));
+          const db=call(['d1','list','--json']).filter(d=>d.name==='shift-member-details-auth-20260922');assert.equal(db.length,1);const id=db[0].uuid||db[0].id||db[0].database_id;assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(id));
+          fs.writeFileSync('/tmp/preview-access-read.json',JSON.stringify({name:'shift-stabilisation-preview',compatibility_date:'2026-08-09',d1_databases:[{binding:'DB',database_name:db[0].name,database_id:id}]}));
+          const capacity=call(['d1','execute','DB','--remote','--json','--command',"SELECT count(*) AS n FROM users WHERE first_name='Fictional reviewer'",'--config','/tmp/preview-access-read.json']);
+          const meta=await(await fetch('https://shift-stabilisation-preview.matobrien.workers.dev/__preview/meta',{signal:AbortSignal.timeout(20000)})).json();assert.equal(meta.productionBindings,false);
+          fs.writeFileSync('account-completion-evidence/access-before.json',JSON.stringify({readOnly:true,productionWrites:0,previousPreview:meta,previousHardcodedLimit:20,capacity},null,2));console.log(JSON.stringify({previousLimit:20,capacity,source:meta.source}));
+          JS
+      - name: Verify exact account and newer released-source preservation
+        run: node account-completion/reconcile-source.mjs
+      - name: Run retained member and new preview-access tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/b1-release-scope.mjs
+          node --test member-experience/tests/*.test.mjs tests/member-details-release.test.mjs tests/b1-release-scope.test.mjs 2>&1 | tee account-completion-evidence/account-tests.tap
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/account-completion-compile > account-completion-evidence/compile.txt 2>&1 || { tail -n 70 account-completion-evidence/compile.txt; exit 1; }
+      - name: Record the unchanged tested candidate
+        run: |
+          set -euo pipefail
+          git diff --exit-code
+          node account-completion/reconcile-source.mjs
+          echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          git rev-parse HEAD > account-completion-evidence/source-sha.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Prepare and provision the existing fictional-account preview only
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          node preview/member-details/prepare.mjs
+          node preview/member-details/provision.mjs
+      - name: Guard and deploy only the named isolated preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/account-completion-20260923
+          test "$(git rev-parse HEAD)" = "$PREVIEW_SOURCE_SHA"
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);
+          assert.deepEqual(c.d1_databases.map(x=>x.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));
+          assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);assert(!c.vars.MEMBER_ADDRESS_PROVIDER);assert(!c.vars.MEMBER_ADDRESS_API_KEY);assert.equal(c.vars.STAGING_REVIEW_ACCOUNT_LIMIT,'100');
+          JS
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > account-completion-evidence/deploy.txt 2>&1 || { tail -n 70 account-completion-evidence/deploy.txt; exit 1; }
+          echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
+      - name: Install retained browser engines
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+      - name: Existing Member Details browser regression matrix
+        run: node preview/member-details/browser-proof.mjs
+      - name: Existing GP form and bounded assurance matrix
+        run: node preview/member-details/gp-browser-proof.mjs
+      - name: Other existing GP form browser matrix
+        env:
+          GP_FORM_TEST_PATH: /__review/gp-form-alternate
+        run: node preview/member-details/gp-browser-proof.mjs
+      - name: Manual home and delivery address browser matrix
+        run: node account-completion/delivery-browser.mjs
+      - name: Dual-mailbox email-change browser matrix with simulated mail only
+        run: node account-completion/email-browser.mjs
+      - name: Test both actual reviewer entry paths, repeat start, save and fresh login
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: node preview/member-details/reviewer-access-proof.mjs
+      - name: Retain results and confirm production source has not moved
+        if: always()
+        run: |
+          mkdir -p account-completion-evidence
+          git rev-parse HEAD > account-completion-evidence/source-sha.txt
+          git ls-remote origin refs/heads/main > account-completion-evidence/production-main.txt
+          if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence account-completion-evidence/; fi
+          git diff 60c50c135560201436204a21717b226623fec621 --stat > account-completion-evidence/access-delta.txt
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: account-completion-preview-${{ github.run_id }}
+          path: account-completion-evidence/
+          retention-days: 14
+          if-no-files-found: error

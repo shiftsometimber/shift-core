@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title description">
+  <title id="title">Foundayo option ready, supply pending</title>
+  <desc id="description">A Shift Some Timber status graphic showing UK authorisation and the treatment option ready while partner supply remains unconfirmed.</desc>
+  <rect width="720" height="520" rx="28" fill="#050505"/>
+  <text x="54" y="76" fill="#E7E3DA" font-family="system-ui, sans-serif" font-size="24" font-weight="800">FOUNDAYO · OPTION READY</text>
+  <line x1="54" y1="108" x2="666" y2="108" stroke="#707762" stroke-width="3"/>
+  <g font-family="system-ui, sans-serif">
+    <circle cx="92" cy="184" r="28" fill="#707762"/>
+    <path d="M79 184l9 9 18-21" fill="none" stroke="#E7E3DA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="140" y="177" fill="#E7E3DA" font-size="25" font-weight="800">UK AUTHORISATION</text>
+    <text x="140" y="208" fill="#B9BAAF" font-size="19">Public medicine context can be explained.</text>
+    <circle cx="92" cy="294" r="28" fill="#707762"/>
+    <path d="M79 294l9 9 18-21" fill="none" stroke="#E7E3DA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="140" y="287" fill="#E7E3DA" font-size="25" font-weight="800">SHIFT OPTION + PRICING</text>
+    <text x="140" y="318" fill="#B9BAAF" font-size="19">Dose ladder and HQ pricing are ready.</text>
+    <circle cx="92" cy="404" r="28" fill="none" stroke="#707762" stroke-width="4"/>
+    <text x="84" y="413" fill="#E7E3DA" font-size="28" font-weight="800">?</text>
+    <text x="140" y="397" fill="#E7E3DA" font-size="25" font-weight="800">PARTNER SUPPLY</text>
+    <text x="140" y="428" fill="#B9BAAF" font-size="19">Checkout opens only against confirmed stock.</text>
+  </g>
+</svg>

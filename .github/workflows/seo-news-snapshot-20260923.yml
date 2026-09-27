@@ -1,0 +1,56 @@
+name: SEO published-news source snapshot (read only)
+on:
+  push:
+    branches: [fix/seo-repairs-20260923]
+    paths: [.github/workflows/seo-news-snapshot-20260923.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Select only public news and the published article required by the preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          mkdir -p seo-news-snapshot
+          node --input-type=module <<'JS'
+          import {execFileSync} from 'node:child_process';
+          import {writeFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {NEWSROOM_ROWS_SQL} from './radar-news-pages-v1.js';
+          const sql=NEWSROOM_ROWS_SQL+"; SELECT a.id,a.title,a.slug,a.category,a.author,a.status,a.summary,a.body,a.seo_title,a.publish_at,r.decision FROM knowledge_articles a LEFT JOIN knowledge_article_reviews r ON r.article_id=a.id WHERE a.status='published' AND a.slug IN ('mounjaro-cost-uk');";
+          assert(!/\b(?:UPDATE|INSERT|DELETE|REPLACE|DROP|ALTER)\b/i.test(sql));
+          const data=JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',sql],{encoding:'utf8',maxBuffer:12e6}));
+          assert.equal(data.length,2);assert(data.every(r=>r.success));assert(data[0].results.length>100&&data[0].results.length<=250);assert.equal(data[1].results.length,1);
+          writeFileSync('seo-news-snapshot/published.json',JSON.stringify({capturedAt:new Date().toISOString(),news:data[0].results,articles:data[1].results},null,2));console.log('Public fixture count:',data[0].results.length,'news and',data[1].results.length,'article. Zero writes.');
+          JS
+      - name: Fetch primary bibliographic dates for eleven flagged issue dates
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.parse,json,pathlib,concurrent.futures
+          ids=['42729919','42173727','42641845','42707648','42586458','42492687','42508693','42701460','42699764','42692567','42664897']
+          def read(i):
+            url='https://www.ebi.ac.uk/europepmc/webservices/rest/search?'+urllib.parse.urlencode({'query':'EXT_ID:'+i+' AND SRC:MED','format':'json','resultType':'core','pageSize':1})
+            try:
+              with urllib.request.urlopen(url,timeout=25) as f:data=json.load(f)
+              return {'pmid':i,'url':url,'data':data}
+            except Exception as e:return {'pmid':i,'error':str(e)}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:rows=list(pool.map(read,ids))
+          pathlib.Path('seo-news-snapshot/dates.json').write_text(json.dumps(rows,indent=2));print('Bibliographic records captured:',len(rows))
+          PY
+          (cd seo-news-snapshot && sha256sum * > SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seo-news-snapshot-${{ github.sha }}
+          path: seo-news-snapshot/
+          retention-days: 14

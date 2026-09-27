@@ -1,0 +1,28 @@
+{
+  "source": {
+    "baseline_files_checked": 871,
+    "changed_or_missing": [],
+    "added": [
+      "assets/programme-v1/programme.css",
+      "assets/programme-v1/programme.mjs"
+    ],
+    "unexpected_additions": [],
+    "result": "PASS"
+  },
+  "build": {
+    "baseline_files_checked": 871,
+    "changed_or_missing": [],
+    "added": [
+      "assets/programme-v1/programme.css",
+      "assets/programme-v1/programme.mjs"
+    ],
+    "unexpected_additions": [],
+    "result": "PASS"
+  },
+  "worker_preservation": {
+    "baseline": "0c16b52",
+    "rootEntryUnchanged": true,
+    "configurationUnchanged": true
+  },
+  "assets_match_candidate": true
+}

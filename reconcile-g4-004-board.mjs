@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+const files=['docs/SHIFT-COMMISSIONING-REMEDIATION-MATRIX.md','docs/LAUNCH-FINISH-LINE.md','docs/COMMISSIONING-EVIDENCE.md','finish-line-gate.mjs'];
+let [matrix,launch,evidence,gate]=files.map(f=>fs.readFileSync(f,'utf8'));
+const rep=(s,a,b,label)=>{if(!s.includes(a))throw new Error(`missing ${label}: ${a}`);return s.replaceAll(a,b)};
+matrix=rep(matrix,'57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 unmapped','57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 unmapped','scoreboard');
+matrix=rep(matrix,'| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | AMBER | Reviewed Knowledge publish -> canonical retrieval -> Brain grounding/provenance -> withdrawal is proven, but automatic CMS ingestion/flywheel proof remains outstanding. |','| G4-004 | Site/CMS content ingestion into Knowledge Graph not proven automatic | **PASS** | Scheduled CMS/approved-document sync now proves reviewed source -> canonical Knowledge graph node + provenance, draft exclusion, withdrawal reconciliation, and stable canonical reactivation after re-review without manual HQ ingest. |','G4-004');
+matrix=rep(matrix,'## 34-AMBER burn-down classification','## 33-AMBER burn-down classification','amber heading');
+matrix=rep(matrix,'| G4-004 | FINITE | automatic CMS -> Knowledge Graph flywheel proof |\n','','closed classification');
+matrix=rep(matrix,'PASS rows: 20. AMBER rows: 34. BLOCKED rows: 3.','PASS rows: 21. AMBER rows: 33. BLOCKED rows: 3.','summary');
+launch=rep(launch,'20 PASS / 34 AMBER / 3 BLOCKED','21 PASS / 33 AMBER / 3 BLOCKED','launch score');
+launch=rep(launch,'The 34 remaining AMBERs are classified','The 33 remaining AMBERs are classified','launch amber');
+if(!evidence.includes('## G4-004 — PASS')){const marker='## Current authoritative scoreboard';const block='## G4-004 — PASS\nMerged PR #98 passed the dedicated Knowledge Flywheel gate, Master Integration, whole-estate route sweep and Academy gate. The scheduled Worker path now proves approved CMS content is ingested into the canonical Knowledge graph with provenance, draft content is excluded, withdrawn source content is removed from active graph use, and re-review reactivates the same canonical identity without a manual HQ ingest call.\n\n';if(!evidence.includes(marker))throw new Error('evidence marker missing');evidence=evidence.replace(marker,block+marker)}
+evidence=rep(evidence,'57 total / 20 PASS / 34 AMBER / 3 BLOCKED / 0 abstraction orphans.','57 total / 21 PASS / 33 AMBER / 3 BLOCKED / 0 abstraction orphans.','ledger score');
+gate=rep(gate,"counts.PASS===20","counts.PASS===21",'gate pass');
+gate=rep(gate,"PASS count is 20","PASS count is 21",'gate pass text');
+gate=rep(gate,"counts.AMBER===34","counts.AMBER===33",'gate amber');
+gate=rep(gate,"AMBER count is 34","AMBER count is 33",'gate amber text');
+gate=rep(gate,"PASS rows: 20. AMBER rows: 34. BLOCKED rows: 3.","PASS rows: 21. AMBER rows: 33. BLOCKED rows: 3.",'gate summary');
+gate=rep(gate,"20 PASS / 34 AMBER / 3 BLOCKED","21 PASS / 33 AMBER / 3 BLOCKED",'gate launch');
+files.forEach((f,i)=>fs.writeFileSync(f,[matrix,launch,evidence,gate][i]));
+console.log('PASS G4-004 reconciliation: 57 / 21 PASS / 33 AMBER / 3 BLOCKED.');

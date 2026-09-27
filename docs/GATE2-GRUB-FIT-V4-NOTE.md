@@ -1,0 +1,1 @@
+Gate 2 V4 engine implementation staged. This file is intentionally temporary documentation until the routing/CI PR is commissioned.

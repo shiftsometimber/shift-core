@@ -1,0 +1,35 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {createHash,randomBytes,generateKeyPairSync} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const dir='work/staging/generated',file=dir+'/config.json',config=JSON.parse(readFileSync(file)),probe=JSON.parse(readFileSync(dir+'/probe.json'));
+assert.equal(config.name,'shift-stabilisation-preview');assert(!config.routes);assert.equal(config.d1_databases.find(x=>x.binding==='DB')?.database_name,'shift-stabilisation-preview-auth-20260917');
+const provenance=JSON.parse(readFileSync(dir+'/five-points-evidence/pages-provenance.json'));
+assert(provenance.available&&provenance.deployment.id==='0da69833-83f7-4c70-9c7a-bceab7de1660'&&provenance.deployment.commit==='c733bf03834d93154a51a0db6ef05dbebb3c7cb3','Current Pages identity must match authority');
+const source='https://0da69833.projectshift.pages.dev',get=async path=>{const r=await fetch(source+'/'+path);assert(r.ok,path+' '+r.status);return Buffer.from(await r.arrayBuffer())};
+const fingerprint=JSON.parse(await get('DEPLOYMENT-FINGERPRINT.json'));assert.equal(fingerprint.aggregate_sha256,'1ec46ba5f5383cf02c5379cabc6ad20877a8dc6193abd8cc852b1ede43a9dcc0');
+const reset=await get('reset-password.html'),entry=fingerprint.files.find(x=>x.path==='reset-password.html');assert(entry);assert.equal(createHash('sha256').update(reset).digest('hex'),entry.sha256);
+mkdirSync(dir+'/assets/b1',{recursive:true});writeFileSync(dir+'/assets/b1/reset-password.html',reset);
+mkdirSync(dir+'/five-points-evidence/b1',{recursive:true});writeFileSync(dir+'/five-points-evidence/b1/reset-page-source.html',reset);
+const app=readFileSync(dir+'/assets/staging/member-source/app.js','utf8'),why=app.indexOf('// My Why');writeFileSync(dir+'/five-points-evidence/b1/legacy-save-client-source.txt',app.slice(Math.max(0,why),Math.max(0,why)+10000));
+const origin=process.env.PREVIEW_URL;assert(/^https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev$/.test(origin));
+const proofKey=generateKeyPairSync('rsa',{modulusLength:4096,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});writeFileSync(dir+'/b1-inbox-private.pem',proofKey.privateKey,{mode:0o600});config.vars.B1_INBOX_PROOF_PUBLIC_KEY=proofKey.publicKey;
+config.vars.PUBLIC_SITE_URL=origin;config.vars.ALLOWED_ORIGINS=origin;config.vars.PREVIEW_B1_MAILBOX='matt@shiftsometimber.co.uk';config.send_email=[{name:'EMAIL',allowed_destination_addresses:['matt@shiftsometimber.co.uk'],allowed_sender_addresses:['hello@shiftsometimber.co.uk']}];
+writeFileSync(file,JSON.stringify(config,null,2));
+const run=sql=>JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config',file,'--command',sql,'--json'],{encoding:'utf8',maxBuffer:4e6}));
+const q=s=>"'"+String(s).replaceAll("'","''")+"'",sha=s=>createHash('sha256').update(s).digest('hex');
+run('CREATE TABLE IF NOT EXISTS preview_b1_email_gate(candidate TEXT PRIMARY KEY,created_at TEXT NOT NULL)');
+const auth=run('SELECT password_hash FROM user_auth WHERE user_id='+probe.ids[0])[0].results[0].password_hash;
+const existing=run("SELECT id,first_name FROM users WHERE email='matt@shiftsometimber.co.uk'")[0].results;
+assert(existing.length===0||(existing.length===1&&existing[0].first_name==='Fictional B1 email'),'Never overwrite another preview account');
+const emailId=existing[0]?.id||probe.ids[0]+20;
+if(!existing.length)run(`INSERT INTO users(id,email,first_name) VALUES(${emailId},'matt@shiftsometimber.co.uk','Fictional B1 email');INSERT INTO user_auth(user_id,password_hash,email_verified) VALUES(${emailId},${q(auth)},1);INSERT INTO member_status(user_id) VALUES(${emailId})`);
+else run(`UPDATE user_auth SET password_hash=${q(auth)},failed_login_attempts=0,locked_until=NULL WHERE user_id=${emailId};UPDATE auth_tokens SET used_at=CURRENT_TIMESTAMP WHERE user_id=${emailId};UPDATE user_sessions SET revoked_at=CURRENT_TIMESTAMP WHERE user_id=${emailId}`);
+const cases=[];for(let i=0;i<4;i++){
+ const id=probe.ids[0]+30+i,token=randomBytes(32).toString('base64url'),expired=randomBytes(32).toString('base64url'),race=randomBytes(32).toString('base64url');
+ run(`INSERT INTO users(id,email,first_name) VALUES(${id},${q('b1-'+id+'@example.invalid')},'Fictional B1 matrix');INSERT INTO user_auth(user_id,password_hash,email_verified) VALUES(${id},${q(auth)},1);INSERT INTO member_status(user_id) VALUES(${id});INSERT INTO auth_tokens(user_id,token_hash,token_type,expires_at) VALUES(${id},${q(sha(token))},'password_reset',${q(new Date(Date.now()+1800000).toISOString())}),(${id},${q(sha(expired))},'password_reset','2000-01-01T00:00:00Z'),(${id},${q(sha(race))},'password_reset',${q(new Date(Date.now()+1800000).toISOString())})`);
+ cases.push({id,email:'b1-'+id+'@example.invalid',token,expired,race});
+}
+writeFileSync(dir+'/b1-probe.json',JSON.stringify({cases,emailId,email:'matt@shiftsometimber.co.uk',oldPassword:probe.password,emailNewPassword:'B1-preview-only-'+process.env.GITHUB_SHA.slice(0,12)+'-new!'}));
+writeFileSync(dir+'/five-points-evidence/b1/config-differences.json',JSON.stringify({source:process.env.GITHUB_SHA,productionWrites:0,databases:config.d1_databases.map(d=>({binding:d.binding,name:d.database_name})),publicSite:origin,mailAllowlist:['matt@shiftsometimber.co.uk'],emailSender:'hello@shiftsometimber.co.uk',mailLimit:'one per candidate',autoVerifyFixtures:true,turnstileRequired:false,productionTurnstile:'unchanged; source/unit regression only in this preview',payments:false,resetPage:{source:source+'/reset-password.html',sha256:entry.sha256}},null,2));
+console.log('B1 isolated fixtures and pinned reset page prepared. Credentials are not printed.');

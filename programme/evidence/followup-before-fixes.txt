@@ -1,0 +1,59 @@
+✔ R10 collision: member request, declared mismatch and three recurring difficulties compete for three places (10.089121ms)
+✔ R8 gates the collision before R10; even the highest-ranked item stays frozen (0.494436ms)
+✖ An old member request cannot resurrect after its decline freeze; a genuinely later request can (3.862083ms)
+✔ Post-swap quantity increase preserves 1000g bought and asks for only 500g more (1.885343ms)
+✖ An approved label alone is insufficient without a named reviewer, date and matching recipe version (0.415676ms)
+✔ Authenticated reads ignore foreign user IDs and return only the cookie owner’s records (14.486582ms)
+✔ A genuinely expired session rejects reads and writes and never renders the private workspace (2.96446ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.633958
+
+✖ failing tests:
+
+test at programme/tests/followup.test.mjs:33:1
+✖ An old member request cannot resurrect after its decline freeze; a genuinely later request can (3.862083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/followup.test.mjs:36:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at programme/tests/followup.test.mjs:47:1
+✖ An approved label alone is insufficient without a named reviewer, date and matching recipe version (0.415676ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/followup.test.mjs:49:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

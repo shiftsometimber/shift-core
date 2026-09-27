@@ -1,0 +1,740 @@
+{
+  "date": "2026-09-14",
+  "authorisation": "Can you resolve the 45 holds yourself ??",
+  "reviewer": "Codex — delegated AI visual QA",
+  "scope": "Image defects only; no professional technique certification or member-release approval",
+  "generator": "built-in image_gen",
+  "records": [
+    {
+      "id": "45-degree-sled-leg-press",
+      "status": "pass",
+      "observation": "Sled travels up consistent diagonal rails as knees extend, then returns with feet on plate.",
+      "originalHoldReason": "QA: platform geometry + static knees — unreliable sequence; do not ship",
+      "originalRejectedSha256": "6d991b17ebe1f84f57ba36d695fefbcf9e9d1e10db384468dab67e6853c54cc2",
+      "asset": "preview/fit-grub/v3/images/45-degree-sled-leg-press.png",
+      "sha256": "29e2ae25294d071f50f7a40bbc4b1dccd3410aed9faae0229d0625de7902e97f",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-18ca2e3f-7106-4ed8-9bae-7273eaaf1de0.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "band-standing-hip-adduction",
+      "status": "pass",
+      "observation": "Cuffed leg travels laterally inward towards planted leg; anchor/support remain consistent.",
+      "originalHoldReason": "Still hip extension/kickback — need adduction toward midline",
+      "originalRejectedSha256": "891ec20d8db6f6f98f4bcfe3545922d1a65941ddf8e51c3442fe454396921f99",
+      "asset": "preview/fit-grub/v3/images/band-standing-hip-adduction.png",
+      "sha256": "1d718c72cd4ba24a5cdf393e8fb70453d930d6c1bd2cad4c58c5e792884eea7f",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-26359b99-87f1-4f19-bdbe-66ea7de9d2e5.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "bear-crawl",
+      "status": "pass",
+      "observation": "Setup hover, opposite hand/foot travelling step, then completion into separate shoulder-width palms and bent hovering knees. Overlapping hands removed.",
+      "originalHoldReason": "Static hover only — need opposite hand+foot crawl travel",
+      "originalRejectedSha256": "ab84a1a02e45cd1f58b4f68cdaffe96fa48b0d5ef44ee3f172c451b39e96ccfa",
+      "asset": "preview/fit-grub/v3/images/bear-crawl.png",
+      "sha256": "87a49964dabbc59972e44f596cf42128da94555f4b7c76f1b471d958b2e4294d",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-9142c1b8-7c07-41c0-a526-f7e28ec16306.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Hand positions change slightly but foot positions repeat; opposite limb pairing and travel not clear.",
+          "generationFile": "exec-1bdb593e-e85a-4a6a-8105-d4952654bc99.png",
+          "sha256": "6eee9dfebaba43ce495a65c8f503bac14229269d8318536f43b9e61436332008"
+        },
+        {
+          "status": "retry",
+          "observation": "Hands now alternate, but same knee stays forward in final two panels.",
+          "generationFile": "exec-a80b04f4-7711-455c-ac0a-d9106db5968f.png",
+          "sha256": "7540797b9b6ea93cc3916d6199fca655c9c68317cdc88989570f0ad4b0571f02"
+        },
+        {
+          "status": "retry",
+          "observation": "Hands overlap in final frame; knee advancement is not clearly alternating.",
+          "generationFile": "exec-064320d3-ed58-4905-bef3-05617890fd05.png",
+          "sha256": "26914f24898ece3af9ca1206cf407a1320f374539def5d9f1cf48447c841e938"
+        }
+      ]
+    },
+    {
+      "id": "bear-hover",
+      "status": "pass",
+      "observation": "Knees grounded in outer panels and clearly above mat in middle, bent under hips.",
+      "originalHoldReason": "Knees stay on mat all panels — need mid hover with knees clear",
+      "originalRejectedSha256": "ef68433cb08e79455317bed545745b6d370a0ac902009ac3d031f821513f15c7",
+      "asset": "preview/fit-grub/v3/images/bear-hover.png",
+      "sha256": "0bdd3c84d7f047efcf1ce6ea4990f76fa38c5c8eb279800430073100912d9c03",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-a91170a4-0eef-42f8-bf9a-f09ee06ec429.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "bent-knee-fallout",
+      "status": "pass",
+      "observation": "One knee opens sideways with other knee upright and pelvis still, then returns.",
+      "originalHoldReason": "Identical supine — need one knee open sideways mid panel",
+      "originalRejectedSha256": "27c7181abbdc136435e35bbad137627ad0c754244b4eb51ee33fe0d7def46ed1",
+      "asset": "preview/fit-grub/v3/images/bent-knee-fallout.png",
+      "sha256": "b323094187610a477f4292291e2526128001ca108245f95034a4c0078ee74027",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-d704b707-90cc-4d0a-ade5-dbb8cc4c5e18.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "cable-high-to-low-chop",
+      "status": "pass",
+      "observation": "Same handle follows high-side to opposite low hip diagonal then returns.",
+      "originalHoldReason": "Attachment changes mid-sequence + cable clip artifact — unreliable",
+      "originalRejectedSha256": "1b70b78741195f48f78481a9b40d66d697ab86ced7a5d3581b64511164e30f32",
+      "asset": "preview/fit-grub/v3/images/cable-high-to-low-chop.png",
+      "sha256": "1589323be7ebb5a6819eeda05bda2956d1b992e64f1cfac28f7ff7308baaaa32",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-4c1ae451-f9da-4231-a0cb-789578e0e4aa.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "cable-low-to-high-lift",
+      "status": "pass",
+      "observation": "Same handle moves from low outside hip across body to opposite high side.",
+      "originalHoldReason": "Looks like front raise, not diagonal low-to-high lift",
+      "originalRejectedSha256": "cde9880dd3257c6a26eb71b0a0953e65f808693dde7785406857e5551d828661",
+      "asset": "preview/fit-grub/v3/images/cable-low-to-high-lift.png",
+      "sha256": "0a7ba67544a8a10ef44942e11533c96868d86d87471b3d98297888ec1c9e045e",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-ff2dd025-8fd1-4dd5-a85a-503c954f6b66.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "cable-rope-hammer-curl",
+      "status": "pass",
+      "observation": "Both hands hold same rope throughout full curl/return, upper arms close to torso.",
+      "originalHoldReason": "Mid curl OK but panel 3 drops rope — need controlled return holding rope",
+      "originalRejectedSha256": "b11f0e607996a5404be0e82c4d2225c5eda3106d90b4a2ec9bc154f7e3b37538",
+      "asset": "preview/fit-grub/v3/images/cable-rope-hammer-curl.png",
+      "sha256": "3a5e8be40621916d6fccfee7b038ec6b0d8c15d171797f73450e2a16ba33e5f9",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-7adca84a-bdc2-47b4-a89e-a00661ba0819.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "cable-standing-chest-press",
+      "status": "pass",
+      "observation": "Bent elbows become extended in middle with same two handles/cables and stable stance.",
+      "originalHoldReason": "Near-identical panels + extra machine glitch — no clear press",
+      "originalRejectedSha256": "5cb731d45505cf069bcb76a8e2c15ec6a30bf1ceef0741aefed5d382fc7bb575",
+      "asset": "preview/fit-grub/v3/images/cable-standing-chest-press.png",
+      "sha256": "6e1e41cd0889fcb9f9c1a0794ab83f22b31f0776f32921be4d5ab21faa190507",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-586b0277-df51-49ff-a088-afd76276f762.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "dumbbell-reverse-lunge",
+      "status": "pass",
+      "observation": "Standing outer panels align front foot with middle front foot; rear leg travels back clearly.",
+      "originalHoldReason": "Still forward lunge after retries",
+      "originalRejectedSha256": "f304ffd2f552fa7b8cc9a63afc02e8bad0cc17e939466b3e3c2ba4c3dd724ae4",
+      "asset": "preview/fit-grub/v3/images/dumbbell-reverse-lunge.png",
+      "sha256": "c4986ed3ac9f9899cbc541e252e4935da50c96e509fea78b532efcd699d7a8bd",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-5c1d96c4-aa1b-46a9-b5c3-5dbf96667598.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Lunge form visible but front foot shifts forwards relative to panel, obscuring reverse step.",
+          "generationFile": "exec-f380e93b-dc21-4731-aeef-ee6005c30e41.png",
+          "sha256": "344cdd08bcdaf9af920c80569e7ee4eaf1bd32706b0f57bf8c237cdcd30839db"
+        }
+      ]
+    },
+    {
+      "id": "dumbbell-seated-calf-raise",
+      "status": "pass",
+      "observation": "Both heels lift with forefeet planted, hands secure load above knees.",
+      "originalHoldReason": "Identical seated pose — heels never rise; need clear heel raise mid",
+      "originalRejectedSha256": "5c89f389ca49a05d654b85ee63adc703acbfbfb20716633714bbd554af2d79a3",
+      "asset": "preview/fit-grub/v3/images/dumbbell-seated-calf-raise.png",
+      "sha256": "2cf777d91f0f1959d286ecfbab12922841535df136c65d2dec66b72d2402249f",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-2cee41f1-5bfd-407c-85f9-4701a5c98d70.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "forearm-plank-body-saw",
+      "status": "pass",
+      "observation": "Middle frame visibly shifts shoulders and body backward relative to elbows and fixed mat; inclined upper arms distinguish the saw from the start/return plank. Toes remain on sliders.",
+      "originalHoldReason": "Identical static plank — need back/forward body-saw shift",
+      "originalRejectedSha256": "782b06cc47f349766c0d391ba72543572adc29a7ef3dd7c9633bc3c564742cb8",
+      "asset": "preview/fit-grub/v3/images/forearm-plank-body-saw.png",
+      "sha256": "54f850bdbe84b62d53eac4e640c816fcca99362bfa56b11bd2d749e075fcf9e1",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-1e73ee36-4cbc-415f-a02a-a3c6d7a12744.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Static forearm plank; shoulders do not move visibly relative to elbows.",
+          "generationFile": "exec-ade9340f-9e9f-44f1-baff-ea7d2ab529ef.png",
+          "sha256": "ed17f26025420cdf947f5278001c9c26315f4f32427ccaaeedddfe40cf6f966e"
+        },
+        {
+          "status": "retry",
+          "observation": "Middle upper arms still nearly vertical; backward shift not demonstrated clearly.",
+          "generationFile": "exec-d1ae9a45-c665-4a05-9169-0da2ccc0124c.png",
+          "sha256": "4373227b2d371fdbf5ff25258024a8ea9631cb84be063324c6f1d6e9d1c3ecd9"
+        },
+        {
+          "status": "retry",
+          "observation": "Elbows translate instead of remaining planted during body saw.",
+          "generationFile": "exec-883af1f1-7732-4daa-9371-83d215b2d1b8.png",
+          "sha256": "304883c1df673955d1d61b614e706b2f6da2a5605cc244b6f2c945ffc3ae4135"
+        }
+      ]
+    },
+    {
+      "id": "frog-pump",
+      "status": "pass",
+      "observation": "Front-end view clearly shows symmetric butterfly legs, soles pressed together, and middle hip lift.",
+      "originalHoldReason": "Held after visual review: foot positioning and panel progression unclear.",
+      "originalRejectedSha256": "13c74e0e82754b5f0d525074e927a9ef26f9fd39d9efda9317146dd0395a4bf9",
+      "asset": "preview/fit-grub/v3/images/frog-pump.png",
+      "sha256": "79906e3a198570aa98bdc8c7b05d0eeb1dff7c642b9ddfa17d073c04dc1145d8",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-dfdeeee9-a76f-499e-895d-78027bdeba5f.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Hip rise visible but sole-to-sole contact still unclear; needs a clearer camera angle.",
+          "generationFile": "exec-0afe2712-aae9-4b3a-84c8-e531f4e15ee3.png",
+          "sha256": "4069b2e84815dfe9183d904491ffc9610a2cdc2cea054fa2752b4f7ed7eb653a"
+        }
+      ]
+    },
+    {
+      "id": "front-back-weight-shift",
+      "status": "pass",
+      "observation": "Fixed split stance, front knee flexes and torso shifts forward in middle then returns with soles down.",
+      "originalHoldReason": "Still walking identical panels — need planted split stance",
+      "originalRejectedSha256": "16661631f48f31187e990530be6120c5d79c609215d5a03c8b97a7da8bdf31f8",
+      "asset": "preview/fit-grub/v3/images/front-back-weight-shift.png",
+      "sha256": "23be6e267646f40af41d43a939c9c0506608e09d8b083f872797169c114c207f",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-2b26a139-6886-4a44-84fc-05caf594d7d2.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "half-kneeling-ankle-rock",
+      "status": "pass",
+      "observation": "Front knee advances from vertical shin to over forefoot while heel remains down; returns.",
+      "originalHoldReason": "Identical half-kneel — need front knee drive over toes",
+      "originalRejectedSha256": "07e2b2c57756144044beac9522f3e7250c62ef0b5508eb84125518d3801dd18e",
+      "asset": "preview/fit-grub/v3/images/half-kneeling-ankle-rock.png",
+      "sha256": "3ba2d111c1226461baba1130fa838b591709f37e9843b8e7e7a4c81423a4f1bc",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-6b1bd4a7-9aff-48dc-8fe5-78eca3c5134d.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "heel-to-toe-walk",
+      "status": "pass",
+      "observation": "Middle panel uses opposite leading leg with heel placed just ahead of opposite toes on same line.",
+      "originalHoldReason": "Normal walking gait — need tandem heel-to-toe placement",
+      "originalRejectedSha256": "b0db48e6a893ab88461902bd644c05af40d4e9f3f97e7e9e046515805adc213e",
+      "asset": "preview/fit-grub/v3/images/heel-to-toe-walk.png",
+      "sha256": "d984182f8a38e25eb705a8ad6191605146abf435f27e4cafed82fc8e33f76e4e",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-1ab3f552-f361-4636-a83e-b97b8f030030.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Tandem posture is closer but repeated same leading foot; lacks alternate steps.",
+          "generationFile": "exec-1e203d86-fe7a-42d0-8afc-7d70673ea90f.png",
+          "sha256": "63fe86b55187a473a27fb698eb3aeec9b782e8c805d7e8277b90a720c44737c6"
+        },
+        {
+          "status": "retry",
+          "observation": "Tandem posture is closer but repeated same leading foot; lacks alternate steps.",
+          "generationFile": "exec-7c7dd2f3-b082-4127-af54-fd211e6c0e07.png",
+          "sha256": "9bdc24500352895888ebacfbc33cb93d54d62278c275cf78957e908651a78784"
+        }
+      ]
+    },
+    {
+      "id": "inverted-bodyweight-row",
+      "status": "pass",
+      "observation": "Arms extend then flex to bring chest to fixed bar; heels remain grounded and body diagonal.",
+      "originalHoldReason": "Got suspended pull-up/Gironda — need heels-on-floor under low bar pulling chest to bar",
+      "originalRejectedSha256": "d83efd00450440bb1374827e87fcd3d3a87db5728203085362b5633ad587ed93",
+      "asset": "preview/fit-grub/v3/images/inverted-bodyweight-row.png",
+      "sha256": "76da77c79b444113aa6c07f40d74fb991f3fec804bdb822b6cb01b1b7aa422fd",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-806c4b09-f7d4-4af5-9870-d7fd19bd2748.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "kettlebell-offset-front-rack-march",
+      "status": "pass",
+      "observation": "Targeted second pass clearly alternates the active leg; required support or kettlebell position preserved.",
+      "originalHoldReason": "Panels 2-3 same-side knee; prefer clear alternate knee march",
+      "originalRejectedSha256": "68392172890d9cea1058635934db791a2351e97348e840c5a8b9ea4a91747316",
+      "asset": "preview/fit-grub/v3/images/kettlebell-offset-front-rack-march.png",
+      "sha256": "5c1c807886333c94bfee0f42c66c692ff9ad68aac497a785edd85ca1e6abdae4",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-753fdc5b-0ec1-4fd5-a3dd-037efeeaa727.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Same knee lifts in both action panels; final must alternate while rack arm stays unchanged.",
+          "generationFile": "exec-007de5e8-4c5c-41dc-8892-ab05b2c62630.png",
+          "sha256": "f811724f644cfca7d5db5be669742b0a9e652ab6e4040beba745afe8fa1c5769"
+        }
+      ]
+    },
+    {
+      "id": "kettlebell-single-arm-swing",
+      "status": "pass",
+      "observation": "One arm holds kettlebell in hinge and forward swing; other hand remains free.",
+      "originalHoldReason": "Got two-hand swing — need true single-arm swing",
+      "originalRejectedSha256": "bce11317cff00d9e250abc55ddc19137585fdacec671c65151fb31d81428307b",
+      "asset": "preview/fit-grub/v3/images/kettlebell-single-arm-swing.png",
+      "sha256": "25d8b352f80ab8a3461c94d9708990fa52d64db85be5cd13fc7519e5151f4dfb",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-c7891cd9-45fb-4706-bc9f-a693e69e50ca.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "kneeling-adductor-rock-back",
+      "status": "pass",
+      "observation": "Three-quarter side view shows hips approaching supporting heel with extended side leg and hands fixed.",
+      "originalHoldReason": "Became front half-split identical panels — need side-leg adductor rock",
+      "originalRejectedSha256": "e2fdec3d0a999d92f3a2948cc4fc1b53d828a5dade79f8c53b329b62bb693880",
+      "asset": "preview/fit-grub/v3/images/kneeling-adductor-rock-back.png",
+      "sha256": "7bf8cb2312c39d726a25fb88a45b2e00cb4bf2e054381322ee28b318abf404f8",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-2bde517f-1ab9-4d7c-b2ae-a5da65934682.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Correct sideways leg but frontal camera does not demonstrate posterior hip travel clearly.",
+          "generationFile": "exec-94c99125-6bb5-4388-ba3f-60569119755b.png",
+          "sha256": "d0723fa9be430b0116a51dc1506289f032c57729a8a434db39cf38d961a71780"
+        }
+      ]
+    },
+    {
+      "id": "lateral-step-up",
+      "status": "pass",
+      "observation": "Front-facing model steps from beside platform onto it and returns sideways.",
+      "originalHoldReason": "Looks like forward step-up — need step from beside platform sideways onto it",
+      "originalRejectedSha256": "4da6fe504b7167757c959064d2287575f81482a98107f83251cf5bda18603e50",
+      "asset": "preview/fit-grub/v3/images/lateral-step-up.png",
+      "sha256": "665968db9c6ce60dbf59c1956266abfda6de3cb97cb1e4dfb6ba7ab043c986ee",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-38c4f409-4dbe-4ae8-862f-033bb5efabcd.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "low-step-aerobic-basic",
+      "status": "pass",
+      "observation": "Side view shows forwards step up/standing/down with stable low platform geometry.",
+      "originalHoldReason": "Step height changes mid-triptych — prefer consistent height",
+      "originalRejectedSha256": "0edea169a05877927bd86f42a429a7c3acff0044ac1f9a45ec42931ef30f2561",
+      "asset": "preview/fit-grub/v3/images/low-step-aerobic-basic.png",
+      "sha256": "57363a438facc5377631a066f3b83aa7e1ea47a7aa183caccd57fe8b5eeeee35",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-d9e73148-60e4-4ac8-891c-d95dd1ed6bd5.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Platform width changes and outer panels resemble lateral stepping; needs consistent step and front/back path.",
+          "generationFile": "exec-27fabedd-3434-4ca2-87eb-78dd383ca238.png",
+          "sha256": "56133388710146f2a5670182ba511c58d1ee50a636bdbe1b337e2985523bf104"
+        }
+      ]
+    },
+    {
+      "id": "neutral-grip-lat-pulldown",
+      "status": "pass",
+      "observation": "Compact V attachment stays consistent from overhead to upper chest; elbows draw down.",
+      "originalHoldReason": "Wide overhand bar — need neutral/V-handle palms facing each other",
+      "originalRejectedSha256": "ec14964923fd62bbfe88e974892c19f6d2397037b691f6700ea946ef2472fe6c",
+      "asset": "preview/fit-grub/v3/images/neutral-grip-lat-pulldown.png",
+      "sha256": "693c344f0e49f0df32074694090720cc70c40d2055d880f721c0743511caedbb",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-9387584a-eef1-4f3c-b656-2f170b0b9450.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "pec-deck-fly",
+      "status": "pass",
+      "observation": "Same bent-elbow forearm pads close in front of chest then open; fly rather than press.",
+      "originalHoldReason": "Got seated chest press — need pec-deck arm pads closing together",
+      "originalRejectedSha256": "383148f2c9741150c6c6ba2dd6a03d1e7bbcc5005689f3fac8b027a98dbe1332",
+      "asset": "preview/fit-grub/v3/images/pec-deck-fly.png",
+      "sha256": "c1ebc92d1956c466d76f600b88c0a20bf0b4a5e05be59bf4bc26f911d60ba89a",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-253f6970-8f36-4b3f-b924-823ebd139bae.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "posterior-pelvic-tilt",
+      "status": "pass",
+      "observation": "Arms clear lumbar region; neutral lumbar gap visibly closes in middle with hips down.",
+      "originalHoldReason": "Wrong layout (5 panels) + weak cue — need 3-panel subtle tilt",
+      "originalRejectedSha256": "81390f7c3009e50ecef1ba7904ace8a0239801bbcf57e6eac9a9721a3d0087bc",
+      "asset": "preview/fit-grub/v3/images/posterior-pelvic-tilt.png",
+      "sha256": "b705f02bfca9a3ad2cf08ce94b6a53512d0bf380c02ed123c4947781ef9e90c8",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-470aeca3-0d76-468c-b030-56ea79839347.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Three panels now correct but lumbar change hidden by arm and clothing; movement still unclear.",
+          "generationFile": "exec-fd2f1bee-fdc1-4474-8d91-a0d1e0d9ae23.png",
+          "sha256": "79ccbafd2ef5b22e3b21dfd4a3690bc75c1c83f5765b7e47b079675f4cc94fd3"
+        }
+      ]
+    },
+    {
+      "id": "prone-w-raise",
+      "status": "pass",
+      "observation": "Bent W-shaped arms lift together in middle with torso and pelvis supported.",
+      "originalHoldReason": "Became hand-release prone — need W-shaped bent elbows lift",
+      "originalRejectedSha256": "968ee987acbf023237367b57274bfb0bafeecc5fd79bc90a2e074a4758bac5f0",
+      "asset": "preview/fit-grub/v3/images/prone-w-raise.png",
+      "sha256": "1c3d052107b260d580f971614dcc94325e935a71ffe106c0ab5bc6ce8f6a9ecd",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-d52172de-e25b-4bb6-8eb6-849d206ebee9.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "scapular-push-up",
+      "status": "pass",
+      "observation": "Elevated rear view makes middle scapular retraction and final broad protraction visible with straight elbows.",
+      "originalHoldReason": "Mild: mid near start; finish more pike/protract than classic scap push-up",
+      "originalRejectedSha256": "4bdf57962f4f2994323239bce37cf949092ab2eef9e200939f49227391097131",
+      "asset": "preview/fit-grub/v3/images/scapular-push-up.png",
+      "sha256": "1de10c3d0c2877c6c561f4d3ca7263949676b8c8e2b9bda73f4c5b853a27cec4",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-64744e83-2d29-4590-a381-b3617390eab2.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Repeated plank silhouette; scapular movement unclear.",
+          "generationFile": "exec-1e1e51f8-1c29-45a4-b3a1-d5edefd2ed79.png",
+          "sha256": "8e0334eb01e10d07073a2c9bffc90aeb2ae8dfd991670cb9dca0b56c925551cc"
+        }
+      ]
+    },
+    {
+      "id": "seated-90-90-hip-rotation",
+      "status": "pass",
+      "observation": "Both knees switch between opposite shinbox positions through upright knees; hands support body.",
+      "originalHoldReason": "Became seated twist — need 90/90 shin switch L↔R",
+      "originalRejectedSha256": "6a0e3c6961de436f3fc4cb6e439d87e39a33ebeaf5db80f0a4a0b57f800fa96d",
+      "asset": "preview/fit-grub/v3/images/seated-90-90-hip-rotation.png",
+      "sha256": "12abb6c4533aeb0e383e57b14998a22e90d61b1e17e47a979ed3e588763e0403",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-6ddd9b0a-7401-40c7-92f1-b57dc49dccb8.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "seated-alternating-march",
+      "status": "pass",
+      "observation": "Opposite knee and foot lift in panels 2 and 3 with supporting foot planted.",
+      "originalHoldReason": "Weak: panels 2–3 both right knee; need L then R alternate",
+      "originalRejectedSha256": "0476860e52ff08cb79756c2e830054f1e662590095ab5e2bd3c8f4452002fdde",
+      "asset": "preview/fit-grub/v3/images/seated-alternating-march.png",
+      "sha256": "da308a5ddb448a3c5c8c9b019fdd95d02caabd8121382014e17fdd6b11b7b23a",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-2eb58724-eacf-42f8-9791-2e72a6a150e9.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "seated-heel-dig",
+      "status": "pass",
+      "observation": "Targeted second pass clearly alternates the active leg; required support or kettlebell position preserved.",
+      "originalHoldReason": "Looks like single heel-raise; need heel planted forward with toes lifted",
+      "originalRejectedSha256": "55c22fe25e47c3e497bea05598d23a660c997221388e4ef1290f22773497030e",
+      "asset": "preview/fit-grub/v3/images/seated-heel-dig.png",
+      "sha256": "42575f83fe16a77747ecbc8320420e99875edbca0180abd6a2d4fe3ef4737e6a",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-0d96abb2-b51e-461e-96fd-a6befe882fee.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Heel correctly grounded forwards, but same leg repeated in both action panels. Third panel must alternate.",
+          "generationFile": "exec-35730c00-5f00-426e-a086-f5aa5a59212f.png",
+          "sha256": "b9126ebe80eac7bd77efcf862aafc1b84a97b7c1d080872e551a3a1def4fc332"
+        }
+      ]
+    },
+    {
+      "id": "seated-heel-slide",
+      "status": "pass",
+      "observation": "Same heel travels forwards on floor and returns; other leg unchanged.",
+      "originalHoldReason": "Became seated march — need heel sliding on floor",
+      "originalRejectedSha256": "44175f33bf20d4cc74bfd28a82a58b2236ab658ec0eb9d2829d51d9b73535340",
+      "asset": "preview/fit-grub/v3/images/seated-heel-slide.png",
+      "sha256": "5885b25d465568c4194797e32f246b8fedd39a78243d51314f1e8e3e1d659a0b",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-4a873a59-904e-43e4-a7fa-a91aed849859.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "seated-leg-curl-machine",
+      "status": "pass",
+      "observation": "Thigh restraint stays above thighs; lower roller behind ankles moves down/back with knee flexion.",
+      "originalHoldReason": "STILL leg extension after retries — park; need dedicated curl-machine ref",
+      "originalRejectedSha256": "f463b32a1de46599c50dc43110f302baf93894310e4b2d45028ca055aeb910d0",
+      "asset": "preview/fit-grub/v3/images/seated-leg-curl-machine.png",
+      "sha256": "4ff4dc43197e71d194c87aa159aa4a6aa299756f3e5b874605a527d1acf96045",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-44ffb540-4d34-48f4-8b09-23ee15ff5bd3.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "seated-machine-leg-press",
+      "status": "pass",
+      "observation": "Consistent vertical footplate moves horizontally as knees extend; supported back and pelvis.",
+      "originalHoldReason": "QA: platform geometry + pose fail across panels — unreliable sequence; do not ship",
+      "originalRejectedSha256": "993ac8c0fa358d512da549c43f259329ca8e3f77556b1d4e6a7e64521147598f",
+      "asset": "preview/fit-grub/v3/images/seated-machine-leg-press.png",
+      "sha256": "1cfa5669bd7be2462cb255c3a993e0055eb205ffb684efa140463d672d2ee231",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-2f888aea-f329-4a6a-993d-a768691a8c0e.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "seated-toe-raise",
+      "status": "pass",
+      "observation": "Middle forefeet lift with heels grounded; outer panels soles down.",
+      "originalHoldReason": "Keeps becoming feet-off-floor lift or heel raise — need heels glued toes up",
+      "originalRejectedSha256": "0b0fce8ce7d5afa911758a97359da35c1d7ac9d4eb797313b44419ba93dde778",
+      "asset": "preview/fit-grub/v3/images/seated-toe-raise.png",
+      "sha256": "520916d51de3db02fa8dd6c1019dcc3c277fce01c85a3b33527d2b187fbe3fd7",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-2cf6cc24-c84f-4087-94f2-8312f87a5047.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "seated-torso-rotation",
+      "status": "pass",
+      "observation": "Upper torso turns in each direction while chair and pelvis remain forward.",
+      "originalHoldReason": "Weak: whole chair angles rather than torso rotating on fixed seat",
+      "originalRejectedSha256": "2729b7003b6437519eaa8492b67984986bc6022b2d4f9da2e4210862ef30882a",
+      "asset": "preview/fit-grub/v3/images/seated-torso-rotation.png",
+      "sha256": "9267af342475474cf6dd1ea10f8df5fa879662c4b46849e15728cb29509af3e5",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-a61a0b10-7b57-4b97-889c-b47c2487de9f.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "side-lying-open-book",
+      "status": "pass",
+      "observation": "Hands together, top arm to ceiling, then chest opens with stacked knees and pillow support.",
+      "originalHoldReason": "Literal book prop + elbow prop; want hands-together then upper arm open to ceiling on side",
+      "originalRejectedSha256": "8c289c0b80c5bf4bb2777176824d93ecac60b275442de2d3aa35bfa9de112b8c",
+      "asset": "preview/fit-grub/v3/images/side-lying-open-book.png",
+      "sha256": "b0641c3427be43d9e492071cd79663611e59e235b36c8fc76e8924745f3e0bf1",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-ad17ccb8-3dd2-4408-b3df-184f1098b5b4.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "sideways-walking",
+      "status": "pass",
+      "observation": "Front-facing sideways step widens then closes stance at displaced position; feet do not cross.",
+      "originalHoldReason": "Looks like forward walk in profile — need front-view lateral steps without crossing",
+      "originalRejectedSha256": "64324c912f0681d383e911efa46a772195c3111285aafd632c674e416c80b1c2",
+      "asset": "preview/fit-grub/v3/images/sideways-walking.png",
+      "sha256": "5e72045b389a6d68c0bf9cc1ef7817416274ec2e34ec2077dd2f5b2e51e75131",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-8160a247-e8fb-4fe8-a5f9-e42212a68711.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "standing-alternating-hamstring-curl",
+      "status": "pass",
+      "observation": "Targeted second pass clearly alternates the active leg; required support or kettlebell position preserved.",
+      "originalHoldReason": "Panels 2–3 same leg — need clear L then R heel curl",
+      "originalRejectedSha256": "e14d4347ac6276d0b2e3857fdbe6a3427be83e05c30ef7f42afb970a1ceeeb5d",
+      "asset": "preview/fit-grub/v3/images/standing-alternating-hamstring-curl.png",
+      "sha256": "8c5450bfd2b91b1304b1f36b11472ed091064363090027c848e02c57fa90a51b",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-238f8f0c-b5f2-4412-abeb-027a527bc981.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Same leg bends in both action panels; final must show other leg.",
+          "generationFile": "exec-ae31a746-d18b-4565-977f-500cdcd38e03.png",
+          "sha256": "d3f0f02812d07062d4648dffb50536d4f3f1392a902ad2362347dae2e04fcaef"
+        }
+      ]
+    },
+    {
+      "id": "standing-hamstring-curl",
+      "status": "pass",
+      "observation": "Knee flexes with thighs alongside each other; hands remain on support and do not grasp ankle.",
+      "originalHoldReason": "Looks like standing quad stretch holding ankle — need heel curl without grab",
+      "originalRejectedSha256": "f93c3d9ac41adf86e3e37c59992d7fe7637a8f64c8e0f23d678cb616e1d255f4",
+      "asset": "preview/fit-grub/v3/images/standing-hamstring-curl.png",
+      "sha256": "c2b48e758add8e9c65bc7cf9dc1197c1856a86a0d9352d6750c96d0847e55f37",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-3c9d4de9-e7b6-481d-8958-74ba93da3d1b.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "standing-shoulder-circles",
+      "status": "pass",
+      "observation": "Closer side view shows elevated/forward, retracted/down and protracted/down shoulder positions.",
+      "originalHoldReason": "Identical standing — need visible shoulder roll circles",
+      "originalRejectedSha256": "7bde3cc895350eb5d82a35e1594cae26ec15c7dec9603d89f0bf3dafe547ec1e",
+      "asset": "preview/fit-grub/v3/images/standing-shoulder-circles.png",
+      "sha256": "c009446255b6455bf76e14ece406ec23742ecb53383839c0ed6f357d58bb3b2d",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-1bca483f-647e-4e5d-acf2-891f84a0eeef.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Up/down shoulder elevation visible, but not circular roll; needs side view.",
+          "generationFile": "exec-87c44aba-a185-4674-a88b-51ba2cf477f0.png",
+          "sha256": "c003cc0df75ce5d3e977e6e30f3aba6939669629d475c8f04fdf1c1b1c71fc11"
+        }
+      ]
+    },
+    {
+      "id": "supine-heel-slide",
+      "status": "pass",
+      "observation": "Near heel extends along mat in sagittal plane then returns; opposite knee remains bent.",
+      "originalHoldReason": "knee fell outward / frog; need straight-plane heel slide",
+      "originalRejectedSha256": "323ee11ebd019a1eb7a1b43185458418cfb787bdc8f968411014743f1709684b",
+      "asset": "preview/fit-grub/v3/images/supine-heel-slide.png",
+      "sha256": "061fd2384ae6217334dd3fc52e57cc4a3711fdfa021e457ebcc24efdfa909023",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-cec582e6-20d2-48cd-b6b1-538f363ee002.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "supported-single-leg-calf-raise",
+      "status": "pass",
+      "observation": "Standing heel rises while forefoot stays planted, other leg unloaded and hand supported.",
+      "originalHoldReason": "Still standing leg curl not heel rise",
+      "originalRejectedSha256": "34d80342eeee8da14c4a127d37525d3de0c4f804e442b11ece90d96286e67a53",
+      "asset": "preview/fit-grub/v3/images/supported-single-leg-calf-raise.png",
+      "sha256": "8c5a91c0265d922a23867c645d1f18a9b43fdcfdbd5f55bc9058cbd32be0af58",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-4f653b70-a5df-4775-9acb-8ee46921f96e.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "supported-single-leg-stand",
+      "status": "pass",
+      "observation": "Support hand remains on counter and one foot clearly lifts then returns.",
+      "originalHoldReason": "no hand on counter; need light fingertip support + clear single-leg hold",
+      "originalRejectedSha256": "85b045bfb3bcfb42694f258fcc95ba904122b5e5505c8c37951114c59f79f617",
+      "asset": "preview/fit-grub/v3/images/supported-single-leg-stand.png",
+      "sha256": "cd7448d5c151f4edf5dbfa32abafefaa7d9d728ae58257713e84af32d5649a3f",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-68936bb7-ead9-49a5-a84c-efe4a0d0dfde.png",
+      "previousAttempts": []
+    },
+    {
+      "id": "supported-standing-heel-walk",
+      "status": "pass",
+      "observation": "Alternating leading legs with rail support; all three frames retain lifted forefeet and heel contact, including the final trailing shoe.",
+      "originalHoldReason": "partial heel walk; reinforce continuous heel walking toes up",
+      "originalRejectedSha256": "276fc16621e5abd6047b5053edefba4cc87682003bf3c2cd9b151871af08e3e1",
+      "asset": "preview/fit-grub/v3/images/supported-standing-heel-walk.png",
+      "sha256": "1adc488fc5913897989b5aa27e783fac40bfc2c7189d374a95c8c65d1978eca1",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-e2fdf44c-8761-47a3-86fa-3c60f6f8f5c4.png",
+      "previousAttempts": [
+        {
+          "status": "retry",
+          "observation": "Repeated same front foot and trailing sole flat; continuous heel-walking not shown.",
+          "generationFile": "exec-d1878432-c032-48ac-a019-62d1de91b521.png",
+          "sha256": "637d520d08517c4c72823161251c36fd192403d96313f14db67c18b7644f5174"
+        },
+        {
+          "status": "retry",
+          "observation": "Both forefeet now lifted, but same leading leg repeats in final two panels.",
+          "generationFile": "exec-b69b49d5-d725-4d36-b7e0-0f08a4877f0b.png",
+          "sha256": "f475bd90fec8896595fd2584d9f2293a0e4a1b9561bde3e7444a12bff4e912ed"
+        },
+        {
+          "status": "retry",
+          "observation": "Both forefeet now lifted, but same leading leg repeats in final two panels.",
+          "generationFile": "exec-0aae1129-2908-48a1-a7d0-ac2d7e4700c4.png",
+          "sha256": "f0569fc97b290bb734c74b48033b0a9be923182d57f27d3d0c59f8c88f78e500"
+        },
+        {
+          "status": "retry",
+          "observation": "Final frame trailing forefoot is planted instead of heel.",
+          "generationFile": "exec-3a056d4a-8e2c-4a04-8b52-32771aa3f528.png",
+          "sha256": "a4a82622c3016736e9a814cb9572f27128d238fd7cc4905c06425a92d59e60c2"
+        }
+      ]
+    },
+    {
+      "id": "wall-push-up",
+      "status": "pass",
+      "observation": "Elbow bend and chest approach visible only in middle panel; body aligned and feet grounded.",
+      "originalHoldReason": "QA: model keeps rendering straight arms in all panels — movement not demonstrated; do not ship until mid panel shows ~90° elbow bend",
+      "originalRejectedSha256": "6f0d0b7c479b0c88376598afa4bfa39f91cd9659a0bcc142486f7cd8c689de63",
+      "asset": "preview/fit-grub/v3/images/wall-push-up.png",
+      "sha256": "7e4e713bbca2fca6ce330cc07dda4eecba7c16ebcd7baad23d2a87f5ed89a9b0",
+      "width": 1672,
+      "height": 941,
+      "generationFile": "exec-3badd36f-3ac5-4bc1-beca-9f452e41f080.png",
+      "previousAttempts": []
+    }
+  ]
+}

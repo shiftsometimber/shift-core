@@ -1,0 +1,1 @@
+Gate 1 post-auth production proof trigger — 2026-08-13. No product behaviour change. Remove after evidence capture.

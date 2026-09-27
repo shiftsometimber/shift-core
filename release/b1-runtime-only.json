@@ -1,0 +1,33 @@
+{
+  "mode": "runtime-only",
+  "applicationCommit": "6053dac56653303ee1617d181b3005da577a1cae",
+  "baseCommit": "d5f650740bef17246b180b79617e3e94e43c02c1",
+  "reason": "My Orders display approved in PR #811 on current main. This pin covers only its exact reviewed application delta; subsequent release plumbing may change, while publication steps remain disabled.",
+  "approvedApplicationPaths": [
+    ".github/workflows/my-timber-orders-preview.yml",
+    "member-experience/chrome.mjs",
+    "member-experience/entry.mjs",
+    "member-experience/orders.mjs",
+    "member-experience/tests/orders.test.mjs",
+    "my-timber-final-source-gate.mjs",
+    "preview/stabilisation/orders-proof.mjs",
+    "preview/stabilisation/orders-provision.mjs",
+    "preview/stabilisation/orders-schema.sql",
+    "work/staging/worker.mjs"
+  ],
+  "previewEvidence": {
+    "sourceCommit": "fef4e2c06eaee685a08e23e15ad8234f3be82770",
+    "workflowRun": 36133785763,
+    "artifactId": 10861983959,
+    "sha256": "04873025b6b3ec99553d570135a5d06a375120148317c8d8b27e6d5e10e60073",
+    "fictionalAccounts": true,
+    "productionWrites": 0
+  },
+  "runtimeSchemaAdditions": [
+    "member_account_details",
+    "member_account_details_preserve_delivery",
+    "member_signup_alerts"
+  ],
+  "enforceApplicationPin": true,
+  "approvedScope": "my-timber-orders-display"
+}

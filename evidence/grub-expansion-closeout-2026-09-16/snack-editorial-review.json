@@ -1,0 +1,5501 @@
+{
+  "source_candidate_path": "evidence/grub-expansion-closeout-2026-09-16/grub-additive-candidate.json.gz",
+  "source_candidate_sha256": "fc9fbbe12e29ed175c3a742d086b1820778a0adcafc680b25a47225ac876eab8",
+  "review_type": "Independent AI editorial support review; not human acceptance, clinical approval, a taste test or publication authority.",
+  "reviewer": {
+    "id": "/root/commissioning_closeout",
+    "kind": "ai"
+  },
+  "reviewed_at": "2026-09-16T18:18:17.720943Z",
+  "scope_description": {
+    "population": "All 218 technically reviewable snack| candidates, excluding the separately assigned overnight-oat recipes.",
+    "method": "Actual ingredient and quantity variants, methods, equipment, allergens, nutrient estimates and ingredient identities, storage and food-safety text were reviewed in the original snapshot. All unchanged fields were compared against the frozen input; all corrected method patterns and final serving metadata were re-read.",
+    "serving_metadata": "Servings, meal type, prep/cook/rest/total time, estimated-time wording, food format, tags and taxonomy inspected. No claim of cooking or product-label verification.",
+    "nutrition": "Ingredient identity, quantity, plausible recipe-level estimates and declared canonical-proxy limitations reviewed. Does not claim laboratory validation; the separate full Decimal audit supplies arithmetic evidence."
+  },
+  "resolved_findings": [
+    {
+      "finding": "Final assembly came after the instruction to eat.",
+      "affected_recipes": 194,
+      "resolution": "All final flavour, yoghurt and chocolate steps now precede eating or refrigeration."
+    },
+    {
+      "finding": "Bean-dip methods did not explicitly use the measured lemon juice.",
+      "affected_recipes": 8,
+      "resolution": "The listed lemon juice is explicitly mixed with ready-cooked canned chickpeas and the measured savoury add-on."
+    },
+    {
+      "finding": "No-cook tuna pots did not state the required sweetcorn preparation.",
+      "affected_recipes": 8,
+      "resolution": "The method explicitly requires canned ready-to-eat sweetcorn, drained before weighing and kept chilled."
+    },
+    {
+      "finding": "Coffee and cherry variants benefited from more explicit preparation.",
+      "affected_recipes": 20,
+      "resolution": "Coffee methods specify measured water and cooling; cherry methods specify removal of stones and edible-fruit weight."
+    }
+  ],
+  "limitations": [
+    "Food-safety review checks the authored instructions for internal completeness; it is not clinical or professional certification.",
+    "The candidate retains draft status and its second-person human acceptance gate.",
+    "Equipment none is interpreted as no specialist cooking appliance, as in the existing snack taxonomy; ordinary utensils and a source of boiled water for the coffee variants remain described in the methods.",
+    "Taxonomy protein_focus and main_protein are inherited grouping hints rather than independently verified nutrition claims; displayed numeric nutrient estimates were reviewed."
+  ],
+  "counts": {
+    "total": 218,
+    "PASS": 218,
+    "FIX": 0
+  },
+  "decisions": [
+    {
+      "id": "industrial-snack-yoghurt-pot-classic",
+      "content_hash": "d249fa53bbc55c16660fb05a52efad29ae292ce0b146496be94a111a676f5fac",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-berry",
+      "content_hash": "fb4bee5ab2c6f5f9a3de86cbd0db3b9b4b6045d30b44254d27b6385fb1f87add",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-apple",
+      "content_hash": "68137699e45f5e1e6c77918f6b5b63c57c33a17699dedffb2cec9657f15d9f36",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-banana",
+      "content_hash": "f81072aaa949b6823f2728dd8b611c1fb40756b04c70db16e1fe26c92f7cfaa1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-cocoa",
+      "content_hash": "630024c338fe19e79cddc3adbf45c935673e6f3a7bdc3fb859a247b6dfa9e152",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-cinnamon",
+      "content_hash": "fc9ae3858780067d40bc4f72ace339c3a32973ea90de7c4a825d080157620ea6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-lemon",
+      "content_hash": "515ec37ab5816c071de8ff1f506c28bee5680f34bca88c0e0f015aa7d9d30715",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-yoghurt-pot-orange",
+      "content_hash": "c054efabee90334142d2db8394773b0f1c7ac734fcc4a7e2ffb41b590f2e1e99",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-classic",
+      "content_hash": "b13e9c18a9f4e85c47c63faa07e0f25e16e9da146b1f1654c8e3575c8f3f1731",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-berry",
+      "content_hash": "27a127f2a1ceef1aec286acbaa788363c77160caecee008bb210b8e98c3926ce",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-apple",
+      "content_hash": "57a55499eb3171b8aedb430ae3cdce9db9f556e9cb79362d64efea514dd1f621",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-banana",
+      "content_hash": "d679030f9d668687a13767141df6e2724cff2f229d4ca6243e394b89e4fe58ec",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-cocoa",
+      "content_hash": "70bc0dfb7dd36f51c6891dfb453e45e17a762b53af67f9b62cab4a4041d81aad",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-cinnamon",
+      "content_hash": "a4b576f381613a279e4c3b8acd2b1401a22a5b8aebe0eac1b0224e40c0b7a376",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-lemon",
+      "content_hash": "6fdf861b015be5a9236992ea0b94bd7657a8b39b214035d340a1f99f1fe97ea9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-cottage-cheese-pot-orange",
+      "content_hash": "48741ef96bbf4f02bea0a504387ee8d9c8eafa0b7eca3a940a4af1af72ded307",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-classic",
+      "content_hash": "bf3c3249b9c9eefb6f4f6425f2144c000ba97f6179f806c66fb8debf8968de26",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-berry",
+      "content_hash": "cbe8e91814af8baa85476ce46a57ecc3d0ecec26cd08d156861b30750dbe8278",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-apple",
+      "content_hash": "2d712b738df6ee31d81fbfc4afd67bbfac87e5e502e02713d2f13358324904af",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-banana",
+      "content_hash": "8da3aa3f07234f127b1ca87e37b0f8308863b26554493036da5ac0a206f4e3c6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-cocoa",
+      "content_hash": "eb579ec435f41ab7c9b70102dc740d2796eb5a4fcacd433af651fa87a3bc7292",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-cinnamon",
+      "content_hash": "281afa62d4c21db5e92b7e6dc572b3b3f233311de0d4d2f610044e152f087822",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-lemon",
+      "content_hash": "b44f201880f03ee16b5f26c935c9fe00083c8f02e50b0b6bbb8edafb9c04d3af",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-apple-protein-snack-orange",
+      "content_hash": "9619811e8d5211c2da950cdafddf0054fce09cb3b7b6edf759a003511a93e16f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-classic",
+      "content_hash": "60cd23ea1893ce3efc9c90633d8b687bcdbea38504eb5ce2cfd78f03ba48c3b5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-berry",
+      "content_hash": "013a5176bcb3c479639cc46363604cd0c14e9f2a9acbe53527624038d37b4b7e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-apple",
+      "content_hash": "91953aa12efa069606377456cd7e2772c66e316319f91aa20f0b8892ad59904d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-banana",
+      "content_hash": "c633b47a8bc21b794a8f344644569b235f941c396f3e90818682cc7786678dc3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-cocoa",
+      "content_hash": "3e1dbb0c6c8931b4182eb243c819c121812b592f6564e21fb2eacd4b13ebadf3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-cinnamon",
+      "content_hash": "fba9997c0865ccf4920b750a33372a5a8c90a10ab6f133bccbb9e443e086afd2",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-lemon",
+      "content_hash": "0a75ecfcc552d9dd1bbce9b63219ded47a9327da7e2273f94b5877fa001a7014",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-egg-snack-box-orange",
+      "content_hash": "e904bb0ecd5739e688029964b5a50a97ebb00f2591774045a75e29f408c4f9de",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-classic",
+      "content_hash": "c07f58b428d33f7810b4de4b88c3ea70786f202de8401926953cfd38dc6230ca",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-berry",
+      "content_hash": "720ffd6ff8d7cf77fa49c5565e39ebd0111308ef98b976e03d409e7c623692c1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-apple",
+      "content_hash": "2dc2b41057d071bfde536e62d9f4608fbbab1509d0456f1a16e44e9b69669a99",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-banana",
+      "content_hash": "a416df1711ac7665ebd9a802565d84b05e3405fcbce4a87a47d2359c2e3f6b34",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-cocoa",
+      "content_hash": "ccc67892e34256e7f50424114743fa4344003912b4883286cdd475f9fbb212d8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-cinnamon",
+      "content_hash": "6f3498f58a448b0fa7b8acaabd07fca0a096188c95f4879e63d7865b776c26e9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-lemon",
+      "content_hash": "e19ad329dee251d85fc1f3b64dfbbdf238a6d190f9d4d59214a158e927f85f3b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-bean-dip-box-orange",
+      "content_hash": "c8db764e420d7f6e4cc7554a8e123d04a8400e8e81e80f285461474521ec5678",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-classic",
+      "content_hash": "dec9488bc0c25b22238a9f2704450e1128c5420d3d1f437eedeff64f322ff8a9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-berry",
+      "content_hash": "9f66b3ed746c9e9ad19a50f39280d39a2078d7d06b40e7fe9c2c673523b89d6c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-apple",
+      "content_hash": "5d2fe5097a41fb32381cb386a137b2dbada0353569c41ab0c4285ebfa39e5537",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-banana",
+      "content_hash": "b30a7915a740d8114f68ef553fa70ef345a760af299cc3693be67168de1e2850",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-cocoa",
+      "content_hash": "203a1eb0bae60fb2427a85eb2f80d686107fe8fbffadcac493fa68ad2d266ba8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-cinnamon",
+      "content_hash": "02b177f3da65bff945ba60b1b9905d8d7fced416c4473c380812005e3d6502fe",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-lemon",
+      "content_hash": "023016aba13a29cc64e96ea41cd8c601b5ed98e4a9472bae963db45088973c84",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-snack-tuna-snack-pot-orange",
+      "content_hash": "e58e754fb08be71e2dc148b7fcd9c26d0b4f8727828615958e61437a5144b3c6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-classic-greek-yoghurt",
+      "content_hash": "93c6e0766f96c22d68cd380b383ce57d16572456555fc66eaab210380b58927a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-classic-cottage-cheese",
+      "content_hash": "c88248f36c75295142444e68c6b641e9b9632fb9dfee20ab9e37387a8b16d7de",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-classic-protein-pudding",
+      "content_hash": "0f09a4536b2bacc9dfab790a6b0dae627a25bf4d0bab787bb340fb017063300d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-classic-fruit-crunch",
+      "content_hash": "c8054b11d73eb73567783596c2703e07599ddbc3255a192572fe96cf20e16a5e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-classic-savory-box",
+      "content_hash": "6f7fc711d9172525e4534ddb7f7355a9376706590faaffc5a2f012d65d452834",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-berry-greek-yoghurt",
+      "content_hash": "662dc3dae88016bf3dacb66ef86c90c1328e64dcbc4e7a28eebf3bd430a3370e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-berry-cottage-cheese",
+      "content_hash": "be17928046ba94decb92fe26058c8b075fbb795ffc8dbffe3c06c3affdb6f3ad",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-berry-protein-pudding",
+      "content_hash": "39efca834a74f9dc8e99f604f78609b82a25403064a13c19def54c5b415458b3",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-berry-fruit-crunch",
+      "content_hash": "22c8f98eabf5d0be52ef31ee73292f7d7d6d058187911fcca45ef06f1663493c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-berry-savory-box",
+      "content_hash": "f993e3766e7b926de713352486657c329cc0a6c5d23455fe0a8c32216bd84595",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-apple-greek-yoghurt",
+      "content_hash": "753f1af1ab455d6c1f882c05b718cd41d2ced46dacb417da5943a7971bfd0f35",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-apple-cottage-cheese",
+      "content_hash": "2564d9b9d0ad05065a369db25db055da783c9db3c017e11a21fa0ad4c11bf8c0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-apple-protein-pudding",
+      "content_hash": "aee823af79a5352e4098a2c3db48f9b7cc4ea21ec5761ac5f2a57e09e1a51cff",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-apple-fruit-crunch",
+      "content_hash": "5e42744264da456b559891a17caa38da7a6a5033310b50dc5a23eee1a60e41de",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-apple-savory-box",
+      "content_hash": "30c75819acf5a4d09e37b1ee95ecc8f715224a9e6cd54f2117d412ec97525f89",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-banana-greek-yoghurt",
+      "content_hash": "c84f0ac7fcda5015864311001c8f0a9cc0d35730f9b025f2e6ae73903e3b78dd",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-banana-cottage-cheese",
+      "content_hash": "0ede38db349f023ff89e10cb55ede8af2f299d571090a131b98b63c9cee583cd",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-banana-protein-pudding",
+      "content_hash": "44d87724f8200710f753916bc165261f5e943df0d7d109a31ddfdac5ba42b01e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-banana-fruit-crunch",
+      "content_hash": "cd80a765e234fac01318bcf5857fae1e4cc60bfbb1df17ad286ce75385d3964a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-banana-savory-box",
+      "content_hash": "3b00a0debdc8be22377afd583df838ce6344c171159d78c6766d3604c2f3281a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-chocolate-greek-yoghurt",
+      "content_hash": "59f3a1dfb84c118e3d92d06596aff3e16eceb20a78a5b39ed240a9b0df135a8b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-chocolate-cottage-cheese",
+      "content_hash": "348d535c543813f374345cfc9fe6b7041264c3e20eeced597d5744b869004d3b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-chocolate-protein-pudding",
+      "content_hash": "c6e0390245b5c22e0b655b0f84933d05c64ea7ce54e49c2b5c2207e81e1f1017",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-chocolate-fruit-crunch",
+      "content_hash": "da01c48e42f60e16c5c127156c70e2b0c3d528e8659e40d7d16495489c29c943",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-chocolate-savory-box",
+      "content_hash": "380855ccf13797b2639e4efd2f9a59b271ab0f5a48e009b5c77678edd630c166",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-peanut-greek-yoghurt",
+      "content_hash": "b371f72c644f10d8b120180adbb062b854ed86e4d32cab139789a7e8fe3f6abb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-peanut-cottage-cheese",
+      "content_hash": "68123c362fdc29d4475b5a3ce2283a6932c40498e578d87bfd14e4b6a8bc114c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-peanut-protein-pudding",
+      "content_hash": "053f4aecf0f5c4e86113435f31c9d87af4a129e1939f67ea7a2d9f1892a54886",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-peanut-fruit-crunch",
+      "content_hash": "748234f4db722da1768e35795d8589bea34ea42751c34f58c74c0833a2d9664a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-peanut-savory-box",
+      "content_hash": "0c26f5a8ae4feb78adc061d1ce287ee958f93de32f37bf9477a0bb91e72a4c2e",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-coffee-greek-yoghurt",
+      "content_hash": "4aedeb8dccb8dce05ddc2c3cb840ae0d707ddb383950c9162288b2673e906150",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-coffee-cottage-cheese",
+      "content_hash": "ba5340861597a6e7fc9f9084de6ec7dca810b06e40c5cab4dd48e888107c76cb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-coffee-protein-pudding",
+      "content_hash": "013976f519a6132f8e91073b63ce6ead96917f85b7b340e7f7ae812a4e1a6bbe",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-coffee-fruit-crunch",
+      "content_hash": "56ca84949e08f32966e95da49b2b721d128157db8ff88cbcf6298a31f7be471a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-coffee-savory-box",
+      "content_hash": "9744361e6a2b317aba4c3f34e0cdfd6775b2a1335bd15a9c4cd2f52f78f8dafb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-lemon-greek-yoghurt",
+      "content_hash": "72270c74a86f580f36111ca4d11a56adee0d857523b92ba19eae186d2d0ca107",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-lemon-cottage-cheese",
+      "content_hash": "61729790525021a9d037d090f81bd2aacede6db76b09943fa3ccb4daf9bf232b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-lemon-protein-pudding",
+      "content_hash": "50203e0c5a20b527dcf2b93d9f90770401530a97329cf407f8fe4d9820384914",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-lemon-fruit-crunch",
+      "content_hash": "22168b09ca2f49176fa4b20300987e5afda247f9cef5f7dae1b00b42b2144f2a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-lemon-savory-box",
+      "content_hash": "e99a353d862802242a82d49680f663cec40576f04125c535668559012b4e6db5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-orange-greek-yoghurt",
+      "content_hash": "eacd27367a9481bc22aaf39fd8ad65a5a218f8f421abfe8860ea74f72c71fcde",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-orange-cottage-cheese",
+      "content_hash": "0ecbed0470297df37faa41754ef9cfe66095cdbb8b955116b6433ef16384fecb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-orange-protein-pudding",
+      "content_hash": "c39f3f16cfaf83a3cc92742c33cf9d6b1005bef277eb0ed764bc7536c760a465",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-orange-fruit-crunch",
+      "content_hash": "b4a159b48b353bfc259a68a5e57382908ddfbf3c94fa83bbb0e843e8a65c87de",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-orange-savory-box",
+      "content_hash": "ff99f502164593e4e6c031c17018750adc28fd022da0e714d3114f88e97e42d7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-caramel-greek-yoghurt",
+      "content_hash": "3a1f003c93ca3c370e88d807a09a6cf5b2ac178ec90d5a21cb7434441ff1aa52",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-caramel-cottage-cheese",
+      "content_hash": "ca1155d0b5fa74427c80d706db3010d8c9dd2c66bb96236a800c71340dbd20f6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-caramel-protein-pudding",
+      "content_hash": "145e0019100726a17cae6f529d0b3380bb4b52d3c69b09a761d4bffd3d36395f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-caramel-fruit-crunch",
+      "content_hash": "6f4ca2683a8f35f3f3b631d3483852ab4da6fcebc798eb44f9c4709091fef915",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-caramel-savory-box",
+      "content_hash": "c1af2549a6b2186657f967a27f240b836836e77b43d72bfc7df6d7679beeb6c6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cherry-greek-yoghurt",
+      "content_hash": "4b5da6742656cd38ca9183aa1289de158a5bfa8b698744917cae09beae3a4e2f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cherry-cottage-cheese",
+      "content_hash": "66bf6161d112a3110666acd951166414c422df4314951cbdad719307148defb6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cherry-protein-pudding",
+      "content_hash": "e40d9c4d050b202e3120932c30f80ddf1c587c49b9f2d6a2f6727636696eae48",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cherry-fruit-crunch",
+      "content_hash": "2e731d95de76025ae64f54066ab9c9e19644fea7329bbf338b168f61c3e90228",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cherry-savory-box",
+      "content_hash": "18abfe46273b0f67ef0eb3ec836533fcf474a80b51b803cba4ea89285c2d356a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-mango-greek-yoghurt",
+      "content_hash": "6775f62bfac0f65d4f590e959fab744449ed2e49e351a4bebbb4a62954682113",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-mango-cottage-cheese",
+      "content_hash": "c5f427caa5e3c51877d82afc5cf185c1b88608b2306d64e332e9a1add9d2ac14",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-mango-protein-pudding",
+      "content_hash": "8141d937ceab4ee722e07b44645d29c47cb68ed8cda68893862c633fe47f302b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-mango-fruit-crunch",
+      "content_hash": "b420a0d5912eea6483aecf6d2bfe1b50c1c2bc5a699da63b604f1a0a38697acf",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-mango-savory-box",
+      "content_hash": "a9f2b0e5cf293717065fd328840b7b5a898c9c19a323729663b271bae8af4ab0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-pineapple-greek-yoghurt",
+      "content_hash": "90d7294c68a5666fb8dad75b16c163a641ee80062818bae4bab51b530559d170",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-pineapple-cottage-cheese",
+      "content_hash": "d42fd2ba526410cbcecc61e4b9a161e09df42cc5937d5dbefe4da832f9f483a4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-pineapple-protein-pudding",
+      "content_hash": "e48fba5fb8bbb63990c769e14bc8ad6b36e67c57ca4a757f12f91b6b3354ce94",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-pineapple-fruit-crunch",
+      "content_hash": "c799968bc6958c3a00a01ab4605941ab74b5e9a598872f563fb79c8db432c473",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-pineapple-savory-box",
+      "content_hash": "ac3d81cdebdedb83a97b946730e65c343d30e5675c24b2d34e64ece5a9efca40",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-biscoff-style-greek-yoghurt",
+      "content_hash": "dfec098decbbb7fbbfffef608ecd6228391ab0c44b5fc63bcccca4e25442d71d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-biscoff-style-cottage-cheese",
+      "content_hash": "eddedc9407bc18bdd3c5f0d6fb258c2ec367d397bd598d812353aa50bdd22f9c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-biscoff-style-protein-pudding",
+      "content_hash": "652f7e05c137f9d7c9eb8a26e09610633fd575d51e633e51e79f88b80cc8d715",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-biscoff-style-fruit-crunch",
+      "content_hash": "029b14c399890c25c2cf28d776f368a5621ebf182b672940a172e0efca7df2f6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-biscoff-style-savory-box",
+      "content_hash": "ad2162859097c8bd7f3dbfca54091c93e03e3f512bdb258acad3661ef8e7cef5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cheesecake-style-greek-yoghurt",
+      "content_hash": "06ebd7cd911a2e2601cc0499b410aba07610afaaa743dc72dfa0cece265fd73d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cheesecake-style-cottage-cheese",
+      "content_hash": "965c6ea4aa30ae7d16928f834d76a9b5b271926d521c67c11607c14f5ce8851f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cheesecake-style-protein-pudding",
+      "content_hash": "244153be81364d68b5d5776af1d636b0392b9009cace22985d3147469199c686",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cheesecake-style-fruit-crunch",
+      "content_hash": "9cfa69007d8240636105fba52b8ed799326a367b9ebe62796656936335a3b4df",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-cheesecake-style-savory-box",
+      "content_hash": "779d08620165be29c9363fdc08d383e09f3e2e29f0bd61a6547d434da55de67c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-crunch-greek-yoghurt",
+      "content_hash": "c990ae6a0e5882d3d18922a580d47542e67af4149e039be46690e869a491a531",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-crunch-cottage-cheese",
+      "content_hash": "7c9e0eb0375ecbb64365f6e2f43d29ad59160768edb0092b2d2333ebc4272fad",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-crunch-protein-pudding",
+      "content_hash": "e9d8af83d78023f3fc55a97b723bffe04e5837c5e6363de8450f03d62d04c4f6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-crunch-fruit-crunch",
+      "content_hash": "507373f5382874c90e0eb88ef89cfddf3e0add55bbc352bc16cd971185dc9957",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-crunch-savory-box",
+      "content_hash": "bac6dbf60a5fdfe72bf1e134f5e8a1fd99d02daf56e8fd1425f04ed90c97af62",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-weekend-treat-greek-yoghurt",
+      "content_hash": "b2f1677cb585c926b6fe62ed39655f4b300f5b3c634dbd8b7dec0b572396f9a8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-weekend-treat-cottage-cheese",
+      "content_hash": "fe9ef83729c020623775b053117fe46ce2ca85b280d8aadfdef3e225ff5eac5c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-weekend-treat-protein-pudding",
+      "content_hash": "e43398495579acd72214d58aacc45df76f86c836f2f5c85a70d9154a4deb046a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-weekend-treat-fruit-crunch",
+      "content_hash": "c974cdd4e086638293a24046b906dd66aa19db2e641f20342f787bd0059cf1c4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-dessert-pot-weekend-treat-savory-box",
+      "content_hash": "55fba42413a432b9af60958796cfab3397c1810d84644760ca6f21bab056827b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-classic-greek-yoghurt",
+      "content_hash": "c3140ce41cf2b91af87ef7cb478cea34f833e7ca424b458f89a651caae01b89c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-classic-cottage-cheese",
+      "content_hash": "229a1d16162b0a8461fce04df8bdb1bc67009ddad09b762c737954d14f753c30",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-classic-protein-pudding",
+      "content_hash": "74e4dcdec73ee685563ef338f44dcf20a5456a1b4e13019da576fc4a40caca29",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-classic-fruit-crunch",
+      "content_hash": "12809161c9ff983726b5daced441441ae434253524ea6f95c1a00b99dc3d0db5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-classic-savory-box",
+      "content_hash": "ad3fc0251b3bb20a4ba8170e41b4012a6cd576f13206b3b2d7bf412b359bdfc0",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-berry-greek-yoghurt",
+      "content_hash": "f09b0514c9f0aa1b9bedfb0f76bdf8a443f576bb43e942a1bf7222d0172feba1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-berry-cottage-cheese",
+      "content_hash": "9ef7caf8593a52449c6df331441c3c98f9edff4d3dc21c4b1cb2cc362db2e87f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-berry-protein-pudding",
+      "content_hash": "225dee6afa341f984e109a53598f05d0cf5d9c157b02c33cd43f0695e1ddab6a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-berry-fruit-crunch",
+      "content_hash": "0f976e85b7e1bf7132b08deed0e199bcef2a050c0f6bacd5d566f69cb2e10e51",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-berry-savory-box",
+      "content_hash": "e19464f0fa72a4eed51ca1651b15c67ca438ed7221310ed30c9f24322797bc9b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-apple-greek-yoghurt",
+      "content_hash": "0d0870c4c6a13f5f342d98dba35bdafea03c31588dee855928b74151519d3970",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-apple-cottage-cheese",
+      "content_hash": "9ed40e5a9c4e3f72bf2ee23b26bdb57a0c65d89be660f74d1adec77273b9e6be",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-apple-protein-pudding",
+      "content_hash": "03f07c6a9c528744c5ff5ca4a85628ee361dd0db9db9df9f743f6cedd9b20331",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-apple-fruit-crunch",
+      "content_hash": "4599663db29bb3463af7e7af676606cca50513347a6bf9a8bc38d8df433c871a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-apple-savory-box",
+      "content_hash": "48b6d3ca5074e03d652b193e3538390bc6853620119cd4cb5f866c7ac3382ab5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-banana-greek-yoghurt",
+      "content_hash": "721a760333f07ea74f05b52309c493bc5ed7c30e18447d97a49a74fe7cce8dae",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-banana-cottage-cheese",
+      "content_hash": "57dddb199ef61a0f232a73bfd4d98ce6afe88b772fc48c895cb86391fa5a24a5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-banana-protein-pudding",
+      "content_hash": "e353b0d0985711b836322c11182c798a92acfee4a499e3f09ea02089443bf92c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-banana-fruit-crunch",
+      "content_hash": "0cc0f22417ed7ef5d90382072863245c3beb5052bf768fd32c2df06f1fda72bb",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-banana-savory-box",
+      "content_hash": "a3fa7dba5a5dc3e46b9abf00b5842d0de5c2f796cdeaa5e81e3aa3153b7bf481",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-chocolate-greek-yoghurt",
+      "content_hash": "6b87725bd1f964bd006dd00503f3396e884c4fd7fccbf058f988bf395c827b2c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-chocolate-cottage-cheese",
+      "content_hash": "b5f948cdf878f3a88ba94dcacc5df9b6d4f55d76e2eae810e88e215398355127",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-chocolate-protein-pudding",
+      "content_hash": "9274e11a8d9d86c70eb45458c8043122211035b645b865b3a4b8784aa9c06d6b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-chocolate-fruit-crunch",
+      "content_hash": "ae1341f2157dcfb3c2da77e02b0b91805d1740c277eb833d1968b3544c879ed4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-chocolate-savory-box",
+      "content_hash": "bef002f32f932f16ee5057505c236a16d6ad74f75c288cbbdca34b632aa0524d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-peanut-greek-yoghurt",
+      "content_hash": "f1863efa2761c25b6b4ed163da1e9c1d21809b779afc14ba61f37689e19282fd",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-peanut-cottage-cheese",
+      "content_hash": "e364009f5de7ba7ef04ac2e0f594210237997aabd566042c232f5ab743011f28",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-peanut-protein-pudding",
+      "content_hash": "eea70db54fb17a2b2fccfbf7bdff89dfabd692019d191cde67c950f11901ae2c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-peanut-fruit-crunch",
+      "content_hash": "9f33e290dcd3d609b7db6d79c098edc85ca5fc1cc963e9b60957e0bc1abfdee6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-peanut-savory-box",
+      "content_hash": "31266b06ebebe94f493a9e3ec3292965ff06db1bea098ca101e5917a4a90613a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-coffee-greek-yoghurt",
+      "content_hash": "5d880d61ed638eb11446a3b2ac1025839fc1ceac3e94079fa49a202fb8b3e59b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-coffee-cottage-cheese",
+      "content_hash": "1d0a5abfff369fcc59c805a886e763687c838e2dc074ce343f37108b49ccfbc6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-coffee-protein-pudding",
+      "content_hash": "a59526cdf0035d38c6bc435d0eb4f06c7bf454dc1c9e1c4b44d5bcf146578b42",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-coffee-fruit-crunch",
+      "content_hash": "109f6d013fa0f1b7ec27bfa4aa28239429b6dd9507feb9287ba413ef0ef39856",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-coffee-savory-box",
+      "content_hash": "3814c55833a9e0abb4df31f01ac336acb6e0805c6a7690a4be21b6b11797ddc1",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-lemon-greek-yoghurt",
+      "content_hash": "a953f9051b1738b0a24868c9c090c1e0886972c4c1eda9f9180cda24948742f5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-lemon-cottage-cheese",
+      "content_hash": "086eee590d5a38d3e55657dff31ca96f60bacba447a57beba4353afe0b4915d9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-lemon-protein-pudding",
+      "content_hash": "ba84918e484ef5e8b36665db15fa9b70eb8058a670b055806e4aee4992b5e95b",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-lemon-fruit-crunch",
+      "content_hash": "567ddff6b659914581aadbe74751fb3ac2e81bebaec949d50820be7e56fdee04",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-lemon-savory-box",
+      "content_hash": "06e543d5e2b15fa3ae9ab0468f971f0e4f97d7f5497e373f1ccc0a0b2f378f29",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-orange-greek-yoghurt",
+      "content_hash": "8d4212b8f58466ca394b389885e1cf7490f3d17550dbf0fd866232af9798cb5d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-orange-cottage-cheese",
+      "content_hash": "7d961bd100413f49f1767c2679cb7680dbb7b14ca0b1392fafe2b7692d840ded",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-orange-protein-pudding",
+      "content_hash": "031cf25b41cdcb0966fe85f3e00c9588be8d899b04cfc1f44a95e4c342c1dd57",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-orange-fruit-crunch",
+      "content_hash": "0c82ca51dcc36a7e6d03f51f700296ed28ebd9a141b60c06b5c0d788f08e20b4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-orange-savory-box",
+      "content_hash": "9c1c4bd8cca03e84f16ff5f15ed17cb8e163ffbdb5547460d057902678e62294",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-caramel-greek-yoghurt",
+      "content_hash": "1056a42e1af068c03de4493c20c6b3048e827fd8f359800e5cb6766f9d1773e8",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-caramel-cottage-cheese",
+      "content_hash": "76d71c988eeab16aec272f469f9d4346044df15b43844eee6e00244fc4f6273f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-caramel-protein-pudding",
+      "content_hash": "2b71574eacb12750b89ca4c94cde2bce38de1f82e30489e035ac90f2fdf81f78",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-caramel-fruit-crunch",
+      "content_hash": "9142697799e37757be846e994446359177fe405f394728d471721095ff949eb6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-caramel-savory-box",
+      "content_hash": "6c8404769b8b6243caf33daa8abdfe9895736a47eaf4e358f039db6164a8d4f2",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cherry-greek-yoghurt",
+      "content_hash": "2df558445aeffd82418e045f39686960beca77c92b26db68b26bc47d41c36628",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cherry-cottage-cheese",
+      "content_hash": "5934e50de7b030cf42ab4ce888d3be4dc1b4580429d514af97657b5c91dd648a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cherry-protein-pudding",
+      "content_hash": "1d938f1f8d80f06e6e854bc1c280da256394b26929ca3fcca539c4507e7dbb2c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cherry-fruit-crunch",
+      "content_hash": "5b5ecd42801dc1c1343d74555112bf1d2f82615b1e46e4e886518c42d0953d97",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cherry-savory-box",
+      "content_hash": "65e00f614d99a55d0ce5dbc3b52d0c4dbffc11cb9638fb1360c58b236965960f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-mango-greek-yoghurt",
+      "content_hash": "87de06df393c4267a15aae8505aecf7737df2b70fdf5b6ace9d5e878d73c05b6",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-mango-cottage-cheese",
+      "content_hash": "1327f9c1b0ea2dddc715ff867ccb40ce2c3a7ab8f515ef641322b83d00a29d89",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-mango-protein-pudding",
+      "content_hash": "bd2831cd844f9a8fb69e20c061343db89c6404e7b025e41798c67844fcd8e5bc",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-mango-fruit-crunch",
+      "content_hash": "5ccc22d9a2e07750532438c30ce43b64a3800e699d510ce603cb1a433b67f57f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-mango-savory-box",
+      "content_hash": "91f6fdfb1c46f9c32690a75a846ed45b7b3c270bb57ca32a73782c1d3ce02a39",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-pineapple-greek-yoghurt",
+      "content_hash": "d2b0d5dc2d7a9ce753c96a7275bb6c66721897a6002110b5a25ec2cc3fe17c67",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-pineapple-cottage-cheese",
+      "content_hash": "598bbe33fe791efa5f20c1f5aa7f4274d065c28e530029df48c2dc84f21142d4",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-pineapple-protein-pudding",
+      "content_hash": "97e7b1528fbb657e331de1257a5b771fd05a7b38ae6cc70f8ea3bcb275991ca7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-pineapple-fruit-crunch",
+      "content_hash": "c28f81d46aae4b248e4260355faa4f3792afd3a16b6dbfab8c14e2ccb485ad98",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-pineapple-savory-box",
+      "content_hash": "52513ebd7371eb45bcb84b5393f86f33ba9922f682c5fa237768a9d61f835c8c",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-biscoff-style-greek-yoghurt",
+      "content_hash": "d9833cb1e46020ec71664da8e3c7c3ce5daa35c2593b1ca201150b519a371526",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-biscoff-style-cottage-cheese",
+      "content_hash": "3c136b4455a01adffc2a3cddc7d0cce434bb333ac04c7258f36396982dfd0200",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-biscoff-style-protein-pudding",
+      "content_hash": "812901f20e33ab32744bbb1ffd59b6987c0f196278a70585169c9f33cfed5b6a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-biscoff-style-fruit-crunch",
+      "content_hash": "22ee44c68971851b95a54bec1bdf873bae61401bcd5fa0aaccc7a14eabbfcdc9",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-biscoff-style-savory-box",
+      "content_hash": "6fad1e443ecadaf1b4ecda6a62a81d4aa4d886f5eda669e11b4f049a17b4f858",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cheesecake-style-greek-yoghurt",
+      "content_hash": "c9e0af49244b4e599565df2c5a76c9a6e5440084fadf1e4552831498aa3bfd93",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cheesecake-style-cottage-cheese",
+      "content_hash": "1d94ef1d39bf59775064be40bd300a3e0aa3ea2eea957377616adc923ce9d91a",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cheesecake-style-protein-pudding",
+      "content_hash": "2f20f92a710cc434aabc2bb6bcbe430d1ff6a4656d987882fd083f41671994ac",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cheesecake-style-fruit-crunch",
+      "content_hash": "00f6ccb32fa769f540dc7129d6cdffa30eddc50c0248ecad46c2ff2228e7710f",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-cheesecake-style-savory-box",
+      "content_hash": "9e980058fe6bc525f6fb4c30fdad7130ab926dafc88d5d28ee7cd6f6d1995949",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-crunch-greek-yoghurt",
+      "content_hash": "87bc30a016da26954293b15a5f3598dc8a9853290606d5fcf5a29bd455100ff7",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-crunch-cottage-cheese",
+      "content_hash": "445930dbe982e937c627eb46f5360d255762dd1b7726eed9cfb098ec27b88bee",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-crunch-protein-pudding",
+      "content_hash": "460246298b23a69122167f5648d4b2e8a43fde0297b094da78fcdc361e668224",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-crunch-fruit-crunch",
+      "content_hash": "f357cc08306186ebaac11e0ee452c5d0b845031e921d70a5450a169450e83629",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-crunch-savory-box",
+      "content_hash": "a756cd11b1474fb3800cef131845db1e60888cc02bca15a0ecab9f6228f417e5",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-weekend-treat-greek-yoghurt",
+      "content_hash": "95e1647d10a028a3c123f327ee83fb1799012592febde7cf226611ca7f6fd52d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-weekend-treat-cottage-cheese",
+      "content_hash": "46685052504a6c9974925f36c2c00340509cac198a36952a4813893ea221386d",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-weekend-treat-protein-pudding",
+      "content_hash": "334441e584d5a86d13de33f47dfce1a6dfd4ba88204573e7a72e84dd3f1db251",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-weekend-treat-fruit-crunch",
+      "content_hash": "60b314107f5c0e57df2de77c7f76cffc8cd849382d619dfa13450b5bf5acdd20",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    },
+    {
+      "id": "industrial-v4-big-feed-dessert-weekend-treat-savory-box",
+      "content_hash": "1e72be2df59f3705c2e983f3639cadbcdb8e0acbefd5fb95e2594348261bed02",
+      "decision": "PASS",
+      "reviewer": {
+        "id": "/root/commissioning_closeout",
+        "kind": "ai"
+      },
+      "author_ids": [
+        "/root/grub_closeout"
+      ],
+      "reviewed_at": "2026-09-16T18:18:17.720943Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata"
+      ],
+      "findings": []
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+name: Fit Premium Candidate Gate
+on:
+  pull_request:
+    paths:
+      - 'assets/fit/premium/**'
+      - 'content/fit/premium-v1-render-contracts.json'
+      - 'content/fit/premium-visual-production-v1.json'
+      - 'fit-premium-generate-all.mjs'
+      - 'fit-premium-generate-v3.mjs'
+      - 'fit-premium-movement-geometry-v3.mjs'
+      - 'fit-premium-candidate-gate.mjs'
+      - '.github/workflows/fit-premium-candidate-gate.yml'
+permissions:
+  contents: read
+jobs:
+  technical-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Regenerate current premium candidates from authoritative contracts
+        run: node fit-premium-generate-all.mjs
+      - name: Technical candidate gate
+        run: node fit-premium-candidate-gate.mjs
+      - name: Retain regenerated premium candidate source
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fit-premium-regenerated-candidates
+          path: |
+            assets/fit/premium
+            content/fit/premium-visual-production-v1.json
+          if-no-files-found: error
+          retention-days: 30

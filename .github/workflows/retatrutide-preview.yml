@@ -1,0 +1,103 @@
+name: Retatrutide informational preview and evidence
+on:
+  push:
+    branches: [seo/retatrutide-evidence-20260923]
+    paths:
+      - '.github/workflows/retatrutide-preview.yml'
+      - 'editorial/retatrutide/**'
+permissions:
+  contents: read
+concurrency:
+  group: retatrutide-information-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: c733bf03834d93154a51a0db6ef05dbebb3c7cb3
+          path: pages-authority
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Preserve the exact implementation in the evidence pack
+        run: |
+          mkdir -p retatrutide-proof/implementation
+          cp editorial/retatrutide/* retatrutide-proof/implementation/
+          cp .github/workflows/retatrutide-preview.yml retatrutide-proof/implementation/
+          printf '%s\n' "$GITHUB_SHA" > retatrutide-proof/commit.txt
+      - name: Reproduce the exact currently deployed Pages master
+        working-directory: pages-authority
+        run: |
+          python3 release/public-pages-20260911/prepare-start-here.py
+          python3 release/public-pages-20260911/prepare-work-public.py
+          python3 release/header-20260912/prepare-header.py
+      - name: Apply only the guide, two discovery links and required integrity metadata
+        run: python3 editorial/retatrutide/build-preview.py --pages-root pages-authority --out retatrutide-proof
+      - name: Retain all 877 source checks and existing SEO/body/fingerprint gates
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+      - name: Install the existing locked deployment toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Deploy only a separate Pages preview branch
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(python3 -c 'import json; print(json.load(open("retatrutide-proof/control.json"))["mode"])')" = preview
+          PREVIEW_BRANCH=seo-retatrutide-20260923
+          test "$PREVIEW_BRANCH" != main
+          mkdir -p "$RUNNER_TEMP/reta-pages-command"
+          cd "$RUNNER_TEMP/reta-pages-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$PREVIEW_BRANCH" --commit-hash "$GITHUB_SHA" --commit-message "Informational retatrutide preview; not production" 2>&1 | tee "$GITHUB_WORKSPACE/retatrutide-proof/deploy.log"
+          python3 - <<'PY'
+          import re,pathlib,os
+          log=(pathlib.Path(os.environ['GITHUB_WORKSPACE'])/'retatrutide-proof/deploy.log').read_text()
+          urls=re.findall(r'https://[a-f0-9]{8,32}\.projectshift\.pages\.dev',log)
+          assert urls,'No immutable preview URL returned'
+          url=urls[-1];assert url!='https://0da69833.projectshift.pages.dev'
+          (pathlib.Path(os.environ['GITHUB_WORKSPACE'])/'retatrutide-proof/preview-url.txt').write_text(url+'\n')
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('RETA_PREVIEW_URL='+url+'\n')
+          print('Preview: '+url)
+          PY
+      - name: Install isolated browser tooling without changing project dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/reta-browser" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/reta-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "PW_MODULE=$RUNNER_TEMP/reta-browser/node_modules/playwright" >> "$GITHUB_ENV"
+          cp "$RUNNER_TEMP/reta-browser/package-lock.json" retatrutide-proof/browser-toolchain-lock.json
+      - name: Verify hosted bytes, preview noindex and Chromium/WebKit reading/navigation
+        run: node editorial/retatrutide/verify-preview.mjs
+      - name: Confirm the production deployment identity did not change
+        if: always()
+        env:
+          CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,os,pathlib
+          req=urllib.request.Request('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',headers={'Authorization':'Bearer '+os.environ['CF_READ_TOKEN']})
+          with urllib.request.urlopen(req,timeout=35) as r:p=json.load(r)
+          assert p['success'];d=p['result']['canonical_deployment']
+          record={k:d.get(k) for k in ['id','url','environment','created_on']}
+          pathlib.Path('retatrutide-proof/production-preservation.json').write_text(json.dumps(record,indent=2)+'\n')
+          assert d['id']=='0da69833-83f7-4c70-9c7a-bceab7de1660','Production deployment moved; reconcile before release'
+          print(json.dumps(record,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-preview-${{ github.sha }}
+          path: retatrutide-proof/
+          retention-days: 30
+          if-no-files-found: error

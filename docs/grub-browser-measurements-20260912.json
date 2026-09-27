@@ -1,0 +1,182 @@
+{
+  "date": "2026-09-12T16:21:37.313Z",
+  "implementation": "7a5f8fa68748a856cf30285d50c1f3286907de73",
+  "browser": "Chrome CDP",
+  "checks": [
+    {
+      "width": 320,
+      "panel": "Discover",
+      "checked": 39,
+      "failures": [],
+      "overflow": false,
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 320,
+      "panel": "Add meal dialog",
+      "checked": 63,
+      "failures": [],
+      "overflow": false,
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 320,
+      "panel": "My fridge",
+      "metrics": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow",
+      "checked": 27,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 320,
+      "panel": "My week",
+      "metrics": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow",
+      "checked": 354,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 320,
+      "panel": "Saved",
+      "metrics": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow",
+      "checked": 56,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 320,
+      "panel": "Shopping list",
+      "metrics": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow",
+      "checked": 81,
+      "failures": [
+        {
+          "text": "Print shopping list",
+          "element": "grubPrint",
+          "color": "rgb(231, 227, 218)",
+          "fill": "rgb(231, 227, 218)",
+          "background": [
+            239,
+            239,
+            239
+          ],
+          "ratio": 1.11,
+          "minimum": 4.5
+        }
+      ],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "Discover",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 40,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "My fridge",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 28,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "My week",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 355,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "Saved",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 57,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "Shopping list",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 82,
+      "failures": [
+        {
+          "text": "Print shopping list",
+          "element": "grubPrint",
+          "color": "rgb(231, 227, 218)",
+          "fill": "rgb(231, 227, 218)",
+          "background": [
+            239,
+            239,
+            239
+          ],
+          "ratio": 1.11,
+          "minimum": 4.5
+        }
+      ],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "Expanded saved recipe",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 57,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "eae08d8e5300047d2b9a7b7acc85026f01095465"
+    },
+    {
+      "width": 1280,
+      "panel": "Shopping list after correction",
+      "metrics": "1280px frame \u00b7 1265px content area \u00b7 1265px content width \u00b7 No horizontal overflow",
+      "checked": 82,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "7a5f8fa68748a856cf30285d50c1f3286907de73"
+    },
+    {
+      "width": 320,
+      "panel": "Shopping list after correction",
+      "metrics": "320px frame \u00b7 305px content area \u00b7 305px content width \u00b7 No horizontal overflow",
+      "checked": 81,
+      "failures": [],
+      "unmeasured": [],
+      "note": "Computed text pairs only; images, gradients and overlays also need visual inspection.",
+      "implementation": "7a5f8fa68748a856cf30285d50c1f3286907de73"
+    }
+  ],
+  "scope": "Final two shopping measurements use 7a5f8fa; earlier measurements use eae08d8. The intervening change styles only the print button.",
+  "final_result": {
+    "food_tabs": 5,
+    "widths": [
+      320,
+      1280
+    ],
+    "contrast_failures": 0,
+    "horizontal_overflow": false,
+    "scope": "Latest measurement per panel; previous failures retained for traceability."
+  }
+}

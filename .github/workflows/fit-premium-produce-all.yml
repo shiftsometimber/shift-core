@@ -1,0 +1,46 @@
+name: Fit Premium Produce All
+on:
+  pull_request:
+    paths:
+      - 'fit-premium-generate-all.mjs'
+      - 'fit-premium-mark-qa-pass.mjs'
+      - 'content/fit/premium-v1-render-contracts.json'
+      - '.github/workflows/fit-premium-produce-all.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'fit-premium-generate-all.mjs'
+      - 'fit-premium-mark-qa-pass.mjs'
+      - 'content/fit/premium-v1-render-contracts.json'
+      - '.github/workflows/fit-premium-produce-all.yml'
+permissions:
+  contents: write
+jobs:
+  produce-and-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Produce all 26 V1 premium candidates
+        run: node fit-premium-generate-all.mjs
+      - name: Technical QA all generated candidates
+        run: node fit-premium-candidate-gate.mjs
+      - name: Reconcile all 26 as technically QA-passed
+        env:
+          FIT_TECHNICAL_QA_MARKER: Fit Premium Produce All run ${{ github.run_id }}
+        run: node fit-premium-mark-qa-pass.mjs
+      - name: Commit generated assets and production ledger on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/fit/premium content/fit/premium-visual-production-v1.json; then
+            echo 'Generated assets already current.'
+            exit 0
+          fi
+          git config user.name 'shift-fit-production-bot'
+          git config user.email 'shiftsometimber@gmail.com'
+          git add assets/fit/premium content/fit/premium-visual-production-v1.json
+          git commit -m 'Fit premium: cash 26/26 produced and technical QA [skip ci]'
+          git push origin HEAD:main

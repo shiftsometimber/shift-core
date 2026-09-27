@@ -1,0 +1,60 @@
+name: Prepared Content Read-Only Snapshot
+
+on:
+  push:
+    branches: [audit/prepared-content-snapshot-20260916]
+    paths: ['.github/workflows/prepared-content-readonly-snapshot.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prepared-content-readonly-snapshot-20260916
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      EXPECTED_MAIN_SHA: 222b1adeafab7d2cc128d9032cc0638664e51048
+      SNAPSHOT_DIRECTORY: prepared-content-readonly-snapshot
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Guard current main and established toolchain
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN_SHA"
+          git diff --exit-code "$EXPECTED_MAIN_SHA" -- .nvmrc package.json package-lock.json wrangler.jsonc
+          test -n "$CLOUDFLARE_API_TOKEN"
+          node --check scripts/prepared-content-readonly-snapshot.mjs
+      - name: Install the pinned read-only query toolchain
+        run: npm ci --no-audit --no-fund
+      - name: Capture catalogue and selected Radar records without writes
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN_SHA"
+          mkdir -p "$SNAPSHOT_DIRECTORY"
+          node scripts/prepared-content-readonly-snapshot.mjs --catalogue-sql > "$SNAPSHOT_DIRECTORY/catalogue-query.sql"
+          node scripts/prepared-content-readonly-snapshot.mjs --radar-sql > "$SNAPSHOT_DIRECTORY/radar-query.sql"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command="$(cat "$SNAPSHOT_DIRECTORY/catalogue-query.sql")" > "$SNAPSHOT_DIRECTORY/catalogue-raw.json"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command="$(cat "$SNAPSHOT_DIRECTORY/radar-query.sql")" > "$SNAPSHOT_DIRECTORY/radar-raw.json"
+          node scripts/prepared-content-readonly-snapshot.mjs --proof "$SNAPSHOT_DIRECTORY/catalogue-raw.json" "$SNAPSHOT_DIRECTORY/radar-raw.json" "$SNAPSHOT_DIRECTORY"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$EXPECTED_MAIN_SHA"
+      - name: Retain exact raw results, SQL and snapshot proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepared-content-readonly-snapshot-${{ github.sha }}
+          path: prepared-content-readonly-snapshot/
+          if-no-files-found: error
+          retention-days: 30

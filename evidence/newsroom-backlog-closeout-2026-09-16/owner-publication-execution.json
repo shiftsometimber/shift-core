@@ -1,0 +1,82 @@
+{
+  "proof": "NEWSROOM_NINE_PUBLICATION_EXECUTION_V1",
+  "recorded_at": "2026-09-16T18:54:28.583377+00:00",
+  "status": "BROWSER_CONNECTION_BLOCKED",
+  "candidate_file": "evidence/newsroom-backlog-closeout-2026-09-16/owner-publication-candidate.json",
+  "candidate_sha256": "ce82ab40fcd24a84f6153f3aa4b1392403148fca740e2759123612a2000cdc4f",
+  "owner_publication_authorized": true,
+  "independent_clinical_review": false,
+  "published_count_confirmed": 0,
+  "event_results": [
+    {
+      "event_id": 276,
+      "status": "SOURCE_CORRECTION_OUTCOME_UNKNOWN",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 279,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 281,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 284,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 286,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 288,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 290,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 292,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    },
+    {
+      "event_id": 294,
+      "status": "NOT_STARTED",
+      "public_url_verified": null
+    }
+  ],
+  "observations": [
+    {
+      "event_id": 276,
+      "authenticated_role": "owner",
+      "event_status_before_action": "hold",
+      "source_change_observed_at_display": "16 Sept 2026, 12:45 UK time",
+      "source_id": "mhra-drug-safety",
+      "changed_source_date": "2026-07-21T13:00:37.000Z",
+      "changed_source_url": "https://www.gov.uk/drug-safety-update/domperidone-new-contraindication-in-patients-with-phaeochromocytoma-due-to-the-risk-of-severe-hypertension",
+      "changed_source_title": "Domperidone: new contraindication in patients with phaeochromocytoma due to the risk of severe hypertension",
+      "source_comparison": "URL, title and source publication day match the reviewed primary notice. The observation is metadata, not a complete source-body fingerprint. The full primary notice was independently reviewed earlier on 16 September.",
+      "action_attempted": "Filled transparent owner/AI review note; clicked normal Start source correction button.",
+      "outcome": "Input.dispatchMouseEvent timed out; subsequent documented getJsDialog, screenshot and tabs.list calls all returned CDP operation refresh tabs timed out after 20000ms. No successful save, approval or publication is claimed."
+    }
+  ],
+  "recovery": "Once browser is responsive, inspect current event 276 and any native confirmation before attempting any mutation. Use exact reviewed candidates and normal per-event HQ controls.",
+  "source_date_fix": {
+    "files": [
+      "radar-integration-v1.js",
+      "tests/radar-uk-editorial-v1.test.mjs"
+    ],
+    "validation": "8/8 scoped tests passed",
+    "change": "New SEO package without a stored SHIFT publication date uses server time, not MHRA source date or queue-ingestion date. Existing stored SHIFT publication date is retained on partial SEO edits.",
+    "deployment_required_before_approval": true
+  }
+}

@@ -1,0 +1,34 @@
+name: App-store public privacy/deletion gate
+on:
+  push:
+    branches: [feat/app-store-account-deletion-20260923]
+    paths:
+      - 'app-store-public-v1.js'
+      - 'tests/app-store-public.test.mjs'
+      - 'worker-entry-v6.js'
+      - '.github/workflows/app-store-public-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Focused public-route tests
+        run: node --test tests/app-store-public.test.mjs
+      - name: Source import/dispatch contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=fs.readFileSync('worker-entry-v6.js','utf8');
+          if(!s.includes('accountDeletionPublicRoute')) throw Error('route not wired');
+          if(!s.includes('const appStorePublic=accountDeletionPublicRoute(request)')) throw Error('dispatch missing');
+          console.log('public route dispatch: PASS');
+          NODE

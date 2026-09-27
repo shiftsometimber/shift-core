@@ -1,0 +1,24 @@
+name: My Timber PWA notification settings gate
+on:
+  push:
+    branches: [fix/pwa-notifications-in-settings-20260923]
+    paths:
+      - 'my-timber-pwa/**'
+      - '.github/workflows/my-timber-pwa-settings-gate.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pwa-settings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: PWA unit and preservation tests
+        run: node --test my-timber-pwa/pwa.test.mjs my-timber-pwa/preservation.test.mjs my-timber-pwa/push-protocol.test.mjs

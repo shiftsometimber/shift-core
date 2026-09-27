@@ -1,0 +1,25 @@
+/* Article-owned colours must win over the site's body.v6 paragraph/list rules. */
+#main-content.sg {
+  background-color: #050505 !important;
+  color: #E7E3DA !important;
+}
+
+#main-content.sg :is(p, li, h1, h2, h3, h4, span, strong, b, em, small, summary, a, td, th, label, figcaption, blockquote) {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+#main-content.sg :is(.sg-quick, .sg-math, .sg-table, .sg-end) {
+  background-color: #E7E3DA !important;
+  color: #050505 !important;
+}
+
+#main-content.sg :is(.sg-quick, .sg-math, .sg-table, .sg-end) * {
+  color: #050505 !important;
+  -webkit-text-fill-color: #050505 !important;
+}
+
+#main-content.sg :is(.sg-quick, .sg-math, .sg-table, .sg-end) a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}

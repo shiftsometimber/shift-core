@@ -1,0 +1,272 @@
+[
+  {
+    "viewport": 768,
+    "section": "Today",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 753,
+    "title": "Your review is ready.",
+    "width": 753
+  },
+  {
+    "viewport": 768,
+    "section": "Report the week",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 753,
+    "title": "How did the week fit?",
+    "width": 753
+  },
+  {
+    "viewport": 768,
+    "section": "Review",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 753,
+    "title": "Same again?",
+    "width": 753
+  },
+  {
+    "viewport": 768,
+    "section": "Fortnight",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 753,
+    "title": "Your saved fortnight.",
+    "width": 753
+  },
+  {
+    "viewport": 768,
+    "section": "Shopping list",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 753,
+    "title": "One clear shopping list.",
+    "width": 753
+  },
+  {
+    "viewport": 768,
+    "section": "History",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 753,
+    "title": "Your record stays yours.",
+    "width": 753
+  },
+  {
+    "viewport": 360,
+    "section": "Today",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 345,
+    "title": "Your review is ready.",
+    "width": 345
+  },
+  {
+    "viewport": 360,
+    "section": "Report the week",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 345,
+    "title": "How did the week fit?",
+    "width": 345
+  },
+  {
+    "viewport": 360,
+    "section": "Review",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 345,
+    "title": "Same again?",
+    "width": 345
+  },
+  {
+    "viewport": 360,
+    "section": "Fortnight",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 345,
+    "title": "Your saved fortnight.",
+    "width": 345
+  },
+  {
+    "viewport": 360,
+    "section": "Shopping list",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 345,
+    "title": "One clear shopping list.",
+    "width": 345
+  },
+  {
+    "viewport": 360,
+    "section": "History",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 345,
+    "title": "Your record stays yours.",
+    "width": 345
+  },
+  {
+    "viewport": 390,
+    "section": "Today",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 375,
+    "title": "Your review is ready.",
+    "width": 375
+  },
+  {
+    "viewport": 390,
+    "section": "Report the week",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 375,
+    "title": "How did the week fit?",
+    "width": 375
+  },
+  {
+    "viewport": 390,
+    "section": "Review",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 375,
+    "title": "Same again?",
+    "width": 375
+  },
+  {
+    "viewport": 390,
+    "section": "Fortnight",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 375,
+    "title": "Your saved fortnight.",
+    "width": 375
+  },
+  {
+    "viewport": 390,
+    "section": "Shopping list",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 375,
+    "title": "One clear shopping list.",
+    "width": 375
+  },
+  {
+    "viewport": 390,
+    "section": "History",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 375,
+    "title": "Your record stays yours.",
+    "width": 375
+  },
+  {
+    "viewport": 1024,
+    "section": "Today",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1009,
+    "title": "Your review is ready.",
+    "width": 1009
+  },
+  {
+    "viewport": 1024,
+    "section": "Report the week",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1009,
+    "title": "How did the week fit?",
+    "width": 1009
+  },
+  {
+    "viewport": 1024,
+    "section": "Review",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1009,
+    "title": "Same again?",
+    "width": 1009
+  },
+  {
+    "viewport": 1024,
+    "section": "Fortnight",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1009,
+    "title": "Your saved fortnight.",
+    "width": 1009
+  },
+  {
+    "viewport": 1024,
+    "section": "Shopping list",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1009,
+    "title": "One clear shopping list.",
+    "width": 1009
+  },
+  {
+    "viewport": 1024,
+    "section": "History",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1009,
+    "title": "Your record stays yours.",
+    "width": 1009
+  },
+  {
+    "viewport": 1440,
+    "section": "Today",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1425,
+    "title": "Your review is ready.",
+    "width": 1425
+  },
+  {
+    "viewport": 1440,
+    "section": "Report the week",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1425,
+    "title": "How did the week fit?",
+    "width": 1425
+  },
+  {
+    "viewport": 1440,
+    "section": "Review",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1425,
+    "title": "Same again?",
+    "width": 1425
+  },
+  {
+    "viewport": 1440,
+    "section": "Fortnight",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1425,
+    "title": "Your saved fortnight.",
+    "width": 1425
+  },
+  {
+    "viewport": 1440,
+    "section": "Shopping list",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1425,
+    "title": "One clear shopping list.",
+    "width": 1425
+  },
+  {
+    "viewport": 1440,
+    "section": "History",
+    "footerAfter": true,
+    "headerBefore": true,
+    "scroll": 1425,
+    "title": "Your record stays yours.",
+    "width": 1425
+  }
+]

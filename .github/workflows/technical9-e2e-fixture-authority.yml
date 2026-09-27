@@ -1,0 +1,47 @@
+name: Technical 9 E2E fixture authority
+
+on:
+  push:
+    branches: [technical9-e2e-fixture-authority]
+    paths:
+      - '.github/workflows/technical9-e2e-fixture-authority.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: technical9-e2e-fixture-authority
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Patch E2E fixture
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('tests/medicine-purchase-e2e.test.mjs')
+          s=p.read_text()
+          anchor="    INSERT INTO medicine_inventory VALUES(11,1,0,CURRENT_TIMESTAMP),(21,9,0,CURRENT_TIMESTAMP);"
+          addition="""    INSERT INTO medicine_inventory VALUES(11,1,0,CURRENT_TIMESTAMP),(21,9,0,CURRENT_TIMESTAMP);\n    ALTER TABLE medicine_products ADD COLUMN partner TEXT;\n    ALTER TABLE medicine_products ADD COLUMN sellable INTEGER NOT NULL DEFAULT 0;\n    ALTER TABLE medicine_products ADD COLUMN availability_state TEXT NOT NULL DEFAULT 'unavailable';\n    ALTER TABLE medicine_variants ADD COLUMN partner TEXT;\n    ALTER TABLE medicine_variants ADD COLUMN sellable INTEGER NOT NULL DEFAULT 0;\n    ALTER TABLE medicine_variants ADD COLUMN availability_state TEXT NOT NULL DEFAULT 'unavailable';\n    UPDATE medicine_products SET partner='TEST_PHARMACY',sellable=1,availability_state='available' WHERE id=1;\n    UPDATE medicine_variants SET partner='TEST_PHARMACY',sellable=1,availability_state='available' WHERE id=11;"""
+          if "TEST_PHARMACY" not in s:
+              assert anchor in s
+              s=s.replace(anchor,addition)
+          p.write_text(s)
+          assert "TEST_PHARMACY" in s
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run full medicine gate
+        run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs
+      - name: Commit fixture
+        run: |
+          if git diff --quiet; then echo 'No fixture patch required'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tests/medicine-purchase-e2e.test.mjs
+          git commit -m 'Align medicine E2E fixture with HQ purchaseability authority'
+          git push origin HEAD:technical9-e2e-fixture-authority

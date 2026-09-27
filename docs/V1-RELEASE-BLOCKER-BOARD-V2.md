@@ -1,0 +1,50 @@
+# Shift V1 — Release Blocker Board V2
+
+Operational critical path; the 57-row audit remains authoritative.
+
+**A — V1 RELEASE BLOCKERS: 0 AMBER rows / 0 active shared clusters.**
+**A CLOSED: 27 — G1-001 real password recovery lifecycle, G5-013 Dave non-clinical end-to-end commissioning, G1-003 real verification lifecycle, G1-004 verification enforcement, G5-005 public trust architecture, G1-002 production email binding/delivery, G1-009 authenticated cross-browser/mobile regression acceptance, G1-008 rendered loading/empty/success state system, G1-012 unattended synthetic Dave release gate, G2-012 Progress unit round-trip, G2-011 whole-person Progress story, G2-013 Progress Picture reliability, G2-014 premium Progress Picture presentation, G2-001 Shift Today premium daily command centre, G3-008 authenticated accessibility design-system gate, G5-012 member API performance release criterion, G3-001 systemic homepage/member quality, G3-002 responsive navigation parity, G3-003 footer parity, G3-004 premium controls, G3-005 hierarchy/spacing/cards, G3-007 member-intent IA, G4-008 proactive Today orchestration, G2-002 real Grub recipes, G2-003 exact Grub nutrition evidence, G2-004 Grub variety/repetition, G2-007 serious Fit library/guidance.**
+**B — POST-LAUNCH HARDENING: 0 AMBER rows.**
+**C — EXTERNAL: 3 BLOCKED rows.**
+
+## A1 Auth + Dave account lifecycle — CLOSED
+**G1-001/G5-013 PASS.** Real registration, verification, recovery, authenticated password change, logout and retained login are production-proven. Dave is now 19/20 non-duplicated legs; the sole twentieth leg is external treatment support. Final genuine-device acceptance remains a release-pack activity rather than an unproven Dave product leg.
+
+## A2 Authenticated rendered/mobile premium estate — CLOSED
+**G3-001/G3-002/G3-003/G3-004/G3-005/G3-007 PASS:** merged-production run `31779645970` proves the homepage-grade forest/cream system across the authenticated member shell and representative Today/Grub/Fit/My Plans/Progress journeys at desktop + 390px: intent-led navigation, contained footer, governed forms/controls, deliberate hierarchy, zero document-root overflow and no browser errors. G1-009 remains the locked Chromium/Firefox/WebKit routing/geometry companion evidence. Final genuine-device hostile acceptance stays in the Matt/B08 pack rather than reopening these earned rows.
+
+## A3 Today command centre — CLOSED
+**G2-001 and G4-008 PASS:** the real authenticated premium Today command centre is production-proven with canonical content, meaningful real actions, explicit acknowledgement and leave/return retention at desktop + 390px. Fresh unchanged merged-production member acceptance on main `a18b7d09ca04034b8385a8f3dcea02024dc34334` proved the existing One Shift Brain/proactive system as coherent daily orchestration rather than plumbing alone: an explicit ordinary-life strategy was durably retained as `effective_strategy` at 0.92 confidence; the real premium Today surface rendered exactly one `SHIFT NOTICED` card with zero root overflow; a second feed call inside the configured 12-hour cooldown returned no insight; disabling proactive insights returned `proactive_disabled`; and reloading Today retained zero proactive cards. The same job reran canonical premium Today desktop + 390px acceptance green. Run `31781806555`, job `94708984307`, retained Today artifact `9212021040`, digest `sha256:cd81613ebd745bd626cd3a27e5a1af57524ce0e9f5120660c8db11087e467136`. Evidence: `docs/evidence/2026-08-14-g4-008-proactive-today-production-pass.md`.
+
+## A4 Grub serious launch cohort — CLOSED
+**G2-002/G2-003/G2-004 PASS.** Final accepted-authority production run `31878666933` on source `e2718c0bfb680c2d19f9f8a3abbbfa109d523328` atomically published exactly **2,124** reviewed launch records (**798 Grub + 1,326 Fit**) to the existing structured-content layer and then exercised a fresh authenticated member through the exact accepted authority. Serving report SHA256 `894656ad46edf228ffb3f1dd13cdf48d79981432b866bab56f7d06072fae3be6`; publication summary SHA256 `439107649846a6a0e5c1ea117cbc1cb476f76c01fdd831a3ec48a55a12cbaa56`; Fit premium HTTP report SHA256 `3b84deb9359bfb80cc8f8f7582acde17ea4c1b0d62dac4e37743184ad426cbdd`. Evidence: `docs/evidence/2026-08-14-final-v1-gate2-production-pass.md`. The exact human-approved Grub authority is 798 recipes across breakfast 212 / lunch 204 / dinner 195 / snack 187. Production served a real seven-day 28/28 unique plan exclusively from that authority, retained exact CoFID ingredient evidence, and proved durable Nay exclusion after logout/fresh-login.
+
+## A5 Fit serious launch cohort — CLOSED
+**G2-007 PASS.** Final accepted-authority production run `31878666933` on source `e2718c0bfb680c2d19f9f8a3abbbfa109d523328` atomically published exactly **2,124** reviewed launch records (**798 Grub + 1,326 Fit**) to the existing structured-content layer and then exercised a fresh authenticated member through the exact accepted authority. Serving report SHA256 `894656ad46edf228ffb3f1dd13cdf48d79981432b866bab56f7d06072fae3be6`; publication summary SHA256 `439107649846a6a0e5c1ea117cbc1cb476f76c01fdd831a3ec48a55a12cbaa56`; Fit premium HTTP report SHA256 `3b84deb9359bfb80cc8f8f7582acde17ea4c1b0d62dac4e37743184ad426cbdd`. Evidence: `docs/evidence/2026-08-14-final-v1-gate2-production-pass.md`. Production served only the 1,326 descendants of the 26 human-accepted canonical movement authorities, with approved v3 premium visuals/member guidance, zero legacy fallback, meaningful canonical breadth, all 26 accepted premium SVGs live over production HTTP and durable Nay exclusion after logout/fresh-login.
+
+## A6 Progress core — CLOSED
+**G2-011 and G2-012 PASS.** Production proves the retained whole-person `Since you started` Progress story plus correct stone/lb normalisation and inches readback at desktop + 390px, including logout/fresh-login retention. Progress Picture reliability and premium presentation are both PASS through G2-013/G2-014. M01/Gate 3 premium-system parity and the separate governed Knowledge/HQ editorial workflow are now PASS.
+
+## A7 Trust — CLOSED
+**G5-005 PASS.** Production proof crawled 80/80 live public pages successfully and found operator identity, AI disclosure, privacy, support and current-provider/qualification evidence. The audit explicitly checks that apparently live clinical/pharmacy language is accompanied by qualification/current-status language.
+
+## A8 Accessibility + performance release floor — CLOSED
+**G3-008 and G5-012 PASS.** Authenticated desktop + 390px accessibility meets the commissioned contrast/control/focus/landmark/reduced-motion/zero-overflow floor, and fresh natural production member-handler evidence meets the unchanged 800 ms p95 budget: registration 350 ms p95 / 17 samples; login 776 ms p95 / 11 samples.
+
+## Gate 3 governed Knowledge/HQ — CLOSED
+**G3-006 GOVERNED KNOWLEDGE/HQ PASS:** Merged-main editorial lifecycle proof blocks both exact HQ and legacy publication before review, retains named approval across leave/return, and preserves reviewer provenance after reviewed publish. After PR #279 repaired production HQ editorial CORS without reflecting hostile origins, a fresh unchanged deployed HQ rerun proved the real Knowledge Hub CMS desk at 1440x900 and 390x844 with the editorial standard and review/publish controls visible, responsive stylesheet settled, `pageErrors: []`, `consoleErrors: []`, zero root overflow and intentional table containment on mobile. HQ run `31781843657`, rerun job `94723912030`, artifact `9213770096`, digest `sha256:132e79eec8d93fe0cea19b300215a5b1e4b18ada5d100d0937af24c04ca5e1e5`. Evidence: `docs/evidence/2026-08-14-g3-006-knowledge-hq-production-pass.md`.
+
+## B — post-launch hardening
+
+**G2-009 is no longer in B:** corrected-main production commissioning proved governed published-catalogue Conundrum matching plus honest zero-result behaviour, so it is retained as PASS evidence rather than an open hardening blocker.
+
+**G5-014 SCEPTICAL-CUSTOMER PASS:** Fresh unchanged main-production browser acceptance on `2e4b062cb64bb7db17bb73215b522519a14c0976` proved the real sceptical-customer outcome: Shift loaded cleanly at 1440x900 and 390x844 with HTTP 200, visible H1/main landmark, zero root overflow and zero browser page/console errors; meaningful mobile decision controls met the commissioned touch-size floor. The live proposition visibly communicates ordinary-bloke audience, evidence-before-hype/no-profit-led-rankings, useful free decision-support, long-term maintenance thinking, the Useful First / Commercial Second promise, pre-launch honesty and explicit qualified-clinician boundaries. The browser followed Knowledge, Editorial Standards, Clinical Governance and Tools, all HTTP 200 with substantive content and zero overflow. The same run opened the current Numan weight-loss benchmark and observed clinician, coaching, medication, long-term and regulated-service signals; Shift passed by differentiating through evidence, trust, usefulness and premium execution without pretending unavailable regulated clinical capability exists. Run `31783956351`, job `94715577166`, artifact `9212761395`, digest `sha256:e7cef0655dc4146d5ef2e800978696e881afdc68242945548c9a781727b59b06`. Evidence: `docs/evidence/2026-08-14-g5-014-sceptical-customer-production-pass.md`.
+
+## C — external
+G5-001, G5-002, G5-003. Clinical/provider capability remains hidden/unavailable/accurately labelled until external governance exists.
+
+## Matt Final Acceptance Pack
+**COMPLETE for non-clinical V1 content acceptance.** The eight Grub decisions and 26 Fit domain/member-comprehension decisions are accepted and bound to exact production authority. Verification/recovery are independently PASS. Final genuine-device hostile acceptance remains a release-pack activity rather than an unfinished original-audit row.
+
+## Freeze
+**A=0 ACHIEVED.** Freeze new product work -> final RC regression + Dave + security smoke + Watchtower + routes + accessibility/performance + final device acceptance -> fix release defects only -> NON-CLINICAL V1 READY.

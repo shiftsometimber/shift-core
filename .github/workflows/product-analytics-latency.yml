@@ -1,0 +1,23 @@
+name: Product Analytics Auth Latency Gate
+on:
+  pull_request:
+    paths:
+      - 'worker-entry-v6.js'
+      - 'member-login-fastpath-v1.js'
+      - 'commissioning-ops-v1.js'
+      - 'g5-012-login-fastpath-gate.mjs'
+      - 'product-analytics-latency-gate.mjs'
+      - '.github/workflows/product-analytics-latency.yml'
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node --check worker-entry-v6.js
+      - run: node --check member-login-fastpath-v1.js
+      - run: node g5-012-login-fastpath-gate.mjs
+      - run: node product-analytics-latency-gate.mjs
+      - run: npm run check

@@ -1,0 +1,42 @@
+name: Open Catalogue Ingestion Review
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  grub-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Acquire and deduplicate Grub review candidates
+        continue-on-error: true
+        run: node grub-open-catalogue-ingest.mjs
+      - name: Retain candidate and source evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: grub-open-catalogue-review-candidates
+          path: grub-open-catalogue-evidence
+          if-no-files-found: error
+          retention-days: 30
+  fit-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Acquire and deduplicate Fit review candidates
+        continue-on-error: true
+        run: node fit-open-catalogue-ingest.mjs
+      - name: Retain candidate and source evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: fit-open-catalogue-review-candidates
+          path: fit-open-catalogue-evidence
+          if-no-files-found: error
+          retention-days: 30

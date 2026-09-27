@@ -1,0 +1,5 @@
+# Complete reproducible candidates are retained in the CI release artifact.
+/candidate-review.json
+/draft-additions.json
+/protocol-review.json
+/tests.tap

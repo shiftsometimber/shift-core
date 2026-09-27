@@ -1,0 +1,58 @@
+name: Retatrutide current-source proof (read only)
+on:
+  push:
+    branches: [seo/retatrutide-evidence-20260923]
+    paths: [.github/workflows/retatrutide-source-proof.yml]
+permissions:
+  contents: read
+concurrency:
+  group: retatrutide-current-source-proof
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Capture anonymous public HTML and filtered Pages identity without writes
+        env:
+          CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request, urllib.error, json, pathlib, hashlib, datetime, os, concurrent.futures
+          out=pathlib.Path('retatrutide-source-proof'); out.mkdir(exist_ok=True)
+          paths={'article':'/guides/retatrutide-uk-guide','knowledge':'/explore-knowledge','glp1':'/glp1-knowledge-centre','sitemap':'/sitemap.xml','home':'/','programme':'/programme','health':'/shift-health','start':'/start-here','login':'/member-login','treatments':'/treatment-centre'}
+          def capture(item):
+            name,path,host=item
+            url='https://'+host+path
+            try:
+              req=urllib.request.Request(url,headers={'User-Agent':'SHIFT-ReadOnly-Source-Proof/1.0','Accept':'text/html,application/xml;q=0.9,*/*;q=0.1'})
+              with urllib.request.urlopen(req,timeout=40) as r:
+                raw=r.read(); status=r.status; final=r.url
+                headers={k:v for k,v in r.headers.items() if k.lower() in ['content-type','cache-control','x-robots-tag','x-shift-frontend-authority','x-shift-release','cf-ray','etag','last-modified']}
+              filename=name+('.xml' if name.endswith('sitemap') else '.html'); (out/filename).write_bytes(raw)
+              return {'name':name,'url':url,'finalUrl':final,'status':status,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'file':filename,'headers':headers}
+            except Exception as e:return {'name':name,'url':url,'error':str(e)}
+          targets=[(k,p,'shiftsometimber.co.uk') for k,p in paths.items()]+[('pages-'+k,p,'projectshift.pages.dev') for k,p in paths.items() if k in ['article','knowledge','glp1','sitemap']]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool: rows=list(pool.map(capture,targets))
+          identity={'available':False}
+          try:
+            req=urllib.request.Request('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',headers={'Authorization':'Bearer '+os.environ.get('CF_READ_TOKEN','')})
+            with urllib.request.urlopen(req,timeout=30) as r: result=json.load(r)
+            p=result.get('result') or {}; d=p.get('canonical_deployment') or {}; source=p.get('source') or {}; config=source.get('config') or {}; build=p.get('build_config') or {}
+            identity={'available':bool(result.get('success')),'name':p.get('name'),'subdomain':p.get('subdomain'),'production_branch':p.get('production_branch'),'source_type':source.get('type'),'source':{k:config.get(k) for k in ['owner','repo_name','production_branch']},'build':{k:build.get(k) for k in ['build_command','destination_dir','root_dir']},'deployment':{k:d.get(k) for k in ['id','url','environment','created_on','latest_stage','deployment_trigger']}}
+          except Exception as e: identity={'available':False,'error':str(e)}
+          report={'capturedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'commit':os.environ.get('GITHUB_SHA'),'method':'Anonymous public GETs; filtered Cloudflare Pages GET; no deployment, database or source mutation','pages':identity,'responses':rows}
+          (out/'manifest.json').write_text(json.dumps(report,indent=2)); print(json.dumps(report,indent=2))
+          print('ARTICLE_SOURCE_PATHS_IN_CHECKOUT')
+          for p in pathlib.Path('.').rglob('*retatrutide*'):
+            if '.git' not in p.parts and 'retatrutide-source-proof' not in p.parts: print(str(p))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-source-${{ github.sha }}
+          path: retatrutide-source-proof/
+          retention-days: 30

@@ -1,0 +1,1 @@
+Operational V1 release authority: V1-RELEASE-BLOCKER-BOARD-V2.md. The original 57-row remediation matrix remains audit authority. Category A reaching zero is necessary before RC freeze.

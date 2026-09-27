@@ -1,0 +1,37 @@
+Isolated runtime ready
+Account schema ready
+Accepted catalogue seeded: 2921
+POST /v1/auth/login
+POST /v1/consents
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+POST /v1/check-ins
+GET /v1/check-ins
+PATCH /v1/journey
+GET /v1/journey
+POST /v1/fit/plan
+GET /v1/fit/activity
+POST /v1/fit/replace
+GET /v1/fit/activity
+POST /v1/fit/activity
+PATCH /v1/member-state
+GET /v1/journey
+GET /v1/fit/activity
+GET /v1/journey/weekly-check-in
+POST /v1/journey/weekly-check-in
+GET /v1/journey/trends
+POST /v1/privacy/export
+POST /v1/consents
+POST /v1/check-ins
+POST /v1/fit/activity
+DELETE /v1/privacy/health-tracking
+GET /v1/check-ins
+GET /v1/journey/trends
+GET /v1/journey
+GET /v1/fit/activity
+GET /v1/profile
+[
+  "Daily check-in and Journey saved and reloaded from isolated local D1",
+  "Approved Fit generation and exercise swap survive a fresh read; other exercises remain unchanged",
+  "Fit activity reaches the confirmed weekly Journey; stale settings preserve saved records and account export includes them",
+  "Consent withdrawal blocks tracking; optional erasure removes probe history and preserves the account"
+]

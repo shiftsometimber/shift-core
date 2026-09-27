@@ -1,0 +1,478 @@
+diff --git a/frontend/member/assets/programme-v1/programme.mjs b/frontend/member/assets/programme-v1/programme.mjs
+index ee93c91..d40fc12 100644
+--- a/frontend/member/assets/programme-v1/programme.mjs
++++ b/frontend/member/assets/programme-v1/programme.mjs
+@@ -1,6 +1,9 @@
+ const operationId=()=>Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join('');
+ const root=document.querySelector('#programme'),view=root.querySelector('#sp-view'),status=root.querySelector('#sp-status');
+ let state=null,step='today',preview=null,busy=false,listIndex=0,toolsContext=null;
++let privateGeneration=0;
++const pendingRequests=new Set();
++const cancelledRequest=()=>Object.assign(new Error('Private view cleared.'),{cancelled:true});
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const formatDate=d=>new Date(d+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+ const dateAdd=(d,n)=>{const x=new Date(d+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)};
+@@ -8,16 +11,35 @@ const qty=(n,u)=>`${n} ${u}`;
+ const btn=(label,action,data='',primary=false)=>`<button type="button" data-action="${action}" ${data} class="${primary?'sp-primary':''}">${label}</button>`;
+ const catalogue=id=>state.catalogue.find(r=>r.id===id);
+ const names={chilli:'Beef and bean chilli',ragu:'Beef ragù',chickpea:'Chickpea and tomato rice',tuna:'Tuna and sweetcorn pasta',wraps:'Chicken and salad wraps',beanSalad:'Bean and cucumber bowl'};
+-function clearPrivateView(){state=null;preview=null;toolsContext=null;view.replaceChildren();root.querySelector('#sp-tabs').replaceChildren();root.querySelector('#sp-name').textContent='The Programme';root.querySelector('#sp-entitlement').textContent='';status.textContent=''}
+-async function api(path='',data){const r=await fetch('/v1/programme'+path,{method:data?'POST':'GET',credentials:'same-origin',cache:'no-store',headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined});const body=await r.json();if(!r.ok){if(r.status===401)clearPrivateView();throw new Error(body.error||'Could not load the Programme.')}return body}
++function clearPrivateView(){privateGeneration++;for(const controller of pendingRequests)controller.abort();pendingRequests.clear();state=null;preview=null;toolsContext=null;setupDraft={};busy=false;view.replaceChildren();root.querySelector('#sp-tabs').replaceChildren();root.querySelector('#sp-name').textContent='The Programme';root.querySelector('#sp-entitlement').textContent='';status.textContent=''}
++async function api(path='',data){
++ const generation=privateGeneration,controller=new AbortController();pendingRequests.add(controller);
++ try{
++  const r=await fetch('/v1/programme'+path,{method:data?'POST':'GET',credentials:'same-origin',cache:'no-store',signal:controller.signal,headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined});
++  const body=await r.json();
++  if(generation!==privateGeneration)throw cancelledRequest();
++  if(!r.ok){if(r.status===401){clearPrivateView();view.innerHTML='<p><a href="/member/dashboard?returnTo=%2Fmember%2Fprogramme">Return to My Timber sign-in</a></p>';throw Object.assign(new Error(body.error||'Your session has ended.'),{sessionEnded:true})}throw new Error(body.error||'Could not load the Programme.')}
++  return body;
++ }catch(e){if(generation!==privateGeneration&&controller.signal.aborted&&!e.sessionEnded)throw cancelledRequest();throw e}
++ finally{pendingRequests.delete(controller)}
++}
+ function announce(message,error=false){status.textContent=message;status.classList.toggle('sp-error',error)}
+-async function save(type,data={},message='Saved.'){if(busy)return;busy=true;root.querySelectorAll('button').forEach(b=>b.disabled=true);try{state=await api('',{type,...data,revision:state.revision,operationId:operationId()});preview=null;announce(message);render();if(['review','accept','repeat','setup','request'].includes(type)){const heading=view.querySelector('h2');heading?.setAttribute('tabindex','-1');heading?.focus()}}catch(e){announce(e.message,true);root.querySelectorAll('button').forEach(b=>b.disabled=false)}finally{busy=false}}
++async function save(type,data={},message='Saved.'){
++ if(busy||!state)return false;busy=true;const generation=privateGeneration;root.querySelectorAll('button').forEach(b=>b.disabled=true);
++ try{const saved=await api('',{type,...data,revision:state.revision,operationId:operationId()});if(generation!==privateGeneration)return false;state=saved;preview=null;announce(message);render();if(['review','accept','repeat','setup','request'].includes(type)){const heading=view.querySelector('h2');heading?.setAttribute('tabindex','-1');heading?.focus()}return true}
++ catch(e){if(!e.cancelled){announce(e.message,true);root.querySelectorAll('button').forEach(b=>b.disabled=false)}return false}
++ finally{if(generation===privateGeneration)busy=false}
++}
+ function recipeDetail(r,servings=r.serves){return `<h2>${esc(r.name)}</h2><div class="sp-facts"><div><span>Approximate time</span><b>${r.minutes} minutes</b></div><div><span>Portions</span><b>${servings}</b></div><div><span>Cooking</span><b>${r.noCook?'No cooking':'Hob'}</b></div></div><p><strong>Allergens listed:</strong> ${esc(r.allergens.join(', ')||'None in the listed ingredients')}. Check all packaging.</p><h3>Ingredients</h3><ul>${r.ingredients.map(i=>`<li>${esc(i.name)} — ${qty(Math.round(i.quantity*servings/r.serves*1000)/1000,i.unit)}</li>`).join('')}</ul><h3>Method</h3><ol>${r.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol><p class="sp-subtle">${esc(r.substitutions)}</p>`}
+ function conditionsPanel(){const items=state.conditions||[];return items.length?`<section class="sp-card sp-condition" aria-labelledby="sp-conditions-title"><h2 id="sp-conditions-title">Check these saved meals before using them.</h2><p>Your saved record is kept. These checks stay visible until the issue is resolved; skipping a review or leaving a suggestion alone does not clear them.</p><ul>${items.map(c=>`<li><strong>${formatDate(c.date)} · ${esc(c.recipeName)}</strong><br>${c.reasons.map(r=>esc(r.text)).join(' ')}</li>`).join('')}</ul><p>Repeating the plan is paused. Shopping quantities still describe the saved plan, including flagged meals; they are not a recommendation to use them.</p><div class="sp-actions">${btn('Review preferences','step','data-step="preferences"')}${btn('Choose a replacement myself','step','data-step="edit"')}</div>${!state.catalogue.length?'<p>No compatible reviewed replacement is available in this catalogue. Meal selection remains paused.</p>':''}</section>`:''}
+ function row(s){const source=s.kind==='leftovers'?state.slots.find(x=>x.id===s.sourceId):null,reserved=state.slots.filter(x=>x.kind==='leftovers'&&x.sourceId===s.id);const title=s.kind==='meal'?names[s.recipeId]||s.recipeId:s.kind==='leftovers'?`Leftover ${names[source?.recipeId]||'meal — source needs checking'}`:s.label;const detail=s.kind==='meal'?`${s.servings} portions${reserved.length?' · '+reserved.map(x=>`${x.servings} reserved for ${formatDate(x.date)}`).join(', '):''}`:s.kind==='move'?`${s.minutes} minutes · your chosen activity`:`${s.servings} portions · ingredients counted at ${source?formatDate(source.date):'the source meal'}`;return `<div class="sp-row"><div class="sp-day">${formatDate(s.date)}</div><div><strong>${esc(title)}</strong><small>${esc(detail)}</small>${state.conditions?.some(c=>c.slotId===s.id)?'<small><strong>Needs checking before use — see the flagged meals above.</strong></small>':''}</div></div>`}
+ function shiftLabel(start){const p=state.preferences;if(p.workPattern!=='alternating')return 'Your chosen work pattern';if(!['early','late'].includes(p.firstShift)||!p.shiftAnchor)return 'Shift pattern needs confirmation';const weeks=Math.floor((Date.parse(start)-Date.parse(p.shiftAnchor))/604800000),late=(Math.abs(weeks%2)===1)!==(p.firstShift==='late');return late?'Lates':'Earlies'}
+-function existingToolsPanel(){return `<section class="sp-card"><h3>Your existing Grub and Fit records</h3>${toolsContext?`<div class="sp-grid"><div><h4>Grub</h4><p>Saved recipes: ${toolsContext.grub.savedRecipes.map(esc).join(', ')||'None saved here yet.'}</p><p>In your existing week: ${toolsContext.grub.weekMeals.map(esc).join(', ')||'None saved here yet.'}</p><a href="/member/grub">Open free Grub</a></div><div><h4>Fit</h4><p>${toolsContext.fit.completedExerciseEntries} completed exercise entries, ${toolsContext.fit.exerciseEntries-toolsContext.fit.completedExerciseEntries} skipped entries and ${toolsContext.fit.sessionReviews} session reviews saved.</p><a href="/member/fit">Open free Fit</a></div></div><p class="sp-subtle">${esc(toolsContext.note)}</p>`:`<p>Bring your saved recipe names and exercise-record summary into view. They stay in your existing free tools.</p>${btn('Show my saved Grub and Fit records','existing-tools')}`}</section>`}
+-function today(){const next=state.slots.filter(s=>s.date>state.clock).sort((a,b)=>a.date.localeCompare(b.date))[0],latest=state.slots.map(s=>s.date).sort().at(-1),gap=latest&&latest<state.clock;return `<div class="sp-grid"><section class="sp-card sp-paper"><p class="sp-kicker">Your next useful step</p><h2>${gap?'Pick up where you left off.':state.review?'Your review is ready.':'A fortnight that fits your life.'}</h2><p>${gap?`Your last saved action was dated ${formatDate(latest)}. You can repeat the plan or adjust it; no missing weeks have been filled in.`:state.review?esc(state.review.summary):'Tell us what worked. Look at one useful adjustment. Keep the final say.'}</p><div class="sp-actions">${btn(state.review?'Open my review':'Report my week','step','data-step="'+(state.review?'review':'report')+'"',true)}${btn('See my plan','step','data-step="fortnight"')}</div></section><aside class="sp-card"><p class="sp-kicker">Life Back</p><h3>${esc(state.goal||'Your own starting point.')}</h3><p class="sp-muted">${state.conditions?.some(c=>c.slotId===next?.id)?'Your next saved meal needs checking before use.':next?`Next: ${esc(names[next.recipeId]||next.label)} · ${formatDate(next.date)}`:'No upcoming action saved.'}</p><p class="sp-subtle">${esc(state.preferences.household||'Your household')}<br>${esc(state.preferences.time||'Your own pace')}</p>${btn('Preferences','step','data-step="preferences"')}</aside></div>${state.track==='continuity'?'<section class="sp-card"><h3>Keeping your routine through a change</h3><p>Your plan works independently of a medicine supplier. Prescription decisions stay with your clinician.</p><a href="/articles/stopping-glp1">Read the existing coming-off guide</a></section>':''}<section class="sp-card"><h3>Keep the useful bits.</h3><p>Meals you chose, movement that fits and records you can return to. A review can keep your plan exactly as it is.</p>${btn('Prepare my weekly review','generate','',true)}</section>${existingToolsPanel()}`}
++function existingToolsPanel(){
++ if(!toolsContext)return `<section class="sp-card"><h3>Your existing My Timber records</h3><p>See your saved Journey purpose, Grub recipes, Fit activity and check-in dates. They stay in your existing free tools.</p>${btn('Show my existing records','existing-tools')}</section>`;
++ const t=toolsContext,dateText=d=>d?formatDate(d):'No date recorded';
++ return `<section class="sp-card"><h3>Your existing My Timber records</h3><div class="sp-grid"><div><h4>Journey</h4><p>${esc(t.journey.purpose||'No purpose saved here yet.')}</p><p>${t.journey.paused===true?'Your existing Journey is paused.':t.journey.hasSavedSetup?'Your existing Journey setup is saved.':'No Journey setup recorded.'}</p><a href="/member/journey">Open Journey</a></div><div><h4>Check-ins and Life Back</h4><p>${t.weekly.available?`${t.weekly.count} confirmed weekly check-ins. Latest: ${dateText(t.weekly.latestDate)}.`:'Weekly check-in records are not available in this connection.'}</p><p>${t.lifeBack.count} Life Back check-in dates. Latest: ${dateText(t.lifeBack.latestDate)}.</p><a href="/member/check-in">Open free check-in</a></div><div><h4>Grub</h4><p>Saved recipes: ${t.grub.savedRecipes.map(esc).join(', ')||'None saved here yet.'}</p><p>In your existing week: ${t.grub.weekMeals.map(esc).join(', ')||'None saved here yet.'}</p><a href="/member/grub">Open free Grub</a></div><div><h4>Fit</h4><p>${t.fit.completedExerciseEntries} completed exercise entries, ${t.fit.exerciseEntries-t.fit.completedExerciseEntries} skipped entries and ${t.fit.sessionReviews} session reviews saved.</p><a href="/member/fit">Open free Fit</a></div></div><p class="sp-subtle">${esc(t.note)}</p></section>`;
++}
++function today(){const next=state.slots.filter(s=>s.date>state.clock).sort((a,b)=>a.date.localeCompare(b.date))[0],latest=state.slots.map(s=>s.date).sort().at(-1),gap=latest&&latest<state.clock;return `<div class="sp-grid"><section class="sp-card sp-paper"><p class="sp-kicker">Your next useful step</p><h2>${esc(state.sequence.title)}</h2><p>${esc(state.sequence.text)}</p><div class="sp-actions">${btn(esc(state.sequence.label),'step','data-step="'+state.sequence.step+'"',true)}${btn('See my plan','step','data-step="fortnight"')}</div></section><aside class="sp-card"><p class="sp-kicker">Life Back</p><h3>${esc(state.goal||'Your own starting point.')}</h3><p class="sp-muted">${state.conditions?.some(c=>c.slotId===next?.id)?'Your next saved meal needs checking before use.':next?`Next: ${esc(names[next.recipeId]||next.label)} · ${formatDate(next.date)}`:'No upcoming action saved.'}</p><p class="sp-subtle">${esc(state.preferences.household||'Your household')}<br>${esc(state.preferences.time||'Your own pace')}</p>${btn('Preferences','step','data-step="preferences"')}</aside></div>${state.track==='continuity'?'<section class="sp-card"><h3>Keeping your routine through a change</h3><p>Your plan works independently of a medicine supplier. Prescription decisions stay with your clinician.</p><a href="/articles/stopping-glp1">Read the existing coming-off guide</a></section>':''}<section class="sp-card"><h3>Keep the useful bits.</h3><p>Meals you chose, movement that fits and records you can return to. A review can keep your plan exactly as it is.</p>${btn('Prepare my weekly review','generate','',true)}</section>${existingToolsPanel()}`}
+ function preferences(){const p=state.preferences;return `<form data-form="preferences" class="sp-card"><h2>${state.setup?'Your preferences':'A starting point that fits.'}</h2>${state.setup?'':`<label class="sp-label">What would you like to make easier?<input name="goal" value="${esc(state.goal)}" maxlength="500" placeholder="e.g. less planning after a late shift"></label><label class="sp-label">Where would you like to start?<select name="focus"><option value="food">Food</option><option value="movement">Movement</option><option value="organise">Organising the week</option></select></label>`}<div class="sp-report-grid"><label class="sp-label">Food restrictions<select name="allergies"><option value="unknown" ${p.allergies==='unknown'?'selected':''}>Not provided</option><option value="none" ${p.allergies==='none'?'selected':''}>No allergies confirmed by me</option><option value="fish" ${Array.isArray(p.allergies)&&p.allergies.includes('fish')?'selected':''}>Fish allergy</option><option value="wheat" ${Array.isArray(p.allergies)&&p.allergies.includes('wheat')?'selected':''}>Wheat allergy</option><option value="other">Other or multiple — pause suggestions</option></select></label><label class="sp-label">Food preference<select name="diet"><option value="unknown" ${p.diet==='unknown'?'selected':''}>Not provided</option><option value="any" ${p.diet==='any'?'selected':''}>No dietary exclusion</option><option value="vegetarian" ${p.diet==='vegetarian'?'selected':''}>Vegetarian</option></select></label><label class="sp-label">Time available<input name="time" value="${esc(p.time)}" maxlength="100"></label><label class="sp-label">Household<input name="household" value="${esc(p.household)}" maxlength="100"></label><label class="sp-label">Spending / waste preferences<input name="spending" value="${esc(p.spending)}" maxlength="100"></label><label class="sp-label">Weekly review day<select name="reviewDay" ${state.setup?'disabled':''}>${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'].map((d,i)=>`<option value="${i}" ${i===(p.reviewDay??0)?'selected':''}>${d}</option>`).join('')}</select></label><label class="sp-label">Work pattern<select name="workPattern"><option value="alternating" ${p.workPattern==='alternating'?'selected':''}>Alternating early and late weeks</option><option value="fixed" ${p.workPattern==='fixed'?'selected':''}>Fixed / other</option></select></label><label class="sp-label">Shift in the reference week<select name="firstShift"><option value="day">Not specified / other</option><option value="early" ${p.firstShift==='early'?'selected':''}>Earlies</option><option value="late" ${p.firstShift==='late'?'selected':''}>Lates</option></select></label><label class="sp-label">Reference week starting (Monday)<input name="shiftAnchor" type="date" value="${esc(p.shiftAnchor||'')}"></label><label class="sp-label">Activity limitations<select name="activityLimitations"><option value="unknown" ${p.activityLimitations==='unknown'?'selected':''}>Not provided</option><option value="none" ${p.activityLimitations==='none'?'selected':''}>None confirmed by me</option><option value="needs-review" ${!['none','unknown'].includes(p.activityLimitations)?'selected':''}>Needs appropriate guidance</option></select></label></div><label class="sp-inline"><input type="checkbox" name="hob" ${p.equipment.includes('hob')?'checked':''}>I can use a hob</label><p class="sp-muted">Unanswered restrictions stay unknown. We will pause meal suggestions that need that information.</p><button class="sp-primary" type="submit">${state.setup?'Save preferences':'Choose my first actions'}</button></form>`}
+ let setupDraft={};
+ function setup(){if(!state.catalogue.length&&state.preferences.activityLimitations!=='none')return preferences();return `<form data-form="setup" class="sp-card"><h2>Choose a manageable first week.</h2><p>These are chosen occasions, not a complete diet or an exercise prescription. Other meals and days remain your choice.</p>${state.catalogue.length?`<label class="sp-inline"><input type="checkbox" name="meal" checked>Include one cooking occasion</label><div class="sp-report-grid"><label class="sp-label">Meal<select id="sp-setup-recipe" name="recipeId">${state.catalogue.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('')}</select></label><label class="sp-label">Day<select name="day">${['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].map((d,i)=>`<option value="${i}">${d}</option>`).join('')}</select></label><label class="sp-label">Portions<input id="sp-setup-servings" name="servings" type="number" value="4" min="1" max="12"></label></div><details open><summary>Inspect this meal before saving</summary><div id="sp-setup-detail">${recipeDetail(state.catalogue[0])}</div></details>`:'<p>Meal suggestions are paused until the necessary restrictions are confirmed.</p>'}${state.preferences.activityLimitations==='none'?'<label class="sp-inline"><input type="checkbox" name="walk">Add a walk I choose for Wednesday</label><label class="sp-label">Minutes I want to walk<input name="minutes" type="number" min="1" max="180" value="10"></label>':'<p>Activity suggestions need appropriate guidance for the limitation you selected.</p>'}<fieldset><legend>What would you like to record? Optional.</legend>${['energy','sleep','confidence','weight','waist'].map(m=>`<label class="sp-inline"><input type="checkbox" name="measure" value="${m}">${m[0].toUpperCase()+m.slice(1)}</label>`).join('')}</fieldset><label class="sp-inline"><input type="checkbox" name="continuity">Include the coming-off / pause information track</label><div class="sp-actions"><button class="sp-primary" type="submit">Save these first actions</button>${btn('Back to preferences','step','data-step="preferences"')}</div></form>`}
+@@ -26,12 +48,12 @@ function review(){const r=state.review;if(!r)return `<section class="sp-card sp-
+ function previewScreen(){const r=preview.recipe;return `<section class="sp-card"><p class="sp-kicker">Inspect before accepting</p>${recipeDetail(r,preview.target[0].servings)}<h3>The exact change</h3><p>${preview.target.map(s=>`${formatDate(s.date)}: ${esc(names[s.recipeId]||s.recipeId)} → ${esc(r.name)} · ${s.servings} portions`).join('<br>')}</p>${preview.dependentLeftovers.length?`<p>The reserved portions on ${preview.dependentLeftovers.map(s=>formatDate(s.date)).join(', ')} will use this same replacement meal. The reserved quantities stay the same.</p>`:''}<p>Every other saved action stays in place.</p>${preview.periods.map(p=>`<details open><summary>Shopping change · ${formatDate(p.start)} – ${formatDate(p.end)}</summary><ul>${p.delta.map(i=>`<li>${esc(i.name)}: ${qty(i.before,i.unit)} → <strong>${qty(i.after,i.unit)}</strong></li>`).join('')||'<li>No ingredient change.</li>'}</ul></details>`).join('')}<div class="sp-actions">${btn('Use this for '+preview.target.length+' confirmed dates','accept','',true)}${btn('Back without changing anything','step','data-step="review"')}</div></section>`}
+ function fortnight(){const lists=state.lists;return `<h2>Your saved fortnight.</h2><p>Cooking occasions, chosen activities and unplanned days. No reports have been filled in for you.</p><div class="sp-weeks">${lists.map((p,i)=>`<section class="sp-card"><p class="sp-kicker">${shiftLabel(p.start)}</p><h3>${formatDate(p.start)} – ${formatDate(p.end)}</h3>${Array.from({length:7},(_,d)=>{const day=dateAdd(p.start,d),slots=state.slots.filter(s=>s.date===day);return slots.length?slots.map(row).join(''):`<div class="sp-row"><div class="sp-day">${formatDate(day)}</div><div class="sp-muted">No action planned — your choice.</div></div>`}).join('')}</section>`).join('')}</div><div class="sp-actions">${btn('Shopping list','step','data-step="list"',true)}${btn('Repeat this routine','repeat')}${btn('Edit a future action','step','data-step="edit"')}</div>`}
+ function list(){const p=state.lists[listIndex];return `<section class="sp-card"><h2>One clear shopping list.</h2><p>Ingredients for ${formatDate(p.start)} – ${formatDate(p.end)}. Shared ingredients include every cooking occasion; leftovers are not counted twice.</p><div class="sp-actions">${state.lists.map((x,i)=>btn(formatDate(x.start)+' week','period',`data-index="${i}"`,i===listIndex)).join('')}</div><div class="sp-table-wrap"><table><thead><tr><th>Ingredient</th><th>Needed</th><th>Your stock</th><th>Still to obtain</th></tr></thead><tbody>${p.items.map(i=>`<tr><td>${esc(i.name)}${i.noLongerNeeded?'<small>No longer needed by this plan</small>':''}</td><td>${qty(i.quantity,i.unit)}</td><td><form data-form="acquired" data-key="${esc(i.key)}"><label><span class="sp-subtle">Status</span><select name="status" aria-label="${esc(i.name)} stock status">${[['unknown','Unknown'],['bought','Bought'],['have','Already have']].map(([v,l])=>`<option value="${v}" ${i.status===v?'selected':''}>${l}</option>`).join('')}</select></label><label><span class="sp-subtle">Amount (${i.unit})</span><input aria-label="${esc(i.name)} acquired quantity" name="quantity" type="number" min="0" max="100000" step="any" value="${i.acquired}"></label><button type="submit">Save</button></form></td><td>${qty(i.remaining,i.unit)}${i.acquired>i.quantity?'<small>Acquired amount kept.</small>':''}</td></tr>`).join('')}</tbody></table></div><h3>Your own additions</h3><ul>${p.manual.map(i=>`<li>${esc(i.name)}</li>`).join('')||'<li>No manual additions.</li>'}</ul><form data-form="manual" class="sp-inline"><label class="sp-label">Add your own item<input name="name" maxlength="120" required placeholder="e.g. coffee"></label><button type="submit">Add item</button></form></section>`}
+-function history(){return `<section class="sp-card"><h2>Your record stays yours.</h2><p>Saved reviews and decisions remain available when Programme service access ends.</p>${state.decisions.slice().reverse().map(d=>`<div class="sp-row"><div class="sp-day">${formatDate(d.date)}</div><div><strong>${esc(({accept:'Meal change accepted',decline:'Plan kept as it was',skip:'Review skipped',repeat:'Routine repeated',undo:'Meal change undone'})[d.type]||d.type)}</strong>${d.type==='accept'?`<p>${d.before.map(s=>`${formatDate(s.date)} · ${esc(names[s.recipeId])}`).join('<br>')}</p>${!d.undone?btn('Undo this meal change','undo',`data-id="${d.id}"`):'<small>Undone</small>'}`:''}</div></div>`).join('')||'<p>No decisions saved yet.</p>'}${state.reviews.map(r=>`<details><summary>Review from ${formatDate(r.created)}</summary><p>${esc(r.summary)}</p>${r.proposals.map(p=>`<p>${esc(p.text)}</p>`).join('')}</details>`).join('')}</section>`}
++function history(){return `<section class="sp-card"><h2>Your record stays yours.</h2><p><a href="/v1/programme/export" download>Download my Programme records</a></p><p>Saved reviews and decisions remain available when Programme service access ends.</p>${state.decisions.slice().reverse().map(d=>`<div class="sp-row"><div class="sp-day">${formatDate(d.date)}</div><div><strong>${esc(({accept:'Meal change accepted',decline:'Plan kept as it was',skip:'Review skipped',repeat:'Routine repeated',undo:'Meal change undone'})[d.type]||d.type)}</strong>${d.type==='accept'?`<p>${d.before.map(s=>`${formatDate(s.date)} · ${esc(names[s.recipeId])}`).join('<br>')}</p>${!d.undone?btn('Undo this meal change','undo',`data-id="${d.id}"`):'<small>Undone</small>'}`:''}</div></div>`).join('')||'<p>No decisions saved yet.</p>'}${state.reviews.map(r=>`<details><summary>Review from ${formatDate(r.created)}</summary><p>${esc(r.summary)}</p>${r.proposals.map(p=>`<p>${esc(p.text)}</p>`).join('')}</details>`).join('')}</section>`}
+ function requestChange(){const keys=[...new Set(state.slots.filter(s=>s.date>state.clock).map(s=>s.slotKey))];return `<form data-form="request" class="sp-card"><h2>What would you like to change?</h2><label class="sp-label">Saved item<select name="slotKey">${keys.map(k=>`<option value="${esc(k)}">${esc(k.replaceAll('-',' '))}</option>`).join('')}</select></label><label class="sp-label">What needs to fit?<textarea name="reason" maxlength="200" required></textarea></label><p>This asks for a review. It does not change your saved plan.</p><button class="sp-primary" type="submit">Save my request</button></form>`}
+ function edit(){if(!state.catalogue.length)return '<section class="sp-card"><h2>Meal selection is paused.</h2><p>No compatible reviewed replacement is available. Your saved record remains intact. Review any missing preferences or wait for suitable reviewed content.</p></section>';const slots=state.slots.filter(s=>s.date>state.clock&&s.kind==='meal');return `<form data-form="edit" class="sp-card"><h2>Edit your own plan.</h2><p>Manual choices remain available independently of Programme reviews.</p><label class="sp-label">Future cooking occasion<select name="slotId">${slots.map(s=>`<option value="${s.id}">${formatDate(s.date)} · ${esc(names[s.recipeId])}</option>`).join('')}</select></label><label class="sp-label">Replacement meal<select name="recipeId">${state.catalogue.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('')}</select></label><label class="sp-label">Portions<input name="servings" type="number" min="1" max="12" value="4"></label><button type="submit" class="sp-primary">Save my manual change</button></form>`}
+ function render(){if(!state)return;root.querySelector('#sp-name').textContent=state.name?`${state.name}’s Programme`:'The Programme';root.querySelector('#sp-tabs').innerHTML=['today','report','review','fortnight','list','history'].map(k=>`<button type="button" data-action="step" data-step="${k}" aria-current="${step===k?'page':'false'}">${({today:'Today',report:'Report the week',review:'Review',fortnight:'Fortnight',list:'Shopping list',history:'History'})[k]}</button>`).join('');root.querySelector('#sp-entitlement').textContent=state.entitlement.active?'Weekly review':'Saved records & free tools';view.innerHTML=!state.setup?(step==='setup'?setup():preferences()):preview?previewScreen():({today,preferences,report,review,fortnight,list,history,edit,request:requestChange}[step]||today)();view.insertAdjacentHTML('afterbegin',conditionsPanel());if(state.conditions?.length)view.querySelectorAll('[data-action="repeat"]').forEach(b=>b.disabled=true);if(!state.entitlement.active){view.insertAdjacentHTML('afterbegin','<p class="sp-gap">Programme service access has ended. Your saved plans, lists, reviews and manual choices remain available.</p>');view.querySelectorAll('[data-action="generate"],[data-action="accept"],[data-action="repeat"]').forEach(b=>b.disabled=true)}}
+-root.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b||busy)return;const a=b.dataset.action;if(a==='existing-tools'){const current=state;try{const data=await api('/existing-tools');if(state!==current)return;toolsContext=data;render();announce('Existing records loaded. Your plans are unchanged.')}catch(e){announce(e.message,true)}}else if(a==='step'){step=b.dataset.step;preview=null;render();view.querySelector('h2')?.setAttribute('tabindex','-1');view.querySelector('h2')?.focus();}else if(a==='period'){listIndex=Number(b.dataset.index);render()}else if(a==='generate'){step='review';await save('review',{},'Review prepared. Your plan is unchanged.')}else if(a==='preview'){try{preview=await api('/preview',{revision:state.revision,proposalId:b.dataset.proposal,recipeId:b.dataset.recipe});render();view.querySelector('h2')?.setAttribute('tabindex','-1');view.querySelector('h2')?.focus()}catch(e){announce(e.message,true)}}else if(a==='accept'){const data={proposalId:preview.proposalId,recipeId:preview.recipe.id};step='fortnight';await save('accept',data,'Meal change and shopping quantities saved together.')}else if(a==='decline'){await save('decline',{proposalId:b.dataset.proposal},'Plan kept as it was.')}else if(a==='skip'){await save('skip',{},'Review skipped. Your plan is kept.')}else if(a==='repeat'){step='fortnight';await save('repeat',{},'The next fortnight is saved with the same routine.')}else if(a==='undo'){await save('undo',{decisionId:b.dataset.id},'Meal change undone. Other records and edits are kept.')}});
+-root.addEventListener('submit',async e=>{e.preventDefault();const form=e.target,kind=form.dataset.form,d=new FormData(form);if(kind==='preferences'){setupDraft={goal:d.get('goal')||state.goal,focus:d.get('focus')||state.focus};const allergy=d.get('allergies'),p={...state.preferences,allergies:['unknown','other'].includes(allergy)?'unknown':allergy==='none'?'none':[allergy],diet:d.get('diet'),equipment:d.has('hob')?['hob']:[],activityLimitations:d.get('activityLimitations'),time:d.get('time'),household:d.get('household'),spending:d.get('spending'),reviewDay:state.setup?(state.preferences.reviewDay??0):Number(d.get('reviewDay')),workPattern:d.get('workPattern'),firstShift:d.get('firstShift'),shiftAnchor:d.get('shiftAnchor')};if(!state.setup)step='setup';await save('preferences',{preferences:p},'Preferences saved.')}else if(kind==='setup'){const choices=[];if(d.has('meal'))choices.push({day:Number(d.get('day')),kind:'meal',recipeId:d.get('recipeId'),servings:Number(d.get('servings'))});if(d.has('walk'))choices.push({day:2,kind:'move',minutes:Number(d.get('minutes'))});step='today';await save('setup',{...setupDraft,name:state.name,preferences:state.preferences,choices,measures:d.getAll('measure'),track:d.has('continuity')?'continuity':'everyday'},'Your first plan is saved.')}else if(kind==='reports'){const reports=[...form.querySelectorAll('[data-slot]')].map(f=>({slotId:f.dataset.slot,status:f.querySelector('[name=status]').value,fit:f.querySelector('[name=fit]').value,reason:f.querySelector('[name=reason]').value,shift:f.querySelector('[name=shift]').value}));await save('reports',{reports},'Reports saved.');if(!status.classList.contains('sp-error')){step='review';await save('review',{},'Review prepared. Your plan is unchanged.')}}else if(kind==='acquired'){await save('acquired',{start:state.lists[listIndex].start,key:form.dataset.key,status:d.get('status'),quantity:Number(d.get('quantity'))},'Shopping stock saved.')}else if(kind==='manual'){await save('manual-item',{start:state.lists[listIndex].start,name:d.get('name')},'Your own item is saved.')}else if(kind==='request'){step='review';await save('request',{slotKey:d.get('slotKey'),reason:d.get('reason')},'Your request is saved. Your plan is unchanged.')}else if(kind==='edit'){await save('edit-slot',{slotId:d.get('slotId'),recipeId:d.get('recipeId'),servings:Number(d.get('servings'))},'Your manual plan change is saved.')}});
++root.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b||busy)return;const a=b.dataset.action;if(a==='existing-tools'){const current=state;try{const data=await api('/existing-tools');if(state!==current)return;toolsContext=data;render();announce('Existing records loaded. Your plans are unchanged.')}catch(e){if(!e.cancelled)announce(e.message,true)}}else if(a==='step'){step=b.dataset.step;preview=null;render();view.querySelector('h2')?.setAttribute('tabindex','-1');view.querySelector('h2')?.focus();}else if(a==='period'){listIndex=Number(b.dataset.index);render()}else if(a==='generate'){step='review';await save('review',{},'Review prepared. Your plan is unchanged.')}else if(a==='preview'){try{preview=await api('/preview',{revision:state.revision,proposalId:b.dataset.proposal,recipeId:b.dataset.recipe});render();view.querySelector('h2')?.setAttribute('tabindex','-1');view.querySelector('h2')?.focus()}catch(e){if(!e.cancelled)announce(e.message,true)}}else if(a==='accept'){const data={proposalId:preview.proposalId,recipeId:preview.recipe.id};step='fortnight';await save('accept',data,'Meal change and shopping quantities saved together.')}else if(a==='decline'){await save('decline',{proposalId:b.dataset.proposal},'Plan kept as it was.')}else if(a==='skip'){await save('skip',{},'Review skipped. Your plan is kept.')}else if(a==='repeat'){step='fortnight';await save('repeat',{},'The next fortnight is saved with the same routine.')}else if(a==='undo'){await save('undo',{decisionId:b.dataset.id},'Meal change undone. Other records and edits are kept.')}});
++root.addEventListener('submit',async e=>{e.preventDefault();const form=e.target,kind=form.dataset.form,d=new FormData(form);if(kind==='preferences'){setupDraft={goal:d.get('goal')||state.goal,focus:d.get('focus')||state.focus};const allergy=d.get('allergies'),p={...state.preferences,allergies:['unknown','other'].includes(allergy)?'unknown':allergy==='none'?'none':[allergy],diet:d.get('diet'),equipment:d.has('hob')?['hob']:[],activityLimitations:d.get('activityLimitations'),time:d.get('time'),household:d.get('household'),spending:d.get('spending'),reviewDay:state.setup?(state.preferences.reviewDay??0):Number(d.get('reviewDay')),workPattern:d.get('workPattern'),firstShift:d.get('firstShift'),shiftAnchor:d.get('shiftAnchor')};if(!state.setup)step='setup';await save('preferences',{preferences:p},'Preferences saved.')}else if(kind==='setup'){const choices=[];if(d.has('meal'))choices.push({day:Number(d.get('day')),kind:'meal',recipeId:d.get('recipeId'),servings:Number(d.get('servings'))});if(d.has('walk'))choices.push({day:2,kind:'move',minutes:Number(d.get('minutes'))});step='today';await save('setup',{...setupDraft,name:state.name,preferences:state.preferences,choices,measures:d.getAll('measure'),track:d.has('continuity')?'continuity':'everyday'},'Your first plan is saved.')}else if(kind==='reports'){const reports=[...form.querySelectorAll('[data-slot]')].map(f=>({slotId:f.dataset.slot,status:f.querySelector('[name=status]').value,fit:f.querySelector('[name=fit]').value,reason:f.querySelector('[name=reason]').value,shift:f.querySelector('[name=shift]').value}));const saved=await save('reports',{reports},'Reports saved.');if(saved){step='review';await save('review',{},'Review prepared. Your plan is unchanged.')}}else if(kind==='acquired'){await save('acquired',{start:state.lists[listIndex].start,key:form.dataset.key,status:d.get('status'),quantity:Number(d.get('quantity'))},'Shopping stock saved.')}else if(kind==='manual'){await save('manual-item',{start:state.lists[listIndex].start,name:d.get('name')},'Your own item is saved.')}else if(kind==='request'){step='review';await save('request',{slotKey:d.get('slotKey'),reason:d.get('reason')},'Your request is saved. Your plan is unchanged.')}else if(kind==='edit'){await save('edit-slot',{slotId:d.get('slotId'),recipeId:d.get('recipeId'),servings:Number(d.get('servings'))},'Your manual plan change is saved.')}});
+ root.addEventListener('change',e=>{if(['sp-setup-recipe','sp-setup-servings'].includes(e.target.id)){const r=catalogue(root.querySelector('#sp-setup-recipe').value),servings=Number(root.querySelector('#sp-setup-servings').value);root.querySelector('#sp-setup-detail').innerHTML=recipeDetail(r,servings>0?servings:4)}});
+ document.querySelector('.menu-trigger')?.addEventListener('click',()=>{const d=document.querySelector('#site-drawer');d.hidden=false;document.querySelector('.drawer-backdrop').hidden=false;document.querySelector('.menu-trigger').setAttribute('aria-expanded','true');d.querySelector('button').focus()});
+ const closeMenu=()=>{document.querySelector('#site-drawer').hidden=true;document.querySelector('.drawer-backdrop').hidden=true;document.querySelector('.menu-trigger').setAttribute('aria-expanded','false');document.querySelector('.menu-trigger').focus()};
+@@ -40,4 +62,4 @@ document.querySelector('#toggleMotion')?.addEventListener('click',e=>{const enab
+ document.querySelector('#site-drawer')?.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const items=[...e.currentTarget.querySelectorAll('button,a')],first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
+ document.querySelector('.drawer-close')?.addEventListener('click',closeMenu);document.querySelector('.drawer-backdrop')?.addEventListener('click',closeMenu);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('#site-drawer').hidden)closeMenu()});
+ window.addEventListener('pagehide',clearPrivateView);window.addEventListener('pageshow',e=>{if(e.persisted)location.reload()});
+-try{state=await api();render()}catch(e){announce(e.message,true);view.innerHTML='<p><a href="/member/dashboard?returnTo=%2Fmember%2Fprogramme">Return to My Timber sign-in</a></p>'}
++try{state=await api();render()}catch(e){if(!e.cancelled){announce(e.message,true);view.innerHTML='<p><a href="/member/dashboard?returnTo=%2Fmember%2Fprogramme">Return to My Timber sign-in</a></p>'}}
+diff --git a/programme/account-operations.mjs b/programme/account-operations.mjs
+new file mode 100644
+index 0000000..41a4eb4
+--- /dev/null
++++ b/programme/account-operations.mjs
+@@ -0,0 +1,38 @@
++// Operator-only functions. Not imported by public routes and no HTTP admin API.
++// The caller must be an authenticated, authorised service operator.
++import {ProgrammeStore} from './store.mjs';
++import {emptyState,ProgrammeError} from './service.mjs';
++const requireValue=(condition,message,status=400)=>{if(!condition)throw new ProgrammeError(message,status)};
++function grant(input,now){
++ requireValue(typeof input.active==='boolean','Choose active or paused service access.');
++ const result={active:input.active};
++ if(input.active){
++  requireValue(typeof input.expiresAt==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/.test(input.expiresAt)&&Number.isFinite(Date.parse(input.expiresAt))&&Date.parse(input.expiresAt)>Date.parse(now),'Active access requires a valid future expiry.');
++  result.expiresAt=new Date(input.expiresAt).toISOString();
++ }
++ return result;
++}
++function operatorEvent(actor,reason,now){
++ requireValue(typeof actor==='string'&&actor.trim()&&actor.length<=120,'An accountable operator is required.');
++ requireValue(typeof reason==='string'&&reason.trim()&&reason.length<=300,'Record why access is changing.');
++ return {actor:actor.trim(),reason:reason.trim(),at:now};
++}
++export async function provisionAccount(env,input,{now=new Date().toISOString()}={}){
++ requireValue(Number.isSafeInteger(input.userId)&&input.userId>0,'A verified member ID is required.');
++ requireValue(env.DB&&env.PROGRAMME_DB,'Use the separately bound Programme database.');
++ const event=operatorEvent(input.actor,input.reason,now),entitlement=grant(input,now);
++ const member=await env.DB.prepare('SELECT id,first_name FROM users WHERE id=?').bind(input.userId).first();requireValue(member,'Existing member not found.',404);
++ const clock=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(now));
++ const state=emptyState(clock);state.name=String(member.first_name||'').slice(0,80);state.entitlement=entitlement;state.serviceEvents=[{...event,type:'provision',entitlement}];
++ const created=await new ProgrammeStore(env.PROGRAMME_DB).create(input.userId,state);
++ requireValue(created,'Programme account already exists; use a versioned access change.',409);
++ return {created:true,revision:0};
++}
++export async function changeAccess(env,input,{now=new Date().toISOString()}={}){
++ requireValue(Number.isSafeInteger(input.userId)&&input.userId>0,'A verified member ID is required.');
++ const event=operatorEvent(input.actor,input.reason,now),entitlement=grant(input,now),store=new ProgrammeStore(env.PROGRAMME_DB),state=await store.get(input.userId);
++ requireValue(state,'Programme account not found.',404);requireValue(Number.isSafeInteger(input.revision)&&input.revision===state.revision,'Account changed; read the current revision before retrying.',409);
++ const next={...state,entitlement,review:null,serviceEvents:[...(state.serviceEvents||[]),{...event,type:'access',entitlement}]};
++ requireValue(await store.save(input.userId,state.revision,next),'Account changed; no access update was committed.',409);
++ return {updated:true,revision:state.revision+1};
++}
+diff --git a/programme/dashboard-entry.mjs b/programme/dashboard-entry.mjs
+index cdf9f2e..d839547 100644
+--- a/programme/dashboard-entry.mjs
++++ b/programme/dashboard-entry.mjs
+@@ -1,3 +1,4 @@
++import {resolvedEntitlement} from './entitlement.mjs';
+ import {PRIVATE_HEADERS} from './routes.mjs';
+ import {ProgrammeStore} from './store.mjs';
+ export const DASHBOARD_ANCHOR='<section class="preview-member" id="previewMember" hidden>';
+@@ -8,6 +9,7 @@ export async function programmeDashboardEntry(request,env,response,{authenticate
+  if(request.method!=='GET'||!['/member/dashboard','/member/dashboard.html'].includes(path)||env.PROGRAMME_V1_ENABLED!=='true'||!env.PROGRAMME_DB||!response.ok||!response.headers.get('Content-Type')?.includes('text/html'))return response;
+  let state;try{const auth=await authenticate(request,env);if(auth.response)return response;state=await new ProgrammeStore(env.PROGRAMME_DB).get(auth.userId)}catch{return response}
+  if(!state)return response;
++ state.entitlement=resolvedEntitlement(state.entitlement);
+  const original=response.clone(),html=await response.text();
+  if(!html.includes(DASHBOARD_ANCHOR)||html.includes('id="sstProgrammeEntry"'))return original;
+  const entry=`<section class="mt-card" id="sstProgrammeEntry" aria-labelledby="sstProgrammeEntryTitle"><h2 id="sstProgrammeEntryTitle">Your Programme</h2><p>${state.entitlement.active?'Your saved plans, weekly review and the changes you choose.':'Return to your saved plans, shopping lists and review history. Manual choices remain available.'}</p><a class="mt-button" href="/member/programme">${state.entitlement.active?'Open my Programme':'Open my saved Programme'}</a></section>`;
+diff --git a/programme/entitlement.mjs b/programme/entitlement.mjs
+new file mode 100644
+index 0000000..32560cb
+--- /dev/null
++++ b/programme/entitlement.mjs
+@@ -0,0 +1,8 @@
++// The stored grant is not rewritten when time passes. Reads and writes resolve
++// its current status so saved records survive expiry without a scheduled job.
++export function resolvedEntitlement(grant={},now=new Date().toISOString()){
++ const expiresAt=grant.expiresAt,hasExpiry=expiresAt!==undefined&&expiresAt!==null;
++ const valid=typeof expiresAt==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/.test(expiresAt)&&Number.isFinite(Date.parse(expiresAt));
++ const expired=hasExpiry&&(!valid||!Number.isFinite(Date.parse(now))||Date.parse(expiresAt)<=Date.parse(now));
++ return {...grant,active:grant.active===true&&!expired,...(expired?{status:valid?'expired':'invalid-expiry'}:{})};
++}
+diff --git a/programme/existing-tools.mjs b/programme/existing-tools.mjs
+index c820b12..4991817 100644
+--- a/programme/existing-tools.mjs
++++ b/programme/existing-tools.mjs
+@@ -1,13 +1,23 @@
+-// Read-only adapter for the existing free tools. Name-only recipes and undated
+-// exercise entries must not be promoted into Programme slots or allergy claims.
++// Narrow, read-only connection to owner-scoped free records. No clinical fields,
++// notes, scores or measurements are copied into Programme plans or reports.
+ const object=x=>x&&typeof x==='object'&&!Array.isArray(x)?x:{};
+ const names=x=>Array.isArray(x)?[...new Set(x.filter(v=>typeof v==='string').map(v=>v.trim().slice(0,200)).filter(Boolean))].slice(-50):[];
++const date=x=>typeof x==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(x)&&Number.isFinite(Date.parse(x+'T12:00:00Z'))&&new Date(x+'T12:00:00Z').toISOString().slice(0,10)===x?x:null;
++const dates=x=>[...new Set((Array.isArray(x)?x:[]).map(v=>date(object(v).date)).filter(Boolean))].sort();
+ export async function existingTools(db,userId){
+  const row=await db.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first();
+  let preferences={};
+  if(row?.preferences){try{preferences=object(JSON.parse(row.preferences))}catch{throw new Error('Existing tool records could not be read. Your saved records are unchanged.')}}
+- const grub=object(preferences.grub),fit=object(preferences.fitJourney);
++ const grub=object(preferences.grub),fit=object(preferences.fitJourney),journey=object(preferences.myJourney),setup=object(journey.setup);
+  const entries=Object.values(object(fit.entries)).filter(v=>['done','skipped'].includes(object(v).status));
+- const reviews=Object.values(object(fit.sessionReviews)).filter(v=>typeof object(v).recordedOn==='string');
+- return {source:'existing-member-state',grub:{savedRecipes:names(grub.savedRecipes),weekMeals:names(grub.weekMeals),href:'/member/grub'},fit:{exerciseEntries:entries.length,completedExerciseEntries:entries.filter(v=>v.status==='done').length,sessionReviews:reviews.length,href:'/member/fit'},note:'These records remain in your free tools. Recipe names alone do not supply dates, portions or reviewed ingredients; exercise entries do not establish completion of a Programme action.'};
++ const reviews=Object.values(object(fit.sessionReviews)).filter(v=>date(object(v).recordedOn));
++ const lifeBack={...object(preferences.lifeBack),...object(journey.lifeBack)},lifeDates=dates(lifeBack.entries);
++ const table=await db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='my_journey_weekly_checkins'").first();
++ let weekly={available:false,count:null,latestDate:null,href:'/member/journey'};
++ if(table){
++  const rows=(await db.prepare('SELECT week_ending FROM my_journey_weekly_checkins WHERE user_id=? AND confirmed_at IS NOT NULL ORDER BY week_ending').bind(userId).all()).results;
++  const recorded=[...new Set(rows.map(r=>date(r.week_ending)).filter(Boolean))].sort();
++  weekly={available:true,count:recorded.length,latestDate:recorded.at(-1)||null,href:'/member/journey'};
++ }
++ return {source:'existing-member-state',grub:{savedRecipes:names(grub.savedRecipes),weekMeals:names(grub.weekMeals),href:'/member/grub'},fit:{exerciseEntries:entries.length,completedExerciseEntries:entries.filter(v=>v.status==='done').length,sessionReviews:reviews.length,href:'/member/fit'},journey:{hasSavedSetup:Object.keys(setup).length>0,purpose:typeof setup.why==='string'?setup.why.trim().slice(0,500):null,paused:typeof setup.paused==='boolean'?setup.paused:null,startDate:date(setup.startDate),href:'/member/journey'},lifeBack:{count:lifeDates.length,latestDate:lifeDates.at(-1)||null,href:'/member/journey'},weekly,note:'These are your saved free-tool records. Opening them does not change your Programme plan or mark its actions complete. Missing weeks remain unreported.'};
+ }
+diff --git a/programme/export.mjs b/programme/export.mjs
+new file mode 100644
+index 0000000..b90f301
+--- /dev/null
++++ b/programme/export.mjs
+@@ -0,0 +1,4 @@
++export function exportAccount(state,{now=new Date().toISOString()}={}){
++ const {operations,serviceEvents,...record}=structuredClone(state);
++ return {format:'shift-programme-export',version:1,exportedAt:now,record};
++}
+diff --git a/programme/journey-sequence.mjs b/programme/journey-sequence.mjs
+new file mode 100644
+index 0000000..8e2a18e
+--- /dev/null
++++ b/programme/journey-sequence.mjs
+@@ -0,0 +1,20 @@
++// Organisational prompts only: elapsed time never counts as completion.
++export function firstMonth(state){
++ if(!state.setup)return {key:'setup',title:'Choose a starting point that fits.',text:'Choose what you want to make easier and save a first action.',step:'preferences',label:'Choose my starting point'};
++ const dates=state.slots.map(s=>s.date).sort(),last=dates.at(-1),joined=state.startedOn||dates[0]||state.anchor;
++ const elapsed=Math.max(0,Math.floor((Date.parse(state.clock+'T12:00:00Z')-Date.parse(joined+'T12:00:00Z'))/86400000));
++ if(last&&last<state.clock)return {key:'return',title:'Pick up where you left off.',text:`Your last saved action was dated ${last}. Look over it, repeat what worked or choose a change. Missing weeks remain unreported.`,step:'fortnight',label:'Look over my saved plan'};
++ if(state.review)return {key:'review',title:'Your review is ready.',text:state.review.summary,step:'review',label:'Open my review'};
++ if(!state.startedOn)return {key:'routine',title:'Keep the useful bits.',text:'Look over your saved routine. Your joining date was not recorded here, so no first-month stage has been assumed.',step:'fortnight',label:'Look over my saved plan'};
++ const stages=[
++  [2,'start','Make the first week workable.','Check the dates and portions you chose. Start with the commitment you saved.','fortnight','Check my plan'],
++  [3,'prepare','Have what you need.','Check the shopping period and what you already have. Your list follows your saved meals.','list','Check my shopping list'],
++  [7,'first-review','How did the week fit?','Report only the actions you want to discuss. Anything you do not report stays unknown.','report','Report my week'],
++  [14,'repeat','Keep what helped.','Look over your saved routine. Keeping the same plan is a useful result.','fortnight','Look over my fortnight'],
++  [21,'disruption','Make room for a busy week.','If a saved action no longer fits, you can request a change. Otherwise keep your plan.','request','Choose an action to discuss'],
++  [28,'reflect','See what you actually recorded.','Look back at your reports and decisions. A gap in the record is a gap, not a conclusion.','history','View my history'],
++  [Infinity,'next','Choose your next useful step.','Keep your routine or review what you want to make easier. Nothing changes without your choice.','preferences','Review my preferences']
++ ];
++ const [,key,title,text,step,label]=stages.find(([end])=>elapsed+1<=end);
++ return {key,title,text,step,label,daysSinceStart:elapsed};
++}
+diff --git a/programme/routes.mjs b/programme/routes.mjs
+index 13e7f4a..38469d2 100644
+--- a/programme/routes.mjs
++++ b/programme/routes.mjs
+@@ -1,3 +1,4 @@
++import {exportAccount} from './export.mjs';
+ import {ProgrammeStore} from './store.mjs';
+ import {execute,publicState,ProgrammeError,currentState} from './service.mjs';
+ import {previewChange} from './engine.mjs';
+@@ -8,7 +9,7 @@ export const json=(body,status=200)=>new Response(JSON.stringify(body),{status,h
+ // The feature is dark by default. FixtureMode is never derived from a request.
+ export async function programmeRoutes(request,env,{authenticate,html,fixtureMode=false}={}){
+  const url=new URL(request.url),path=url.pathname;
+- if(!['/v1/programme','/v1/programme/preview','/v1/programme/existing-tools','/member/programme'].includes(path))return null;
++ if(!['/v1/programme','/v1/programme/preview','/v1/programme/export','/v1/programme/existing-tools','/member/programme'].includes(path))return null;
+  if(env.PROGRAMME_V1_ENABLED!=='true')return json({error:'Programme is unavailable.'},404);
+  const auth=await authenticate(request,env);
+  if(auth.response){
+@@ -27,6 +28,10 @@ export async function programmeRoutes(request,env,{authenticate,html,fixtureMode
+    try{return json(await existingTools(env.DB,auth.userId))}catch{return json({error:'Existing tool records are temporarily unavailable. Your saved records are unchanged.'},503)}
+   }
+   const stored=await store.get(auth.userId);if(!stored)return json({error:'Programme access has not been provisioned.'},403);const state=currentState(stored,{fixtureMode});
++  if(path==='/v1/programme/export'){
++   if(request.method!=='GET')return json({error:'Method not allowed'},405);
++   return new Response(JSON.stringify(exportAccount(stored),null,2),{headers:{...PRIVATE_HEADERS,'Content-Type':'application/json; charset=utf-8','Content-Disposition':'attachment; filename="SHIFT-Programme-records.json"'}});
++  }
+   if(request.method==='GET'&&path==='/v1/programme')return json(publicState(state,{fixtureMode}));
+   if(request.method!=='POST')return json({error:'Method not allowed'},405);
+   if(request.headers.get('Origin')!==url.origin)return json({error:'This change must come from your Programme page.'},403);
+diff --git a/programme/service.mjs b/programme/service.mjs
+index d2b1894..562c3fa 100644
+--- a/programme/service.mjs
++++ b/programme/service.mjs
+@@ -1,12 +1,14 @@
++import {resolvedEntitlement} from './entitlement.mjs';
++import {firstMonth} from './journey-sequence.mjs';
+ import {RECIPES,suitable,CONTENT_VERSION} from './content.mjs';
+ import {clone,dateAdd,weekStart,planningStart,periodStart,evaluate,previewChange,shopping,planConditions} from './engine.mjs';
+ export class ProgrammeError extends Error{constructor(message,status=400){super(message);this.status=status}}
+ const insist=(condition,message,status=400)=>{if(!condition)throw new ProgrammeError(message,status)};
+ export function currentState(state,options={}){
+- if(options.fixtureMode)return state;
++ if(options.fixtureMode)return {...state,entitlement:resolvedEntitlement(state.entitlement,options.now||state.clock+'T12:00:00Z')};
+  const clock=options.today||new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const elapsed=Math.floor((Date.parse(clock+'T12:00:00Z')-Date.parse(state.anchor+'T12:00:00Z'))/86400000);
+- return {...state,clock,cycle:Math.max(0,Math.floor(elapsed/7))};
++ return {...state,clock,cycle:Math.max(0,Math.floor(elapsed/7)),entitlement:resolvedEntitlement(state.entitlement,options.now||(options.today?clock+'T12:00:00Z':new Date().toISOString()))};
+ }
+ const text=(s,n=500)=>String(s??'').trim().slice(0,n);
+ export function emptyState(clock){return {schemaVersion:1,revision:0,clock,cycle:0,anchor:clock,name:'',preferences:{allergies:'unknown',diet:'unknown',equipment:[],activityLimitations:'unknown'},goal:'',focus:'food',track:'everyday',measures:[],slots:[],reports:[],requests:[],freezes:{},acquired:{},manualItems:[],reviews:[],decisions:[],operations:[],setup:false,entitlement:{active:false},review:null}}
+@@ -17,9 +19,9 @@ function cleanPreferences(p){
+  return {allergies:clone(p.allergies),diet:p.diet,equipment:Array.isArray(p.equipment)?p.equipment.filter(e=>['hob'].includes(e)):[],activityLimitations:text(p.activityLimitations||'unknown'),time:text(p.time,100),household:text(p.household,100),spending:text(p.spending,100),workPattern:['alternating','fixed'].includes(p.workPattern)?p.workPattern:'fixed',reviewDay:Number.isInteger(p.reviewDay)&&p.reviewDay>=0&&p.reviewDay<=6?p.reviewDay:0,firstShift:['early','late','day','off'].includes(p.firstShift)?p.firstShift:'day',shiftAnchor:/^\d{4}-\d{2}-\d{2}$/.test(p.shiftAnchor||'')&&weekStart(p.shiftAnchor)===p.shiftAnchor?p.shiftAnchor:null};
+ }
+ export function publicState(state,{fixtureMode=false}={}){
+- const s=clone(state);delete s.operations;
++ const s=clone(state);delete s.operations;delete s.serviceEvents;
+  const start=planningStart(state);
+- return {...s,conditions:planConditions(state,{fixtureMode}),contentVersion:CONTENT_VERSION,catalogue:Object.values(RECIPES).filter(r=>suitable(r,state.preferences,{fixtureMode})),lists:[shopping(state,start,dateAdd(start,6)),shopping(state,dateAdd(start,7),dateAdd(start,13))],fixtureMode};
++ return {...s,sequence:firstMonth(state),conditions:planConditions(state,{fixtureMode}),contentVersion:CONTENT_VERSION,catalogue:Object.values(RECIPES).filter(r=>suitable(r,state.preferences,{fixtureMode})),lists:[shopping(state,start,dateAdd(start,6)),shopping(state,dateAdd(start,7),dateAdd(start,13))],fixtureMode};
+ }
+ function rolledSlots(state,start){
+  const templates=new Map();for(const s of [...state.slots].sort((a,b)=>a.date.localeCompare(b.date)))templates.set(s.slotKey,s);
+@@ -37,7 +39,7 @@ export function mutate(state,action,{fixtureMode=false}={}){
+   next.slots=action.choices.map((c,i)=>{insist(Number.isInteger(c.day)&&c.day>=0&&c.day<7,'Choose a valid day.');const date=dateAdd(start,(c.day-(new Date(start+'T12:00:00Z').getUTCDay()+6)%7+7)%7),slotKey=['mon','tue','wed','thu','fri','sat','sun'][c.day]+'-'+(c.kind==='meal'?'dinner':'walk');
+    if(c.kind==='meal'){insist(suitable(RECIPES[c.recipeId],preferences,{fixtureMode}),'Please confirm food restrictions before choosing a compatible meal.');insist(Number.isFinite(c.servings)&&c.servings>=1&&c.servings<=12,'Choose 1–12 portions.');return{id:`${date}:${slotKey}`,slotKey,date,kind:'meal',recipeId:c.recipeId,recipeVersion:RECIPES[c.recipeId].version,servings:c.servings,completed:false}}
+    insist(c.kind==='move'&&preferences.activityLimitations==='none','This prototype cannot select movement around an unknown or stated limitation. Keep using your existing chosen guidance.');insist(Number.isInteger(c.minutes)&&c.minutes>=1&&c.minutes<=180,'Choose a valid walking duration.');return{id:`${date}:${slotKey}`,slotKey,date,kind:'move',label:'Your chosen walk',minutes:c.minutes,completed:false};
+-  });insist(new Set(next.slots.map(s=>s.id)).size===next.slots.length,'Choose different days for duplicate meal or walking slots.');next.setup=true;
++  });insist(new Set(next.slots.map(s=>s.id)).size===next.slots.length,'Choose different days for duplicate meal or walking slots.');next.setup=true;next.startedOn=state.clock;
+  }else if(type==='preferences'){
+   next.preferences=cleanPreferences(action.preferences);if(state.setup)insist(next.preferences.reviewDay===(state.preferences.reviewDay??0),'The saved review day is fixed for this test. Your plan is unchanged.');
+   next.review=null;
+diff --git a/programme/tests/existing-tools.test.mjs b/programme/tests/existing-tools.test.mjs
+index 6e3e151..01c2b0d 100644
+--- a/programme/tests/existing-tools.test.mjs
++++ b/programme/tests/existing-tools.test.mjs
+@@ -51,3 +51,22 @@ test('The pinned dashboard preserves the fixed Programme destination through its
+  assert.equal(vm.runInContext('requestedDestination()',ctx),'/member/programme');
+  ctx.location.search='?returnTo=https%3A%2F%2Fevil.invalid';assert.equal(vm.runInContext('requestedDestination()',ctx),'');
+ });
++test('Journey purpose and recorded dates connect without copying measurements, notes or another account',async()=>{
++ const {db,store,env,deps,request}=await setup();
++ db.sqlite.exec('CREATE TABLE my_journey_weekly_checkins(user_id INTEGER,week_ending TEXT,confirmed_at TEXT,note TEXT);');
++ for(const [id,date,confirmed] of [[1,'2026-09-06','2026-09-06T12:00:00Z'],[1,'2026-09-13',null],[2,'2026-09-20','2026-09-20T12:00:00Z'],[1,'2026-02-30','2026-03-02T12:00:00Z']])db.sqlite.prepare('INSERT INTO my_journey_weekly_checkins VALUES(?,?,?,?)').run(id,date,confirmed,'PRIVATE-CHECKIN-NOTE');
++ const p=JSON.parse(db.sqlite.prepare('SELECT preferences FROM member_state WHERE user_id=1').get().preferences);
++ p.myJourney={setup:{why:'Have energy for football',paused:true,startDate:'2026-08-31'},weight:{currentKg:94.7},wellbeing:{note:'PRIVATE-WELLBEING'},lifeBack:{entries:[{date:'2026-09-01',scores:{energy:50},note:'PRIVATE-LIFE-NOTE'},{date:'2026-09-01'},{date:'invalid'}]}};
++ db.sqlite.prepare('UPDATE member_state SET preferences=? WHERE user_id=1').run(JSON.stringify(p));
++ const before=db.sqlite.prepare('SELECT * FROM member_state ORDER BY user_id').all(),beforeWeekly=db.sqlite.prepare('SELECT * FROM my_journey_weekly_checkins').all(),plan=await store.get(1);
++ const r=await programmeRoutes(request(1,'GET','?userId=2'),env,deps),body=await r.json();assert.equal(r.status,200);
++ assert.equal(body.journey.purpose,'Have energy for football');assert.equal(body.journey.paused,true);assert.equal(body.journey.startDate,'2026-08-31');
++ assert.equal(body.lifeBack.count,1);assert.equal(body.lifeBack.latestDate,'2026-09-01');assert.equal(body.weekly.count,1);assert.equal(body.weekly.latestDate,'2026-09-06');
++ assert.doesNotMatch(JSON.stringify(body),/94\.7|PRIVATE-|currentKg|scores|2026-09-20|Gaz/);
++ assert.deepEqual(db.sqlite.prepare('SELECT * FROM member_state ORDER BY user_id').all(),before);assert.deepEqual(db.sqlite.prepare('SELECT * FROM my_journey_weekly_checkins').all(),beforeWeekly);assert.deepEqual(await store.get(1),plan);
++});
++test('Absent weekly storage is unknown, and legacy Life Back dates are kept',async()=>{
++ const {db}=await setup();const p={lifeBack:{entries:[{date:'2026-09-03',note:'OMIT'}]}};
++ db.sqlite.prepare('UPDATE member_state SET preferences=? WHERE user_id=1').run(JSON.stringify(p));
++ const result=await existingTools(db,1);assert.equal(result.weekly.available,false);assert.equal(result.weekly.count,null);assert.equal(result.lifeBack.latestDate,'2026-09-03');assert.equal(result.journey.purpose,null);
++});
+diff --git a/programme/tests/full-worker-contract.mjs b/programme/tests/full-worker-contract.mjs
+new file mode 100644
+index 0000000..5655749
+--- /dev/null
++++ b/programme/tests/full-worker-contract.mjs
+@@ -0,0 +1,35 @@
++// Read/write fictional aggregates through the actual bundled Worker entry.
++// No remote requests, production bindings or compatibility changes.
++import {dirname} from 'node:path';
++import {Miniflare} from 'miniflare';
++import {readFileSync,writeFileSync} from 'node:fs';
++import {createHash} from 'node:crypto';
++import assert from 'node:assert/strict';
++import {SCHEMA} from '../store.mjs';
++import {fixture} from '../test-support/fixtures.mjs';
++const bundle=process.env.PROGRAMME_FULL_BUNDLE;
++if(!bundle)throw new Error('Set PROGRAMME_FULL_BUNDLE to the exact wrangler dry-run output.');
++const results=[],record=(name,details)=>results.push({name,result:'PASS',details});
++const mf=new Miniflare({modules:[{type:'ESModule',path:bundle}],modulesRoot:dirname(bundle),compatibilityDate:'2026-08-09',d1Databases:{DB:'full-worker-fictional-auth',PROGRAMME_DB:'full-worker-fictional-programme'},bindings:{PROGRAMME_V1_ENABLED:'true'}});
++let failure=null;
++try{
++ const auth=await mf.getD1Database('DB'),db=await mf.getD1Database('PROGRAMME_DB');
++ await auth.exec('CREATE TABLE users(id INTEGER PRIMARY KEY,first_name TEXT);CREATE TABLE user_sessions(id INTEGER PRIMARY KEY,user_id INTEGER,token_hash TEXT,expires_at TEXT,revoked_at TEXT,last_used_at TEXT);CREATE TABLE member_state(user_id INTEGER PRIMARY KEY,preferences TEXT);');await db.exec(SCHEMA);
++ for(const [id,name]of [[1,'Dave'],[2,'Gaz']]){
++  await auth.prepare('INSERT INTO users VALUES(?,?)').bind(id,name).run();
++  await auth.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at) VALUES(?,?,?)').bind(id,createHash('sha256').update('full-worker-fictional-'+id).digest('hex'),'2099-01-01').run();
++  await auth.prepare('INSERT INTO member_state VALUES(?,?)').bind(id,JSON.stringify({myJourney:{setup:{why:name+' purpose'}}})).run();
++  const s=fixture(name);s.entitlement={active:true,expiresAt:'2099-01-01T00:00:00Z'};
++  await db.prepare('INSERT INTO programme_v1_accounts VALUES(?,0,?,?)').bind(id,JSON.stringify(s),'2026-09-13').run();
++ }
++ const request=(path,id=1,body)=>mf.dispatchFetch('https://full-worker.invalid'+path,{method:body?'POST':'GET',redirect:'manual',headers:{Cookie:id?'sst_session=full-worker-fictional-'+id:'',Origin:'https://full-worker.invalid','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
++ let response=await request('/v1/programme');assert.equal(response.status,200);let state=await response.json();assert.equal(state.name,'Dave');assert.equal(state.fixtureMode,false);assert.equal(state.catalogue.length,0);record('Real Worker entry refuses unapproved fixtures',{read:200,fixtureMode:false,selectableRecipes:0});
++ response=await request('/member/programme');assert.equal(response.status,200);assert.match(await response.text(),/id="programme"/);record('Authenticated private page through actual Worker',{status:200});
++ response=await request('/v1/programme/existing-tools?userId=2');assert.equal(response.status,200);assert.equal((await response.json()).journey.purpose,'Dave purpose');record('Journey adapter through actual Worker',{status:200,ownerScoped:true});
++ const revision=state.revision;
++ const writes=await Promise.all(Array.from({length:8},(_,i)=>request('/v1/programme',1,{type:'manual-item',start:'2026-09-14',name:'Fictional item '+i,revision,operationId:'full-worker-write-'+i})));
++ assert.equal(writes.filter(x=>x.status===200).length,1);assert.equal(writes.filter(x=>x.status===409).length,7);record('Concurrent saves through full Worker',{statuses:writes.map(x=>x.status),commits:1});
++ response=await request('/v1/programme/export?userId=2');assert.equal(response.status,200);assert.equal((await response.json()).record.name,'Dave');record('Export remains owner-scoped',{status:200});
++ await auth.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=1').bind('2026-09-13T12:00:00Z').run();
++ assert.equal((await request('/v1/programme')).status,401);assert.equal((await request('/v1/programme/export')).status,401);assert.equal((await request('/member/programme')).status,303);assert.equal((await request('/v1/programme',2)).status,200);record('Revocation through actual authentication',{revokedRead:401,revokedExport:401,privatePage:303,otherAccount:200});
++}catch(e){failure=String(e);process.exitCode=1;console.error(e)}finally{await mf.dispose();const evidence={scope:'Actual Wrangler-bundled root Worker on local workerd, separate emulated D1 stores; not remote commissioning.',bundleSha256:createHash('sha256').update(readFileSync(bundle)).digest('hex'),compatibilityDate:'2026-08-09',results,failure};writeFileSync(new URL('../evidence/takeover-full-worker.json',import.meta.url),JSON.stringify(evidence,null,2)+'\n');console.log(JSON.stringify(evidence,null,2))}
+diff --git a/programme/tests/member-view.test.mjs b/programme/tests/member-view.test.mjs
+index 1d1b32e..53f204a 100644
+--- a/programme/tests/member-view.test.mjs
++++ b/programme/tests/member-view.test.mjs
+@@ -6,7 +6,7 @@ const source=readFileSync(new URL('../../frontend/member/assets/programme-v1/pro
+ test('Private-view cleanup removes the account name, status, tabs, body and preview as well as the stored state',()=>{
+  const node=()=>({textContent:'Fictional private information',replaceChildren(){this.textContent=''}});
+  const nodes=Object.fromEntries(['#sp-name','#sp-entitlement','#sp-tabs'].map(k=>[k,node()])),view=node(),status=node();
+- const ctx={state:{name:'Fictional member'},preview:{recipe:'Fictional private choice'},toolsContext:{grub:{savedRecipes:['Fictional private recipe']}},root:{querySelector:k=>nodes[k]},view,status};
++ const ctx={privateGeneration:0,pendingRequests:new Set(),setupDraft:{goal:'Private draft'},busy:true,state:{name:'Fictional member'},preview:{recipe:'Fictional private choice'},toolsContext:{grub:{savedRecipes:['Fictional private recipe']}},root:{querySelector:k=>nodes[k]},view,status};
+  vm.createContext(ctx);
+  const cleanup=source.slice(source.indexOf('function clearPrivateView(){'),source.indexOf('\nasync function api'));
+  vm.runInContext(cleanup+';clearPrivateView();',ctx);
+diff --git a/programme/tests/private-requests.test.mjs b/programme/tests/private-requests.test.mjs
+new file mode 100644
+index 0000000..7df1b08
+--- /dev/null
++++ b/programme/tests/private-requests.test.mjs
+@@ -0,0 +1,46 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {readFileSync} from 'node:fs';
++import {fixture} from '../test-support/fixtures.mjs';
++import {publicState} from '../service.mjs';
++const source=readFileSync(process.env.PROGRAMME_CLIENT_SOURCE||new URL('../../frontend/member/assets/programme-v1/programme.mjs',import.meta.url),'utf8');
++const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
++const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve}};
++function harness(){
++ const requests=[],events={};
++ const node=()=>({textContent:'',innerHTML:'',disabled:false,dataset:{},classList:{toggle(){},contains(){return false}},replaceChildren(){this.textContent='';this.innerHTML=''},insertAdjacentHTML(){},setAttribute(){},focus(){},addEventListener(){},querySelector(){return node()},querySelectorAll(){return []}});
++ const root=node(),nodes=new Map();root.querySelector=s=>{if(!nodes.has(s))nodes.set(s,node());return nodes.get(s)};
++ const document={querySelector:s=>s==='#programme'?root:null,addEventListener(){}};
++ const window={addEventListener:(k,fn)=>events[k]=fn};
++ const fetch=(url,options)=>{const d=deferred();requests.push({url,options,...d});return d.promise};
++ const run=new AsyncFunction('document','window','fetch','crypto','AbortController',source+'\nreturn {save,api,clearPrivateView,getState:()=>state,getPreview:()=>preview};')(document,window,fetch,globalThis.crypto,AbortController);
++ const response=(index,data,status=200)=>requests[index].resolve({ok:status===200,status,json:async()=>data});
++ return {requests,events,nodes,run,response};
++}
++const saved=()=>publicState(fixture('Dave'),{fixtureMode:true});
++test('A delayed initial read cannot restore private data after page exit',async()=>{
++ const h=harness();h.events.pagehide();h.response(0,saved());const app=await h.run;
++ assert.equal(app.getState(),null);assert.equal(h.nodes.get('#sp-name').textContent,'The Programme');assert.equal(h.nodes.get('#sp-view').innerHTML,'');
++});
++test('A delayed save is discarded after page exit even if the transport ignores abort',async()=>{
++ const h=harness();h.response(0,saved());const app=await h.run;const pending=app.save('review');
++ h.events.pagehide();h.response(1,saved());await pending;
++ assert.equal(app.getState(),null);assert.equal(h.nodes.get('#sp-status').textContent,'');assert.equal(h.nodes.get('#sp-view').innerHTML,'');
++});
++test('A delayed preview rejects after private state is cleared',async()=>{
++ const h=harness();h.response(0,saved());const app=await h.run;
++ const pending=app.api('/preview',{revision:0});h.events.pagehide();h.response(1,{recipe:{name:'Private choice'}});
++ await assert.rejects(pending,e=>e.cancelled===true);assert.equal(app.getState(),null);
++});
++test('A delayed existing-tool response is rejected after clearing the account',async()=>{
++ const h=harness();h.response(0,saved());const app=await h.run;
++ const pending=app.api('/existing-tools');h.events.pagehide();h.response(1,{journey:{purpose:'Private purpose'}});
++ await assert.rejects(pending,e=>e.cancelled===true);assert.equal(app.getState(),null);
++});
++test('Session expiry clears the member view and cancels other outstanding requests',async()=>{
++ const h=harness();h.response(0,saved());const app=await h.run;
++ const first=app.api('/existing-tools'),second=app.api('/preview',{});
++ h.response(1,{error:'Session ended'},401);await assert.rejects(first);
++ h.response(2,{recipe:{name:'Old member'}});await assert.rejects(second,e=>e.cancelled===true);
++ assert.equal(app.getState(),null);assert.equal(app.getPreview(),null);assert.match(h.nodes.get('#sp-view').innerHTML,/Return to My Timber sign-in/);
++});
+diff --git a/programme/tests/service-operations.test.mjs b/programme/tests/service-operations.test.mjs
+new file mode 100644
+index 0000000..41da4fa
+--- /dev/null
++++ b/programme/tests/service-operations.test.mjs
+@@ -0,0 +1,47 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {sqliteAdapter} from '../test-support/db.mjs';
++import {SCHEMA,ProgrammeStore} from '../store.mjs';
++import {fixture} from '../test-support/fixtures.mjs';
++import {provisionAccount,changeAccess} from '../account-operations.mjs';
++import {exportAccount} from '../export.mjs';
++import {execute,currentState,publicState} from '../service.mjs';
++import {programmeRoutes} from '../routes.mjs';
++import {firstMonth} from '../journey-sequence.mjs';
++const now='2026-09-13T12:00:00Z';
++function setup(){const db=sqliteAdapter(),auth=sqliteAdapter();db.sqlite.exec(SCHEMA);auth.sqlite.exec("CREATE TABLE users(id INTEGER PRIMARY KEY,first_name TEXT);INSERT INTO users VALUES(1,'Dave'),(2,'Gaz');");return {env:{DB:auth,PROGRAMME_DB:db,PROGRAMME_V1_ENABLED:'true'},store:new ProgrammeStore(db)}}
++test('Provisioning requires an existing member, operator and future expiry, and never overwrites records',async()=>{
++ const {env,store}=setup(),input={userId:1,actor:'fixture-operator',reason:'Fictional service test',active:true,expiresAt:'2026-10-13T12:00:00Z'};
++ for(const change of [{userId:999},{actor:''},{expiresAt:null},{expiresAt:'2026-01-01T00:00:00Z'}])await assert.rejects(provisionAccount(env,{...input,...change},{now}));
++ assert.deepEqual(await provisionAccount(env,input,{now}),{created:true,revision:0});const before=await store.get(1);
++ await assert.rejects(provisionAccount(env,input,{now}),e=>e.status===409);assert.deepEqual(await store.get(1),before);assert.equal(await store.get(2),null);
++});
++test('Expiry is resolved on reads and writes; saved records and manual list changes survive',async()=>{
++ const {store}=setup(),s=fixture();s.entitlement={active:true,expiresAt:now};await store.create(1,s);
++ const options={fixtureMode:true,now};assert.equal(currentState(s,options).entitlement.active,false);
++ await assert.rejects(execute(store,1,{type:'review',revision:0,operationId:'expired-review'},options),e=>e.status===403);
++ const result=await execute(store,1,{type:'manual-item',name:'Own item',start:'2026-09-14',revision:0,operationId:'expired-own-item'},options);
++ assert.equal(result.entitlement.active,false);assert.deepEqual(result.slots,s.slots);assert.equal(result.manualItems.at(-1).name,'Own item');
++ assert.equal(currentState({...s,entitlement:{active:true,expiresAt:'bad'}},options).entitlement.active,false);
++});
++test('Concurrent operator updates use the same revision guard and keep accepted plans intact',async()=>{
++ const {env,store}=setup();await store.create(1,fixture());const before=await store.get(1),input={userId:1,revision:0,actor:'fixture-operator',reason:'Fictional pause',active:false};
++ const outcomes=await Promise.allSettled([changeAccess(env,input,{now}),changeAccess(env,input,{now})]);assert.equal(outcomes.filter(x=>x.status==='fulfilled').length,1);
++ const after=await store.get(1);assert.equal(after.revision,1);assert.equal(after.entitlement.active,false);assert.deepEqual(after.slots,before.slots);assert.deepEqual(after.acquired,before.acquired);assert.deepEqual(after.reports,before.reports);
++ assert.equal(publicState(after,{fixtureMode:true}).serviceEvents,undefined);
++});
++test('Authenticated export survives service expiry, omits internal operation records and never mutates another account',async()=>{
++ const {env,store}=setup();const s=fixture();s.entitlement.active=false;await store.create(1,s);await store.create(2,fixture('Gaz'));
++ const deps={authenticate:async()=>({userId:1}),fixtureMode:true},url='https://test.invalid/v1/programme/export?userId=2';
++ const r=await programmeRoutes(new Request(url),env,deps);assert.equal(r.status,200);assert.match(r.headers.get('Content-Disposition'),/attachment/);assert.match(r.headers.get('Cache-Control'),/no-store/);
++ const data=await r.json();assert.equal(data.record.name,'Dave');assert.equal(data.record.operations,undefined);assert.deepEqual(data.record.slots,s.slots);assert.equal((await store.get(2)).revision,0);
++ assert.equal((await programmeRoutes(new Request(url,{method:'POST'}),env,deps)).status,405);
++ assert.equal((await programmeRoutes(new Request(url),env,{...deps,authenticate:async()=>({response:new Response(null,{status:401})})})).status,401);
++ assert.equal(exportAccount(s).format,'shift-programme-export');
++});
++test('First month prompts follow real dates without inventing reports or marking actions complete',()=>{
++ const s=fixture();s.startedOn='2026-09-01';s.review=null;s.slots=[{id:'future',date:'2026-11-01'}];const before=structuredClone(s);
++ const expected=[[1,'start'],[3,'prepare'],[7,'first-review'],[14,'repeat'],[21,'disruption'],[28,'reflect'],[30,'next']];
++ for(const [day,key] of expected){const d=new Date('2026-09-01T12:00:00Z');d.setUTCDate(day);assert.equal(firstMonth({...s,clock:d.toISOString().slice(0,10)}).key,key)}
++ assert.deepEqual(s,before);assert.equal(firstMonth({...s,clock:'2026-12-01'}).key,'return');assert.equal(firstMonth({...s,review:{summary:'No change needed'}}).key,'review');
++});

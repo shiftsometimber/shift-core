@@ -1,0 +1,179 @@
+{
+  "baseRemoteCommit": "3fe1fa578a63274fb82ea48e1b97249a463269f9",
+  "baseLocalCommit": "0c16b52c2b6f6fa167658c9e4a31d3187b0a772c",
+  "ruleVersion": "programme-rules-1.0.2",
+  "tests": 84,
+  "moduleRuntimeContracts": 7,
+  "fullWorkerContracts": 6,
+  "protectedPagesFiles": 871,
+  "productionDeployed": false,
+  "browserResult": "BLOCKED by URL policy",
+  "files": [
+    {
+      "path": "frontend/member/assets/programme-v1/programme.mjs",
+      "beforeSHA256": "628de87384dc09e4a449343bc135fd5187edfa8337f7619f883c1194a2ef6f79",
+      "afterSHA256": "26d479c5ce8f10c78ef9443be735db5f80631d1f58b57f7550416da98af0652d"
+    },
+    {
+      "path": "programme/CONTENT-REVIEW.md",
+      "beforeSHA256": null,
+      "afterSHA256": "0a9f949c713e8f69bde1fa15c1cc93ba4fde10897eda85f8f8769c3b89ab0643"
+    },
+    {
+      "path": "programme/DELIVERY-3.md",
+      "beforeSHA256": "96be87e7a4b0926d570ed3251a526ca4adcd2c6920b70eccfdf42d6a8ad7213e",
+      "afterSHA256": "48d9f71075242ad2a026e211c21a09fba9be2fd42f31b00dc7d34b8fc43a42e9"
+    },
+    {
+      "path": "programme/OPERATIONS.md",
+      "beforeSHA256": null,
+      "afterSHA256": "0491e26945c1f33162192b03cd2ecc7554c865c68ce297c3fc90c16ae2adc43d"
+    },
+    {
+      "path": "programme/README.md",
+      "beforeSHA256": "958d28ee1b6b72463b7fa00f1044bc3dc844ef041465b592544ab50c47d8f9bb",
+      "afterSHA256": "2a0e08d89c384e71c044e0f1b3214d4f7df06cfc4fb92743800cc9fb2821a235"
+    },
+    {
+      "path": "programme/TAKEOVER-2026-09-11.md",
+      "beforeSHA256": null,
+      "afterSHA256": "6a515ef24fa564ff83bc4580139368675962cc410ac8881c4319017aa0b89017"
+    },
+    {
+      "path": "programme/account-operations.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "74657dfb3fc43e0c1437c3f75a6c52eb0a132161323a9edd4d123b8a4030835c"
+    },
+    {
+      "path": "programme/dashboard-entry.mjs",
+      "beforeSHA256": "b409dc1eed781d8c8b585d72e6d5cd790d81cba62b42053506954580bea54f10",
+      "afterSHA256": "cfc1cc792d096cea582eaec8727b2973e8f973063402d7964e836000c467c9c1"
+    },
+    {
+      "path": "programme/entitlement.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "956a65148e9103c07a1669eb4802dd09d0d9fdaa432943ab110ab42a0255227d"
+    },
+    {
+      "path": "programme/evidence/private-race-after.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "d30e951aab3b265ff24971ef989b04128c708c3fba71c6555a794c153527f22f"
+    },
+    {
+      "path": "programme/evidence/private-race-before.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "c0e26948520b48625d0c5e29c210e84f8a0feae9aa4cca042e52534ea006ae51"
+    },
+    {
+      "path": "programme/evidence/takeover-baseline-tests.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "07b308c3a08bc9c8705c614d425906416f211004191c0e22b2cd0413ecfb16c0"
+    },
+    {
+      "path": "programme/evidence/takeover-full-bundle.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "5e2a2f6b98249b3662350f19e9fe6b4d0c50f455f6744c9b49e0fe193b6261f2"
+    },
+    {
+      "path": "programme/evidence/takeover-full-worker-harness-before.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "518fa5a4e995141b36839b4f1cd63cb48e7a3541ace85740fcc0133b20b7fdf6"
+    },
+    {
+      "path": "programme/evidence/takeover-full-worker-module-discovery.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "895f98a6e1b4210def65fb68ee1b143c84264240d33b7e4e5f2c0c7c7e340843"
+    },
+    {
+      "path": "programme/evidence/takeover-full-worker-module-path-before.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "62eaf15e8f34351fff14bddbe038c0f757607d144dc8ae145d354b210e858c04"
+    },
+    {
+      "path": "programme/evidence/takeover-full-worker.json",
+      "beforeSHA256": null,
+      "afterSHA256": "5f851b93f886c90a19e3864114c3ea4f1b78e92f5ca4f5e521fd393ddf271ba4"
+    },
+    {
+      "path": "programme/evidence/takeover-full-worker.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "5f851b93f886c90a19e3864114c3ea4f1b78e92f5ca4f5e521fd393ddf271ba4"
+    },
+    {
+      "path": "programme/evidence/takeover-preservation.json",
+      "beforeSHA256": null,
+      "afterSHA256": "21b293ba58f47cdbd41fc514f65b789c4482064f3c7ba43c2bf60b7650c0e376"
+    },
+    {
+      "path": "programme/evidence/takeover-runtime-correct-binary.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "ad6fe5f254cce25788cbe2c4564252818e43235e9ea4892751df4b104110954f"
+    },
+    {
+      "path": "programme/evidence/takeover-runtime.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "3265b50b6e04bd987266631d69ab3512f1923da4a08743e89c6d99a56f9d29c5"
+    },
+    {
+      "path": "programme/evidence/takeover-targeted-authored-plan-swap.json",
+      "beforeSHA256": null,
+      "afterSHA256": "97636f4f6ce68d7939ce794ac8afb41b0d60b349c6cd48ddc8cbca9468b45cb2"
+    },
+    {
+      "path": "programme/evidence/takeover-tests.txt",
+      "beforeSHA256": null,
+      "afterSHA256": "4b519cc54493bae6b7164d35caee986888eaacc04bd9984f6c4e7bb3f833d8e4"
+    },
+    {
+      "path": "programme/existing-tools.mjs",
+      "beforeSHA256": "5fe7a8831aec0772efe3ecdd41c7fbd0538ce0155a35625eeada9d0c71e92bd5",
+      "afterSHA256": "68bd86a59707f11e7f45053e7bcd0ab6896c35c59ea0034b4068c0d4104531fe"
+    },
+    {
+      "path": "programme/export.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "f9798f03b1b151d7c4f6b945dd660d5253a1e2a1e02398f8261bdddd199406ff"
+    },
+    {
+      "path": "programme/journey-sequence.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "c74197f01c45dfdae844fcac0b4d66a4ecfbcb3e651a9a4324047a7a43295d69"
+    },
+    {
+      "path": "programme/routes.mjs",
+      "beforeSHA256": "62c88d5aed6b873ec5a1b72e8a10a2199856e7f0cf631432fa35a5cc7cf586e2",
+      "afterSHA256": "8058b1b8e9b927fdd79ff7515093ed63ea9166cdf9cdca100d9f397f65842613"
+    },
+    {
+      "path": "programme/service.mjs",
+      "beforeSHA256": "2b64b030f48c5182c59822b98f8ec05d8b00c8b07207b2dc0b908319ba5a804f",
+      "afterSHA256": "e1cf748a78f21e5f8567006560ba6d8017dd9be06eb0106732d6cfcc20349a48"
+    },
+    {
+      "path": "programme/tests/existing-tools.test.mjs",
+      "beforeSHA256": "3b5fd09623f5712b3f2c173e24ac2da3c6a09c380fb4ae57a6d29e83afb8a66f",
+      "afterSHA256": "737918f02c15077f36b6e41eb0ccd4a7775820e8a89607cffc79b950726aefa7"
+    },
+    {
+      "path": "programme/tests/full-worker-contract.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "82a3c4106ad266dc0ef04a99f28e9c1932da73ba3214d49a49b481abc1608d88"
+    },
+    {
+      "path": "programme/tests/member-view.test.mjs",
+      "beforeSHA256": "de199e231588086005d55a0c822c18cbaf1a06c06896448707056b6793e23de2",
+      "afterSHA256": "f19bbf5a06560f7bf0459d9ce7f7690fb0ca5c17295fe237c7b802024bfc022c"
+    },
+    {
+      "path": "programme/tests/private-requests.test.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "d82afdabb05ae085c225cfc333dbed9e510e3afd4e7da66b9af910563fea4ff0"
+    },
+    {
+      "path": "programme/tests/service-operations.test.mjs",
+      "beforeSHA256": null,
+      "afterSHA256": "4dec568a3d570f50856f0df41b5467c54d984b654e686fddf04429fe44b4de9f"
+    }
+  ],
+  "note": "Manifest excludes its own bytes and the generated diff to avoid recursive hashes."
+}

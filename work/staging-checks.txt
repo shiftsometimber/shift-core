@@ -1,0 +1,11 @@
+✔ Staging refuses production hosts and unrelated application routes (10.687845ms)
+schema_readiness_probe_fallback D1_ERROR: too many SQL variables at offset 259: SQLITE_ERROR
+✔ Staging registration accepts only bounded fictional accounts and preserves actual authentication (137.921821ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20566.304297

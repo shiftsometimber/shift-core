@@ -1,0 +1,17 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const root=resolve('.'),destination=resolve('work/build/member-release');
+let source=readFileSync('wrangler.jsonc','utf8');
+if(!source.includes('"name": "shift-core"')||!source.includes('"database_name": "shift-core-db"'))throw Error('Review the changed production configuration before preparing this release.');
+const flags=[...source.matchAll(/"MEMBER_EXPERIENCE_V1_ENABLED"\s*:\s*"([^"]+)"/g)];
+if(flags.length>1||flags.some(x=>x[1]!=='true'))throw Error('The member release must explicitly enable the reviewed feature.');
+if(!readFileSync('frontend/member/my-timber-preview.html','utf8').includes('/turnstile-auth-v1.js?v=timeout-20260912'))throw Error('The production login hotfix must be retained.');
+if(/staging\/worker|STAGING_ASSETS|SHIFT_ENVIRONMENT/.test(readFileSync('worker-entry-v6.js','utf8')))throw Error('The production entry must not use staging configuration.');
+source=source.replace('"main": "worker-entry-v6.js"','"main": '+JSON.stringify(resolve('worker-entry-v6.js'))).replace('"directory": "./frontend/member"','"directory": '+JSON.stringify(resolve('frontend/member')));
+if(!flags.length)source=source.replace('"vars": {','"vars": {\n    "MEMBER_EXPERIENCE_V1_ENABLED": "true",');
+mkdirSync(destination,{recursive:true});writeFileSync(destination+'/wrangler.jsonc',source);
+const facts={sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),configurationSha256:createHash('sha256').update(source).digest('hex'),target:'shift-core',memberExperienceEnabled:true,workplaceCommissioningChanged:false,clinicalTestingChanged:false,databaseMigrationRequired:false,pagesPublicationRequired:false,preparedAt:new Date().toISOString()};
+writeFileSync(destination+'/candidate.json',JSON.stringify(facts,null,2));
+console.log('Prepared the enabled member release configuration in work/build/member-release. No deployment or database mutation performed.');

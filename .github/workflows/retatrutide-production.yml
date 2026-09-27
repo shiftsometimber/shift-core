@@ -1,0 +1,176 @@
+name: Publish owner-approved retatrutide information
+on:
+  push:
+    branches: [seo/retatrutide-evidence-20260923]
+    paths: ['.github/workflows/retatrutide-production.yml']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 2311dc84089b0fdc853f5e86663c9e6acd7b7adc
+          path: approved-candidate
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: c733bf03834d93154a51a0db6ef05dbebb3c7cb3
+          path: pages-authority
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: shiftsometimber/shift-core
+          run-id: 35834397802
+          name: retatrutide-preview-2311dc84089b0fdc853f5e86663c9e6acd7b7adc
+          path: approved-preview-proof
+      - name: Validate exact preview evidence and unchanged repository baseline
+        run: |
+          mkdir -p retatrutide-production-proof/implementation
+          cp release/retatrutide-20260923/verify-live.mjs .github/workflows/retatrutide-production.yml retatrutide-production-proof/implementation/
+          node --check release/retatrutide-20260923/verify-live.mjs
+          python3 - <<'PY'
+          import json,pathlib,urllib.request
+          p=pathlib.Path('approved-preview-proof');r=json.loads((p/'hosted-proof.json').read_text());b=json.loads((p/'proof.json').read_text())
+          assert r['status']=='PASS' and not r['failures']
+          assert r['commit']=='2311dc84089b0fdc853f5e86663c9e6acd7b7adc'
+          assert r['preview']=='https://5a3c9840.projectshift.pages.dev'
+          assert len(r['browsers'])==4 and all(x['status']=='PASS' for x in r['browsers'])
+          assert b['candidate_fingerprint']=='e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496'
+          assert b['payload_sha256']=='cf2616703cd5a7f4bcee9a97fff176988469d810c6e2e1342a9438a4959aa6ab'
+          req=urllib.request.Request('https://api.github.com/repos/shiftsometimber/shift-core/git/ref/heads/main',headers={'User-Agent':'SHIFT-approved-release'})
+          with urllib.request.urlopen(req,timeout=30) as f:ref=json.load(f)
+          assert ref['object']['sha']=='4c014edce24bd9a37645dfbd6bad204ed3270091','Main moved; reconcile before release'
+          for name in ['hosted-proof.json','proof.json','control.json']:(pathlib.Path('retatrutide-production-proof')/('approved-'+name)).write_bytes((p/name).read_bytes())
+          print('Four-profile preview acceptance verified against exact approved source; repository baseline unchanged')
+          PY
+      - name: Reproduce the current authoritative Pages source
+        working-directory: pages-authority
+        run: |
+          python3 release/public-pages-20260911/prepare-start-here.py
+          python3 release/public-pages-20260911/prepare-work-public.py
+          python3 release/header-20260912/prepare-header.py
+      - name: Build the exact approved candidate without changing its content
+        run: python3 approved-candidate/editorial/retatrutide/build-preview.py --pages-root pages-authority --out retatrutide-proof
+      - name: Record owner authorisation and select the existing production release mode
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          p=pathlib.Path('pages-authority/release/public-pages-20260911');c=json.loads((p/'control.json').read_text())
+          assert c['source_fingerprint']=='e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496'
+          assert hashlib.sha256((p/'source.json.gz').read_bytes()).hexdigest()==c['payload_sha256']=='cf2616703cd5a7f4bcee9a97fff176988469d810c6e2e1342a9438a4959aa6ab'
+          c.update(mode='production',approved_preview_url='https://5a3c9840.projectshift.pages.dev',preview_browser_checks_passed=True,editorial_release_approved=True,owner='Matt O’Brien',approval_basis='Owner/editorial sign-off for informational publication; no independent clinical or legal review claimed',approval_record='https://github.com/shiftsometimber/shift-core/pull/793#issuecomment-5792068017')
+          assert c['clinical_review_complete'] is False and c['legal_review_complete'] is False
+          (p/'control.json').write_text(json.dumps(c,indent=2)+'\n');pathlib.Path('retatrutide-production-proof/production-control.json').write_text(json.dumps(c,indent=2)+'\n')
+          print('Exact approved content selected for owner-authorised informational publication')
+          PY
+      - name: Run unchanged governed assembler and every existing source integrity gate
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+      - name: Install locked deployment and isolated browser toolchains before publication
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --prefix "$RUNNER_TEMP/reta-browser" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/reta-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
+          echo "PW_MODULE=$RUNNER_TEMP/reta-browser/node_modules/playwright" >> "$GITHUB_ENV"
+      - name: Capture current live content for preservation checks
+        run: node release/retatrutide-20260923/verify-live.mjs before
+      - name: Capture unchanged Worker deployment without deployment or database operations
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler deployments list --config wrangler.jsonc --json > retatrutide-production-proof/worker-before.json
+      - name: Recheck production identity immediately before the single Pages upload
+        env:
+          CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,os,pathlib
+          req=urllib.request.Request('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',headers={'Authorization':'Bearer '+os.environ['CF_READ_TOKEN']})
+          with urllib.request.urlopen(req,timeout=35) as f:p=json.load(f)
+          assert p['success'];p=p['result'];d=p['canonical_deployment']
+          assert p['name']=='projectshift' and p['production_branch']=='main'
+          assert d['id']=='0da69833-83f7-4c70-9c7a-bceab7de1660','Production moved; stop without upload'
+          req=urllib.request.Request('https://api.github.com/repos/shiftsometimber/shift-core/git/ref/heads/main',headers={'User-Agent':'SHIFT-approved-release'})
+          with urllib.request.urlopen(req,timeout=30) as f:ref=json.load(f)
+          assert ref['object']['sha']=='4c014edce24bd9a37645dfbd6bad204ed3270091','Main moved'
+          record={k:d.get(k) for k in ['id','url','environment','created_on','deployment_trigger']};record['rollback_note']='Pages-only rollback identity. No database restore is part of this release.'
+          pathlib.Path('retatrutide-production-proof/pages-before.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record,indent=2))
+          PY
+      - name: Publish only the approved Pages assets through the existing project
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$SST_PAGES_BRANCH" = main
+          mkdir -p "$RUNNER_TEMP/reta-pages-production-command"
+          cd "$RUNNER_TEMP/reta-pages-production-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$SST_RELEASE_DIR" --project-name projectshift --branch "$SST_PAGES_BRANCH" --commit-hash 2311dc84089b0fdc853f5e86663c9e6acd7b7adc --commit-message "Owner-approved retatrutide informational update PR793" 2>&1 | tee "$GITHUB_WORKSPACE/retatrutide-production-proof/deploy.log"
+      - name: Verify the new production deployment and exact hosted Pages bytes
+        env:
+          CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,os,pathlib,hashlib
+          def get(url,auth=False):
+            h={'User-Agent':'SHIFT-approved-release','Cache-Control':'no-cache'}
+            if auth:h['Authorization']='Bearer '+os.environ['CF_READ_TOKEN']
+            with urllib.request.urlopen(urllib.request.Request(url,headers=h),timeout=40) as f:return f.read()
+          p=json.loads(get('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift',True));assert p['success'];d=p['result']['canonical_deployment']
+          assert d['id']!='0da69833-83f7-4c70-9c7a-bceab7de1660' and d['environment']=='production'
+          origin=d['url'];assert origin.startswith('https://') and origin.endswith('.projectshift.pages.dev')
+          rows=[]
+          for file in ['guides/retatrutide-uk-guide.html','explore-knowledge.html','glp1-knowledge-centre.html','sitemap.xml','release-body-integrity.json','DEPLOYMENT-FINGERPRINT.json']:
+            route='/'+file.removesuffix('.html');a=get(origin+route);b=(pathlib.Path(os.environ['SST_RELEASE_DIR'])/file).read_bytes();assert a==b,file+' differs from approved bytes';rows.append({'file':file,'sha256':hashlib.sha256(a).hexdigest(),'exactMatch':True})
+          fp=json.loads(get('https://projectshift.pages.dev/DEPLOYMENT-FINGERPRINT.json'));assert fp['aggregate_sha256']=='e8e9697b90eb1d91cbe10897a6858a672a26d3e219308f97c8d508dc6f9f9496'
+          record={k:d.get(k) for k in ['id','url','environment','created_on','deployment_trigger']};record.update(source_fingerprint=fp['aggregate_sha256'],hosted_checks=rows)
+          pathlib.Path('retatrutide-production-proof/pages-after.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record,indent=2))
+          PY
+      - name: Verify live Worker integration, crawlability and browser paths
+        run: node release/retatrutide-20260923/verify-live.mjs after
+      - name: Prove Worker deployment unchanged
+        if: always()
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if test -s retatrutide-production-proof/worker-before.json; then
+            npx wrangler deployments list --config wrangler.jsonc --json > retatrutide-production-proof/worker-after.json
+            python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('retatrutide-production-proof');a=json.loads((p/'worker-before.json').read_text());b=json.loads((p/'worker-after.json').read_text());assert a==b,'Worker deployments changed during Pages publication';(p/'worker-preservation.json').write_text(json.dumps({'unchanged':True,'before_file':'worker-before.json','after_file':'worker-after.json'},indent=2)+'\n');print('Worker deployment unchanged')
+          PY
+          fi
+      - name: Retain assembled diff, source proof and checksums
+        if: always()
+        run: |
+          cp -r retatrutide-proof retatrutide-production-proof/assembly 2>/dev/null || true
+          python3 - <<'PY'
+          import pathlib,hashlib
+          p=pathlib.Path('retatrutide-production-proof');files=sorted(x for x in p.rglob('*') if x.is_file() and x.name!='SHA256SUMS');(p/'SHA256SUMS').write_text(''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+str(x.relative_to(p))+'\n' for x in files))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-production-${{ github.sha }}
+          path: retatrutide-production-proof/
+          retention-days: 90
+          if-no-files-found: error

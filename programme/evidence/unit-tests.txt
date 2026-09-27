@@ -1,0 +1,46 @@
+✔ fictional-01: independently written history remains factual and conservative (3.545925ms)
+✔ fictional-02: independently written history remains factual and conservative (0.69693ms)
+✔ fictional-03: independently written history remains factual and conservative (0.600165ms)
+✔ fictional-04: independently written history remains factual and conservative (1.264266ms)
+✔ fictional-05: independently written history remains factual and conservative (0.779084ms)
+✔ fictional-06: independently written history remains factual and conservative (0.583429ms)
+✔ fictional-07: independently written history remains factual and conservative (0.703961ms)
+✔ fictional-08: independently written history remains factual and conservative (0.667677ms)
+✔ Dave: explicit recurring Thursday only; no Saturday or invented takeaway/shift cause (11.933309ms)
+✔ Gaz: completed manageable week produces same again without escalation (0.428266ms)
+✔ No reports and explicit unknown are never counted as failure or success (0.453374ms)
+✔ Recurrence checks only latest two observed periods and does not invent matching reasons (0.473874ms)
+✔ Unknown restrictions block meal alternatives; fish and vegetarian constraints are real filters (0.770853ms)
+✔ Unapproved fixture content cannot be selected outside the isolated environment (0.330648ms)
+✔ Exact preview changes no state and specifies dates, portions and quantities (2.511196ms)
+✔ Accept changes only confirmed future dinners; shared mince and leftovers remain correct (1.172177ms)
+✔ Bought amounts survive a serving increase and show only extra quantity (0.956542ms)
+✔ Decline freezes the recurring slot and no rule routes around it; old evidence is insufficient later (2.211254ms)
+✔ Skip keeps plan, quantities, manual items and stock (0.853507ms)
+✔ Undo preserves unrelated manual additions and changes (1.572471ms)
+✔ Undo refuses to overwrite subsequent edits to a changed item (1.065186ms)
+✔ Stale proposal cannot overwrite manual plan edits (0.70984ms)
+✔ Expired suggestions do not retire member plan items (0.574356ms)
+✔ Repeat is explicit, includes 14 days and preserves past and existing future records (0.78266ms)
+✔ Missing ingredient information stops calculation instead of assuming zero (0.171078ms)
+✔ R10 applies member request before recurrence, caps at three and resolves ties stably (0.310197ms)
+✔ Member-initiated change still appears after a wholly good week (0.55033ms)
+✔ Standalone setup requires no medicine, weight, photographs or clinical questionnaire (0.549008ms)
+✔ Real SQLite save is owner-scoped, retrievable, idempotent and rejects conflicting retries (3.723533ms)
+✔ Concurrent writes commit once; stale loser cannot alter accepted state (1.520532ms)
+✔ Database save failure leaves prior aggregate intact (0.987378ms)
+✔ Expired service preserves saved records, shopping and manual actions (0.390388ms)
+✔ Pinned authentication and route checks reject anonymous/expired/foreign sessions; userId input cannot impersonate (15.835522ms)
+✔ Repeated leftovers reference the new source cook and keep ingredient need counted once (0.87583ms)
+✔ Serving reductions cannot spend portions already reserved for another day (3.579616ms)
+✔ Chosen Tuesday review day anchors seven-day windows; joining never creates a past action (0.722409ms)
+✔ Refreshing a weekly review versions one cycle record (0.932986ms)
+✔ An ingredient no longer required still shows the member’s already bought quantity (1.151766ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.010372

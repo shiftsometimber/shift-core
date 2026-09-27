@@ -1,0 +1,14 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+const file='work/staging/generated/config.json',config=JSON.parse(readFileSync(file)),fixture=JSON.parse(readFileSync('work/staging/generated/probe.json'));
+if(process.env.GITHUB_ACTIONS!=='true'||config.name!=='shift-stabilisation-preview'||config.routes||config.vars.SHIFT_ENVIRONMENT!=='stabilisation-preview-20260917')throw Error('Isolated preview only');
+const db=config.d1_databases.find(x=>x.binding==='DB');
+if(db?.database_name!=='shift-stabilisation-preview-auth-20260917'||readFileSync('wrangler.jsonc','utf8').includes(db.database_id))throw Error('Preview database required');
+const id=fixture.ids[0];if(!Number.isSafeInteger(id)||id<1e10)throw Error('Fresh fictional fixture required');
+const plan={location:'home',minutes_per_day:20,sessions:[{day:1,title:'Audit retained-session fixture',location:'home',requested_minutes:20,estimated_minutes:22,exercises:[{id:'audit-hotel-push-up',name:'Hotel push-up',group:'push',selection_reason:'Included within your selected 30-minute home session.'},{id:'audit-cool-down',name:'Cool-Down',group:'legs'}]}]};
+const quote=s=>"'"+s.replaceAll("'","''")+"'";
+const sql=`INSERT INTO progress_entries(user_id,recorded_on,weight_kg,source) VALUES(${id},'2026-09-21',103,'audit_fictional');
+INSERT INTO member_state(user_id,preferences) VALUES(${id},'{"myJourney":{"setup":{"units":"stone_lb"}}}') ON CONFLICT(user_id) DO UPDATE SET preferences=json_set(COALESCE(member_state.preferences,'{}'),'$.myJourney.setup.units','stone_lb');
+INSERT INTO shift_plans(user_id,plan_type,starts_on,plan_json) VALUES(${id},'fit','2026-09-21',${quote(JSON.stringify(plan))});`;
+writeFileSync('work/staging/generated/audit-fixtures.sql',sql);
+execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','execute','DB','--remote','--config',file,'--file','work/staging/generated/audit-fixtures.sql'],{stdio:'inherit'});

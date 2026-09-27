@@ -1,0 +1,168 @@
+{
+  "checkpoint": "member-integration",
+  "ruleVersion": "programme-rules-1.0.2",
+  "parentLocalCommit": "dede5213bde1210740148df45112d572a88a2077",
+  "parentRemoteCommit": "f961ceaea4776dba4b38b2ef0cef5b1cdfbca602",
+  "tests": 72,
+  "localWorkerdD1Contracts": 7,
+  "protectedPagesFiles": 871,
+  "browser": "Current reload blocked by browser URL policy; no bypass attempted.",
+  "files": [
+    {
+      "path": "frontend/member/assets/programme-v1/programme.css",
+      "sha256": "0ac60894784f4901daf1a0933c6e5f328608d57171f21aee63a3c0dc53cbd007"
+    },
+    {
+      "path": "frontend/member/assets/programme-v1/programme.mjs",
+      "sha256": "628de87384dc09e4a449343bc135fd5187edfa8337f7619f883c1194a2ef6f79"
+    },
+    {
+      "path": "programme/DELIVERY-3.md",
+      "sha256": "96be87e7a4b0926d570ed3251a526ca4adcd2c6920b70eccfdf42d6a8ad7213e"
+    },
+    {
+      "path": "programme/README.md",
+      "sha256": "958d28ee1b6b72463b7fa00f1044bc3dc844ef041465b592544ab50c47d8f9bb"
+    },
+    {
+      "path": "programme/content.mjs",
+      "sha256": "8875131e610e45b7a52a8154fe2867de5f03f981f8a74067d841b5ec793c724c"
+    },
+    {
+      "path": "programme/dashboard-entry.mjs",
+      "sha256": "b409dc1eed781d8c8b585d72e6d5cd790d81cba62b42053506954580bea54f10"
+    },
+    {
+      "path": "programme/engine.mjs",
+      "sha256": "0e516082c2e4d8d74c25a57f8636dd72f4077834e88f046c274e41143f326fec"
+    },
+    {
+      "path": "programme/existing-tools.mjs",
+      "sha256": "5fe7a8831aec0772efe3ecdd41c7fbd0538ce0155a35625eeada9d0c71e92bd5"
+    },
+    {
+      "path": "programme/migration.sql",
+      "sha256": "db54bc7a5b2692231b3f2c67e318af0c59c888170784a60e61347068ea9d1faa"
+    },
+    {
+      "path": "programme/proof/.gitignore",
+      "sha256": "8ad7c156211aead77386755a3eb0d9d13f266ada65389632b24828200fd616c9"
+    },
+    {
+      "path": "programme/proof/package-lock.json",
+      "sha256": "36180e41df7c4eb29666b1e56724839ec2c656673be712ec474573b4a41d8659"
+    },
+    {
+      "path": "programme/proof/package.json",
+      "sha256": "182caf08c4e0edf97313d441e6ac31e2c04116ccf986cc819716343d153d147b"
+    },
+    {
+      "path": "programme/proof/vite.config.mjs",
+      "sha256": "98fdcb092076cb76f6b81298ba9aac3077dafad80c31bb86075526b80db4c63b"
+    },
+    {
+      "path": "programme/routes.mjs",
+      "sha256": "62c88d5aed6b873ec5a1b72e8a10a2199856e7f0cf631432fa35a5cc7cf586e2"
+    },
+    {
+      "path": "programme/screen.mjs",
+      "sha256": "8ca311dd5663b8506f7116ef534590f64a3e0c6f909c8633f1a78dead9f6ade6"
+    },
+    {
+      "path": "programme/service.mjs",
+      "sha256": "2b64b030f48c5182c59822b98f8ec05d8b00c8b07207b2dc0b908319ba5a804f"
+    },
+    {
+      "path": "programme/store.mjs",
+      "sha256": "5aa85471d05aec14f100853aa510d4d03bf5f0b5ddda4ae145dfef0856ffa9b4"
+    },
+    {
+      "path": "programme/test-support/db.mjs",
+      "sha256": "506453f3f95c72061273ecdfed1ab693cd957c42464571aaaeae841c63daf76e"
+    },
+    {
+      "path": "programme/test-support/fixtures.mjs",
+      "sha256": "94228fbe428c7cac174460a0baff76211aca62f56fc1425c35f63613fcb3aa47"
+    },
+    {
+      "path": "programme/test-support/pinned-dashboard-return.json",
+      "sha256": "5f12a57b2389606215b4d4fdbcb5dd3dfcebffb2801f282fb76fefebb9e87c29"
+    },
+    {
+      "path": "programme/tests/blind-round-2/AUTHOR-PACKET.md",
+      "sha256": "cad924a550218993cc7c2b05c5e1c2acf97fa025b722ade28a91c9ceb94a5699"
+    },
+    {
+      "path": "programme/tests/blind-round-2/author_histories.py",
+      "sha256": "b1c37e3dd9beda6f82e8769c7108d21fa79a85719cb2f6a14b4c590777e12fc0"
+    },
+    {
+      "path": "programme/tests/blind-round-2/catalogue.json",
+      "sha256": "4a73741e3143f4a66cafa40e353f6e66b2385feb2c29b7778e4c23ddaa80561e"
+    },
+    {
+      "path": "programme/tests/blind-round-2/expected-before-run.json",
+      "sha256": "5b0e6f4bce4ddcc9372ce13a67fb7170b4a83548392c83341b570ecb920faefc"
+    },
+    {
+      "path": "programme/tests/blind-round-2/histories.json",
+      "sha256": "bb9f3fe5dcb20f1ea951fdee8cbc7b4fc8db8b9ff858d91740abbf96aa696f65"
+    },
+    {
+      "path": "programme/tests/blind-round-2/state-template.json",
+      "sha256": "e1717814d85c96b2484533190fd7aa23eb405d851280960027d476db18409d68"
+    },
+    {
+      "path": "programme/tests/blind-round-2.test.mjs",
+      "sha256": "773517a93999d8633a560bd043536e70bd7713c9016f0492c773f8c11eb77d3b"
+    },
+    {
+      "path": "programme/tests/constraint-gates.test.mjs",
+      "sha256": "364e604980fad45b8f27c0f2544877587cdf60c5faf41cfd07511438aaac69a0"
+    },
+    {
+      "path": "programme/tests/dashboard-entry.test.mjs",
+      "sha256": "89baf21815e724c1c6a6934b2ab8e44d878401d7274bb147d1d13b0a9bbbe9f5"
+    },
+    {
+      "path": "programme/tests/existing-tools.test.mjs",
+      "sha256": "3b5fd09623f5712b3f2c173e24ac2da3c6a09c380fb4ae57a6d29e83afb8a66f"
+    },
+    {
+      "path": "programme/tests/followup-evidence.mjs",
+      "sha256": "8bff302c4ee4e23a9d6f1645f679e00812478a75754e2e127637f8081de5de1a"
+    },
+    {
+      "path": "programme/tests/followup.test.mjs",
+      "sha256": "33598320c5dd1a9ebf549b6d58dd90c0a10788f0ed2a7c7338c44f200daa3f24"
+    },
+    {
+      "path": "programme/tests/independent-expected.json",
+      "sha256": "02ef65bd491d85dba37e74cb02f91f818a0e3c0b9bedc0d76ca5e9f967874b49"
+    },
+    {
+      "path": "programme/tests/independent-histories.json",
+      "sha256": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398"
+    },
+    {
+      "path": "programme/tests/independent.test.mjs",
+      "sha256": "9ea40ea02c3a2376a6b8eb8b48035f6afc4e1e15fbcd8ff35fe53710891b630a"
+    },
+    {
+      "path": "programme/tests/member-view.test.mjs",
+      "sha256": "de199e231588086005d55a0c822c18cbaf1a06c06896448707056b6793e23de2"
+    },
+    {
+      "path": "programme/tests/programme.test.mjs",
+      "sha256": "51839e7e59e33642a90362c4de05582e32760213a06094a06b586c8e8899a19f"
+    },
+    {
+      "path": "programme/tests/runtime-contract.mjs",
+      "sha256": "c36e691625ec6e95cbe0f2349b5ad0c931cbc22d8edae0c67149e321ae9ce93c"
+    },
+    {
+      "path": "worker-entry-v6.js",
+      "sha256": "d1f4d929504339ee4ca705496e9ff7e9f1102c32214d5372106f023993c07696"
+    }
+  ]
+}

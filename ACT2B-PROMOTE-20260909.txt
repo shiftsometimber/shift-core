@@ -1,0 +1,2 @@
+Act 2B production promotion marker. No runtime behaviour in this file.
+Includes live v42 enclosure writer removal and FAQ/tools Pages fallthrough recovery.

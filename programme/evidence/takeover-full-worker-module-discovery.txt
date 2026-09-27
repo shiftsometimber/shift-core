@@ -1,0 +1,44 @@
+MiniflareCoreError [ERR_MODULE_RULE]: Unable to resolve "../../../f937e983e4cb/full-worker-bundle/worker-entry-v6.js" dependency "node:crypto": no matching module rules.
+If you're trying to import a Node.js built-in module, or an npm package that uses Node.js built-ins, you'll either need to:
+- Bundle your Worker, configuring your bundler to polyfill Node.js built-ins
+- Configure your bundler to load Workers-compatible builds by changing the main fields/conditions
+- Enable the `nodejs_compat` compatibility flag
+- Find an alternative package that doesn't require Node.js built-ins
+    at #visitModule (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:91349:13)
+    at Object.ImportExpression (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:91285:26)
+    at c2 (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90767:21)
+    at Object.skipThrough (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90772:3)
+    at visitNode (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90780:20)
+    at c2 (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90765:5)
+    at base.ReturnStatement.base.YieldExpression.base.AwaitExpression (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90827:5)
+    at visitNode (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90780:20)
+    at c2 (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90765:5)
+    at Object.skipThrough (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90772:3) {
+  code: 'ERR_MODULE_RULE',
+  cause: undefined
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+MiniflareCoreError [ERR_MODULE_RULE]: Unable to resolve "../../../f937e983e4cb/full-worker-bundle/worker-entry-v6.js" dependency "node:crypto": no matching module rules.
+If you're trying to import a Node.js built-in module, or an npm package that uses Node.js built-ins, you'll either need to:
+- Bundle your Worker, configuring your bundler to polyfill Node.js built-ins
+- Configure your bundler to load Workers-compatible builds by changing the main fields/conditions
+- Enable the `nodejs_compat` compatibility flag
+- Find an alternative package that doesn't require Node.js built-ins
+    at #visitModule (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:91349:13)
+    at Object.ImportExpression (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:91285:26)
+    at c2 (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90767:21)
+    at Object.skipThrough (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90772:3)
+    at visitNode (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90780:20)
+    at c2 (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90765:5)
+    at base.ReturnStatement.base.YieldExpression.base.AwaitExpression (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90827:5)
+    at visitNode (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90780:20)
+    at c2 (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90765:5)
+    at Object.skipThrough (/workspace/scratch/c41c73708c39/programme-v1/core/node_modules/miniflare/dist/src/index.js:90772:3) {
+  code: 'ERR_MODULE_RULE',
+  cause: undefined
+}
+
+Node.js v24.19.0

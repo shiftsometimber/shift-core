@@ -1,0 +1,40 @@
+name: Shift Grub Second-Person Review Pack
+on:
+  pull_request:
+    paths:
+      - 'industrial-grub-second-person-review-pack.mjs'
+      - 'industrial-catalogue-v9.js'
+      - 'industrial-grub-systemic-v3.mjs'
+      - 'grub-canonical-approval-registry-v2.mjs'
+      - '.github/workflows/grub-second-person-review-pack.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'industrial-grub-second-person-review-pack.mjs'
+      - 'industrial-catalogue-v9.js'
+      - 'industrial-grub-systemic-v3.mjs'
+      - 'grub-canonical-approval-registry-v2.mjs'
+      - '.github/workflows/grub-second-person-review-pack.yml'
+jobs:
+  prepare-independent-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: python3 -m pip install --quiet openpyxl
+      - name: Extract authoritative CoFID 2021 dataset
+        run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Build immutable second-person review pack
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+          REVIEW_PACK_DIR: review-evidence
+        run: node industrial-grub-second-person-review-pack.mjs
+      - name: Retain review evidence pack
+        uses: actions/upload-artifact@v4
+        with:
+          name: grub-second-person-review-pack
+          path: review-evidence/
+          if-no-files-found: error
+          retention-days: 30

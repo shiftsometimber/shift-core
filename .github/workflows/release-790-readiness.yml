@@ -1,0 +1,144 @@
+name: PR790 approved release readiness
+on:
+  push:
+    branches: [fix/member-details-20260922]
+    paths: ['.review/790-*','.github/workflows/release-790-readiness.yml']
+permissions:
+  contents: write
+concurrency:
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
+jobs:
+  ready:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Prepare the independently hashed release patch on this branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/member-details-20260922
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = a14f759ab8653868c5ef210eff431bdf29bfa106
+          test "$(git ls-remote origin refs/heads/fix/member-details-20260922 | cut -f1)" = "$GITHUB_SHA"
+          mkdir -p /tmp/release790
+          if test -f .review/790-approved.patch.b64; then
+            python3 - <<'PY'
+          import base64,zlib,hashlib,json,subprocess
+          from pathlib import Path
+          meta=json.loads(Path('.review/790-approved-meta.json').read_text())
+          assert meta['base']=='d066bfbfd3512cf74ce292a2f86b7595fa9a3d3e'
+          assert meta['sha256']=='854fb8749e49c17e6d800d1ae1a5baca17a7c33b141c62f3d3c501c854bdb374'
+          expected={'.github/workflows/cloudflare-production-promote.yml','docs/release/790-production-scope.md','member-experience/public-preservation.mjs','my-timber-final-production.mjs','release/member-details-live.mjs','release/member-details-preservation.mjs','release/member-details-rollback.mjs','release/member-details-schema.mjs','release/member-details-warm-proof.mjs','tests/member-details-release.test.mjs','wrangler.jsonc'}
+          assert set(meta['files'])==expected
+          encoded=Path('.review/790-approved.patch.b64').read_text().strip().replace('mfUGrCj+RBL','mfUQrCj+RBL')
+          patch=zlib.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(patch).hexdigest()==meta['sha256'],'Exact local patch transport mismatch'
+          for name,value in meta['files'].items():
+            p=Path(name);actual=hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
+            assert actual==value['before'],name+' source drift'
+          target=Path('/tmp/release790/approved.patch');target.write_bytes(patch)
+          subprocess.run(['git','apply','--index','--check',str(target)],check=True)
+          subprocess.run(['git','apply','--index',str(target)],check=True)
+          for name,value in meta['files'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==value['after'],name+' result mismatch'
+          subprocess.run(['git','rm','.review/790-approved.patch.b64','.review/790-approved-meta.json'],check=True)
+          PY
+            node --test tests/member-details-release.test.mjs tests/b1-release-scope.test.mjs > /tmp/release790/release-safety-tests.tap
+            git config user.name 'SHIFT release verification'
+            git config user.email 'it@shiftsometimber.co.uk'
+            git commit -m 'Prepare exact approved account release, additive schema and data-preserving rollback'
+            APP_SHA=$(git rev-parse HEAD) node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const path='release/b1-runtime-only.json',m=JSON.parse(fs.readFileSync(path));
+          assert.equal(m.applicationCommit,'fe59a3fdc22afa951c10932cb2ba7056ba5d0913');assert.equal(m.baseCommit,'e2f5ce12b4ed623d68eac5bb0ba1b62befa86af4');assert.equal(m.enforceApplicationPin,true);
+          const oldApp=m.applicationCommit,oldBase=m.baseCommit;m.applicationCommit=process.env.APP_SHA;m.baseCommit='a14f759ab8653868c5ef210eff431bdf29bfa106';m.runtimeSchemaAdditions=['member_account_details'];m.reason='Matt authorises tested PR790 account and frontend repairs. Preserve all green/live functionality. Only the reviewed additive contact table and GP lookup setting are commissioned; no legacy migration, publication, stock/price edit or clinical activation. Retain exact source pin, full preservation, live verification and code-only rollback.';m.previewEvidence={sourceCommit:'d066bfbfd3512cf74ce292a2f86b7595fa9a3d3e',workflowRun:35777023553,artifactId:10716881317,sha256:'265c7406491483190517b2ecdff1d549bdefbe7774ccd81420a297880ebb6c52',finalReadinessRun:process.env.GITHUB_RUN_ID};
+          fs.writeFileSync(path,JSON.stringify(m,null,2)+'\n');
+          const guard='scripts/b1-release-scope.mjs',text=fs.readFileSync(guard,'utf8');assert.equal(text.split(oldApp).length,2);assert.equal(text.split(oldBase).length,2);fs.writeFileSync(guard,text.replace(oldApp,m.applicationCommit).replace(oldBase,m.baseCommit));
+          JS
+            git add release/b1-runtime-only.json scripts/b1-release-scope.mjs
+            git commit -m 'Pin only the reviewed PR790 application and one additive contact table'
+            test "$(git ls-remote origin refs/heads/fix/member-details-20260922 | cut -f1)" = "$GITHUB_SHA"
+            git push origin HEAD:refs/heads/fix/member-details-20260922
+          fi
+          echo "PREVIEW_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          git rev-parse HEAD > /tmp/release790/source-sha.txt
+      - name: Install the exact existing toolchain
+        run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5 PyYAML==6.0.2
+      - name: Repeat all existing pre-production tests without production writes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import yaml,subprocess
+          from pathlib import Path
+          workflow=yaml.safe_load(Path('.github/workflows/cloudflare-production-promote.yml').read_text())
+          started=False
+          with Path('/tmp/release790/retained-production-gates.log').open('w') as log:
+            for step in workflow['jobs']['promote']['steps']:
+              name=step.get('name','')
+              if name=='Verify B1 release scope before any production mutation':started=True
+              if name=='Apply pharmacy-readiness database additions':break
+              if not started or 'run' not in step:continue
+              if name=='Verify exact current main before production mutations':
+                log.write('DEFERRED TO MAIN PROMOTION: '+name+'\n');log.flush();continue
+              log.write('\nGATE: '+name+'\n');log.flush()
+              subprocess.run(['bash','-euo','pipefail','-c',step['run']],stdout=log,stderr=log,check=True)
+          PY
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir /tmp/release790/compile > /tmp/release790/compile.log 2>&1
+      - name: Prepare and provision the existing isolated preview
+        run: |
+          node preview/member-details/prepare.mjs
+          node preview/member-details/provision.mjs
+      - name: Reject production bindings and deploy preview only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/fix/member-details-20260922 | cut -f1)" = "$PREVIEW_SOURCE_SHA"
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('work/staging/generated/config.json'));
+          assert.equal(c.name,'shift-stabilisation-preview');assert.equal(c.main,'../../../preview/member-details/worker.mjs');assert(c.workers_dev);assert(!c.routes&&!c.route&&!c.triggers&&!c.send_email&&!c.ai);assert.deepEqual(c.d1_databases.map(x=>x.database_name).sort(),['shift-member-details-auth-20260922','shift-member-details-data-20260922']);for(const d of c.d1_databases)assert(!fs.readFileSync('wrangler.jsonc','utf8').includes(d.database_id));assert.equal(c.vars.PREVIEW_SOURCE_SHA,process.env.PREVIEW_SOURCE_SHA);
+          JS
+          node node_modules/wrangler/bin/wrangler.js deploy --config work/staging/generated/config.json > /tmp/release790/preview-deploy.log 2>&1
+          echo 'PREVIEW_URL=https://shift-stabilisation-preview.matobrien.workers.dev' >> "$GITHUB_ENV"
+      - name: Test account, GP, repairs and warm service-worker journeys
+        run: |
+          set -euo pipefail
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+          node preview/member-details/browser-proof.mjs
+          node preview/member-details/gp-browser-proof.mjs
+          node preview/member-details/repair-proof.mjs
+          node release/member-details-warm-proof.mjs
+          node member-experience/public-preservation.mjs /tmp/release790/public-before.json
+          node member-experience/public-preservation.mjs /tmp/release790/public-repeat.json /tmp/release790/public-before.json
+          git diff --exit-code
+      - name: Retain exact source and all results, including failures
+        if: always()
+        run: |
+          mkdir -p /tmp/release790
+          git rev-parse HEAD > /tmp/release790/source-sha.txt
+          git archive --format=tar.gz --output=/tmp/release790/source.tar.gz HEAD
+          if test -d work/staging/generated/review-evidence; then cp -R work/staging/generated/review-evidence /tmp/release790/; fi
+          if test -d /tmp/shift-repair-proof; then cp -R /tmp/shift-repair-proof /tmp/release790/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: release790-readiness-${{ github.run_id }}
+          retention-days: 30
+          path: /tmp/release790
+          if-no-files-found: error

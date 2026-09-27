@@ -1,0 +1,86 @@
+name: Ticker original preservation and live closeout
+'on':
+  push:
+    branches:
+    - fix/ticker-preservation-20260917
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+    - run: npm ci --ignore-scripts --no-audit --no-fund
+    - name: Verify source and real ticker-preservation regressions
+      run: node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs tests/newsroom-publication-race.test.mjs tests/public-navigation-policy.test.mjs
+    - name: Load original release preservation evidence
+      uses: actions/download-artifact@v4
+      with:
+        name: member-public-preservation-35197863290
+        run-id: 35197863290
+        github-token: ${{ github.token }}
+        path: original-release
+    - name: Prove original before and after hashes differ only by approved version markers
+      run: node scripts/verify-ticker-original-preservation.mjs
+    - name: Prove public Life Back, food-noise guidance and their linked journeys
+      run: node scripts/verify-public-continuity-live.mjs
+    - name: Prove exact member scripts and authentication on live traffic
+      run: node member-experience/verify-production-member.mjs
+    - name: Prove Medicines Watch and its source checks on live traffic
+      run: node medicines-watch/verify-live.mjs
+    - name: Prove repaired access sources are reviewed and current on live traffic
+      run: node scripts/verify-watch-access-closeout.mjs
+    - name: Prove deployed public audit repairs
+      run: node scripts/verify-public-audit-live.mjs
+    - name: Prove deployed Progress client matches current Git authority
+      run: node g2-012-production-proof.mjs
+    - name: Prove newer restricted routes are on live traffic
+      shell: bash
+      run: "set -euo pipefail\nfor path in /v1/shift-me/render /v1/commissioning/product-events '/v1/commerce/discounts/validate?code=NEWSHIFT25&product=mounjaro&subtotalPence=16900' /v1/site-content; do\n  code=$(curl -sS -o /tmp/resp -w '%{http_code}' \"https://api.shiftsometimber.co.uk${path}\" || true)\n  echo \"$path -> HTTP $code\"\n  cat /tmp/resp || true\n  echo\n  if [ \"$code\" = \"404\" ]; then\n    echo \"Route still missing after explicit deploy: $path\"\n    exit 1\n  fi\ndone\ncode=$(curl -sS -X POST -H 'content-type: application/json' -d '{}' -o /tmp/resp -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/commissioning/final-v1-publication' || true)\necho \"/v1/commissioning/final-v1-publication [POST] -> HTTP $code\"\ncat /tmp/resp || true\necho\nif [ \"$code\" = \"404\" ]; then\n  echo 'POST-only final publication route still missing after explicit deploy'\n  exit 1\nfi\necho 'Explicit production promotion reached the newer route graph.'\n"
+    - name: Prove Shift Me premium static assets are actually published
+      shell: bash
+      run: 'set -euo pipefail
+
+        js_type=$(curl -sSI ''https://shiftsometimber.co.uk/member-shift-me-premium-v1.js?v=1'' | tr -d ''\r'' | awk -F'': '' ''tolower($1)=="content-type"{print tolower($2);exit}'')
+
+        css_type=$(curl -sSI ''https://shiftsometimber.co.uk/member-shift-me-premium-v1.css?v=1'' | tr -d ''\r'' | awk -F'': '' ''tolower($1)=="content-type"{print tolower($2);exit}'')
+
+        echo "Shift Me JS content-type: $js_type"
+
+        echo "Shift Me CSS content-type: $css_type"
+
+        [[ "$js_type" == *javascript* ]] || { echo ''Shift Me JS is not published with JavaScript MIME''; exit 1; }
+
+        [[ "$css_type" == text/css* ]] || { echo ''Shift Me CSS is not published with CSS MIME''; exit 1; }
+
+        echo ''Shift Me premium static assets are published with correct MIME types.''
+
+        '
+    - name: Prove SHIFT Health editorial imagery is actually published
+      shell: bash
+      run: "set -euo pipefail\nfor image in health-mot testosterone-energy blood-pressure-monitor digital-scales resistance-bands shift-measure erectile-dysfunction hair-loss stop-smoking sleep-apnoea; do\n  code=$(curl -sS -o /tmp/shift-health-image -w '%{http_code}' \"https://shiftsometimber.co.uk/assets/shift-health/${image}.webp\")\n  type=$(file --brief --mime-type /tmp/shift-health-image)\n  echo \"${image}.webp -> HTTP ${code}; ${type}\"\n  [ \"$code\" = \"200\" ] || exit 1\n  [ \"$type\" = \"image/webp\" ] || exit 1\ndone\necho 'All SHIFT Health editorial images are published as WebP assets.'\n"
+    - name: Observe a natural production scan consuming all seven sources
+      run: node scripts/verify-radar-source-consumption.mjs
+    - name: Read final Radar source health and review state
+      run: node scripts/radar-feed-diagnostics.mjs
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ticker-recovery-live-proof
+        path: 'ticker-original-preservation.json
+
+          radar-feed-diagnostics.json
+
+          member-live-proof.json
+
+          medicines-watch-live-proof.json
+
+          watch-access-closeout.json'

@@ -1,0 +1,21 @@
+{
+  "proof": "SHIFT_OWNER_PUBLICATION_INSTRUCTION_V1",
+  "status": "authorised",
+  "instruction": "Publish them all !!!!!!",
+  "actor": {"id": "Matt O’Brien", "kind": "human", "role": "owner"},
+  "recorded_at": "2026-09-16T18:50:04Z",
+  "source": "Explicit user instruction in the current task, after the unpublished content inventory was explained",
+  "scope": {
+    "grub_additions": 1873,
+    "grub_families": 87,
+    "grub_protected_corrections": 12,
+    "fit_new_protocols": 1362,
+    "fit_revision_protocols": 180,
+    "newsroom_corrected_articles": [276,279,281,284,286,288,290,292,294]
+  },
+  "grub_candidate_gzip_sha256": "fc9fbbe12e29ed175c3a742d086b1820778a0adcafc680b25a47225ac876eab8",
+  "human_editorial_review_claimed": false,
+  "trainer_review_claimed": false,
+  "clinical_review_claimed": false,
+  "boundary": "Owner instruction authorises publication of these prepared batches after exact content checks. It does not attest that the owner personally reviewed every record, invent specialist credentials, authorise unrelated quarantined content, send newsletters/social messages, or activate clinical, payment or workplace services."
+}

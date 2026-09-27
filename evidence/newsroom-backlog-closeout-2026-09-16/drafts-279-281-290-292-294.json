@@ -1,0 +1,314 @@
+{
+  "proof": "NEWSROOM_OFFLINE_SOURCE_CORRECTION_DRAFTS_V1",
+  "created_at": "2026-09-16",
+  "scope": [
+    279,
+    281,
+    290,
+    292,
+    294
+  ],
+  "status": "AI DRAFT — pending qualified source-correction review",
+  "production_writes": false,
+  "publication_authority": false,
+  "note": "Prepared offline against retrieved primary sources. Existing HQ holds and review states are untouched. A human reviewer must resolve source changes and duplicate-record identities before ingestion or approval.",
+  "drafts": [
+    {
+      "event_id": 279,
+      "headline": "IXCHIQ: the 2025 pause was replaced by stricter rules",
+      "standfirst": "An archived suspension for people aged 65 and over now points to the completed UK safety review.",
+      "article_markdown": "The MHRA’s June 2025 temporary pause on IXCHIQ vaccination for people aged 65 and over is historical advice. The notice now carries a February 2026 post-publication note directing readers to a replacement safety update. The original age threshold should therefore not be presented as the current UK rule. [MHRA source](https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older)\n\nThe initial precaution followed global reports of serious reactions, including deaths, while regulators assessed the vaccine’s safety. IXCHIQ contains a weakened live chikungunya virus; the early notice also highlighted restrictions for people whose immune systems were weakened. That investigation was still open when the June article appeared. [MHRA source](https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older)\n\nThe completed review led to tighter restrictions on 11 February 2026. The MHRA’s accompanying announcement limits use to adults aged 18–59 without specified contraindications. It also introduces precautions concerning underlying illness and timing before travel. The agency describes these as permanent restrictions following the review, replacing the temporary pause. [MHRA source](https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq)\n\nThis archive story records that sequence. The linked replacement notice provides the operative detail, and suitability remains a matter for a trained healthcare professional’s assessment. Reporting the historical pause alone would leave travellers with an outdated account of the UK position. [MHRA source](https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review)",
+      "known_facts": [
+        {
+          "text": "June 2025 notice explicitly superseded.",
+          "source_url": "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older"
+        },
+        {
+          "text": "February 2026 announcement narrows use to 18–59.",
+          "source_url": "https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq"
+        }
+      ],
+      "limitations": [
+        "Historical chronology article; the 2025 temporary 65+ threshold must not be displayed as current advice.",
+        "Serious-event reports are safety signals, not a population incidence estimate."
+      ],
+      "seo": {
+        "slug": "ixchiq-2025-pause-superseded-2026-review",
+        "title": "IXCHIQ: why the 2025 pause is historical",
+        "description": "The archived IXCHIQ notice has been superseded. Read the review chronology and current MHRA source."
+      },
+      "superseded_by_event_id": 281,
+      "status": "AI_DRAFT_PENDING_QUALIFIED_SOURCE_CORRECTION_REVIEW",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewed_by_qualified_person": false,
+      "hq_mutated": false,
+      "publication_ready": false,
+      "source_checked_at": "2026-09-16",
+      "sources": [
+        {
+          "publisher": "MHRA",
+          "title": "IXCHIQ temporary suspension notice",
+          "url": "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older",
+          "published": "2025-06-18",
+          "updated": "2026-02-11",
+          "status": "Explicitly superseded by February 2026 safety update",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        },
+        {
+          "publisher": "MHRA",
+          "title": "IXCHIQ restrictions following safety review",
+          "url": "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review",
+          "published": "2026-02-11",
+          "updated": null,
+          "status": "Current linked replacement retrieved",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        },
+        {
+          "publisher": "MHRA",
+          "title": "IXCHIQ additional restrictions announcement",
+          "url": "https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq",
+          "published": "2026-02-11",
+          "updated": null,
+          "status": "Confirms age 18–59 eligibility and permanent restrictions",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        }
+      ],
+      "article_word_count": 185,
+      "content_sha256": "14c746eb140dd3f4ebe5dabed9b2bb303f8796aab593381ea260670f8c9c1856"
+    },
+    {
+      "event_id": 281,
+      "headline": "UK tightens IXCHIQ restrictions after safety review",
+      "standfirst": "February 2026 advice excludes people aged 60 and over and adds restrictions for several chronic conditions.",
+      "article_markdown": "The MHRA has tightened the UK restrictions on IXCHIQ after completing its safety review. Its 11 February 2026 announcement says the chikungunya vaccine should be used only in adults aged 18–59, replacing the earlier temporary pause for those aged 65 and over. [MHRA source](https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq)\n\nThe updated advice excludes people with high blood pressure, cardiovascular disease, diabetes or chronic kidney disease. Existing restrictions relating to immune deficiency or immune suppression remain relevant, including the specified thymus conditions. A trained healthcare professional must assess the balance of benefits and risks before vaccination, with particular caution when someone has multiple underlying conditions. [MHRA source](https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review)\n\nThe review also recommends vaccination at least 30 days before travel, so a serious reaction could be assessed while the person remains in the UK. The announcement cited 28 globally reported serious reactions, including three deaths; those reports do not provide a population risk rate. [MHRA source](https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq)\n\nThe regulator still considers the balance favourable for eligible adults at risk of infection. Chikungunya is mainly transmitted by infected mosquitoes. The detailed notice says an alternative vaccine is available when IXCHIQ is unsuitable; selecting an option requires a travel-health assessment. These are product-specific restrictions, not a statement that every chikungunya vaccine has the same limitations. [MHRA source](https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review)",
+      "known_facts": [
+        {
+          "text": "The detailed advice uses 60 or over, including age 60.",
+          "source_url": "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review"
+        },
+        {
+          "text": "Travel precaution: at least 30 days beforehand.",
+          "source_url": "https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq"
+        }
+      ],
+      "limitations": [
+        "The source summary says over 60, but its explicit professional advice and accompanying MHRA announcement say 60 or over; this draft follows the explicit recommendation.",
+        "No individual vaccine eligibility or alternative product recommendation is given."
+      ],
+      "seo": {
+        "slug": "ixchiq-uk-restrictions-safety-review-2026",
+        "title": "IXCHIQ UK restrictions after 2026 review",
+        "description": "The MHRA has revised IXCHIQ age and health-condition restrictions following its safety review."
+      },
+      "related_historical_event_id": 279,
+      "status": "AI_DRAFT_PENDING_QUALIFIED_SOURCE_CORRECTION_REVIEW",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewed_by_qualified_person": false,
+      "hq_mutated": false,
+      "publication_ready": false,
+      "source_checked_at": "2026-09-16",
+      "sources": [
+        {
+          "publisher": "MHRA",
+          "title": "IXCHIQ restrictions following safety review",
+          "url": "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-updates-to-restrictions-of-use-following-safety-review",
+          "published": "2026-02-11",
+          "updated": null,
+          "status": "Current linked replacement retrieved",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        },
+        {
+          "publisher": "MHRA",
+          "title": "IXCHIQ additional restrictions announcement",
+          "url": "https://www.gov.uk/government/news/mhra-introduces-additional-restrictions-for-use-of-the-chikungunya-vaccine-ixchiq",
+          "published": "2026-02-11",
+          "updated": null,
+          "status": "Confirms age 18–59 eligibility and permanent restrictions",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        },
+        {
+          "publisher": "MHRA",
+          "title": "IXCHIQ temporary suspension notice",
+          "url": "https://www.gov.uk/drug-safety-update/ixchiq-chikungunya-vaccine-temporary-suspension-in-people-aged-65-years-or-older",
+          "published": "2025-06-18",
+          "updated": "2026-02-11",
+          "status": "Explicitly superseded by February 2026 safety update",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        }
+      ],
+      "article_word_count": 198,
+      "content_sha256": "3e932c1acf09626d240239eba5d0cf9991b776e508180b995eef01ad8d4efd22"
+    },
+    {
+      "event_id": 290,
+      "headline": "RSV vaccine warning puts rare nerve condition in context",
+      "standfirst": "The MHRA identified a small Guillain–Barré syndrome risk in older adults while retaining a favourable benefit–risk assessment.",
+      "article_markdown": "A July 2025 MHRA safety notice warned of a small increase in Guillain–Barré syndrome after the RSV vaccines Abrysvo and Arexvy in older adults. The Commission on Human Medicines nevertheless concluded that protection against RSV outweighed that risk. The notice did not describe a suspension of vaccination. [MHRA source](https://www.gov.uk/drug-safety-update/abrysvov-pfizer-rsv-vaccine-and-arexvyv-gsk-rsv-vaccine-be-alert-to-a-small-risk-of-guillain-barre-syndrome-following-vaccination-in-older-adults)\n\nGuillain–Barré syndrome is a serious condition affecting the nerves. The regulator asked clinicians to recognise possible symptoms promptly and explained that urgent hospital assessment can be necessary. It reported no evidence at that time of an increased risk after Abrysvo in pregnant people; that separate population should not be assigned the older-adult findings. [MHRA source](https://www.gov.uk/drug-safety-update/abrysvov-pfizer-rsv-vaccine-and-arexvyv-gsk-rsv-vaccine-be-alert-to-a-small-risk-of-guillain-barre-syndrome-following-vaccination-in-older-adults)\n\nLater UKHSA guidance, updated 11 August 2026, continues to describe a small increased risk in the six weeks after vaccination in older adults. It also notes that some cases following vaccination happen by chance and that infections themselves commonly precede the condition. Protection against severe RSV remains important in the eligible population. [UK Health Security Agency source](https://www.gov.uk/government/publications/respiratory-syncytial-virus-rsv-programme-information-for-healthcare-professionals/rsv-vaccination-of-older-adults-information-for-healthcare-practioners)\n\nSafety estimates from different studies, ages and observation periods are not interchangeable. This report does not turn suspected adverse-event notifications into a causal rate or repeat the older notice’s programme eligibility as current policy. The updated official guidance provides the appropriate programme context. [UK Health Security Agency source](https://www.gov.uk/government/publications/respiratory-syncytial-virus-rsv-programme-information-for-healthcare-professionals/rsv-vaccination-of-older-adults-information-for-healthcare-practioners)",
+      "known_facts": [
+        {
+          "text": "MHRA safety notice: 7 July 2025.",
+          "source_url": "https://www.gov.uk/drug-safety-update/abrysvov-pfizer-rsv-vaccine-and-arexvyv-gsk-rsv-vaccine-be-alert-to-a-small-risk-of-guillain-barre-syndrome-following-vaccination-in-older-adults"
+        },
+        {
+          "text": "Later UKHSA guidance retains favourable benefit–risk context.",
+          "source_url": "https://www.gov.uk/government/publications/respiratory-syncytial-virus-rsv-programme-information-for-healthcare-professionals/rsv-vaccination-of-older-adults-information-for-healthcare-practioners"
+        }
+      ],
+      "limitations": [
+        "No numerical excess-risk estimate is pooled across studies or presented as an individual prediction.",
+        "The 2025 NHS age-cohort description is historical; programme eligibility changed subsequently.",
+        "No individual decision about vaccination is made."
+      ],
+      "seo": {
+        "slug": "rsv-vaccines-small-gbs-risk-mhra-context",
+        "title": "RSV vaccines: rare GBS risk in context",
+        "description": "What the MHRA warning and later UKHSA guidance say about RSV vaccines and Guillain–Barré syndrome."
+      },
+      "status": "AI_DRAFT_PENDING_QUALIFIED_SOURCE_CORRECTION_REVIEW",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewed_by_qualified_person": false,
+      "hq_mutated": false,
+      "publication_ready": false,
+      "source_checked_at": "2026-09-16",
+      "sources": [
+        {
+          "publisher": "MHRA",
+          "title": "RSV vaccines and small Guillain–Barré syndrome risk",
+          "url": "https://www.gov.uk/drug-safety-update/abrysvov-pfizer-rsv-vaccine-and-arexvyv-gsk-rsv-vaccine-be-alert-to-a-small-risk-of-guillain-barre-syndrome-following-vaccination-in-older-adults",
+          "published": "2025-07-07",
+          "updated": null,
+          "status": "Original safety communication retrieved",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        },
+        {
+          "publisher": "UK Health Security Agency",
+          "title": "RSV vaccination: information for healthcare practitioners",
+          "url": "https://www.gov.uk/government/publications/respiratory-syncytial-virus-rsv-programme-information-for-healthcare-professionals/rsv-vaccination-of-older-adults-information-for-healthcare-practioners",
+          "published": null,
+          "updated": "2026-08-11",
+          "status": "Later primary guidance; GBS section and changed programme context checked",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        }
+      ],
+      "article_word_count": 195,
+      "content_sha256": "fec8854fbbd087d597f3d9cd70bed547ba1d974633f8cbc00dd3570593c3cae7"
+    },
+    {
+      "event_id": 292,
+      "headline": "Asthma alert links reliever overuse with poorer control",
+      "standfirst": "The MHRA’s 2025 reminder emphasises anti-inflammatory treatment alongside short-acting reliever prescribing.",
+      "article_markdown": "The MHRA has reminded prescribers that excessive reliance on short-acting beta 2 agonist inhalers, including salbutamol and terbutaline, can conceal worsening asthma. Its 24 April 2025 notice connects overuse with a greater risk of severe attacks and death. [MHRA source](https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines)\n\nThe communication reflects updated UK guidance: a short-acting reliever should not be prescribed for asthma at any age without an inhaled corticosteroid. It calls for treatment review when an as-needed reliever is required more than twice weekly, and urgent review when reliever prescriptions increase or anti-inflammatory medication is not collected. [MHRA source](https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines)\n\nThis is a prescribing and monitoring message, not an instruction for someone to abandon their prescribed rescue inhaler. The evidence described includes observational associations; an inhaler count alone does not establish the cause of an individual asthma attack. [MHRA source](https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines)\n\nFor readers, the relevant next conversation is about their existing asthma plan and symptom control with the clinical team. The regulator also distinguishes routine review from urgent help when prescribed reliever treatment fails to ease worsening breathing symptoms. [MHRA source](https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines)",
+      "known_facts": [
+        {
+          "text": "Published 24 April 2025.",
+          "source_url": "https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines"
+        },
+        {
+          "text": "Guidance discourages SABA-only asthma treatment.",
+          "source_url": "https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines"
+        }
+      ],
+      "limitations": [
+        "This is a dated regulatory reminder, not a newly announced 2026 change.",
+        "The linked NICE page could not be retrieved independently in this session; the draft attributes prescribing statements to the fully retrieved MHRA notice.",
+        "Event 23 has the same historical headline; retain both IDs until an editor compares source versions and selects the canonical record."
+      ],
+      "seo": {
+        "slug": "asthma-reliever-overuse-mhra-reminder",
+        "title": "Asthma reliever overuse: MHRA reminder",
+        "description": "A dated MHRA alert explains the risks of reliever overuse and the need for asthma treatment review."
+      },
+      "historical_duplicate_candidate_event_id": 23,
+      "status": "AI_DRAFT_PENDING_QUALIFIED_SOURCE_CORRECTION_REVIEW",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewed_by_qualified_person": false,
+      "hq_mutated": false,
+      "publication_ready": false,
+      "source_checked_at": "2026-09-16",
+      "sources": [
+        {
+          "publisher": "MHRA",
+          "title": "SABA overuse and prescribing guidance reminder",
+          "url": "https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines",
+          "published": "2025-04-24",
+          "updated": null,
+          "status": "Primary notice retrieved; no superseding notice displayed on this page",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        }
+      ],
+      "article_word_count": 164,
+      "content_sha256": "8abe1e6536b5ca59718119da7c0ebe3d9dfaf3355b903e8f7cddf5c0451bf732"
+    },
+    {
+      "event_id": 294,
+      "headline": "Bromocriptine reminder stresses blood pressure checks",
+      "standfirst": "The MHRA’s 2024 review reinforced monitoring when the medicine is used to suppress milk production after childbirth.",
+      "article_markdown": "A 24 October 2024 MHRA notice reinforced the importance of blood pressure monitoring with bromocriptine, particularly early in treatment. The review followed a Yellow Card report that highlighted the need for those checks. [MHRA source](https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation)\n\nFor suppressing milk production after childbirth, the regulator limits bromocriptine to medical indications. It is not recommended for routine suppression or ordinary breast pain and engorgement. The notice also lists blood-pressure and cardiovascular conditions in which it must not be used. [MHRA source](https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation)\n\nThe warning extends beyond the initial prescription: clinicians are asked to monitor during subsequent dose increases too. The patient advice identifies chest pain or an unusually severe or persistent headache, with or without visual symptoms, as reasons for urgent medical assessment. [MHRA source](https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation)\n\nThis report describes the regulator’s monitoring requirements; it does not select a medicine, dose or monitoring schedule for an individual. A suspected-reaction report can trigger a safety review but cannot, by itself, establish how often an adverse effect occurs. The original dated notice remains linked for the full prescribing context. [MHRA source](https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation)",
+      "known_facts": [
+        {
+          "text": "Published 24 October 2024.",
+          "source_url": "https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation"
+        },
+        {
+          "text": "Monitoring emphasised early and after dose increases.",
+          "source_url": "https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation"
+        }
+      ],
+      "limitations": [
+        "This is a historical safety reminder, not a new 2026 restriction.",
+        "No incidence estimate is available from the single report described.",
+        "Event 35 has the same historical headline; source-version comparison is still required before either record is merged or replaced."
+      ],
+      "seo": {
+        "slug": "bromocriptine-postpartum-blood-pressure-mhra",
+        "title": "Bromocriptine: blood pressure monitoring",
+        "description": "The MHRA reminder covers blood pressure checks when bromocriptine is prescribed after childbirth."
+      },
+      "historical_duplicate_candidate_event_id": 35,
+      "status": "AI_DRAFT_PENDING_QUALIFIED_SOURCE_CORRECTION_REVIEW",
+      "author": {
+        "id": "/root/grub_closeout",
+        "kind": "ai"
+      },
+      "reviewed_by_qualified_person": false,
+      "hq_mutated": false,
+      "publication_ready": false,
+      "source_checked_at": "2026-09-16",
+      "sources": [
+        {
+          "publisher": "MHRA",
+          "title": "Bromocriptine and blood pressure monitoring",
+          "url": "https://www.gov.uk/drug-safety-update/bromocriptine-monitor-blood-pressure-when-prescribing-bromocriptine-for-prevention-or-inhibition-of-post-partum-physiological-lactation",
+          "published": "2024-10-24",
+          "updated": null,
+          "status": "Primary notice retrieved; no superseding notice displayed on this page",
+          "retrieved_at": "2026-09-16",
+          "primary_source": true
+        }
+      ],
+      "article_word_count": 165,
+      "content_sha256": "30150dc589a61ce93d59cec6025dc0d69fe3d8b102f1e29d92d07b700f6ef3a1"
+    }
+  ]
+}

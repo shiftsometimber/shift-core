@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-09-12T10:39:39.228Z",
+  "origin": "https://shift-core-work-staging.matobrien.workers.dev",
+  "commit": "70865a5342a35057c86837121f643fe7cc9481d1",
+  "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/34688961817",
+  "checks": [
+    "Separate real member and HQ password logins",
+    "HQ/member session separation",
+    "Code claim and review persisted across remote requests",
+    "Foreign employer cannot access reports",
+    "Clinical ordering remains blocked",
+    "Fixed closed-fixture report released without member records",
+    "Reporting-access revocation takes effect",
+    "Logout invalidates the saved member session"
+  ],
+  "limits": [
+    "Fictional accounts only",
+    "Closed period is a seeded fixture",
+    "No real-employee or clinical commissioning",
+    "Desktop Chrome member journey only; no production sign-in, HQ MFA, mobile or Safari acceptance"
+  ],
+  "browser": {
+    "status": "pass",
+    "scope": "Secure existing-account sign-in, voluntary company-code claim, shared start, week-one completion persisted after reload, logout and fresh protected-route redirect to sign-in",
+    "registrationAttempted": false,
+    "credentials": "Secure handoff only; no values inspected or logged",
+    "fix": "Literal browser source removes bundled __name dependency; served-asset regression test added",
+    "logout": "Completed after delayed navigation; cause of delay not diagnosed. Staging helper now provides pending/error feedback.",
+    "responsiveEvidence": "work/responsive-evidence.json",
+    "designReview": "work/MEMBER-EXPERIENCE-REVIEW.md",
+    "scopeNote": "Authenticated browser journey was verified before the visual revision. Current revision passes real API/persistence checks and separately reviewed fictional browser interactions."
+  }
+}

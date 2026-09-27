@@ -1,0 +1,22 @@
+{
+  "backend_parent": "0a667f2953e943665d2d9313d80ff0d4801e14fd",
+  "pages_preview_commit": "e5f892789a495ed2ce7b10952adb4924fdb17717",
+  "pages_protected_files": 871,
+  "changed_tracked_files": [
+    "worker-entry-v6.js"
+  ],
+  "added_assets": {
+    "frontend/member/assets/programme-v1/programme.css": "ab42611748fffe404204e70ae0276f405a1ec2310e1c89cbb7a57267b137e39c",
+    "frontend/member/assets/programme-v1/programme.mjs": "4c7d13f6953b77124718879e9dca02374508a1d09246b180a99acfeac0260a2a"
+  },
+  "modules": {
+    "programme/engine.mjs": "b2360edcad38fa948eca35e8cd9d6d695e9488ec28478a83c15fa1d4cc7fce81",
+    "programme/store.mjs": "5aa85471d05aec14f100853aa510d4d03bf5f0b5ddda4ae145dfef0856ffa9b4",
+    "programme/screen.mjs": "8ca311dd5663b8506f7116ef534590f64a3e0c6f909c8633f1a78dead9f6ade6",
+    "programme/content.mjs": "80d752cc54fe24c45fe8af95405bf87d43ecdf58ba66a4101e050f8df718fad7",
+    "programme/routes.mjs": "014d2ad7b60d33d5299fe58d62c1640d29a5c2c9f2b31826fbfe65873f0f0cf0",
+    "programme/service.mjs": "15fe4c993fadf4018b1a52655ca494a869224a8978ea711a82882460db6f58b1"
+  },
+  "site_deployed": false,
+  "rule_version": "programme-rules-1.0.1"
+}

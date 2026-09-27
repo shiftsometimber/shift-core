@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {sources,REVIEWED_AT} from './data.mjs';
+import {projectSourceHealth} from './monitor.mjs';
+const receipt=JSON.parse(readFileSync(new URL('./reviews/2026-09-18-wegovy-tablet-provider.json',import.meta.url),'utf8'));
+const source=sources.find(s=>s.id==='wegovy-tablet-private');
+const now=Date.parse('2026-09-19T12:00:00Z');
+const row={source_url:source.url,check_url:source.checkUrl,last_attempt_at:'2026-09-19T11:45:00Z',last_success_at:'2026-09-19T11:45:00Z',attempt_status:'current',last_http_status:200,last_fingerprint:receipt.source.reviewedFingerprint,last_withdrawn:0};
+test('restored factual receipt binds the exact source fingerprint and original review date',()=>{assert.equal(receipt.reviewType,'AI-assisted factual source review; not clinical approval');assert.equal(source.url,receipt.source.url);assert.equal(source.reviewedFingerprint,receipt.source.reviewedFingerprint);assert.equal(source.reviewedAt,receipt.reviewedAt);assert.equal(receipt.source.httpStatus,200);assert.equal(receipt.source.withdrawn,false);assert.equal(receipt.source.wordingChanged,false);assert.equal(REVIEWED_AT,'2026-09-15T21:28:30Z')});
+test('matching observed source can be current; unknown or changed bodies still require review',()=>{assert.equal(projectSourceHealth(source,row,now).status,'current');for(const fingerprint of [receipt.source.previousReviewedFingerprint,'f'.repeat(64)]){const result=projectSourceHealth(source,{...row,last_fingerprint:fingerprint},now);assert.equal(result.status,'awaiting_review');assert.ok(result.reasons.includes('source_changed'))}});
+test('a failed 403 retrieval, overdue check or withdrawn page cannot be cleared by this review',()=>{for(const patch of [{attempt_status:'failed',last_http_status:403},{last_success_at:'2026-09-18T10:00:00Z'},{last_withdrawn:1}])assert.notEqual(projectSourceHealth(source,{...row,...patch},now).status,'current')});
+test('restored review does not disable seven-day review expiry',()=>{const result=projectSourceHealth(source,{...row,last_attempt_at:'2026-09-26T11:45:00Z',last_success_at:'2026-09-26T11:45:00Z'},Date.parse('2026-09-26T12:00:00Z'));assert.equal(result.status,'awaiting_review');assert.ok(result.reasons.includes('review_due'))});

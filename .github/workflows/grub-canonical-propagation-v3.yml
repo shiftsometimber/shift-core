@@ -1,0 +1,40 @@
+name: Grub Canonical Propagation V3
+on:
+  pull_request:
+    paths:
+      - 'grub-canonical-approval-registry-v1.mjs'
+      - 'grub-canonical-approval-gate-v1.mjs'
+      - 'industrial-grub-systemic-v3.mjs'
+      - 'industrial-grub-batch-calculation-v3.mjs'
+      - '.github/workflows/grub-canonical-propagation-v3.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'grub-canonical-approval-registry-v1.mjs'
+      - 'grub-canonical-approval-gate-v1.mjs'
+      - 'industrial-grub-systemic-v3.mjs'
+      - 'industrial-grub-batch-calculation-v3.mjs'
+      - '.github/workflows/grub-canonical-propagation-v3.yml'
+jobs:
+  governed-grub-conversion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: python3 -m pip install --quiet openpyxl
+      - name: Extract authoritative CoFID 2021 dataset
+        run: python3 cofid-industrial-extract.py /tmp/cofid-index.json
+      - name: Govern shared canonical proxy decisions
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node grub-canonical-approval-gate-v1.mjs
+      - name: Propagate canonical decisions across full catalogue
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-grub-systemic-v3.mjs
+      - name: Calculate nutrition and risk-tier entire eligible wave
+        env:
+          COFID_INDEX: /tmp/cofid-index.json
+        run: node industrial-grub-batch-calculation-v3.mjs

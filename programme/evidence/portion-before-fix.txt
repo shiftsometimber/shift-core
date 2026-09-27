@@ -1,0 +1,40 @@
+✔ Round 2 case-01: full authored slots, reports and catalogue (11.155264ms)
+✔ Round 2 case-02: full authored slots, reports and catalogue (1.117825ms)
+✔ Round 2 case-03: full authored slots, reports and catalogue (1.044494ms)
+✔ Round 2 case-04: full authored slots, reports and catalogue (1.275652ms)
+✔ Round 2 case-05: full authored slots, reports and catalogue (1.826784ms)
+✔ Round 2 case-06: full authored slots, reports and catalogue (1.315042ms)
+✔ Round 2 case-07: full authored slots, reports and catalogue (1.190645ms)
+✖ Round 2 case-08: full authored slots, reports and catalogue (2.087887ms)
+✔ Targeted extension of an authored plan: two explicit misses allow a previewed swap, preserving successful slots and reserved portions (2.576483ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.037395
+
+✖ failing tests:
+
+test at programme/tests/blind-round-2.test.mjs:17:25
+✖ Round 2 case-08: full authored slots, reports and catalogue (2.087887ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  6 !== 3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/blind-round-2.test.mjs:38:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 6,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

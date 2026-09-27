@@ -1,0 +1,1875 @@
+{
+  "method": "Root read the independently authored inputs, then recorded conservative expected outputs. Future recipe identities are not supplied in the histories: use declared test-plan mappings, never treat those mappings as participant facts. Free-text requests need confirmation; no unsupported microwave, portability, timing or clinical suitability inferred.",
+  "results": [
+    {
+      "id": "fictional-01",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 3,
+        "inputRevision": 0,
+        "created": "2026-08-30",
+        "kind": "proposal",
+        "summary": "1 planned meal completed. 1 chosen activity completed.",
+        "proposals": [
+          {
+            "id": "3:mon-dinner",
+            "slotKey": "mon-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-08-30",
+            "text": "You asked to look again at Monday: “On late weeks I would like to eat before work if we can make that work for the household.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-08-31:mon-dinner",
+              "2026-09-07:mon-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "thu-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "sun-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "2 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "1 eligible; 1 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My partner had already chopped the vegetables.",
+              "date": "2026-08-10",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Used the leftovers after the school uniform shop.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "unknown",
+              "reason": null,
+              "date": "2026-08-16",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Walked before collecting the children.",
+              "date": "2026-08-11",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "The delivery arrived during the time I meant to go.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "did-not-fit",
+              "reason": "Made it after getting home but everyone else had eaten and the kitchen was still a mess at midnight.",
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Stayed late to finish a stock count and bought a sandwich on the way home.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went out in the morning before work.",
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": "Cannot remember whether our trip to the shops was the walk I meant to record.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "We both finished work on time.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "An unplanned family barbecue took the whole afternoon.",
+              "date": "2026-08-30",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went to the park with the children.",
+              "date": "2026-08-29",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": "none",
+            "diet": "any",
+            "activityLimitations": "none",
+            "equipment": []
+          },
+          "requests": [
+            {
+              "slotKey": "mon-dinner",
+              "reason": "On late weeks I would like to eat before work if we can make that work for the household.",
+              "date": "2026-08-30"
+            }
+          ],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-02",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 4,
+        "inputRevision": 0,
+        "created": "2026-09-06",
+        "kind": "keep",
+        "summary": "2 planned meals completed. 1 chosen activity completed.",
+        "proposals": [],
+        "suppressed": [
+          {
+            "slotKey": "tue-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "0 eligible; 0 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Made enough bean chilli for another evening.",
+              "date": "2026-08-10",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Ate the portion from the freezer.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Had time to cook while listening to the radio.",
+              "date": "2026-08-16",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "A colleague came with me at lunch.",
+              "date": "2026-08-11",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went round the block after a meeting.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Forgot about it until late evening.",
+              "date": "2026-08-15",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "A friend invited me out at short notice.",
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Pasta was quick enough after the commute.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": null,
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Had to cover reception through my usual lunch break.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Walked to the second-hand bookshop.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": "I was away visiting my brother and did not keep track.",
+              "date": "2026-08-30",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Bought groceries on the way home.",
+              "date": "2026-08-31",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": null,
+              "date": "2026-09-03",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Left my coat at home and it rained all lunchtime.",
+              "date": "2026-09-01",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Met my brother for a stroll when he came to visit.",
+              "date": "2026-09-05",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": "unknown",
+            "diet": "vegetarian",
+            "activityLimitations": "none",
+            "equipment": []
+          },
+          "requests": [],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-03",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-08-30",
+        "kind": "proposal",
+        "summary": "2 planned meals completed. 1 chosen activity completed.",
+        "proposals": [
+          {
+            "id": "2:sat-walk",
+            "slotKey": "sat-walk",
+            "kind": "move",
+            "priority": 0,
+            "evidenceAt": "2026-08-30",
+            "text": "You asked to look again at Saturday: “I would like to stick to the flat canal path when I walk with my friend.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-05:sat-walk",
+              "2026-09-12:sat-walk"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "mon-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "sun-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "thu-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "3 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "1 eligible; 1 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "My daughter ate with her aunt while I was at work.",
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "We prepared food together in the morning and ate at different times.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My sister brought ingredients and we cooked together.",
+              "date": "2026-08-23",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "A short loop along the canal before my shift.",
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Waited in for a plumber.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "did-not-fit",
+              "reason": "The route my friend chose had more steps than I expected, so I turned back early.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "We were both home by five.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "did-not-fit",
+              "reason": "Cooking took longer than I expected and my daughter was waiting to leave for a friend's house.",
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "We ate at my sister's instead.",
+              "date": "2026-08-30",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Used the canal path again.",
+              "date": "2026-08-25",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": [
+              "sesame"
+            ],
+            "diet": "any",
+            "activityLimitations": "Long walks on steep paths bother my knee; short flat walks are usually comfortable.",
+            "equipment": []
+          },
+          "requests": [
+            {
+              "slotKey": "sat-walk",
+              "reason": "I would like to stick to the flat canal path when I walk with my friend.",
+              "date": "2026-08-30"
+            }
+          ],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-04",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 3,
+        "inputRevision": 0,
+        "created": "2026-08-30",
+        "kind": "keep",
+        "summary": "1 planned meal completed. 1 chosen activity completed.",
+        "proposals": [],
+        "suppressed": [
+          {
+            "slotKey": "mon-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "0 eligible; 0 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "unknown",
+              "reason": null,
+              "date": "2026-08-10",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": "I filled this in the following week and cannot remember Thursday.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Fell asleep on the sofa and had toast later.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My housemate and I cooked after buying groceries together.",
+              "date": "2026-08-30",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "unknown",
+              "reason": "Went out with my housemate but did not look at the time.",
+              "date": "2026-08-29",
+              "period": "2026-08-24",
+              "shift": "early",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": "unknown",
+            "diet": "unknown",
+            "activityLimitations": "unknown",
+            "equipment": []
+          },
+          "requests": [],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-05",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 4,
+        "inputRevision": 0,
+        "created": "2026-09-06",
+        "kind": "proposal",
+        "summary": "3 planned meals completed. 1 chosen activity completed.",
+        "proposals": [
+          {
+            "id": "4:thu-dinner",
+            "slotKey": "thu-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-06",
+            "text": "You asked to look again at Thursday: “Could we keep a couple of meals in mind that use only the microwave? The broken hob caught us out.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-10:thu-dinner",
+              "2026-09-17:thu-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "tue-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "1 eligible; 1 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Cooked before leaving and packed my portion.",
+              "date": "2026-08-10",
+              "period": "2026-08-10",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My partner made lentil soup and left some for me.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "We went to a birthday meal.",
+              "date": "2026-08-16",
+              "period": "2026-08-10",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "The morning disappeared into laundry and an overdue repair visit.",
+              "date": "2026-08-11",
+              "period": "2026-08-10",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went out after breakfast.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Walked before taking the bus to work.",
+              "date": "2026-08-15",
+              "period": "2026-08-10",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": null,
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "The hob stopped working. We had sandwiches.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Made baked potatoes in the microwave while waiting for the repair.",
+              "date": "2026-08-23",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My partner joined me after dinner.",
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went to the park while my partner waited for the electrician.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Spent the afternoon helping a friend move.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "The hob was fixed and we had food in the freezer.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Packed food before work again.",
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Met a neighbour in the morning.",
+              "date": "2026-08-25",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": null,
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "We made omelettes together.",
+              "date": "2026-08-31",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": null,
+              "date": "2026-09-03",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": null,
+              "date": "2026-09-06",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "A long phone call with my mum ran into the evening.",
+              "date": "2026-09-01",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went out with my partner before lunch.",
+              "date": "2026-09-05",
+              "period": "2026-08-31",
+              "shift": "day",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": "none",
+            "diet": "vegetarian",
+            "activityLimitations": "none",
+            "equipment": []
+          },
+          "requests": [
+            {
+              "slotKey": "thu-dinner",
+              "reason": "Could we keep a couple of meals in mind that use only the microwave? The broken hob caught us out.",
+              "date": "2026-09-06"
+            }
+          ],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-06",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 2,
+        "inputRevision": 0,
+        "created": "2026-08-30",
+        "kind": "proposal",
+        "summary": "2 planned meals completed. 2 chosen activities completed.",
+        "proposals": [
+          {
+            "id": "2:sun-dinner",
+            "slotKey": "sun-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-08-30",
+            "text": "You asked to look again at Sunday: “We would prefer something with less clearing up on Sundays.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-06:sun-dinner",
+              "2026-09-13:sun-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "thu-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "thu-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "sat-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "3 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "1 eligible; 1 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My wife and I used what was already in the fridge.",
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Our son stayed longer than planned and brought dinner with him.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "did-not-fit",
+              "reason": "We made the meal, but there was much more washing up than either of us wanted.",
+              "date": "2026-08-23",
+              "period": "2026-08-17",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went to the small garden and sat on the bench halfway.",
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Our son's visit filled the afternoon.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Took the same short route with my wife.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Kept it to one pan this time.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Our son helped carry the shopping earlier.",
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": "I remember eating at home but not which meal we had agreed on.",
+              "date": "2026-08-30",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went out before the rain.",
+              "date": "2026-08-25",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "done",
+              "fit": "did-not-fit",
+              "reason": "The bench was being repaired, so there was nowhere to stop on our usual route.",
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Neither of us fancied going out in the heavy rain.",
+              "date": "2026-08-29",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": [
+              "peanuts"
+            ],
+            "diet": "any",
+            "activityLimitations": "Uses a walking stick and prefers short routes with somewhere to sit.",
+            "equipment": []
+          },
+          "requests": [
+            {
+              "slotKey": "sun-dinner",
+              "reason": "We would prefer something with less clearing up on Sundays.",
+              "date": "2026-08-30"
+            }
+          ],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-07",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 3,
+        "inputRevision": 0,
+        "created": "2026-08-30",
+        "kind": "proposal",
+        "summary": "1 planned meal completed. 1 chosen activity completed.",
+        "proposals": [
+          {
+            "id": "3:thu-walk",
+            "slotKey": "thu-walk",
+            "kind": "move",
+            "priority": 0,
+            "evidenceAt": "2026-08-30",
+            "text": "You asked to look again at Thursday: “Thursday is the day I tend to have errands. I would like to try another day.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": false,
+            "targetIds": [
+              "2026-09-03:thu-walk",
+              "2026-09-10:thu-walk"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "thu-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          },
+          {
+            "slotKey": "sat-walk",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "2 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "1 eligible; 1 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "There was no room on the counter because my flatmate was baking for an event.",
+              "date": "2026-08-10",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "We agreed on kitchen times and I cooked first.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Used up vegetables before the next shop.",
+              "date": "2026-08-16",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "Forgot.",
+              "date": "2026-08-11",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Went straight from work to collect a parcel before the shop shut.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "A friend suggested a walk and coffee.",
+              "date": "2026-08-15",
+              "period": "2026-08-10",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Had the ingredients ready.",
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "The bus broke down. Ate cereal when I finally got back.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My flatmate joined in.",
+              "date": "2026-08-23",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went out straight after getting home.",
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "The journey home took nearly two hours.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Met the same friend again.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "day",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Took yesterday's food to work.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": null,
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Walked after breakfast before leaving for work.",
+              "date": "2026-08-25",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "My friend cancelled and I stayed in.",
+              "date": "2026-08-29",
+              "period": "2026-08-24",
+              "shift": "late",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": "none",
+            "diet": "any",
+            "activityLimitations": "unknown",
+            "equipment": []
+          },
+          "requests": [
+            {
+              "slotKey": "thu-walk",
+              "reason": "Thursday is the day I tend to have errands. I would like to try another day.",
+              "date": "2026-08-30"
+            }
+          ],
+          "freezes": {}
+        }
+      }
+    },
+    {
+      "id": "fictional-08",
+      "result": "PASS",
+      "inputHash": "09b82b01e00eb7375d664b9ffafa8969909574937e874b9e4e679736707ed398",
+      "output": {
+        "ruleVersion": "programme-rules-1.0.1",
+        "cycle": 4,
+        "inputRevision": 0,
+        "created": "2026-09-06",
+        "kind": "proposal",
+        "summary": "1 planned meal completed. 1 chosen activity completed.",
+        "proposals": [
+          {
+            "id": "4:thu-dinner",
+            "slotKey": "thu-dinner",
+            "kind": "meal",
+            "priority": 0,
+            "evidenceAt": "2026-09-06",
+            "text": "You asked to look again at Thursday: “Can this be something I can take to Dad's? I am often there when I would usually eat.” Please confirm the practical details before choosing a change. Your saved plan stays in place.",
+            "options": [],
+            "restrictionUnknown": true,
+            "targetIds": [
+              "2026-09-10:thu-dinner",
+              "2026-09-17:thu-dinner"
+            ]
+          }
+        ],
+        "suppressed": [
+          {
+            "slotKey": "sun-dinner",
+            "rule": "R3",
+            "reason": "One explicit miss is not a pattern."
+          }
+        ],
+        "trace": [
+          {
+            "rule": "R1",
+            "result": "Successful items are preserved in every draft."
+          },
+          {
+            "rule": "R5",
+            "result": "No optional measure frequency used or mentioned."
+          },
+          {
+            "rule": "R6",
+            "result": "Not enough evidence for a wholly manageable week."
+          },
+          {
+            "rule": "R2",
+            "result": "0 recurring difficulties eligible."
+          },
+          {
+            "rule": "R3",
+            "result": "1 isolated misses kept out of member copy."
+          },
+          {
+            "rule": "R4",
+            "result": "No new recurring commitments are generated; swaps require acceptance."
+          },
+          {
+            "rule": "R7",
+            "result": "Explicit reports only; no causes inferred."
+          },
+          {
+            "rule": "R8",
+            "result": "0 declined items suppressed."
+          },
+          {
+            "rule": "R9",
+            "result": "Unknown restrictions block alternatives; quantities checked before acceptance."
+          },
+          {
+            "rule": "R10",
+            "result": "1 eligible; 1 shown; member request, constraint, recurrence, date, slot."
+          }
+        ],
+        "inputSnapshot": {
+          "reports": [
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Cooked at Dad's and brought my portion home.",
+              "date": "2026-08-10",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Helping Dad sort a bill took much longer than expected.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My partner cooked while I finished the laundry.",
+              "date": "2026-08-16",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Took a loop through the park on the way to Dad's.",
+              "date": "2026-08-11",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "I was still at Dad's until late.",
+              "date": "2026-08-13",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My partner came along.",
+              "date": "2026-08-15",
+              "period": "2026-08-10",
+              "shift": "early",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Had a larger lunch with Dad and ate something small at work instead.",
+              "date": "2026-08-17",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Packed a portion before leaving home.",
+              "date": "2026-08-20",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Needed the morning to take Dad to an appointment.",
+              "date": "2026-08-18",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "unknown",
+              "fit": "unknown",
+              "reason": "I mixed up Saturday and Sunday's notes.",
+              "date": "2026-08-22",
+              "period": "2026-08-17",
+              "shift": "late",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Had time to shop and cook in the afternoon.",
+              "date": "2026-08-24",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "My brother was visiting Dad, so I had the evening at home.",
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "sun-dinner",
+              "status": "missed",
+              "fit": "unknown",
+              "reason": "We stayed out longer than planned and ate at a cafe.",
+              "date": "2026-08-30",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Went out after breakfast.",
+              "date": "2026-08-25",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "thu-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Walked with my partner in the evening.",
+              "date": "2026-08-27",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "sat-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "A quiet walk on my own before the shops got busy.",
+              "date": "2026-08-29",
+              "period": "2026-08-24",
+              "shift": "off",
+              "kind": "move"
+            },
+            {
+              "slotKey": "mon-dinner",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "There was a portion in the freezer from the week off.",
+              "date": "2026-08-31",
+              "period": "2026-08-31",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "thu-dinner",
+              "status": "missed",
+              "fit": "did-not-fit",
+              "reason": "Worked an extra hour, then had shopping to drop at Dad's.",
+              "date": "2026-09-03",
+              "period": "2026-08-31",
+              "shift": "early",
+              "kind": "meal"
+            },
+            {
+              "slotKey": "tue-walk",
+              "status": "done",
+              "fit": "manageable",
+              "reason": "Managed the park loop before visiting Dad.",
+              "date": "2026-09-01",
+              "period": "2026-08-31",
+              "shift": "early",
+              "kind": "move"
+            }
+          ],
+          "preferences": {
+            "allergies": "none",
+            "diet": "unknown",
+            "activityLimitations": "none",
+            "equipment": []
+          },
+          "requests": [
+            {
+              "slotKey": "thu-dinner",
+              "reason": "Can this be something I can take to Dad's? I am often there when I would usually eat.",
+              "date": "2026-09-06"
+            }
+          ],
+          "freezes": {}
+        }
+      }
+    }
+  ]
+}

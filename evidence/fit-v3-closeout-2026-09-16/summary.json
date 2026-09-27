@@ -1,0 +1,108 @@
+{
+  "proof": "FIT_V3_SOURCE_RECONCILIATION_V1",
+  "scope": "Source reconciliation against the accepted V1 generator; not a fresh production database audit.",
+  "counts": {
+    "movements": 300,
+    "approvedImages": 300,
+    "sourceProtocols": 2688,
+    "acceptedMovements": 26,
+    "acceptedProtocols": 1326,
+    "existingUnchanged": 1146,
+    "existingChanged": 180,
+    "newMovements": 274,
+    "newProtocols": 1362
+  },
+  "acceptedSourceSha256": "5a973d44e230d01a4a41e1528452f481860caa5de6d9caecd8a998d70503ea23",
+  "sourceFiles": {
+    "preview/fit-grub/guidance/workbook.json": "ffd9bc0eed4e10e234c6179f8d252c897dfdc9578b7facf1f0708f9d923bf57a",
+    "preview/fit-grub/v3/approval.json": "54e32f3c8f3b0de767ef3eb900481a232184b8f3a3e3738991ebc0be2bf1a169",
+    "evidence/fit-v1-final-decisions-2026-08-14.json": "5eb9e05b049fc2bfcac027ba6bc4f5ec46f85422a3ea78f34459c2190994f4a3",
+    "fit-canonical-guidance-v1.mjs": "2d08b32d1743fdf5ea04bcd6ee551c6665a1b0047bf76b9fc4082faaa396429d",
+    "final-v1-production-publication.mjs": "862b3c22f7e046ee8137450f71845c82b8250c353ff95d095b620a3603b15013",
+    "industrial-catalogue-v1.js": "e9156f27fd2eb199944af021c4d78157c3da5686630b2f8446e2a664aea47a4f",
+    "industrial-catalogue-v2.js": "0db7e93b5cec79df41188ab3b2c46ef95f42f2f573f4869bd28790a40215881d",
+    "industrial-catalogue-v3.js": "3f5e9561d6403d190af874ef1847059c8d36ded213f69c90b6a4c9df9e3c4b43",
+    "industrial-catalogue-v4.js": "608bf7c2b1ad7d752fb055d5157e44d801f165a3295b53d8ba38144ed72eb867",
+    "industrial-catalogue-v5.js": "2b3b1e7f8049af83438fcaede4cda878a6b3cca3d1919938134d5443e096d539",
+    "industrial-catalogue-v6.js": "c42e212782b3edaf1d3d9b7a77f7afc0c91b28e63a1c9113478d942dd078a34a",
+    "industrial-catalogue-v7.js": "1d70fca6f6cacf0c523196b753c80f008cf525a6d0682624b0b437219f696f2f",
+    "industrial-catalogue-v8.js": "8e5108f27c4084b8b662f4531bbedb6e0586895dc302916f234b845c1ba62fba",
+    "industrial-catalogue-v9.js": "ef1c48132cb816fa333309c989c87b3a6c66cf7f518c099d53f51f0a670e576f",
+    "industrial-catalogue-v10.js": "f069559df379fa209566b73408e6f447038cc58063ca191d433714f5299d7c55",
+    "industrial-catalogue-v11.js": "3327faa61a37ac471ac2df14a2c0fdf8081f6bc59440b1af6ca04c22b27820c3",
+    "industrial-catalogue-v12.js": "a6a51be39aaf9dbb202d42fbfc95fa448bc80f4ccc6dfe957e773458981525d7",
+    "industrial-catalogue-v13.js": "219223dc52af235ad200848974b375e82c928153d262d296192efed28e7a6bc4",
+    "industrial-catalogue-v14.js": "082796344c07fa09f1356679dae7aeda5a2d02aba599b7b19db3a74fa7268db8"
+  },
+  "replacementIdsExcluded": 180,
+  "draftAdditions": 1362,
+  "objectiveReview": {
+    "reviewedRecords": 1542,
+    "parsedDoses": 1542,
+    "specificIssues": [
+      {
+        "id": "SST-FIT-0171-V01",
+        "issues": [
+          "Single-arm setup has no per-arm dose scope. Reviewer must decide total versus per-arm repetitions; doubling is not inferred."
+        ]
+      },
+      {
+        "id": "SST-FIT-0171-V02",
+        "issues": [
+          "Single-arm setup has no per-arm dose scope. Reviewer must decide total versus per-arm repetitions; doubling is not inferred."
+        ]
+      },
+      {
+        "id": "SST-FIT-0171-V03",
+        "issues": [
+          "Single-arm setup has no per-arm dose scope. Reviewer must decide total versus per-arm repetitions; doubling is not inferred."
+        ]
+      },
+      {
+        "id": "SST-FIT-0171-V04",
+        "issues": [
+          "Single-arm setup has no per-arm dose scope. Reviewer must decide total versus per-arm repetitions; doubling is not inferred."
+        ]
+      },
+      {
+        "id": "SST-FIT-0171-V05",
+        "issues": [
+          "Single-arm setup has no per-arm dose scope. Reviewer must decide total versus per-arm repetitions; doubling is not inferred."
+        ]
+      },
+      {
+        "id": "SST-FIT-0171-V06",
+        "issues": [
+          "Single-arm setup has no per-arm dose scope. Reviewer must decide total versus per-arm repetitions; doubling is not inferred."
+        ]
+      },
+      {
+        "id": "SST-FIT-0224-V01",
+        "issues": [
+          "Trainer must decide whether the existing timed strength sets or a replacement repetition prescription suits the intended beginner audience."
+        ]
+      },
+      {
+        "id": "SST-FIT-0224-V02",
+        "issues": [
+          "Trainer must decide whether the existing timed strength sets or a replacement repetition prescription suits the intended beginner audience."
+        ]
+      },
+      {
+        "id": "SST-FIT-0224-V03",
+        "issues": [
+          "Trainer must decide whether the existing timed strength sets or a replacement repetition prescription suits the intended beginner audience."
+        ]
+      }
+    ],
+    "equivalentRecords": 164,
+    "correctedGuides": 7,
+    "correctedProtocols": 9,
+    "correctedMovements": 11,
+    "numericDosesInvented": 0,
+    "professionalApprovalClaimed": false
+  },
+  "publicationReady": false,
+  "productionChanged": false,
+  "hashScope": "Comparison hashes bind exact current generator objects and exact workbook snapshots. Historical workbook sourceHash values are retained as provenance, not claimed recomputed."
+}

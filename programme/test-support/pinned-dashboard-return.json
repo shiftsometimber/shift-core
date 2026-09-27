@@ -1,0 +1,7 @@
+{
+  "sourceCommit": "e5f892789a495ed2ce7b10952adb4924fdb17717",
+  "sourcePath": "member/dashboard.html",
+  "sourceSHA256": "e030aee40a5d72441c7060a540ca8c1702b76ff76ff6bca94b4db53ded8a7d78",
+  "returnFunction": "function requestedDestination(){const params=new URLSearchParams(location.search),raw=params.get('returnTo')||params.get('next')||'';return /^\\/(?!\\/)/.test(raw)&&!raw.startsWith('/member-login')?raw:''}",
+  "entryAnchor": "<section class=\"preview-member\" id=\"previewMember\" hidden>"
+}

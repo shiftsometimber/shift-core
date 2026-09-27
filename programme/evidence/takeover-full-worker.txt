@@ -1,0 +1,66 @@
+{
+  "scope": "Actual Wrangler-bundled root Worker on local workerd, separate emulated D1 stores; not remote commissioning.",
+  "bundleSha256": "92759075abc7a3270ea74c9544ba73d85c58c326cbbe199bca6b4f67462c3200",
+  "compatibilityDate": "2026-08-09",
+  "results": [
+    {
+      "name": "Real Worker entry refuses unapproved fixtures",
+      "result": "PASS",
+      "details": {
+        "read": 200,
+        "fixtureMode": false,
+        "selectableRecipes": 0
+      }
+    },
+    {
+      "name": "Authenticated private page through actual Worker",
+      "result": "PASS",
+      "details": {
+        "status": 200
+      }
+    },
+    {
+      "name": "Journey adapter through actual Worker",
+      "result": "PASS",
+      "details": {
+        "status": 200,
+        "ownerScoped": true
+      }
+    },
+    {
+      "name": "Concurrent saves through full Worker",
+      "result": "PASS",
+      "details": {
+        "statuses": [
+          200,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409,
+          409
+        ],
+        "commits": 1
+      }
+    },
+    {
+      "name": "Export remains owner-scoped",
+      "result": "PASS",
+      "details": {
+        "status": 200
+      }
+    },
+    {
+      "name": "Revocation through actual authentication",
+      "result": "PASS",
+      "details": {
+        "revokedRead": 401,
+        "revokedExport": 401,
+        "privatePage": 303,
+        "otherAccount": 200
+      }
+    }
+  ],
+  "failure": null
+}

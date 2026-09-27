@@ -1,0 +1,44 @@
+name: Preview CSS read-only inspection
+on:
+  push:
+    branches: [preview/stabilisation-life-back-20260917]
+    paths: [.github/workflows/preview-css-readonly.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: |
+          mkdir inspect && cd inspect
+          npm init -y >/dev/null
+          npm install playwright@1.58.2 --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Capture actual applied rules and scoped style elements
+        run: |
+          cat > inspect/read.mjs <<'JS'
+          import{chromium}from'playwright';import fs from'node:fs';
+          const b=await chromium.launch();const p=await b.newPage({viewport:{width:1440,height:1000}});
+          await p.goto('https://shift-stabilisation-preview.matobrien.workers.dev/shift-health',{waitUntil:'networkidle'});
+          const report=await p.evaluate(()=>{
+            const result={styles:[...document.querySelectorAll('style[data-shared-footer-dependency],style[data-related-guide-dependency]')].map(el=>({html:el.outerHTML,rules:el.sheet?.cssRules?.length})),targets:{},footer:document.querySelector('.site-footer')?.outerHTML};
+            for(const selector of ['.site-footer h2','.site-footer .footer-grid','.site-footer a','[data-shift-link-repair] h2']){
+              const el=document.querySelector(selector),rules=[];
+              function read(list,sheet,conditions=[]){for(const r of list){if(r.selectorText){try{if(el.matches(r.selectorText))rules.push({sheet,selector:r.selectorText,css:r.style.cssText,conditions})}catch{}}else if(r.cssRules)read(r.cssRules,sheet,[...conditions,r.conditionText||r.cssText.slice(0,80)])}}
+              for(const sheet of document.styleSheets){try{read(sheet.cssRules,sheet.href||sheet.ownerNode.outerHTML.slice(0,100))}catch(e){rules.push({sheet:sheet.href,error:e.message})}}
+              const c=getComputedStyle(el);result.targets[selector]={computed:{font:c.font,fontSize:c.fontSize,grid:c.gridTemplateColumns,color:c.color},inline:el.getAttribute('style'),rules};
+            }
+            return result;
+          });
+          fs.writeFileSync('inspect/css-cascade.json',JSON.stringify(report,null,2));await b.close();
+          JS
+          node inspect/read.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview-css-cascade
+          path: inspect/css-cascade.json
+          retention-days: 7

@@ -1,0 +1,309 @@
+[
+  {
+    "id": "fictional-01",
+    "person": {"name": "Maya Fielding", "goal": "Have a few reliable dinners and get outside between work and the evening rush.", "workPattern": "Warehouse team leader, alternating full weeks of early and late shifts."},
+    "constraints": {"allergies": "none", "diet": "any", "activityLimitations": "none"},
+    "weeks": [
+      {
+        "start": "2026-08-10", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "My partner had already chopped the vegetables."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "Used the leftovers after the school uniform shop."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "unknown", "reason": null},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Walked before collecting the children."},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "unknown", "reason": "The delivery arrived during the time I meant to go."}
+        ]
+      },
+      {
+        "start": "2026-08-17", "shift": "late",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "did-not-fit", "reason": "Made it after getting home but everyone else had eaten and the kitchen was still a mess at midnight."},
+          {"slotKey": "thu-dinner", "status": "missed", "fit": "did-not-fit", "reason": "Stayed late to finish a stock count and bought a sandwich on the way home."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Went out in the morning before work."},
+          {"slotKey": "sat-walk", "status": "unknown", "fit": "unknown", "reason": "Cannot remember whether our trip to the shops was the walk I meant to record."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "We both finished work on time."},
+          {"slotKey": "sun-dinner", "status": "missed", "fit": "unknown", "reason": "An unplanned family barbecue took the whole afternoon."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Went to the park with the children."}
+        ]
+      }
+    ],
+    "memberRequests": [{"slotKey": "mon-dinner", "reason": "On late weeks I would like to eat before work if we can make that work for the household."}],
+    "notes": "Fictional household of two adults and two children. Maya reports on her phone, usually a few days after the events. Her partner sometimes cooks without either of them treating it as a special planned meal."
+  },
+  {
+    "id": "fictional-02",
+    "person": {"name": "Elliot Marsh", "goal": "Cook more often for myself and make time for a short break outdoors.", "workPattern": "Office administrator on regular day shifts, with one booked week off in August."},
+    "constraints": {"allergies": "unknown", "diet": "vegetarian", "activityLimitations": "none"},
+    "weeks": [
+      {
+        "start": "2026-08-10", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Made enough bean chilli for another evening."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "Ate the portion from the freezer."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "Had time to cook while listening to the radio."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "A colleague came with me at lunch."},
+          {"slotKey": "thu-walk", "status": "done", "fit": "manageable", "reason": "Went round the block after a meeting."},
+          {"slotKey": "sat-walk", "status": "missed", "fit": "unknown", "reason": "Forgot about it until late evening."}
+        ]
+      },
+      {
+        "start": "2026-08-17", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "missed", "fit": "unknown", "reason": "A friend invited me out at short notice."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "Pasta was quick enough after the commute."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": null},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "did-not-fit", "reason": "Had to cover reception through my usual lunch break."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Walked to the second-hand bookshop."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "off",
+        "reports": [
+          {"slotKey": "sun-dinner", "status": "unknown", "fit": "unknown", "reason": "I was away visiting my brother and did not keep track."}
+        ]
+      },
+      {
+        "start": "2026-08-31", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Bought groceries on the way home."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": null},
+          {"slotKey": "tue-walk", "status": "missed", "fit": "unknown", "reason": "Left my coat at home and it rained all lunchtime."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Met my brother for a stroll when he came to visit."}
+        ]
+      }
+    ],
+    "memberRequests": [],
+    "notes": "Fictional person living alone. Usually records the week on Sunday; did not use the record while away. No allergy information has been supplied."
+  },
+  {
+    "id": "fictional-03",
+    "person": {"name": "Rosa Bennett", "goal": "Make evenings with my teenager feel less rushed and find a little time outside.", "workPattern": "Hotel receptionist working a full week of late shifts, followed by a full week of early shifts."},
+    "constraints": {"allergies": ["sesame"], "diet": "any", "activityLimitations": "Long walks on steep paths bother my knee; short flat walks are usually comfortable."},
+    "weeks": [
+      {
+        "start": "2026-08-17", "shift": "late",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "missed", "fit": "did-not-fit", "reason": "My daughter ate with her aunt while I was at work."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "We prepared food together in the morning and ate at different times."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "My sister brought ingredients and we cooked together."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "A short loop along the canal before my shift."},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "unknown", "reason": "Waited in for a plumber."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "did-not-fit", "reason": "The route my friend chose had more steps than I expected, so I turned back early."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "We were both home by five."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "did-not-fit", "reason": "Cooking took longer than I expected and my daughter was waiting to leave for a friend's house."},
+          {"slotKey": "sun-dinner", "status": "missed", "fit": "unknown", "reason": "We ate at my sister's instead."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Used the canal path again."}
+        ]
+      }
+    ],
+    "memberRequests": [{"slotKey": "sat-walk", "reason": "I would like to stick to the flat canal path when I walk with my friend."}],
+    "notes": "Fictional single-parent household with frequent help from Rosa's sister. Rosa describes whether the activity suited the day separately from whether she attempted it. Her sesame allergy is self-reported."
+  },
+  {
+    "id": "fictional-04",
+    "person": {"name": "Daniel Okoro", "goal": "Have a more regular evening meal while getting used to a new job.", "workPattern": "New packing job with full weeks on early shifts throughout this period."},
+    "constraints": {"allergies": "unknown", "diet": "unknown", "activityLimitations": "unknown"},
+    "weeks": [
+      {
+        "start": "2026-08-10", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "unknown", "reason": null},
+          {"slotKey": "thu-dinner", "status": "unknown", "fit": "unknown", "reason": "I filled this in the following week and cannot remember Thursday."}
+        ]
+      },
+      {
+        "start": "2026-08-17", "shift": "early",
+        "reports": []
+      },
+      {
+        "start": "2026-08-24", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "missed", "fit": "unknown", "reason": "Fell asleep on the sofa and had toast later."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "My housemate and I cooked after buying groceries together."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "unknown", "reason": "Went out with my housemate but did not look at the time."}
+        ]
+      }
+    ],
+    "memberRequests": [],
+    "notes": "Fictional person in shared accommodation. Has not completed the food or activity background questions. Says he kept forgetting to open the record during his first few weeks at work; the empty week has no further explanation."
+  },
+  {
+    "id": "fictional-05",
+    "person": {"name": "Nina Patel", "goal": "Share more home-cooked meals with my partner and keep a small walking routine.", "workPattern": "Cinema supervisor alternating full late-shift and day-shift weeks."},
+    "constraints": {"allergies": "none", "diet": "vegetarian", "activityLimitations": "none"},
+    "weeks": [
+      {
+        "start": "2026-08-10", "shift": "late",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Cooked before leaving and packed my portion."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "My partner made lentil soup and left some for me."},
+          {"slotKey": "sun-dinner", "status": "missed", "fit": "unknown", "reason": "We went to a birthday meal."},
+          {"slotKey": "tue-walk", "status": "missed", "fit": "did-not-fit", "reason": "The morning disappeared into laundry and an overdue repair visit."},
+          {"slotKey": "thu-walk", "status": "done", "fit": "manageable", "reason": "Went out after breakfast."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Walked before taking the bus to work."}
+        ]
+      },
+      {
+        "start": "2026-08-17", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": null},
+          {"slotKey": "thu-dinner", "status": "missed", "fit": "did-not-fit", "reason": "The hob stopped working. We had sandwiches."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "Made baked potatoes in the microwave while waiting for the repair."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "My partner joined me after dinner."},
+          {"slotKey": "thu-walk", "status": "done", "fit": "manageable", "reason": "Went to the park while my partner waited for the electrician."},
+          {"slotKey": "sat-walk", "status": "missed", "fit": "unknown", "reason": "Spent the afternoon helping a friend move."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "late",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "The hob was fixed and we had food in the freezer."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "Packed food before work again."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Met a neighbour in the morning."},
+          {"slotKey": "thu-walk", "status": "unknown", "fit": "unknown", "reason": null}
+        ]
+      },
+      {
+        "start": "2026-08-31", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "We made omelettes together."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": null},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": null},
+          {"slotKey": "tue-walk", "status": "missed", "fit": "unknown", "reason": "A long phone call with my mum ran into the evening."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Went out with my partner before lunch."}
+        ]
+      }
+    ],
+    "memberRequests": [{"slotKey": "thu-dinner", "reason": "Could we keep a couple of meals in mind that use only the microwave? The broken hob caught us out."}],
+    "notes": "Fictional couple with different work hours. Sharing a batch of food feels useful to Nina even when they eat separately. Most reports were entered that evening."
+  },
+  {
+    "id": "fictional-06",
+    "person": {"name": "Gareth Cole", "goal": "Make the days at home feel a little more organised, with dinner and an outing to look forward to.", "workPattern": "Retired, with no work shifts during either recorded week."},
+    "constraints": {"allergies": ["peanuts"], "diet": "any", "activityLimitations": "Uses a walking stick and prefers short routes with somewhere to sit."},
+    "weeks": [
+      {
+        "start": "2026-08-17", "shift": "off",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "My wife and I used what was already in the fridge."},
+          {"slotKey": "thu-dinner", "status": "missed", "fit": "unknown", "reason": "Our son stayed longer than planned and brought dinner with him."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "did-not-fit", "reason": "We made the meal, but there was much more washing up than either of us wanted."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Went to the small garden and sat on the bench halfway."},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "unknown", "reason": "Our son's visit filled the afternoon."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Took the same short route with my wife."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "off",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Kept it to one pan this time."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "Our son helped carry the shopping earlier."},
+          {"slotKey": "sun-dinner", "status": "unknown", "fit": "unknown", "reason": "I remember eating at home but not which meal we had agreed on."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Went out before the rain."},
+          {"slotKey": "thu-walk", "status": "done", "fit": "did-not-fit", "reason": "The bench was being repaired, so there was nowhere to stop on our usual route."},
+          {"slotKey": "sat-walk", "status": "missed", "fit": "unknown", "reason": "Neither of us fancied going out in the heavy rain."}
+        ]
+      }
+    ],
+    "memberRequests": [{"slotKey": "sun-dinner", "reason": "We would prefer something with less clearing up on Sundays."}],
+    "notes": "Fictional retired couple. Gareth dictates a few notes to his wife and they enter them together. His peanut allergy and walking preferences were supplied by him."
+  },
+  {
+    "id": "fictional-07",
+    "person": {"name": "Leah Sorrell", "goal": "Spend less time deciding what to eat after work and get out of the flat more often.", "workPattern": "Print shop worker on day shifts for two weeks, then a full week of late shifts during a large order."},
+    "constraints": {"allergies": "none", "diet": "any", "activityLimitations": "unknown"},
+    "weeks": [
+      {
+        "start": "2026-08-10", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "missed", "fit": "did-not-fit", "reason": "There was no room on the counter because my flatmate was baking for an event."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "We agreed on kitchen times and I cooked first."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "Used up vegetables before the next shop."},
+          {"slotKey": "tue-walk", "status": "missed", "fit": "unknown", "reason": "Forgot."},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "did-not-fit", "reason": "Went straight from work to collect a parcel before the shop shut."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "A friend suggested a walk and coffee."}
+        ]
+      },
+      {
+        "start": "2026-08-17", "shift": "day",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Had the ingredients ready."},
+          {"slotKey": "thu-dinner", "status": "missed", "fit": "unknown", "reason": "The bus broke down. Ate cereal when I finally got back."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "My flatmate joined in."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Went out straight after getting home."},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "did-not-fit", "reason": "The journey home took nearly two hours."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "Met the same friend again."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "late",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Took yesterday's food to work."},
+          {"slotKey": "thu-dinner", "status": "unknown", "fit": "unknown", "reason": null},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Walked after breakfast before leaving for work."},
+          {"slotKey": "sat-walk", "status": "missed", "fit": "unknown", "reason": "My friend cancelled and I stayed in."}
+        ]
+      }
+    ],
+    "memberRequests": [{"slotKey": "thu-walk", "reason": "Thursday is the day I tend to have errands. I would like to try another day."}],
+    "notes": "Fictional person sharing a small flat and kitchen with one friend. Public transport is sometimes unreliable. Leah has not answered the activity limitations question."
+  },
+  {
+    "id": "fictional-08",
+    "person": {"name": "Samir Vale", "goal": "Keep a few ordinary routines going while helping my dad and working changing shifts.", "workPattern": "Food distribution clerk, with an early week, a late week, a booked week off, then a return to early shifts."},
+    "constraints": {"allergies": "none", "diet": "unknown", "activityLimitations": "none"},
+    "weeks": [
+      {
+        "start": "2026-08-10", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Cooked at Dad's and brought my portion home."},
+          {"slotKey": "thu-dinner", "status": "missed", "fit": "did-not-fit", "reason": "Helping Dad sort a bill took much longer than expected."},
+          {"slotKey": "sun-dinner", "status": "done", "fit": "manageable", "reason": "My partner cooked while I finished the laundry."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Took a loop through the park on the way to Dad's."},
+          {"slotKey": "thu-walk", "status": "missed", "fit": "unknown", "reason": "I was still at Dad's until late."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "My partner came along."}
+        ]
+      },
+      {
+        "start": "2026-08-17", "shift": "late",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "missed", "fit": "did-not-fit", "reason": "Had a larger lunch with Dad and ate something small at work instead."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "Packed a portion before leaving home."},
+          {"slotKey": "tue-walk", "status": "missed", "fit": "did-not-fit", "reason": "Needed the morning to take Dad to an appointment."},
+          {"slotKey": "sat-walk", "status": "unknown", "fit": "unknown", "reason": "I mixed up Saturday and Sunday's notes."}
+        ]
+      },
+      {
+        "start": "2026-08-24", "shift": "off",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "Had time to shop and cook in the afternoon."},
+          {"slotKey": "thu-dinner", "status": "done", "fit": "manageable", "reason": "My brother was visiting Dad, so I had the evening at home."},
+          {"slotKey": "sun-dinner", "status": "missed", "fit": "unknown", "reason": "We stayed out longer than planned and ate at a cafe."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Went out after breakfast."},
+          {"slotKey": "thu-walk", "status": "done", "fit": "manageable", "reason": "Walked with my partner in the evening."},
+          {"slotKey": "sat-walk", "status": "done", "fit": "manageable", "reason": "A quiet walk on my own before the shops got busy."}
+        ]
+      },
+      {
+        "start": "2026-08-31", "shift": "early",
+        "reports": [
+          {"slotKey": "mon-dinner", "status": "done", "fit": "manageable", "reason": "There was a portion in the freezer from the week off."},
+          {"slotKey": "thu-dinner", "status": "missed", "fit": "did-not-fit", "reason": "Worked an extra hour, then had shopping to drop at Dad's."},
+          {"slotKey": "tue-walk", "status": "done", "fit": "manageable", "reason": "Managed the park loop before visiting Dad."}
+        ]
+      }
+    ],
+    "memberRequests": [{"slotKey": "thu-dinner", "reason": "Can this be something I can take to Dad's? I am often there when I would usually eat."}],
+    "notes": "Fictional person living with a partner and regularly helping a parent who lives nearby. The week off was planned before these records began. Dietary preference was left unanswered, and the final week's record is incomplete."
+  }
+]

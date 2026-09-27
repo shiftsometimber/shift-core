@@ -1,0 +1,16 @@
+{
+  "scope": "England", "population": "Adults aged 16 and over in private households", "survey_year": 2024,
+  "source_published": "2026-01-27", "checked": "2026-09-13",
+  "source": "https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england/2024/adults-overweight-and-obesity",
+  "rows": [
+    {"indicator":"Overweight including obesity","sex":"Men","value":70,"unit":"percent","tables":"3 and 4"},
+    {"indicator":"Overweight including obesity","sex":"Women","value":62,"unit":"percent","tables":"3 and 4"},
+    {"indicator":"Obesity","sex":"Men","value":29,"unit":"percent","tables":"3 and 4"},
+    {"indicator":"Obesity","sex":"Women","value":31,"unit":"percent","tables":"3 and 4"},
+    {"indicator":"Increased including high central adiposity","sex":"Men","value":74,"unit":"percent","tables":"9"},
+    {"indicator":"Increased including high central adiposity","sex":"Women","value":66,"unit":"percent","tables":"9"},
+    {"indicator":"Mean measured weight","sex":"Men","value":86.2,"unit":"kg","tables":"1 and 2"},
+    {"indicator":"Mean waist circumference","sex":"Men","value":98.4,"unit":"cm","tables":"9"},
+    {"indicator":"Mean waist-to-height ratio","sex":"Men","value":0.56,"unit":"ratio","tables":"9"}
+  ]
+}

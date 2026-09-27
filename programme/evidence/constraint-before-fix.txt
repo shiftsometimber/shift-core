@@ -1,0 +1,93 @@
+✖ Three member requests cannot cap out a saved meal that conflicts with a declared exclusion (9.047568ms)
+✖ A decline freeze cannot conceal a current constraint condition or change the saved meal (0.539914ms)
+✖ Conditions are fresh on every read, even before a new review or after skipping it (2.87263ms)
+✖ Same again cannot propagate a conflicting meal, including when the last saved plan is entirely in the past (1.509536ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.930663
+
+✖ failing tests:
+
+test at programme/tests/constraint-gates.test.mjs:13:1
+✖ Three member requests cannot cap out a saved meal that conflicts with a declared exclusion (9.047568ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/constraint-gates.test.mjs:16:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at programme/tests/constraint-gates.test.mjs:22:1
+✖ A decline freeze cannot conceal a current constraint condition or change the saved meal (0.539914ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/constraint-gates.test.mjs:25:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at programme/tests/constraint-gates.test.mjs:28:1
+✖ Conditions are fresh on every read, even before a new review or after skipping it (2.87263ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/constraint-gates.test.mjs:32:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at programme/tests/constraint-gates.test.mjs:37:1
+✖ Same again cannot propagate a conflicting meal, including when the last saved plan is entirely in the past (1.509536ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/c41c73708c39/programme-v1/core/programme/tests/constraint-gates.test.mjs:38:27)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /check|restriction|review/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

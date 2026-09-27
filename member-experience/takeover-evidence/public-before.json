@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-12T18:58:05Z",
+  "pages": [
+    {
+      "path": "/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/start-here",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/programme",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/shift-health",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/treatment-centre",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/about",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/explore-knowledge",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/shop",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/shift-for-work",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/sitemap.xml",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/member-login",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "path": "/turnstile-auth-v1.js?v=timeout-20260912",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

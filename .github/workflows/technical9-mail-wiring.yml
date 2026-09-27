@@ -1,0 +1,53 @@
+name: Technical 9 medicine mail wiring
+
+on:
+  push:
+    branches: [technical9-final-mail-wiring]
+    paths:
+      - '.github/workflows/technical9-mail-wiring.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: technical9-final-mail-wiring
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Wire medicine transactional mail
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('medicine-commerce-v1.js')
+          s=p.read_text()
+          marker="import {sendTransactionalEmail,medicineEmailTemplates} from './transactional-email-v1.js';"
+          if marker not in s:
+              s=s.replace("import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';", "import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';\n"+marker)
+          paid="      await updateOrderReferenceStatus(env.DB,number,'paid');"
+          paid_new="      await updateOrderReferenceStatus(env.DB,number,'paid');\n      const mail=medicineEmailTemplates.orderConfirmation({orderNumber:number});\n      const delivery=sendTransactionalEmail(env,{to:order.email,userId:order.user_id,internalNotify:true,includeMatt:true,...mail});\n      if(ctx?.waitUntil) ctx.waitUntil(delivery); else await delivery;"
+          if "medicineEmailTemplates.orderConfirmation" not in s:
+              s=s.replace(paid,paid_new)
+          clinical="  await env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`).bind(order.user_id, \"medicine.clinical_status\", \"medicine_order\", String(order.id), JSON.stringify({ from: current, to: next, reasonCode: reasonCode || null }), stamp).run().catch(() => null);\n  return json({ ok: true, orderNumber, previousStatus: current, status: next, journeySetupRequired: Boolean(journeyRequired), reorderEligibleAt: reorderAt });"
+          clinical_new="  await env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`).bind(order.user_id, \"medicine.clinical_status\", \"medicine_order\", String(order.id), JSON.stringify({ from: current, to: next, reasonCode: reasonCode || null }), stamp).run().catch(() => null);\n  const mail=medicineEmailTemplates.clinicalStatus({status:next});\n  await sendTransactionalEmail(env,{to:order.email,userId:order.user_id,internalNotify:true,includeMatt:true,...mail});\n  return json({ ok: true, orderNumber, previousStatus: current, status: next, journeySetupRequired: Boolean(journeyRequired), reorderEligibleAt: reorderAt });"
+          if "medicineEmailTemplates.clinicalStatus" not in s:
+              s=s.replace(clinical,clinical_new)
+          p.write_text(s)
+          assert marker in s
+          assert 'medicineEmailTemplates.orderConfirmation' in s
+          assert 'medicineEmailTemplates.clinicalStatus' in s
+      - name: Run Technical 9 contract tests
+        run: node --test tests/technical-9-closeout.test.mjs
+      - name: Commit medicine mail wiring
+        run: |
+          if git diff --quiet; then echo 'No patch required'; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add medicine-commerce-v1.js
+          git commit -m 'Wire order and clinical emails to transactional rail'
+          git push origin HEAD:technical9-final-mail-wiring

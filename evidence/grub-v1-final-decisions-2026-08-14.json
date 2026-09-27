@@ -1,0 +1,24 @@
+{
+  "proof": "M11_SECOND_PERSON_DECISIONS",
+  "source_summary": {
+    "requiredRecipes": 798,
+    "requiredTemplateDecisions": 8
+  },
+  "authority": {
+    "review_run": 31803717241,
+    "artifact_id": 9220287723,
+    "artifact_sha256": "f02c540a1f6059796ab8615021f8e4747a12f052ce3cd4faa1f14cb0c5f7f7f4",
+    "reviewer": "Matt",
+    "accepted_at": "2026-08-14T14:29:00+01:00"
+  },
+  "decisions": [
+    {"template_digest":"7b490beddcf7b8e262c35301fce5924a83b2dd1e8878f1587a69487b877ee5c1","decision":"PASS"},
+    {"template_digest":"cfaad37de0d6d31052a2900956e3cb6dcc71ca504c99fe0a218486da60b326e7","decision":"PASS"},
+    {"template_digest":"96609678b1b6979a385961a464668b8707f33aa798370d76b09bc357f8e107fd","decision":"PASS"},
+    {"template_digest":"0f7a5229c92be9a3020c6e5f28beafaa79fb59a8f61de9275941153a39ec1449","decision":"PASS"},
+    {"template_digest":"92d7c791c8cf146fca45b804bfcccc056acc36e9d180ee6f8f151433aef7b80e","decision":"PASS"},
+    {"template_digest":"47f284fd6c9b13a87c4e14f29219e0c68a98323e743daa4fae1eff73d4b438d1","decision":"PASS"},
+    {"template_digest":"d8d2ddffbd576ae1e4091b0046a03cab39123111e5978e3ca1a4e1a1fc129fe2","decision":"PASS"},
+    {"template_digest":"357586c67b0eb23742ecd7f39b2dd27ee7637d867bab05caad6ad365de41dd35","decision":"PASS"}
+  ]
+}

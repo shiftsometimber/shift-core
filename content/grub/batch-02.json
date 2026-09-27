@@ -1,0 +1,286 @@
+[
+  {
+    "schema_version": 1,
+    "id": "berry-overnight-oats",
+    "title": "Berry overnight oats",
+    "meal_type": "breakfast",
+    "servings": 1,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "ingredients": [
+      {"amount":"50g","item":"porridge oats","allergens":["gluten"]},
+      {"amount":"150g","item":"0% Greek yoghurt","allergens":["milk"]},
+      {"amount":"80ml","item":"semi-skimmed milk","allergens":["milk"]},
+      {"amount":"100g","item":"mixed berries"},
+      {"amount":"10g","item":"chia seeds"},
+      {"amount":"1 tsp / 7g","item":"honey"}
+    ],
+    "method": [
+      "Add the oats, yoghurt, milk and chia seeds to a lidded container and stir thoroughly.",
+      "Fold through half the berries, cover and refrigerate overnight or for at least 4 hours.",
+      "Stir before eating and loosen with a splash of milk if needed.",
+      "Top with the remaining berries and measured honey just before serving."
+    ],
+    "equipment": ["fridge","lidded-container"],
+    "tags": ["make-ahead","vegetarian","quick"],
+    "allergens": ["gluten","milk"],
+    "substitutions": [
+      {"from":"semi-skimmed milk","to":"unsweetened fortified plant drink","note":"Choose one appropriate to your dietary needs and check allergen labelling."},
+      {"from":"mixed berries","to":"chopped apple or pear","note":"Use an equivalent fruit portion."}
+    ],
+    "storage": {"chilled":"Keep covered in the fridge and eat within 24 hours.","reheat":"Designed to be eaten cold; do not leave at room temperature for extended periods."},
+    "food_safety": ["Keep yoghurt and milk refrigerated until preparation and return the finished pot to the fridge promptly."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "eggs-beans-breakfast-toast",
+    "title": "Eggs, beans & spinach on toast",
+    "meal_type": "breakfast",
+    "servings": 1,
+    "prep_minutes": 4,
+    "cook_minutes": 8,
+    "ingredients": [
+      {"amount":"2","item":"large eggs","allergens":["egg"]},
+      {"amount":"120g","item":"reduced-sugar baked beans"},
+      {"amount":"2 slices / 80g","item":"wholemeal bread","allergens":["gluten"]},
+      {"amount":"50g","item":"spinach"},
+      {"amount":"1 tsp / 5ml","item":"olive oil"},
+      {"amount":"pinch","item":"black pepper"}
+    ],
+    "method": [
+      "Warm the baked beans in a small saucepan until piping hot.",
+      "Toast the bread and place it on a plate.",
+      "Heat the oil in a non-stick frying pan, wilt the spinach, then crack in the eggs.",
+      "Cook the eggs until the whites are fully set and the yolks are cooked to your preference, then serve with the beans over the toast."
+    ],
+    "equipment": ["hob","toaster","frying-pan","saucepan"],
+    "tags": ["high-protein","quick","vegetarian"],
+    "allergens": ["egg","gluten"],
+    "substitutions": [
+      {"from":"wholemeal bread","to":"gluten-free bread","note":"Choose a suitable product and check allergen labelling."},
+      {"from":"spinach","to":"sliced mushrooms","note":"Cook until tender before adding the eggs."}
+    ],
+    "storage": {"chilled":"Best eaten immediately. Refrigerate unused beans promptly and follow the pack guidance.","reheat":"Only reheat leftover beans once and ensure they are steaming hot throughout."},
+    "food_safety": ["Cook eggs thoroughly if you are in a group advised to avoid lightly cooked eggs; otherwise use appropriately marked eggs and follow current food-safety advice."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "beef-horseradish-wrap",
+    "title": "Roast beef & horseradish crunch wrap",
+    "meal_type": "lunch",
+    "servings": 1,
+    "prep_minutes": 7,
+    "cook_minutes": 0,
+    "ingredients": [
+      {"amount":"100g","item":"cooked lean roast beef"},
+      {"amount":"1 / 65g","item":"wholemeal wrap","allergens":["gluten"]},
+      {"amount":"50g","item":"shredded lettuce"},
+      {"amount":"60g","item":"tomato, sliced"},
+      {"amount":"40g","item":"0% Greek yoghurt","allergens":["milk"]},
+      {"amount":"1 tsp / 5g","item":"prepared horseradish sauce","allergens":["check-pack"]},
+      {"amount":"30g","item":"red onion, finely sliced"}
+    ],
+    "method": [
+      "Mix the yoghurt and horseradish sauce in a small bowl.",
+      "Lay the wrap flat and spread the horseradish yoghurt down the centre.",
+      "Add lettuce, tomato, onion and sliced roast beef.",
+      "Fold in the sides, roll tightly and cut in half to serve."
+    ],
+    "equipment": ["none"],
+    "tags": ["quick","high-protein","packed-lunch"],
+    "allergens": ["gluten","milk","check-pack"],
+    "substitutions": [
+      {"from":"roast beef","to":"cooked turkey breast","note":"Use an equivalent cooked portion."},
+      {"from":"wholemeal wrap","to":"wholemeal pitta","note":"Check allergen labelling and adjust filling amount if needed."}
+    ],
+    "storage": {"chilled":"Keep chilled and eat within 24 hours if prepared ahead.","reheat":"Designed to be eaten cold; do not repeatedly warm and chill cooked meat."},
+    "food_safety": ["Use cooked beef that has been stored safely and is within its use-by period."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "chickpea-feta-lunch-pot",
+    "title": "Chickpea, feta & roast pepper lunch pot",
+    "meal_type": "lunch",
+    "servings": 1,
+    "prep_minutes": 8,
+    "cook_minutes": 0,
+    "ingredients": [
+      {"amount":"140g drained","item":"chickpeas"},
+      {"amount":"50g","item":"reduced-fat feta","allergens":["milk"]},
+      {"amount":"100g","item":"roasted red peppers from a jar, drained"},
+      {"amount":"100g","item":"cucumber, diced"},
+      {"amount":"80g","item":"cherry tomatoes, halved"},
+      {"amount":"1 tsp / 5ml","item":"olive oil"},
+      {"amount":"1 tbsp / 15ml","item":"lemon juice"},
+      {"amount":"10g","item":"parsley, chopped"}
+    ],
+    "method": [
+      "Drain and rinse the chickpeas thoroughly.",
+      "Add chickpeas, peppers, cucumber, tomatoes and parsley to a lunch container.",
+      "Whisk the olive oil and lemon juice together and spoon over the salad.",
+      "Crumble over the feta, toss lightly and keep chilled until eating."
+    ],
+    "equipment": ["none"],
+    "tags": ["vegetarian","meal-prep","no-cook"],
+    "allergens": ["milk"],
+    "substitutions": [
+      {"from":"feta","to":"dairy-free feta-style alternative","note":"Check allergen labelling."},
+      {"from":"chickpeas","to":"cannellini beans","note":"Drain and rinse before using."}
+    ],
+    "storage": {"chilled":"Refrigerate promptly and eat within 24 hours.","reheat":"Designed to be eaten cold."},
+    "food_safety": ["Keep feta chilled and do not leave the assembled pot unrefrigerated for extended periods."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "smoky-chicken-fajita-rice",
+    "title": "Smoky chicken fajita rice bowl",
+    "meal_type": "dinner",
+    "servings": 2,
+    "prep_minutes": 10,
+    "cook_minutes": 22,
+    "ingredients": [
+      {"amount":"320g","item":"chicken breast, sliced"},
+      {"amount":"140g dry","item":"basmati rice"},
+      {"amount":"2 / 240g","item":"mixed peppers, sliced"},
+      {"amount":"120g","item":"onion, sliced"},
+      {"amount":"120g drained","item":"black beans"},
+      {"amount":"1 tbsp / 15g","item":"tomato puree"},
+      {"amount":"2 tsp","item":"smoked paprika"},
+      {"amount":"1 tsp / 5ml","item":"olive oil"},
+      {"amount":"1/2","item":"lime"}
+    ],
+    "method": [
+      "Cook the rice according to the packet instructions.",
+      "Heat the oil in a large frying pan and cook the onion and peppers for 5 minutes.",
+      "Add the chicken, smoked paprika and tomato puree and cook for 7–9 minutes, stirring, until the chicken is completely cooked through.",
+      "Stir in the drained black beans and heat until piping hot.",
+      "Divide the rice between bowls, add the fajita mixture and finish with lime juice."
+    ],
+    "equipment": ["hob","saucepan","frying-pan"],
+    "tags": ["family-style","high-protein","mexican-style"],
+    "allergens": [],
+    "substitutions": [
+      {"from":"chicken breast","to":"5% turkey mince","note":"Cook thoroughly until no pink remains."},
+      {"from":"basmati rice","to":"microwave wholegrain rice","note":"Heat according to the pack instructions and adjust portion weight appropriately."}
+    ],
+    "storage": {"chilled":"Cool leftovers promptly, refrigerate and use within 2 days.","reheat":"Reheat once until steaming hot throughout; cool cooked rice quickly and refrigerate promptly."},
+    "food_safety": ["Chicken must be completely cooked through before serving.","Handle cooked rice carefully: cool quickly, refrigerate promptly and reheat only once."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "lighter-beef-cottage-pie",
+    "title": "Lighter beef cottage pie",
+    "meal_type": "dinner",
+    "servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 40,
+    "ingredients": [
+      {"amount":"500g","item":"5% beef mince"},
+      {"amount":"700g","item":"potatoes, peeled and chopped"},
+      {"amount":"200g","item":"carrots, diced"},
+      {"amount":"150g","item":"onion, diced"},
+      {"amount":"150g","item":"frozen peas"},
+      {"amount":"400g tin","item":"chopped tomatoes"},
+      {"amount":"1 tbsp / 15ml","item":"Worcestershire sauce","allergens":["check-pack"]},
+      {"amount":"100ml","item":"semi-skimmed milk","allergens":["milk"]},
+      {"amount":"1 tsp / 5ml","item":"olive oil"}
+    ],
+    "method": [
+      "Heat the oven to 200°C/180°C fan and boil the potatoes until tender, about 15 minutes.",
+      "Meanwhile heat the oil in a large pan, cook the onion and carrot for 5 minutes, then add the beef and brown thoroughly.",
+      "Stir in tomatoes and Worcestershire sauce and simmer for 10 minutes; add the peas for the final 2 minutes.",
+      "Drain the potatoes, mash with the milk and spoon over the beef mixture in an ovenproof dish.",
+      "Bake for 20 minutes until bubbling and lightly coloured on top."
+    ],
+    "equipment": ["oven","hob","saucepan","frying-pan","ovenproof-dish"],
+    "tags": ["family","batch","freezer-friendly"],
+    "allergens": ["milk","check-pack"],
+    "substitutions": [
+      {"from":"5% beef mince","to":"5% turkey mince","note":"Cook thoroughly and season to taste."},
+      {"from":"semi-skimmed milk","to":"unsweetened fortified plant drink","note":"Choose an option suitable for your dietary needs."}
+    ],
+    "storage": {"chilled":"Cool promptly, cover and refrigerate for up to 2 days.","freeze":"Freeze cooled individual portions in suitable containers.","reheat":"Defrost safely if frozen and reheat until steaming hot throughout; only reheat once."},
+    "food_safety": ["Cook minced beef thoroughly before assembling the pie.","Cool leftovers promptly and avoid repeated reheating."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "salmon-potato-traybake",
+    "title": "Salmon, potato & broccoli traybake",
+    "meal_type": "dinner",
+    "servings": 2,
+    "prep_minutes": 10,
+    "cook_minutes": 35,
+    "ingredients": [
+      {"amount":"2 x 120g","item":"salmon fillets","allergens":["fish"]},
+      {"amount":"450g","item":"baby potatoes, halved"},
+      {"amount":"250g","item":"broccoli florets"},
+      {"amount":"150g","item":"cherry tomatoes"},
+      {"amount":"2 tsp / 10ml","item":"olive oil"},
+      {"amount":"1","item":"lemon"},
+      {"amount":"1 tsp","item":"dried dill"}
+    ],
+    "method": [
+      "Heat the oven to 210°C/190°C fan.",
+      "Toss the potatoes with half the oil and roast for 18 minutes.",
+      "Add the broccoli and tomatoes, toss with the remaining oil, then place the salmon on the tray.",
+      "Season the salmon with dill and lemon zest and roast everything for a further 12–15 minutes until the salmon is cooked and flakes easily.",
+      "Finish with lemon juice and serve immediately."
+    ],
+    "equipment": ["oven","large-tray"],
+    "tags": ["fish","traybake","family-style"],
+    "allergens": ["fish"],
+    "substitutions": [
+      {"from":"salmon fillets","to":"skinless chicken breast fillets","note":"Chicken requires thorough cooking and may need a longer cook time depending on thickness."},
+      {"from":"broccoli","to":"green beans","note":"Add for the final 12–15 minutes and cook until tender."}
+    ],
+    "storage": {"chilled":"Cool leftovers promptly, refrigerate and use within 24 hours.","reheat":"Reheat once until steaming hot throughout; avoid overcooking the salmon."},
+    "food_safety": ["Cook salmon thoroughly and refrigerate leftovers promptly."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  },
+  {
+    "schema_version": 1,
+    "id": "yoghurt-berry-crunch-pot",
+    "title": "Yoghurt, berry & oat crunch pot",
+    "meal_type": "snack",
+    "servings": 1,
+    "prep_minutes": 3,
+    "cook_minutes": 0,
+    "ingredients": [
+      {"amount":"170g","item":"0% Greek yoghurt","allergens":["milk"]},
+      {"amount":"80g","item":"mixed berries"},
+      {"amount":"20g","item":"toasted oat cereal","allergens":["gluten"]},
+      {"amount":"10g","item":"pumpkin seeds"},
+      {"amount":"1 tsp / 7g","item":"honey"}
+    ],
+    "method": [
+      "Spoon the yoghurt into a bowl or lidded pot.",
+      "Add the berries on top.",
+      "Sprinkle over the measured oat cereal and pumpkin seeds.",
+      "Finish with the honey immediately before eating so the crunch stays crisp."
+    ],
+    "equipment": ["none"],
+    "tags": ["quick","vegetarian","high-protein"],
+    "allergens": ["milk","gluten"],
+    "substitutions": [
+      {"from":"toasted oat cereal","to":"gluten-free oat cereal","note":"Choose a certified suitable product if required."},
+      {"from":"pumpkin seeds","to":"sunflower seeds","note":"Use the same measured portion."}
+    ],
+    "storage": {"chilled":"Keep the yoghurt and fruit chilled; add cereal immediately before eating.","reheat":"Not suitable for reheating."},
+    "food_safety": ["Keep yoghurt refrigerated and do not leave the prepared pot at room temperature for extended periods."],
+    "nutrition": {"status":"pending_validation","methodology":"ingredient_level_calculation_required","kcal":null,"protein_g":null,"carbohydrate_g":null,"fat_g":null,"fibre_g":null},
+    "review": {"status":"draft","blockers":["nutrition_validation","second_person_content_review"]}
+  }
+]
