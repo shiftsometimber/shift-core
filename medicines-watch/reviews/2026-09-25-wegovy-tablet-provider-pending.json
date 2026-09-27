@@ -1,0 +1,47 @@
+{
+  "observedOn": "2026-09-25",
+  "reviewType": "AI-assisted reading of provider page; incomplete exact-response verification; not clinical approval",
+  "disposition": "awaiting_exact_response_verification",
+  "source": {
+    "id": "wegovy-tablet-private",
+    "url": "https://onlinedoctor.asda.com/uk/wegovy-pill.html",
+    "sourcePublishedAt": null,
+    "sourcePageReviewDate": "2026-08-05",
+    "evidenceType": "Provider statement about its own service",
+    "previousReviewedAt": "2026-09-18T16:36:50Z",
+    "previousReviewedFingerprint": "592a1cba16592bd8b948f173ecc7d7dea28bbf0fe6a00ea11ccc97a8eac225e6",
+    "baselineUpdated": false,
+    "reviewDateRenewed": false,
+    "wordingChanged": false
+  },
+  "liveObservation": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "publicUrl": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+    "lastSourceCheckAt": "2026-09-25T11:00:48.718Z",
+    "current": 12,
+    "reviewDue": 6,
+    "changed": 1,
+    "retrievalFailures": 0,
+    "sourceStatus": "awaiting_review",
+    "sourceReasons": [
+      "source_changed"
+    ]
+  },
+  "evidenceRead": {
+    "method": "Read the provider page's complete available extracted text using web retrieval, including private prescription process, availability, NHS discussion, clinical sections, sources and footer review date.",
+    "displayedTitle": "Buy Wegovy Pill Online from £87.97 | Asda Online Doctor",
+    "assessment": "The page continues to offer oral Wegovy through its own private prescription service, subject to questionnaire and doctor assessment. This supports the existing bounded private-provision wording. The provider's own in-stock and pricing statements do not establish SHIFT supply or guarantee individual pharmacy stock. No new NHS access determination or UK authorisation is inferred from this provider page.",
+    "excludedClaims": "Provider dosing, switching, off-label, safety and cross-trial efficacy statements are not imported into the Watch. Speculation about future NHS provision is not a funding decision.",
+    "sourceDateHandling": "The provider displays Last reviewed: 05 Aug 2026. That is distinct from this observation date and is not a verified publication date."
+  },
+  "captureLimitation": {
+    "exactUrlLocalHttpStatus": 403,
+    "completeSuccessfulRawResponseRetained": false,
+    "responseSha256": null,
+    "newNormalizedFingerprint": null,
+    "note": "Local direct retrieval failed with HTTP 403. The Worker separately retrieved the source successfully and detected a normalized change. Local capture failure is not a Worker monitor outage. Extracted web text is not the complete raw response required by fingerprintSource."
+  },
+  "uncertainty": "The exact normalized old/new delta has not been established. Prices and private availability already appeared in the prior review; they must not be described as newly introduced. Reading the currently available text does not approve an unseen raw-response baseline or renew the source review.",
+  "nextAction": "Capture the complete successful response from the exact URL through an approved runner, retain retrieval time, bytes and raw SHA-256, compute fingerprintSource with unmodified monitor logic, compare against retained prior evidence and read the actual changes. Only then propose any justified source-specific baseline/date or wording correction for editorial review. Keep the changed-source warning visible in the meantime.",
+  "preservation": "This receipt alone changes no runtime data, medical wording, authorisation, research-stage, NHS-access, actual-supply claims, catalogue review date, clinical approval or monitor logic. Nothing is merged or published."
+}

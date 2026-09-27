@@ -56,3 +56,10 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  for(const changed of NICE_TIMEOUT_PATHS)assert.throws(()=>validateNiceTimeout((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
  assert.throws(()=>validateScope(manifest,['medicines-watch/data.mjs']),/drift/);
  });
+
+ test('medicines evidence release is pinned to every reviewed blob',async()=>{
+  const {validateMedicinesReview,MEDICINES_REVIEW_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  assert.equal(MEDICINES_REVIEW_PATHS.length,8);
+  validateMedicinesReview((ref,path)=>path);
+  for(const changed of MEDICINES_REVIEW_PATHS)assert.throws(()=>validateMedicinesReview((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Medicines evidence source drift/);
+ });

@@ -32,7 +32,9 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
       - name: Backend context and preservation regressions
-        run: node --test tests/ai-foundation.test.mjs tests/ai-practical-context.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/scheduled-intelligence-delivery.test.mjs
+        run: node --test tests/ai-fast-stream.test.mjs tests/ai-site-knowledge.test.mjs tests/ai-external-knowledge.test.mjs tests/ai-foundation.test.mjs tests/ai-practical-context.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/scheduled-intelligence-delivery.test.mjs
+      - name: Build public SHIFT information index without member records or production writes
+        run: node preview/ai-context/site-index.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -84,8 +86,6 @@ jobs:
           }
           if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
           NODE
-      - name: Compare full-answer and first-text inference latency
-        run: node preview/ai-context/latency-probe.mjs
       - name: Real AI with in-memory fictional member records
         env:
           SHIFT_AI_REAL_PROBE: 'true'
@@ -107,5 +107,7 @@ jobs:
         if: always()
         with:
           name: shift-ai-synthetic-real-model-${{ github.event.pull_request.head.sha }}
-          path: evidence/shift-ai-real-probe/
+          path: |
+            evidence/shift-ai-real-probe/
+            evidence/shift-ai-site-index/
           retention-days: 14

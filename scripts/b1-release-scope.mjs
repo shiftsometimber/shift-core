@@ -13,6 +13,12 @@ export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/mo
 export function validateNiceTimeout(read){
  for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
 }
+// Owner requested the verified evidence renewals live on 27 September 2026.
+export const MEDICINES_REVIEW_COMMIT='74de0d5ab88d2c2afcc84962b8f2aa9c9553ad49';
+export const MEDICINES_REVIEW_PATHS=["medicines-watch/data.mjs", "medicines-watch/provider-review.test.mjs", "medicines-watch/source-review.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-09-23-product-information-renewal.json", "medicines-watch/reviews/2026-09-24-mounjaro-nhs-renewal.json", "medicines-watch/reviews/2026-09-25-wegovy-tablet-provider-pending.json", "medicines-watch/reviews/2026-09-27-wegovy-tablet-provider.json"];
+export function validateMedicinesReview(read){
+ for(const path of MEDICINES_REVIEW_PATHS)assert.equal(read('HEAD',path),read(MEDICINES_REVIEW_COMMIT,path),'Medicines evidence source drift: '+path);
+}
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
@@ -40,7 +46,9 @@ export function verifyScope(){
   validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',FOUNDATION_CANDIDATE,'HEAD');
   validateFoundation((ref,path)=>git('rev-parse',ref+':'+path));
-  const approved=validateAiRelease(manifest,changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  git('merge-base','--is-ancestor',MEDICINES_REVIEW_COMMIT,'HEAD');
+  validateMedicinesReview((ref,path)=>git('rev-parse',ref+':'+path));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));

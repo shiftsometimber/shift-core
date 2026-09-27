@@ -18,13 +18,17 @@
     const headers=new Headers(options.headers||{});if(options.body!==undefined&&!headers.has('Content-Type'))headers.set('Content-Type','application/json');
     try{
       const res=await fetch(V1+path,{credentials:'include',cache:'no-store',...options,headers,signal:controller.signal});
-      const ct=res.headers.get('content-type')||'';let body=null;if(res.status!==204)body=ct.includes('application/json')?await res.json():await res.text();
+      const ct=res.headers.get('content-type')||'';if(res.ok&&ct.includes('text/event-stream')&&typeof options.onDelta==='function')return await readAiStream(res,options.onDelta);let body=null;if(res.status!==204)body=ct.includes('application/json')?await res.json():await res.text();
       if(!res.ok)throw apiError(body,res.status);return body;
     }catch(err){
       if(err&&err.name==='AbortError'){const e=new Error('Shift Core took too long to respond. Please try again.');e.code='timeout';throw e;}
       if(err instanceof TypeError){const e=new Error('We could not reach Shift Core. Check your connection and try again.');e.code='network_error';throw e;}
       throw err;
     }finally{clearTimeout(timer)}
+  }
+  async function readAiStream(response,onDelta){
+    const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',event='message',answer='',result=null,meta={};
+    try{while(true){const part=await reader.read();if(part.done)break;buffer+=decoder.decode(part.value,{stream:true});if(buffer.length>100000)throw new Error('Invalid answer stream');let end;while((end=buffer.indexOf('\n'))>=0){const line=buffer.slice(0,end).trim();buffer=buffer.slice(end+1);if(line.startsWith('event:'))event=line.slice(6).trim();else if(line.startsWith('data:')){const data=JSON.parse(line.slice(5));if(event==='meta')meta=data;else if(event==='delta'){answer+=data.text||'';onDelta(answer,meta);}else if(event==='done')result=data;else if(event==='error')throw apiError(data,503);}}}if(!result?.ok)throw new Error('The answer was interrupted');return result;}finally{await reader.cancel().catch(()=>{});reader.releaseLock();}
   }
   async function getMemberState(){
     if(memberStateCached&&Date.now()-memberStateCachedAt<10000)return memberStateCached;
@@ -95,7 +99,7 @@
     generateHydration:data=>request('/hydration/plan',{method:'POST',body:JSON.stringify(data||{})}),logHydration:data=>request('/hydration/log',{method:'POST',body:JSON.stringify(data||{})}),getHydrationToday:()=>request('/hydration/today'),
     conundrum:data=>request('/grub/conundrum',{method:'POST',body:JSON.stringify(data||{})}),
     recommend:data=>request('/shift/recommend',{method:'POST',body:JSON.stringify(data||{})}),
-    askShiftAI:data=>request('/ai/chat',{method:'POST',body:JSON.stringify({useJourney:true,...(data||{})}),timeout:GENERATION_TIMEOUT})
+    askShiftAI:(data,onDelta)=>request('/ai/chat',{method:'POST',body:JSON.stringify({useJourney:true,...(data||{}),...(typeof onDelta==='function'?{stream:true}:{})}),timeout:GENERATION_TIMEOUT,onDelta})
   };
   function todayHeaders(){const now=new Date();return{'X-Shift-Local-Date':now.toLocaleDateString('en-CA'),'X-Shift-Local-Hour':String(now.getHours())}}
 })();
