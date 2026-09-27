@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES} from '../scripts/b1-release-scope.mjs';
+import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES,validateNiceTimeout,NICE_TIMEOUT_PATHS} from '../scripts/b1-release-scope.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json',import.meta.url)));
 const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
 const steps=workflow.split(/\n      - /);
@@ -49,3 +49,10 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  const step=steps.find(s=>s.startsWith('name: Publish only the exact previously authorised Grub recipe expansion'));
  assert.match(step,/if: steps\.scope\.outputs\.grub_publication == 'true'/);assert.match(step,/--grub-sql/);assert.match(step,/--grub-verify/);
 });
+
+ test('NICE timeout release accepts only byte-identical reviewed files',()=>{
+ assert.equal(validateScope(manifest,NICE_TIMEOUT_PATHS).runtimeOnly,true);
+ assert.doesNotThrow(()=>validateNiceTimeout((ref,path)=>path));
+ for(const changed of NICE_TIMEOUT_PATHS)assert.throws(()=>validateNiceTimeout((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+ assert.throws(()=>validateScope(manifest,['medicines-watch/data.mjs']),/drift/);
+ });

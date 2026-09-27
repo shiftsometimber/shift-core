@@ -7,6 +7,11 @@ import {pathToFileURL} from 'node:url';
 
 export const RELEASE_PATHS=new Set(['editorial/five-articles/proof.mjs','.github/workflows/seo-repair-final-preview.yml','release/seo794-preservation.mjs','tests/seo794-preservation.test.mjs','scripts/verify-public-continuity-live.mjs','release/b1-runtime-only.json','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/audit-repair-preview.yml','health-passport/production-release.mjs','.github/workflows/babylove-mounjaro-876303-live.yml','.github/workflows/babylove-repair.yml','public-promise-preservation.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs','tests/promise-accuracy.test.mjs','gate1-auth-security-source-gate.mjs','gate1-release-security-privacy-gate.mjs','scripts/verify-watch-access-closeout.mjs']);
 export const APPROVED_ORDER_FILES=[".github/workflows/my-timber-orders-preview.yml","member-experience/chrome.mjs","member-experience/entry.mjs","member-experience/orders.mjs","member-experience/tests/orders.test.mjs","my-timber-final-source-gate.mjs","preview/stabilisation/orders-proof.mjs","preview/stabilisation/orders-provision.mjs","preview/stabilisation/orders-schema.sql","work/staging/worker.mjs"];
+export const NICE_TIMEOUT_COMMIT='68616d2730e27b03fb54e232eb06961169cdc615';
+export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs'];
+export function validateNiceTimeout(read){
+ for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
+}
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
  assert.equal(manifest.grubPublication,undefined);
@@ -17,7 +22,7 @@ export function validateScope(manifest,changed){
  assert.equal(manifest.baseCommit,'d5f650740bef17246b180b79617e3e94e43c02c1');
  assert.deepEqual(manifest.approvedApplicationPaths,APPROVED_ORDER_FILES);
  assert.deepEqual(manifest.runtimeSchemaAdditions,['member_account_details','member_account_details_preserve_delivery','member_signup_alerts']);
- const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p));
+ const runtimeOnly=changed.every(p=>RELEASE_PATHS.has(p)||NICE_TIMEOUT_PATHS.includes(p));
  if(manifest.enforceApplicationPin===true)assert.ok(runtimeOnly,'Application/source drift: review a new candidate and scope before release');
  return {runtimeOnly,applicationCommit:manifest.applicationCommit,baseCommit:manifest.baseCommit,releaseOnlyChanges:runtimeOnly?changed:[],applicationChanges:runtimeOnly?[]:changed};
 }
@@ -43,6 +48,8 @@ export function verifyScope(){
  git('merge-base','--is-ancestor',manifest.baseCommit,manifest.applicationCommit);
  git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
  assert.deepEqual(git('diff','--name-only',manifest.baseCommit,manifest.applicationCommit).split('\n').filter(Boolean),APPROVED_ORDER_FILES,'Pinned Orders application delta changed');
+ git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
+ validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
  const changed=git('diff','--name-only',manifest.applicationCommit,'HEAD').split('\n').filter(Boolean);
  const report={...validateScope(manifest,changed),releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,runtimeSchemaAdditions:manifest.runtimeSchemaAdditions||[],contentPublication:false};
  assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
