@@ -35,6 +35,13 @@ export function validateScope(manifest,changed){
 }
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
+// Owner authorised this exact preview-tested repair on 27 September.
+const HEADING_CANDIDATE='90b1e29db85591b84dec642c3304641bc9545529';
+const HEADING_PATHS=['knowledge-heading-repair.mjs','public-seo-closeout.mjs','worker-entry-v6.js','preview/knowledge-heading/worker.mjs','preview/knowledge-heading/wrangler.jsonc','scripts/verify-knowledge-headings.cjs','.github/workflows/knowledge-heading-preview.yml'];
+function verifyHeadingRepair(){
+ git('merge-base','--is-ancestor',HEADING_CANDIDATE,'HEAD');
+ for(const path of HEADING_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',HEADING_CANDIDATE+':'+path),'Heading preview source drift: '+path);
+}
 export function verifyScope(){
  if(existsSync('release/shift-ai-live.json')){
   git('merge-base','--is-ancestor',AI_BASE,AI_CANDIDATE);
@@ -48,7 +55,8 @@ export function verifyScope(){
   validateFoundation((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',MEDICINES_REVIEW_COMMIT,'HEAD');
   validateMedicinesReview((ref,path)=>git('rev-parse',ref+':'+path));
-  const approved=validateAiRelease(manifest,changed.filter(path=>!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  verifyHeadingRepair();
+  const approved=validateAiRelease(manifest,changed.filter(path=>!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
