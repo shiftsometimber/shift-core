@@ -80,6 +80,6 @@ test('changed SmPC metadata preserves the medicine catalogue and separately evid
     assert.equal(sources.find(s => s.id === proof.id).reviewedAt, proof.reviewedAt);
     assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
-  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, '2026-09-18T16:36:50Z');
+  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-09-27-wegovy-tablet-provider.json', import.meta.url))).reviewedAt);
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, nhsReceipt.reviewedAt);
 });
