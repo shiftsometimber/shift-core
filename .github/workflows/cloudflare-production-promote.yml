@@ -644,7 +644,7 @@ jobs:
       - name: Verify B1 protected catalogue and stock remain identical
         run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Restore the captured runtime if a post-deployment gate failed
-        if: ${{ failure() && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success')) }}
+        if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}
         run: node release/member-details-rollback.mjs
       - name: Retain B1 runtime-only release evidence
         if: always()

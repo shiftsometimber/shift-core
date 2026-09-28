@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 export const GROWTH_PREVIEW='44c5ebcef492ee9b6476f0343737afb085f579f3';
 // Exact owner-reviewed payload and exact integration files. No generic directory exclusion.
 const hashes={
-  ".github/workflows/cloudflare-production-promote.yml": "dfe59a8721229de6d36020986b16ec8cd7bc7adc33a13c170e0b7215e5097f86",
+  ".github/workflows/cloudflare-production-promote.yml": "21251cf0036ac3672d1db27838814ca862e5a1ce2c64e3118eacb39b2f823ccb",
   ".github/workflows/growth-member-preview.yml": "b2b5bc5aa3791974a202443babcbd4d57d3d9f0a47f49ca86f54d9ae0836698a",
   ".github/workflows/rendered-member-production-acceptance.yml": "932e7f8e375b78a02f32dba1b452e63c62954e879e08ce61f5aaf9d2a974b5bc",
   "docs/growth-review/2026-09-27.md": "3244a00605dfd2b856109b42095787ca979ee4faff3283e85ed51eea290fd2b0",
