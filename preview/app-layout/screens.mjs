@@ -1,9 +1,9 @@
 // App-only composition. Original nodes, events and persistence remain authoritative.
 const scope='html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout])';
-const page=scope+':not([data-member-page="dashboard"])';
+const page=scope+'[data-member-page]:not([data-member-page="dashboard"])';
 const rule=(selector,css)=>selector.split('|').map(s=>page+' '+s).join(',')+'{'+css+'}\n';
 export const screenStyles=`
-${page}{background:#050505!important;color:#e7e3da!important}
+${page}{background:#050505!important;color:#e7e3da!important;--me-ink:#e7e3da;--me-paper:#050505;--me-card:#11160f;--me-line:#46503d;--me-muted:#c5c8bc}
 `+rule('main','background:#050505!important;color:#e7e3da!important;max-width:980px!important;padding:0 20px!important')+
 rule('main :is(h1,h2,h3,h4,p,li,label,legend,small,strong,span,summary)','color:inherit!important;-webkit-text-fill-color:currentColor!important')+
 rule('main :is(h1,h2,h3,h4)','font-family:Arial,Helvetica,sans-serif!important;letter-spacing:-.025em!important')+
@@ -17,7 +17,7 @@ rule('main input::placeholder|main textarea::placeholder','color:#bfc7b6!importa
 rule('main :is(button,.button,.btn)','background:#20291b!important;color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important;border:1px solid #707762!important;border-radius:9px!important;min-height:44px!important;font-family:Arial,Helvetica,sans-serif!important')+
 rule('main :is(button,.button,.btn):is([aria-pressed="true"],[aria-selected="true"],.primary)|main :is(#saveMood,#fitGenerate,#memberDetailsSave,[data-sf-start])','background:#e7e3da!important;color:#050505!important;-webkit-text-fill-color:#050505!important')+
 rule('main :is(button,input,select,textarea):disabled','opacity:.6!important')+
-rule('main :is(.grub-recipe,.grub-v8-panel,.grub-spotlight article,.sf-session,.sf-next,.sf-coach,.sf-debrief,.md-panel,.md-section,.member-record-card,.member-order,.area-card,.timeline-card,.trend-panel,.win,.checkin-history)','background:linear-gradient(145deg,#141c11,#0a0e09)!important;color:#e7e3da!important;border:1px solid #46503d!important;border-radius:14px!important;padding:18px!important;min-width:0;box-shadow:none!important')+
+rule('main :is(.sf-builder,.sf-limitations,.sf-limitation-grid label,.sf-difficulty,.sf-exercise-purpose,.checkin-card,.checkin-safety,.grub-search,.grub-workbench,.grub-week-builder,.grub-recipe,.grub-v8-panel,.grub-spotlight article,.sf-session,.sf-next,.sf-coach,.sf-debrief,.md-panel,.md-section,.member-record-card,.member-order,.area-card,.timeline-card,.trend-panel,.win,.checkin-history)','background:linear-gradient(145deg,#141c11,#0a0e09)!important;color:#e7e3da!important;border:1px solid #46503d!important;border-radius:14px!important;padding:18px!important;min-width:0;box-shadow:none!important')+
 rule('main :is(.grub-meta,.sf-metrics)','display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin:12px 0!important')+
 rule('main :is(.grub-meta,.sf-metrics)>*','background:#293321!important;color:#d7e1c7!important;border-radius:6px!important;padding:6px 9px!important;font-size:12px!important')+
 rule('main :is(.grub-actions,.sf-exercise-actions,.sf-completion)','display:flex!important;flex-wrap:wrap!important;gap:8px!important')+
@@ -40,10 +40,10 @@ rule('.sf-session-head','display:flex!important;justify-content:space-between!im
 rule('.sf-ring','flex-shrink:0!important;width:88px!important;height:88px!important;font-size:26px!important')+
 rule('.sf-exercises','display:grid!important;gap:0!important')+
 rule('.sf-exercise.mp-exercise','display:grid!important;grid-template-columns:26px 72px minmax(0,1fr)!important;gap:10px!important;padding:16px 0!important;border:0!important;border-bottom:1px solid #46503d!important;border-radius:0!important;background:transparent!important;color:#e7e3da!important')+
-rule('.sf-number','grid-column:1!important;width:24px!important;height:24px!important;font-size:12px!important;background:#293321!important')+
-rule('.sf-exercise-art','grid-column:2!important;width:72px!important;margin:0!important')+
+rule('.sf-number','grid-column:1!important;grid-row:1!important;width:24px!important;height:24px!important;font-size:12px!important;background:#293321!important')+
+rule('.sf-exercise-art','grid-column:2!important;grid-row:1!important;width:72px!important;margin:0!important')+
 rule('.sf-exercise-art img','width:72px!important;height:90px!important;object-fit:contain!important')+
-rule('.sf-exercise-main','grid-column:3!important;min-width:0')+
+rule('.sf-exercise-main','grid-column:3!important;grid-row:1!important;min-width:0')+
 rule('.sf-exercise-main h4','font-size:17px!important;margin:0 0 8px!important')+
 rule('.sf-exercise>:is(.sf-completion,.sf-exercise-actions,.sf-difficulty)','grid-column:1/-1!important')+
 rule('.sf-exercise :is(p,summary,.sf-metrics)','font-size:12px!important')+
@@ -64,6 +64,8 @@ rule('.md-grid','gap:14px!important')+
 rule('#moodRow','display:flex!important;gap:8px!important;flex-wrap:wrap!important')+
 rule('#moodRow>*','flex:1 1 70px!important')+
 rule('#saveMood','width:100%!important')+
+rule('input[type=checkbox]|input[type=radio]','min-height:22px!important;width:22px!important;height:22px!important;flex-shrink:0!important')+
+rule('.sf-builder-grid','display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important')+
 `${scope} :is(#panel-visualise,#panel-plans) .member-progress-map{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;padding:18px!important;background:#11160f!important;border:1px solid #46503d!important;border-radius:14px!important}
 ${scope} .member-progress-map>:is(h2,p){grid-column:1/-1}
 ${scope} .member-progress-map a{display:block!important;padding:16px!important;border:1px solid #707762!important;border-radius:10px!important;color:#e7e3da!important;background:#20291b!important}
