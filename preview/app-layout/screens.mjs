@@ -61,6 +61,10 @@ rule('.win-art','max-width:220px!important')+
 rule('.member-record-grid','display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important')+
 rule('#memberDetailsPanel','background:#10160e!important;border:1px solid #46503d!important;border-radius:14px!important;padding:20px!important')+
 rule('.md-grid','gap:14px!important')+
+rule('.md-heading','display:block!important;min-height:0!important;padding:0!important;margin:0 0 16px!important')+
+rule('.md-heading p','margin:8px 0!important')+
+rule('.app-account-details','padding:18px!important;border:1px solid #46503d!important;border-radius:14px!important;background:#10160e!important;margin-bottom:16px!important')+
+rule('.app-account-details>summary','font-size:17px!important;font-weight:700!important')+
 rule('#moodRow','display:flex!important;gap:8px!important;flex-wrap:wrap!important')+
 rule('#moodRow>*','flex:1 1 70px!important')+
 rule('#saveMood','width:100%!important')+
@@ -96,6 +100,12 @@ export const screenClient=String.raw`
    wrap(document.querySelector('.grub-pick-fit'),'How this fits your movement plan');
    const adjustments=document.querySelector('.grub-pick-adjust');
    if(adjustments&&!adjustments.closest('.app-screen-details')){const title=adjustments.previousElementSibling,d=wrap(adjustments,'Adjust this meal');if(title?.textContent.trim()==='Change what matters')d.append(title)}
+  }
+  if(page==='settings'){
+   const panel=document.getElementById('memberDetailsPanel');
+   const details=wrap(panel,'Personal & delivery details');if(details)details.classList.add('app-account-details');
+   const hero=document.querySelector('main [data-member-hero]'),main=document.querySelector('main');
+   if(hero&&main&&!hero.dataset.appPlaced){hero.dataset.appPlaced='true';main.prepend(hero)}
   }
   if(page==='fit')document.querySelectorAll('.sf-exercise-purpose').forEach(n=>wrap(n,'Why this exercise'));
   if(page==='life-back'){

@@ -41,7 +41,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
   await p.locator('#fitGenerate').click();await p.locator('.sf-session').first().waitFor({timeout:45000});
   await p.locator('.sf-exercise').first().waitFor();row.checks.push('Fit generates a real fictional plan and renders exercise rows');
  }
- if(path==='/member/settings')await p.locator('#memberFirstName:not([disabled])').waitFor({timeout:45000});
+ if(path==='/member/settings'){await p.locator('.app-account-details>summary').click();await p.locator('#memberDetailsForm').waitFor();assert(await p.locator('#memberDetailsTitle').isVisible());}
  assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow '+path);
  if(path==='/member/life-back'){
  await p.locator('#journeyView:not([hidden])').waitFor({timeout:45000});
