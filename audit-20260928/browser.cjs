@@ -1,0 +1,12 @@
+const fs=require('fs');const {chromium}=require(process.env.RUNNER_TEMP+'/perf/node_modules/playwright');
+(async()=>{const b=await chromium.launch({headless:true});let rows=[];for(const path of ['/','/the-programme','/guides/retatrutide-uk-guide','/shift-health']){
+ const c=await b.newContext({viewport:{width:390,height:844}});const p=await c.newPage();let requests=[];p.on('request',r=>{if(/google-analytics|googletagmanager/.test(r.url()))requests.push({url:r.url(),post:r.postData()});});await p.goto('https://shiftsometimber.co.uk'+path,{waitUntil:'networkidle'});await p.waitForTimeout(1200);
+ const snap=()=>p.evaluate(()=>({url:location.href,h1:[...document.querySelectorAll('h1')].map(x=>x.textContent),buttons:[...document.querySelectorAll('button')].filter(x=>x.getBoundingClientRect().width).map(x=>x.textContent.trim()),googleScripts:[...document.scripts].map(x=>x.src).filter(x=>/googletagmanager|google-analytics/.test(x)),dataLayer:(window.dataLayer||[]).map(x=>Array.from(x?.length!==undefined?x:[]) .length?Array.from(x):x),cookieChoices:[...document.querySelectorAll('button,a')].some(x=>/cookie choices/i.test(x.textContent)&&x.getBoundingClientRect().width>0)}));
+ let row={path,fresh:await snap(),freshRequests:[...requests]};await p.screenshot({path:'seo-proof/browser-'+(path==='/'?'home':path.split('/').pop())+'.png'});
+ if(path==='/'){
+  const reject=p.getByRole('button',{name:/necessary only|reject|essential only/i}).first();if(await reject.count()){await reject.click();await p.reload({waitUntil:'networkidle'});row.refused=await snap();row.refusedRequests=[...requests];}
+  const choices=p.getByRole('button',{name:/cookie choices/i}).first();if(await choices.count()){await choices.click();row.preferenceButtons=await p.getByRole('button').allTextContents();}
+  const accept=p.getByRole('button',{name:/allow analytics|accept analytics/i}).first();if(await accept.count()){requests=[];await accept.click();await p.waitForTimeout(2000);row.accepted=await snap();row.acceptedRequests=[...requests];await p.reload({waitUntil:'networkidle'});await p.waitForTimeout(1000);row.persisted=await snap();}
+ }
+ rows.push(row);await c.close();}
+ fs.writeFileSync('seo-proof/browser.json',JSON.stringify(rows,null,2));console.log(JSON.stringify(rows.map(r=>({path:r.path,freshGoogle:r.fresh.googleScripts,cookieChoices:r.fresh.cookieChoices,accepted:r.accepted?.googleScripts,buttons:r.fresh.buttons,preferences:r.preferenceButtons}))));await b.close();})();

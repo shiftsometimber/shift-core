@@ -1,0 +1,41 @@
+name: Daily public SEO evidence 20260928
+on:
+  push:
+    branches: [verify/daily-seo-20260928]
+    paths: ['.github/workflows/daily-seo-20260928.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: pip install beautifulsoup4
+      - name: Complete public delivered HTML crawl
+        run: python audit-20260928/crawl.py
+      - run: npm install --prefix "$RUNNER_TEMP/perf" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+      - run: '"$RUNNER_TEMP/perf/node_modules/.bin/playwright" install --with-deps chromium'
+      - name: Public rendered consent checks
+        run: node audit-20260928/browser.cjs
+      - name: Three current mobile home lab samples
+        if: always()
+        run: |
+          export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/perf/node_modules/playwright').chromium.executablePath())")
+          for repeat in 1 2 3; do
+            node "$RUNNER_TEMP/perf/node_modules/lighthouse/cli/index.js" https://shiftsometimber.co.uk/ --only-categories=performance --output=json --output-path="seo-proof/home-$repeat.json" '--chrome-flags=--headless --no-sandbox' --quiet
+          done
+      - name: Checksums
+        if: always()
+        run: find seo-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > seo-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-seo-20260928
+          path: seo-proof/
+          retention-days: 90
