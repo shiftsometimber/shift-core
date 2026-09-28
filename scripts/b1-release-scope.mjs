@@ -36,8 +36,8 @@ export function validateScope(manifest,changed){
 }
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
-const SPEED_CANDIDATE='44c895d732cf801c4cff90564244fa5ee8997523';
-const SPEED_PATHS=["home-v42-critical.mjs","home-blocking-styles.mjs","release/member-details-preservation.mjs","tests/home-speed-green.test.mjs","public-startup-stability.mjs","home-critical-styles.mjs","home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
+const SPEED_CANDIDATE='bcad2b051e932577a0b897f728610bdeb37282da';
+const SPEED_PATHS=["tests/seo794-preservation.test.mjs","home-v42-critical.mjs","home-blocking-styles.mjs","release/member-details-preservation.mjs","tests/home-speed-green.test.mjs","public-startup-stability.mjs","home-critical-styles.mjs","home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
 function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',SPEED_CANDIDATE+':'+path),'Home speed source drift: '+path);}
 
 // Owner authorised this exact preview-tested repair on 27 September.
@@ -63,7 +63,7 @@ export function verifyScope(){
   validateGrowthSource();
   verifyHeadingRepair();
   verifyHomeSpeed();
-  assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','e039574f02eb067d6c233194f50cc71317fda1d7:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
+  assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
   const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
