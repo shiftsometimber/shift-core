@@ -1,10 +1,11 @@
 import preview from '../growth-member/worker.mjs';
-import {appPresentation} from './presentation.mjs';
+import {appPresentation,appClient} from './presentation.mjs';
 import {reviewHTML} from './review.mjs';
 const privateHeaders={'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, private','X-Robots-Tag':'noindex, nofollow','Vary':'Cookie'};
 export default {async fetch(request,env,ctx){
  const u=new URL(request.url);
  if(env.SHIFT_ENVIRONMENT!=='stabilisation-preview-20260917'||!/^shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev$/.test(u.hostname)||!env.STAGING_EXPIRES_AT||Date.now()>=Date.parse(env.STAGING_EXPIRES_AT))return new Response('Preview unavailable',{status:404});
+ if(u.pathname==='/__app-layout.mjs'&&request.method==='GET')return new Response(appClient,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
  if(u.pathname==='/__app-review'&&request.method==='GET')return new Response(reviewHTML,{headers:privateHeaders});
  const response=await preview.fetch(request,env,ctx);
  if(request.method!=='GET'||!response.ok||!(u.pathname.startsWith('/member/')||u.pathname.startsWith('/staging/member-connected/'))||!response.headers.get('Content-Type')?.includes('text/html'))return response;

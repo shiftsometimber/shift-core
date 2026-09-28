@@ -14,7 +14,7 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout])[da
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-dashboard{grid-template-columns:1fr!important;gap:16px!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-panel{padding:20px!important;border-color:#707762!important;border-radius:16px!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-next{background:#e7e3da!important;color:#050505!important;padding:24px!important;border-radius:16px!important;margin:0 0 16px!important}
-html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-next :is(h3,p,small,strong,span){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-next :is(h3,p,small,strong,span,a){color:#050505!important;-webkit-text-fill-color:#050505!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-next .mt-now-action{display:flex!important;justify-content:center;width:100%!important;background:#050505!important;color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important;min-height:50px!important;margin-top:18px!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #dailyCheckinFollowup{padding:20px!important;border-radius:16px!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.mtm-home .mtm-feelings{grid-template-columns:1fr!important}
@@ -27,12 +27,11 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) :i
 @media print{#appBottomNav,#appPreviewBar{display:none!important}}
 `;
 export const appClient=String.raw`(()=>{
- const bar=document.getElementById('appBottomNav'),more=document.getElementById('appMore');
- if(!bar)return;
- function current(){bar.querySelectorAll('a').forEach(a=>{const u=new URL(a.href),match=u.pathname.replace('/staging/member-connected/','/member/')===location.pathname.replace('/staging/member-connected/','/member/')&&(u.hash?u.hash===(location.hash||'#today'):true);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
- more.addEventListener('click',()=>{const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.dataset.appMore==='open'){document.body.dataset.appMore='closed';more.setAttribute('aria-expanded','false');more.focus()}});
- current();addEventListener('hashchange',current);
+ function current(){document.querySelectorAll('#appBottomNav a').forEach(a=>{const u=new URL(a.href),match=u.pathname.replace('/staging/member-connected/','/member/')===location.pathname.replace('/staging/member-connected/','/member/')&&(u.hash?u.hash===(location.hash||'#today'):true);if(match){if(a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page')}else a.removeAttribute('aria-current')})}
+ document.addEventListener('click',e=>{const more=e.target.closest?.('#appMore');if(!more)return;const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}},true);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.dataset.appMore==='open'){document.body.dataset.appMore='closed';const more=document.getElementById('appMore');more?.setAttribute('aria-expanded','false');more?.focus()}});
+ function boot(){current();const bar=document.getElementById('appBottomNav');if(bar)new MutationObserver(current).observe(bar,{subtree:true,attributes:true,attributeFilter:['href']})}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();addEventListener('hashchange',current);
 })();`;
 export function appPresentation(html,path){
  path=path.replace('/staging/member-connected/','/member/').replace(/\.html$/,'');
@@ -40,5 +39,5 @@ export function appPresentation(html,path){
  if(!html.includes('data-member-chrome="v1"'))return html;
  const bar='<aside id="appPreviewBar">APP LAYOUT PREVIEW · fictional accounts only · <a href="?view=web">Compare website view</a> · <a href="/__app-review">Review &amp; health connections</a></aside>';
  const nav='<nav id="appBottomNav" aria-label="App navigation"><a href="/member/dashboard#today">Today</a><a href="/member/dashboard#visualise">Progress</a><a href="/member/life-back">Life Back</a><button id="appMore" type="button" aria-expanded="false">More</button></nav>';
- return html.replace(/<body([^>]*)>/,(_,a)=>'<body'+a+' data-app-layout="preview">'+bar).replace('</body>','<style data-app-preview-style>'+appStyles+'</style>'+nav+'<script>'+appClient+'</script></body>');
+ return html.replace(/<body([^>]*)>/,(_,a)=>'<body'+a+' data-app-layout="preview">'+bar).replace('</body>','<style data-app-preview-style>'+appStyles+'</style>'+nav+'<script defer src="/__app-layout.mjs"></script></body>');
 }
