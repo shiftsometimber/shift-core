@@ -26,10 +26,10 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
   await page.goto(base+'/mens-mental-health',{waitUntil:'domcontentloaded'});
   await page.locator('.shift-guided-front__inner').waitFor();
   const alignment=await page.evaluate(()=>{
-   const root=document.querySelector('.shift-guided-front__inner'),intro=document.querySelector('.shift-guided-intro'),r=root.getBoundingClientRect(),p=intro.getBoundingClientRect();
-   return {heading:getComputedStyle(root.querySelector('h1')).textAlign,intro:getComputedStyle(intro).textAlign,rootOffset:Math.abs((r.left+r.right)/2-document.documentElement.clientWidth/2),introOffset:Math.abs((p.left+p.right)/2-(r.left+r.right)/2),overflow:document.documentElement.scrollWidth>innerWidth+1};
+   const root=document.querySelector('.shift-guided-front__inner'),intro=document.querySelector('.shift-guided-intro'),r=root.getBoundingClientRect(),p=intro.getBoundingClientRect(),h=root.querySelector('h1').getBoundingClientRect();
+   return {heading:getComputedStyle(root.querySelector('h1')).textAlign,intro:getComputedStyle(intro).textAlign,headingOffset:Math.abs((h.left+h.right)/2-(r.left+r.right)/2),rootOffset:Math.abs((r.left+r.right)/2-document.documentElement.clientWidth/2),introOffset:Math.abs((p.left+p.right)/2-(r.left+r.right)/2),overflow:document.documentElement.scrollWidth>innerWidth+1};
   });
-  assert.equal(alignment.heading,'center');assert.equal(alignment.intro,'center');assert(alignment.rootOffset<2,JSON.stringify(alignment));assert(alignment.introOffset<2);assert(!alignment.overflow);
+  assert.equal(alignment.heading,'center');assert.equal(alignment.intro,'center');assert(alignment.rootOffset<2,JSON.stringify(alignment));assert(alignment.introOffset<2);assert(alignment.headingOffset<2);assert(!alignment.overflow);
   assert.equal(await page.locator('.shift-guided-card').count(),4);
   assert.equal(await page.locator('.shift-guided-alert a').getAttribute('href'),'/mental-health/urgent-mental-health-help');
   await page.screenshot({path:dir+'/'+name+'-'+width+'-good-to-talk.png',fullPage:true});

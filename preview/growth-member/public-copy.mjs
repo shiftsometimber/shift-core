@@ -5,6 +5,7 @@ const promise=`<section class="growth-promise" data-growth-promise><h2>What you 
 const goodToTalkAlignment=`<style data-good-to-talk-alignment>
 main#main-content.template-mens-mental-health{margin-inline:auto}
 main#main-content.template-mens-mental-health .shift-guided-front__inner{margin-inline:auto;text-align:center}
+main#main-content.template-mens-mental-health .shift-guided-front h1,
 main#main-content.template-mens-mental-health .shift-guided-intro{margin-inline:auto}
 main#main-content.template-mens-mental-health .shift-guided-card{text-align:center}
 main#main-content.template-mens-mental-health .shift-guided-actions{justify-content:center}
