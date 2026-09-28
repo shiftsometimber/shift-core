@@ -87,6 +87,11 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #t
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.app-today-v2 .app-life-card>a{display:block!important;background:transparent!important;color:#e7e3da!important;border:1px solid #707762!important;border-radius:8px!important;padding:12px!important;text-decoration:none!important;width:100%!important}
 @media(max-width:600px){html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.app-today-v2 .app-life-card{display:grid!important;grid-template-columns:100px 1fr!important;text-align:left!important;justify-items:start!important;gap:8px 16px!important}}
 
+
+html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.app-today-v2 .mtm-next .mtm-loop-controls button{color:#050505!important;-webkit-text-fill-color:#050505!important;border-color:#707762!important;background:transparent!important;font-size:12px!important;padding:9px!important;min-height:40px!important}
+html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) .app-footer-details{max-width:980px;margin:20px auto;padding:16px 20px;color:#e7e3da;border-top:1px solid #46503d;font:13px/1.5 Arial,Helvetica,sans-serif}.app-footer-details>summary{cursor:pointer;min-height:44px}.app-footer-details>summary::marker{color:#b4c39a}
+@media(max-width:600px){html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.app-today-v2 .app-life-card{height:auto!important;min-height:0!important;align-self:start!important;align-content:start!important;grid-template-rows:repeat(4,auto)!important}.app-life-card>.app-life-ring{grid-row:1/5!important}.app-life-card>*{min-height:0!important}}
+
 @media print{#appBottomNav,#appPreviewBar{display:none!important}}
 `;
 export const appClient=String.raw`(()=>{
@@ -109,7 +114,7 @@ export const appClient=String.raw`(()=>{
  }
  document.addEventListener('sst:today-rendered',()=>queueMicrotask(rebuildToday));
 
- function boot(){current();rebuildToday();const account=document.getElementById('connected-account')?.closest('aside');if(account&&!account.closest('details')){const details=el('details','app-review-account');details.append(el('summary','','Fictional review account'));account.before(details);details.append(account)}const bar=document.getElementById('appBottomNav');if(bar)new MutationObserver(current).observe(bar,{subtree:true,attributes:true,attributeFilter:['href']})}
+ function boot(){current();rebuildToday();if(document.body.dataset.memberPage==='dashboard')document.querySelectorAll('footer').forEach(footer=>{if(footer.closest('main,details'))return;const details=el('details','app-footer-details');details.append(el('summary','','Help & legal'));footer.before(details);details.append(footer)});const account=document.getElementById('connected-account')?.closest('aside');if(account&&!account.closest('details')){const details=el('details','app-review-account');details.append(el('summary','','Fictional review account'));account.before(details);details.append(account)}const bar=document.getElementById('appBottomNav');if(bar)new MutationObserver(current).observe(bar,{subtree:true,attributes:true,attributeFilter:['href']})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();addEventListener('hashchange',current);
 })();`;
 export function appPresentation(html,path){
