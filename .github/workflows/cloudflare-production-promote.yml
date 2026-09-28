@@ -415,7 +415,7 @@ jobs:
       - name: Prepare the exact additive signup-alert delivery store
         run: node release/member-signup-alert-schema.mjs
       - name: Index existing public SHIFT pages for AI without publishing website content
-        if: steps.growth_deployed.outputs.already_deployed != 'true'
+        if: steps.growth_deployed.outputs.existing_index != 'true'
         run: |
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main

@@ -3,8 +3,13 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
+import {validateGrowthSource} from './growth-scope.mjs';
 const RELEASE='2ac10333105ae3836d135ce188d6b82f3f463ac2',VERSION='1663cf19-757f-4b67-b3ca-4fdd1fe9ba53';
 const metadata=new Set(['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-timber-pwa-production-release.yml','release/growth-adopt-deployment.mjs','release/growth-preflight.mjs','release/growth-public-baseline.json','release/growth-scope.mjs','docs/growth-review/live-release-checkpoint-20260928.md']);
+const settingsFix=['member-experience/entry.mjs','member-experience/member-details.mjs','member-experience/member-email-client.mjs'];
+for(const path of [...settingsFix,'member-experience/tests/email-change-capability.test.mjs','my-timber-final-production.mjs','.github/workflows/my-timber-final-production.yml','.github/workflows/growth-member-preview.yml','preview/growth-member/verify.cjs'])metadata.add(path);
+validateGrowthSource(); // Every added repair and evidence file is exact-hash pinned.
+const deployRequired=settingsFix.some(path=>execFileSync('git',['diff','--name-only',RELEASE,'HEAD','--',path],{encoding:'utf8'}).trim());
 const changed=execFileSync('git',['diff','--name-only',RELEASE,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
 assert(changed.every(p=>metadata.has(p)),'Already-deployed verification must not include application changes');
 const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Deployment receipt HTTP '+r.status);return r};
@@ -14,6 +19,7 @@ const current=()=>JSON.parse(wrangler('deployments','list','--json')).toSorted((
 const active=current();
 assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);
 const needsRestore=active.versions[0].version_id!==VERSION;
+if(deployRequired)assert.equal(needsRestore,false,'Settings repair requires the verified growth runtime as its starting point');
 if(needsRestore){
  assert.equal(active.versions[0].version_id,'a202deda-a0fa-42bb-bd56-db805696665b','Unknown runtime: refuse restoration');
  const failed=await(await get('/actions/runs/36412818115')).json();assert.equal(failed.head_sha,'3fbec17950e54a4644d71e5680bcfe0ad60b702c');assert.equal(failed.conclusion,'failure');
@@ -40,7 +46,7 @@ if(process.argv[2]==='restore'){
  console.log('PASS restored the exact previously approved version; no build, new version or data restoration');
  process.exit(0);
 }
-writeFileSync('b1-runtime-release/existing-growth-deployment.json',JSON.stringify({release:RELEASE,version:VERSION,sourceRun:run.id,activeDeployment:active.id,verificationCommit:process.env.GITHUB_SHA,at:new Date().toISOString(),deploymentPerformedByThisRun:false,rollbackSource:'Original PWA deployment-before artifact'},null,2));
-appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed=true\n');
+writeFileSync('b1-runtime-release/existing-growth-deployment.json',JSON.stringify({release:RELEASE,version:VERSION,sourceRun:run.id,activeDeployment:active.id,verificationCommit:process.env.GITHUB_SHA,at:new Date().toISOString(),deploymentPerformedByThisStep:false,newDeploymentRequired:deployRequired,rollbackSource:deployRequired?'Fresh current deployment captured by the workflow before deployment':'Original PWA deployment-before artifact'},null,2));
+appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed='+!deployRequired+'\nexisting_index=true\n');
 appendFileSync(process.env.GITHUB_OUTPUT,'restore_needed='+needsRestore+'\n');
 console.log('PASS authenticated release and rollback receipt, known active runtime and existing public index; restoration needed: '+needsRestore);

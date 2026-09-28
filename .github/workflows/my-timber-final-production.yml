@@ -19,7 +19,7 @@ permissions:
 
 concurrency:
   group: my-timber-final-production-${{ github.sha }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   billy-iphone-candidate:
@@ -71,6 +71,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-google-play-screenshots.mjs
       - name: Record and prove Billy's live production journey
+        if: github.event_name != 'push'
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
