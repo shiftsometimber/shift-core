@@ -33,7 +33,7 @@ const hashes={
   "member-experience/member-email-client.mjs": "fc113fd47073c9a7c49556658711fb3c8ccf17ab2d6189a9e843f39d89c6dedc",
   "member-experience/tests/email-change-capability.test.mjs": "49e9298ab0a09c056d860086023e7cafeb79f1539f8967bbfb430a48d237a8db",
   "my-timber-final-production.mjs": "b225d6db6c65cb4fd4c49274db89c680d314a766699f695cffb33c31c6fd1f3a",
-  ".github/workflows/my-timber-final-production.yml": "7101fbe1d15dc52f9044a5ad3bcccc7c9992656b0767fbe2b26eba15dcafd0e6"
+  ".github/workflows/my-timber-final-production.yml": "3521bac3a10a6319cd7f751011b3d7bf10eaa605b60b8fdfa32526ff55df104a"
 };
 export const GROWTH_PINNED_PATHS=Object.keys(hashes);
 export const GROWTH_PATHS=new Set([...GROWTH_PINNED_PATHS,'release/growth-scope.mjs']);
