@@ -36,8 +36,8 @@ export function validateScope(manifest,changed){
 }
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
-const SPEED_CANDIDATE='eb5b38a3a5119b2aa28078ef0905f4fd26c8f33c';
-const SPEED_PATHS=["home-blocking-styles.mjs","release/member-details-preservation.mjs","tests/home-speed-green.test.mjs","public-startup-stability.mjs","home-critical-styles.mjs","home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
+const SPEED_CANDIDATE='96c12eb713abd096099515eec82852b423929607';
+const SPEED_PATHS=["home-v42-critical.mjs","home-blocking-styles.mjs","release/member-details-preservation.mjs","tests/home-speed-green.test.mjs","public-startup-stability.mjs","home-critical-styles.mjs","home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
 function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',SPEED_CANDIDATE+':'+path),'Home speed source drift: '+path);}
 
 // Owner authorised this exact preview-tested repair on 27 September.
