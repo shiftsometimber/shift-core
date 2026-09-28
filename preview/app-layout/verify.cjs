@@ -25,7 +25,13 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  row.checks.push(view+' check-in saved using UI and read through other independently signed-in session after refresh');
  }
  const before=(await api(app,'/v1/life-back')).progress;await api(web,'/v1/life-back',{action:'shift-feedback',shiftId:before.nextShift.id,outcome:'not-fit',operationId:randomUUID()});await p.goto(base+'/member/dashboard?view=app#today',{waitUntil:'domcontentloaded'});const changed=(await api(app,'/v1/life-back')).progress;assert.notEqual(changed.nextShift.detail,before.nextShift.detail);await p.getByText(changed.nextShift.title,{exact:true}).first().waitFor({timeout:45000});
- for(const path of ['/member/grub','/member/fit','/member/life-back','/member/settings']){await p.goto(base+path,{waitUntil:'domcontentloaded'});await p.locator('#appBottomNav').waitFor();await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'.png',fullPage:true});}
+ for(const path of ['/member/grub','/member/fit','/member/life-back','/member/settings']){await p.goto(base+path,{waitUntil:'domcontentloaded'});await p.locator('#appBottomNav').waitFor();if(path==='/member/life-back'){
+ await p.locator('#journeyView:not([hidden])').waitFor({timeout:45000});
+ assert.equal(await p.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(5, 5, 5)','Life Back retains dark canvas for its light labels');
+ const contrast=await p.locator('#scoreCaption').evaluate(el=>{const rgb=getComputedStyle(el).color.match(/[\d.]+/g).slice(0,3).map(Number);const lum=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};const l=.2126*lum(rgb[0])+.7152*lum(rgb[1])+.0722*lum(rgb[2]);return(l+.05)/(lum(5)+.05)});assert(contrast>=4.5,'Life Back caption contrast');
+ await p.locator('.area-card').first().click();assert(await p.locator('dialog[open]').isVisible());await p.screenshot({path:dir+'/'+name+'-'+width+'-life-back-dialog.png',fullPage:true});await p.keyboard.press('Escape');
+ row.checks.push('Life Back dark canvas and caption contrast verified; progress card opens its dialog');
+ }await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'.png',fullPage:true});}
  await p.goto(base+'/programme',{waitUntil:'domcontentloaded'});assert.equal(await p.locator('#appBottomNav').count(),0);assert.equal(await p.locator('[data-app-layout]').count(),0);row.checks.push('Layout persists across member routes; public Programme receives no app markup');
  await p.goto(base+'/__app-review');await p.locator('#explainHealth').click();assert.match(await p.locator('#healthExplanation').textContent(),/Nothing was connected or saved/);
  await api(app,'/v1/auth/logout',{});await api(app,'/v1/auth/login',login);assert.deepEqual((await api(app,'/v1/life-back')).progress,changed);row.checks.push('Feedback adaptation visible in app; progress survives new session; health prototype never claims connection');

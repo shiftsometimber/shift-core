@@ -2,8 +2,9 @@
 export const appStyles=String.raw`
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]){background:#050505!important;font-family:Arial,Helvetica,sans-serif!important;padding-bottom:90px!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) main{max-width:780px!important;background:#050505!important}
-html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):not([data-member-page="dashboard"]){background:#e7e3da!important}
-html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):not([data-member-page="dashboard"]) main{background:#e7e3da!important}
+html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):not([data-member-page="dashboard"]):not([data-member-page="life-back"]){background:#e7e3da!important}
+html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):not([data-member-page="dashboard"]):not([data-member-page="life-back"]) main{background:#e7e3da!important}
+html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout])[data-member-page="life-back"]{color:#e7e3da!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) :is(main,main p,main h1,main h2,main h3){font-family:Arial,Helvetica,sans-serif!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) :is(main,#todayActions.mtm-home) [data-member-hero="v1"]{min-height:0!important;padding:24px 0!important;background:#050505!important;margin-bottom:18px!important;border-radius:0!important}
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) :is(main,#todayActions.mtm-home) [data-member-hero="v1"]:after{display:none!important}
