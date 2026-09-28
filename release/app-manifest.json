@@ -19,6 +19,7 @@
     "release/growth-adopt-deployment.mjs": "56dd491660fa9b2f27102b525d40222d1f3b36327356545d7db44e9e1a2805eb",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "a3631e2166c4c66d30003b999d465335edcebbb431ef66221df918efcf242dc6",
-    "tests/app-layout-live.test.mjs": "658d040c45c9657eef5f4bd6cf54a81ea3e2d24e1f4c837b64cae21fd9f29133"
+    "tests/app-layout-live.test.mjs": "658d040c45c9657eef5f4bd6cf54a81ea3e2d24e1f4c837b64cae21fd9f29133",
+    ".github/workflows/readiness-preservation.yml": "6b954852e9d4d8938b752ebe6e2a20e833e344b481b1a0726939ffe775014ce2"
   }
 }
