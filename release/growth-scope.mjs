@@ -5,7 +5,7 @@ export const GROWTH_PREVIEW='44c5ebcef492ee9b6476f0343737afb085f579f3';
 // Exact owner-reviewed payload and exact integration files. No generic directory exclusion.
 const hashes={
   ".github/workflows/cloudflare-production-promote.yml": "f95f9a1e66f8a63aff58620456990951ea85bb40d282e5ef691fcc9abdab12e5",
-  ".github/workflows/growth-member-preview.yml": "2504002114f448635365c693f7d97065119608be1a3975f5b3d19ab5d2843098",
+  ".github/workflows/growth-member-preview.yml": "b2b5bc5aa3791974a202443babcbd4d57d3d9f0a47f49ca86f54d9ae0836698a",
   ".github/workflows/rendered-member-production-acceptance.yml": "932e7f8e375b78a02f32dba1b452e63c62954e879e08ce61f5aaf9d2a974b5bc",
   "docs/growth-review/2026-09-27.md": "3244a00605dfd2b856109b42095787ca979ee4faff3283e85ed51eea290fd2b0",
   "docs/growth-review/local-test-results.txt": "edf614202a255cf31edcbf561671d1d52d9bd7b945f1a425a4ec8da6a7dfdcfa",
