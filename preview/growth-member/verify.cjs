@@ -31,6 +31,8 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
   });
   assert.equal(alignment.heading,'center');assert.equal(alignment.intro,'center');assert(alignment.rootOffset<2,JSON.stringify(alignment));assert(alignment.introOffset<2);assert(alignment.headingOffset<2);assert(!alignment.overflow);
   assert.equal(await page.locator('.shift-guided-card').count(),4);
+  assert.equal(await page.locator('.shift-guided-card').first().evaluate(el=>getComputedStyle(el).alignItems),'center');
+  assert(await page.locator('.shift-guided-kicker').evaluate(el=>{const r=el.getBoundingClientRect(),p=el.parentElement.getBoundingClientRect();return Math.abs((r.left+r.right-p.left-p.right)/2)<2}));
   assert.equal(await page.locator('.shift-guided-alert a').getAttribute('href'),'/mental-health/urgent-mental-health-help');
   await page.screenshot({path:dir+'/'+name+'-'+width+'-good-to-talk.png',fullPage:true});
   await page.locator('.shift-guided-library summary').click();assert(await page.locator('.shift-guided-library').evaluate(el=>el.open));

@@ -6,8 +6,9 @@ const goodToTalkAlignment=`<style data-good-to-talk-alignment>
 main#main-content.template-mens-mental-health > .standard-layout{margin-inline:auto!important}
 main#main-content.template-mens-mental-health .shift-guided-front__inner{margin-inline:auto!important;text-align:center}
 main#main-content.template-mens-mental-health .shift-guided-front h1,
+main#main-content.template-mens-mental-health .shift-guided-kicker,
 main#main-content.template-mens-mental-health .shift-guided-intro{margin-inline:auto!important}
-main#main-content.template-mens-mental-health .shift-guided-card{text-align:center}
+main#main-content.template-mens-mental-health .shift-guided-card{text-align:center;align-items:center}
 main#main-content.template-mens-mental-health .shift-guided-actions{justify-content:center}
 main#main-content.template-mens-mental-health .shift-guided-alert{justify-content:center;flex-wrap:wrap;text-align:center}
 </style>`;
