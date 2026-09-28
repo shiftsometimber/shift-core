@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 export const GROWTH_PREVIEW='15c4deabe68530f3ce49712638d76453adba3b96';
 // Exact owner-reviewed payload and exact integration files. No generic directory exclusion.
 const hashes={
-  ".github/workflows/cloudflare-production-promote.yml": "9beb958983ae8b3f7637664d54c18bfe323038e6019b885d61f8471ce3517247",
+  ".github/workflows/cloudflare-production-promote.yml": "2a78f24891b6916e2ac77e8c619aa5c8cae4652c2aaf5e10aabdaa5990923ef4",
   ".github/workflows/growth-member-preview.yml": "35e5b2ef34e158fe438ee426d932463a9d5e280ffe70775812e27cb9084e66ab",
   ".github/workflows/rendered-member-production-acceptance.yml": "932e7f8e375b78a02f32dba1b452e63c62954e879e08ce61f5aaf9d2a974b5bc",
   "docs/growth-review/2026-09-27.md": "3244a00605dfd2b856109b42095787ca979ee4faff3283e85ed51eea290fd2b0",
@@ -37,7 +37,10 @@ const hashes={
   "docs/growth-review/continuity-release-20260928.md": "47c3cea1237c2c4d5b7246dd6b146114cca8325ec74d487cb9a3316589da4a07",
   "member-experience/tests/growth-continuity-preview.test.mjs": "c09e5551ab1a57a0d22234e2663a0b6960b1dc3cc00b023c11f9a72969f2473f",
   "preview/growth-member/continuity-journey.mjs": "755359a468a3f76f5593963ccea8ba4045389ae5e4087644dbd3e3a77a311416",
-  "scripts/verify-public-continuity-live.mjs": "f1ef660b0f0bbf6fbffeb6bfb310b7cde277aed6f7769b9aa4ee4eb00153cc2c"
+  "scripts/verify-public-continuity-live.mjs": "f1ef660b0f0bbf6fbffeb6bfb310b7cde277aed6f7769b9aa4ee4eb00153cc2c",
+  "release/ai-response-proof.mjs": "1bb95227a37baab536194092f4c8190aaea082b1c76de4136d2d822eb24d5c47",
+  "release/shift-ai-live.mjs": "af94714ece6ef04b681e7553cdb976b080988d5c4353900e11ae0dad97408142",
+  "tests/shift-ai-edge-proof.test.mjs": "025227f5e4a57d13c1f2806cf3a9122de065bc76a3a51c62dd738d5c0dc67a1a"
 };
 export const GROWTH_PINNED_PATHS=Object.keys(hashes);
 export const GROWTH_PATHS=new Set([...GROWTH_PINNED_PATHS,'release/growth-scope.mjs']);

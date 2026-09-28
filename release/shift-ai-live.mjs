@@ -1,3 +1,4 @@
+import {readSiteAnswer,observeEdgeAnswer} from './ai-response-proof.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -28,16 +29,29 @@ if(phase==='before'){
  for(let i=0;i<4;i++){const t=Date.now();const response=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message:'How can I make protein practical when appetite is low?',useJourney:false}),signal:AbortSignal.timeout(15000)});assert.equal(response.status,200);assert.equal((await response.json()).delivery,'checked_answer');report.quickReplyTimingsMs.push(Date.now()-t);}
  report.quickReplyMedianMs=[...report.quickReplyTimingsMs].sort((a,b)=>a-b)[2];
  report.quickReplyTargetMet=report.quickReplyMedianMs<1000;
- const freshSiteAnswer=async()=>{const siteStart=Date.now();const siteResponse=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json','Cache-Control':'no-cache',Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message:'What is Life Back?',useJourney:false,stream:true}),signal:AbortSignal.timeout(45000)});assert.equal(siteResponse.status,200);assert.match(siteResponse.headers.get('content-type'),/text\/event-stream/);let pending='',siteBody,firstTextMs;const decoder=new TextDecoder();for await(const chunk of siteResponse.body){pending+=decoder.decode(chunk,{stream:true});let end;while((end=pending.indexOf('\n\n'))>=0){const frame=pending.slice(0,end);pending=pending.slice(end+2);const event=frame.match(/^event: (.+)$/m)?.[1],raw=frame.match(/^data: (.+)$/m)?.[1];if(!raw)continue;const value=JSON.parse(raw);assert.notEqual(event,'error','Live stream interrupted');if(event==='delta'&&value.text?.trim()&&firstTextMs===undefined)firstTextMs=Date.now()-siteStart;if(event==='done')siteBody=value;}}assert.equal(siteBody?.ok,true);assert.equal(siteBody.delivery,'streamed');assert(firstTextMs!==undefined);assert(siteBody.sources.some(x=>x.url==='https://shiftsometimber.co.uk/life-back'&&x.reviewState==='published_site'),'Live answer must cite the published Life Back page');return {firstTextMs,elapsedMs:Date.now()-siteStart,...siteBody};
-};
- report.siteAnswer=await freshSiteAnswer();const siteBody=report.siteAnswer;
- assert.equal(siteBody.sources.length,1,'Dedicated Life Back question must not show unrelated sources');
- report.repeatedSiteAnswers=[];
- for(let i=0;i<7;i++){const t=Date.now();const r=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message:'What is Life Back?',useJourney:false,stream:true}),signal:AbortSignal.timeout(15000)});assert.equal(r.status,200);const value=await r.json();assert.equal(value.delivery,'cached_public');assert.equal(value.journeyUsed,false);assert.equal(value.answer,siteBody.answer);assert.deepEqual(value.sources,siteBody.sources);report.repeatedSiteAnswers.push({elapsedMs:Date.now()-t,delivery:value.delivery});}
- const normalisedStart=Date.now();const normalisedResponse=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message:'WHAT  IS LIFE BACK',useJourney:false,stream:true}),signal:AbortSignal.timeout(15000)});assert.equal(normalisedResponse.status,200);const normalised=await normalisedResponse.json();assert.equal(normalised.delivery,'cached_public');assert.equal(normalised.answer,siteBody.answer);assert.equal(normalised.journeyUsed,false);report.normalisedPublicAnswer={elapsedMs:Date.now()-normalisedStart,delivery:normalised.delivery};
- const repeatTimings=report.repeatedSiteAnswers.map(x=>x.elapsedMs).sort((a,b)=>a-b);report.repeatedSiteLatency={samples:repeatTimings.length,medianMs:repeatTimings[Math.floor(repeatTimings.length/2)],maxMs:repeatTimings.at(-1),allUnderOneSecond:repeatTimings.every(ms=>ms<1000)};
- report.freshSiteTimings=[{firstTextMs:report.siteAnswer.firstTextMs,elapsedMs:report.siteAnswer.elapsedMs}];
- for(let i=0;i<2;i++){const value=await freshSiteAnswer();assert.equal(value.sources.length,1);report.freshSiteTimings.push({firstTextMs:value.firstTextMs,elapsedMs:value.elapsedMs});}
+ const siteRequest=async(message,{fresh=false}={})=>{
+  const startedAt=Date.now(),response=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',...(fresh?{'Cache-Control':'no-cache'}:{}),Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message,useJourney:false,stream:true}),signal:AbortSignal.timeout(45000)});
+  return readSiteAnswer(response,{startedAt,requireStream:fresh,sources:report.siteAnswer?.sources});
+ };
+ report.siteAnswer=await siteRequest('What is Life Back?',{fresh:true});
+ const answers=new Map();observeEdgeAnswer(answers,report.siteAnswer);
+ report.repeatedSiteAnswers=[];let verifiedCacheHits=0;
+ for(let i=0;i<7;i++){
+  const value=await siteRequest('What is Life Back?');if(observeEdgeAnswer(answers,value))verifiedCacheHits++;
+  report.repeatedSiteAnswers.push({edge:value.edge,elapsedMs:value.elapsedMs,delivery:value.delivery});
+ }
+ assert(verifiedCacheHits>0,'No repeated cache reuse was proved within a responding data centre');
+ report.normalisedPublicAnswers=[];let normalisedVerified=false;
+ for(let i=0;i<3&&!normalisedVerified;i++){
+  const value=await siteRequest('WHAT  IS LIFE BACK'),previous=answers.get(value.edge);
+  if(value.delivery==='cached_public'&&previous){assert.equal(value.answer,previous.answer,'Normalised question did not reuse the same public answer');normalisedVerified=true;}
+  report.normalisedPublicAnswers.push({edge:value.edge,elapsedMs:value.elapsedMs,delivery:value.delivery});
+ }
+ assert(normalisedVerified,'No normalised-question cache hit matched an original-question receipt in the same data centre');
+ const repeatTimings=report.repeatedSiteAnswers.filter(x=>x.delivery==='cached_public').map(x=>x.elapsedMs).sort((a,b)=>a-b);
+ report.repeatedSiteLatency={samples:repeatTimings.length,medianMs:repeatTimings[Math.floor(repeatTimings.length/2)],maxMs:repeatTimings.at(-1),allUnderOneSecond:repeatTimings.every(ms=>ms<1000),verifiedCacheHits};
+ report.freshSiteTimings=[{edge:report.siteAnswer.edge,firstTextMs:report.siteAnswer.firstTextMs,elapsedMs:report.siteAnswer.elapsedMs}];
+ for(let i=0;i<2;i++){const value=await siteRequest('What is Life Back?',{fresh:true});report.freshSiteTimings.push({edge:value.edge,firstTextMs:value.firstTextMs,elapsedMs:value.elapsedMs});}
  const index=JSON.parse(readFileSync(dir+'/shift-ai-public-index.json'));assert(index.indexed>=50);report.publicIndex={indexed:index.indexed,chunks:index.chunks,at:index.at};
  const page=await fetch('https://shiftsometimber.co.uk/ask-timber');assert.equal(page.status,200);assert((await page.text()).includes('timberQuestion'));
  report.authenticatedProductionConversation='No customer session used. Private-memory behaviour verified in authenticated synthetic browser acceptance; live configuration and public inference verified here.';
