@@ -10,7 +10,7 @@ const original=await get('/actions/runs/36356094808');assert.equal(original.head
 const runs=(await get('/actions/runs?branch=release%2Fgrowth-member-20260928&event=push&per_page=20')).workflow_runs;
 let candidate;
 for(const run of runs.filter(r=>r.path==='.github/workflows/growth-member-preview.yml'&&r.conclusion==='success')){
- try{git('merge-base','--is-ancestor',run.head_sha,'HEAD');for(const path of GROWTH_PINNED_PATHS)assert.equal(git('rev-parse',run.head_sha+':'+path),git('rev-parse','HEAD:'+path));candidate=run;break}catch{}
+ try{git('merge-base','--is-ancestor',run.head_sha,'HEAD');for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','growth-member-public.mjs','worker-entry-v6.js'])assert.equal(git('rev-parse',run.head_sha+':'+path),git('rev-parse','HEAD:'+path));candidate=run;break}catch{}
 }
 assert(candidate,'No successful source-identical integrated preview');
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;

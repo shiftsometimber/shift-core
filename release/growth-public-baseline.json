@@ -1,0 +1,158 @@
+{
+  "checkedAt": "2026-09-28T10:20:38.474Z",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "f4c118047c91b47626ca366d0211a865c63d86966bca27974cc2eaf58e08393f",
+      "bytes": 265039,
+      "preservedSha256": "4142631b1f426ace78f987b695eb8754a9211efa77413625cae3c571c4347459",
+      "preservedBytes": 264993,
+      "homeStigmaAlt": true,
+      "actualSha256": "08cf85e9e79a22d8e853cdf44bb91318f17482be32028d6f0c4958b618456244",
+      "actualBytes": 94838,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/start-here",
+      "status": 200,
+      "sha256": "0801fdbe627d8f8ce1bf327e352999c36cff24864e8fda195db1113a73977a34",
+      "bytes": 47286,
+      "preservedSha256": "0801fdbe627d8f8ce1bf327e352999c36cff24864e8fda195db1113a73977a34",
+      "preservedBytes": 47286,
+      "actualSha256": "4fabd6eceb9533285f2b459e4a2fb9d7a66295440881d4516f101696833835df",
+      "actualBytes": 48479,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/programme",
+      "status": 200,
+      "sha256": "ee3e720ccf05a830adac27ec0b4d9da72c9b2dbc82525bd35f1dcfdfc230d8d8",
+      "bytes": 26271,
+      "preservedSha256": "c0f98c63d48064c0e504444b2bd432306f8e16f270a754c81b7b47f5a89c3217",
+      "preservedBytes": 26172,
+      "programmeTwitterImage": true,
+      "programmeJourneyLink": true,
+      "actualSha256": "7877f1fdc9e26c94d5960165f6f08503e143a4edf2b7df899ee753d281d61b30",
+      "actualBytes": 29860,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/help",
+      "status": 200,
+      "sha256": "389fbe21ec9baa9c06727352f4404eb415758dc175187bc401964e6956a8c804",
+      "bytes": 26611,
+      "preservedSha256": "389fbe21ec9baa9c06727352f4404eb415758dc175187bc401964e6956a8c804",
+      "preservedBytes": 26611,
+      "actualSha256": "ff25665407b21dd3d752e1b020355c96520ef88bec0e211ac458f26d2e3c92ac",
+      "actualBytes": 27640,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/shift-health",
+      "status": 200,
+      "sha256": "9108c8d276ad683a7482528bcd75a384fd1086a37f6b3ced6da9eb825d14cd27",
+      "bytes": 36948,
+      "preservedSha256": "29555c689202592b62ed2891101819b0b256566c41dbe11fa65d314455b99d30",
+      "preservedBytes": 36859,
+      "shiftHealthTwitterImage": true,
+      "actualSha256": "7b49f021b28378d3a06ff0a18ebe0b3aef00d1d96aadc22079da113935d22a45",
+      "actualBytes": 40049,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/treatment-centre",
+      "status": 200,
+      "sha256": "6fe98018f497908ac32b9030f08a697a4558eb1791b4255a254c269e1859bbdc",
+      "bytes": 44847,
+      "preservedSha256": "823bd1a518d73071a2f0a5558e868149bc60d266f4366a9d9b5fb4ace21a1787",
+      "preservedBytes": 42776,
+      "treatmentsWatchEntry": true,
+      "relatedGuide": true,
+      "relatedGuideRevision": "current",
+      "authoritySha256": "1b9f9f237e91522ed699e032037f8d450857bb222109c0b15e08d155fa0755a7",
+      "authorityBytes": 44423,
+      "actualSha256": "29eba5e2bc7794905f8f9ad4217cd72f709cc980070c87b14530c0c854f58f1d",
+      "actualBytes": 45839,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "sha256": "e0385cc33754dc97ccd06e1295e62c76c61536bfcf0a5b385dd31beed2ad638e",
+      "bytes": 33031,
+      "preservedSha256": "e0385cc33754dc97ccd06e1295e62c76c61536bfcf0a5b385dd31beed2ad638e",
+      "preservedBytes": 33031,
+      "actualSha256": "ac0c1452f568a8ac7175140a276205bd6d3596eae7d6e492974731dcf51f37f7",
+      "actualBytes": 34060,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "status": 200,
+      "sha256": "bb4c8368fb112f635d6497b406b73771c31389326475e069c9f22876853ec1f6",
+      "bytes": 108372,
+      "preservedSha256": "bb4c8368fb112f635d6497b406b73771c31389326475e069c9f22876853ec1f6",
+      "preservedBytes": 108372,
+      "actualSha256": "cb4ec9189ae531f574f018c8e00b9083b1a180e66bf9635adb4d145ac0874f9c",
+      "actualBytes": 111751,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/shop",
+      "status": 200,
+      "sha256": "58174168873cc1e9dfedeb7c1a1cbd97bd8af018629c85363730159bb7e4d7c4",
+      "bytes": 24062,
+      "preservedSha256": "58174168873cc1e9dfedeb7c1a1cbd97bd8af018629c85363730159bb7e4d7c4",
+      "preservedBytes": 24062,
+      "actualSha256": "2e31d6b147d9e97c4ec5b3083fe2c1eed173c70cf1d6c7fee5b0a77eede998ae",
+      "actualBytes": 25091,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/work-with-us",
+      "status": 200,
+      "sha256": "c809922395a900af358fc706e1d5ac23dfa15fd6b0f336bcbdd4112f53e31ca3",
+      "bytes": 27744,
+      "preservedSha256": "c809922395a900af358fc706e1d5ac23dfa15fd6b0f336bcbdd4112f53e31ca3",
+      "preservedBytes": 27744,
+      "actualSha256": "c36225a13b213f0f0623a4847af3883e28e1689035bde97164133503ee2c8bda",
+      "actualBytes": 28773,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/member-login",
+      "status": 200,
+      "sha256": "c6e4d55526d1dd85b91349466819a4343a782667245a01a2c5a92fd184aef7cd",
+      "bytes": 41839,
+      "preservedSha256": "c6e4d55526d1dd85b91349466819a4343a782667245a01a2c5a92fd184aef7cd",
+      "preservedBytes": 41839,
+      "actualSha256": "1095ed341087f94e251b8eeb7ade779c04170d3bfd0b3b88539b01504a24bf0c",
+      "actualBytes": 46156,
+      "continuityAdditionRemoved": true
+    },
+    {
+      "path": "/turnstile-auth-v1.js?v=timeout-20260912",
+      "status": 200,
+      "sha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+      "bytes": 5034,
+      "preservedSha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+      "preservedBytes": 5034,
+      "actualSha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+      "actualBytes": 5034,
+      "continuityAdditionRemoved": false
+    },
+    {
+      "path": "/articles/stopping-glp1",
+      "status": 200,
+      "sha256": "cf0b43faa5e05b4bc930eb56dc80dcc18edc570041d3fd8f836607f364283106",
+      "bytes": 34603,
+      "preservedSha256": "cf0b43faa5e05b4bc930eb56dc80dcc18edc570041d3fd8f836607f364283106",
+      "preservedBytes": 34603,
+      "actualSha256": "9088738004b3e12e893bbd7fea9c20e331ee85ea3bb62f3c5f71b2cab789e042",
+      "actualBytes": 36662,
+      "continuityAdditionRemoved": true
+    }
+  ],
+  "comparison": "baseline"
+}

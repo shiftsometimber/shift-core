@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 export const GROWTH_PREVIEW='44c5ebcef492ee9b6476f0343737afb085f579f3';
 // Exact owner-reviewed payload and exact integration files. No generic directory exclusion.
 const hashes={
-  ".github/workflows/cloudflare-production-promote.yml": "f95f9a1e66f8a63aff58620456990951ea85bb40d282e5ef691fcc9abdab12e5",
+  ".github/workflows/cloudflare-production-promote.yml": "dfe59a8721229de6d36020986b16ec8cd7bc7adc33a13c170e0b7215e5097f86",
   ".github/workflows/growth-member-preview.yml": "b2b5bc5aa3791974a202443babcbd4d57d3d9f0a47f49ca86f54d9ae0836698a",
   ".github/workflows/rendered-member-production-acceptance.yml": "932e7f8e375b78a02f32dba1b452e63c62954e879e08ce61f5aaf9d2a974b5bc",
   "docs/growth-review/2026-09-27.md": "3244a00605dfd2b856109b42095787ca979ee4faff3283e85ed51eea290fd2b0",
@@ -19,11 +19,15 @@ const hashes={
   "preview/growth-member/verify.cjs": "a198ed33c32cd54e12dd221d5b945b69055e932fa37b55ffb42aa64af67ef4dd",
   "preview/growth-member/worker.mjs": "c5cd471dcafbe7162eb3b7a8f3e8eb301e8cd7dfb497cfdb4f9588ecb0979178",
   "release/growth-member-live.mjs": "b0345771269d507db19f3bbd2c96f621a70fea08a08204735e0b82b58dba98b1",
-  "release/growth-preflight.mjs": "af5c02733740c9760d396572a80cebdbb0085282e03473214440c053dca55c0c",
+  "release/growth-preflight.mjs": "6e4ed7285bc5df03f260faf65fd3cc4de91c40e2cfd1936a85a710c6763e0297",
   "release/growth-preservation.mjs": "a3c956a7a4f259f0d31b26090b5fd38d2fb639aae31202e4f2fc4e37f86da0b9",
   "release/growth-public-live.cjs": "7e93c062cf260b0a93207c626c72c9de4bec8a5766e1d45eec860beb21d76797",
   "tests/growth-release.test.mjs": "e1a88ba68b78e1f4072d515b52338b9d742c2661db80b416b44e2ae61e57fe8f",
-  "worker-entry-v6.js": "ba9f0bf21980f3da179ecbe852e3b7f11fbfae0cbc164c5e8461670808ff9dd6"
+  "worker-entry-v6.js": "ba9f0bf21980f3da179ecbe852e3b7f11fbfae0cbc164c5e8461670808ff9dd6",
+  ".github/workflows/my-timber-pwa-production-release.yml": "cb98e47663fe1e23df61b7b0e806374ac59a80b8e3d21efca048ee2adfaf536b",
+  "release/growth-adopt-deployment.mjs": "21d7bf5f834ce02061e2af63fc04ceb6e4891564f57fc2250fe4643c70558d60",
+  "release/growth-public-baseline.json": "7804cf82404fad8cc9d02dd4cf8f2ff46bd0dac7aca86e08a2b366613bc3754e",
+  "docs/growth-review/live-release-checkpoint-20260928.md": "c7a8870b0ec030e3272b02d55e87d59a53913bf4c99c39c74687b1a99bc61601"
 };
 export const GROWTH_PINNED_PATHS=Object.keys(hashes);
 export const GROWTH_PATHS=new Set([...GROWTH_PINNED_PATHS,'release/growth-scope.mjs']);
