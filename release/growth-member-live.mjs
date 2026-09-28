@@ -1,3 +1,4 @@
+import {verifyLiveTools} from './app-member-live.mjs';
 // Runs only inside the existing authorised rendered-member commissioning workflow.
 // New labelled synthetic identity; normal public APIs; no real member inspection.
 import {chromium} from 'playwright';
@@ -46,6 +47,7 @@ try{
  assert.deepEqual((await call('/v1/life-back')).progress,saved);
  await page.screenshot({path:dir+'/continuity-return.png',fullPage:true});
  report.checks.push({continuityArrival:true,refreshRetainsProgress:true,existingStepShown:true});
+ await verifyLiveTools(page,site,dir,report);
  report.status='pass';
 }catch(error){report.status='fail';report.error=String(error.message).replaceAll(email,'[synthetic]').replaceAll(password,'[redacted]');await page.screenshot({path:dir+'/failure.png',fullPage:true}).catch(()=>{});throw error}
 finally{await context.close();await browser.close();writeFileSync(dir+'/results.json',JSON.stringify(report,null,2))}
