@@ -19,7 +19,7 @@ permissions:
 
 concurrency:
   group: my-timber-final-production-${{ github.sha }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   billy-iphone-candidate:

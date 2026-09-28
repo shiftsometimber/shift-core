@@ -41,7 +41,16 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
   await page.goto(base+'/member/dashboard#today',{waitUntil:'domcontentloaded'});
   await page.getByText(life.progress.nextShift.title,{exact:true}).first().waitFor({timeout:45000});
   await page.screenshot({path:dir+'/'+name+'-'+width+'-returned-next-shift.png',fullPage:true});
-  row.checks.push('Two negative daily reviews change the task; helpful feedback retains adjusted task; linked feedback survives logout/login; Today displays saved result; no invented reflection or completion');row.status='pass';
+  row.checks.push('Two negative daily reviews change the task; helpful feedback retains adjusted task; linked feedback survives logout/login; Today displays saved result; no invented reflection or completion');
+  const emailProbes=[];page.on('request',request=>{if(new URL(request.url()).pathname==='/v1/member/details/email-change')emailProbes.push(request.url())});
+  await page.goto(base+'/member/settings',{waitUntil:'domcontentloaded'});
+  await page.locator('#memberDetailsForm[data-bound="true"]').waitFor();
+  assert.equal(await page.locator('#memberEmailChangePanel').getAttribute('data-email-change-enabled'),'false');
+  assert.equal(await page.locator('#memberEmailChangePanel').isVisible(),false);
+  assert.notEqual(await page.locator('#memberEmail').getAttribute('readonly'),null);
+  await page.waitForTimeout(500);assert.deepEqual(emailProbes,[],'Disabled feature must not generate an email-change request');
+  await page.screenshot({path:dir+'/'+name+'-'+width+'-settings-capability.png',fullPage:true});
+  row.checks.push('Settings retains read-only email and does not probe the disabled email-change endpoint');row.status='pass';
  }catch(e){row.status='fail';row.error=String(e.stack).replaceAll(fixture.password,'[redacted]');await page.screenshot({path:dir+'/'+name+'-'+width+'-failure.png',fullPage:true}).catch(()=>{});}
  finally{await ctx.close();await browser.close();fs.writeFileSync(dir+'/verification.json',JSON.stringify(report,null,2));}
 }

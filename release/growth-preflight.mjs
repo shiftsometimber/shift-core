@@ -7,10 +7,10 @@ const repo='https://api.github.com/repos/shiftsometimber/shift-core';
 async function get(path){const r=await fetch(repo+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'GitHub verification '+r.status);return r.json()}
 validateGrowthSource();
 const original=await get('/actions/runs/36356094808');assert.equal(original.head_sha,GROWTH_PREVIEW);assert.equal(original.conclusion,'success');
-const runs=(await get('/actions/runs?branch=release%2Fgrowth-member-20260928&event=push&per_page=20')).workflow_runs;
+const runs=(await get('/actions/runs?branch=release%2Fsettings-capability-20260928&event=push&per_page=20')).workflow_runs;
 let candidate;
 for(const run of runs.filter(r=>r.path==='.github/workflows/growth-member-preview.yml'&&r.conclusion==='success')){
- try{git('merge-base','--is-ancestor',run.head_sha,'HEAD');for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','growth-member-public.mjs','worker-entry-v6.js'])assert.equal(git('rev-parse',run.head_sha+':'+path),git('rev-parse','HEAD:'+path));candidate=run;break}catch{}
+ try{git('merge-base','--is-ancestor',run.head_sha,'HEAD');for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','growth-member-public.mjs','worker-entry-v6.js','member-experience/entry.mjs','member-experience/member-details.mjs','member-experience/member-email-client.mjs'])assert.equal(git('rev-parse',run.head_sha+':'+path),git('rev-parse','HEAD:'+path));candidate=run;break}catch{}
 }
 assert(candidate,'No successful source-identical integrated preview');
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;

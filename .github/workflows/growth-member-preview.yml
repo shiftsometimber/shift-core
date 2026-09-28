@@ -1,7 +1,7 @@
 name: Growth and member experience PREVIEW ONLY
 on:
   push:
-    branches: [preview/growth-member-experience-20260927, release/growth-member-20260928]
+    branches: [preview/growth-member-experience-20260927, release/growth-member-20260928, release/settings-capability-20260928]
 permissions:
   contents: read
 concurrency:

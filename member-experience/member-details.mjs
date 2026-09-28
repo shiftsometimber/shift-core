@@ -1,7 +1,7 @@
 import {emailChangeMarkup,emailChangeRuntime} from './member-email-client.mjs';
 import {deliveryMarkup,deliveryRuntime} from './member-delivery-client.mjs';
 // Additive, scoped account controls. Existing settings/security/consent controls remain.
-export function withMemberDetails(html){
+export function withMemberDetails(html,env={}){
  if(html.includes('id="memberDetailsPanel"')||!/<main\b/.test(html))return html;
  const panel=`<section id="memberDetailsPanel" aria-labelledby="memberDetailsTitle">
   <div class="md-heading"><p class="eyebrow">MY TIMBER · YOUR ACCOUNT</p><h2 id="memberDetailsTitle">Member details</h2><p>Moved house? New number? Keep your details up to date here.</p></div>
@@ -32,7 +32,7 @@ export function withMemberDetails(html){
    </fieldset>
    <div class="md-actions"><button id="memberDetailsSave" type="submit" disabled>Save member details</button><button id="memberDetailsReload" type="button" class="md-secondary" hidden>Reload saved details</button></div>
    <p id="memberDetailsStatus" role="status" aria-live="polite">Loading your saved details…</p>
-  </form>${deliveryMarkup}${emailChangeMarkup}</section>`;
+  </form>${deliveryMarkup}${env.MEMBER_EMAIL_CHANGE_ENABLED==='true'&&typeof env.EMAIL?.send==='function'?emailChangeMarkup.replace('data-email-change-enabled="false"','data-email-change-enabled="true"'):emailChangeMarkup}</section>`;
  // This is one card inside Settings, not a replacement page, header or dashboard.
  return html.replace(/(<main\b[^>]*>)/,'$1'+panel).replace('</body>','<link rel="stylesheet" href="/assets/member-experience/member-details.css"><script defer src="/assets/member-experience/member-details.mjs"></script></body>');
 }
