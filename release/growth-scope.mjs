@@ -21,7 +21,7 @@ const hashes={
   "release/growth-member-live.mjs": "1d53c8dde247b9ab90f85bd9974c55f05d7d4aed0db6929f73271689c6e0bba6",
   "release/growth-preflight.mjs": "733b6553ff4db387a1476f4a5e604e8bce0700bff447d3a8c7ec14b72f8b310c",
   "release/growth-preservation.mjs": "abe4c4af1bb1f835977fa3f9620b289330f558778a27c55ba5e95fdfd5bd6476",
-  "release/growth-public-live.cjs": "e1776f10305f437fac99658be1b3af2ed4abcb9389f534fd3ddf1fe8c2dd9a55",
+  "release/growth-public-live.cjs": "2de2f16eda21d984a01a2507b5fdc73194528589aa72a0e199f19c9fee99beec",
   "tests/growth-release.test.mjs": "52e72797f5753d792edebc2dc9039caae30b8b8fc6ca64632892f4fb7f3ea19e",
   "worker-entry-v6.js": "ba9f0bf21980f3da179ecbe852e3b7f11fbfae0cbc164c5e8461670808ff9dd6",
   ".github/workflows/my-timber-pwa-production-release.yml": "cb98e47663fe1e23df61b7b0e806374ac59a80b8e3d21efca048ee2adfaf536b",

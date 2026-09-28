@@ -41,8 +41,15 @@ const dir='b1-runtime-release/growth-public';fs.mkdirSync(dir,{recursive:true});
    await page.screenshot({path:dir+'/'+width+path.replaceAll('/','-')+'.png',fullPage:true});
   }
   await page.locator('[data-continuity-primary]').click();
-  const signIn=page.locator('#memberSessionStatus a');await signIn.waitFor();
-  assert.equal(new URL(await signIn.getAttribute('href'),'https://shiftsometimber.co.uk').searchParams.get('returnTo'),'/member/dashboard?entry=continuity#today');
+  // Production retains its existing inline auth form; the isolated preview uses a link.
+  await page.locator('#previewAuth:not([hidden])').waitFor();
+  assert.equal(await page.locator('body').getAttribute('data-member-session'),'signed-out');
+  assert(await page.locator('#previewRegister input[name="email"]').isVisible());
+  assert(await page.locator('#previewRegister input[name="password"]').isVisible());
+  assert.equal(page.url(),'https://shiftsometimber.co.uk/member/dashboard?entry=continuity#today');
+  assert.equal(await page.locator('#continuityWelcome').isVisible(),false,'Private Today content stays behind authentication');
+  await page.screenshot({path:dir+'/'+width+'-continuity-sign-in.png',fullPage:true});
+  results.push({width,status:'pass',checks:['inline production sign-in visible','chosen Continuity destination retained','private Today content hidden']});
 
 
   }finally{await context.close()}
