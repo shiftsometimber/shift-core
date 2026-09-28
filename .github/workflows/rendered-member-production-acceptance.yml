@@ -38,6 +38,27 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Acquire growth-loop commissioning identity
+        id: oidc_growth
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Prove approved growth feedback through fresh live sign-in
+        id: growth_loop
+        continue-on-error: true
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_growth.outputs.token }}
+        run: node release/growth-member-live.mjs
+      - name: Retain growth-loop live evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: growth-member-live-${{ github.sha }}
+          path: growth-member-live-evidence/
+          if-no-files-found: error
       - name: Acquire G2-011 commissioning identity
         id: oidc_011
         shell: bash
@@ -118,15 +139,17 @@ jobs:
             g2-015-plan-manager-evidence
           if-no-files-found: warn
           retention-days: 30
-      - name: Enforce all four acceptance results
+      - name: Enforce all five acceptance results
         if: always()
         env:
+          GROWTH_OUTCOME: ${{ steps.growth_loop.outcome }}
           G2_011_OUTCOME: ${{ steps.g2_011.outcome }}
           G2_013_OUTCOME: ${{ steps.g2_013.outcome }}
           G2_014_OUTCOME: ${{ steps.g2_014.outcome }}
           G2_015_OUTCOME: ${{ steps.g2_015.outcome }}
         run: |
           printf 'G2-011=%s G2-013=%s G2-014=%s G2-015=%s\n' "$G2_011_OUTCOME" "$G2_013_OUTCOME" "$G2_014_OUTCOME" "$G2_015_OUTCOME"
+          test "$GROWTH_OUTCOME" = success
           test "$G2_011_OUTCOME" = success
           test "$G2_013_OUTCOME" = success
           test "$G2_014_OUTCOME" = success

@@ -1,3 +1,4 @@
+import {withGrowthPublicCopy} from './growth-member-public.mjs';
 import {appendAiMemoryExport} from './member-experience/ai-memory-bridge.mjs';
 import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
 import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';
@@ -1187,6 +1188,6 @@ export default {
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
     const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
-    return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));
+    return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));
   },
 };
