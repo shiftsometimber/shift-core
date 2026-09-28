@@ -92,6 +92,7 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #t
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) .app-footer-details{max-width:980px;margin:20px auto;padding:16px 20px;color:#e7e3da;border-top:1px solid #46503d;font:13px/1.5 Arial,Helvetica,sans-serif}.app-footer-details>summary{cursor:pointer;min-height:44px}.app-footer-details>summary::marker{color:#b4c39a}
 @media(max-width:600px){html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) #todayActions.app-today-v2 .app-life-card{height:auto!important;min-height:0!important;align-self:start!important;align-content:start!important;grid-template-rows:repeat(4,auto)!important}.app-life-card>.app-life-ring{grid-row:1/5!important}.app-life-card>*{min-height:0!important}}
 
+@media(max-width:600px){.app-today-grid{display:flex!important;flex-direction:column!important;gap:16px!important;height:auto!important;min-height:0!important}.app-today-grid>.app-life-card{align-self:stretch!important}}
 @media print{#appBottomNav,#appPreviewBar{display:none!important}}
 `;
 export const appClient=String.raw`(()=>{
