@@ -26,7 +26,24 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  row.checks.push(view+' check-in saved using UI and read through other independently signed-in session after refresh');
  }
  const before=(await api(app,'/v1/life-back')).progress;await api(web,'/v1/life-back',{action:'shift-feedback',shiftId:before.nextShift.id,outcome:'not-fit',operationId:randomUUID()});await p.goto(base+'/member/dashboard?view=app#today',{waitUntil:'domcontentloaded'});const changed=(await api(app,'/v1/life-back')).progress;assert.notEqual(changed.nextShift.detail,before.nextShift.detail);await p.getByText(changed.nextShift.title,{exact:true}).filter({visible:true}).first().waitFor({timeout:45000});
- for(const path of ['/member/grub','/member/fit','/member/life-back','/member/settings']){await p.goto(base+path,{waitUntil:'domcontentloaded'});await p.locator('#appBottomNav').waitFor();if(path==='/member/life-back'){
+ for(const path of ['/member/grub','/member/fit','/member/life-back','/member/settings']){await p.goto(base+path,{waitUntil:'domcontentloaded'});await p.locator('#appBottomNav').waitFor();
+ if(path==='/member/grub'){
+  await p.locator('#grubRecommendation .grub-recipe').waitFor({timeout:45000});
+  await p.locator('#grubRecommendation .app-screen-details').first().waitFor();
+  await p.locator('#grubRecommendation .app-screen-details summary').first().click();
+  assert(await p.locator('.grub-pick-why').isVisible());
+  await p.locator('#grubRecommendation .app-screen-details summary').first().click();
+  await p.locator('#member-food-tab-saved').click();assert(await p.locator('#member-food-panel-saved').isVisible());
+  await p.locator('#member-food-tab-discover').click();row.checks.push('Grub data loaded; meal explanation expands; food tabs switch panels');
+ }
+ if(path==='/member/fit'){
+  await p.locator('#fitGenerate:not([disabled])').waitFor({timeout:45000});
+  await p.locator('#fitGenerate').click();await p.locator('.sf-session').first().waitFor({timeout:45000});
+  await p.locator('.sf-exercise').first().waitFor();row.checks.push('Fit generates a real fictional plan and renders exercise rows');
+ }
+ if(path==='/member/settings')await p.locator('#memberFirstName:not([disabled])').waitFor({timeout:45000});
+ assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow '+path);
+ if(path==='/member/life-back'){
  await p.locator('#journeyView:not([hidden])').waitFor({timeout:45000});
  assert.equal(await p.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(5, 5, 5)','Life Back retains dark canvas for its light labels');
  const contrast=await p.locator('#scoreCaption').evaluate(el=>{const rgb=getComputedStyle(el).color.match(/[\d.]+/g).slice(0,3).map(Number);const lum=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};const l=.2126*lum(rgb[0])+.7152*lum(rgb[1])+.0722*lum(rgb[2]);return(l+.05)/(lum(5)+.05)});assert(contrast>=4.5,'Life Back caption contrast');

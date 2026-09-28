@@ -1,3 +1,4 @@
+import {screenStyles,screenClient} from './screens.mjs';
 // Preview-only presentation. No data endpoints, copied member state or native bridge.
 export const appStyles=String.raw`
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]){background:#050505!important;font-family:Arial,Helvetica,sans-serif!important;padding-bottom:90px!important}
@@ -94,8 +95,8 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) .a
 
 @media(max-width:600px){.app-today-grid{display:flex!important;flex-direction:column!important;gap:16px!important;height:auto!important;min-height:0!important}.app-today-grid>.app-life-card{align-self:stretch!important}}
 @media print{#appBottomNav,#appPreviewBar{display:none!important}}
-`;
-export const appClient=String.raw`(()=>{
+`+screenStyles;
+export const appClient=screenClient+String.raw`(()=>{
  function current(){document.querySelectorAll('#appBottomNav a').forEach(a=>{const u=new URL(a.href),match=u.pathname.replace('/staging/member-connected/','/member/')===location.pathname.replace('/staging/member-connected/','/member/')&&(u.hash?u.hash===(location.hash||'#today'):true);if(match){if(a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page')}else a.removeAttribute('aria-current')})}
  document.addEventListener('click',e=>{const more=e.target.closest?.('#appMore');if(!more)return;const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.dataset.appMore==='open'){document.body.dataset.appMore='closed';const more=document.getElementById('appMore');more?.setAttribute('aria-expanded','false');more?.focus()}});
