@@ -9,7 +9,7 @@ html body[data-app-layout="preview"] .app-today-shortcuts a[aria-selected="true"
 .app-tool-loading{padding:18px;color:#e7e3da;font:14px/1.5 Arial,sans-serif}.app-tool-loading a{color:inherit}
 html body[data-app-layout="preview"][data-app-panel="1"]:is(#app-preview-scope,[data-app-layout]){padding:0!important;margin:0!important;min-height:0!important}
 html body[data-app-layout="preview"][data-app-panel="1"]:is(#app-preview-scope,[data-app-layout]) main{padding:0!important;min-height:0!important;max-width:none!important}
-html body[data-app-panel="1"] [data-app-panel-chrome],html body[data-app-panel="1"] :is(#appPreviewBar,#appBottomNav,.app-footer-details,.app-review-account,.sst-member-tabs){display:none!important}
+html body[data-app-panel="1"] [data-app-panel-chrome],html body[data-app-panel="1"] :is(#appPreviewBar,#appBottomNav,#dailyCheckinFollowup,.app-footer-details,.app-review-account,.sst-member-tabs){display:none!important}
 html body[data-app-panel="1"] dialog[open]{position:fixed!important;top:var(--app-dialog-top,16px)!important;bottom:auto!important;left:0!important;right:0!important;margin:0 auto!important;transform:none!important;max-height:var(--app-dialog-height,70vh)!important}
 `;
 export const tabClient=String.raw`
