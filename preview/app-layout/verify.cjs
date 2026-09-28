@@ -14,6 +14,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  await p.goto(base+'/member/dashboard?view=app#today',{waitUntil:'domcontentloaded'});await p.locator('#appBottomNav').waitFor();await p.getByText(life.progress.nextShift.title,{exact:true}).first().waitFor({timeout:45000});
  assert.match(await p.locator('body').evaluate(el=>getComputedStyle(el).fontFamily),/Arial/);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await p.locator('#appMore').click();assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'true');assert(await p.locator('.sst-member-tabs').isVisible());await p.keyboard.press('Escape');assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'false');
+ assert.equal(await p.locator('.mtm-next').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(231, 227, 218)');
  await p.screenshot({path:dir+'/'+name+'-'+width+'-app-today.png',fullPage:true});
  await w.goto(base+'/member/dashboard?view=web#today',{waitUntil:'domcontentloaded'});await w.getByText(life.progress.nextShift.title,{exact:true}).first().waitFor({timeout:45000});assert.equal(await w.locator('#appBottomNav').count(),0);
  assert.deepEqual((await api(web,'/v1/life-back')).progress,life.progress);row.checks.push('App presentation and existing website render the same saved goal and next step; Arial, no horizontal overflow, More keyboard recovery');
