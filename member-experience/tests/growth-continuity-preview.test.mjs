@@ -16,6 +16,7 @@ test('Continuity arrival is presentation-only, idempotent and restricted to the 
  const html='<html><head></head><body><main><section id="memberDayGuide">Existing guide</section><section id="dailyCheckinFollowup">Existing feedback</section></main></body></html>';
  const out=improveContinuityArrival(html,'https://example.invalid'+continuityToday);
  assert.match(out,/Same you\. Same My Timber/);assert.match(out,/Existing feedback/);assert.doesNotMatch(out,/<script|fetch\(|localStorage|sessionStorage/);
+ assert.match(out,/<details><summary>New here, or looking for your records\?/);assert.doesNotMatch(out,/<details[^>]*open/);
  assert.equal(out.replace(/<section id="continuityWelcome"[\s\S]*?<\/section>/,'').replace(/<style data-continuity-welcome-style>[\s\S]*?<\/style>/,''),html);
  for(const path of ['/member/dashboard','/member/dashboard?entry=other','/member/settings?entry=continuity'])assert.equal(improveContinuityArrival(html,'https://example.invalid'+path),html);
  assert.equal(improveContinuityArrival(out,'https://example.invalid'+continuityToday),out);

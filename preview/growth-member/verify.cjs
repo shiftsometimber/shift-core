@@ -53,6 +53,8 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
   await login();await page.goto(returnLogin,{waitUntil:'domcontentloaded'});
   await page.waitForURL(base+'/member/dashboard?entry=continuity#today');
   await page.locator('#continuityWelcome').waitFor();
+  assert.equal(await page.locator('#continuityWelcome details').evaluate(el=>el.open),false);
+  await page.locator('#continuityWelcome summary').click();assert(await page.locator('#continuityWelcome a').first().isVisible());await page.locator('#continuityWelcome summary').click();
   const initialLife=await api(ctx,'/v1/life-back');
   await page.reload({waitUntil:'domcontentloaded'});await page.locator('#continuityWelcome').waitFor();
   assert.deepEqual((await api(ctx,'/v1/life-back')).progress,initialLife.progress,'Opening and refreshing Continuity must not write progress');
