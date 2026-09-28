@@ -17,7 +17,35 @@ const dir='b1-runtime-release/growth-public';fs.mkdirSync(dir,{recursive:true});
    const menu=page.locator('.menu-trigger');await menu.click();assert.equal(await menu.getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
    await page.screenshot({path:dir+'/'+width+path.replaceAll('/','-')+'.png',fullPage:true});
    results.push({path,width,status:'pass',checks:['approved copy','one H1','five navigation links','cream links','no overflow','menu','no preview banner']});
-  }}finally{await context.close()}
+  }
+  await page.goto('https://shiftsometimber.co.uk'+'/mens-mental-health',{waitUntil:'domcontentloaded'});
+  await page.locator('.shift-guided-front__inner').waitFor();
+  const alignment=await page.evaluate(()=>{
+   const root=document.querySelector('.shift-guided-front__inner'),intro=document.querySelector('.shift-guided-intro'),r=root.getBoundingClientRect(),p=intro.getBoundingClientRect(),h=root.querySelector('h1').getBoundingClientRect();
+   return {heading:getComputedStyle(root.querySelector('h1')).textAlign,intro:getComputedStyle(intro).textAlign,headingOffset:Math.abs((h.left+h.right)/2-(r.left+r.right)/2),rootOffset:Math.abs((r.left+r.right)/2-document.documentElement.clientWidth/2),introOffset:Math.abs((p.left+p.right)/2-(r.left+r.right)/2),overflow:document.documentElement.scrollWidth>innerWidth+1};
+  });
+  assert.equal(alignment.heading,'center');assert.equal(alignment.intro,'center');assert(alignment.rootOffset<2,JSON.stringify(alignment));assert(alignment.introOffset<2);assert(alignment.headingOffset<2);assert(!alignment.overflow);
+  assert.equal(await page.locator('.shift-guided-card').count(),4);
+  assert.equal(await page.locator('.shift-guided-card').first().evaluate(el=>getComputedStyle(el).alignItems),'center');
+  assert(await page.locator('.shift-guided-kicker').evaluate(el=>{const r=el.getBoundingClientRect(),p=el.parentElement.getBoundingClientRect();return Math.abs((r.left+r.right-p.left-p.right)/2)<2}));
+  assert.equal(await page.locator('.shift-guided-alert a').getAttribute('href'),'/mental-health/urgent-mental-health-help');
+  await page.screenshot({path:dir+'/'+width+'-good-to-talk.png',fullPage:true});
+  await page.locator('.shift-guided-library summary').click();assert(await page.locator('.shift-guided-library').evaluate(el=>el.open));
+  results.push('Good to Talk: centred heading, intro and layout; no overflow; four support choices, urgent link and library disclosure preserved');
+  for(const path of ['/clinic-gone-quiet','/provider-switch']){
+   const response=await page.goto('https://shiftsometimber.co.uk'+path,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200);
+   assert.equal(await page.locator('[data-growth-continuity]').count(),1);
+   assert.equal(await page.locator('h1').count(),1);
+   assert.equal(await page.locator('[data-continuity-primary]').getAttribute('href'),'/member/dashboard?entry=continuity#today');
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   await page.screenshot({path:dir+'/'+width+path.replaceAll('/','-')+'.png',fullPage:true});
+  }
+  await page.locator('[data-continuity-primary]').click();
+  const signIn=page.locator('#memberSessionStatus a');await signIn.waitFor();
+  assert.equal(new URL(await signIn.getAttribute('href'),'https://shiftsometimber.co.uk').searchParams.get('returnTo'),'/member/dashboard?entry=continuity#today');
+
+
+  }finally{await context.close()}
  }}finally{await browser.close();fs.writeFileSync(dir+'/results.json',JSON.stringify({at:new Date().toISOString(),commit:process.env.GITHUB_SHA,results,customerRecordsRead:false},null,2))}
  console.log('PASS live approved public copy in desktop and phone-sized Chromium');
 })().catch(e=>{console.error(e);process.exitCode=1});

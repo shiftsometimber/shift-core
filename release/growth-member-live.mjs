@@ -35,6 +35,17 @@ try{
   await page.screenshot({path:dir+'/'+report.checks.length+'-'+outcome+'.png',fullPage:true});
   report.checks.push({outcome,feedbackPersisted:true,taskChanged:outcome==='not-fit',freshBrowserSignIn:true,todayAfterRefresh:true});
  }
+ const saved=life.progress;
+ await page.goto(site+'/clinic-gone-quiet',{waitUntil:'domcontentloaded'});
+ await page.locator('[data-continuity-primary]').click();
+ await page.locator('#continuityWelcome').waitFor();
+ assert.equal(await page.locator('#continuityWelcome details').evaluate(el=>el.open),false);
+ await page.locator('#continuityWelcome summary').click();assert(await page.locator('#continuityWelcome a').first().isVisible());
+ await page.reload({waitUntil:'domcontentloaded'});await page.locator('#continuityWelcome').waitFor();
+ await page.getByText(saved.nextShift.title,{exact:true}).first().waitFor({timeout:30000});
+ assert.deepEqual((await call('/v1/life-back')).progress,saved);
+ await page.screenshot({path:dir+'/continuity-return.png',fullPage:true});
+ report.checks.push({continuityArrival:true,refreshRetainsProgress:true,existingStepShown:true});
  report.status='pass';
 }catch(error){report.status='fail';report.error=String(error.message).replaceAll(email,'[synthetic]').replaceAll(password,'[redacted]');await page.screenshot({path:dir+'/failure.png',fullPage:true}).catch(()=>{});throw error}
 finally{await context.close();await browser.close();writeFileSync(dir+'/results.json',JSON.stringify(report,null,2))}

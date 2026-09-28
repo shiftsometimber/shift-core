@@ -19,7 +19,7 @@ import {preserveContinuityContent} from '../public-continuity-preservation.mjs';
 import {preserveTickerVersion} from '../public-ticker-preservation.mjs';
 const [output,before]=process.argv.slice(2);
 if(!output)throw Error('An evidence output path is required');
-const paths=['/','/start-here','/programme','/help','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912','/articles/stopping-glp1'];
+const paths=['/mens-mental-health','/clinic-gone-quiet','/provider-switch','/','/start-here','/programme','/help','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912','/articles/stopping-glp1'];
 const pages=[];
 const passportEnabled=/"HEALTH_PASSPORT_V1_ENABLED"\s*:\s*"true"/.test(readFileSync('wrangler.jsonc','utf8'));
 const hash=body=>createHash('sha256').update(body).digest('hex');
