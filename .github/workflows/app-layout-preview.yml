@@ -1,0 +1,48 @@
+name: My Timber app layout PREVIEW ONLY
+on:
+  push:
+    branches: [preview/app-layout-20260928]
+permissions:
+  contents: read
+concurrency:
+  group: stabilisation-life-back-preview-only
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      PREVIEW_SOURCE_SHA: ${{ github.sha }}
+      PREVIEW_URL: https://shift-stabilisation-preview.matobrien.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - run: node --test preview/app-layout/*.test.mjs member-experience/tests/*.test.mjs member-experience/staging/*.test.mjs tests/public-shell-contract.test.mjs
+      - run: node preview/stabilisation/prepare.mjs
+      - run: node preview/growth-member/prepare.mjs
+      - run: node preview/app-layout/prepare.mjs
+      - run: node preview/five-points/provision.mjs
+      - run: npx wrangler deploy --config work/staging/generated/config.json
+      - run: npm install --prefix "$RUNNER_TEMP/app-tools" --no-audit --no-fund playwright@1.58.2
+      - run: '"$RUNNER_TEMP/app-tools/node_modules/.bin/playwright" install --with-deps chromium webkit'
+      - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/verify.cjs
+      - name: Evidence checksum
+        if: always()
+        run: find work/staging/generated/app-layout-evidence -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > work/staging/generated/app-layout-evidence/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: app-layout-preview-${{ github.sha }}
+          path: work/staging/generated/app-layout-evidence/
+          retention-days: 30
