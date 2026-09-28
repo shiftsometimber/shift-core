@@ -6,6 +6,7 @@ import {HOME_BASE_MAIN,HOME_RECOVERY_CSS} from './home-critical-styles.mjs';
 export function repairHomeSpeed(html,path,{final=false}={}){
  if(path!=='/'||!html.includes('home-hero'))return html;
  const known=html.match(/<main\b[\s\S]*?<\/main>/)?.[0]===HOME_BASE_MAIN;
+ if(known)html=html.replace(/(<style\b[^>]*data-home-inline-css="\/assets\/v42h.css\?v=42p6"[^>]*>)([\s\S]*?)(<\/style>)/, (tag,a,css,b)=>[HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;')),HOME_V42_CSS].includes(css)?a+HOME_V42_CSS+b:tag);
  if(known)html=html.replace(/(<style\b[^>]*data-home-inline-css="\/assets\/shift-recovery-v6.css[^>]*>)[\s\S]*?(<\/style>)/,(_,a,b)=>a+HOME_RECOVERY_CSS+b);
  return html.replace(/<link\b[^>]*>/gi,tag=>{
   if(!/rel=["']stylesheet["']/i.test(tag))return tag;
