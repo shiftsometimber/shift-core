@@ -10,7 +10,7 @@ export default {async fetch(request,env,ctx){
  const response=await preview.fetch(request,env,ctx);
  if(request.method!=='GET'||!response.ok||!(u.pathname.startsWith('/member/')||u.pathname.startsWith('/staging/member-connected/'))||!response.headers.get('Content-Type')?.includes('text/html'))return response;
  const choice=u.searchParams.get('view'),app=choice==='app'||choice!=='web'&&/(?:^|;\s*)shift_app_preview=1(?:;|$)/.test(request.headers.get('Cookie')||'');
- const before=await response.text(),after=app?appPresentation(before,u.pathname):before,headers=new Headers(response.headers);
+ const before=await response.text(),after=app?appPresentation(before,u.pathname,u.searchParams.get('app_panel')==='1'&&/\/(fit|grub|life-back)$/.test(u.pathname)):before,headers=new Headers(response.headers);
  headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie');
  if(choice==='app'||choice==='web')headers.append('Set-Cookie','shift_app_preview='+(choice==='app'?'1':'')+'; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age='+(choice==='app'?'86400':'0'));
  if(after!==before){headers.delete('Content-Length');headers.delete('ETag');headers.delete('Last-Modified')}
