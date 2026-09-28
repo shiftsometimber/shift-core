@@ -1,7 +1,7 @@
 name: Matched homepage speed preview
 on:
   push:
-    branches: [fix/home-speed-subset-20260927]
+    branches: [fix/home-speed-green-20260928]
 permissions:
   contents: read
 jobs:
@@ -46,6 +46,9 @@ jobs:
             out[mode]={'runs':rows,'median':{k:statistics.median(x[k] for x in rows) for k in rows[0]}}
           print(json.dumps(out,indent=2));pathlib.Path('reta-proof/matched-speed.json').write_text(json.dumps(out,indent=2))
           assert out['candidate']['median']['lcp']<out['baseline']['median']['lcp']
+          assert out['candidate']['median']['lcp']<=2500, 'Mobile median LCP must be <=2.5s'
+          assert out['candidate']['median']['cls']<=0.1
+          assert out['candidate']['median']['tbt']<=200
           assert out['candidate']['median']['cls']<=out['baseline']['median']['cls']+0.01
           PY
       - name: Checksum evidence

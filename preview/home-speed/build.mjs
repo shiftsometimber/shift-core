@@ -2,10 +2,12 @@ import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {repairHomeSpeed} from '../../home-speed-repair.mjs';
+import {HOME_BLOCKING_STYLES} from '../../home-blocking-styles.mjs';
 const RETA_PATH='/guides/retatrutide-uk-guide';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const get=async path=>{const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok,path+' '+r.status);return await r.text()};
 mkdirSync('reta-proof',{recursive:true});mkdirSync('preview/home-speed/generated',{recursive:true});
+for(const [path,css] of Object.entries(HOME_BLOCKING_STYLES))assert.equal(await get(path),css,'Current CSS differs: '+path);
 const pages={};for(const p of ['/',RETA_PATH,'/shift-health','/articles/mounjaro-cost-uk']){const baseline=await get(p);pages[p]={baseline,candidate:repairHomeSpeed(baseline,p)}}
 for(const a of JSON.parse(readFileSync('editorial/retatrutide/media/style-provenance.json'))){assert.equal(sha(await get(a.url)),a.sha256,'Stylesheet source changed: '+a.url)}
 writeFileSync('preview/home-speed/generated/pages.mjs','export const pages='+JSON.stringify(pages)+';\nexport const ticker='+JSON.stringify(await get('/v1/radar/ticker'))+';\n');
