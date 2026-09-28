@@ -18,6 +18,10 @@ on:
       - "worker-entry-v6.js"
       - "scripts/b1-release-scope.mjs"
       - "growth-member-public.mjs"
+      - "app-layout-live.mjs"
+      - "member-inline-tools.mjs"
+      - "preview/app-layout/**"
+      - "release/app-*"
       - "release/growth-*"
       - "home-speed-repair.mjs"
       - "home-critical-styles.mjs"
@@ -241,7 +245,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
+          node --test tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
@@ -451,6 +455,8 @@ jobs:
         with:
           name: knowledge-heading-live-${{ github.sha }}
           path: heading-proof/
+      - name: Verify exact live app assets and website isolation
+        run: node release/app-live-http.mjs
       - name: Verify approved growth copy live on desktop and phone viewport
         run: node release/growth-public-live.cjs
       - name: Measure and retain live homepage mobile speed

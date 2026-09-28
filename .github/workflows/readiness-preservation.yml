@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'member-experience/**'
+      - 'app-layout-live.mjs'
+      - 'member-inline-tools.mjs'
+      - 'preview/app-layout/**'
+      - 'release/app-*'
       - 'member-daily-v3.js'
       - 'scheduled-intelligence.js'
       - 'fit-reminders-v1.js'
