@@ -12,7 +12,8 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
@@ -55,7 +56,8 @@ try{
   // The signed-out login page legitimately probes /v1/me and receives 401 before
   // authentication. Start strict browser-error capture only after login succeeds.
   page.on('pageerror',error=>fail('page error',clean(error.message)));
-  page.on('console',message=>{if(message.type()==='error')fail('console error',clean(message.text()))});
+  page.on('response',response=>{if(response.status()>=500){const detail={status:response.status(),url:resourcePath(response.url()),method:response.request().method(),resourceType:response.request().resourceType(),page:resourcePath(page.url())};report.networkErrors.push(detail);console.error('RESOURCE_FAILURE '+JSON.stringify(detail));}});
+  page.on('console',message=>{if(message.type()==='error')fail('console error',clean(message.text())+' at '+resourcePath(message.location().url))});
   const todayHeaders={Origin:SITE,'X-Shift-Local-Date':new Date().toISOString().slice(0,10),'X-Shift-Local-Hour':'18'};
   const grubResponse=await context.request.post(`${API}/v1/grub/plan`,{headers:todayHeaders,data:{days:7,calories:2000,protein_g:120,preferences:'UK family food, healthy fakeaways, no mushrooms',max_minutes:60,household_size:2}}),grub=await grubResponse.json().catch(()=>({}));
   if(!grubResponse.ok())throw new Error(`Grub seed ${grubResponse.status()} ${JSON.stringify(grub)}`);
