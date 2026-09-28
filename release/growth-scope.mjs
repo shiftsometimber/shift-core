@@ -25,7 +25,7 @@ const hashes={
   "tests/growth-release.test.mjs": "e1a88ba68b78e1f4072d515b52338b9d742c2661db80b416b44e2ae61e57fe8f",
   "worker-entry-v6.js": "ba9f0bf21980f3da179ecbe852e3b7f11fbfae0cbc164c5e8461670808ff9dd6",
   ".github/workflows/my-timber-pwa-production-release.yml": "cb98e47663fe1e23df61b7b0e806374ac59a80b8e3d21efca048ee2adfaf536b",
-  "release/growth-adopt-deployment.mjs": "7332fbcd80c024e6c8643482a7e9198a5bfa363b290d1e8e7cf36e0e6b5c97d6",
+  "release/growth-adopt-deployment.mjs": "006a7c31ce8e089acf7f86be39852b437fa6ce2fc4b9bde684e8d85d9ea70aa2",
   "release/growth-public-baseline.json": "7804cf82404fad8cc9d02dd4cf8f2ff46bd0dac7aca86e08a2b366613bc3754e",
   "docs/growth-review/live-release-checkpoint-20260928.md": "c7a8870b0ec030e3272b02d55e87d59a53913bf4c99c39c74687b1a99bc61601"
 };

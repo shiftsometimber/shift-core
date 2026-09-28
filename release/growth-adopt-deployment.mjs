@@ -29,7 +29,7 @@ writeFileSync('b1-runtime-release/original-pwa-receipt.zip',archive);
 const rollback=execFileSync('unzip',['-p','b1-runtime-release/original-pwa-receipt.zip','pwa-deployment-before.json']);
 const previous=JSON.parse(rollback);assert(Array.isArray(previous)&&previous.length);writeFileSync('deployment-before.json',rollback);
 // Capture actual existing published knowledge with aggregate SELECTs; do not rebuild or write the index.
-const sql="SELECT COUNT(*) indexed,(SELECT COUNT(*) FROM ai_knowledge_chunks c JOIN ai_knowledge_documents d ON d.id=c.document_id WHERE d.category='shift_public_site' AND d.status='published_site') chunks FROM ai_knowledge_documents WHERE category='shift_public_site' AND status='published_site'";
+const sql="SELECT COUNT(*) AS [indexed],(SELECT COUNT(*) FROM ai_knowledge_chunks c JOIN ai_knowledge_documents d ON d.id=c.document_id WHERE d.category='shift_public_site' AND d.status='published_site') chunks FROM ai_knowledge_documents WHERE category='shift_public_site' AND status='published_site'";
 const result=JSON.parse(wrangler('d1','execute','DB','--remote','--json','--command',sql));assert(result.every(r=>r.success));const index=result.flatMap(r=>r.results||[])[0];assert(index.indexed>=50);assert(index.chunks>=index.indexed);
 writeFileSync('b1-runtime-release/shift-ai-public-index.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,...index,method:'Read-only aggregate of existing published-site index',customerRecordsRead:0,databaseWrites:0},null,2));
 if(process.argv[2]==='restore'){
