@@ -37,6 +37,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
   await p.locator('#member-food-tab-discover').click();row.checks.push('Grub data loaded; meal explanation expands; food tabs switch panels');
  }
  if(path==='/member/fit'){
+  if(await p.locator('[data-app-fit-setup]:not([open])').count())await p.locator('[data-app-fit-setup]>summary').click();
   await p.locator('#fitGenerate:not([disabled])').waitFor({timeout:45000});
   await p.locator('#fitGenerate').click();await p.locator('.sf-session').first().waitFor({timeout:45000});
   await p.locator('.sf-exercise').first().waitFor();row.checks.push('Fit generates a real fictional plan and renders exercise rows');

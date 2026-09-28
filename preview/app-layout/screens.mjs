@@ -46,6 +46,8 @@ rule('.sf-exercise-art img','width:72px!important;height:90px!important;object-f
 rule('.sf-exercise-main','grid-column:3!important;grid-row:1!important;min-width:0')+
 rule('.sf-exercise-main h4','font-size:17px!important;margin:0 0 8px!important')+
 rule('.sf-exercise>:is(.sf-completion,.sf-exercise-actions,.sf-difficulty)','grid-column:1/-1!important')+
+rule('.sf-exercise>.sf-exercise-actions','grid-row:2!important;justify-self:stretch!important')+
+rule('.sf-exercise details','background:#11160f!important;color:#e7e3da!important;border:1px solid #46503d!important;border-radius:8px!important;padding:10px!important')+
 rule('.sf-exercise :is(p,summary,.sf-metrics)','font-size:12px!important')+
 rule('.sf-exercise-purpose','margin:8px 0!important')+
 rule('[data-sf-start]','width:100%!important;margin-top:16px!important')+
@@ -95,6 +97,7 @@ export const screenClient=String.raw`
   if(page==='grub'){
    const tabs=document.querySelector('.grub-v8-tabs'),hero=document.querySelector('main [data-member-hero]');
    if(tabs&&hero&&!tabs.dataset.appPlaced){tabs.dataset.appPlaced='true';hero.after(tabs)}
+   wrap(document.querySelector('.grub-account'),'Account & saved food');
    wrap(document.querySelector('.grub-pick-why'),'Why this meal fits');
    wrap(document.querySelector('.grub-pick-feedback'),'Help Shift learn what you like');
    wrap(document.querySelector('.grub-pick-fit'),'How this fits your movement plan');
@@ -107,7 +110,7 @@ export const screenClient=String.raw`
    const hero=document.querySelector('main [data-member-hero]'),main=document.querySelector('main');
    if(hero&&main&&!hero.dataset.appPlaced){hero.dataset.appPlaced='true';main.prepend(hero)}
   }
-  if(page==='fit')document.querySelectorAll('.sf-exercise-purpose').forEach(n=>wrap(n,'Why this exercise'));
+  if(page==='fit'){document.querySelectorAll('.sf-exercise-purpose').forEach(n=>wrap(n,'Why this exercise'));if(document.querySelector('.sf-session')){const d=wrap(document.querySelector('.sf-builder'),'Adjust your session');if(d)d.dataset.appFitSetup='true'}}
   if(page==='life-back'){
    const hero=document.querySelector('#journeyView>[data-member-hero]'),copy=document.querySelector('#journeyView>.hero .hero-copy');if(hero&&copy)copy.prepend(hero);
   }
