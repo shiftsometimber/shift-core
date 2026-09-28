@@ -433,6 +433,9 @@ jobs:
       - name: Begin verification of the deployed runtime
         id: growth_live_started
         run: test -s deployment-before.json
+      - name: Restore the exact approved version after the evidenced harness-only rollback
+        if: steps.growth_deployed.outputs.restore_needed == 'true'
+        run: node release/growth-adopt-deployment.mjs restore
       - name: Wait briefly for route propagation
         run: sleep 10
       - name: Verify rendered knowledge headings and direct About link live
