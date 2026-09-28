@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 export const GROWTH_PREVIEW='44c5ebcef492ee9b6476f0343737afb085f579f3';
 // Exact owner-reviewed payload and exact integration files. No generic directory exclusion.
 const hashes={
-  ".github/workflows/cloudflare-production-promote.yml": "21251cf0036ac3672d1db27838814ca862e5a1ce2c64e3118eacb39b2f823ccb",
+  ".github/workflows/cloudflare-production-promote.yml": "eb91f00148ec377500e41a8daccc1aca6b159becb3efb5b62cc2fc248731e040",
   ".github/workflows/growth-member-preview.yml": "b2b5bc5aa3791974a202443babcbd4d57d3d9f0a47f49ca86f54d9ae0836698a",
   ".github/workflows/rendered-member-production-acceptance.yml": "932e7f8e375b78a02f32dba1b452e63c62954e879e08ce61f5aaf9d2a974b5bc",
   "docs/growth-review/2026-09-27.md": "3244a00605dfd2b856109b42095787ca979ee4faff3283e85ed51eea290fd2b0",
@@ -25,7 +25,7 @@ const hashes={
   "tests/growth-release.test.mjs": "e1a88ba68b78e1f4072d515b52338b9d742c2661db80b416b44e2ae61e57fe8f",
   "worker-entry-v6.js": "ba9f0bf21980f3da179ecbe852e3b7f11fbfae0cbc164c5e8461670808ff9dd6",
   ".github/workflows/my-timber-pwa-production-release.yml": "cb98e47663fe1e23df61b7b0e806374ac59a80b8e3d21efca048ee2adfaf536b",
-  "release/growth-adopt-deployment.mjs": "21d7bf5f834ce02061e2af63fc04ceb6e4891564f57fc2250fe4643c70558d60",
+  "release/growth-adopt-deployment.mjs": "7332fbcd80c024e6c8643482a7e9198a5bfa363b290d1e8e7cf36e0e6b5c97d6",
   "release/growth-public-baseline.json": "7804cf82404fad8cc9d02dd4cf8f2ff46bd0dac7aca86e08a2b366613bc3754e",
   "docs/growth-review/live-release-checkpoint-20260928.md": "c7a8870b0ec030e3272b02d55e87d59a53913bf4c99c39c74687b1a99bc61601"
 };
