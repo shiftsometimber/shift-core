@@ -17,6 +17,8 @@ on:
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
       - "scripts/b1-release-scope.mjs"
+      - "growth-member-public.mjs"
+      - "release/growth-*"
       - "home-speed-repair.mjs"
       - "home-critical-styles.mjs"
       - "public-startup-stability.mjs"
@@ -209,6 +211,8 @@ jobs:
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Require exact approved growth preview and release verification
+        run: node release/growth-preflight.mjs
       - name: Require the exact successful heading preview before production work
         run: |
           node --input-type=module <<'JS'
@@ -231,7 +235,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
+          node --test tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
@@ -423,6 +427,8 @@ jobs:
         with:
           name: knowledge-heading-live-${{ github.sha }}
           path: heading-proof/
+      - name: Verify approved growth copy live on desktop and phone viewport
+        run: node release/growth-public-live.cjs
       - name: Measure and retain live homepage mobile speed
         run: |
           npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund lighthouse@12.8.2

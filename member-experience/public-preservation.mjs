@@ -1,3 +1,4 @@
+import {preserveGrowthCopy} from '../release/growth-preservation.mjs';
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
 import {preserveSeo794} from '../release/seo794-preservation.mjs';
 import {preserveCalculatorsNavigation} from '../public-calculators-preservation.mjs';
@@ -18,7 +19,7 @@ import {preserveContinuityContent} from '../public-continuity-preservation.mjs';
 import {preserveTickerVersion} from '../public-ticker-preservation.mjs';
 const [output,before]=process.argv.slice(2);
 if(!output)throw Error('An evidence output path is required');
-const paths=['/','/start-here','/programme','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912','/articles/stopping-glp1'];
+const paths=['/','/start-here','/programme','/help','/shift-health','/treatment-centre','/about','/explore-knowledge','/shop','/work-with-us','/member-login','/turnstile-auth-v1.js?v=timeout-20260912','/articles/stopping-glp1'];
 const pages=[];
 const passportEnabled=/"HEALTH_PASSPORT_V1_ENABLED"\s*:\s*"true"/.test(readFileSync('wrangler.jsonc','utf8'));
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -26,7 +27,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,body),{required:Boolean(before)});
+ const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,body,{required:Boolean(before)})),{required:Boolean(before)});
  let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,preserveOralKnowledge(path,pwaPreserved),{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
  preserved=preserveServiceBridgePaint(preserveLoginSession(path,preserved),{required:Boolean(before)});
  preserved=preserveTreatmentCentreAccuracy(path,preserved,{required:Boolean(before)});
