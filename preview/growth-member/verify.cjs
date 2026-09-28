@@ -37,8 +37,27 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
   await page.screenshot({path:dir+'/'+name+'-'+width+'-good-to-talk.png',fullPage:true});
   await page.locator('.shift-guided-library summary').click();assert(await page.locator('.shift-guided-library').evaluate(el=>el.open));
   row.checks.push('Good to Talk: centred heading, intro and layout; no overflow; four support choices, urgent link and library disclosure preserved');
+  for(const path of ['/clinic-gone-quiet','/provider-switch']){
+   const response=await page.goto(base+path,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200);
+   assert.equal(await page.locator('[data-growth-continuity]').count(),1);
+   assert.equal(await page.locator('h1').count(),1);
+   assert.equal(await page.locator('[data-continuity-primary]').getAttribute('href'),'/member/dashboard?entry=continuity#today');
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   await page.screenshot({path:dir+'/'+name+'-'+width+path.replaceAll('/','-')+'.png',fullPage:true});
+  }
+  await page.locator('[data-continuity-primary]').click();
+  const signIn=page.locator('#memberSessionStatus a');await signIn.waitFor();
+  assert.equal(new URL(await signIn.getAttribute('href'),base).searchParams.get('returnTo'),'/member/dashboard?entry=continuity#today');
+  await signIn.click();const returnLogin=page.url();
   const user=fixture.browserIds[index++],login=()=>api(ctx,'/v1/auth/login',{email:'probe'+user+'@example.invalid',password:fixture.password});
-  await login();await api(ctx,'/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true});
+  await login();await page.goto(returnLogin,{waitUntil:'domcontentloaded'});
+  await page.waitForURL(base+'/member/dashboard?entry=continuity#today');
+  await page.locator('#continuityWelcome').waitFor();
+  const initialLife=await api(ctx,'/v1/life-back');
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('#continuityWelcome').waitFor();
+  assert.deepEqual((await api(ctx,'/v1/life-back')).progress,initialLife.progress,'Opening and refreshing Continuity must not write progress');
+  row.checks.push('Continuity public CTA preserves chosen Today route through signed-out gate and restored session; no record written on arrival or refresh');
+  await api(ctx,'/v1/consents',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true});
   let life=await api(ctx,'/v1/life-back');life=await api(ctx,'/v1/life-back',{action:'goal',revision:life.progress.revision,goal:'Enjoy a family walk',operationId:randomUUID()});
   life=await api(ctx,'/v1/life-back',{action:'checkin',goalId:life.progress.goalId,ratings:{energy:40,sleep:60,confidence:60,movement:60,clothes:60,personal:60},win:'',supportNeed:'food',operationId:randomUUID()});
   for(const outcome of ['not-fit','not-fit','helped']){
@@ -55,6 +74,13 @@ for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const wi
   await page.goto(base+'/member/dashboard#today',{waitUntil:'domcontentloaded'});
   await page.getByText(life.progress.nextShift.title,{exact:true}).first().waitFor({timeout:45000});
   await page.screenshot({path:dir+'/'+name+'-'+width+'-returned-next-shift.png',fullPage:true});
+  const savedProgress=life.progress;
+  await page.goto(base+'/clinic-gone-quiet',{waitUntil:'domcontentloaded'});await page.locator('[data-continuity-primary]').click();
+  await page.locator('#continuityWelcome').waitFor();await page.getByText(life.progress.nextShift.title,{exact:true}).first().waitFor({timeout:45000});
+  assert.deepEqual((await api(ctx,'/v1/life-back')).progress,savedProgress,'Returning from Continuity retains goal, check-ins and current step');
+  assert.equal(await page.locator('#continuityWelcome').count(),1);
+  await page.screenshot({path:dir+'/'+name+'-'+width+'-continuity-today.png',fullPage:true});
+  row.checks.push('Returning Continuity member sees existing Next Shift and retains saved goal, check-ins and linked feedback without restarting');
   row.checks.push('Two negative daily reviews change the task; helpful feedback retains adjusted task; linked feedback survives logout/login; Today displays saved result; no invented reflection or completion');row.status='pass';
  }catch(e){row.status='fail';row.error=String(e.stack).replaceAll(fixture.password,'[redacted]');await page.screenshot({path:dir+'/'+name+'-'+width+'-failure.png',fullPage:true}).catch(()=>{});}
  finally{await ctx.close();await browser.close();fs.writeFileSync(dir+'/verification.json',JSON.stringify(report,null,2));}
