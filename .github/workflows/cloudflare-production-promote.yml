@@ -232,6 +232,9 @@ jobs:
           JS
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Adopt the exact already-completed growth deployment
+        id: growth_deployed
+        run: node release/growth-adopt-deployment.mjs
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
@@ -377,12 +380,22 @@ jobs:
       - name: Capture AI frontend and aggregate knowledge foundation before release
         run: node release/shift-ai-live.mjs before
       - name: Capture current Worker deployment for rollback
-        run: npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+        run: |
+          if [ "${{ steps.growth_deployed.outputs.already_deployed }}" != true ]; then
+            npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+          else
+            test -s deployment-before.json
+          fi
       - name: Seed recent discovery snapshots without publishing or sending notifications
         if: steps.scope.outputs.runtime_only != 'true'
         run: node scripts/radar-discovery-collector.mjs --store
       - name: Capture current public pages before this member release
-        run: node member-experience/public-preservation.mjs public-before.json
+        run: |
+          if [ "${{ steps.growth_deployed.outputs.already_deployed }}" = true ]; then
+            cp release/growth-public-baseline.json public-before.json
+          else
+            node member-experience/public-preservation.mjs public-before.json
+          fi
       - name: Retain rollback deployment record
         uses: actions/upload-artifact@v4
         with:
@@ -402,6 +415,7 @@ jobs:
       - name: Prepare the exact additive signup-alert delivery store
         run: node release/member-signup-alert-schema.mjs
       - name: Index existing public SHIFT pages for AI without publishing website content
+        if: steps.growth_deployed.outputs.already_deployed != 'true'
         run: |
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main
@@ -411,10 +425,14 @@ jobs:
           sha256sum evidence/shift-ai-site-index/index.sql > b1-runtime-release/shift-ai-public-index.sha256
       - name: Deploy current main to production
         id: runtime_deploy
+        if: steps.growth_deployed.outputs.already_deployed != 'true'
         run: |
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main
           npx wrangler deploy --config wrangler.jsonc
+      - name: Begin verification of the deployed runtime
+        id: growth_live_started
+        run: test -s deployment-before.json
       - name: Wait briefly for route propagation
         run: sleep 10
       - name: Verify rendered knowledge headings and direct About link live
@@ -626,7 +644,7 @@ jobs:
       - name: Verify B1 protected catalogue and stock remain identical
         run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Restore the captured runtime if a post-deployment gate failed
-        if: ${{ failure() && steps.runtime_deploy.outcome == 'success' }}
+        if: ${{ failure() && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success')) }}
         run: node release/member-details-rollback.mjs
       - name: Retain B1 runtime-only release evidence
         if: always()

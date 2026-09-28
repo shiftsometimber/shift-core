@@ -21,7 +21,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   release:
-    if: ${{ github.event_name == 'push' || inputs.confirm == 'RELEASE_MY_TIMBER_PWA' }}
+    # Automatic releases use Cloudflare Production Promote; avoid a second Worker deploy.
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.confirm == 'RELEASE_MY_TIMBER_PWA' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
