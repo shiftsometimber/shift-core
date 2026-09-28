@@ -21,6 +21,7 @@ on:
       - "release/growth-*"
       - "home-speed-repair.mjs"
       - "home-critical-styles.mjs"
+      - "home-blocking-styles.mjs"
       - "public-startup-stability.mjs"
       - "release/seo794-preservation.mjs"
       - "tests/b1-release-scope.test.mjs"
@@ -226,9 +227,10 @@ jobs:
           import assert from 'node:assert/strict';
           import {createHash} from 'node:crypto';
           import {RETA_STYLES} from './reta-styles-data.mjs';
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36346000573',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'7a7a646082996ef1e41d644407d7cf83b063dc9e');
+          import {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36465900530',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'eb5b38a3a5119b2aa28078ef0905f4fd26c8f33c');
           const sha=x=>createHash('sha256').update(x).digest('hex');
-          for(const [path,css] of Object.entries(RETA_STYLES)){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}
+          for(const [path,css] of Object.entries({...RETA_STYLES,...HOME_BLOCKING_STYLES})){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}
           JS
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
@@ -238,7 +240,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
+          node --test tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
@@ -468,6 +470,9 @@ jobs:
           for n in [1,2,3]:
             d=json.loads(pathlib.Path(f'home-speed-live/home-{n}.json').read_text());assert not d.get('runtimeError');a=d['audits'];rows.append({'lcp':a['largest-contentful-paint']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue'],'tbt':a['total-blocking-time']['numericValue'],'score':d['categories']['performance']['score']*100})
           out={'runs':rows,'median':{k:statistics.median(x[k] for x in rows) for k in rows[0]}};print(json.dumps(out));pathlib.Path('home-speed-live/summary.json').write_text(json.dumps(out,indent=2))
+          assert out['median']['lcp']<=2500, 'Homepage mobile median LCP exceeds 2.5s release budget'
+          assert out['median']['cls']<=0.1, 'Homepage CLS exceeds release budget'
+          assert out['median']['tbt']<=200, 'Homepage TBT exceeds mobile lab release budget'
           PY
           find home-speed-live -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > home-speed-live/SHA256SUMS
       - uses: actions/upload-artifact@v4
