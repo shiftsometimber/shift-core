@@ -40,3 +40,12 @@ test('exact startup restoration precedes SEO normalisation for actual production
  assert.throws(()=>preserveApprovedStartup('/programme',preserveSeo794('/programme',Buffer.from(before))),/Unknown startup transformation/);
  assert.throws(()=>normalise(after.replace('Turn useful information','Unapproved change'),true),/Unexpected startup preservation signature/);
 });
+import {HOME_V42_CSS} from '../home-v42-critical.mjs';
+import {HOME_BLOCKING_STYLES} from '../home-blocking-styles.mjs';
+test('only the exact approved v42 subset normalises to full CSS; arbitrary edits remain visible',()=>{
+ const source=raw.replace('</head>','<style data-home-inline-css="/assets/v42h.css?v=42p6">'+HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6']+'</style></head>');
+ const candidate=source.replace(HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6'],HOME_V42_CSS);
+ assert.deepEqual(preserveSeo794('/',Buffer.from(source)),preserveSeo794('/',Buffer.from(candidate)));
+ assert.notDeepEqual(preserveSeo794('/',Buffer.from(source)),preserveSeo794('/',Buffer.from(candidate.replace(HOME_V42_CSS,HOME_V42_CSS+'.unapproved{color:red}'))));
+ assert.notDeepEqual(preserveSeo794('/',Buffer.from(source)),preserveSeo794('/',Buffer.from(candidate.replace('Keep this whole paragraph.','Lost copy'))));
+});

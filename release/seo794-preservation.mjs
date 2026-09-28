@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {HOME_V42_CSS} from '../home-v42-critical.mjs';
+import {HOME_BLOCKING_STYLES} from '../home-blocking-styles.mjs';
 import {HOME_RECOVERY_CSS} from '../home-critical-styles.mjs';
 import {RETA_STYLES} from '../reta-styles-data.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
@@ -47,5 +49,6 @@ export function preserveSeo794(path,input,{required=false}={}){
  // Compare the exact approved CSS subset as its full original bytes. Every
  // other byte remains in the preservation hash; unknown CSS is not normalised.
  if(path==='/')html=html.replace(/(<style\b[^>]*data-home-inline-css="\/assets\/shift-recovery-v6.css[^>]*>)([\s\S]*?)(<\/style>)/, (tag,start,css,end)=>css===HOME_RECOVERY_CSS?start+RETA_STYLES['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'))+end:tag);
+ if(path==='/')html=html.replace(/(<style\b[^>]*data-home-inline-css="\/assets\/v42h.css\?v=42p6"[^>]*>)([\s\S]*?)(<\/style>)/,(tag,a,css,b)=>css===HOME_V42_CSS?a+HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'))+b:tag);
  return Buffer.from(html);
 }
