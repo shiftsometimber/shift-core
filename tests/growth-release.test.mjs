@@ -31,3 +31,19 @@ test('release entry pin accepts only the reviewed adapter around the existing en
  assert.doesNotThrow(()=>validateGrowthEntry(original,actual));
  assert.throws(()=>validateGrowthEntry(original,actual.replace('const MEMBER_ORIGINS','const UNAPPROVED_ORIGINS')));
 });
+
+import {continuityPages} from '../public-continuity.mjs';
+import {improveContinuityArrival} from '../preview/growth-member/continuity-journey.mjs';
+for(const path of ['/mens-mental-health','/clinic-gone-quiet','/provider-switch'])test('approved new route retains exact surrounding source: '+path,async()=>{
+ const source='<html><head></head><body><header>locked</header><main class="template-mens-mental-health">'+(continuityPages[path]?.body||'<h1>Good to Talk</h1>')+'</main><footer>locked</footer></body></html>';
+ const r=await withGrowthPublicCopy(new Request('https://example.invalid'+path),new Response(source,{headers:{'Content-Type':'text/html'}}));
+ const after=await r.text();assert.equal(after,improvePublicCopy(source,path));assert.deepEqual(preserveGrowthCopy(path,Buffer.from(after),{required:true}),Buffer.from(source));
+ assert.throws(()=>preserveGrowthCopy(path,Buffer.from(after.replace(path==='/mens-mental-health'?'text-align:center':'My Timber is free', 'UNAPPROVED')),{required:true}));
+});
+test('production arrival applies exact reviewed fragment and retains private response headers',async()=>{
+ const html='<html><head></head><body><section id="memberDayGuide">Existing</section></body></html>';
+ for(const path of ['/member/dashboard?entry=continuity','/member/dashboard','/member/dashboard?entry=other']){
+ const url='https://example.invalid'+path,r=await withGrowthPublicCopy(new Request(url),new Response(html,{headers:{'Content-Type':'text/html','Cache-Control':'no-store, must-revalidate',Vary:'Cookie','X-Robots-Tag':'noindex, nofollow'}}));
+ assert.equal(await r.text(),improveContinuityArrival(html,url));assert.equal(r.headers.get('Cache-Control'),'no-store, must-revalidate');assert.equal(r.headers.get('Vary'),'Cookie');assert.equal(r.headers.get('X-Robots-Tag'),'noindex, nofollow');
+ }
+});

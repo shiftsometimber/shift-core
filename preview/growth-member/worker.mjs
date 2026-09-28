@@ -1,6 +1,12 @@
 import preview from '../stabilisation/worker.mjs';
+import {improveContinuityArrival} from './continuity-journey.mjs';
 export default {async fetch(request,env,ctx){
  const response=await preview.fetch(request,env,ctx);
+ if(new URL(request.url).pathname==='/member/dashboard'&&request.method==='GET'&&response.ok&&response.headers.get('Content-Type')?.includes('text/html')){
+  const before=await response.text(),after=improveContinuityArrival(before,request.url),headers=new Headers(response.headers);
+  for(const name of ['Content-Length','ETag','Last-Modified'])headers.delete(name);
+  return new Response(after,{status:response.status,headers});
+ }
  if(new URL(request.url).pathname!=='/__review'||!response.ok)return response;
  let body=await response.text();
  body=body.replace('Launch-readiness repairs','SHIFT: growth and member experience');
@@ -8,5 +14,6 @@ export default {async fetch(request,env,ctx){
  body=body.replace('<h2>Public website</h2>','<h2>Changes for your review</h2><p><a href="/programme">First-week example</a><a href="/help">What you get from SHIFT</a></p><p>The existing header, navigation and member account model are preserved. Treatments use “No stock available today”. No public copy says partners or sign-off are pending.</p><h2>Existing public journeys</h2>');
  body=body.replace('<h2>What stayed out of scope</h2>','<h2>Before approval</h2><p>This is a review candidate, not a release. Try negative feedback twice: the next task must change. If an adjusted step helps, the useful adjustment should be retained. Automated checks use fictional accounts; real-device acceptance and the wider release matrix remain separate.</p><h2>What stayed out of scope</h2>');
  body=body.replace('<a href="/sitemap.xml">Preview sitemap proposal</a>','').replace('Three legacy pages remain unpromoted rather than linking visitors into outdated workplace, pricing or browser-storage claims.','No new pricing, paid services, partner commitments or wider redesign is included in this candidate.');
+ body=body.replace('<h2>Existing public journeys</h2>','<p><a href="/clinic-gone-quiet">Continuity: clinic gone quiet</a><a href="/provider-switch">Continuity: changing provider</a></p><p>These routes open free My Timber on Today without requiring a treatment purchase or prescription transfer.</p><h2>Existing public journeys</h2>');
  return new Response(body,{status:response.status,headers:response.headers});
 }};

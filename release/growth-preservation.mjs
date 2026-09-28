@@ -1,3 +1,4 @@
+import {continuityPages} from '../public-continuity.mjs';
 import assert from 'node:assert/strict';
 import {improvePublicCopy} from '../preview/growth-member/public-copy.mjs';
 const original={
@@ -6,6 +7,22 @@ const original={
 };
 const sample=path=>improvePublicCopy('<html><head></head><body><main>'+original[path]+'</main></body></html>',path);
 export function preserveGrowthCopy(path,input,{required=false}={}){
+ if(['/mens-mental-health','/clinic-gone-quiet','/provider-switch'].includes(path)){
+  let html=input.toString('utf8');
+  const talk=path==='/mens-mental-health',marker=talk?'data-good-to-talk-alignment':'data-growth-continuity';
+  if(!html.includes(marker)){assert(!required,path+': approved addition absent');return input;}
+  const baseline=talk?'<html><head></head><main class="template-mens-mental-health"></main></html>':'<html><head></head><main>'+continuityPages[path].body+'</main></html>';
+  const expected=improvePublicCopy(baseline,path);
+  if(talk){const style=expected.match(/<style data-good-to-talk-alignment>[\s\S]*?<\/style>/)[0];assert.equal(html.split(style).length,2,'Alignment stylesheet drift');html=html.replace(style,'');}
+  else{
+   const addition=expected.match(/<section data-growth-continuity[\s\S]*?<\/section>/)[0];
+   const cta=expected.match(/<a class="continuity-button" data-continuity-primary[^>]*>[\s\S]*?<\/a>/)[0];
+   const previous=continuityPages[path].body.match(/<a class="continuity-button" href="\/start-here">[\s\S]*?<\/a>/)[0];
+   assert.equal(html.split(addition).length,2,'Continuity explanation drift');assert.equal(html.split(cta).length,2,'Continuity CTA drift');
+   html=html.replace(addition,'').replace(cta,previous);
+  }
+  return Buffer.from(html);
+ }
  if(!original[path])return input;
  let html=input.toString('utf8');
  const expected=sample(path),style=expected.match(/<style data-growth-copy>[\s\S]*?<\/style>/)[0];
