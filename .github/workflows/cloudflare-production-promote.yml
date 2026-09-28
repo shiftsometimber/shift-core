@@ -229,7 +229,7 @@ jobs:
           import {createHash} from 'node:crypto';
           import {RETA_STYLES} from './reta-styles-data.mjs';
           import {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36468288023',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'96c12eb713abd096099515eec82852b423929607');
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36469397727',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'44c895d732cf801c4cff90564244fa5ee8997523');
           const sha=x=>createHash('sha256').update(x).digest('hex');
           for(const [path,css] of Object.entries({...RETA_STYLES,...HOME_BLOCKING_STYLES})){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}
           JS
