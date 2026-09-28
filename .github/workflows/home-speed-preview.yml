@@ -2,6 +2,9 @@ name: Matched homepage speed preview
 on:
   push:
     branches: [fix/home-speed-green-20260928]
+concurrency:
+  group: home-speed-preview
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

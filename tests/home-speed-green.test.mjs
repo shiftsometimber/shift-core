@@ -16,3 +16,13 @@ test('homepage styles retain source order, all rules and body; private routes un
  const altered=final.replace('Keep this','Changed');assert.notEqual(preserveApprovedStartup('/',Buffer.from(altered)).toString(),early);
  assert.throws(()=>preserveApprovedStartup('/',Buffer.from(final.replace('data-home-inline-css="/assets/my-timber-pwa.css">','data-home-inline-css="/assets/my-timber-pwa.css">.bad{}'))));
 });
+import {HOME_BASE_MAIN} from '../home-critical-styles.mjs';
+import {HOME_HERO_BEFORE,HOME_HERO_AFTER,HOME_HERO_PRELOAD} from '../home-speed-repair.mjs';
+test('hero preparation preserves exact art and all copy, is idempotent and reversible',()=>{
+ const html='<html><head><link rel="stylesheet" href="/assets/my-timber-pwa.css"></head><body>'+HOME_BASE_MAIN+'</body></html>';
+ const candidate=repairHomeSpeed(html,'/',{final:true});
+ assert(candidate.includes(HOME_HERO_PRELOAD));assert(candidate.includes(HOME_HERO_AFTER));assert(!candidate.includes(HOME_HERO_BEFORE));
+ assert.equal(repairHomeSpeed(candidate,'/',{final:true}),candidate);
+ assert.equal(preserveApprovedStartup('/',Buffer.from(candidate)).toString(),html);
+ assert.throws(()=>preserveApprovedStartup('/',Buffer.from(candidate.replace(HOME_HERO_AFTER,HOME_HERO_AFTER.replace('Three ordinary','Other')))));
+});

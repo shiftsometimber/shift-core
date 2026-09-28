@@ -1,6 +1,7 @@
 // Reverse only the two exact owner-approved startup transforms for the existing
 // full-page preservation gate. Any other byte or route change still fails.
 import assert from 'node:assert/strict';
+import {HOME_HERO_BEFORE,HOME_HERO_AFTER,HOME_HERO_PRELOAD} from '../home-speed-repair.mjs';
 import {HOME_BLOCKING_STYLES} from '../home-blocking-styles.mjs';
 import {stabilisePublicHtml,programmeBridge,loginReservationStyles} from '../public-startup-stability.mjs';
 const status='<section id="memberSessionStatus" aria-label="Account access"><p role="status">Checking your sign-in…</p></section><script src="/assets/member-experience/session.mjs"></script>';
@@ -8,6 +9,7 @@ export function preserveApprovedStartup(path,body){
  const text=body.toString('utf8');let before=text;
  const once=(a,b='')=>{assert.equal(before.split(a).length,2,'Unexpected startup preservation signature: '+path);before=before.replace(a,b);};
  if(path==='/'&&text.includes('data-home-inline-css="/assets/my-timber-pwa.css"')){
+  if(text.includes('data-home-hero-preload')){once(HOME_HERO_PRELOAD);once(HOME_HERO_AFTER,HOME_HERO_BEFORE);}
   const css=HOME_BLOCKING_STYLES['/assets/my-timber-pwa.css'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'));
   once('<style data-home-inline-css="/assets/my-timber-pwa.css">'+css+'</style>','<link rel="stylesheet" href="/assets/my-timber-pwa.css">');
  }else if(path==='/programme'&&text.includes('data-programme-layout="stable-v1"')){
