@@ -11,7 +11,10 @@ removes repeated manual entry and lets a member choose to bring supported
 measurements already held on their phone into their private My Timber account.
 
 The integration is read-only. My Timber v1.1 does not write measurements back to
-Apple Health or Health Connect and does not request clinical records.
+Apple Health or Health Connect and does not request clinical records. The server
+schema also reserves a `shift_device` source so future SHIFT-branded BP/heart-rate
+hardware can use the same validated member data contract once its BLE/vendor
+protocol is selected and separately permission-tested.
 
 ## Requested categories and product use
 
