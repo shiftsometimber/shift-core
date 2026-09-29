@@ -25,6 +25,9 @@ rule('#todayActions.app-today-v3 .today-meal-visual img','display:block;width:10
 rule('#todayActions.app-today-v3 .today-meal-visual .app-line-icon','width:72px;height:72px;color:#b7c59c')+
 rule('#todayActions.app-today-v3 .today-meal-visual figcaption','position:absolute;bottom:10px;left:12px;padding:4px 8px;background:#050505c9;color:#eeeae2;border-radius:5px;font-size:10px')+
 rule('#todayActions.app-today-v3 .today-meal-copy','padding:22px')+
+rule('#todayActions.app-today-v3 .today-meal:not([data-has-image]) .today-meal-visual','aspect-ratio:auto;width:48px;height:48px;margin:20px 20px 0;border-radius:12px')+
+rule('#todayActions.app-today-v3 .today-meal:not([data-has-image]) .today-meal-visual .app-line-icon','width:28px;height:28px')+
+rule('#todayActions.app-today-v3 .today-meal:not([data-has-image]) .today-meal-copy','padding-top:14px')+
 rule('#todayActions.app-today-v3 .today-eyebrow','font-size:11px;letter-spacing:1.5px;font-weight:700;margin:0 0 10px;color:inherit')+
 rule('#todayActions.app-today-v3 :is(.today-meal,.today-life) .today-eyebrow','color:#566044;-webkit-text-fill-color:#566044')+
 rule('#todayActions.app-today-v3 .today-meal h3','font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1.1;margin:0 0 12px;color:#050505')+
@@ -113,7 +116,7 @@ function build(){
   meta.textContent=recipe?[recipe.name,recipe.minutes&&recipe.minutes+' min'].filter(Boolean).join(' · '):selected?chosen.name:'Find something you’ll look forward to. Choose it in Grub and it’ll be here when you come back.';
   if(recipe)mealCard.dataset.recipeId=recipe.id;
   action.textContent=selected?(recipe?.meal_type==='dinner'?'See tonight’s meal →':'See today’s meal →'):recipe?'Take a look in Grub →':'Find my next meal →';action.href='/member/grub'+(selected?'#today':'#discover');if(selected)copy.append(swap);
-  if(recipe?.image?.src?.startsWith('/assets/member-experience/food/')){const img=el('img');img.src=recipe.image.src;img.alt=recipe.image.alt||recipe.name;img.width=1448;img.height=1086;img.decoding='async';img.addEventListener('error',()=>visual.replaceChildren(icon('food')),{once:true});visual.replaceChildren(img,el('figcaption','','Recipe illustration · portions illustrative'))}
+  if(recipe?.image?.src?.startsWith('/assets/member-experience/food/')){const img=el('img');img.src=recipe.image.src;img.alt=recipe.image.alt||recipe.name;img.width=1448;img.height=1086;img.decoding='async';img.addEventListener('load',()=>{mealCard.dataset.hasImage='true'},{once:true});img.addEventListener('error',()=>{delete mealCard.dataset.hasImage;visual.replaceChildren(icon('food'))},{once:true});visual.replaceChildren(img,el('figcaption','','Recipe illustration · portions illustrative'))}
  }).catch(()=>{if(token===generation&&mealCard.isConnected){mealCard.dataset.mealState='unavailable';meta.append(document.createTextNode(' Open Grub to check the latest saved choice.'))}}).finally(()=>clearTimeout(timer));
 }
 document.addEventListener('sst:today-rendered',build);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
