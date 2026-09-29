@@ -60,31 +60,32 @@ class HealthConnectActivity: ComponentActivity() {
         val response=client.readRecords(ReadRecordsRequest(T::class,TimeRangeFilter.after(Instant.now().minus(Duration.ofDays(30))),pageSize=1,ascendingOrder=false))
         return response.records.firstOrNull()?.let(map)?:emptyList()
     }
-    private suspend fun collect():List<Reading>{
+    private inline fun <reified T:Record> has(granted:Set<String>)=granted.contains(HealthPermission.getReadPermission(T::class))
+    private suspend fun collect(granted:Set<String>):List<Reading>{
         val out=mutableListOf<Reading>()
-        out+=latest<WeightRecord>{listOf(Reading("weight_kg",it.weight.inKilograms,it.time,it.metadata.id))}
-        out+=latest<BodyFatRecord>{listOf(Reading("body_fat_pct",it.percentage.value,it.time,it.metadata.id))}
-        out+=latest<BloodPressureRecord>{listOf(
+        if(has<WeightRecord>(granted))out+=latest<WeightRecord>{listOf(Reading("weight_kg",it.weight.inKilograms,it.time,it.metadata.id))}
+        if(has<BodyFatRecord>(granted))out+=latest<BodyFatRecord>{listOf(Reading("body_fat_pct",it.percentage.value,it.time,it.metadata.id))}
+        if(has<BloodPressureRecord>(granted))out+=latest<BloodPressureRecord>{listOf(
             Reading("systolic_mmhg",it.systolic.inMillimetersOfMercury,it.time,it.metadata.id+"-sys"),
             Reading("diastolic_mmhg",it.diastolic.inMillimetersOfMercury,it.time,it.metadata.id+"-dia"))}
-        out+=latest<HeartRateRecord>{r->r.samples.lastOrNull()?.let{listOf(Reading("heart_rate_bpm",it.beatsPerMinute.toDouble(),it.time,r.metadata.id+"-"+it.time.toEpochMilli()))}?:emptyList()}
-        out+=latest<RestingHeartRateRecord>{listOf(Reading("resting_heart_rate_bpm",it.beatsPerMinute.toDouble(),it.time,it.metadata.id))}
-        out+=latest<OxygenSaturationRecord>{listOf(Reading("oxygen_saturation_pct",it.percentage.value,it.time,it.metadata.id))}
-        out+=latest<RespiratoryRateRecord>{listOf(Reading("respiratory_rate_bpm",it.rate,it.time,it.metadata.id))}
-        out+=latest<BodyTemperatureRecord>{listOf(Reading("body_temperature_c",it.temperature.inCelsius,it.time,it.metadata.id))}
+        if(has<HeartRateRecord>(granted))out+=latest<HeartRateRecord>{r->r.samples.lastOrNull()?.let{listOf(Reading("heart_rate_bpm",it.beatsPerMinute.toDouble(),it.time,r.metadata.id+"-"+it.time.toEpochMilli()))}?:emptyList()}
+        if(has<RestingHeartRateRecord>(granted))out+=latest<RestingHeartRateRecord>{listOf(Reading("resting_heart_rate_bpm",it.beatsPerMinute.toDouble(),it.time,it.metadata.id))}
+        if(has<OxygenSaturationRecord>(granted))out+=latest<OxygenSaturationRecord>{listOf(Reading("oxygen_saturation_pct",it.percentage.value,it.time,it.metadata.id))}
+        if(has<RespiratoryRateRecord>(granted))out+=latest<RespiratoryRateRecord>{listOf(Reading("respiratory_rate_bpm",it.rate,it.time,it.metadata.id))}
+        if(has<BodyTemperatureRecord>(granted))out+=latest<BodyTemperatureRecord>{listOf(Reading("body_temperature_c",it.temperature.inCelsius,it.time,it.metadata.id))}
         val now=Instant.now(),start=ZonedDateTime.now(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant(),day=start.toString().take(10)
-        val agg=client.aggregate(AggregateRequest(setOf(StepsRecord.COUNT_TOTAL,ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL,DistanceRecord.DISTANCE_TOTAL,ExerciseSessionRecord.EXERCISE_DURATION_TOTAL),TimeRangeFilter.between(start,now)))
-        agg[StepsRecord.COUNT_TOTAL]?.let{out+=Reading("steps",it.toDouble(),now,"steps-$day")}
-        agg[ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL]?.let{out+=Reading("active_energy_kcal",it.inKilocalories,now,"energy-$day")}
-        agg[DistanceRecord.DISTANCE_TOTAL]?.let{out+=Reading("distance_m",it.inMeters,now,"distance-$day")}
-        agg[ExerciseSessionRecord.EXERCISE_DURATION_TOTAL]?.let{out+=Reading("exercise_minutes",it.toMinutes().toDouble(),now,"exercise-$day")}
-        val sleep=client.readRecords(ReadRecordsRequest(SleepSessionRecord::class,TimeRangeFilter.after(now.minus(Duration.ofDays(2))),pageSize=20,ascendingOrder=false)).records.firstOrNull()
-        sleep?.let{out+=Reading("sleep_minutes",Duration.between(it.startTime,it.endTime).toMinutes().toDouble(),it.endTime,it.metadata.id)}
+        if(has<StepsRecord>(granted))client.aggregate(AggregateRequest(setOf(StepsRecord.COUNT_TOTAL),TimeRangeFilter.between(start,now)))[StepsRecord.COUNT_TOTAL]?.let{out+=Reading("steps",it.toDouble(),now,"steps-$day")}
+        if(has<ActiveCaloriesBurnedRecord>(granted))client.aggregate(AggregateRequest(setOf(ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL),TimeRangeFilter.between(start,now)))[ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL]?.let{out+=Reading("active_energy_kcal",it.inKilocalories,now,"energy-$day")}
+        if(has<DistanceRecord>(granted))client.aggregate(AggregateRequest(setOf(DistanceRecord.DISTANCE_TOTAL),TimeRangeFilter.between(start,now)))[DistanceRecord.DISTANCE_TOTAL]?.let{out+=Reading("distance_m",it.inMeters,now,"distance-$day")}
+        if(has<ExerciseSessionRecord>(granted))client.aggregate(AggregateRequest(setOf(ExerciseSessionRecord.EXERCISE_DURATION_TOTAL),TimeRangeFilter.between(start,now)))[ExerciseSessionRecord.EXERCISE_DURATION_TOTAL]?.let{out+=Reading("exercise_minutes",it.toMinutes().toDouble(),now,"exercise-$day")}
+        if(has<SleepSessionRecord>(granted)){val sleep=client.readRecords(ReadRecordsRequest(SleepSessionRecord::class,TimeRangeFilter.after(now.minus(Duration.ofDays(2))),pageSize=20,ascendingOrder=false)).records.firstOrNull()
+        sleep?.let{out+=Reading("sleep_minutes",Duration.between(it.startTime,it.endTime).toMinutes().toDouble(),it.endTime,it.metadata.id)}}
         return out
     }
     private suspend fun syncGranted(){
         try{
-            val readings=withContext(Dispatchers.IO){collect()}
+            val granted=client.permissionController.getGrantedPermissions()
+            val readings=withContext(Dispatchers.IO){collect(granted)}
             if(readings.isNotEmpty())withContext(Dispatchers.IO){upload(readings)}
         }catch(_:Throwable){}finally{finish()}
     }
