@@ -64,7 +64,7 @@ export async function deviceHealthSyncRoute(request,env){
   const at=new Date().toISOString(),stmts=[];
   for(const r of readings){
    const key=await digest(b.platform+'|'+r.type+'|'+r.sourceRecordId);
-   stmts.push(env.DB.prepare('INSERT OR IGNORE INTO device_health_readings(user_id,platform,type,value,unit,observed_at,source_record_hash,created_at) VALUES(?,?,?,?,?,?,?,?)').bind(a.userId,b.platform,r.type,r.value,r.unit,r.observedAt,key,at));
+   stmts.push(env.DB.prepare('INSERT INTO device_health_readings(user_id,platform,type,value,unit,observed_at,source_record_hash,created_at) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(user_id,platform,type,source_record_hash) DO UPDATE SET value=excluded.value,unit=excluded.unit,observed_at=excluded.observed_at,created_at=excluded.created_at').bind(a.userId,b.platform,r.type,r.value,r.unit,r.observedAt,key,at));
   }
   stmts.push(env.DB.prepare('INSERT INTO device_health_connections(user_id,platform,enabled,last_sync_at,updated_at) VALUES(?,?,1,?,?) ON CONFLICT(user_id,platform) DO UPDATE SET enabled=1,last_sync_at=excluded.last_sync_at,updated_at=excluded.updated_at').bind(a.userId,b.platform,at,at));
   try{const result=await env.DB.batch(stmts);const inserted=result.slice(0,-1).reduce((n,x)=>n+Number(x?.meta?.changes||0),0);return json({ok:true,platform:b.platform,received:readings.length,inserted,lastSyncAt:at},201)}
