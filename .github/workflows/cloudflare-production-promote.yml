@@ -356,6 +356,12 @@ jobs:
         run: |
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
+      - name: Initialise reviewed Medicines Watch expansion observations
+        if: steps.scope.outputs.runtime_only == 'true'
+        run: |
+          node scripts/b1-release-scope.mjs
+          node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
       - name: Publish only the exact previously authorised Grub recipe expansion
         if: steps.scope.outputs.grub_publication == 'true'
         run: |

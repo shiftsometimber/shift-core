@@ -64,3 +64,13 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
   validateMedicinesReview((ref,path)=>path);
   for(const changed of MEDICINES_REVIEW_PATHS)assert.throws(()=>validateMedicinesReview((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Medicines evidence source drift/);
  });
+
+ test('industry release binds every reviewed file and preserves the observation-only boundary',async()=>{
+  const {validateWatchExpansion,WATCH_EXPANSION_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  assert.equal(WATCH_EXPANSION_PATHS.length,10);
+  validateWatchExpansion((ref,path)=>path);
+  for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+  const step=steps.find(s=>s.startsWith('name: Initialise reviewed Medicines Watch expansion observations'));
+  assert.match(step,/node scripts\/b1-release-scope.mjs/);assert.match(step,/node medicines-watch\/bootstrap.mjs/);
+  assert.doesNotMatch(step,/migration|seed-recent|medicine_inventory|structured_content/);
+ });

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {writeFileSync} from 'node:fs';
 import {medicines,sources} from './data.mjs';
+import {industry} from './industry.mjs';
 import {verifyLiveSourceReviews} from './verify-live-sources.mjs';
 import {WATCH_PATH,HEALTH_PATH} from './page.mjs';
 import {TREATMENTS_ENTRY} from './preservation.mjs';
@@ -11,6 +12,8 @@ const [document,parent,health,filtered]=await Promise.all([
 ]);
 assert.ok(parent.includes(TREATMENTS_ENTRY),'Treatments entry exactly matches approved source');
 assert.equal((document.match(/data-watch-card /g)||[]).length,medicines.length);
+assert.equal((document.match(/data-industry-card/g)||[]).length,industry.length);
+for(const entry of industry)assert.ok(document.includes('id="industry-'+entry.id+'"'),entry.id);
 for(const medicine of medicines)assert.ok(document.includes('id="'+medicine.id+'"'),medicine.id);
 assert.equal((filtered.match(/data-watch-card /g)||[]).length,1);assert.ok(filtered.includes('id="retatrutide"'));
 assert.equal(health.available,true,'Monitor database must be readable');

@@ -1,3 +1,4 @@
+import {industrySources} from './industry.mjs';
 // Editorial evidence snapshot, not a clinical recommendation or a stock feed.
 // A source check never advances this date or approves changed medical wording.
 export const REVIEWED_AT = '2026-09-15T21:28:30Z';
@@ -73,6 +74,7 @@ const smpc = (id, title, product, updatedAt, requiredTerms) => source(
 // been retrieved and fingerprinted using monitor.mjs. A 403/empty response is
 // not evidence of unchanged content, even if a researcher could read the page.
 export const sources = [
+  ...industrySources,
   govuk('mounjaro-mhra', 'MHRA: tirzepatide weight-management authorisation',
     '/government/news/mhra-authorises-diabetes-drug-mounjaro-tirzepatide-for-weight-management-and-weight-loss',
     '2023-11-08', ['Mounjaro', 'tirzepatide', 'weight management']),
