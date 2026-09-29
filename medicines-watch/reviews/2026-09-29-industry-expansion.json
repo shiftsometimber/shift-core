@@ -116,18 +116,32 @@
         "investigational"
       ],
       "format": "html",
-      "retrievedAt": "2026-09-29T17:02:54.385603+00:00",
+      "retrievedAt": "2026-09-29T17:43:59.913Z",
       "httpStatus": 200,
       "contentType": "text/html;charset=utf-8",
       "finalUrl": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916774",
-      "bytes": 56269,
-      "responseSha256": "5df6d25ac72f3957e609c8c1ebdaf6be2e357f1c0f429f972ce115fe8c08e47a",
-      "reviewedAt": "2026-09-29T17:05:44.031Z",
+      "bytes": 57143,
+      "responseSha256": "df8338cf7ae43bc8e4987cf8488e566a9194bc3a2af88eaf9109558453e584f9",
+      "reviewedAt": "2026-09-29T17:50:00.000Z",
       "evidenceType": "Original sponsor statement; not regulatory approval",
-      "reviewMethod": "Complete primary response read alongside primary-source text retrieval",
-      "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred.",
-      "reviewedFingerprint": "b5d88cb55b7e528aef70612ab1212f07184c3d27cd97024a424be0f23ef235a1",
-      "withdrawn": false
+      "reviewMethod": "Complete primary response and relevant claim text reviewed; existing summary checked; not clinical approval",
+      "assessment": "Compared complete previous and current visible text. Only two Announcement.pdf attachment labels were added. REIMAGINE 5 and REDEFINE 9 announcement text is unchanged; existing summary retained. No UK authorisation, NHS access or supply inferred.",
+      "reviewedFingerprint": "8c74f268b3cf71a63a58a31283c2f2f802089de5af3793ae8f7ec638fc198971",
+      "withdrawn": false,
+      "previousReview": {
+        "retrievedAt": "2026-09-29T17:02:54.385603+00:00",
+        "httpStatus": 200,
+        "responseSha256": "5df6d25ac72f3957e609c8c1ebdaf6be2e357f1c0f429f972ce115fe8c08e47a",
+        "reviewedAt": "2026-09-29T17:05:44.031Z",
+        "reviewMethod": "Complete primary response read alongside primary-source text retrieval",
+        "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred.",
+        "reviewedFingerprint": "b5d88cb55b7e528aef70612ab1212f07184c3d27cd97024a424be0f23ef235a1"
+      },
+      "retrievalEvidence": {
+        "workflowRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36606989030",
+        "artifactId": 11051562928,
+        "archiveSha256": "6853f965ad8d95e5b3bb2e8ce3c60e1757fb2fd354945c5b4a852a08468b460a"
+      }
     },
     {
       "id": "novo-pipeline-2025",
@@ -211,12 +225,30 @@
         "fourth quarter"
       ],
       "format": "html",
-      "retrievedAt": "2026-09-29T17:03:02.003948+00:00",
-      "retrievalError": "HTTP Error 403: Forbidden",
-      "reviewedAt": "2026-09-29T17:05:44.031Z",
+      "retrievedAt": "2026-09-29T17:44:03.988Z",
+      "reviewedAt": "2026-09-29T17:50:00.000Z",
       "evidenceType": "Original sponsor statement; not regulatory approval",
-      "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
-      "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      "reviewMethod": "Complete primary response and relevant claim text reviewed; existing summary checked; not clinical approval",
+      "assessment": "Read the complete 29 July sponsor update: injectable VANQUISH-1/2 fully enrolled; oral Phase 3 remains a Q4 plan. Existing summary unchanged; no UK authorisation, NHS access or supply inferred.",
+      "previousReview": {
+        "retrievedAt": "2026-09-29T17:03:02.003948+00:00",
+        "retrievalError": "HTTP Error 403: Forbidden",
+        "reviewedAt": "2026-09-29T17:05:44.031Z",
+        "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
+        "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      },
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "finalUrl": "https://ir.vikingtherapeutics.com/2026-07-29-Viking-Therapeutics-Reports-Second-Quarter-2026-Financial-Results-and-Provides-Corporate-Update",
+      "bytes": 149394,
+      "responseSha256": "c61d518bc491669253f361398cf98751d108d97b1a4675916f04ea23183f4485",
+      "reviewedFingerprint": "6602d6a9409c6558673860fdf54cfc2b9cce824085c1055e60c6514c7dda459b",
+      "withdrawn": false,
+      "retrievalEvidence": {
+        "workflowRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36606989030",
+        "artifactId": 11051562928,
+        "archiveSha256": "6853f965ad8d95e5b3bb2e8ce3c60e1757fb2fd354945c5b4a852a08468b460a"
+      }
     },
     {
       "id": "petrelintide-zealand",
@@ -319,12 +351,30 @@
         "GLP-1"
       ],
       "format": "html",
-      "retrievedAt": "2026-09-29T17:03:09.928032+00:00",
-      "retrievalError": "HTTP Error 403: Forbidden",
-      "reviewedAt": "2026-09-29T17:05:44.031Z",
+      "retrievedAt": "2026-09-29T17:45:04.360Z",
+      "reviewedAt": "2026-09-29T17:50:00.000Z",
       "evidenceType": "Original sponsor statement; not regulatory approval",
-      "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
-      "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      "reviewMethod": "Complete primary response and relevant claim text reviewed; existing summary checked; not clinical approval",
+      "assessment": "Read the complete 1 June sponsor update: CT-388 Phase 2 results and Phase 3 development. Existing summary and separately reviewed April presentation retained; no UK authorisation, NHS access or supply inferred.",
+      "previousReview": {
+        "retrievedAt": "2026-09-29T17:03:09.928032+00:00",
+        "retrievalError": "HTTP Error 403: Forbidden",
+        "reviewedAt": "2026-09-29T17:05:44.031Z",
+        "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
+        "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      },
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "finalUrl": "https://www.roche.com/media/releases/med-cor-2026-06-01",
+      "bytes": 168017,
+      "responseSha256": "e566036211594ad3746576c434505ef2ca15220c221b04ff768fcf8c4f32009b",
+      "reviewedFingerprint": "4c2d13c54c0a740b04d801e93bdf1502466980a4ecab125b8f5256f20761c3ce",
+      "withdrawn": false,
+      "retrievalEvidence": {
+        "workflowRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36606989030",
+        "artifactId": 11051562928,
+        "archiveSha256": "6853f965ad8d95e5b3bb2e8ce3c60e1757fb2fd354945c5b4a852a08468b460a"
+      }
     },
     {
       "id": "danuglipron-pfizer",
@@ -375,12 +425,30 @@
         "liraglutide"
       ],
       "format": "html",
-      "retrievedAt": "2026-09-29T17:03:59.132438+00:00",
-      "retrievalError": "HTTP Error 403: Forbidden",
-      "reviewedAt": "2026-09-29T17:05:44.031Z",
+      "retrievedAt": "2026-09-29T17:45:05.465Z",
+      "reviewedAt": "2026-09-29T17:50:00.000Z",
       "evidenceType": "UK product information",
-      "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
-      "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      "reviewMethod": "Complete primary response and relevant claim text reviewed; existing summary checked; not clinical approval",
+      "assessment": "Read UK product information: adult weight management BMI criteria, daily administration, digestive adverse effects and response stopping rules support the existing summary. NICE access remains separately sourced; supply not inferred.",
+      "previousReview": {
+        "retrievedAt": "2026-09-29T17:03:59.132438+00:00",
+        "retrievalError": "HTTP Error 403: Forbidden",
+        "reviewedAt": "2026-09-29T17:05:44.031Z",
+        "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
+        "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      },
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "finalUrl": "https://www.medicines.org.uk/emc/product/2313/smpc",
+      "bytes": 253682,
+      "responseSha256": "18f1a1a99b06f05619fdd154030bc0e88fac523e13f41339f4c05ca203e7521b",
+      "reviewedFingerprint": "51b305c44e673cf0da0e2af045f144ac447bf214bfedfe2a2c699f7fb93576fd",
+      "withdrawn": false,
+      "retrievalEvidence": {
+        "workflowRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36606989030",
+        "artifactId": 11051562928,
+        "archiveSha256": "6853f965ad8d95e5b3bb2e8ce3c60e1757fb2fd354945c5b4a852a08468b460a"
+      }
     },
     {
       "id": "mysimba-smpc",
@@ -394,12 +462,30 @@
         "bupropion"
       ],
       "format": "html",
-      "retrievedAt": "2026-09-29T17:03:59.133220+00:00",
-      "retrievalError": "HTTP Error 403: Forbidden",
-      "reviewedAt": "2026-09-29T17:05:44.031Z",
+      "retrievedAt": "2026-09-29T17:45:06.215Z",
+      "reviewedAt": "2026-09-29T17:50:00.000Z",
       "evidenceType": "UK product information",
-      "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
-      "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      "reviewMethod": "Complete primary response and relevant claim text reviewed; existing summary checked; not clinical approval",
+      "assessment": "Read UK product information updated 28 September: adult weight-management indication, contraindications/interactions and treatment reassessment support existing summary. NICE non-recommendation remains separately sourced; supply not inferred.",
+      "previousReview": {
+        "retrievedAt": "2026-09-29T17:03:59.133220+00:00",
+        "retrievalError": "HTTP Error 403: Forbidden",
+        "reviewedAt": "2026-09-29T17:05:44.031Z",
+        "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
+        "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      },
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "finalUrl": "https://www.medicines.org.uk/emc/product/2684/smpc",
+      "bytes": 199836,
+      "responseSha256": "4e729634168a2f776998fa1779701796351787836328cf6e289dc9d7efedd4e7",
+      "reviewedFingerprint": "b3b5c4a9182141708587fde79a24b57681771de9383e957880dfceff7021329c",
+      "withdrawn": false,
+      "retrievalEvidence": {
+        "workflowRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36606989030",
+        "artifactId": 11051562928,
+        "archiveSha256": "6853f965ad8d95e5b3bb2e8ce3c60e1757fb2fd354945c5b4a852a08468b460a"
+      }
     },
     {
       "id": "imcivree-smpc",
@@ -412,12 +498,30 @@
         "setmelanotide"
       ],
       "format": "html",
-      "retrievedAt": "2026-09-29T17:03:59.133850+00:00",
-      "retrievalError": "HTTP Error 403: Forbidden",
-      "reviewedAt": "2026-09-29T17:05:44.031Z",
+      "retrievedAt": "2026-09-29T17:45:07.269Z",
+      "reviewedAt": "2026-09-29T17:50:00.000Z",
       "evidenceType": "UK product information",
-      "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
-      "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      "reviewMethod": "Complete primary response and relevant claim text reviewed; existing summary checked; not clinical approval",
+      "assessment": "Read UK product information updated 18 August: acquired hypothalamic obesity from age 4; specified genetic indications from age 2; specialist prescribing. Existing distinction from narrower NICE criteria retained; supply not inferred.",
+      "previousReview": {
+        "retrievedAt": "2026-09-29T17:03:59.133850+00:00",
+        "retrievalError": "HTTP Error 403: Forbidden",
+        "reviewedAt": "2026-09-29T17:05:44.031Z",
+        "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
+        "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
+      },
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "finalUrl": "https://www.medicines.org.uk/emc/product/14068/smpc",
+      "bytes": 354272,
+      "responseSha256": "97972ca33d279bbf6c55f4b841332c6eb7d4c897c0748351a19323efd4730fed",
+      "reviewedFingerprint": "ef9420f9a59562d94bc3f9881b7ecb9099293fdd8c020ac3d6154b36e1ae2eff",
+      "withdrawn": false,
+      "retrievalEvidence": {
+        "workflowRun": "https://github.com/shiftsometimber/shift-core/actions/runs/36606989030",
+        "artifactId": 11051562928,
+        "archiveSha256": "6853f965ad8d95e5b3bb2e8ce3c60e1757fb2fd354945c5b4a852a08468b460a"
+      }
     }
   ]
 }
