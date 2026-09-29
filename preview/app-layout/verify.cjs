@@ -53,7 +53,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
   assert(await p.locator('.grub-pick-why').isVisible());
   if(await p.locator('.app-refine-recipe:not([open])').count())await p.locator('.app-refine-recipe>summary').click();
   await p.locator('#grubRecommendation .app-screen-details summary').first().click();
-  await p.locator('#member-food-tab-saved').click();assert(await p.locator('#member-food-panel-saved').isVisible());
+  await p.locator('#member-food-tab-saved').click();assert(await p.locator('#member-food-panel-saved').isVisible());assert(!(await p.locator('.grub-search').isVisible()),'Discover search is hidden on Saved');
   await p.locator('#member-food-tab-discover').click();row.checks.push('Grub data loaded; meal explanation expands; food tabs switch panels');
  }
  if(path==='/member/fit'){

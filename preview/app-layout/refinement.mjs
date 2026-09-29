@@ -83,6 +83,7 @@ css('.grub-food-image img','height:160px!important')+
 css('.grub-recipe','padding:14px!important')+
 css('.grub-recipe h3','font-size:23px!important')+
 css('.grub-search','padding:14px!important;margin:12px 0!important')+
+css('main:has(#member-food-tab-discover[aria-selected="false"]) .grub-search|main:has(#member-food-tab-discover[aria-selected="false"]) #grubDiscoverResults','display:none!important')+
 css('.grub-spotlight','display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important')+
 css('.grub-spotlight article','padding:12px!important')+
 css('.grub-spotlight h3','font-size:16px!important')+
@@ -146,7 +147,7 @@ export const refinementClient=String.raw`
     group(details,'Recipe details & adjustments','app-refine-recipe');
    }
    const search=document.querySelector('.grub-search'),hero=document.querySelector('main [data-member-hero]');
-   if(search&&hero&&!search.dataset.refinePlaced){search.dataset.refinePlaced='true';const tabs=document.querySelector('.grub-v8-tabs');(tabs||hero).after(search)}
+   if(search&&hero&&!search.dataset.refinePlaced){search.dataset.refinePlaced='true';const tabs=document.querySelector('.grub-v8-tabs');(tabs||hero).after(search);const results=document.querySelector('#grubDiscoverResults');if(results)search.after(results)}
   }
   if(page==='life-back')document.querySelectorAll('.trend-panel').forEach(n=>group([n],'See your progress over time'));
  }
