@@ -15,7 +15,7 @@ const TYPES={
 const PLATFORMS=new Set(['apple_health','health_connect']);
 const pathOf=r=>new URL(r.url).pathname.replace(/\/+$/,'');
 async function digest(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
-function validReading(r,now=Date.now()){
+export function normaliseDeviceHealthReading(r,now=Date.now()){
  if(!r||typeof r!=='object'||Array.isArray(r)||!TYPES[r.type])return null;
  const [lo,hi,unit]=TYPES[r.type],value=Number(r.value),time=Date.parse(r.observedAt),id=String(r.sourceRecordId||'');
  if(!Number.isFinite(value)||value<lo||value>hi||!Number.isFinite(time)||time>now+300000||time<now-31*86400000||id.length<1||id.length>240)return null;
@@ -60,7 +60,7 @@ export async function deviceHealthSyncRoute(request,env){
   if(new TextEncoder().encode(raw).length>131072)return json({ok:false,error:'request_too_large'},413);
   let b;try{b=JSON.parse(raw)}catch{return json({ok:false,error:'invalid_json'},400)}
   if(!PLATFORMS.has(b?.platform)||!Array.isArray(b?.readings)||b.readings.length<1||b.readings.length>150)return json({ok:false,error:'invalid_request'},400);
-  const readings=b.readings.map(r=>validReading(r));if(readings.some(r=>!r))return json({ok:false,error:'invalid_reading',message:'One health reading was outside the supported format or range.'},400);
+  const readings=b.readings.map(r=>normaliseDeviceHealthReading(r));if(readings.some(r=>!r))return json({ok:false,error:'invalid_reading',message:'One health reading was outside the supported format or range.'},400);
   const at=new Date().toISOString(),stmts=[];
   for(const r of readings){
    const key=await digest(b.platform+'|'+r.type+'|'+r.sourceRecordId);
