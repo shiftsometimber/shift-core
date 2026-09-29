@@ -73,7 +73,9 @@ class HealthConnectActivity: ComponentActivity() {
         if(has<OxygenSaturationRecord>(granted))out+=latest<OxygenSaturationRecord>{listOf(Reading("oxygen_saturation_pct",it.percentage.value,it.time,it.metadata.id))}
         if(has<RespiratoryRateRecord>(granted))out+=latest<RespiratoryRateRecord>{listOf(Reading("respiratory_rate_bpm",it.rate,it.time,it.metadata.id))}
         if(has<BodyTemperatureRecord>(granted))out+=latest<BodyTemperatureRecord>{listOf(Reading("body_temperature_c",it.temperature.inCelsius,it.time,it.metadata.id))}
-        val now=Instant.now(),start=ZonedDateTime.now(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant(),day=start.toString().take(10)
+        val now=Instant.now()
+        val start=ZonedDateTime.now(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant()
+        val day=start.toString().take(10)
         if(has<StepsRecord>(granted))client.aggregate(AggregateRequest(setOf(StepsRecord.COUNT_TOTAL),TimeRangeFilter.between(start,now)))[StepsRecord.COUNT_TOTAL]?.let{out+=Reading("steps",it.toDouble(),now,"steps-$day")}
         if(has<ActiveCaloriesBurnedRecord>(granted))client.aggregate(AggregateRequest(setOf(ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL),TimeRangeFilter.between(start,now)))[ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL]?.let{out+=Reading("active_energy_kcal",it.inKilocalories,now,"energy-$day")}
         if(has<DistanceRecord>(granted))client.aggregate(AggregateRequest(setOf(DistanceRecord.DISTANCE_TOTAL),TimeRangeFilter.between(start,now)))[DistanceRecord.DISTANCE_TOTAL]?.let{out+=Reading("distance_m",it.inMeters,now,"distance-$day")}
