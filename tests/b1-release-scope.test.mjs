@@ -59,7 +59,8 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
 
  test('medicines evidence release is pinned to every reviewed blob',async()=>{
   const {validateMedicinesReview,MEDICINES_REVIEW_PATHS}=await import('../scripts/b1-release-scope.mjs');
-  assert.equal(MEDICINES_REVIEW_PATHS.length,8);
+  assert.equal(MEDICINES_REVIEW_PATHS.length,9);
+  assert.ok(MEDICINES_REVIEW_PATHS.includes('medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json'));
   validateMedicinesReview((ref,path)=>path);
   for(const changed of MEDICINES_REVIEW_PATHS)assert.throws(()=>validateMedicinesReview((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Medicines evidence source drift/);
  });
