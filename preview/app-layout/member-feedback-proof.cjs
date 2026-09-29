@@ -29,7 +29,7 @@ const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:[
  assert(await p.locator('#myTimberApp summary').evaluate(el=>el.scrollWidth<=el.clientWidth+1),'Install banner text fits');
  }
  row.checks.push('Plans and records expands in flow');await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-menu.png',fullPage:true});
- await p.goto(base+'/member/grub?view='+view);await p.locator('#grubReload').waitFor();
+ await p.goto(base+'/member/grub?view='+view);await p.locator('#grubReload').waitFor({state:'attached'});
  const account=p.locator('.app-screen-details').filter({has:p.locator('#grubReload')});if(await account.count()&&!(await p.locator('#grubReload').isVisible()))await account.locator('summary').first().click();
  assert(!(await p.locator('#grubSignOut').isVisible()),'Sign out is not adjacent to Reload');await p.locator('.grub-signout>summary').click();await p.locator('#grubSignOut').waitFor();
  row.checks.push('Sign out requires opening Account actions');await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-account.png',fullPage:true});
