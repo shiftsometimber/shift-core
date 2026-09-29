@@ -47,7 +47,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  for(const path of ['/member/grub','/member/fit','/member/life-back','/member/settings']){await p.goto(base+path,{waitUntil:'domcontentloaded'});await p.locator('#appBottomNav').waitFor();
  if(path==='/member/grub'){
   await p.locator('#grubRecommendation .grub-recipe').waitFor({timeout:45000});
-  await p.locator('#grubRecommendation .app-screen-details').first().waitFor();
+  await p.locator('#grubRecommendation .app-screen-details').first().waitFor({state:'attached'});
   if(await p.locator('.app-refine-recipe:not([open])').count())await p.locator('.app-refine-recipe>summary').click();
   await p.locator('#grubRecommendation .app-screen-details summary').first().click();
   assert(await p.locator('.grub-pick-why').isVisible());
