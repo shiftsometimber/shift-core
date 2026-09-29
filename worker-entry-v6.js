@@ -31,6 +31,7 @@ import {withKnowledgeAssetRepair} from './knowledge-heading-repair.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
+import {deviceHealthSyncRoute,appendDeviceHealthExport} from "./member-experience/device-health-sync.mjs";
 import { withSessionState } from './member-experience/session-state.mjs';
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
 import { workDashboardEntry } from "./work/dashboard-entry.mjs";
@@ -905,6 +906,8 @@ const worker = {
     const passport = await passportRoutes(request, env); if(passport)return withMemberCors(passport,request);
     const memberHealth = await memberHealthRoutes(request, env);
     if (memberHealth) return withMemberCors(memberHealth, request);
+    const deviceHealth = await deviceHealthSyncRoute(request, env);
+    if (deviceHealth) return withMemberCors(deviceHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
     if (grubWorkspace) return withMemberCors(grubWorkspace, request);
     const accountDetails = await memberDetailsRoute(request, env);
