@@ -10,7 +10,14 @@ css('.app-today-shortcuts','border-radius:12px!important;padding:4px!important')
 css('.app-today-shortcuts a','min-height:58px!important;padding:8px 3px!important')+
 css('#todayActions.app-today-v2','gap:12px!important')+
 css('#todayActions.app-today-v2 .mtm-panel','padding:16px!important;border-radius:12px!important')+
-css('#todayActions.app-today-v2 .mtm-step','padding:10px 0!important;column-gap:8px!important')+
+css('#todayActions.app-today-v2 .mtm-step','grid-template-columns:30px minmax(0,1fr) 44px!important;grid-template-rows:auto!important;align-items:center!important;padding:12px 0!important;gap:8px!important')+
+css('#todayActions.app-today-v2 .mtm-step>.app-line-icon','grid-column:1!important;grid-row:1!important;width:28px!important;height:28px!important;padding:0!important')+
+css('#todayActions.app-today-v2 .mtm-step>.app-day-copy','grid-column:2!important;grid-row:1!important;display:block!important')+
+css('#todayActions.app-today-v2 .mtm-step>.app-day-open','grid-column:3!important;grid-row:1!important;min-height:44px!important;justify-content:center!important;font-size:24px!important')+
+css('#todayActions.app-today-v2 .mtm-step .app-day-copy>*','margin:2px 0!important;line-height:1.3!important')+
+css('#todayActions.app-today-v2 .mtm-step .app-day-copy small','font-size:10px!important;letter-spacing:.08em!important;color:#bac4a7!important')+
+css('#todayActions.app-today-v2 .mtm-step .app-day-copy h3','font-size:15px!important;font-weight:600!important')+
+css('#todayActions.app-today-v2 .mtm-step .app-day-copy p','font-size:12px!important')+
 css('#todayActions.app-today-v2 .mtm-step h3','font-size:16px!important;margin:2px 0!important')+
 css('#todayActions.app-today-v2 .mtm-step small','font-size:9px!important')+
 css('#todayActions.app-today-v2 .mtm-step p','font-size:12px!important;font-weight:400!important')+
@@ -107,7 +114,11 @@ export const refinementClient=String.raw`
     if(d)home.append(d);
    }
    const next=home.querySelector('.mtm-next');
-   if(next&&!next.dataset.refined){next.dataset.refined='true';group([...next.children].filter(n=>n.matches('p:not(.mtm-kicker),.mtm-change-step')),'About your next step');}
+   if(next&&!next.dataset.refined){next.dataset.refined='true';
+    const intro=next.querySelector(':scope>div:not(.mtm-loop-controls)');if(intro)group([...intro.children].filter(n=>n.tagName==='P'),'Why this step');
+    const loop=next.querySelector('.mtm-loop-controls');if(loop){group([...loop.children].filter(n=>n.tagName==='P'),'Why SHIFT suggested this');}
+   }
+   home.querySelectorAll('.mtm-step').forEach((row,i)=>{if(row.querySelector('.app-day-copy'))return;const link=[...row.children].find(n=>n.tagName==='A');if(!link)return;const copy=document.createElement('div');copy.className='app-day-copy';const nodes=[...row.children].filter(n=>n!==link&&!n.classList.contains('app-line-icon'));row.append(copy);copy.append(...nodes);const kicker=copy.querySelector('small');if(kicker)kicker.textContent=i?'SHIFT FIT':'SHIFT GRUB';link.classList.add('app-day-open');link.setAttribute('aria-label',link.textContent.trim());link.textContent='→';});
    const secondary=home.querySelector('.app-secondary-controls');if(secondary&&!secondary.dataset.refined){secondary.dataset.refined='true';home.append(secondary)}
   }
   if(page==='fit'){
