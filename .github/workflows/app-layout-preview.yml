@@ -1,7 +1,7 @@
-name: My Timber app production candidate preview
+name: My Timber app visual refinement preview
 on:
   push:
-    branches: [release/app-layout-20260928]
+    branches: [preview/app-refinement-20260929]
 permissions:
   contents: read
 concurrency:

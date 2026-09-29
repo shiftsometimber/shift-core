@@ -17,6 +17,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  await p.locator('#appMore').click();assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'true');assert(await p.locator('.sst-member-tabs').isVisible());await p.keyboard.press('Escape');assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'false');
  assert.equal(await p.locator('.mtm-next').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(231, 227, 218)');
  await p.screenshot({path:dir+'/'+name+'-'+width+'-app-today.png',fullPage:true});
+ await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:dir+'/'+name+'-'+width+'-today-viewport.png'});
  const mainURL=new URL(p.url()).pathname;let topNavigations=0;const countTop=r=>{if(r.isNavigationRequest()&&r.frame()===p.mainFrame())topNavigations++};p.on('request',countTop);
  await p.locator('#appTab-grub').click();const grubFrame=p.frameLocator('#appTool-grub iframe');await grubFrame.locator('#grubSearch').waitFor({timeout:45000});await grubFrame.locator('#grubSearch').fill('Unfinished meal search');
  assert.equal(new URL(p.url()).pathname,mainURL);assert.equal(await p.locator('#appTab-grub').getAttribute('aria-selected'),'true');assert(await p.locator('.mtm-hero').isVisible());assert(!(await p.locator('.app-today-grid').isVisible()));
@@ -47,8 +48,10 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  if(path==='/member/grub'){
   await p.locator('#grubRecommendation .grub-recipe').waitFor({timeout:45000});
   await p.locator('#grubRecommendation .app-screen-details').first().waitFor();
+  if(await p.locator('.app-refine-recipe:not([open])').count())await p.locator('.app-refine-recipe>summary').click();
   await p.locator('#grubRecommendation .app-screen-details summary').first().click();
   assert(await p.locator('.grub-pick-why').isVisible());
+  if(await p.locator('.app-refine-recipe:not([open])').count())await p.locator('.app-refine-recipe>summary').click();
   await p.locator('#grubRecommendation .app-screen-details summary').first().click();
   await p.locator('#member-food-tab-saved').click();assert(await p.locator('#member-food-panel-saved').isVisible());
   await p.locator('#member-food-tab-discover').click();row.checks.push('Grub data loaded; meal explanation expands; food tabs switch panels');
@@ -67,7 +70,11 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  const contrast=await p.locator('#scoreCaption').evaluate(el=>{const rgb=getComputedStyle(el).color.match(/[\d.]+/g).slice(0,3).map(Number);const lum=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};const l=.2126*lum(rgb[0])+.7152*lum(rgb[1])+.0722*lum(rgb[2]);return(l+.05)/(lum(5)+.05)});assert(contrast>=4.5,'Life Back caption contrast');
  await p.locator('.area-card').first().click();assert(await p.locator('dialog[open]').isVisible());await p.screenshot({path:dir+'/'+name+'-'+width+'-life-back-dialog.png',fullPage:true});await p.keyboard.press('Escape');
  row.checks.push('Life Back dark canvas and caption contrast verified; progress card opens its dialog');
- }await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'.png',fullPage:true});}
+ }
+ if(path==='/member/settings')await p.locator('.app-account-details>summary').click();
+ await p.evaluate(()=>scrollTo(0,0));
+ await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'.png',fullPage:true});
+ await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'-viewport.png'});}
  await p.goto(base+'/programme',{waitUntil:'domcontentloaded'});assert.equal(await p.locator('#appBottomNav').count(),0);assert.equal(await p.locator('[data-app-layout]').count(),0);row.checks.push('Layout persists across member routes; public Programme receives no app markup');
  assert.equal(await p.locator('#appPreviewBar').count(),0);
  await api(app,'/v1/auth/logout',{});await api(app,'/v1/auth/login',login);assert.deepEqual((await api(app,'/v1/life-back')).progress,changed);row.checks.push('Feedback adaptation visible in app; progress survives new session; health prototype never claims connection');
