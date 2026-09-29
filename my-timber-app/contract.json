@@ -1,7 +1,7 @@
 {
   "name": "My Timber",
-  "version": "1.0.0",
-  "build": 1,
+  "version": "1.1.0",
+  "build": 2,
   "origin": "https://shiftsometimber.co.uk",
   "startPath": "/member/dashboard#today",
   "plannedStoreApplicationId": "uk.co.shiftsometimber.mytimber",
@@ -16,5 +16,26 @@
   "storeSubmissionAllowed": false,
   "v1NativeNotifications": false,
   "v1Scope": "store app mirrors My Timber member experience; PWA-only install/reminder controls omitted",
-  "developmentApplicationId": "uk.co.shiftsometimber.mytimber.dev"
+  "developmentApplicationId": "uk.co.shiftsometimber.mytimber.dev",
+  "connectedHealth": {
+    "appleHealth": true,
+    "healthConnect": true,
+    "readOnly": true,
+    "deviceProof": false,
+    "types": [
+      "weight",
+      "body_fat",
+      "blood_pressure",
+      "heart_rate",
+      "resting_heart_rate",
+      "oxygen_saturation",
+      "respiratory_rate",
+      "body_temperature",
+      "steps",
+      "active_energy",
+      "distance",
+      "sleep",
+      "exercise"
+    ]
+  }
 }
