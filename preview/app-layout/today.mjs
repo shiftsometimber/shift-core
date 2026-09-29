@@ -131,5 +131,5 @@ function build(event){
   if(recipe?.image?.src?.startsWith('/assets/member-experience/food/')){const img=el('img');img.src=recipe.image.src;img.alt=recipe.image.alt||recipe.name;img.width=1448;img.height=1086;img.decoding='async';img.addEventListener('load',()=>{mealCard.dataset.hasImage='true'},{once:true});img.addEventListener('error',()=>{delete mealCard.dataset.hasImage;visual.replaceChildren(icon('food'))},{once:true});visual.replaceChildren(img,el('figcaption','','Recipe illustration · portions illustrative'))}
  }).catch(()=>{if(token===generation&&mealCard.isConnected){mealCard.dataset.mealState='unavailable';meta.append(document.createTextNode(' Open Grub to check the latest saved choice.'))}}).finally(()=>clearTimeout(timer));
 }
-document.addEventListener('sst:daily-feedback',event=>{latestFeedback=event.detail});document.addEventListener('sst:today-rendered',build);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
+document.addEventListener('sst:focus-saved',()=>{latestFeedback=null});document.addEventListener('sst:daily-feedback',event=>{latestFeedback=event.detail});document.addEventListener('sst:today-rendered',build);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
 })();`;

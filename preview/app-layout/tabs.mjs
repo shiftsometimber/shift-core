@@ -32,5 +32,6 @@ export const tabClient=String.raw`
  document.addEventListener('click',e=>{const tab=e.target.closest?.('[data-app-tab],[data-app-open]');if(!tab||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();select(tab.dataset.appTab||tab.dataset.appOpen,true,tab.dataset.appOpen?new URL(tab.href).hash:'')},true);
  document.addEventListener('keydown',e=>{const tab=e.target.closest?.('[data-app-tab]');if(!tab||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const i=toolKeys.indexOf(tab.dataset.appTab),next=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowRight'?1:3))%4;document.querySelector('[data-app-tab="'+toolKeys[next]+'"]').focus();select(toolKeys[next],true)});
  addEventListener('popstate',()=>select(queryTool()));addEventListener('resize',()=>panels.forEach(v=>measure(v.frame)));addEventListener('scroll',()=>{const v=panels.get(chosen);if(v)measure(v.frame)},{passive:true});
+ document.addEventListener('sst:focus-saved',()=>{try{panels.get('life-back')?.frame.contentDocument?.dispatchEvent(new Event('sst:account-focus-changed'))}catch{}});
  document.addEventListener('sst:today-rendered',()=>queueMicrotask(mount));if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
 })();`;

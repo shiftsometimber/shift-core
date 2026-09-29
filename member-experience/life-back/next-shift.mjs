@@ -69,6 +69,20 @@ export function startNextShift(state,input,at){
  state.supportNeed=input.kind;
  state.nextShift={...actions[input.kind],id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:null,status:'planned',reviews:[],reason:'You chose this step. No check-in is needed to get started.'};
 }
+export function focusNextShift(state,input,at){
+ const kind=input.supportNeed;
+ if(!['food','movement','routine','confidence','steady'].includes(kind))fail('Choose an everyday support topic.');
+ if(input.approach!==undefined&&input.approach!=='different')fail('Choose an available approach.');
+ if(input.approach==='different'){
+  const active=state.nextShift;if(!active||active.kind!==kind)fail('Your step changed. Reload before choosing another approach.',409);
+  const action=[alternatives[kind],actions[kind],simpler[kind]].find(a=>!sameAction(a,active));
+  archive(state,active,at,'member-chose-alternative');
+  state.supportNeed=kind;
+  state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:null,status:'planned',reviews:[],reason:'You asked for a different practical approach. Your earlier step is kept in your history.'};
+  return;
+ }
+ advanceNextShift(state,{operationId:input.operationId,supportNeed:kind},{id:null,ratings:{}},at);
+}
 export function reviewNextShift(state,input,at){
  const active=state.nextShift;
  if(!active||active.id!==input.shiftId||!feedbackOutcomes.includes(input.outcome))fail('Your next Shift changed. Reload before answering.',409);

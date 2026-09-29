@@ -1,3 +1,4 @@
+import {focusStyles,focusClient} from './personal-focus.mjs';
 import {todayStyles,todayClient} from './today.mjs';
 import {refinementStyles,refinementClient} from './refinement.mjs';
 import {tabStyles,tabClient} from './tabs.mjs';
@@ -36,8 +37,8 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) :i
 html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) .app-footer-details{max-width:980px;margin:20px auto;padding:16px 20px;color:#e7e3da;border-top:1px solid #46503d;font:13px/1.5 Arial,Helvetica,sans-serif}.app-footer-details>summary{cursor:pointer;min-height:44px}.app-footer-details>summary::marker{color:#b4c39a}
 
 @media print{#appBottomNav,#appPreviewBar{display:none!important}}
-`+screenStyles+tabStyles+refinementStyles+todayStyles;
-export const appClient=todayClient+screenClient+String.raw`(()=>{
+`+screenStyles+tabStyles+refinementStyles+todayStyles+focusStyles;
+export const appClient=todayClient+focusClient+screenClient+String.raw`(()=>{
  function current(){document.querySelectorAll('#appBottomNav a').forEach(a=>{const u=new URL(a.href),match=u.pathname.replace('/staging/member-connected/','/member/')===location.pathname.replace('/staging/member-connected/','/member/')&&(u.hash?u.hash===(location.hash||'#today'):true);if(match){if(a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page')}else a.removeAttribute('aria-current')})}
  document.addEventListener('click',e=>{const more=e.target.closest?.('#appMore');if(!more)return;const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.dataset.appMore==='open'){document.body.dataset.appMore='closed';const more=document.getElementById('appMore');more?.setAttribute('aria-expanded','false');more?.focus()}});
