@@ -11,7 +11,7 @@ const releaseMetadata=new Set(['release/app-manifest.json','release/app-scope.mj
 const watchCommit='c5b9e804605a241ad0f1c0fefefaf14994cffba7';
 const watchPaths=new Set(["medicines-watch/data.mjs","medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json","medicines-watch/source-review.test.mjs","scripts/b1-release-scope.mjs","tests/b1-release-scope.test.mjs"]);
 git('merge-base','--is-ancestor',watchCommit,'HEAD');
-const expansionCommit='8a3cb7c78722ba63b8e968a0584ce0488924caec';
+const expansionCommit='583c34e85cf5347df0a44026eaac92d61a986ad5';
 const expansionPaths=new Set(["medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/page.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs", ".github/workflows/cloudflare-production-promote.yml"]);
 git('merge-base','--is-ancestor',expansionCommit,'HEAD');
 for(const p of APP_PATHS){if(!releaseMetadata.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
