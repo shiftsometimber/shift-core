@@ -25,6 +25,11 @@
     "acquisition-activation/consent.mjs": "20d599bb2e6314feea02adbfbb1efa070606de342b7e2d96dc09eb54e37b9bcc",
     "acquisition-activation/consent-baseline.js": "62f630b78046b74357906159ef45394ba368eda463dbe082b74d1fb0abe8c2c1",
     "acquisition-activation/panel-consent.test.mjs": "fef34b6ef3f767bb24102324af4f4064f0021a4a603e52b65899c66835ee45ea",
-    "preview/app-layout/cookie-proof.cjs": "12e274f8eb6205af623200f092be305d1b8b480653ed05592e262dc361620c22"
+    "preview/app-layout/cookie-proof.cjs": "12e274f8eb6205af623200f092be305d1b8b480653ed05592e262dc361620c22",
+    "medicines-watch/data.mjs": "a23577a66d08d8f3003542048edee40735cf4f21419052c28015efd607297645",
+    "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json": "ac8a2089636a3e2ab22a05762a3b32558b7575064a05ec5c36e0a9d8d1d61d10",
+    "medicines-watch/source-review.test.mjs": "3f81f2d292f3bffcc0a6d3986c19e1ed524d4dc5fb9601160dfc4c72eb803dd8",
+    "scripts/b1-release-scope.mjs": "eb844771b721f970aabc0c598fa5dc4dce665ced573892df2eeb0a1fa5d56bf9",
+    "tests/b1-release-scope.test.mjs": "608c84f4816fee73bf5ba0638659ed73e26ed12fbb68897150ffc84956cc4446"
   }
 }
