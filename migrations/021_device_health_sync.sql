@@ -1,7 +1,7 @@
 -- My Timber v1.1 connected health. Additive; no v1 release tables changed.
 CREATE TABLE IF NOT EXISTS device_health_connections (
   user_id INTEGER NOT NULL,
-  platform TEXT NOT NULL CHECK(platform IN ('apple_health','health_connect')),
+  platform TEXT NOT NULL CHECK(platform IN ('apple_health','health_connect','shift_device')),
   enabled INTEGER NOT NULL DEFAULT 0 CHECK(enabled IN (0,1)),
   last_sync_at TEXT,
   updated_at TEXT NOT NULL,
