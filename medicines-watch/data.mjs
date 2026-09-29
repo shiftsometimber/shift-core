@@ -22,7 +22,7 @@ const reviewedFingerprints = {
   'mounjaro-nice': 'c98a760dfef35423c18cbc30873f721acd1327e32ede791bdffaf6af25a5b3d8',
   'wegovy-weight-nice': '4bbb19ea7e2989ef413d4370875c97102c3160bd1a5d73eb5e4aa19e21f2bbe5',
   'wegovy-cardiovascular-nice': 'c163aec659c98fc11c0d0ee6f8b9285426a0f2b8b34d9fb3b6f48744223f8ce3',
-  'foundayo-nice': '6af1de6b84818aedefe20ac8a7c567045735f592a9e89d3893c00e50c566144c',
+  'foundayo-nice': 'c015ef1bfdc646098636746da932a3bfc055600332f6051b29f8460c6742ae0d',
   'retatrutide-mhra': '34258dd5def20deb8e4e24894d51d5407bc2dd2073e0911d43f0839c4017d40e',
 };
 
@@ -31,6 +31,7 @@ const reviewedFingerprints = {
 // Renewed source-only reviews: reviews/2026-09-23-source-review.json.
 // Separate product-information renewal: reviews/2026-09-23-product-information-renewal.json.
 // Separate NHS tirzepatide renewal: reviews/2026-09-24-mounjaro-nhs-renewal.json.
+// Separate NICE Foundayo schedule review: reviews/2026-09-29-foundayo-nice-schedule.json.
 const sourceReviewedDates = {
   'mounjaro-mhra': '2026-09-23T15:45:00Z',
   'mounjaro-nice': '2026-09-23T15:45:00Z',
@@ -40,7 +41,7 @@ const sourceReviewedDates = {
   'wegovy-tablet-mhra': '2026-09-23T15:45:00Z',
   'orlistat-nhs': '2026-09-23T15:45:00Z',
   'foundayo-mhra': '2026-09-23T15:45:00Z',
-  'foundayo-nice': '2026-09-23T15:45:00Z',
+  'foundayo-nice': '2026-09-29T14:42:00Z',
   'retatrutide-mhra': '2026-09-23T15:45:00Z',
   'retatrutide-lilly': '2026-09-23T15:45:00Z',
   'mounjaro-nhs': '2026-09-24T06:32:00Z',
