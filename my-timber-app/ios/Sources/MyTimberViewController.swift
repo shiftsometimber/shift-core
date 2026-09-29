@@ -3,6 +3,7 @@ import WebKit
 
 final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDelegate {
     private var web:WKWebView!
+    private var healthSync:HealthSyncCoordinator!
     private let errorBox=UIStackView()
     private var timer:Timer?
     private var failed=false
@@ -14,7 +15,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         let config=WKWebViewConfiguration()
         config.websiteDataStore = .default() // Existing credentials, separate app session.
         config.preferences.javaScriptCanOpenWindowsAutomatically=false
-        config.applicationNameForUserAgent="MyTimber/1.0.0"
+        config.applicationNameForUserAgent="MyTimber/1.1.0"
         if let url=Bundle.main.url(forResource:"native-presentation",withExtension:"js"),
            let source=try? String(contentsOf:url,encoding:.utf8){
             config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
@@ -23,6 +24,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         web=WKWebView(frame:.zero,configuration:config)
         web.isOpaque=false;web.backgroundColor=view.backgroundColor
         web.navigationDelegate=self;web.uiDelegate=self;web.allowsBackForwardNavigationGestures=true
+        healthSync=HealthSyncCoordinator(webView:web)
         web.translatesAutoresizingMaskIntoConstraints=false
         errorBox.axis = .vertical;errorBox.spacing=12;errorBox.isHidden=true
         errorBox.translatesAutoresizingMaskIntoConstraints=false
@@ -74,6 +76,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     }
     func webView(_ webView:WKWebView,decidePolicyFor action:WKNavigationAction,decisionHandler:@escaping(WKNavigationActionPolicy)->Void){
         guard let url=action.request.url else{decisionHandler(.cancel);return}
+        if url.scheme?.lowercased()=="mytimber-health" && url.host?.lowercased()=="sync" {decisionHandler(.cancel);healthSync.connectAndSync();return}
         let decision=NavigationPolicy.classify(url.absoluteString)
         // Embedded HTTPS resources/challenges get the browser's normal isolation.
         if action.targetFrame?.isMainFrame == false {
