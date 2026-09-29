@@ -1,6 +1,8 @@
 name: Rendered Member Production Acceptance
 
 on:
+  push:
+    branches: [verify/cookie-panel-live-20260929]
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
@@ -17,7 +19,7 @@ concurrency:
 
 jobs:
   rendered-member-production-acceptance:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -51,7 +53,9 @@ jobs:
         continue-on-error: true
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_growth.outputs.token }}
-        run: node release/growth-member-live.mjs
+        run: |
+          node release/growth-member-live.mjs
+          node --input-type=module -e "import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';assert.equal(JSON.parse(readFileSync('growth-member-live-evidence/results.json')).status,'pass')"
       - name: Retain growth-loop live evidence
         if: always()
         uses: actions/upload-artifact@v4
