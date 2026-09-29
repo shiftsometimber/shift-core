@@ -1,3 +1,4 @@
+import {firstWeekFunction} from './first-week.mjs';
 // Today is a view over the existing account. Original controls keep their handlers.
 const scope='html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):is(#today-design-scope,[data-app-layout])';
 const rule=(selector,css)=>scope+' '+selector+'{'+css.split(';').filter(Boolean).map(s=>s.replace(/!important/g,'')+'!important').join(';')+'}\n';
@@ -38,6 +39,12 @@ rule('#todayActions.app-today-v3 .mtm-week','grid-column:2;padding:20px;backgrou
 rule('#todayActions.app-today-v3 .mtm-week .mtm-section-head','display:block;margin:0 0 10px')+
 rule('#todayActions.app-today-v3 .mtm-week h2','font-size:19px;line-height:1.3;font-weight:700;letter-spacing:0;margin:0;color:#e7e3da')+
 rule('#todayActions.app-today-v3 .mtm-week p','font-size:13px;line-height:1.5;color:#bdc2b4;margin:8px 0 0')+
+rule('#todayActions.app-today-v3 .today-week-start','margin:0 0 20px;padding:0 0 18px;border-bottom:1px solid #42493b')+
+rule('#todayActions.app-today-v3 .today-week-start h3','font-size:21px;line-height:1.2;margin:0 0 10px;color:#e7e3da')+
+rule('#todayActions.app-today-v3 .today-week-start a','display:inline-flex;align-items:center;min-height:44px;color:#d4dfbd;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px')+
+rule('#todayActions.app-today-v3 .today-week-start summary','min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:13px;color:#bdc2b4')+
+rule('#todayActions.app-today-v3 .today-week-start ol','padding-left:20px;font-size:13px;line-height:1.5;color:#bdc2b4')+
+rule('#todayActions.app-today-v3 .today-week-start li','margin:10px 0')+
 rule('#todayActions.app-today-v3 .mtm-days','display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:16px 0')+
 rule('#todayActions.app-today-v3 .mtm-days span','display:grid;justify-items:center;gap:7px;font-size:11px;color:#bdc2b4')+
 rule('#todayActions.app-today-v3 .mtm-days b','width:28px;height:28px;display:grid;place-items:center;border:1px solid #667254;border-radius:50%;background:transparent;color:#aebd94;font-size:17px')+
@@ -76,13 +83,14 @@ rule('#todayActions.app-today-v3 .mtm-hero','padding:20px 0')+
 '}@media(max-width:380px){'+rule('#moodRow','grid-template-columns:repeat(2,minmax(0,1fr))')+'}'+scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.mtm-hero):not(.app-today-shortcuts){display:none!important}'+
 '@media(prefers-reduced-motion:no-preference){'+rule('#todayActions.app-today-v3 .today-meal-action','transition:background .15s ease')+'}';
 
-export const todayClient=String.raw`(()=>{
-let generation=0;
+export const todayClient='const myTimberFirstWeekView='+firstWeekFunction+';'+String.raw`(()=>{
+let generation=0,latestFeedback=null;
 const paths={sun:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5',fit:'M4 8v8m3-11v14m10-14v14m3-11v8M7 12h10',food:'M5 3v7m3-7v7M3 3v6a3 3 0 0 0 6 0M6 12v9M18 3v18m0-18c-5 3-5 10 0 10',life:'m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z'};
 function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text)n.textContent=text;return n}
 function icon(name){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 24 24');s.setAttribute('class','app-line-icon');s.setAttribute('aria-hidden','true');const p=document.createElementNS(s.namespaceURI,'path');p.setAttribute('d',paths[name]);s.append(p);return s}
 function link(label,key,hash=''){const a=el('a','',label);a.href='/member/'+key+hash;a.dataset.appOpen=key;return a}
-function build(){
+function build(event){
+ const connected=event?.detail?.connected||{};let workspaceData=null;
  const root=document.getElementById('todayActions'),hero=root?.querySelector('.mtm-hero'),grid=root?.querySelector('.mtm-dashboard');if(!hero||!grid||root.querySelector('.today-layout'))return;
  const day=grid.querySelector('.mtm-panel'),week=grid.querySelector('.mtm-week'),plan=root.querySelector('.mtm-plan'),life=week?.querySelector('.mt-connected-life');if(!day||!week||!plan||!life)return;
  root.classList.remove('app-today-v2');root.classList.add('app-today-v3');const token=++generation;
@@ -104,12 +112,16 @@ function build(){
  const checkin=root.querySelector('#optional-checkin');if(checkin)follow.append(checkin);const feedback=document.getElementById('dailyCheckinFollowup');if(feedback)follow.append(feedback);
  for(const n of [...root.querySelectorAll(':scope>.mtm-daily,:scope>.mtm-records,:scope>.mtm-ask,:scope>.mt-treatment-aware')])support.append(n);
  if(oldMore){for(const n of [...oldMore.children])if(n.tagName!=='SUMMARY')support.append(n);oldMore.remove()}
+ const start=el('section','today-week-start');start.setAttribute('aria-label','Your first week and next visit');const startTitle=el('h3'),startCopy=el('p'),startLink=el('a'),roadmap=el('details');roadmap.append(el('summary','','A good first week — at your pace'));const stages=el('ol');for(const text of ['Start: choose one meal or a manageable bit of movement. You don’t need a whole new routine.','Next visit: pick up your saved step. After trying it, say whether it helped or didn’t fit.','Later this week: use Life Back to notice one thing that felt easier — or what still needs work.'])stages.append(el('li','',text));const review=link('Notice what’s changing →','life-back');roadmap.append(stages,review,el('p','','Miss a day? Carry on from where you are. There’s no catch-up list.'));start.append(startTitle,startCopy,startLink,roadmap);week.prepend(start);
+ function updateStart(){const view=myTimberFirstWeekView({connected,workspace:workspaceData,feedback:latestFeedback});start.dataset.weekState=view.state;hero.querySelector('p:last-child').textContent=view.intro;startTitle.textContent=view.title;startCopy.textContent=view.detail;startLink.textContent=view.label+' →';startLink.href={'meal':'#today-meal','checkin':'#optional-checkin','feedback':'#dailyCheckinFollowup','next':'#today-next-step'}[view.target];startLink.dataset.target=view.target;}
+ mealCard.id='today-meal';if(next)next.id='today-next-step';startLink.addEventListener('click',e=>{const target=document.querySelector(startLink.getAttribute('href'));if(!target)return;e.preventDefault();if(target.tagName==='DETAILS')target.open=true;const details=target.querySelector('details');if(details)details.open=true;target.scrollIntoView({block:'start',behavior:'auto'});target.setAttribute('tabindex','-1');target.focus({preventScroll:true})});updateStart();
+ const feedbackChanged=()=>{if(!start.isConnected){document.removeEventListener('sst:daily-feedback',feedbackChanged);return}updateStart()};document.addEventListener('sst:daily-feedback',feedbackChanged);
  root.append(support);const guide=document.getElementById('memberDayGuide');if(guide&&!guide.closest('[data-app-guide]')){const help=el('details','app-footer-details');help.dataset.appGuide='true';help.append(el('summary','','Help using My Timber'),guide);root.after(help)}
  // The workspace supplies the currently published recipe and its exact approved
  // illustration. No name matching, invented meals or writes from this view.
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
  fetch('/v1/grub/workspace',{credentials:'same-origin',cache:'no-store',signal:controller.signal}).then(r=>{if(!r.ok)throw Error('Food unavailable');return r.json()}).then(workspace=>{
-  if(token!==generation||!mealCard.isConnected)return;
+  if(token!==generation||!mealCard.isConnected)return;workspaceData=workspace;updateStart();
   const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),chosen=workspace.today?.date===date?workspace.today:null,recipe=chosen?(workspace.recipes||[]).find(r=>r.id===chosen.recipeId):workspace.recommendation?.recipe;
   const selected=!!chosen;mealCard.dataset.mealState=selected?'chosen':recipe?'suggested':'empty';
   heading.textContent=selected?(recipe?.meal_type==='dinner'?'Tonight, sorted.':'Your meal, sorted.'):'Something good to eat.';eyebrow.textContent=selected?'SHIFT GRUB · CHOSEN BY YOU':'SHIFT GRUB · YOUR NEXT MEAL';
@@ -119,5 +131,5 @@ function build(){
   if(recipe?.image?.src?.startsWith('/assets/member-experience/food/')){const img=el('img');img.src=recipe.image.src;img.alt=recipe.image.alt||recipe.name;img.width=1448;img.height=1086;img.decoding='async';img.addEventListener('load',()=>{mealCard.dataset.hasImage='true'},{once:true});img.addEventListener('error',()=>{delete mealCard.dataset.hasImage;visual.replaceChildren(icon('food'))},{once:true});visual.replaceChildren(img,el('figcaption','','Recipe illustration · portions illustrative'))}
  }).catch(()=>{if(token===generation&&mealCard.isConnected){mealCard.dataset.mealState='unavailable';meta.append(document.createTextNode(' Open Grub to check the latest saved choice.'))}}).finally(()=>clearTimeout(timer));
 }
-document.addEventListener('sst:today-rendered',build);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
+document.addEventListener('sst:daily-feedback',event=>{latestFeedback=event.detail});document.addEventListener('sst:today-rendered',build);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build,{once:true});else build();
 })();`;
