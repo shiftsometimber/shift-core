@@ -322,7 +322,7 @@
       "retrievedAt": "2026-09-29T17:03:09.928032+00:00",
       "retrievalError": "HTTP Error 403: Forbidden",
       "reviewedAt": "2026-09-29T17:05:44.031Z",
-      "evidenceType": "NICE guidance",
+      "evidenceType": "Original sponsor statement; not regulatory approval",
       "reviewMethod": "Primary document text read through web retrieval; direct complete-response fetch unavailable",
       "assessment": "Limited to the specific facts mapped to this source in industry.mjs. No treatment ranking, approval forecast, retail availability or clinical approval inferred."
     },
