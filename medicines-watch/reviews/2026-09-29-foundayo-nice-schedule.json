@@ -1,0 +1,41 @@
+{
+  "reviewedAt": "2026-09-29T14:42:00Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "scope": "Changed NICE Foundayo appraisal timetable only. No medicine wording, medicine review date, catalogue-wide review date, authorisation, NHS access, supply, checkout, navigation or member-data changes.",
+  "liveObservation": {
+    "checkedAt": "2026-09-29T14:30:42.612Z",
+    "current": 18,
+    "awaitingReview": 1,
+    "sourceChanged": [
+      "foundayo-nice"
+    ],
+    "retrievalFailures": 0
+  },
+  "fingerprintMethod": "Unmodified monitor.mjs fingerprintSource on the complete HTTP 200 HTML response retrieved from the exact NICE checkUrl; source identity validated and no withdrawal detected.",
+  "sources": [
+    {
+      "id": "foundayo-nice",
+      "url": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11650",
+      "checkUrl": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11650",
+      "retrievedAt": "2026-09-29T14:40:22Z",
+      "httpStatus": 200,
+      "bytes": 14989,
+      "responseSha256": "2afb20331bfe84a6c0319e199ae4fe338ed2007a6abcc845a2e51bef91df592a",
+      "withdrawn": false,
+      "sourcePublishedAt": null,
+      "reviewedAt": "2026-09-29T14:42:00Z",
+      "reviewedFingerprint": "c015ef1bfdc646098636746da932a3bfc055600332f6051b29f8460c6742ae0d",
+      "disposition": "changed_document_factually_reviewed",
+      "wordingChanged": false,
+      "assessment": "GID-TA11650 remains in progress. NICE moved the expected publication from 18 November 2026 to 27 January 2027 and lists a second committee meeting for 10 November 2026. This remains a planned appraisal timetable, not a positive recommendation or confirmation of NHS access. Existing no-confirmed-NHS-access wording remains accurate.",
+      "previousReviewedAt": "2026-09-23T15:45:00Z",
+      "previousReviewedFingerprint": "6af1de6b84818aedefe20ac8a7c567045735f592a9e89d3893c00e50c566144c"
+    }
+  ],
+  "uncertainties": [
+    "NICE may revise the timetable again.",
+    "The appraisal being in progress does not predict the recommendation, implementation date or availability.",
+    "Neither NICE project information nor UK authorisation confirms pharmacy stock."
+  ],
+  "publication": "Proposed for editorial review in a pull request only; no merge, production release or clinical sign-off."
+}
