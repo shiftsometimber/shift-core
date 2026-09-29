@@ -33,7 +33,7 @@ const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:[
  const account=p.locator('.app-screen-details').filter({has:p.locator('#grubReload')});if(await account.count()&&!(await p.locator('#grubReload').isVisible()))await account.locator('summary').first().click();
  assert(!(await p.locator('#grubSignOut').isVisible()),'Sign out is not adjacent to Reload');await p.locator('.grub-signout>summary').click();await p.locator('#grubSignOut').waitFor();
  row.checks.push('Sign out requires opening Account actions');await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-account.png',fullPage:true});
- assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No sideways overflow');row.status='pass';
+ row.overflow=await p.evaluate(()=>[...document.querySelectorAll('body *')].filter(el=>{const r=el.getBoundingClientRect();return r.width&&r.right>innerWidth+1}).slice(0,20).map(el=>({tag:el.tagName,id:el.id,className:el.className,right:el.getBoundingClientRect().right})));assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No sideways overflow '+JSON.stringify(row.overflow));row.status='pass';
  }catch(e){row.status='fail';row.error=e.message;await p.screenshot({path:dir+'/feedback-failure.png',fullPage:true}).catch(()=>{});throw e}finally{await ctx.close()}
  }}finally{await browser.close()}
 }}finally{fs.writeFileSync(dir+'/member-feedback-report.json',JSON.stringify(report,null,2))}})().catch(e=>{console.error(e);process.exitCode=1});

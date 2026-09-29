@@ -44,6 +44,9 @@ html body[data-member-chrome="v1"][data-member-page="life-back"] .hero{padding-t
  html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(h1,h2){font-size:28px!important}
  html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(p,span){font-size:15px!important}
 }
+@media(max-width:380px){
+ html body[data-member-chrome="v1"] nav.sst-member-tabs .member-nav-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:4px;text-align:center}
+}
 /* Keep member utilities in document flow, clear of check-in choices. */
 html body[data-member-chrome="v1"] #memberUtilities{display:flex;flex-wrap:wrap;gap:12px;max-width:1132px;margin:24px auto;padding:16px 24px;box-sizing:border-box;border-top:1px solid #707762}
 html body[data-member-chrome="v1"] #memberUtilities :is(#sstCookieSettings,#askTimberLaunch){position:static!important;inset:auto!important;transform:none!important;margin:0!important;min-height:44px;max-width:100%!important;z-index:auto!important}
