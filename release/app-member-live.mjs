@@ -9,6 +9,14 @@ export async function verifyLiveTools(page,site,dir,report){
  await page.locator('#appTab-life-back').click();const life=page.frameLocator('#appTool-life-back iframe');await life.locator('#journeyView:not([hidden])').waitFor({timeout:45000});await life.locator('.area-card').first().click();assert(await life.locator('dialog[open]').isVisible());await life.locator('dialog[open] [data-close]').first().click();
  await page.locator('#appTab-grub').click();assert.equal(await grub.locator('#grubSearch').inputValue(),'Synthetic unsaved meal search');await page.goBack();assert.equal(await page.locator('#appTab-life-back').getAttribute('aria-selected'),'true');await page.goForward();assert.equal(await page.locator('#appTab-grub').getAttribute('aria-selected'),'true');assert.equal(navigations,0);page.off('request',count);
  assert.equal(await page.locator('[data-app-layout]').count(),view==='app'?1:0);assert.equal(await page.locator('#appPreviewBar').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ const toolFrames=page.frames().filter(f=>f!==page.mainFrame()&&f.url().includes('app_panel=1'));
+ for(const f of toolFrames){await f.waitForFunction(()=>!!window.SSTConsent);assert.equal(await f.locator('.cookie-banner-v3a').count(),0,'No duplicate consent inside tool');}
+ assert.equal(toolFrames.length,3);
+ await toolFrames[0].evaluate(()=>window.SSTConsent.show());assert.equal(await page.locator('.cookie-banner-v3a').count(),1,'One containing consent dialog');
+ await page.screenshot({path:dir+'/live-'+view+'-'+width+'-single-consent.png',fullPage:true});
+ await page.locator('[data-consent="necessary"]').click();
+ for(const f of toolFrames){assert.equal(await f.locator('.cookie-banner-v3a').count(),0);assert.equal(await f.evaluate(()=>window.sstConsent.analytics),false);assert.equal(await f.evaluate(()=>window.sstConsent.acquisition),false);}
+ assert.equal(await page.locator('.cookie-banner-v3a').count(),0);report.checks.push({view,width,singleConsentOwner:true,threePanelsFollowRefusal:true,panelReopenDelegates:true});
  await page.screenshot({path:dir+'/live-'+view+'-'+width+'-inline.png',fullPage:true});
  await page.locator('#appTab-today').click();report.checks.push({view,width,inlineTools:true,draftsRetained:true,history:true,topNavigations:navigations});
  }}
