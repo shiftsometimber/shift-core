@@ -13,6 +13,8 @@
       necessary: true,
       analytics: !!(value && value.analytics === true),
       marketing: false,
+      acquisition: !!(value && value.acquisition === true && value.acquisitionVersion === 'acquisition-v1'),
+      acquisitionVersion: value && value.acquisitionVersion === 'acquisition-v1' ? 'acquisition-v1' : null,
       updatedAt: (value && value.updatedAt) || new Date().toISOString()
     };
     window.sstConsent = normalised;
@@ -28,6 +30,8 @@
       necessary: true,
       analytics: !!(value && value.analytics === true),
       marketing: false,
+      acquisition: !!(value && value.acquisition === true && value.acquisitionVersion === 'acquisition-v1'),
+      acquisitionVersion: value && value.acquisitionVersion === 'acquisition-v1' ? 'acquisition-v1' : null,
       updatedAt: (value && value.updatedAt) || new Date().toISOString()
     };
     try { localStorage.setItem(KEY, JSON.stringify(normalised)); }
@@ -59,14 +63,25 @@
     bannerElement.className = 'cookie-banner-v3a';
     bannerElement.setAttribute('role', 'dialog');
     bannerElement.setAttribute('aria-label', 'Cookie choices');
-    bannerElement.innerHTML = '<div><strong>Your privacy choices</strong><p>Necessary storage keeps the site working. Google Analytics stays off unless you choose to allow it. Advertising storage always stays off.</p></div><div class="cookie-actions-v3a"><button type="button" data-consent="necessary">Necessary only</button><button type="button" data-consent="analytics" class="primary">Accept analytics</button></div>';
+    bannerElement.innerHTML = '<div><strong>Your privacy choices</strong><p>Necessary storage keeps the site working. SHIFT measurement remembers only your visit source for up to 30 days and links it to account creation and getting started for up to 90 days. No health answers are used. Google Analytics is optional; advertising stays off. Choose Necessary only to stop source measurement on this browser. To delete a source already linked to your account, sign in and choose Necessary only. SHIFT measurement stays with SHIFT; no account or health details are sent to advertisers.</p></div><div class="cookie-actions-v3a"><button type="button" data-consent="necessary">Necessary only</button><button type="button" data-consent="shift">SHIFT measurement only</button><button type="button" data-consent="analytics" class="primary">Accept analytics</button></div>';
     document.body.appendChild(bannerElement);
     bannerElement.querySelector('[data-consent="necessary"]').addEventListener('click', function(){
-      save({necessary:true, analytics:false, marketing:false});
+      save({necessary:true, analytics:false, marketing:false, acquisition:false});
+      if(window.SSTAcquisition)window.SSTAcquisition.forget().then(function(ok){if(!ok)showForgetError()});
+    });
+    bannerElement.querySelector('[data-consent="shift"]').addEventListener('click', function(){
+      save({necessary:true, analytics:false, marketing:false, acquisition:true, acquisitionVersion:'acquisition-v1'});
     });
     bannerElement.querySelector('[data-consent="analytics"]').addEventListener('click', function(){
-      save({necessary:true, analytics:true, marketing:false});
+      save({necessary:true, analytics:true, marketing:false, acquisition:true, acquisitionVersion:'acquisition-v1'});
     });
+  }
+
+  function showForgetError(){
+    var status=document.createElement('p');status.setAttribute('role','status');
+    status.textContent='Your browser choice is saved. We could not confirm deletion of account-linked source data. Sign in and choose Necessary only again to retry.';
+    status.style.cssText='position:fixed;bottom:56px;left:16px;right:16px;padding:16px;background:#E7E3DA;color:#050505;z-index:2147483000';
+    document.body.appendChild(status);
   }
 
   function addSettingsButton(){

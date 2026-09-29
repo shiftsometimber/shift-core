@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 export const APP_BASE='8c6902c8e0c6a53863282c6c4378f82ec1a70f6f';
-export const APP_APPROVED='e085ec8de8a45c2cfff605105808fc4c60be1051';
+export const APP_APPROVED='70d83b606126b11b111e5fda5e6f4f572225708e';
 export const APP_HASHES=JSON.parse(readFileSync(new URL('./app-manifest.json',import.meta.url))).sha256;
 export const APP_PATHS=new Set([...Object.keys(APP_HASHES),'release/app-manifest.json','release/app-scope.mjs','release/growth-scope.mjs']);
 export function validateAppSource(){
