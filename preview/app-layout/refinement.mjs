@@ -1,8 +1,9 @@
 // Presentation only: move existing controls, never duplicate account state or saves.
-const root='html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout])';
+const root='html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):is(#app-refinement-scope,[data-app-layout])';
 const css=(selectors,rules)=>selectors.split('|').map(s=>root+' '+s).join(',')+'{'+rules+'}\n';
 export const refinementStyles=
 css('main','max-width:980px!important')+
+css('main :is(h1,h2,h3,h4,p,small,strong,span,a,button,summary,label,input,textarea,select)','font-family:Arial,Helvetica,sans-serif!important')+
 css('main [data-member-hero="v1"]','padding:20px 0!important;margin:0 0 12px!important')+
 css('main [data-member-hero="v1"] :is(h1,h2)','font-size:30px!important;line-height:1.1!important;max-width:22ch')+
 css('main [data-member-hero="v1"] p','font-size:14px!important;line-height:1.45!important;max-width:48ch')+
