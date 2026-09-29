@@ -11,7 +11,7 @@ const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:[
  // The preview intentionally omits the public Ask service; test the existing launch-control contract without sending a message.
  await p.evaluate(()=>{if(!document.getElementById('askTimberLaunch')){const b=document.createElement('button');b.id='askTimberLaunch';b.textContent='ASK SHIFT';b.style.cssText='position:fixed;bottom:16px;right:16px';b.onclick=()=>b.dataset.clicked='true';document.body.append(b)}});
  await p.locator('#memberUtilities #askTimberLaunch').waitFor();
- for(const mood of await p.locator('[data-mood]').all()){await mood.scrollIntoViewIfNeeded();assert(await mood.evaluate(el=>{const r=el.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return hit===el||el.contains(hit)}),'Mood tap unobstructed');}
+ for(const mood of await p.locator('[data-mood]').all()){await mood.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));await mood.click({trial:true});assert(await mood.evaluate(el=>{const r=el.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return hit===el||el.contains(hit)}),'Mood tap unobstructed');}
  for(const id of ['sstCookieSettings','askTimberLaunch'])assert.equal(await p.locator('#'+id).evaluate(el=>getComputedStyle(el).position),'static');
  await p.locator('#sstCookieSettings').click();assert.equal(await p.locator('.cookie-banner-v3a').count(),1);await p.locator('[data-consent="necessary"]').click();await p.locator('#askTimberLaunch').click();
  await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-checkin.png',fullPage:true});row.checks.push('Every mood option reachable; utilities in document flow; cookie settings still reopen');

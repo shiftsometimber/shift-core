@@ -36,9 +36,9 @@ jobs:
       - run: npx wrangler deploy --config work/staging/generated/config.json
       - run: npm install --prefix "$RUNNER_TEMP/app-tools" --no-audit --no-fund playwright@1.58.2
       - run: '"$RUNNER_TEMP/app-tools/node_modules/.bin/playwright" install --with-deps chromium webkit'
+      - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/member-feedback-proof.cjs
       - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/verify.cjs
       - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/cookie-proof.cjs
-      - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/member-feedback-proof.cjs
       - name: Evidence checksum
         if: always()
         run: find work/staging/generated/app-layout-evidence -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > work/staging/generated/app-layout-evidence/SHA256SUMS
