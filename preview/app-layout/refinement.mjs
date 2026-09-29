@@ -115,9 +115,10 @@ export const refinementClient=String.raw`
    document.querySelectorAll('.sf-exercise-main').forEach(n=>{
     const card=n.closest('.sf-exercise'),completion=n.querySelector('.sf-completion'),swap=card?.querySelector('.sf-exercise-actions button');if(completion&&swap)completion.append(swap);
     if(n.querySelector('.app-refine-exercise'))return;
-    const nodes=[...n.children].filter(c=>c.matches('details,.app-screen-details,p:not(.sf-position)'));
-    const d=group(nodes,'Show me how & why','app-refine-exercise');
-    if(d){const why=d.querySelector('.app-screen-details');if(why)why.open=true;const how=d.querySelector('details:not(.app-screen-details)');if(how)how.open=true}
+    const how=[...n.children].find(c=>c.tagName==='DETAILS'&&c.querySelector(':scope>ol'));
+    const notes=[...n.children].filter(c=>c!==how&&c.matches('.app-screen-details,p:not(.sf-position)'));
+    if(how){how.classList.add('app-refine-detail','app-refine-exercise');how.querySelector('summary').textContent='Show me how & why';how.append(...notes);}
+    else group(notes,'Movement guidance','app-refine-exercise');
    });
    document.querySelectorAll('.sf-difficulty').forEach(n=>group([...n.children].filter(c=>c.tagName==='P'),'About session effort'));
   }
