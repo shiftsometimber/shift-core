@@ -12,7 +12,7 @@ export const APPROVED_ORDER_FILES=[".github/workflows/my-timber-orders-preview.y
 export const NICE_TIMEOUT_COMMIT='68616d2730e27b03fb54e232eb06961169cdc615';
 export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs'];
 // Owner authorised the informational expansion in PR #851 on 29 September: Green it all now. No clinical approval inferred.
-export const WATCH_EXPANSION_COMMIT='8a3cb7c78722ba63b8e968a0584ce0488924caec';
+export const WATCH_EXPANSION_COMMIT='583c34e85cf5347df0a44026eaac92d61a986ad5';
 export const WATCH_EXPANSION_PATHS=["medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/page.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs"];
 export function validateWatchExpansion(read){
  for(const path of WATCH_EXPANSION_PATHS)assert.equal(read('HEAD',path),read(WATCH_EXPANSION_COMMIT,path),'Watch expansion source drift: '+path);
