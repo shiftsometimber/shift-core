@@ -989,6 +989,7 @@ const worker = {
       await hq.fetch(request, env, ctx),
     );
     fallback = await appendHealthExport(request, env, fallback);
+    fallback = await appendDeviceHealthExport(request, env, fallback);
     fallback = await appendMemberDetailsExport(request, env, fallback);
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
