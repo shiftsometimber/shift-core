@@ -1,0 +1,38 @@
+name: My Timber connected health v1.1
+on:
+  push:
+    branches: [feat/my-timber-health-platform-v11]
+    paths:
+      - 'member-experience/device-health-sync.mjs'
+      - 'member-experience/connected-health.mjs'
+      - 'member-experience/entry.mjs'
+      - 'member-experience/tests/device-health-sync.test.mjs'
+      - 'privacy-health-erasure-route-v1.js'
+      - 'worker-entry-v6.js'
+      - 'migrations/021_device_health_sync.sql'
+      - '.github/workflows/my-timber-health-v11.yml'
+permissions:
+  contents: read
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Connected-health validation tests
+        run: node --test member-experience/tests/device-health-sync.test.mjs
+      - name: Import and syntax checks
+        run: |
+          node --check member-experience/device-health-sync.mjs
+          node --check member-experience/connected-health.mjs
+          node --check worker-entry-v6.js
+      - name: Privacy and consent contract
+        run: |
+          grep -q "trackingConsent" member-experience/device-health-sync.mjs
+          grep -q "device_health_readings" privacy-health-erasure-route-v1.js
+          grep -q "appendDeviceHealthExport" worker-entry-v6.js
+          ! grep -R "READ_HEALTH_DATA_IN_BACKGROUND" my-timber-app/android/app/src/main/AndroidManifest.xml
+          ! grep -R "WRITE_" my-timber-app/android/app/src/main/AndroidManifest.xml
