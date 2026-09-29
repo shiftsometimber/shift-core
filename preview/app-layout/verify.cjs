@@ -17,7 +17,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  await p.locator('#appMore').click();assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'true');assert(await p.locator('.sst-member-tabs').isVisible());await p.keyboard.press('Escape');assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'false');
  assert.equal(await p.locator('.mtm-next').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(231, 227, 218)');
  await p.screenshot({path:dir+'/'+name+'-'+width+'-app-today.png',fullPage:true});
- await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:dir+'/'+name+'-'+width+'-today-viewport.png'});
+ await p.evaluate(async()=>{document.documentElement.style.scrollBehavior='auto';document.body.style.scrollBehavior='auto';document.activeElement?.blur();scrollTo({top:0,behavior:'instant'});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))});await p.screenshot({path:dir+'/'+name+'-'+width+'-today-viewport.png'});
  const mainURL=new URL(p.url()).pathname;let topNavigations=0;const countTop=r=>{if(r.isNavigationRequest()&&r.frame()===p.mainFrame())topNavigations++};p.on('request',countTop);
  await p.locator('#appTab-grub').click();const grubFrame=p.frameLocator('#appTool-grub iframe');await grubFrame.locator('#grubSearch').waitFor({timeout:45000});await grubFrame.locator('#grubSearch').fill('Unfinished meal search');
  assert.equal(new URL(p.url()).pathname,mainURL);assert.equal(await p.locator('#appTab-grub').getAttribute('aria-selected'),'true');assert(await p.locator('.mtm-hero').isVisible());assert(!(await p.locator('.app-today-grid').isVisible()));
@@ -72,7 +72,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  row.checks.push('Life Back dark canvas and caption contrast verified; progress card opens its dialog');
  }
  if(path==='/member/settings')await p.locator('.app-account-details>summary').click();
- await p.evaluate(()=>scrollTo(0,0));
+ await p.evaluate(async()=>{document.documentElement.style.scrollBehavior='auto';document.body.style.scrollBehavior='auto';document.activeElement?.blur();scrollTo({top:0,behavior:'instant'});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))});
  await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'.png',fullPage:true});
  await p.screenshot({path:dir+'/'+name+'-'+width+'-'+path.split('/').pop()+'-viewport.png'});}
  await p.goto(base+'/programme',{waitUntil:'domcontentloaded'});assert.equal(await p.locator('#appBottomNav').count(),0);assert.equal(await p.locator('[data-app-layout]').count(),0);row.checks.push('Layout persists across member routes; public Programme receives no app markup');
