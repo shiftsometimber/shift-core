@@ -69,6 +69,7 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  assert.equal(await p.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(5, 5, 5)','Life Back retains dark canvas for its light labels');
  const contrast=await p.locator('#scoreCaption').evaluate(el=>{const rgb=getComputedStyle(el).color.match(/[\d.]+/g).slice(0,3).map(Number);const lum=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};const l=.2126*lum(rgb[0])+.7152*lum(rgb[1])+.0722*lum(rgb[2]);return(l+.05)/(lum(5)+.05)});assert(contrast>=4.5,'Life Back caption contrast');
  await p.locator('.area-card').first().click();assert(await p.locator('dialog[open]').isVisible());await p.screenshot({path:dir+'/'+name+'-'+width+'-life-back-dialog.png',fullPage:true});await p.keyboard.press('Escape');
+ assert(await p.locator('.timeline-card').evaluateAll(cards=>cards.every(c=>c.scrollWidth<=c.clientWidth+1)),'Timeline values fit inside each card');
  row.checks.push('Life Back dark canvas and caption contrast verified; progress card opens its dialog');
  }
  if(path==='/member/settings')await p.locator('.app-account-details>summary').click();

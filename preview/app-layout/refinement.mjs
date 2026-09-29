@@ -37,14 +37,17 @@ css('.app-refine-detail','margin:8px 0!important;border:0!important;border-top:1
 css('.app-refine-detail>summary','display:flex!important;align-items:center;justify-content:space-between;gap:12px;min-height:44px!important;padding:8px 0!important;font:600 13px/1.4 Arial,Helvetica,sans-serif!important;cursor:pointer;list-style:none')+
 css('.app-refine-detail>summary::after','content:"+";font-size:20px;font-weight:400')+
 css('.app-refine-detail[open]>summary::after','content:"−"')+
+css('.mtm-next .app-refine-detail>summary|.sf-current-step .app-refine-detail>summary','color:#050505!important;-webkit-text-fill-color:#050505!important')+
 css('.app-refine-detail>summary::-webkit-details-marker','display:none')+
 css('.app-refine-more','border:1px solid #46503d!important;border-radius:12px!important;padding:0 16px!important;background:#10160e!important')+
 css('.app-refine-more>summary','min-height:52px!important;font-size:15px!important')+
 css('.sf-session','padding:16px!important;margin:14px 0!important')+
+css('#fitOutput','margin:12px 0!important;padding:0!important;min-height:0!important')+
+css('#fitStatus','margin:12px 0!important;min-height:0!important')+
 css('.sf-session-head','gap:10px!important')+
 css('.sf-session-head h3','font-size:23px!important')+
 css('.sf-ring','width:68px!important;height:68px!important;font-size:24px!important')+
-css('.sf-week','padding:12px!important;font-size:11px!important;gap:8px!important;margin:12px 0!important')+
+css('.sf-week','position:static!important;inset:auto!important;padding:12px!important;font-size:11px!important;gap:8px!important;margin:12px 0!important')+
 css('.sf-coach','padding:10px 12px!important;margin:10px 0!important')+
 css('.sf-coach p','font-size:13px!important;margin:3px 0!important')+
 css('.sf-difficulty','padding:10px!important;margin:10px 0!important')+
@@ -100,7 +103,11 @@ css('#journeyView .area-card','padding:12px!important;min-height:136px!important
 css('#journeyView .area-description','font-size:12px!important;line-height:1.4!important')+
 css('#journeyView .area-number','font-size:28px!important')+
 css('#journeyView .timeline-grid','grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important')+
-css('#journeyView .timeline-card','padding:10px!important;font-size:12px!important')+
+css('#journeyView .timeline-card','display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:8px!important;padding:10px!important;font-size:12px!important;overflow-wrap:anywhere!important')+
+css('#journeyView .timeline-card>div','min-width:0!important;width:100%!important')+
+css('#journeyView .timeline-card .measurement','font-size:18px!important')+
+css('#journeyView .hero-copy','text-align:left!important')+
+css('#scoreCaption|#comparison','font-size:12px!important;line-height:1.4!important')+
 `@media(min-width:700px){${root} #todayActions.app-today-v2{gap:16px!important}${root} .sf-exercise.mp-exercise{grid-template-columns:28px 72px minmax(0,1fr) 160px!important}${root} .sf-exercise>.sf-exercise-actions{grid-column:4!important;grid-row:1/3!important}${root} .sf-exercise-main>.sf-completion{grid-column:3!important}${root} #journeyView>.hero{grid-template-columns:minmax(0,1fr) 200px!important}${root} #journeyView .score-ring{width:180px!important;height:180px!important}}
 `;
 
@@ -119,7 +126,7 @@ export const refinementClient=String.raw`
    const next=home.querySelector('.mtm-next');
    if(next&&!next.dataset.refined){next.dataset.refined='true';
     const intro=next.querySelector(':scope>div:not(.mtm-loop-controls)');if(intro)group([...intro.children].filter(n=>n.tagName==='P'),'Why this step');
-    const loop=next.querySelector('.mtm-loop-controls');if(loop){group([...loop.children].filter(n=>n.tagName==='P'),'Why SHIFT suggested this');}
+    const loop=next.querySelector('.mtm-loop-controls');if(loop)group([loop],'Log your progress');
    }
    home.querySelectorAll('.mtm-step').forEach((row,i)=>{if(row.querySelector('.app-day-copy'))return;const link=[...row.children].find(n=>n.tagName==='A');if(!link)return;const copy=document.createElement('div');copy.className='app-day-copy';const nodes=[...row.children].filter(n=>n!==link&&!n.classList.contains('app-line-icon'));row.append(copy);copy.append(...nodes);const kicker=copy.querySelector('small');if(kicker)kicker.textContent=i?'SHIFT FIT':'SHIFT GRUB';link.classList.add('app-day-open');link.setAttribute('aria-label',link.textContent.trim());link.textContent='→';});
    const secondary=home.querySelector('.app-secondary-controls');if(secondary&&!secondary.dataset.refined){secondary.dataset.refined='true';home.append(secondary)}
