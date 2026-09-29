@@ -54,7 +54,7 @@ export async function deviceHealthSyncRoute(request,env){
   return json({ok:true,platform:b.platform,enabled:false});
  }
  if(path==='/v1/device-health/readings'&&request.method==='POST'){
-  const origin=request.headers.get('Origin');if(origin&&origin!==new URL(request.url).origin)return json({ok:false,error:'origin_not_allowed'},403);
+  const origin=request.headers.get('Origin');if(origin!==new URL(request.url).origin)return json({ok:false,error:'origin_not_allowed'},403);
   if(!tracking)return json({ok:false,error:'health_consent_required',message:'Optional health tracking is off. Turn it on before connecting health data.'},409);
   let raw;try{raw=await request.text()}catch{return json({ok:false,error:'invalid_request'},400)}
   if(new TextEncoder().encode(raw).length>131072)return json({ok:false,error:'request_too_large'},413);
