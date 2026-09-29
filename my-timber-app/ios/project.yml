@@ -6,9 +6,10 @@ settings:
   base:
     SWIFT_VERSION: '5.0'
     TARGETED_DEVICE_FAMILY: '1,2'
-    CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 1.0.0
+    CURRENT_PROJECT_VERSION: 2
+    MARKETING_VERSION: 1.1.0
     ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    CODE_SIGN_ENTITLEMENTS: MyTimber.entitlements
 targets:
   MyTimber:
     type: application
@@ -31,6 +32,7 @@ targets:
         UILaunchScreen:
           UIColorName: LaunchBackground
         NSCameraUsageDescription: Take a photo you choose to upload to your My Timber account.
+        NSHealthShareUsageDescription: My Timber reads health and activity data you choose to share so your weight, blood pressure, heart rate, activity, sleep and supported vitals can appear in your private My Timber progress.
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
         UISupportedInterfaceOrientations:
