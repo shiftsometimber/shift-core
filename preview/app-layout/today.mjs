@@ -2,6 +2,12 @@
 const scope='html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]):is(#today-design-scope,[data-app-layout])';
 const rule=(selector,css)=>scope+' '+selector+'{'+css.split(';').filter(Boolean).map(s=>s.replace(/!important/g,'')+'!important').join(';')+'}\n';
 export const todayStyles=
+scope+':has(#todayActions.app-today-v3)>header.site-header{display:none!important}'+
+rule('#todayBrand','display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0 0;color:#e7e3da')+
+rule('#todayBrand>a','display:flex;align-items:center;gap:10px;font:700 18px/1 Arial,sans-serif;text-decoration:none;color:#e7e3da')+
+rule('#todayBrand .today-logo','display:grid;place-items:center;width:34px;height:34px;border:2px solid currentColor;border-radius:50%;font-size:26px')+
+rule('#todayBrand button','background:transparent;color:#e7e3da;border:1px solid #707762;border-radius:8px;min-height:44px;padding:10px 14px;font-size:14px')+
+rule('main:has(#todayActions.app-today-v3)','max-width:980px;padding:0 20px')+
 rule('#todayActions.app-today-v3','display:block;color:#e7e3da')+
 rule('#todayActions.app-today-v3 .mtm-hero','display:block;min-height:0;padding:24px 0 20px;margin:0;background:transparent;border:0')+
 rule('#todayActions.app-today-v3 .mtm-hero>div','max-width:100%')+
@@ -22,9 +28,9 @@ rule('#todayActions.app-today-v3 .today-meal-copy','padding:22px')+
 rule('#todayActions.app-today-v3 .today-eyebrow','font-size:11px;letter-spacing:1.5px;font-weight:700;margin:0 0 10px;color:inherit')+
 rule('#todayActions.app-today-v3 .today-meal h3','font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1.1;margin:0 0 12px;color:#050505')+
 rule('#todayActions.app-today-v3 .today-meal-meta','font-size:15px;line-height:1.5;margin:0 0 18px;color:#343a2e')+
-rule('#todayActions.app-today-v3 .today-meal-action','display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:12px 16px;box-sizing:border-box;border:0;border-radius:10px;background:#303a27;color:#fffdf5;text-decoration:none;font-size:15px;font-weight:700')+
+rule('#todayActions.app-today-v3 .today-meal-action','display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:12px 16px;box-sizing:border-box;border:0;border-radius:10px;background:#050505;color:#fffdf5;-webkit-text-fill-color:#fffdf5;text-decoration:none;font-size:15px;font-weight:700')+
 rule('#todayActions.app-today-v3 .today-swap','display:block;text-align:center;font-size:13px;line-height:1.5;min-height:44px;padding:14px 0 0;color:#343a2e;text-decoration:underline;text-underline-offset:3px')+
-rule('#todayActions.app-today-v3 .mtm-week','grid-column:2;padding:20px;background:#10150e;border:1px solid #42493b;border-radius:16px;margin:0')+
+rule('#todayActions.app-today-v3 .mtm-week','grid-column:2;padding:20px;background:transparent;border:0;border-radius:0;margin:0')+
 rule('#todayActions.app-today-v3 .mtm-week .mtm-section-head','display:block;margin:0 0 10px')+
 rule('#todayActions.app-today-v3 .mtm-week h2','font-size:19px;line-height:1.3;font-weight:700;letter-spacing:0;margin:0;color:#e7e3da')+
 rule('#todayActions.app-today-v3 .mtm-week p','font-size:13px;line-height:1.5;color:#bdc2b4;margin:8px 0 0')+
@@ -44,6 +50,7 @@ rule('#todayActions.app-today-v3 .today-movement a','display:block;padding:12px 
 rule('#todayActions.app-today-v3 .today-followthrough','margin-top:24px;display:grid;gap:18px')+
 rule('#todayActions.app-today-v3 .mtm-next','background:#e7e3da;color:#050505;padding:22px;border-radius:16px;margin:0')+
 rule('#todayActions.app-today-v3 .mtm-next :is(h3,p,small,a,button)','color:#050505;-webkit-text-fill-color:#050505')+
+rule('#todayActions.app-today-v3 .mtm-next .mt-now-action','background:#050505;color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 rule('#todayActions.app-today-v3 .mtm-next h3','font-size:23px;line-height:1.2;margin:8px 0')+
 rule('#todayActions.app-today-v3 .mtm-next :is(p,button,a)','font-size:14px;line-height:1.5')+
 rule('#todayActions.app-today-v3 .mtm-next button','background:transparent;border:1px solid #707762;border-radius:8px;min-height:44px;padding:10px;margin:4px')+
@@ -55,13 +62,15 @@ rule('#todayActions.app-today-v3 :is(a,button,summary):focus-visible','outline:3
 rule('#moodRow','display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px')+
 rule('#moodRow>*','min-width:0;word-break:normal;overflow-wrap:normal;white-space:normal;font-size:13px;padding:10px 4px')+
 '@media(max-width:640px){'+
+rule('main:has(#todayActions.app-today-v3)','padding:0 14px')+
 rule('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:16px')+
 rule('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+
 rule('#todayActions.app-today-v3 .today-meal-visual','aspect-ratio:1.7')+
 rule('#todayActions.app-today-v3 .today-meal-copy','padding:20px')+
 rule('#todayActions.app-today-v3 .today-meal h3','font-size:32px')+
 rule('#todayActions.app-today-v3 .mtm-hero','padding:20px 0')+
-'}@media(prefers-reduced-motion:no-preference){'+rule('#todayActions.app-today-v3 .today-meal-action','transition:background .15s ease')+'}';
+'}'+scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.mtm-hero):not(.app-today-shortcuts){display:none!important}'+
+'@media(prefers-reduced-motion:no-preference){'+rule('#todayActions.app-today-v3 .today-meal-action','transition:background .15s ease')+'}';
 
 export const todayClient=String.raw`(()=>{
 let generation=0;
@@ -73,6 +82,7 @@ function build(){
  const root=document.getElementById('todayActions'),hero=root?.querySelector('.mtm-hero'),grid=root?.querySelector('.mtm-dashboard');if(!hero||!grid||root.querySelector('.today-layout'))return;
  const day=grid.querySelector('.mtm-panel'),week=grid.querySelector('.mtm-week'),plan=root.querySelector('.mtm-plan'),life=week?.querySelector('.mt-connected-life');if(!day||!week||!plan||!life)return;
  root.classList.remove('app-today-v2');root.classList.add('app-today-v3');const token=++generation;
+ if(!document.getElementById('todayBrand')){const brand=el('div');brand.id='todayBrand';const home=el('a','','MY TIMBER');home.href='/member/dashboard?view=app#today';home.prepend(el('span','today-logo','S'));const menu=el('button','','Menu');menu.type='button';menu.addEventListener('click',()=>document.getElementById('appMore')?.click());brand.append(home,menu);root.before(brand)}
  hero.querySelector('p:last-child').textContent='A little better starts here.';
  const nav=el('nav','app-today-shortcuts');nav.setAttribute('aria-label','Today tools');for(const [name,key,path]of [['Today','sun','dashboard#today'],['Fit','fit','fit'],['Grub','food','grub'],['Life Back','life','life-back']]){const a=el('a','',name);a.href='/member/'+path;a.prepend(icon(key));nav.append(a)}hero.after(nav);
  const layout=el('div','today-layout'),mealCard=el('article','today-meal');mealCard.setAttribute('aria-label','Your food today');

@@ -10,29 +10,6 @@ css('main [data-member-hero="v1"] :is(h1,h2)','font-size:30px!important;line-hei
 css('main [data-member-hero="v1"] p','font-size:14px!important;line-height:1.45!important;max-width:48ch')+
 css('.app-today-shortcuts','border-radius:12px!important;padding:4px!important')+
 css('.app-today-shortcuts a','min-height:58px!important;padding:8px 3px!important')+
-css('#todayActions.app-today-v2','gap:12px!important')+
-css('#todayActions.app-today-v2 .mtm-panel','padding:16px!important;border-radius:12px!important')+
-css('#todayActions.app-today-v2 .mtm-step','grid-template-columns:30px minmax(0,1fr) 44px!important;grid-template-rows:auto!important;align-items:center!important;padding:12px 0!important;gap:8px!important')+
-css('#todayActions.app-today-v2 .mtm-step>.app-line-icon','grid-column:1!important;grid-row:1!important;width:28px!important;height:28px!important;padding:0!important')+
-css('#todayActions.app-today-v2 .mtm-step>.app-day-copy','grid-column:2!important;grid-row:1!important;display:block!important')+
-css('#todayActions.app-today-v2 .mtm-step>.app-day-open','grid-column:3!important;grid-row:1!important;min-height:44px!important;justify-content:center!important;font-size:24px!important')+
-css('#todayActions.app-today-v2 .mtm-step .app-day-copy>*','margin:2px 0!important;line-height:1.3!important')+
-css('#todayActions.app-today-v2 .mtm-step .app-day-copy small','font-size:10px!important;letter-spacing:.08em!important;color:#bac4a7!important')+
-css('#todayActions.app-today-v2 .mtm-step .app-day-copy h3','font-size:15px!important;font-weight:600!important')+
-css('#todayActions.app-today-v2 .mtm-step .app-day-copy p','font-size:12px!important')+
-css('#todayActions.app-today-v2 .mtm-step h3','font-size:16px!important;margin:2px 0!important')+
-css('#todayActions.app-today-v2 .mtm-step small','font-size:9px!important')+
-css('#todayActions.app-today-v2 .mtm-step p','font-size:12px!important;font-weight:400!important')+
-css('#todayActions.app-today-v2 .mtm-next','padding:14px!important;margin:12px 0 0!important')+
-css('#todayActions.app-today-v2 .mtm-next h3','font-size:20px!important')+
-css('#todayActions.app-today-v2 .mtm-next .app-refine-detail','color:#050505!important;border-color:#707762!important')+
-css('#todayActions.app-today-v2 .mtm-week','padding:14px 16px!important')+
-css('#todayActions.app-today-v2 .mtm-days','margin:10px 0!important;gap:4px!important')+
-css('#todayActions.app-today-v2 .mtm-records','padding:14px!important')+
-css('#todayActions.app-today-v2 .mtm-record-grid a','min-height:44px!important;padding:10px!important')+
-css('#todayActions.app-today-v2 .mtm-record-grid span','display:none!important')+
-css('#todayActions.app-today-v2 .mtm-ask h2','font-size:20px!important;margin:4px 0!important')+
-css('#todayActions.app-today-v2 #mtmAskForm','margin-top:10px!important')+
 css('.app-refine-detail','margin:8px 0!important;border:0!important;border-top:1px solid #46503d!important;padding:0!important;min-width:0;color:#e7e3da')+
 css('.app-refine-detail>summary','display:flex!important;align-items:center;justify-content:space-between;gap:12px;min-height:44px!important;padding:8px 0!important;font:600 13px/1.4 Arial,Helvetica,sans-serif!important;cursor:pointer;list-style:none')+
 css('.app-refine-detail>summary::after','content:"+";font-size:20px;font-weight:400')+
@@ -108,7 +85,7 @@ css('#journeyView .timeline-card>div','min-width:0!important;width:100%!importan
 css('#journeyView .timeline-card .measurement','font-size:18px!important')+
 css('#journeyView .hero-copy','text-align:left!important')+
 css('#scoreCaption|#comparison','font-size:12px!important;line-height:1.4!important')+
-`@media(min-width:700px){${root} #todayActions.app-today-v2{gap:16px!important}${root} .sf-exercise.mp-exercise{grid-template-columns:28px 72px minmax(0,1fr) 160px!important}${root} .sf-exercise>.sf-exercise-actions{grid-column:4!important;grid-row:1/3!important}${root} .sf-exercise-main>.sf-completion{grid-column:3!important}${root} #journeyView>.hero{grid-template-columns:minmax(0,1fr) 200px!important}${root} #journeyView .score-ring{width:180px!important;height:180px!important}}
+`@media(min-width:700px){${root} .sf-exercise.mp-exercise{grid-template-columns:28px 72px minmax(0,1fr) 160px!important}${root} .sf-exercise>.sf-exercise-actions{grid-column:4!important;grid-row:1/3!important}${root} .sf-exercise-main>.sf-completion{grid-column:3!important}${root} #journeyView>.hero{grid-template-columns:minmax(0,1fr) 200px!important}${root} #journeyView .score-ring{width:180px!important;height:180px!important}}
 `;
 
 export const refinementClient=String.raw`
@@ -116,21 +93,7 @@ export const refinementClient=String.raw`
  function group(nodes,title,cls=''){nodes=nodes.filter(Boolean);if(!nodes.length||nodes[0].closest('.app-refine-detail'))return;const d=document.createElement('details'),s=document.createElement('summary');d.className='app-refine-detail '+cls;s.textContent=title;nodes[0].before(d);d.append(s,...nodes);return d}
  function refine(){
   const page=document.body.dataset.memberPage;
-  if(page==='dashboard'){
-   const home=document.querySelector('#todayActions.app-today-v2');if(!home?.querySelector('.app-today-grid'))return;
-   if(!home.querySelector('.app-refine-more')){
-    const nodes=[home.querySelector('.mtm-daily'),home.querySelector('.mtm-records')];
-    const d=group(nodes,'Water, saved items & account','app-refine-more');
-    if(d)home.append(d);
-   }
-   const next=home.querySelector('.mtm-next');
-   if(next&&!next.dataset.refined){next.dataset.refined='true';
-    const intro=next.querySelector(':scope>div:not(.mtm-loop-controls)');if(intro)group([...intro.children].filter(n=>n.tagName==='P'),'Why this step');
-    const loop=next.querySelector('.mtm-loop-controls');if(loop)group([loop],'Log your progress');
-   }
-   home.querySelectorAll('.mtm-step').forEach((row,i)=>{if(row.querySelector('.app-day-copy'))return;const link=[...row.children].find(n=>n.tagName==='A');if(!link)return;const copy=document.createElement('div');copy.className='app-day-copy';const nodes=[...row.children].filter(n=>n!==link&&!n.classList.contains('app-line-icon'));row.append(copy);copy.append(...nodes);const kicker=copy.querySelector('small');if(kicker)kicker.textContent=i?'SHIFT FIT':'SHIFT GRUB';link.classList.add('app-day-open');link.setAttribute('aria-label',link.textContent.trim());link.textContent='→';});
-   const secondary=home.querySelector('.app-secondary-controls');if(secondary&&!secondary.dataset.refined){secondary.dataset.refined='true';home.append(secondary)}
-  }
+  if(page==='dashboard')return;
   if(page==='fit'){
    document.querySelectorAll('.sf-session').forEach(session=>{const start=session.querySelector('[data-sf-start]'),head=session.querySelector('.sf-session-head');if(start&&head&&!start.dataset.appPlaced){start.dataset.appPlaced='true';head.after(start)}});
    document.querySelectorAll('.sf-current-step').forEach(n=>group([...n.children].filter(c=>c.tagName==='P'),'Movement guidance & timing'));
