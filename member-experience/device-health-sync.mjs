@@ -12,7 +12,7 @@ const TYPES={
  active_energy_kcal:[0,20000,'kcal'],distance_m:[0,300000,'m'],
  sleep_minutes:[0,1440,'min'],exercise_minutes:[0,1440,'min']
 };
-const PLATFORMS=new Set(['apple_health','health_connect']);
+const PLATFORMS=new Set(['apple_health','health_connect','shift_device']);
 const pathOf=r=>new URL(r.url).pathname.replace(/\/+$/,'');
 async function digest(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 export function normaliseDeviceHealthReading(r,now=Date.now()){
