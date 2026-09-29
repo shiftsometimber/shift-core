@@ -15,8 +15,8 @@
     "preview/app-layout/worker.mjs": "d648c0c70ebee1dcb6ed36e4849be418ddbcf953d0577b381707c2dadd58a465",
     "release/app-live-http.mjs": "69e29ed0b54c430f2d8b5988264fd2b38bf8bd554d2c346424c0444d64f114e6",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "3c57fbb1d04e76f965021d3664ddeee2d44bedb301f489fa6611ed5a915b1ad0",
-    "release/growth-adopt-deployment.mjs": "fc8aa89dbb186bedffce4c0f1e1b22cf642eb91223833db5be810d5b982a2bff",
+    "release/app-preflight.mjs": "346c4180673c9c00784d368d50f696e35779211434058e3a30219fbd591c20e0",
+    "release/growth-adopt-deployment.mjs": "6bf2bf2abe0e90b42eeb716bcbf4e1f278a22493694ea931042a288380790f6c",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "a3631e2166c4c66d30003b999d465335edcebbb431ef66221df918efcf242dc6",
     "tests/app-layout-live.test.mjs": "16533a17066b1fdedc6f6b7802719556823550491f224ae410e72f382f2f3331",
@@ -25,6 +25,11 @@
     "acquisition-activation/consent.mjs": "20d599bb2e6314feea02adbfbb1efa070606de342b7e2d96dc09eb54e37b9bcc",
     "acquisition-activation/consent-baseline.js": "62f630b78046b74357906159ef45394ba368eda463dbe082b74d1fb0abe8c2c1",
     "acquisition-activation/panel-consent.test.mjs": "fef34b6ef3f767bb24102324af4f4064f0021a4a603e52b65899c66835ee45ea",
-    "preview/app-layout/cookie-proof.cjs": "12e274f8eb6205af623200f092be305d1b8b480653ed05592e262dc361620c22"
+    "preview/app-layout/cookie-proof.cjs": "12e274f8eb6205af623200f092be305d1b8b480653ed05592e262dc361620c22",
+    "medicines-watch/data.mjs": "a23577a66d08d8f3003542048edee40735cf4f21419052c28015efd607297645",
+    "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json": "ac8a2089636a3e2ab22a05762a3b32558b7575064a05ec5c36e0a9d8d1d61d10",
+    "medicines-watch/source-review.test.mjs": "3f81f2d292f3bffcc0a6d3986c19e1ed524d4dc5fb9601160dfc4c72eb803dd8",
+    "scripts/b1-release-scope.mjs": "eb844771b721f970aabc0c598fa5dc4dce665ced573892df2eeb0a1fa5d56bf9",
+    "tests/b1-release-scope.test.mjs": "608c84f4816fee73bf5ba0638659ed73e26ed12fbb68897150ffc84956cc4446"
   }
 }
