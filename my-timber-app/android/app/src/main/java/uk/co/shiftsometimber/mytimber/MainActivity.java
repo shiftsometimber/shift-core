@@ -28,6 +28,7 @@ public final class MainActivity extends Activity {
     private final Runnable timeout = () -> showFailure("My Timber is taking longer than expected. Nothing has been confirmed as saved by this app.");
     private ValueCallback<Uri[]> fileResult;
     private boolean pageFailed;
+    private boolean healthSyncLaunched;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -77,11 +78,16 @@ public final class MainActivity extends Activity {
         settings.setMediaPlaybackRequiresUserGesture(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
         settings.setSupportMultipleWindows(false);
-        settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.0.0");
+        settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.1.0");
         CookieManager.getInstance().setAcceptCookie(true);
         CookieManager.getInstance().setAcceptThirdPartyCookies(web,false);
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if ("mytimber-health".equalsIgnoreCase(request.getUrl().getScheme()) && "sync".equalsIgnoreCase(request.getUrl().getHost()) && request.isForMainFrame()) {
+                    healthSyncLaunched=true;
+                    startActivity(new Intent(MainActivity.this,HealthConnectActivity.class));
+                    return true;
+                }
                 NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());
                 if (!request.isForMainFrame()) {
                     // Let HTTPS challenge frames use normal browser isolation.
@@ -183,6 +189,6 @@ public final class MainActivity extends Activity {
         if(web!=null&&web.canGoBack())web.goBack();else super.onBackPressed();
     }
     @Override protected void onPause(){super.onPause();if(web!=null)web.onPause();CookieManager.getInstance().flush();}
-    @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();}
+    @Override protected void onResume(){super.onResume();if(web!=null){web.onResume();if(healthSyncLaunched){healthSyncLaunched=false;web.reload();}}}
     @Override protected void onDestroy(){timer.removeCallbacksAndMessages(null);if(fileResult!=null)fileResult.onReceiveValue(null);if(web!=null){web.stopLoading();web.destroy();}super.onDestroy();}
 }
