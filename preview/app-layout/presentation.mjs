@@ -1,3 +1,4 @@
+import {refinementStyles,refinementClient} from './refinement.mjs';
 import {tabStyles,tabClient} from './tabs.mjs';
 import {screenStyles,screenClient} from './screens.mjs';
 // Preview-only presentation. No data endpoints, copied member state or native bridge.
@@ -96,7 +97,7 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) .a
 
 @media(max-width:600px){.app-today-grid{display:flex!important;flex-direction:column!important;gap:16px!important;height:auto!important;min-height:0!important}.app-today-grid>.app-life-card{align-self:stretch!important}}
 @media print{#appBottomNav,#appPreviewBar{display:none!important}}
-`+screenStyles+tabStyles;
+`+screenStyles+tabStyles+refinementStyles;
 export const appClient=screenClient+String.raw`(()=>{
  function current(){document.querySelectorAll('#appBottomNav a').forEach(a=>{const u=new URL(a.href),match=u.pathname.replace('/staging/member-connected/','/member/')===location.pathname.replace('/staging/member-connected/','/member/')&&(u.hash?u.hash===(location.hash||'#today'):true);if(match){if(a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page')}else a.removeAttribute('aria-current')})}
  document.addEventListener('click',e=>{const more=e.target.closest?.('#appMore');if(!more)return;const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}},true);
@@ -119,7 +120,7 @@ export const appClient=screenClient+String.raw`(()=>{
 
  function boot(){current();rebuildToday();if(document.body.dataset.memberPage==='dashboard')document.querySelectorAll('footer').forEach(footer=>{if(footer.closest('main,details'))return;const details=el('details','app-footer-details');details.append(el('summary','','Help & legal'));footer.before(details);details.append(footer)});const account=document.getElementById('connected-account')?.closest('aside');if(account&&!account.closest('details')){const details=el('details','app-review-account');details.append(el('summary','','Fictional review account'));account.before(details);details.append(account)}const bar=document.getElementById('appBottomNav');if(bar)new MutationObserver(current).observe(bar,{subtree:true,attributes:true,attributeFilter:['href']})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();addEventListener('hashchange',current);
-})();`+tabClient;
+})();`+tabClient+refinementClient;
 export function appPresentation(html,path,embedded=false){
  path=path.replace('/staging/member-connected/','/member/').replace(/\.html$/,'');
  if(!/^\/member\/(dashboard|grub|fit|life-back|check-in|settings|saved|plans|orders|ask-timber)$/.test(path)||html.includes('data-app-layout="preview"'))return html;
