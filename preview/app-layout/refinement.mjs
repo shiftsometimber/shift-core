@@ -132,6 +132,7 @@ export const refinementClient=String.raw`
    const secondary=home.querySelector('.app-secondary-controls');if(secondary&&!secondary.dataset.refined){secondary.dataset.refined='true';home.append(secondary)}
   }
   if(page==='fit'){
+   document.querySelectorAll('.sf-session').forEach(session=>{const start=session.querySelector('[data-sf-start]'),head=session.querySelector('.sf-session-head');if(start&&head&&!start.dataset.appPlaced){start.dataset.appPlaced='true';head.after(start)}});
    document.querySelectorAll('.sf-current-step').forEach(n=>group([...n.children].filter(c=>c.tagName==='P'),'Movement guidance & timing'));
    document.querySelectorAll('.sf-exercise-main').forEach(n=>{
     const card=n.closest('.sf-exercise'),completion=n.querySelector('.sf-completion'),swap=card?.querySelector('.sf-exercise-actions button');if(completion&&swap)completion.append(swap);
