@@ -1,0 +1,22 @@
+name: Medicines Watch primary evidence capture
+on:
+  push:
+    branches: ['review/watch-primary-capture-20260929']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: node capture-watch-evidence.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: watch-primary-evidence
+          path: watch-evidence/
+          retention-days: 14
