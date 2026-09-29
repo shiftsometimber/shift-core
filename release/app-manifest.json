@@ -16,7 +16,7 @@
     "release/app-live-http.mjs": "69e29ed0b54c430f2d8b5988264fd2b38bf8bd554d2c346424c0444d64f114e6",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
     "release/app-preflight.mjs": "c41fb3029f7e03c3077bd490310eb7a597a7bc16e1ae964741ac1ae2b0aff63b",
-    "release/growth-adopt-deployment.mjs": "6bf2bf2abe0e90b42eeb716bcbf4e1f278a22493694ea931042a288380790f6c",
+    "release/growth-adopt-deployment.mjs": "f2e54d59396b6bad98d2e9a96f8e5d519573dc4c852a530abab086da76e0f268",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "a3631e2166c4c66d30003b999d465335edcebbb431ef66221df918efcf242dc6",
     "tests/app-layout-live.test.mjs": "16533a17066b1fdedc6f6b7802719556823550491f224ae410e72f382f2f3331",
