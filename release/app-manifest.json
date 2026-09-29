@@ -1,6 +1,6 @@
 {
   "sha256": {
-    ".github/workflows/app-layout-preview.yml": "18a4e8f9e3050c4d824dbaf68bdbaf9b5f13e0a6b591df7e637e208f978d1d03",
+    ".github/workflows/app-layout-preview.yml": "fc95d0a917da7e9377d6f18ee7ddb416034be6c97e9fae26a6d11f6b46aeaef0",
     ".github/workflows/cloudflare-production-promote.yml": "1086c3ec988090c0b7aa91688cc6d3a3554f25a9102d5fb03b1a7c6e6d723d81",
     "app-layout-live.mjs": "81bd5488bae84a98718aced7f1db488732942e70cfb60d69e43c8ff852c87bb4",
     "docs/growth-review/app-release-20260928.md": "2839473f624abdf4e2cade1e0818a2dc48570bff9dfce248aaec6f42d174f0ec",
@@ -11,16 +11,20 @@
     "preview/app-layout/presentation.test.mjs": "ccdfcd1f36bfc29a4f9b7b7f92d57662ab33d5fbc380c846c5e08bb909bf81e4",
     "preview/app-layout/screens.mjs": "2b6c2cc7cdb26bdbf9226c67c4ccea3aa9aaec5bd76611bea9791721b71f1e9b",
     "preview/app-layout/tabs.mjs": "fa2d7c287cebf4d6d946a981d3b578fce55179c9b9963f30cd2870e59eb9ceae",
-    "preview/app-layout/verify.cjs": "28de3da04cae066ec8cf2f67510447d320ea84947b29271d98f69cc50f467968",
-    "preview/app-layout/worker.mjs": "54e94932e79be2fda11de54fcbc6f760e10fd19b10d0170491a5707970b5e30e",
-    "release/app-live-http.mjs": "2ef4970e4eb20e359767057b72cbf56769ee4ab33a598a33790f88d6328c268e",
-    "release/app-member-live.mjs": "eb41a8c38aeca64b55e3161eff428787f84aa8b359b83ce8a78745a89129001b",
-    "release/app-preflight.mjs": "02c0372250577b8c25adfb5fb3fa40035d00c987dae6646d1fbbecbce05a689e",
-    "release/growth-adopt-deployment.mjs": "5a5d9d69d5c00b66546960a32a3050f0de5070e66327673909fb6e0d03610a44",
+    "preview/app-layout/verify.cjs": "c17201fbe7fe7f2e6d9c2403f581e650eb47d36b4102c05ccf066df110326c62",
+    "preview/app-layout/worker.mjs": "d648c0c70ebee1dcb6ed36e4849be418ddbcf953d0577b381707c2dadd58a465",
+    "release/app-live-http.mjs": "69e29ed0b54c430f2d8b5988264fd2b38bf8bd554d2c346424c0444d64f114e6",
+    "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
+    "release/app-preflight.mjs": "3c57fbb1d04e76f965021d3664ddeee2d44bedb301f489fa6611ed5a915b1ad0",
+    "release/growth-adopt-deployment.mjs": "fc8aa89dbb186bedffce4c0f1e1b22cf642eb91223833db5be810d5b982a2bff",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "a3631e2166c4c66d30003b999d465335edcebbb431ef66221df918efcf242dc6",
     "tests/app-layout-live.test.mjs": "16533a17066b1fdedc6f6b7802719556823550491f224ae410e72f382f2f3331",
     ".github/workflows/readiness-preservation.yml": "6b954852e9d4d8938b752ebe6e2a20e833e344b481b1a0726939ffe775014ce2",
-    "preview/app-layout/refinement.mjs": "026d8d120908e12e08b5b1e9da457082879b7434ecf410be38ede8ac4c524a0b"
+    "preview/app-layout/refinement.mjs": "026d8d120908e12e08b5b1e9da457082879b7434ecf410be38ede8ac4c524a0b",
+    "acquisition-activation/consent.mjs": "20d599bb2e6314feea02adbfbb1efa070606de342b7e2d96dc09eb54e37b9bcc",
+    "acquisition-activation/consent-baseline.js": "62f630b78046b74357906159ef45394ba368eda463dbe082b74d1fb0abe8c2c1",
+    "acquisition-activation/panel-consent.test.mjs": "fef34b6ef3f767bb24102324af4f4064f0021a4a603e52b65899c66835ee45ea",
+    "preview/app-layout/cookie-proof.cjs": "12e274f8eb6205af623200f092be305d1b8b480653ed05592e262dc361620c22"
   }
 }
