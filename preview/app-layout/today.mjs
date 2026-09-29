@@ -19,13 +19,14 @@ rule('#todayActions.app-today-v3 .app-today-shortcuts a','min-width:0;min-height
 rule('#todayActions.app-today-v3 .app-today-shortcuts a[aria-selected="true"]','background:#39432e;color:#f4f1e9')+
 rule('#todayActions.app-today-v3 .app-line-icon','width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0')+
 rule('#todayActions.app-today-v3 .today-layout','display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start')+
-rule('#todayActions.app-today-v3 .today-meal','grid-column:1;grid-row:1/4;overflow:hidden;border-radius:20px;background:#e7e3da;color:#050505;min-width:0')+
+rule('#todayActions.app-today-v3 .today-meal','grid-column:1;grid-row:1/4;padding:0;margin:0;border:0;box-shadow:none;overflow:hidden;border-radius:20px;background:#e7e3da;color:#050505;min-width:0')+
 rule('#todayActions.app-today-v3 .today-meal-visual','margin:0;position:relative;background:#303a27;aspect-ratio:1.6;display:grid;place-items:center;overflow:hidden')+
 rule('#todayActions.app-today-v3 .today-meal-visual img','display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0')+
 rule('#todayActions.app-today-v3 .today-meal-visual .app-line-icon','width:72px;height:72px;color:#b7c59c')+
 rule('#todayActions.app-today-v3 .today-meal-visual figcaption','position:absolute;bottom:10px;left:12px;padding:4px 8px;background:#050505c9;color:#eeeae2;border-radius:5px;font-size:10px')+
 rule('#todayActions.app-today-v3 .today-meal-copy','padding:22px')+
 rule('#todayActions.app-today-v3 .today-eyebrow','font-size:11px;letter-spacing:1.5px;font-weight:700;margin:0 0 10px;color:inherit')+
+rule('#todayActions.app-today-v3 :is(.today-meal,.today-life) .today-eyebrow','color:#566044;-webkit-text-fill-color:#566044')+
 rule('#todayActions.app-today-v3 .today-meal h3','font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1.1;margin:0 0 12px;color:#050505')+
 rule('#todayActions.app-today-v3 .today-meal-meta','font-size:15px;line-height:1.5;margin:0 0 18px;color:#343a2e')+
 rule('#todayActions.app-today-v3 .today-meal-action','display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:12px 16px;box-sizing:border-box;border:0;border-radius:10px;background:#050505;color:#fffdf5;-webkit-text-fill-color:#fffdf5;text-decoration:none;font-size:15px;font-weight:700')+
@@ -69,7 +70,7 @@ rule('#todayActions.app-today-v3 .today-meal-visual','aspect-ratio:1.7')+
 rule('#todayActions.app-today-v3 .today-meal-copy','padding:20px')+
 rule('#todayActions.app-today-v3 .today-meal h3','font-size:32px')+
 rule('#todayActions.app-today-v3 .mtm-hero','padding:20px 0')+
-'}'+scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.mtm-hero):not(.app-today-shortcuts){display:none!important}'+
+'}@media(max-width:380px){'+rule('#moodRow','grid-template-columns:repeat(2,minmax(0,1fr))')+'}'+scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.mtm-hero):not(.app-today-shortcuts){display:none!important}'+
 '@media(prefers-reduced-motion:no-preference){'+rule('#todayActions.app-today-v3 .today-meal-action','transition:background .15s ease')+'}';
 
 export const todayClient=String.raw`(()=>{
@@ -87,7 +88,7 @@ function build(){
  const nav=el('nav','app-today-shortcuts');nav.setAttribute('aria-label','Today tools');for(const [name,key,path]of [['Today','sun','dashboard#today'],['Fit','fit','fit'],['Grub','food','grub'],['Life Back','life','life-back']]){const a=el('a','',name);a.href='/member/'+path;a.prepend(icon(key));nav.append(a)}hero.after(nav);
  const layout=el('div','today-layout'),mealCard=el('article','today-meal');mealCard.setAttribute('aria-label','Your food today');
  const visual=el('figure','today-meal-visual');visual.append(icon('food'));
- const copy=el('div','today-meal-copy'),eyebrow=el('p','today-eyebrow','SHIFT GRUB'),heading=el('h3','','Something good to eat.'),meta=el('p','today-meal-meta','Choose a meal that fits your day.'),action=link('Find my next meal →','grub','#discover'),swap=link('Fancy something else? Explore Grub','grub','#discover');action.className='today-meal-action';swap.className='today-swap';copy.append(eyebrow,heading,meta,action);mealCard.append(visual,copy);layout.append(mealCard);
+ const copy=el('div','today-meal-copy'),eyebrow=el('p','today-eyebrow','SHIFT GRUB'),heading=el('h3','','Something good to eat.'),meta=el('p','today-meal-meta','Choose a meal that fits your day.'),action=link('Find my next meal →','grub','#discover'),swap=link('Fancy something else? Swap meal','grub','#discover');action.className='today-meal-action';swap.className='today-swap';copy.append(eyebrow,heading,meta,action);mealCard.append(visual,copy);layout.append(mealCard);
  const originalMeal=plan.querySelector('.mt-meal');if(originalMeal?.querySelector('.mt-plan-done')){heading.textContent='Today’s meal, sorted.';meta.textContent=originalMeal.querySelector('h3')?.textContent||'Your chosen meal';action.textContent='See today’s meal →';action.href='/member/grub#today';copy.append(swap)}
  const support=el('details','today-support');support.id='more-for-today';support.append(el('summary','','Adjust today, water & saved records'));
  const oldMore=root.querySelector('#more-for-today');if(oldMore)oldMore.id='';
@@ -108,10 +109,10 @@ function build(){
   if(token!==generation||!mealCard.isConnected)return;
   const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),chosen=workspace.today?.date===date?workspace.today:null,recipe=chosen?(workspace.recipes||[]).find(r=>r.id===chosen.recipeId):workspace.recommendation?.recipe;
   const selected=!!chosen;mealCard.dataset.mealState=selected?'chosen':recipe?'suggested':'empty';
-  heading.textContent=selected?'Today’s meal, sorted.':'Something good to eat.';eyebrow.textContent=selected?'SHIFT GRUB · CHOSEN BY YOU':'SHIFT GRUB · YOUR NEXT MEAL';
+  heading.textContent=selected?(recipe?.meal_type==='dinner'?'Tonight, sorted.':'Your meal, sorted.'):'Something good to eat.';eyebrow.textContent=selected?'SHIFT GRUB · CHOSEN BY YOU':'SHIFT GRUB · YOUR NEXT MEAL';
   meta.textContent=recipe?[recipe.name,recipe.minutes&&recipe.minutes+' min'].filter(Boolean).join(' · '):selected?chosen.name:'Find something you’ll look forward to. Choose it in Grub and it’ll be here when you come back.';
   if(recipe)mealCard.dataset.recipeId=recipe.id;
-  action.textContent=selected?'See today’s meal →':recipe?'Take a look in Grub →':'Find my next meal →';action.href='/member/grub'+(selected?'#today':'#discover');if(selected)copy.append(swap);
+  action.textContent=selected?(recipe?.meal_type==='dinner'?'See tonight’s meal →':'See today’s meal →'):recipe?'Take a look in Grub →':'Find my next meal →';action.href='/member/grub'+(selected?'#today':'#discover');if(selected)copy.append(swap);
   if(recipe?.image?.src?.startsWith('/assets/member-experience/food/')){const img=el('img');img.src=recipe.image.src;img.alt=recipe.image.alt||recipe.name;img.width=1448;img.height=1086;img.decoding='async';img.addEventListener('error',()=>visual.replaceChildren(icon('food')),{once:true});visual.replaceChildren(img,el('figcaption','','Recipe illustration · portions illustrative'))}
  }).catch(()=>{if(token===generation&&mealCard.isConnected){mealCard.dataset.mealState='unavailable';meta.append(document.createTextNode(' Open Grub to check the latest saved choice.'))}}).finally(()=>clearTimeout(timer));
 }
