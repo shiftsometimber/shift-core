@@ -101,7 +101,7 @@ function build(){
  const checkin=root.querySelector('#optional-checkin');if(checkin)follow.append(checkin);const feedback=document.getElementById('dailyCheckinFollowup');if(feedback)follow.append(feedback);
  for(const n of [...root.querySelectorAll(':scope>.mtm-daily,:scope>.mtm-records,:scope>.mtm-ask,:scope>.mt-treatment-aware')])support.append(n);
  if(oldMore){for(const n of [...oldMore.children])if(n.tagName!=='SUMMARY')support.append(n);oldMore.remove()}
- root.append(support);const guide=document.getElementById('memberDayGuide');if(guide)support.append(guide);
+ root.append(support);const guide=document.getElementById('memberDayGuide');if(guide&&!guide.closest('[data-app-guide]')){const help=el('details','app-footer-details');help.dataset.appGuide='true';help.append(el('summary','','Help using My Timber'),guide);root.after(help)}
  // The workspace supplies the currently published recipe and its exact approved
  // illustration. No name matching, invented meals or writes from this view.
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
