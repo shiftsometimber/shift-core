@@ -20,6 +20,7 @@ import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.
 import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
 import {ordersHTML,ordersStyles,ordersRuntime} from './orders.mjs';
 import {withConnectedHealth,connectedHealthRuntime,connectedHealthStyles} from './connected-health.mjs';
+import {connectedHealthTodayMarkup,connectedHealthTodayRuntime,connectedHealthTodayStyles} from './connected-health-today.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -47,6 +48,8 @@ export function memberExperienceRoutes(request, env) {
   if(path==='/assets/member-experience/member-details.css')return new Response(request.method==='HEAD'?null:memberDetailsStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/connected-health.mjs')return new Response(request.method==='HEAD'?null:connectedHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/connected-health.css')return new Response(request.method==='HEAD'?null:connectedHealthStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
+  if(path==='/assets/member-experience/connected-health-today.mjs')return new Response(request.method==='HEAD'?null:connectedHealthTodayRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/assets/member-experience/connected-health-today.css')return new Response(request.method==='HEAD'?null:connectedHealthTodayStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/home-art.webp')return new Response(request.method==='HEAD'?null:Uint8Array.from(atob(homeArt.split(',')[1]),c=>c.charCodeAt(0)),{headers:{...privateHeaders,'Content-Type':'image/webp'}});
   if(path==='/assets/member-experience/home.css')return new Response(request.method==='HEAD'?null:homeStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if (['/member/journey','/member/journey.html'].includes(path)) {
