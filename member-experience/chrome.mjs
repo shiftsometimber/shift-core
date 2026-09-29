@@ -44,6 +44,16 @@ html body[data-member-chrome="v1"][data-member-page="life-back"] .hero{padding-t
  html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(h1,h2){font-size:28px!important}
  html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"] :is(p,span){font-size:15px!important}
 }
+/* Keep member utilities in document flow, clear of check-in choices. */
+html body[data-member-chrome="v1"] #memberUtilities{display:flex;flex-wrap:wrap;gap:12px;max-width:1132px;margin:24px auto;padding:16px 24px;box-sizing:border-box;border-top:1px solid #707762}
+html body[data-member-chrome="v1"] #memberUtilities :is(#sstCookieSettings,#askTimberLaunch){position:static!important;inset:auto!important;transform:none!important;margin:0!important;min-height:44px;max-width:100%!important;z-index:auto!important}
+html body[data-member-chrome="v1"][data-app-panel="1"] #memberUtilities{display:none!important}
+html body[data-member-chrome="v1"] :is(#previewStatus,#memberSessionStatus,[role="status"]):empty{display:none!important}
+html body[data-member-chrome="v1"] nav.sst-member-tabs:has(.member-nav-more[open]){flex-wrap:wrap}
+html body[data-member-chrome="v1"] nav.sst-member-tabs .member-nav-more[open]{flex:1 1 100%;width:100%;margin-left:0}
+html body[data-member-chrome="v1"] nav.sst-member-tabs .member-nav-more[open]>div{position:static;width:100%;max-width:none;box-shadow:none}
+html body[data-member-chrome="v1"] .grub-signout{flex-basis:100%;margin-top:20px;padding-top:16px;border-top:1px solid #707762}
+html body[data-member-chrome="v1"] .grub-signout summary{min-height:44px;cursor:pointer}
 @media print{html body[data-member-chrome="v1"] nav.sst-member-tabs{display:none!important}html body[data-member-chrome="v1"] :is(main,#todayActions.mtm-home) [data-member-hero="v1"]:after{display:none!important}}
 `;
 export const memberChromeClient=String.raw`(()=>{
@@ -77,6 +87,14 @@ export const memberChromeClient=String.raw`(()=>{
    if(path===current){if(a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page')}else if(a.hasAttribute('aria-current'))a.removeAttribute('aria-current');
   });
  }
+ function placeUtilities(){
+  if(document.body.dataset.appPanel==='1')return;
+  const controls=all('#sstCookieSettings,#askTimberLaunch');if(!controls.length)return;
+  let host=document.getElementById('memberUtilities');
+  if(!host){host=document.createElement('nav');host.id='memberUtilities';host.setAttribute('aria-label','Help and privacy');document.querySelector('main')?.after(host);}
+  controls.forEach(control=>{if(control.parentElement!==host)host.append(control)});
+ }
+ placeUtilities();new MutationObserver(placeUtilities).observe(document.body,{childList:true,subtree:true});
  refresh();window.addEventListener('hashchange',refresh);
  let queued=false;new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;refresh()})}}).observe(document.querySelector('main')||document.body,{childList:true,subtree:true});
  const more=document.querySelector('.member-nav-more');
