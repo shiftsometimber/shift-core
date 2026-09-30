@@ -11,3 +11,11 @@ test('public preservation allows only the exact approved footer, setup and insta
   assert.notEqual(preservePwaPresentation(path,Buffer.from(result.replace('Protected content','changed')),{required:true}).toString(),preservePwaPresentation(path,Buffer.from(source)).toString());
  }
 });
+
+test('previous installed-card markup normalises identically to the dismissible card',async()=>{
+ const source='<html><head></head><body><main>Protected content</main><footer>Footer</footer></body></html>';
+ const path='/member-login';
+ const current=await(await withPwa(new Request('https://shiftsometimber.co.uk'+path),new Response(source,{headers:{'Content-Type':'text/html'}}))).text();
+ const previous=current.replace('<button type="button" id="pwaInstallDismiss" aria-label="Dismiss add My Timber to your phone">×</button>','');
+ assert.equal(preservePwaPresentation(path,Buffer.from(previous),{required:true}).toString(),preservePwaPresentation(path,Buffer.from(current),{required:true}).toString());
+});
