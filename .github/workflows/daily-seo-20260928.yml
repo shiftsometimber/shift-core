@@ -1,4 +1,4 @@
-name: Daily public SEO evidence 20260928
+name: Daily public SEO evidence 20260930
 on:
   push:
     branches: [verify/daily-seo-20260928]
@@ -36,6 +36,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: daily-seo-20260928
+          name: daily-seo-20260930
           path: seo-proof/
           retention-days: 90
