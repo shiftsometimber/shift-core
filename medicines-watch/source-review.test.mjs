@@ -40,10 +40,10 @@ test('source-only review binds twelve complete primary responses without clinica
   }
 });
 
-test('eleven overdue reviews are renewed only from complete unchanged evidence', () => {
+test('sixteen overdue reviews are renewed only from complete unchanged evidence', () => {
   assert.equal(overdueReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
-  assert.equal(overdueReceipt.sources.length, 11);
-  assert.equal(new Set(overdueReceipt.sources.map(source => source.id)).size, 11);
+  assert.equal(overdueReceipt.sources.length, 16);
+  assert.equal(new Set(overdueReceipt.sources.map(source => source.id)).size, 16);
   assert.equal(overdueReceipt.liveObservation.status, 'awaiting_review');
   assert.deepEqual(new Set(overdueReceipt.liveObservation.reviewDue), new Set(overdueReceipt.sources.map(source => source.id)));
   for (const proof of overdueReceipt.sources) {
@@ -111,8 +111,10 @@ test('changed SmPC metadata preserves the medicine catalogue and separately evid
   assert.equal(medicines.find(m => m.id === 'wegovy-injection').reviewedAt, undefined);
   const renewal = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-information-renewal.json', import.meta.url)));
   for (const proof of renewal.sources) {
+    const currentProof = overdueReceipt.sources.find(candidate => candidate.id === proof.id) ?? proof;
     assert.equal(proof.previousReviewedAt, '2026-09-16T17:44:34Z');
-    assert.equal(sources.find(s => s.id === proof.id).reviewedAt, proof.reviewedAt);
+    assert.equal(currentProof.previousReviewedAt, proof.reviewedAt);
+    assert.equal(sources.find(s => s.id === proof.id).reviewedAt, currentProof.reviewedAt);
     assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-09-27-wegovy-tablet-provider.json', import.meta.url))).reviewedAt);

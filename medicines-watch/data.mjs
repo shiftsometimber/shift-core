@@ -33,7 +33,7 @@ const reviewedFingerprints = {
 // Separate product-information renewal: reviews/2026-09-23-product-information-renewal.json.
 // Separate NHS tirzepatide renewal: reviews/2026-09-24-mounjaro-nhs-renewal.json.
 // Separate NICE Foundayo schedule review: reviews/2026-09-29-foundayo-nice-schedule.json.
-// Eleven unchanged source renewals: reviews/2026-09-30-overdue-source-renewal.json.
+// Sixteen unchanged source renewals: reviews/2026-09-30-overdue-source-renewal.json.
 const sourceReviewedDates = {
   'mounjaro-mhra': '2026-09-30T16:55:00Z',
   'mounjaro-nice': '2026-09-30T16:55:00Z',
@@ -48,12 +48,12 @@ const sourceReviewedDates = {
   'retatrutide-lilly': '2026-09-30T16:55:00Z',
   'mounjaro-nhs': '2026-09-24T06:32:00Z',
   'wegovy-tablet-private': '2026-09-27T06:57:00Z',
-  'mounjaro-smpc': '2026-09-23T18:04:00Z',
+  'mounjaro-smpc': '2026-09-30T18:55:00Z',
   'wegovy-injection-smpc': '2026-09-30T16:55:00Z',
-  'wegovy-tablet-smpc': '2026-09-23T18:04:00Z',
-  'orlistat-120-smpc': '2026-09-23T18:04:00Z',
-  'orlistat-60-smpc': '2026-09-23T18:04:00Z',
-  'foundayo-smpc': '2026-09-23T18:04:00Z',
+  'wegovy-tablet-smpc': '2026-09-30T18:55:00Z',
+  'orlistat-120-smpc': '2026-09-30T18:55:00Z',
+  'orlistat-60-smpc': '2026-09-30T18:55:00Z',
+  'foundayo-smpc': '2026-09-30T18:55:00Z',
 };
 
 const source = (id, title, url, sourcePublishedAt, requiredTerms, extra = {}) => ({
