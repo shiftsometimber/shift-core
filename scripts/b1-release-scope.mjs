@@ -11,9 +11,9 @@ export const RELEASE_PATHS=new Set(['editorial/five-articles/proof.mjs','.github
 export const APPROVED_ORDER_FILES=[".github/workflows/my-timber-orders-preview.yml","member-experience/chrome.mjs","member-experience/entry.mjs","member-experience/orders.mjs","member-experience/tests/orders.test.mjs","my-timber-final-source-gate.mjs","preview/stabilisation/orders-proof.mjs","preview/stabilisation/orders-provision.mjs","preview/stabilisation/orders-schema.sql","work/staging/worker.mjs"];
 export const NICE_TIMEOUT_COMMIT='68616d2730e27b03fb54e232eb06961169cdc615';
 export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs'];
-// Owner authorised the informational expansion in PR #851 on 29 September: Green it all now. No clinical approval inferred.
-export const WATCH_EXPANSION_COMMIT='583c34e85cf5347df0a44026eaac92d61a986ad5';
-export const WATCH_EXPANSION_PATHS=["medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/page.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs"];
+// Owner authorised the PR #859 informational follow-up on 30 September: Sort please. Exact tested catalogue commit; no clinical approval inferred.
+export const WATCH_EXPANSION_COMMIT='b4e809168780e79e7086fff4a493c08e08e7bf23';
+export const WATCH_EXPANSION_PATHS=["medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/knowledge.mjs", "medicines-watch/knowledge.test.mjs", "medicines-watch/page.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/reviews/2026-09-30-discovery-proposals.json", "medicines-watch/reviews/2026-09-30-discovery-review.md", "medicines-watch/reviews/2026-09-30-reviewed-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs"];
 export function validateWatchExpansion(read){
  for(const path of WATCH_EXPANSION_PATHS)assert.equal(read('HEAD',path),read(WATCH_EXPANSION_COMMIT,path),'Watch expansion source drift: '+path);
 }
@@ -24,7 +24,7 @@ export function validateNiceTimeout(read){
 export const MEDICINES_REVIEW_COMMIT='6e62b63b17c16a416e73e1e8589f0366437a5c11';
 export const MEDICINES_REVIEW_PATHS=["medicines-watch/data.mjs", "medicines-watch/provider-review.test.mjs", "medicines-watch/source-review.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-09-23-product-information-renewal.json", "medicines-watch/reviews/2026-09-24-mounjaro-nhs-renewal.json", "medicines-watch/reviews/2026-09-25-wegovy-tablet-provider-pending.json", "medicines-watch/reviews/2026-09-27-wegovy-tablet-provider.json", "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json"];
 export function validateMedicinesReview(read){
- for(const path of MEDICINES_REVIEW_PATHS)assert.equal(read('HEAD',path),read(path==='medicines-watch/data.mjs'?WATCH_EXPANSION_COMMIT:MEDICINES_REVIEW_COMMIT,path),'Medicines evidence source drift: '+path);
+ for(const path of MEDICINES_REVIEW_PATHS)assert.equal(read('HEAD',path),read(WATCH_EXPANSION_PATHS.includes(path)?WATCH_EXPANSION_COMMIT:MEDICINES_REVIEW_COMMIT,path),'Medicines evidence source drift: '+path);
 }
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
