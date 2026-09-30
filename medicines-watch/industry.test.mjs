@@ -8,6 +8,7 @@ import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'
 import hrs1596Review from './reviews/2026-09-30-hrs1596-discovery.json' with {type:'json'};
 import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-discovery.json' with {type:'json'};
 import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type:'json'};
+import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,29);assert.equal(sources.length,48);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,35);
@@ -79,4 +80,22 @@ test('ENV-308 stays a bounded early-stage proposal with registry absence visible
 test('authorised source repair preserves the original receipt and joins readable evidence',()=>{
  assert.equal(industrySources.find(s=>s.id==='petrelintide-zealand').url,continuingReview.proposals.petrelintideSourceRepair.candidateUrl);
  for(const id of ['hrs1596','emugrobart']){const html=industryMarkup({},new URLSearchParams({q:id==='hrs1596'?'HRS-1596':'emugrobart'}));assert.doesNotMatch(html,/href=""/);assert.match(html,/clinicaltrials.gov/);}
+});
+
+test('GlobeNewswire access repair changes only check URLs and preserves reviewed evidence',()=>{
+ assert.equal(globeNewswireRepair.reviewRenewed,false);
+ assert.equal(globeNewswireRepair.wordingChanged,false);
+ assert.equal(globeNewswireRepair.clinicalApproval,null);
+ for(const proof of globeNewswireRepair.proof){
+  const source=industrySources.find(item=>item.id===proof.id);
+  const repaired=globeNewswireRepair.sources.find(item=>item.id===proof.id);
+  assert.equal(source.url,repaired.url);
+  assert.equal(source.checkUrl,repaired.checkUrl);
+  assert.equal(new URL(source.checkUrl).hostname,'rss.globenewswire.com');
+  assert.equal(proof.previousReviewedFingerprint,proof.reviewedFingerprint);
+  assert.equal(source.reviewedFingerprint,proof.reviewedFingerprint);
+  assert.equal(source.reviewedAt,repaired.reviewedAt);
+  assert.equal(proof.httpStatus,200);
+  assert.equal(proof.withdrawn,false);
+ }
 });
