@@ -26,7 +26,7 @@ for(const width of [320,390,1440]){
    await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-top.png`});
    await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-full.png`,fullPage:true});
    await page.locator('#sst-home-route').screenshot({path:`home-banner-proof/screenshots/${name}-${width}-banner.png`});
-   const menu=page.locator('.menu-trigger');await menu.click();assert.equal(await menu.getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
+   const menu=page.locator('.menu-trigger');await menu.click();assert.equal(await menu.getAttribute('aria-expanded'),'true');const drawer=page.locator('aside.site-drawer');assert(await drawer.isVisible());const palette=await drawer.evaluate(el=>({background:getComputedStyle(el).backgroundColor,links:[...el.querySelectorAll('nav a')].map(a=>getComputedStyle(a).color),close:getComputedStyle(el.querySelector('.drawer-close')).color}));assert.equal(palette.background,'rgb(231, 227, 218)');assert(palette.links.every(c=>c==='rgb(5, 5, 5)'));assert.equal(palette.close,'rgb(5, 5, 5)');await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-menu-open.png`});await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
    const start=page.locator('#sst-home-route a').first();await start.focus();assert.equal(await start.evaluate(el=>document.activeElement===el),true);
    results.push({engine:name,width,placement,frame,flush,originalPageStyleEquality:true,noOverflow:true,menuPassed:true,keyboardPassed:true});
   }
