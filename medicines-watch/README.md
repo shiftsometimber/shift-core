@@ -53,3 +53,7 @@ Matt authorised the continuing-discovery release with "Ok go". `reviews/2026-09-
 ## 30 September review-expiry follow-up
 
 `reviews/2026-09-30-overdue-source-renewal.json` records two same-day expiry waves covering sixteen sources. Five product-information reviews crossed the seven-day boundary after the first eleven-source review was prepared. Their complete SmPC responses were retrieved and reread; each exact claim-bearing fingerprint remained unchanged and no withdrawal was present. Only those source-specific review dates advance. Medicine wording, catalogue-wide dates, NHS access, actual supply and monitor outcomes do not change. Production remains awaiting review until the reviewed release is merged, deployed and followed by a real scheduled source check.
+
+## BI 3034701 publication
+
+Matt authorised informational publication with “Go” on 30 September after the explicit BI 3034701 publication discussion. `reviews/2026-09-30-authorised-bi3034701.json` adds that research summary, retaining its original discovery receipt. The catalogue now has 36 entries; the 48 automated source checks are unchanged. Its three primary evidence links are visibly outside automatic content monitoring. No clinical approval, UK authorisation, NHS access, supply or completed Phase 2 result is inferred. The other five proposals in PR #868 remain separate review work.
