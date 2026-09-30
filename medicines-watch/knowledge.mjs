@@ -9,7 +9,7 @@ const claims = {
   'wegovy-tablet': {authorisation:['wegovy-tablet-mhra'],nhsEngland:['wegovy-tablet-mhra']},
   orlistat: {authorisation:['orlistat-nhs'],nhsEngland:['orlistat-nhs']},
   foundayo: {authorisation:['foundayo-mhra'],nhsEngland:['foundayo-nice']},
-  retatrutide: {authorisation:['retatrutide-mhra'],benefit:['retatrutide-lilly']},
+  retatrutide: {authorisation:['retatrutide-mhra'],benefit:['retatrutide-lilly','lilly-triumph2-20260929']},
 };
 const clean = value => String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 export function matchingWatchMedicines(query){

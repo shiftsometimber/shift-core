@@ -32,3 +32,9 @@ Both current-month and undated topic discovery were performed. The recorded doma
 Review the exact proposed fields and resolve the recorded trial-status and regulatory gaps. Retrieve complete source responses and use the existing fingerprinting workflow where supported; retain genuine unavailable/manual-only states. Apply accepted wording to the runtime catalogue, run Medicines Watch tests and affected release gates, and use guarded publication plus live verification. Do not advance unrelated review dates or assert clinical approval.
 
 Validation for this review-only change: JSON parses, candidate IDs are unique, every proposed source reference resolves, all clinical approvals remain null and all monitor baselines remain unapproved. Runtime tests were not run because runtime files are unchanged.
+
+## Follow-up after owner instruction
+
+The owner requested "Sort please" after this proposal. `2026-09-30-reviewed-expansion.json` now records seven complete retrieved and read primary responses and the actual catalogue implementation. The original proposal above is historical. Current candidate: 32 entries, 45 configured source documents. All 83 Medicines Watch tests pass, including failure isolation for the new retatrutide evidence. Publication remains subject to the existing release gates and fresh live proof.
+
+Fresh direct health retrieval succeeded at approximately 08:08 UTC on 30 September: 38 configured sources in production, 31 current and 7 requiring attention; all six detailed medicine summaries were current. CagriSema reported a changed source, petrelintide retrieval failed with HTTP 520, and five existing sources lacked complete-response baselines. These genuine states are not hidden or treated as clinical approval.

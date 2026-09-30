@@ -177,3 +177,11 @@ test('Foundayo unmonitored launch PDF and its private-availability claim never e
   assert.ok(!body.includes(medicine('foundayo').access.private));
   for (const evidence of medicine('foundayo').evidenceLinks || []) assert.ok(!serialised.includes(evidence.url));
 });
+
+test('new TRIUMPH-2 wording cannot inherit the older Lilly source verification', async t => {
+  const {DB,sqlite}=setup(t);
+  sqlite.prepare("UPDATE medicines_watch_checks SET attempt_status='failed',last_error='http_403',last_http_status=403 WHERE source_id='lilly-triumph2-20260929'").run();
+  const items=await retrieve(DB,'Retatrutide trial research');
+  assert.ok(!text(available(items)).includes(medicine('retatrutide').benefit));
+  assert.ok(items.some(item=>item.sourceIds.includes('lilly-triumph2-20260929')&&item.reviewState==='unavailable'));
+});
