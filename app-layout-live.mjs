@@ -18,6 +18,9 @@ export async function withAppLayout(request,response){
  const choice=u.searchParams.get('view'),app=choice==='app'||choice!=='web'&&/(?:^|;\s*)shift_app_view=1(?:;|$)/.test(request.headers.get('Cookie')||'');
  const before=await response.text();
  let after=app?livePresentation(before,u.pathname,u.searchParams.get('app_panel')==='1'&&/\/(fit|grub|life-back)$/.test(u.pathname)):webToolsPresentation(before,u.pathname,u.searchParams.get('app_panel')==='1'&&/\/(fit|grub|life-back)$/.test(u.pathname));
+ // Some generated tool documents (notably Life Back) have no consent loader.
+ // Embedded tools must share the dashboard's consent owner in production too.
+ if(/<body\b[^>]*\bdata-app-panel="1"/.test(after)&&!/<script\b[^>]*\bsrc=["']\/consent-v4a\.js(?:\?[^"']*)?["']/i.test(after))after=after.replace('</body>','<script defer src="/consent-v4a.js"></script></body>');
  if(!app&&u.pathname==='/member/dashboard'&&choice!=='web'&&before.includes('data-member-chrome="v1"'))after=after.replace('</body>','<script defer src="'+launchAsset+'"></script></body>');
  const headers=new Headers(response.headers);
  if(after!==before||choice==='app'||choice==='web'||app)headers.set('Cache-Control','no-store, private');

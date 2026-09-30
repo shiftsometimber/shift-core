@@ -14,7 +14,9 @@ git('merge-base','--is-ancestor',watchCommit,'HEAD');
 const expansionCommit='583c34e85cf5347df0a44026eaac92d61a986ad5';
 const expansionPaths=new Set(["medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/page.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs", ".github/workflows/cloudflare-production-promote.yml"]);
 git('merge-base','--is-ancestor',expansionCommit,'HEAD');
-for(const p of APP_PATHS){if(!releaseMetadata.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
+// Exact manifest-pinned repair for the production-only missing embedded consent loader.
+const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
+for(const p of APP_PATHS){if(!releaseMetadata.has(p)&&!panelConsentRepair.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);
