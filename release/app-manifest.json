@@ -51,7 +51,7 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "8c03c5951b29f4d3a765aaacdee734ee47d6becbaca9cc9b8d217b3d02bbde98",
+    "release/app-preflight.mjs": "25a10d05b17f803b47f88ea2cba08098f7292c2ae0eab6277fe7eeef5265584d",
     "release/growth-adopt-deployment.mjs": "8fc2dd56d178b6793a1c1a04c5facf7cd1a187dc2f3470d77a380412226c1986",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
