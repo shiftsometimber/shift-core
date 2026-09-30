@@ -1,0 +1,68 @@
+{
+  "reviewedAt": "2026-09-30T12:30:02Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "proposal_only",
+  "ownerEditorialAuthorisation": null,
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "env308-enveda-20260818",
+      "title": "Enveda: Phase 1 ENV-308 results and planned post-GLP-1 study",
+      "url": "https://enveda.com/news/308-phase1/",
+      "checkUrl": "https://enveda.com/news/308-phase1/",
+      "format": "html",
+      "contentSelector": "#blog",
+      "sourcePublishedAt": "2026-08-18",
+      "sourceUpdatedAt": "2026-08-18T13:45:15Z",
+      "reviewedAt": "2026-09-30T12:30:02Z",
+      "requiredTerms": [
+        "ENV-308",
+        "88 healthy adult volunteers",
+        "not approved for use by any regulatory authority"
+      ],
+      "evidenceType": "original developer announcement",
+      "reviewedFingerprint": "322f1dfc6c374ad507bb053c51cad772c102ab6c1339ce0cbd931893ee6340c6",
+      "responseSha256": "d617c0c872743e1624bb5ab0468170ab2e35832c4c6226cccf858ca6d431a394",
+      "bytes": 51093,
+      "httpStatus": 200,
+      "withdrawn": false,
+      "assessment": "Enveda reports Phase I safety, tolerability, pharmacokinetic and exploratory leptin observations in 88 healthy adult volunteers. The company explicitly says the study was not designed to detect body-weight or metabolic outcomes and that weight, body-composition and maintenance effects are for future trials. Lean-muscle preservation and prevention of weight regain are preclinical findings, not demonstrated human benefits. Phase II post-GLP-1 maintenance research is planned, not initiated or completed in this source."
+    }
+  ],
+  "registrySearch": {
+    "source": "ClinicalTrials.gov API v2",
+    "queryUrl": "https://clinicaltrials.gov/api/v2/studies?format=json&pageSize=100&query.term=ENV-308",
+    "reviewedAt": "2026-09-30T12:30:02Z",
+    "matches": 0,
+    "responseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9",
+    "bytes": 16,
+    "assessment": "No exact-name ClinicalTrials.gov record was returned. A separate sponsor search returned four Enveda records, all for ENV-294 rather than ENV-308. Registry absence does not disprove the sponsor-reported Phase I study, but it prevents independent confirmation of its registration, locations, formal status, dates and outcomes from this registry."
+  },
+  "proposal": {
+    "id": "env308",
+    "name": "ENV-308",
+    "group": "research",
+    "stage": "Phase 1 sponsor-reported results; Phase 2 planned",
+    "summary": "Enveda describes ENV-308 as an investigational once-daily oral small molecule designed to mimic Lac-Phe and support weight and metabolic maintenance after GLP-1 treatment. The reported first-human study assessed safety, tolerability and drug behaviour in healthy volunteers; it did not test weight loss, body composition or post-GLP-1 maintenance. A Phase II maintenance study is planned.",
+    "sourceIds": [
+      "env308-enveda-20260818"
+    ],
+    "additionalEvidence": [],
+    "reviewedAt": "2026-09-30T12:30:02Z",
+    "clinicalApproval": null,
+    "ukAuthorisation": "The sponsor says ENV-308 is not approved by any regulatory authority; no UK marketing authorisation is established.",
+    "nhsEngland": "No NHS access is established by the reviewed evidence.",
+    "supply": "No lawful UK retail supply or pharmacy stock is established. Early clinical research is not supply.",
+    "limitations": "Human evidence is limited to the sponsor's Phase I summary in healthy volunteers. Human weight-maintenance, body-composition and lean-mass outcomes have not been demonstrated in the reviewed evidence, Phase II is only planned, and no matching ClinicalTrials.gov record was found."
+  },
+  "retrievalFailures": [
+    {
+      "source": "ClinicalTrials.gov",
+      "status": "incomplete_evidence",
+      "checkedAt": "2026-09-30T12:30:02Z",
+      "detail": "Exact-name and sponsor record searches did not return an ENV-308 trial. Formal registry identifiers, locations and status remain unverified."
+    }
+  ],
+  "nextAction": "Editorially decide whether this distinct post-GLP-1 maintenance and muscle-preservation programme belongs in the live research summaries. If authorised, configure the sponsor announcement for monitoring, preserve the missing-registry limitation, and do not present preclinical lean-mass findings as human evidence or Phase II plans as completed activity."
+}

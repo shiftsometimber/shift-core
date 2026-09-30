@@ -10,7 +10,7 @@ export const discoveryDomains = [
  'novonordisk.com','lilly.com','amgen.com','zealandpharma.com','roche.com',
  'pfizer.com','vikingtherapeutics.com','structuretx.com','boehringer-ingelheim.com',
  'astrazeneca.com','hansoh.cn','hengrui.com','kailera.com',
- 'regeneron.com','scholarrock.com','merck.com','chugai-pharm.co.jp',
+ 'regeneron.com','scholarrock.com','merck.com','chugai-pharm.co.jp','enveda.com',
 ];
 // Supply a current date when running; never leave a review month fixed.
 export function queriesForDate(date=new Date()) {

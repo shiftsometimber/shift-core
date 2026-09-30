@@ -7,6 +7,7 @@ import {discoveryDomains,queriesForDate,summariseDiscovery} from './discovery.mj
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
 import hrs1596Review from './reviews/2026-09-30-hrs1596-discovery.json' with {type:'json'};
 import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-discovery.json' with {type:'json'};
+import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,26);assert.equal(sources.length,45);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,32);
@@ -59,4 +60,18 @@ test('continuing discovery preserves the emugrobart stop and petrelintide repair
  assert.ok(discoveryDomains.includes('chugai-pharm.co.jp'));
  assert.equal(industry.some(entry=>entry.id==='emugrobart'),false);
  assert.equal(industrySources.some(source=>source.id==='emugrobart-chugai-20260928'),false);
+});
+test('ENV-308 stays a bounded early-stage proposal with registry absence visible',()=>{
+ assert.equal(env308Review.publicationStatus,'proposal_only');
+ assert.equal(env308Review.clinicalApproval,null);
+ assert.equal(env308Review.industryComplete,false);
+ assert.equal(env308Review.proposal.id,'env308');
+ assert.equal(env308Review.proposal.group,'research');
+ assert.equal(env308Review.proposal.stage,'Phase 1 sponsor-reported results; Phase 2 planned');
+ assert.ok(env308Review.sources[0].reviewedFingerprint);
+ assert.equal(env308Review.registrySearch.matches,0);
+ assert.equal(env308Review.retrievalFailures.length,1);
+ assert.ok(discoveryDomains.includes('enveda.com'));
+ assert.equal(industry.some(entry=>entry.id==='env308'),false);
+ assert.equal(industrySources.some(source=>source.id==='env308-enveda-20260818'),false);
 });
