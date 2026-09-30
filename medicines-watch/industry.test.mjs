@@ -10,6 +10,7 @@ import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-disco
 import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type:'json'};
 import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 import berobenatideReview from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
+import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,49);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,36);
@@ -29,6 +30,21 @@ test('berobenatide correction records VESPER-6 without implying access or result
  assert.equal(berobenatideReview.registryEvidence.actualStartDate,'2026-06-10');
  assert.equal(berobenatideReview.registryEvidence.lastUpdatePosted,'2026-09-28');
  assert.equal(berobenatideReview.ukPosition.nhsEnglandAccess,'Not established by either source.');
+});
+test('EloraTZP correction replaces planned-result evidence without treating planned Phase 3 as started',()=>{
+ const entry=industry.find(item=>item.id==='eloralintide');
+ const source=industrySources.find(item=>item.id==='eloralintide-lilly');
+ assert.equal(entry.name,'Eloralintide / EloraTZP');
+ assert.match(entry.stage,/Phase 2b results reported/);
+ assert.match(entry.summary,/completed 48-week Phase 2b study/);
+ assert.match(entry.summary,/not treated as started/);
+ assert.match(entry.limitations,/10\.8% to 27\.0%/);
+ assert.equal(source.url,eloraTZPReview.source.url);
+ assert.equal(source.reviewedFingerprint,eloraTZPReview.source.reviewedFingerprint);
+ assert.equal(eloraTZPReview.registryEvidence.overallStatus,'COMPLETED');
+ assert.equal(eloraTZPReview.registryEvidence.actualCompletionDate,'2026-09-14');
+ assert.equal(eloraTZPReview.ukPosition.marketingAuthorisation.includes('Neither source establishes'),true);
+ assert.equal(entry.clinicalApproval,null);
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
