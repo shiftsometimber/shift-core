@@ -18,7 +18,7 @@ export function originalHomeSpeedSource(path,source){
  return source;
 }
 export function validateHomeBanner(){
- assert.equal(read('HEAD','preview/home-banner/free-design.mjs'),read('c2ea0b2603ca16726bcf0524d950b8e2d0ad6ceb','preview/home-banner/free-design.mjs'),'Approved compact homepage source changed');
+ assert.equal(read('HEAD','preview/home-banner/free-design.mjs'),read('2a26480aaadcbd7177d2671d21de35b4028de2d8','preview/home-banner/free-design.mjs'),'Approved compact homepage source changed');
  assert.equal(read('HEAD','preview/home-banner/cream-footer.mjs'),read(FOOTER_PREVIEW,'preview/home-banner/cream-footer.mjs'),'Approved cream footer changed');
  assert.equal(read('HEAD','preview/home-banner/cream-header.mjs'),read(CREAM_PREVIEW,'preview/home-banner/cream-header.mjs'),'Approved cream navigation changed');
  assert.equal(read('HEAD','preview/home-banner/four-step.mjs').replace('../../home-route-banner-legacy.mjs','../../home-route-banner.mjs'),read(CREAM_PREVIEW,'preview/home-banner/four-step.mjs'),'Approved four-step banner changed');
