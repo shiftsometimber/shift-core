@@ -20,6 +20,7 @@ html body main#main-content #sst-home-route li+li{border-left:1px solid #aaa79f}
 html body main#main-content #sst-home-route .sst-route-number{font:700 40px/1 ShiftRouteCondensed,sans-serif;color:#707762!important}
 html body main#main-content #sst-home-route h3{font:700 25px/1.1 ShiftRouteCondensed,sans-serif!important;margin:0 0 8px!important;letter-spacing:0!important;color:#050505!important}
 html body main#main-content #sst-home-route a{color:#050505!important;text-decoration:none;display:inline-block}
+html body main#main-content #sst-home-route h3 a,html body main#main-content #sst-home-route .sst-route-number{font-family:ShiftRouteCondensed,'Arial Narrow',sans-serif!important}
 html body main#main-content #sst-home-route a:hover{text-decoration:underline}
 html body main#main-content #sst-home-route a:focus-visible{outline:2px solid #050505;outline-offset:4px}
 html body main#main-content #sst-home-route p{font:400 15px/1.4 Arial,Helvetica,sans-serif!important;margin:0!important;max-width:none!important;color:inherit!important}

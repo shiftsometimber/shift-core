@@ -11,6 +11,7 @@ for(const width of [320,390,1440]){
  const page=await context.newPage();let original;
  for(const mode of ['baseline','candidate']){
   const response=await page.goto(base+'/?baseline='+(mode==='baseline'?'1':'0'),{waitUntil:'networkidle'});assert.equal(response.status(),200);
+  const consent=page.getByRole('button',{name:'Necessary only',exact:true});if(await consent.isVisible())await consent.click();
   await page.evaluate(()=>document.fonts.ready);
   const state=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth+1,h1:document.querySelectorAll('h1').length,elements:[...document.querySelectorAll('header *,main *,footer *')].filter(el=>!el.closest('#sst-home-route')).map(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return [el.tagName,...['color','backgroundColor','fontFamily','fontSize','lineHeight','display','padding','margin','borderRadius','maxWidth'].map(k=>s[k]),Math.round(r.width*100)/100,Math.round(r.height*100)/100]})}));
   assert(!state.overflow,`${name} ${width} ${mode} overflow`);assert.equal(state.h1,1);
