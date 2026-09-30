@@ -1,12 +1,12 @@
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Narrow embedded-consent repair, starting from the verified current My Timber release.
+// Medicines Watch follow-up starts from the successful current release; preserve its My Timber repair.
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='a37a265c9c16166158c5c763254225badead888a',VERSION='0a8ff016-a5b7-4a2e-8fcb-1a71cc7278d6';
-const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36681959722',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+const BASE='f183917eefe46e0ac11dea9dba93b8749d9c7341',VERSION='1a0e2fe4-6ad2-4a6f-8c57-935b8d597bfb';
+const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36684147583',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
