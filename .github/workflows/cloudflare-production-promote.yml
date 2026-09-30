@@ -6,6 +6,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "home-route-banner.mjs"
       - ".github/workflows/cloudflare-production-promote.yml"
       - "babylove/**"
       - "scripts/verify-article-quality.mjs"
