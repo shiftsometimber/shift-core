@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-09-30T15:18:32Z",
+  "publicationStatus": "monitor_only_source_access_repair",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-09-30",
+    "instruction": "Can we fix / resolve the warnings please ?"
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "reviewRenewed": false,
+  "wordingChanged": false,
+  "sources": [
+    {
+      "id": "survodutide-zealand",
+      "title": "Zealand: survodutide Phase III results",
+      "url": "https://www.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "checkUrl": "https://rss.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "format": "html",
+      "sourcePublishedAt": "2026-06-07",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T13:34:45.242Z",
+      "requiredTerms": [
+        "survodutide",
+        "SYNCHRONIZE",
+        "Phase III"
+      ],
+      "evidenceType": "Original sponsor statement; not regulatory approval",
+      "contentSelector": "#main-body-container",
+      "reviewedFingerprint": "4fba69fec7a54bb93b780329b5105e45c010f2c874843d7a7f35acf9e9a41bad"
+    },
+    {
+      "id": "petrelintide-zealand",
+      "title": "Zealand Pharma: ZUPREME-1 publication and Phase 3 programme status",
+      "url": "https://www.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "checkUrl": "https://rss.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "format": "html",
+      "sourcePublishedAt": "2026-09-29",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T11:44:48Z",
+      "requiredTerms": [
+        "Zealand Pharma",
+        "petrelintide",
+        "ZUPREME-1"
+      ],
+      "evidenceType": "Original sponsor release distributed by GlobeNewswire",
+      "contentSelector": "#main-body-container",
+      "reviewedFingerprint": "0e622225091edfd20d33620d6520e4c8f1d8233466401b7c439f67c1e2b3e8f7"
+    }
+  ],
+  "proof": [
+    {
+      "id": "survodutide-zealand",
+      "previousCheckUrl": "https://www.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "previousFailure": "Production monitor HTTP 520 after an earlier successful check on 2026-09-30; direct retrieval from the www host timed out.",
+      "httpStatus": 200,
+      "bytes": 90874,
+      "responseSha256": "703099e16879a0393b923c32b6a929b598eed67e5ee2572b6f55a28d7affe9d0",
+      "previousReviewedFingerprint": "4fba69fec7a54bb93b780329b5105e45c010f2c874843d7a7f35acf9e9a41bad",
+      "reviewedFingerprint": "4fba69fec7a54bb93b780329b5105e45c010f2c874843d7a7f35acf9e9a41bad",
+      "withdrawn": false,
+      "assessment": "The distributor's rss hostname returned the same selected claim body as the already reviewed www hostname: the monitor fingerprint is byte-for-byte identical after normalization and the required identity terms remain present. Only checkUrl changes; the public evidence URL, factual wording, source publication date and reviewedAt are preserved."
+    },
+    {
+      "id": "petrelintide-zealand",
+      "previousCheckUrl": "https://www.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "previousFailure": "Production monitor HTTP 520 after an earlier successful check on 2026-09-30; direct retrieval from the www host timed out.",
+      "httpStatus": 200,
+      "bytes": 69569,
+      "responseSha256": "3ad8989ea557e3f6310b35db7cadce51ca33d95130c0d529de25c9c808db2c35",
+      "previousReviewedFingerprint": "0e622225091edfd20d33620d6520e4c8f1d8233466401b7c439f67c1e2b3e8f7",
+      "reviewedFingerprint": "0e622225091edfd20d33620d6520e4c8f1d8233466401b7c439f67c1e2b3e8f7",
+      "withdrawn": false,
+      "assessment": "The distributor's rss hostname returned the same selected claim body as the already reviewed www hostname: the monitor fingerprint is byte-for-byte identical after normalization and the required identity terms remain present. Only checkUrl changes; the public evidence URL, factual wording, source publication date and reviewedAt are preserved."
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "pf3944-pfizer",
+      "status": "Unchanged production access failure; no new source replacement approved in this repair."
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "status": "Unchanged production access failure; no new source replacement approved in this repair."
+    },
+    {
+      "id": "az-elecoglipron-20260608",
+      "status": "Unchanged production access failure; no new source replacement approved in this repair."
+    }
+  ],
+  "limitations": "Local HTTP 200 and matching fingerprints do not prove Cloudflare Worker access. A checkUrl change intentionally resets the saved observation; production must re-fetch and match the preserved reviewed fingerprint. This repair does not renew a medical review, approve a claim, or establish UK authorisation, NHS access or supply."
+}

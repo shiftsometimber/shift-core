@@ -4,8 +4,9 @@ import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'
 import followup from './reviews/2026-09-30-reviewed-expansion.json' with {type:'json'};
 import continuing from './reviews/2026-09-30-authorised-continuing-discovery.json' with {type:'json'};
 import repairs from './reviews/2026-09-30-source-warning-repairs.json' with {type:'json'};
+import accessRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.id.endsWith('-smpc')?'Product information updated':'Source publication date',
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
