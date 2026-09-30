@@ -1,0 +1,46 @@
+name: My Timber Apple Store screenshots
+on:
+  push:
+    branches: [chore/apple-store-screenshots-20260930]
+    paths:
+      - 'my-timber-apple-screenshots.mjs'
+      - '.github/workflows/my-timber-apple-screenshots.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version-file: '.nvmrc'}
+      - name: Install capture browser
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Acquire short-lived commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Capture Apple-accepted iPhone and iPad screenshots from production
+        env:
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          MY_TIMBER_APPLE_SCREENSHOT_DIR: my-timber-apple-screenshots
+        run: node my-timber-apple-screenshots.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-timber-apple-store-screenshots-${{ github.sha }}
+          path: my-timber-apple-screenshots/
+          if-no-files-found: error
+          retention-days: 30
