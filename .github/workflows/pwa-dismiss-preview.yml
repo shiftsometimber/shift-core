@@ -12,13 +12,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
       - run: node --test my-timber-pwa/*.test.mjs
       - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund playwright@1.63.0
       - run: '"$RUNNER_TEMP/browser/node_modules/.bin/playwright" install --with-deps chromium webkit'
       - run: BROWSER_TOOLS="$RUNNER_TEMP/browser" node preview/pwa-dismiss/verify.cjs
       - name: Retain checksums
         if: always()
-        run: find pwa-dismiss-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > pwa-dismiss-proof/SHA256SUMS
+        run: mkdir -p pwa-dismiss-proof && find pwa-dismiss-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > pwa-dismiss-proof/SHA256SUMS
       - uses: actions/upload-artifact@v4
         if: always()
         with:
