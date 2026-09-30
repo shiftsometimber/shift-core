@@ -7,6 +7,7 @@ import {projectSourceHealth, REVIEW_INTERVAL_MS} from './monitor.mjs';
 const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-source-review.json', import.meta.url)));
 const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjaro-nhs-renewal.json', import.meta.url)));
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
+const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
   source_url: source.url, check_url: source.checkUrl,
@@ -21,7 +22,8 @@ test('source-only review binds twelve complete primary responses without clinica
   assert.equal(new Set(receipt.sources.map(s => s.id)).size, 12);
   for (const proof of receipt.sources) {
     const source = sources.find(s => s.id === proof.id);
-    const currentProof = proof.id === 'foundayo-nice' ? foundayoReceipt.sources[0] : proof;
+    const currentProof = overdueReceipt.sources.find(source => source.id === proof.id)
+      ?? (proof.id === 'foundayo-nice' ? foundayoReceipt.sources[0] : proof);
     assert.equal(source.url, currentProof.url);
     assert.equal(source.checkUrl, currentProof.checkUrl);
     assert.equal(source.reviewedAt, currentProof.reviewedAt);
@@ -36,6 +38,35 @@ test('source-only review binds twelve complete primary responses without clinica
     const currentReviewTime = Date.parse(currentProof.reviewedAt);
     assert.equal(projectSourceHealth(source, rowFor(source, currentReviewTime), currentReviewTime).status, 'current');
   }
+});
+
+test('eleven overdue reviews are renewed only from complete unchanged evidence', () => {
+  assert.equal(overdueReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
+  assert.equal(overdueReceipt.sources.length, 11);
+  assert.equal(new Set(overdueReceipt.sources.map(source => source.id)).size, 11);
+  assert.equal(overdueReceipt.liveObservation.status, 'awaiting_review');
+  assert.deepEqual(new Set(overdueReceipt.liveObservation.reviewDue), new Set(overdueReceipt.sources.map(source => source.id)));
+  for (const proof of overdueReceipt.sources) {
+    const source = sources.find(candidate => candidate.id === proof.id);
+    for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
+      assert.equal(source[key], proof[key]);
+    }
+    assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
+    assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
+    assert.equal(proof.httpStatus, 200);
+    assert.ok(proof.bytes > 1000 && proof.bytes <= 2 * 1024 * 1024);
+    assert.match(proof.responseSha256, /^[a-f0-9]{64}$/);
+    assert.equal(proof.withdrawn, false);
+    assert.equal(proof.wordingChanged, false);
+    assert.ok(proof.assessment.length > 130);
+    const time = Date.parse(proof.reviewedAt);
+    assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
+    const old = {...source, reviewedAt: proof.previousReviewedAt};
+    assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
+  }
+  assert.equal(overdueReceipt.clinicalApproval, null);
+  assert.equal(overdueReceipt.transientChecks.length, 2);
+  assert.ok(overdueReceipt.transientChecks.every(check => check.directFingerprintMatched && check.disposition.includes('retained')));
 });
 
 test('review expiry, changed content and failures still fail closed', () => {
