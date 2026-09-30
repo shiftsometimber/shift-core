@@ -1,3 +1,4 @@
+import {removeCreamNavigation} from '../cream-navigation.mjs';
 // Reverse only the two exact owner-approved startup transforms for the existing
 // full-page preservation gate. Any other byte or route change still fails.
 import {removeHomeBanner} from '../home-route-banner.mjs';
@@ -6,7 +7,7 @@ import {HOME_BLOCKING_STYLES} from '../home-blocking-styles.mjs';
 import {stabilisePublicHtml,programmeBridge,loginReservationStyles} from '../public-startup-stability.mjs';
 const status='<section id="memberSessionStatus" aria-label="Account access"><p role="status">Checking your sign-in…</p></section><script src="/assets/member-experience/session.mjs"></script>';
 export function preserveApprovedStartup(path,body){
- const original=body.toString('utf8');const text=path==='/'?removeHomeBanner(original):original;body=Buffer.from(text);let before=text;
+ const original=removeCreamNavigation(body.toString('utf8'));const text=path==='/'?removeHomeBanner(original):original;body=Buffer.from(text);let before=text;
  const once=(a,b='')=>{assert.equal(before.split(a).length,2,'Unexpected startup preservation signature: '+path);before=before.replace(a,b);};
  if(path==='/'&&text.includes('data-home-inline-css="/assets/my-timber-pwa.css"')){
   const css=HOME_BLOCKING_STYLES['/assets/my-timber-pwa.css'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'));
@@ -19,6 +20,6 @@ export function preserveApprovedStartup(path,body){
   const match=before.match(/<body\b[^>]*>/);assert(match,'Missing original body');
   once(match[0],match[0]+status);
  }else return body;
- assert.equal(path==='/'?removeHomeBanner(stabilisePublicHtml(path,before)):stabilisePublicHtml(path,before),text,'Unknown startup transformation: '+path);
+ assert.equal(path==='/'?removeHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before)),text,'Unknown startup transformation: '+path);
  return Buffer.from(before);
 }

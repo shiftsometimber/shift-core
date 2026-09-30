@@ -1,9 +1,10 @@
-import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN} from './home-banner-scope.mjs';
+import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
 import {APP_APPROVED,APP_PATHS,validateAppSource} from './app-scope.mjs';
 validateAppSource();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
+const creamApproval=await get('/actions/runs/'+CREAM_RUN);assert.equal(creamApproval.head_sha,CREAM_PREVIEW);assert.equal(creamApproval.conclusion,'success');assert.equal(creamApproval.path,'.github/workflows/home-banner-preview.yml');
 const bannerApproval=await get('/actions/runs/'+HOME_BANNER_RUN);assert.equal(bannerApproval.head_sha,HOME_BANNER_PREVIEW);assert.equal(bannerApproval.conclusion,'success');assert.equal(bannerApproval.path,'.github/workflows/home-banner-preview.yml');
 // Require the successful production-font integration preview as well as the owner's signed-off design.
 const integratedBanner=await get('/actions/runs/36695679627');assert.equal(integratedBanner.head_sha,'a0c199af934192b73cafa53b0d2d372fa100da1b');assert.equal(integratedBanner.conclusion,'success');assert.equal(integratedBanner.path,'.github/workflows/home-banner-preview.yml');

@@ -1,3 +1,4 @@
+import {addCreamNavigation} from './cream-navigation.mjs';
 import {addHomeBanner} from './home-route-banner.mjs';
 import {repairHomeSpeed} from './home-speed-repair.mjs';
 // NEXT-PERF-01: preserve the approved settled DOM; prepare it before first paint.
@@ -12,7 +13,7 @@ html body[data-login-layout="stable-v1"][data-member-session="error"] #previewAu
 html body[data-login-layout="stable-v1"]:not([data-member-session="ready"]) #previewMember{display:none!important}
 html body[data-login-layout="stable-v1"] #memberSessionStatus{position:absolute;top:22px;left:50%;transform:translateX(-50%);box-sizing:border-box;width:calc(100% - 28px);max-width:440px;margin:0;padding:24px;z-index:1}
 `;
-export function stabilisePublicHtml(path,html){
+function stabiliseOriginalPublicHtml(path,html){
  if(!html.includes('</head>'))return html;
  if(path==='/')return addHomeBanner(repairHomeSpeed(html,path,{final:true}));
  if(['/programme','/programme.html'].includes(path)){
@@ -26,9 +27,10 @@ export function stabilisePublicHtml(path,html){
  }
  return html;
 }
+export function stabilisePublicHtml(path,html){return addCreamNavigation(stabiliseOriginalPublicHtml(path,html));}
 export async function withStartupStability(request,response){
  const path=new URL(request.url).pathname;
- if(request.method!=='GET'||response.status!==200||!['/','/programme','/programme.html','/member-login','/member-login.html'].includes(path)||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
+ if(request.method!=='GET'||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
  const before=await response.text(),after=stabilisePublicHtml(path,before),headers=new Headers(response.headers);
  if(after!==before){headers.delete('Content-Length');headers.delete('ETag');headers.delete('Content-Encoding');headers.set('X-Shift-Startup-Layout','stable-v1');}
  return new Response(after,{status:response.status,statusText:response.statusText,headers});
