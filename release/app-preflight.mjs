@@ -1,9 +1,10 @@
 import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN,FOOTER_PREVIEW,FOOTER_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
-import {APP_APPROVED,APP_PATHS,validateAppSource} from './app-scope.mjs';
+import {PWA_DISMISS_APPROVED,PWA_DISMISS_PATHS,APP_APPROVED,APP_PATHS,validateAppSource} from './app-scope.mjs';
 validateAppSource();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
+const pwaDismissApproval=await get('/actions/runs/36780636646');assert.equal(pwaDismissApproval.head_sha,PWA_DISMISS_APPROVED);assert.equal(pwaDismissApproval.conclusion,'success');
 const footerApproval=await get('/actions/runs/'+FOOTER_RUN);assert.equal(footerApproval.head_sha,FOOTER_PREVIEW);assert.equal(footerApproval.conclusion,'success');assert.equal(footerApproval.path,'.github/workflows/home-banner-preview.yml');
 const creamApproval=await get('/actions/runs/'+CREAM_RUN);assert.equal(creamApproval.head_sha,CREAM_PREVIEW);assert.equal(creamApproval.conclusion,'success');assert.equal(creamApproval.path,'.github/workflows/home-banner-preview.yml');
 const compactApproval=await get('/actions/runs/36777397194');assert.equal(compactApproval.head_sha,'2a26480aaadcbd7177d2671d21de35b4028de2d8');assert.equal(compactApproval.conclusion,'success');
@@ -23,7 +24,7 @@ const expansionPaths=new Set(["medicines-watch/reviews/2026-09-30-bi3034701-disc
 git('merge-base','--is-ancestor',expansionCommit,'HEAD');
 // Exact manifest-pinned repair for the production-only missing embedded consent loader.
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);

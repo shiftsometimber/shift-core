@@ -51,8 +51,8 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "571d9a04683f13384d5103d76537768edf3e9849e84618eecae6fa09ec5c0607",
-    "release/growth-adopt-deployment.mjs": "8fc2dd56d178b6793a1c1a04c5facf7cd1a187dc2f3470d77a380412226c1986",
+    "release/app-preflight.mjs": "f0756b2ed054ce6a5d117f1662b8a2371107e33b9e8c1a4beeab97f753973bfd",
+    "release/growth-adopt-deployment.mjs": "fb0b1587ef5cfa7e2ae021562fc2e4cd28704687bb7978f3c89650114dbe5ef8",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
     "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
@@ -99,6 +99,13 @@
     "medicines-watch/reviews/2026-09-30-globenewswire-access-repair.json": "03ce08bb97d99d1b4eb38ca75f4e0ea71d06bfe0365609d93fb01f2c7d84bb61",
     "preview/home-banner/free-design.mjs": "31ded69c95a4494c772a36344f485c27122f966119aa4bf28443afbe05cfa695",
     "medicines-watch/reviews/2026-09-30-bi3034701-discovery.json": "67385eb73e77ea505fa52bdf563fd8c47feffb985e41108b646a05a3b526ef9e",
-    "medicines-watch/reviews/2026-09-30-authorised-bi3034701.json": "3fb65f93f2d049e64b4453a9e53773895cd1ce55982b42f5f4b11e72afcc4ba3"
+    "medicines-watch/reviews/2026-09-30-authorised-bi3034701.json": "3fb65f93f2d049e64b4453a9e53773895cd1ce55982b42f5f4b11e72afcc4ba3",
+    "my-timber-pwa/ui.mjs": "42706fc46921538f5c65ad41afa4edfe4e6b0904479f4353a469a638ab28de86",
+    "my-timber-pwa/presentation.mjs": "12606b79a0efab9f951f1840a3747eb94f20bd29910f2f73130750c73ebb72df",
+    "my-timber-pwa/pwa.test.mjs": "14bf839f7ac5908d44a9d112954cc335c07c6128d039332d5dd8a9ff72ca4e03",
+    "my-timber-pwa/preservation.mjs": "c61be7fd8c652ed26f973209396efa69267ecb2991c581141cee8e0f4093a88b",
+    "my-timber-pwa/preservation.test.mjs": "e94ab55613a36eefaac9bc78324aaa79fc68cc1d62e984e180ce9e5986bed803",
+    "preview/pwa-dismiss/verify.cjs": "7616c7730b9e79c58a9347f0ec8aace7f5f88e1d28aa60e4973190f0cf7a49f0",
+    ".github/workflows/pwa-dismiss-preview.yml": "ffd45f0b4e4b5a8175374f65437d03b9ba4e90ac32040267cd48306173942911"
   }
 }
