@@ -1,3 +1,4 @@
+import {reusablePublicIndex} from './app-index-freshness.mjs';
 // Owner-approved Medicines Watch correction, starting from the verified 29 September production runtime.
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -12,9 +13,11 @@ const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=
 assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);assert.equal(active.versions[0].version_id,VERSION,'Unexpected runtime: reconcile before deployment');
 assert.equal(execFileSync('git',['diff',BASE,'HEAD','--','wrangler.jsonc'],{encoding:'utf8'}),'','Configuration changed');
 mkdirSync('b1-runtime-release',{recursive:true});
-const sql="SELECT COUNT(*) AS [indexed],(SELECT COUNT(*) FROM ai_knowledge_chunks c JOIN ai_knowledge_documents d ON d.id=c.document_id WHERE d.category='shift_public_site' AND d.status='published_site') chunks FROM ai_knowledge_documents WHERE category='shift_public_site' AND status='published_site'";
+const sql="SELECT COUNT(*) AS [indexed],SUM(CASE WHEN julianday(updated_at)>=julianday('now','-2 days') THEN 0 ELSE 1 END) AS stale,SUM(CASE WHEN source_uri='https://shiftsometimber.co.uk/life-back' AND julianday(updated_at)>=julianday('now','-2 days') THEN 1 ELSE 0 END) AS lifeBackFresh,(SELECT COUNT(*) FROM ai_knowledge_chunks c JOIN ai_knowledge_documents d ON d.id=c.document_id WHERE d.category='shift_public_site' AND d.status='published_site') chunks FROM ai_knowledge_documents WHERE category='shift_public_site' AND status='published_site'";
 const result=JSON.parse(wrangler('d1','execute','DB','--remote','--json','--command',sql));assert(result.every(r=>r.success));const index=result.flatMap(r=>r.results||[])[0];assert(index.indexed>=50);assert(index.chunks>=index.indexed);
 writeFileSync('b1-runtime-release/shift-ai-public-index.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,...index,method:'Read-only aggregate of existing published-site index',customerRecordsRead:0,databaseWrites:0},null,2));
 writeFileSync('b1-runtime-release/existing-growth-deployment.json',JSON.stringify({base:BASE,version:VERSION,sourceRun:receipt.id,activeDeployment:active.id,release:process.env.GITHUB_SHA,at:new Date().toISOString(),newDeploymentRequired:true,rollbackSource:'Fresh current deployment captured by workflow before deployment'},null,2));
-appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed=false\nexisting_index=true\nrestore_needed=false\n');
+const reuse=reusablePublicIndex(index);
+console.log('PUBLIC_INDEX_FRESHNESS '+JSON.stringify({...index,reuse,refreshScope:'Current published website pages only; no member records'}));
+appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed=false\nexisting_index='+reuse+'\nrestore_needed=false\n');
 console.log('PASS verified production starting version, unchanged configuration and retained published index; fresh rollback capture required');
