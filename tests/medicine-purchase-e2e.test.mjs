@@ -77,6 +77,9 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
       assert.equal(init.body.get('memberReference'),'42');
       assert.equal(init.body.get('variantId'),'11');
       assert.equal(init.body.get('journeyStage'),'prepay_verification');
+      assert.equal(init.body.get('assessmentForSelf'),'true');
+      assert.equal(init.body.get('safetyAcknowledged'),'true');
+      assert.equal(init.body.get('consentVersion'),'medicine-clinical-intake-v2-draft-2026-09-30');
       for(const field of ['photoId','bodyFront','bodySide'])assert.ok(init.body.get(field) instanceof File,field);
       return Response.json({reference:'PHA-E2E-0001',status:'verified',verified:true});
     }
@@ -110,8 +113,21 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
 
     const clinical=new FormData();
     for(const [key,value] of Object.entries({variantId:'11',dateOfBirth:'1981-08-03',heightCm:'173',weightKg:'92.4',conditions:'none declared',medicines:'none declared',previousTreatment:'yes',previousMedicine:'Mounjaro',previousDose:'2.5 mg',lastDoseDate:'2026-09-01',gpName:'Dr Test',gpPractice:'Test Practice',gpAddress:'1 Test Street',gpPostcode:'SK10 1AA',gpPhone:'01610000000',nhsNumber:'9999999999'}))clinical.set(key,value);
-    for(const key of ['gpContactConsent','imageConsent','answersConfirmed'])clinical.set(key,'on');
+    for(const key of ['gpContactConsent','imageConsent','answersConfirmed','assessmentForSelf','safetyAcknowledged'])clinical.set(key,'on');
     for(const key of ['photoId','bodyFront','bodySide'])clinical.set(key,new File([new Uint8Array([0xff,0xd8,0xff,0xd9])],`${key}.jpg`,{type:'image/jpeg'}));
+    clinical.set('consentVersion','medicine-clinical-intake-v2-draft-2026-09-30');
+    for(const missing of ['assessmentForSelf','safetyAcknowledged','answersConfirmed','gpContactConsent','imageConsent']){
+      clinical.delete(missing);
+      const rejected=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:clinical}),env,{});
+      assert.equal(rejected.status,400,missing);
+      assert.equal((await rejected.json()).error,'consent_required');
+      assert.equal(seen.pharmacy,false,'No clinical data sent without every declaration');
+      clinical.set(missing,'on');
+    }
+    clinical.set('consentVersion','old-version');
+    const stale=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:clinical}),env,{});
+    assert.equal(stale.status,409);assert.equal((await stale.json()).error,'consent_version_changed');assert.equal(seen.pharmacy,false);
+    clinical.set('consentVersion','medicine-clinical-intake-v2-draft-2026-09-30');
     const intakeResponse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:clinical}),env,{}),intake=await intakeResponse.json();
     assert.equal(intakeResponse.status,200);
     assert.equal(intake.verified,true);
@@ -176,6 +192,9 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.deepEqual(JSON.parse(storedIntake.evidence_manifest_json),{photoId:true,bodyFront:true,bodySide:true});
     assert.equal(storedIntake.gp_contact_consent,1);
     assert.equal(storedIntake.status,'verified');
+    const acceptance=await DB.prepare("SELECT * FROM audit_log WHERE action='clinical_declarations_accepted'").first();
+    assert.equal(acceptance.user_id,42);assert.equal(acceptance.entity_type,'medicine_clinical_intake');assert.ok(acceptance.created_at);
+    assert.deepEqual(JSON.parse(acceptance.metadata),{consentVersion:'medicine-clinical-intake-v2-draft-2026-09-30',assessmentForSelf:true,safetyAcknowledged:true,answersConfirmed:true,gpContactConsent:true,imageConsent:true});
   }finally{
     globalThis.fetch=outbound;
     DB.close();

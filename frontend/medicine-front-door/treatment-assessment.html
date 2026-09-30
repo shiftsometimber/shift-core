@@ -14,6 +14,14 @@
   <p>Your health, GP, identity and clothed body images go securely to the commissioned pharmacy partner. Shift does not store the image files. Payment stays locked until this step is accepted.</p>
   <form id="assessment" enctype="multipart/form-data">
     <input name="variantId" id="variantId" type="hidden">
+    <input name="consentVersion" type="hidden" value="medicine-clinical-intake-v2-draft-2026-09-30">
+    <fieldset><legend>Before you begin</legend>
+      <p>Accurate information helps the clinical team assess whether treatment is safe for you. SHIFT does not prescribe medicines. Your assessment is sent to the commissioned pharmacy partner.</p>
+      <label><input name="assessmentForSelf" type="checkbox" required> I am completing this assessment for myself.</label>
+      <label><input name="safetyAcknowledged" type="checkbox" required> I will give complete and accurate information about my health, medicines, supplements and any weight-loss treatment I use, including treatment obtained elsewhere. I understand that missing or inaccurate information could put my health at risk.</label>
+      <p>Tell the clinical team about current treatment and when you last took it. Do not combine weight-loss medicines or change treatment without advice from your prescriber.</p>
+      <p>Read our <a href="/terms">Terms and Conditions</a> and <a href="/privacy">Privacy Notice</a>, including how your health information is used. Clinical-provider terms must be shown before its consultation begins.</p>
+    </fieldset>
     <fieldset><legend>Your health</legend>
       <label>Date of birth<input name="dateOfBirth" type="date" required></label>
       <label>Height (cm)<input name="heightCm" type="number" min="100" max="250" required></label>
