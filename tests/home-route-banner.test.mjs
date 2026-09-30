@@ -14,3 +14,11 @@ test('desktop frame change is CSS-only and previous live banner restores exactly
 
 import {addCreamNavigation,removeCreamNavigation,headerPreview} from '../cream-navigation.mjs';
 test('shared cream navigation preserves content and links, restores exact bytes and rejects drift',()=>{const original=raw.replace('<body>','<body><header data-header-v2 class="site-header">Original links</header>');for(const path of ['/','/programme','/shift-health','/member/dashboard']){const after=stabilisePublicHtml(path,original);assert(after.includes(headerPreview));assert.equal(removeCreamNavigation(path==='/'?removeHomeBanner(after):after),original);assert.equal(stabilisePublicHtml(path,after),after);}assert.equal(addCreamNavigation(raw),raw);assert.throws(()=>removeCreamNavigation(addCreamNavigation(original).replace('background:#E7E3DA!important','background:#fff!important')));});
+
+test('hero preload reuses exact responsive image and is reversible',async()=>{
+ const {addCreamNavigation,removeCreamNavigation,heroPreload}=await import('../cream-navigation.mjs');
+ const img='<img src="/assets/seo-20260923/heroLarge-22b76937213e5741.webp" srcset="/assets/seo-20260923/heroSmall-54d52bf31ac3389a.webp 768w, /assets/seo-20260923/heroLarge-22b76937213e5741.webp 1536w" sizes="(max-width:760px) 100vw, 50vw">';
+ const html='<head></head><body><header data-header-v2></header><section class="home-hero">'+img+'</section></body>';
+ const result=addCreamNavigation(html);assert(result.includes(heroPreload));assert(result.includes(img));assert.equal(addCreamNavigation(result),result);assert.equal(removeCreamNavigation(result),html);
+ assert(!addCreamNavigation(html.replace('class="home-hero"','class="other"')).includes(heroPreload));
+});
