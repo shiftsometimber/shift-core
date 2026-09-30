@@ -1,0 +1,77 @@
+{
+  "reviewedAt": "2026-09-30T23:37:52Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "review_change_proposed",
+  "source": {
+    "id": "eloralintide-lilly",
+    "title": "Lilly: EloraTZP Phase 2b results",
+    "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-eloratzp-combination-eloralintide-and-tirzepatide",
+    "checkUrl": "https://investor.lilly.com/news-releases/news-release-details/lillys-eloratzp-combination-eloralintide-and-tirzepatide",
+    "format": "html",
+    "sourcePublishedAt": "2026-09-30",
+    "sourceDateLabel": "Source publication date",
+    "reviewedAt": "2026-09-30T23:37:52Z",
+    "requiredTerms": [
+      "EloraTZP",
+      "Phase 2b",
+      "Phase 3"
+    ],
+    "evidenceType": "Original sponsor results announcement; not regulatory approval",
+    "reviewedFingerprint": "147480a7d79ca0e13a2c2c5582ff5e9e39d40edf986fcd9a050f1dbf101b1834",
+    "httpStatus": 200,
+    "bytes": 167351,
+    "responseSha256": "e5340587ff6a3dff9d8a7ce888ad4cc4c582a5a95a977651996efd0034135429",
+    "withdrawn": false
+  },
+  "history": {
+    "previousUrl": "https://investor.lilly.com/news-releases/news-release-details/lilly-present-new-data-foundayo-retatrutide-and-eloratzp-easd",
+    "previousSourcePublishedAt": "2026-09-15",
+    "previousReviewedAt": "2026-09-30T13:34:45.242Z",
+    "previousReviewedFingerprint": "ffdd75f6268f5e3b0dfd278c2df967431ed7f222dd0464e882087bd4da1f0cdd",
+    "reason": "The 15 September programme announcement said results would be presented. The 30 September release now reports the completed Phase 2b study and supersedes that forward-looking evidence route."
+  },
+  "registryEvidence": {
+    "url": "https://clinicaltrials.gov/api/v2/studies/NCT06603571",
+    "nctId": "NCT06603571",
+    "lastUpdatePosted": "2026-09-29",
+    "overallStatus": "COMPLETED",
+    "phase": "Phase 2",
+    "actualStartDate": "2024-09-20",
+    "actualPrimaryCompletionDate": "2026-07-01",
+    "actualCompletionDate": "2026-09-14",
+    "actualEnrollment": 367,
+    "retrievedAt": "2026-09-30T23:37:52Z",
+    "responseSha256": "f3bc487a786a84ddecd6b36aac114e1e19b6925f097c5502297c7e08a038795a",
+    "bytes": 19298,
+    "checkScope": "Sponsor-submitted registry evidence read for study status and dates; linked evidence outside automatic content monitoring."
+  },
+  "change": {
+    "id": "eloralintide",
+    "fields": {
+      "name": "Eloralintide / EloraTZP",
+      "stage": "Eloralintide Phase 3 ongoing; EloraTZP Phase 2b results reported",
+      "summary": "Lilly's 30 September 2026 release reports a completed 48-week Phase 2b study of eloralintide plus tirzepatide in 367 adults with obesity or overweight and type 2 diabetes. Eloralintide monotherapy Phase 3 trials are ongoing; EloraTZP co-formulation Phase 3 trials were planned for Q4 2026 and are not treated as started.",
+      "limitations": "Sponsor-reported efficacy-estimate results are not regulatory approval or a cross-trial comparison. The Phase 2b study used separate injections, while the planned Phase 3 product is a co-formulation. Gastrointestinal events were more frequent in combination arms and adverse-event discontinuation ranged from 10.8% to 27.0%."
+    },
+    "additionalEvidence": [
+      {
+        "title": "ClinicalTrials.gov record NCT06603571",
+        "url": "https://clinicaltrials.gov/api/v2/studies/NCT06603571",
+        "sourcePublishedAt": "2026-09-29",
+        "reviewedAt": "2026-09-30T23:37:52Z",
+        "checkScope": "Sponsor-submitted registry evidence for completed Phase 2 status, actual dates and enrolment; not automatically content-monitored."
+      }
+    ]
+  },
+  "ukPosition": {
+    "marketingAuthorisation": "Neither source establishes UK marketing authorisation for eloralintide or EloraTZP.",
+    "nhsEnglandAccess": "Neither source establishes NICE recommendation or NHS England access.",
+    "supply": "Investigational trial evidence does not establish lawful UK retail supply or pharmacy stock."
+  },
+  "clinicalApproval": null,
+  "uncertainty": [
+    "The sponsor said Phase 3 co-formulation studies were planned for Q4 2026; no source reviewed here establishes that they have started.",
+    "The sponsor announcement is not a peer-reviewed full publication and does not replace assessment of complete trial data.",
+    "A successful source response does not renew any unrelated medicine or source review."
+  ]
+}
