@@ -11,17 +11,25 @@ const decided=()=>document.cookie.split(';').some(v=>v.trim()===decisionCookie);
 const rememberDecision=()=>{document.cookie=decisionCookie+'; Max-Age=31536000; Path=/; Secure; SameSite=Lax'};
 
 if(box){
+ const installCookie='sst_pwa_install_dismissed=v1';
+ const installDismissed=()=>document.cookie.split(';').some(v=>v.trim()===installCookie);
+ const hideInstall=()=>{box.hidden=true;box.open=false;document.cookie=installCookie+'; Max-Age=31536000; Path=/; Secure; SameSite=Lax'};
+ const explicitSetup=()=>location.hash==='#myTimberApp'||new URLSearchParams(location.search).get('setup')==='app';
+ const installVisibility=()=>{box.hidden=!explicitSetup()&&(standalone()||installDismissed());if(explicitSetup())box.setAttribute('data-pwa-explicit','')};
+ el('pwaInstallDismiss').onclick=event=>{event.preventDefault();event.stopPropagation();hideInstall()};
+ matchMedia('(display-mode: standalone)').addEventListener?.('change',installVisibility);
+ installVisibility();
  const installCopy=()=>{
   el('pwaInstall').hidden=standalone();
   el('pwaInstallHelp').textContent=standalone()?'You’re using My Timber from your home screen.':ios?'On iPhone: open this page in Safari, tap Share → Add to Home Screen → Open as Web App → Add. Then open the S-in-a-circle icon.':android?'On Android: open My Timber in Chrome, tap ⋮ → Add to Home screen → Install. Then open the S-in-a-circle icon.':prompt?'Use the button above to install My Timber and open it in its own window.':'On a computer: use your browser’s Install app option if available. On your phone, open My Timber in Safari on iPhone or Chrome on Android.';
  };
  addEventListener('beforeinstallprompt',event=>{event.preventDefault();prompt=event;installCopy()});
- addEventListener('appinstalled',()=>{prompt=null;el('pwaInstall').hidden=true;el('pwaInstallHelp').textContent='My Timber has been installed.'});
+ addEventListener('appinstalled',()=>{hideInstall();prompt=null;el('pwaInstall').hidden=true;el('pwaInstallHelp').textContent='My Timber has been installed.'});
  el('pwaInstall').onclick=async()=>{if(!prompt){installCopy();return}const request=prompt;prompt=null;await request.prompt();const choice=await request.userChoice;el('pwaInstallHelp').textContent=choice.outcome==='accepted'?'Installation requested. Look for the S-in-a-circle icon.':'No problem. You can add it later.'};
  installCopy();
- function openSetup(){if(location.hash==='#myTimberApp'){box.open=true;box.scrollIntoView?.({block:'start'})}}
+ function openSetup(){if(location.hash==='#myTimberApp'){box.hidden=false;box.setAttribute('data-pwa-explicit','');box.open=true;box.scrollIntoView?.({block:'start'})}}
  addEventListener('hashchange',openSetup);openSetup();
- if(new URLSearchParams(location.search).get('setup')==='app'){box.open=true;box.scrollIntoView?.({block:'start'})}
+ if(new URLSearchParams(location.search).get('setup')==='app'){box.hidden=false;box.setAttribute('data-pwa-explicit','');box.open=true;box.scrollIntoView?.({block:'start'})}
 }
 
 if(!reminders&&!firstRun)return;
