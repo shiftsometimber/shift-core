@@ -84,6 +84,6 @@
     "release/home-banner-scope.mjs": "cfd7751fd4bbe3fbf66fefb60274ce8c28675fad5c83ad02f907f8e3252c2709",
     "release/home-banner-live.cjs": "f9b7ef4307c2938c79ccda8b8ae4836533d9ce81e46bc5a99a9a4116a70818c9",
     "tests/home-route-banner.test.mjs": "b5954544cbb480f45d4886671adb2b3c1915c98615ee90277dc4da4bca43e375",
-    "preview/home-banner/verify-spacing.cjs": "b5129bb4d04c15c7dac0c94b9004068d877f864054e9ebf94dc60eb45038b38b"
+    "preview/home-banner/verify-spacing.cjs": "ebb016cf530b83dd3f7d0f5e33aa7b54ae45e43a2830339ba3c8780a1cf80dca"
   }
 }
