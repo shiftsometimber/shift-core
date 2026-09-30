@@ -46,6 +46,11 @@ Retatrutide and enicepatide receive dated trial updates. Body-composition resear
 
 `reviews/2026-09-30-env308-discovery.json` records an older omission found by the undated topic pass: Enveda's investigational daily oral Lac-Phe mimetic for post-GLP-1 weight maintenance. The sponsor reports Phase I safety and pharmacology observations in healthy volunteers, while weight, body-composition and maintenance outcomes remain untested in the reported human study and Phase II is planned rather than completed. Preclinical lean-mass findings are not described as human evidence. The exact-name ClinicalTrials.gov query returned no matching record, and that evidence gap remains explicit. This is proposal-only and makes no UK authorisation, NHS access or supply claim.
 
+
+## Berobenatide / VESPER-6 correction
+
+`reviews/2026-09-30-berobenatide-vesper6.json` records a later Pfizer trial page and the sponsor-submitted ClinicalTrials.gov record for NCT07595549. The live PF-3944 summary should also carry the adopted study name berobenatide and distinguish the recruiting VESPER-6 study, which records an actual 10 June 2026 start, from the earlier VESPER-4 announcement. The sponsor trial page is added as a 49th configured source with a complete-response baseline; the registry record remains linked evidence outside automatic monitoring. Recruitment is not a result, UK authorisation, NHS access or retail supply. The source publication date is unknown where Pfizer does not state it, and the registry's May 2028 primary completion remains estimated.
+
 ## 30 September publication decision
 
 Matt authorised the continuing-discovery release with "Ok go". `reviews/2026-09-30-authorised-continuing-discovery.json` publishes HRS-1596, emugrobart and ENV-308 as bounded factual summaries, and replaces the petrelintide source with the reviewed readable sponsor release. Historical proposal receipts and the previous URL remain retained. This gives 35 entries and 48 configured sources; neither count means industry completeness. Clinical approval remains null. Unrelated review dates and genuine warnings are unchanged.
