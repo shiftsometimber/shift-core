@@ -5,6 +5,7 @@ import {medicines,sources} from './data.mjs';
 import {industryMarkup} from './industry-page.mjs';
 import {discoveryDomains,queriesForDate,summariseDiscovery} from './discovery.mjs';
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
+import hrs1596Review from './reviews/2026-09-30-hrs1596-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,26);assert.equal(sources.length,45);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,32);
@@ -27,9 +28,21 @@ test('paused and discontinued programmes remain distinct and searchable',()=>{
  assert.doesNotMatch(industryMarkup({},new URLSearchParams({q:'<script>evil</script>'})),/<script>/);
 });
 test('discovery can surface an untracked name and incomplete searches cannot imply coverage',()=>{
+ assert.ok(discoveryDomains.includes('hengrui.com'));
  assert.ok(queriesForDate(new Date('2027-02-01')).every(q=>q.q.includes('February 2027')));
  const report=summariseDiscovery([{domain:'gov.uk',status:'searched',candidates:[{name:'Previously unknown candidate',url:'https://www.gov.uk/example'}]},{domain:'nice.org.uk',status:'unavailable'}]);
  assert.equal(report.candidates.length,1);assert.equal(report.scanComplete,false);assert.ok(report.failedDomains.includes('nice.org.uk'));assert.ok(report.missingDomains.length);
  const complete=summariseDiscovery(discoveryDomains.map(domain=>({domain,status:'searched',candidates:[]})));
  assert.equal(complete.scanComplete,true);assert.equal(complete.industryComplete,false);assert.equal(complete.evidenceReviewRequired,true);assert.equal(complete.clinicalApproval,null);
+});
+test('HRS-1596 stays a sourced proposal until separately authorised',()=>{
+ assert.equal(hrs1596Review.publicationStatus,'proposal_only');
+ assert.equal(hrs1596Review.clinicalApproval,null);
+ assert.equal(hrs1596Review.industryComplete,false);
+ assert.equal(hrs1596Review.proposal.id,'hrs1596');
+ assert.equal(hrs1596Review.registry.overallStatus,'NOT_YET_RECRUITING');
+ assert.equal(hrs1596Review.registry.phase,'Phase 1');
+ assert.ok(hrs1596Review.sources[0].reviewedFingerprint);
+ assert.equal(industry.some(entry=>entry.id==='hrs1596'),false);
+ assert.equal(industrySources.some(source=>source.id==='hrs1596-hengrui-20260929'),false);
 });
