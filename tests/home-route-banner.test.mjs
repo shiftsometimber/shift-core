@@ -18,7 +18,13 @@ test('shared cream navigation preserves content and links, restores exact bytes 
 test('hero preload reuses exact responsive image and is reversible',async()=>{
  const {addCreamNavigation,removeCreamNavigation,heroPreload}=await import('../cream-navigation.mjs');
  const img='<img src="/assets/seo-20260923/heroLarge-22b76937213e5741.webp" srcset="/assets/seo-20260923/heroSmall-54d52bf31ac3389a.webp 768w, /assets/seo-20260923/heroLarge-22b76937213e5741.webp 1536w" sizes="(max-width:760px) 100vw, 50vw">';
- const html='<head></head><body><header data-header-v2></header><section class="home-hero">'+img+'</section></body>';
+ const html='<head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><header data-header-v2></header><section class="home-hero">'+img+'</section></body>';
  const result=addCreamNavigation(html);assert(result.includes(heroPreload));assert(result.includes(img));assert.equal(addCreamNavigation(result),result);assert.equal(removeCreamNavigation(result),html);
  assert(!addCreamNavigation(html.replace('class="home-hero"','class="other"')).includes(heroPreload));
+});
+
+test('home bootstrap embedding preserves authoritative privacy code and exact restoration',async()=>{
+ const {addCreamNavigation,removeCreamNavigation,inlineBootstrap}=await import('../cream-navigation.mjs');
+ const {bootstrap}=await import('../activation-measurement/assets.mjs');
+ assert.equal(inlineBootstrap,'<script data-shift-inline-bootstrap>'+bootstrap+'</script>');
 });
