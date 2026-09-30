@@ -58,7 +58,7 @@ async function captureSet(browser,spec){
  await requireMemberPanel(page,'journey');await shot(2,'journey','Journey — programme progress');
  await requireMemberPanel(page,'visualise');await shot(3,'progress','Progress — see what is changing');
  await open(page,'/member/check-in');await shot(4,'check-in','Check-in — quick member check-in');
- await open(page,'/member/grub');await shot(5,'grub','Grub — practical food support');
+ await open(page,'/member/grub');await page.waitForFunction(()=>{const t=document.body.innerText;return !t.includes('Loading your saved food')&&!t.includes('Loading your recommendation')},null,{timeout:30000});await shot(5,'grub','Grub — practical food support');
  await open(page,'/member/fit');await shot(6,'fit','Fit — practical movement support');
  await open(page,'/member/life-back');await shot(7,'life-back','Life Back — goals and wins');
  await open(page,'/member/settings');await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000}).catch(()=>{});await shot(8,'settings','Settings — member details and privacy');
