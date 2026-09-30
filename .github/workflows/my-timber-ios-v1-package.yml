@@ -22,7 +22,8 @@ jobs:
           node --test my-timber-app/tests/source.test.mjs
       - name: Generate Xcode project
         run: |
-          brew install xcodegen
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          python3 my-timber-app/scripts/prepare.py --platform ios
           cd my-timber-app/ios
           xcodegen generate
           xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Release -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build
@@ -32,7 +33,7 @@ jobs:
           cp -R my-timber-app/ios/MyTimber.xcodeproj My-Timber-iOS-v1.0.0/
           cp -R my-timber-app/ios/Sources My-Timber-iOS-v1.0.0/
           cp -R my-timber-app/ios/Resources My-Timber-iOS-v1.0.0/
-          cp my-timber-app/ios/GeneratedInfo.plist My-Timber-iOS-v1.0.0/
+          test -f my-timber-app/ios/GeneratedInfo.plist && cp my-timber-app/ios/GeneratedInfo.plist My-Timber-iOS-v1.0.0/ || true
           cat > My-Timber-iOS-v1.0.0/OPEN-ME.txt <<'TXT'
           MY TIMBER iOS v1.0.0 BUILD 1
           Bundle ID: uk.co.shiftsometimber.mytimber
