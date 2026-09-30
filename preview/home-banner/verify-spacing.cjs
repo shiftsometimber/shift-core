@@ -18,14 +18,15 @@ for(const width of [320,390,1440]){
   if(mode==='baseline')original=state;else{
    assert.deepEqual(state,original,'Outside-banner appearance changed');
    const placement=await page.locator('#sst-home-route').evaluate(el=>({before:el.previousElementSibling.className,after:el.nextElementSibling.className,links:[...el.querySelectorAll('a')].map(a=>a.getAttribute('href')),padding:getComputedStyle(el.querySelector('.sst-route-free')).paddingTop}));
-   assert.equal(placement.before,'home-hero');assert.equal(placement.after,'struggle-artwork-section');assert.deepEqual(placement.links,['/start-here','/programme','/member/dashboard']);assert.equal(placement.padding,'3px');
-   const frame=await page.locator('.home-hero figure').evaluate(el=>({gap:el.closest('.home-hero').getBoundingClientRect().bottom-el.querySelector('img').getBoundingClientRect().bottom,imageHeight:el.querySelector('img').getBoundingClientRect().height,frameHeight:el.getBoundingClientRect().height}));if(width>1000)assert(frame.gap>=24&&frame.gap<=26,'Desktop gap should be 24px plus existing border');
+   assert.equal(placement.before,'home-hero');assert.equal(placement.after,'struggle-artwork-section');assert.deepEqual(placement.links,['/start-here','/programme','/member/dashboard']);assert.equal(placement.padding,'0px');
+   const flush=await page.locator('#sst-home-route').evaluate(el=>({top:getComputedStyle(el.querySelector('.sst-route-inner')).paddingTop,bottom:getComputedStyle(el.querySelector('.sst-route-free')).paddingBottom,weight:getComputedStyle(el.querySelector('.sst-route-free p:nth-child(2)')).fontWeight,style:getComputedStyle(el.querySelector('.sst-route-free p:nth-child(2)')).fontStyle}));assert.deepEqual(flush,{top:'0px',bottom:'0px',weight:'700',style:'italic'});
+   const frame=await page.locator('.home-hero figure').evaluate(el=>({gap:el.closest('.home-hero').getBoundingClientRect().bottom-el.querySelector('img').getBoundingClientRect().bottom,imageHeight:el.querySelector('img').getBoundingClientRect().height,frameHeight:el.getBoundingClientRect().height}));if(width>1000)assert(frame.gap>=0&&frame.gap<=2,'Desktop gap should be flush apart from existing border');
    await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-top.png`});
    await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-full.png`,fullPage:true});
    await page.locator('#sst-home-route').screenshot({path:`home-banner-proof/screenshots/${name}-${width}-banner.png`});
    const menu=page.locator('.menu-trigger');await menu.click();assert.equal(await menu.getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
    const start=page.locator('#sst-home-route a').first();await start.focus();assert.equal(await start.evaluate(el=>document.activeElement===el),true);
-   results.push({engine:name,width,placement,frame,originalPageStyleEquality:true,noOverflow:true,menuPassed:true,keyboardPassed:true});
+   results.push({engine:name,width,placement,frame,flush,originalPageStyleEquality:true,noOverflow:true,menuPassed:true,keyboardPassed:true});
   }
  }
  await context.close();
