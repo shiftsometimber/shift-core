@@ -29,7 +29,7 @@ jobs:
       - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund playwright@1.63.0
       - run: '"$RUNNER_TEMP/browser/node_modules/.bin/playwright" install --with-deps chromium webkit'
       - name: Desktop and mobile layout, original-page preservation and controls
-        run: BROWSER_TOOLS="$RUNNER_TEMP/browser" node preview/home-banner/verify.cjs
+        run: BROWSER_TOOLS="$RUNNER_TEMP/browser" node preview/home-banner/verify-spacing.cjs
       - name: Checksum evidence
         if: always()
         run: find home-banner-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > home-banner-proof/SHA256SUMS
