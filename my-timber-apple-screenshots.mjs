@@ -12,12 +12,12 @@ const OUT=process.env.MY_TIMBER_APPLE_SCREENSHOT_DIR||'my-timber-apple-screensho
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 
-const email=`shiftsometimber+apple-store-${Date.now()}@gmail.com`;
+const email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
 const password=`Sst-${randomUUID()}-Aa1!`;
 const report={proof:'MY_TIMBER_APPLE_STORE_SCREENSHOTS_V1',capturedAt:new Date().toISOString(),source:process.env.GITHUB_SHA||'',account:'synthetic commissioning member; no real member data',sets:[]};
 
 async function register(){
- const r=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'Billy',source:'commissioning-apple-store-screenshots'})});
+ const r=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'Billy',source:'commissioning-my-timber-final'})});
  if(r.status!==201)throw new Error(`register ${r.status} ${await r.text()}`);
 }
 async function dismissCookie(page){
