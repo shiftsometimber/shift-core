@@ -9,11 +9,26 @@ import hrs1596Review from './reviews/2026-09-30-hrs1596-discovery.json' with {ty
 import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-discovery.json' with {type:'json'};
 import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type:'json'};
 import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
+import berobenatideReview from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,48);
+ assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,49);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,36);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
+});
+test('berobenatide correction records VESPER-6 without implying access or results',()=>{
+ const entry=industry.find(item=>item.id==='pf3944');
+ assert.match(entry.name,/Berobenatide/);
+ assert.match(entry.stage,/VESPER-6/);
+ assert.match(entry.summary,/actual 10 June 2026 start/);
+ assert.match(entry.limitations,/not results/);
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.ok(entry.sourceIds.includes('pf3944-pfizer-vesper6'));
+ assert.equal(berobenatideReview.registryEvidence.status,'Recruiting');
+ assert.equal(berobenatideReview.registryEvidence.actualStartDate,'2026-06-10');
+ assert.equal(berobenatideReview.registryEvidence.lastUpdatePosted,'2026-09-28');
+ assert.equal(berobenatideReview.ukPosition.nhsEnglandAccess,'Not established by either source.');
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
