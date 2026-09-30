@@ -2,6 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {withAppLayout,livePresentation,appAsset,launchAsset} from '../app-layout-live.mjs';
 import {webToolsPresentation} from '../member-inline-tools.mjs';
 import {appPresentation,appClient} from '../preview/app-layout/presentation.mjs';
+import {memberExperienceRoutes} from '../member-experience/entry.mjs';
 const html='<html><head></head><body data-member-chrome="v1"><main><form id="real"><input name="note"></form></main><script src="/original.js"></script></body></html>';
 const source=()=>new Response(html,{headers:{'Content-Type':'text/html','ETag':'original','Vary':'Accept-Encoding','Content-Security-Policy':"default-src 'self'; frame-ancestors 'self'"}});
 test('every public/API/error/unsupported response is the original object, even with app cookie',async()=>{for(const path of ['/','/programme','/shop','/member-login','/v1/life-back','/member/unknown']){const r=source();assert.equal(await withAppLayout(new Request('https://shiftsometimber.co.uk'+path+'?view=app',{headers:{Cookie:'shift_app_view=1'}}),r),r)}const r=new Response('no',{status:401});assert.equal(await withAppLayout(new Request('https://shiftsometimber.co.uk/member/dashboard?view=app'),r),r)});
@@ -11,3 +12,22 @@ test('normal browser member view only gets standalone launcher; no app styling',
 test('asset and cookie route work; embedded styling confined to tool routes',async()=>{let r=await withAppLayout(new Request('https://shiftsometimber.co.uk'+appAsset),new Response('404',{status:404}));assert.equal(await r.text(),appClient);for(const path of ['grub','dashboard']){r=await withAppLayout(new Request('https://shiftsometimber.co.uk/member/'+path+'?app_panel=1',{headers:{Cookie:'shift_app_view=1'}}),source());assert.equal(/<body[^>]*data-app-panel="1"/.test(await r.text()),path==='grub')}});
 
 test('standalone auto-launch is confined to Today; ordinary tool pages retain exact original HTML',async()=>{for(const name of ['life-back','grub','fit','settings']){const r=await withAppLayout(new Request('https://shiftsometimber.co.uk/member/'+name),source());assert.equal(await r.text(),html);assert.equal(r.headers.get('ETag'),'original')}});
+
+test('real generated Life Back panel loads the shared consent client in app and web views',async()=>{
+ for(const view of ['app','web']){
+  const req=new Request('https://shiftsometimber.co.uk/member/life-back?view='+view+'&app_panel=1');
+  const response=memberExperienceRoutes(req,{MEMBER_EXPERIENCE_V1_ENABLED:'true'});
+  const body=await(await withAppLayout(req,response)).text();
+  assert.match(body,/<body[^>]*data-app-panel="1"/);
+  assert.equal((body.match(/src="\/consent-v4a\.js"/g)||[]).length,1);
+  assert.match(body,/\/assets\/member-experience\/life-back\/client\.mjs/);
+ }
+});
+test('embedded tools retain an existing consent loader without duplicates',async()=>{
+ for(const view of ['app','web'])for(const path of ['fit','grub','life-back'])for(const loader of ['<script defer src="/consent-v4a.js"></script>',"<script src='/consent-v4a.js?v=52'></script>"]){
+  const req=new Request('https://shiftsometimber.co.uk/member/'+path+'?view='+view+'&app_panel=1');
+  const response=new Response(html.replace('</body>',loader+'</body>'),{headers:{'Content-Type':'text/html'}});
+  const body=await(await withAppLayout(req,response)).text();
+  assert.equal((body.match(/consent-v4a\.js/g)||[]).length,1);assert(body.includes(loader));
+ }
+});
