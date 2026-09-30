@@ -1,3 +1,4 @@
+import {validateHomeBanner} from './home-banner-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS,validateMemberFocus} from './member-focus-scope.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -10,6 +11,7 @@ export const APP_PATHS=new Set([...Object.keys(APP_HASHES),'release/app-manifest
 export function validateAppSource(){
  const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',APP_BASE,'HEAD');
+ validateHomeBanner();
  validateMemberFocus((ref,path)=>git('rev-parse',ref+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
  assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));

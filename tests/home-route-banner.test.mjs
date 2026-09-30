@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {banner,css,addHomeBanner,removeHomeBanner} from '../home-route-banner.mjs';
+import {stabilisePublicHtml} from '../public-startup-stability.mjs';
+import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
+const anchor='<section aria-labelledby="struggle-artwork-title" class="struggle-artwork-section">';
+const raw='<html><head></head><body><main id="main-content"><section class="hero">Original hero</section>'+anchor+'Original note</section><footer>Original footer</footer></main></body></html>';
+test('only approved banner and scoped CSS are inserted; repeated transform is inert',()=>{const after=addHomeBanner(raw);assert.equal(removeHomeBanner(after,{required:true}),raw);assert.equal(after,raw.replace('</head>',css+'</head>').replace(anchor,banner+anchor));assert.equal(addHomeBanner(after),after);assert.throws(()=>removeHomeBanner(after.replace('My Timber is free for everyone.','Purchase required.')));assert.throws(()=>removeHomeBanner(after+banner));assert.throws(()=>removeHomeBanner(raw,{required:true}));});
+test('startup integration preserves other routes and all original home bytes',()=>{assert.equal(stabilisePublicHtml('/',raw),addHomeBanner(raw));for(const p of ['/programme','/member-login','/member/dashboard','/shop'])assert.equal(stabilisePublicHtml(p,raw),raw);assert.equal(preserveApprovedStartup('/',Buffer.from(addHomeBanner(raw))).toString(),raw);assert.equal(addHomeBanner('<html><head></head><body>Unknown template</body></html>'),'<html><head></head><body>Unknown template</body></html>');});
+test('actual current-home fixture is restored including speed CSS, and font bytes match signed-off asset',()=>{const font=readFileSync(new URL('../preview/home-banner/assets/barlow-condensed-700.ttf',import.meta.url)).toString('base64');assert(css.includes('data:font/ttf;base64,'+font));assert(css.includes('padding:3px 16px!important'));assert.equal((banner.match(/<a href=/g)||[]).length,3);});

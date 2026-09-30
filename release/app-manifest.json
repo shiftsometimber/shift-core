@@ -1,7 +1,7 @@
 {
   "sha256": {
     ".github/workflows/app-layout-preview.yml": "627999254b8666f8c8fda79839d956d58e231acad9e48c5cb66318be7c918cce",
-    ".github/workflows/cloudflare-production-promote.yml": "6c4b403bd547fdbbe4e2a39bf3c3f51b122684b2cc1bc1384c6b49508edc6c84",
+    ".github/workflows/cloudflare-production-promote.yml": "22d794ccb5baf7934aa3568d158836c2c1d41dc01e0bb5bd4c79ad72a1a1e1f5",
     ".github/workflows/readiness-preservation.yml": "6b954852e9d4d8938b752ebe6e2a20e833e344b481b1a0726939ffe775014ce2",
     "acquisition-activation/consent-baseline.js": "62f630b78046b74357906159ef45394ba368eda463dbe082b74d1fb0abe8c2c1",
     "acquisition-activation/consent.mjs": "20d599bb2e6314feea02adbfbb1efa070606de342b7e2d96dc09eb54e37b9bcc",
@@ -51,12 +51,12 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "0d5c9a2168f2cc8b5c4f1a076819257edc6f3d3e17fc99f8c8c3c43f3c117a39",
-    "release/growth-adopt-deployment.mjs": "110eab367c022e872e8011d5febdde793549c6aaa19f079a8f2c9bdb4592840c",
+    "release/app-preflight.mjs": "a9391f18a71e79f39fe670b88e56c008510d824e10a8f6c96f6ce04f1c7a1798",
+    "release/growth-adopt-deployment.mjs": "2947d61d2cefba286b9a421a06882e39c117d8d03f63c33ca84cd946256750f3",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
     "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
-    "scripts/b1-release-scope.mjs": "30b285c1fc2f83cc7fada0736070c16212d70339f77a482adbc9c9cac3bdbd6d",
+    "scripts/b1-release-scope.mjs": "72d1fbc524f86f484b34f62a0c9ec8c3a5a6fd7915891ce0a00071657cd57092",
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
     "tests/app-layout-live.test.mjs": "d5d532d238c1b889520ea3a548351b416202e518941784859df0f316c326465a",
@@ -68,6 +68,21 @@
     "medicines-watch/reviews/2026-09-30-discovery-proposals.json": "fa4a023ae621de4c77bdef2675d17d121d241fb43f1588d6319c17c9b65f5098",
     "medicines-watch/reviews/2026-09-30-discovery-review.md": "9fde72a71a0dd6059846d335db83806d4e1c152a5d6772f52a8c02863de0f1e5",
     "medicines-watch/reviews/2026-09-30-reviewed-expansion.json": "a92afda9c2e64236b681ebaa954b1863f470df0fed81d12103b65d29bdc4b0ac",
-    "release/growth-scope.mjs": "9f784c86e9a16e9c310913d4c74c26b9d089058cadf51800d9b4c3217587880c"
+    "release/growth-scope.mjs": "9f784c86e9a16e9c310913d4c74c26b9d089058cadf51800d9b4c3217587880c",
+    ".github/workflows/home-banner-preview.yml": "d147be069dc974b95bca5b40bfca201ec009b428310ca1e286a15fb2dc79f21b",
+    "preview/home-banner/assets/OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+    "preview/home-banner/assets/barlow-condensed-700.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
+    "preview/home-banner/banner.mjs": "b16f67e44b695ffe58022686438175b6ff0065057627858da60d1319094cf032",
+    "preview/home-banner/build.mjs": "8622712da199b2fdf41c2a07f61935a78ccd2d6e40ad5bfe29fbdcb779b76908",
+    "preview/home-banner/verify.cjs": "f93aa4d34089c64753adc428fc69a117c905fe07eab4cdda2956295f0a46cc36",
+    "preview/home-banner/worker.mjs": "9dafa6a02ddf60b85a7f81700c0e60c003d690f04c2036b0de23c5fa40d8ea36",
+    "preview/home-banner/wrangler.jsonc": "fa9af8b7b3629de3cd5a98014f9700976537d0859acc6a4704038aa2ff261244",
+    "public-startup-stability.mjs": "484d15fdc522a8c9eeb68b609b019e98518ea15ba3bec9da553cd8a687d0fe2a",
+    "release/member-details-preservation.mjs": "f52cf5e5e55d1c5c5f0a68d153156c29ea6f4c4f34dbc674ca998a14de4af172",
+    "home-route-banner.mjs": "70e019daea1a50665e3ba7ef313d6172a20ca701e408b25016e4ffb1161d2312",
+    "home-route-font.mjs": "f62c62a6f9aa230276bdd9d06f479c7d87a88822afabb602042d96a157b13f17",
+    "release/home-banner-scope.mjs": "255bab684ea8f03fc29773effd3ada62dc18e3bece0f11d36aa0f1ba1fdbb894",
+    "release/home-banner-live.cjs": "9d3037a7f22532df9775bf6ed07958957b2d352faaedb33fdfeeacd42242995d",
+    "tests/home-route-banner.test.mjs": "bb5f799a0ac3bf2d6ebe771502c3bc343f24081db7d67312facf2b91b64616f9"
   }
 }

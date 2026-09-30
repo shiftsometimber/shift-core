@@ -1,0 +1,41 @@
+name: Homepage banner sign-off preview
+on:
+  push:
+    branches: [preview/home-banner-20260930]
+permissions:
+  contents: read
+concurrency:
+  group: home-banner-signoff-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Capture current homepage and prove insert-only change
+        run: node preview/home-banner/build.mjs
+      - name: Deploy isolated read-only preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          npx wrangler deploy --config preview/home-banner/wrangler.jsonc | tee home-banner-proof/deploy.log
+          echo "PREVIEW_URL=$(grep -oE 'https://shift-home-banner-preview\.[a-z0-9-]+\.workers\.dev' home-banner-proof/deploy.log | head -1)" >> "$GITHUB_ENV"
+      - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund playwright@1.63.0
+      - run: '"$RUNNER_TEMP/browser/node_modules/.bin/playwright" install --with-deps chromium webkit'
+      - name: Desktop and mobile layout, original-page preservation and controls
+        run: BROWSER_TOOLS="$RUNNER_TEMP/browser" node preview/home-banner/verify.cjs
+      - name: Checksum evidence
+        if: always()
+        run: find home-banner-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > home-banner-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: homepage-banner-preview-${{ github.sha }}
+          path: home-banner-proof/
+          retention-days: 90
