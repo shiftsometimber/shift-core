@@ -1,3 +1,4 @@
+import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS} from './member-focus-scope.mjs';
 import {APP_HASHES,APP_PATHS,validateAppSource} from './app-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -53,6 +54,6 @@ export function validateGrowthEntry(before,after){
 export function validateGrowthSource(){
  validateAppSource();
  git('merge-base','--is-ancestor','33c1b98cbb39dfd6154af3c673d9ee784371260e','HEAD');
- for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',GROWTH_PREVIEW+':'+path),'Reviewed growth payload changed: '+path);
+ for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(MEMBER_FOCUS_PATHS.includes(path)?MEMBER_FOCUS_APPROVED:GROWTH_PREVIEW)+':'+path),'Reviewed growth payload changed: '+path);
  for(const [path,hash]of Object.entries({...hashes,...APP_HASHES}))assert.equal(createHash('sha256').update(execFileSync('git',['show','HEAD:'+path])).digest('hex'),hash,'Growth release integration drift: '+path);
 }

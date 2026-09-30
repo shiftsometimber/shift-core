@@ -156,5 +156,6 @@
   function renderAnswer(answer){title.hidden=false;title.textContent='Here is what matters.';root.innerHTML=`<div class="mt-card"><p>${esc(answer.answer)}</p>${(answer.keyPoints||[]).length?'<h2>Key points</h2><ul>'+answer.keyPoints.map(point=>`<li>${esc(point)}</li>`).join('')+'</ul>':''}${(answer.nextSteps||[]).length?'<h2>Next steps</h2><ol>'+answer.nextSteps.map(step=>`<li>${esc(step)}</li>`).join('')+'</ol>':''}<p class="muted">${esc(answer.limitations||'General information only.')}</p></div><div class="mt-actions"><button class="mt-button secondary" data-ask>Ask another question</button><button class="mt-button secondary" data-home>Back to My Timber</button></div>`;root.querySelector('[data-ask]').addEventListener('click',()=>askTimber(''));root.querySelector('[data-home]').addEventListener('click',home)}
   function fail(error){title.hidden=false;title.textContent='That did not load.';root.innerHTML=`<div class="mt-error">${esc(error.message||'Please try again.')}</div><button class="mt-button secondary" data-home>Try again</button>`;root.querySelector('[data-home]').addEventListener('click',home)}
   document.addEventListener('sst:action-reviewed',()=>home());
+  document.addEventListener('sst:refresh-today',()=>home());
   home();
 })();

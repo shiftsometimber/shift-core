@@ -1,7 +1,7 @@
-name: My Timber cookie panel repair preview
+name: My Timber member feedback preview
 on:
   push:
-    branches: [preview/panel-cookie-repair-20260929]
+    branches: [preview/member-feedback-20260929]
 permissions:
   contents: read
 concurrency:
@@ -37,6 +37,7 @@ jobs:
       - run: npm install --prefix "$RUNNER_TEMP/app-tools" --no-audit --no-fund playwright@1.58.2
       - run: '"$RUNNER_TEMP/app-tools/node_modules/.bin/playwright" install --with-deps chromium webkit'
       - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/verify.cjs
+      - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/member-feedback-proof.cjs
       - run: APP_TOOLS="$RUNNER_TEMP/app-tools" node preview/app-layout/cookie-proof.cjs
       - name: Evidence checksum
         if: always()

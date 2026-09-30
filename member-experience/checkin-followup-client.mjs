@@ -85,7 +85,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
    const handoff=element('p','Saved to your private check-in history. After trying a food or movement step, you can say whether it helped on that page. One useful thing is enough.');const back=element('a','Back to Today →');back.href='/member/dashboard#today';card.append(handoff,back);
   });
   document.addEventListener('sst:today-rendered',()=>{const primary=document.querySelector('.mtm-next');if(primary)primary.after(host)});
-  load();window.addEventListener('pageshow',event=>{if(event.persisted)load()});window.addEventListener('hashchange',()=>{if(location.hash==='#dailyCheckinFollowup'){const d=host.querySelector('details');if(d)d.open=true}else if(location.hash==='#today')load()});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
+  document.addEventListener('sst:focus-saved',()=>{dirty=false;load()});load();window.addEventListener('pageshow',event=>{if(event.persisted)load()});window.addEventListener('hashchange',()=>{if(location.hash==='#dailyCheckinFollowup'){const d=host.querySelector('details');if(d)d.open=true}else if(location.hash==='#today')load()});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();`;
