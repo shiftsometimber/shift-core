@@ -43,14 +43,18 @@ async function captureSet(browser,spec){
 
  const shots=[];
  async function shot(index,slug,label){
-  await dismissCookie(page);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(350);
+  await dismissCookie(page);
+  // Match the exact native-shell presentation: native apps suppress PWA install
+  // and browser-push controls that WKWebView/Android WebView cannot honour.
+  await page.addStyleTag({content:'#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings{display:none!important}'});
+  await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(500);
   const file=`${String(index).padStart(2,'0')}-${slug}.png`,full=path.join(dir,file);
   await page.screenshot({path:full,fullPage:false});
   const png=fs.readFileSync(full),width=png.readUInt32BE(16),height=png.readUInt32BE(20);
   assert.equal(width,spec.output.width,file+' width');assert.equal(height,spec.output.height,file+' height');
   shots.push({index,file,label,width,height,bytes:png.length});
  }
- await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions',{state:'visible',timeout:30000});await shot(1,'today','Today — one useful next step');
+ await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});await page.waitForSelector('.mt-now-action',{state:'visible',timeout:15000});await shot(1,'today','Today — one useful next step');
  await requireMemberPanel(page,'journey');await shot(2,'journey','Journey — programme progress');
  await requireMemberPanel(page,'visualise');await shot(3,'progress','Progress — see what is changing');
  await open(page,'/member/check-in');await shot(4,'check-in','Check-in — quick member check-in');
