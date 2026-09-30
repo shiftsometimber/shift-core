@@ -10,7 +10,7 @@ function preloadExistingHero(html){
  if(html.includes('data-shift-hero-preload')||!html.includes('class="home-hero"'))return html;
  const images=html.match(/<img\b[^>]*>/g)||[];
  if(!images.some(t=>t.includes('src="'+heroSource+'"')&&t.includes('srcset="'+heroSources+'"')&&t.includes('sizes="'+heroSizes+'"')))return html;
- return html.replace('</head>',heroPreload+'</head>');
+ return html.replace(/<head\b[^>]*>/,tag=>tag+heroPreload);
 }
 export function addCreamNavigation(html){
  if(!/<header\b[^>]*data-header-v2/.test(html)||!html.includes('</body>'))return html;
