@@ -1,0 +1,169 @@
+{
+  "reviewedAt": "2026-09-30T13:34:45.242Z",
+  "publicationStatus": "owner_authorised_source_repair",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-09-30",
+    "instruction": "Can we fix / resolve the warnings please ?"
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "survodutide-zealand",
+      "title": "Zealand: survodutide Phase III results",
+      "url": "https://www.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "checkUrl": "https://www.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "format": "html",
+      "sourcePublishedAt": "2026-06-07",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T13:34:45.242Z",
+      "requiredTerms": [
+        "survodutide",
+        "SYNCHRONIZE",
+        "Phase III"
+      ],
+      "evidenceType": "Original sponsor statement; not regulatory approval",
+      "contentSelector": "#main-body-container",
+      "reviewedFingerprint": "4fba69fec7a54bb93b780329b5105e45c010f2c874843d7a7f35acf9e9a41bad"
+    },
+    {
+      "id": "dapiglutide-zealand",
+      "title": "Zealand: first nine months of 2025; dapiglutide paused",
+      "url": "https://rss.globenewswire.com/news-release/2025/11/13/3186997/0/en/zealand-pharma-announces-financial-results-for-the-first-nine-months-of-2025.html",
+      "checkUrl": "https://rss.globenewswire.com/news-release/2025/11/13/3186997/0/en/zealand-pharma-announces-financial-results-for-the-first-nine-months-of-2025.html",
+      "format": "html",
+      "sourcePublishedAt": "2025-11-13",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T13:34:45.242Z",
+      "requiredTerms": [
+        "dapiglutide",
+        "paused"
+      ],
+      "evidenceType": "Original sponsor statement; not regulatory approval",
+      "contentSelector": "#main-body-container",
+      "reviewedFingerprint": "4ee9ceee38670db1c43a33c4ade7b0a9fbd3c208737d80126120c8f0a598b08e"
+    },
+    {
+      "id": "pf3944-pfizer",
+      "title": "Pfizer: VESPER development update",
+      "url": "https://www.businesswire.com/news/home/20260202566685/en/Pfizers-Ultra-Long-Acting-Injectable-GLP-1-RA-Shows-Robust-and-Continued-Weight-Loss-with-Monthly-Dosing-in-Phase-2b-Trial",
+      "checkUrl": "https://www.businesswire.com/news/home/20260202566685/en/Pfizers-Ultra-Long-Acting-Injectable-GLP-1-RA-Shows-Robust-and-Continued-Weight-Loss-with-Monthly-Dosing-in-Phase-2b-Trial",
+      "format": "html",
+      "sourcePublishedAt": "2026-02-03",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T13:34:45.242Z",
+      "requiredTerms": [
+        "VESPER-4",
+        "Pfizer"
+      ],
+      "evidenceType": "Original sponsor statement; not regulatory approval",
+      "contentSelector": "#bw-release-story",
+      "reviewedFingerprint": "56f6b8ba99fd364ef677b88c6c049b888e8b6fdf1cadea59f86e85a48bb1c59a"
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "title": "Pfizer: danuglipron discontinued",
+      "url": "https://www.businesswire.com/news/home/20250413297943/en/Pfizer-Provides-Update-on-Oral-GLP-1-Receptor-Agonist-Danuglipron",
+      "checkUrl": "https://www.businesswire.com/news/home/20250413297943/en/Pfizer-Provides-Update-on-Oral-GLP-1-Receptor-Agonist-Danuglipron",
+      "format": "html",
+      "sourcePublishedAt": "2025-04-14",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T13:34:45.242Z",
+      "requiredTerms": [
+        "danuglipron",
+        "discontinue"
+      ],
+      "evidenceType": "Original sponsor statement; not regulatory approval",
+      "contentSelector": "#bw-release-story",
+      "reviewedFingerprint": "6d2a886633c02c46d5ced994f35d459fd7f3219de965f16abe165bdbc84bf4f9"
+    },
+    {
+      "id": "eloralintide-lilly",
+      "title": "Lilly: EASD 2026 programme announcement",
+      "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-present-new-data-foundayo-retatrutide-and-eloratzp-easd",
+      "checkUrl": "https://investor.lilly.com/news-releases/news-release-details/lilly-present-new-data-foundayo-retatrutide-and-eloratzp-easd",
+      "format": "html",
+      "sourcePublishedAt": "2026-09-15",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-09-30T13:34:45.242Z",
+      "requiredTerms": [
+        "eloralintide",
+        "Phase 3",
+        "investigational"
+      ],
+      "evidenceType": "Original sponsor statement; not regulatory approval",
+      "reviewedFingerprint": "ffdd75f6268f5e3b0dfd278c2df967431ed7f222dd0464e882087bd4da1f0cdd"
+    }
+  ],
+  "history": [
+    {
+      "id": "survodutide-zealand",
+      "previousUrl": "https://www.zealandpharma.com/pipeline/survodutide/",
+      "previousReviewedAt": "2026-09-29T17:05:44.031Z",
+      "previousFingerprint": null,
+      "previousFailure": "HTTP 403; missing_reviewed_baseline",
+      "retrievedBodyBytes": 90630,
+      "retrievedBodySha256": "9192097bde5258095f636db657075f4212b9d5e729cf36402604736c74f01162",
+      "reviewMethod": "Complete original sponsor release read; programme-stage evidence checked. No UK access, supply or clinical approval inferred."
+    },
+    {
+      "id": "dapiglutide-zealand",
+      "previousUrl": "https://www.zealandpharma.com/pipeline/dapiglutide-program-paused/",
+      "previousReviewedAt": "2026-09-29T17:05:44.031Z",
+      "previousFingerprint": null,
+      "previousFailure": "HTTP 403; missing_reviewed_baseline",
+      "retrievedBodyBytes": 79647,
+      "retrievedBodySha256": "53d4d2afcb45d63c076e2245aa69bc3221bb98fea1bbdedfcfdbf59a3207d83a",
+      "reviewMethod": "Complete original sponsor release read; programme-stage evidence checked. No UK access, supply or clinical approval inferred."
+    },
+    {
+      "id": "pf3944-pfizer",
+      "previousUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust",
+      "previousReviewedAt": "2026-09-29T17:05:44.031Z",
+      "previousFingerprint": null,
+      "previousFailure": "HTTP 403; missing_reviewed_baseline",
+      "retrievedBodyBytes": 459720,
+      "retrievedBodySha256": "e3d0e9d41e45709da9cba8f117b079cfde1d2d7e31cf92111140974be8b11a6b",
+      "reviewMethod": "Complete original sponsor release read; programme-stage evidence checked. No UK access, supply or clinical approval inferred."
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "previousUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-provides-update-oral-glp-1-receptor-agonist",
+      "previousReviewedAt": "2026-09-29T17:05:44.031Z",
+      "previousFingerprint": null,
+      "previousFailure": "HTTP 403; missing_reviewed_baseline",
+      "retrievedBodyBytes": 444116,
+      "retrievedBodySha256": "1785dcec438f9af98e5f7ded040aac4bccbf2cec2ccd272262e8893742666c72",
+      "reviewMethod": "Complete original sponsor release read; programme-stage evidence checked. No UK access, supply or clinical approval inferred."
+    },
+    {
+      "id": "eloralintide-lilly",
+      "previousUrl": "https://investor.lilly.com/news-releases/news-release-details/lilly-present-new-data-foundayo-retatrutide-and-eloratzp-easd",
+      "previousReviewedAt": "2026-09-29T17:05:44.031Z",
+      "previousFingerprint": null,
+      "previousFailure": "missing_reviewed_baseline",
+      "retrievedBodyBytes": 155200,
+      "retrievedBodySha256": "67b80f6aea3c257dca423c4a88c497f0837ec18cd6f22e1c6e9d4b80bb65cfe8",
+      "reviewMethod": "Complete original sponsor release read; programme-stage evidence checked. No UK access, supply or clinical approval inferred."
+    }
+  ],
+  "updates": [
+    {
+      "id": "survodutide",
+      "summary": "Zealand’s 7 June 2026 release reports Phase 3 obesity results and continuing obesity and MASH development. The programme remains investigational; regulatory designations are not approvals."
+    },
+    {
+      "id": "dapiglutide",
+      "summary": "Zealand’s 13 November 2025 financial update records development paused as a portfolio decision. This dated announcement does not establish subsequent resumption; paused is not permanently discontinued."
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "az-elecoglipron-20260608",
+      "status": "Existing reviewed source retained; live HTTP 403 unresolved.",
+      "alternativeUrl": "https://news.cision.com/se/astrazeneca/r/elecoglipron--an-oral-small-molecule-glp-1-ra--moves-to-phase-iii-programme-and-unlocks-next-chapter,c4359385",
+      "alternativeResult": "Original release readable through web retrieval; direct retrieval returned HTTP 403. No replacement baseline approved."
+    }
+  ],
+  "limitations": "Production retrieval must be verified after deployment. Local success is not Worker access. No warnings suppressed or clinical approval claimed."
+}

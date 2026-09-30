@@ -14,7 +14,7 @@
     "medicines-watch/data.mjs": "dde1e11ddf5d031bd8792f4ceaad63a7650b612d150423e53e717044ba8d328e",
     "medicines-watch/discovery.mjs": "a01bbf9abaa489416ce22b9cf319fefc259e2b05dd0a174a9fdd96a11e330bf5",
     "medicines-watch/industry-page.mjs": "0550cc58504082f706569e92d0071ad47a244c0e5fb1fee47be018c3c8de77ce",
-    "medicines-watch/industry.mjs": "9a29080d1ff9e66f6d687fdcd85d757d7024982bbe23d51809df216045edfae4",
+    "medicines-watch/industry.mjs": "e925cd7694bde598097e41ad7b43a3291ffcd1ae4e269635208e28b4cc9cf363",
     "medicines-watch/industry.test.mjs": "de08084833bfd4e593a571551fb0a1c5393b6ea2704dd783e549d910dde0cc37",
     "medicines-watch/page.mjs": "16dbad095feef328095981641ef04eafc837308e5f7983f99d3fbf4db84d7f81",
     "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json": "ac8a2089636a3e2ab22a05762a3b32558b7575064a05ec5c36e0a9d8d1d61d10",
@@ -51,16 +51,16 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "1156c99e375249732329ddc710ddb0a2e1cb4ae230c5d9608714d66a2170d597",
-    "release/growth-adopt-deployment.mjs": "0697f0d85f35e18c631bfe306c31f8b0b093ff91ebc47ee1a11e29d03397aaa2",
+    "release/app-preflight.mjs": "9a8f665e2f268a5b32aeeaafab0f934a0ade6cb294e7c6b6e6c9df8113f1b0b3",
+    "release/growth-adopt-deployment.mjs": "ea1af1a8417e32a34b1a2502ac4f8ba49a59033f0903b72d7fd52552b1e80aa5",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
     "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
-    "scripts/b1-release-scope.mjs": "76bdcda25b4cf200ac9e33236f9713079ae3fb30dc6b40a93307c182d9d0ea8a",
+    "scripts/b1-release-scope.mjs": "69211c369f3350cbe6b633c5aef03f8a20f164138d33d0e3f5632d961cc349c2",
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
     "tests/app-layout-live.test.mjs": "d5d532d238c1b889520ea3a548351b416202e518941784859df0f316c326465a",
-    "tests/b1-release-scope.test.mjs": "b34c6c81bd5f26218018ac5c689facaed1f3598519096cbe295752709ecd8113",
+    "tests/b1-release-scope.test.mjs": "30a99c8d394ff2f7b3d7ab738290255cd639282f2d4ffc963cb77515f82eee22",
     "tests/member-focus-release.test.mjs": "c8ec0cac8283c7f5edd8a25f727c7230e0e9db0a63964d9bd8575f53a4a2f424",
     "medicines-watch/knowledge.mjs": "c7078053267c8ec36937d6e25a8ca3b2200b476bc8cb570f2a666117abe69ac5",
     "medicines-watch/knowledge.test.mjs": "95d7d1770f23ade771af7d89733b3d3b4b575bdd39b6c024b548ebeffa0ac3c4",
@@ -92,6 +92,7 @@
     "medicines-watch/reviews/2026-09-30-hrs1596-discovery.json": "527daebe2c234248df9deb5dd151dd6533bb830adaaf879eb628fc6a40bf8f18",
     "medicines-watch/reviews/2026-09-30-env308-discovery.json": "f21e0ce614b78de485d48e7a4d5b48ca6953d8f6cc3db38cc3500e2ca9f4f849",
     "preview/home-banner/cream-header.mjs": "abf8df7508c6631d9b36eba90f4a0326e232e57bae65bae375ffc8632aab32b4",
-    "preview/home-banner/four-step.mjs": "406eb06c34dad5b284568f134b161380c3eb46cf802ba6fcef1f8b834858f262"
+    "preview/home-banner/four-step.mjs": "406eb06c34dad5b284568f134b161380c3eb46cf802ba6fcef1f8b834858f262",
+    "medicines-watch/reviews/2026-09-30-source-warning-repairs.json": "9f16f6143c12d4b463146679c133de2ff3a703514e4703f61f21fb5324be38a5"
   }
 }
