@@ -52,7 +52,7 @@
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
     "release/app-preflight.mjs": "a2b74d8cda31509e8e68637bb5d1b73e43fd24ff42bd47c62fea3a652d90f6bf",
-    "release/growth-adopt-deployment.mjs": "8ab933bbf888d0a2cad3616ca99e8e583bba72607a2e9f08b2cc9cf76a719069",
+    "release/growth-adopt-deployment.mjs": "0697f0d85f35e18c631bfe306c31f8b0b093ff91ebc47ee1a11e29d03397aaa2",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
     "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
