@@ -1,0 +1,71 @@
+{
+  "reviewedAt": "2026-09-30T10:32:33Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "proposal_only",
+  "ownerEditorialAuthorisation": null,
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "hrs1596-hengrui-20260929",
+      "title": "Hengrui and Novo licence agreement for HRS-1596",
+      "url": "https://www.hengrui.com/en/media/detail-1042.html",
+      "checkUrl": "https://www.hengrui.com/en/media/detail-1042.html",
+      "format": "html",
+      "contentSelector": "article",
+      "sourcePublishedAt": "2026-09-29",
+      "reviewedAt": "2026-09-30T10:32:33Z",
+      "requiredTerms": [
+        "HRS-1596",
+        "phase I-ready",
+        "Novo"
+      ],
+      "evidenceType": "original sponsor announcement",
+      "reviewedFingerprint": "62aef0982e1b9f71f48111b34a1a79667a979166100e417b8143918278623099",
+      "responseSha256": "b6fed9614a3e42b3416a59ad4ddb902a2d5e8fe9f6a79356950c520b4f20df38",
+      "bytes": 12075,
+      "httpStatus": 200,
+      "withdrawn": false,
+      "sourceUpdatedAt": null,
+      "assessment": "Hengrui describes HRS-1596 as phase I-ready, with potential for once-weekly oral dosing, and says it has Chinese approval to initiate Phase I research for weight management and type 2 diabetes. The proposed Novo licence excludes Greater China and remained subject to closing conditions expected in Q4 2026. Potential dosing and expected transaction closing are not completed events."
+    }
+  ],
+  "registry": {
+    "title": "ClinicalTrials.gov NCT07841860",
+    "url": "https://clinicaltrials.gov/study/NCT07841860",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07841860",
+    "sourcePublishedAt": "2026-09-25",
+    "reviewedAt": "2026-09-30T10:32:33Z",
+    "evidenceType": "original trial registry record",
+    "responseSha256": "ffad8c047bd359545db295101edcd54a461dfc7e287d7082e089af20cdc10864",
+    "bytes": 7455,
+    "nctId": "NCT07841860",
+    "phase": "Phase 1",
+    "overallStatus": "NOT_YET_RECRUITING",
+    "estimatedStart": "2026-09",
+    "enrolment": "122 estimated",
+    "location": "China",
+    "assessment": "The registry describes single-dose research in healthy participants and multiple-dose research in participants with obesity. It does not show recruitment as started, trial completion, results, a weekly clinical regimen, UK authorisation, NHS access or supply."
+  },
+  "proposal": {
+    "id": "hrs1596",
+    "name": "HRS-1596",
+    "group": "research",
+    "stage": "Phase I registered; not yet recruiting in the reviewed registry",
+    "summary": "Hengrui describes HRS-1596 as a GLP-1/GIP dual agonist being developed as a potential once-weekly oral treatment. ClinicalTrials.gov lists a Chinese Phase I study as not yet recruiting. Hengrui announced a proposed licence to Novo Nordisk outside Greater China; closing had not been confirmed by the reviewed evidence.",
+    "sourceIds": [
+      "hrs1596-hengrui-20260929"
+    ],
+    "additionalEvidence": [
+      "https://clinicaltrials.gov/study/NCT07841860"
+    ],
+    "reviewedAt": "2026-09-30T10:32:33Z",
+    "clinicalApproval": null,
+    "ukAuthorisation": "No UK marketing authorisation is established by the reviewed evidence.",
+    "nhsEngland": "No NHS access is established by the reviewed evidence.",
+    "supply": "No lawful UK retail supply or pharmacy stock is established. Trial registration and a licence agreement are not supply.",
+    "limitations": "Early-stage sponsor and registry evidence only. The trial is not yet recruiting, the proposed weekly dosing has not been established as an approved regimen, and the licence transaction remained subject to closing conditions."
+  },
+  "retrievalFailures": [],
+  "nextAction": "Editorially decide whether this early-stage programme should be added to the live wider-industry summaries. If authorised, configure only the Hengrui announcement for monitoring and retain the registry record as separate evidence; do not advance unrelated review dates."
+}

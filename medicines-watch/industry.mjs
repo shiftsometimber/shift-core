@@ -2,8 +2,9 @@
 // The associated source reviews and retrieval limitations are in the dated receipt.
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
 import followup from './reviews/2026-09-30-reviewed-expansion.json' with {type:'json'};
+import continuing from './reviews/2026-09-30-authorised-continuing-discovery.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources].map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.id.endsWith('-smpc')?'Product information updated':'Source publication date',
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -78,4 +79,4 @@ const originalIndustry = [
 export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
-}),...followup.entries];
+}),...followup.entries,...continuing.entries];
