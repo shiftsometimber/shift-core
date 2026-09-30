@@ -1,0 +1,108 @@
+{
+  "reviewedAt": "2026-09-30T11:44:48Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "proposal_only",
+  "ownerEditorialAuthorisation": null,
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "emugrobart-chugai-20260928",
+      "title": "Chugai: discontinuation of emugrobart obesity development",
+      "url": "https://www.chugai-pharm.co.jp/english/news/detail/20260928160000_1289.html",
+      "checkUrl": "https://www.chugai-pharm.co.jp/english/news/detail/20260928160000_1289.html",
+      "format": "html",
+      "contentSelector": "main",
+      "sourcePublishedAt": "2026-09-28",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-09-30T11:44:48Z",
+      "requiredTerms": [
+        "emugrobart",
+        "GYMINDA",
+        "discontinue development for obesity"
+      ],
+      "evidenceType": "original developer announcement",
+      "reviewedFingerprint": "03ca2e806407bfd2dc1db310fdf7c3afdc8d9a44d9c8c84813fd3389fa67fda0",
+      "responseSha256": "e83cf075ec7f80e60bddc5c9cec583018f89e0f002e9f5c80b101153c6fb2732",
+      "bytes": 47052,
+      "httpStatus": 200,
+      "withdrawn": false,
+      "assessment": "Chugai says Roche will end all future development of emugrobart for obesity and return the licensed rights. It attributes the decision to a comprehensive assessment including an interim Phase II GYMINDA analysis, which made the pre-specified clinically meaningful weight-loss objective unlikely. It reports tolerability and no new safety signal, but that does not establish efficacy, approval, access or supply. Chugai's separate preparation to resume work in spinal muscular atrophy does not continue the obesity programme."
+    },
+    {
+      "id": "petrelintide-zealand-20260929",
+      "title": "Zealand Pharma: ZUPREME-1 publication and Phase 3 programme status",
+      "url": "https://www.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "checkUrl": "https://www.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "format": "html",
+      "contentSelector": "#main-body-container",
+      "sourcePublishedAt": "2026-09-29",
+      "sourceDateline": "2026-09-30",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-09-30T11:44:48Z",
+      "requiredTerms": [
+        "Zealand Pharma",
+        "petrelintide",
+        "ZUPREME-1"
+      ],
+      "evidenceType": "original sponsor release distributed by GlobeNewswire",
+      "reviewedFingerprint": "0e622225091edfd20d33620d6520e4c8f1d8233466401b7c439f67c1e2b3e8f7",
+      "responseSha256": "14039eb4f4355b4c0f3306e37103d99a071ba9c9db75397cb24c0ef1a969782b",
+      "bytes": 69569,
+      "httpStatus": 200,
+      "withdrawn": false,
+      "assessment": "The sponsor release reports publication of the completed Phase II ZUPREME-1 results and says three global Phase III registrational trials are under way. It is consistent with the existing live Phase III summary and therefore does not justify a live claim change. It is a newly readable candidate source for editorial replacement of the currently delayed 22 September monitoring URL; changing the monitored source still requires review and must not renew unrelated dates."
+    }
+  ],
+  "registry": {
+    "title": "ClinicalTrials.gov NCT06965413 (GYMINDA)",
+    "url": "https://clinicaltrials.gov/study/NCT06965413",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06965413",
+    "sourcePublishedAt": "2025-05-11",
+    "sourceUpdatedAt": "2026-09-09",
+    "reviewedAt": "2026-09-30T11:44:48Z",
+    "evidenceType": "original trial registry record",
+    "responseSha256": "d65d68320e1da89f08c652c153bff55931ec3a93187097161f6c000fe6322450",
+    "bytes": 18620,
+    "nctId": "NCT06965413",
+    "phase": "Phase 2",
+    "overallStatus": "ACTIVE_NOT_RECRUITING",
+    "enrolment": "285 actual",
+    "actualStart": "2025-05-05",
+    "actualPrimaryCompletion": "2026-09-03",
+    "estimatedCompletion": "2027-03-31",
+    "locationsIncludeUnitedKingdom": true,
+    "assessment": "The registry's 9 September record still describes the Roche-sponsored combination study with tirzepatide as active, not recruiting. Chugai's later 28 September primary announcement is the current evidence for discontinuation of the obesity programme. The lagging registry status is retained as uncertainty rather than silently rewritten. UK trial sites are research participation, not UK marketing authorisation, NHS routine access or supply."
+  },
+  "proposals": {
+    "emugrobart": {
+      "id": "emugrobart",
+      "name": "Emugrobart (GYM329 / RO7204239)",
+      "group": "discontinued",
+      "stage": "Obesity development discontinued after Phase II interim assessment",
+      "summary": "Chugai says Roche discontinued obesity development of the anti-latent-myostatin antibody after an interim assessment of the Phase II GYMINDA combination study made its pre-specified clinically meaningful weight-loss objective unlikely. Rights are being returned to Chugai; possible work in spinal muscular atrophy is a separate indication.",
+      "sourceIds": [
+        "emugrobart-chugai-20260928"
+      ],
+      "additionalEvidence": [
+        "https://clinicaltrials.gov/study/NCT06965413"
+      ],
+      "reviewedAt": "2026-09-30T11:44:48Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "No UK marketing authorisation is established by the reviewed evidence.",
+      "nhsEngland": "No NHS routine access is established by the reviewed evidence.",
+      "supply": "No lawful UK retail supply or pharmacy stock is established. UK trial sites were research locations and do not establish supply.",
+      "limitations": "The sponsor announcement reports the interim conclusion but does not publish complete trial results. The registry had not yet reflected the later discontinuation notice, and its estimated overall completion remained in 2027."
+    },
+    "petrelintideSourceRepair": {
+      "sourceId": "petrelintide-zealand",
+      "currentLiveUrl": "https://www.globenewswire.com/news-release/2026/09/22/3366613/0/en/zealand-pharma-announces-initiation-of-the-registrational-phase-3-zupreme-program-of-petrelintide-in-people-with-overweight-or-obesity.html",
+      "candidateUrl": "https://www.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "liveClaimChangeRequired": false,
+      "monitorChangeAuthorised": false,
+      "assessment": "The candidate release is current, readable and confirms the existing Phase III programme status, but it is not silently substituted into the monitor. Editorial review should decide whether the source ID should be repointed or whether the existing failed URL should remain as historical evidence with a separate monitored source."
+    }
+  },
+  "retrievalFailures": [],
+  "nextAction": "Editorially decide whether to add emugrobart to the live discontinued-programme summaries and whether to replace or supplement the delayed petrelintide monitoring source. If authorised, make the smallest source-specific changes, retain the registry/source timing conflict, and do not advance unrelated review dates."
+}

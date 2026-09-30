@@ -6,6 +6,7 @@ import {industryMarkup} from './industry-page.mjs';
 import {discoveryDomains,queriesForDate,summariseDiscovery} from './discovery.mjs';
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
 import hrs1596Review from './reviews/2026-09-30-hrs1596-discovery.json' with {type:'json'};
+import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,26);assert.equal(sources.length,45);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,32);
@@ -45,4 +46,17 @@ test('HRS-1596 stays a sourced proposal until separately authorised',()=>{
  assert.ok(hrs1596Review.sources[0].reviewedFingerprint);
  assert.equal(industry.some(entry=>entry.id==='hrs1596'),false);
  assert.equal(industrySources.some(source=>source.id==='hrs1596-hengrui-20260929'),false);
+});
+test('continuing discovery preserves the emugrobart stop and petrelintide repair as proposals',()=>{
+ assert.equal(continuingReview.publicationStatus,'proposal_only');
+ assert.equal(continuingReview.clinicalApproval,null);
+ assert.equal(continuingReview.industryComplete,false);
+ assert.equal(continuingReview.proposals.emugrobart.group,'discontinued');
+ assert.equal(continuingReview.registry.nctId,'NCT06965413');
+ assert.equal(continuingReview.registry.overallStatus,'ACTIVE_NOT_RECRUITING');
+ assert.equal(continuingReview.proposals.petrelintideSourceRepair.liveClaimChangeRequired,false);
+ assert.ok(continuingReview.sources.every(source=>source.reviewedFingerprint));
+ assert.ok(discoveryDomains.includes('chugai-pharm.co.jp'));
+ assert.equal(industry.some(entry=>entry.id==='emugrobart'),false);
+ assert.equal(industrySources.some(source=>source.id==='emugrobart-chugai-20260928'),false);
 });
