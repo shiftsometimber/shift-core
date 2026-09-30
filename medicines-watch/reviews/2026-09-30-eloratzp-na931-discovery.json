@@ -1,7 +1,7 @@
 {
-  "reviewedAt": "2026-09-30T17:16:00Z",
+  "reviewedAt": "2026-09-30T19:06:00Z",
   "reviewType": "AI-assisted discovery review; proposal only; not clinical approval",
-  "scope": "Current-date topic discovery plus a broader undated search for untracked obesity combinations and muscle-preservation approaches. No live catalogue, monitor source, review date or public wording changes.",
+  "scope": "Current-date topic discovery plus a broader undated search for untracked obesity combinations and muscle-preservation approaches, including the separately staged ZYNERGY combination. No live catalogue, monitor source, review date or public wording changes.",
   "discoveryPasses": [
     {
       "type": "current-date",
@@ -88,6 +88,31 @@
         }
       ],
       "assessment": "The registry is the controlling stage evidence: NCT06732245 is not yet recruiting, with estimated enrolment and completion dates. Developer claims about Phase 3 advancement and preserved muscle mass are not treated as completed trial evidence. Fat-mass, body-composition and physical-function outcomes are planned measurements, not results."
+    },
+    {
+      "id": "zynergy-petrelintide-enicepatide",
+      "name": "Petrelintide plus enicepatide (ZYNERGY)",
+      "developer": "Hoffmann-La Roche",
+      "proposedDisposition": "review_for_bounded_combination_entry",
+      "stage": "ClinicalTrials.gov Phase 2, not yet recruiting; estimated start 30 September 2026.",
+      "relevance": "Previously untracked amylin-plus-GLP-1/GIP combination programme joining two separately tracked investigational medicines. The combination cannot inherit either monotherapy's stage, evidence or outcome claims.",
+      "ukAuthorisation": "No UK authorisation established by the reviewed registry record.",
+      "nhsAccess": "No NHS access established by the reviewed registry record.",
+      "actualSupply": "No lawful UK supply established; the registry lists an investigational study and no locations in the retrieved record.",
+      "evidence": [
+        {
+          "type": "ClinicalTrials.gov registry API",
+          "url": "https://clinicaltrials.gov/study/NCT07589686",
+          "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07589686",
+          "sourcePublishedAt": "2026-05-15",
+          "sourceUpdatedAt": "2026-09-09",
+          "retrievedAt": "2026-09-30T19:05:25Z",
+          "httpStatus": 200,
+          "bytes": 10252,
+          "responseSha256": "5397ab368665503d3240d311fa59154c60c208c8e0a2c93c45a946382a430102"
+        }
+      ],
+      "assessment": "The registry is the controlling stage evidence: NCT07589686 is a Phase 2 dose-finding study of petrelintide co-administered with enicepatide, not yet recruiting, with 486 estimated participants. Its 30 September 2026 start, 12 November 2027 primary completion and 31 January 2028 completion are all estimates. Planned weight, metabolic and safety outcomes are not results, and the record establishes neither UK approval nor access nor supply."
     }
   ],
   "uncertainties": [
@@ -95,6 +120,7 @@
     "ClinicalTrials.gov has no posted results for NCT06603571 in the retrieved record; completed status does not itself validate sponsor-reported outcomes.",
     "The NA-931 developer page and current registry status conflict on development stage. The registry remains not yet recruiting and its estimated start date has passed, so no recruitment or Phase 3 claim is proposed.",
     "The NA-931 registry lists no UK location. Absence from these reviewed sources is not proof of absence from every global regulator or trial register.",
+    "The ZYNERGY registry's estimated start date is today while its status remains not yet recruiting. Do not describe the study as started or recruiting until the registry changes.",
     "No name-specific MHRA or NICE decision was identified in this pass; no negative regulatory claim should be stated without a direct authoritative record.",
     "Industry discovery remains open-ended and incomplete."
   ],
