@@ -1,0 +1,174 @@
+{
+  "reviewedAt": "2026-09-30T20:23:00Z",
+  "reviewType": "AI-assisted factual discovery review; not clinical approval",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "Older omission found by broader topic discovery, corroborated against current primary registry records. Adds a review receipt only.",
+  "candidate": {
+    "id": "bi3034701",
+    "name": "BI 3034701",
+    "developer": "Boehringer Ingelheim; developed in cooperation with Gubra",
+    "group": "research",
+    "stage": "Phase 2, active not recruiting",
+    "formulation": "Subcutaneous investigational peptide",
+    "mechanism": "GLP-1/GIP/NPY2 receptor agonist",
+    "summary": "A separately staged triple-receptor programme for obesity or overweight. The Phase 2 registry records 344 actual participants and an actual start on 30 June 2026; completion dates remain estimates and no results are posted.",
+    "ukAuthorisation": "Not established by the reviewed research sources. UK trial locations do not establish a marketing authorisation.",
+    "nhsAccess": "Not established by the reviewed evidence.",
+    "actualSupply": "No commercial UK supply or pharmacy stock established.",
+    "limitations": "Sponsor descriptions of differentiation and earlier tolerability are not evidence of comparative effectiveness, proven muscle preservation or established safety and efficacy."
+  },
+  "evidence": [
+    {
+      "type": "Original Boehringer sponsor announcement distributed by GlobeNewswire",
+      "url": "https://www.globenewswire.com/news-release/2026/07/16/3328210/0/en/boehringer-ingelheim-strengthens-obesity-pipeline-as-potential-first-in-class-triple-receptor-agonist-bi-3034701-enters-phase-ii-development.html",
+      "sourcePublishedAt": "2026-07-16",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-09-30T20:23:00Z",
+      "reviewMethod": "Read release body, programme description, audience notice and trial reference.",
+      "reviewedFingerprint": null,
+      "assessment": "Announces Phase 2 initiation and identifies GLP-1/GIP/NPY2 mechanism and cooperation with Gubra. This international release says it is not intended for UK and US audiences; it is retained as research evidence, not UK prescribing or product information.",
+      "monitorStatus": "Not configured; no production retrieval or approved monitoring baseline established."
+    },
+    {
+      "type": "ClinicalTrials.gov registry API",
+      "url": "https://clinicaltrials.gov/study/NCT07662122",
+      "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07662122",
+      "sourcePublishedAt": "2026-06-23",
+      "sourceUpdatedAt": "2026-09-29",
+      "retrievedAt": "2026-09-30T20:21:27.283Z",
+      "httpStatus": 200,
+      "bytes": 21001,
+      "responseSha256": "0127f374353ba510820a861f02fec0d8cab69ec1b59052a0d13302e4b4a036e9",
+      "phase": "PHASE2",
+      "overallStatus": "ACTIVE_NOT_RECRUITING",
+      "enrolment": {
+        "count": 344,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2026-06-30",
+        "type": "ACTUAL"
+      },
+      "primaryCompletion": {
+        "date": "2027-06-26",
+        "type": "ESTIMATED"
+      },
+      "completion": {
+        "date": "2027-07-10",
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "assessment": "Controlling Phase 2 stage evidence. Dose-finding study of subcutaneous BI 3034701 versus placebo; UK locations are research sites, not access or supply evidence. Estimated completion does not demonstrate completed outcomes."
+    },
+    {
+      "type": "ClinicalTrials.gov registry API",
+      "url": "https://clinicaltrials.gov/study/NCT07754474",
+      "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07754474",
+      "sourcePublishedAt": "2026-08-10",
+      "sourceUpdatedAt": "2026-09-23",
+      "retrievedAt": "2026-09-30T20:21:27.432Z",
+      "httpStatus": 200,
+      "bytes": 7127,
+      "responseSha256": "bcdaab440bd7c5093178e4595677c86cb3643d996f53de1a1ddc2ffa2780be96",
+      "phase": "PHASE1",
+      "overallStatus": "RECRUITING",
+      "enrolment": {
+        "count": 70,
+        "type": "ESTIMATED"
+      },
+      "start": {
+        "date": "2026-09-01",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2027-06-21",
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "assessment": "Separate ongoing dose-titration safety/pharmacokinetic study in Germany. It neither downgrades the separate Phase 2 programme nor establishes completed results."
+    }
+  ],
+  "monitorObservation": {
+    "url": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "latestAttemptAt": "2026-09-30T20:01:05.554Z",
+    "configuredSources": 48,
+    "current": 44,
+    "checkDelayed": 4,
+    "overdueReviews": 0,
+    "unchangedWarnings": [
+      {
+        "sourceId": "pf3944-pfizer",
+        "failure": "HTTP 520"
+      },
+      {
+        "sourceId": "danuglipron-pfizer",
+        "failure": "HTTP 520"
+      },
+      {
+        "sourceId": "az-elecoglipron-20260608",
+        "failure": "HTTP 403"
+      },
+      {
+        "sourceId": "foundayo-nice",
+        "failure": "HTTP 500"
+      }
+    ],
+    "assessment": "Unchanged since the verified production release. No monitor baseline or medical review renewed by this observation."
+  },
+  "discoveryPasses": [
+    {
+      "type": "current-date",
+      "themes": [
+        "Obesity, amylin, muscle preservation and trial announcements around 30 September 2026",
+        "Oral and injectable studies, paused/discontinued programmes"
+      ],
+      "domainsSearchedInGroups": [
+        "Novo Nordisk",
+        "Lilly",
+        "Amgen",
+        "Roche",
+        "Zealand",
+        "Pfizer",
+        "Viking",
+        "Structure",
+        "Boehringer Ingelheim",
+        "AstraZeneca",
+        "Merck",
+        "Hansoh",
+        "Kailera",
+        "ClinicalTrials.gov"
+      ],
+      "status": "partial",
+      "limitation": "Grouped search results do not demonstrate individual coverage or an exhaustive industry scan."
+    },
+    {
+      "type": "broader-undated",
+      "themes": [
+        "Untracked multi-receptor programmes",
+        "Muscle-preservation trials and early or terminated programmes",
+        "Regulatory and NHS context"
+      ],
+      "status": "partial",
+      "finding": "BI 3034701 is an older omission, not a newly announced September launch."
+    }
+  ],
+  "additionalPrimaryReview": {
+    "url": "https://www.gov.uk/drug-device-alerts/mhra-safety-roundup-september-2026",
+    "sourcePublishedAt": "2026-09-29",
+    "assessment": "Read roundup; no material change for tracked weight-management claims identified in this document."
+  },
+  "incompleteChecks": [
+    "All requested sponsors were not individually exhaustively reviewed; grouped searches returned noisy or incomplete results.",
+    "NHS and official product-information documents were not individually reread in this discovery pass; configured monitoring is not a renewed factual review.",
+    "Name-specific UK regulatory authorisation, NHS access and actual supply for BI 3034701 remain unverified.",
+    "No production source baseline established for the new proposal. Existing source failures remain explicit."
+  ],
+  "nextActions": [
+    "Editorially assess inclusion as a bounded research summary.",
+    "Before publication, preserve trial/formulation-specific stages and estimated versus actual dates; apply any required clinical governance.",
+    "Establish a complete-response, identity-validated monitoring baseline separately before configuring a source check.",
+    "Continue open-ended topic discovery; neither six proposals nor 48 monitored sources demonstrates industry completeness."
+  ]
+}

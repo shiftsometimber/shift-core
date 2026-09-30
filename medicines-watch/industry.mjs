@@ -1,3 +1,4 @@
+import biPublication from './reviews/2026-09-30-authorised-bi3034701.json' with {type:'json'};
 // Factual industry evidence summaries. No entry represents clinical approval.
 // The associated source reviews and retrieval limitations are in the dated receipt.
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
@@ -81,4 +82,4 @@ const originalIndustry = [
 export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
-}),...followup.entries,...continuing.entries].map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;});
+}),...followup.entries,...continuing.entries,...biPublication.entries].map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;});

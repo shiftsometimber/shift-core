@@ -10,14 +10,14 @@ import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-disco
 import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type:'json'};
 import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,29);assert.equal(sources.length,48);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,35);
+ assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,48);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,36);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,29);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,30);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
