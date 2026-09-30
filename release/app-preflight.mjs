@@ -5,6 +5,8 @@ validateAppSource();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
 const bannerApproval=await get('/actions/runs/'+HOME_BANNER_RUN);assert.equal(bannerApproval.head_sha,HOME_BANNER_PREVIEW);assert.equal(bannerApproval.conclusion,'success');assert.equal(bannerApproval.path,'.github/workflows/home-banner-preview.yml');
+// Require the successful production-font integration preview as well as the owner's signed-off design.
+const integratedBanner=await get('/actions/runs/36695679627');assert.equal(integratedBanner.head_sha,'a0c199af934192b73cafa53b0d2d372fa100da1b');assert.equal(integratedBanner.conclusion,'success');assert.equal(integratedBanner.path,'.github/workflows/home-banner-preview.yml');
 const approved=await get('/actions/runs/36636511091');assert.equal(approved.head_sha,APP_APPROVED);assert.equal(approved.conclusion,'success');
 assert.equal(approved.path,'.github/workflows/app-layout-preview.yml');
 git('merge-base','--is-ancestor',APP_APPROVED,'HEAD');
