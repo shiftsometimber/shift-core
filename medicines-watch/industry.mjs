@@ -7,8 +7,9 @@ import continuing from './reviews/2026-09-30-authorised-continuing-discovery.jso
 import repairs from './reviews/2026-09-30-source-warning-repairs.json' with {type:'json'};
 import accessRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 import berobenatide from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
+import eloraTZP from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -70,7 +71,7 @@ const originalIndustry = [
  entry('pf3944','PF-3944 / PF-08653944 / MET-097i','research','Phase 3 VESPER-4 initiation reported',
  'Pfizer’s 3 February update reports VESPER-4 initiation and plans for other studies. Weekly and monthly regimens must not be treated as interchangeable.', ['pf3944-pfizer'],{limitations:'This entry records the dated Phase 3 initiation, not completion of every planned 2026 study. Later data and naming changes need continued discovery.'}),
  entry('enicepatide','Enicepatide / CT-388','research','Phase 3 ENITH-1/2 initiation reported',
- 'Roche’s 23 April presentation reports ENITH-1/2 initiation; its June announcement describes an investigational GLP-1/GIP candidate.', ['enicepatide-roche'],{additionalEvidence:[{title:'Roche Q1 2026 presentation, page 33',url:'https://roche.com/irp260423-a.pdf',sourcePublishedAt:'2026-04-23',reviewedAt:INDUSTRY_REVIEWED_AT,checkScope:'PDF read for trial-stage evidence; not automatically content-monitored.'}]}),
+ 'Roche’s 23 April presentation reports ENITH-1/2 initiation; its June announcement describes an investigational GLP-1/GIP candidate.', ['enicepatide-roche'],{additionalEvidence:[{title:'Roche Q1 2026 presentation, page 33',url:'https://roche.com/ir2260423-a.pdf',sourcePublishedAt:'2026-04-23',reviewedAt:INDUSTRY_REVIEWED_AT,checkScope:'PDF read for trial-stage evidence; not automatically content-monitored.'}]}),
  entry('danuglipron','Danuglipron','discontinued','Development discontinued',
  'Pfizer announced discontinuation on 14 April 2025. It should not remain on a list of advancing treatment candidates.', ['danuglipron-pfizer']),
  entry('dapiglutide','Dapiglutide','paused','Development paused',
@@ -86,4 +87,6 @@ export const industry = [...originalIndustry.map(e => {
 }),...followup.entries,...continuing.entries,...biPublication.entries]
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
-  sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e);
+  sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
+ .map(e=>e.id===eloraTZP.change.id?{...e,...eloraTZP.change.fields,reviewedAt:eloraTZP.reviewedAt,
+  additionalEvidence:[...(e.additionalEvidence||[]),...eloraTZP.change.additionalEvidence]}:e);
