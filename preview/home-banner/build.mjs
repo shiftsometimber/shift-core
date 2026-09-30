@@ -1,7 +1,7 @@
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
-import {banner,css,insertBanner} from './banner.mjs';
+import {banner,css,addHomeBanner as insertBanner} from '../../home-route-banner.mjs';
 mkdirSync('preview/home-banner/generated',{recursive:true});mkdirSync('home-banner-proof',{recursive:true});
 const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const baseline=await r.text(),candidate=insertBanner(baseline);
 assert.equal(candidate.replace(banner,'').replace(css,''),baseline);

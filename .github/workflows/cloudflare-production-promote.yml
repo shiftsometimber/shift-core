@@ -245,7 +245,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
+          node --test tests/home-route-banner.test.mjs tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
         run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
@@ -469,6 +469,7 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund lighthouse@12.8.2
           mkdir -p home-speed-live
+          node release/home-banner-live.cjs
           export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';import {HOME_RECOVERY_CSS} from './home-critical-styles.mjs';import {HOME_V42_CSS} from './home-v42-critical.mjs';

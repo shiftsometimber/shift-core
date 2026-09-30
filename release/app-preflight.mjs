@@ -1,8 +1,10 @@
+import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
 import {APP_APPROVED,APP_PATHS,validateAppSource} from './app-scope.mjs';
 validateAppSource();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
+const bannerApproval=await get('/actions/runs/'+HOME_BANNER_RUN);assert.equal(bannerApproval.head_sha,HOME_BANNER_PREVIEW);assert.equal(bannerApproval.conclusion,'success');assert.equal(bannerApproval.path,'.github/workflows/home-banner-preview.yml');
 const approved=await get('/actions/runs/36636511091');assert.equal(approved.head_sha,APP_APPROVED);assert.equal(approved.conclusion,'success');
 assert.equal(approved.path,'.github/workflows/app-layout-preview.yml');
 git('merge-base','--is-ancestor',APP_APPROVED,'HEAD');
@@ -16,7 +18,7 @@ const expansionPaths=new Set(["medicines-watch/README.md", "medicines-watch/data
 git('merge-base','--is-ancestor',expansionCommit,'HEAD');
 // Exact manifest-pinned repair for the production-only missing embedded consent loader.
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!releaseMetadata.has(p)&&!panelConsentRepair.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);

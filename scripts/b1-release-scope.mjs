@@ -1,6 +1,7 @@
 import {GROWTH_PATHS,validateGrowthSource,validateGrowthEntry} from '../release/growth-scope.mjs';
 import {FOUNDATION_CANDIDATE,FOUNDATION_PATHS,validateFoundation} from '../release/shift-ai-scope.mjs';
 import {AI_CANDIDATE,AI_BASE,validateAiRelease} from '../release/shift-ai-scope.mjs';
+import {originalHomeSpeedSource} from '../release/home-banner-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'node:fs';
@@ -44,7 +45,7 @@ const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
 const SPEED_CANDIDATE='bcad2b051e932577a0b897f728610bdeb37282da';
 const SPEED_PATHS=["tests/seo794-preservation.test.mjs","home-v42-critical.mjs","home-blocking-styles.mjs","release/member-details-preservation.mjs","tests/home-speed-green.test.mjs","public-startup-stability.mjs","home-critical-styles.mjs","home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
-function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',SPEED_CANDIDATE+':'+path),'Home speed source drift: '+path);}
+function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(originalHomeSpeedSource(path,execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'})),execFileSync('git',['show',SPEED_CANDIDATE+':'+path],{encoding:'utf8'}),'Home speed source drift: '+path);}
 
 // Owner authorised this exact preview-tested repair on 27 September.
 const HEADING_CANDIDATE='90b1e29db85591b84dec642c3304641bc9545529';
