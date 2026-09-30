@@ -6,14 +6,14 @@ import {industryMarkup} from './industry-page.mjs';
 import {discoveryDomains,queriesForDate,summariseDiscovery} from './discovery.mjs';
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,18);assert.equal(sources.length,38);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,24);
+ assert.equal(medicines.length,6);assert.equal(industry.length,26);assert.equal(sources.length,45);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,32);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,18);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,26);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });

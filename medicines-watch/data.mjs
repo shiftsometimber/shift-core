@@ -205,15 +205,16 @@ export const medicines = [
   },
   {
     id: 'retatrutide', name: 'Retatrutide', ingredient: 'Retatrutide',
+    reviewedAt: '2026-09-30T08:10:07.915Z',
     route: 'Weekly injection studied in trials', status: 'investigational',
     authorisation: 'Not authorised in the UK. MHRA confirmed this on 24 July 2026; later sponsor evidence still describes it as investigational.',
     mechanism: 'Acts on GIP, GLP-1 and glucagon receptors.',
-    benefit: 'Being studied for weight management. Sponsor-reported Phase 3 results do not establish an approved treatment.',
-    tradeoffs: ['Digestive symptoms and treatment discontinuations were reported in trials.', 'Longer-term outcomes and regulatory assessment remain important uncertainties.'],
+    benefit: "Lilly reported detailed Phase 3 TRIUMPH-2 results on 29 September 2026 in adults with type 2 diabetes and obesity or overweight. Retatrutide remains investigational.",
+    tradeoffs: ["Gastrointestinal adverse events, dysesthesia and treatment discontinuations were reported.", "A US submission is planned for Q1 2027; this is neither a completed submission nor UK approval."],
     access: {
       private: 'No approved UK retail treatment. Products marketed online are not equivalent to medicine supplied within a regulated trial.',
       nhsEngland: 'No routine NHS weight-management access is confirmed; this remains research-stage treatment.',
     },
-    sourceIds: ['retatrutide-mhra', 'retatrutide-lilly'],
+    sourceIds: ['retatrutide-mhra', 'retatrutide-lilly', 'lilly-triumph2-20260929'],
   },
 ];

@@ -1,8 +1,9 @@
 // Factual industry evidence summaries. No entry represents clinical approval.
 // The associated source reviews and retrieval limitations are in the dated receipt.
 import evidence from './reviews/2026-09-29-industry-expansion.json' with {type:'json'};
+import followup from './reviews/2026-09-30-reviewed-expansion.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = evidence.sources.map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources].map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.id.endsWith('-smpc')?'Product information updated':'Source publication date',
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -19,7 +20,7 @@ const entry=(id,name,group,stage,summary,sourceIds,extra={})=>({id,name,group,st
  reviewedAt:INDUSTRY_REVIEWED_AT,clinicalApproval:null,
  ...(group==='established'?{}:researchAccess),
  limitations:'A dated source summary, not a prescribing guide, efficacy ranking or prediction of approval.',...extra});
-export const industry = [
+const originalIndustry = [
  entry('liraglutide','Saxenda / liraglutide','established','UK product information and NICE guidance',
  'Daily injectable GLP-1 treatment. The UK product information includes adult weight management with dietary changes and physical activity.',
  ['saxenda-smpc','liraglutide-nice'],{
@@ -72,3 +73,9 @@ export const industry = [
  entry('amg513','AMG 513','discontinued','Future development discontinued',
  'Amgen’s Q2 2026 update says future development will stop while the existing Phase 1 study follows enrolled participants through completion.', ['amgen-q2-2026']),
 ];
+
+// Preserve historical source dates; only the affected entry receives the newer review.
+export const industry = [...originalIndustry.map(e => {
+ const update=followup.updates.find(u=>u.id===e.id);
+ return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
+}),...followup.entries];

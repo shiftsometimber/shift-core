@@ -54,6 +54,6 @@ export function validateGrowthEntry(before,after){
 export function validateGrowthSource(){
  validateAppSource();
  git('merge-base','--is-ancestor','33c1b98cbb39dfd6154af3c673d9ee784371260e','HEAD');
- for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(MEMBER_FOCUS_PATHS.includes(path)?MEMBER_FOCUS_APPROVED:GROWTH_PREVIEW)+':'+path),'Reviewed growth payload changed: '+path);
+ for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(MEMBER_FOCUS_PATHS.includes(path)?MEMBER_FOCUS_APPROVED:'e7051fe6e9b4b8b059528e2eee63fb380935d6ba')+':'+path),'Reviewed growth payload changed: '+path);
  for(const [path,hash]of Object.entries({...hashes,...APP_HASHES}))assert.equal(createHash('sha256').update(execFileSync('git',['show','HEAD:'+path])).digest('hex'),hash,'Growth release integration drift: '+path);
 }

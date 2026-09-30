@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "title": "30 September 2026 Medicines Watch discovery proposals",
+  "reviewedAt": "2026-09-30T08:02:41Z",
+  "baseCommit": "f183917eefe46e0ac11dea9dba93b8749d9c7341",
+  "status": "draft factual review; not runtime data; not approved for publication",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "reviewScope": "AI-assisted factual reading of specified primary documents; no clinical sign-off, no automated baseline approval, no exhaustive industry claim.",
+  "priorWork": {
+    "mergedExpansionPRs": [
+      851,
+      854
+    ],
+    "openRelatedReviewPR": 815,
+    "duplicateCheck": "Open PR titles checked on 30 September 2026; PR 815 addresses separate retatrutide access context.",
+    "repositoryCatalogue": {
+      "detailedEntries": 6,
+      "industryEntries": 18,
+      "totalEntries": 24,
+      "configuredSourceDocuments": 38
+    },
+    "liveCatalogueCountVerifiedThisRun": false
+  },
+  "pass1": {
+    "status": "incomplete",
+    "health": {
+      "url": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+      "verified": false,
+      "attempts": [
+        "Search-service open unavailable",
+        "Direct urllib retrieval HTTP 403",
+        "Public browser ERR_BLOCKED_BY_CLIENT"
+      ],
+      "interpretation": "Environment could not read endpoint; site outage and monitor state cannot be inferred."
+    },
+    "publicPage": {
+      "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+      "verified": false,
+      "attempts": [
+        "Search-service open unavailable",
+        "Direct urllib retrieval HTTP 403"
+      ]
+    },
+    "sourceScanComplete": false,
+    "changedFingerprintsVerified": [],
+    "reviewDatesRenewed": [],
+    "baselinesApproved": [],
+    "limitations": [
+      "Fresh configured-source content hashes, withdrawals and source-health totals not verified.",
+      "Repository retains 23 September reviews which reach the seven-day boundary later on 30 September; no automatic date renewal.",
+      "Existing blocked-source conditions are not treated as newly observed failures.",
+      "No new UK authorisation, NHS funding or stock claim is established by this run."
+    ]
+  },
+  "pass2": {
+    "status": "partial evidence-backed discovery",
+    "scanComplete": false,
+    "industryComplete": false,
+    "searchMethods": [
+      "September 2026 topic searches for obesity, oral and injectable mechanisms, trial results and paused/discontinued programmes.",
+      "Broader undated searches for omitted muscle-preservation combinations, early-stage and international programmes.",
+      "Primary evidence opened and read before proposing copy; snippets alone retained only as candidates."
+    ],
+    "domainsWithSearchActivity": [
+      "gov.uk",
+      "nice.org.uk",
+      "nhs.uk",
+      "england.nhs.uk",
+      "medicines.org.uk",
+      "clinicaltrials.gov",
+      "novonordisk.com",
+      "lilly.com",
+      "amgen.com",
+      "zealandpharma.com",
+      "roche.com",
+      "pfizer.com",
+      "vikingtherapeutics.com",
+      "structuretx.com",
+      "boehringer-ingelheim.com",
+      "astrazeneca.com",
+      "hansoh.cn",
+      "kailera.com",
+      "regeneron.com",
+      "scholarrock.com",
+      "merck.com"
+    ],
+    "domainActivityMeaning": "Search activity is not a complete domain review. Some results were sparse or irrelevant; no domain absence claim is made.",
+    "coverageAdded": [
+      "Oral and injectable programmes kept separate",
+      "China and global trial stages kept separate",
+      "Muscle-preservation combinations",
+      "Early-phase triple agonist",
+      "Older published research omissions"
+    ],
+    "incompleteChecks": [
+      {
+        "url": "https://clinicaltrials.gov/study/NCT06445075",
+        "status": "incomplete: extracted page lacked study fields"
+      },
+      {
+        "url": "https://clinicaltrials.gov/study/NCT06299098",
+        "status": "incomplete: extracted page lacked study fields"
+      },
+      {
+        "url": "https://www.england.nhs.uk/ourwork/prevention/obesity/medicines-for-obesity/weight-management-injections/",
+        "status": "blocked: robot wall"
+      },
+      {
+        "url": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11650",
+        "status": "retrieval failed: retain existing later reviewed evidence; do not replace with stale search snippet"
+      },
+      {
+        "url": "https://www.medicines.org.uk/emc/",
+        "status": "incomplete: fresh exact SmPC evidence not read in this run"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "lilly-triumph2-20260929",
+      "title": "Retatrutide TRIUMPH-2 detailed Phase 3 results",
+      "url": "https://investor.lilly.com/node/54981",
+      "sourcePublishedAt": "2026-09-29",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "sponsor announcement",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "roche-ct388-20260922",
+      "title": "Enicepatide CT388-104 Phase II results",
+      "url": "https://www.roche.com/media/releases/med-cor-2026-09-22",
+      "sourcePublishedAt": "2026-09-22",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "sponsor announcement",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "az-elecoglipron-20260608",
+      "title": "Elecoglipron Phase IIb results and Phase III plans",
+      "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/elecoglipron-an-oral-small-molecule-glp-1-ra-moves-to-phase-iii-programme.html",
+      "sourcePublishedAt": "2026-06-08",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "sponsor announcement",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "kailera-q2-2026",
+      "title": "Kailera Q2 2026 programme update",
+      "url": "https://investors.kailera.com/news-releases/news-release-details/kailera-reports-second-quarter-2026-financial-results-and",
+      "sourcePublishedAt": "2026-08-12",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "sponsor announcement",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "hansoh-olatorepatide-20260604",
+      "title": "Olatorepatide Chinese NDA acceptance",
+      "url": "https://www.hansoh.cn/en/news/news-detail-514034.htm",
+      "sourcePublishedAt": "2026-06-04",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "sponsor announcement",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "apitegromab-embraze-paper",
+      "title": "Apitegromab with tirzepatide: EMBRAZE Phase 2 paper",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13375528/",
+      "sourcePublishedAt": "2026-06-08",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "original peer-reviewed trial",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "scholarrock-current-pipeline",
+      "title": "Scholar Rock current pipeline",
+      "url": "https://scholarrock.com/our-pipeline/",
+      "sourcePublishedAt": null,
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "official pipeline; publication date unverified",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    },
+    {
+      "id": "regeneron-courage-20250917",
+      "title": "COURAGE Phase 2 body-composition findings",
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/results-phase-2-courage-trial-demonstrating-potential-improve",
+      "sourcePublishedAt": "2025-09-17",
+      "factualReviewedAt": "2026-09-30T08:02:41Z",
+      "evidenceType": "sponsor announcement",
+      "retrieval": "Primary-page extracted text read; complete origin response not retained",
+      "reviewedFingerprint": null,
+      "monitorBaselineApproved": false,
+      "sourceUpdatedAt": null
+    }
+  ],
+  "proposedAdditions": [
+    {
+      "id": "elecoglipron",
+      "name": "Elecoglipron",
+      "group": "research",
+      "stage": "Phase IIb results; Phase III programme announced",
+      "summary": "AstraZeneca reported VISTA and SOLSTICE results and advancement into EMBOLD obesity and ELUMINATE diabetes development. This does not verify initiation of every planned trial.",
+      "sourceIds": [
+        "az-elecoglipron-20260608"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Gastrointestinal adverse events were common. Obesity, diabetes, combination and outcome studies require separate stage checks.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "ribupatide-injection",
+      "name": "Ribupatide injection / KAI-9531",
+      "group": "research",
+      "stage": "Global Phase III ongoing in dated sponsor update",
+      "summary": "Kailera reports ongoing KaiNETIC studies and full enrolment of a separate higher-dose Phase IIb trial.",
+      "sourceIds": [
+        "kailera-q2-2026"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Injection evidence cannot establish oral-stage progress; registry status needs verification.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "ribupatide-oral",
+      "name": "Oral ribupatide / KAI-9531-T",
+      "group": "research",
+      "stage": "China Phase II results; global Phase III planned",
+      "summary": "Kailera reports oral results from China and plans global Phase III initiation in the first half of 2027.",
+      "sourceIds": [
+        "kailera-q2-2026"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Planned initiation is not completed initiation.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "kai7535",
+      "name": "KAI-7535 / HRS-7535",
+      "group": "research",
+      "stage": "Global Phase II ongoing; separate China Phase III results",
+      "summary": "Kailera's oral programme and Hengrui's Chinese programme have different development stages.",
+      "sourceIds": [
+        "kailera-q2-2026"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Keep sponsor, geography and study distinct.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "kai4729",
+      "name": "KAI-4729 / HRS-4729",
+      "group": "research",
+      "stage": "China Phase I results; global Phase I planned",
+      "summary": "Kailera reports early triple-agonist data from China and plans global Phase I in 2026.",
+      "sourceIds": [
+        "kailera-q2-2026"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Global initiation not verified.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "olatorepatide",
+      "name": "Olatorepatide / HS-20094",
+      "group": "research",
+      "stage": "Chinese NDA accepted following Phase III",
+      "summary": "Hansoh reports Chinese acceptance of its weight-management application for a weekly GLP-1/GIP injection. Acceptance is not marketing approval.",
+      "sourceIds": [
+        "hansoh-olatorepatide-20260604"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Regeneron is the partner outside Hansoh's retained territories. Do not confuse this asset with the Hansoh/Merck oral programme or infer a UK licence.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "apitegromab-tirzepatide",
+      "name": "Apitegromab with tirzepatide",
+      "group": "research",
+      "stage": "Published Phase II body-composition research",
+      "summary": "The EMBRAZE paper reports less lean-mass loss with the combination over 24 weeks; exploratory physical-function measures showed no notable group differences.",
+      "sourceIds": [
+        "apitegromab-embraze-paper",
+        "scholarrock-current-pipeline"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "Lean mass is not equivalent to strength or function. Adverse events included gastrointestinal symptoms. The current pipeline page does not establish continuing obesity development; do not classify this as an advancing obesity programme or infer an obesity indication from another indication.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    },
+    {
+      "id": "trevogrumab-semaglutide",
+      "name": "Trevogrumab with semaglutide, with or without garetosmab",
+      "group": "research",
+      "stage": "Phase II COURAGE results published in 2025",
+      "summary": "Regeneron reported body-composition findings for these experimental combinations. The triplet had more discontinuations and two deaths; the sponsor did not establish causation.",
+      "sourceIds": [
+        "regeneron-courage-20250917"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+      "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+      "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+      "limitations": "This is an older coverage omission, not a September 2026 result. Safety, functional outcomes and current programme status require further review. Do not portray lean-mass preservation as an established clinical benefit.",
+      "publicationStatus": "proposed; not imported into the live catalogue"
+    }
+  ],
+  "proposedUpdates": [
+    {
+      "target": "data.mjs: retatrutide",
+      "id": "retatrutide",
+      "sourceIdsToAdd": [
+        "lilly-triumph2-20260929"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "fields": {
+        "benefit": "Lilly reported detailed Phase 3 TRIUMPH-2 results on 29 September 2026 in adults with type 2 diabetes and obesity or overweight. Retatrutide remains investigational.",
+        "tradeoffs": [
+          "Gastrointestinal adverse events, dysesthesia and treatment discontinuations were reported.",
+          "A US submission is planned for Q1 2027; this is neither a completed submission nor UK approval."
+        ]
+      },
+      "preserve": "Existing MHRA, UK authorisation and access wording and evidence; this proposal does not resolve the separate access-context review in PR 815."
+    },
+    {
+      "target": "industry.mjs: enicepatide",
+      "id": "enicepatide",
+      "sourceIdsToAdd": [
+        "roche-ct388-20260922"
+      ],
+      "reviewedAt": "2026-09-30T08:02:41Z",
+      "clinicalApproval": null,
+      "fields": {
+        "stage": "Phase III ENITH-1/2 ongoing; separate Phase II diabetes results",
+        "summary": "Roche reported CT388-104 results on 22 September 2026 in adults with type 2 diabetes and overweight or obesity. ENITH-1/2 weight-management trials are ongoing; additional diabetes and cardiovascular Phase III studies are planned for the first half of 2027.",
+        "limitations": "Sponsor-reported results; gastrointestinal adverse events and discontinuations occurred. Planned studies and research results do not establish UK authorisation, NHS access or supply."
+      },
+      "preserve": "Keep April presentation and June evidence as dated historical records; do not renew their review dates."
+    }
+  ],
+  "deferredCandidates": [
+    {
+      "name": "CT-996",
+      "reason": "Secondary discontinuation report discovered; primary confirmation not read. Do not publish a stopped-development claim."
+    },
+    {
+      "name": "MK-4082 / HS-10535",
+      "url": "https://www.merck.com/news/merck-enters-into-exclusive-global-license-agreement-with-hansoh-pharma-for-investigational-oral-glp-1-receptor-agonist/",
+      "reason": "Older licence announcement surfaced; current development stage not verified. Different asset from HS-20094."
+    },
+    {
+      "name": "Bimagrumab with semaglutide",
+      "reason": "Trial paper and secondary programme-status reporting surfaced; verify primary current/termination status before addition."
+    },
+    {
+      "name": "VK3019",
+      "url": "https://ir.vikingtherapeutics.com/2026-07-29-Viking-Therapeutics-Reports-Second-Quarter-2026-Financial-Results-and-Provides-Corporate-Update",
+      "reason": "Additional amylin candidate surfaced; exact evidence not fully reviewed for an entry."
+    },
+    {
+      "name": "Petrelintide plus CT-388",
+      "url": "https://www.zealandpharma.com/pipeline/petrelintide-ct-388/",
+      "reason": "Separate combination programme; planned versus actual initiation needs primary confirmation."
+    },
+    {
+      "name": "Paediatric semaglutide research",
+      "reason": "September trial reporting surfaced; requires indication-specific reading. Do not extrapolate research to UK paediatric licensing."
+    }
+  ],
+  "promotionRequirements": [
+    "Editorial review and any applicable qualified clinical review; clinicalApproval remains null until genuine approval is recorded.",
+    "Obtain complete original responses, read them and use fingerprintSource; explicitly retain any inaccessible/manual-only evidence instead of fabricating green baselines.",
+    "Verify current trial status and indication/formulation-specific UK authorisation, NHS access and supply independently.",
+    "Apply accepted candidate fields and sources to runtime files with affected reviewedAt only; retain earlier evidence history.",
+    "Run medicines-watch tests and affected release gates; use guarded workflow and live verification before claiming publication."
+  ]
+}
