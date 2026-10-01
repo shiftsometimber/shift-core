@@ -1,22 +1,25 @@
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Medicines Watch follow-up starts from the successful current release; preserve its My Timber repair.
+// Approved homepage release retains the 1 October login repair at b23010c.
+// Active version was read independently in workflow 36902083459 and matched the Mac's 12:04 deployment log.
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='bfe7b0b33a15e23abbcaad6577a9bfd389d34d94',VERSION='891ae260-f171-45fb-854e-a0f1e5b7a8f7';
+const BASE='bfe7b0b33a15e23abbcaad6577a9bfd389d34d94',VERSION='6cbd35aa-5aa8-4cf9-a976-3e7d1663374d';
 const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36781277362',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);assert.equal(active.versions[0].version_id,VERSION,'Unexpected runtime: reconcile before deployment');
-assert.equal(execFileSync('git',['diff',BASE,'HEAD','--','wrangler.jsonc'],{encoding:'utf8'}),'','Configuration changed');
+assert.equal(execFileSync('git',['diff','b23010cfca99b3ab05377062ad5b16984711111c','HEAD','--','wrangler.jsonc'],{encoding:'utf8'}),'','Configuration changed');
+const provenance=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36902083459',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+assert(provenance.ok);const baselineProof=await provenance.json();assert.equal(baselineProof.head_sha,'12e37c5b31ac3b3c5eccc2a6187b5eedc11531b5');assert.equal(baselineProof.conclusion,'success');
 mkdirSync('b1-runtime-release',{recursive:true});
 const sql="SELECT COUNT(*) AS [indexed],SUM(CASE WHEN julianday(updated_at)>=julianday('now','-2 days') THEN 0 ELSE 1 END) AS stale,SUM(CASE WHEN source_uri='https://shiftsometimber.co.uk/life-back' AND julianday(updated_at)>=julianday('now','-2 days') THEN 1 ELSE 0 END) AS lifeBackFresh,(SELECT COUNT(*) FROM ai_knowledge_chunks c JOIN ai_knowledge_documents d ON d.id=c.document_id WHERE d.category='shift_public_site' AND d.status='published_site') chunks FROM ai_knowledge_documents WHERE category='shift_public_site' AND status='published_site'";
 const result=JSON.parse(wrangler('d1','execute','DB','--remote','--json','--command',sql));assert(result.every(r=>r.success));const index=result.flatMap(r=>r.results||[])[0];assert(index.indexed>=50);assert(index.chunks>=index.indexed);
 writeFileSync('b1-runtime-release/shift-ai-public-index.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,...index,method:'Read-only aggregate of existing published-site index',customerRecordsRead:0,databaseWrites:0},null,2));
-writeFileSync('b1-runtime-release/existing-growth-deployment.json',JSON.stringify({base:BASE,version:VERSION,sourceRun:receipt.id,activeDeployment:active.id,release:process.env.GITHUB_SHA,at:new Date().toISOString(),newDeploymentRequired:true,rollbackSource:'Fresh current deployment captured by workflow before deployment'},null,2));
+writeFileSync('b1-runtime-release/existing-growth-deployment.json',JSON.stringify({base:BASE,version:VERSION,sourceRun:receipt.id,baselineProof:baselineProof.id,retainedSource:'b23010cfca99b3ab05377062ad5b16984711111c',activeDeployment:active.id,release:process.env.GITHUB_SHA,at:new Date().toISOString(),newDeploymentRequired:true,rollbackSource:'Fresh current deployment captured by workflow before deployment'},null,2));
 const reuse=reusablePublicIndex(index);
 console.log('PUBLIC_INDEX_FRESHNESS '+JSON.stringify({...index,reuse,refreshScope:'Current published website pages only; no member records'}));
 appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed=false\nexisting_index='+reuse+'\nrestore_needed=false\n');
