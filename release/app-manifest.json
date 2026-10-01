@@ -51,7 +51,7 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
     "release/app-member-live.mjs": "c640fdef76062b7afc90f0b4817ea5e9bc5dd693945ed2a1dfa2c4cdf602b96f",
-    "release/app-preflight.mjs": "1d56799ed791796586aad449ec65ea439d7fb8b63c829dde20e63a72b444ab97",
+    "release/app-preflight.mjs": "79ae50f0ae7a0cb6b6bc4d5319c4f5a1337d018995ac2a002e12cb407ecc99e5",
     "release/growth-adopt-deployment.mjs": "dcb87a5bd0691fe67bbe69ce0c00ad7bca23ef266d6f16bce59cb0dfdd37cfde",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
@@ -155,11 +155,12 @@
     "medicines-watch/reviews/2026-10-01-synt101-mad-correction.json": "8788b30c76a11c060e4ba438cdbd3d1758facd6ca7a30fba0f56ef3b89515029",
     "member-design.mjs": "050612d9e3a8fe6c8f673de2b971055100ce38042f43af9b1d044c44f9f0bca8",
     "tests/member-design-release.test.mjs": "df697570dd5d7dc0f3101fdfa063544cc431d67bc538a6ddc4865a16ce66aa97",
-    "release/member-design-scope.mjs": "a968262aff2a1464c31fe6003324395ada1203aa8dd122d1052454133b519bc2",
+    "release/member-design-scope.mjs": "fc0e607e806b429ebde26ed062f6625cfae982db705108a5e0f2047b85b40220",
     ".github/workflows/member-design-release-proof.yml": "1bb56745474ec5cddb834fa1f09e0cb0c36d16b3a54c1cc019292d843439aeea",
     ".github/workflows/member-design-preview.yml": "15f625ade3a023bf6b9ccdfb41852fb1f9c76b17825a626018945421310d4026",
     "preview/member-design/verify.cjs": "22c01b21794b69a3abe4125b2124567967260a6f93b4f3756ff853f584e40121",
-    "preview/member-design/member-feedback-proof.cjs": "58b082f47e0e8ea3bbc07847bdaf52e80379301cbb558b9c3b08171239a6cb83"
+    "preview/member-design/member-feedback-proof.cjs": "58b082f47e0e8ea3bbc07847bdaf52e80379301cbb558b9c3b08171239a6cb83",
+    ".github/workflows/continuity-live-acceptance.yml": "bc170d236dd7e5c19762ab10233844460bd228d9e4a282b9bc04deefbc51179f"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",

@@ -15,6 +15,10 @@ export function validateMemberDesignSource(){
  git('merge-base','--is-ancestor',MEMBER_DESIGN_BASE,MEMBER_DESIGN_CANDIDATE);
  git('merge-base','--is-ancestor',MEMBER_DESIGN_CANDIDATE,'HEAD');
  validateMemberDesignPayload((ref,path)=>git('rev-parse',ref+':'+path),git('diff','--name-only',MEMBER_DESIGN_BASE,MEMBER_DESIGN_CANDIDATE).split('\n').filter(Boolean));
+ const p='.github/workflows/continuity-live-acceptance.yml';
+ const original=execFileSync('git',['show',MEMBER_DESIGN_BASE+':'+p],{encoding:'utf8'});
+ const expected=original.replaceAll("frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/","frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ app-layout-live.mjs member-design.mjs growth-member-public.mjs preview/app-layout/");
+ assert.equal(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'}),expected,'Live acceptance may only classify the new presentation modules as application source');
 }
 export async function verifyMemberDesignProof(get){
  const run=await get('/actions/runs/'+MEMBER_DESIGN_RUN);

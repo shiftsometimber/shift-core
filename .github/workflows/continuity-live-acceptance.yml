@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p live-acceptance/source
           git rev-parse HEAD > live-acceptance/candidate-head.txt
-          git diff --name-only "$PR_BASE_SHA" HEAD -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ ':!member-experience/verify-production-member.mjs' > live-acceptance/application-changes.txt
+          git diff --name-only "$PR_BASE_SHA" HEAD -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ app-layout-live.mjs member-design.mjs growth-member-public.mjs preview/app-layout/ ':!member-experience/verify-production-member.mjs' > live-acceptance/application-changes.txt
           git diff "$PR_BASE_SHA" HEAD -- member-experience/verify-production-member.mjs > live-acceptance/verifier.patch
           if [ -s live-acceptance/application-changes.txt ]; then
             # An undeployed application candidate cannot match production bytes.
@@ -38,7 +38,7 @@ jobs:
             git checkout --detach "$PR_BASE_SHA"
             echo 'Live base verified; application candidate requires isolated staging and post-deploy exact verification.' > live-acceptance/scope.txt
           else
-            git diff --exit-code "$PR_BASE_SHA" -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ ':!member-experience/verify-production-member.mjs'
+            git diff --exit-code "$PR_BASE_SHA" -- frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ app-layout-live.mjs member-design.mjs growth-member-public.mjs preview/app-layout/ ':!member-experience/verify-production-member.mjs'
             echo 'Verifier-only candidate; application bytes match the PR base.' > live-acceptance/scope.txt
           fi
           git rev-parse HEAD > live-acceptance/checked-head.txt
