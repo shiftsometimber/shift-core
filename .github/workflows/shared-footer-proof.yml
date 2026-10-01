@@ -2,11 +2,22 @@ name: Shared footer continuity proof
 on:
   push:
     branches: [fix/shared-footer-every-page-20261001]
+    paths:
+      - shared-footer.mjs
+      - worker-entry-v6.js
+      - my-timber-pwa/service-worker.mjs
+      - preview/app-layout/**
+      - scripts/prove-shared-footer.cjs
+      - tests/shared-footer.test.mjs
+      - .github/workflows/shared-footer-proof.yml
 permissions:
   contents: read
 jobs:
   proof:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --ipc=host
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +27,6 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: node --test tests/shared-footer.test.mjs tests/public-shell-contract.test.mjs preview/app-layout/presentation.test.mjs my-timber-pwa/pwa.test.mjs
       - run: npm install --prefix "$RUNNER_TEMP/footer-browser" --no-audit --no-fund playwright@1.63.0
-      - run: '"$RUNNER_TEMP/footer-browser/node_modules/.bin/playwright" install --with-deps chromium webkit'
       - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/footer-browser/node_modules/playwright" node scripts/prove-shared-footer.cjs
       - name: Deploy read-only footer preview
         env:
