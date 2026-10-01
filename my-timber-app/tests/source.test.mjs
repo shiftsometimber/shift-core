@@ -10,6 +10,8 @@ const contract=JSON.parse(read('contract.json'));
 const ui=read('shared/native-presentation.js');
 const java=read('android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java');
 const swift=read('ios/Sources/MyTimberViewController.swift');
+const appDelegate=read('ios/Sources/AppDelegate.swift');
+const accountDeletion=read('../member-experience/account-deletion.mjs');
 test('PWA contract retained; no store or native-push completion claim',()=>{
  assert.equal(contract.name,'My Timber');assert.equal(contract.startPath,'/member/dashboard#today');
  assert.equal(contract.origin,'https://shiftsometimber.co.uk');
@@ -45,6 +47,7 @@ test('Final store identities are prepared but submission remains explicitly disa
  assert.match(project,/MARKETING_VERSION: 1\.0\.0/);
  assert.match(project,/CFBundleShortVersionString: \$\(MARKETING_VERSION\)/);
  assert.match(project,/CFBundleVersion: \$\(CURRENT_PROJECT_VERSION\)/);
+ assert.match(project,/ITSAppUsesNonExemptEncryption: false/);
  assert.equal(contract.storeSubmissionAllowed,false);
  assert.doesNotMatch(java,/Preview|test build/i);assert.doesNotMatch(swift,/Preview|test build/i);
  assert.doesNotMatch(gradle,/\.preview|-preview/);assert.doesNotMatch(project,/\.preview|-preview/);
@@ -84,4 +87,13 @@ test('Turnstile WebView challenge frames allow only required about URLs',()=>{
  ]) {
   assert.doesNotMatch(policy,/about:blank|about:srcdoc/);
  }
+});
+
+
+test('Apple review privacy and account safety hooks remain present',()=>{
+ assert.match(appDelegate,/applicationWillResignActive/);
+ assert.match(appDelegate,/privacyCover/);
+ assert.match(appDelegate,/window\.addSubview\(cover\)/);
+ assert.match(accountDeletion,/Request account deletion/);
+ assert.match(accountDeletion,/deleteAccount/);
 });
