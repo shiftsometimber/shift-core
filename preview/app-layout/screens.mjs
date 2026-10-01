@@ -114,8 +114,9 @@ export const screenClient=String.raw`
   if(page==='life-back'){
    const hero=document.querySelector('#journeyView>[data-member-hero]'),copy=document.querySelector('#journeyView>.hero .hero-copy');if(hero&&copy)copy.prepend(hero);
   }
-  document.querySelectorAll('footer').forEach(n=>{if(n.closest('main,details'))return;const d=wrap(n,'Help & legal');if(d)d.classList.add('app-footer-details')});
+  document.querySelectorAll('footer').forEach(n=>{if(n.id==='sst-footer-c'||n.closest('main,details'))return;const d=wrap(n,'Help & legal');if(d)d.classList.add('app-footer-details')});
  }
  function boot(){compose();const main=document.querySelector('main');if(main)new MutationObserver(()=>{compose()}).observe(main,{childList:true,subtree:true})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();`;
+
