@@ -89,6 +89,20 @@ css('main .sf-exercise.mp-exercise','background:transparent;color:#050505;border
 css('main .sf-exercise details','background:#e7e3da;color:#050505;border-color:#707762')+
 css('main .sf-number','background:#707762;color:#000')+
 css('main .sf-session-head h3','font-size:25px')+
+css('main .sf-ring :is(strong,small)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
+css('main #panel-journey','background:transparent;color:#050505;border:0;padding:0')+
+css('main .mj-hero','background:transparent;color:#050505;border:0;padding:0;margin:0 0 18px')+
+css('main .mj-hero :is(h2,p,span)','color:#050505;-webkit-text-fill-color:#050505')+
+css('main :is(.mj-next,.mj-setup-section,.mj-error,.mj-stat-grid article,.mj-story-grid article)','background:#e7e3da;color:#050505;border:0;border-radius:12px;padding:16px')+
+css('main .mj-setup-section legend','background:#e7e3da;color:#050505')+
+css('main .mj-next :is(p,h3,small,a)','color:#050505;-webkit-text-fill-color:#050505')+
+css('main :is(.shift-progress-intro,.shift-progress-metric,.shift-progress-milestones,.mp-picture-intro)','background:#e7e3da;color:#050505;border:0;border-radius:12px;padding:16px')+
+css('main :is(.shift-progress-intro,.mp-picture-intro)','display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:16px')+
+css('main :is(.shift-progress-intro,.mp-picture-intro-copy) :is(h3,p,.eyebrow)','color:#050505;-webkit-text-fill-color:#050505')+
+css('main .mp-picture-intro-copy','background:transparent;color:#050505;padding:0')+
+css('main .mp-picture-intro h3','font-size:28px;line-height:1.15')+
+css('main :is(.shift-progress-nudge,.shift-progress-score,.mp-picture-trust)','background:#050505;color:#e7e3da;border:0;border-radius:12px;padding:16px')+
+css('main :is(.shift-progress-nudge,.shift-progress-score,.mp-picture-trust) :is(strong,span,small)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 css('main .sf-current-step','background:#e7e3da;color:#050505')+
 css('main .sf-current-step :is(h3,p,summary)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main #journeyView>.hero','display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:14px;padding:0 0 18px;align-items:center')+
@@ -106,7 +120,7 @@ css('main #memberDayGuide :is(p,h2,h3,summary,a)|.app-footer-details[data-app-gu
 scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.app-today-shortcuts){display:none!important}\n'+
 scope+'[data-app-panel="1"]{padding:0!important;background:#707762!important}\n'+
 scope+'[data-app-panel="1"] #todayBrand{display:none!important}\n'+
-'@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+'}\n'+
+'@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+css('main :is(.shift-progress-intro,.mp-picture-intro)','grid-template-columns:1fr')+'}\n'+
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
 scope+' [hidden]:is(#approved-member-hidden,[hidden]):is(#approved-member-hidden-rule,[hidden]){display:none!important}\n'+
