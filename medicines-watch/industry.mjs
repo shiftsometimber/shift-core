@@ -8,8 +8,9 @@ import repairs from './reviews/2026-09-30-source-warning-repairs.json' with {typ
 import accessRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 import berobenatide from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
 import eloraTZP from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
+import kainetic from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -89,4 +90,6 @@ export const industry = [...originalIndustry.map(e => {
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
  .map(e=>e.id===eloraTZP.change.id?{...e,...eloraTZP.change.fields,reviewedAt:eloraTZP.reviewedAt,
-  additionalEvidence:[...(e.additionalEvidence||[]),...eloraTZP.change.additionalEvidence]}:e);
+  additionalEvidence:[...(e.additionalEvidence||[]),...eloraTZP.change.additionalEvidence]}:e)
+ .map(e=>e.id===kainetic.change.id?{...e,...kainetic.change.fields,reviewedAt:kainetic.reviewedAt,
+  sourceIds:[...e.sourceIds,...kainetic.change.sourceIdsToAdd]}:e);
