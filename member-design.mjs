@@ -100,6 +100,9 @@ css('main :is(.shift-progress-intro,.shift-progress-metric,.shift-progress-miles
 css('main :is(.shift-progress-intro,.mp-picture-intro)','display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:16px')+
 css('main :is(.shift-progress-intro,.mp-picture-intro-copy) :is(h3,p,.eyebrow)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main .mp-picture-intro-copy','background:transparent;color:#050505;padding:0')+
+css('main #panel-visualise .mp-picture-intro','display:grid;grid-template-columns:1fr')+
+css('main #panel-visualise :is(.mp-picture-intro-copy,.mp-picture-trust)','grid-column:1/-1;width:100%;max-width:none;min-width:0;box-sizing:border-box')+
+css('main #grubDiscoverResults :is(p,strong,small):not(button *)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main .mp-picture-intro h3','font-size:28px;line-height:1.15')+
 css('main :is(.shift-progress-nudge,.shift-progress-score,.mp-picture-trust)','background:#050505;color:#e7e3da;border:0;border-radius:12px;padding:16px')+
 css('main :is(.shift-progress-nudge,.shift-progress-score,.mp-picture-trust) :is(strong,span,small)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
