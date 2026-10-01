@@ -1,0 +1,56 @@
+{
+  "verifiedAt": "2026-10-01T07:47:50Z",
+  "publicationStatus": "live_verified",
+  "clinicalApproval": null,
+  "mergedPullRequests": [
+    882,
+    883
+  ],
+  "releaseCommit": "d4f698f1abfa2edc08ddcba1dffb28c3464f0183",
+  "productionRun": {
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/36831523443",
+    "conclusion": "success",
+    "workerVersion": "07dfc123-ee41-4412-822d-c9fa98096dc8"
+  },
+  "evidencePack": {
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/36831523443/artifacts/11148180526",
+    "sha256": "28fb0678ea49871aa70e2d0b4178b1f637f59bcf1112203552fae440a2fd3152"
+  },
+  "publicPage": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+  "liveEntries": 37,
+  "configuredSources": 50,
+  "industryComplete": false,
+  "verifiedLiveChanges": [
+    "Berobenatide name and VESPER-6 research status",
+    "EloraTZP sponsor Phase 2b results and ongoing separate monotherapy Phase 3",
+    "KaiNETIC Phase 3 enrolment milestone",
+    "Macupatide formulation-specific research summary",
+    "Source-specific NHS tirzepatide review renewal"
+  ],
+  "verification": {
+    "localWatchAndReleaseTests": 104,
+    "cssRepairTests": 20,
+    "exactAppPreservation": "passed",
+    "b1RuntimeOnlyScope": "passed",
+    "productionPipeline": "success",
+    "independentWatchLiveCheckAt": "2026-10-01T07:43:17.775Z",
+    "independentRenderedEntryCheckAt": "2026-10-01T07:46:27.393Z"
+  },
+  "remainingWarnings": {
+    "knownSourceAccess": [
+      "pf3944-pfizer",
+      "danuglipron-pfizer",
+      "az-elecoglipron-20260608"
+    ],
+    "newTransientFetch": "apitegromab-embraze-paper returned missing_html_document at 07:31 UTC; independent retrieval succeeded with unchanged reviewed fingerprint. Do not reset monitor history."
+  },
+  "pendingDiscovery": {
+    "pullRequest": 868,
+    "status": "proposal_only_not_live",
+    "newReceipts": [
+      "2026-10-01-non-incretin-discovery.json",
+      "2026-10-01-cagrisema-easd.json"
+    ]
+  },
+  "nextAction": "Continue open-ended discovery; review pending SYNT-101, CRB-913 and CagriSema evidence and missing primary COURAGE report. The existing production adoption gate must reconcile this successful runtime version before the next release; never weaken it or redeploy an older version."
+}
