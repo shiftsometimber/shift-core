@@ -46,6 +46,8 @@ jobs:
         if: always()
         with:
           name: member-design-preview-${{ github.sha }}
-          path: work/staging/generated/member-design-evidence/
+          path: |
+            work/staging/generated/member-design-evidence/
+            work/staging/generated/app-layout-evidence/
           retention-days: 30
 
