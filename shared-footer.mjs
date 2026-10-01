@@ -15,8 +15,13 @@ export const footerClient=String.raw`(()=>{
 })();`;
 const clientTag='<script data-shift-shared-footer>'+footerClient+'</script>';
 const siteFooter=/<footer\b(?=[^>]*(?:class=["'][^"']*\bsite-footer\b|id=["']sst-footer-c["']))[^>]*>[\s\S]*?<\/footer>/gi;
+// The older PWA transform inserted this exact strip into the first </footer>,
+// which can be a medicine card's contextual footer. Move only that known UI
+// addition into the canonical site footer; retain the card and its content.
+export const legacyInstallStrip='<div class="my-timber-app-footer" data-my-timber-app-footer><span><img src="/assets/apple-touch-icon.png" alt="" width="28" height="28">My Timber, one tap away.</span><a href="/member/dashboard?setup=app#myTimberApp">Add to your phone</a></div>';
 export function applySharedFooter(html){
  if(!/<html\b/i.test(html)||!/<\/body\s*>/i.test(html))return html;
+ html=html.split(legacyInstallStrip).join('');
  // Remove the superseded footer-only rules; header and page rules stay intact.
  html=html.replace(/<style\b(?=[^>]*(?:id=["']sst-(?:cream-footer-preview|footer-c-style)["']|data-shared-footer-dependency|data-shared-footer-base))[^>]*>[\s\S]*?<\/style>/gi,'');
  html=html.replace(/<script\b[^>]*data-shift-shared-footer[^>]*>[\s\S]*?<\/script>/gi,'');
@@ -36,4 +41,3 @@ export async function withSharedFooter(request,response){
  headers.set('Cache-Control','no-store');headers.set('X-Shift-Shared-Footer','approved-c-20261001');
  return new Response(after,{status:response.status,statusText:response.statusText,headers});
 }
-
