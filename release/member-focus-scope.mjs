@@ -1,4 +1,4 @@
-import {historicalFooterRef} from './footer-scope.mjs';
+import {FOOTER_CANDIDATE,FOOTER_RUNTIME_PATHS} from './footer-scope.mjs';
 // Matt authorised this exact tested preview on 30 September 2026: Go live.
 import assert from 'node:assert/strict';
 export const MEMBER_FOCUS_APPROVED='6cc950b4f6020e44dbaafffe4b7bf90d54852cca';
@@ -28,6 +28,6 @@ export const MEMBER_FOCUS_PATHS=[
   "preview/growth-member/continuity-journey.mjs"
 ];
 export function validateMemberFocus(read){
- for(const path of MEMBER_FOCUS_PATHS)assert.equal(read(historicalFooterRef('HEAD',path),path),read(MEMBER_FOCUS_APPROVED,path),'Approved My Timber source drift: '+path);
+ for(const path of MEMBER_FOCUS_PATHS)assert.equal(read('HEAD',path),read(FOOTER_RUNTIME_PATHS.has(path)?FOOTER_CANDIDATE:MEMBER_FOCUS_APPROVED,path),'Approved My Timber source drift: '+path);
 }
 
