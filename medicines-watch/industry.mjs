@@ -1,5 +1,6 @@
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
+import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
 import biPublication from './reviews/2026-09-30-authorised-bi3034701.json' with {type:'json'};
 // Factual industry evidence summaries. No entry represents clinical approval.
 // The associated source reviews and retrieval limitations are in the dated receipt.
@@ -102,4 +103,6 @@ export const industry = [...originalIndustry.map(e => {
   const {summaryToAppend,...fields}=change.fields;
   return {...e,...fields,...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),reviewedAt:evening.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
- });
+ })
+ .map(e=>e.id===synt101Correction.change.id?{...e,...synt101Correction.change.fields,reviewedAt:synt101Correction.reviewedAt,
+  additionalEvidence:[...(e.additionalEvidence||[]),...synt101Correction.change.additionalEvidence]}:e);

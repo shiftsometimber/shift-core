@@ -1,0 +1,49 @@
+{
+  "reviewedAt": "2026-10-01T21:37:13Z",
+  "publicationStatus": "owner_authorised_factual_correction",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Correct the SYNT-101 summary using the later primary sponsor announcement; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "automatedMonitorChanges": false,
+  "source": {
+    "title": "Syntis Bio reports Phase 1/1b multiple-ascending-dose results",
+    "url": "https://syntis.bio/syntis-bio-reports-phase-1-1b-results-demonstrating-weight-loss-and-satiety-hormone-modulation-with-oral-synt-101-in-patients-with-obesity/",
+    "sourcePublishedAt": "2026-09-15",
+    "sourceUpdatedAt": null,
+    "reviewedAt": "2026-10-01T21:37:13Z",
+    "contentRead": true,
+    "evidenceType": "Original sponsor announcement",
+    "checkScope": "Full announcement read for study design, reported observations, adverse events and Phase 2 plan; not automatically content-monitored."
+  },
+  "change": {
+    "id": "synt101",
+    "fields": {
+      "stage": "Phase 1/1b 28-day multiple-dose sponsor results; Phase 2 planned",
+      "summary": "An investigational daily oral tablet intended to create a transient lining in the small intestine and alter nutrient absorption. On 15 September 2026 Syntis reported observations from the randomised, double-blind, placebo-controlled 28-day multiple-ascending-dose portion in 23 adults with overweight or obesity. The company reported greater weight loss than placebo in each dose cohort and changes in satiety-related hormones; a Phase 2 study was planned for 2027, not treated as started.",
+      "limitations": "Small, early sponsor-reported study. Detailed results were still due for presentation in November 2026 and were not independently reviewed here. The announcement does not provide complete cohort-level weight-loss estimates in its text. Preclinical lean-muscle findings are not human evidence, and the study does not establish long-term benefit, comparative efficacy, UK authorisation, NHS access or supply."
+    },
+    "additionalEvidence": [
+      {
+        "title": "Syntis SYNT-101 28-day Phase 1/1b multiple-dose results",
+        "url": "https://syntis.bio/syntis-bio-reports-phase-1-1b-results-demonstrating-weight-loss-and-satiety-hormone-modulation-with-oral-synt-101-in-patients-with-obesity/",
+        "sourcePublishedAt": "2026-09-15",
+        "sourceUpdatedAt": null,
+        "reviewedAt": "2026-10-01T21:37:13Z",
+        "checkScope": "Original sponsor announcement read for the 28-day multiple-dose cohort and planned Phase 2; not automatically content-monitored."
+      }
+    ]
+  },
+  "ukPosition": {
+    "marketingAuthorisation": "The reviewed announcement does not establish UK marketing authorisation for SYNT-101.",
+    "niceOrNhsEnglandAccess": "No NICE recommendation or NHS England access is established.",
+    "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock."
+  },
+  "uncertainty": [
+    "No ClinicalTrials.gov match was established in the preceding broader review; this correction relies on the cited sponsor announcement.",
+    "Detailed November 2026 conference results were planned and are not treated as published or reviewed.",
+    "No complete-response automatic-monitor baseline is approved by this correction."
+  ]
+}
