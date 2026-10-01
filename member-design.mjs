@@ -99,7 +99,7 @@ css('main #memberDetailsPanel','background:#e7e3da;color:#050505;border:0;paddin
 css('main :is(.md-section,.md-panel)','padding:12px 0')+
 css('main #memberDayGuide|.app-footer-details[data-app-guide]','background:#e7e3da;color:#050505;border:0;border-radius:12px;margin:16px 0;padding:14px')+
 css('main #memberDayGuide :is(p,h2,h3,summary,a)|.app-footer-details[data-app-guide]>summary','color:#050505;-webkit-text-fill-color:#050505')+
-scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions>.mtm-hero{display:none!important}\n'+
+scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.app-today-shortcuts){display:none!important}\n'+
 scope+'[data-app-panel="1"]{padding:0!important;background:#707762!important}\n'+
 scope+'[data-app-panel="1"] #todayBrand{display:none!important}\n'+
 '@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+'}\n'+
