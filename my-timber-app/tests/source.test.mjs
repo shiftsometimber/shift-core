@@ -10,7 +10,6 @@ const contract=JSON.parse(read('contract.json'));
 const ui=read('shared/native-presentation.js');
 const java=read('android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java');
 const swift=read('ios/Sources/MyTimberViewController.swift');
-const memberHtml=read('../frontend/member/my-timber-preview.html');
 const appDelegate=read('ios/Sources/AppDelegate.swift');
 const accountDeletion=read('../member-experience/account-deletion.mjs');
 test('PWA contract retained; no store or native-push completion claim',()=>{
