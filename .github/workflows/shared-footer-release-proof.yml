@@ -1,0 +1,30 @@
+name: Shared footer production scope proof
+on:
+  push:
+    branches: [fix/shared-footer-every-page-20261001]
+permissions:
+  contents: read
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node scripts/b1-release-scope.mjs
+      - run: node --test tests/shared-footer.test.mjs tests/b1-release-scope.test.mjs tests/growth-release.test.mjs tests/member-focus-release.test.mjs tests/home-route-banner.test.mjs
+      - name: Read-only full public preservation check
+        run: node member-experience/public-preservation.mjs footer-public-preservation.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shared-footer-release-scope
+          path: |
+            b1-runtime-release/
+            footer-public-preservation.json
+
