@@ -139,15 +139,15 @@
     "medicines-watch/reviews/2026-10-01-monitor-discovery-pass.json": "c9e0e127b7fba02a9a1d6f9dc9e0fc61e7ea32c196e00b55b958bb87663d43ea",
     "medicines-watch/reviews/2026-10-01-non-incretin-discovery.json": "972af52ba12f7bb8a607ddbe617c7621bdb2d0ea35a08aafe07eb77c0c2fdcd4",
     "medicines-watch/reviews/2026-10-01-publication-verification.json": "7b144863b8e754ebf3ac3eb160dba5adb4e2109d38e20cece798d5f251165133",
-    "release/footer-scope.mjs": "6742c14783977de7dbc4e62b7e6cc77d436b6412b5e6bef9bd9eba37d0edfbbf",
+    "release/footer-scope.mjs": "78c5744c2d7daade91e9bd38122d3f1e914806a551569e6a6e4d7718ad2cec66",
     "release/app-scope.mjs": "3fcaa5550b18aaef42c8bd9826ce54a00d8cd11566cada7954e3dbbb099e1fae",
     "member-experience/public-preservation.mjs": "66c785ced38cece739464c4f41a0c775a753801f115d9b94dd081cb6aff16347",
-    "shared-footer.mjs": "711d2b3fd5b2ef359ac833999948dd39b49c09ff4afc20510249d128df4589a7",
-    "tests/shared-footer.test.mjs": "a3b9e5d8c9bdfa7245cb37af4e7f7ea21c775e1a82f28b801ecfa5c0a7d88965",
-    "scripts/prove-shared-footer.cjs": "85e9ce703ae0df67ec2c3c2721572850ffbe7f57f53f0c0bc18b565e346342c8",
+    "shared-footer.mjs": "941aca216bc7c8620c6f0e1199e2198713f27c171fc9812ada3931f1f528a757",
+    "tests/shared-footer.test.mjs": "ee164102a43e95f052695b650d1dcabb25ff797a621ab748710d1502316f6d9a",
+    "scripts/prove-shared-footer.cjs": "9f1ee6ed72d9d73ed619ed93c348a919a88fa0ba598b24fb95931665481c4c58",
     "preview/shared-footer/worker.mjs": "743742ac0113142a6880fb231eec2b3632b6a4c9c862aa89166e7c2f2549bce1",
     "preview/shared-footer/wrangler.jsonc": "65fa65d28d0167874b33ea7172e1b4edcdeb48a0b3be7d0eb529e49470112c08",
-    ".github/workflows/shared-footer-proof.yml": "3de52d973c7ab10b6ed518e126d7e5f8b015a7faf5d8b54f681402f5ec1c8f16",
+    ".github/workflows/shared-footer-proof.yml": "576d40feae09bc6048efe6d668a39a498c2537140100e66e350df0ada5e67609",
     ".github/workflows/shared-footer-release-proof.yml": "bba49a9ef038bb92e52a10b87a8af799e4a3b72b3c12f7a9d8443b5a35be9bb2",
     ".github/workflows/shared-footer-preview.yml": "49435384a512103d0d81f9bf73313d834b641bee82cd6746c203c79c57387110"
   },
@@ -176,8 +176,8 @@
     }
   },
   "sharedFooterRelease": {
-    "candidate": "66e15d16143cb7bcbfeb9ee149cc047523ce52c7",
-    "browserProofRun": 36915747155,
+    "candidate": "e0ff69d5f8cf19fe776ecc0da5340198d3cca26e",
+    "browserProofRun": 36919875796,
     "authorised": "Matt, 1 October 2026: The new footer needs to be the footer on every page on website, wpa and app - without exception",
     "scope": "Approved footer content and CSS across customer HTML; no data, stock, price, clinical, authentication or configuration changes."
   }
