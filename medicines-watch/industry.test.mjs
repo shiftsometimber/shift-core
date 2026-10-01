@@ -12,11 +12,31 @@ import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repai
 import berobenatideReview from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
 import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
 import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
+import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,36);
+ assert.equal(medicines.length,6);assert.equal(industry.length,31);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,37);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
+});
+test('macupatide discovery distinguishes recruiting Phase 2 from planned Phase 1',()=>{
+ const entry=industry.find(item=>item.id==='macupatide');
+ assert.match(entry.stage,/Recruiting Phase 2/);
+ assert.match(entry.stage,/not yet recruiting/);
+ assert.match(entry.summary,/actual 16 October 2025 start/);
+ assert.match(entry.limitations,/Neither study has posted results/);
+ assert.equal(entry.sourceIds.length,0);
+ assert.equal(entry.additionalEvidence.length,2);
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.ukAuthorisation,/do not establish UK marketing authorisation/);
+ const phase2=macupatideReview.registryEvidence.find(item=>item.nctId==='NCT07215559');
+ const phase1=macupatideReview.registryEvidence.find(item=>item.nctId==='NCT07765511');
+ assert.equal(phase2.overallStatus,'RECRUITING');
+ assert.equal(phase2.actualStartDate,'2025-10-16');
+ assert.equal(phase2.hasResults,false);
+ assert.equal(phase1.overallStatus,'NOT_YET_RECRUITING');
+ assert.equal(phase1.estimatedStart,'2026-10');
+ assert.equal(macupatideReview.clinicalApproval,null);
 });
 test('berobenatide correction records VESPER-6 without implying access or results',()=>{
  const entry=industry.find(item=>item.id==='pf3944');
@@ -62,7 +82,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,30);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,31);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
