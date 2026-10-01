@@ -11,8 +11,9 @@ import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type
 import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
 import berobenatideReview from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
 import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
+import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,49);
+ assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,50);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,36);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -44,6 +45,19 @@ test('EloraTZP correction replaces planned-result evidence without treating plan
  assert.equal(eloraTZPReview.registryEvidence.overallStatus,'COMPLETED');
  assert.equal(eloraTZPReview.registryEvidence.actualCompletionDate,'2026-09-14');
  assert.equal(eloraTZPReview.ukPosition.marketingAuthorisation.includes('Neither source establishes'),true);
+ assert.equal(entry.clinicalApproval,null);
+});
+test('KaiNETIC update records completed Phase 3 enrolment without implying results or access',()=>{
+ const entry=industry.find(item=>item.id==='ribupatide-injection');
+ const source=industrySources.find(item=>item.id==='kailera-kainetic-20260930');
+ assert.match(entry.stage,/fully enrolled/);
+ assert.match(entry.summary,/enrolment is complete/);
+ assert.match(entry.summary,/expected in mid-2028/);
+ assert.match(entry.limitations,/not a trial result/);
+ assert.ok(entry.sourceIds.includes(source.id));
+ assert.equal(source.reviewedFingerprint,kaineticReview.source.reviewedFingerprint);
+ assert.equal(kaineticReview.clinicalApproval,null);
+ assert.match(kaineticReview.ukPosition.marketingAuthorisation,/does not establish/);
  assert.equal(entry.clinicalApproval,null);
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
