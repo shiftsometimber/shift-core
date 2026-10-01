@@ -7,7 +7,7 @@ export const CREAM_PREVIEW='4f294ec717d8ce523a2739f757716b51e5117a6c';
 export const CREAM_RUN=36718120436;
 export const FOOTER_PREVIEW='56504b56cf0b9d6cfd1a2ee7ca44831547b3ec69';
 export const FOOTER_RUN=36723365840;
-export const HOME_BANNER_PATHS=new Set(['preview/home-banner/free-design.mjs','preview/home-banner/cream-footer.mjs','home-route-banner-legacy.mjs','cream-navigation.mjs','preview/home-banner/four-step.mjs','preview/home-banner/cream-header.mjs','preview/home-banner/verify-spacing.cjs','.github/workflows/cloudflare-production-promote.yml','release/home-banner-live.cjs','home-route-banner.mjs','home-route-font.mjs','public-startup-stability.mjs','release/member-details-preservation.mjs','release/home-banner-scope.mjs','tests/home-route-banner.test.mjs','.github/workflows/home-banner-preview.yml','preview/home-banner/banner.mjs','preview/home-banner/assets/barlow-condensed-700.ttf','preview/home-banner/assets/OFL.txt','preview/home-banner/build.mjs','preview/home-banner/worker.mjs','preview/home-banner/wrangler.jsonc','preview/home-banner/verify.cjs']);
+export const HOME_BANNER_PATHS=new Set(['home-compact-footer.mjs','.github/workflows/home-compact-proof.yml','release/home-compact-proof.cjs','preview/home-banner/free-design.mjs','preview/home-banner/cream-footer.mjs','home-route-banner-legacy.mjs','cream-navigation.mjs','preview/home-banner/four-step.mjs','preview/home-banner/cream-header.mjs','preview/home-banner/verify-spacing.cjs','.github/workflows/cloudflare-production-promote.yml','release/home-banner-live.cjs','home-route-banner.mjs','home-route-font.mjs','public-startup-stability.mjs','release/member-details-preservation.mjs','release/home-banner-scope.mjs','tests/home-route-banner.test.mjs','.github/workflows/home-banner-preview.yml','preview/home-banner/banner.mjs','preview/home-banner/assets/barlow-condensed-700.ttf','preview/home-banner/assets/OFL.txt','preview/home-banner/build.mjs','preview/home-banner/worker.mjs','preview/home-banner/wrangler.jsonc','preview/home-banner/verify.cjs']);
 const read=(ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'});
 export function originalHomeSpeedSource(path,source){
  source=source.replace("import {addCreamNavigation} from './cream-navigation.mjs';\n",'').replace('function stabiliseOriginalPublicHtml(path,html){','export function stabilisePublicHtml(path,html){').replace('export function stabilisePublicHtml(path,html){return addCreamNavigation(stabiliseOriginalPublicHtml(path,html));}\n','');
@@ -18,6 +18,7 @@ export function originalHomeSpeedSource(path,source){
  return source;
 }
 export function validateHomeBanner(){
+ assert.equal(execFileSync('git',['hash-object','home-compact-footer.mjs'],{encoding:'utf8'}).trim(),'dcbbe3efa6c5882a3dd762da0a7f0eb67160e6fc','Approved 1 October homepage presentation changed');
  assert.equal(read('HEAD','preview/home-banner/free-design.mjs'),read('2a26480aaadcbd7177d2671d21de35b4028de2d8','preview/home-banner/free-design.mjs'),'Approved compact homepage source changed');
  assert.equal(read('HEAD','preview/home-banner/cream-footer.mjs'),read(FOOTER_PREVIEW,'preview/home-banner/cream-footer.mjs'),'Approved cream footer changed');
  assert.equal(read('HEAD','preview/home-banner/cream-header.mjs'),read(CREAM_PREVIEW,'preview/home-banner/cream-header.mjs'),'Approved cream navigation changed');
