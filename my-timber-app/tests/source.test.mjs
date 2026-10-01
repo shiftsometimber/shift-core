@@ -12,6 +12,7 @@ const java=read('android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainAc
 const swift=read('ios/Sources/MyTimberViewController.swift');
 const memberHtml=read('../frontend/member/my-timber-preview.html');
 const appDelegate=read('ios/Sources/AppDelegate.swift');
+const accountDeletion=read('../member-experience/account-deletion.mjs');
 test('PWA contract retained; no store or native-push completion claim',()=>{
  assert.equal(contract.name,'My Timber');assert.equal(contract.startPath,'/member/dashboard#today');
  assert.equal(contract.origin,'https://shiftsometimber.co.uk');
@@ -100,5 +101,6 @@ test('Apple review privacy and account safety hooks remain present',()=>{
  assert.match(appDelegate,/applicationWillResignActive/);
  assert.match(appDelegate,/privacyCover/);
  assert.match(appDelegate,/window\.addSubview\(cover\)/);
- assert.match(memberHtml,/Request account deletion|account deletion/i);
+ assert.match(accountDeletion,/Request account deletion/);
+ assert.match(accountDeletion,/deleteAccount/);
 });
