@@ -1,3 +1,4 @@
+import {withSharedFooter} from './shared-footer.mjs';
 import {withGrowthPublicCopy} from './growth-member-public.mjs';
 import {appendAiMemoryExport} from './member-experience/ai-memory-bridge.mjs';
 import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
@@ -1177,7 +1178,7 @@ export default {
       const source = new URL(request.url); source.pathname = '/sitemap.xml'; source.search = '';
       return articleSitemapResponse(request, () => publicFetch(new Request(source, {method:'GET'}), env, ctx));
     }
-    const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return appStorePublic;
+    const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return withSharedFooter(request,appStorePublic);
     if(env.MY_TIMBER_PWA_ENABLED==='true'){
       const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);
       if(pwa)return pwa;
@@ -1188,6 +1189,7 @@ export default {
     });
     const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
     const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
-    return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));
+    return withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final))));
   },
 };
+
