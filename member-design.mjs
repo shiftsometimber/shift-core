@@ -101,6 +101,7 @@ scope+'[data-app-panel="1"] #todayBrand{display:none!important}\n'+
 '@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+'}\n'+
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
+scope+' [hidden]:is(#approved-member-hidden,[hidden]):is(#approved-member-hidden-rule,[hidden]){display:none!important}\n'+
 '@media print{'+css('#todayBrand|#appBottomNav','display:none')+'}';
 
 const paths={today:'M3 11 12 3l9 8M5 10v11h5v-6h4v6h5V10',journey:'M5 20v-5m7 5V9m7 11V4',grub:'M5 3v7m3-7v7M3 3v6a3 3 0 0 0 6 0M6 12v9M18 3v18m0-18c-5 3-5 10 0 10',fit:'M4 8v8m3-11v14m10-14v14m3-11v8M7 12h10',more:'M4 12h.01M12 12h.01M20 12h.01',account:'M16 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0M4 21v-2a8 8 0 0 1 16 0v2'};
