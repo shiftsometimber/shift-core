@@ -19,28 +19,28 @@ const health=icon('<path d="M48 102 12 65C-15 35 10-1 36 17L48 27 60 17C86-1 111
 const timber=icon('<rect x="16" y="6" width="64" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="7"/><path d="M40 17h16M42 94h12" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M64 48a22 22 0 1 0 5 16M36 57l10 10 22-24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>');
 const card=(href,title,lead,body,svg,label)=>'<li><a class="hc-card" href="'+href+'"><div class="hc-top">'+svg+'<div><h3>'+title+'</h3><p class="hc-lead">'+lead+'</p></div></div><p class="hc-copy">'+body+'</p><span class="hc-link">'+label+' <span aria-hidden="true">→</span></span></a></li>';
 const route='<div class="hc-wrap" id="how-shift-can-help"><h2 id="sst-home-route-title">HOW <span>SHIFT</span> CAN HELP.</h2><ol class="hc-grid"><li><a class="hc-card hc-start" href="/start-here"><h3>WEIGHT LOSS,<br>ON YOUR TERMS.</h3><p class="hc-copy">Explore your options and understand what each involves.</p><span class="hc-link">START HERE <span aria-hidden="true">→</span></span></a></li>'+card('/programme','THE PROGRAMME','Build around real life.','Food, movement and support you can keep coming back to.',programme,'Explore the programme')+card('/shift-health','SHIFT HEALTH','Understand your options.','Clear information on men’s health, home tests and treatment routes.',health,'Explore SHIFT Health')+card('/member/dashboard','MY TIMBER','Keep it going.','Your free home for meals, movement, check-ins and progress.',timber,'Explore My Timber')+'</ol></div>';
-const routeCSS=`<style id="hc-style">
-html body #sst-home-route{background:#050505!important}
-html body .hc-wrap{max-width:1500px;margin:auto;padding:48px 24px;color:#E7E3DA;scroll-margin-top:100px}
-html body .hc-wrap h2{font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(27px,3.2vw,48px)!important;font-weight:750!important;line-height:1.15!important;letter-spacing:-.025em!important;margin:0 0 32px!important;color:#E7E3DA!important}
-html body .hc-wrap h2 span{color:#707762}
-html body .hc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
-html body .hc-grid>li{display:flex;margin:0;padding:0;min-width:0;border:0}
-html body .hc-card{box-sizing:border-box;display:flex;flex-direction:column;width:100%;padding:24px 20px;background:#E7E3DA;color:#050505;border-radius:7px;text-decoration:none!important;min-height:280px}
-html body .hc-top{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-html body .hc-top>div{min-width:0}
-html body .hc-top svg{width:72px;height:90px;flex:0 0 72px;color:#707762}
-html body .hc-card h3{font-size:clamp(19px,1.6vw,25px)!important;line-height:1.15!important;margin:0 0 10px!important;color:#050505!important}
-html body .hc-card p{font-size:16px!important;line-height:1.45!important;color:#050505!important;margin:0 0 20px!important}
-html body .hc-card .hc-lead{font-weight:700;margin:0!important}
-html body .hc-card .hc-link{font-size:16px;font-weight:700;line-height:1.35;display:flex;justify-content:space-between;gap:12px;margin-top:auto;padding:12px 0 6px;border-bottom:1px solid #050505}
-html body .hc-start{background:#707762}
-html body .hc-start h3{font-size:clamp(26px,2.3vw,35px)!important}
-html body .hc-start .hc-link{background:#050505;color:#E7E3DA;padding:14px 16px;border:0}
-html body .hc-card:focus-visible{outline:3px solid #E7E3DA;outline-offset:5px}
-html body .hc-card:hover .hc-link{text-decoration:underline}
-@media(max-width:1150px){html body .hc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){html body .hc-wrap{padding:32px 18px}html body .hc-grid{grid-template-columns:1fr;gap:16px}html body .hc-card{min-height:0;padding:24px}html body .hc-wrap h2{font-size:27px!important;margin-bottom:24px!important}html body .hc-card h3{font-size:24px!important}html body .hc-start h3{font-size:32px!important}}
+const routeCSS=`<style id="hc-style">\nhtml body main#main-content #sst-home-route .hc-wrap *{-webkit-text-fill-color:currentColor!important}
+html body main#main-content #sst-home-route{background:#050505!important}
+html body main#main-content #sst-home-route .hc-wrap{max-width:1500px!important;margin:auto!important;padding:48px 24px!important;color:#E7E3DA!important;scroll-margin-top:100px!important}
+html body main#main-content #sst-home-route .hc-wrap h2#sst-home-route-title{font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(27px,3.2vw,48px)!important;font-weight:750!important;line-height:1.15!important;letter-spacing:-.025em!important;margin:0 0 32px!important;color:#E7E3DA!important}
+html body main#main-content #sst-home-route .hc-wrap h2 span{color:#707762!important}
+html body main#main-content #sst-home-route .hc-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;list-style:none!important;margin:0!important;padding:0!important}
+html body main#main-content #sst-home-route .hc-grid>li{grid-template-columns:none!important;display:flex!important;margin:0!important;padding:0!important;min-width:0!important;border:0!important}
+html body main#main-content #sst-home-route .hc-card{box-sizing:border-box!important;display:flex!important;flex-direction:column!important;width:100%!important;padding:24px 20px!important;background:#E7E3DA!important;color:#050505!important;border-radius:7px!important;text-decoration:none!important;min-height:280px!important}
+html body main#main-content #sst-home-route .hc-top{display:flex!important;align-items:center!important;gap:14px!important;margin-bottom:20px!important}
+html body main#main-content #sst-home-route .hc-top>div{min-width:0!important}
+html body main#main-content #sst-home-route .hc-top svg{width:72px!important;height:90px!important;flex:0 0 72px!important;color:#707762!important}
+html body main#main-content #sst-home-route .hc-card h3{font-size:clamp(19px,1.6vw,25px)!important;line-height:1.15!important;margin:0 0 10px!important;color:#050505!important}
+html body main#main-content #sst-home-route .hc-card p{font-size:16px!important;line-height:1.45!important;color:#050505!important;margin:0 0 20px!important}
+html body main#main-content #sst-home-route .hc-card .hc-lead{font-weight:700!important;margin:0!important}
+html body main#main-content #sst-home-route .hc-card .hc-link{font-size:16px!important;font-weight:700!important;line-height:1.35!important;display:flex!important;justify-content:space-between!important;gap:12px!important;margin-top:auto!important;padding:12px 0 6px!important;border-bottom:1px solid #050505!important}
+html body main#main-content #sst-home-route .hc-start{background:#707762!important}
+html body main#main-content #sst-home-route .hc-start h3{font-size:clamp(26px,2.3vw,35px)!important}
+html body main#main-content #sst-home-route .hc-start .hc-link{background:#050505!important;color:#E7E3DA!important;padding:14px 16px!important;border:0!important}
+html body main#main-content #sst-home-route .hc-card:focus-visible{outline:3px solid #E7E3DA!important;outline-offset:5px!important}
+html body main#main-content #sst-home-route .hc-card:hover .hc-link{text-decoration:underline!important}
+@media(max-width:1150px){html body main#main-content #sst-home-route .hc-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){html body main#main-content #sst-home-route .hc-wrap{padding:32px 18px!important}html body main#main-content #sst-home-route .hc-grid{grid-template-columns:1fr!important;gap:16px!important}html body main#main-content #sst-home-route .hc-card{min-height:0!important;padding:24px!important}html body main#main-content #sst-home-route .hc-wrap h2#sst-home-route-title{font-size:27px!important;margin-bottom:24px!important}html body main#main-content #sst-home-route .hc-card h3{font-size:24px!important}html body main#main-content #sst-home-route .hc-start h3{font-size:32px!important}}
 </style>`;
 
 const candidate=baseline.replace(removed,'').replace(oldFooter,footer).replace(oldRoute,route).replace('</body>',footerCSS+routeCSS+'</body>');
