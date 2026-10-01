@@ -79,7 +79,7 @@ public final class MainActivity extends Activity {
         settings.setSupportMultipleWindows(false);
         settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.0.0");
         CookieManager.getInstance().setAcceptCookie(true);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(web,false);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(web,true); // Required for Cloudflare Turnstile challenge state in WebView.
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());
