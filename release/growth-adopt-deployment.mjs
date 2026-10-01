@@ -1,12 +1,12 @@
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Header mark correction starts from the successful approved homepage release.
+// Header mark correction starts from the successful official-mark correction; remove the old filtered outline.
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='1fa35fd5fea2954e2c96ff220430eccc1774efc2',VERSION='a71fd94c-0254-4681-8bb1-39c28b21dcc0';
-const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36902666559',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+const BASE='79b3ed6c1ab975921bec0cfe7795a6459d58e1cd',VERSION='0ef7cb99-a8a3-4fe3-96da-2b03a96c05d8';
+const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36905302933',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
