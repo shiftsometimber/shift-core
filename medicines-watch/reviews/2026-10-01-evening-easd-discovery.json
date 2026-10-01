@@ -1,0 +1,260 @@
+{
+  "reviewedAt": "2026-10-01T19:14:54Z",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "Evening two-pass review: current source health and open-ended topic discovery. Proposed text below is reviewable; this receipt does not import entries, renew medical dates or approve monitor fingerprints.",
+  "pass1": {
+    "publicUrl": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "publicHttpStatus": 200,
+    "healthHttpStatus": 200,
+    "available": true,
+    "liveEntries": 37,
+    "configuredSources": 50,
+    "lastAttemptAt": "2026-10-01T19:02:52.474Z",
+    "unchangedKnownFailures": [
+      {
+        "id": "pf3944-pfizer",
+        "httpStatus": 520
+      },
+      {
+        "id": "danuglipron-pfizer",
+        "httpStatus": 520
+      },
+      {
+        "id": "az-elecoglipron-20260608",
+        "httpStatus": 403
+      }
+    ],
+    "otherSources": "47 reported current, with no overdue-review reasons. This is monitor output, not a fresh factual review of all 47 documents.",
+    "deploymentBoundary": "PR851 is merged. Current live page contains 6 detailed and 31 industry cards. PR868 remains draft/open; its evidence proposals do not prove deployment."
+  },
+  "sources": [
+    {
+      "id": "survodutide-synchronize2-20261001",
+      "url": "https://www.globenewswire.com/news-release/2026/10/01/3372565/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-achieves-up-to-13-1-weight-loss-in-new-phase-iii-trial-alongside-significant-improvements-in-glycemic-control-in-people-.html",
+      "sourcePublishedAt": "2026-10-01T07:30:00Z",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "contentRead": true,
+      "evidenceType": "Original Zealand sponsor announcement",
+      "reviewMethod": "Full article text read through web retrieval",
+      "approvedFingerprint": null
+    },
+    {
+      "id": "regeneron-courage-20261001",
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/phase-2-courage-trial-confirms-trevogrumab-prevents-lean-mass",
+      "sourcePublishedAt": "2026-10-01T15:30:00Z",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "contentRead": true,
+      "evidenceType": "Original Regeneron announcement",
+      "reviewMethod": "Full release including both results tables read from search engine primary-page retrieval. Direct page/PDF reader failed; direct HTTP timed out.",
+      "approvedFingerprint": null
+    },
+    {
+      "id": "kailera-easd-20261001",
+      "url": "https://www.globenewswire.com/news-release/2026/10/01/3372706/0/en/kailera-therapeutics-presents-new-clinical-data-at-easd-2026-annual-meeting.html",
+      "sourcePublishedAt": "2026-10-01T10:45:00Z",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "contentRead": true,
+      "evidenceType": "Original Kailera announcement",
+      "reviewMethod": "Full article text read through web retrieval",
+      "approvedFingerprint": null
+    },
+    {
+      "id": "ibio600-first-dose-20260602",
+      "url": "https://ir.ibioinc.com/news-events/press-releases/detail/260/ibio-becomes-a-clinical-stage-company-with-first-participant-dosed-in-phase-1-clinical-trial-of-ibio-600-in-adults-with-obesity",
+      "sourcePublishedAt": "2026-06-02",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "contentRead": true,
+      "evidenceType": "Original iBio announcement",
+      "reviewMethod": "Full sponsor page read through web retrieval",
+      "approvedFingerprint": null
+    },
+    {
+      "id": "ibio600-registry",
+      "url": "https://clinicaltrials.gov/study/NCT07487376",
+      "retrievalUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=IBIO-600&format=json",
+      "sourcePublishedAt": "2026-03-23",
+      "sourceUpdatedAt": "2026-05-29",
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "contentRead": true,
+      "evidenceType": "Trial registry",
+      "reviewMethod": "ClinicalTrials.gov API v2 JSON, exact intervention lookup",
+      "approvedFingerprint": null
+    },
+    {
+      "id": "survodutide-synchronize2-registry",
+      "url": "https://clinicaltrials.gov/study/NCT06066528",
+      "retrievalUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06066528",
+      "sourcePublishedAt": "2023-10-04",
+      "sourceUpdatedAt": "2026-08-06",
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "contentRead": true,
+      "evidenceType": "Trial registry",
+      "reviewMethod": "ClinicalTrials.gov API v2 JSON",
+      "approvedFingerprint": null
+    }
+  ],
+  "proposedChanges": [
+    {
+      "operation": "update_entry",
+      "group": "research",
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "No UK authorisation established for this investigational programme by the reviewed evidence.",
+      "nhsEngland": "No NHS access established.",
+      "supply": "No UK retail availability or stock established. Trial participation is separate from commercial supply.",
+      "id": "survodutide",
+      "name": "Survodutide",
+      "stage": "Phase 3 SYNCHRONIZE-2 results; separate MASH programme",
+      "summary": "Zealand reported SYNCHRONIZE-2 results on 1 October 2026: in adults with obesity/overweight and type 2 diabetes, mean weight loss reached 13.1% versus 3.1% with placebo at 76 weeks under the efficacy estimand. Gastrointestinal adverse events led to discontinuation in 18% versus 1.2%.",
+      "limitations": "Sponsor report; efficacy estimand assumes continued treatment. The linked NEJM paper was unavailable in this review. Cardiovascular outcomes were still expected later in 2026. No cross-trial ranking or transfer of obesity results to MASH.",
+      "sourceIds": [
+        "survodutide-zealand",
+        "survodutide-synchronize2-20261001",
+        "survodutide-synchronize2-registry"
+      ]
+    },
+    {
+      "operation": "update_entry",
+      "group": "research",
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "No UK authorisation established for this investigational programme by the reviewed evidence.",
+      "nhsEngland": "No NHS access established.",
+      "supply": "No UK retail availability or stock established. Trial participation is separate from commercial supply.",
+      "id": "trevogrumab-semaglutide",
+      "name": "Trevogrumab with semaglutide, with or without garetosmab",
+      "stage": "Phase 2 COURAGE; new 52-week findings reported 1 October 2026",
+      "summary": "Regeneron reported less lean-mass loss with low-dose trevogrumab plus semaglutide. At 52 weeks, DXA lean-mass change was -4.2% with 75 mg versus -7.3% with placebo plus semaglutide. MRI thigh-muscle volume is a separate measure. Further Phase 2 research in older adults is planned.",
+      "limitations": "Sponsor report; Lancet paper described as in press, not independently read. Imaging findings do not establish improved strength or function. Retain the existing 2025 triplet safety concerns; these newer low-dose findings do not resolve them or establish tolerability superiority.",
+      "sourceIds": [
+        "regeneron-courage-20250917",
+        "regeneron-courage-20261001"
+      ]
+    },
+    {
+      "operation": "add_entry",
+      "group": "research",
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "No UK authorisation established for this investigational programme by the reviewed evidence.",
+      "nhsEngland": "No NHS access established.",
+      "supply": "No UK retail availability or stock established. Trial participation is separate from commercial supply.",
+      "id": "ibio600",
+      "name": "IBIO-600",
+      "developer": "iBio",
+      "stage": "Phase 1; registry recruiting as last updated 29 May 2026",
+      "summary": "A subcutaneous anti-myostatin/GDF11 antibody being studied in adults with overweight or obesity. iBio announced first-participant dosing on 2 June 2026. NCT07487376 records a randomised single-ascending-dose trial with 32 estimated participants and no posted results.",
+      "limitations": "An older coverage omission, not a new October launch. Human muscle-preservation benefits and GLP-1 combination efficacy are unestablished. Registry estimated completion is May 2027; the sponsor's June release expected the second half of 2027. Preserve both estimates and verify later progress; do not treat either as completed.",
+      "sourceIds": [
+        "ibio600-first-dose-20260602",
+        "ibio600-registry"
+      ]
+    },
+    {
+      "operation": "update_name",
+      "id": "kai7535",
+      "name": "Safiglipron / KAI-7535 / HRS-7535",
+      "sourceIds": [
+        "kailera-q2-2026",
+        "kailera-easd-20261001"
+      ],
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null
+    },
+    {
+      "operation": "append_evidence",
+      "id": "kai4729",
+      "summary": "Kailera's 1 October release adds Chinese Phase 1 findings for HRS-4729. The outside-China Phase 1 remained planned for 2026, with data expected in 2027; initiation was not confirmed.",
+      "limitations": "Small early trial. Do not generalise efficacy or safety from individual dose cohorts.",
+      "sourceIds": [
+        "kailera-q2-2026",
+        "kailera-easd-20261001"
+      ],
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null
+    },
+    {
+      "operation": "append_evidence",
+      "id": "ribupatide-injection",
+      "summary": "Kailera reported a separate 51-participant Phase 1 injection-site study. This does not change the global Phase 3 stage or prove results from the fully enrolled KaiNETIC programme.",
+      "sourceIds": [
+        "kailera-kainetic-20260930",
+        "kailera-easd-20261001"
+      ],
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null
+    }
+  ],
+  "registryObservations": {
+    "ibio600": {
+      "status": "RECRUITING",
+      "lastUpdatePosted": "2026-05-29",
+      "actualStart": "2026-05-24",
+      "estimatedEnrollment": 32,
+      "estimatedCompletion": "2027-05",
+      "hasResults": false
+    },
+    "synchronize2": {
+      "status": "COMPLETED",
+      "lastUpdatePosted": "2026-08-06",
+      "actualEnrollment": 755,
+      "actualCompletion": "2026-04-01",
+      "hasResults": false,
+      "note": "Results announced by sponsor are distinct from registry-posted results."
+    }
+  },
+  "discovery": {
+    "queries": [
+      "obesity muscle preservation trial October 1 2026 Regeneron COURAGE (recent)",
+      "obesity weight management trial September October 2026 Novo Lilly Amgen Zealand Roche (recent)",
+      "obesity trial Pfizer Viking Structure Boehringer AstraZeneca Merck Kailera September October 2026 (recent)",
+      "obesity weight management trial October 1 2026 sponsor",
+      "obesity muscle preservation discontinued trial pipeline small biotech 2026",
+      "obesity trial approval September October 2026; domains novonordisk.com lilly.com amgen.com roche.com",
+      "obesity weight management trials; domains pfizer.com vikingtherapeutics.com structuretx.com astrazeneca.com",
+      "obesity weight management phase trials; domains hansoh.cn merck.com kailera.com",
+      "site:hansoh.cn OR site:merck.com obesity trial 2026",
+      "site:amgen.com obesity 2026 MariTide AMG513",
+      "site.gov.uk OR site.nice.org.uk OR site.england.nhs.uk obesity medicines October 2026 September 30",
+      "site:gov.uk obesity medicine safety October 2026 retatrutide",
+      "site:medicines.org.uk emc Mounjaro Wegovy Mysimba September October 2026",
+      "IBIO-600 clinical trial NCT 2026"
+    ],
+    "approach": "Recent and undated topic searches plus specific primary follow-ups. Named developers searched as groups, not claimed to have complete individually reviewed pipelines.",
+    "scanComplete": false,
+    "industryComplete": false,
+    "unresolvedLeads": [
+      {
+        "url": "https://wavelifesciences.gcs-web.com/news-releases/news-release-details/wave-life-sciences-reports-second-quarter-2026-financial-results",
+        "topic": "WVE-007 RNA approach",
+        "status": "Discovered but full primary review and registry comparison not completed; no addition proposed."
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1935979/000193597926000048/bhvnbiohaven2026rddaynot.htm",
+        "topic": "Taldefgrobep alfa muscle/body-composition programme",
+        "status": "Primary filing located; detailed review and registry comparison not completed."
+      },
+      {
+        "url": "https://ir.vikingtherapeutics.com/2026-09-22-Viking-Therapeutics-Announces-Positive-Topline-Results-from-Maintenance-Study-of-GLP-1-GIP-Agonist-VK2735-Demonstrating-the-Promise-of-Multiple-Maintenance-Dosing-Regimens)",
+        "status": "Maintenance-study lead; full review not completed."
+      }
+    ],
+    "limitations": [
+      "No new regulatory/access change established by these searches; negative or irrelevant search results do not prove absence.",
+      "Regeneron direct HTML/PDF retrieval failed and HTTP timed out; primary release content was available in search retrieval.",
+      "Boehringer source reader returned empty text; original Zealand partner announcement was read instead.",
+      "NEJM DOI 10.1056/NEJMoa2607219 unavailable through reader; not claimed as independently read.",
+      "ClinicalTrials.gov browser page yielded only a shell; API content was retrieved and read.",
+      "No complete-response monitor baseline approved for any proposed new source.",
+      "Specialist indications and paused/discontinued programmes searched, but coverage remains incomplete."
+    ]
+  },
+  "nextAction": "Reconcile this dated proposal with main and PR868's existing conflicts, then implement the reviewed catalogue delta, obtain complete-response baselines where possible, run Medicines Watch tests and the existing guarded publication workflow. Keep outstanding evidence gaps explicit. This receipt grants no clinical approval."
+}
