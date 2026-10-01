@@ -6,7 +6,8 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 export const PWA_DISMISS_APPROVED='fbbc8e592549f48280e32009edcbb73d1dd42669';
 export const PWA_DISMISS_PATHS=['my-timber-pwa/ui.mjs','my-timber-pwa/presentation.mjs','my-timber-pwa/pwa.test.mjs','my-timber-pwa/preservation.mjs','my-timber-pwa/preservation.test.mjs','preview/pwa-dismiss/verify.cjs','.github/workflows/pwa-dismiss-preview.yml'];
-export const APP_BASE='8c6902c8e0c6a53863282c6c4378f82ec1a70f6f';
+// Advanced after PR #888 passed the full frontend, integration, preservation and whole-estate gates.
+export const APP_BASE='b23010cfca99b3ab05377062ad5b16984711111c';
 export const APP_APPROVED=MEMBER_FOCUS_APPROVED;
 export const APP_HASHES=JSON.parse(readFileSync(new URL('./app-manifest.json',import.meta.url))).sha256;
 export const APP_PATHS=new Set([...Object.keys(APP_HASHES),'release/app-manifest.json','release/app-scope.mjs','release/growth-scope.mjs']);
