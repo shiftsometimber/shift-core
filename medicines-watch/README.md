@@ -1,6 +1,6 @@
 # Treatments: Medicines & Peptides Watch
 
-Public route: `/treatment-centre/medicines-watch`. Entry point is Treatments only. No member or My Timber integration. This is a bounded weight-management reference, not an exhaustive medicine database, prescribing tool, stock service or recommendation ranking.
+Public route: `/treatment-centre/medicines-watch`. Entry point is Treatments only. No member or My Timber integration. This is a continuously expanding selected weight-management reference, not an exhaustive medicine database, prescribing tool, stock service or recommendation ranking.
 
 `data.mjs` is the reviewed editorial snapshot. Sources link to exact primary documents; provider information is explicitly labelled. Authorisation, trial stage, private supply and NHS England access are distinct. There are no inferred launch prices or cross-trial efficacy comparisons.
 
@@ -74,3 +74,9 @@ Matt authorised informational publication with “Go” on 30 September after th
 ## 1 October evening publication
 
 Matt authorised publication with “Go live - stop pausing when they are needed updates”. `reviews/2026-10-01-authorised-evening-updates.json` connects the full-text factual review to the catalogue: SYNCHRONIZE-2, low-dose COURAGE with the older triplet safety signal retained, Safiglipron naming and bounded Kailera updates, plus the older IBIO-600 omission. There are 38 entries (6 detailed and 32 industry summaries). The 50 automated sources are unchanged; six additional reviewed links are explicitly outside automatic monitoring. No baseline is greened, no unrelated review date advances, and no clinical approval or UK access/supply is inferred. Other historical proposals on this branch remain unpublished unless covered by an earlier authorised receipt.
+
+## 1 October broader discovery publication
+
+`reviews/2026-10-01-authorised-broader-discovery.json` records seven additional primary-source-reviewed research programmes found by an undated mechanism and smaller-developer pass: MBX 4291, ARO-INHBE, LX9851, NBIP-1968, CRB-913, SYNT-101 and ALV-100. The catalogue now contains 45 entries (6 detailed and 39 industry summaries). The automated-source denominator remains 50; the new sponsor and registry links are visibly labelled outside automatic content monitoring rather than being assigned unverified baselines.
+
+Each entry separates completed observations from plans, preserves missing registry matches, and states that trial activity does not establish UK authorisation, NICE/NHS England access or retail supply. Standing owner authorisation covers this factual publication, but it is not clinical approval. The selected catalogue remains open-ended and non-exhaustive; these additions do not close discovery work.

@@ -1,4 +1,5 @@
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
+import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import biPublication from './reviews/2026-09-30-authorised-bi3034701.json' with {type:'json'};
 // Factual industry evidence summaries. No entry represents clinical approval.
 // The associated source reviews and retrieval limitations are in the dated receipt.
@@ -87,7 +88,7 @@ const originalIndustry = [
 export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
-}),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries]
+}),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries]
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)

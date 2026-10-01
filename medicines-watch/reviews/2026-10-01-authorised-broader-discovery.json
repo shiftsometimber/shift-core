@@ -1,0 +1,227 @@
+{
+  "reviewedAt": "2026-10-01T20:54:23Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish the reviewed investigational summaries through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "mbx4291",
+      "name": "MBX 4291",
+      "developer": "MBX Biosciences",
+      "group": "research",
+      "stage": "Phase 1 recruiting; preliminary blinded sponsor data",
+      "summary": "A long-acting GLP-1/GIP co-agonist peptide prodrug being studied in adults with obesity. MBX reported preliminary blinded eight-week data from a small Phase 1 cohort on 11 May 2026. The registry remained recruiting at its 9 June 2026 update and has no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for MBX 4291.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Trial development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The reported cohort contained eight people including two receiving placebo, remained blinded, and was not a completed controlled result. Once-monthly dosing is a development aim, not an authorised regimen.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "MBX Biosciences obesity portfolio update",
+          "url": "https://mbxbio.gcs-web.com/news-releases/news-release-details/mbx-biosciences-provides-obesity-portfolio-update-including",
+          "sourcePublishedAt": "2026-05-11",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original sponsor announcement read for Phase 1 design, preliminary blinded data and planned dosing; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07142707",
+          "url": "https://clinicaltrials.gov/study/NCT07142707",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-06-09",
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Sponsor-submitted registry API read for recruiting Phase 1 status, actual 3 September 2025 start, estimated 124 participants and no posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "aroinhbe",
+      "name": "ARO-INHBE",
+      "developer": "Arrowhead Pharmaceuticals",
+      "group": "research",
+      "stage": "Recruiting Phase 1/2a; interim sponsor data",
+      "summary": "An RNA-interference programme designed to reduce hepatic INHBE expression and Activin E. Arrowhead reported interim Phase 1/2a metabolic and body-composition findings on 27 May 2026. The registry remained recruiting at its 25 September update and has no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for ARO-INHBE.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Research participation does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Interim sponsor-reported findings from an early, dose-escalating study do not establish efficacy, approval or a future dosing interval. Liver-fat and imaging measures are not interchangeable with long-term weight, strength or clinical outcomes.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Arrowhead ARO-INHBE EASL 2026 update",
+          "url": "https://ir.arrowheadpharma.com/news-releases/news-release-details/arrowhead-pharmaceuticals-presents-new-clinical-data-rnai-based",
+          "sourcePublishedAt": "2026-05-27",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original sponsor announcement read for interim Phase 1/2a findings and limitations; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06700538",
+          "url": "https://clinicaltrials.gov/study/NCT06700538",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-09-25",
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Sponsor-submitted registry API read for recruiting Phase 1/2 status, actual 4 December 2024 start, estimated 180 participants and no posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "lx9851",
+      "name": "LX9851",
+      "developer": "Novo Nordisk / Lexicon Pharmaceuticals",
+      "group": "research",
+      "stage": "Phase 1 initiated",
+      "summary": "An oral non-incretin small-molecule ACSL5 inhibitor licensed by Novo Nordisk from Lexicon. The companies announced first-in-human Phase 1 initiation on 23 March 2026 in people with overweight or obesity; completion was expected in the first quarter of 2027.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for LX9851.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The reviewed announcement confirms initiation, not results. The ClinicalTrials.gov exact-name search performed for this review returned no matching record, so current recruitment and dates were not independently verified.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Lexicon and Novo Nordisk LX9851 Phase 1 initiation",
+          "url": "https://investors.lexpharma.com/news-releases/news-release-details/lexicon-pharmaceuticals-and-novo-nordisk-announce-initiation",
+          "sourcePublishedAt": "2026-03-23",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original joint sponsor announcement read for mechanism, initiation and planned completion; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "nbip1968",
+      "name": "NBIP-1968",
+      "developer": "Neurocrine Biosciences",
+      "group": "research",
+      "stage": "Phase 1 initiated",
+      "summary": "A once-weekly investigational GLP-1/GIP/glucagon receptor triple agonist. Neurocrine announced first-in-human Phase 1 initiation on 7 August 2026 and described intended later fixed-dose-combination development with its separate Phase 1 CRF2 agonist NBIP-2118.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for NBIP-1968 or the proposed combination.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The reviewed announcement confirms initiation of single-ascending-dose research, not efficacy or combination results. The proposed fixed-dose combination is a development intention, not a completed study or approved regimen.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Neurocrine NBIP-1968 Phase 1 initiation",
+          "url": "https://neurocrine.gcs-web.com/news-releases/news-release-details/neurocrine-biosciences-announces-initiation-phase-1-clinical-6",
+          "sourcePublishedAt": "2026-08-07",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original sponsor announcement read for Phase 1 initiation, formulation and proposed combination; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "crb913",
+      "name": "CRB-913",
+      "developer": "Corbus Pharmaceuticals",
+      "group": "research",
+      "stage": "Phase 1b topline sponsor results; Phase 2 planned",
+      "summary": "A once-daily oral, peripherally restricted CB1 inverse agonist. Corbus reported CANYON-1 topline Phase 1b results on 14 September 2026 after 12 weeks of treatment. A Phase 2 monotherapy study was planned for the first half of 2027, not yet treated as started.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for CRB-913.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Sponsor-reported topline data have not been treated as a head-to-head comparison. The registry still showed active, not recruiting, at its 29 May 2026 update and had no posted results; the later sponsor announcement is the evidence for completion and findings.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Corbus CANYON-1 topline results",
+          "url": "https://ir.corbuspharma.com/news-events/press-releases/detail/478/corbus-pharmaceuticals-announces-positive-topline-data-from-canyon-1-study-of-daily-oral-crb-913-for-the-treatment-of-obesity",
+          "sourcePublishedAt": "2026-09-14",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original sponsor announcement read for study design, topline findings, adverse events and planned Phase 2; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07310901",
+          "url": "https://clinicaltrials.gov/study/NCT07310901",
+          "sourcePublishedAt": "2025-12-30",
+          "sourceUpdatedAt": "2026-05-29",
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Sponsor-submitted registry API read for Phase 1b design and stale active-not-recruiting status; no posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "synt101",
+      "name": "SYNT-101",
+      "developer": "Syntis Bio",
+      "group": "research",
+      "stage": "Phase 1/1b; initial single-dose sponsor data",
+      "summary": "An investigational daily oral tablet intended to create a transient lining in the small intestine and alter nutrient absorption. Syntis reported initial single-ascending-dose safety and pharmacodynamic observations on 16 July 2026; a 28-day multiple-dose cohort in people with overweight or obesity had completed enrolment, with data still planned.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for SYNT-101.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The reported human data were from 32 healthy volunteers after single doses and did not establish weight loss or muscle preservation. Multiple-dose results and proposed GLP-1 combinations remain unreported in the reviewed evidence.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Syntis SYNT-101 initial Phase 1/1b data",
+          "url": "https://syntis.bio/syntis-bio-reports-positive-initial-phase-1-1b-single-ascending-dose-data-for-synt-101-supporting-its-novel-approach-to-obesity-treatment/",
+          "sourcePublishedAt": "2026-07-16",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original sponsor announcement read for single-dose findings, mechanism and planned multiple-dose reporting; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "alv100",
+      "name": "ALV-100",
+      "developer": "Alveus Therapeutics",
+      "group": "research",
+      "stage": "Recruiting Phase 2 maintenance study",
+      "summary": "A GIP-receptor-antagonist/GLP-1-receptor-agonist fusion protein being studied for weight maintenance after semaglutide-associated weight loss. Alveus announced first-patient dosing in the Phase 2 PRESERVE study on 14 September 2026; the registry showed recruiting with an actual 10 August 2026 start at its 28 September update.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for ALV-100.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Research participation does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Recruitment and first dosing are not results. The maintenance population is selected after at least 10% weight loss on semaglutide; findings cannot be assumed for general obesity treatment or other prior medicines.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T20:54:23Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Alveus PRESERVE Phase 2 initiation",
+          "url": "https://www.globenewswire.com/news-release/2026/09/14/3361010/0/en/alveus-therapeutics-initiates-phase-2-preserve-trial-to-evaluate-alv-100-for-chronic-weight-management.html",
+          "sourcePublishedAt": "2026-09-14",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Original sponsor-distributed announcement read for study population, design and initiation; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07837973",
+          "url": "https://clinicaltrials.gov/study/NCT07837973",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-09-28",
+          "reviewedAt": "2026-10-01T20:54:23Z",
+          "checkScope": "Sponsor-submitted registry API read for recruiting Phase 2 status, actual 10 August 2026 start, estimated 220 participants and no posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "discoveryFailures": [
+    "ClinicalTrials.gov exact-name search returned no LX9851 record; current recruitment and dates are therefore unverified beyond the March sponsor announcement.",
+    "Direct registry matches were not established in this pass for NBIP-1968 or SYNT-101; their stages rely on the cited sponsor announcements.",
+    "No reviewed source establishes UK authorisation, NICE/NHS England access or lawful UK retail supply for any entry."
+  ],
+  "coverageNote": "These seven additions expand selected coverage but do not establish an exhaustive industry census."
+}
