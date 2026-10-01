@@ -81,5 +81,14 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
   assert.equal(WATCH_BROADER_PATHS.length,5);
   assert.ok(WATCH_BROADER_PATHS.includes('medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json'));
   validateWatchBroader((ref,path)=>path);
-  for(const changed of WATCH_BROADER_PATHS)assert.throws(()=>validateWatchBroader((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+ for(const changed of WATCH_BROADER_PATHS)assert.throws(()=>validateWatchBroader((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+ });
+
+ test('SYNT-101 correction release binds its exact reviewed commit',async()=>{
+  const {validateWatchSynt101,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  assert.equal(WATCH_SYNT101_COMMIT,'e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7');
+  assert.equal(WATCH_SYNT101_PATHS.length,4);
+  assert.ok(WATCH_SYNT101_PATHS.includes('medicines-watch/reviews/2026-10-01-synt101-mad-correction.json'));
+  validateWatchSynt101((ref,path)=>path);
+  for(const changed of WATCH_SYNT101_PATHS)assert.throws(()=>validateWatchSynt101((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
  });
