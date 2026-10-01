@@ -72,5 +72,14 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
   for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
   const step=steps.find(s=>s.startsWith('name: Initialise reviewed Medicines Watch expansion observations'));
   assert.match(step,/node scripts\/b1-release-scope.mjs/);assert.match(step,/node medicines-watch\/bootstrap.mjs/);
-  assert.doesNotMatch(step,/migration|seed-recent|medicine_inventory|structured_content/);
+ assert.doesNotMatch(step,/migration|seed-recent|medicine_inventory|structured_content/);
+ });
+
+ test('broader discovery release binds its exact reviewed commit',async()=>{
+  const {validateWatchBroader,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  assert.equal(WATCH_BROADER_COMMIT,'24f869d714702a0dc4f75849f22700eb6fbc078e');
+  assert.equal(WATCH_BROADER_PATHS.length,5);
+  assert.ok(WATCH_BROADER_PATHS.includes('medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json'));
+  validateWatchBroader((ref,path)=>path);
+  for(const changed of WATCH_BROADER_PATHS)assert.throws(()=>validateWatchBroader((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
  });
