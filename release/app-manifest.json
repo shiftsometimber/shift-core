@@ -52,7 +52,7 @@
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
     "release/app-preflight.mjs": "aa82afd8ccc8dfa68f21195d4abf80574772130bd66e339b92f0d4ef8d86e347",
-    "release/growth-adopt-deployment.mjs": "3f5bd8ea715a5c753112bd45c15cd3c32e3eb9274f8dab9979a02c59e83a5327",
+    "release/growth-adopt-deployment.mjs": "64db432c5844efdf7dfef48cf02ec3f3f973633045dda74259ede44f57511a48",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
     "release/member-focus-scope.mjs": "759a4723660ab0d1afbb95c131879afcce1de598fb88cdc4558d9f475f384f17",
@@ -179,6 +179,12 @@
     "candidate": "59b7d1da00fe4ada0e66d64954d99fee6ae35916",
     "browserProofRun": 36921225349,
     "authorised": "Matt, 1 October 2026: The new footer needs to be the footer on every page on website, wpa and app - without exception",
-    "scope": "Approved footer content and CSS across customer HTML; no data, stock, price, clinical, authentication or configuration changes."
+    "scope": "Approved footer content and CSS across customer HTML; no data, stock, price, clinical, authentication or configuration changes.",
+    "baseline": {
+      "source": "7917e61fc21246ac3f1d474f52eb161b22fd0501",
+      "version": "1d1aa56d-cbfa-4964-9620-5186d6c8ac5b",
+      "productionRun": 36916214105,
+      "evidence": "Successful production log names this version, confirms public preservation and zero customer-record reads/writes."
+    }
   }
 }
