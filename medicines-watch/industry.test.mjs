@@ -14,6 +14,7 @@ import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {ty
 import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
 import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
 import broaderReview from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
+import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,39);assert.equal(sources.length,50);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,45);
@@ -196,6 +197,25 @@ test('broader discovery adds bounded research summaries without inventing UK acc
  }
  assert.match(industry.find(entry=>entry.id==='crb913').stage,/Phase 2 planned/);
  assert.match(industry.find(entry=>entry.id==='alv100').limitations,/Recruitment and first dosing are not results/);
- assert.match(industry.find(entry=>entry.id==='synt101').limitations,/did not establish weight loss or muscle preservation/);
+ assert.match(industry.find(entry=>entry.id==='synt101').limitations,/Small, early sponsor-reported study/);
  for(const domain of ['mbxbio.com','arrowheadpharma.com','lexpharma.com','neurocrine.com','corbuspharma.com','syntis.bio','alveustx.com'])assert.ok(discoveryDomains.includes(domain));
+});
+
+test('SYNT-101 correction replaces the stale pending multiple-dose claim without overstating early results',()=>{
+ const entry=industry.find(item=>item.id==='synt101');
+ assert.equal(synt101Correction.publicationStatus,'owner_authorised_factual_correction');
+ assert.equal(synt101Correction.clinicalApproval,null);
+ assert.match(entry.stage,/28-day multiple-dose sponsor results/);
+ assert.match(entry.stage,/Phase 2 planned/);
+ assert.match(entry.summary,/23 adults with overweight or obesity/);
+ assert.match(entry.summary,/planned for 2027, not treated as started/);
+ assert.doesNotMatch(entry.summary,/data still planned/);
+ assert.match(entry.limitations,/does not provide complete cohort-level weight-loss estimates/);
+ assert.match(entry.limitations,/Preclinical lean-muscle findings are not human evidence/);
+ assert.equal(entry.additionalEvidence.at(-1).url,synt101Correction.source.url);
+ assert.equal(entry.reviewedAt,synt101Correction.reviewedAt);
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(entry.supply,/does not establish lawful UK retail supply/);
 });
