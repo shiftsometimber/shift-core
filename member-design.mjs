@@ -36,7 +36,7 @@ css('#appBottomNav [aria-current="page"]','background:#707762;color:#000')+
 css('#appBottomNav button[aria-expanded="true"]','background:#707762;color:#000')+
 css('#todayActions.app-today-v3','color:#000')+
 css('#todayActions.app-today-v3 .app-today-shortcuts','margin:0 0 16px;background:#050505;border:0;border-radius:11px;padding:4px;gap:4px')+
-css('#todayActions.app-today-v3 .app-today-shortcuts a','flex-direction:row;gap:6px;min-height:44px;color:#e7e3da;font-size:12px;font-weight:700;padding:8px 4px')+
+css('#todayActions.app-today-v3 .app-today-shortcuts a','flex-direction:column;gap:4px;min-height:44px;color:#e7e3da;font-size:12px;font-weight:700;padding:6px 4px;white-space:nowrap;word-break:normal')+
 css('#todayActions.app-today-v3 .app-today-shortcuts .app-line-icon','width:18px;height:18px')+
 css('#todayActions.app-today-v3 .app-today-shortcuts a[aria-selected="true"]','background:#707762;color:#000')+
 css('#todayActions.app-today-v3 .today-layout','display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px;align-items:start')+
@@ -61,7 +61,12 @@ css('#todayActions.app-today-v3 .today-focus','margin:16px 0')+
 css('#todayActions.app-today-v3 .today-focus h3','font-size:22px')+
 css('#todayActions.app-today-v3 .mtm-next','background:#050505;color:#e7e3da;padding:18px;border:0;border-radius:14px;margin:0 0 16px')+
 css('#todayActions.app-today-v3 .mtm-next :is(h3,p,small,strong,span,a,button)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
-css('#todayActions.app-today-v3 .mtm-next h3','font-size:25px;margin:8px 0')+
+css('#todayActions.app-today-v3 .mtm-next h3','font-size:23px;line-height:1.2;margin:6px 0')+
+css('#todayActions.app-today-v3 .mtm-next p','font-size:14px;line-height:1.4;margin:5px 0')+
+css('#todayActions.app-today-v3 .mtm-loop-controls','display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px')+
+css('#todayActions.app-today-v3 .mtm-loop-controls p','flex-basis:100%;margin:0')+
+css('#todayActions.app-today-v3 .mtm-loop-controls :is(button,a)','width:auto;margin:0;font-size:12px;line-height:1.35')+
+css('#todayActions.app-today-v3 .mtm-next .mtm-change-step','display:inline-block;width:auto;margin:12px 0 0;padding:0;min-height:24px;font-size:13px')+
 css('#todayActions.app-today-v3 .mtm-next .mt-now-action','background:#707762;color:#000;-webkit-text-fill-color:#000;font-weight:800;padding:12px 16px;min-height:44px')+
 css('#todayActions.app-today-v3 .mtm-next button','background:#e7e3da;color:#050505;-webkit-text-fill-color:#050505;margin:4px;padding:10px')+
 css('#todayActions.app-today-v3 .today-followthrough','margin:16px 0;gap:14px')+
@@ -82,7 +87,7 @@ css('main .sf-current-step','background:#e7e3da;color:#050505')+
 css('main .sf-current-step :is(h3,p,summary)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main #journeyView>.hero','display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:14px;padding:0 0 18px;align-items:center')+
 css('main #journeyView .hero-copy','text-align:left')+
-css('main :is(#scoreCaption,#comparison)','color:#000;-webkit-text-fill-color:#000')+
+css('main :is(#scoreCaption,#comparison)','color:#050505;-webkit-text-fill-color:#050505;background:#e7e3da;border-radius:8px;padding:8px;font-size:14px')+
 css('main #journeyView .score-ring','background:#050505;color:#e7e3da')+
 css('main #journeyView .score-content :is(strong,span)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 css('main .area-number','color:#050505')+

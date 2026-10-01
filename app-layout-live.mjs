@@ -25,6 +25,7 @@ export async function withAppLayout(request,response){
  if(/<body\b[^>]*\bdata-app-panel="1"/.test(after)&&!/<script\b[^>]*\bsrc=["']\/consent-v4a\.js(?:\?[^"']*)?["']/i.test(after))after=after.replace('</body>','<script defer src="/consent-v4a.js"></script></body>');
  if(!app&&u.pathname==='/member/dashboard'&&choice!=='web'&&before.includes('data-member-chrome="v1"'))after=after.replace('</body>','<script defer src="'+launchAsset+'"></script></body>');
  const headers=new Headers(response.headers);
+ if(after.includes('data-member-design="20261001"'))headers.set('X-Shift-Member-Design','approved-20261001');
  if(after!==before||choice==='app'||choice==='web'||app)headers.set('Cache-Control','no-store, private');
  const vary=new Set((headers.get('Vary')||'').split(',').map(s=>s.trim()).filter(Boolean));vary.add('Cookie');headers.set('Vary',[...vary].join(', '));
  if(choice==='app'||choice==='web')headers.append('Set-Cookie','shift_app_view='+(choice==='app'?'1':'')+'; Path=/member; Secure; HttpOnly; SameSite=Lax; Max-Age='+(choice==='app'?'2592000':'0'));
