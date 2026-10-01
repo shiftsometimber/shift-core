@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {banner,css,addHomeBanner,removeHomeBanner} from '../home-route-banner.mjs';
 import {stabilisePublicHtml} from '../public-startup-stability.mjs';
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
@@ -30,3 +31,16 @@ test('home bootstrap embedding preserves authoritative privacy code and exact re
 });
 
  test('production output matches exact approved compact transform',async()=>{const {replaceFreeStrip}=await import('../preview/home-banner/free-design.mjs');const {banner:b,css:c}=await import('../preview/home-banner/four-step.mjs');assert.equal(addHomeBanner(raw),replaceFreeStrip(raw.replace('</head>',c+'</head>').replace(anchor,b+anchor)));});
+
+test('production CSS gate accepts the approved PWA release and rejects stale or unrelated CSS',async()=>{
+ const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
+ const step=workflow.split('      - name: Require verified homepage speed candidate and current CSS bytes')[1].split('      - name: Install exact Wrangler toolchain')[0];
+ const body=step.split("<<'JS'\n")[1].split('\n          JS')[0].replace(/^\s*import .*;\n/gm,'');
+ const run=new (Object.getPrototypeOf(async function(){}).constructor)('assert','createHash','RETA_STYLES','HOME_BLOCKING_STYLES','pwaStyles','fetch',body);
+ const current={'/assets/example.css':'reviewed other CSS','/assets/my-timber-pwa.css':'approved current PWA CSS'};
+ const fetchFor=css=>async url=>url.includes('api.github.com')?{ok:true,json:async()=>({conclusion:'success',head_sha:'44c895d732cf801c4cff90564244fa5ee8997523'})}:{ok:true,text:async()=>css[new URL(url).pathname]};
+ const check=css=>run(assert,createHash,{'/assets/example.css':current['/assets/example.css']},{'/assets/my-timber-pwa.css':'historic PWA CSS'},current['/assets/my-timber-pwa.css'],fetchFor(css));
+ await check(current);
+ await assert.rejects(check({...current,'/assets/my-timber-pwa.css':'historic PWA CSS'}),/CSS changed/);
+ await assert.rejects(check({...current,'/assets/example.css':'unreviewed CSS'}),/CSS changed/);
+});
