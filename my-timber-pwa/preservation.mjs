@@ -7,7 +7,10 @@ export function preservePwaPresentation(path,body,{required=false}={}){
  const member=/^\/(?:my-timber|member-login|member-register|member\/[^/]+)(?:\.html)?\/?$/.test(path);
  function removeExact(value,needed){const n=html.split(value).length-1;if(needed)assert.equal(n,1,'Expected exact approved PWA addition');else assert(n<=1);html=html.replace(value,'');}
  removeExact(footerLink,required&&html.includes('</footer>'));
- removeExact(card,required&&member);
+ const previousCard=card.replace('<button type="button" id="pwaInstallDismiss" aria-label="Dismiss add My Timber to your phone">×</button>','');
+ const installCount=html.split(card).length-1+html.split(previousCard).length-1;
+ if(required&&member)assert.equal(installCount,1,'Expected exact approved PWA addition');else assert(installCount<=1);
+ removeExact(card,false);removeExact(previousCard,false);
  removeExact('<link rel="stylesheet" href="/assets/my-timber-pwa.css">',required);
  removeExact('<script defer src="/assets/my-timber-pwa.js"></script>',required&&member);
  if(member)html=html.replace(/<link\b(?=[^>]*\brel=["'](?:manifest|apple-touch-icon)["'])[^>]*>/gi,'').replace(/<meta\b(?=[^>]*\bname=["'](?:theme-color|apple-mobile-web-app-title)["'])[^>]*>/gi,'');

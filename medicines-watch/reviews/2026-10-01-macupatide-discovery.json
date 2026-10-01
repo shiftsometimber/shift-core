@@ -1,0 +1,80 @@
+{
+  "reviewedAt": "2026-10-01T05:37:00Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "review_change_proposed",
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "macupatide",
+      "name": "Macupatide / LY3532226",
+      "developer": "Eli Lilly and Company",
+      "group": "research",
+      "stage": "Recruiting Phase 2 combination study; separate Phase 1 study not yet recruiting",
+      "formulation": "Subcutaneous investigational GIP receptor agonist",
+      "mechanism": "GIP receptor agonist studied alone and with the amylin agonist eloralintide",
+      "summary": "The sponsor-submitted registry records a recruiting Phase 2 study of macupatide and eloralintide, alone or in combination, in an estimated 200 adults with obesity or overweight and type 2 diabetes. It records an actual 16 October 2025 start and estimated March 2027 primary completion. A separate Japanese Phase 1 study remains not yet recruiting and has only an estimated October 2026 start.",
+      "ukAuthorisation": "The reviewed registry records do not establish UK marketing authorisation for macupatide or the combination.",
+      "limitations": "Recruitment is not a result. Neither study has posted results, estimated enrolment and completion dates may change, and the Phase 1 study must not be described as started while its registry status remains not yet recruiting.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T05:37:00Z",
+      "clinicalApproval": null,
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Research participation does not establish lawful UK retail supply or pharmacy stock.",
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07215559 — recruiting Phase 2 study",
+          "url": "https://clinicaltrials.gov/study/NCT07215559",
+          "sourcePublishedAt": "2026-09-08",
+          "reviewedAt": "2026-10-01T05:37:00Z",
+          "checkScope": "Sponsor-submitted registry record read for study phase, recruitment status, actual start, estimated dates and enrolment; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07765511 — planned Phase 1 study",
+          "url": "https://clinicaltrials.gov/study/NCT07765511",
+          "sourcePublishedAt": "2026-08-14",
+          "reviewedAt": "2026-10-01T05:37:00Z",
+          "checkScope": "Sponsor-submitted registry record read for not-yet-recruiting status and estimated dates; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registryEvidence": [
+    {
+      "nctId": "NCT07215559",
+      "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07215559",
+      "overallStatus": "RECRUITING",
+      "phase": "Phase 2",
+      "actualStartDate": "2025-10-16",
+      "estimatedPrimaryCompletion": "2027-03",
+      "estimatedEnrollment": 200,
+      "lastUpdatePosted": "2026-09-08",
+      "hasResults": false,
+      "retrievedAt": "2026-10-01T05:37:00Z",
+      "httpStatus": 200,
+      "bytes": 20458,
+      "responseSha256": "fe12c62cf165ff7df639779fa7c858184d08992ca5d4c3b16cb70800fe7bad8f"
+    },
+    {
+      "nctId": "NCT07765511",
+      "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07765511",
+      "overallStatus": "NOT_YET_RECRUITING",
+      "phase": "Phase 1",
+      "estimatedStart": "2026-10",
+      "estimatedPrimaryCompletion": "2027-06",
+      "estimatedEnrollment": 60,
+      "lastUpdatePosted": "2026-08-14",
+      "hasResults": false,
+      "retrievedAt": "2026-10-01T05:37:00Z",
+      "httpStatus": 200,
+      "bytes": 8916,
+      "responseSha256": "b715b617cac97b70ed1f531f12c276542c489fbe0ff7a87e335425cf124c7e72"
+    }
+  ],
+  "clinicalApproval": null,
+  "uncertainty": [
+    "ClinicalTrials.gov records are sponsor submitted and can change.",
+    "The Phase 2 study has no posted results; recruiting status does not establish efficacy or availability.",
+    "The Phase 1 start is estimated and the record remains not yet recruiting.",
+    "No reviewed source establishes UK authorisation, NHS access or actual supply."
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "My Timber",
   "version": "1.0.0",
-  "build": 1,
+  "build": 2,
   "origin": "https://shiftsometimber.co.uk",
   "startPath": "/member/dashboard#today",
   "plannedStoreApplicationId": "uk.co.shiftsometimber.mytimber",

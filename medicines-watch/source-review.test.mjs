@@ -6,7 +6,9 @@ import {projectSourceHealth, REVIEW_INTERVAL_MS} from './monitor.mjs';
 
 const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-source-review.json', import.meta.url)));
 const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjaro-nhs-renewal.json', import.meta.url)));
+const latestNhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjaro-nhs-renewal.json', import.meta.url)));
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
+const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
   source_url: source.url, check_url: source.checkUrl,
@@ -21,7 +23,8 @@ test('source-only review binds twelve complete primary responses without clinica
   assert.equal(new Set(receipt.sources.map(s => s.id)).size, 12);
   for (const proof of receipt.sources) {
     const source = sources.find(s => s.id === proof.id);
-    const currentProof = proof.id === 'foundayo-nice' ? foundayoReceipt.sources[0] : proof;
+    const currentProof = overdueReceipt.sources.find(source => source.id === proof.id)
+      ?? (proof.id === 'foundayo-nice' ? foundayoReceipt.sources[0] : proof);
     assert.equal(source.url, currentProof.url);
     assert.equal(source.checkUrl, currentProof.checkUrl);
     assert.equal(source.reviewedAt, currentProof.reviewedAt);
@@ -36,6 +39,35 @@ test('source-only review binds twelve complete primary responses without clinica
     const currentReviewTime = Date.parse(currentProof.reviewedAt);
     assert.equal(projectSourceHealth(source, rowFor(source, currentReviewTime), currentReviewTime).status, 'current');
   }
+});
+
+test('sixteen overdue reviews are renewed only from complete unchanged evidence', () => {
+  assert.equal(overdueReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
+  assert.equal(overdueReceipt.sources.length, 16);
+  assert.equal(new Set(overdueReceipt.sources.map(source => source.id)).size, 16);
+  assert.equal(overdueReceipt.liveObservation.status, 'awaiting_review');
+  assert.deepEqual(new Set(overdueReceipt.liveObservation.reviewDue), new Set(overdueReceipt.sources.map(source => source.id)));
+  for (const proof of overdueReceipt.sources) {
+    const source = sources.find(candidate => candidate.id === proof.id);
+    for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
+      assert.equal(source[key], proof[key]);
+    }
+    assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
+    assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
+    assert.equal(proof.httpStatus, 200);
+    assert.ok(proof.bytes > 1000 && proof.bytes <= 2 * 1024 * 1024);
+    assert.match(proof.responseSha256, /^[a-f0-9]{64}$/);
+    assert.equal(proof.withdrawn, false);
+    assert.equal(proof.wordingChanged, false);
+    assert.ok(proof.assessment.length > 130);
+    const time = Date.parse(proof.reviewedAt);
+    assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
+    const old = {...source, reviewedAt: proof.previousReviewedAt};
+    assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
+  }
+  assert.equal(overdueReceipt.clinicalApproval, null);
+  assert.equal(overdueReceipt.transientChecks.length, 2);
+  assert.ok(overdueReceipt.transientChecks.every(check => check.directFingerprintMatched && check.disposition.includes('retained')));
 });
 
 test('review expiry, changed content and failures still fail closed', () => {
@@ -57,8 +89,16 @@ test('separate NHS tirzepatide expiry is renewed only after reading the complete
   const source = sources.find(s => s.id === proof.id);
   assert.equal(proof.id, 'mounjaro-nhs');
   for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
-    assert.equal(source[key], proof[key]);
+    const currentProof = {...latestNhsReceipt.source, checkUrl: latestNhsReceipt.source.url, reviewedAt: latestNhsReceipt.reviewedAt};
+    assert.equal(source[key], currentProof[key]);
   }
+  assert.equal(latestNhsReceipt.source.previousReviewedAt, nhsReceipt.reviewedAt);
+  assert.equal(latestNhsReceipt.source.reviewedFingerprint, proof.reviewedFingerprint);
+  assert.equal(latestNhsReceipt.clinicalApproval, null);
+  assert.equal(latestNhsReceipt.source.withdrawn, false);
+  assert.equal(latestNhsReceipt.source.httpStatus, 200);
+  assert.ok(Date.parse(latestNhsReceipt.source.retrievedAt) <= Date.parse(latestNhsReceipt.reviewedAt));
+  assert.match(latestNhsReceipt.source.responseSha256, /^[a-f0-9]{64}$/);
   assert.equal(proof.previousReviewedAt, '2026-09-17T05:45:00Z');
   assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
   assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
@@ -68,7 +108,7 @@ test('separate NHS tirzepatide expiry is renewed only after reading the complete
   assert.equal(proof.withdrawn, false);
   assert.equal(proof.wordingChanged, false);
   assert.ok(proof.assessment.length > 150);
-  const time = Date.parse(proof.reviewedAt);
+  const time = Date.parse(latestNhsReceipt.reviewedAt);
   assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
   const old = {...source, reviewedAt: proof.previousReviewedAt};
   assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
@@ -80,10 +120,12 @@ test('changed SmPC metadata preserves the medicine catalogue and separately evid
   assert.equal(medicines.find(m => m.id === 'wegovy-injection').reviewedAt, undefined);
   const renewal = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-information-renewal.json', import.meta.url)));
   for (const proof of renewal.sources) {
+    const currentProof = overdueReceipt.sources.find(candidate => candidate.id === proof.id) ?? proof;
     assert.equal(proof.previousReviewedAt, '2026-09-16T17:44:34Z');
-    assert.equal(sources.find(s => s.id === proof.id).reviewedAt, proof.reviewedAt);
+    assert.equal(currentProof.previousReviewedAt, proof.reviewedAt);
+    assert.equal(sources.find(s => s.id === proof.id).reviewedAt, currentProof.reviewedAt);
     assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-09-27-wegovy-tablet-provider.json', import.meta.url))).reviewedAt);
-  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, nhsReceipt.reviewedAt);
+  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, latestNhsReceipt.reviewedAt);
 });

@@ -14,7 +14,7 @@ for(const width of [320,390,1440]){
   const response=await page.goto(base+'/?baseline='+(mode==='baseline'?'1':'0'),{waitUntil:'networkidle'});assert.equal(response.status(),200);
   const consent=page.getByRole('button',{name:'Necessary only',exact:true});if(await consent.isVisible())await consent.click();
   await page.evaluate(()=>document.fonts.ready);
-  const state=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth+1,h1:document.querySelectorAll('h1').length,elements:[...document.querySelectorAll('header *,main *,footer *')].filter(el=>!el.closest('#sst-home-route')).map(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return [el.tagName,...[...(el.closest('header')?[]:['color','backgroundColor']),'fontFamily','fontSize','lineHeight','display','padding','margin','borderRadius','maxWidth'].map(k=>s[k]),Math.round(r.width*100)/100,Math.round(r.height*100)/100]})}));
+  const state=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth+1,h1:document.querySelectorAll('h1').length,elements:[...document.querySelectorAll('header *,main *,footer *')].filter(el=>!el.closest('#sst-home-route,footer')).map(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return [el.tagName,...[...(el.closest('header')?[]:['color','backgroundColor']),'fontFamily','fontSize','lineHeight','display','padding','margin','borderRadius','maxWidth'].map(k=>s[k]),Math.round(r.width*100)/100,Math.round(r.height*100)/100]})}));
   assert(!state.overflow,`${name} ${width} ${mode} overflow`);assert.equal(state.h1,1);
   if(mode==='baseline')original=state;else{
    assert.deepEqual(state.elements.filter((row,i)=>JSON.stringify(row)!==JSON.stringify(original.elements[i])),[],'Outside approved banner and header colours appearance changed');
@@ -26,6 +26,10 @@ for(const width of [320,390,1440]){
    await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-top.png`});
    await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-full.png`,fullPage:true});
    await page.locator('#sst-home-route').screenshot({path:`home-banner-proof/screenshots/${name}-${width}-banner.png`});
+   const footer=page.locator('footer.site-footer');
+   const footerState=await footer.evaluate(el=>({background:getComputedStyle(el).backgroundColor,links:[...el.querySelectorAll('a')].map(a=>[a.textContent,a.getAttribute('href'),getComputedStyle(a).color]),text:el.textContent}));
+   assert.equal(footerState.background,'rgb(231, 227, 218)');assert(footerState.links.every(a=>a[2]==='rgb(5, 5, 5)'));
+   await footer.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-footer.png`});
    const menu=page.locator('.menu-trigger');await menu.click();assert.equal(await menu.getAttribute('aria-expanded'),'true');const drawer=page.locator('aside.site-drawer');assert(await drawer.isVisible());const palette=await drawer.evaluate(el=>({background:getComputedStyle(el).backgroundColor,links:[...el.querySelectorAll('nav a')].map(a=>getComputedStyle(a).color),close:getComputedStyle(el.querySelector('.drawer-close')).color}));assert.equal(palette.background,'rgb(231, 227, 218)');assert(palette.links.every(c=>c==='rgb(5, 5, 5)'));assert.equal(palette.close,'rgb(5, 5, 5)');await page.screenshot({path:`home-banner-proof/screenshots/${name}-${width}-menu-open.png`});await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
    const start=page.locator('#sst-home-route a').first();await start.focus();assert.equal(await start.evaluate(el=>document.activeElement===el),true);
    results.push({engine:name,width,placement,frame,flush,originalPageStyleEquality:true,noOverflow:true,menuPassed:true,keyboardPassed:true});
@@ -35,6 +39,14 @@ for(const width of [320,390,1440]){
 }
 await browser.close();
 }
+// Gate this performance repair on three mobile Lighthouse samples in the same preview.
+const {execFileSync}=require('node:child_process');const speed=[];
+for(let n=1;n<=3;n++){
+ const output=`home-banner-proof/mobile-speed-${n}.json`;
+ execFileSync('npx',['--yes','lighthouse@12.8.2',base,'--only-categories=performance','--output=json','--output-path='+output,'--chrome-flags=--headless --no-sandbox','--quiet'],{env:{...process.env,CHROME_PATH:chromium.executablePath()},stdio:'inherit',timeout:120000});
+ const report=JSON.parse(fs.readFileSync(output));assert(!report.runtimeError);const a=report.audits;speed.push({lcp:a['largest-contentful-paint'].numericValue,cls:a['cumulative-layout-shift'].numericValue,tbt:a['total-blocking-time'].numericValue});
+}
+const median=k=>speed.map(s=>s[k]).sort((a,b)=>a-b)[1];fs.writeFileSync('home-banner-proof/mobile-speed-summary.json',JSON.stringify({runs:speed,median:{lcp:median('lcp'),cls:median('cls'),tbt:median('tbt')}},null,2));console.log('MOBILE_SPEED',JSON.stringify(speed));assert(median('lcp')<=2500);assert(median('cls')<=0.1);assert(median('tbt')<=200);
 const r=await fetch(base,{method:'POST'});assert.equal(r.status,405);
 fs.writeFileSync('home-banner-proof/browser.json',JSON.stringify(results,null,2));console.log('PASS: six desktop/mobile browser combinations, original style preservation outside the four-step banner, banner placement, links, menu and read-only restriction');
 })().catch(e=>{console.error(e);process.exit(1)});

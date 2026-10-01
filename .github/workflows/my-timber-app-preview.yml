@@ -1,5 +1,9 @@
 name: My Timber app — deploy-readiness builds
 on:
+  pull_request:
+    paths:
+      - 'my-timber-app/**'
+      - '.github/workflows/my-timber-app-preview.yml'
   push:
     branches: [main, feat/my-timber-store-20260923]
     paths:

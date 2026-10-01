@@ -1,0 +1,29 @@
+name: Approved compact homepage release proof
+on:
+  push:
+    branches: [release/home-compact-footer-20261001]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/home-route-banner.test.mjs tests/home-speed-green.test.mjs tests/public-shell-contract.test.mjs tests/b1-release-scope.test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/home-tools" --no-audit --no-fund playwright@1.63.0
+      - run: '"$RUNNER_TEMP/home-tools/node_modules/.bin/playwright" install --with-deps chromium'
+      - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/home-tools/node_modules/playwright" node release/home-compact-proof.cjs
+      - run: node scripts/b1-release-scope.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-home-compact-proof
+          path: home-compact-proof/

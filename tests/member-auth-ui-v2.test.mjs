@@ -10,7 +10,7 @@ test('member entry defaults to sign-in without requiring a first name',()=>{
   assert.match(html,/data-registration-field hidden>First name<input name="firstName"/);
   assert.doesNotMatch(html,/name="firstName"[^>]*required/);
   assert.match(html,/first\.required=registering/);
-  assert.match(html,/autocomplete="current-password" minlength="12"/);
+  assert.match(html,/autocomplete="current-password" minlength="10"/);
   assert.match(html,/\.preview-auth \[hidden\]\{display:none!important\}/);
 });
 
@@ -27,4 +27,12 @@ test('verification and invalid-link states are explained in the entry UI',()=>{
   assert.match(html,/Email verified\. Sign in to open My Timber\./);
   assert.match(html,/verification link has expired or has already been used/);
   assert.match(html,/verificationRequired/);
+});
+
+
+test('password minimum stays aligned with the live member registration contract',async()=>{
+  const register=await readFile(new URL('../member-register-fastpath-v2.js',import.meta.url),'utf8');
+  assert.match(register,/password\.length<10/);
+  assert.match(html,/minlength="10"/);
+  assert.doesNotMatch(html,/minlength="12"/);
 });

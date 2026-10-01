@@ -1,0 +1,50 @@
+{
+  "reviewedAt": "2026-10-01T01:03:58Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "review_change_proposed",
+  "source": {
+    "id": "kailera-kainetic-20260930",
+    "title": "Kailera: KaiNETIC global Phase 3 enrolment completed",
+    "url": "https://investors.kailera.com/news-releases/news-release-details/kailera-therapeutics-announces-completion-enrollment-kainetic",
+    "checkUrl": "https://investors.kailera.com/news-releases/news-release-details/kailera-therapeutics-announces-completion-enrollment-kainetic",
+    "format": "html",
+    "sourcePublishedAt": "2026-09-30",
+    "sourceDateLabel": "Source publication date",
+    "reviewedAt": "2026-10-01T01:03:58Z",
+    "requiredTerms": [
+      "ribupatide",
+      "KaiNETIC-1",
+      "KaiNETIC-2",
+      "KaiNETIC-3",
+      "mid-2028"
+    ],
+    "evidenceType": "Original sponsor programme announcement; not regulatory approval",
+    "reviewedFingerprint": "576ed348b2f31ca8cf8f3c4cbb5f955d2dc6d82816d2f1518c19b21bf682a268",
+    "httpStatus": 200,
+    "bytes": 58073,
+    "responseSha256": "23be62a2b6f611d68fc9f4579af6f7c51f6e313fc7c64f1db5355b12913de13c",
+    "withdrawn": false
+  },
+  "change": {
+    "id": "ribupatide-injection",
+    "fields": {
+      "stage": "Global Phase 3 KaiNETIC programme fully enrolled",
+      "summary": "Kailera's 30 September 2026 announcement says enrolment is complete across the three global Phase 3 KaiNETIC injection trials: approximately 2,500 adults in KaiNETIC-1, 1,200 in KaiNETIC-2 and 1,200 in KaiNETIC-3. Topline data are expected in mid-2028; this is a planned date, not a completed result.",
+      "limitations": "This sponsor-reported enrolment milestone is not a trial result, regulatory approval or evidence of UK access or supply. The three injection trials have different populations and comparators. It does not advance the separate oral ribupatide programme."
+    },
+    "sourceIdsToAdd": [
+      "kailera-kainetic-20260930"
+    ]
+  },
+  "ukPosition": {
+    "marketingAuthorisation": "The reviewed source does not establish UK marketing authorisation for ribupatide.",
+    "nhsEnglandAccess": "The reviewed source does not establish a NICE recommendation or NHS England access.",
+    "supply": "Trial enrolment does not establish lawful UK retail supply or pharmacy stock."
+  },
+  "clinicalApproval": null,
+  "uncertainty": [
+    "Topline data are expected in mid-2028; the timing is forward-looking and may change.",
+    "The announcement reports programme-level enrolment and does not provide trial results.",
+    "A successful source response does not renew any unrelated medicine or source review."
+  ]
+}

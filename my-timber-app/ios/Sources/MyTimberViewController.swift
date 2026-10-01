@@ -77,7 +77,10 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         let decision=NavigationPolicy.classify(url.absoluteString)
         // Embedded HTTPS resources/challenges get the browser's normal isolation.
         if action.targetFrame?.isMainFrame == false {
-            decisionHandler(url.scheme?.lowercased() == "https" ? .allow : .cancel);return
+            let scheme = url.scheme?.lowercased()
+            let raw = url.absoluteString.lowercased()
+            let turnstileAbout = scheme == "about" && (raw == "about:blank" || raw == "about:srcdoc")
+            decisionHandler((scheme == "https" || turnstileAbout) ? .allow : .cancel);return
         }
         if decision == .internalPage {
             if action.targetFrame == nil {webView.load(action.request);decisionHandler(.cancel)} else {decisionHandler(.allow)}

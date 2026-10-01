@@ -1,0 +1,53 @@
+{
+  "publicationStatus": "authorised_for_informational_publication",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-09-30",
+    "instruction": "Go",
+    "scope": "Publish BI 3034701 as a bounded investigational programme following the explicit publication discussion."
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "reviewReceipt": "2026-09-30-bi3034701-discovery.json",
+  "entries": [
+    {
+      "id": "bi3034701",
+      "name": "BI 3034701",
+      "developer": "Boehringer Ingelheim; developed in cooperation with Gubra",
+      "group": "research",
+      "stage": "Phase 2, active not recruiting",
+      "formulation": "Subcutaneous investigational peptide",
+      "mechanism": "GLP-1/GIP/NPY2 receptor agonist",
+      "summary": "Boehringer Ingelheim, working with Gubra, is developing an injectable GLP-1/GIP/NPY2 receptor agonist for obesity or overweight. Its Phase 2 study records 344 actual participants and began on 30 June 2026. Completion is estimated in 2027; no results are posted. A separate Phase 1 dose-titration study remains recruiting.",
+      "ukAuthorisation": "Not established by the reviewed research sources. UK trial locations do not establish a marketing authorisation.",
+      "limitations": "Sponsor descriptions of differentiation and earlier tolerability are not evidence of comparative effectiveness, proven muscle preservation or established safety and efficacy.",
+      "sourceIds": [],
+      "reviewedAt": "2026-09-30T20:23:00Z",
+      "clinicalApproval": null,
+      "nhsEngland": "Not established by the reviewed evidence.",
+      "supply": "No commercial UK supply or pharmacy stock established.",
+      "additionalEvidence": [
+        {
+          "title": "Boehringer: Phase 2 announcement",
+          "url": "https://www.globenewswire.com/news-release/2026/07/16/3328210/0/en/boehringer-ingelheim-strengthens-obesity-pipeline-as-potential-first-in-class-triple-receptor-agonist-bi-3034701-enters-phase-ii-development.html",
+          "sourcePublishedAt": "2026-07-16",
+          "reviewedAt": "2026-09-30T20:23:00Z",
+          "checkScope": "Primary evidence read; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07662122 \u2014 updated 2026-09-29",
+          "url": "https://clinicaltrials.gov/study/NCT07662122",
+          "sourcePublishedAt": "2026-06-23",
+          "reviewedAt": "2026-09-30T20:23:00Z",
+          "checkScope": "Primary evidence read; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07754474 \u2014 updated 2026-09-23",
+          "url": "https://clinicaltrials.gov/study/NCT07754474",
+          "sourcePublishedAt": "2026-08-10",
+          "reviewedAt": "2026-09-30T20:23:00Z",
+          "checkScope": "Primary evidence read; not automatically content-monitored."
+        }
+      ]
+    }
+  ]
+}

@@ -46,6 +46,31 @@ Retatrutide and enicepatide receive dated trial updates. Body-composition resear
 
 `reviews/2026-09-30-env308-discovery.json` records an older omission found by the undated topic pass: Enveda's investigational daily oral Lac-Phe mimetic for post-GLP-1 weight maintenance. The sponsor reports Phase I safety and pharmacology observations in healthy volunteers, while weight, body-composition and maintenance outcomes remain untested in the reported human study and Phase II is planned rather than completed. Preclinical lean-mass findings are not described as human evidence. The exact-name ClinicalTrials.gov query returned no matching record, and that evidence gap remains explicit. This is proposal-only and makes no UK authorisation, NHS access or supply claim.
 
+
+## Berobenatide / VESPER-6 correction
+
+`reviews/2026-09-30-berobenatide-vesper6.json` records a later Pfizer trial page and the sponsor-submitted ClinicalTrials.gov record for NCT07595549. The live PF-3944 summary should also carry the adopted study name berobenatide and distinguish the recruiting VESPER-6 study, which records an actual 10 June 2026 start, from the earlier VESPER-4 announcement. The sponsor trial page is added as a 49th configured source with a complete-response baseline; the registry record remains linked evidence outside automatic monitoring. Recruitment is not a result, UK authorisation, NHS access or retail supply. The source publication date is unknown where Pfizer does not state it, and the registry's May 2028 primary completion remains estimated.
+
 ## 30 September publication decision
 
 Matt authorised the continuing-discovery release with "Ok go". `reviews/2026-09-30-authorised-continuing-discovery.json` publishes HRS-1596, emugrobart and ENV-308 as bounded factual summaries, and replaces the petrelintide source with the reviewed readable sponsor release. Historical proposal receipts and the previous URL remain retained. This gives 35 entries and 48 configured sources; neither count means industry completeness. Clinical approval remains null. Unrelated review dates and genuine warnings are unchanged.
+
+## 30 September review-expiry follow-up
+
+`reviews/2026-09-30-overdue-source-renewal.json` records two same-day expiry waves covering sixteen sources. Five product-information reviews crossed the seven-day boundary after the first eleven-source review was prepared. Their complete SmPC responses were retrieved and reread; each exact claim-bearing fingerprint remained unchanged and no withdrawal was present. Only those source-specific review dates advance. Medicine wording, catalogue-wide dates, NHS access, actual supply and monitor outcomes do not change. Production remains awaiting review until the reviewed release is merged, deployed and followed by a real scheduled source check.
+
+## BI 3034701 publication
+
+Matt authorised informational publication with “Go” on 30 September after the explicit BI 3034701 publication discussion. `reviews/2026-09-30-authorised-bi3034701.json` adds that research summary, retaining its original discovery receipt. The catalogue now has 36 entries; the 48 automated source checks are unchanged. Its three primary evidence links are visibly outside automatic content monitoring. No clinical approval, UK authorisation, NHS access, supply or completed Phase 2 result is inferred. The other five proposals in PR #868 remain separate review work.
+
+## 1 October programme updates
+
+`reviews/2026-10-01-eloratzp-phase2b.json` replaces the earlier forward-looking EloraTZP evidence with Lilly's completed Phase 2b announcement and linked sponsor-submitted registry record. It keeps the separate-injection study distinct from the planned co-formulation Phase 3 programme and does not treat that planned programme as started.
+
+`reviews/2026-10-01-kainetic-enrolment.json` records Kailera's later announcement that enrolment is complete across all three global Phase 3 KaiNETIC injection trials. It adds a 50th configured, fingerprinted source and updates only the ribupatide injection summary. Mid-2028 topline data remain expected rather than completed; the separate oral programme, UK authorisation, NHS access and actual supply do not advance.
+
+`reviews/2026-10-01-macupatide-discovery.json` records an older omission found by the broader mechanism-and-combination pass. The sponsor-submitted registry shows a recruiting Phase 2 study of macupatide and eloralintide, alone or together, with an actual 16 October 2025 start and no posted results. A separate Japanese Phase 1 record remains not yet recruiting, so its estimated October 2026 start is not treated as completed. The bounded research summary adds no automatically monitored source and makes no UK authorisation, NICE/NHS England access, supply or clinical-approval claim.
+
+## 1 October evening publication
+
+Matt authorised publication with “Go live - stop pausing when they are needed updates”. `reviews/2026-10-01-authorised-evening-updates.json` connects the full-text factual review to the catalogue: SYNCHRONIZE-2, low-dose COURAGE with the older triplet safety signal retained, Safiglipron naming and bounded Kailera updates, plus the older IBIO-600 omission. There are 38 entries (6 detailed and 32 industry summaries). The 50 automated sources are unchanged; six additional reviewed links are explicitly outside automatic monitoring. No baseline is greened, no unrelated review date advances, and no clinical approval or UK access/supply is inferred. Other historical proposals on this branch remain unpublished unless covered by an earlier authorised receipt.
