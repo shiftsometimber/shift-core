@@ -3,8 +3,8 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const FOOTER_BASE='baec2cef3dbaf993ba00a3c10927d6dc6062a532';
-export const FOOTER_CANDIDATE='e0ff69d5f8cf19fe776ecc0da5340198d3cca26e';
-export const FOOTER_PROOF_RUN=36919875796;
+export const FOOTER_CANDIDATE='f2e80b00568e8b7e8635af5c6f966d2b9f8a4b31';
+export const FOOTER_PROOF_RUN=36920275874;
 export const FOOTER_RUNTIME_PATHS=new Set(['worker-entry-v6.js','my-timber-pwa/service-worker.mjs','preview/app-layout/presentation.mjs','preview/app-layout/screens.mjs','preview/app-layout/tabs.mjs']);
 export const FOOTER_PAYLOAD_PATHS=new Set([...FOOTER_RUNTIME_PATHS,'shared-footer.mjs','tests/shared-footer.test.mjs','scripts/prove-shared-footer.cjs','preview/shared-footer/worker.mjs','preview/shared-footer/wrangler.jsonc','.github/workflows/shared-footer-proof.yml']);
 export const FOOTER_PATHS=new Set([...FOOTER_PAYLOAD_PATHS,'release/footer-scope.mjs','.github/workflows/shared-footer-release-proof.yml','.github/workflows/shared-footer-preview.yml']);
