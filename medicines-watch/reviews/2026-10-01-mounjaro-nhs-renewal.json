@@ -1,0 +1,24 @@
+{
+  "reviewedAt": "2026-10-01T06:30:54Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "review_change_proposed",
+  "clinicalApproval": null,
+  "scope": "Renew the NHS tirzepatide source review at its seven-day boundary after reading the complete current document. Only this source-specific review date changes.",
+  "source": {
+    "id": "mounjaro-nhs",
+    "url": "https://www.nhs.uk/medicines/tirzepatide/",
+    "sourcePublishedAt": "2026-05-15",
+    "sourceDateLabel": "NHS page last reviewed",
+    "retrievedAt": "2026-10-01T06:30:12.237715Z",
+    "httpStatus": 200,
+    "bytes": 50508,
+    "responseSha256": "fd35ce1865cb24659e737519df34e5213788e6af64a8adc09223f7b0aba1af86",
+    "previousReviewedAt": "2026-09-24T06:32:00Z",
+    "reviewedFingerprint": "0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff",
+    "fingerprintUnchanged": true,
+    "withdrawn": false,
+    "reviewedSections": ["Purpose and prescription access", "Use, missed doses and stopping", "Common and serious side effects", "Suitability, pregnancy and breastfeeding", "Interactions, contraception, food and alcohol", "Page review metadata"],
+    "assessment": "The source continues to support the existing bounded access statement: tirzepatide requires a prescription, and weight-management eligibility differs between doctor-led and specialist-service routes. The full use, safety and interaction sections were read. The unchanged normalized fingerprint was confirmed using the existing fingerprintSource implementation only after the content review. No wording correction or withdrawal was identified."
+  },
+  "uncertainty": "This factual source review is not clinical approval, confirmation of individual eligibility, local NHS commissioning or pharmacy stock. The NHS page's own review date and the medicine-level and catalogue-wide review dates remain unchanged. Production status is not changed by this proposal."
+}
