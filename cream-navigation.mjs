@@ -3,7 +3,7 @@ import {headerPreview} from './preview/home-banner/cream-header.mjs';
 import {footerPreview} from './preview/home-banner/cream-footer.mjs';
 export {headerPreview};
 // Matt-approved opaque circular mark; retain the existing wordmark and header layout.
-export const headerMarkCss="<style id=\"sst-header-mark-20261001\">html body header.site-header[data-header-v2][data-header-style] .site-logo{position:relative}html body header.site-header[data-header-v2][data-header-style] .site-logo::after{content:\"\";position:absolute;pointer-events:none;left:8.15%;top:50%;width:13%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:#050505 url(\"/assets/apple-touch-icon.png\") center/114.5% 114.5% no-repeat;filter:none}</style>";
+export const headerMarkCss="<style id=\"sst-header-mark-20261001\">html body header.site-header[data-header-v2][data-header-style] .site-logo{position:relative}html body header.site-header[data-header-v2][data-header-style] .site-logo img{clip-path:inset(0 0 0 23%)}html body header.site-header[data-header-v2][data-header-style] .site-logo::after{content:\"\";position:absolute;pointer-events:none;left:6.85%;top:50%;width:15.65%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:#050505 url(\"/assets/apple-touch-icon.png\") center/114.5% 114.5% no-repeat;filter:none}</style>";
 // Start the existing responsive hero request in the head; preserve the image and layout.
 const bootstrapTag='<script src="/analytics-bootstrap-v1.js"></script>';
 export const inlineBootstrap='<script data-shift-inline-bootstrap>'+bootstrap+'</script>';
