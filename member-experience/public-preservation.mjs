@@ -1,3 +1,4 @@
+import {applySharedFooter} from '../shared-footer.mjs';
 import {preserveGrowthCopy} from '../release/growth-preservation.mjs';
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
 import {preserveSeo794} from '../release/seo794-preservation.mjs';
@@ -27,7 +28,8 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,body,{required:Boolean(before)})),{required:Boolean(before)});
+ const footerPreserved=Buffer.from(applySharedFooter(body.toString('utf8')));
+ const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});
  let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,preserveOralKnowledge(path,pwaPreserved),{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
  preserved=preserveServiceBridgePaint(preserveLoginSession(path,preserved),{required:Boolean(before)});
  preserved=preserveTreatmentCentreAccuracy(path,preserved,{required:Boolean(before)});
@@ -42,3 +44,4 @@ try{if(before)comparison=assertPublicPagesPreserved(pages,JSON.parse(readFileSyn
 catch(error){writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison:'failed',error:error.message},null,2));throw error;}
 writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison},null,2));
 console.log(before?'PASS: all '+paths.length+' public/login responses preserve existing content; exact approved Continuity entries and Life Back link are checked before comparison.':'Captured all '+paths.length+' public/login response hashes, including full raw-body hashes.');
+
