@@ -1,3 +1,4 @@
+import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import biPublication from './reviews/2026-09-30-authorised-bi3034701.json' with {type:'json'};
 // Factual industry evidence summaries. No entry represents clinical approval.
 // The associated source reviews and retrieval limitations are in the dated receipt.
@@ -86,11 +87,18 @@ const originalIndustry = [
 export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
-}),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries]
+}),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries]
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
  .map(e=>e.id===eloraTZP.change.id?{...e,...eloraTZP.change.fields,reviewedAt:eloraTZP.reviewedAt,
   additionalEvidence:[...(e.additionalEvidence||[]),...eloraTZP.change.additionalEvidence]}:e)
  .map(e=>e.id===kainetic.change.id?{...e,...kainetic.change.fields,reviewedAt:kainetic.reviewedAt,
-  sourceIds:[...e.sourceIds,...kainetic.change.sourceIdsToAdd]}:e);
+  sourceIds:[...e.sourceIds,...kainetic.change.sourceIdsToAdd]}:e)
+ .map(e=>{
+  const change=evening.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,...fields}=change.fields;
+  return {...e,...fields,...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),reviewedAt:evening.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ });

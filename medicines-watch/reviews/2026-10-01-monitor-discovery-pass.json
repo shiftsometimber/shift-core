@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-01T07:28:54Z",
+  "reviewType": "Monitoring/discovery activity receipt; no medical review renewal",
+  "industryComplete": false,
+  "clinicalApproval": null,
+  "pass1": {
+    "publicUrl": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "publicHttpStatus": 200,
+    "healthHttpStatus": 200,
+    "healthAvailable": true,
+    "lastMonitorAttempt": "2026-10-01T06:46:08.857Z",
+    "configuredSources": 48,
+    "liveEntries": 36,
+    "unchangedKnownFailures": [
+      {
+        "id": "pf3944-pfizer",
+        "httpStatus": 520
+      },
+      {
+        "id": "danuglipron-pfizer",
+        "httpStatus": 520
+      },
+      {
+        "id": "az-elecoglipron-20260608",
+        "httpStatus": 403
+      }
+    ],
+    "overdueReview": {
+      "id": "mounjaro-nhs",
+      "resolution": "Factual source-specific renewal already prepared in PR #882; still not reflected in live health."
+    },
+    "retrievalLimitation": "One direct urllib health request returned 403; subsequent curl GET returned 200. Do not infer persistent outage or successful medical review from either transport result."
+  },
+  "pass2": {
+    "approach": "Current-date topic searches plus undated searches across primary developer, regulator and registry sources; no fixed-source-list or industry-completeness claim.",
+    "queries": [
+      "obesity muscle preservation amylin trial sponsor September 2026",
+      "weight management obesity medicines October 2026 MHRA",
+      "Novo Nordisk CagriSema September 2026",
+      "Lilly obesity September 2026",
+      "Amgen MariTide September 2026 phase 3",
+      "Zealand Roche petrelintide September 2026",
+      "Pfizer berobenatide September 2026",
+      "Viking VK2735 maintenance September 2026",
+      "Structure obesity aleniglipron September 2026",
+      "Boehringer Ingelheim survodutide SYNCHRONIZE",
+      "AstraZeneca elecoglipron September 2026",
+      "Hansoh Merck obesity oral GLP-1 2026",
+      "Kailera KaiNETIC enrolment"
+    ],
+    "newPrimaryEvidenceReceipts": [
+      "2026-10-01-non-incretin-discovery.json",
+      "2026-10-01-cagrisema-easd.json"
+    ],
+    "limitations": [
+      "Some current-date regulator/developer queries returned irrelevant or old material. Negative results do not establish no new developments.",
+      "Boehringer-specific retrieval was incomplete.",
+      "Regeneron news-list retrieval unavailable; new 52-week COURAGE secondary report needs its primary evidence.",
+      "Product-information petrelintide search unavailable through web reader; do not infer regulatory status from that failure."
+    ]
+  },
+  "publicationBoundary": "PR #882 prepares 37 entries and 50 configured sources; these remain proposed until production verification. Discovery PR #868 is not live and does not renew global review dates."
+}

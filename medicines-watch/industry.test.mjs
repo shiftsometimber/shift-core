@@ -14,8 +14,8 @@ import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {ty
 import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
 import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,31);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,37);
+ assert.equal(medicines.length,6);assert.equal(industry.length,32);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,38);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -82,7 +82,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,31);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,32);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -163,4 +163,18 @@ test('GlobeNewswire access repair changes only check URLs and preserves reviewed
   assert.equal(proof.httpStatus,200);
   assert.equal(proof.withdrawn,false);
  }
+});
+
+test('evening evidence preserves safety, planned events and research access boundaries',()=>{
+ const find=id=>industry.find(e=>e.id===id);
+ assert.match(find('trevogrumab-semaglutide').limitations,/two deaths; causation was not established/);
+ assert.match(find('trevogrumab-semaglutide').limitations,/does not establish improved strength or function/);
+ assert.match(find('ibio600').limitations,/May 2027.*second half of 2027/);
+ assert.match(find('ibio600').supply,/No UK retail availability/);
+ assert.equal(find('ibio600').clinicalApproval,null);
+ assert.equal(find('ibio600').sourceIds.length,0);
+ assert.match(find('kai4729').summary,/outside-China Phase 1 remained planned/);
+ assert.match(find('ribupatide-injection').summary,/mid-2028/);
+ assert.match(find('kai7535').name,/Safiglipron/);
+ assert.match(find('survodutide').limitations,/efficacy estimand assumes continued treatment/);
 });

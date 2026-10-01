@@ -1,0 +1,129 @@
+{
+  "reviewedAt": "2026-09-30T19:06:00Z",
+  "reviewType": "AI-assisted discovery review; proposal only; not clinical approval",
+  "scope": "Current-date topic discovery plus a broader undated search for untracked obesity combinations and muscle-preservation approaches, including the separately staged ZYNERGY combination. No live catalogue, monitor source, review date or public wording changes.",
+  "discoveryPasses": [
+    {
+      "type": "current-date",
+      "queryThemes": [
+        "EASD 2026 obesity combinations",
+        "amylin plus incretin",
+        "muscle preservation adjuncts"
+      ],
+      "completed": true
+    },
+    {
+      "type": "broader-undated",
+      "queryThemes": [
+        "untracked weight-management combinations",
+        "smaller developers",
+        "body composition and physical function"
+      ],
+      "completed": true
+    }
+  ],
+  "candidates": [
+    {
+      "id": "eloratzp",
+      "name": "EloraTZP (eloralintide plus tirzepatide)",
+      "developer": "Eli Lilly and Company",
+      "proposedDisposition": "review_for_bounded_industry_entry",
+      "stage": "Completed Phase 2b study; sponsor says Phase 3 co-formulation studies are planned for Q4/by end of 2026, not completed.",
+      "relevance": "A separately named amylin-plus-GIP/GLP-1 combination programme; the current catalogue explicitly says it is separate from eloralintide monotherapy but has no separate entry.",
+      "ukAuthorisation": "No UK authorisation established by the reviewed sources.",
+      "nhsAccess": "No NHS access established by the reviewed sources.",
+      "actualSupply": "No lawful UK supply established; investigational programme.",
+      "evidence": [
+        {
+          "type": "original sponsor announcement",
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-eloratzp-combination-eloralintide-and-tirzepatide",
+          "sourcePublishedAt": "2026-09-30",
+          "retrievedAt": "2026-09-30T17:12:21.507Z",
+          "httpStatus": 200,
+          "bytes": 167351,
+          "responseSha256": "e5340587ff6a3dff9d8a7ce888ad4cc4c582a5a95a977651996efd0034135429"
+        },
+        {
+          "type": "ClinicalTrials.gov registry API",
+          "url": "https://clinicaltrials.gov/study/NCT06603571",
+          "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06603571",
+          "sourceUpdatedAt": "2026-09-29",
+          "retrievedAt": "2026-09-30T17:12:26.792Z",
+          "httpStatus": 200,
+          "bytes": 19299,
+          "responseSha256": "101503f4a67f01879c5d7afb91a840df067b4c99520efd962afeb71ce5b894b4"
+        }
+      ],
+      "assessment": "The sponsor reports a 48-week Phase 2b study in 367 adults with obesity or overweight and type 2 diabetes. ClinicalTrials.gov independently records NCT06603571 as Phase 2, completed on 14 September 2026 with 367 actual participants. The sponsor's Phase 3 timing is a plan. Combination adverse-event discontinuation was higher than for tirzepatide alone in the sponsor release; no cross-trial ranking should be inferred."
+    },
+    {
+      "id": "na931-tirzepatide",
+      "name": "NA-931 plus tirzepatide",
+      "developer": "Biomed Industries, Inc.",
+      "proposedDisposition": "review_with_prominent_registry_conflict",
+      "stage": "ClinicalTrials.gov Phase 2, not yet recruiting; planned start remains estimated 15 August 2026 despite that date having passed.",
+      "relevance": "Previously untracked smaller-developer oral adjunct programme explicitly measuring fat mass, body composition and physical function and describing muscle-mass preservation as a study aim.",
+      "ukAuthorisation": "No UK authorisation established by the reviewed sources.",
+      "nhsAccess": "No NHS access established by the reviewed sources.",
+      "actualSupply": "No lawful UK supply established; registry lists an investigational study outside the UK.",
+      "evidence": [
+        {
+          "type": "original developer programme page",
+          "url": "https://www.biomedind.com/NA-931.html",
+          "sourcePublishedAt": null,
+          "retrievedAt": "2026-09-30T17:12:32.657Z",
+          "httpStatus": 200,
+          "bytes": 22378,
+          "responseSha256": "6d1b11435672ab2adcbc2a10b2af0b820a247a7bd997eb477badc6bc64f8f030"
+        },
+        {
+          "type": "ClinicalTrials.gov registry API",
+          "url": "https://clinicaltrials.gov/study/NCT06732245",
+          "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06732245",
+          "sourceUpdatedAt": "2026-03-27",
+          "retrievedAt": "2026-09-30T17:12:37.717Z",
+          "httpStatus": 200,
+          "bytes": 26243,
+          "responseSha256": "4d28d0f2a40fdc3b78fc16289cad9aeee7d67cc36750d1beaad79a95625f5ca6"
+        }
+      ],
+      "assessment": "The registry is the controlling stage evidence: NCT06732245 is not yet recruiting, with estimated enrolment and completion dates. Developer claims about Phase 3 advancement and preserved muscle mass are not treated as completed trial evidence. Fat-mass, body-composition and physical-function outcomes are planned measurements, not results."
+    },
+    {
+      "id": "zynergy-petrelintide-enicepatide",
+      "name": "Petrelintide plus enicepatide (ZYNERGY)",
+      "developer": "Hoffmann-La Roche",
+      "proposedDisposition": "review_for_bounded_combination_entry",
+      "stage": "ClinicalTrials.gov Phase 2, not yet recruiting; estimated start 30 September 2026.",
+      "relevance": "Previously untracked amylin-plus-GLP-1/GIP combination programme joining two separately tracked investigational medicines. The combination cannot inherit either monotherapy's stage, evidence or outcome claims.",
+      "ukAuthorisation": "No UK authorisation established by the reviewed registry record.",
+      "nhsAccess": "No NHS access established by the reviewed registry record.",
+      "actualSupply": "No lawful UK supply established; the registry lists an investigational study and no locations in the retrieved record.",
+      "evidence": [
+        {
+          "type": "ClinicalTrials.gov registry API",
+          "url": "https://clinicaltrials.gov/study/NCT07589686",
+          "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07589686",
+          "sourcePublishedAt": "2026-05-15",
+          "sourceUpdatedAt": "2026-09-09",
+          "retrievedAt": "2026-09-30T19:05:25Z",
+          "httpStatus": 200,
+          "bytes": 10252,
+          "responseSha256": "5397ab368665503d3240d311fa59154c60c208c8e0a2c93c45a946382a430102"
+        }
+      ],
+      "assessment": "The registry is the controlling stage evidence: NCT07589686 is a Phase 2 dose-finding study of petrelintide co-administered with enicepatide, not yet recruiting, with 486 estimated participants. Its 30 September 2026 start, 12 November 2027 primary completion and 31 January 2028 completion are all estimates. Planned weight, metabolic and safety outcomes are not results, and the record establishes neither UK approval nor access nor supply."
+    }
+  ],
+  "uncertainties": [
+    "EloraTZP efficacy and safety figures are sponsor-reported; the full conference presentation and a peer-reviewed paper were not independently reviewed in this pass.",
+    "ClinicalTrials.gov has no posted results for NCT06603571 in the retrieved record; completed status does not itself validate sponsor-reported outcomes.",
+    "The NA-931 developer page and current registry status conflict on development stage. The registry remains not yet recruiting and its estimated start date has passed, so no recruitment or Phase 3 claim is proposed.",
+    "The NA-931 registry lists no UK location. Absence from these reviewed sources is not proof of absence from every global regulator or trial register.",
+    "The ZYNERGY registry's estimated start date is today while its status remains not yet recruiting. Do not describe the study as started or recruiting until the registry changes.",
+    "No name-specific MHRA or NICE decision was identified in this pass; no negative regulatory claim should be stated without a direct authoritative record.",
+    "Industry discovery remains open-ended and incomplete."
+  ],
+  "publicationStatus": "proposal_only",
+  "clinicalApproval": null
+}

@@ -1,0 +1,18 @@
+{
+  "reviewedAt": "2026-10-01T07:26:54Z",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "source": {
+    "url": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=917138",
+    "sourcePublishedAt": "2026-09-30T12:30:00Z",
+    "sourceUpdatedAt": null,
+    "contentRead": true,
+    "evidenceType": "Original sponsor announcement of EASD abstracts"
+  },
+  "assessment": "Novo reported a 52-week fMRI/eating-behaviour study, a REIMAGINE 1 MRI sub-study in early type 2 diabetes and a post-hoc REIMAGINE 2 bone-marker analysis. These are distinct analyses, not a single trial or established fracture-prevention evidence. The release also states high-dose CagriSema 2.4 mg/7.2 mg Phase 3 began in 2026. The US FDA decision remains expected in Q4 2026; the expectation is not approval.",
+  "limitations": [
+    "Detailed original abstracts and exact high-dose registry remain to be reviewed before adding quantitative claims or a separate formulation-specific entry.",
+    "No UK authorisation, NHS access, actual supply or clinical approval inferred."
+  ],
+  "nextAction": "Review linked original abstracts and high-dose registry, then propose focused factual catalogue changes with separate populations and endpoints."
+}
