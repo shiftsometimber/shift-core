@@ -1,9 +1,11 @@
+import {FOOTER_PATHS,historicalFooterRef,verifyFooterProof} from './footer-scope.mjs';
 import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN,FOOTER_PREVIEW,FOOTER_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
 import {PWA_DISMISS_APPROVED,PWA_DISMISS_PATHS,APP_APPROVED,APP_PATHS,validateAppSource} from './app-scope.mjs';
 validateAppSource();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
+const sharedFooterProof=await verifyFooterProof(get);
 const pwaDismissApproval=await get('/actions/runs/36780636646');assert.equal(pwaDismissApproval.head_sha,PWA_DISMISS_APPROVED);assert.equal(pwaDismissApproval.conclusion,'success');
 const footerApproval=await get('/actions/runs/'+FOOTER_RUN);assert.equal(footerApproval.head_sha,FOOTER_PREVIEW);assert.equal(footerApproval.conclusion,'success');assert.equal(footerApproval.path,'.github/workflows/home-banner-preview.yml');
 const creamApproval=await get('/actions/runs/'+CREAM_RUN);assert.equal(creamApproval.head_sha,CREAM_PREVIEW);assert.equal(creamApproval.conclusion,'success');assert.equal(creamApproval.path,'.github/workflows/home-banner-preview.yml');
@@ -28,9 +30,10 @@ const retainedCurrentMain=new Set([".github/workflows/master-integration-gate.ym
 const retainedMain='b23010cfca99b3ab05377062ad5b16984711111c';
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse','HEAD:'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);
 for(const c of checks)assert(c.status==='completed'&&['success','skipped','neutral'].includes(c.conclusion),'Unpassed candidate check '+c.name);
 mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/app-approval.json',JSON.stringify({approved:APP_APPROVED,preview:candidate.head_sha,run:candidate.id,ownerApproval:'30 September 2026: Go live - release the reviewed personal Today, first-week guidance and member-feedback repairs',checks:checks.map(c=>({name:c.name,conclusion:c.conclusion}))},null,2));
+

@@ -1,3 +1,4 @@
+import {historicalFooterRef,originalFooterEntry} from './footer-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS} from './member-focus-scope.mjs';
 import {APP_HASHES,APP_PATHS,validateAppSource} from './app-scope.mjs';
 import assert from 'node:assert/strict';
@@ -49,11 +50,12 @@ export const GROWTH_PATHS=new Set([...GROWTH_PINNED_PATHS,...APP_PATHS,'release/
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 export function validateGrowthEntry(before,after){
  const expected="import {withGrowthPublicCopy} from './growth-member-public.mjs';\n"+before.replace("return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));","return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));");
- assert.equal(after,expected,'Entry changed outside the exact growth response adapter');
+ assert.equal(originalFooterEntry(after),expected,'Entry changed outside the exact growth response adapter');
 }
 export function validateGrowthSource(){
  validateAppSource();
  git('merge-base','--is-ancestor','33c1b98cbb39dfd6154af3c673d9ee784371260e','HEAD');
  for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(MEMBER_FOCUS_PATHS.includes(path)?MEMBER_FOCUS_APPROVED:'e7051fe6e9b4b8b059528e2eee63fb380935d6ba')+':'+path),'Reviewed growth payload changed: '+path);
- for(const [path,hash]of Object.entries({...hashes,...APP_HASHES}))assert.equal(createHash('sha256').update(execFileSync('git',['show','HEAD:'+path])).digest('hex'),hash,'Growth release integration drift: '+path);
+ for(const [path,hash]of Object.entries({...hashes,...APP_HASHES}))assert.equal(createHash('sha256').update(execFileSync('git',['show',historicalFooterRef('HEAD',path)+':'+path])).digest('hex'),hash,'Growth release integration drift: '+path);
 }
+

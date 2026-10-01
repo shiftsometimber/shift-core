@@ -45,7 +45,7 @@ export const appClient=todayClient+focusClient+screenClient+String.raw`(()=>{
  
  function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text)n.textContent=text;return n}
 
- function boot(){current();if(document.body.dataset.memberPage==='dashboard')document.querySelectorAll('footer').forEach(footer=>{if(footer.closest('main,details'))return;const details=el('details','app-footer-details');details.append(el('summary','','Help & legal'));footer.before(details);details.append(footer)});const account=document.getElementById('connected-account')?.closest('aside');if(account&&!account.closest('details')){const details=el('details','app-review-account');details.append(el('summary','','Fictional review account'));account.before(details);details.append(account)}const bar=document.getElementById('appBottomNav');if(bar)new MutationObserver(current).observe(bar,{subtree:true,attributes:true,attributeFilter:['href']})}
+ function boot(){current();if(document.body.dataset.memberPage==='dashboard')document.querySelectorAll('footer').forEach(footer=>{if(footer.id==='sst-footer-c'||footer.closest('main,details'))return;const details=el('details','app-footer-details');details.append(el('summary','','Help & legal'));footer.before(details);details.append(footer)});const account=document.getElementById('connected-account')?.closest('aside');if(account&&!account.closest('details')){const details=el('details','app-review-account');details.append(el('summary','','Fictional review account'));account.before(details);details.append(account)}const bar=document.getElementById('appBottomNav');if(bar)new MutationObserver(current).observe(bar,{subtree:true,attributes:true,attributeFilter:['href']})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();addEventListener('hashchange',current);
 })();`+tabClient+refinementClient;
 export function appPresentation(html,path,embedded=false){
@@ -56,3 +56,4 @@ export function appPresentation(html,path,embedded=false){
  const nav='<nav id="appBottomNav" aria-label="App navigation"><a href="/member/dashboard#today">Today</a><a href="/member/dashboard#visualise">Progress</a><a href="/member/life-back">Life Back</a><button id="appMore" type="button" aria-expanded="false">More</button></nav>';
  return html.replace(/<body([^>]*)>/,(_,a)=>'<body'+a+' data-app-layout="preview"'+(embedded?' data-app-panel="1"':'')+'>'+bar).replace('</body>','<style data-app-preview-style>'+appStyles+'</style>'+nav+'<script defer src="/__app-layout.mjs"></script></body>');
 }
+

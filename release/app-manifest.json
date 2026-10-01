@@ -51,11 +51,11 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "64b04539a01f3b76b69be2c0edab2f7f627be69c5861cb1e6789be42d95a01b6",
+    "release/app-preflight.mjs": "f0c4b522e0880ff2cd435f8f3c30d114f098fda32ad76fb0cc70aad578e6accd",
     "release/growth-adopt-deployment.mjs": "3f5bd8ea715a5c753112bd45c15cd3c32e3eb9274f8dab9979a02c59e83a5327",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
-    "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
-    "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
+    "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
+    "release/member-focus-scope.mjs": "759a4723660ab0d1afbb95c131879afcce1de598fb88cdc4558d9f475f384f17",
     "scripts/b1-release-scope.mjs": "e6a83ac426fbedd910636f77f85cbc3a03bc1114fb137aded2f2c53ac5bb1498",
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
@@ -68,7 +68,7 @@
     "medicines-watch/reviews/2026-09-30-discovery-proposals.json": "fa4a023ae621de4c77bdef2675d17d121d241fb43f1588d6319c17c9b65f5098",
     "medicines-watch/reviews/2026-09-30-discovery-review.md": "9fde72a71a0dd6059846d335db83806d4e1c152a5d6772f52a8c02863de0f1e5",
     "medicines-watch/reviews/2026-09-30-reviewed-expansion.json": "a92afda9c2e64236b681ebaa954b1863f470df0fed81d12103b65d29bdc4b0ac",
-    "release/growth-scope.mjs": "9f784c86e9a16e9c310913d4c74c26b9d089058cadf51800d9b4c3217587880c",
+    "release/growth-scope.mjs": "b9a6abdbcdf32fa7150f5de5db184a70d2d3ff50d0704c9706a2b5acd6cda691",
     ".github/workflows/home-banner-preview.yml": "9f254015a5077c98ee8a3976b69aa38769a79ff8987015bb9c9a40401cc51d25",
     "preview/home-banner/assets/OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
     "preview/home-banner/assets/barlow-condensed-700.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
@@ -138,7 +138,18 @@
     "medicines-watch/reviews/2026-10-01-evening-easd-discovery.json": "8b6ea72a23471f23cdc2171516cb6e65977874ae3bbbcbb8927523dc1acb1397",
     "medicines-watch/reviews/2026-10-01-monitor-discovery-pass.json": "c9e0e127b7fba02a9a1d6f9dc9e0fc61e7ea32c196e00b55b958bb87663d43ea",
     "medicines-watch/reviews/2026-10-01-non-incretin-discovery.json": "972af52ba12f7bb8a607ddbe617c7621bdb2d0ea35a08aafe07eb77c0c2fdcd4",
-    "medicines-watch/reviews/2026-10-01-publication-verification.json": "7b144863b8e754ebf3ac3eb160dba5adb4e2109d38e20cece798d5f251165133"
+    "medicines-watch/reviews/2026-10-01-publication-verification.json": "7b144863b8e754ebf3ac3eb160dba5adb4e2109d38e20cece798d5f251165133",
+    "release/footer-scope.mjs": "ef77e29cf32e508d82cbfcc207985f8c063cf5a8e987e664ee16c51b33072cab",
+    "release/app-scope.mjs": "3fcaa5550b18aaef42c8bd9826ce54a00d8cd11566cada7954e3dbbb099e1fae",
+    "member-experience/public-preservation.mjs": "66c785ced38cece739464c4f41a0c775a753801f115d9b94dd081cb6aff16347",
+    "shared-footer.mjs": "bff950b5dc335374f7fe21cc3b3f18e6c39df8f6988816845fc36e48e5f49661",
+    "tests/shared-footer.test.mjs": "ee164102a43e95f052695b650d1dcabb25ff797a621ab748710d1502316f6d9a",
+    "scripts/prove-shared-footer.cjs": "a3e5695ede437c44fb6dc16e819956b377a3b7542687afa1f6dbf437ad01e27c",
+    "preview/shared-footer/worker.mjs": "743742ac0113142a6880fb231eec2b3632b6a4c9c862aa89166e7c2f2549bce1",
+    "preview/shared-footer/wrangler.jsonc": "65fa65d28d0167874b33ea7172e1b4edcdeb48a0b3be7d0eb529e49470112c08",
+    ".github/workflows/shared-footer-proof.yml": "e162846dab448e78156182921fe0769cb8da5b140ee672e9fb052dedb1bdabe5",
+    ".github/workflows/shared-footer-release-proof.yml": "bba49a9ef038bb92e52a10b87a8af799e4a3b72b3c12f7a9d8443b5a35be9bb2",
+    ".github/workflows/shared-footer-preview.yml": "49435384a512103d0d81f9bf73313d834b641bee82cd6746c203c79c57387110"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -163,5 +174,11 @@
       "assetSha256": "11c3a8baa313ec2dca933622b2639a4c10a5e90da899cb8ad37eb3f5679efacf",
       "delivery": "Exact unchanged PNG served by the existing public PNG asset handler; remove 97,517 inline bytes from each page after mobile LCP measured 2.653s against the unchanged 2.5s budget"
     }
+  },
+  "sharedFooterRelease": {
+    "candidate": "59b7d1da00fe4ada0e66d64954d99fee6ae35916",
+    "browserProofRun": 36921225349,
+    "authorised": "Matt, 1 October 2026: The new footer needs to be the footer on every page on website, wpa and app - without exception",
+    "scope": "Approved footer content and CSS across customer HTML; no data, stock, price, clinical, authentication or configuration changes."
   }
 }
