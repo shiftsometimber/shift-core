@@ -79,6 +79,10 @@ css('main .grub-v8-tabs','background:#050505;border:0;border-radius:11px;padding
 css('main .grub-v8-tabs button','background:#050505;color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 css('main .grub-v8-tabs button:is([aria-selected="true"],.active)','background:#707762;color:#000;-webkit-text-fill-color:#000')+
 css('main .grub-food-image img','height:180px;object-fit:cover')+
+css('main :is(.grub-recipe-detail,.app-refine-recipe,.sf-exercise-main,.md-help)','color:#050505;-webkit-text-fill-color:#050505')+
+css('#todayActions.app-today-v3 .mt-today-footer','background:#e7e3da;color:#050505;border-radius:10px;padding:12px 14px;margin:16px 0;font-size:14px')+
+css('#todayActions.app-today-v3 .mt-today-footer a','color:#050505;-webkit-text-fill-color:#050505')+
+css('main :is(#grubStatus,#fitStatus,[role="status"]):empty','display:none')+
 css('main .sf-exercise.mp-exercise','background:transparent;color:#050505;border-bottom:1px solid #707762')+
 css('main .sf-exercise details','background:#e7e3da;color:#050505;border-color:#707762')+
 css('main .sf-number','background:#707762;color:#000')+
