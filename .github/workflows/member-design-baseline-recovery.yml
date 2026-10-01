@@ -1,0 +1,42 @@
+name: Restore verified My Timber release baseline
+on:
+  push:
+    branches: [recovery/member-design-baseline-20261002]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --no-audit --no-fund
+      - name: Restore only the verified predecessor of the interrupted release
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          const api=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+id,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);return r.json()};
+          const old=await api(36933180556);assert.equal(old.head_sha,'359087dbe2b2189375be0e3ed80864bbaba50174');assert.equal(old.conclusion,'success');
+          const interrupted=await api(36942886172);assert.equal(interrupted.head_sha,'effdcd6345a042ec4851caaeb1e3e24e55da39bb');assert.equal(interrupted.conclusion,'cancelled');
+          const run=(...a)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...a,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
+          const current=()=>JSON.parse(run('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
+          const target='c5690298-2058-422e-92d2-38f6538c8982';
+          const before=current();assert.equal(before.versions.length,1);assert.equal(before.versions[0].percentage,100);
+          const active=before.versions[0].version_id;
+          assert([target,'94ed456a-6d8f-4f5e-ba31-81f45ec1d5c7'].includes(active),'Unexpected active version; stop and reconcile');
+          if(active!==target)console.log(run('rollback',target,'--message','Restore verified baseline after interrupted overlapping release; preserve all current data'));
+          const after=current();assert.equal(after.versions.length,1);assert.equal(after.versions[0].percentage,100);assert.equal(after.versions[0].version_id,target);
+          console.log(JSON.stringify({restoredVersion:target,previousVersion:active,productionDataWrites:0,at:new Date().toISOString()}));
+          JS
