@@ -25,6 +25,17 @@ jobs:
       - run: node --test tests/shared-footer.test.mjs tests/b1-release-scope.test.mjs tests/growth-release.test.mjs tests/member-focus-release.test.mjs tests/home-route-banner.test.mjs
       - name: Read-only full public preservation check
         run: node member-experience/public-preservation.mjs footer-public-preservation.json
+      - name: Verify exact Life Back footer against the read-only candidate
+        run: |
+          node --input-type=module <<'JS'
+          const originalFetch=globalThis.fetch;
+          globalThis.fetch=(input,options)=>{
+            const url=new URL(typeof input==='string'?input:input.url);
+            if(url.origin==='https://shiftsometimber.co.uk'&&url.pathname==='/member/life-back')return originalFetch('https://shift-footer-continuity-preview.matobrien.workers.dev/member/life-back',options);
+            return originalFetch(input,options);
+          };
+          await import('./member-experience/verify-production-member.mjs');
+          JS
       - uses: actions/upload-artifact@v4
         if: always()
         with:
