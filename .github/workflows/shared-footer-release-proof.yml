@@ -4,6 +4,7 @@ on:
     branches: [fix/shared-footer-every-page-20261001]
 permissions:
   contents: read
+  actions: read
 jobs:
   scope:
     runs-on: ubuntu-latest
@@ -17,6 +18,10 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
       - run: node scripts/b1-release-scope.mjs
+      - name: Verify complete production preflight with exact historical and footer receipts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node release/growth-preflight.mjs
       - run: node --test tests/shared-footer.test.mjs tests/b1-release-scope.test.mjs tests/growth-release.test.mjs tests/member-focus-release.test.mjs tests/home-route-banner.test.mjs
       - name: Read-only full public preservation check
         run: node member-experience/public-preservation.mjs footer-public-preservation.json
@@ -27,4 +32,3 @@ jobs:
           path: |
             b1-runtime-release/
             footer-public-preservation.json
-
