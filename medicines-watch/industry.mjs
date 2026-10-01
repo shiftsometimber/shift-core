@@ -9,6 +9,7 @@ import accessRepair from './reviews/2026-09-30-globenewswire-access-repair.json'
 import berobenatide from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
 import eloraTZP from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
 import kainetic from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
+import macupatide from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
 export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
@@ -85,7 +86,7 @@ const originalIndustry = [
 export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
-}),...followup.entries,...continuing.entries,...biPublication.entries]
+}),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries]
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
