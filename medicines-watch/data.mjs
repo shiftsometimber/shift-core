@@ -46,7 +46,7 @@ const sourceReviewedDates = {
   'foundayo-nice': '2026-09-29T14:42:00Z',
   'retatrutide-mhra': '2026-09-30T16:55:00Z',
   'retatrutide-lilly': '2026-09-30T16:55:00Z',
-  'mounjaro-nhs': '2026-09-24T06:32:00Z',
+  'mounjaro-nhs': '2026-10-01T06:30:54Z',
   'wegovy-tablet-private': '2026-09-27T06:57:00Z',
   'mounjaro-smpc': '2026-09-30T18:55:00Z',
   'wegovy-injection-smpc': '2026-09-30T16:55:00Z',
