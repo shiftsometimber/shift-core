@@ -66,9 +66,9 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  });
 
  test('industry release binds every reviewed file and preserves the observation-only boundary',async()=>{
-  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS}=await import('../scripts/b1-release-scope.mjs');
   assert.equal(WATCH_EXPANSION_PATHS.length,42);
-  const expectedRef=path=>WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
+  const expectedRef=path=>WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
   const reviewed=(ref,path)=>(ref==='HEAD'?expectedRef(path):ref)+':'+path;
   validateWatchExpansion(reviewed);
   for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
@@ -86,11 +86,20 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  for(const changed of WATCH_BROADER_PATHS)assert.throws(()=>validateWatchBroader((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
  });
 
- test('SYNT-101 correction release binds its exact reviewed commit',async()=>{
+test('SYNT-101 correction release binds its exact reviewed commit',async()=>{
   const {validateWatchSynt101,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS}=await import('../scripts/b1-release-scope.mjs');
   assert.equal(WATCH_SYNT101_COMMIT,'e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7');
   assert.equal(WATCH_SYNT101_PATHS.length,4);
   assert.ok(WATCH_SYNT101_PATHS.includes('medicines-watch/reviews/2026-10-01-synt101-mad-correction.json'));
   validateWatchSynt101((ref,path)=>path);
-  for(const changed of WATCH_SYNT101_PATHS)assert.throws(()=>validateWatchSynt101((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
- });
+ for(const changed of WATCH_SYNT101_PATHS)assert.throws(()=>validateWatchSynt101((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+});
+
+test('international omissions release binds its exact reviewed commit',async()=>{
+ const {validateWatchInternational,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS}=await import('../scripts/b1-release-scope.mjs');
+ assert.equal(WATCH_INTERNATIONAL_COMMIT,'874a3b1bc3013de9442dbedbf1398c275fc13f6c');
+ assert.equal(WATCH_INTERNATIONAL_PATHS.length,5);
+ assert.ok(WATCH_INTERNATIONAL_PATHS.includes('medicines-watch/reviews/2026-10-02-authorised-international-omissions.json'));
+ validateWatchInternational((ref,path)=>path);
+ for(const changed of WATCH_INTERNATIONAL_PATHS)assert.throws(()=>validateWatchInternational((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+});
