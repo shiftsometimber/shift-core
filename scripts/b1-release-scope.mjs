@@ -15,11 +15,18 @@ export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/mo
 // Owner requested merge and deploy. Bind the exact CI-verified Watch update in PR #882; no clinical approval inferred.
 export const WATCH_EXPANSION_COMMIT='d1634452499a0c480190bbed7947368260a6acb6';
 export const WATCH_EXPANSION_PATHS=["medicines-watch/reviews/2026-09-30-berobenatide-vesper6.json", "medicines-watch/reviews/2026-10-01-eloratzp-phase2b.json", "medicines-watch/reviews/2026-10-01-kainetic-enrolment.json", "medicines-watch/reviews/2026-10-01-macupatide-discovery.json", "medicines-watch/reviews/2026-10-01-mounjaro-nhs-renewal.json", "medicines-watch/reviews/2026-09-30-bi3034701-discovery.json", "medicines-watch/reviews/2026-09-30-authorised-bi3034701.json", "medicines-watch/source-review.test.mjs", "medicines-watch/reviews/2026-09-30-globenewswire-access-repair.json", "medicines-watch/reviews/2026-09-30-overdue-source-renewal.json", "medicines-watch/reviews/2026-09-30-source-warning-repairs.json", "medicines-watch/reviews/2026-09-30-authorised-continuing-discovery.json", "medicines-watch/reviews/2026-09-30-hrs1596-discovery.json", "medicines-watch/reviews/2026-09-30-emugrobart-petrelintide-discovery.json", "medicines-watch/reviews/2026-09-30-env308-discovery.json", "medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/knowledge.mjs", "medicines-watch/knowledge.test.mjs", "medicines-watch/page.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/reviews/2026-09-30-discovery-proposals.json", "medicines-watch/reviews/2026-09-30-discovery-review.md", "medicines-watch/reviews/2026-09-30-reviewed-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs", "medicines-watch/reviews/2026-09-30-abbv295-discovery.json", "medicines-watch/reviews/2026-09-30-asc36-discovery.json", "medicines-watch/reviews/2026-09-30-eloratzp-na931-discovery.json", "medicines-watch/reviews/2026-10-01-ascletis-injectable-discovery.json", "medicines-watch/reviews/2026-10-01-authorised-evening-updates.json", "medicines-watch/reviews/2026-10-01-cagrisema-easd.json", "medicines-watch/reviews/2026-10-01-embraze-fetch-observation.json", "medicines-watch/reviews/2026-10-01-evening-easd-discovery.json", "medicines-watch/reviews/2026-10-01-monitor-discovery-pass.json", "medicines-watch/reviews/2026-10-01-non-incretin-discovery.json", "medicines-watch/reviews/2026-10-01-publication-verification.json"];
+// Retain the exact newer owner-authorised research additions in PR #898.
+export const BROADER_WATCH_COMMIT='24f869d714702a0dc4f75849f22700eb6fbc078e';
+export const BROADER_WATCH_PATHS=["medicines-watch/README.md","medicines-watch/discovery.mjs","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json"];
+const watchExpansionRef=path=>BROADER_WATCH_PATHS.includes(path)?BROADER_WATCH_COMMIT:WATCH_EXPANSION_COMMIT;
+export function validateBroaderWatch(read){
+ for(const path of BROADER_WATCH_PATHS)assert.equal(read('HEAD',path),read(BROADER_WATCH_COMMIT,path),'Broader Watch source drift: '+path);
+}
 export function validateWatchExpansion(read){
- for(const path of WATCH_EXPANSION_PATHS)assert.equal(read('HEAD',path),read(WATCH_EXPANSION_COMMIT,path),'Watch expansion source drift: '+path);
+ for(const path of WATCH_EXPANSION_PATHS)assert.equal(read('HEAD',path),read(watchExpansionRef(path),path),'Watch expansion source drift: '+path);
 }
 export function validateNiceTimeout(read){
- for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(path==='medicines-watch/README.md'?WATCH_EXPANSION_COMMIT:NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
+ for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(path==='medicines-watch/README.md'?watchExpansionRef(path):NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
 }
 // Owner authorised the exact NICE timetable review in PR #850 for release on 29 September 2026.
 export const MEDICINES_REVIEW_COMMIT='6e62b63b17c16a416e73e1e8589f0366437a5c11';
@@ -61,6 +68,8 @@ export function verifyScope(){
   assert.equal(git('diff','--name-only',AI_BASE,AI_CANDIDATE,'--','frontend','public','assets','wrangler.jsonc','package.json','package-lock.json'),'','AI candidate changed protected presentation/configuration');
   const manifest=JSON.parse(readFileSync('release/shift-ai-live.json'));
   const changed=git('diff','--name-only',AI_CANDIDATE,'HEAD').split('\n').filter(Boolean);
+  git('merge-base','--is-ancestor',BROADER_WATCH_COMMIT,'HEAD');
+  validateBroaderWatch((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
   validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',FOUNDATION_CANDIDATE,'HEAD');
