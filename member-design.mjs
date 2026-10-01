@@ -25,6 +25,7 @@ css('#todayBrand','max-width:none;margin:0;padding:12px max(16px,calc((100vw - 1
 css('#todayBrand>a','display:flex;align-items:center;gap:11px;color:#e7e3da;text-decoration:none;font:800 18px/1 Arial,sans-serif;min-height:44px')+
 css('#todayBrand .member-design-mark','width:42px;height:42px;object-fit:contain;display:block')+
 css('#todayBrand .member-design-account','display:flex;align-items:center;justify-content:center;border:1px solid #707762;background:#707762;color:#000;border-radius:50%;width:44px;height:44px')+
+css('#myTimberApp','position:static;margin:14px auto;max-width:1000px;width:calc(100% - 28px);box-sizing:border-box')+
 css('#todayBrand svg|#appBottomNav svg','width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round')+
 css('header.site-header|#todayBrand .today-logo','display:none')+
 css('nav.sst-member-tabs','display:none')+
@@ -131,6 +132,7 @@ export const memberDesignClient=String.raw`(()=>{
   const tool=document.body.dataset.appTool,hash=location.hash||'#today';
   document.querySelectorAll('#appBottomNav a').forEach(a=>{
    const u=new URL(a.href),name=u.pathname.split('/').pop();
+   if(['grub','fit'].includes(name)){const inline=document.body.dataset.memberPage==='dashboard'&&document.getElementById('appToolPanels');if(inline&&a.getAttribute('data-app-open')!==name)a.setAttribute('data-app-open',name);else if(!inline&&a.hasAttribute('data-app-open'))a.removeAttribute('data-app-open');}
    const selected=document.body.dataset.memberPage==='dashboard'?(tool&&tool!=='today'?name===tool:name==='dashboard'&&u.hash===hash):name===document.body.dataset.memberPage;
    if(selected&&a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page');else if(!selected&&a.hasAttribute('aria-current'))a.removeAttribute('aria-current');
   });
