@@ -65,3 +65,18 @@ test('Native presentation does not run on untrusted origins',()=>{
  const f=fixture('https://shiftsometimber.co.uk.evil.example');
  assert.equal(f.title.textContent,'Add My Timber to your phone');assert.equal(f.box.children.length,0);
 });
+
+
+test('Turnstile WebView challenge frames allow only required about URLs',()=>{
+ for (const text of [java,swift]) {
+  assert.match(text,/about:blank/);
+  assert.match(text,/about:srcdoc/);
+ }
+ // Top-level URL classifiers still deny non-HTTPS about: navigation.
+ for (const policy of [
+  read('android/app/src/main/java/uk/co/shiftsometimber/mytimber/NavigationPolicy.java'),
+  read('ios/Sources/NavigationPolicy.swift')
+ ]) {
+  assert.doesNotMatch(policy,/about:blank|about:srcdoc/);
+ }
+});
