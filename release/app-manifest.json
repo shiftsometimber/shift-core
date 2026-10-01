@@ -185,6 +185,14 @@
       "version": "1d1aa56d-cbfa-4964-9620-5186d6c8ac5b",
       "productionRun": 36916214105,
       "evidence": "Successful production log names this version, confirms public preservation and zero customer-record reads/writes."
+    },
+    "guardedReleaseRetry": {
+      "observedAt": "2026-10-01T20:42:51Z",
+      "failedRun": 36922760351,
+      "restoredVerifiedVersion": "1d1aa56d-cbfa-4964-9620-5186d6c8ac5b",
+      "reason": "Mobile Lighthouse median LCP 2553.466ms exceeded unchanged 2500ms gate. Three observations: 1909.8955ms, 2647.184ms, 2553.466ms; zero CLS and blocking time. Repeat identical approved runtime through the existing full guarded production workflow.",
+      "runtimePayloadChanged": false,
+      "gateThresholdChanged": false
     }
   }
 }
