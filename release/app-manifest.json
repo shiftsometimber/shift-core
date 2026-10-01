@@ -139,12 +139,12 @@
     "medicines-watch/reviews/2026-10-01-monitor-discovery-pass.json": "c9e0e127b7fba02a9a1d6f9dc9e0fc61e7ea32c196e00b55b958bb87663d43ea",
     "medicines-watch/reviews/2026-10-01-non-incretin-discovery.json": "972af52ba12f7bb8a607ddbe617c7621bdb2d0ea35a08aafe07eb77c0c2fdcd4",
     "medicines-watch/reviews/2026-10-01-publication-verification.json": "7b144863b8e754ebf3ac3eb160dba5adb4e2109d38e20cece798d5f251165133",
-    "release/footer-scope.mjs": "46db7b20c98708a6a3f255b4cd0ebefa2dd03b96860955553ab6812d38c10181",
+    "release/footer-scope.mjs": "ef77e29cf32e508d82cbfcc207985f8c063cf5a8e987e664ee16c51b33072cab",
     "release/app-scope.mjs": "3fcaa5550b18aaef42c8bd9826ce54a00d8cd11566cada7954e3dbbb099e1fae",
     "member-experience/public-preservation.mjs": "66c785ced38cece739464c4f41a0c775a753801f115d9b94dd081cb6aff16347",
-    "shared-footer.mjs": "941aca216bc7c8620c6f0e1199e2198713f27c171fc9812ada3931f1f528a757",
+    "shared-footer.mjs": "bff950b5dc335374f7fe21cc3b3f18e6c39df8f6988816845fc36e48e5f49661",
     "tests/shared-footer.test.mjs": "ee164102a43e95f052695b650d1dcabb25ff797a621ab748710d1502316f6d9a",
-    "scripts/prove-shared-footer.cjs": "9f1ee6ed72d9d73ed619ed93c348a919a88fa0ba598b24fb95931665481c4c58",
+    "scripts/prove-shared-footer.cjs": "a3e5695ede437c44fb6dc16e819956b377a3b7542687afa1f6dbf437ad01e27c",
     "preview/shared-footer/worker.mjs": "743742ac0113142a6880fb231eec2b3632b6a4c9c862aa89166e7c2f2549bce1",
     "preview/shared-footer/wrangler.jsonc": "65fa65d28d0167874b33ea7172e1b4edcdeb48a0b3be7d0eb529e49470112c08",
     ".github/workflows/shared-footer-proof.yml": "e162846dab448e78156182921fe0769cb8da5b140ee672e9fb052dedb1bdabe5",
@@ -176,8 +176,8 @@
     }
   },
   "sharedFooterRelease": {
-    "candidate": "f2e80b00568e8b7e8635af5c6f966d2b9f8a4b31",
-    "browserProofRun": 36920275874,
+    "candidate": "59b7d1da00fe4ada0e66d64954d99fee6ae35916",
+    "browserProofRun": 36921225349,
     "authorised": "Matt, 1 October 2026: The new footer needs to be the footer on every page on website, wpa and app - without exception",
     "scope": "Approved footer content and CSS across customer HTML; no data, stock, price, clinical, authentication or configuration changes."
   }
