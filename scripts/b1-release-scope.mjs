@@ -23,10 +23,17 @@ export function validateWatchExpansion(read){
 export const WATCH_BROADER_COMMIT='24f869d714702a0dc4f75849f22700eb6fbc078e';
 export const WATCH_BROADER_PATHS=['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json'];
 export function validateWatchBroader(read){
- for(const path of WATCH_BROADER_PATHS)assert.equal(read('HEAD',path),read(WATCH_BROADER_COMMIT,path),'Watch broader-discovery source drift: '+path);
+ for(const path of WATCH_BROADER_PATHS)assert.equal(read('HEAD',path),read(WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_COMMIT,path),'Watch broader-discovery source drift: '+path);
+}
+// Standing owner authorisation permits this exact evidence-backed factual correction.
+// Bind the later SYNT-101 source review without treating sponsor reporting as clinical approval.
+export const WATCH_SYNT101_COMMIT='e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7';
+export const WATCH_SYNT101_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-01-synt101-mad-correction.json'];
+export function validateWatchSynt101(read){
+ for(const path of WATCH_SYNT101_PATHS)assert.equal(read('HEAD',path),read(WATCH_SYNT101_COMMIT,path),'Watch SYNT-101 source drift: '+path);
 }
 export function validateNiceTimeout(read){
- for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(path==='medicines-watch/README.md'?WATCH_BROADER_COMMIT:NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
+ for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(path==='medicines-watch/README.md'?WATCH_SYNT101_COMMIT:NICE_TIMEOUT_COMMIT,path),'NICE timeout source drift: '+path);
 }
 // Owner authorised the exact NICE timetable review in PR #850 for release on 29 September 2026.
 export const MEDICINES_REVIEW_COMMIT='6e62b63b17c16a416e73e1e8589f0366437a5c11';
@@ -78,11 +85,13 @@ export function verifyScope(){
   validateWatchExpansion((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_BROADER_COMMIT,'HEAD');
   validateWatchBroader((ref,path)=>git('rev-parse',ref+':'+path));
+  git('merge-base','--is-ancestor',WATCH_SYNT101_COMMIT,'HEAD');
+  validateWatchSynt101((ref,path)=>git('rev-parse',ref+':'+path));
   validateGrowthSource();
   verifyHeadingRepair();
   verifyHomeSpeed();
   assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
-  const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
