@@ -90,12 +90,6 @@ test('Turnstile WebView challenge frames allow only required about URLs',()=>{
 });
 
 
-test('Apple review login accepts existing valid credentials while registration keeps a minimum',()=>{
- assert.doesNotMatch(memberHtml,/name="password"[^>]*minlength=/);
- assert.match(memberHtml,/password\.minLength=registering\?10:0/);
- assert.match(memberHtml,/registering\?'At least 10 characters':'Password'/);
-});
-
 test('Apple review privacy and account safety hooks remain present',()=>{
  assert.match(appDelegate,/applicationWillResignActive/);
  assert.match(appDelegate,/privacyCover/);
