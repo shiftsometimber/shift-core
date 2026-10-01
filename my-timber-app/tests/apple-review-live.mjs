@@ -30,7 +30,9 @@ try{
 
   await page.locator('#previewRegister input[name="email"]').fill(email);
   await passwordInput.fill(password);
-  await page.locator('#previewRegister button[data-auth-submit]').click();
+  const signIn=page.locator('#previewRegister button[data-auth-submit], #previewRegister button[data-auth="login"]').first();
+  await signIn.waitFor({state:'visible',timeout:30000});
+  await signIn.click();
   await page.locator('#previewMember.is-ready').waitFor({state:'visible',timeout:45000});
   pass('reviewer account signs in through real Turnstile-protected UI');
 
