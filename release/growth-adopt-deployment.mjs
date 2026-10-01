@@ -21,3 +21,4 @@ const reuse=reusablePublicIndex(index);
 console.log('PUBLIC_INDEX_FRESHNESS '+JSON.stringify({...index,reuse,refreshScope:'Current published website pages only; no member records'}));
 appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed=false\nexisting_index='+reuse+'\nrestore_needed=false\n');
 console.log('PASS verified production starting version, unchanged configuration and retained published index; fresh rollback capture required');
+

@@ -6,6 +6,7 @@ import {memberChromeStyles,memberChromeClient,lifeBackChrome} from './chrome.mjs
 import {withPublicTicker} from '../public-navigation-policy.mjs';
 import {withPwa} from '../my-timber-pwa/presentation.mjs';
 import {withSharedFooter} from '../shared-footer.mjs';
+import {withGrowthPublicCopy} from '../growth-member-public.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {writeFileSync,readFileSync} from 'node:fs';
@@ -50,7 +51,8 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
   const request=new Request(origin+path);
   const rendered=await withPublicTicker(request,new Response(expected,{headers:{'Content-Type':asset.type}}));
   const wrapped=await withPwa(request,rendered);
-  const footerWrapped=await withSharedFooter(request,wrapped);
+  const memberWrapped=await withGrowthPublicCopy(request,wrapped);
+  const footerWrapped=await withSharedFooter(request,memberWrapped);
   expected=Buffer.from(await footerWrapped.arrayBuffer());
  }
  assert.deepEqual(actual,expected,path+' must match exact rendered source');
@@ -83,3 +85,4 @@ for(const path of ['/v1/check-ins','/v1/fit/activity','/v1/grub/workspace','/v1/
 }
 writeFileSync('member-live-proof.json',JSON.stringify(evidence,null,2));
 console.log('PASS: live Life Back, Today, Journey V2, health, Fit and Grub assets exactly match release source; new account routes reject unauthenticated requests.');
+

@@ -8,7 +8,7 @@ export async function verifyLiveTools(page,site,dir,report){
  await page.locator('#appTab-fit').click();const fit=page.frameLocator('#appTool-fit iframe');await fit.locator('#fitPrefs').waitFor({timeout:45000});await fit.locator('#fitPrefs').fill('Synthetic unsaved session note');
  await page.locator('#appTab-life-back').click();const life=page.frameLocator('#appTool-life-back iframe');await life.locator('#journeyView:not([hidden])').waitFor({timeout:45000});await life.locator('.area-card').first().click();assert(await life.locator('dialog[open]').isVisible());await life.locator('dialog[open] [data-close]').first().click();
  await page.locator('#appTab-grub').click();assert.equal(await grub.locator('#grubSearch').inputValue(),'Synthetic unsaved meal search');await page.goBack();assert.equal(await page.locator('#appTab-life-back').getAttribute('aria-selected'),'true');await page.goForward();assert.equal(await page.locator('#appTab-grub').getAttribute('aria-selected'),'true');assert.equal(navigations,0);page.off('request',count);
- assert.equal(await page.locator('[data-app-layout]').count(),view==='app'?1:0);assert.equal(await page.locator('#appPreviewBar').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ assert.equal(await page.locator('[data-app-layout]').count(),1);assert.equal(await page.locator('#appPreviewBar').count(),0);assert.equal(await page.locator('#todayBrand .member-design-mark').count(),1);assert.equal(await page.locator('#appBottomNav>*').count(),5);assert(!(await page.locator('#todayActions>.mtm-hero').isVisible()));assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  const toolFrames=page.frames().filter(f=>f!==page.mainFrame()&&f.url().includes('app_panel=1'));
  for(const f of toolFrames){await f.waitForFunction(()=>!!window.SSTConsent);assert.equal(await f.locator('.cookie-banner-v3a').count(),0,'No duplicate consent inside tool');}
  assert.equal(toolFrames.length,3);
@@ -21,3 +21,4 @@ export async function verifyLiveTools(page,site,dir,report){
  await page.locator('#appTab-today').click();report.checks.push({view,width,inlineTools:true,draftsRetained:true,history:true,topNavigations:navigations});
  }}
 }
+
