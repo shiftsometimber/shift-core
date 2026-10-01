@@ -79,10 +79,10 @@
     "preview/home-banner/wrangler.jsonc": "fa9af8b7b3629de3cd5a98014f9700976537d0859acc6a4704038aa2ff261244",
     "public-startup-stability.mjs": "563610b1ffe6c6ea2a8c75d8acbb8eee44aa21a26c388b5f585e1b0764ca8ec0",
     "release/member-details-preservation.mjs": "66af9dca1f3a3d40bfca7c361362a4539d72d95f0002e159c9303bc419cae6ca",
-    "home-route-banner.mjs": "f556b5881457427a440a2bce006f5fb8649bfb134deb78d0450696d47ea6abef",
+    "home-route-banner.mjs": "b8eaeeaa5f1e935e54791f0e28a260eb891e59b6329941ad433db50b6f036b19",
     "home-route-font.mjs": "f62c62a6f9aa230276bdd9d06f479c7d87a88822afabb602042d96a157b13f17",
-    "release/home-banner-scope.mjs": "125a9c81494c945d68f0809e372c12f48195292d6d070d45f14a2f34167be78d",
-    "release/home-banner-live.cjs": "d8e9c9dc31853e84428e77d54f8928d8e5c154e20dc36f3dcbcb9be4c2d8f121",
+    "release/home-banner-scope.mjs": "801fa52ed95b11f7e048cf4668312cbc5348e432f55e65e451daba3699714354",
+    "release/home-banner-live.cjs": "84d0b1f4a3cc1a999fa2fd945c3b54944dee5db65fdfc9756a70c46edb779242",
     "tests/home-route-banner.test.mjs": "d8b940e79ba5a307c8b3a87f76026a872e4240b44f8d361e3e6381aaafece432",
     "preview/home-banner/verify-spacing.cjs": "1d3a30bea7d92f756d8e2ad6e52a5cf9ad480cd791766fcfadcd627d9d9c4cfd",
     "medicines-watch/reviews/2026-09-30-authorised-continuing-discovery.json": "f986cd96c48dfa741e8c81d5b6d60978a922b849554c457251b54f701c2448ba",
@@ -111,6 +111,28 @@
     "medicines-watch/reviews/2026-10-01-eloratzp-phase2b.json": "1a8a6ff47fa4e839b2b43b2fa15d58b8fe9e8ad5df7493d98f1040b50ca2ef28",
     "medicines-watch/reviews/2026-10-01-kainetic-enrolment.json": "5faaa9f7881526f9c4b65446961e12d1096e22dac03007a02e2ee2aff6e7b329",
     "medicines-watch/reviews/2026-10-01-macupatide-discovery.json": "f664c9dd8efe20f3ca9a76a12f58f293aab562549588ce8af04182942326adc3",
-    "medicines-watch/reviews/2026-10-01-mounjaro-nhs-renewal.json": "e7911c0948aa4edad3cf9e48d0a477462a72ee7eb5fc1f5a6c18da507df792cd"
+    "medicines-watch/reviews/2026-10-01-mounjaro-nhs-renewal.json": "e7911c0948aa4edad3cf9e48d0a477462a72ee7eb5fc1f5a6c18da507df792cd",
+    ".github/workflows/master-integration-gate.yml": "ca1b35dc689db8c768266fc66ed18a53f422f5f4b318ed8e8c8b715511d69d6b",
+    ".github/workflows/my-timber-app-preview.yml": "08d76841546ab0686964ac92c5c8fe8d91c32b55749df6d03fe7ee85b0066f16",
+    "frontend/member/my-timber-preview.html": "574133c55e2bb841cd40c8e3136a65d8cb392c8b40dc8b2415c587b2219bcce1",
+    "my-timber-app/RELEASE-AUDIT-2026-10-01.md": "6b03bb7504fbed031493391593061f3d34fb1c98b10d2fa0f1e1d53d2049dd8f",
+    "my-timber-app/android/app/build.gradle": "5b2dbd83893861d7de328a578aaae57c326783076f5e2953415c260c336121c4",
+    "my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java": "87eb2041b4acf1cd136883931c7619bf80b3f352538d961b684f9bc257fcfc2b",
+    "my-timber-app/contract.json": "4ca00ecfe6e3d3282c42d469ef212079d8221ebc4d7c65562c4b978cf18745cc",
+    "my-timber-app/ios/Sources/MyTimberViewController.swift": "d1f0ebbce78cb9bb360a39b2c303db2f05ec33550155b61174bab6725b2655e3",
+    "my-timber-app/ios/project.yml": "689afcca20cce367d81c257460b8f99f3f83b30486f09a20dc41d574ed5ff94c",
+    "my-timber-app/tests/apple-review-live.mjs": "9b0196058488a7e165f042204c0157f37fe8667e913583c38155350cfd2b88fe",
+    "my-timber-app/tests/source.test.mjs": "5d6302c39f18aa560b44bde7376e5e6e72dc9a4dc05b858f21739f67e9e6ad9e",
+    "tests/member-auth-ui-v2.test.mjs": "e44f08aa40a38945c62481607ed5e9511a1f276991df174229ce54471964f44b",
+    "home-compact-footer.mjs": "4287424ec9cbf57bf4f404a810f9bf88c8314cca42fd6b27ade06b6d1957d748",
+    "release/home-compact-proof.cjs": "daa972372ef7a2843cbdb9b5950b40b580159aae08b0f4c259b586567ffc9cb5",
+    ".github/workflows/home-compact-proof.yml": "48ad515372c6be653923b0a828121ec6553e1497a0c1ec05128c1cdfa78e7226"
+  },
+  "homepageRelease": {
+    "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
+    "renderedProofRun": 36898164407,
+    "preservedMain": "b23010cfca99b3ab05377062ad5b16984711111c",
+    "scope": "Approved compact homepage, real-logo footer and two section removals; retain existing native-app and login source unchanged.",
+    "authorised": "Matt: Publish; Resolve and action quickly now please. 1 October 2026."
   }
 }
