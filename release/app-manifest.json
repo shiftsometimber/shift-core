@@ -6,7 +6,7 @@
     "acquisition-activation/consent-baseline.js": "62f630b78046b74357906159ef45394ba368eda463dbe082b74d1fb0abe8c2c1",
     "acquisition-activation/consent.mjs": "20d599bb2e6314feea02adbfbb1efa070606de342b7e2d96dc09eb54e37b9bcc",
     "acquisition-activation/panel-consent.test.mjs": "fef34b6ef3f767bb24102324af4f4064f0021a4a603e52b65899c66835ee45ea",
-    "app-layout-live.mjs": "bc16e18309e74949ec812c09d85e5cb3a18c30758d8803918d108b12991d828d",
+    "app-layout-live.mjs": "4bb7a114510568623b0112917c49e2e1ea4f0e58ba0d4b187864d2ab7da680c8",
     "docs/growth-review/app-release-20260928.md": "2839473f624abdf4e2cade1e0818a2dc48570bff9dfce248aaec6f42d174f0ec",
     "frontend/member/member-my-timber-problem-v1.js": "e86d1b18840e947fc833a4c3181347302c5622e5c1157fad2f95aca1429dcb2b",
     "growth-member-public.mjs": "60a7e4007f25ee91be3e9b4e1c34dc8baffee1346ff5e1ccf7333f6aab0aa2a6",
@@ -49,9 +49,9 @@
     "preview/growth-member/continuity-journey.mjs": "12da483802827a537358dc8662236f2a745008525764e331a5f2ff68ddd10508",
     "release/app-client-proof.mjs": "bb02a0d6a712536391f988ceb667761f59f5019b80ac6ae13356535389fcefa5",
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
-    "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
-    "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "7d688c36d2c23a94f915768cd0532c9cf8bf2bd0437b24f839b30466aec09aec",
+    "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
+    "release/app-member-live.mjs": "c640fdef76062b7afc90f0b4817ea5e9bc5dd693945ed2a1dfa2c4cdf602b96f",
+    "release/app-preflight.mjs": "1d56799ed791796586aad449ec65ea439d7fb8b63c829dde20e63a72b444ab97",
     "release/growth-adopt-deployment.mjs": "db38e8791375127bb0d30305daced9aaa1b6294117048943f98efa32fdbfcea3",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
@@ -59,8 +59,8 @@
     "scripts/b1-release-scope.mjs": "03ddbd1cd5be407454b70c1330c1422e5c646696e0eacb1ddda0fdfe7e45e462",
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
-    "tests/app-layout-live.test.mjs": "d5d532d238c1b889520ea3a548351b416202e518941784859df0f316c326465a",
-    "tests/b1-release-scope.test.mjs": "5474f77b25346fbccb042f1e756668767f8f40956dc6e6e471fd598e459edaaf",
+    "tests/app-layout-live.test.mjs": "d9e9e435f9f197ed06f4d38742367f8e57ac40b28d9295a1cb633389131c3be8",
+    "tests/b1-release-scope.test.mjs": "8708e7b10c932359d1c0681ee14661c5ab9a2292d3120f2c9c72206b6c56c5f1",
     "tests/member-focus-release.test.mjs": "c8ec0cac8283c7f5edd8a25f727c7230e0e9db0a63964d9bd8575f53a4a2f424",
     "medicines-watch/knowledge.mjs": "c7078053267c8ec36937d6e25a8ca3b2200b476bc8cb570f2a666117abe69ac5",
     "medicines-watch/knowledge.test.mjs": "95d7d1770f23ade771af7d89733b3d3b4b575bdd39b6c024b548ebeffa0ac3c4",
@@ -150,9 +150,16 @@
     ".github/workflows/shared-footer-proof.yml": "e162846dab448e78156182921fe0769cb8da5b140ee672e9fb052dedb1bdabe5",
     ".github/workflows/shared-footer-release-proof.yml": "04a4fc92b269e4b951379141b10fcaced0d2ed2898c144a323956430593ab218",
     ".github/workflows/shared-footer-preview.yml": "49435384a512103d0d81f9bf73313d834b641bee82cd6746c203c79c57387110",
-    "member-experience/verify-production-member.mjs": "0c7dd21fe43482544989bb74f519c920a0b980d72b7cc60881ecd72670fe95f4",
+    "member-experience/verify-production-member.mjs": "4ec8443c97e210676e0deaf5149caf556a3f35f5e0706736b3b1a541cb35b254",
     "medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json": "c6c5c53e659c6765879abf84a65146110340382a8209be1b53b13019d9dcd937",
-    "medicines-watch/reviews/2026-10-01-synt101-mad-correction.json": "8788b30c76a11c060e4ba438cdbd3d1758facd6ca7a30fba0f56ef3b89515029"
+    "medicines-watch/reviews/2026-10-01-synt101-mad-correction.json": "8788b30c76a11c060e4ba438cdbd3d1758facd6ca7a30fba0f56ef3b89515029",
+    "member-design.mjs": "9c45b39c6ea594ae4109650a3c0c7fc8bac13581d29e918e5d9ce06552c207b9",
+    "tests/member-design-release.test.mjs": "df697570dd5d7dc0f3101fdfa063544cc431d67bc538a6ddc4865a16ce66aa97",
+    "release/member-design-scope.mjs": "d944f505f43c902dfdb931b5210781c0182e23d6a288a5e7c041429e9543f652",
+    ".github/workflows/member-design-release-proof.yml": "bf8b9864e267bc1c26e75a43310956c6ef51c269fa503d3615bda409c7f6f381",
+    ".github/workflows/member-design-preview.yml": "15f625ade3a023bf6b9ccdfb41852fb1f9c76b17825a626018945421310d4026",
+    "preview/member-design/verify.cjs": "c95f513b9a40db02f54936087c8dd19335a948d919bb21e779664ff41d117c43",
+    "preview/member-design/member-feedback-proof.cjs": "58b082f47e0e8ea3bbc07847bdaf52e80379301cbb558b9c3b08171239a6cb83"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -223,5 +230,10 @@
       }
     ],
     "retainedConcurrentSource": "3e0a6ead946b4b8fddd198d2db7357b700e2ee60"
+  },
+  "memberDesign": {
+    "candidate": "2ac7385fb5649cdaa65ce79c0762427915c827c2",
+    "previewRun": 36933613200,
+    "approval": "1 October 2026: locked green/black design and request to complete shared My Timber; data, stock and clinical gates preserved"
   }
 }

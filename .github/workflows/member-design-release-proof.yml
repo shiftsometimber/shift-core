@@ -1,0 +1,34 @@
+name: Approved My Timber release scope proof
+on:
+  push:
+    branches: [fix/member-design-shared-20261001]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node scripts/b1-release-scope.mjs
+      - name: Verify exact presentation candidate and successful preview receipt
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node release/growth-preflight.mjs
+      - run: node --test tests/member-design-release.test.mjs tests/shared-footer.test.mjs tests/app-layout-live.test.mjs tests/b1-release-scope.test.mjs tests/growth-release.test.mjs tests/member-focus-release.test.mjs tests/home-route-banner.test.mjs
+      - name: Read-only full public preservation check
+        run: node member-experience/public-preservation.mjs member-design-public-preservation.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: member-design-release-scope
+          path: |
+            b1-runtime-release/
+            member-design-public-preservation.json
