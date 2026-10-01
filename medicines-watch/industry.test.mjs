@@ -15,9 +15,10 @@ import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {
 import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
 import broaderReview from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
+import internationalOmissions from './reviews/2026-10-02-authorised-international-omissions.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,39);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,45);
+ assert.equal(medicines.length,6);assert.equal(industry.length,44);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,50);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -84,7 +85,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,39);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,44);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -218,4 +219,34 @@ test('SYNT-101 correction replaces the stale pending multiple-dose claim without
  assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
  assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(entry.supply,/does not establish lawful UK retail supply/);
+});
+
+test('international omissions distinguish China approval from UK access and early US research',()=>{
+ assert.equal(internationalOmissions.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(internationalOmissions.clinicalApproval,null);
+ assert.equal(internationalOmissions.industryComplete,false);
+ assert.equal(internationalOmissions.automatedMonitorChanges,false);
+ for(const id of ['ecnoglutide','mazdutide','asc36-injection','asc36-35-fdc-injection','asc35-injection']){
+  const item=industry.find(entry=>entry.id===id);
+  assert.ok(item,id);
+  assert.equal(item.clinicalApproval,null);
+  assert.equal(item.sourceIds.length,0);
+  assert.ok(item.additionalEvidence.length>=1,id);
+  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/);
+  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
+  assert.match(item.supply,/does not establish lawful UK retail supply/);
+ }
+ assert.match(industry.find(entry=>entry.id==='ecnoglutide').stage,/China NMPA/);
+ assert.equal(industry.find(entry=>entry.id==='ecnoglutide').group,'international');
+ assert.equal(industry.find(entry=>entry.id==='mazdutide').group,'international');
+ assert.match(industry.find(entry=>entry.id==='mazdutide').summary,/China-specific authorisation, not a UK approval/);
+ assert.match(industry.find(entry=>entry.id==='asc36-injection').limitations,/Registry corroboration remains missing/);
+ assert.match(industry.find(entry=>entry.id==='asc36-35-fdc-injection').limitations,/No completed human efficacy results/);
+ assert.match(industry.find(entry=>entry.id==='asc35-injection').limitations,/No results are posted/);
+ const international=industryMarkup({},new URLSearchParams({industry:'international'}));
+ assert.equal((international.match(/data-industry-card/g)||[]).length,2);
+ assert.match(international,/Authorised outside the UK/);
+ const ukAuthorised=industryMarkup({},new URLSearchParams({status:'authorised'}));
+ assert.doesNotMatch(ukAuthorised,/industry-ecnoglutide/);
+ assert.doesNotMatch(ukAuthorised,/industry-mazdutide/);
 });
