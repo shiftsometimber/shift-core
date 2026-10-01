@@ -60,7 +60,7 @@
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
     "tests/app-layout-live.test.mjs": "d9e9e435f9f197ed06f4d38742367f8e57ac40b28d9295a1cb633389131c3be8",
-    "tests/b1-release-scope.test.mjs": "8708e7b10c932359d1c0681ee14661c5ab9a2292d3120f2c9c72206b6c56c5f1",
+    "tests/b1-release-scope.test.mjs": "5474f77b25346fbccb042f1e756668767f8f40956dc6e6e471fd598e459edaaf",
     "tests/member-focus-release.test.mjs": "c8ec0cac8283c7f5edd8a25f727c7230e0e9db0a63964d9bd8575f53a4a2f424",
     "medicines-watch/knowledge.mjs": "c7078053267c8ec36937d6e25a8ca3b2200b476bc8cb570f2a666117abe69ac5",
     "medicines-watch/knowledge.test.mjs": "95d7d1770f23ade771af7d89733b3d3b4b575bdd39b6c024b548ebeffa0ac3c4",

@@ -66,10 +66,12 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  });
 
  test('industry release binds every reviewed file and preserves the observation-only boundary',async()=>{
-  const {validateWatchExpansion,WATCH_EXPANSION_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS}=await import('../scripts/b1-release-scope.mjs');
   assert.equal(WATCH_EXPANSION_PATHS.length,42);
-  validateWatchExpansion((ref,path)=>path);
-  for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+  const expectedRef=path=>WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
+  const reviewed=(ref,path)=>(ref==='HEAD'?expectedRef(path):ref)+':'+path;
+  validateWatchExpansion(reviewed);
+  for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
   const step=steps.find(s=>s.startsWith('name: Initialise reviewed Medicines Watch expansion observations'));
   assert.match(step,/node scripts\/b1-release-scope.mjs/);assert.match(step,/node medicines-watch\/bootstrap.mjs/);
  assert.doesNotMatch(step,/migration|seed-recent|medicine_inventory|structured_content/);
@@ -92,9 +94,3 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
   validateWatchSynt101((ref,path)=>path);
   for(const changed of WATCH_SYNT101_PATHS)assert.throws(()=>validateWatchSynt101((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
  });
-
-
-test('overlapping Watch expansion pins retain the later exact SYNT-101 correction',async()=>{
- const {validateWatchExpansion,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_EXPANSION_COMMIT}=await import('../scripts/b1-release-scope.mjs');
- validateWatchExpansion((ref,path)=>{const expected=WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;assert(ref==='HEAD'||ref===expected);return path});
-});
