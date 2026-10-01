@@ -73,10 +73,12 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
   await p.locator('.sf-exercise').first().waitFor();await p.locator('[data-sf-start]').first().click();assert(await p.locator('.sf-session.active').first().isVisible());row.checks.push('Fit generates a real fictional plan; prominent Start control opens its exercise session');
  }
  if(path==='/member/settings'){await p.locator('.app-account-details>summary').click();await p.locator('#memberDetailsForm').waitFor();assert(await p.locator('#memberDetailsTitle').isVisible());}
+ await p.waitForFunction(()=>{const i=document.querySelector('#todayBrand .member-design-mark');return i?.complete&&i.naturalWidth>0});assert.equal(await p.locator('#todayBrand .member-design-mark').count(),1);assert(await p.locator('#todayBrand .member-design-mark').isVisible());assert.equal(await p.locator('#appBottomNav svg').count(),5);
  assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow '+path);
  if(path==='/member/life-back'){
  await p.locator('#journeyView:not([hidden])').waitFor({timeout:45000});
  assert.equal(await p.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(112, 119, 98)','Life Back uses the approved ash green canvas');
+ assert.equal(await p.locator('.area-number').first().evaluate(el=>getComputedStyle(el).webkitTextFillColor),'rgb(5, 5, 5)','Member ratings are readable on cream');
  const contrast=await p.locator('#scoreCaption').evaluate(el=>{const rgb=getComputedStyle(el).color.match(/[\d.]+/g).slice(0,3).map(Number);const lum=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4};const l=.2126*lum(rgb[0])+.7152*lum(rgb[1])+.0722*lum(rgb[2]);const bg=getComputedStyle(el).backgroundColor.match(/[\d.]+/g).slice(0,3).map(Number),b=.2126*lum(bg[0])+.7152*lum(bg[1])+.0722*lum(bg[2]);return(Math.max(b,l)+.05)/(Math.min(b,l)+.05)});assert(contrast>=4.5,'Life Back caption contrast');
  await p.locator('.area-card').first().click();assert(await p.locator('dialog[open]').isVisible());await p.screenshot({path:dir+'/'+name+'-'+width+'-life-back-dialog.png',fullPage:true});await p.keyboard.press('Escape');
  assert(await p.locator('.timeline-card').evaluateAll(cards=>cards.every(c=>c.scrollWidth<=c.clientWidth+1)),'Timeline values fit inside each card');
