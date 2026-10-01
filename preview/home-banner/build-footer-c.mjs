@@ -11,10 +11,42 @@ const sections=oldFooter.match(/<section\b[^>]*>[\s\S]*?<\/section>/g);assert.eq
 sections[0]=sections[0].replace('<p>Helping ordinary blokes feel like themselves again.</p>','');
 const nav=oldFooter.match(/<nav\b[\s\S]*?<\/nav>/)[0],access=oldFooter.match(/<div aria-label="Accessibility controls"[\s\S]*?<\/div>/)[0],bottom=oldFooter.match(/<div class="footer-bottom">[\s\S]*?<\/div>/)[0],app=oldFooter.match(/<div class="my-timber-app-footer"[\s\S]*?<\/div>/)[0];
 const footer='<footer class="site-footer" id="sst-footer-c"><div class="fc-main">'+sections.join('')+'</div><div class="fc-legal"><div class="fc-legal-inner">'+nav+access+bottom+app+'</div></div></footer>';
-const candidate=baseline.replace(removed,'').replace(oldFooter,footer).replace('</body>',footerCSS+'</body>');
+
+const oldRoute=baseline.match(/<div class="sst-route-inner">[\s\S]*?<\/ol><\/div>/)?.[0];assert(oldRoute,'Expected homepage route cards');
+const icon=(s)=>'<svg viewBox="0 0 96 112" aria-hidden="true" focusable="false">'+s+'</svg>';
+const programme=icon('<rect x="12" y="10" width="72" height="92" rx="8" fill="none" stroke="currentColor" stroke-width="7"/><path d="M26 34h18m13 0 5 5 10-13M26 57h18m13 0 5 5 10-13M26 80h18m13 0 5 5 10-13" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>');
+const health=icon('<path d="M48 102 12 65C-15 35 10-1 36 17L48 27 60 17C86-1 111 35 84 65Z" fill="currentColor"/><path d="M18 56h16l8-20 12 39 9-19h16" fill="none" stroke="#E7E3DA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>');
+const timber=icon('<rect x="16" y="6" width="64" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="7"/><path d="M40 17h16M42 94h12" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M64 48a22 22 0 1 0 5 16M36 57l10 10 22-24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>');
+const card=(href,title,lead,body,svg,label)=>'<li><a class="hc-card" href="'+href+'"><div class="hc-top">'+svg+'<div><h3>'+title+'</h3><p class="hc-lead">'+lead+'</p></div></div><p class="hc-copy">'+body+'</p><span class="hc-link">'+label+' <span aria-hidden="true">→</span></span></a></li>';
+const route='<div class="hc-wrap" id="how-shift-can-help"><h2 id="sst-home-route-title">HOW <span>SHIFT</span> CAN HELP.</h2><ol class="hc-grid"><li><a class="hc-card hc-start" href="/start-here"><h3>WEIGHT LOSS,<br>ON YOUR TERMS.</h3><p class="hc-copy">Explore your options and understand what each involves.</p><span class="hc-link">START HERE <span aria-hidden="true">→</span></span></a></li>'+card('/programme','THE PROGRAMME','Build around real life.','Food, movement and support you can keep coming back to.',programme,'Explore the programme')+card('/shift-health','SHIFT HEALTH','Understand your options.','Clear information on men’s health, home tests and treatment routes.',health,'Explore SHIFT Health')+card('/member/dashboard','MY TIMBER','Keep it going.','Your free home for meals, movement, check-ins and progress.',timber,'Explore My Timber')+'</ol></div>';
+const routeCSS=`<style id="hc-style">
+html body #sst-home-route{background:#050505!important}
+html body .hc-wrap{max-width:1500px;margin:auto;padding:48px 24px;color:#E7E3DA;scroll-margin-top:100px}
+html body .hc-wrap h2{font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(27px,3.2vw,48px)!important;font-weight:750!important;line-height:1.15!important;letter-spacing:-.025em!important;margin:0 0 32px!important;color:#E7E3DA!important}
+html body .hc-wrap h2 span{color:#707762}
+html body .hc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
+html body .hc-grid>li{display:flex;margin:0;padding:0;min-width:0;border:0}
+html body .hc-card{box-sizing:border-box;display:flex;flex-direction:column;width:100%;padding:24px 20px;background:#E7E3DA;color:#050505;border-radius:7px;text-decoration:none!important;min-height:280px}
+html body .hc-top{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+html body .hc-top>div{min-width:0}
+html body .hc-top svg{width:72px;height:90px;flex:0 0 72px;color:#707762}
+html body .hc-card h3{font-size:clamp(19px,1.6vw,25px)!important;line-height:1.15!important;margin:0 0 10px!important;color:#050505!important}
+html body .hc-card p{font-size:16px!important;line-height:1.45!important;color:#050505!important;margin:0 0 20px!important}
+html body .hc-card .hc-lead{font-weight:700;margin:0!important}
+html body .hc-card .hc-link{font-size:16px;font-weight:700;line-height:1.35;display:flex;justify-content:space-between;gap:12px;margin-top:auto;padding:12px 0 6px;border-bottom:1px solid #050505}
+html body .hc-start{background:#707762}
+html body .hc-start h3{font-size:clamp(26px,2.3vw,35px)!important}
+html body .hc-start .hc-link{background:#050505;color:#E7E3DA;padding:14px 16px;border:0}
+html body .hc-card:focus-visible{outline:3px solid #E7E3DA;outline-offset:5px}
+html body .hc-card:hover .hc-link{text-decoration:underline}
+@media(max-width:1150px){html body .hc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){html body .hc-wrap{padding:32px 18px}html body .hc-grid{grid-template-columns:1fr;gap:16px}html body .hc-card{min-height:0;padding:24px}html body .hc-wrap h2{font-size:27px!important;margin-bottom:24px!important}html body .hc-card h3{font-size:24px!important}html body .hc-start h3{font-size:32px!important}}
+</style>`;
+
+const candidate=baseline.replace(removed,'').replace(oldFooter,footer).replace(oldRoute,route).replace('</body>',footerCSS+routeCSS+'</body>');
 const links=s=>[...s.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map(m=>[m[1],m[2]]);
 assert.deepEqual(links(footer),links(oldFooter),'Preserve every footer link and label');
-assert.equal(candidate.replace(footerCSS,'').replace(footer,oldFooter),baseline.replace(removed,''),'No changes outside approved blocks and footer');
+assert.equal(candidate.replace(footerCSS,'').replace(routeCSS,'').replace(route,oldRoute).replace(footer,oldFooter),baseline.replace(removed,''),'No changes outside approved blocks and footer');
 assert(candidate.includes('<section class="matters">'));assert(candidate.includes('/assets/seo-20260923/logo-ce5904c700ef2787.webp'));
 const sha=s=>createHash('sha256').update(s).digest('hex');
 writeFileSync('preview/home-banner/generated/page.mjs','export const baseline='+JSON.stringify(baseline)+';export const candidate='+JSON.stringify(candidate)+';');
