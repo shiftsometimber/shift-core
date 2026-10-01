@@ -51,11 +51,11 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "b3bd8b2ea54f7855098b817a3729f51ecf8c17e6d91dddced06eed7792d6aaef",
+    "release/app-preflight.mjs": "f0c4b522e0880ff2cd435f8f3c30d114f098fda32ad76fb0cc70aad578e6accd",
     "release/growth-adopt-deployment.mjs": "62eda2f2afc95929c3c57e40eb47a4ade60afc5a9d5cee2b1ca469ace1cbcecf",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
-    "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
-    "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
+    "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
+    "release/member-focus-scope.mjs": "e711e164b9f35806851819913c9336b344a5ac3a3132e1566cdbed168fdea776",
     "scripts/b1-release-scope.mjs": "8d21b135bfd3fec5fef07598c5f73140ed84a146d698a3e4a998caead7cfd1e5",
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
@@ -68,7 +68,7 @@
     "medicines-watch/reviews/2026-09-30-discovery-proposals.json": "fa4a023ae621de4c77bdef2675d17d121d241fb43f1588d6319c17c9b65f5098",
     "medicines-watch/reviews/2026-09-30-discovery-review.md": "9fde72a71a0dd6059846d335db83806d4e1c152a5d6772f52a8c02863de0f1e5",
     "medicines-watch/reviews/2026-09-30-reviewed-expansion.json": "a92afda9c2e64236b681ebaa954b1863f470df0fed81d12103b65d29bdc4b0ac",
-    "release/growth-scope.mjs": "9f784c86e9a16e9c310913d4c74c26b9d089058cadf51800d9b4c3217587880c",
+    "release/growth-scope.mjs": "b9a6abdbcdf32fa7150f5de5db184a70d2d3ff50d0704c9706a2b5acd6cda691",
     ".github/workflows/home-banner-preview.yml": "9f254015a5077c98ee8a3976b69aa38769a79ff8987015bb9c9a40401cc51d25",
     "preview/home-banner/assets/OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
     "preview/home-banner/assets/barlow-condensed-700.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
@@ -127,7 +127,17 @@
     "home-compact-footer.mjs": "4287424ec9cbf57bf4f404a810f9bf88c8314cca42fd6b27ade06b6d1957d748",
     "release/home-compact-proof.cjs": "daa972372ef7a2843cbdb9b5950b40b580159aae08b0f4c259b586567ffc9cb5",
     ".github/workflows/home-compact-proof.yml": "48ad515372c6be653923b0a828121ec6553e1497a0c1ec05128c1cdfa78e7226",
-    "frontend/member/fit-v3-images/sst-header-brand-mark-20261001.png": "11c3a8baa313ec2dca933622b2639a4c10a5e90da899cb8ad37eb3f5679efacf"
+    "frontend/member/fit-v3-images/sst-header-brand-mark-20261001.png": "11c3a8baa313ec2dca933622b2639a4c10a5e90da899cb8ad37eb3f5679efacf",
+    "release/footer-scope.mjs": "bbbd6535ae5d54d09b4da8534f2d7f518642fd5d0c16dca69aacf6604660ada7",
+    "release/app-scope.mjs": "3fcaa5550b18aaef42c8bd9826ce54a00d8cd11566cada7954e3dbbb099e1fae",
+    "member-experience/public-preservation.mjs": "66c785ced38cece739464c4f41a0c775a753801f115d9b94dd081cb6aff16347",
+    "shared-footer.mjs": "711d2b3fd5b2ef359ac833999948dd39b49c09ff4afc20510249d128df4589a7",
+    "tests/shared-footer.test.mjs": "a3b9e5d8c9bdfa7245cb37af4e7f7ea21c775e1a82f28b801ecfa5c0a7d88965",
+    "scripts/prove-shared-footer.cjs": "85e9ce703ae0df67ec2c3c2721572850ffbe7f57f53f0c0bc18b565e346342c8",
+    "preview/shared-footer/worker.mjs": "743742ac0113142a6880fb231eec2b3632b6a4c9c862aa89166e7c2f2549bce1",
+    "preview/shared-footer/wrangler.jsonc": "65fa65d28d0167874b33ea7172e1b4edcdeb48a0b3be7d0eb529e49470112c08",
+    ".github/workflows/shared-footer-proof.yml": "3de52d973c7ab10b6ed518e126d7e5f8b015a7faf5d8b54f681402f5ec1c8f16",
+    ".github/workflows/shared-footer-release-proof.yml": "bba49a9ef038bb92e52a10b87a8af799e4a3b72b3c12f7a9d8443b5a35be9bb2"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -152,5 +162,11 @@
       "assetSha256": "11c3a8baa313ec2dca933622b2639a4c10a5e90da899cb8ad37eb3f5679efacf",
       "delivery": "Exact unchanged PNG served by the existing public PNG asset handler; remove 97,517 inline bytes from each page after mobile LCP measured 2.653s against the unchanged 2.5s budget"
     }
+  },
+  "sharedFooterRelease": {
+    "candidate": "66e15d16143cb7bcbfeb9ee149cc047523ce52c7",
+    "browserProofRun": 36915747155,
+    "authorised": "Matt, 1 October 2026: The new footer needs to be the footer on every page on website, wpa and app - without exception",
+    "scope": "Approved footer content and CSS across customer HTML; no data, stock, price, clinical, authentication or configuration changes."
   }
 }
