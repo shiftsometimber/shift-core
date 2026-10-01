@@ -6,6 +6,7 @@ import {projectSourceHealth, REVIEW_INTERVAL_MS} from './monitor.mjs';
 
 const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-source-review.json', import.meta.url)));
 const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjaro-nhs-renewal.json', import.meta.url)));
+const latestNhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjaro-nhs-renewal.json', import.meta.url)));
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
@@ -88,8 +89,16 @@ test('separate NHS tirzepatide expiry is renewed only after reading the complete
   const source = sources.find(s => s.id === proof.id);
   assert.equal(proof.id, 'mounjaro-nhs');
   for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
-    assert.equal(source[key], proof[key]);
+    const currentProof = {...latestNhsReceipt.source, checkUrl: latestNhsReceipt.source.url, reviewedAt: latestNhsReceipt.reviewedAt};
+    assert.equal(source[key], currentProof[key]);
   }
+  assert.equal(latestNhsReceipt.source.previousReviewedAt, nhsReceipt.reviewedAt);
+  assert.equal(latestNhsReceipt.source.reviewedFingerprint, proof.reviewedFingerprint);
+  assert.equal(latestNhsReceipt.clinicalApproval, null);
+  assert.equal(latestNhsReceipt.source.withdrawn, false);
+  assert.equal(latestNhsReceipt.source.httpStatus, 200);
+  assert.ok(Date.parse(latestNhsReceipt.source.retrievedAt) <= Date.parse(latestNhsReceipt.reviewedAt));
+  assert.match(latestNhsReceipt.source.responseSha256, /^[a-f0-9]{64}$/);
   assert.equal(proof.previousReviewedAt, '2026-09-17T05:45:00Z');
   assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
   assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
@@ -99,7 +108,7 @@ test('separate NHS tirzepatide expiry is renewed only after reading the complete
   assert.equal(proof.withdrawn, false);
   assert.equal(proof.wordingChanged, false);
   assert.ok(proof.assessment.length > 150);
-  const time = Date.parse(proof.reviewedAt);
+  const time = Date.parse(latestNhsReceipt.reviewedAt);
   assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
   const old = {...source, reviewedAt: proof.previousReviewedAt};
   assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
@@ -118,5 +127,5 @@ test('changed SmPC metadata preserves the medicine catalogue and separately evid
     assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-09-27-wegovy-tablet-provider.json', import.meta.url))).reviewedAt);
-  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, nhsReceipt.reviewedAt);
+  assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, latestNhsReceipt.reviewedAt);
 });

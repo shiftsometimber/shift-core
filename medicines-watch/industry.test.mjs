@@ -9,15 +9,80 @@ import hrs1596Review from './reviews/2026-09-30-hrs1596-discovery.json' with {ty
 import continuingReview from './reviews/2026-09-30-emugrobart-petrelintide-discovery.json' with {type:'json'};
 import env308Review from './reviews/2026-09-30-env308-discovery.json' with {type:'json'};
 import globeNewswireRepair from './reviews/2026-09-30-globenewswire-access-repair.json' with {type:'json'};
+import berobenatideReview from './reviews/2026-09-30-berobenatide-vesper6.json' with {type:'json'};
+import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
+import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
+import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,30);assert.equal(sources.length,48);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,36);
+ assert.equal(medicines.length,6);assert.equal(industry.length,31);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,37);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
+test('macupatide discovery distinguishes recruiting Phase 2 from planned Phase 1',()=>{
+ const entry=industry.find(item=>item.id==='macupatide');
+ assert.match(entry.stage,/Recruiting Phase 2/);
+ assert.match(entry.stage,/not yet recruiting/);
+ assert.match(entry.summary,/actual 16 October 2025 start/);
+ assert.match(entry.limitations,/Neither study has posted results/);
+ assert.equal(entry.sourceIds.length,0);
+ assert.equal(entry.additionalEvidence.length,2);
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.ukAuthorisation,/do not establish UK marketing authorisation/);
+ const phase2=macupatideReview.registryEvidence.find(item=>item.nctId==='NCT07215559');
+ const phase1=macupatideReview.registryEvidence.find(item=>item.nctId==='NCT07765511');
+ assert.equal(phase2.overallStatus,'RECRUITING');
+ assert.equal(phase2.actualStartDate,'2025-10-16');
+ assert.equal(phase2.hasResults,false);
+ assert.equal(phase1.overallStatus,'NOT_YET_RECRUITING');
+ assert.equal(phase1.estimatedStart,'2026-10');
+ assert.equal(macupatideReview.clinicalApproval,null);
+});
+test('berobenatide correction records VESPER-6 without implying access or results',()=>{
+ const entry=industry.find(item=>item.id==='pf3944');
+ assert.match(entry.name,/Berobenatide/);
+ assert.match(entry.stage,/VESPER-6/);
+ assert.match(entry.summary,/actual 10 June 2026 start/);
+ assert.match(entry.limitations,/not results/);
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.ok(entry.sourceIds.includes('pf3944-pfizer-vesper6'));
+ assert.equal(berobenatideReview.registryEvidence.status,'Recruiting');
+ assert.equal(berobenatideReview.registryEvidence.actualStartDate,'2026-06-10');
+ assert.equal(berobenatideReview.registryEvidence.lastUpdatePosted,'2026-09-28');
+ assert.equal(berobenatideReview.ukPosition.nhsEnglandAccess,'Not established by either source.');
+});
+test('EloraTZP correction replaces planned-result evidence without treating planned Phase 3 as started',()=>{
+ const entry=industry.find(item=>item.id==='eloralintide');
+ const source=industrySources.find(item=>item.id==='eloralintide-lilly');
+ assert.equal(entry.name,'Eloralintide / EloraTZP');
+ assert.match(entry.stage,/Phase 2b results reported/);
+ assert.match(entry.summary,/completed 48-week Phase 2b study/);
+ assert.match(entry.summary,/not treated as started/);
+ assert.match(entry.limitations,/10\.8% to 27\.0%/);
+ assert.equal(source.url,eloraTZPReview.source.url);
+ assert.equal(source.reviewedFingerprint,eloraTZPReview.source.reviewedFingerprint);
+ assert.equal(eloraTZPReview.registryEvidence.overallStatus,'COMPLETED');
+ assert.equal(eloraTZPReview.registryEvidence.actualCompletionDate,'2026-09-14');
+ assert.equal(eloraTZPReview.ukPosition.marketingAuthorisation.includes('Neither source establishes'),true);
+ assert.equal(entry.clinicalApproval,null);
+});
+test('KaiNETIC update records completed Phase 3 enrolment without implying results or access',()=>{
+ const entry=industry.find(item=>item.id==='ribupatide-injection');
+ const source=industrySources.find(item=>item.id==='kailera-kainetic-20260930');
+ assert.match(entry.stage,/fully enrolled/);
+ assert.match(entry.summary,/enrolment is complete/);
+ assert.match(entry.summary,/expected in mid-2028/);
+ assert.match(entry.limitations,/not a trial result/);
+ assert.ok(entry.sourceIds.includes(source.id));
+ assert.equal(source.reviewedFingerprint,kaineticReview.source.reviewedFingerprint);
+ assert.equal(kaineticReview.clinicalApproval,null);
+ assert.match(kaineticReview.ukPosition.marketingAuthorisation,/does not establish/);
+ assert.equal(entry.clinicalApproval,null);
+});
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,30);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,31);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });

@@ -5,7 +5,7 @@ import {sources, medicines, REVIEWED_AT} from './data.mjs';
 import {projectSourceHealth, REVIEW_INTERVAL_MS} from './monitor.mjs';
 
 const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-information-renewal.json', import.meta.url)));
-const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjaro-nhs-renewal.json', import.meta.url)));
+const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjaro-nhs-renewal.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const ids = ['mounjaro-smpc', 'wegovy-tablet-smpc', 'orlistat-120-smpc', 'orlistat-60-smpc', 'foundayo-smpc'];
 const time = Date.parse(receipt.reviewedAt);
