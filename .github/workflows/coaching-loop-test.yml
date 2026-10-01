@@ -1,0 +1,42 @@
+name: Shift AI isolated coaching tests
+on:
+  push:
+    branches: [test/shift-ai-v2-coaching-20261001]
+    paths: ['preview/coaching-loop/**', '.github/workflows/coaching-loop-test.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Synthetic engineering checks
+        run: node --test preview/coaching-loop/*.test.mjs
+      - name: Install isolated verification tools
+        run: npm install --prefix "$RUNNER_TEMP/coaching-tools" wrangler@4.146.0 playwright@1.62.1 --no-audit --no-fund
+      - name: Compile without deploying
+        run: node "$RUNNER_TEMP/coaching-tools/node_modules/wrangler/bin/wrangler.js" deploy --dry-run --config preview/coaching-loop/wrangler.jsonc --outdir "$RUNNER_TEMP/coaching-evidence/worker-build"
+      - name: Worker and local D1 proof
+        env:
+          COACHING_TEST_EVIDENCE_DIR: ${{ runner.temp }}/coaching-evidence
+          COACHING_TEST_MINIFLARE_PACKAGE: ${{ runner.temp }}/coaching-tools/node_modules/miniflare
+          COACHING_TEST_WORKER_BUNDLE: ${{ runner.temp }}/coaching-evidence/worker-build/worker.js
+        run: node preview/coaching-loop/verify.cjs
+      - name: Install test browser
+        run: node "$RUNNER_TEMP/coaching-tools/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Rendered interaction and timing proof
+        env:
+          CODEX_PRIMARY_RUNTIME_NODE_MODULES: ${{ runner.temp }}/coaching-tools/node_modules
+          COACHING_TEST_START_LOCAL: 'true'
+          COACHING_TEST_EVIDENCE_DIR: ${{ runner.temp }}/coaching-evidence
+        run: node preview/coaching-loop/benchmark.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shift-ai-synthetic-evidence
+          path: ${{ runner.temp }}/coaching-evidence

@@ -1,0 +1,563 @@
+{
+  "base": "7917e61fc21246ac3f1d474f52eb161b22fd0501",
+  "revision": "first isolated non-clinical implementation",
+  "formal_clinical_signoff": false,
+  "independent_reviewer": null,
+  "criteria": [
+    {
+      "criterion": 1,
+      "original_requirement": "Immediate approved clinical routing; no coaching advice.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Original clinical hand-off/signed protocol not supplied. Narrowed test scope uses a fixed official-help panel and explicitly unsent brief; original requirement is not marked passed."
+    },
+    {
+      "criterion": 2,
+      "original_requirement": "Immediate signed safeguarding response to scripted low-mood/crisis language.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Original clinical hand-off/signed protocol not supplied. Narrowed test scope uses a fixed official-help panel and explicitly unsent brief; original requirement is not marked passed."
+    },
+    {
+      "criterion": 3,
+      "original_requirement": "Named handoff routing, truthful delivery status and unavailable fallback.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Original clinical hand-off/signed protocol not supplied. Narrowed test scope uses a fixed official-help panel and explicitly unsent brief; original requirement is not marked passed."
+    },
+    {
+      "criterion": 4,
+      "original_requirement": "Audit intent before execution, append actual outcome after execution.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 5,
+      "original_requirement": "Per-source defaults off; check permissions at execution; revocation blocks.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 6,
+      "original_requirement": "Per-call reserve/actual costs, member and shared daily caps, valid fallback.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "SQL reservation caps and prepared fallback exercised synthetically. No paid model calls or live billing telemetry; no monthly cap added per Matt."
+    },
+    {
+      "criterion": 7,
+      "original_requirement": "Measured global proactive off switch while Today works.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 8,
+      "original_requirement": "Content deletion across memory, derivatives, queues and mapped stores; minimal audit retention.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 9,
+      "original_requirement": "Member isolation and clinician least-privilege allowed/denied access.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/foundations.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Member isolation and rejection of clinician-role sessions tested. No clinical inbox exists in this amended scope."
+    },
+    {
+      "criterion": 10,
+      "original_requirement": "First prepared action reflects two My Journey inputs in the same session.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/memory.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "browser-proof.json",
+        "store-after-setup.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 11,
+      "original_requirement": "Prepared Today meets measured target on declared device/network.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/memory.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "browser-proof.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 12,
+      "original_requirement": "One action with saved reason/evidence; general starter without context.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/memory.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "coaching-today-mobile.png",
+        "store-after-setup.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 13,
+      "original_requirement": "Memory and derived plans visible; edits change the next action.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/memory.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "coaching-memory-mobile.png",
+        "store-after-correction.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 14,
+      "original_requirement": "One-tap accept/decline; agreed follow-up frequency and four outcomes.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/adaptation.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "store-after-didnt-help.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 15,
+      "original_requirement": "Not-fit smaller/retimed, not-help different approach, not-tried asks whether still wanted.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/adaptation.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "coaching-adapted-mobile.png",
+        "store-after-didnt-help.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 16,
+      "original_requirement": "One explicit rejection suppresses the defined advice type until restored.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/adaptation.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 17,
+      "original_requirement": "Corrections/rejections/revocations invalidate affected plans and queues before sending; immediate valid fallback.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/adaptation.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "coaching-corrected-mobile.png",
+        "store-after-correction.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 18,
+      "original_requirement": "Outcomes change next choice; no nightly model training or model changes.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/adaptation.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "store-after-setup.json",
+        "store-after-didnt-help.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 19,
+      "original_requirement": "Inferences labelled; unconfirmed guesses never become saved facts.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/adaptation.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 20,
+      "original_requirement": "Each synthetic member gets nightly decision/no-action log; cheap checks first; duplicate run creates nothing new.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 21,
+      "original_requirement": "Chosen Life Back components with weekly assessment; weight not alone; no unapproved combined score.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 22,
+      "original_requirement": "Every action names its chosen target component.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 23,
+      "original_requirement": "Patterns meet signed data thresholds; observations not causes; missing log not missed dose/activity.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "BLOCKED: signed thresholds not supplied; only an explicit synthetic pattern probe is tested. Pattern alerts are disabled in the night job."
+    },
+    {
+      "criterion": 24,
+      "original_requirement": "N across channels; unanswered confirmed deliveries pause type twice; one keep prompt, then silence without yes.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 25,
+      "original_requirement": "Quiet-hour hold with permissions/cancellation checked again at send.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 26,
+      "original_requirement": "Each act has data-backed why line; correction changes next decision.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 27,
+      "original_requirement": "Calendar preview and explicit acceptance before writes.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/calendar.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "store-after-calendar-preview.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 28,
+      "original_requirement": "No duplicate calendar writes under retry or rerun; reconcile unknown results.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/calendar.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "store-after-calendar-write.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 29,
+      "original_requirement": "One-tap undo of only the owned calendar/reminder entry; audit result.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/calendar.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "store-after-calendar-undo.json"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 30,
+      "original_requirement": "Calendar change updates next plan; imported instructions ignored.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/calendar.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 31,
+      "original_requirement": "Wins have data; unsupported win fails.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/modes.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Win text uses a stored helped outcome; no independent relevance review."
+    },
+    {
+      "criterion": 32,
+      "original_requirement": "Weekly review: what moved, what did not, one next thing; approximately 60-second reading.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/modes.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Short weekly review exists; 60-second human reading target not measured."
+    },
+    {
+      "criterion": 33,
+      "original_requirement": "Stage-specific tone/step size; independent voice review; shame/hype/nag fails.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/modes.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Three-stage tone and step size asserted; independent voice scoring is unrun."
+    },
+    {
+      "criterion": 34,
+      "original_requirement": "Other-prescriber full loop without ordering.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/modes.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 35,
+      "original_requirement": "Stopped-medication everyday support, no medication-change instructions; dose nudges stop, history retained.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/modes.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Stopped mode keeps everyday habit support and history. No tapering, withdrawal assessment or medication-specific plan."
+    },
+    {
+      "criterion": 36,
+      "original_requirement": "Return after 14+ days gives welcome, not backlog.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/modes.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 37,
+      "original_requirement": "Synthetic weight/wearable arrival within measured target; missing stays missing.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/devices.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "workerd-proof.json",
+        "workerd-stored-proof.json"
+      ],
+      "scope_note": "Synthetic adapter only. No supplier arrival-time claim."
+    },
+    {
+      "criterion": 38,
+      "original_requirement": "Conflicting readings flagged; no action based on unresolved conflict.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/devices.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": null
+    },
+    {
+      "criterion": 39,
+      "original_requirement": "Weekly build log includes changes, before/after benchmarks and removed items; append-only history.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/verify.cjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt"
+      ],
+      "scope_note": "Append-only first implementation log and test workflow added; no earlier executable weekly baseline or two-week removal evidence invented."
+    },
+    {
+      "criterion": "20W",
+      "original_requirement": "Chosen-day weekly plan preparation, one-tap acceptance, accepted calendar boundary and adaptation.",
+      "status": "BLOCKED",
+      "reason": "Independent acceptance has not been performed. Engineering checks below do not replace it.",
+      "automated_test_files": [
+        "preview/coaching-loop/night-job.test.mjs"
+      ],
+      "engineering_proof": [
+        "engine-tests-final.txt",
+        "workerd-stored-proof.json"
+      ],
+      "scope_note": "One useful weekly offer, synthetic calendar transport. No real calendar provider."
+    }
+  ],
+  "acceptance_pass_count": 0,
+  "engineering_test_count": 40,
+  "runtime_proof": "workerd-proof.json",
+  "browser_proof": "browser-proof.json",
+  "model_calls": 0,
+  "deployments": 0,
+  "real_member_data": false,
+  "remaining": [
+    "Independent acceptance and voice/relevance review",
+    "Signed pattern thresholds before proactive pattern alerts",
+    "Exact website-passage approval/version manifest before real use",
+    "DPIA completion and regulatory intended-purpose decision before real use",
+    "Real calendar/push/device supplier integration gates",
+    "Production integration and separately authorised launch"
+  ]
+}

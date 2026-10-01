@@ -1,0 +1,11 @@
+{
+  "name": "shift-coaching-synthetic-test",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {"enabled": true, "head_sampling_rate": 1},
+  "vars": {"COACHING_TEST_MODE": "synthetic", "COACHING_TEST_LOCAL": "false"},
+  "d1_databases": [{"binding": "COACHING_TEST_DB", "database_name": "shift-coaching-synthetic-local", "database_id": "00000000-0000-0000-0000-000000000000", "remote": false}]
+}
