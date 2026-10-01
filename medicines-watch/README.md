@@ -84,3 +84,9 @@ Each entry separates completed observations from plans, preserves missing regist
 ## 1 October SYNT-101 correction
 
 `reviews/2026-10-01-synt101-mad-correction.json` replaces the newly published SYNT-101 wording that incorrectly left the 28-day multiple-dose cohort as pending. Syntis had already reported the Phase 1/1b multiple-ascending-dose observations on 15 September 2026. The corrected entry records the 23-person early study, keeps the findings attributed to the sponsor, and treats the 2027 Phase 2 study as planned rather than started. It does not convert preclinical lean-muscle findings into human evidence, infer UK authorisation, NHS access or supply, approve a monitoring baseline, or claim clinical approval.
+
+## 2 October international and injectable omissions
+
+`reviews/2026-10-02-authorised-international-omissions.json` closes five evidence-backed gaps found by the broader undated pass. Ecnoglutide and mazdutide are recorded as sponsor-reported China NMPA approvals, explicitly not UK authorisations, NICE/NHS England access or evidence of UK supply. Injectable ASC36 and ASC36_35FDC are separate sponsor-reported US Phase 1 initiations; ASC35 is a separate recruiting Phase 1 registry record with no posted results. Development aims, IND clearance, trial recruitment and estimated dates are not presented as authorised regimens or completed evidence.
+
+The catalogue now contains 50 entries (6 detailed and 44 wider summaries). The automated-source denominator remains 50 because these five reviewed links stay visibly outside automatic monitoring until separate supported baselines exist. Standing owner authorisation permits the factual publication; it is not clinical approval. Neither the matching counts nor this selected set establishes industry completeness.

@@ -1,0 +1,158 @@
+{
+  "reviewedAt": "2026-10-01T23:16:43Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish five primary-source-reviewed international and early-stage omissions through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "ecnoglutide",
+      "name": "Ecnoglutide / XW003",
+      "developer": "Sciwind Biosciences",
+      "group": "international",
+      "stage": "China NMPA weight-management approval reported by sponsor",
+      "summary": "Sciwind reported on 6 March 2026 that China's NMPA approved ecnoglutide injection for chronic weight management in Chinese adults with overweight or obesity. This is a China-specific authorisation, not a UK approval.",
+      "ukAuthorisation": "The reviewed source establishes a China NMPA approval only; it does not establish UK marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed source.",
+      "supply": "The China approval does not establish lawful UK retail supply, UK launch or pharmacy stock.",
+      "limitations": "The regulatory claim and trial figures come from the developer's announcement. China authorisation, UK authorisation, NHS access and actual UK supply are separate questions.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T23:16:43Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Sciwind ecnoglutide China NMPA approval announcement",
+          "url": "https://www.sciwindbio.com/portal/index/newsdetail/id/125/category_id/5.html",
+          "sourcePublishedAt": "2026-03-06",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T23:16:43Z",
+          "checkScope": "Original sponsor announcement read in full for the China indication and approval boundary; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "mazdutide",
+      "name": "Mazdutide / IBI362",
+      "developer": "Innovent Biologics",
+      "group": "international",
+      "stage": "China NMPA weight-management approval reported by sponsor",
+      "summary": "Innovent reported on 27 June 2025 that China's NMPA approved mazdutide for chronic weight management in adults with overweight or obesity. This is a China-specific authorisation, not a UK approval.",
+      "ukAuthorisation": "The reviewed source establishes a China NMPA approval only; it does not establish UK marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed source.",
+      "supply": "The China approval does not establish lawful UK retail supply, UK launch or pharmacy stock.",
+      "limitations": "The regulatory claim comes from the developer's announcement. China authorisation, UK authorisation, NHS access and actual UK supply are separate questions.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T23:16:43Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Innovent mazdutide China NMPA approval announcement",
+          "url": "https://en.innoventbio.com/InvestorsAndMedia/PressReleaseDetail?key=546",
+          "sourcePublishedAt": "2025-06-27",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T23:16:43Z",
+          "checkScope": "Original sponsor page and indexed official-page text reviewed for the China approval and indication boundary; the public page is JavaScript-rendered and is not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc36-injection",
+      "name": "ASC36 subcutaneous injection",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "US Phase 1 initiation reported by sponsor",
+      "summary": "Ascletis reported injectable ASC36 Phase 1 initiation on 10 August 2026. Monthly-to-quarterly dosing is a development objective, not an established regimen.",
+      "ukAuthorisation": "The reviewed research source does not establish UK marketing authorisation; US IND clearance is not marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "This is separate from oral ASC36. Registry corroboration remains missing, and reported animal findings are not human efficacy evidence.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T23:16:43Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis ASC36 and ASC36_35FDC Phase 1 initiation announcement",
+          "url": "https://www.ascletis.com/news_detail/200/id/1441.html",
+          "sourcePublishedAt": "2026-08-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T23:16:43Z",
+          "checkScope": "Original sponsor announcement read for initiation, formulation, design and animal-evidence limitations; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc36-35-fdc-injection",
+      "name": "ASC36_35FDC subcutaneous combination",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "US Phase 1 initiation reported by sponsor",
+      "summary": "Ascletis reported Phase 1 initiation on 10 August 2026 for an investigational monthly injectable co-formulation targeting amylin, GLP-1 and GIP receptors.",
+      "ukAuthorisation": "The reviewed research source does not establish UK marketing authorisation; US IND clearance is not marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Combination evidence is distinct from either monotherapy. No completed human efficacy results are established, and registry corroboration remains missing.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T23:16:43Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis ASC36 and ASC36_35FDC Phase 1 initiation announcement",
+          "url": "https://www.ascletis.com/news_detail/200/id/1441.html",
+          "sourcePublishedAt": "2026-08-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T23:16:43Z",
+          "checkScope": "Original sponsor announcement read for initiation, formulation, design and animal-evidence limitations; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc35-injection",
+      "name": "ASC35 subcutaneous injection",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "Recruiting Phase 1; NCT07842640",
+      "summary": "The sponsor-submitted registry records a recruiting Phase 1 study of investigational monthly ASC35 Injection B, with an actual 27 August 2026 start, estimated enrolment of 84 and estimated June 2027 completion.",
+      "ukAuthorisation": "The reviewed research source does not establish UK marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Trial participation does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "No results are posted. Ascending-dose cohorts, a tirzepatide comparator and estimated completion are not evidence of efficacy, superiority or completion.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-01T23:16:43Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07842640",
+          "url": "https://clinicaltrials.gov/study/NCT07842640",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-09-25",
+          "reviewedAt": "2026-10-01T23:16:43Z",
+          "checkScope": "Sponsor-submitted registry record read for recruiting status, actual start, estimated enrolment and completion, and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "evidenceContinuity": {
+    "ascletisProposalReceipt": "medicines-watch/reviews/2026-10-01-ascletis-injectable-discovery.json",
+    "ascletisProposalReviewedAt": "2026-10-01T06:30:54Z",
+    "ascletisSourceResponseSha256": "8a79c2955f24295a927f181766b4a8d35637afd5a909cea60ec9a211609e5559",
+    "asc35RegistryResponseSha256": "7cee462831926c845f507e87afd793be3e42685acc7f5f35693f3e1662772fef"
+  },
+  "discoveryLimitations": {
+    "currentDatePass": "No new UK MHRA, NICE or NHS decision was found in the current-date pass for these five programmes.",
+    "internationalScope": "China approvals are included to close a global-industry coverage gap and are explicitly not presented as UK authorisation or access.",
+    "ascletisRegistryGap": "Exact-term ClinicalTrials.gov searches returned no matching ASC36 or ASC36_35FDC record at the earlier review; this is not proof that no record exists.",
+    "monitoring": "No automatic monitoring source, successful baseline, review renewal or all-green claim is created by this publication.",
+    "coverage": "The catalogue remains selected and non-exhaustive; these five additions do not establish industry completeness."
+  },
+  "nextActions": [
+    "Continue topic-based discovery beyond named developers and existing entries",
+    "Recheck ASC36 and ASC36_35FDC registry corroboration and subsequent sponsor updates",
+    "Track UK regulator and NHS evidence separately from international authorisations",
+    "Establish supported monitoring baselines separately before adding automatic checks"
+  ]
+}

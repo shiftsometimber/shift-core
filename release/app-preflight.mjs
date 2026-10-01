@@ -18,7 +18,7 @@ const integratedBanner=await get('/actions/runs/36695679627');assert.equal(integ
 const approved=await get('/actions/runs/36636511091');assert.equal(approved.head_sha,APP_APPROVED);assert.equal(approved.conclusion,'success');
 assert.equal(approved.path,'.github/workflows/app-layout-preview.yml');
 git('merge-base','--is-ancestor',APP_APPROVED,'HEAD');
-const releaseMetadata=new Set(['.github/workflows/continuity-live-acceptance.yml','release/member-design-scope.mjs','tests/member-design-release.test.mjs','.github/workflows/member-design-release-proof.yml','release/app-manifest.json','release/app-scope.mjs','release/app-preflight.mjs','release/app-index-freshness.mjs','tests/app-index-freshness.test.mjs','release/app-live-http.mjs','release/app-client-proof.mjs','tests/app-client-proof.test.mjs','release/growth-scope.mjs','release/growth-preflight.mjs','release/member-focus-scope.mjs','tests/member-focus-release.test.mjs','release/growth-adopt-deployment.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs']);
+const releaseMetadata=new Set(['.github/workflows/continuity-live-acceptance.yml','release/member-design-scope.mjs','tests/member-design-release.test.mjs','.github/workflows/member-design-release-proof.yml','release/app-manifest.json','release/app-scope.mjs','release/app-preflight.mjs','release/app-index-freshness.mjs','tests/app-index-freshness.test.mjs','release/app-live-http.mjs','release/app-member-live.mjs','release/app-client-proof.mjs','tests/app-client-proof.test.mjs','release/growth-scope.mjs','release/growth-preflight.mjs','release/member-focus-scope.mjs','tests/member-focus-release.test.mjs','release/growth-adopt-deployment.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs']);
 // Owner authorised PR #850 on 29 September; bind its exact reviewed delta separately from the app preview.
 const watchCommit='c5b9e804605a241ad0f1c0fefefaf14994cffba7';
 const watchPaths=new Set(["medicines-watch/data.mjs","medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json","medicines-watch/source-review.test.mjs","scripts/b1-release-scope.mjs","tests/b1-release-scope.test.mjs"]);
@@ -32,16 +32,20 @@ git('merge-base','--is-ancestor',broaderDiscoveryCommit,'HEAD');
 const synt101CorrectionCommit='e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7';
 const synt101CorrectionPaths=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-01-synt101-mad-correction.json']);
 git('merge-base','--is-ancestor',synt101CorrectionCommit,'HEAD');
+const internationalOmissionsCommit='874a3b1bc3013de9442dbedbf1398c275fc13f6c';
+const internationalOmissionsPaths=new Set(['medicines-watch/README.md','medicines-watch/industry-page.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-international-omissions.json']);
+git('merge-base','--is-ancestor',internationalOmissionsCommit,'HEAD');
 // Exact manifest-pinned repair for the production-only missing embedded consent loader.
 // Retain exact current-main native/app-review and login work; this web release does not submit native apps.
 const retainedCurrentMain=new Set([".github/workflows/master-integration-gate.yml",".github/workflows/my-timber-app-preview.yml","frontend/member/my-timber-preview.html","my-timber-app/RELEASE-AUDIT-2026-10-01.md","my-timber-app/android/app/build.gradle","my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java","my-timber-app/contract.json","my-timber-app/ios/Sources/MyTimberViewController.swift","my-timber-app/ios/project.yml","my-timber-app/tests/apple-review-live.mjs","my-timber-app/tests/source.test.mjs","tests/member-auth-ui-v2.test.mjs"]);
 const retainedMain='b23010cfca99b3ab05377062ad5b16984711111c';
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);
 for(const c of checks)assert(c.status==='completed'&&['success','skipped','neutral'].includes(c.conclusion),'Unpassed candidate check '+c.name);
 mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/app-approval.json',JSON.stringify({approved:APP_APPROVED,preview:candidate.head_sha,run:candidate.id,ownerApproval:'30 September 2026: Go live - release the reviewed personal Today, first-week guidance and member-feedback repairs',checks:checks.map(c=>({name:c.name,conclusion:c.conclusion}))},null,2));
+
 
