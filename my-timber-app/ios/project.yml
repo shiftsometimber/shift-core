@@ -33,6 +33,7 @@ targets:
         CFBundleDisplayName: My Timber
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
         UILaunchScreen:
           UIColorName: LaunchBackground
         NSCameraUsageDescription: Take a photo you choose to upload to your My Timber account.
