@@ -1,7 +1,7 @@
 import {industry,industrySources} from './industry.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=v=>v?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(v)):'Not stated by the source';
-const labels={established:'Established and specialist',research:'Research programme',paused:'Paused programme',discontinued:'Discontinued programme'};
+const labels={established:'UK established and specialist',international:'Authorised outside the UK',research:'Research programme',paused:'Paused programme',discontinued:'Discontinued programme'};
 export function industryMarkup(health={},query=new URLSearchParams()) {
  const q=(query.get('q')||'').slice(0,100).toLowerCase();
  const group=Object.hasOwn(labels,query.get('industry'))?query.get('industry'):'';
