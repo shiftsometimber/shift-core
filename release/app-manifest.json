@@ -51,7 +51,7 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
-    "release/app-preflight.mjs": "f0c4b522e0880ff2cd435f8f3c30d114f098fda32ad76fb0cc70aad578e6accd",
+    "release/app-preflight.mjs": "aa82afd8ccc8dfa68f21195d4abf80574772130bd66e339b92f0d4ef8d86e347",
     "release/growth-adopt-deployment.mjs": "3f5bd8ea715a5c753112bd45c15cd3c32e3eb9274f8dab9979a02c59e83a5327",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
@@ -148,7 +148,7 @@
     "preview/shared-footer/worker.mjs": "743742ac0113142a6880fb231eec2b3632b6a4c9c862aa89166e7c2f2549bce1",
     "preview/shared-footer/wrangler.jsonc": "65fa65d28d0167874b33ea7172e1b4edcdeb48a0b3be7d0eb529e49470112c08",
     ".github/workflows/shared-footer-proof.yml": "e162846dab448e78156182921fe0769cb8da5b140ee672e9fb052dedb1bdabe5",
-    ".github/workflows/shared-footer-release-proof.yml": "bba49a9ef038bb92e52a10b87a8af799e4a3b72b3c12f7a9d8443b5a35be9bb2",
+    ".github/workflows/shared-footer-release-proof.yml": "afae7d27d0fb6a153035b20bd1c244a208fbcb8041459c8ff41fb9cb3d5769f6",
     ".github/workflows/shared-footer-preview.yml": "49435384a512103d0d81f9bf73313d834b641bee82cd6746c203c79c57387110"
   },
   "homepageRelease": {
