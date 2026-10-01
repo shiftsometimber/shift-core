@@ -23,9 +23,11 @@ const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:[
  await p.locator('#appMore').click();
  await p.locator('.member-nav-more>summary').click();
  assert.equal(await p.locator('.member-nav-more>div').evaluate(el=>getComputedStyle(el).position),'static');
- const menu=await p.locator('.member-nav-more>div').boundingBox();const main=await p.locator('main').boundingBox();if(view==='web'){
- assert(main.y>=menu.y+menu.height-1,'Expanded menu reserves space above content');
- const banner=await p.locator('#myTimberApp').boundingBox();assert(banner.y>=menu.y+menu.height-1,'Expanded menu does not cover install banner');
+ // WebKit can scroll while focus follows disclosure expansion. Compare every box
+ // in the same settled frame rather than mixing coordinates from separate calls.
+ const geometry=await p.evaluate(async()=>{document.activeElement?.blur();document.documentElement.style.scrollBehavior='auto';document.body.style.scrollBehavior='auto';scrollTo({top:0,behavior:'instant'});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const box=s=>{const r=document.querySelector(s).getBoundingClientRect();return{y:r.y,height:r.height}};return{menu:box('.member-nav-more>div'),main:box('main'),banner:box('#myTimberApp')}});row.geometry=geometry;const {menu,main,banner}=geometry;if(view==='web'){
+ assert(main.y>=menu.y+menu.height-1,'Expanded menu reserves space above content '+JSON.stringify(geometry));
+ assert(banner.y>=menu.y+menu.height-1,'Expanded menu does not cover install banner '+JSON.stringify(geometry));
  assert(await p.locator('#myTimberApp summary').evaluate(el=>el.scrollWidth<=el.clientWidth+1),'Install banner text fits');
  }
  row.checks.push('Plans and records expands in flow');await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-menu.png',fullPage:true});
