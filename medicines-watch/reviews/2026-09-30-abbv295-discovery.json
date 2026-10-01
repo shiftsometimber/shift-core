@@ -1,0 +1,88 @@
+{
+  "reviewedAt": "2026-09-30T15:33:53Z",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "Current-date topic discovery of an untracked non-incretin weight-management programme; added to the existing open discovery review and not to the live catalogue.",
+  "candidate": {
+    "id": "abbv295",
+    "name": "ABBV-295 / GUB014295",
+    "developer": "AbbVie",
+    "group": "research",
+    "stage": "Completed Phase 1 study; sponsor says advancement into Phase 2 is planned",
+    "summary": "AbbVie's 30 September 2026 announcement reports detailed multiple-ascending-dose Phase 1 findings for subcutaneous ABBV-295, an investigational long-acting amylin analogue. The sponsor says the findings support advancement into Phase 2 for chronic weight management; this is a planned next stage, not a completed Phase 2 trial.",
+    "formulation": "Subcutaneous injection; weekly, every-other-week and monthly regimens were evaluated in parts of the Phase 1 study. Those schedules are research regimens, not authorised dosing.",
+    "ukAuthorisation": "The sponsor states that ABBV-295 has not been approved by any health regulatory authority worldwide. The reviewed evidence therefore does not establish UK marketing authorisation.",
+    "nhsEngland": "No NHS access is established by the reviewed evidence. The NICE name search produced unrelated fuzzy matches and cannot establish an appraisal or access route.",
+    "supply": "No lawful UK retail supply or pharmacy stock is established. A UK Phase 1 research location is not evidence of commercial supply.",
+    "limitations": "Early, sponsor-reported results from a small Phase 1 study whose primary objective was safety and tolerability. The detailed conference presentation was not independently reviewed here. Safety and efficacy are not established, and cross-trial efficacy comparisons are not supported.",
+    "sourceIds": [
+      "abbv295-abbvie-20260930"
+    ],
+    "additionalEvidence": [
+      "https://clinicaltrials.gov/study/NCT06144684"
+    ]
+  },
+  "sources": [
+    {
+      "id": "abbv295-abbvie-20260930",
+      "title": "AbbVie: detailed Phase 1 ABBV-295 data at EASD 2026",
+      "url": "https://news.abbvie.com/2026-09-30-AbbVie-Presents-Detailed-Phase-1-Data-for-ABBV-295,-a-Long-Acting-Amylin-Analog,-Demonstrating-Favorable-Tolerability-and-Pharmacokinetic-Profile-at-EASD-2026",
+      "checkUrl": "https://news.abbvie.com/2026-09-30-AbbVie-Presents-Detailed-Phase-1-Data-for-ABBV-295,-a-Long-Acting-Amylin-Analog,-Demonstrating-Favorable-Tolerability-and-Pharmacokinetic-Profile-at-EASD-2026",
+      "format": "html",
+      "contentSelector": ".wd_body",
+      "sourcePublishedAt": "2026-09-30",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-09-30T15:33:53Z",
+      "requiredTerms": [
+        "ABBV-295",
+        "Phase 2",
+        "not been approved"
+      ],
+      "evidenceType": "Original sponsor announcement",
+      "httpStatus": 200,
+      "bytes": 46397,
+      "responseSha256": "135137e1f6896676a754043381e1e1524d00ab875ca5e72b5bc140af5e1d5286",
+      "reviewedFingerprint": "88f3097e8e985b75ee272df1edb1b718c3b2e94112cc2e0843ae9a0f8089a1d8",
+      "withdrawn": false,
+      "assessment": "The complete sponsor response was read. It identifies the programme as investigational, describes 60 participants in Parts 2B/2C and 76 participants in the multiple-ascending-dose study overall, and expressly says ABBV-295 is not approved and its safety and efficacy are not established. Sponsor-reported weight and tolerability observations are not treated as approval or comparative effectiveness."
+    }
+  ],
+  "registry": {
+    "title": "ClinicalTrials.gov NCT06144684 (GUC17-01)",
+    "url": "https://clinicaltrials.gov/study/NCT06144684",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06144684",
+    "sourcePublishedAt": "2023-11-22",
+    "sourceUpdatedAt": "2026-01-15",
+    "reviewedAt": "2026-09-30T15:33:53Z",
+    "evidenceType": "Original trial registry record",
+    "responseSha256": "98551b1eb54ff66a2a1e11b83b13a42e001872b2ce6bf301492cb8e452bec9aa",
+    "bytes": 16277,
+    "nctId": "NCT06144684",
+    "phase": "Phase 1",
+    "overallStatus": "COMPLETED",
+    "enrolment": "76 actual",
+    "actualStart": "2023-11-29",
+    "actualPrimaryCompletion": "2026-01-05",
+    "actualCompletion": "2026-01-05",
+    "leadSponsor": "AbbVie",
+    "locationsIncludeUnitedKingdom": true,
+    "assessment": "The 15 January 2026 registry version records the first-in-human study as completed with 76 actual participants and a UK study location. It does not record a Phase 2 study, marketing authorisation, NHS access or retail supply."
+  },
+  "regulatoryAccessChecks": [
+    {
+      "authority": "MHRA products",
+      "url": "https://products.mhra.gov.uk/substance/?substance=ABBV-295",
+      "checkedAt": "2026-09-30T15:35:00Z",
+      "result": "The public URL returned the generic substance-search page without a name-specific result; absence could not be conclusively verified from that response. The sponsor's worldwide-not-approved statement is retained as the bounded evidence."
+    },
+    {
+      "authority": "NICE",
+      "url": "https://www.nice.org.uk/search?q=ABBV-295",
+      "checkedAt": "2026-09-30T15:35:00Z",
+      "result": "The site rewrote the query to a fuzzy term and returned unrelated results. It did not establish ABBV-295 guidance or NHS access, and the search is recorded as inconclusive rather than a definitive negative."
+    }
+  ],
+  "retrievalFailures": [],
+  "nextAction": "Editorially assess whether ABBV-295 belongs in the live research summaries. Before any publication, look for a registered Phase 2 study or later sponsor confirmation, preserve the distinction between completed Phase 1 and planned Phase 2, and do not infer UK authorisation, NHS access or supply."
+}

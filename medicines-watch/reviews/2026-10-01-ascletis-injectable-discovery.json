@@ -1,0 +1,85 @@
+{
+  "reviewedAt": "2026-10-01T06:30:54Z",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "Three formulation-specific omissions discovered through broader amylin and combination searches. Separate from the existing oral ASC36 proposal in PR #868.",
+  "candidates": [
+    {
+      "id": "asc36-injection",
+      "name": "ASC36 subcutaneous injection",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "US Phase I initiation reported by sponsor",
+      "summary": "Ascletis reported injectable ASC36 Phase I initiation on 10 August 2026. Monthly-to-quarterly dosing is a development objective, not an established regimen.",
+      "sourceIds": ["ascletis-20260810"],
+      "limitations": "Separate from oral ASC36. Registry corroboration remains missing; reported animal findings are not human efficacy evidence."
+    },
+    {
+      "id": "asc36-35-fdc-injection",
+      "name": "ASC36_35FDC subcutaneous combination",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "US Phase I initiation reported by sponsor",
+      "summary": "The same announcement reports Phase I initiation for a monthly injectable co-formulation targeting amylin, GLP-1 and GIP receptors.",
+      "sourceIds": ["ascletis-20260810"],
+      "limitations": "Combination evidence is distinct from either monotherapy. No completed human efficacy results established; registry corroboration remains missing."
+    },
+    {
+      "id": "asc35-injection",
+      "name": "ASC35 subcutaneous injection",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "Recruiting Phase I, NCT07842640",
+      "summary": "The sponsor-submitted registry records a recruiting Phase I study of investigational monthly ASC35 Injection B, with an actual 27 August 2026 start, estimated enrolment of 84 and estimated June 2027 completion.",
+      "sourceIds": ["asc35-registry"],
+      "limitations": "No results posted. The trial includes ascending-dose cohorts and a tirzepatide comparator; planned outcomes are not evidence of efficacy or superiority."
+    }
+  ],
+  "sharedBoundaries": {
+    "ukAuthorisation": "Not established by these research sources; US IND clearance is not marketing authorisation.",
+    "nhsEngland": "No NHS access established.",
+    "supply": "No lawful UK retail availability or stock established.",
+    "monitoring": "No live entries, source checks or approved fingerprints added. Raw response hashes below are provenance, not monitoring approvals."
+  },
+  "evidence": [
+    {
+      "id": "ascletis-20260810",
+      "url": "https://www.ascletis.com/news_detail/200/id/1441.html",
+      "sourcePublishedAt": "2026-08-10",
+      "sourceUpdatedAt": null,
+      "retrievedAt": "2026-10-01T06:30:08.173760Z",
+      "httpStatus": 200,
+      "bytes": 19515,
+      "responseSha256": "8a79c2955f24295a927f181766b4a8d35637afd5a909cea60ec9a211609e5559",
+      "reviewMethod": "Read sponsor release body including trial-design, formulation and animal-evidence limitations. Unknown update date retained."
+    },
+    {
+      "id": "asc35-registry",
+      "url": "https://clinicaltrials.gov/study/NCT07842640",
+      "retrievalUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=ASC35&pageSize=100",
+      "sourcePublishedAt": "2026-09-25",
+      "sourceUpdatedAt": "2026-09-25",
+      "retrievedAt": "2026-10-01T06:30:10.874910Z",
+      "httpStatus": 200,
+      "bytes": 8242,
+      "responseSha256": "7cee462831926c845f507e87afd793be3e42685acc7f5f35693f3e1662772fef",
+      "hasResults": false,
+      "reviewMethod": "Read identification, status, dates, design, arms/interventions and outcomes from sponsor-submitted registry record."
+    }
+  ],
+  "discoveryLimitations": {
+    "asc36Registry": {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=ASC36&pageSize=100",
+      "retrievedAt": "2026-10-01T06:30:10.862751Z",
+      "httpStatus": 200,
+      "returnedStudies": 0,
+      "responseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9",
+      "assessment": "No matching records returned for this exact-term search; not proof that no trial exists."
+    },
+    "searches": "Current October 2026, recent September and undated topic searches were attempted across regulator/NHS/product-information, registry, Novo Nordisk, Lilly, Amgen, Zealand/Roche, Pfizer, Viking, Structure, Boehringer, AstraZeneca, Hansoh/Merck and Kailera sources, plus broader amylin/muscle-preservation/paused-programme searches. Grouped queries returned uneven or irrelevant results for some requested domains; this is not a complete domain-by-domain scan.",
+    "incompleteChecks": ["Viking, Structure, Hansoh/Merck and Boehringer/Kailera recent domain searches returned insufficient relevant primary results; retain for follow-up", "New Regeneron 30 September media report found, but matching new primary trial results not verified; do not replace existing 2025 COURAGE summary from media alone", "Additional early programmes and specialist indications remain an open discovery queue"],
+    "publicRetrieval": "Search-service access to the public Watch page failed; direct read-only HTTP retrieval succeeded and confirmed 6 detailed plus 30 industry cards. Health returned 48 configured sources with the three previously known blocked sources. No new source-content warning observed in that response."
+  },
+  "nextActions": ["Editorial review of these formulation-specific additions", "Corroborate injectable ASC36 and ASC36_35FDC registry status and subsequent announcements", "Continue incomplete primary-source discovery checks", "Establish supported monitoring baselines separately before adding automatic checks"]
+}

@@ -1,0 +1,22 @@
+{
+  "observedAt": "2026-10-01T07:44:47Z",
+  "type": "Transport observation; not medical review renewal",
+  "sourceId": "apitegromab-embraze-paper",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13375528/",
+  "sourcePublishedAt": "2026-06-08",
+  "sourceUpdatedAt": null,
+  "monitorObservation": {
+    "lastAttemptAt": "2026-10-01T07:31:25.940Z",
+    "error": "missing_html_document",
+    "lastSuccessAt": "2026-10-01T06:31:20.560Z"
+  },
+  "independentRetrieval": {
+    "httpStatus": 200,
+    "bytes": 181439,
+    "responseSha256": "a3ff083d006cfb1d710ba51a73fed31dd4d67384c8cd0388cbb44957f34ff50b",
+    "htmlDocumentPresent": true,
+    "webReaderAlsoAccessible": true
+  },
+  "action": "Retain the current monitor warning until its own next successful scheduled retrieval. No source URL, claim, review date or monitor baseline reset is justified by this isolated transport failure.",
+  "clinicalApproval": null
+}

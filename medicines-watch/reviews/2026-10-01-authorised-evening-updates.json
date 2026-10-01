@@ -1,0 +1,167 @@
+{
+  "reviewedAt": "2026-10-01T19:14:54Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt: Go live - stop pausing when they are needed updates",
+    "scope": "Publish the reviewed factual updates through the existing guarded production workflow; not clinical approval."
+  },
+  "reviewType": "AI-assisted factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sourceReceipt": "2026-10-01-evening-easd-discovery.json",
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "group": "research",
+      "reviewedAt": "2026-10-01T19:14:54Z",
+      "clinicalApproval": null,
+      "ukAuthorisation": "No UK authorisation established for this investigational programme by the reviewed evidence.",
+      "nhsEngland": "No NHS access established.",
+      "supply": "No UK retail availability or stock established. Trial participation is separate from commercial supply.",
+      "id": "ibio600",
+      "name": "IBIO-600",
+      "developer": "iBio",
+      "stage": "Phase 1; registry recruiting as last updated 29 May 2026",
+      "summary": "A subcutaneous anti-myostatin/GDF11 antibody being studied in adults with overweight or obesity. iBio announced first-participant dosing on 2 June 2026. NCT07487376 records a randomised single-ascending-dose trial with 32 estimated participants and no posted results.",
+      "limitations": "An older coverage omission, not a new October launch. Human muscle-preservation benefits and GLP-1 combination efficacy are unestablished. Registry estimated completion is May 2027; the sponsor's June release expected the second half of 2027. Preserve both estimates and verify later progress; do not treat either as completed.",
+      "additionalEvidence": [
+        {
+          "title": "ibio600-first-dose-20260602",
+          "url": "https://ir.ibioinc.com/news-events/press-releases/detail/260/ibio-becomes-a-clinical-stage-company-with-first-participant-dosed-in-phase-1-clinical-trial-of-ibio-600-in-adults-with-obesity",
+          "sourcePublishedAt": "2026-06-02",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+        },
+        {
+          "title": "ibio600-registry",
+          "url": "https://clinicaltrials.gov/study/NCT07487376",
+          "sourcePublishedAt": "2026-03-23",
+          "sourceUpdatedAt": "2026-05-29",
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. Registry last updated 2026-05-29. "
+        }
+      ],
+      "sourceIds": []
+    }
+  ],
+  "changes": [
+    {
+      "id": "survodutide",
+      "fields": {
+        "group": "research",
+        "reviewedAt": "2026-10-01T19:14:54Z",
+        "clinicalApproval": null,
+        "ukAuthorisation": "No UK authorisation established for this investigational programme by the reviewed evidence.",
+        "nhsEngland": "No NHS access established.",
+        "supply": "No UK retail availability or stock established. Trial participation is separate from commercial supply.",
+        "name": "Survodutide",
+        "stage": "Phase 3 SYNCHRONIZE-2 results; separate MASH programme",
+        "summary": "Zealand reported SYNCHRONIZE-2 results on 1 October 2026: in adults with obesity/overweight and type 2 diabetes, mean weight loss reached 13.1% versus 3.1% with placebo at 76 weeks under the efficacy estimand. Gastrointestinal adverse events led to discontinuation in 18% versus 1.2%.",
+        "limitations": "Sponsor report; reported statistical tests were nominal; efficacy estimand assumes continued treatment. The linked NEJM paper was unavailable in this review. Cardiovascular outcomes were still expected later in 2026. No cross-trial ranking or transfer of obesity results to MASH."
+      },
+      "additionalEvidence": [
+        {
+          "title": "survodutide-synchronize2-20261001",
+          "url": "https://www.globenewswire.com/news-release/2026/10/01/3372565/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-achieves-up-to-13-1-weight-loss-in-new-phase-iii-trial-alongside-significant-improvements-in-glycemic-control-in-people-.html",
+          "sourcePublishedAt": "2026-10-01T07:30:00Z",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+        },
+        {
+          "title": "survodutide-synchronize2-registry",
+          "url": "https://clinicaltrials.gov/study/NCT06066528",
+          "sourcePublishedAt": "2023-10-04",
+          "sourceUpdatedAt": "2026-08-06",
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. Registry last updated 2026-08-06. "
+        }
+      ]
+    },
+    {
+      "id": "trevogrumab-semaglutide",
+      "fields": {
+        "group": "research",
+        "reviewedAt": "2026-10-01T19:14:54Z",
+        "clinicalApproval": null,
+        "ukAuthorisation": "No UK authorisation established for this investigational programme by the reviewed evidence.",
+        "nhsEngland": "No NHS access established.",
+        "supply": "No UK retail availability or stock established. Trial participation is separate from commercial supply.",
+        "name": "Trevogrumab with semaglutide, with or without garetosmab",
+        "stage": "Phase 2 COURAGE; new 52-week findings reported 1 October 2026",
+        "summary": "Regeneron reported less lean-mass loss with low-dose trevogrumab plus semaglutide. At 52 weeks, DXA lean-mass change was -4.2% with 75 mg versus -7.3% with placebo plus semaglutide. MRI thigh-muscle volume is a separate measure. Further Phase 2 research in older adults is planned.",
+        "limitations": "Sponsor report; Lancet paper in press, not independently read. Imaging does not establish improved strength or function. The 2025 garetosmab triplet had more discontinuations and two deaths; causation was not established. New low-dose results do not resolve that safety signal or establish tolerability superiority."
+      },
+      "additionalEvidence": [
+        {
+          "title": "regeneron-courage-20261001",
+          "url": "https://investor.regeneron.com/news-releases/news-release-details/phase-2-courage-trial-confirms-trevogrumab-prevents-lean-mass",
+          "sourcePublishedAt": "2026-10-01T15:30:00Z",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. Direct retrieval failed; primary-page search retrieval was read."
+        }
+      ]
+    },
+    {
+      "id": "kai7535",
+      "fields": {
+        "name": "Safiglipron / KAI-7535 / HRS-7535",
+        "reviewedAt": "2026-10-01T19:14:54Z",
+        "clinicalApproval": null
+      },
+      "additionalEvidence": [
+        {
+          "title": "kailera-easd-20261001",
+          "url": "https://www.globenewswire.com/news-release/2026/10/01/3372706/0/en/kailera-therapeutics-presents-new-clinical-data-at-easd-2026-annual-meeting.html",
+          "sourcePublishedAt": "2026-10-01T10:45:00Z",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+        }
+      ]
+    },
+    {
+      "id": "kai4729",
+      "fields": {
+        "summaryToAppend": "Kailera's 1 October release adds Chinese Phase 1 findings for HRS-4729. The outside-China Phase 1 remained planned for 2026, with data expected in 2027; initiation was not confirmed.",
+        "limitations": "Small early trial. Do not generalise efficacy or safety from individual dose cohorts.",
+        "reviewedAt": "2026-10-01T19:14:54Z",
+        "clinicalApproval": null
+      },
+      "additionalEvidence": [
+        {
+          "title": "kailera-easd-20261001",
+          "url": "https://www.globenewswire.com/news-release/2026/10/01/3372706/0/en/kailera-therapeutics-presents-new-clinical-data-at-easd-2026-annual-meeting.html",
+          "sourcePublishedAt": "2026-10-01T10:45:00Z",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+        }
+      ]
+    },
+    {
+      "id": "ribupatide-injection",
+      "fields": {
+        "summaryToAppend": "Kailera reported a separate 51-participant Phase 1 injection-site study. This does not change the global Phase 3 stage or prove results from the fully enrolled KaiNETIC programme.",
+        "reviewedAt": "2026-10-01T19:14:54Z",
+        "clinicalApproval": null
+      },
+      "additionalEvidence": [
+        {
+          "title": "kailera-easd-20261001",
+          "url": "https://www.globenewswire.com/news-release/2026/10/01/3372706/0/en/kailera-therapeutics-presents-new-clinical-data-at-easd-2026-annual-meeting.html",
+          "sourcePublishedAt": "2026-10-01T10:45:00Z",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-01T19:14:54Z",
+          "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+        }
+      ]
+    }
+  ],
+  "recheckLimitations": [
+    "At publication preparation, direct web retrieval of the Zealand, Kailera and Regeneron releases failed. The earlier full-text factual review is retained; no new review date or automatic fingerprint is claimed."
+  ],
+  "unpublishedProposals": "Other historical discovery receipts on this branch remain separate proposals unless already published by a prior authorised receipt."
+}

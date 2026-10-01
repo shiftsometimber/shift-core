@@ -1,0 +1,45 @@
+{
+  "reviewedAt": "2026-09-30T13:44:39.789Z",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "Supplementary topic-based discovery during source-warning repair; not a complete domain-by-domain scan.",
+  "candidate": {
+    "id": "asc36-oral",
+    "name": "ASC36 oral tablets",
+    "developer": "Ascletis",
+    "group": "research",
+    "stage": "US Phase I initiation reported",
+    "summary": "Ascletis reported initiation of an oral amylin-receptor peptide trial for obesity on 8 September 2026. The study plans single and multiple ascending doses in 86 participants with overweight or obesity.",
+    "formulation": "Oral tablets; do not assign this trial phase to injectable formulations or combination programmes.",
+    "ukAuthorisation": "Not established by this US trial announcement.",
+    "nhsEngland": "Not established.",
+    "supply": "No UK retail supply or stock established.",
+    "limitations": "Sponsor announcement, not completed trial results. Reported weight-loss comparisons are animal findings and are not represented as human efficacy or superiority.",
+    "source": {
+      "url": "https://www.prnewswire.com/news-releases/ascletis-announces-initiation-of-phase-i-study-in-us-for-oral-amylin-receptor-peptide-agonist-asc36-for-the-treatment-of-obesity-302872005.html",
+      "sourcePublishedAt": "2026-09-08",
+      "sourceUpdatedAt": null,
+      "evidenceType": "Original sponsor release distributed by PR Newswire",
+      "reviewMethod": "Read release body including study design and animal-evidence limitations.",
+      "reviewedFingerprint": null,
+      "monitorStatus": "Not configured; complete-response baseline and production retrieval unverified."
+    }
+  },
+  "deploymentObservation": {
+    "pr": 867,
+    "liveCurrent": 45,
+    "configuredSources": 48,
+    "unresolved": [
+      "pf3944-pfizer",
+      "danuglipron-pfizer",
+      "az-elecoglipron-20260608"
+    ],
+    "failure": "HTTP 403 from production checker; retained visibly. Local retrieval of Pfizer distributor copies succeeded but does not establish Worker access."
+  },
+  "nextActions": [
+    "Verify registry and subsequent sponsor updates before publishing ASC36.",
+    "Establish a supported full-response baseline and production access before configuring automated checks.",
+    "Retain the three external-access warnings until genuinely resolved."
+  ]
+}

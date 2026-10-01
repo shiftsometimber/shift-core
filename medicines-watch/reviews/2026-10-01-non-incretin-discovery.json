@@ -1,0 +1,108 @@
+{
+  "reviewedAt": "2026-10-01T07:26:54Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "publicationStatus": "proposal_only_not_live",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "Two previously untracked non-incretin oral programmes found through topic-based discovery. Existing PR #882 retains the prepared publication; #868 remains the discovery review queue.",
+  "candidates": [
+    {
+      "id": "synt-101",
+      "name": "SYNT-101",
+      "developer": "Syntis Bio",
+      "stage": "Phase 1 completed; Phase 2 planned for 2027",
+      "summary": "Investigational oral therapy intended to form a temporary duodenal lining. Syntis reported exploratory hormone and weight findings in the 23-person, 28-day multiple-dose portion of SYNTIETY-1. The full registered Phase 1 study enrolled 55 participants. Human muscle-preservation benefit is not established; supporting muscle findings were in rodents.",
+      "sourceIds": [
+        "syntis-20260915",
+        "nct07307274"
+      ],
+      "limitations": "Small early trial; no established equivalence to surgery or GLP-1 medicines. Detailed conference presentation was planned for November 2026, not already completed."
+    },
+    {
+      "id": "crb-913",
+      "name": "CRB-913",
+      "developer": "Corbus Pharmaceuticals",
+      "stage": "Phase 1b results reported; Phase 2 planned for first half of 2027",
+      "summary": "Investigational oral peripheral CB1 inverse agonist. Corbus reported CANYON-1 results in 254 adults without diabetes after 12 weeks of treatment. Adverse-event discontinuations ranged from 3.1% to 13.1%. Psychiatric adverse events occurred, including one transient moderate depressive symptom. Registry status remains active, not recruiting.",
+      "sourceIds": [
+        "corbus-20260914",
+        "nct07310901"
+      ],
+      "limitations": "Sponsor results and older registry are not fully aligned: registry lists 252 estimated participants and estimated July 2026 completion. Cross-trial comparisons with GLP-1 drugs do not establish better tolerability. Phase 2 and combination studies are not claimed to have begun."
+    }
+  ],
+  "sources": [
+    {
+      "id": "syntis-20260915",
+      "url": "https://syntis.bio/syntis-bio-reports-phase-1-1b-results-demonstrating-weight-loss-and-satiety-hormone-modulation-with-oral-synt-101-in-patients-with-obesity/",
+      "sourcePublishedAt": "2026-09-15",
+      "sourceUpdatedAt": null,
+      "contentRead": true,
+      "evidenceType": "Original sponsor announcement",
+      "automaticMonitoringConfigured": false
+    },
+    {
+      "id": "corbus-20260914",
+      "url": "https://ir.corbuspharma.com/sec-filings/all-sec-filings/content/0001193125-26-389829/crbp-ex99_1.htm",
+      "sourcePublishedAt": "2026-09-14",
+      "sourceUpdatedAt": null,
+      "contentRead": true,
+      "evidenceType": "Sponsor announcement filed as SEC exhibit",
+      "automaticMonitoringConfigured": false
+    },
+    {
+      "id": "nct07307274",
+      "url": "https://clinicaltrials.gov/study/NCT07307274",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=SYNT-101&format=json",
+      "sourcePublishedAt": "2025-12-29",
+      "sourceUpdatedAt": "2026-08-26",
+      "contentRead": true,
+      "status": "COMPLETED",
+      "actualStart": "2026-01-13",
+      "actualCompletion": "2026-07-14",
+      "enrolment": {
+        "count": 55,
+        "type": "ACTUAL"
+      },
+      "phase": "PHASE1",
+      "automaticMonitoringConfigured": false
+    },
+    {
+      "id": "nct07310901",
+      "url": "https://clinicaltrials.gov/study/NCT07310901",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07310901",
+      "sourcePublishedAt": "2025-12-30",
+      "sourceUpdatedAt": "2026-05-29",
+      "contentRead": true,
+      "status": "ACTIVE_NOT_RECRUITING",
+      "actualStart": "2025-12-04",
+      "estimatedCompletion": "2026-07-31",
+      "enrolment": {
+        "count": 252,
+        "type": "ESTIMATED"
+      },
+      "phase": "PHASE1",
+      "automaticMonitoringConfigured": false
+    }
+  ],
+  "accessBoundary": {
+    "ukAuthorisation": "Not established by reviewed evidence",
+    "nhsAccess": "Not established by reviewed evidence",
+    "actualSupply": "Not verified; no pharmacy stock or retail availability claim",
+    "clinicalApproval": null
+  },
+  "unresolvedChecks": [
+    {
+      "topic": "Regeneron COURAGE 52-week report dated 30 September 2026",
+      "status": "primary_evidence_not_yet_located",
+      "detail": "New secondary report identified. Primary searches returned the existing 17 September 2025 26-week announcement. Do not substitute that older evidence or change live claims from the secondary report."
+    },
+    {
+      "topic": "Whole-industry discovery",
+      "status": "incomplete",
+      "detail": "Current-date and undated topic/developer searches performed; some queries returned irrelevant or older material. This is not evidence of no developments, nor exhaustive developer coverage."
+    }
+  ],
+  "identityExclusion": "SYNT-101 query also returned unrelated Syntimmune SYNT001 NCT03643627. Excluded after matching sponsor, intervention and indication.",
+  "nextAction": "Review these two programme summaries for catalogue inclusion, corroborate CRB-913 registry lag, and configure explicit monitoring only after the evidence sources are accepted. Retain planned-event and access boundaries."
+}
