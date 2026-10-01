@@ -1,0 +1,32 @@
+name: Shared footer continuity proof
+on:
+  push:
+    branches: [fix/shared-footer-every-page-20261001]
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/shared-footer.test.mjs tests/public-shell-contract.test.mjs preview/app-layout/presentation.test.mjs my-timber-pwa/pwa.test.mjs
+      - run: npm install --prefix "$RUNNER_TEMP/footer-browser" --no-audit --no-fund playwright@1.63.0
+      - run: '"$RUNNER_TEMP/footer-browser/node_modules/.bin/playwright" install --with-deps chromium webkit'
+      - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/footer-browser/node_modules/playwright" node scripts/prove-shared-footer.cjs
+      - name: Deploy read-only footer preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: npx wrangler deploy --config preview/shared-footer/wrangler.jsonc
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shared-footer-proof-${{ github.sha }}
+          path: footer-proof/
+          retention-days: 30
+
