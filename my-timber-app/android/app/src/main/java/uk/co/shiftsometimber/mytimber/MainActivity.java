@@ -79,14 +79,21 @@ public final class MainActivity extends Activity {
         settings.setSupportMultipleWindows(false);
         settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.0.0");
         CookieManager.getInstance().setAcceptCookie(true);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(web,false);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(web,true); // Required for Cloudflare Turnstile challenge state in WebView.
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());
                 if (!request.isForMainFrame()) {
+                    // Turnstile requires about:blank/about:srcdoc in embedded challenge frames.
+                    // Keep them subframe-only; top-level navigation still goes through NavigationPolicy.
+                    String raw = request.getUrl().toString();
+                    String scheme = request.getUrl().getScheme();
+                    boolean turnstileAbout = "about".equalsIgnoreCase(scheme)
+                        && ("about:blank".equalsIgnoreCase(raw) || "about:srcdoc".equalsIgnoreCase(raw));
+                    if (turnstileAbout) return false;
                     // Let HTTPS challenge frames use normal browser isolation.
                     // Never open phone/email/native schemes from embedded frames.
-                    return !"https".equalsIgnoreCase(request.getUrl().getScheme())
+                    return !"https".equalsIgnoreCase(scheme)
                         || decision == NavigationPolicy.Decision.DENY;
                 }
                 if (decision == NavigationPolicy.Decision.INTERNAL) return false;

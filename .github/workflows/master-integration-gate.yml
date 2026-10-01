@@ -140,3 +140,34 @@ jobs:
         run: node radar-scheduled-scan-staging.mjs
       - name: Gate 1 public production health probe
         run: node gate1-production-journey-probe.mjs
+
+
+  my-timber-native-ios:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: My Timber native source and navigation policy checks
+        run: |
+          node --test my-timber-app/tests/source.test.mjs
+          python3 my-timber-app/tests/run-policies.py
+      - name: Prepare exact My Timber iOS resources
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          python3 my-timber-app/scripts/prepare.py --platform ios
+          cd my-timber-app/ios
+          xcodegen generate
+      - name: Compile exact unsigned iOS Release candidate
+        run: |
+          cd my-timber-app/ios
+          xcodebuild -project MyTimber.xcodeproj -scheme MyTimber -configuration Release \
+            -sdk iphonesimulator -derivedDataPath release-audit CODE_SIGNING_ALLOWED=NO build
