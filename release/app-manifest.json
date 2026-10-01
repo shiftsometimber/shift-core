@@ -52,7 +52,7 @@
     "release/app-live-http.mjs": "dfb772aaf4eedb3894590ccf53dd57a8ec827a3df146a806075ca4a9abaf780f",
     "release/app-member-live.mjs": "93442e698d5fb89b33bae110e1a970dfe0581ab75700dd797a4f35a1843e008a",
     "release/app-preflight.mjs": "b3bd8b2ea54f7855098b817a3729f51ecf8c17e6d91dddced06eed7792d6aaef",
-    "release/growth-adopt-deployment.mjs": "fcc47a230f9f4db826f2780a585deb83a71d6710ed306ab13c831465a41c70d4",
+    "release/growth-adopt-deployment.mjs": "d07b9709c08b61a55bc57160c5332f10db2b4a8afb5c486ed540b3cd879fa418",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "6979cea758f0ce09ab75f04a10fe7d626025e2dad91a313702596696ca013187",
     "release/member-focus-scope.mjs": "4d54677d0e746c84db32f14c5925e1bc310784d7b13391019fb45895784f928c",
@@ -133,6 +133,12 @@
     "renderedProofRun": 36898164407,
     "preservedMain": "b23010cfca99b3ab05377062ad5b16984711111c",
     "scope": "Approved compact homepage, real-logo footer and two section removals; retain existing native-app and login source unchanged.",
-    "authorised": "Matt: Publish; Resolve and action quickly now please. 1 October 2026."
+    "authorised": "Matt: Publish; Resolve and action quickly now please. 1 October 2026.",
+    "baseline": {
+      "version": "6cbd35aa-5aa8-4cf9-a976-3e7d1663374d",
+      "provenanceRun": 36902083459,
+      "source": "b23010cfca99b3ab05377062ad5b16984711111c",
+      "evidence": "Cloudflare active version read and Mac Wrangler deployment log 2026-10-01_12-04-14_486; clean source checkout"
+    }
   }
 }
