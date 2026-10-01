@@ -13,9 +13,10 @@ import berobenatideReview from './reviews/2026-09-30-berobenatide-vesper6.json' 
 import eloraTZPReview from './reviews/2026-10-01-eloratzp-phase2b.json' with {type:'json'};
 import kaineticReview from './reviews/2026-10-01-kainetic-enrolment.json' with {type:'json'};
 import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' with {type:'json'};
+import broaderReview from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,32);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,38);
+ assert.equal(medicines.length,6);assert.equal(industry.length,39);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,45);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -82,7 +83,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,32);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,39);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -177,4 +178,24 @@ test('evening evidence preserves safety, planned events and research access boun
  assert.match(find('ribupatide-injection').summary,/mid-2028/);
  assert.match(find('kai7535').name,/Safiglipron/);
  assert.match(find('survodutide').limitations,/efficacy estimand assumes continued treatment/);
+});
+
+test('broader discovery adds bounded research summaries without inventing UK access',()=>{
+ assert.equal(broaderReview.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(broaderReview.clinicalApproval,null);
+ assert.equal(broaderReview.industryComplete,false);
+ for(const id of ['mbx4291','aroinhbe','lx9851','nbip1968','crb913','synt101','alv100']){
+  const item=industry.find(entry=>entry.id===id);
+  assert.ok(item,id);
+  assert.equal(item.clinicalApproval,null);
+  assert.equal(item.sourceIds.length,0);
+  assert.ok(item.additionalEvidence.length>=1,id);
+  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/);
+  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
+  assert.match(item.supply,/does not establish lawful UK retail supply/);
+ }
+ assert.match(industry.find(entry=>entry.id==='crb913').stage,/Phase 2 planned/);
+ assert.match(industry.find(entry=>entry.id==='alv100').limitations,/Recruitment and first dosing are not results/);
+ assert.match(industry.find(entry=>entry.id==='synt101').limitations,/did not establish weight loss or muscle preservation/);
+ for(const domain of ['mbxbio.com','arrowheadpharma.com','lexpharma.com','neurocrine.com','corbuspharma.com','syntis.bio','alveustx.com'])assert.ok(discoveryDomains.includes(domain));
 });
