@@ -21,6 +21,21 @@ jobs:
       - run: node --test tests/member-design-release.test.mjs tests/shared-footer.test.mjs tests/app-layout-live.test.mjs tests/b1-release-scope.test.mjs tests/growth-release.test.mjs tests/member-focus-release.test.mjs tests/home-route-banner.test.mjs
       - name: Read-only full public preservation check
         run: node member-experience/public-preservation.mjs member-design-public-preservation.json
+      - name: Await the exact browser proof before preflight
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {MEMBER_DESIGN_CANDIDATE,MEMBER_DESIGN_RUN} from './release/member-design-scope.mjs';
+          for(let i=0;i<66;i++){
+            const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+MEMBER_DESIGN_RUN,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+            assert(r.ok);const run=await r.json();assert.equal(run.head_sha,MEMBER_DESIGN_CANDIDATE);assert.equal(run.path,'.github/workflows/member-design-preview.yml');
+            if(run.status==='completed'){assert.equal(run.conclusion,'success');process.exit(0);}
+            await new Promise(resolve=>setTimeout(resolve,10000));
+          }
+          throw Error('Exact browser proof did not complete; production remains blocked');
+          JS
       - name: Verify exact presentation candidate and successful preview receipt
         env:
           GITHUB_TOKEN: ${{ github.token }}

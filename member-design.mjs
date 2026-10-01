@@ -79,6 +79,10 @@ css('main .grub-v8-tabs','background:#050505;border:0;border-radius:11px;padding
 css('main .grub-v8-tabs button','background:#050505;color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 css('main .grub-v8-tabs button:is([aria-selected="true"],.active)','background:#707762;color:#000;-webkit-text-fill-color:#000')+
 css('main .grub-food-image img','height:180px;object-fit:cover')+
+css('main :is(.grub-recipe-detail,.app-refine-recipe,.sf-exercise-main,.md-help)','color:#050505;-webkit-text-fill-color:#050505')+
+css('#todayActions.app-today-v3 .mt-today-footer','background:#e7e3da;color:#050505;border-radius:10px;padding:12px 14px;margin:16px 0;font-size:14px')+
+css('#todayActions.app-today-v3 .mt-today-footer a','color:#050505;-webkit-text-fill-color:#050505')+
+css('main :is(#grubStatus,#fitStatus,[role="status"]):empty','display:none')+
 css('main .sf-exercise.mp-exercise','background:transparent;color:#050505;border-bottom:1px solid #707762')+
 css('main .sf-exercise details','background:#e7e3da;color:#050505;border-color:#707762')+
 css('main .sf-number','background:#707762;color:#000')+
@@ -101,6 +105,7 @@ scope+'[data-app-panel="1"] #todayBrand{display:none!important}\n'+
 '@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+'}\n'+
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
+scope+' [hidden]:is(#approved-member-hidden,[hidden]):is(#approved-member-hidden-rule,[hidden]){display:none!important}\n'+
 '@media print{'+css('#todayBrand|#appBottomNav','display:none')+'}';
 
 const paths={today:'M3 11 12 3l9 8M5 10v11h5v-6h4v6h5V10',journey:'M5 20v-5m7 5V9m7 11V4',grub:'M5 3v7m3-7v7M3 3v6a3 3 0 0 0 6 0M6 12v9M18 3v18m0-18c-5 3-5 10 0 10',fit:'M4 8v8m3-11v14m10-14v14m3-11v8M7 12h10',more:'M4 12h.01M12 12h.01M20 12h.01',account:'M16 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0M4 21v-2a8 8 0 0 1 16 0v2'};
