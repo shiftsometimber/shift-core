@@ -62,3 +62,9 @@ Matt authorised the continuing-discovery release with "Ok go". `reviews/2026-09-
 ## BI 3034701 publication
 
 Matt authorised informational publication with “Go” on 30 September after the explicit BI 3034701 publication discussion. `reviews/2026-09-30-authorised-bi3034701.json` adds that research summary, retaining its original discovery receipt. The catalogue now has 36 entries; the 48 automated source checks are unchanged. Its three primary evidence links are visibly outside automatic content monitoring. No clinical approval, UK authorisation, NHS access, supply or completed Phase 2 result is inferred. The other five proposals in PR #868 remain separate review work.
+
+## 1 October programme updates
+
+`reviews/2026-10-01-eloratzp-phase2b.json` replaces the earlier forward-looking EloraTZP evidence with Lilly's completed Phase 2b announcement and linked sponsor-submitted registry record. It keeps the separate-injection study distinct from the planned co-formulation Phase 3 programme and does not treat that planned programme as started.
+
+`reviews/2026-10-01-kainetic-enrolment.json` records Kailera's later announcement that enrolment is complete across all three global Phase 3 KaiNETIC injection trials. It adds a 50th configured, fingerprinted source and updates only the ribupatide injection summary. Mid-2028 topline data remain expected rather than completed; the separate oral programme, UK authorisation, NHS access and actual supply do not advance.
