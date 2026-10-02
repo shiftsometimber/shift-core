@@ -1,3 +1,5 @@
+import {constraintOptions,blockerOptions,saveConstraints,chooseBlocker,journeyView} from './progression.mjs';
+import {supportView,requestSupport,reopenSupport} from './support.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {load,mutate,activeConsent,usable,statePath} from './store.mjs';
 import {setup,saveFact,memoryView} from './memory.mjs';
@@ -39,7 +41,7 @@ export async function coachingRoutes(request,env){
  try{
   const {revision,state}=await load(env.DB,auth.userId),consent=await activeConsent(env.DB,auth.userId);
   const allowed=usable(state,consent);
-  if(request.method==='GET')return json({revision,enabled:allowed,consent:Number(consent?.granted)===1,action:allowed?readToday(state):starter,memory:allowed?memoryView(state):null,choices:allowed?focusChoices(state):[],treatment:allowed?treatmentSupport(state.mode):null,supportRequired:allowed&&state.facts.some(f=>f.confirmed&&['goal','week'].includes(f.key)&&!boundary(f.value).coaching),review:allowed?reviewView(state):null,audit:allowed?state.audit:[],followup:allowed?pendingFollowup(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,help:helpPanel,background:env.SHIFT_COACH_OFF!=='true',modelCalls:0});
+  if(request.method==='GET')return json({revision,enabled:allowed,consent:Number(consent?.granted)===1,action:allowed?readToday(state):starter,memory:allowed?memoryView(state):null,choices:allowed?focusChoices(state):[],treatment:allowed?treatmentSupport(state.mode):null,journey:allowed?journeyView(state):null,blockers:allowed?blockerOptions:{},support:allowed?await supportView(env.DB,auth.userId):{available:false,tickets:[]},supportRequired:allowed&&state.facts.some(f=>f.confirmed&&['goal','week'].includes(f.key)&&!boundary(f.value).coaching),review:allowed?reviewView(state):null,audit:allowed?state.audit:[],followup:allowed?pendingFollowup(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,help:helpPanel,background:env.SHIFT_COACH_OFF!=='true',modelCalls:0});
   if(request.method==='DELETE'){
    await env.DB.prepare("UPDATE member_state SET preferences=json_set(json_remove(preferences,?),'$.lifeBack.progress.revision',COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)+1),updated_at=? WHERE user_id=?").bind(statePath,new Date().toISOString(),auth.userId).run();
    return json({ok:true,deleted:true});
@@ -49,21 +51,29 @@ export async function coachingRoutes(request,env){
   let input;try{input=JSON.parse(raw);}catch{return json({error:'invalid_json'},400);}
   if(!input||typeof input!=='object'||Array.isArray(input)||staleBody(input))return json({error:'invalid_request'},400);
   if(!/^[a-zA-Z0-9-]{16,80}$/.test(input.operationId||'')||!Number.isInteger(input.revision))return json({error:'refresh_before_saving'},400);
+  if(['support-request','support-reopen'].includes(input.kind)){
+   if(!allowed||revision!==input.revision)return json({error:'state_changed_retry'},409);
+   const result=input.kind==='support-request'?await requestSupport(env.DB,auth.userId,input,state.consentId):await reopenSupport(env.DB,auth.userId,input.reference);
+   return json({ok:true,...result},201);
+  }
   if(allowed&&state.operations?.includes(input.operationId))return json({ok:true,duplicate:true,revision});
   const at=Date.now();
   const operation=s=>{
    let result;
    switch(input.kind){
-    case 'setup':result=setup(s,input,at);if(input.components)chooseComponents(s,input.components);if(input.mode)changeMode(s,input.mode);prepareToday(s,at);break;
+    case 'setup':result=setup(s,input,at);if(input.constraints)saveConstraints(s,input.constraints);if(input.components)chooseComponents(s,input.components);if(input.mode)changeMode(s,input.mode);prepareToday(s,at);break;
     case 'fact':result=saveFact(s,input.key,input.value,at);prepareToday(s,at);break;
     case 'focus':{
      if(typeof input.restore!=='boolean'||!Object.hasOwn(focusLabels,input.focus))throw Object.assign(Error('invalid_focus_choice'),{status:400});
      result=saveFact(s,'focus',input.focus,at);
      if(input.restore){const types=library.filter(a=>a.focus===input.focus).map(a=>a.type);s.rejected=s.rejected.filter(type=>!types.includes(type));s.pausedTypes=s.pausedTypes.filter(type=>!types.includes(type));}
-     s.pendingWant=null;prepareToday(s,at);break;
+     s.pendingWant=null;s.pendingBlocker=null;prepareToday(s,at,{replace:true});break;
     }
+    case 'constraints':result=saveConstraints(s,input.constraints);prepareToday(s,at);break;
+    case 'blocker':result=chooseBlocker(s,input.blocker);prepareToday(s,at,{different:true,previousType:readToday(s)?.type});break;
+    case 'different-step':{const a=readToday(s);if(!a||a.status!=='prepared')throw Object.assign(Error('action_unavailable'),{status:409});s.pendingBlocker=null;result=prepareToday(s,at,{different:true,previousType:a.type});break;}
     case 'delete-item':result=deleteItem(s,input.id);prepareToday(s,at);break;
-    case 'accept':result=accept(s,input.id,at);break;
+    case 'accept':if(input.followup!==undefined){if(typeof input.followup!=='boolean')throw Object.assign(Error('invalid_followup_choice'),{status:400});setSettings(s,{...(input.followup?{proactive:true}:{}),followup:input.followup});}result=accept(s,input.id,at);break;
     case 'decline':result=reject(s,input.id,at);break;
     case 'outcome':result=outcome(s,input.id,input.value,at);break;
     case 'wanted':result=wanted(s,input.yes,at);break;

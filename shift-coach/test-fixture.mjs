@@ -17,6 +17,7 @@ export class FixtureDB{
    CREATE TABLE IF NOT EXISTS member_status(user_id INTEGER PRIMARY KEY,last_activity_at TEXT,updated_at TEXT);
    CREATE TABLE IF NOT EXISTS progress_entries(id INTEGER PRIMARY KEY,user_id INTEGER,source TEXT);
    CREATE TABLE IF NOT EXISTS check_ins(id INTEGER PRIMARY KEY,user_id INTEGER,case_id INTEGER);
+   CREATE TABLE IF NOT EXISTS support_tickets(id INTEGER PRIMARY KEY,reference TEXT UNIQUE,user_id INTEGER,subject TEXT,priority TEXT,status TEXT,body TEXT,assigned_hq_user_id INTEGER,created_at TEXT,updated_at TEXT,closed_at TEXT);
    CREATE TABLE IF NOT EXISTS audit_log(id INTEGER PRIMARY KEY,user_id INTEGER,action TEXT,entity_type TEXT,entity_id TEXT,metadata TEXT,created_at TEXT);`);
  }
  prepare(sql){return new Statement(this.sqlite,sql);}

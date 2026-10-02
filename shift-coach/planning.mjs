@@ -4,7 +4,7 @@ import {uid} from './store.mjs';import {readToday} from './today.mjs';
 // still matches. GETs remain read-only and existing history is retained.
 export function currentPlan(state,plan){
  const a=readToday(state);
- if(!a||a.type==='member-choice'||a.awaitingWant||plan.status==='superseded')return false;
+ if(!a||a.type==='member-choice'||a.awaitingWant||plan.status==='superseded'||plan.retired)return false;
  if(plan.actionId)return plan.actionId===a.id;
  return plan.title===a.title&&plan.reason===a.reason&&plan.component===a.component
   &&plan.steps?.length===1&&plan.steps[0].title===a.title&&plan.steps[0].minutes===a.minutes
