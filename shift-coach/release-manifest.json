@@ -1,6 +1,6 @@
 {
   "recordedMain": "e19165d1384f08b8584e1470155518780f86abf5",
-  "applicationCommit": "0f39d2e6097cdc82b363345d67f7c5ac32805b41",
+  "applicationCommit": "a3dfe4a68384e2d83a45ce91bc332cdd1c9f02b7",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -70,10 +70,10 @@
       "evidence": null
     },
     "independentAcceptance": {
-      "approved": true,
-      "decidedBy": "Independent AI engineering reviewer /root/independent_release_review",
-      "decidedAt": "2026-10-02",
-      "evidence": "Bounded source and rendered engineering acceptance only: 32 source/release checks, final hosted run37021460449, artifact11233955980 digest9b2f95d202620ba31f44fe3effa134a32d67aa7fb4951711051408dcc0e54fc8. Reviewed hosted merge4ec2148490314ffcf6e7b842ccd835a3f16fa934. Runtime coaching source matches reconciled application e29dec04. Seven full-page interactions, eight component interactions, account isolation, memory correction, consent withdrawal and active-session expiry passed. Original speed target FAIL at1820ms; Matt subsequently instructed launch with that result disclosed. No legal, controller, clinical, human or complete-v2 approval claimed."
+      "approved": false,
+      "decidedBy": null,
+      "decidedAt": null,
+      "evidence": "Prior bounded review is retained in GitHub history. Current refresh and ownership changes require the final rendered review; earlier acceptance does not certify changed runtime."
     },
     "productionLaunch": {
       "approved": true,
