@@ -1,11 +1,12 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "f8dd2485edacb0fbcb08ff499f0ff2134ffcb969",
+  "applicationCommit": "def3552173edb261424dcc9239f9373827bff738",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
     ".github/workflows/cloudflare-production-promote.yml",
     ".github/workflows/shift-coach-integration.yml",
+    "release/app-client-proof.mjs",
     "release/app-manifest.json",
     "release/app-member-live.mjs",
     "release/app-preflight.mjs",
@@ -47,6 +48,7 @@
     "shift-coach/voice.mjs",
     "shift-coach/worker.mjs",
     "shift-coach/workerd-proof.cjs",
+    "tests/app-client-proof.test.mjs",
     "tests/shift-ai-release.test.mjs",
     "wrangler.coaching.jsonc",
     "wrangler.jsonc"
