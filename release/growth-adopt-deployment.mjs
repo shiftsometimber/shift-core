@@ -5,8 +5,8 @@ import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='a8432537c3e6ba88812613df6bdd8ce757a38950',VERSION='154df7b1-617b-4329-b76b-716867b089a6';
-const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36953182597',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+const BASE='4335348068df587e1a5597b65c9eaee1c42fa9d3',VERSION='16ac9cd3-1e37-46fb-a4a0-cefa25a3a82e';
+const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36956095791',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
@@ -21,4 +21,3 @@ const reuse=reusablePublicIndex(index);
 console.log('PUBLIC_INDEX_FRESHNESS '+JSON.stringify({...index,reuse,refreshScope:'Current published website pages only; no member records'}));
 appendFileSync(process.env.GITHUB_OUTPUT,'already_deployed=false\nexisting_index='+reuse+'\nrestore_needed=false\n');
 console.log('PASS verified production starting version, unchanged configuration and retained published index; fresh rollback capture required');
-
