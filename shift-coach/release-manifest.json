@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "d45f419e4ce3683c64ba4d4a149b96f71d7cf301",
+  "applicationCommit": "08685577932f80d796479eede718a773b958e004",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -118,8 +118,8 @@
       "evidence": "Matt instructed: “Fix the issues you have found, understand the gaps and implement a strategy to close the loop positively and progressively.” This authorises the exact engineering repair under owner acceptance. Independent and clinical review are not represented as complete. Matt’s retained instruction to fix found issues also covers the narrowly reproduced constraint-ID feedback validation regression.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "d45f419e4ce3683c64ba4d4a149b96f71d7cf301",
-      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. Additional repair: reproduced absent remembered feedback with saved practical constraints before changing code. Current constraint ID is now accepted, obsolete IDs remain rejected. 86 integration/release/B1/client-proof tests pass. Independent AI engineering review accepts this two-file correction only; no new whole-progressive-feature independent certification is claimed. Hosted and production verification remain mandatory."
+      "applicationCommit": "08685577932f80d796479eede718a773b958e004",
+      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. Additional repair: reproduced absent remembered feedback with saved practical constraints before changing code. Current constraint ID is now accepted, obsolete IDs remain rejected. 86 integration/release/B1/client-proof tests pass. Independent AI engineering review accepts this two-file correction only; no new whole-progressive-feature independent certification is claimed. Hosted and production verification remain mandatory. Verification-only Fit disclosure repair: 69 saved-state, measurement, release and client-proof checks plus 14 component browser checks pass, including fresh, saved, nested, reused and asynchronously inserted disclosures. No serving UI or API source changes. Exact hosted checks and the full live production journey remain mandatory; this is not new independent or clinical acceptance."
     }
   },
   "note": "Progressive everyday coaching repair preserving the independently reviewed earlier challenge catalogue. New constraints, progress, feedback and support changes rely on exact owner-authorised engineering acceptance; independent review of this new payload is not claimed. Source, privacy, preservation and rollback checks remain required. Narrow feedback explanation repair preserves the complete concurrent release and its recorded authority; no clinical, support queue, timing gate or data-retention change.",
