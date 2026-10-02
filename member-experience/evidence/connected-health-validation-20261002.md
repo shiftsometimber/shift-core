@@ -13,7 +13,9 @@ physical-device HealthKit/Health Connect permission or sync result.
 passed on the same implementation commit. A final API validation correction
 rejects null/blank/boolean measurements and inherited type names; two additional
 regressions pass, bringing the local total to 36. That final correction does not
-change native files. Its dedicated health CI must also pass on the final head.
+change native files. [Final validation CI](https://github.com/shiftsometimber/shift-core/actions/runs/37039793777)
+also passed on source commit `a60d2492e73be6c5026b3b8662a3690158bfea69`.
+Subsequent evidence-only updates do not change the tested code.
 
 ## Delivered in the separate v1.1 draft
 
