@@ -7,6 +7,7 @@ on:
       - 'member-experience/connected-health.mjs'
       - 'member-experience/entry.mjs'
       - 'member-experience/tests/device-health-sync.test.mjs'
+      - 'member-experience/tests/device-health-route.integration.test.mjs'
       - 'privacy-health-erasure-route-v1.js'
       - 'worker-entry-v6.js'
       - 'migrations/021_device_health_sync.sql'
@@ -23,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - name: Connected-health validation tests
-        run: node --test member-experience/tests/device-health-sync.test.mjs
+        run: node --experimental-sqlite --test member-experience/tests/device-health-sync.test.mjs member-experience/tests/device-health-route.integration.test.mjs
       - name: Import and syntax checks
         run: |
           node --check member-experience/device-health-sync.mjs
