@@ -399,6 +399,17 @@
         1442.2999999970198
       ],
       "cause": "Not established. No production/subsecond claim."
-    }
+    },
+    "additionalSourceGuardAttempts": [
+      {
+        "status": "FAIL",
+        "runs": [
+          37005567179,
+          37005576412
+        ],
+        "observed": "Historical app-preflight source hash rejected its separately pinned coaching import. No production work ran.",
+        "resolution": "Historical hash lookups use recorded main for the exact ten modified backend paths. Every actual new byte remains separately application-commit pinned. No directory, arbitrary file or runtime exclusion added."
+      }
+    ]
   }
 }

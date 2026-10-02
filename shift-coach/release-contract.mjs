@@ -17,7 +17,7 @@ export function assertCoachingConfiguration(current,previous){
 // Historical comparisons still verify the reviewed old bytes; the exact new bytes
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
- return ref==='HEAD'&&['wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','release/growth-adopt-deployment.mjs','release/home-banner-scope.mjs'].includes(path)?COACH_BASE:ref;
+ return ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)?COACH_BASE:ref;
 }
 export function validateCoachingSource(read,manifest){
  assert.equal(manifest.recordedMain,COACH_BASE);
