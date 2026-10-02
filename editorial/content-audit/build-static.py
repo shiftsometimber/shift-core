@@ -39,7 +39,7 @@ def build(source,out):
    if typ=='FAQPage':return ''
    if typ in ['Article','MedicalWebPage']:
     obj['description']=description;obj['dateModified']='2026-10-02';obj.pop('reviewedBy',None)
-    if typ=='Article':obj['author']={'@type':'Organization','name':'SHIFT editorial team','url':'https://shiftsometimber.co.uk/how-we-work'}
+    if typ=='Article':obj['author']={'@type':'Organization','@id':'https://shiftsometimber.co.uk/#organization','name':'Shift Some Timber','url':'https://shiftsometimber.co.uk/','logo':obj['publisher']['logo']}
     return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+'</script>'
    return m[0]
   new=re.sub(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',schema,new,flags=re.S)
