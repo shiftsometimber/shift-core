@@ -1,13 +1,13 @@
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Start from the fully verified specialist Watch and progressive coaching deployment (run 37053664919).
+// Start from the fully verified production deployment (run 37056564459).
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='0d6075c5b9a01d2c8b0986f8f9a14ab1882cb1e6',VERSION='82df9eb3-dc35-492a-8c62-081c8482c178';
-const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37053664919',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+const BASE='9180930c9f7ff94c7c14bc77f6b0b4fa40fdf687',VERSION='908ab7b1-2cb1-4314-8ba2-4d6a75556480';
+const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37056564459',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
