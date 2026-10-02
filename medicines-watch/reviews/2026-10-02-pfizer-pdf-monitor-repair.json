@@ -1,0 +1,91 @@
+{
+  "reviewedAt": "2026-10-02T09:21:42Z",
+  "publicationStatus": "owner_authorised_source_monitor_repair",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-10-02",
+    "standingPublicationAuthorisation": "Needed evidence-backed informational Watch updates may merge and deploy after required checks."
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "medicineWordingChanged": false,
+  "monitoring": {
+    "sourceCountBefore": 50,
+    "sourceCountAfter": 50,
+    "thresholdsChanged": false,
+    "successesSeeded": false,
+    "expected": "The production checker must retrieve and match both official Pfizer investor-hosted PDFs. A local fetch, deployment or successful HTTP response alone is not green."
+  },
+  "sources": [
+    {
+      "id": "pf3944-pfizer",
+      "title": "Pfizer: VESPER development update",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust",
+      "checkUrl": "https://s206.q4cdn.com/795948973/files/doc_news/Pfizers-Ultra-Long-Acting-Injectable-GLP-1-RA-Shows-Robust-and-Continued-Weight-Loss-with-Monthly-Dosing-in-Phase-2b-Trial-2026.pdf",
+      "format": "pdf",
+      "sourcePublishedAt": "2026-02-03",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-02T09:21:42Z",
+      "requiredTerms": [
+        "VESPER-4",
+        "Pfizer"
+      ],
+      "reviewedFingerprint": "11de401d218932db24a8639d9e1205b0cdaa7b05428c43be6c2f7c032897388e",
+      "evidenceType": "Pfizer original release; exact official investor-hosted PDF bytes are automatically monitored, not regulatory approval"
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "title": "Pfizer: danuglipron discontinued",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-provides-update-oral-glp-1-receptor-agonist",
+      "checkUrl": "https://s206.q4cdn.com/795948973/files/doc_news/Pfizer-Provides-Update-on-Oral-GLP-1-Receptor-Agonist-Danuglipron-2025.pdf",
+      "format": "pdf",
+      "sourcePublishedAt": "2025-04-14",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-02T09:21:42Z",
+      "requiredTerms": [
+        "danuglipron",
+        "discontinue"
+      ],
+      "reviewedFingerprint": "dad72c8da94f9ca51ef5e3ea8dcd43f7b15002c3b350d0963ca018be2319ff9a",
+      "evidenceType": "Pfizer original release; exact official investor-hosted PDF bytes are automatically monitored, not regulatory approval"
+    }
+  ],
+  "retrievals": [
+    {
+      "id": "pf3944-pfizer",
+      "retrievedAt": "2026-10-02T09:20:38Z",
+      "httpStatus": 200,
+      "contentType": "application/pdf",
+      "bytes": 147792,
+      "responseSha256": "11de401d218932db24a8639d9e1205b0cdaa7b05428c43be6c2f7c032897388e",
+      "assessment": "Read the complete four-page Pfizer release. It retains the 3 February 2026 VESPER-3 results and states VESPER-4 was recently initiated while VESPER-5 and VESPER-6 were planned at that date. It does not establish UK authorisation, NHS access or retail supply."
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "retrievedAt": "2026-10-02T09:20:38Z",
+      "httpStatus": 200,
+      "contentType": "application/pdf",
+      "bytes": 120113,
+      "responseSha256": "dad72c8da94f9ca51ef5e3ea8dcd43f7b15002c3b350d0963ca018be2319ff9a",
+      "assessment": "Read the complete Pfizer release. It records Pfizer's 14 April 2025 decision to discontinue danuglipron after reviewing all data and regulatory input. It does not establish a treatment recommendation or availability."
+    }
+  ],
+  "history": [
+    {
+      "id": "pf3944-pfizer",
+      "previousCheckUrl": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2026-2-3-pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust-and-continued-weight-loss-with-monthly-dosing-in-phase-2b-trial",
+      "lastSuccessfulAt": "2026-10-02T07:32:41.086Z",
+      "failedAt": "2026-10-02T08:45:26.402Z",
+      "failure": "HTTP 301 from the production checker",
+      "replacementReason": "Replace the redirecting syndication route with Pfizer's public release and exact official investor-hosted PDF."
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "previousCheckUrl": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2025-4-14-pfizer-provides-update-on-oral-glp-1-receptor-agonist-danuglipron",
+      "lastSuccessfulAt": "2026-10-02T07:32:41.086Z",
+      "failedAt": "2026-10-02T08:45:26.402Z",
+      "failure": "HTTP 301 from the production checker",
+      "replacementReason": "Replace the redirecting syndication route with Pfizer's public release and exact official investor-hosted PDF."
+    }
+  ],
+  "uncertainty": "Exact-byte PDF monitoring detects any upstream byte change and treats it as awaiting review, but does not extract or approve changed medical claims. A removed document, redirect, non-PDF response, invalid PDF or changed bytes remains a failure or review flag."
+}

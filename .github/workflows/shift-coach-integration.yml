@@ -36,7 +36,9 @@ jobs:
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/coaching-qa/node_modules/playwright
           COACHING_PROOF_DIR: ${{ runner.temp }}/coaching-proof
-        run: node shift-coach/browser-proof.mjs
+        run: |
+          node shift-coach/browser-proof.mjs
+          node shift-coach/full-page-proof.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

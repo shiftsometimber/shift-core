@@ -66,9 +66,9 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  });
 
  test('industry release binds every reviewed file and preserves the observation-only boundary',async()=>{
-  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS,WATCH_EXPANDED_COMMIT,WATCH_EXPANDED_PATHS,WATCH_UBT251_COMMIT,WATCH_UBT251_PATHS,WATCH_SGB7342_COMMIT,WATCH_SGB7342_PATHS,WATCH_ABBV_ASC30_COMMIT,WATCH_ABBV_ASC30_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS,WATCH_EXPANDED_COMMIT,WATCH_EXPANDED_PATHS,WATCH_UBT251_COMMIT,WATCH_UBT251_PATHS,WATCH_SGB7342_COMMIT,WATCH_SGB7342_PATHS,WATCH_ABBV_ASC30_COMMIT,WATCH_ABBV_ASC30_PATHS,WATCH_SOURCE_REPAIR_COMMIT,WATCH_SOURCE_REPAIR_PATHS,WATCH_REGISTRY_COMMIT,WATCH_REGISTRY_PATHS,WATCH_PFIZER_PDF_REPAIR_COMMIT,WATCH_PFIZER_PDF_REPAIR_PATHS}=await import('../scripts/b1-release-scope.mjs');
   assert.equal(WATCH_EXPANSION_PATHS.length,42);
-  const expectedRef=path=>WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
+  const expectedRef=path=>WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
   const reviewed=(ref,path)=>(ref==='HEAD'?expectedRef(path):ref)+':'+path;
   validateWatchExpansion(reviewed);
   for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
@@ -138,4 +138,30 @@ test('ABBV-295, ASC30, TERN-601 and bimagrumab release binds its exact reviewed 
  assert.ok(WATCH_ABBV_ASC30_PATHS.includes('medicines-watch/reviews/2026-10-02-authorised-abbv-asc30-tern-bimagrumab.json'));
  validateWatchAbbVAsc30((ref,path)=>path);
  for(const changed of WATCH_ABBV_ASC30_PATHS)assert.throws(()=>validateWatchAbbVAsc30((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+});
+
+test('source repair binds all five exact reviewed files and rejects drift',async()=>{
+ const {validateWatchSourceRepair,WATCH_SOURCE_REPAIR_COMMIT,WATCH_SOURCE_REPAIR_PATHS}=await import('../scripts/b1-release-scope.mjs');
+ assert.equal(WATCH_SOURCE_REPAIR_COMMIT,'f27a1c8b574b30c435a0eae6c367d0b32aa39fb4');
+ assert.equal(WATCH_SOURCE_REPAIR_PATHS.length,5);
+ validateWatchSourceRepair((ref,path)=>path);
+ for(const changed of WATCH_SOURCE_REPAIR_PATHS)assert.throws(()=>validateWatchSourceRepair((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source-repair drift/);
+});
+
+test('registry omissions release binds its exact reviewed commit',async()=>{
+ const {validateWatchRegistry,WATCH_REGISTRY_COMMIT,WATCH_REGISTRY_PATHS}=await import('../scripts/b1-release-scope.mjs');
+ assert.equal(WATCH_REGISTRY_COMMIT,'42525e4c5e93076b1cfc57ce415b248eac82ee63');
+ assert.equal(WATCH_REGISTRY_PATHS.length,4);
+ assert.ok(WATCH_REGISTRY_PATHS.includes('medicines-watch/reviews/2026-10-02-authorised-registry-omissions.json'));
+ validateWatchRegistry((ref,path)=>path);
+ for(const changed of WATCH_REGISTRY_PATHS)assert.throws(()=>validateWatchRegistry((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/registry-omissions drift/);
+});
+
+test('Pfizer PDF monitor repair binds its exact reviewed commit',async()=>{
+ const {validateWatchPfizerPdfRepair,WATCH_PFIZER_PDF_REPAIR_COMMIT,WATCH_PFIZER_PDF_REPAIR_PATHS}=await import('../scripts/b1-release-scope.mjs');
+ assert.equal(WATCH_PFIZER_PDF_REPAIR_COMMIT,'5f1c8e6d9b4c7a8656854e4807a4aebd97b39e50');
+ assert.equal(WATCH_PFIZER_PDF_REPAIR_PATHS.length,6);
+ assert.ok(WATCH_PFIZER_PDF_REPAIR_PATHS.includes('medicines-watch/reviews/2026-10-02-pfizer-pdf-monitor-repair.json'));
+ validateWatchPfizerPdfRepair((ref,path)=>path);
+ for(const changed of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.throws(()=>validateWatchPfizerPdfRepair((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Pfizer PDF monitor repair drift/);
 });

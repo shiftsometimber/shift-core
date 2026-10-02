@@ -15,6 +15,16 @@ import {stages} from './voice.mjs';
 const headers={'Cache-Control':'no-store, private','Vary':'Cookie','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow'};
 const json=(data,status=200)=>Response.json(data,{status,headers});
 const starter=Object.freeze({id:null,title:'Choose one thing to make your week easier',reason:'General starter. Tell Shift AI what matters to you and what your week looks like.',general:true,tone:'Start with one thing you can actually use.',status:'starter'});
+async function boundedBody(request){
+ const limit=4096;
+ if(Number(request.headers.get('Content-Length'))>limit)throw Object.assign(Error('request_too_large'),{status:413});
+ if(!request.body)return '';
+ const reader=request.body.getReader(),chunks=[];let bytes=0;
+ try{for(;;){const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>limit){await reader.cancel();throw Object.assign(Error('request_too_large'),{status:413});}chunks.push(value);}}
+ finally{reader.releaseLock();}
+ const body=new Uint8Array(bytes);let offset=0;for(const chunk of chunks){body.set(chunk,offset);offset+=chunk.byteLength;}
+ return new TextDecoder('utf-8',{fatal:true}).decode(body);
+}
 function staleBody(input){return ['userId','user_id','member','member_id','state','permissions','readings','doses','calendar','audit','actions','cost'].some(k=>Object.hasOwn(input,k));}
 export async function coachingRoutes(request,env){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'');
@@ -35,7 +45,7 @@ export async function coachingRoutes(request,env){
    return json({ok:true,deleted:true});
   }
   if(!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'json_required'},415);
-  const raw=await request.text();if(raw.length>4000)return json({error:'request_too_large'},413);
+  const raw=await boundedBody(request);
   let input;try{input=JSON.parse(raw);}catch{return json({error:'invalid_json'},400);}
   if(!input||typeof input!=='object'||Array.isArray(input)||staleBody(input))return json({error:'invalid_request'},400);
   if(!/^[a-zA-Z0-9-]{16,80}$/.test(input.operationId||'')||!Number.isInteger(input.revision))return json({error:'refresh_before_saving'},400);

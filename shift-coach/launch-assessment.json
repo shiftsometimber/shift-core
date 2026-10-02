@@ -286,5 +286,43 @@
   "scope": {
     "existingTrackedFilesChanged": 0,
     "newPaths": "Exact list in scope.mjs; additions for real-account candidate are recorded, not retrospectively represented as the original 43-file test approval."
+  },
+  "reReview20261002": {
+    "recordedSource": "fff6a5cae91e9fdb8a778d6ccf8f6d363e34a21b",
+    "existingQAndA": {
+      "status": "LIVE",
+      "productionRun": 36991043036,
+      "workerVersion": "53f0bf4a-6d3d-4c6c-b18e-0ff3d8ec64df"
+    },
+    "newCoaching": {
+      "status": "NOT_DEPLOYED",
+      "tests": {
+        "nativeAndPreserved": 330,
+        "nativeAndPreservedStatus": "PASS",
+        "fullCurrentPageChecks": 6,
+        "fullCurrentPageStatus": "PASS",
+        "independentAcceptance": "BLOCKED"
+      },
+      "changes": [
+        "Bound streamed bodies before complete buffering",
+        "Normalise typographic support-boundary input",
+        "Acknowledge only visible follow-ups",
+        "Recheck consent when returning to Today",
+        "Preserve the existing Today heading and survive client repaint",
+        "Correct the retention wording"
+      ],
+      "review": "privacy-purpose-review.md"
+    },
+    "currentProductionAcceptanceFailures": [
+      {
+        "run": 36991756785,
+        "observed": "Fit disclosure visibility timeout"
+      },
+      {
+        "run": 36991756688,
+        "observed": "Chosen Today meal visibility timeout"
+      }
+    ],
+    "priorEntriesPreserved": true
   }
 }

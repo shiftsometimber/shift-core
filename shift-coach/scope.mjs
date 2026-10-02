@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
-export const base='7a02f42a58a7992ce4728d9fd91808f2654f7cdf';
+export const base='fff6a5cae91e9fdb8a778d6ccf8f6d363e34a21b';
 export const additions=new Set([
- 'adapt.mjs','browser-proof.mjs','clock.mjs','continue.mjs','follow-up.mjs','followup-view.mjs','integration.test.mjs','life-back.mjs','memory.mjs','night-job.mjs','permissions.mjs','planning.mjs','presentation.mjs','privacy.mjs','routes.mjs','safety.mjs','scope.mjs','store.mjs','test-fixture.mjs','today.mjs','ui.mjs','voice.mjs','worker.mjs','workerd-proof.cjs','README.md','launch-assessment.json'
+ 'adapt.mjs','browser-proof.mjs','clock.mjs','continue.mjs','follow-up.mjs','followup-view.mjs','full-page-proof.mjs','privacy-purpose-review.md','integration.test.mjs','life-back.mjs','memory.mjs','night-job.mjs','permissions.mjs','planning.mjs','presentation.mjs','privacy.mjs','routes.mjs','safety.mjs','scope.mjs','store.mjs','test-fixture.mjs','today.mjs','ui.mjs','voice.mjs','worker.mjs','workerd-proof.cjs','README.md','launch-assessment.json'
 ].map(p=>'shift-coach/'+p).concat(['wrangler.coaching.jsonc','.github/workflows/shift-coach-integration.yml']));
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const candidate=process.env.SHIFT_COACH_SOURCE;
