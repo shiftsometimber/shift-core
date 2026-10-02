@@ -36,6 +36,7 @@
     "release/shift-ai-scope.mjs",
     "release/watch-registry-wave-scope.mjs",
     "scripts/b1-release-scope.mjs",
+    "scripts/verify-public-continuity-live.mjs",
     "shift-coach/README.md",
     "shift-coach/adapt.mjs",
     "shift-coach/browser-proof.mjs",

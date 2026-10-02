@@ -1,3 +1,4 @@
+import {restoreBookVoiceCopy} from '../book-voice.mjs';
 import {improveContinuityEntry} from '../preview/growth-member/continuity-journey.mjs';
 import assert from 'node:assert/strict';
 import {writeFileSync} from 'node:fs';
@@ -7,7 +8,7 @@ import {preserveContinuityContent} from '../public-continuity-preservation.mjs';
 import {NUTRITION_PATHS,NUTRITION_NOTE,preserveNutritionSignposting} from '../public-nutrition-mytimber.mjs';
 const origin=process.argv[2]||'https://shiftsometimber.co.uk',production='https://shiftsometimber.co.uk',preview=origin!==production;
 const hash=value=>createHash('sha256').update(value).digest('hex');
-const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);return {r,html:await r.text()}};
+const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);const html=await r.text();return {r,html:restoreBookVoiceCopy(path,html),servedSha256:hash(html)}};
 const redirects=[];
 for(const [from,to] of Object.entries(CONTINUITY_REDIRECTS)){
  for(const method of ['GET','HEAD'])for(const suffix of ['','/','.html']){
@@ -21,19 +22,19 @@ for(const [from,to] of Object.entries(CONTINUITY_REDIRECTS)){
 }
 const pages=[],links=new Set();
 for(const path of CONTINUITY_PATHS){
- const {r,html}=await get(path);assert.equal((html.match(/<h1\b/g)||[]).length,1,path);assert.equal((html.match(/rel="canonical"/g)||[]).length,1,path);assert.ok(html.includes('href="'+production+path+'"'));assert.ok(html.includes(continuityPages[path].heading));assert.ok(html.includes('/consent-v4a.js'));assert.equal((html.match(/id="shift-public-news"/g)||[]).length,1,path);assert.ok(!/complete interactive route loads below|noindex/i.test(html));assert.equal(r.headers.get('x-robots-tag')?.includes('noindex')||false,preview);
+ const {r,html,servedSha256}=await get(path);assert.equal((html.match(/<h1\b/g)||[]).length,1,path);assert.equal((html.match(/rel="canonical"/g)||[]).length,1,path);assert.ok(html.includes('href="'+production+path+'"'));assert.ok(html.includes(continuityPages[path].heading));assert.ok(html.includes('/consent-v4a.js'));assert.equal((html.match(/id="shift-public-news"/g)||[]).length,1,path);assert.ok(!/complete interactive route loads below|noindex/i.test(html));assert.equal(r.headers.get('x-robots-tag')?.includes('noindex')||false,preview);
  if(NUTRITION_PATHS.has(path))assert.equal(html.split(NUTRITION_NOTE).length,2,path+' must contain exactly the approved My Timber signpost');
  const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0],approvedMain=preserveNutritionSignposting(path,Buffer.from(main)).toString();assert.ok(approvedMain.includes(improveContinuityEntry('<main>'+continuityPages[path].body+'</main>',path).slice(6,-7)),path+' must contain the exact approved body');const words=approvedMain.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=['/clinic-gone-quiet','/provider-switch','/husband-help'].includes(path)?180:400;assert.ok(words>minimum,path);
  for(const m of main.matchAll(/href="(\/[^"#]*)/g))links.add(m[1].split('#')[0]);
- pages.push({path,status:r.status,words,sha256:hash(html)});
+ pages.push({path,status:r.status,words,sha256:hash(html),servedSha256});
  for(const method of ['GET','HEAD']){const redirect=await fetch(origin+path+'.html?from=proof',{method,redirect:'manual'});assert.equal(redirect.status,301);assert.equal(redirect.headers.get('location'),origin+path+'?from=proof')}
 }
 const related=[];
 for(const path of Object.keys(continuityEntries)){
- const {html}=await get(path);assert.ok(html.includes(continuityEntries[path]),path+' must retain its exact approved Continuity block');const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
+ const {html,servedSha256}=await get(path);assert.ok(html.includes(continuityEntries[path]),path+' must retain its exact approved Continuity block');const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
  if(path==='/programme')assert.ok(html.includes(NEW_LIFE_LINK));
  if(preview){const before=await (await fetch(production+path)).text();assert.equal(preserved.toString(),preserveContinuityContent(path,Buffer.from(before)).toString(),path+' changed beyond exact approved additions')}
- related.push({path,sha256:hash(html),preservedSha256:hash(preserved)});
+ related.push({path,sha256:hash(html),servedSha256,preservedSha256:hash(preserved)});
 }
 const internalLinks=[];
 for(const path of links){const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.ok(r.status>=200&&r.status<400,path+': '+r.status);internalLinks.push({path,status:r.status})}
