@@ -1,0 +1,133 @@
+{
+  "reviewedAt": "2026-10-02T18:55:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish one bounded tirzepatide specialist-oncology research summary and add one new sponsor-submitted specialist-population trial to the existing survodutide programme. This is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "reviewedAt": "2026-10-02T18:55:00Z",
+    "available": true,
+    "status": "current",
+    "sourceCount": 50,
+    "currentCount": 50,
+    "reviewedCount": 50,
+    "checkedAt": "2026-10-02T18:31:13.298Z",
+    "lastAttemptAt": "2026-10-02T18:46:12.230Z",
+    "result": "All configured sources were current and reviewed. The latest two Pfizer-only attempts also succeeded. A successful retrieval did not renew any factual review date or approve changed wording."
+  },
+  "entries": [
+    {
+      "id": "tirzepatide-endometrial-research",
+      "name": "Tirzepatide in endometrial-cancer research",
+      "developer": "UNC Lineberger investigator-led studies",
+      "group": "research",
+      "stage": "Early Phase 1 recruiting; separate Phase 2 not yet recruiting",
+      "summary": "Two UNC Lineberger registry records study short pre-operative tirzepatide use in people with obesity and endometrial cancer or endometrial intraepithelial neoplasia. The 20-participant Early Phase 1 record reports an actual 27 April 2026 start and is recruiting; the separate 40-participant Phase 2 record remains not yet recruiting.",
+      "ukAuthorisation": "Mounjaro's established UK weight-management position is described separately. These registry records do not establish UK marketing authorisation for preventing, treating or improving endometrial cancer or endometrial intraepithelial neoplasia.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established for tirzepatide as an endometrial-cancer intervention.",
+      "supply": "An established weight-management supply route does not establish lawful supply for these investigational oncology uses, pharmacy stock or sale by SHIFT.",
+      "limitations": "Neither record has posted results. Recruitment and an actual study start do not establish safety, pathological response, cancer benefit or an authorised indication. The studies are small and the Phase 2 start and completion dates remain estimates.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T18:55:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07065552: Tirzepatide in Obesity-Driven Endometrial Cancer",
+          "url": "https://clinicaltrials.gov/study/NCT07065552",
+          "sourcePublishedAt": "2025-07-15",
+          "sourceUpdatedAt": "2026-10-02",
+          "reviewedAt": "2026-10-02T18:55:00Z",
+          "checkScope": "Sponsor-submitted Early Phase 1 record read for recruiting status, actual 27 April 2026 start, 20-participant estimate, intervention, endpoints and absence of posted results; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07078838: Tirzepatide in Endometrial Intraepithelial Neoplasia or Grade 1 Endometrial Cancer",
+          "url": "https://clinicaltrials.gov/study/NCT07078838",
+          "sourcePublishedAt": "2025-07-22",
+          "sourceUpdatedAt": "2026-09-28",
+          "reviewedAt": "2026-10-02T18:55:00Z",
+          "checkScope": "Sponsor-submitted Phase 2 record read for not-yet-recruiting status, estimated dates, 40-participant design, intervention and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "id": "survodutide",
+      "fields": {
+        "summaryToAppend": "A sponsor-submitted Phase 3 SYNCHRONIZE-HERA record, first posted 30 September 2026, studies survodutide in an estimated 600 women going through or after menopause.",
+        "limitationsToAppend": "SYNCHRONIZE-HERA remains not yet recruiting, has no posted results and lists 31 October 2026 as an estimated start; the record does not establish that dosing has begun or that outcomes differ by menopausal status."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07850050: SYNCHRONIZE-HERA",
+          "url": "https://clinicaltrials.gov/study/NCT07850050",
+          "sourcePublishedAt": "2026-09-30",
+          "sourceUpdatedAt": "2026-09-30",
+          "reviewedAt": "2026-10-02T18:55:00Z",
+          "checkScope": "Sponsor-submitted Phase 3 record read for not-yet-recruiting status, estimated 31 October 2026 start, estimated 600 participants, intervention and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registryEvidence": [
+    {
+      "nctId": "NCT07065552",
+      "overallStatus": "RECRUITING",
+      "phase": "EARLY_PHASE1",
+      "actualStart": "2026-04-27",
+      "estimatedEnrollment": 20,
+      "firstPosted": "2025-07-15",
+      "lastUpdatePosted": "2026-10-02",
+      "responseSha256": "fd1fa42bd4ef8667b3e2a9d76ca0cacbce82f0fe42b953a6252ac7997aef5948",
+      "hasResults": false
+    },
+    {
+      "nctId": "NCT07078838",
+      "overallStatus": "NOT_YET_RECRUITING",
+      "phase": "PHASE2",
+      "estimatedStart": "2027-01",
+      "estimatedEnrollment": 40,
+      "firstPosted": "2025-07-22",
+      "lastUpdatePosted": "2026-09-28",
+      "responseSha256": "a107a4dbbb9396bde92383416de0bb34b603e24a1ec5c8cb524251f311319eaa",
+      "hasResults": false
+    },
+    {
+      "nctId": "NCT07850050",
+      "overallStatus": "NOT_YET_RECRUITING",
+      "phase": "PHASE3",
+      "estimatedStart": "2026-10-31",
+      "estimatedEnrollment": 600,
+      "firstPosted": "2026-09-30",
+      "lastUpdatePosted": "2026-09-30",
+      "responseSha256": "1f7ed98d2bd7ed951765b187692e94132199d570677a0070148761b276af235a",
+      "hasResults": false
+    }
+  ],
+  "preservedCandidates": [
+    {
+      "nctId": "NCT07849348",
+      "url": "https://clinicaltrials.gov/study/NCT07849348",
+      "title": "Finerenone with semaglutide in non-diabetic obesity and chronic kidney disease with albuminuria",
+      "sourcePublishedAt": "2026-09-30",
+      "sourceUpdatedAt": "2026-09-30",
+      "reviewedAt": "2026-10-02T18:55:00Z",
+      "responseSha256": "61f8586b4b6f772ce583f28a956490fc33c8c01efadd3b640ffd53ac1221bd49",
+      "status": "not_yet_recruiting_incomplete",
+      "reason": "The investigator-led record remains not yet recruiting, lists an already-past September 2026 estimated start, reports phase as not applicable and has no listed locations or posted results. It is retained for follow-up rather than presented as an active medicine-development programme."
+    }
+  ],
+  "discoveryDecision": {
+    "included": "The tirzepatide records add a distinct specialist oncology context with one verifiably recruiting study. SYNCHRONIZE-HERA is added to the existing survodutide programme rather than counted as a new medicine.",
+    "plannedVersusCompleted": "Only NCT07065552 has an actual start and recruiting status. All other start and completion dates are estimates, and no results are posted.",
+    "ukPosition": "Established UK weight-management positions are not transferred to oncology or menopause-specific research questions.",
+    "monitoring": "No automatic source baseline, successful configured-source check or medical-review renewal is created by this publication.",
+    "coverage": "The current registry pass is not exhaustive. The semaglutide-finerenone candidate remains explicitly incomplete and unpublished pending evidence of actual activity."
+  }
+}
