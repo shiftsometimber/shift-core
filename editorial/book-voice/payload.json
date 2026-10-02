@@ -1,0 +1,17 @@
+[
+  "book-voice.mjs",
+  "editorial/book-voice/edits.json",
+  "public-startup-stability.mjs",
+  "member-experience/public-preservation.mjs",
+  "member-experience/verify-production-member.mjs",
+  "release/home-banner-scope.mjs",
+  "tests/book-voice.test.mjs",
+  "preview/book-voice/host.mjs",
+  "preview/book-voice/member-host.mjs",
+  "preview/book-voice/worker.mjs",
+  "preview/book-voice/provision.mjs",
+  "preview/book-voice/verify.cjs",
+  ".github/workflows/book-voice-preview.yml",
+  "editorial/book-voice/VOICE.md",
+  "editorial/book-voice/SAMPLES.md"
+]
