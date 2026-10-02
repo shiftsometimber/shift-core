@@ -9,7 +9,7 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 const CURRENCY = "gbp";
 const DELIVERY_PENCE = 0;
-const CLINICAL_CONSENT_VERSION = "medicine-clinical-intake-v1-2026-09-06";
+const CLINICAL_CONSENT_VERSION = "medicine-clinical-intake-v2-draft-2026-09-30";
 const MAX_CLINICAL_FILE_BYTES = 8 * 1024 * 1024;
 const CLINICAL_FILE_TYPES = new Set(["image/jpeg", "image/png", "image/heic", "image/heif"]);
 const CLINICAL_STATES = new Set([
@@ -223,7 +223,11 @@ async function clinicalIntake(request, env) {
   const gpConsent = form.get("gpContactConsent") === "on";
   const accuracyConsent = form.get("answersConfirmed") === "on";
   const imageConsent = form.get("imageConsent") === "on";
-  if (!gpConsent || !accuracyConsent || !imageConsent) return json({ok:false,error:"consent_required",message:"All clinical confirmations are required before submission."},400,cors(request));
+  const assessmentForSelf = form.get("assessmentForSelf") === "on";
+  const safetyAcknowledged = form.get("safetyAcknowledged") === "on";
+  if (form.get("consentVersion") !== CLINICAL_CONSENT_VERSION)
+    return json({ok:false,error:"consent_version_changed",message:"Refresh the assessment and review the current declarations before submitting."},409,cors(request));
+  if (!gpConsent || !accuracyConsent || !imageConsent || !assessmentForSelf || !safetyAcknowledged) return json({ok:false,error:"consent_required",message:"All clinical confirmations are required before submission."},400,cors(request));
   const files = {photoId:clinicalFile(form,"photoId"),bodyFront:clinicalFile(form,"bodyFront"),bodySide:clinicalFile(form,"bodySide")};
   for (const [key,label] of [["photoId","Photo ID"],["bodyFront","Front image"],["bodySide","Side image"]]) {
     const error = validateClinicalFile(files[key],label); if (error) return json({ok:false,error:"invalid_evidence",message:error},400,cors(request));
@@ -231,7 +235,7 @@ async function clinicalIntake(request, env) {
   const partnerForm = new FormData();
   partnerForm.set("memberReference",String(user.id)); partnerForm.set("variantId",String(variantId)); partnerForm.set("journeyStage","prepay_verification");
   for (const key of ["dateOfBirth","heightCm","weightKg","conditions","medicines","previousTreatment","previousMedicine","previousDose","lastDoseDate","gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber"]) partnerForm.set(key,formText(form,key));
-  partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION);
+  partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION); partnerForm.set("assessmentForSelf","true"); partnerForm.set("safetyAcknowledged","true");
   for (const [key,file] of Object.entries(files)) partnerForm.set(key,file,file.name);
   const partnerResponse = await fetch(String(env.PHARMACY_CLINICAL_INTAKE_URL),{method:"POST",headers:{authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:partnerForm});
   const partner = await partnerResponse.json().catch(()=>({}));
@@ -240,6 +244,7 @@ async function clinicalIntake(request, env) {
   const publicReference=`SCI-${crypto.randomUUID()}`;
   const submittedAt=now(), partnerReference=clean(partner.reference,160);
   await env.DB.prepare(`INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,submitted_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(user.id,variantId,publicReference,partnerReference,partner.verified===true?'verified':partnerStatus,1,CLINICAL_CONSENT_VERSION,JSON.stringify({photoId:true,bodyFront:true,bodySide:true}),submittedAt,submittedAt).run();
+  await env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)`).bind(user.id,"clinical_declarations_accepted","medicine_clinical_intake",publicReference,JSON.stringify({consentVersion:CLINICAL_CONSENT_VERSION,assessmentForSelf:true,safetyAcknowledged:true,answersConfirmed:true,gpContactConsent:true,imageConsent:true}),submittedAt).run();
   if (partner.verified === true) {
     const token=crypto.randomUUID()+crypto.randomUUID(),expiresAt=new Date(Date.now()+30*60*1000).toISOString();
     await env.DB.batch([env.DB.prepare(`INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at,created_at) VALUES(?,?,?,?,?,?)`).bind(await sha256(token),user.id,variantId,partnerReference,expiresAt,submittedAt),env.DB.prepare(`UPDATE medicine_clinical_intakes SET verification_issued_at=?,updated_at=? WHERE public_reference=?`).bind(submittedAt,submittedAt,publicReference)]);

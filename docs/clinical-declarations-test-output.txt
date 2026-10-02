@@ -1,0 +1,21 @@
+✔ public medicine catalogue remains harmless without a database (6.431113ms)
+✔ medicine checkout requires a signed-in member before touching Stripe (1.777857ms)
+✔ a stale host cookie cannot hide a valid shared member session at checkout (12.754302ms)
+✔ stock is a server-side quantity and zero never reaches Stripe (2.738741ms)
+✔ public catalogue query cannot expose medicine cost or target margin (1.365775ms)
+✔ checkout is verification-first while stock remains server-gated (2.497406ms)
+✔ clinical intake is complete, partner-owned and fail-closed (1.962237ms)
+✔ the public order page consumes the governed catalogue and checkout (0.988204ms)
+✔ payment hands medicine orders into clinical assessment and never straight to fulfilment (0.944418ms)
+✔ approved treatment requires a complete Journey before support and reorder (1.012961ms)
+✔ clinical transitions are deliberately narrow (0.197108ms)
+✔ member treatment UI and preference intake use controlled choices (2.278365ms)
+✔ one treatment order completes verification, Stripe test payment, tracker, Journey and dispatch (85.949211ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 211.039285
