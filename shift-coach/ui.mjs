@@ -1,7 +1,7 @@
 export const client=String.raw`(()=>{
  'use strict';const host=document.getElementById('shiftCoach');if(!host)return;const content=host.querySelector('[data-coach-content]'),status=host.querySelector('[data-coach-status]');let data,pending=false,followupObserver;
  let actions,positionObserver;
- function position(){const hero=actions?.querySelector(':scope > .mtm-hero');if(hero&&hero.nextElementSibling!==host)hero.after(host);}
+ function position(){const hero=actions?.querySelector(':scope > .mtm-hero');if(hero&&hero.nextElementSibling!==host)hero.after(host);else if(!hero&&!actions?.contains(host))actions?.prepend(host);}
  function attachPosition(){const found=document.getElementById('todayActions');if(!found||found===actions)return;positionObserver?.disconnect();actions=found;positionObserver=new MutationObserver(position);positionObserver.observe(actions,{childList:true});position();}
  attachPosition();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',attachPosition,{once:true});
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

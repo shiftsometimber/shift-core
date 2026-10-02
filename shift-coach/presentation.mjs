@@ -2,6 +2,8 @@ import {client} from './ui.mjs';
 export const assetPath='/assets/shift-coach.mjs';
 export const styles=String.raw`
 #shiftCoach{box-sizing:border-box;margin:0 0 22px;padding:24px;border:1px solid #707762;border-radius:16px;background:#e7e3da;color:#050505;font:inherit;line-height:1.5;scroll-margin-top:110px}
+body[data-shift-coach-session] #previewMember{display:block!important}
+body[data-shift-coach-session] #previewAuth{display:none!important}
 #shiftCoach[hidden]{display:none!important}#shiftCoach *{box-sizing:border-box}
 #shiftCoach :is(h2,h3,p,small,label,summary,li,strong,a){color:#050505!important;-webkit-text-fill-color:#050505!important}
 #shiftCoach h2{font:800 24px/1.2 Arial,sans-serif!important;margin:8px 0 12px}#shiftCoach h3{font:700 18px/1.3 Arial,sans-serif!important}
@@ -25,7 +27,11 @@ export async function withCoaching(request,response,seed=null){
  // A fresh session/consent-checked snapshot avoids a second serial request.
  // JSON is inert and escaped so a confirmed string can never close its script.
  const initial=seed?'<script type="application/json" id="shiftCoachInitial">'+JSON.stringify(seed).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026')+'</script>':'';
- const changed=html.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
+ // The seed is fetched through the original member session and current consent.
+ // Expose the authenticated shell immediately; its original session/bootstrap
+ // still loads the other tools and every mutation keeps its original checks.
+ const prepared=seed?html.replace(/<body\b([^>]*)>/, '<body$1 data-shift-coach-session>'):html;
+ const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie');
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  return new Response(changed,{status:response.status,headers});
