@@ -1,0 +1,68 @@
+{
+  "reviewedAt": "2026-10-02T04:40:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish the primary-source-reviewed SGB-7342 omission through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "sgb7342",
+      "name": "SGB-7342",
+      "developer": "SanegeneBio / Suzhou Sanegene Bio",
+      "group": "research",
+      "stage": "Phase 1 first participant dosed; registry status predates sponsor update",
+      "summary": "SanegeneBio reports that the first participant was dosed in January 2026 in a Chinese Phase 1 study of subcutaneous SGB-7342. The investigational GalNAc-conjugated siRNA targets INHBE messenger RNA; the registered study is a single-ascending-dose safety, tolerability, pharmacokinetic and pharmacodynamic study in adults with obesity or overweight.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for SGB-7342 or this formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "A Chinese Phase 1 study and sponsor pipeline listing do not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The ClinicalTrials.gov record was last updated before the sponsor's first-participant announcement and still displayed not yet recruiting when reviewed. Sponsor-described fat-mass and lean-mass observations are preclinical and are not presented as human efficacy, body-composition or muscle-function evidence. No human study results are posted.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T04:40:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "SanegeneBio: first participant dosed in Phase 1 SGB-7342 trial",
+          "url": "https://www.sanegenebio.com/news/22",
+          "sourcePublishedAt": "2026-01-13",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T04:40:00Z",
+          "checkScope": "Original sponsor announcement read for the first-participant event, formulation, INHBE RNAi mechanism and Phase 1 design; sponsor preclinical observations remain labelled preclinical; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07324850",
+          "url": "https://clinicaltrials.gov/study/NCT07324850",
+          "sourcePublishedAt": "2026-01-08",
+          "sourceUpdatedAt": "2026-01-09",
+          "reviewedAt": "2026-10-02T04:40:00Z",
+          "checkScope": "Sponsor-submitted registry read for the Phase 1 single-ascending-dose subcutaneous study, 45-participant estimate, no posted results and the older not-yet-recruiting status; registry timing is not treated as contradicting the later dated sponsor announcement; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "discoveryPass": {
+    "checkedAt": "2026-10-02T04:40:00Z",
+    "scope": "Current-date and broader undated primary-source search across regulator, NHS/NICE, official product information, trial-registry, mechanism, muscle-preservation and named plus additional developer topics; selected searches do not establish exhaustive coverage.",
+    "outcome": "SGB-7342 was a credible older non-incretin and smaller-developer omission absent from the 56-entry catalogue and all open review PRs. The entry is limited to the actual Phase 1 event and registered design.",
+    "failedOrIncomplete": [
+      "The ClinicalTrials.gov record was last updated 9 January 2026 and still said not yet recruiting, four days before the sponsor's 13 January first-participant announcement; the date mismatch is preserved rather than silently reconciled.",
+      "No new MHRA, NICE or NHS England decision for SGB-7342 was found in the reviewed UK pass.",
+      "Other newly indexed registry results lacking sufficiently specific readable mechanism or sponsor evidence remain discovery candidates rather than published entries."
+    ]
+  },
+  "monitorPass": {
+    "checkedAt": "2026-10-02T04:15:01.807Z",
+    "configuredSources": 50,
+    "currentSources": 47,
+    "delayedSources": [
+      {"id": "pf3944-pfizer", "error": "http_520", "reviewStatus": "verification_pending"},
+      {"id": "danuglipron-pfizer", "error": "http_520", "reviewStatus": "verification_pending"},
+      {"id": "az-elecoglipron-20260608", "error": "http_403", "reviewStatus": "verification_pending"}
+    ],
+    "interpretation": "The same three external-source access failures remain visible and no new configured-source withdrawal, content change or overdue factual review was established. This receipt neither approves a baseline nor advances any monitored medical review date."
+  }
+}
