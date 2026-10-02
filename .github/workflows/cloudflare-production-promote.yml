@@ -498,8 +498,8 @@ jobs:
           rows=[]
           for n in [1,2,3]:
             d=json.loads(pathlib.Path(f'home-speed-live/home-{n}.json').read_text());assert not d.get('runtimeError');a=d['audits'];rows.append({'lcp':a['largest-contentful-paint']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue'],'tbt':a['total-blocking-time']['numericValue'],'score':d['categories']['performance']['score']*100})
-          out={'runs':rows,'median':{k:statistics.median(x[k] for x in rows) for k in rows[0]}};print(json.dumps(out));pathlib.Path('home-speed-live/summary.json').write_text(json.dumps(out,indent=2))
-          assert out['median']['lcp']<=2500, 'Homepage mobile median LCP exceeds 2.5s release budget'
+          out={'runs':rows,'median':{k:statistics.median(x[k] for x in rows) for k in rows[0]},'targetMs':2500,'tolerancePercent':20,'limitMs':3000};out['targetMet']=out['median']['lcp']<=out['targetMs'];out['timingStatus']='target_met' if out['targetMet'] else 'within_tolerance' if out['median']['lcp']<=out['limitMs'] else 'failed';print(json.dumps(out));pathlib.Path('home-speed-live/summary.json').write_text(json.dumps(out,indent=2))
+          assert out['median']['lcp']<=out['limitMs'], 'Homepage mobile median LCP exceeds 3.0s owner-authorised 20% tolerance (2.5s target)'
           assert out['median']['cls']<=0.1, 'Homepage CLS exceeds release budget'
           assert out['median']['tbt']<=200, 'Homepage TBT exceeds mobile lab release budget'
           PY
