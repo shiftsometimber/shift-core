@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const MEMBER_ACCEPTANCE_BASE='dc02728aaa6637e1e2570f66af83d594a4176f54';
-export const MEMBER_ACCEPTANCE_CANDIDATE='c3f5e5442efe4e0fae024c7fdeedf586d77c08bf';
+export const MEMBER_ACCEPTANCE_CANDIDATE='c9192e61b690ba0129692827d7f30c0f532f29b3';
 export const MEMBER_ACCEPTANCE_PATHS=["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/rendered-member-production-acceptance.yml",".github/workflows/my-timber-final-production.yml","g2-014-progress-picture-premium-production.mjs","my-timber-final-source-gate.mjs"];
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 export function validateMemberAcceptanceSource(){
@@ -13,7 +13,7 @@ export function validateMemberAcceptanceSource(){
 export async function verifyMemberAcceptanceProof(get){
  validateMemberAcceptanceSource();
  const receipts=[];
- const proofs=[[36950058320,'9d0d217b935413458b06958a5f12d736b3d6f370','.github/workflows/rendered-member-production-acceptance.yml',["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs",".github/workflows/rendered-member-production-acceptance.yml","g2-014-progress-picture-premium-production.mjs"]],[36951582413,'c3f5e5442efe4e0fae024c7fdeedf586d77c08bf','.github/workflows/my-timber-final-production.yml',["rendered-member-acceptance-support.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/my-timber-final-production.yml"]]];
+ const proofs=[[36950058320,'9d0d217b935413458b06958a5f12d736b3d6f370','.github/workflows/rendered-member-production-acceptance.yml',["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs",".github/workflows/rendered-member-production-acceptance.yml","g2-014-progress-picture-premium-production.mjs"]],[36953817316,'c9192e61b690ba0129692827d7f30c0f532f29b3','.github/workflows/my-timber-final-production.yml',["rendered-member-acceptance-support.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/my-timber-final-production.yml"]]];
  for(const [id,head,path,checked]of proofs){
   let r;for(let attempt=0;attempt<40;attempt++){r=await get('/actions/runs/'+id);assert.equal(r.head_sha,head);assert.equal(r.path,path);if(r.status==='completed')break;await new Promise(resolve=>setTimeout(resolve,15000));}assert.equal(r.conclusion,'success','Independent live acceptance must pass: '+path);
   for(const p of checked)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',head+':'+p),'Exact proven harness changed: '+p);
