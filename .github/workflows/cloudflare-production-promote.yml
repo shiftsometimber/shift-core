@@ -251,7 +251,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
-          node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs
+          node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs
           node --test tests/home-route-banner.test.mjs tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts

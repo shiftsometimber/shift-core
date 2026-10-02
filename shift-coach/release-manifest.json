@@ -2,7 +2,7 @@
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
   "applicationCommit": "3ec6c4e0220686834e77c6d4e10b584a6143d8dd",
   "completeV2": false,
-  "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
+  "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection. Exact homepage font delivery subset only; approved wording, layout, styles, image and original font source retained.",
   "pinnedPaths": [
     ".github/workflows/book-voice-live-audit.yml",
     ".github/workflows/book-voice-preview.yml",
@@ -33,8 +33,10 @@
     "release/growth-adopt-deployment.mjs",
     "release/growth-preflight.mjs",
     "release/growth-scope.mjs",
+    "release/home-banner-live.cjs",
     "release/home-banner-scope.mjs",
     "release/member-acceptance-scope.mjs",
+    "release/member-details-preservation.mjs",
     "release/shift-ai-scope.mjs",
     "release/watch-registry-wave-scope.mjs",
     "scripts/b1-release-scope.mjs",
@@ -47,6 +49,7 @@
     "shift-coach/follow-up.mjs",
     "shift-coach/followup-view.mjs",
     "shift-coach/full-page-proof.mjs",
+    "shift-coach/home-font-subset.mjs",
     "shift-coach/integration.test.mjs",
     "shift-coach/launch-assessment.json",
     "shift-coach/life-back.mjs",
@@ -59,6 +62,9 @@
     "shift-coach/privacy-purpose-review.md",
     "shift-coach/privacy.mjs",
     "shift-coach/progression.mjs",
+    "shift-coach/public-font-browser-proof.mjs",
+    "shift-coach/public-font-delivery.mjs",
+    "shift-coach/public-font-delivery.test.mjs",
     "shift-coach/release-contract.mjs",
     "shift-coach/release.test.mjs",
     "shift-coach/routes.mjs",
@@ -119,7 +125,7 @@
       "engineeringVerified": true,
       "independentReviewCompleted": false,
       "applicationCommit": "3ec6c4e0220686834e77c6d4e10b584a6143d8dd",
-      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory."
+      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. The release prerequisite projects the exact approved homepage font into a 34,920-byte subset from 87,120 bytes. Font outline/metrics/hinting equality and identical local browser pixels/layout at 320,390,1440px are verified; 22 focused delivery/homepage/release checks pass. Production LCP has not yet passed for this payload; unchanged live speed and rollback checks remain required."
     }
   },
   "note": "Progressive everyday coaching repair preserving the independently reviewed earlier challenge catalogue. New constraints, progress, feedback and support changes rely on exact owner-authorised engineering acceptance; independent review of this new payload is not claimed. Source, privacy, preservation and rollback checks remain required.",
