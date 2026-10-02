@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_START,TREATMENTS_ENTRY_END,TREATMENT_RELATED_LEGACY as oldGuide,TREATMENT_RELATED_CURRENT as newGuide,publicPageEvidence,assertPublicPagesPreserved} from './preservation.mjs';
+import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_LEGACY,TREATMENTS_ENTRY_START,TREATMENTS_ENTRY_END,TREATMENT_RELATED_LEGACY as oldGuide,TREATMENT_RELATED_CURRENT as newGuide,publicPageEvidence,assertPublicPagesPreserved} from './preservation.mjs';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const fp=(body,required=true)=>publicPageEvidence('/treatment-centre',200,body,{hash,requireTreatmentsEntry:required});
 const page=(guide=oldGuide,entry=TREATMENTS_ENTRY)=>'<html><head><style>section[data-shift-link-repair]{color:#E7E3DA}section[data-shift-link-repair] a{color:inherit}</style></head><body><main><h1>Treatments</h1><p>Existing approved content.</p>'+guide+entry+'</main></body></html>';
@@ -40,4 +40,12 @@ test('Programme allows only the exact sharing tag and direct Journey destination
  assert.throws(()=>evidence(fixed.replace(tag,tag+tag)),/duplicate/);
  assert.throws(()=>evidence(fixed.replace(next,next+next)),/duplicate/);
  assert.throws(()=>assertPublicPagesPreserved([a],[b]),/missing/);
+});
+
+test('exact legacy Watch wording is accepted only as a baseline and other bytes remain locked',()=>{
+ const before=fp(page(oldGuide,TREATMENTS_ENTRY_LEGACY),false),after=fp(page());
+ assert.equal(assertPublicPagesPreserved([after],[before]),'identical');assert.notEqual(before.sha256,after.sha256);
+ assert.throws(()=>fp(page(oldGuide,TREATMENTS_ENTRY_LEGACY)),/differs/);
+ assert.throws(()=>fp(page(oldGuide,TREATMENTS_ENTRY_LEGACY.replace('Peptides Watch','Unknown Watch')),false),/differs/);
+ assert.throws(()=>assertPublicPagesPreserved([fp(page().replace('Existing approved content.','Changed'))],[before]),/changed outside/);
 });

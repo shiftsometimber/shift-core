@@ -1,0 +1,38 @@
+name: Public wording and menu read-only preview
+on:
+  push:
+    branches: [preview/public-wording-menu-20261002]
+    paths:
+      - .github/workflows/public-wording-preview.yml
+      - preview/public-wording/**
+permissions:
+  contents: read
+concurrency:
+  group: public-wording-menu-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node --test medicines-watch/page.test.mjs medicines-watch/preservation.test.mjs
+      - name: Publish isolated read-only display preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: npx wrangler deploy --config preview/public-wording/wrangler.jsonc
+      - name: Check phone and desktop rendering
+        run: |
+          npm install --prefix "$RUNNER_TEMP/render-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/render-tools/node_modules/.bin/playwright" install --with-deps chromium
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/render-tools/node_modules/playwright" node preview/public-wording/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-wording-menu-preview
+          path: public-wording-proof/
