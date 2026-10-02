@@ -8,13 +8,14 @@ const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8
 test('normal production configuration includes the coach with exactly one entrypoint-only change',()=>{assertCoachingConfiguration(config,before);assert.equal(config,readFileSync('wrangler.coaching.jsonc','utf8'));assert.equal(withoutCoachEntrypoint(config),before);});
 test('configuration drift, a lost wrapper, extra bindings and duplicate entrypoints fail closed',()=>{for(const bad of [before,config+'\n',config.replace('"STRIPE_MODE": "test"','"STRIPE_MODE": "live"'),config.replace('"DB"','"OTHER_DB"'),config.replace('"main":','"main": "shift-coach/worker.mjs", "main":')])assert.throws(()=>assertCoachingConfiguration(bad,before));});
 test('every coaching and release integration source has an exact pin; any drift fails',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)},read=(ref,p)=>p;assert.doesNotThrow(()=>validateCoachingSource(read,m));for(const p of m.pinnedPaths)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Coaching release source drift/);assert.throws(()=>validateCoachingSource(read,{...m,pinnedPaths:m.pinnedPaths.slice(1)}));});
-test('the five current Watch files remain pinned and historical review bytes are only used for named integrations',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)};for(const p of WATCH_CURRENT_PATHS)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Current Watch source drift/);assert.equal(coachingHistoricalRef('HEAD','wrangler.jsonc'),COACH_BASE);for(const p of ['worker-entry-v6.js','frontend/member/my-timber-preview.html','member-design.mjs','unknown.mjs'])assert.equal(coachingHistoricalRef('HEAD',p),'HEAD');});
+test('the exact current Watch files remain pinned and historical review bytes are only used for named integrations',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)};for(const p of WATCH_CURRENT_PATHS)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Current Watch source drift/);assert.equal(coachingHistoricalRef('HEAD','wrangler.jsonc'),COACH_BASE);for(const p of ['worker-entry-v6.js','frontend/member/my-timber-preview.html','member-design.mjs','unknown.mjs'])assert.equal(coachingHistoricalRef('HEAD',p),'HEAD');});
 test('launch preserves privacy and purpose gates; exact owner acceptance never claims independent review',()=>{
  assert.equal(assertLaunchDecisions(manifest),true);
- assert.equal(manifest.decisions.independentAcceptance.approved,false);
- const noOwner=structuredClone(manifest);delete noOwner.decisions.ownerAcceptance;assert.throws(()=>assertLaunchDecisions(noOwner),/ownerAcceptance/);
- for(const key of ['boundedScope','privacyAssessment','intendedPurpose','productionLaunch','ownerAcceptance']){const m=structuredClone(manifest);m.decisions[key].approved=false;assert.throws(()=>assertLaunchDecisions(m));m.decisions[key]={approved:true};assert.throws(()=>assertLaunchDecisions(m));}
- for(const changes of [{engineeringVerified:false},{independentReviewCompleted:true},{applicationCommit:'a'.repeat(40)},{verificationEvidence:''}]){const m=structuredClone(manifest);Object.assign(m.decisions.ownerAcceptance,changes);assert.throws(()=>assertLaunchDecisions(m));}
+ assert.equal(typeof manifest.decisions.independentAcceptance.approved,'boolean');
+ const ownerOnly=structuredClone(manifest);ownerOnly.decisions.independentAcceptance.approved=false;
+ const noOwner=structuredClone(ownerOnly);delete noOwner.decisions.ownerAcceptance;assert.throws(()=>assertLaunchDecisions(noOwner),/ownerAcceptance/);
+ for(const key of ['boundedScope','privacyAssessment','intendedPurpose','productionLaunch','ownerAcceptance']){const m=structuredClone(ownerOnly);m.decisions[key].approved=false;assert.throws(()=>assertLaunchDecisions(m));m.decisions[key]={approved:true};assert.throws(()=>assertLaunchDecisions(m));}
+ for(const changes of [{engineeringVerified:false},{independentReviewCompleted:true},{applicationCommit:'a'.repeat(40)},{verificationEvidence:''}]){const m=structuredClone(ownerOnly);Object.assign(m.decisions.ownerAcceptance,changes);assert.throws(()=>assertLaunchDecisions(m));}
  const independent=structuredClone(noOwner);independent.decisions.independentAcceptance={approved:true,decidedBy:'Synthetic independent fixture',decidedAt:'Synthetic fixture only',evidence:'Synthetic fixture only'};assert.equal(assertLaunchDecisions(independent),true);
  assert.throws(()=>assertLaunchDecisions({...manifest,completeV2:true}));
 });
@@ -24,4 +25,14 @@ test('composed book release accepts only exact named additions and modifications
  for(const path of COACH_COMPOSED_BOOK_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));assert.equal(coachingHistoricalRef('HEAD',path),'HEAD');}
  for(const path of COACH_COMPOSED_BOOK_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));assert.equal(coachingHistoricalRef('HEAD',path),'HEAD');}
  for(const path of ['editorial/book-voice/unreviewed.mjs','worker-entry-v6.js','frontend/member/my-timber-preview.html','unknown.mjs'])assert.throws(()=>assertCoachingChangedPath('M',path),/Unlisted/);
+});
+
+test('latest registry-wave proof and exact composed Watch bytes remain mandatory',async()=>{
+ const {WATCH_CURRENT_BASE,WATCH_COMPOSED_CHANGES,WATCH_COMPOSED_ADDITIONS}=await import('./release-contract.mjs');
+ const {validateWatchRegistryWave,WATCH_REGISTRY_WAVE_COMMIT}=await import('../release/watch-registry-wave-scope.mjs');
+ const calls=[];validateWatchRegistryWave((ref,path)=>{calls.push({ref,path});return path;});
+ for(const path of WATCH_COMPOSED_CHANGES)assert(calls.some(c=>c.path===path&&c.ref===WATCH_REGISTRY_WAVE_COMMIT));
+ assert(calls.some(c=>c.path==='medicines-watch/discovery.mjs'&&c.ref===WATCH_REGISTRY_WAVE_COMMIT));
+ for(const path of WATCH_COMPOSED_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));}
+ for(const path of WATCH_COMPOSED_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));}
 });

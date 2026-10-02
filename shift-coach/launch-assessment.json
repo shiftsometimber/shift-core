@@ -978,5 +978,1544 @@
       "launchDecisions": "BLOCKED: no privacy, intended-purpose or independent-review receipt supplied",
       "productionCoachLive": false
     }
+  },
+  "everydayExpansion": {
+    "requestedBy": "Matt",
+    "requestedAt": "2026-10-02T18:24:07+01:00",
+    "request": "Complete the original coaching brief: broader practical help, meaningful response to failed steps, visible useful memory.",
+    "sourceBase": "83a17683d70c2364547409b7d64eca8b47310615",
+    "fixedActions": 18,
+    "localRegressionChecks": 71,
+    "phantomProof": {
+      "summary": {
+        "pass": 69,
+        "fail": 0,
+        "total": 69
+      },
+      "pageErrors": [],
+      "checks": [
+        {
+          "member": "Dan",
+          "name": "First visit: visible setup and no invented personal history",
+          "status": "PASS",
+          "observed": {
+            "title": "Choose one thing to make your week easier",
+            "enabled": false
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Blank required answers do not silently save",
+          "status": "PASS",
+          "observed": "Browser required-field validation; no coaching record created"
+        },
+        {
+          "member": "Dan",
+          "name": "Create personal coaching through the visible form",
+          "status": "PASS",
+          "observed": {
+            "id": "ddd5d4a4-2859-4ec6-838b-d10bc2ebeb09",
+            "type": "food-plan",
+            "approach": "meal-planning",
+            "challenge": "everyday",
+            "component": "energy",
+            "title": "Pick a familiar meal for your busiest day",
+            "reason": "You chose “Have enough energy to join in with the family” and saved “Three late shifts and no free evenings”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier.",
+            "general": false,
+            "tone": "Keep what works. Change what gets in the way.",
+            "minutes": 2,
+            "dataUsed": [
+              "2da5e275-7b1f-4463-8e59-b78da53894ca",
+              "6544e996-cb38-4917-9c7b-d40fec135896",
+              "a31f6bc8-07df-44e7-b980-504088498a4a",
+              "823e5d44-5d63-4194-8297-ce2a2a0445b2"
+            ],
+            "sources": [],
+            "status": "prepared",
+            "preparedAt": 1790962709026,
+            "knowledge": {
+              "state": "integration_candidate",
+              "source": "https://shiftsometimber.co.uk/life-back",
+              "retrieved": "2026-10-01",
+              "approval": "Matt authorised website content as the knowledge foundation; these new action strings still require independent voice/relevance review.",
+              "clinicalApproval": false,
+              "scope": "Everyday action planning and personal check-ins only",
+              "version": "coaching-everyday-2",
+              "noAutomaticApprovalFromPublication": true
+            },
+            "awaitingWant": false,
+            "task": {
+              "title": "Tonight: one familiar meal",
+              "steps": [
+                "One option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.",
+                "Toast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.",
+                "Choose when it will fit your day."
+              ],
+              "link": {
+                "label": "Choose another meal in Grub",
+                "url": "/member/grub"
+              }
+            }
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Accepting opens the practical meal/activity needed to do it",
+          "status": "PASS",
+          "observed": {
+            "visibleControls": [
+              {
+                "tag": "A",
+                "text": "Choose another meal in Grub",
+                "href": "/member/grub"
+              },
+              {
+                "tag": "A",
+                "text": "Ask Shift AI a question",
+                "href": "/member/ask-timber"
+              }
+            ],
+            "text": "SHIFT AI · ONE THING FOR TODAY\n\nPick a familiar meal for your busiest day\n\nKeep what works. Change what gets in the way.\n\nYou chose “Have enough energy to join in with the family” and saved “Three late shifts and no free evenings”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier.\n\nAccepted. It’s saved for when it suits you.\n\nTell Shift AI how it went\nTonight: one familiar meal\n\nTime to plan this step: about 2 minutes. Doing it can take longer.\n\nOne option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.\nToast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.\nChoose when it will fit your day.\n\nChoose another meal in Grub\n\nMake this fit today\nDuring treatment: make the week easier\n\nUse this space for meals, movement and difficult weeks alongside your prescribed care. Choose something that fits today; tell us what helped and what needs changing.\n\nYour prescribing team handles treatment questions. Use the contact details supplied with your treatment. This coaching card does not send them a message.\n\nWhat SHIFT knows about me\nMy permissions and follow-up\nMy weekly Life Back review\nWhy Shift AI acted\n\nCoaching carries on after treatment and without a medication purchase. Treatment question? Use your prescriber’s contact details.\n\nGet the right help — coaching or treatment\n\nAsk Shift AI a question\n\nSaved.",
+            "task": "Tonight: one familiar meal\n\nTime to plan this step: about 2 minutes. Doing it can take longer.\n\nOne option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.\nToast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.\nChoose when it will fit your day.\n\nChoose another meal in Grub",
+            "priorIssue": "No meal, ingredients, shopping-list entry, activity instructions or direct task link opens from the coaching action."
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Did not fit: next action is a smaller commitment",
+          "status": "PASS",
+          "observed": {
+            "before": "Pick a familiar meal for your busiest day",
+            "beforeMinutes": 2,
+            "after": "Name one familiar meal",
+            "afterMinutes": 1
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Did not help: different approach, rejected approach stays excluded",
+          "status": "PASS",
+          "observed": {
+            "before": "food-plan",
+            "after": "food-default",
+            "rejections": [
+              "food-plan"
+            ]
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Did not try: ask whether the person still wants it",
+          "status": "PASS",
+          "observed": "Wanted confirmation appeared and saved; no automatic failure label"
+        },
+        {
+          "member": "Dan",
+          "name": "Helpful result is saved and survives reload",
+          "status": "PASS",
+          "observed": {
+            "outcomes": [
+              {
+                "id": "73ea03fa-9ff5-444b-9ba0-2d8e8278c778",
+                "actionId": "ddd5d4a4-2859-4ec6-838b-d10bc2ebeb09",
+                "type": "food-plan",
+                "title": "Pick a familiar meal for your busiest day",
+                "approach": "meal-planning",
+                "value": "didnt-fit",
+                "at": 1790962709755,
+                "dataUsed": [
+                  "2da5e275-7b1f-4463-8e59-b78da53894ca",
+                  "6544e996-cb38-4917-9c7b-d40fec135896",
+                  "a31f6bc8-07df-44e7-b980-504088498a4a",
+                  "823e5d44-5d63-4194-8297-ce2a2a0445b2"
+                ]
+              },
+              {
+                "id": "658f9dfd-7d63-417f-9e8b-b50f99dd30d8",
+                "actionId": "a71ab7f8-ef9c-4e2c-90b2-9b4d75e2cc0a",
+                "type": "food-plan",
+                "title": "Name one familiar meal",
+                "approach": "meal-planning",
+                "value": "didnt-help",
+                "at": 1790962710022,
+                "dataUsed": [
+                  "2da5e275-7b1f-4463-8e59-b78da53894ca",
+                  "6544e996-cb38-4917-9c7b-d40fec135896",
+                  "a31f6bc8-07df-44e7-b980-504088498a4a",
+                  "823e5d44-5d63-4194-8297-ce2a2a0445b2"
+                ]
+              },
+              {
+                "id": "2723ccf4-3872-48c5-94bb-82b48a658910",
+                "actionId": "ddec526f-6602-4398-965b-f9b04ba8184a",
+                "type": "food-default",
+                "title": "Name one easy meal option",
+                "approach": "easy-default",
+                "value": "didnt-try",
+                "at": 1790962710256,
+                "dataUsed": [
+                  "2da5e275-7b1f-4463-8e59-b78da53894ca",
+                  "6544e996-cb38-4917-9c7b-d40fec135896",
+                  "a31f6bc8-07df-44e7-b980-504088498a4a",
+                  "823e5d44-5d63-4194-8297-ce2a2a0445b2"
+                ]
+              },
+              {
+                "id": "603fc40a-85bd-4280-8f30-0252514a53bd",
+                "actionId": "372b7036-656e-4c7c-a251-e80e4d7ff056",
+                "type": "food-default",
+                "title": "Name one easy meal option",
+                "approach": "easy-default",
+                "value": "helped",
+                "at": 1790962710588,
+                "dataUsed": [
+                  "2da5e275-7b1f-4463-8e59-b78da53894ca",
+                  "6544e996-cb38-4917-9c7b-d40fec135896",
+                  "a31f6bc8-07df-44e7-b980-504088498a4a",
+                  "823e5d44-5d63-4194-8297-ce2a2a0445b2"
+                ]
+              }
+            ],
+            "action": "Name one easy meal option"
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Memory shows which step the saved feedback belongs to",
+          "status": "PASS",
+          "observed": "Named step and member feedback shown together"
+        },
+        {
+          "member": "Dan",
+          "name": "Correct a bad-week record and persist the correction",
+          "status": "PASS",
+          "observed": "You chose “Have enough energy to join in with the family” and saved “A difficult week; keep the next step simple for Dan”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+        },
+        {
+          "member": "Dan",
+          "name": "All treatment modes retain the person and their history",
+          "status": "PASS",
+          "observed": [
+            {
+              "mode": "shift",
+              "title": "Keep an easy meal option ready",
+              "reason": "You chose “Have enough energy to join in with the family” and saved “A difficult week; keep the next step simple for Dan”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+            },
+            {
+              "mode": "elsewhere",
+              "title": "Keep an easy meal option ready",
+              "reason": "You chose “Have enough energy to join in with the family” and saved “A difficult week; keep the next step simple for Dan”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+            },
+            {
+              "mode": "stopped",
+              "title": "Keep an easy meal option ready",
+              "reason": "You chose “Have enough energy to join in with the family” and saved “A difficult week; keep the next step simple for Dan”. You chose “Just the everyday basics” as what is hardest right now. After treatment: keep what works."
+            }
+          ]
+        },
+        {
+          "member": "Dan",
+          "name": "Weekly personal assessment saves without invented progress",
+          "status": "PASS",
+          "observed": {
+            "personal": true,
+            "combinedScore": null,
+            "components": [
+              {
+                "key": "energy",
+                "readings": [],
+                "missing": true
+              }
+            ],
+            "weeklyAssessment": {
+              "id": "2180ada0-35b0-4e83-a417-7b356869ba7f",
+              "rating": 2,
+              "at": 1790962712222,
+              "source": "member",
+              "personal": true
+            },
+            "change": null,
+            "win": {
+              "text": "You marked your last action as done and helpful.",
+              "dataUsed": [
+                "603fc40a-85bd-4280-8f30-0252514a53bd"
+              ],
+              "at": 1790962710588
+            },
+            "next": "Keep one useful thing. Change the part that did not fit.",
+            "reviewSecondsTarget": 60
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Changing the explicit difficulty drives a saved next step",
+          "status": "PASS",
+          "observed": {
+            "id": "f46682c9-757d-4044-87cc-4b54eb74a922",
+            "type": "food-social",
+            "approach": "social-support",
+            "challenge": "weekends",
+            "component": "energy",
+            "title": "Make one social food plan with someone",
+            "reason": "You chose “Have enough energy to join in with the family” and saved “A difficult week; keep the next step simple for Dan”. You chose “Weekends and social plans” as what is hardest right now. After treatment: keep what works.",
+            "general": false,
+            "tone": "Your support carries on after treatment. Keep the routine useful and the next step manageable.",
+            "minutes": 2,
+            "dataUsed": [
+              "2da5e275-7b1f-4463-8e59-b78da53894ca",
+              "af9a832c-cbd7-4306-ad59-f88f0d8d0329",
+              "a31f6bc8-07df-44e7-b980-504088498a4a",
+              "ba579b85-2d92-487a-9a31-a78715953f07"
+            ],
+            "sources": [],
+            "status": "prepared",
+            "preparedAt": 1790962712754,
+            "knowledge": {
+              "state": "integration_candidate",
+              "source": "https://shiftsometimber.co.uk/life-back",
+              "retrieved": "2026-10-01",
+              "approval": "Matt authorised website content as the knowledge foundation; these new action strings still require independent voice/relevance review.",
+              "clinicalApproval": false,
+              "scope": "Everyday action planning and personal check-ins only",
+              "version": "coaching-everyday-2",
+              "noAutomaticApprovalFromPublication": true
+            },
+            "awaitingWant": false,
+            "task": {
+              "title": "Make one social food plan with someone",
+              "steps": [
+                "Think of your next meal out or gathering. Choose one thing that would make it easier to enjoy.",
+                "Tell the person you are going with: for example, agree where to eat before setting off. You do not need to make up for the meal by skipping food afterwards."
+              ],
+              "link": {
+                "label": "Find a meal in Grub",
+                "url": "/member/grub"
+              }
+            }
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Follow-up is off until permission is given; due follow-up appears in-app",
+          "status": "PASS",
+          "observed": "Due time advanced only in synthetic storage; follow-up presented and acknowledged once"
+        },
+        {
+          "member": "Dan",
+          "name": "Return after two-week break offers a warm restart",
+          "status": "PASS",
+          "observed": {
+            "title": "Pick one thing to restart your week",
+            "tone": "Good to have you back. Start with today.",
+            "simulation": "lastActivity advanced, no claim of real retention"
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Matched medicine request is not saved as everyday coaching",
+          "status": "PASS",
+          "observed": {
+            "status": 422,
+            "response": {
+              "error": "health_concern_use_help",
+              "help": {
+                "title": "Get the right help",
+                "text": "My Timber and Shift AI help with everyday food, movement, routines and difficult weeks, during treatment and after it ends. Treatment decisions belong to your prescriber. For symptoms, side effects or changes to medication, use the contact number or patient portal on your prescription or treatment confirmation. If you cannot find the prescriber for treatment arranged through SHIFT, contact the SHIFT team using the link below to ask for the correct contact details. SHIFT support is not a clinical service or an urgent help route. Nobody is monitoring this chat, and saving a message does not send it to a clinician.",
+                "links": [
+                  {
+                    "label": "Ask SHIFT for your prescriber contact details",
+                    "url": "https://shiftsometimber.co.uk/contact"
+                  },
+                  {
+                    "label": "Find or contact a GP",
+                    "url": "https://www.nhs.uk/nhs-services/gps/"
+                  },
+                  {
+                    "label": "NHS 111 — England",
+                    "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/"
+                  },
+                  {
+                    "label": "Urgent mental-health help — England",
+                    "url": "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+                  },
+                  {
+                    "label": "Emergency help",
+                    "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/"
+                  },
+                  {
+                    "label": "Scotland: NHS 24",
+                    "url": "https://www.nhs24.scot/"
+                  },
+                  {
+                    "label": "Wales: NHS 111 Wales",
+                    "url": "https://111.wales.nhs.uk/"
+                  },
+                  {
+                    "label": "Northern Ireland: health services",
+                    "url": "https://www.nidirect.gov.uk/articles/health-service-useful-numbers"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Plain-language illness concern is interrupted rather than used as coaching context",
+          "status": "PASS",
+          "observed": {
+            "phrase": "I keep being sick and cannot keep water down",
+            "status": 422,
+            "savedAsContext": false,
+            "limitation": "Finite boundary detection is not validated triage; no clinical recommendation was generated."
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Repeated rejection leads to a usable next-choice control",
+          "status": "PASS",
+          "observed": {
+            "sequence": [
+              {
+                "type": "food-social",
+                "title": "Pick one thing to restart your week"
+              },
+              {
+                "type": "food-default",
+                "title": "Keep an easy meal option ready"
+              },
+              {
+                "type": "food-evening",
+                "title": "Give your evening a familiar starting point"
+              },
+              {
+                "type": "food-notice",
+                "title": "Notice when food thoughts get in the way"
+              },
+              {
+                "type": "food-environment",
+                "title": "Make one useful food option easier to reach"
+              },
+              {
+                "type": "food-restart",
+                "title": "Make your next meal an ordinary meal"
+              },
+              {
+                "type": "member-choice",
+                "title": "Choose what you want help with next"
+              }
+            ],
+            "lastType": "member-choice",
+            "title": "Choose what you want help with next",
+            "visibleChoices": [
+              {
+                "name": "focus",
+                "options": [
+                  "Food that fits my day — try these suggestions again",
+                  "Movement that fits my day",
+                  "How the week feels"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Next-choice form changes focus and preserves rejected history",
+          "status": "PASS",
+          "observed": {
+            "type": "review-plan",
+            "rejections": [
+              "food-plan",
+              "food-social",
+              "food-default",
+              "food-evening",
+              "food-notice",
+              "food-environment",
+              "food-restart"
+            ]
+          }
+        },
+        {
+          "member": "Dan",
+          "name": "Illness submitted in the visible form opens help and leaves earlier context intact",
+          "status": "PASS",
+          "observed": "Help opens; rejected concern is not saved or sent to a clinician."
+        },
+        {
+          "member": "Dan",
+          "name": "Mobile/desktop layout does not overflow and has one coaching section",
+          "status": "PASS",
+          "observed": [
+            {
+              "width": 360,
+              "scroll": 360,
+              "cards": 1
+            },
+            {
+              "width": 390,
+              "scroll": 390,
+              "cards": 1
+            },
+            {
+              "width": 1280,
+              "scroll": 1280,
+              "cards": 1
+            }
+          ]
+        },
+        {
+          "member": "Alan",
+          "name": "First visit: visible setup and no invented personal history",
+          "status": "PASS",
+          "observed": {
+            "title": "Choose one thing to make your week easier",
+            "enabled": false
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Blank required answers do not silently save",
+          "status": "PASS",
+          "observed": "Browser required-field validation; no coaching record created"
+        },
+        {
+          "member": "Alan",
+          "name": "Create personal coaching through the visible form",
+          "status": "PASS",
+          "observed": {
+            "id": "71219249-3e8e-4b50-83bd-9fb4b7dcb2eb",
+            "type": "food-plan",
+            "approach": "meal-planning",
+            "challenge": "everyday",
+            "component": "energy",
+            "title": "After treatment: keep one meal routine",
+            "reason": "You chose “Feel more like myself and get out with my family” and saved “I need simple instructions and meals I already know”. You chose “Just the everyday basics” as what is hardest right now. After treatment: keep what works.",
+            "general": false,
+            "tone": "Your support carries on after treatment. Keep the routine useful and the next step manageable.",
+            "minutes": 3,
+            "dataUsed": [
+              "1f686d54-a301-460c-8389-0c31c5581036",
+              "a4901371-52ea-4a51-b534-9ecf3c685d02",
+              "82741060-c7c4-4bc5-9ef4-b13266122844",
+              "4947e1c1-df62-40a1-9150-b11c82879b62"
+            ],
+            "sources": [],
+            "status": "prepared",
+            "preparedAt": 1790962717755,
+            "knowledge": {
+              "state": "integration_candidate",
+              "source": "https://shiftsometimber.co.uk/life-back",
+              "retrieved": "2026-10-01",
+              "approval": "Matt authorised website content as the knowledge foundation; these new action strings still require independent voice/relevance review.",
+              "clinicalApproval": false,
+              "scope": "Everyday action planning and personal check-ins only",
+              "version": "coaching-everyday-2",
+              "noAutomaticApprovalFromPublication": true
+            },
+            "awaitingWant": false,
+            "task": {
+              "title": "After treatment: keep one meal routine",
+              "steps": [
+                "One option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.",
+                "Toast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.",
+                "Choose when it will fit your day.",
+                "Choose one day to repeat this meal routine. Keeping it familiar can make the week easier."
+              ],
+              "link": {
+                "label": "Choose another meal in Grub",
+                "url": "/member/grub"
+              }
+            }
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Accepting opens the practical meal/activity needed to do it",
+          "status": "PASS",
+          "observed": {
+            "visibleControls": [
+              {
+                "tag": "A",
+                "text": "Choose another meal in Grub",
+                "href": "/member/grub"
+              },
+              {
+                "tag": "A",
+                "text": "Ask Shift AI a question",
+                "href": "/member/ask-timber"
+              }
+            ],
+            "text": "SHIFT AI · ONE THING FOR TODAY\n\nAfter treatment: keep one meal routine\n\nYour support carries on after treatment. Keep the routine useful and the next step manageable.\n\nYou chose “Feel more like myself and get out with my family” and saved “I need simple instructions and meals I already know”. You chose “Just the everyday basics” as what is hardest right now. After treatment: keep what works.\n\nAccepted. It’s saved for when it suits you.\n\nTell Shift AI how it went\nAfter treatment: keep one meal routine\n\nTime to plan this step: about 3 minutes. Doing it can take longer.\n\nOne option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.\nToast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.\nChoose when it will fit your day.\nChoose one day to repeat this meal routine. Keeping it familiar can make the week easier.\n\nChoose another meal in Grub\n\nMake this fit today\nAfter treatment: keep what works\n\nYour everyday support carries on here when medication purchases stop. Keep one routine you can repeat. If food noise returns, note when it gets in the way and plan one familiar meal for that part of the day. A setback is a reason to adjust the plan, not write off the week.\n\nQuestions about restarting, symptoms or treatment belong with your prescriber or GP. Saving them here does not contact anyone.\n\nWhat SHIFT knows about me\nMy permissions and follow-up\nMy weekly Life Back review\nWhy Shift AI acted\n\nCoaching carries on after treatment and without a medication purchase. Treatment question? Use your prescriber’s contact details.\n\nGet the right help — coaching or treatment\n\nAsk Shift AI a question\n\nSaved.",
+            "task": "After treatment: keep one meal routine\n\nTime to plan this step: about 3 minutes. Doing it can take longer.\n\nOne option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.\nToast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.\nChoose when it will fit your day.\nChoose one day to repeat this meal routine. Keeping it familiar can make the week easier.\n\nChoose another meal in Grub",
+            "priorIssue": "No meal, ingredients, shopping-list entry, activity instructions or direct task link opens from the coaching action."
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Did not fit: next action is a smaller commitment",
+          "status": "PASS",
+          "observed": {
+            "before": "After treatment: keep one meal routine",
+            "beforeMinutes": 3,
+            "after": "Keep one familiar meal",
+            "afterMinutes": 1
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Did not help: different approach, rejected approach stays excluded",
+          "status": "PASS",
+          "observed": {
+            "before": "food-plan",
+            "after": "food-default",
+            "rejections": [
+              "food-plan"
+            ]
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Did not try: ask whether the person still wants it",
+          "status": "PASS",
+          "observed": "Wanted confirmation appeared and saved; no automatic failure label"
+        },
+        {
+          "member": "Alan",
+          "name": "Helpful result is saved and survives reload",
+          "status": "PASS",
+          "observed": {
+            "outcomes": [
+              {
+                "id": "e71ca0fa-71f5-4e4c-b927-ae068060ca5c",
+                "actionId": "71219249-3e8e-4b50-83bd-9fb4b7dcb2eb",
+                "type": "food-plan",
+                "title": "After treatment: keep one meal routine",
+                "approach": "meal-planning",
+                "value": "didnt-fit",
+                "at": 1790962718321,
+                "dataUsed": [
+                  "1f686d54-a301-460c-8389-0c31c5581036",
+                  "a4901371-52ea-4a51-b534-9ecf3c685d02",
+                  "82741060-c7c4-4bc5-9ef4-b13266122844",
+                  "4947e1c1-df62-40a1-9150-b11c82879b62"
+                ]
+              },
+              {
+                "id": "238a2705-b089-4cc2-bbbd-5b12f9b3e8ea",
+                "actionId": "6e00de31-291b-4337-a599-2d42abb0c042",
+                "type": "food-plan",
+                "title": "Keep one familiar meal",
+                "approach": "meal-planning",
+                "value": "didnt-help",
+                "at": 1790962718590,
+                "dataUsed": [
+                  "1f686d54-a301-460c-8389-0c31c5581036",
+                  "a4901371-52ea-4a51-b534-9ecf3c685d02",
+                  "82741060-c7c4-4bc5-9ef4-b13266122844",
+                  "4947e1c1-df62-40a1-9150-b11c82879b62"
+                ]
+              },
+              {
+                "id": "07ea8cbb-4fc7-410e-96eb-2775f129f3e4",
+                "actionId": "f29ad94a-5ad4-47d1-a03c-5f782e323529",
+                "type": "food-default",
+                "title": "Keep an easy meal option ready",
+                "approach": "easy-default",
+                "value": "didnt-try",
+                "at": 1790962718821,
+                "dataUsed": [
+                  "1f686d54-a301-460c-8389-0c31c5581036",
+                  "a4901371-52ea-4a51-b534-9ecf3c685d02",
+                  "82741060-c7c4-4bc5-9ef4-b13266122844",
+                  "4947e1c1-df62-40a1-9150-b11c82879b62"
+                ]
+              },
+              {
+                "id": "e55d01e0-55d1-48f1-8c20-65fe40c405d0",
+                "actionId": "76961bf5-755f-42f6-aeda-afe8e08d7923",
+                "type": "food-default",
+                "title": "Keep an easy meal option ready",
+                "approach": "easy-default",
+                "value": "helped",
+                "at": 1790962719170,
+                "dataUsed": [
+                  "1f686d54-a301-460c-8389-0c31c5581036",
+                  "a4901371-52ea-4a51-b534-9ecf3c685d02",
+                  "82741060-c7c4-4bc5-9ef4-b13266122844",
+                  "4947e1c1-df62-40a1-9150-b11c82879b62"
+                ]
+              }
+            ],
+            "action": "Keep an easy meal option ready"
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Memory shows which step the saved feedback belongs to",
+          "status": "PASS",
+          "observed": "Named step and member feedback shown together"
+        },
+        {
+          "member": "Alan",
+          "name": "Correct a bad-week record and persist the correction",
+          "status": "PASS",
+          "observed": "You chose “Feel more like myself and get out with my family” and saved “A difficult week; keep the next step simple for Alan”. You chose “Just the everyday basics” as what is hardest right now. After treatment: keep what works."
+        },
+        {
+          "member": "Alan",
+          "name": "All treatment modes retain the person and their history",
+          "status": "PASS",
+          "observed": [
+            {
+              "mode": "shift",
+              "title": "Keep an easy meal option ready",
+              "reason": "You chose “Feel more like myself and get out with my family” and saved “A difficult week; keep the next step simple for Alan”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+            },
+            {
+              "mode": "elsewhere",
+              "title": "Keep an easy meal option ready",
+              "reason": "You chose “Feel more like myself and get out with my family” and saved “A difficult week; keep the next step simple for Alan”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+            },
+            {
+              "mode": "stopped",
+              "title": "Keep an easy meal option ready",
+              "reason": "You chose “Feel more like myself and get out with my family” and saved “A difficult week; keep the next step simple for Alan”. You chose “Just the everyday basics” as what is hardest right now. After treatment: keep what works."
+            }
+          ]
+        },
+        {
+          "member": "Alan",
+          "name": "Weekly personal assessment saves without invented progress",
+          "status": "PASS",
+          "observed": {
+            "personal": true,
+            "combinedScore": null,
+            "components": [
+              {
+                "key": "energy",
+                "readings": [],
+                "missing": true
+              }
+            ],
+            "weeklyAssessment": {
+              "id": "d7c1b2f1-080c-4b69-b7ac-1130b8aa5ead",
+              "rating": 2,
+              "at": 1790962720955,
+              "source": "member",
+              "personal": true
+            },
+            "change": null,
+            "win": {
+              "text": "You marked your last action as done and helpful.",
+              "dataUsed": [
+                "e55d01e0-55d1-48f1-8c20-65fe40c405d0"
+              ],
+              "at": 1790962719170
+            },
+            "next": "Keep one useful thing. Change the part that did not fit.",
+            "reviewSecondsTarget": 60
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Changing the explicit difficulty drives a saved next step",
+          "status": "PASS",
+          "observed": {
+            "id": "28d49820-eb07-469a-91b9-de646de7da58",
+            "type": "food-social",
+            "approach": "social-support",
+            "challenge": "weekends",
+            "component": "energy",
+            "title": "Make one social food plan with someone",
+            "reason": "You chose “Feel more like myself and get out with my family” and saved “A difficult week; keep the next step simple for Alan”. You chose “Weekends and social plans” as what is hardest right now. After treatment: keep what works.",
+            "general": false,
+            "tone": "Your support carries on after treatment. Keep the routine useful and the next step manageable.",
+            "minutes": 2,
+            "dataUsed": [
+              "1f686d54-a301-460c-8389-0c31c5581036",
+              "2ff3145f-e4ca-4618-b4d7-9e87d8721d47",
+              "82741060-c7c4-4bc5-9ef4-b13266122844",
+              "c6bcee63-5e8d-4699-9fdc-e05ed2a615f6"
+            ],
+            "sources": [],
+            "status": "prepared",
+            "preparedAt": 1790962721489,
+            "knowledge": {
+              "state": "integration_candidate",
+              "source": "https://shiftsometimber.co.uk/life-back",
+              "retrieved": "2026-10-01",
+              "approval": "Matt authorised website content as the knowledge foundation; these new action strings still require independent voice/relevance review.",
+              "clinicalApproval": false,
+              "scope": "Everyday action planning and personal check-ins only",
+              "version": "coaching-everyday-2",
+              "noAutomaticApprovalFromPublication": true
+            },
+            "awaitingWant": false,
+            "task": {
+              "title": "Make one social food plan with someone",
+              "steps": [
+                "Think of your next meal out or gathering. Choose one thing that would make it easier to enjoy.",
+                "Tell the person you are going with: for example, agree where to eat before setting off. You do not need to make up for the meal by skipping food afterwards."
+              ],
+              "link": {
+                "label": "Find a meal in Grub",
+                "url": "/member/grub"
+              }
+            }
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Follow-up is off until permission is given; due follow-up appears in-app",
+          "status": "PASS",
+          "observed": "Due time advanced only in synthetic storage; follow-up presented and acknowledged once"
+        },
+        {
+          "member": "Alan",
+          "name": "Return after two-week break offers a warm restart",
+          "status": "PASS",
+          "observed": {
+            "title": "Pick one thing to restart your week",
+            "tone": "Good to have you back. Start with today.",
+            "simulation": "lastActivity advanced, no claim of real retention"
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Matched medicine request is not saved as everyday coaching",
+          "status": "PASS",
+          "observed": {
+            "status": 422,
+            "response": {
+              "error": "health_concern_use_help",
+              "help": {
+                "title": "Get the right help",
+                "text": "My Timber and Shift AI help with everyday food, movement, routines and difficult weeks, during treatment and after it ends. Treatment decisions belong to your prescriber. For symptoms, side effects or changes to medication, use the contact number or patient portal on your prescription or treatment confirmation. If you cannot find the prescriber for treatment arranged through SHIFT, contact the SHIFT team using the link below to ask for the correct contact details. SHIFT support is not a clinical service or an urgent help route. Nobody is monitoring this chat, and saving a message does not send it to a clinician.",
+                "links": [
+                  {
+                    "label": "Ask SHIFT for your prescriber contact details",
+                    "url": "https://shiftsometimber.co.uk/contact"
+                  },
+                  {
+                    "label": "Find or contact a GP",
+                    "url": "https://www.nhs.uk/nhs-services/gps/"
+                  },
+                  {
+                    "label": "NHS 111 — England",
+                    "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/"
+                  },
+                  {
+                    "label": "Urgent mental-health help — England",
+                    "url": "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+                  },
+                  {
+                    "label": "Emergency help",
+                    "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/"
+                  },
+                  {
+                    "label": "Scotland: NHS 24",
+                    "url": "https://www.nhs24.scot/"
+                  },
+                  {
+                    "label": "Wales: NHS 111 Wales",
+                    "url": "https://111.wales.nhs.uk/"
+                  },
+                  {
+                    "label": "Northern Ireland: health services",
+                    "url": "https://www.nidirect.gov.uk/articles/health-service-useful-numbers"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Plain-language illness concern is interrupted rather than used as coaching context",
+          "status": "PASS",
+          "observed": {
+            "phrase": "I keep being sick and cannot keep water down",
+            "status": 422,
+            "savedAsContext": false,
+            "limitation": "Finite boundary detection is not validated triage; no clinical recommendation was generated."
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Repeated rejection leads to a usable next-choice control",
+          "status": "PASS",
+          "observed": {
+            "sequence": [
+              {
+                "type": "food-social",
+                "title": "Pick one thing to restart your week"
+              },
+              {
+                "type": "food-default",
+                "title": "Keep an easy meal option ready"
+              },
+              {
+                "type": "food-evening",
+                "title": "Give your evening a familiar starting point"
+              },
+              {
+                "type": "food-notice",
+                "title": "Notice when food thoughts get in the way"
+              },
+              {
+                "type": "food-environment",
+                "title": "Make one useful food option easier to reach"
+              },
+              {
+                "type": "food-restart",
+                "title": "Make your next meal an ordinary meal"
+              },
+              {
+                "type": "member-choice",
+                "title": "Choose what you want help with next"
+              }
+            ],
+            "lastType": "member-choice",
+            "title": "Choose what you want help with next",
+            "visibleChoices": [
+              {
+                "name": "focus",
+                "options": [
+                  "Food that fits my day — try these suggestions again",
+                  "Movement that fits my day",
+                  "How the week feels"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Next-choice form changes focus and preserves rejected history",
+          "status": "PASS",
+          "observed": {
+            "type": "review-plan",
+            "rejections": [
+              "food-plan",
+              "food-social",
+              "food-default",
+              "food-evening",
+              "food-notice",
+              "food-environment",
+              "food-restart"
+            ]
+          }
+        },
+        {
+          "member": "Alan",
+          "name": "Illness submitted in the visible form opens help and leaves earlier context intact",
+          "status": "PASS",
+          "observed": "Help opens; rejected concern is not saved or sent to a clinician."
+        },
+        {
+          "member": "Alan",
+          "name": "Mobile/desktop layout does not overflow and has one coaching section",
+          "status": "PASS",
+          "observed": [
+            {
+              "width": 360,
+              "scroll": 360,
+              "cards": 1
+            },
+            {
+              "width": 390,
+              "scroll": 390,
+              "cards": 1
+            },
+            {
+              "width": 1280,
+              "scroll": 1280,
+              "cards": 1
+            }
+          ]
+        },
+        {
+          "member": "Steve",
+          "name": "First visit: visible setup and no invented personal history",
+          "status": "PASS",
+          "observed": {
+            "title": "Choose one thing to make your week easier",
+            "enabled": false
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Blank required answers do not silently save",
+          "status": "PASS",
+          "observed": "Browser required-field validation; no coaching record created"
+        },
+        {
+          "member": "Steve",
+          "name": "Create personal coaching through the visible form",
+          "status": "PASS",
+          "observed": {
+            "id": "991ba275-83c7-476a-b7ac-ba8c03411a44",
+            "type": "movement-plan",
+            "approach": "scheduling",
+            "challenge": "everyday",
+            "component": "energy",
+            "title": "Choose a short movement break when it suits you",
+            "reason": "You chose “Get out with the dog and join in at football” and saved “I want a gentle option and a clear choice that fits my lunch break”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier.",
+            "general": false,
+            "tone": "A hard week counts too. Keep this small.",
+            "minutes": 2,
+            "dataUsed": [
+              "cc2026c4-297b-4062-b67a-e4855ba2e8d2",
+              "c1fde142-506d-4f30-9e64-380c7f32d3c1",
+              "38e04fd1-85d3-4079-881b-3c43fb25ecfb",
+              "a4c3d01d-67be-4a17-97cd-774c53faebd2"
+            ],
+            "sources": [],
+            "status": "prepared",
+            "preparedAt": 1790962726592,
+            "knowledge": {
+              "state": "integration_candidate",
+              "source": "https://shiftsometimber.co.uk/life-back",
+              "retrieved": "2026-10-01",
+              "approval": "Matt authorised website content as the knowledge foundation; these new action strings still require independent voice/relevance review.",
+              "clinicalApproval": false,
+              "scope": "Everyday action planning and personal check-ins only",
+              "version": "coaching-everyday-2",
+              "noAutomaticApprovalFromPublication": true
+            },
+            "awaitingWant": false,
+            "task": {
+              "title": "Movement that fits your day",
+              "steps": [
+                "Choose a short, comfortable walk or a movement option you already know suits you.",
+                "Pick a time that fits your day. You can make it shorter or leave it for another day.",
+                "If movement causes pain or you are unsure what is suitable, ask a healthcare professional; this is not an exercise prescription."
+              ],
+              "link": {
+                "label": "Choose an option in Fit",
+                "url": "/member/fit"
+              }
+            }
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Accepting opens the practical meal/activity needed to do it",
+          "status": "PASS",
+          "observed": {
+            "visibleControls": [
+              {
+                "tag": "A",
+                "text": "Choose an option in Fit",
+                "href": "/member/fit"
+              },
+              {
+                "tag": "A",
+                "text": "Ask Shift AI a question",
+                "href": "/member/ask-timber"
+              }
+            ],
+            "text": "SHIFT AI · ONE THING FOR TODAY\n\nChoose a short movement break when it suits you\n\nA hard week counts too. Keep this small.\n\nYou chose “Get out with the dog and join in at football” and saved “I want a gentle option and a clear choice that fits my lunch break”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier.\n\nAccepted. It’s saved for when it suits you.\n\nTell Shift AI how it went\nMovement that fits your day\n\nTime to plan this step: about 2 minutes. Doing it can take longer.\n\nChoose a short, comfortable walk or a movement option you already know suits you.\nPick a time that fits your day. You can make it shorter or leave it for another day.\nIf movement causes pain or you are unsure what is suitable, ask a healthcare professional; this is not an exercise prescription.\n\nChoose an option in Fit\n\nMake this fit today\nDuring treatment: make the week easier\n\nUse this space for meals, movement and difficult weeks alongside your prescribed care. Choose something that fits today; tell us what helped and what needs changing.\n\nYour own prescriber handles treatment questions, even when your everyday coaching is here. Use their contact details; this card does not send them a message.\n\nWhat SHIFT knows about me\nMy permissions and follow-up\nMy weekly Life Back review\nWhy Shift AI acted\n\nCoaching carries on after treatment and without a medication purchase. Treatment question? Use your prescriber’s contact details.\n\nGet the right help — coaching or treatment\n\nAsk Shift AI a question\n\nSaved.",
+            "task": "Movement that fits your day\n\nTime to plan this step: about 2 minutes. Doing it can take longer.\n\nChoose a short, comfortable walk or a movement option you already know suits you.\nPick a time that fits your day. You can make it shorter or leave it for another day.\nIf movement causes pain or you are unsure what is suitable, ask a healthcare professional; this is not an exercise prescription.\n\nChoose an option in Fit",
+            "priorIssue": "No meal, ingredients, shopping-list entry, activity instructions or direct task link opens from the coaching action."
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Did not fit: next action is a smaller commitment",
+          "status": "PASS",
+          "observed": {
+            "before": "Choose a short movement break when it suits you",
+            "beforeMinutes": 2,
+            "after": "Choose a moment for movement",
+            "afterMinutes": 1
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Did not help: different approach, rejected approach stays excluded",
+          "status": "PASS",
+          "observed": {
+            "before": "movement-plan",
+            "after": "movement-choice",
+            "rejections": [
+              "movement-plan"
+            ]
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Did not try: ask whether the person still wants it",
+          "status": "PASS",
+          "observed": "Wanted confirmation appeared and saved; no automatic failure label"
+        },
+        {
+          "member": "Steve",
+          "name": "Helpful result is saved and survives reload",
+          "status": "PASS",
+          "observed": {
+            "outcomes": [
+              {
+                "id": "0cf15281-0bff-4f2d-8863-235768dce2ef",
+                "actionId": "991ba275-83c7-476a-b7ac-ba8c03411a44",
+                "type": "movement-plan",
+                "title": "Choose a short movement break when it suits you",
+                "approach": "scheduling",
+                "value": "didnt-fit",
+                "at": 1790962727170,
+                "dataUsed": [
+                  "cc2026c4-297b-4062-b67a-e4855ba2e8d2",
+                  "c1fde142-506d-4f30-9e64-380c7f32d3c1",
+                  "38e04fd1-85d3-4079-881b-3c43fb25ecfb",
+                  "a4c3d01d-67be-4a17-97cd-774c53faebd2"
+                ]
+              },
+              {
+                "id": "6fe7b5d0-b4c9-4307-93e3-d91c37b67974",
+                "actionId": "ecdb5c6e-9a65-4af1-9fc9-2cd9602f66a6",
+                "type": "movement-plan",
+                "title": "Choose a moment for movement",
+                "approach": "scheduling",
+                "value": "didnt-help",
+                "at": 1790962727403,
+                "dataUsed": [
+                  "cc2026c4-297b-4062-b67a-e4855ba2e8d2",
+                  "c1fde142-506d-4f30-9e64-380c7f32d3c1",
+                  "38e04fd1-85d3-4079-881b-3c43fb25ecfb",
+                  "a4c3d01d-67be-4a17-97cd-774c53faebd2"
+                ]
+              },
+              {
+                "id": "d561d23f-e64d-4492-b6eb-e4cad07481aa",
+                "actionId": "0dcd2e32-de6d-44d0-8364-15687afd8f0c",
+                "type": "movement-choice",
+                "title": "Save one option you would like to try",
+                "approach": "enjoyment",
+                "value": "didnt-try",
+                "at": 1790962727637,
+                "dataUsed": [
+                  "cc2026c4-297b-4062-b67a-e4855ba2e8d2",
+                  "c1fde142-506d-4f30-9e64-380c7f32d3c1",
+                  "38e04fd1-85d3-4079-881b-3c43fb25ecfb",
+                  "a4c3d01d-67be-4a17-97cd-774c53faebd2"
+                ]
+              },
+              {
+                "id": "215a1b5a-cf73-44bc-bb27-3150425e62a1",
+                "actionId": "b739ecc9-3dcc-49b0-a2fe-7d7c94d97e60",
+                "type": "movement-choice",
+                "title": "Save one option you would like to try",
+                "approach": "enjoyment",
+                "value": "helped",
+                "at": 1790962727970,
+                "dataUsed": [
+                  "cc2026c4-297b-4062-b67a-e4855ba2e8d2",
+                  "c1fde142-506d-4f30-9e64-380c7f32d3c1",
+                  "38e04fd1-85d3-4079-881b-3c43fb25ecfb",
+                  "a4c3d01d-67be-4a17-97cd-774c53faebd2"
+                ]
+              }
+            ],
+            "action": "Save one option you would like to try"
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Memory shows which step the saved feedback belongs to",
+          "status": "PASS",
+          "observed": "Named step and member feedback shown together"
+        },
+        {
+          "member": "Steve",
+          "name": "Correct a bad-week record and persist the correction",
+          "status": "PASS",
+          "observed": "You chose “Get out with the dog and join in at football” and saved “A difficult week; keep the next step simple for Steve”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+        },
+        {
+          "member": "Steve",
+          "name": "All treatment modes retain the person and their history",
+          "status": "PASS",
+          "observed": [
+            {
+              "mode": "shift",
+              "title": "Save one option you would like to try",
+              "reason": "You chose “Get out with the dog and join in at football” and saved “A difficult week; keep the next step simple for Steve”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+            },
+            {
+              "mode": "elsewhere",
+              "title": "Save one option you would like to try",
+              "reason": "You chose “Get out with the dog and join in at football” and saved “A difficult week; keep the next step simple for Steve”. You chose “Just the everyday basics” as what is hardest right now. During treatment: make the week easier."
+            },
+            {
+              "mode": "stopped",
+              "title": "Save one option you would like to try",
+              "reason": "You chose “Get out with the dog and join in at football” and saved “A difficult week; keep the next step simple for Steve”. You chose “Just the everyday basics” as what is hardest right now. After treatment: keep what works."
+            }
+          ]
+        },
+        {
+          "member": "Steve",
+          "name": "Weekly personal assessment saves without invented progress",
+          "status": "PASS",
+          "observed": {
+            "personal": true,
+            "combinedScore": null,
+            "components": [
+              {
+                "key": "energy",
+                "readings": [],
+                "missing": true
+              }
+            ],
+            "weeklyAssessment": {
+              "id": "7319038c-8e7d-4ad9-b40f-70c23170c000",
+              "rating": 2,
+              "at": 1790962729603,
+              "source": "member",
+              "personal": true
+            },
+            "change": null,
+            "win": {
+              "text": "You marked your last action as done and helpful.",
+              "dataUsed": [
+                "215a1b5a-cf73-44bc-bb27-3150425e62a1"
+              ],
+              "at": 1790962727970
+            },
+            "next": "Keep one useful thing. Change the part that did not fit.",
+            "reviewSecondsTarget": 60
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Changing the explicit difficulty drives a saved next step",
+          "status": "PASS",
+          "observed": {
+            "id": "1b72e873-5e55-4c6f-a109-a3da60f0515f",
+            "type": "movement-company",
+            "approach": "social-support",
+            "challenge": "weekends",
+            "component": "energy",
+            "title": "Name someone you could ask",
+            "reason": "You chose “Get out with the dog and join in at football” and saved “A difficult week; keep the next step simple for Steve”. You chose “Weekends and social plans” as what is hardest right now. After treatment: keep what works.",
+            "general": false,
+            "tone": "Your support carries on after treatment. Keep the routine useful and the next step manageable.",
+            "minutes": 2,
+            "dataUsed": [
+              "cc2026c4-297b-4062-b67a-e4855ba2e8d2",
+              "7d59a80d-57a3-408f-9d73-941db4120e18",
+              "38e04fd1-85d3-4079-881b-3c43fb25ecfb",
+              "67607075-3e28-4f04-a4a9-594665d38e54"
+            ],
+            "sources": [],
+            "status": "prepared",
+            "preparedAt": 1790962730154,
+            "knowledge": {
+              "state": "integration_candidate",
+              "source": "https://shiftsometimber.co.uk/life-back",
+              "retrieved": "2026-10-01",
+              "approval": "Matt authorised website content as the knowledge foundation; these new action strings still require independent voice/relevance review.",
+              "clinicalApproval": false,
+              "scope": "Everyday action planning and personal check-ins only",
+              "version": "coaching-everyday-2",
+              "noAutomaticApprovalFromPublication": true
+            },
+            "awaitingWant": false,
+            "task": {
+              "title": "Ask someone to join you",
+              "steps": [
+                "Choose someone you would enjoy spending time with.",
+                "Ask whether they fancy a short outing or a familiar activity that suits your ability. Agree a time together; planning it is enough for today."
+              ],
+              "link": {
+                "label": "Browse Fit",
+                "url": "/member/fit"
+              }
+            }
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Follow-up is off until permission is given; due follow-up appears in-app",
+          "status": "PASS",
+          "observed": "Due time advanced only in synthetic storage; follow-up presented and acknowledged once"
+        },
+        {
+          "member": "Steve",
+          "name": "Return after two-week break offers a warm restart",
+          "status": "PASS",
+          "observed": {
+            "title": "Pick one thing to restart your week",
+            "tone": "Good to have you back. Start with today.",
+            "simulation": "lastActivity advanced, no claim of real retention"
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Matched medicine request is not saved as everyday coaching",
+          "status": "PASS",
+          "observed": {
+            "status": 422,
+            "response": {
+              "error": "health_concern_use_help",
+              "help": {
+                "title": "Get the right help",
+                "text": "My Timber and Shift AI help with everyday food, movement, routines and difficult weeks, during treatment and after it ends. Treatment decisions belong to your prescriber. For symptoms, side effects or changes to medication, use the contact number or patient portal on your prescription or treatment confirmation. If you cannot find the prescriber for treatment arranged through SHIFT, contact the SHIFT team using the link below to ask for the correct contact details. SHIFT support is not a clinical service or an urgent help route. Nobody is monitoring this chat, and saving a message does not send it to a clinician.",
+                "links": [
+                  {
+                    "label": "Ask SHIFT for your prescriber contact details",
+                    "url": "https://shiftsometimber.co.uk/contact"
+                  },
+                  {
+                    "label": "Find or contact a GP",
+                    "url": "https://www.nhs.uk/nhs-services/gps/"
+                  },
+                  {
+                    "label": "NHS 111 — England",
+                    "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/"
+                  },
+                  {
+                    "label": "Urgent mental-health help — England",
+                    "url": "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+                  },
+                  {
+                    "label": "Emergency help",
+                    "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/"
+                  },
+                  {
+                    "label": "Scotland: NHS 24",
+                    "url": "https://www.nhs24.scot/"
+                  },
+                  {
+                    "label": "Wales: NHS 111 Wales",
+                    "url": "https://111.wales.nhs.uk/"
+                  },
+                  {
+                    "label": "Northern Ireland: health services",
+                    "url": "https://www.nidirect.gov.uk/articles/health-service-useful-numbers"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Plain-language illness concern is interrupted rather than used as coaching context",
+          "status": "PASS",
+          "observed": {
+            "phrase": "I keep being sick and cannot keep water down",
+            "status": 422,
+            "savedAsContext": false,
+            "limitation": "Finite boundary detection is not validated triage; no clinical recommendation was generated."
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Repeated rejection leads to a usable next-choice control",
+          "status": "PASS",
+          "observed": {
+            "sequence": [
+              {
+                "type": "movement-company",
+                "title": "Pick one thing to restart your week"
+              },
+              {
+                "type": "movement-choice",
+                "title": "Save one option you would like to try"
+              },
+              {
+                "type": "movement-cue",
+                "title": "Choose one point in your day"
+              },
+              {
+                "type": "movement-ready",
+                "title": "Put one thing ready"
+              },
+              {
+                "type": "member-choice",
+                "title": "Choose what you want help with next"
+              }
+            ],
+            "lastType": "member-choice",
+            "title": "Choose what you want help with next",
+            "visibleChoices": [
+              {
+                "name": "focus",
+                "options": [
+                  "Food that fits my day",
+                  "Movement that fits my day — try these suggestions again",
+                  "How the week feels"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Next-choice form changes focus and preserves rejected history",
+          "status": "PASS",
+          "observed": {
+            "type": "review-plan",
+            "rejections": [
+              "movement-plan",
+              "movement-company",
+              "movement-choice",
+              "movement-cue",
+              "movement-ready"
+            ]
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Illness submitted in the visible form opens help and leaves earlier context intact",
+          "status": "PASS",
+          "observed": "Help opens; rejected concern is not saved or sent to a clinician."
+        },
+        {
+          "member": "Steve",
+          "name": "Mobile/desktop layout does not overflow and has one coaching section",
+          "status": "PASS",
+          "observed": [
+            {
+              "width": 360,
+              "scroll": 360,
+              "cards": 1
+            },
+            {
+              "width": 390,
+              "scroll": 390,
+              "cards": 1
+            },
+            {
+              "width": 1280,
+              "scroll": 1280,
+              "cards": 1
+            }
+          ]
+        },
+        {
+          "member": "Dan",
+          "name": "Account isolation: no other phantom member facts",
+          "status": "PASS",
+          "observed": "Confirmed goal and week scoped to original authenticated session"
+        },
+        {
+          "member": "Alan",
+          "name": "Account isolation: no other phantom member facts",
+          "status": "PASS",
+          "observed": "Confirmed goal and week scoped to original authenticated session"
+        },
+        {
+          "member": "Steve",
+          "name": "Account isolation: no other phantom member facts",
+          "status": "PASS",
+          "observed": "Confirmed goal and week scoped to original authenticated session"
+        },
+        {
+          "member": "Alan",
+          "name": "Prepared full-page action reaches under-one-second target on slower device/network",
+          "status": "PASS",
+          "observed": {
+            "p95": 927.6000000014901,
+            "samples": [
+              {
+                "timeOrigin": 1790962735085.3,
+                "ready": 877,
+                "visible": true
+              },
+              {
+                "timeOrigin": 1790962736668.3,
+                "ready": 920.8000000044703,
+                "visible": true
+              },
+              {
+                "timeOrigin": 1790962738277.1,
+                "ready": 900.8000000044703,
+                "visible": true
+              },
+              {
+                "timeOrigin": 1790962739846.1,
+                "ready": 895.8000000044703,
+                "visible": true
+              },
+              {
+                "timeOrigin": 1790962742130,
+                "ready": 881.1000000014901,
+                "visible": true
+              },
+              {
+                "timeOrigin": 1790962743711,
+                "ready": 927.6000000014901,
+                "visible": true
+              },
+              {
+                "timeOrigin": 1790962745319.5,
+                "ready": 878.3999999985099,
+                "visible": true
+              }
+            ],
+            "conditions": "360×800 Chromium touch, 4× CPU, 150ms/request, 1.6Mbps down; local original Worker and synthetic SQLite, not production performance"
+          }
+        },
+        {
+          "member": "Steve",
+          "name": "Withdrawal removes personal coaching; regrant does not resurrect it",
+          "status": "PASS",
+          "observed": "After regrant, setup needed; former personalized plan not revived"
+        },
+        {
+          "member": "Alan",
+          "name": "Expired session removes personal coaching",
+          "status": "PASS",
+          "observed": "Coaching section and its personal content hidden; original account flow outside test scope"
+        }
+      ],
+      "timings": [
+        {
+          "timeOrigin": 1790962735085.3,
+          "ready": 877,
+          "visible": true
+        },
+        {
+          "timeOrigin": 1790962736668.3,
+          "ready": 920.8000000044703,
+          "visible": true
+        },
+        {
+          "timeOrigin": 1790962738277.1,
+          "ready": 900.8000000044703,
+          "visible": true
+        },
+        {
+          "timeOrigin": 1790962739846.1,
+          "ready": 895.8000000044703,
+          "visible": true
+        },
+        {
+          "timeOrigin": 1790962742130,
+          "ready": 881.1000000014901,
+          "visible": true
+        },
+        {
+          "timeOrigin": 1790962743711,
+          "ready": 927.6000000014901,
+          "visible": true
+        },
+        {
+          "timeOrigin": 1790962745319.5,
+          "ready": 878.3999999985099,
+          "visible": true
+        }
+      ],
+      "p95Ms": 927.6,
+      "conditions": "360px Chromium touch, 4x CPU, 150ms/request, 1.6Mbps download; local original Worker and synthetic SQLite",
+      "humanFeedback": false,
+      "productionTiming": false
+    },
+    "payloadChange": "Dashboard projects active prepared actions only. Persisted action and outcome history is not deleted or trimmed.",
+    "clinicalBoundary": "Everyday food, movement and routines only. Actual prescriber contact comes from member treatment details; no new monitored referral, treatment recommendation or partner portal.",
+    "deploymentAtAssessment": "Candidate checks; production promotion still requires the existing guarded workflow."
   }
 }

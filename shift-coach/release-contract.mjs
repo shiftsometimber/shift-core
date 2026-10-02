@@ -10,13 +10,16 @@ export const COACH_COMPOSED_BOOK_ADDITIONS=new Set([".github/workflows/book-voic
 export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-preservation.mjs", "member-experience/verify-production-member.mjs", "public-startup-stability.mjs", "release/growth-preflight.mjs"]);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES]);
 export function assertCoachingChangedPath(status,path){
+ if(WATCH_COMPOSED_CHANGES.has(path)||WATCH_COMPOSED_ADDITIONS.has(path)){assert.equal(status,WATCH_COMPOSED_ADDITIONS.has(path)?'A':'M','Unexpected Watch composition status: '+path);return;}
  const added=COACH_ADDITIONS.has(path)||COACH_COMPOSED_BOOK_ADDITIONS.has(path);
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
-// Files outside the later registry-wave proof stay pinned to the pre-composition
-// Watch baseline. The evolving registry-wave payload is bound separately.
-export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json']);
+// Preserve the exact newer, already-merged GLIMR Watch release alongside coaching.
+export const WATCH_CURRENT_BASE='83a17683d70c2364547409b7d64eca8b47310615';
+export const WATCH_COMPOSED_CHANGES=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs']);
+export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json']);
+export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
 export function assertCoachingConfiguration(current,previous){
@@ -37,7 +40,7 @@ export function validateCoachingSource(read,manifest){
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(manifest.applicationCommit,p),'Coaching release source drift: '+p);
- for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(COACH_BASE,p),'Current Watch source drift: '+p);
+ for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(WATCH_CURRENT_BASE,p),'Current Watch source drift: '+p);
  return {recordedMain:COACH_BASE,applicationCommit:manifest.applicationCommit,paths:manifest.pinnedPaths.length};
 }
 export function assertLaunchDecisions(manifest){
@@ -60,7 +63,7 @@ export function assertLaunchDecisions(manifest){
 export function verifyCoachingRelease({requireLaunch=false}={}){
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));
- git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
+ git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',WATCH_CURRENT_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
  const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);
  assertCoachingConfiguration(readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'}));
  if(requireLaunch)assertLaunchDecisions(manifest);
