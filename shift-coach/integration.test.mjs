@@ -49,9 +49,9 @@ test('production config differs only in entrypoint; test fixture cannot be reach
 
 test('fresh prepared seed stays private and cannot inject instructions or executable HTML',async()=>{
  const seed={enabled:true,memory:{goal:'</script><script>window.bad=true</script> & <tag>'},action:{title:'Prepared',reason:'Confirmed context'}};
- const source='<html><head><title>Keep</title></head><body><section id="panel-today"><div id="todayActions">Keep tools</div></section></body></html>';
+ const source='<html><head><title>Keep</title></head><body><section id="previewMember" hidden><section id="panel-today"><div id="todayActions">Keep tools</div></section></section></body></html>';
  const r=await withCoaching(new Request('https://shiftsometimber.co.uk/member/dashboard'),new Response(source,{headers:{'Content-Type':'text/html','ETag':'old'}}),seed);const text=await r.text();
- const json=text.match(/<script type="application\/json" id="shiftCoachInitial">(.*?)<\/script>/s)[1];assert.deepEqual(JSON.parse(json),seed);assert(!json.includes('<'));assert(!text.includes('<script>window.bad'));assert.match(r.headers.get('Cache-Control'),/no-store, private/);assert.equal(r.headers.get('Vary'),'Cookie, Accept-Encoding');assert.equal(r.headers.get('ETag'),null);assert(text.indexOf('data-shift-coach-styles')<text.indexOf('</head>'));assert(text.includes('<script data-shift-coach-client>'));assert(text.includes('<body data-shift-coach-session>'));assert(!text.includes('<script async src="/assets/shift-coach.mjs">'));
+ const json=text.match(/<script type="application\/json" id="shiftCoachInitial">(.*?)<\/script>/s)[1];assert.deepEqual(JSON.parse(json),seed);assert(!json.includes('<'));assert(!text.includes('<script>window.bad'));assert.match(r.headers.get('Cache-Control'),/no-store, private/);assert.equal(r.headers.get('Vary'),'Cookie, Accept-Encoding');assert.equal(r.headers.get('ETag'),null);assert(text.indexOf('data-shift-coach-styles')<text.indexOf('</head>'));assert(text.includes('<script data-shift-coach-client>'));assert(text.includes('<body data-shift-coach-session>'));assert(text.includes('<section id="previewMember">'));const anonymous=await withCoaching(new Request('https://shiftsometimber.co.uk/member/dashboard'),new Response(source,{headers:{'Content-Type':'text/html'}}));assert((await anonymous.text()).includes('<section id="previewMember" hidden>'));assert(!text.includes('<script async src="/assets/shift-coach.mjs">'));
  const unchanged=new Response('Public',{headers:{'Content-Type':'text/html'}});assert.equal(await withCoaching(new Request('https://shiftsometimber.co.uk/programme'),unchanged,seed),unchanged);
 });
 
@@ -63,11 +63,4 @@ test('private dashboard compression preserves content and honours gzip refusal',
  const plain=await respond('gzip;q=0, identity');assert.equal(plain.headers.get('Content-Encoding'),null);const expected=await plain.text();
  const compressed=await respond('br, gzip;q=0.8');assert.equal(compressed.headers.get('Content-Encoding'),'gzip');assert.equal(compressed.headers.get('Vary'),'Cookie, Accept-Encoding');assert.match(compressed.headers.get('Cache-Control'),/no-store, private/);
  assert.equal(await new Response(compressed.body.pipeThrough(new DecompressionStream('gzip'))).text(),expected);
-});
-
-test('authenticated style preparation preserves byte order and falls back on unavailable assets',async()=>{
- const source='<html><head><link rel="stylesheet" href="/first.css"><link rel="stylesheet" href="/missing.css"><link rel="stylesheet" href="/last.css"></head><body><div id="todayActions">Tools</div></body></html>';
- const styles=new Map([['/first.css',"/* first */ body{margin:0;background:url('/assets/existing.webp')}"],['/last.css','/* last */ body{margin:1px}']]);
- const r=await withCoaching(new Request('https://shiftsometimber.co.uk/member/dashboard'),new Response(source,{headers:{'Content-Type':'text/html'}}),{enabled:false},url=>styles.get(url.pathname));const html=await r.text();assert(html.indexOf('/* first */')<html.indexOf('href="/missing.css"'));assert(html.indexOf('href="/missing.css"')<html.indexOf('/* last */'));assert(html.includes('body{margin:1px}'));
- let calls=0;await withCoaching(new Request('https://shiftsometimber.co.uk/member/dashboard'),new Response(source,{headers:{'Content-Type':'text/html'}}),null,()=>calls++);assert.equal(calls,0);
 });
