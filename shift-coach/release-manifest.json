@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "31f78cc3c4f6c0571f7f2e95d718f1328860cc9c",
+  "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -36,6 +36,7 @@
     "release/shift-ai-scope.mjs",
     "release/watch-registry-wave-scope.mjs",
     "scripts/b1-release-scope.mjs",
+    "scripts/verify-public-continuity-live.mjs",
     "shift-coach/README.md",
     "shift-coach/adapt.mjs",
     "shift-coach/browser-proof.mjs",
@@ -50,6 +51,7 @@
     "shift-coach/memory.mjs",
     "shift-coach/night-job.mjs",
     "shift-coach/permissions.mjs",
+    "shift-coach/phantom-members.mjs",
     "shift-coach/planning.mjs",
     "shift-coach/presentation.mjs",
     "shift-coach/privacy-purpose-review.md",
@@ -93,17 +95,35 @@
       "evidence": "Matt at16:20BST defined everyday food/movement/routine coaching during and after treatment and clinical-partner ownership of treatment decisions. Current fixed library, reviewed code and UI implement ordinary adult wellbeing planning without symptom assessment, diagnosis, prescribing, dose/taper/restart recommendations or clinical monitoring. Internal classification inference: non-medical general wellbeing scope, assessed against MHRA standalone software guidance reviewed2October and the purpose record in privacy-purpose-review.md. This is an accountable internal engineering assessment of this bounded function, not MHRA approval or independent legal certification. Future medical-purpose functions or claims require reassessment."
     },
     "independentAcceptance": {
-      "approved": true,
-      "decidedBy": "Independent AI engineering reviewer /root/independent_release_review",
+      "approved": false,
+      "decidedBy": "Review pending for the phantom-member repair delta",
       "decidedAt": "2026-10-02",
-      "evidence": "Final bounded engineering acceptance: hosted run37026722745 head63bbc85c874c4ae093ff1a7ca2432242291376e9; artifact11235640815 digest653b06c50460c09289a1c59e4cb7a45899403570a83b79d0133f8cb6e444d439. Reviewed hosted merge7932f5006912e02ae2a0d1995d6f5b2bd0420438; CI scope check verified every listed payload byte matches candidate. 12 component checks incl draft preservation and fresh/saved/nested Fit verifier; seven full-page checks incl regrant/setup and session expiry; ten compiled Worker checks; zero browser errors. p951913ms remains original target FAIL under disclosed launch exception. Deliberately delayed pre-write GET scenario not run. No clinical, legal, human, controller, complete-v2 or production certification."
+      "evidence": "The previous accepted launch payload is preserved, but the new task strings, illness handling and choices introduced here have not received an independent review. Builder verification is recorded in launch-assessment.json. Previous acceptance receipt: Final bounded engineering acceptance: hosted run37026722745 head63bbc85c874c4ae093ff1a7ca2432242291376e9; artifact11235640815 digest653b06c50460c09289a1c59e4cb7a45899403570a83b79d0133f8cb6e444d439. Reviewed hosted merge7932f5006912e02ae2a0d1995d6f5b2bd0420438; CI scope check verified every listed payload byte matches candidate. 12 component checks incl draft preservation and fresh/saved/nested Fit verifier; seven full-page checks incl regrant/setup and session expiry; ten compiled Worker checks; zero browser errors. p951913ms remains original target FAIL under disclosed launch exception. Deliberately delayed pre-write GET scenario not run. No clinical, legal, human, controller, complete-v2 or production certification."
     },
     "productionLaunch": {
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02: request observed in this session; exact approval time not supplied",
       "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass."
+    },
+    "ownerAcceptance": {
+      "approved": true,
+      "decidedBy": "Matt",
+      "decidedAt": "2026-10-02T17:25:14+01:00",
+      "evidence": "Matt asked “can’t we deploy ?” immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review.",
+      "engineeringVerified": true,
+      "independentReviewCompleted": false,
+      "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
+      "verificationEvidence": "62/62 functional phantom-member checks, 344 local regression checks, 10 compiled Worker/D1 checks and successful hosted coaching/master/route checks for the repair; timing1100.9ms explicitly accepted by Matt. Current composed-source gates and pre/post-deployment checks remain mandatory."
     }
   },
-  "note": "Engineering draft. No approval or human review is inferred from a request to implement. Previous evidence is retained in launch-assessment.json."
+  "note": "Bounded repair proceeds on recorded owner acceptance and engineering verification. The missing new independent review stays explicitly recorded. Existing privacy/purpose decisions, exact source pins, production preservation and rollback checks remain required.",
+  "timingAcceptance": {
+    "approved": true,
+    "decidedBy": "Matt",
+    "decidedAt": "2026-10-02T17:17:48+01:00",
+    "evidence": "User explicitly stated “1.10 is ok” after the final local simulated p95 result was disclosed.",
+    "observedP95Ms": 1100.9,
+    "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing."
+  }
 }

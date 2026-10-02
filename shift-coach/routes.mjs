@@ -8,10 +8,10 @@ import {chooseComponents,weeklyReview,reviewView} from './life-back.mjs';
 import {mode as changeMode} from './continue.mjs';
 import {deleteItem} from './privacy.mjs';
 import {prepareNight} from './night-job.mjs';
-import {helpPanel} from './safety.mjs';
+import {helpPanel,boundary} from './safety.mjs';
 import {pendingFollowup,acknowledgeFollowup} from './followup-view.mjs';
 import {acceptPlan} from './planning.mjs';
-import {stages} from './voice.mjs';
+import {stages,library,focusLabels,focusChoices,treatmentSupport} from './voice.mjs';
 const headers={'Cache-Control':'no-store, private','Vary':'Cookie','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow'};
 const json=(data,status=200)=>Response.json(data,{status,headers});
 const starter=Object.freeze({id:null,title:'Choose one thing to make your week easier',reason:'General starter. Tell Shift AI what matters to you and what your week looks like.',general:true,tone:'Start with one thing you can actually use.',status:'starter'});
@@ -39,7 +39,7 @@ export async function coachingRoutes(request,env){
  try{
   const {revision,state}=await load(env.DB,auth.userId),consent=await activeConsent(env.DB,auth.userId);
   const allowed=usable(state,consent);
-  if(request.method==='GET')return json({revision,enabled:allowed,consent:Number(consent?.granted)===1,action:allowed?readToday(state):starter,memory:allowed?memoryView(state):null,review:allowed?reviewView(state):null,audit:allowed?state.audit:[],followup:allowed?pendingFollowup(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,help:helpPanel,background:env.SHIFT_COACH_OFF!=='true',modelCalls:0});
+  if(request.method==='GET')return json({revision,enabled:allowed,consent:Number(consent?.granted)===1,action:allowed?readToday(state):starter,memory:allowed?memoryView(state):null,choices:allowed?focusChoices(state):[],treatment:allowed?treatmentSupport(state.mode):null,supportRequired:allowed&&state.facts.some(f=>f.confirmed&&['goal','week'].includes(f.key)&&!boundary(f.value).coaching),review:allowed?reviewView(state):null,audit:allowed?state.audit:[],followup:allowed?pendingFollowup(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,help:helpPanel,background:env.SHIFT_COACH_OFF!=='true',modelCalls:0});
   if(request.method==='DELETE'){
    await env.DB.prepare("UPDATE member_state SET preferences=json_set(json_remove(preferences,?),'$.lifeBack.progress.revision',COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)+1),updated_at=? WHERE user_id=?").bind(statePath,new Date().toISOString(),auth.userId).run();
    return json({ok:true,deleted:true});
@@ -56,6 +56,12 @@ export async function coachingRoutes(request,env){
    switch(input.kind){
     case 'setup':result=setup(s,input,at);if(input.components)chooseComponents(s,input.components);if(input.mode)changeMode(s,input.mode);prepareToday(s,at);break;
     case 'fact':result=saveFact(s,input.key,input.value,at);prepareToday(s,at);break;
+    case 'focus':{
+     if(typeof input.restore!=='boolean'||!Object.hasOwn(focusLabels,input.focus))throw Object.assign(Error('invalid_focus_choice'),{status:400});
+     result=saveFact(s,'focus',input.focus,at);
+     if(input.restore){const types=library.filter(a=>a.focus===input.focus).map(a=>a.type);s.rejected=s.rejected.filter(type=>!types.includes(type));s.pausedTypes=s.pausedTypes.filter(type=>!types.includes(type));}
+     s.pendingWant=null;prepareToday(s,at);break;
+    }
     case 'delete-item':result=deleteItem(s,input.id);prepareToday(s,at);break;
     case 'accept':result=accept(s,input.id,at);break;
     case 'decline':result=reject(s,input.id,at);break;

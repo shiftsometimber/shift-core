@@ -19,7 +19,8 @@ export function prepareNight(state,now=Date.now()){
  let action=readToday(state),outcome='no_action';
  if(!action||welcome){action=prepareToday(state,now,welcome?{welcome:true}:null);outcome='prepared_action';}
  if(state.settings.proactive&&state.settings.weeklyDay===clock.weekday){weeklyPlan(state,clock.date,now);outcome='weekly_plan';}
- const run={date:clock.date,at:now,outcome,reason:welcome?'return_after_absence':outcome==='weekly_plan'?'chosen_weekly_day':outcome==='no_action'?'existing_action_still_available':'action_needed',modelCalls:0,patternsEnabled:false,dataUsed:action.dataUsed};
+ if(!action){outcome='support_required';state.queue=[];}
+ const run={date:clock.date,at:now,outcome,reason:outcome==='support_required'?'everyday_boundary':welcome?'return_after_absence':outcome==='weekly_plan'?'chosen_weekly_day':outcome==='no_action'?'existing_action_still_available':'action_needed',modelCalls:0,patternsEnabled:false,dataUsed:action?.dataUsed||[]};
  state.nightRuns.push(run);return run;
 }
 // Keyset paging includes every opted-in account; health values never enter logs.

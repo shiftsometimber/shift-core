@@ -43,9 +43,12 @@ jobs:
         run: |
           node shift-coach/browser-proof.mjs
           node shift-coach/full-page-proof.mjs
+          COACHING_PROOF_DIR="$RUNNER_TEMP/coaching-phantom-proof" node shift-coach/phantom-members.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: shift-coach-integration-${{ github.sha }}
-          path: ${{ runner.temp }}/coaching-proof/
+          path: |
+            ${{ runner.temp }}/coaching-proof/
+            ${{ runner.temp }}/coaching-phantom-proof/
           retention-days: 30
