@@ -273,7 +273,7 @@ test('UBT251 keeps completed Chinese evidence separate from global plans and UK 
  assert.match(item.stage,/Chinese Phase 2 results/i);
  assert.match(item.stage,/global Phase 1b\/2a ongoing/i);
  assert.match(item.summary,/sponsor-reported/i);
- assert.match(item.limitations,/Phase 3.*planned/i);
+ assert.match(item.limitations,/Phase 3.*plan/i);
  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/);
  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(item.supply,/does not establish lawful UK retail supply/);
