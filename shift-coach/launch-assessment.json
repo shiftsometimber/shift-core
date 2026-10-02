@@ -1,0 +1,290 @@
+{
+  "recordedSource": "7a02f42a58a7992ce4728d9fd91808f2654f7cdf",
+  "request": "Matt requested live availability on 2026-10-02; no separate decision invented.",
+  "deployment": {
+    "status": "BLOCKED",
+    "live": false,
+    "productionEntrypointChanged": false,
+    "productionResourcesUsedInTests": 0
+  },
+  "launchDecisions": [
+    {
+      "item": "Privacy assessment including consent purpose and retention",
+      "status": "BLOCKED",
+      "reason": "No completed decision supplied or recorded; retained no-partner amendment requires this before real use."
+    },
+    {
+      "item": "Intended-purpose regulatory classification",
+      "status": "BLOCKED",
+      "reason": "Unresolved under the retained no-partner amendment; no exemption asserted."
+    },
+    {
+      "item": "Independent acceptance and voice/relevance review",
+      "status": "BLOCKED",
+      "reason": "Builder checks are evidence, not an independent review."
+    },
+    {
+      "item": "Complete v2 launch scope",
+      "status": "BLOCKED",
+      "reason": "Calendar actions, device pipeline and several full-work-order criteria are not implemented. A bounded candidate is not a complete-v2 launch."
+    },
+    {
+      "item": "Existing production acceptance",
+      "status": "FAIL",
+      "run": 36974740617,
+      "job": 110736005537,
+      "observed": "Timeout waiting for mobile Fit setup summary in growth-member-live. No cause established."
+    },
+    {
+      "item": "Production deployment integration",
+      "status": "BLOCKED",
+      "reason": "Current production config/workflow are unchanged. No guarded promotion implemented or run."
+    }
+  ],
+  "criterionEvidence": [
+    {
+      "criterion": 1,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Finite input boundary checked; approved clinical routing/sign-off absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 2,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Finite boundary only; signed safeguarding protocol absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 3,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "No staffed hand-off; amended to fixed help. Delivery/rota not invented.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 4,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Atomic decision audit in snapshot; no external autonomous execution.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 5,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Existing health consent fenced; live source switches not implemented.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 6,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "No model calls. Per-member/global model cost ledger not implemented; existing provider cap unchanged.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 7,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Global off tested locally; no external notifications.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 8,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Memory/derived deletion checked in actual local store; final retention decision absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 9,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Account isolation tested locally; no clinician view.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 10,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Separate coaching setup uses two facts; My Journey-only onboarding not implemented.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 11,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Prepared component timing measured on simulated mobile; full production page untested.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 12,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Single action and saved reason checked locally.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 13,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Editable facts invalidate prepared content; full formal memory review pending.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 14,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Accept/decline and optional in-app feedback checked; pause restoration tested.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 15,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Outcome adaptation checked locally with fixed action library.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 16,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Rejected type blocked until restored.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 17,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Corrections cancel dependent in-app actions/plans/queue; live source flow absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 18,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Outcomes change fixed-library choice, no training.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 19,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Only confirmed member facts accepted; no inference-generation flow.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 20,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Paged opt-in idempotent night review checked, no model calls.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 21,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Components and personal assessment checked; no combined score.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 22,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Fixed actions have a component; broad library/clinical validation pending.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 23,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Pattern detection disabled; signed thresholds absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 24,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "In-app follow-up cap and pause checked; weekly plan touch counting across external channels unimplemented.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 25,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "In-app follow-up quiet hours checked; external delivery absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 26,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Reasons and correction changes checked for actions; no proactive external acts.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 27,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Prepared weekly plan accept is local-only; calendar write absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 28,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "No calendar integration.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 29,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "No calendar integration.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 30,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "No calendar integration.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 31,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Weekly review uses recorded helped outcomes; independent wins review pending.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 32,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Weekly review rendered; independent reading-time/relevance test absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 33,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Stage tone implemented; independent voice review absent.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 34,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Elsewhere mode tested locally, no ordering requirement.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 35,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Stopped mode retains history and contains no medicine plan.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 36,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Welcome back and backlog clearing checked locally.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 37,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Device import not implemented in real-account candidate.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 38,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "Device conflicts not implemented in real-account candidate.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    },
+    {
+      "criterion": 39,
+      "formalStatus": "BLOCKED",
+      "builderEvidence": "CI/proof log added; weekly process not yet demonstrated.",
+      "reason": "Independent acceptance not run; any implementation limitations are described above."
+    }
+  ],
+  "paidAI": {
+    "newProvider": false,
+    "modelCallsPerCoachingOperation": 0,
+    "inferenceCostUSD": 0,
+    "existingHostingAndStorageCost": "Not measured; no claim of zero hosting cost."
+  },
+  "scope": {
+    "existingTrackedFilesChanged": 0,
+    "newPaths": "Exact list in scope.mjs; additions for real-account candidate are recorded, not retrospectively represented as the original 43-file test approval."
+  }
+}
