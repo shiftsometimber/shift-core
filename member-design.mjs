@@ -111,7 +111,10 @@ css('main .sf-current-step :is(h3,p,summary)','color:#050505;-webkit-text-fill-c
 css('main #journeyView>.hero','display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:14px;padding:0 0 18px;align-items:center')+
 css('main #journeyView .hero-copy','text-align:left')+
 css('main :is(#scoreCaption,#comparison)','color:#050505;-webkit-text-fill-color:#050505;background:#e7e3da;border-radius:8px;padding:8px;font-size:14px')+
-css('main #journeyView .score-ring','background:#050505;color:#e7e3da')+
+css('main #journeyView .score-block','min-width:0')+
+css('main #journeyView .score-ring','background:#050505;color:#e7e3da;width:100%;max-width:130px;height:auto;aspect-ratio:1')+
+css('main #journeyView .timeline-grid','grid-template-columns:repeat(3,minmax(0,1fr))')+
+css('main #journeyView .timeline-card>div','min-width:0')+
 css('main #journeyView .score-content :is(strong,span)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 css('main .area-number|main .area-number>*','color:#050505;-webkit-text-fill-color:#050505')+
 css('main .member-progress-map','background:#e7e3da;color:#050505;border:0')+
@@ -127,7 +130,7 @@ scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:
 scope+'[data-app-panel="1"]{padding:0!important;background:#707762!important}\n'+
 scope+'[data-app-panel="1"] main{padding:0!important;margin:0!important;min-height:0!important;max-width:none!important}\n'+
 scope+'[data-app-panel="1"] :is(#todayBrand,#appBottomNav,#sst-footer-c,footer,.app-footer-details,#memberUtilities,#myTimberApp){display:none!important}\n'+
-'@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+css('main :is(.shift-progress-intro,.mp-picture-intro)','grid-template-columns:1fr')+'}\n'+
+'@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:minmax(0,1fr) 112px')+css('main #journeyView .timeline-grid','grid-template-columns:minmax(0,1fr)')+css('main #journeyView .timeline-card>div','display:block;min-width:0')+css('main #journeyView .timeline-card .comparison','max-width:none')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+css('main :is(.shift-progress-intro,.mp-picture-intro)','grid-template-columns:1fr')+'}\n'+
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
 scope+' [hidden]:is(#approved-member-hidden,[hidden]):is(#approved-member-hidden-rule,[hidden]){display:none!important}\n'+
@@ -145,7 +148,7 @@ export function memberDesignDocument(html){
 }
 export const memberDesignClient=String.raw`(()=>{
  if(document.body.dataset.memberDesign!=='20261001')return;
- let queued=false;
+ let queued=false,activeTool=null;
  const scrollingFrames=new WeakSet();
  function outerScroll(frame){
   try{
@@ -164,6 +167,7 @@ export const memberDesignClient=String.raw`(()=>{
    if(layout&&focus&&focus.previousElementSibling!==layout)layout.after(focus);
   }
   const tool=document.body.dataset.appTool,hash=location.hash||'#today';
+  if(tool&&tool!==activeTool){const previous=activeTool;activeTool=tool;if(previous!==null)window.scrollTo({top:0,left:0,behavior:'instant'});}
   if(tool&&tool!=='today')outerScroll(document.querySelector('#appTool-'+tool+' iframe'));
   document.querySelectorAll('#appBottomNav a').forEach(a=>{
    const u=new URL(a.href),name=u.pathname.split('/').pop();
