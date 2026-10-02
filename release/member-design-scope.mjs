@@ -9,8 +9,8 @@ export const MEMBER_DESIGN_PATHS=['member-design.mjs','app-layout-live.mjs','tes
 // 2 October screenshot repair. Preserve the original design proof and require
 // the exact additional returning-member layout/scroll payload and browser receipt.
 export const MEMBER_LAYOUT_BASE='c389564d68cbcfe88af03d01d90898688e076fcc';
-export const MEMBER_LAYOUT_CANDIDATE='e675872f52089f0e81b9e7f99507f9763285d26f';
-export const MEMBER_LAYOUT_RUN=36984571027;
+export const MEMBER_LAYOUT_CANDIDATE='72f0796f7de9ccfc42f46ec203a6c00b04d17aba';
+export const MEMBER_LAYOUT_RUN=36987513488;
 export const MEMBER_LAYOUT_PATHS=['member-design.mjs','preview/member-panel-layout/verify.cjs','.github/workflows/member-panel-layout-preview.yml'];
 export function validateMemberLayoutPayload(read,changed){
  assert.deepEqual([...changed].sort(),[...MEMBER_LAYOUT_PATHS].sort(),'Member layout changed outside the exact screenshot repair');

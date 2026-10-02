@@ -16,65 +16,75 @@ export const NICE_TIMEOUT_PATHS=['medicines-watch/README.md','medicines-watch/mo
 export const WATCH_EXPANSION_COMMIT='d1634452499a0c480190bbed7947368260a6acb6';
 export const WATCH_EXPANSION_PATHS=["medicines-watch/reviews/2026-09-30-berobenatide-vesper6.json", "medicines-watch/reviews/2026-10-01-eloratzp-phase2b.json", "medicines-watch/reviews/2026-10-01-kainetic-enrolment.json", "medicines-watch/reviews/2026-10-01-macupatide-discovery.json", "medicines-watch/reviews/2026-10-01-mounjaro-nhs-renewal.json", "medicines-watch/reviews/2026-09-30-bi3034701-discovery.json", "medicines-watch/reviews/2026-09-30-authorised-bi3034701.json", "medicines-watch/source-review.test.mjs", "medicines-watch/reviews/2026-09-30-globenewswire-access-repair.json", "medicines-watch/reviews/2026-09-30-overdue-source-renewal.json", "medicines-watch/reviews/2026-09-30-source-warning-repairs.json", "medicines-watch/reviews/2026-09-30-authorised-continuing-discovery.json", "medicines-watch/reviews/2026-09-30-hrs1596-discovery.json", "medicines-watch/reviews/2026-09-30-emugrobart-petrelintide-discovery.json", "medicines-watch/reviews/2026-09-30-env308-discovery.json", "medicines-watch/README.md", "medicines-watch/data.mjs", "medicines-watch/discovery.mjs", "medicines-watch/industry-page.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/knowledge.mjs", "medicines-watch/knowledge.test.mjs", "medicines-watch/page.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-09-29-industry-expansion.json", "medicines-watch/reviews/2026-09-30-discovery-proposals.json", "medicines-watch/reviews/2026-09-30-discovery-review.md", "medicines-watch/reviews/2026-09-30-reviewed-expansion.json", "medicines-watch/verify-live-sources.test.mjs", "medicines-watch/verify-live.mjs", "medicines-watch/reviews/2026-09-30-abbv295-discovery.json", "medicines-watch/reviews/2026-09-30-asc36-discovery.json", "medicines-watch/reviews/2026-09-30-eloratzp-na931-discovery.json", "medicines-watch/reviews/2026-10-01-ascletis-injectable-discovery.json", "medicines-watch/reviews/2026-10-01-authorised-evening-updates.json", "medicines-watch/reviews/2026-10-01-cagrisema-easd.json", "medicines-watch/reviews/2026-10-01-embraze-fetch-observation.json", "medicines-watch/reviews/2026-10-01-evening-easd-discovery.json", "medicines-watch/reviews/2026-10-01-monitor-discovery-pass.json", "medicines-watch/reviews/2026-10-01-non-incretin-discovery.json", "medicines-watch/reviews/2026-10-01-publication-verification.json"];
 export function validateWatchExpansion(read){
- for(const path of WATCH_EXPANSION_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT,path),'Watch expansion source drift: '+path);
+ for(const path of WATCH_EXPANSION_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_EXPANSION_COMMIT),path),'Watch expansion source drift: '+path);
 }
 // Standing owner authorisation published the exact broader-discovery batch in PR #898.
 // Bind the evidence and wording to that merged commit without treating it as clinical approval.
 export const WATCH_BROADER_COMMIT='24f869d714702a0dc4f75849f22700eb6fbc078e';
 export const WATCH_BROADER_PATHS=['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json'];
 export function validateWatchBroader(read){
- for(const path of WATCH_BROADER_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_COMMIT,path),'Watch broader-discovery source drift: '+path);
+ for(const path of WATCH_BROADER_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_BROADER_COMMIT),path),'Watch broader-discovery source drift: '+path);
 }
 // Standing owner authorisation permits this exact evidence-backed factual correction.
 // Bind the later SYNT-101 source review without treating sponsor reporting as clinical approval.
 export const WATCH_SYNT101_COMMIT='e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7';
 export const WATCH_SYNT101_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-01-synt101-mad-correction.json'];
 export function validateWatchSynt101(read){
- for(const path of WATCH_SYNT101_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_COMMIT,path),'Watch SYNT-101 source drift: '+path);
+ for(const path of WATCH_SYNT101_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_SYNT101_COMMIT),path),'Watch SYNT-101 source drift: '+path);
 }
 // Standing owner authorisation permits the exact evidence-backed factual additions merged in PR #907.
 // Bind the international authorisation and early-stage wording without inferring UK approval or clinical approval.
 export const WATCH_INTERNATIONAL_COMMIT='874a3b1bc3013de9442dbedbf1398c275fc13f6c';
 export const WATCH_INTERNATIONAL_PATHS=['medicines-watch/README.md','medicines-watch/industry-page.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-international-omissions.json'];
 export function validateWatchInternational(read){
- for(const path of WATCH_INTERNATIONAL_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_COMMIT,path),'Watch international-omissions source drift: '+path);
+ for(const path of WATCH_INTERNATIONAL_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_INTERNATIONAL_COMMIT),path),'Watch international-omissions source drift: '+path);
 }
 // Standing owner authorisation permits the exact evidence-backed factual additions merged in PR #912.
 // Bind the latest reviewed research-stage wording without inferring UK authorisation, NHS access, supply or clinical approval.
 export const WATCH_EXPANDED_COMMIT='cd65000cd120d6de8496b7edbea27e333d5042a3';
 export const WATCH_EXPANDED_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-expanded-discovery.json'];
 export function validateWatchExpanded(read){
- for(const path of WATCH_EXPANDED_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_COMMIT,path),'Watch expanded-discovery source drift: '+path);
+ for(const path of WATCH_EXPANDED_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_EXPANDED_COMMIT),path),'Watch expanded-discovery source drift: '+path);
 }
 // Standing owner editorial authorisation permits the exact evidence-backed UBT251 addition merged in PR #920.
 // Bind its research-stage wording without inferring UK authorisation, NHS access, supply, sale or clinical approval.
 export const WATCH_UBT251_COMMIT='3414d2340f92275daa46948fb9f73d7fad26e36a';
 export const WATCH_UBT251_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-ubt251.json'];
 export function validateWatchUbt251(read){
- for(const path of WATCH_UBT251_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_COMMIT,path),'Watch UBT251 source drift: '+path);
+ for(const path of WATCH_UBT251_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_UBT251_COMMIT),path),'Watch UBT251 source drift: '+path);
 }
 // Standing owner editorial authorisation permits the exact evidence-backed SGB-7342 addition merged in PR #926.
 // Bind the dated Phase 1 wording and preclinical limits without inferring UK authorisation, access, supply or clinical approval.
 export const WATCH_SGB7342_COMMIT='b46a594bb884105a51797f66adbb7653c7979e3f';
 export const WATCH_SGB7342_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-sgb7342.json'];
 export function validateWatchSgb7342(read){
- for(const path of WATCH_SGB7342_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_COMMIT,path),'Watch SGB-7342 source drift: '+path);
+ for(const path of WATCH_SGB7342_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_SGB7342_COMMIT),path),'Watch SGB-7342 source drift: '+path);
 }
 // Standing owner editorial authorisation permits the exact evidence-backed additions merged in PR #929.
 // Bind the reviewed research-stage wording without inferring UK authorisation, NHS access, supply, sale or clinical approval.
 export const WATCH_ABBV_ASC30_COMMIT='2e7d9aecaf30ee266311102c87273cb1d9f19d82';
 export const WATCH_ABBV_ASC30_PATHS=['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-abbv-asc30-tern-bimagrumab.json'];
 export function validateWatchAbbVAsc30(read){
- for(const path of WATCH_ABBV_ASC30_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_COMMIT,path),'Watch ABBV/ASC30/TERN/bimagrumab source drift: '+path);
+ for(const path of WATCH_ABBV_ASC30_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_ABBV_ASC30_COMMIT),path),'Watch ABBV/ASC30/TERN/bimagrumab source drift: '+path);
 }
 // Owner requested the four source warnings be fixed. Bind PR #933 exactly; no clinical approval inferred.
 export const WATCH_SOURCE_REPAIR_COMMIT='f27a1c8b574b30c435a0eae6c367d0b32aa39fb4';
 export const WATCH_SOURCE_REPAIR_PATHS=["medicines-watch/README.md","medicines-watch/industry.mjs","medicines-watch/monitor.mjs","medicines-watch/monitor.test.mjs","medicines-watch/reviews/2026-10-02-source-monitor-repairs.json"];
 export function validateWatchSourceRepair(read){
- for(const path of WATCH_SOURCE_REPAIR_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_COMMIT,path),'Watch source-repair drift: '+path);
+ for(const path of WATCH_SOURCE_REPAIR_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_SOURCE_REPAIR_COMMIT),path),'Watch source-repair drift: '+path);
+}
+// Standing editorial authorisation permits the exact evidence-backed registry additions merged in PR #936.
+// Bind registry facts and explicit limitations without inferring UK authorisation, NHS access, supply, sale or clinical approval.
+export const WATCH_REGISTRY_COMMIT='42525e4c5e93076b1cfc57ce415b248eac82ee63';
+export const WATCH_REGISTRY_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-registry-omissions.json'];
+export function validateWatchRegistry(read){
+ for(const path of WATCH_REGISTRY_PATHS)assert.equal(read('HEAD',path),read(WATCH_REGISTRY_COMMIT,path),'Watch registry-omissions drift: '+path);
+}
+function currentWatchRef(path,fallback){
+ return WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
 }
 export function validateNiceTimeout(read){
- for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(WATCH_SOURCE_REPAIR_COMMIT,path),'NICE timeout source drift: '+path);
+ for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,NICE_TIMEOUT_COMMIT),path),'NICE timeout source drift: '+path);
 }
 // Owner authorised the exact NICE timetable review in PR #850 for release on 29 September 2026.
 export const MEDICINES_REVIEW_COMMIT='6e62b63b17c16a416e73e1e8589f0366437a5c11';
@@ -140,11 +150,13 @@ export function verifyScope(){
   validateWatchAbbVAsc30((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_SOURCE_REPAIR_COMMIT,'HEAD');
   validateWatchSourceRepair((ref,path)=>git('rev-parse',ref+':'+path));
+  git('merge-base','--is-ancestor',WATCH_REGISTRY_COMMIT,'HEAD');
+  validateWatchRegistry((ref,path)=>git('rev-parse',ref+':'+path));
   validateGrowthSource();
   verifyHeadingRepair();
   verifyHomeSpeed();
   assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
-  const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)&&!WATCH_REGISTRY_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
