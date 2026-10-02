@@ -51,6 +51,7 @@
     "shift-coach/follow-up.mjs",
     "shift-coach/followup-view.mjs",
     "shift-coach/full-page-proof.mjs",
+    "shift-coach/home-font-prior-subset.mjs",
     "shift-coach/home-font-subset.mjs",
     "shift-coach/integration.test.mjs",
     "shift-coach/launch-assessment.json",
