@@ -1,0 +1,1101 @@
+{
+  "reviewed": "2026-10-02",
+  "articles": [
+    {
+      "slug": "are-carbs-bad",
+      "intro": "No. Bread, rice, potatoes and pasta can fit into weight management. Portions and the whole eating pattern matter more than banning carbohydrates.",
+      "sections": [
+        [
+          "Choose what works on your plate",
+          "Higher-fibre versions can be useful, but they are not a licence for unlimited portions. Notice what comes with the carbohydrate: a baked potato and a plate of chips are different meals. A medically prescribed diet needs individual advice."
+        ],
+        [
+          "What you can do next",
+          "Try a normal portion of rice, potatoes or bread alongside vegetables and a protein food. Change one meal you repeat rather than removing an entire food group."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: starchy foods and carbohydrates",
+          "https://www.nhs.uk/live-well/eat-well/food-types/starchy-foods-and-carbohydrates/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/nutrition-guide"
+      ]
+    },
+    {
+      "slug": "is-fat-bad",
+      "intro": "No. Your diet needs some fat. Fat is energy dense, so both the kind and the amount deserve attention.",
+      "sections": [
+        [
+          "A useful swap",
+          "Replacing some saturated fat with unsaturated fat is different from simply adding oil, nuts or avocado to everything. Foods described as healthy still contribute energy. A low-fat label also says little about the rest of a product."
+        ],
+        [
+          "What you can do next",
+          "Compare two foods you regularly buy. Look at saturated fat and the portion you actually eat, then make a manageable swap."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: facts about fat",
+          "https://www.nhs.uk/live-well/eat-well/food-types/different-fats-nutrition/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/nutrition-guide"
+      ]
+    },
+    {
+      "slug": "need-breakfast-weight-loss",
+      "intro": "Breakfast is not compulsory for weight loss. The useful question is whether your eating pattern leaves you nourished and able to manage the rest of your day.",
+      "sections": [
+        [
+          "Make the decision from your day",
+          "If skipping breakfast means you arrive ravenous at lunch, try an easy breakfast. If eating early feels uncomfortable, plan a later meal instead. Avoid using a missed meal as punishment. Diabetes medicines or another medical condition may make meal timing important."
+        ],
+        [
+          "What you can do next",
+          "Compare a few ordinary workdays. Keep the breakfast or later-meal option that helps you eat regularly without a scramble. Ask your clinician about timing if treatment affects it."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/nutrition-guide"
+      ]
+    },
+    {
+      "slug": "should-men-count-calories",
+      "intro": "Counting calories is optional. It can help some people understand portions, but a useful food plan does not require logging every mouthful.",
+      "sections": [
+        [
+          "Choose a method you can live with",
+          "A repeatable shopping list, regular meals and sensible portions may be easier than an app. Calorie estimates are imperfect. If tracking becomes distressing, rigid or tied to loss-of-control eating, seek appropriate support instead of tightening the target."
+        ],
+        [
+          "What you can do next",
+          "Choose one approach for an ordinary week: light-touch tracking or a few consistent meals. Judge it by usefulness and how you feel, not just how precisely you recorded it."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/nutrition-guide"
+      ]
+    },
+    {
+      "slug": "takeaways-and-weight-loss",
+      "intro": "Yes. A takeaway can fit into a weight-management plan. Frequency, portion size, drinks and extras all affect the overall meal.",
+      "sections": [
+        [
+          "Decide before you order",
+          "Choose the part you most want and question the automatic extras. A main meal with a suitable side may suit you better than a bundle you would not otherwise buy. A single takeaway does not need a compensatory fast the next day."
+        ],
+        [
+          "What you can do next",
+          "Pick your order before you are very hungry. Keep the next meal ordinary and return to your usual routine."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/healthy-takeaways-men"
+      ]
+    },
+    {
+      "slug": "bbq-and-weight-loss",
+      "intro": "Yes. You can enjoy a barbecue while working on your weight. Choose a satisfying plate and pay attention to food safety.",
+      "sections": [
+        [
+          "Build a meal, not a ban",
+          "Try a main protein food, vegetables or salad, and the bread or potatoes you enjoy. Sauces, grazing and drinks can turn a meal into much more than you intended. Keep raw and cooked foods separate and follow safe cooking instructions."
+        ],
+        [
+          "What you can do next",
+          "Decide what you want on your plate, then sit down and enjoy it. Use the barbecue guide for meal ideas and the linked food-safety advice."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/healthy-bbq-men"
+      ]
+    },
+    {
+      "slug": "how-much-protein-men",
+      "intro": "There is no single protein target that fits every man. Body size, activity, age and medical needs can change what is appropriate.",
+      "sections": [
+        [
+          "Start with ordinary food",
+          "Include protein foods across meals, such as beans, eggs, fish, dairy or suitable alternatives. A calculator gives a planning estimate, not a clinical prescription. Kidney disease, poor intake or other nutritional concerns need individual advice. Supplements are not automatically necessary."
+        ],
+        [
+          "What you can do next",
+          "Look at your usual breakfast, lunch and dinner. Find the meal that is missing a practical protein option. Ask a dietitian if you need a personal target."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/tools/protein"
+      ]
+    },
+    {
+      "slug": "does-alcohol-cause-belly-fat",
+      "intro": "Alcohol contributes energy, but it does not explain every change around your waist. Drinking can also affect the food choices you make around it.",
+      "sections": [
+        [
+          "Count the whole occasion",
+          "Mixers, late food and the next-day routine can matter as well as the drink. A smaller waist is not the only reason to review alcohol. If you may be dependent, get medical advice before suddenly stopping."
+        ],
+        [
+          "What you can do next",
+          "Record an ordinary week honestly, including serving sizes. Choose one realistic change, such as fewer drinking occasions or an alcohol-free option you enjoy."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: calories in alcohol",
+          "https://www.nhs.uk/live-well/alcohol-advice/calories-in-alcohol/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/weight-and-blood-pressure-men"
+      ]
+    },
+    {
+      "slug": "can-stress-cause-weight-gain",
+      "intro": "Stress can change eating, sleep, drinking and activity. It can contribute to weight change, but it is not a diagnosis or a complete explanation.",
+      "sections": [
+        [
+          "Notice the pattern without blaming yourself",
+          "Perhaps lunch disappears during busy shifts, food becomes comfort at night, or sleep is repeatedly interrupted. Those are useful clues. Unexplained weight change or persistent symptoms deserve a health assessment rather than an online cortisol label."
+        ],
+        [
+          "What you can do next",
+          "Identify the hardest part of the day and make one practical adjustment. Speak to a GP if stress is hard to cope with or self-help is not helping."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: help with stress",
+          "https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/stress/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/mental-health"
+      ]
+    },
+    {
+      "slug": "does-sleep-affect-weight",
+      "intro": "Sleep can affect how manageable food, movement and daily routines feel. Improving sleep is worthwhile even when the scale does not immediately change.",
+      "sections": [
+        [
+          "Treat the sleep problem itself",
+          "Do not assume tiredness is just your weight or a lack of willpower. Persistent insomnia, loud snoring with breathing pauses, or marked daytime sleepiness can need assessment. A sleep routine is a starting point, not a substitute for that assessment."
+        ],
+        [
+          "What you can do next",
+          "Choose a consistent waking time and a workable wind-down. If sleep problems persist or affect daily life, speak to a GP."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: insomnia",
+          "https://www.nhs.uk/conditions/insomnia/"
+        ],
+        [
+          "NHS: sleep apnoea",
+          "https://www.nhs.uk/conditions/sleep-apnoea/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/sleep-stress-mindset-emotional-eating-maintenance"
+      ]
+    },
+    {
+      "slug": "can-walking-help-weight-loss",
+      "intro": "Yes. Walking is a practical way to increase activity, though the amount of weight change varies. It can benefit your routine and fitness even without rapid weight loss.",
+      "sections": [
+        [
+          "Start from your current ability",
+          "You do not need to begin with a step target copied from somebody else. A short walk that you repeat can be more useful than an exhausting first outing. Increase time or pace gradually and get advice if symptoms or a condition make activity difficult."
+        ],
+        [
+          "What you can do next",
+          "Choose a short, familiar route and a time you can repeat. Use how comfortable it feels to decide whether to add a little more."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: adult physical activity",
+          "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/beginner-walking-plan-men"
+      ]
+    },
+    {
+      "slug": "need-gym-to-lose-weight",
+      "intro": "No. A gym is one option. Walking, home exercise and everyday movement can be part of a useful plan.",
+      "sections": [
+        [
+          "Make access easy",
+          "Equipment and memberships do not make a routine automatically sustainable. Choose something that fits your time, budget and ability. Strength work can be done at home with suitable exercises; it need not start with heavy weights."
+        ],
+        [
+          "What you can do next",
+          "Pick one convenient movement option and put it into a normal day. If you want strength work, start with the beginner home guide."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: adult physical activity",
+          "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/home-strength-men"
+      ]
+    },
+    {
+      "slug": "daily-weight-fluctuation",
+      "intro": "A daily scale change is not a direct measurement of fat gained or lost. Water, food and bowel contents, timing and other factors can move the number.",
+      "sections": [
+        [
+          "Compare like with like",
+          "Use similar weighing conditions and look at several readings over time. A single number is poor evidence for changing everything. Unexpected rapid change, swelling or other symptoms should be discussed with a clinician."
+        ],
+        [
+          "What you can do next",
+          "Keep the next meal and activity ordinary. If you track weight, record the reading without turning it into a verdict on the day."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/member/progress"
+      ]
+    },
+    {
+      "slug": "how-often-weigh",
+      "intro": "Choose a frequency that gives you useful information without making weight the centre of every day. There is no compulsory weighing schedule.",
+      "sections": [
+        [
+          "The conditions matter too",
+          "Using the same scales at a similar time helps comparison. Repeated readings are more informative than one isolated result. If weighing worsens anxiety, distress or eating difficulties, another way to monitor progress may be more appropriate."
+        ],
+        [
+          "What you can do next",
+          "Agree a manageable schedule for yourself or with your clinician. Also notice strength, walking comfort, sleep and other goals that matter to you."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/member/progress"
+      ]
+    },
+    {
+      "slug": "how-quickly-should-men-lose-weight",
+      "intro": "There is no personal weekly rate this page can prescribe. Starting weight, health, food intake and treatment all affect what is appropriate.",
+      "sections": [
+        [
+          "Avoid a deadline that drives poor intake",
+          "Faster change is not automatically better. A target should leave room for nutrition, strength and daily functioning. Specialist diets and prescribed treatment need their own monitoring. Unexpected or unintentional loss needs assessment."
+        ],
+        [
+          "What you can do next",
+          "Choose sustainable changes and discuss your personal target with a qualified professional if health or treatment is involved. Review the trend rather than forcing a weekly result."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/mens-weight-management-guide"
+      ]
+    },
+    {
+      "slug": "what-is-weight-loss-plateau",
+      "intro": "A plateau is a period when the weight trend changes little. A few flat readings do not establish that a plan has stopped working.",
+      "sections": [
+        [
+          "Review before reacting",
+          "Check the weighing conditions and the pattern over several weeks. Then look at meals, drinks, activity, sleep and how realistic the routine has become. If you take a medicine, keep dose and treatment changes with your prescriber."
+        ],
+        [
+          "What you can do next",
+          "Write down what has changed since the plan began. Choose one useful adjustment or take that record to a treatment review; avoid a crash-diet response."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/wegovy-not-working"
+      ]
+    },
+    {
+      "slug": "is-bmi-accurate-for-men",
+      "intro": "BMI is a screening measure, not a full assessment of your health. It uses height and weight and cannot distinguish muscle from fat.",
+      "sections": [
+        [
+          "Put the number in context",
+          "Waist measurement, ethnicity, age, medical history and other findings can change its interpretation. Different BMI thresholds apply to some ethnic groups. A BMI result alone does not establish medicine eligibility or tell you whether symptoms are harmless."
+        ],
+        [
+          "What you can do next",
+          "Measure height and weight carefully. If the result concerns you, discuss it alongside other health information rather than treating the category as your identity."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/bmi-men"
+      ]
+    },
+    {
+      "slug": "healthy-waist-height-ratio",
+      "intro": "For adults with BMI below 35, NHS guidance uses waist-to-height ratio as additional context and advises keeping the waist below half the height.",
+      "sections": [
+        [
+          "It is a screening check",
+          "Use the same units for waist and height, then divide waist by height. Measurement technique matters. The ratio does not diagnose diabetes, heart disease or treatment suitability, and it cannot replace assessment of symptoms."
+        ],
+        [
+          "What you can do next",
+          "Follow the measurement instructions in the tool. Take a concern or a changing trend to a healthcare professional for context."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/tools/waist-height"
+      ]
+    },
+    {
+      "slug": "does-belly-fat-increase-risk",
+      "intro": "Carrying more fat around the waist can be associated with greater cardiometabolic risk. A waist measurement is a clue, not a diagnosis.",
+      "sections": [
+        [
+          "Look beyond appearance",
+          "Blood pressure, blood tests, family history and other findings can matter. You cannot identify visceral fat precisely from a photograph or decide that someone is healthy by their shape. Waist-to-height ratio can add context to BMI in appropriate adults."
+        ],
+        [
+          "What you can do next",
+          "Measure consistently if that is useful to you. Ask about relevant health checks instead of choosing treatment from waist size alone."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/health-mot"
+      ]
+    },
+    {
+      "slug": "why-do-men-get-belly-fat",
+      "intro": "Where people store fat varies. Age, inherited factors and the balance between intake and activity can contribute; there is no single explanation for every man.",
+      "sections": [
+        [
+          "Skip the instant diagnosis",
+          "A changing waist is not proof of a hormone problem. Nor can a particular exercise promise to remove fat only from the belly. It is more useful to review the routine and investigate symptoms than buy a targeted fix."
+        ],
+        [
+          "What you can do next",
+          "Choose one change you can sustain and review the trend. Speak to a GP about unexplained change or symptoms that concern you."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/dad-bod-nobody-talks-about"
+      ]
+    },
+    {
+      "slug": "weight-loss-lower-bp",
+      "intro": "Losing excess weight can contribute to lower blood pressure for some people. It does not guarantee a normal reading or replace prescribed treatment.",
+      "sections": [
+        [
+          "Measure the outcome",
+          "Blood pressure has several influences, and a diagnosis depends on proper measurement and assessment. Do not reduce or stop blood-pressure medicine because your weight has changed. Your clinician can review readings and symptoms together."
+        ],
+        [
+          "What you can do next",
+          "Arrange a blood-pressure check or follow your agreed home-monitoring plan. Take the readings to a review rather than judging treatment from the scales."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: high blood pressure",
+          "https://www.nhs.uk/conditions/high-blood-pressure-hypertension/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/weight-and-blood-pressure-men"
+      ]
+    },
+    {
+      "slug": "weight-loss-cholesterol",
+      "intro": "Changes in weight, food and activity may improve cholesterol for some people. The result needs to be checked with a blood test.",
+      "sections": [
+        [
+          "Weight is not the whole explanation",
+          "Inherited conditions and other health factors can affect cholesterol. Reducing saturated fat may be useful, but diet changes do not make prescribed medicine automatically unnecessary. A smaller waist cannot tell you your cholesterol level."
+        ],
+        [
+          "What you can do next",
+          "Ask when your cholesterol should next be checked and what the different results mean for you. Keep medication changes with the clinician managing them."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: high cholesterol",
+          "https://www.nhs.uk/conditions/high-cholesterol/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/cholesterol-men"
+      ]
+    },
+    {
+      "slug": "weight-loss-diabetes-risk",
+      "intro": "For people at increased risk of type 2 diabetes, suitable lifestyle changes and weight management can reduce risk. They do not provide a guarantee.",
+      "sections": [
+        [
+          "First find out your situation",
+          "A risk questionnaire cannot confirm whether you have diabetes. Blood testing and clinical assessment may be needed. Prevention is also different from managing established diabetes, where treatment and monitoring need an agreed plan."
+        ],
+        [
+          "What you can do next",
+          "Ask your GP about assessment and local prevention support. The NHS England programme is one route for eligible people in England; arrangements vary across the UK."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS England: diabetes prevention",
+          "https://www.england.nhs.uk/diabetes/diabetes-prevention/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/prediabetes-men"
+      ]
+    },
+    {
+      "slug": "weight-knee-pain",
+      "intro": "Greater body weight can add load to the knees, but new knee pain should not automatically be blamed on weight. Injuries and other conditions can also cause it.",
+      "sections": [
+        [
+          "Know when to get assessed",
+          "Persistent pain needs appropriate review. Seek urgent advice if you cannot bear weight, the knee is badly swollen or changed in shape, or you have a hot red knee with fever. Do not push through these symptoms to meet an exercise target."
+        ],
+        [
+          "What you can do next",
+          "Choose movement that is comfortable and get advice about persistent symptoms. Use the NHS knee-pain page for current urgent-care guidance."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: knee pain",
+          "https://www.nhs.uk/symptoms/knee-pain/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/beginner-walking-plan-men"
+      ]
+    },
+    {
+      "slug": "weight-sleep-apnoea",
+      "intro": "Excess weight is one risk factor for obstructive sleep apnoea, but people at different weights can have it. Weight loss is not a substitute for diagnosis or prescribed treatment.",
+      "sections": [
+        [
+          "Act on breathing symptoms",
+          "Breathing pauses, gasping during sleep and marked daytime sleepiness deserve GP assessment. If you have CPAP or another treatment, keep using it as advised. Do not assume it is no longer needed after losing weight."
+        ],
+        [
+          "What you can do next",
+          "Record symptoms and ask anyone who notices breathing pauses to describe them. Arrange assessment; do not drive when sleepy."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: sleep apnoea",
+          "https://www.nhs.uk/conditions/sleep-apnoea/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/health-mot"
+      ]
+    },
+    {
+      "slug": "weight-testosterone",
+      "intro": "You cannot predict or diagnose a testosterone problem from weight alone. Weight management may be part of a wider health plan, but it is not a guaranteed hormone treatment.",
+      "sections": [
+        [
+          "Get symptoms assessed",
+          "Low energy, low libido and erectile difficulties have several possible causes. The NHS describes diagnosis using symptoms and appropriate blood tests. Buying testosterone or a supplement before assessment can miss the underlying problem."
+        ],
+        [
+          "What you can do next",
+          "Explain the symptoms and their timing to your GP. Ask what needs investigation rather than assuming a hormone number will fix everything."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: symptoms and testosterone assessment",
+          "https://www.nhs.uk/conditions/male-menopause/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/heart-health-men"
+      ]
+    },
+    {
+      "slug": "is-20-percent-realistic",
+      "intro": "A 20% reduction is not realistic or appropriate for everyone. It is a large milestone, not the definition of successful weight management.",
+      "sections": [
+        [
+          "Trial averages are not your target",
+          "A medicine study describes a particular group under particular conditions. It cannot promise your result. Smaller changes and better health measures can be meaningful, and maintaining weight can also be an appropriate goal."
+        ],
+        [
+          "What you can do next",
+          "Choose goals that reflect your health and circumstances. Discuss a personal weight target with your clinician where treatment is involved."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/faq/what-is-20-percent-club"
+      ]
+    },
+    {
+      "slug": "what-is-20-percent-club",
+      "intro": "The 20% Club describes a milestone of losing one fifth of starting body weight. It is not a treatment target everybody needs to reach.",
+      "sections": [
+        [
+          "Understand the arithmetic",
+          "For a starting weight of 100 kg, 20% is 20 kg. That calculation says nothing by itself about the safest route, the time needed or whether the target suits you. Progress and health are broader than membership of a named milestone."
+        ],
+        [
+          "What you can do next",
+          "Use the percentage calculator for context. Pick a suitable goal without making a badge the reason to over-restrict food or change a prescription."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: overweight and obesity",
+          "https://www.nhs.uk/conditions/overweight-and-obesity/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/my-target"
+      ]
+    },
+    {
+      "slug": "can-men-take-mounjaro",
+      "intro": "Yes. Mounjaro can be prescribed to eligible adult men when a qualified prescriber finds it appropriate. Being male does not by itself qualify or disqualify you.",
+      "sections": [
+        [
+          "An assessment is still needed",
+          "Tirzepatide has specific licensed uses, suitability criteria, warnings and interactions. Diabetes treatment and weight-management prescribing are different questions. Eligibility, supply and follow-up must be assessed; the medicine should not be borrowed or bought from an unverified seller."
+        ],
+        [
+          "What you can do next",
+          "Discuss your health history and current medicines with a qualified prescriber. SHIFT does not currently prescribe or supply Mounjaro."
+        ]
+      ],
+      "sources": [
+        [
+          "Mounjaro: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/15484/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/glp1-guide"
+      ]
+    },
+    {
+      "slug": "can-men-take-wegovy",
+      "intro": "Yes. Eligible adult men can be prescribed Wegovy after appropriate assessment. It is not a treatment reserved for women.",
+      "sections": [
+        [
+          "The product and route matter",
+          "Semaglutide products and formulations have distinct prescribing instructions. A BMI calculator or online article cannot decide suitability, choose a dose or authorise a switch. Availability through a service is separate from a medicine having UK authorisation."
+        ],
+        [
+          "What you can do next",
+          "Ask the prescriber which formulation and care pathway they are discussing. SHIFT does not currently prescribe or supply Wegovy."
+        ]
+      ],
+      "sources": [
+        [
+          "Wegovy injection: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/13800/smpc"
+        ],
+        [
+          "Ozempic: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/9749/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/glp1-guide"
+      ]
+    },
+    {
+      "slug": "is-glp1-only-for-women",
+      "intro": "No. GLP-1 and related weight-management medicines can be prescribed to eligible adult men. Suitability depends on the person and the particular product.",
+      "sections": [
+        [
+          "Avoid treating them as one interchangeable medicine",
+          "Licensed uses, formulations, contraindications and instructions differ. A friend’s prescription or dose is not a starting point for your treatment. Your own history and current medicines need review."
+        ],
+        [
+          "What you can do next",
+          "Use the treatment guides to prepare questions, then speak to a qualified prescriber. SHIFT cannot establish eligibility or supply a prescription through this FAQ."
+        ]
+      ],
+      "sources": [
+        [
+          "Wegovy injection: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/13800/smpc"
+        ],
+        [
+          "Mounjaro: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/15484/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/treatments"
+      ]
+    },
+    {
+      "slug": "mounjaro-vs-ozempic",
+      "intro": "No. Mounjaro contains tirzepatide; Ozempic contains semaglutide. They are different medicines and are not interchangeable dose for dose.",
+      "sections": [
+        [
+          "Check the purpose as well as the name",
+          "Ozempic is a diabetes product. Mounjaro has diabetes and adult weight-management uses under specific criteria. A comparison of ingredient names does not establish which medicine, if any, is appropriate for you."
+        ],
+        [
+          "What you can do next",
+          "Take the exact product name, formulation and current prescription to your clinician. Do not combine or switch products yourself."
+        ]
+      ],
+      "sources": [
+        [
+          "Mounjaro: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/15484/smpc"
+        ],
+        [
+          "Ozempic: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/9749/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/treatments"
+      ]
+    },
+    {
+      "slug": "wegovy-vs-ozempic",
+      "intro": "Wegovy and Ozempic both contain semaglutide, but they are distinct products. Their licensed uses and prescribing instructions differ.",
+      "sections": [
+        [
+          "Do not infer a substitute from the ingredient",
+          "Ozempic is a diabetes product. Wegovy is used for weight management under its own criteria and now has different UK-authorised formulations. A supply problem does not make a self-directed brand or formulation switch safe."
+        ],
+        [
+          "What you can do next",
+          "Ask your prescriber about the exact product and current care plan. Follow its own leaflet and keep changes with that prescriber."
+        ]
+      ],
+      "sources": [
+        [
+          "Wegovy injection: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/13800/smpc"
+        ],
+        [
+          "Ozempic: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/9749/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/guides/glp1-guide"
+      ]
+    },
+    {
+      "slug": "alcohol-on-glp1",
+      "intro": "There is no blanket answer for every person on GLP-1 treatment. Ask your prescriber about alcohol in the context of your medicine and health.",
+      "sections": [
+        [
+          "Think about treatment effects and other medicines",
+          "Poor intake, nausea, vomiting and dehydration can make drinking a worse fit for the day. Diabetes treatment, other medicines and liver or pancreatic problems can change the advice. Alcohol also contributes energy."
+        ],
+        [
+          "What you can do next",
+          "Mention your usual drinking pattern at a review. If you are unwell, prioritise medical advice and hydration rather than testing what you can tolerate."
+        ]
+      ],
+      "sources": [
+        [
+          "Wegovy injection: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/13800/smpc"
+        ],
+        [
+          "Mounjaro: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/15484/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/wegovy-side-effects-timeline"
+      ]
+    },
+    {
+      "slug": "exercise-on-glp1",
+      "intro": "Many people can remain active during treatment. Choose activity that fits your current fitness, nutrition, symptoms and medical advice.",
+      "sections": [
+        [
+          "Do not force a session through illness",
+          "Vomiting, dehydration, dizziness or poor intake are reasons to pause and get appropriate advice. Strength work can support physical function, but it does not guarantee that all lean tissue will be preserved. Diabetes medicines may need additional exercise advice."
+        ],
+        [
+          "What you can do next",
+          "Start with comfortable movement and an achievable strength routine if suitable. Ask your clinician about symptoms or any treatment-related precautions."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: adult physical activity",
+          "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
+        ],
+        [
+          "Wegovy injection: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/13800/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/glp-1-and-exercise"
+      ]
+    },
+    {
+      "slug": "glp1-muscle-loss",
+      "intro": "Weight loss can include lean tissue, but lean tissue is not the same measurement as muscle alone. You cannot predict an individual loss from a trial average.",
+      "sections": [
+        [
+          "Pay attention to function and intake",
+          "Adequate nutrition and suitable strength activity can support health during weight loss. They cannot promise zero muscle loss. Very poor intake, new weakness or difficulty with ordinary activity deserve review rather than a tighter calorie target."
+        ],
+        [
+          "What you can do next",
+          "Discuss nutrition and strength with the team supervising treatment, especially if eating has become difficult. Seek dietetic advice where needed."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS: adult physical activity",
+          "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
+        ],
+        [
+          "NHS: the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/glp-1-muscle-loss"
+      ]
+    },
+    {
+      "slug": "what-happens-stopping-glp1",
+      "intro": "Appetite and weight may change after stopping treatment, but the pattern varies. Plan the change with the prescriber rather than assuming a fixed outcome.",
+      "sections": [
+        [
+          "Maintenance needs a plan",
+          "Talk about why you are stopping, follow-up, food, activity and any diabetes treatment. Do not borrow medication, improvise a taper or switch to an unapproved product to avoid regain. If severe symptoms make you suspect a serious adverse effect, seek urgent medical advice and follow the leaflet."
+        ],
+        [
+          "What you can do next",
+          "Arrange a review before a planned stop. Ask what to monitor, what support is available and when to contact the care team."
+        ]
+      ],
+      "sources": [
+        [
+          "Wegovy injection: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/13800/smpc"
+        ],
+        [
+          "Mounjaro: UK prescribing information",
+          "https://www.medicines.org.uk/emc/product/15484/smpc"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/articles/life-after-ozempic"
+      ]
+    },
+    {
+      "slug": "does-sst-prescribe",
+      "intro": "No. SHIFT does not currently prescribe or supply medicines. Information pages and My Timber support do not create a clinical prescribing service.",
+      "sections": [
+        [
+          "Keep treatment decisions with your care team",
+          "A medicine catalogue is information about products, not an offer to supply them. Ordering remains closed while a regulated clinical partner and the required care arrangements are uncommissioned. Coaching cannot authorise eligibility, a dose change or a prescription."
+        ],
+        [
+          "What you can do next",
+          "Speak to your GP or an appropriately qualified prescriber about treatment. Use SHIFT to organise practical food, movement and day-to-day questions."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: clinical governance",
+          "/clinical-governance"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/clinical-governance"
+      ]
+    },
+    {
+      "slug": "is-sst-gp-replacement",
+      "intro": "No. SHIFT is not a replacement for your GP, emergency care or an individual medical assessment.",
+      "sections": [
+        [
+          "Use each service for its purpose",
+          "My Timber can support ordinary planning and reflection. Public tools can help organise questions. They cannot examine you, order diagnostic tests, prescribe treatment or decide that worrying symptoms are safe. AI responses also need to stay within these limits."
+        ],
+        [
+          "What you can do next",
+          "Take symptoms and treatment questions to an appropriate healthcare professional. For urgent or severe symptoms, use the relevant urgent-care service rather than waiting for an app response."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: clinical governance",
+          "/clinical-governance"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/medical-disclaimer"
+      ]
+    },
+    {
+      "slug": "is-health-mot-medical",
+      "intro": "No. The public Health MOT is an informational self-check. It does not diagnose a condition or establish treatment eligibility.",
+      "sections": [
+        [
+          "Its outputs are prompts",
+          "Some inputs use established measurement thresholds; others describe routines or reported symptoms. A priority label is a reason to look more closely, not a clinical finding. The tool has not established your personal risk of a heart attack or which medicine you should take."
+        ],
+        [
+          "What you can do next",
+          "Print or save the report if it helps you prepare questions for an appointment. Take worrying symptoms to a clinician regardless of the tool’s output."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: Health MOT methodology and limitations",
+          "/health-mot-methodology"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/health-mot"
+      ]
+    },
+    {
+      "slug": "is-health-mot-saved",
+      "intro": "Yes. The public Health MOT saves its answers and report data in this browser’s local storage on this device. It does not upload them into your My Timber account.",
+      "sections": [
+        [
+          "A shared device needs care",
+          "The saved profile can remain after closing the page and may be visible to somebody using the same browser. Clearing this site’s browser data removes the local copy. Account-backed health information is separate and has its own privacy controls; clearing browser data does not erase that account data."
+        ],
+        [
+          "What you can do next",
+          "Use a private device for sensitive answers. Print or save the report only where you want a copy, and review the privacy page for account-backed information."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: Health MOT methodology and limitations",
+          "/health-mot-methodology"
+        ],
+        [
+          "SHIFT: privacy information",
+          "/privacy"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/health-mot-methodology"
+      ]
+    },
+    {
+      "slug": "can-women-use-tools",
+      "intro": "Women can use public tools where the tool’s stated scope fits. SHIFT’s main audience is adult men, so check the assumptions before using a result.",
+      "sections": [
+        [
+          "Not every calculator fits every situation",
+          "A result based on a male default, adult thresholds or a general planning formula may not be appropriate for you. Pregnancy, an eating disorder, childhood and certain medical conditions can require a different assessment. A calculator is not personal medical advice."
+        ],
+        [
+          "What you can do next",
+          "Read the tool’s inputs and limitations. Choose individual professional advice when your circumstances sit outside them."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: Health MOT methodology and limitations",
+          "/health-mot-methodology"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/tools"
+      ]
+    },
+    {
+      "slug": "what-is-founding-shifter",
+      "intro": "A Founding Shifter is someone who registers interest in SHIFT and its updates. It does not mean you have bought membership or secured treatment.",
+      "sections": [
+        [
+          "Check what the current route offers",
+          "The Founding Members page describes the available registration route and what follows. Future invitations or offers should be read when actually announced. The label does not promise medication, final pricing or a place ahead of someone with greater clinical need."
+        ],
+        [
+          "What you can do next",
+          "Use the registration method shown on the current Founding Members page. My Timber access and a mailing-list registration are separate choices."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: Founding Members",
+          "/founding-members"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/founding-members"
+      ]
+    },
+    {
+      "slug": "what-is-timber-mill",
+      "intro": "The Timber Mill is SHIFT’s planned clothing and gear range. The current shop is a preview; ordering and checkout are not available.",
+      "sections": [
+        [
+          "Concepts are not available stock",
+          "A preview image or a description of a future reward does not mean an item can be bought or claimed today. Availability, prices and any reward terms need to be published when the relevant product or programme is ready."
+        ],
+        [
+          "What you can do next",
+          "Explore the current shop page for what is actually shown. Use a displayed interest route if you want to contribute feedback on the planned range."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT: current shop preview",
+          "/shop"
+        ]
+      ],
+      "next": [
+        "Explore the relevant guide or tool",
+        "/shop"
+      ]
+    }
+  ]
+}

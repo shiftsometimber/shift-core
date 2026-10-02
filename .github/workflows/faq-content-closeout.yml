@@ -1,0 +1,94 @@
+name: Reviewed FAQ and Health MOT release
+on:
+  push:
+    branches: [codex/full-website-content-20261002]
+    paths: [editorial/content-audit/faq-copy.json, editorial/content-audit/build-faq.py, editorial/content-audit/faq-*.mjs, .github/workflows/faq-content-closeout.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: verified-public-pages-repair
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          ref: 9bdcc2f7f69dc7950b90011f47e83a34fd5a64a1
+          path: pages-authority
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37076165212
+          name: static-release-d2fc4a26fdd7e8da64af4e51ac2982a0d77d92b4
+          path: exact-baseline
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - name: Build reviewed FAQs and scoped Health MOT corrections
+        run: |
+          python3 editorial/content-audit/build-faq.py --source exact-baseline/source.json.gz --out faq-release
+          cp faq-release/source.json.gz faq-release/control.json pages-authority/release/public-pages-20260911/
+          python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+      - name: Package the verified candidate
+        run: |
+          mv "$SST_RELEASE_DIR" faq-release/site
+      - name: Publish isolated Pages preview
+        run: |
+          mkdir -p "$RUNNER_TEMP/faq-command"
+          cd "$RUNNER_TEMP/faq-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$GITHUB_WORKSPACE/faq-release/site" --project-name projectshift --branch reviewed-faq-20261002 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/faq-release/preview-deploy.log"
+          python3 - <<'PY'
+          import re,pathlib,os
+          log=pathlib.Path(os.environ['GITHUB_WORKSPACE']+'/faq-release/preview-deploy.log').read_text()
+          url=re.findall(r'https://[a-f0-9]{8}\.projectshift\.pages\.dev',log)[-1]
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('FAQ_PREVIEW_URL='+url+'\n')
+          PY
+      - run: npm install --prefix "$RUNNER_TEMP/content-tools" --no-audit --no-fund playwright@1.58.2
+      - run: '"$RUNNER_TEMP/content-tools/node_modules/.bin/playwright" install --with-deps chromium'
+      - name: Verify all reviewed pages on mobile and desktop
+        run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/content-tools/node_modules/playwright" node editorial/content-audit/faq-browser-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faq-browser-proof-${{ github.sha }}
+          path: faq-browser-proof/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: faq-release-${{ github.sha }}
+          path: faq-release/
+  publish:
+    needs: preview
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with: {name: 'faq-release-${{ github.sha }}', path: faq-release}
+      - uses: actions/download-artifact@v4
+        with: {name: 'faq-browser-proof-${{ github.sha }}', path: faq-browser-proof}
+      - name: Publish exact verified bytes and verify live copy
+        run: node editorial/content-audit/faq-release.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: faq-live-proof-${{ github.sha }}
+          path: faq-live-proof/
