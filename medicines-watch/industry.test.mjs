@@ -21,9 +21,10 @@ import registryOmissions from './reviews/2026-10-02-authorised-registry-omission
 import enobosarmSemaglutide from './reviews/2026-10-02-authorised-enobosarm-semaglutide.json' with {type:'json'};
 import pfizerPdfRepair from './reviews/2026-10-02-pfizer-pdf-monitor-repair.json' with {type:'json'};
 import expandedRegistryWave from './reviews/2026-10-02-authorised-expanded-registry-wave.json' with {type:'json'};
+import semaglutideSpecialistTrials from './reviews/2026-10-02-authorised-semaglutide-specialist-trials.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,68);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,74);
+ assert.equal(medicines.length,6);assert.equal(industry.length,69);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,75);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -104,7 +105,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,68);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,69);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -414,4 +415,27 @@ test('expanded registry wave preserves formulation, status and specialist-indica
  assert.equal(expandedRegistryWave.registryEvidence.length,11);
  assert.ok(expandedRegistryWave.registryEvidence.every(record=>record.hasResults===false));
  for(const domain of ['biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com'])assert.ok(discoveryDomains.includes(domain));
+});
+
+test('semaglutide specialist research remains distinct from authorised weight-management use',()=>{
+ assert.equal(semaglutideSpecialistTrials.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(semaglutideSpecialistTrials.clinicalApproval,null);
+ assert.equal(semaglutideSpecialistTrials.industryComplete,false);
+ assert.equal(semaglutideSpecialistTrials.automatedMonitorChanges,false);
+ const item=industry.find(entry=>entry.id==='semaglutide-specialist-trials');
+ assert.ok(item);
+ assert.equal(item.group,'research');
+ assert.equal(item.clinicalApproval,null);
+ assert.equal(item.sourceIds.length,0);
+ assert.equal(item.additionalEvidence.length,3);
+ assert.match(item.stage,/all not yet recruiting/i);
+ assert.match(item.summary,/low-back-pain/i);
+ assert.match(item.summary,/arthroplasty/i);
+ assert.match(item.summary,/endometrial atypical hyperplasia/i);
+ assert.match(item.ukAuthorisation,/do not establish UK marketing authorisation/i);
+ assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/i);
+ assert.match(item.supply,/does not establish lawful supply/i);
+ assert.match(item.limitations,/no posted results/i);
+ assert.ok(semaglutideSpecialistTrials.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
+ assert.ok(semaglutideSpecialistTrials.registryEvidence.every(record=>record.hasResults===false));
 });
