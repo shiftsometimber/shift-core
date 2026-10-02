@@ -78,10 +78,17 @@ export function validateWatchSourceRepair(read){
 export const WATCH_REGISTRY_COMMIT='42525e4c5e93076b1cfc57ce415b248eac82ee63';
 export const WATCH_REGISTRY_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-registry-omissions.json'];
 export function validateWatchRegistry(read){
- for(const path of WATCH_REGISTRY_PATHS)assert.equal(read('HEAD',path),read(WATCH_REGISTRY_COMMIT,path),'Watch registry-omissions drift: '+path);
+ for(const path of WATCH_REGISTRY_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_REGISTRY_COMMIT),path),'Watch registry-omissions drift: '+path);
+}
+// Standing editorial authorisation permits the exact official-Pfizer PDF monitor repair merged in PR #939.
+// Bind monitoring bytes and review evidence without inferring clinical approval, UK access or supply.
+export const WATCH_PFIZER_PDF_REPAIR_COMMIT='5f1c8e6d9b4c7a8656854e4807a4aebd97b39e50';
+export const WATCH_PFIZER_PDF_REPAIR_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs','medicines-watch/reviews/2026-10-02-pfizer-pdf-monitor-repair.json'];
+export function validateWatchPfizerPdfRepair(read){
+ for(const path of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.equal(read('HEAD',path),read(WATCH_PFIZER_PDF_REPAIR_COMMIT,path),'Watch Pfizer PDF monitor repair drift: '+path);
 }
 function currentWatchRef(path,fallback){
- return WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
+ return WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
 }
 export function validateNiceTimeout(read){
  for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,NICE_TIMEOUT_COMMIT),path),'NICE timeout source drift: '+path);
@@ -152,11 +159,13 @@ export function verifyScope(){
   validateWatchSourceRepair((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_REGISTRY_COMMIT,'HEAD');
   validateWatchRegistry((ref,path)=>git('rev-parse',ref+':'+path));
+  git('merge-base','--is-ancestor',WATCH_PFIZER_PDF_REPAIR_COMMIT,'HEAD');
+  validateWatchPfizerPdfRepair((ref,path)=>git('rev-parse',ref+':'+path));
   validateGrowthSource();
   verifyHeadingRepair();
   verifyHomeSpeed();
   assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
-  const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)&&!WATCH_REGISTRY_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)&&!WATCH_REGISTRY_PATHS.includes(path)&&!WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
