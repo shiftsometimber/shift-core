@@ -1,0 +1,88 @@
+{
+  "reviewedAt": "2026-10-02T23:05:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish one primary-source-reviewed smaller-developer and muscle-preservation omission through the guarded workflow. This is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "na931-tirzepatide",
+      "name": "NA-931 alone and with tirzepatide",
+      "developer": "Biomed Industries",
+      "group": "research",
+      "stage": "Phase 2 registry not yet recruiting; later Phase 3 programme sponsor-reported",
+      "summary": "The sponsor describes oral NA-931 as a quadruple IGF-1, GLP-1, GIP and glucagon receptor agonist and reports a Phase 3 programme. A separate sponsor-submitted Phase 2 registry record plans NA-931 alone and with weekly tirzepatide in an estimated 224 adults with overweight or obesity, including body-weight, body-composition and physical-function measures.",
+      "ukAuthorisation": "The reviewed sponsor and registry evidence does not establish UK marketing authorisation for NA-931, alone or with tirzepatide.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Sponsor announcements and trial records do not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "The Phase 2 registry was last updated 27 March 2026, remains not yet recruiting, has no posted results and retains an already-past 15 August 2026 estimated start. The sponsor's later Phase 3 and lean-mass statements are attributed claims, not registry-posted results, regulatory findings or proof that every planned study has started. No efficacy, safety, superiority or muscle-preservation conclusion is drawn here.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T23:05:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06732245: NA-931 alone and with tirzepatide",
+          "url": "https://clinicaltrials.gov/study/NCT06732245",
+          "sourcePublishedAt": "2024-12-13",
+          "sourceUpdatedAt": "2026-03-27",
+          "reviewedAt": "2026-10-02T23:05:00Z",
+          "checkScope": "Sponsor-submitted Phase 2 record and API response read for not-yet-recruiting status, estimated 224-person enrolment, estimated dates, oral NA-931 and weekly tirzepatide interventions, body-weight endpoint, body-composition and physical-function measures, and absence of posted results; not automatically content-monitored."
+        },
+        {
+          "title": "Biomed Industries NA-931 programme page",
+          "url": "https://www.biomedind.com/NA-931.html",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T23:05:00Z",
+          "checkScope": "Original sponsor page read for molecule description, oral formulation and sponsor-reported Phase 3 and lean-mass claims. Page publication and update dates were not independently verified; claims remain attributed and are not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registryEvidence": {
+    "nctId": "NCT06732245",
+    "overallStatus": "NOT_YET_RECRUITING",
+    "phase": "PHASE2",
+    "estimatedStart": "2026-08-15",
+    "estimatedEnrollment": 224,
+    "firstPosted": "2024-12-13",
+    "lastUpdatePosted": "2026-03-27",
+    "responseSha256": "214e1ea8a2638be959940f093f7576a0a77046fe65476c654f837ed14f7bfbb5",
+    "hasResults": false
+  },
+  "priorProposal": {
+    "receipt": "reviews/2026-09-30-eloratzp-na931-discovery.json",
+    "candidateId": "na931-tirzepatide",
+    "publicationStatus": "proposal_only",
+    "reconciliation": "This publication promotes the existing reviewed candidate instead of creating a duplicate programme. A fresh API retrieval preserved the reviewed stage, status, enrolment, dates and no-results boundary. The current response byte hash differs from the earlier receipt, but the reviewed record fields did not; no automatic baseline or factual-review renewal is inferred from the hash."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "reviewedAt": "2026-10-02T23:05:00Z",
+    "available": true,
+    "status": "current",
+    "sourceCount": 50,
+    "currentCount": 50,
+    "reviewedCount": 50,
+    "lastAttemptAt": "2026-10-02T23:00:48.370Z",
+    "result": "The normal in-progress verification state settled to current. All configured sources were current and reviewed; this did not renew any medical review or prove industry completeness."
+  },
+  "discoveryLimitations": {
+    "currentDatePass": "No same-day UK MHRA, NICE, NHS or sponsor development requiring another Watch change was found in the selected current-date searches. Search-index gaps and inaccessible records remain possible.",
+    "broaderUndatedPass": "The undated smaller-developer, combination and muscle-preservation pass found NA-931 as an older omission. The selected catalogue remains open-ended and non-exhaustive.",
+    "evidenceConflict": "The sponsor describes a Phase 3 programme, while the reviewed Phase 2 registry record remains not yet recruiting with an already-past estimated start. Both are preserved rather than silently reconciled.",
+    "plannedVersusCompleted": "The registry's estimated start is not treated as actual dosing, and sponsor-reported plans are not presented as completed trials or findings.",
+    "monitoring": "No automatic source baseline, successful source check, review renewal or all-green industry claim is created by this publication."
+  },
+  "nextActions": [
+    "Recheck NCT06732245 for an actual start, recruitment-status change or posted results",
+    "Track the sponsor-reported Phase 3 studies as individual registry records when identifiable",
+    "Track independent publications separately from sponsor claims",
+    "Track UK regulator and NHS evidence separately from international research stages"
+  ]
+}
