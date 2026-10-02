@@ -1,6 +1,6 @@
 {
-  "recordedMain": "5d83d5212bd04add9adbb34d67f90a0a93eb2783",
-  "applicationCommit": "d2b2a3a9e25a8ac640e36fc8f96897a2663466a8",
+  "recordedMain": "e19165d1384f08b8584e1470155518780f86abf5",
+  "applicationCommit": "e29dec04fb888f1a1ece3b904fe4ae80e79d5da3",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -76,7 +76,7 @@
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02: request observed in this session; exact approval time not supplied",
-      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence."
+      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass."
     }
   },
   "note": "Engineering draft. No approval or human review is inferred from a request to implement. Previous evidence is retained in launch-assessment.json."
