@@ -1,7 +1,7 @@
 name: Approved My Timber release scope proof
 on:
   push:
-    branches: [fix/member-design-shared-20261001]
+    branches: [fix/member-design-shared-20261001, fix/member-acceptance-20261002]
 permissions:
   contents: read
   actions: read
