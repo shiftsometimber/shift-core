@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
+  "applicationCommit": "e14e4d815acc22bd48392e1419a782390995c3bb",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -80,7 +80,7 @@
       "approved": true,
       "decidedBy": "Matt (user instruction; scope interpretation stated here)",
       "decidedAt": "2026-10-02: latest request observed in this session; exact approval time not supplied",
-      "evidence": "Latest request \"can you sort >?\" follows the offered launch of tested in-app coaching first. Taken as authority to prepare this bounded release; not evidence that complete v2 has passed."
+      "evidence": "Latest request \"can you sort >?\" follows the offered launch of tested in-app coaching first. Taken as authority to prepare this bounded release; not evidence that complete v2 has passed. The fixed library is expanded to18 practical everyday actions and an optional confirmed difficulty choice; no clinical purpose, external notification, model cost or new data source is added."
     },
     "privacyAssessment": {
       "approved": true,
@@ -92,32 +92,32 @@
       "approved": true,
       "decidedBy": "Codex internal intended-purpose assessment, using Matt's explicit ownership instruction",
       "decidedAt": "2026-10-02",
-      "evidence": "Matt at16:20BST defined everyday food/movement/routine coaching during and after treatment and clinical-partner ownership of treatment decisions. Current fixed library, reviewed code and UI implement ordinary adult wellbeing planning without symptom assessment, diagnosis, prescribing, dose/taper/restart recommendations or clinical monitoring. Internal classification inference: non-medical general wellbeing scope, assessed against MHRA standalone software guidance reviewed2October and the purpose record in privacy-purpose-review.md. This is an accountable internal engineering assessment of this bounded function, not MHRA approval or independent legal certification. Future medical-purpose functions or claims require reassessment."
+      "evidence": "Matt at16:20BST defined everyday food/movement/routine coaching during and after treatment and clinical-partner ownership of treatment decisions. Current fixed library, reviewed code and UI implement ordinary adult wellbeing planning without symptom assessment, diagnosis, prescribing, dose/taper/restart recommendations or clinical monitoring. Internal classification inference: non-medical general wellbeing scope, assessed against MHRA standalone software guidance reviewed2October and the purpose record in privacy-purpose-review.md. This is an accountable internal engineering assessment of this bounded function, not MHRA approval or independent legal certification. Future medical-purpose functions or claims require reassessment. The 18-action extension uses the same ordinary adult wellbeing purpose and prescriber boundary. It does not select, recommend or monitor medication or exercise therapy."
     },
     "independentAcceptance": {
-      "approved": false,
-      "decidedBy": "Review pending for the phantom-member repair delta",
+      "approved": true,
+      "decidedBy": "Independent Codex engineering release reviewer",
       "decidedAt": "2026-10-02",
-      "evidence": "The previous accepted launch payload is preserved, but the new task strings, illness handling and choices introduced here have not received an independent review. Builder verification is recorded in launch-assessment.json. Previous acceptance receipt: Final bounded engineering acceptance: hosted run37026722745 head63bbc85c874c4ae093ff1a7ca2432242291376e9; artifact11235640815 digest653b06c50460c09289a1c59e4cb7a45899403570a83b79d0133f8cb6e444d439. Reviewed hosted merge7932f5006912e02ae2a0d1995d6f5b2bd0420438; CI scope check verified every listed payload byte matches candidate. 12 component checks incl draft preservation and fresh/saved/nested Fit verifier; seven full-page checks incl regrant/setup and session expiry; ten compiled Worker checks; zero browser errors. p951913ms remains original target FAIL under disclosed launch exception. Deliberately delayed pre-write GET scenario not run. No clinical, legal, human, controller, complete-v2 or production certification."
+      "evidence": "Independent read-only review of everyday expansion source, all three phantom-member screenshots and final /tmp/coaching-complete-phantoms-5/phantom-report.json. 69/69 scripted browser checks, zero page errors, seven slower-device samples p95 927.6ms. Independently reran71 integration/release/B1/proof tests: all pass. Reviewed18 fixed ordinary actions, explicit difficulty, distinct approach feedback, current-context-only explanations, named saved history, active-only response projection with unchanged stored history, clinical boundary and exact preservation of six newer Watch blobs at83a17683. This is independent AI engineering acceptance, not human, clinical, legal, controller or real-member-benefit certification. Final committed guards and production delivery still require verification."
     },
     "productionLaunch": {
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02: request observed in this session; exact approval time not supplied",
-      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass."
+      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass. Matt at18:24:07BST explicitly instructed “Do that” after completing the original everyday coaching gaps was proposed. Existing guarded production authority applies to this reviewed bounded extension."
     },
     "ownerAcceptance": {
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02T17:25:14+01:00",
-      "evidence": "Matt asked “can’t we deploy ?” immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review.",
+      "evidence": "Matt asked “can’t we deploy ?” immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review. Historical acceptance of the earlier phantom-member repair only; the current expanded payload relies on the separately recorded independent engineering acceptance.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
       "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
       "verificationEvidence": "62/62 functional phantom-member checks, 344 local regression checks, 10 compiled Worker/D1 checks and successful hosted coaching/master/route checks for the repair; timing1100.9ms explicitly accepted by Matt. Current composed-source gates and pre/post-deployment checks remain mandatory."
     }
   },
-  "note": "Bounded repair proceeds on recorded owner acceptance and engineering verification. The missing new independent review stays explicitly recorded. Existing privacy/purpose decisions, exact source pins, production preservation and rollback checks remain required.",
+  "note": "Everyday coaching extension: 18 fixed practical actions, confirmed difficulty, distinct strategy changes, named feedback and active-only dashboard projection. Final application bytes require exact source verification and guarded production promotion. Existing clinical, privacy, current-main and rollback boundaries remain mandatory.",
   "timingAcceptance": {
     "approved": true,
     "decidedBy": "Matt",
