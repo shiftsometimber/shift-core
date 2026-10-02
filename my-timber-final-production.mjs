@@ -112,7 +112,11 @@ try{
   const savedFitBefore=await account('/v1/fit/activity');assert.equal(savedFitBefore.plan?.minutes_per_day,30,'Context must not silently replace the retained Fit plan');
   await page.locator('#appTab-fit').click();
   const fitFrame=page.frameLocator('#appTool-fit iframe');
-  async function revealFit(selector){const field=fitFrame.locator(selector);await field.waitFor({state:'attached',timeout:45000});for(let attempt=0;attempt<5;attempt++){const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click();opened=true;break;}}assert(opened,'Fit setup requires an ordinary visible disclosure');}assert(await field.isVisible(),'Fit control must be visible: '+selector);return field;}
+  await page.locator('#appTool-fit').waitFor({state:'visible',timeout:45000});
+  const fitSetup=fitFrame.locator('[data-app-fit-setup]'),fitSetupSummary=fitSetup.locator(':scope > summary');
+  await fitSetupSummary.waitFor({state:'visible',timeout:45000});
+  if(!await fitSetup.evaluate(e=>e.open))await fitSetupSummary.click();
+  async function revealFit(selector){const field=fitFrame.locator(selector);await field.waitFor({state:'attached',timeout:45000});for(let attempt=0;attempt<5;attempt++){const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click();opened=true;break;}}assert(opened,'Fit setup requires an ordinary visible disclosure');}await field.waitFor({state:'visible',timeout:45000});assert(await field.isVisible(),'Fit control must be visible: '+selector);return field;}
   const minutes=await revealFit('#fitMinutes'),days=await revealFit('#fitDays');
   if(await minutes.evaluate(e=>e.tagName)==='SELECT')await minutes.selectOption('10');else await minutes.fill('10');
   if(await days.evaluate(e=>e.tagName)==='SELECT')await days.selectOption('1');else await days.fill('1');
@@ -124,7 +128,7 @@ try{
   assert.equal((await account('/v1/grub/workspace')).today?.recipeId,chosen.id);
   pass('Working late preserves the chosen meal and retained plan until the member explicitly generates a ten-minute Fit replacement','Normal Ask Timber adjustment sheet and visible Fit setup controls.');
 
-  await screenshot(page,'02-billy-inline-grub');
+  await screenshot(page,'02-billy-explicit-fit-plan');
   await verifyLiveTools(page,SITE,OUT,report);
   pass('App and website retain tool drafts and browser history, with one navigation, footer and cookie-choice owner','390px and 1440px; visible ordinary controls; no forced DOM or navigation');
   await page.setViewportSize({width:390,height:844});
@@ -150,7 +154,7 @@ try{
   await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
   await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
   pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
-}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800))}finally{
+}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));await page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}).catch(()=>{})}finally{
   const video=page.video();await context.close();if(video)await video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')).catch(error=>fail('video save',clean(error.message)));await browser.close();write();
 }
 console.log(JSON.stringify(report,null,2));
