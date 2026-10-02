@@ -18,8 +18,11 @@
       <label>Date of birth<input name="dateOfBirth" type="date" required></label>
       <label>Height (cm)<input name="heightCm" type="number" min="100" max="250" required></label>
       <label>Weight (kg)<input name="weightKg" type="number" min="30" max="400" step="0.1" required></label>
+      <label>Do you have a diagnosed weight-related condition?<select name="weightRelatedCondition" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>
       <label>Conditions<textarea name="conditions" required></textarea></label>
       <label>Medicines<textarea name="medicines" required></textarea></label>
+      <label>Do you currently take insulin?<select name="insulinUse" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>
+      <p>If you take insulin, you cannot use SHIFT’s weight-management injection service. This applies to new and repeat orders. Speak to the clinician who manages your diabetes about suitable options. Do not stop or reduce insulin to qualify. <a href="/shift-health">Explore SHIFT Health</a> for wider health guides and practical support.</p>
     </fieldset>
     <fieldset><legend>Identity and body check</legend>
       <label>Photo ID<input name="photoId" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>

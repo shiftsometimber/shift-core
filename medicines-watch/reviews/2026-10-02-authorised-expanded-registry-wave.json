@@ -1,0 +1,195 @@
+{
+  "reviewedAt": "2026-10-02T12:58:22Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish seven primary-source-reviewed programme or formulation omissions and one specialist-indication update through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health?verify=20261002T1402BST",
+    "reviewedAt": "2026-10-02T12:58:22Z",
+    "available": true,
+    "status": "current",
+    "sourceCount": 50,
+    "lastAttemptAt": "2026-10-02T12:31:17.613Z",
+    "result": "All 50 configured sources reported current check and review status. This availability result does not renew any factual review or establish industry completeness."
+  },
+  "entries": [
+    {
+      "id": "mwn109-injection",
+      "name": "MWN109 injection",
+      "developer": "Shanghai Minwei Biotechnology / Lepu Medical",
+      "group": "research",
+      "stage": "Phase 3 registered; not yet recruiting",
+      "summary": "The sponsor-submitted registry records a 760-participant Chinese Phase 3 study of once-weekly subcutaneous MWN109 for 52 weeks. The record remains not yet recruiting and its estimated 1 September 2026 start is not treated as first dosing. A separate 120-participant Phase 2 injection study is registry-completed with no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "Not-yet-recruiting Phase 3 registration is not trial initiation. Completed Phase 2 registry status does not establish efficacy because no results are posted.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07778693","url":"https://clinicaltrials.gov/study/NCT07778693","sourcePublishedAt":"2026-08-21","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 3 record read for not-yet-recruiting status, estimated dates, design and absence of posted results; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT07791654","url":"https://clinicaltrials.gov/study/NCT07791654","sourcePublishedAt":"2026-08-28","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 2 record read for actual completion, 120-participant enrolment and absence of posted results; not automatically content-monitored."}
+      ]
+    },
+    {
+      "id": "mwn109-tablets",
+      "name": "MWN109 tablets",
+      "developer": "Shanghai Minwei Biotechnology / Lepu Medical",
+      "group": "research",
+      "stage": "Completed Phase 2; maintenance study active, not recruiting",
+      "summary": "One sponsor-submitted Chinese Phase 2 record reports 255 participants completed 20 weeks of once-daily MWN109 tablets. A distinct 71-participant weight-loss-maintenance study compares daily and weekly oral dosing and remains active, not recruiting.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "Neither registry record has posted results. Completed or active registry status does not establish efficacy, an authorised dosing schedule or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07791524","url":"https://clinicaltrials.gov/study/NCT07791524","sourcePublishedAt":"2026-08-28","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 2 tablet record read for actual dates, 255-participant enrolment and absence of posted results; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT07804797","url":"https://clinicaltrials.gov/study/NCT07804797","sourcePublishedAt":"2026-09-04","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted maintenance-study record read for active-not-recruiting status, daily and weekly oral arms, estimated completion and absence of posted results; not automatically content-monitored."}
+      ]
+    },
+    {
+      "id": "mwn110",
+      "name": "MWN110 injection",
+      "developer": "Shanghai Minwei Biotechnology / Lepu Medical",
+      "group": "research",
+      "stage": "Phase 1 registered; not yet recruiting",
+      "summary": "The sponsor-submitted registry describes first-in-human single- and multiple-dose subcutaneous MWN110 research in healthy participants and people with overweight or obesity. It remains not yet recruiting with estimated enrolment of 103.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "The estimated 26 August 2026 start is not first dosing. The registry does not state a mechanism and has no posted results, so external mechanism or muscle-preservation claims are not added.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07779980","url":"https://clinicaltrials.gov/study/NCT07779980","sourcePublishedAt":"2026-08-21","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 1 record read for not-yet-recruiting status, estimated dates, population and design; not automatically content-monitored."}
+      ]
+    },
+    {
+      "id": "tqf3250",
+      "name": "TQF3250 capsules",
+      "developer": "Chia Tai Tianqing / Sino Biopharmaceutical",
+      "group": "research",
+      "stage": "Recruiting Phase 1b in type 2 diabetes with overweight or obesity",
+      "summary": "The sponsor-submitted registry records an actual 25 August 2026 start for a recruiting Chinese Phase 1b study of oral TQF3250 in people with type 2 diabetes and overweight or obesity. A separate weight-management study remains not yet recruiting.",
+      "ukAuthorisation": "US FDA clearance and Chinese clinical-trial activity do not establish UK marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical-trial clearance or recruitment does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "Clinical-trial clearance is not marketing authorisation. The sponsor's expected tolerability and efficacy advantages are forward-looking; neither registry record has posted results.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"Sino Biopharmaceutical TQF3250 clinical-trial clearance announcement","url":"https://www.en.sbpgroup.com/news-center/dynamic/24926.html","sourcePublishedAt":"2025-12-04","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Original sponsor announcement read for formulation, mechanism and clinical-trial clearance boundaries; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT07747857","url":"https://clinicaltrials.gov/study/NCT07747857","sourcePublishedAt":"2026-08-05","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 1b record read for recruiting status, actual start, population and absence of posted results; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT07798284","url":"https://clinicaltrials.gov/study/NCT07798284","sourcePublishedAt":"2026-09-01","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Separate sponsor-submitted weight-management record read for not-yet-recruiting status and estimated dates; not automatically content-monitored."}
+      ]
+    },
+    {
+      "id": "kds2010",
+      "name": "Tisolagiline / KDS2010",
+      "developer": "NeuroBiogen",
+      "group": "research",
+      "stage": "Recruiting Phase 2a",
+      "summary": "The sponsor-submitted registry records a recruiting 75-participant South Korean Phase 2a dose-finding study of once-daily oral KDS2010 for 12 weeks in adults with overweight or obesity, with an actual 29 July 2025 start.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or recruitment does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "Recruitment is not a result. The registry has no posted results, and the sponsor's mechanism and preclinical statements are not evidence of human obesity efficacy.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"NeuroBiogen KDS2010 Phase 2a IND announcement","url":"https://neurobiogen.com/eng/communication/news.php?idx=231&m=v&pNo=1","sourcePublishedAt":"2024-09-04","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Original sponsor page read for Phase 2a IND history; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT07009171","url":"https://clinicaltrials.gov/study/NCT07009171","sourcePublishedAt":"2025-06-06","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted registry read for recruiting status, actual start, oral dose-finding design, locations and absence of posted results; not automatically content-monitored."}
+      ]
+    },
+    {
+      "id": "tlc6740-tirzepatide",
+      "name": "TLC-6740 with tirzepatide",
+      "developer": "OrsoBio",
+      "group": "research",
+      "stage": "Phase 1b/2a sponsor-reported results; Phase 2b planned",
+      "summary": "OrsoBio reported on 16 December 2025 that 55 adults with obesity completed a 24-week comparison of once-daily oral TLC-6740 plus low-dose tirzepatide versus tirzepatide alone. The broader registry record remains active, not recruiting and has no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for TLC-6740 or the combination.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Sponsor-reported research and registry activity do not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "The findings are sponsor-reported, not registry-posted results. The planned larger Phase 2b study is not treated as started, and body-composition observations do not establish improved muscle strength or function.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"OrsoBio TLC-6740 and tirzepatide topline announcement","url":"https://orsobio.com/press-release/orsobio-announces-positive-topline-phase-1b-2a-clinical-data-for-its-oral-mitochondrial-protonophore-tlc-6740-in-combination-with-tirzepatide/","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Original sponsor announcement read for the 55-participant comparison, sponsor-reported findings, safety wording and Phase 2b plan; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT05822544","url":"https://clinicaltrials.gov/study/NCT05822544","sourcePublishedAt":"2023-04-20","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted umbrella registry record read for active-not-recruiting status, actual start, tirzepatide combination arm, estimated completion and absence of posted results; not automatically content-monitored."}
+      ]
+    },
+    {
+      "id": "bio101-semaglutide",
+      "name": "BIO101 / 20-hydroxyecdysone with semaglutide",
+      "developer": "Biophytis",
+      "group": "research",
+      "stage": "Phase 2 approved in Brazil; sponsor says Q1 2027 start",
+      "summary": "Biophytis describes a 164-participant Phase 2 OBA study of oral BIO101 or placebo alongside semaglutide, focused on lower-limb muscle strength during weight loss and a later weight-regain assessment after semaglutide discontinuation.",
+      "ukAuthorisation": "Brazilian clinical-trial approval and the reviewed research evidence do not establish UK marketing authorisation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical-trial approval or registration does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "The registry remains not yet recruiting and still shows an older estimated July 2026 start; the sponsor's later 31 August 2026 update says first-patient enrolment is planned for Q1 2027. Neither date is treated as first dosing, and preclinical findings are not human efficacy evidence.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T12:58:22Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"Biophytis OBA timing update","url":"https://www.biophytis.com/en/biophytis-strengthens-its-financial-position-and-extends-its-cash-runway-into-q1-2027/","sourcePublishedAt":"2026-08-31","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Original sponsor update read for the later Q1 2027 planned study start; not automatically content-monitored."},
+        {"title":"Biophytis OBA protocol-amendment announcement","url":"https://www.biophytis.com/en/biophytis-to-evaluate-bio101s-potential/","sourcePublishedAt":"2026-09-09","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Original sponsor announcement read for the planned post-semaglutide weight-regain follow-up; not automatically content-monitored."},
+        {"title":"ClinicalTrials.gov NCT07411378","url":"https://clinicaltrials.gov/study/NCT07411378","sourcePublishedAt":"2026-02-13","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 2 record read for not-yet-recruiting status, older estimated dates, 164-participant design and absence of posted results; not automatically content-monitored."}
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "id": "ecnoglutide",
+      "fields": {
+        "summaryToAppend": "A separate sponsor-submitted Chinese Phase 3 study in 360 people with obesity and knee osteoarthritis is recruiting after an actual 3 August 2026 start; it has no posted results.",
+        "limitationsToAppend": "The specialist knee-osteoarthritis study is research, not an additional authorised indication or evidence of symptom benefit."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07734311","url":"https://clinicaltrials.gov/study/NCT07734311","sourcePublishedAt":"2026-07-29","sourceUpdatedAt":null,"reviewedAt":"2026-10-02T12:58:22Z","checkScope":"Sponsor-submitted Phase 3 record read for recruiting status, actual start, specialist population, estimated completion and absence of posted results; not automatically content-monitored."}
+      ]
+    }
+  ],
+  "registryEvidence": [
+    {"nctId":"NCT07778693","overallStatus":"NOT_YET_RECRUITING","phase":"PHASE3","firstPosted":"2026-08-21","sourceUpdatedAt":null,"responseSha256":"52ee2c18d94622d14b54022092bf0a932715e1f2ea069f5ce80e259bcbc06f36","hasResults":false},
+    {"nctId":"NCT07791654","overallStatus":"COMPLETED","phase":"PHASE2","firstPosted":"2026-08-28","sourceUpdatedAt":null,"responseSha256":"3ce234d96939f1bc97b11d89b2a277f7257588e263586602492ef5af9eb40dd8","hasResults":false},
+    {"nctId":"NCT07791524","overallStatus":"COMPLETED","phase":"PHASE2","firstPosted":"2026-08-28","sourceUpdatedAt":null,"responseSha256":"9d3d4f4072019c55f3cc07bc2c1dc0d582dfe675fc629db4267060b819315cdf","hasResults":false},
+    {"nctId":"NCT07804797","overallStatus":"ACTIVE_NOT_RECRUITING","phase":"PHASE2","firstPosted":"2026-09-04","sourceUpdatedAt":null,"responseSha256":"564807fd5b4b52f6c8bb212f2a56bf4b1310995ae361eb7f9dfc240598317adb","hasResults":false},
+    {"nctId":"NCT07779980","overallStatus":"NOT_YET_RECRUITING","phase":"PHASE1","firstPosted":"2026-08-21","sourceUpdatedAt":null,"responseSha256":"07dba18ca41912c82ce7c7328cee1802c5b6f68202bfd67f6203a80469130126","hasResults":false},
+    {"nctId":"NCT07747857","overallStatus":"RECRUITING","phase":"PHASE1","firstPosted":"2026-08-05","sourceUpdatedAt":null,"responseSha256":"2775d31e83eb17b73d9f73effa7c0f0c5e9007c143f6ec89ec730ae8290ede6b","hasResults":false},
+    {"nctId":"NCT07798284","overallStatus":"NOT_YET_RECRUITING","phase":"PHASE1","firstPosted":"2026-09-01","sourceUpdatedAt":null,"responseSha256":"649ae9e0239a7e488b581eebc1f5c6b49ddf7e58a461a8cc7e4ac062275c1472","hasResults":false},
+    {"nctId":"NCT07009171","overallStatus":"RECRUITING","phase":"PHASE2","firstPosted":"2025-06-06","sourceUpdatedAt":null,"responseSha256":"570d0b48f8c9cc31e8feccbd46a4fdfb22d3bceb22ae31dceae5d63f00112da0","hasResults":false},
+    {"nctId":"NCT05822544","overallStatus":"ACTIVE_NOT_RECRUITING","phase":"PHASE1","firstPosted":"2023-04-20","sourceUpdatedAt":null,"responseSha256":"8bd5f98b3bfff98e45cb6eded331e8f57588bbe75648d144f0c6ae231b576839","hasResults":false},
+    {"nctId":"NCT07411378","overallStatus":"NOT_YET_RECRUITING","phase":"PHASE2","firstPosted":"2026-02-13","sourceUpdatedAt":null,"responseSha256":"1e4feb79fffe151999fc17b07086232f8c61cc2f2b45db95e4f7fa32e132f7dd","hasResults":false},
+    {"nctId":"NCT07734311","overallStatus":"RECRUITING","phase":"PHASE3","firstPosted":"2026-07-29","sourceUpdatedAt":null,"responseSha256":"1e5ff4d43b6a4543eb631879628931f811c4367b2cbf7f16dfdc43104544ad07","hasResults":false}
+  ],
+  "discoveryLimitations": {
+    "currentDatePass": "No new UK MHRA, NICE or NHS England authorisation or access decision was found for these programmes.",
+    "sourceDates": "ClinicalTrials.gov first-posted dates are recorded. The API responses did not expose a separately verified last-update-posted date, so sourceUpdatedAt remains null rather than inferred.",
+    "plannedVersusCompleted": "Older estimated starts for MWN109 Phase 3, MWN110, TQF3250 weight management and BIO101 are not treated as first dosing. Sponsor-reported TLC-6740 findings remain distinct from registry-posted results.",
+    "monitoring": "No automatic monitoring source, successful baseline, review renewal or all-green claim is created by this publication.",
+    "coverage": "The catalogue remains selected and non-exhaustive; these additions and the selected-domain pass do not establish industry completeness."
+  },
+  "nextActions": [
+    "Recheck not-yet-recruiting records for actual first dosing and later status updates",
+    "Track sponsor-reported TLC-6740 findings for peer-reviewed publication and confirmed Phase 2b initiation",
+    "Reconcile the BIO101 registry's older estimated dates when the sponsor updates the record",
+    "Continue topic-based discovery beyond the expanded selected-domain list"
+  ]
+}

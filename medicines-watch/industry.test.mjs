@@ -20,9 +20,10 @@ import abbvAsc30TernBimagrumab from './reviews/2026-10-02-authorised-abbv-asc30-
 import registryOmissions from './reviews/2026-10-02-authorised-registry-omissions.json' with {type:'json'};
 import enobosarmSemaglutide from './reviews/2026-10-02-authorised-enobosarm-semaglutide.json' with {type:'json'};
 import pfizerPdfRepair from './reviews/2026-10-02-pfizer-pdf-monitor-repair.json' with {type:'json'};
+import expandedRegistryWave from './reviews/2026-10-02-authorised-expanded-registry-wave.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,61);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,67);
+ assert.equal(medicines.length,6);assert.equal(industry.length,68);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,74);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -103,7 +104,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,61);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,68);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -273,7 +274,7 @@ test('expanded discovery keeps trial status and UK access boundaries explicit',(
   const item=industry.find(entry=>entry.id===id);
   assert.ok(item,id);
   assert.equal(item.clinicalApproval,null,id);
-  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/,id);
+  assert.match(item.ukAuthorisation,/do(?:es)? not establish UK marketing authorisation/,id);
   assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
   assert.match(item.supply,/do(?:es)? not establish lawful UK retail supply/,id);
   assert.ok(item.additionalEvidence.length>=1,id);
@@ -380,4 +381,37 @@ test('enobosarm combination keeps muscle-preservation research separate from res
  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/);
  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(item.supply,/do(?:es)? not establish lawful UK retail supply/);
+});
+
+test('expanded registry wave preserves formulation, status and specialist-indication boundaries',()=>{
+ assert.equal(expandedRegistryWave.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(expandedRegistryWave.clinicalApproval,null);
+ assert.equal(expandedRegistryWave.industryComplete,false);
+ assert.equal(expandedRegistryWave.automatedMonitorChanges,false);
+ for(const id of ['mwn109-injection','mwn109-tablets','mwn110','tqf3250','kds2010','tlc6740-tirzepatide','bio101-semaglutide']){
+  const item=industry.find(entry=>entry.id===id);
+  assert.ok(item,id);
+  assert.equal(item.clinicalApproval,null,id);
+  assert.equal(item.sourceIds.length,0,id);
+  assert.ok(item.additionalEvidence.length>=1,id);
+  assert.match(item.ukAuthorisation,/do(?:es)? not establish UK marketing authorisation/,id);
+  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
+  assert.match(item.supply,/lawful UK retail supply/,id);
+  assert.match(item.supply,/SHIFT/,id);
+ }
+ assert.match(industry.find(entry=>entry.id==='mwn109-injection').stage,/not yet recruiting/i);
+ assert.match(industry.find(entry=>entry.id==='mwn109-injection').limitations,/no results are posted/i);
+ assert.match(industry.find(entry=>entry.id==='mwn109-tablets').summary,/daily and weekly oral dosing/i);
+ assert.match(industry.find(entry=>entry.id==='mwn110').limitations,/does not state a mechanism/i);
+ assert.match(industry.find(entry=>entry.id==='tqf3250').summary,/actual 25 August 2026 start/i);
+ assert.match(industry.find(entry=>entry.id==='kds2010').stage,/Recruiting Phase 2a/);
+ assert.match(industry.find(entry=>entry.id==='tlc6740-tirzepatide').limitations,/sponsor-reported/i);
+ assert.match(industry.find(entry=>entry.id==='bio101-semaglutide').limitations,/Q1 2027/);
+ const ecnoglutide=industry.find(entry=>entry.id==='ecnoglutide');
+ assert.match(ecnoglutide.summary,/knee osteoarthritis/i);
+ assert.match(ecnoglutide.summary,/actual 3 August 2026 start/i);
+ assert.match(ecnoglutide.limitations,/not an additional authorised indication/i);
+ assert.equal(expandedRegistryWave.registryEvidence.length,11);
+ assert.ok(expandedRegistryWave.registryEvidence.every(record=>record.hasResults===false));
+ for(const domain of ['biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com'])assert.ok(discoveryDomains.includes(domain));
 });

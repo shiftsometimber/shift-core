@@ -16,6 +16,9 @@ async function loadCatalogue(){
     const r=await fetch(`${API}/v1/catalogue/medicines`,{credentials:'include'}),b=await r.json();
     const product=(b.products||[]).find(x=>String(x.name).toLowerCase()===config.match);
     if(!product)throw Error('not-listed');
+    const injection=String(product.form||'').toLowerCase()==='injection';
+    $('serviceInsulinLabel').hidden=!injection;
+    window.SHIFT_SERVICE_ELIGIBILITY=()=>({insulinUse:$('serviceInsulin').value,eligibility:{heightCm:Number($('serviceHeight').value),weightKg:Number($('serviceWeight').value),weightRelatedCondition:$('serviceCondition').value}});
     select.innerHTML=product.variants.map(v=>`<option value="${v.id}" data-price="${v.pricePence}" data-status="${v.status}">${v.strengthLabel} · ${money(v.pricePence)} · ${v.status==='available'?'In stock':'Out of stock'}</option>`).join('')||'<option>No current variants</option>';
     select.disabled=!product.variants.length;
     const sync=()=>{
@@ -24,10 +27,13 @@ async function loadCatalogue(){
       const verified=verification?.token&&Date.parse(verification.expiresAt)>Date.now();
       $('price').textContent=o?.dataset.price?money(o.dataset.price):'—';
       $('stockMessage').textContent=available?(verified?'Verification accepted · payment ready':'Available · verification required before payment'):slug==='foundayo'?'Formulary and partner supply not yet confirmed':'Currently out of stock';
-      button.disabled=!available;
+      const current=window.SHIFT_SERVICE_ELIGIBILITY(),bmi=current.eligibility.weightKg/((current.eligibility.heightCm/100)**2),minimum=slug==='orlistat'?28:27;
+      const criteria=current.eligibility.heightCm>=120&&current.eligibility.heightCm<=230&&current.eligibility.weightKg>=35&&current.eligibility.weightKg<=320&&bmi>=minimum&&(bmi>=30||current.eligibility.weightRelatedCondition==='yes')&&(!injection||current.insulinUse==='no');
+      button.disabled=!available||!criteria;
       button.textContent=!available?'Currently unavailable':verified?'Continue to secure payment':'Continue to verification';
     };
     select.onchange=sync;sync();
+    for(const input of $('serviceCriteria').querySelectorAll('input,select'))input.addEventListener('input',sync);
     button.onclick=async()=>{
       const variantId=Number(select.value);
       let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${variantId}`)||'null')}catch{}
@@ -37,7 +43,7 @@ async function loadCatalogue(){
       }
       button.disabled=true;
       try{
-        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,verificationToken:verification.token})}),result=await response.json();
+        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
         if(!response.ok||!result.checkoutUrl)throw Error(result.message||result.error||'Checkout could not be opened');
         location.assign(result.checkoutUrl);
       }catch(error){$('stockMessage').textContent=error.message;button.disabled=false}
