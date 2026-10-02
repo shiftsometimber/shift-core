@@ -195,7 +195,7 @@ test('treatment release binds every browser-tested eligibility and information f
 
 test('registry wave retains only exact PR955 reviewed files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'46d2347af6a5de84d7d5dcf05dc21b22e4122905');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,6);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'7e37dba701787c4a5f27123c926e7c6f981af14f');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,7);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });
