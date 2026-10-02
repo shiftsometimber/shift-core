@@ -20,7 +20,11 @@ jobs:
       - run: node shift-coach/scope.mjs
         env:
           SHIFT_COACH_SOURCE: ${{ github.event.pull_request.head.sha || github.sha }}
-      - run: node --test shift-coach/integration.test.mjs
+      - run: node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs
+      - name: Verify exact original and coaching release sources
+        run: |
+          node --input-type=module -e "import {validateGrowthSource} from './release/growth-scope.mjs'; validateGrowthSource()"
+          node scripts/b1-release-scope.mjs
       - run: node --test member-experience/tests/*.test.mjs tests/member-auth-regression.test.mjs tests/my-journey-v1.test.mjs tests/promise-accuracy.test.mjs tests/app-layout-live.test.mjs tests/shared-footer.test.mjs
       - run: npx wrangler deploy --dry-run --config wrangler.coaching.jsonc --outdir "$RUNNER_TEMP/coaching-bundle"
       - run: npm install --prefix "$RUNNER_TEMP/coaching-workerd" --no-audit --no-fund wrangler@4.146.0

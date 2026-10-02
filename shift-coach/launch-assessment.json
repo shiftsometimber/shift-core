@@ -324,5 +324,56 @@
       }
     ],
     "priorEntriesPreserved": true
+  },
+  "durableIntegrationDraft20261002": {
+    "recordedMain": "5ce97113112f3af637c4b108ee90813b1328d7b5",
+    "productionStatus": "NOT_DEPLOYED",
+    "productionLaunchRequested": true,
+    "boundedScopeAuthority": "Latest request follows proposed in-app launch; interpretation recorded in release-manifest.json. Complete v2 is not claimed.",
+    "codeDelta": {
+      "additions": 33,
+      "existingBackendFiles": 9,
+      "sharedStylesEdited": 0,
+      "originalWorkerEdited": false,
+      "newPaidProvider": false,
+      "databaseMigration": false
+    },
+    "engineering": [
+      "Normal root configuration selects coaching wrapper; exact entrypoint-only comparison retained.",
+      "Production path preserves all existing tests, rollback and live checks; new cheap launch receipt check runs before production work.",
+      "Fresh session/consent-checked prepared snapshot avoids a serial client API round trip; inline scoped client and inert escaped JSON.",
+      "Current-main Watch guard repairs from PR943/946 retained; those repairs are not attributed to this candidate."
+    ],
+    "checks": {
+      "backendReleaseAndCoachingFirstAttempt": "FAIL: one expected-source fixture still named old Watch revision. Superseded by current-main fixes; raw attempt retained.",
+      "backendReleaseAndCoachingBeforeEarlySnapshot": "PASS: 72 checks on current main.",
+      "earlySnapshotAndInjection": "PASS: 25 integration checks, including inert JSON and preserved private headers.",
+      "preservedRoutes": "PASS: 306 checks before the early-snapshot change; final source retest required.",
+      "compiledEarlyWorker": "PASS: 10 synthetic workerd/D1 checks.",
+      "fullPageEarlyIdentity": "PASS: six synthetic interaction checks; initial timing samples are not accepted as seven independent navigations. Raw files retained.",
+      "timingCorrection": "Repeated goto with the same fragment could be same-document navigation. The test now uses reload and asserts seven distinct performance.timeOrigin values. Gzip profile is an explicitly simulated transport, not a production account assertion.",
+      "finalHosted": "NOT_RUN",
+      "finalNative": "PASS: 379 checks; final inline/position change separately passed all 25 integration checks.",
+      "fullTimingPreFinal": "FAIL target in local fixtures; not production timing. Last-mark measurements retained; final proof measures first visible bound controls with seven fresh document timeOrigins. No subsecond full-page claim."
+    },
+    "remainingLaunchEvidence": [
+      "Privacy controller assessment/retention decision",
+      "Intended-purpose classification decision",
+      "Independent acceptance and voice/relevance review",
+      "Current complete production preservation/acceptance path",
+      "Measured production response timing"
+    ],
+    "limitations": [
+      "The bounded feature has no calendar actions, device imports, signed pattern thresholds or staffed clinical hand-off.",
+      "No new real-member data, contact, notifications or production mutations performed.",
+      "Full v2 criteria are not marked passed; prior status entries are not rewritten."
+    ],
+    "existingProduction": {
+      "source": "5ce97113112f3af637c4b108ee90813b1328d7b5",
+      "run": 37003235380,
+      "status": "SUCCESS",
+      "version": "4396d20d-e8df-4f83-8e82-354146b89c76",
+      "coachingLive": false
+    }
   }
 }

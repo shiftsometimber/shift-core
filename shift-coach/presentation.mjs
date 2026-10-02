@@ -18,11 +18,14 @@ body[data-app-tool]:not([data-app-tool="today"]) #shiftCoach{display:none!import
 `;
 const markup='<section id="shiftCoach" aria-label="Shift AI coaching" hidden><p class="coach-kicker">SHIFT AI · ONE THING FOR TODAY</p><div data-coach-content></div><p data-coach-status role="status" aria-live="polite"></p></section>';
 export function coachingAsset(request){if(!['GET','HEAD'].includes(request.method)||new URL(request.url).pathname!==assetPath)return null;return new Response(request.method==='HEAD'?null:client,{headers:{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});}
-export async function withCoaching(request,response){
+export async function withCoaching(request,response,seed=null){
  if(request.method!=='GET'||!/^\/member\/dashboard(?:\.html)?$/.test(new URL(request.url).pathname)||response.status!==200||!response.headers.get('Content-Type')?.includes('text/html'))return response;
  const html=await response.clone().text();
- if(html.includes('id="shiftCoach"')||!/<(?:section|div)\b[^>]*id="panel-today"/.test(html))return response;
- const changed=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+markup).replace('</body>','<style data-shift-coach-styles>'+styles+'</style><script defer src="'+assetPath+'"></script></body>');
+ if(html.includes('id="shiftCoach"')||!/<(?:section|div)\b[^>]*id="todayActions"/.test(html))return response;
+ // A fresh session/consent-checked snapshot avoids a second serial request.
+ // JSON is inert and escaped so a confirmed string can never close its script.
+ const initial=seed?'<script type="application/json" id="shiftCoachInitial">'+JSON.stringify(seed).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026')+'</script>':'';
+ const changed=html.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie');
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  return new Response(changed,{status:response.status,headers});

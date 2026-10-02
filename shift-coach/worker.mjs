@@ -10,7 +10,13 @@ export default {
  async fetch(request,env,ctx){
   const asset=coachingAsset(request);if(asset)return asset;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
-  return withCoaching(request,await core.fetch(request,env,ctx));
+  const response=await core.fetch(request,env,ctx);
+  let seed=null;const url=new URL(request.url);
+  if(request.method==='GET'&&/^\/member\/dashboard(?:\.html)?$/.test(url.pathname)&&response.status===200&&response.headers.get('Content-Type')?.includes('text/html')){
+   url.pathname='/v1/shift-coach';url.search='';
+   try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
+  }
+  return withCoaching(request,response,seed);
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

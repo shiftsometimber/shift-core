@@ -1,0 +1,82 @@
+{
+  "recordedMain": "5ce97113112f3af637c4b108ee90813b1328d7b5",
+  "applicationCommit": "0000000000000000000000000000000000000000",
+  "completeV2": false,
+  "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
+  "pinnedPaths": [
+    ".github/workflows/cloudflare-production-promote.yml",
+    ".github/workflows/shift-coach-integration.yml",
+    "release/app-preflight.mjs",
+    "release/app-scope.mjs",
+    "release/growth-adopt-deployment.mjs",
+    "release/growth-scope.mjs",
+    "release/shift-ai-scope.mjs",
+    "scripts/b1-release-scope.mjs",
+    "shift-coach/README.md",
+    "shift-coach/adapt.mjs",
+    "shift-coach/browser-proof.mjs",
+    "shift-coach/clock.mjs",
+    "shift-coach/continue.mjs",
+    "shift-coach/follow-up.mjs",
+    "shift-coach/followup-view.mjs",
+    "shift-coach/full-page-proof.mjs",
+    "shift-coach/integration.test.mjs",
+    "shift-coach/launch-assessment.json",
+    "shift-coach/life-back.mjs",
+    "shift-coach/memory.mjs",
+    "shift-coach/night-job.mjs",
+    "shift-coach/permissions.mjs",
+    "shift-coach/planning.mjs",
+    "shift-coach/presentation.mjs",
+    "shift-coach/privacy-purpose-review.md",
+    "shift-coach/privacy.mjs",
+    "shift-coach/release-contract.mjs",
+    "shift-coach/release.test.mjs",
+    "shift-coach/routes.mjs",
+    "shift-coach/safety.mjs",
+    "shift-coach/scope.mjs",
+    "shift-coach/store.mjs",
+    "shift-coach/test-fixture.mjs",
+    "shift-coach/today.mjs",
+    "shift-coach/ui.mjs",
+    "shift-coach/voice.mjs",
+    "shift-coach/worker.mjs",
+    "shift-coach/workerd-proof.cjs",
+    "tests/shift-ai-release.test.mjs",
+    "wrangler.coaching.jsonc",
+    "wrangler.jsonc"
+  ],
+  "decisions": {
+    "boundedScope": {
+      "approved": true,
+      "decidedBy": "Matt (user instruction; scope interpretation stated here)",
+      "decidedAt": "2026-10-02: latest request observed in this session; exact approval time not supplied",
+      "evidence": "Latest request \"can you sort >?\" follows the offered launch of tested in-app coaching first. Taken as authority to prepare this bounded release; not evidence that complete v2 has passed."
+    },
+    "privacyAssessment": {
+      "approved": false,
+      "decidedBy": null,
+      "decidedAt": null,
+      "evidence": null
+    },
+    "intendedPurpose": {
+      "approved": false,
+      "decidedBy": null,
+      "decidedAt": null,
+      "evidence": null
+    },
+    "independentAcceptance": {
+      "approved": false,
+      "decidedBy": null,
+      "decidedAt": null,
+      "evidence": null
+    },
+    "productionLaunch": {
+      "approved": true,
+      "decidedBy": "Matt",
+      "decidedAt": "2026-10-02: request observed in this session; exact approval time not supplied",
+      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence."
+    }
+  },
+  "note": "Engineering draft. No approval or human review is inferred from a request to implement. Previous evidence is retained in launch-assessment.json."
+}

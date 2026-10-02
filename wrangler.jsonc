@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   // Shift Me live 3D build proof route enabled.
   "name": "shift-core",
-  "main": "worker-entry-v6.js",
+  "main": "shift-coach/worker.mjs",
   "compatibility_date": "2026-08-09",
   "compatibility_flags": ["nodejs_compat"],
 

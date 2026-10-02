@@ -1,8 +1,9 @@
 export const client=String.raw`(()=>{
  'use strict';const host=document.getElementById('shiftCoach');if(!host)return;const content=host.querySelector('[data-coach-content]'),status=host.querySelector('[data-coach-status]');let data,pending=false,followupObserver;
- const actions=document.getElementById('todayActions');
+ let actions,positionObserver;
  function position(){const hero=actions?.querySelector(':scope > .mtm-hero');if(hero&&hero.nextElementSibling!==host)hero.after(host);}
- if(actions){new MutationObserver(position).observe(actions,{childList:true});position();}
+ function attachPosition(){const found=document.getElementById('todayActions');if(!found||found===actions)return;positionObserver?.disconnect();actions=found;positionObserver=new MutationObserver(position);positionObserver.observe(actions,{childList:true});position();}
+ attachPosition();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',attachPosition,{once:true});
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const labels={goal:'What you want back',week:'Your week',focus:'Your focus',helped:'Done and helped','didnt-help':"Done, didn't help",'didnt-fit':"Didn't fit my day",'didnt-try':"Didn't try",shift:'Prescribed through SHIFT',elsewhere:'Prescribed elsewhere',stopped:'Stopped medication'};
  const button=(text,action,extra='')=>'<button type="button" data-coach-action="'+action+'" '+extra+'>'+esc(text)+'</button>';
@@ -38,7 +39,8 @@ export const client=String.raw`(()=>{
   content.querySelectorAll('[data-coach-action]').forEach(b=>b.addEventListener('click',async()=>{const kind=b.dataset.coachAction;if(kind==='delete-all'){if(!confirm('Delete all Shift AI coaching context, plans, outcomes and decision history?'))return;try{await api('DELETE');await refresh();status.textContent='Your coaching records have been deleted.';}catch(e){status.textContent=errorText(e);}return;}update({kind,id:b.dataset.id||data.action?.id,value:b.dataset.value,yes:b.dataset.yes==='true',type:b.dataset.type,rating:Number(b.dataset.rating)});}));
  }
  async function refresh(){data=await api();render();}
- refresh().catch(e=>{if(e.status===401){host.hidden=true;return;}host.hidden=false;content.innerHTML='<h2>Shift AI</h2><p>Your saved coaching plan could not load.</p>';status.textContent='Please refresh to try again. The rest of My Timber is available.';});
+ const initial=document.getElementById('shiftCoachInitial');let seeded=false;if(initial){try{data=JSON.parse(initial.textContent);render();seeded=true;}catch{}initial.remove();}
+ if(!seeded)refresh().catch(e=>{if(e.status===401){host.hidden=true;return;}host.hidden=false;content.innerHTML='<h2>Shift AI</h2><p>Your saved coaching plan could not load.</p>';status.textContent='Please refresh to try again. The rest of My Timber is available.';});
  document.addEventListener('sst:consentchange',()=>refresh().catch(()=>{}));
  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!pending)refresh().catch(()=>{});});
  window.addEventListener('pageshow',e=>{if(e.persisted)refresh().catch(()=>{});});

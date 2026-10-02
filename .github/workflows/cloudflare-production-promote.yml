@@ -15,6 +15,8 @@ on:
       - "editorial-resources-v1.js"
       - "tests/five-article-evidence.test.mjs"
       - "tests/editorial-resources-v1.test.mjs"
+      - "shift-coach/**"
+      - "wrangler.coaching.jsonc"
       - "wrangler.jsonc"
       - "worker-entry-v6.js"
       - "scripts/b1-release-scope.mjs"
@@ -218,6 +220,8 @@ jobs:
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Require recorded coaching launch decisions before production work
+        run: node shift-coach/release-contract.mjs --require-launch
       - name: Require exact approved growth preview and release verification
         run: node release/growth-preflight.mjs
       - name: Require the exact successful heading preview before production work
@@ -247,6 +251,7 @@ jobs:
       - name: Verify B1 release scope before any production mutation
         id: scope
         run: |
+          node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs
           node --test tests/home-route-banner.test.mjs tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
           node scripts/b1-release-scope.mjs
       - name: Verify article retry, publication and notification contracts
