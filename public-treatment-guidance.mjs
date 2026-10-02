@@ -35,7 +35,7 @@ export function repairOrderControllerGuidance(source){
  source=source.replace('  function populateOptions(){',CONTROLLER_GATE+'  function populateOptions(){');
  source=source.replace('    const item=product();\n    $(\'[data-product-name]\')','    syncInsulinGate();\n    const item=product();\n    $(\'[data-product-name]\')');
  source=source.replace("const next=$('[data-op-next]'),ready=bmiCanContinue;","const next=$('[data-op-next]'),ready=bmiCanContinue&&insulinCheckPassed();");
- source=source.replace("priorityItem.textContent='Journey preferences happen after approval';","priorityItem.textContent=insulinCheckPassed()?'Service check complete':'Answer the insulin question';");
+ source=source.replace("priorityItem.classList.add('done');priorityItem.textContent='Journey preferences happen after approval';","priorityItem.classList.toggle('done',insulinCheckPassed());"+"priorityItem.textContent=insulinCheckPassed()?'Service check complete':'Answer the insulin question';");
  source=source.replace("function show(n){step=", "function show(n){if(n>0&&(!bmiCanContinue||!insulinCheckPassed()))n=0;step=");
  // Continuing-treatment selection is not a patient-controlled eligibility waiver.
  source=source.replace(/      if\(stage==='continuing'\)\{[\s\S]*?      \}else if\(bmi>=item\.bmiStandard\)\{/,"      if(bmi>=item.bmiStandard){");
