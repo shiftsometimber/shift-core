@@ -1,6 +1,10 @@
 export const TREATMENTS_ENTRY_START='<!-- SHIFT_MEDICINES_WATCH_ENTRY_START -->';
 export const TREATMENTS_ENTRY_END='<!-- SHIFT_MEDICINES_WATCH_ENTRY_END -->';
-export const TREATMENTS_ENTRY=TREATMENTS_ENTRY_START+'<style data-medicines-watch-entry-style>.sst-medicines-watch-entry{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1180px;margin:32px auto;padding:24px;background:#050505;border:1px solid #707762;border-radius:18px;color:#E7E3DA;font-family:Arial,Helvetica,sans-serif}.sst-medicines-watch-entry h2{margin:0 0 8px;color:#E7E3DA;font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.2}.sst-medicines-watch-entry p{margin:0;max-width:660px;color:#E7E3DA;font-size:1rem;line-height:1.5}.sst-medicines-watch-entry a{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;min-height:44px;padding:12px 18px;border:1px solid #707762;border-radius:999px;background:#E7E3DA;color:#454D39;font-size:1rem;font-weight:700;text-align:center;text-decoration:none}.sst-medicines-watch-entry a:hover{text-decoration:underline}.sst-medicines-watch-entry a:focus-visible{outline:3px solid #E7E3DA;outline-offset:4px}@media(max-width:700px){.sst-medicines-watch-entry{flex-direction:column;align-items:stretch;gap:18px;margin:24px 16px;padding:20px}.sst-medicines-watch-entry a{align-self:flex-start}}</style><section class="sst-medicines-watch-entry" data-medicines-watch-entry aria-labelledby="medicines-watch-entry-title"><div><h2 id="medicines-watch-entry-title">Medicines &amp; Peptides Watch</h2><p>UK authorisation, access and emerging evidence — with sources and review dates.</p></div><a href="/treatment-centre/medicines-watch">Explore the watch <span aria-hidden="true">&nbsp;→</span></a></section>'+TREATMENTS_ENTRY_END;
+export const TREATMENTS_ENTRY_LEGACY=TREATMENTS_ENTRY_START+'<style data-medicines-watch-entry-style>.sst-medicines-watch-entry{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1180px;margin:32px auto;padding:24px;background:#050505;border:1px solid #707762;border-radius:18px;color:#E7E3DA;font-family:Arial,Helvetica,sans-serif}.sst-medicines-watch-entry h2{margin:0 0 8px;color:#E7E3DA;font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.2}.sst-medicines-watch-entry p{margin:0;max-width:660px;color:#E7E3DA;font-size:1rem;line-height:1.5}.sst-medicines-watch-entry a{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;min-height:44px;padding:12px 18px;border:1px solid #707762;border-radius:999px;background:#E7E3DA;color:#454D39;font-size:1rem;font-weight:700;text-align:center;text-decoration:none}.sst-medicines-watch-entry a:hover{text-decoration:underline}.sst-medicines-watch-entry a:focus-visible{outline:3px solid #E7E3DA;outline-offset:4px}@media(max-width:700px){.sst-medicines-watch-entry{flex-direction:column;align-items:stretch;gap:18px;margin:24px 16px;padding:20px}.sst-medicines-watch-entry a{align-self:flex-start}}</style><section class="sst-medicines-watch-entry" data-medicines-watch-entry aria-labelledby="medicines-watch-entry-title"><div><h2 id="medicines-watch-entry-title">Medicines &amp; Peptides Watch</h2><p>UK authorisation, access and emerging evidence — with sources and review dates.</p></div><a href="/treatment-centre/medicines-watch">Explore the watch <span aria-hidden="true">&nbsp;→</span></a></section>'+TREATMENTS_ENTRY_END;
+
+export const TREATMENTS_ENTRY=TREATMENTS_ENTRY_LEGACY
+ .replace('Medicines &amp; Peptides Watch','Medicines &amp; Research Watch')
+ .replace('UK authorisation, access and emerging evidence — with sources and review dates.','News and evidence on weight-management medicines — with sources and review dates.');
 
 // Keep this module safe to import into the Worker for its entry markup.
 // The verification caller supplies SHA-256; no Node modules enter that bundle.
@@ -19,8 +23,8 @@ function normaliseTreatments(body,required){
  const start=html.indexOf(TREATMENTS_ENTRY_START),end=html.indexOf(TREATMENTS_ENTRY_END);
  requireThat(start>=0&&end>start,'Treatment Centre has malformed Medicines Watch markers');
  const block=html.slice(start,end+TREATMENTS_ENTRY_END.length);
- equal(block,TREATMENTS_ENTRY,'Treatment Centre Medicines Watch entry differs from approved source');
- return {body:Buffer.from(html.slice(0,start)+html.slice(end+TREATMENTS_ENTRY_END.length)),entry:true};
+ requireThat(block===TREATMENTS_ENTRY||(block===TREATMENTS_ENTRY_LEGACY&&!required),'Treatment Centre Medicines Watch entry differs from approved source');
+ return {body:Buffer.from(html.slice(0,start)+html.slice(end+TREATMENTS_ENTRY_END.length)),authorityBody:Buffer.from(html.slice(0,start)+TREATMENTS_ENTRY_LEGACY+html.slice(end+TREATMENTS_ENTRY_END.length)),entry:true};
 }
 
 // Exact source-reviewed pre/post blocks. This is a preservation allowlist, not a wildcard.
@@ -81,7 +85,7 @@ export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=fal
  if(path==='/treatment-centre'){
   const related=normaliseTreatmentRelatedGuide(body);
   const treatments=normaliseTreatments(related.body,requireTreatmentsEntry);
-  preserved={body:treatments.body,entry:treatments.entry,relatedGuide:true,revision:related.revision,authoritySha256:hash(related.body),authorityBytes:related.body.length};
+  preserved={body:treatments.body,entry:treatments.entry,relatedGuide:true,revision:related.revision,authoritySha256:hash(treatments.authorityBody||related.body),authorityBytes:(treatments.authorityBody||related.body).length};
  }else preserved=path==='/'?normaliseHomeStigmaAlt(body):path==='/programme'?normaliseProgrammeSeo(body):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
  return {path,status,sha256:hash(body),bytes:body.length,preservedSha256:hash(preserved.body),preservedBytes:preserved.body.length,...(path==='/treatment-centre'?{treatmentsWatchEntry:preserved.entry,relatedGuide:preserved.relatedGuide,relatedGuideRevision:preserved.revision,authoritySha256:preserved.authoritySha256,authorityBytes:preserved.authorityBytes}:path==='/shift-health'?{shiftHealthTwitterImage:preserved.twitterImage}:path==='/programme'?{programmeTwitterImage:preserved.twitterImage,programmeJourneyLink:preserved.journeyLink}:path==='/'?{homeStigmaAlt:preserved.homeStigmaAlt}:{})};
 }
