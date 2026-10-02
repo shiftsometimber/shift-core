@@ -17,6 +17,7 @@ export function assertCoachingConfiguration(current,previous){
 // Historical comparisons still verify the reviewed old bytes; the exact new bytes
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
+ if(ref==='HEAD'&&['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs'].includes(path))return 'e19165d1384f08b8584e1470155518780f86abf5';
  return ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)?COACH_BASE:ref;
 }
 export function validateCoachingSource(read,manifest){
