@@ -1,5 +1,5 @@
 import {verifyMemberAcceptanceProof} from './member-acceptance-scope.mjs';
-import {MEMBER_DESIGN_PATHS,verifyMemberDesignProof} from './member-design-scope.mjs';
+import {MEMBER_DESIGN_PATHS,MEMBER_LAYOUT_PATHS,verifyMemberDesignProof} from './member-design-scope.mjs';
 import {FOOTER_PATHS,historicalFooterRef,verifyFooterProof} from './footer-scope.mjs';
 import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN,FOOTER_PREVIEW,FOOTER_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
@@ -55,7 +55,7 @@ const retainedCurrentMain=new Set([".github/workflows/master-integration-gate.ym
 const retainedMain='b23010cfca99b3ab05377062ad5b16984711111c';
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:abbvAsc30Paths.has(p)?abbvAsc30Commit:sgb7342Paths.has(p)?sgb7342Commit:ubt251Paths.has(p)?ubt251Commit:expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!MEMBER_LAYOUT_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:abbvAsc30Paths.has(p)?abbvAsc30Commit:sgb7342Paths.has(p)?sgb7342Commit:ubt251Paths.has(p)?ubt251Commit:expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);

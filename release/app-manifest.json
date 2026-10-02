@@ -51,7 +51,7 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
     "release/app-member-live.mjs": "16ddb3d393d082fff7d107199d7c2e7c22353950c3d339d7eb798f2ca7447d71",
-    "release/app-preflight.mjs": "bd95c658cdfc385ac4fbd4efc5e5bd447b3d1667e47d77630627200ee7504762",
+    "release/app-preflight.mjs": "654f8e377eb0b5b793993b48c80a8b5d5cbd5a05257ff13bb7b38ca1c2868834",
     "release/growth-adopt-deployment.mjs": "efe031c50279e514607f016fb8caaffa1e4ad63345a9587f3ffa371424e8da7a",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
@@ -140,7 +140,7 @@
     "medicines-watch/reviews/2026-10-01-non-incretin-discovery.json": "972af52ba12f7bb8a607ddbe617c7621bdb2d0ea35a08aafe07eb77c0c2fdcd4",
     "medicines-watch/reviews/2026-10-01-publication-verification.json": "7b144863b8e754ebf3ac3eb160dba5adb4e2109d38e20cece798d5f251165133",
     "release/footer-scope.mjs": "ef77e29cf32e508d82cbfcc207985f8c063cf5a8e987e664ee16c51b33072cab",
-    "release/app-scope.mjs": "91f3c15c864c47e10baf6b0b5850c34fde582233d97541b16fa8d6bca332d691",
+    "release/app-scope.mjs": "893c0acab94e50c2199bbdc1cbeac1774d6c1a0163054f6051b6b655245b773d",
     "member-experience/public-preservation.mjs": "66c785ced38cece739464c4f41a0c775a753801f115d9b94dd081cb6aff16347",
     "shared-footer.mjs": "bff950b5dc335374f7fe21cc3b3f18e6c39df8f6988816845fc36e48e5f49661",
     "tests/shared-footer.test.mjs": "ee164102a43e95f052695b650d1dcabb25ff797a621ab748710d1502316f6d9a",
@@ -153,10 +153,10 @@
     "member-experience/verify-production-member.mjs": "4ec8443c97e210676e0deaf5149caf556a3f35f5e0706736b3b1a541cb35b254",
     "medicines-watch/reviews/2026-10-01-authorised-broader-discovery.json": "c6c5c53e659c6765879abf84a65146110340382a8209be1b53b13019d9dcd937",
     "medicines-watch/reviews/2026-10-01-synt101-mad-correction.json": "8788b30c76a11c060e4ba438cdbd3d1758facd6ca7a30fba0f56ef3b89515029",
-    "member-design.mjs": "5b9587b0f9f8a1fdb5f813d4104ec2e2a789d214240477db638f66b709a8a232",
-    "tests/member-design-release.test.mjs": "df697570dd5d7dc0f3101fdfa063544cc431d67bc538a6ddc4865a16ce66aa97",
-    "release/member-design-scope.mjs": "c64250987adb61b9d57c6e938b41893d69b1058970866197f0115f24c0b1b08d",
-    ".github/workflows/member-design-release-proof.yml": "e6ab0bfdde6bae52eb114066b7c7b8be928e390b4d8e3482a942c3cb918cf5f2",
+    "member-design.mjs": "5f63862d386ee1fed9619363c402c30de3b0c88a34dee32c60c63f77ff8a7529",
+    "tests/member-design-release.test.mjs": "dd5b7145e207ef16f4e239491cfd075cb407f60ec59dddd12cd57fda0f9aaac2",
+    "release/member-design-scope.mjs": "6d2289b22815c20c535dc721f0cb0bcd2afac31ed6ce6df2e541abf8d1c99933",
+    ".github/workflows/member-design-release-proof.yml": "2d8063743cb8e03174b9d1d0b463bbcb8c93e0ee19902344b880477f3bf7c344",
     ".github/workflows/member-design-preview.yml": "bbdb64e9848ab894eec1e860465db3d4f85623d94aa9d1d8327ea437762785e2",
     "preview/member-design/verify.cjs": "e4a99ffce328fa5be1b8a78452e61c1a068c457e36c7d4f5055f93f26d64a77f",
     "preview/member-design/member-feedback-proof.cjs": "751558811f9cd5bbd38a919093676f4068deb28ee96c904046ea72946f367d05",
@@ -169,7 +169,9 @@
     ".github/workflows/my-timber-final-production.yml": "b10f16c9e4db7191e5052b1260932e60e68fc8ff379dfe0497e012b9fb95e49a",
     "g2-014-progress-picture-premium-production.mjs": "8b05b304b7c02c299a5d7739fc82bd196cfe17ffbebbcddc6df10bc847f9ca9c",
     "release/member-acceptance-scope.mjs": "8b9ef9f55d29fc9605b0477ab4cfbbd664bc74c87ec57fc258e54a5c6ca7d088",
-    "my-timber-final-source-gate.mjs": "0e642c69787fa108ad72acf2fd00f0caae1dd10f6aeb0c46880c2bd0d14c37b1"
+    "my-timber-final-source-gate.mjs": "0e642c69787fa108ad72acf2fd00f0caae1dd10f6aeb0c46880c2bd0d14c37b1",
+    ".github/workflows/member-panel-layout-preview.yml": "624629a0df40d3b143f19aa60123829a4d60605d85060dd7e823494e3e284503",
+    "preview/member-panel-layout/verify.cjs": "0118354d7a9f7f6eea54b10771e140cb702cac1dc31ebf985d8a9d6b342f3813"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -246,5 +248,11 @@
     "previewRun": 36946742864,
     "approval": "1 October 2026: locked green/black design and request to complete shared My Timber; data, stock and clinical gates preserved",
     "embeddedChrome": "Only the containing page shows navigation and the canonical footer; direct tool pages keep both."
+  },
+  "memberPanelLayout": {
+    "candidate": "9f1699d4ffa5148ccf06fe150954f7da45a0dc3c",
+    "previewRun": 36973400765,
+    "request": "2 October 2026: repair the repeated remembered card, empty space below tabs and clipped Fit content shown in IMG_2404\u2013IMG_2406.",
+    "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   }
 }
