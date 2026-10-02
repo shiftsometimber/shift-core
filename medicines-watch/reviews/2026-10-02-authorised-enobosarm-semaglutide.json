@@ -1,0 +1,80 @@
+{
+  "reviewedAt": "2026-10-02T11:21:06Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish one primary-source-reviewed muscle-preservation combination omission through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "enobosarm-semaglutide",
+      "name": "Enobosarm with semaglutide",
+      "developer": "Veru",
+      "group": "research",
+      "stage": "Phase 2b PLATEAU active, not recruiting; no results posted",
+      "summary": "The sponsor-submitted registry records 239 older adults with obesity enrolled in PLATEAU, a Phase 2 study of daily oral enobosarm 3 mg or placebo alongside weekly semaglutide. The study evaluates total body weight, lean and fat mass, physical function, bone mineral density and safety; its registry status is active, not recruiting.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for enobosarm, alone or with semaglutide.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Trial activity and a semaglutide clinical-supply agreement do not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "PLATEAU has no posted results. The sponsor plans an interim analysis in Q1 2027 and final topline data in Q4 2027; those are planned events, not completed findings. Earlier QUALITY findings are sponsor-reported Phase 2 evidence with no registry-posted results, and do not establish approval, long-term benefit, superiority or UK access. Novo Nordisk's supply of Wegovy for PLATEAU is explicitly not an endorsement of enobosarm or the combination.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T11:21:06Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07446998 (PLATEAU)",
+          "url": "https://clinicaltrials.gov/study/NCT07446998",
+          "sourcePublishedAt": "2026-03-03",
+          "sourceUpdatedAt": "2026-09-04",
+          "reviewedAt": "2026-10-02T11:21:06Z",
+          "checkScope": "Sponsor-submitted registry record and API response read for active-not-recruiting Phase 2 status, actual 26 March 2026 start, actual 239-person enrolment, oral enobosarm 3 mg plus weekly semaglutide design, endpoints, estimated dates and absence of posted results; not automatically content-monitored."
+        },
+        {
+          "title": "Veru PLATEAU full-enrolment announcement",
+          "url": "https://ir.verupharma.com/news-events/press-releases/detail/256/veru-announces-full-enrollment-for-phase-2b-plateau",
+          "sourcePublishedAt": "2026-07-27",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T11:21:06Z",
+          "checkScope": "Original sponsor announcement read for completed enrolment, trial design, planned interim and final timing, earlier QUALITY context and the explicit non-endorsement boundary for Novo Nordisk's clinical supply; not automatically content-monitored."
+        },
+        {
+          "title": "Veru fiscal 2026 Q3 PLATEAU update",
+          "url": "https://ir.verupharma.com/news-events/press-releases/detail/260/veru-reports-fiscal-2026-third-quarter-financial-results",
+          "sourcePublishedAt": "2026-08-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T11:21:06Z",
+          "checkScope": "Original sponsor update read for actual 239-person enrolment and still-planned Q1 and Q4 2027 analyses; sponsor claims are attributed and not treated as regulatory findings; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06282458 (QUALITY)",
+          "url": "https://clinicaltrials.gov/study/NCT06282458",
+          "sourcePublishedAt": "2024-02-28",
+          "sourceUpdatedAt": "2025-09-17",
+          "reviewedAt": "2026-10-02T11:21:06Z",
+          "checkScope": "Sponsor-submitted registry record and API response read for completed Phase 2 status, actual 168-person enrolment and absence of posted results; sponsor-reported findings remain attributed rather than converted into registry results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "evidenceContinuity": {
+    "nct07446998ApiSha256": "35e04a9ef8f2b1e5b1d855f268bb558db375ef1a814d183f91340c5a47831c64",
+    "nct06282458ApiSha256": "cacc2a62e40af1bffa42cbdc2d431acfe5ffc1486bb77e8f7422e0f538962887"
+  },
+  "discoveryLimitations": {
+    "configuredSourcePass": "The live SELECT-only endpoint remained available and current for all 50 configured sources. A successful retrieval does not renew unrelated medical reviews.",
+    "currentDatePass": "No new UK MHRA, NICE or NHS authorisation or access decision was found for this programme. Same-day items already represented in the live catalogue were not duplicated.",
+    "broaderUndatedPass": "The undated muscle-preservation and smaller-developer pass found this older omission. The selected catalogue remains open-ended and non-exhaustive.",
+    "plannedVersusCompleted": "PLATEAU enrolment is completed, but the study remains active without posted results. Planned 2027 analyses are not described as completed results.",
+    "monitoring": "No automatic monitoring source, successful baseline, review renewal or all-green claim is created by this publication."
+  },
+  "nextActions": [
+    "Recheck NCT07446998 and the sponsor for the planned Q1 2027 interim analysis",
+    "Track any independent publication of QUALITY results separately from sponsor claims",
+    "Track UK regulator and NHS evidence separately from international research stages",
+    "Continue topic-based discovery beyond named developers and existing entries"
+  ]
+}
