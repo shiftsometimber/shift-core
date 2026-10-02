@@ -35,6 +35,7 @@ try{
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(origin+'/member/dashboard');await page.locator('[data-coach-setup]').waitFor();
  await page.getByLabel('What do you want back?').fill('Enjoy time with the family');await page.getByLabel('What does your week look like?').fill('Three late shifts and no free evenings');
+ const unchangedRead=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/shift-coach'&&r.request().method()==='GET');await page.evaluate(()=>document.dispatchEvent(new Event('sst:consentchange')));await (await unchangedRead).finished();await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));assert.equal(await page.getByLabel('What do you want back?').inputValue(),'Enjoy time with the family');assert.equal(await page.getByLabel('What does your week look like?').inputValue(),'Three late shifts and no free evenings');proof.checks.push('unchanged background refresh preserves an unsaved setup draft');
  await page.getByRole('button',{name:'Prepare my first action'}).click();await page.locator('[data-coach-action="accept"]').waitFor();
  assert.match(await page.locator('#shiftCoach h2').first().textContent(),/familiar meal/);snapshot('after-setup');proof.checks.push('saved reason matches two entered facts');
  const firstTitle=await page.locator('#shiftCoach h2').first().textContent();await page.screenshot({path:out+'/today-mobile.png',fullPage:true});
