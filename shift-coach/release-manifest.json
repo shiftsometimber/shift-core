@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "36675f7fcadd19d00e869c046a8925cbb9ac44b3",
+  "applicationCommit": "52b61efb7dc7350b1ba207c2722b61b7455e2c28",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection. Exact homepage font delivery subset only; approved wording, layout, styles, image and original font source retained.",
   "pinnedPaths": [
@@ -127,8 +127,8 @@
       "evidence": "Matt instructed: “Fix the issues you have found, understand the gaps and implement a strategy to close the loop positively and progressively.” This authorises the exact engineering repair under owner acceptance. Independent and clinical review are not represented as complete. Matt’s retained instruction to fix found issues also covers the narrowly reproduced constraint-ID feedback validation regression. Matt separately instructed \"Go live - stop pausing when they are needed updates\" and \"Fix these ?\" for evidence-backed Medicines Watch work. This extends engineering acceptance only to the exact specialist Watch release pins and manifest reconciliation in application commit 36675f7fcadd19d00e869c046a8925cbb9ac44b3; it does not approve clinical claims.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "36675f7fcadd19d00e869c046a8925cbb9ac44b3",
-      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. The release prerequisite projects the exact approved homepage font into a 34,920-byte subset from 87,120 bytes. Font outline/metrics/hinting equality and identical local browser pixels/layout at 320,390,1440px are verified; 22 focused delivery/homepage/release checks pass. Production LCP has not yet passed for this payload; unchanged live speed and rollback checks remain required. Exact recovery tests reject other versions, sources, attempts, split traffic and unverified baselines. The cancelled run37047576206 version7204ee91-dc82-4f3f-90ce-ead305baf9ae is the sole recoverable runtime. Browser installation is before deployment; strict source/clinical/privacy, 2.5-second homepage speed and rollback remain required. Matt reaffirmed the 2.5-second limit at 19:45 BST. Fit verification-only disclosure repair: 72 composed coaching, measurement, release, font, cancelled-runtime recovery and client-proof checks pass after preserving PR971. The prior verifier's reused-disclosure stall was reproduced; the new helper uses ordinary visible clicks. 14 local and hosted component browser checks, all 87 hosted phantom checks and compiled Worker/D1 checks pass on the original narrow repair. The specialist Watch release adds only source-pinned research summaries and a dated receipt; 139 Watch and release-scope tests pass locally, and the exact PR #974 source passed Medicines Watch run 37051301661. Final composed hosted checks and production verification remain mandatory. No fresh independent or clinical approval is claimed."
+      "applicationCommit": "52b61efb7dc7350b1ba207c2722b61b7455e2c28",
+      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. The release prerequisite projects the exact approved homepage font into a 34,920-byte subset from 87,120 bytes. Font outline/metrics/hinting equality and identical local browser pixels/layout at 320,390,1440px are verified; 22 focused delivery/homepage/release checks pass. Production LCP has not yet passed for this payload; unchanged live speed and rollback checks remain required. Exact recovery tests reject other versions, sources, attempts, split traffic and unverified baselines. The cancelled run37047576206 version7204ee91-dc82-4f3f-90ce-ead305baf9ae is the sole recoverable runtime. Browser installation is before deployment; strict source/clinical/privacy, 2.5-second homepage speed and rollback remain required. Matt reaffirmed the 2.5-second limit at 19:45 BST. Fit verification-only disclosure repair: 72 composed coaching, measurement, release, font, cancelled-runtime recovery and client-proof checks pass after preserving PR971. The prior verifier's reused-disclosure stall was reproduced; the new helper uses ordinary visible clicks. 14 local and hosted component browser checks, all 87 hosted phantom checks and compiled Worker/D1 checks pass on the original narrow repair. The specialist Watch release adds only source-pinned research summaries and a dated receipt; 139 Watch and release-scope tests pass locally, and the exact PR #974 source passed Medicines Watch run 37051301661. Final composed hosted checks and production verification remain mandatory. No fresh independent or clinical approval is claimed. Lossless WOFF2 delivery is14,804bytes with identical glyphs, metrics, hinting and pixels/layout at320/390/1440. Final preceding hosted candidate passed87phantom checks, zero errors, p95 940.2ms. Matt explicitly allowed20%timing tolerance at20:17BST: retain2.5s homepage and1.10s prepared-coach targets, allow3.0s and1.32s maxima and record actual target-met/tolerated results. Fresh full production verification remains required."
     }
   },
   "note": "Progressive everyday coaching repair preserving the independently reviewed earlier challenge catalogue. New constraints, progress, feedback and support changes rely on exact owner-authorised engineering acceptance; independent review of this new payload is not claimed. Source, privacy, preservation and rollback checks remain required. Narrow feedback explanation repair preserves the complete concurrent release and its recorded authority; no clinical, support queue, timing gate or data-retention change.",
@@ -138,6 +138,25 @@
     "decidedAt": "2026-10-02T17:17:48+01:00",
     "evidence": "User explicitly stated “1.10 is ok” after the final local simulated p95 result was disclosed.",
     "observedP95Ms": 1100.9,
-    "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing."
+    "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing.",
+    "toleranceDecision": {
+      "decidedBy": "Matt",
+      "decidedAt": "2026-10-02T20:17:35+01:00",
+      "evidence": "User stated: I don’t mind a 20% tolerance for these checks.",
+      "targetP95Ms": 1100,
+      "tolerancePercent": 20,
+      "limitP95Ms": 1320,
+      "scope": "Prepared-coach slower-device synthetic p95. Functional checks still require a full pass."
+    }
+  },
+  "homepageTimingAcceptance": {
+    "approved": true,
+    "decidedBy": "Matt",
+    "decidedAt": "2026-10-02T20:17:35+01:00",
+    "evidence": "User stated: I don’t mind a 20% tolerance for these checks.",
+    "targetMs": 2500,
+    "tolerancePercent": 20,
+    "limitMs": 3000,
+    "scope": "Homepage mobile median LCP lab release check; retain actual timings and distinguish target-met from within-tolerance. Does not establish real-user timing."
   }
 }
