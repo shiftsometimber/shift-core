@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "3c4ea1eb63957a2ec50a428e696707229c8e19d6",
+  "applicationCommit": "3ec6c4e0220686834e77c6d4e10b584a6143d8dd",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -118,7 +118,7 @@
       "evidence": "Matt instructed: “Fix the issues you have found, understand the gaps and implement a strategy to close the loop positively and progressively.” This authorises the exact engineering repair under owner acceptance. Independent and clinical review are not represented as complete.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "3c4ea1eb63957a2ec50a428e696707229c8e19d6",
+      "applicationCommit": "3ec6c4e0220686834e77c6d4e10b584a6143d8dd",
       "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory."
     }
   },
