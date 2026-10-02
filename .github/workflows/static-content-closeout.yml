@@ -1,0 +1,94 @@
+name: Reviewed static article release
+on:
+  push:
+    branches: [codex/full-website-content-20261002]
+    paths: [editorial/content-audit/static-*.json, editorial/content-audit/build-static.py, editorial/content-audit/static-*.mjs, .github/workflows/static-content-closeout.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: verified-public-pages-repair
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          ref: 9bdcc2f7f69dc7950b90011f47e83a34fd5a64a1
+          path: pages-authority
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37075343506
+          name: platform-content-inventory-3bda24aff368bcb7e499a5e6df3167980323f09a
+          path: exact-baseline
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - name: Build only approved article-body changes
+        run: |
+          python3 editorial/content-audit/build-static.py --source exact-baseline/pages-source.json.gz --out static-release
+          cp static-release/source.json.gz static-release/control.json pages-authority/release/public-pages-20260911/
+          python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+      - name: Package the verified candidate
+        run: |
+          mv "$SST_RELEASE_DIR" static-release/site
+      - name: Publish isolated Pages preview
+        run: |
+          mkdir -p "$RUNNER_TEMP/static-command"
+          cd "$RUNNER_TEMP/static-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$GITHUB_WORKSPACE/static-release/site" --project-name projectshift --branch reviewed-content-20261002 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/static-release/preview-deploy.log"
+          python3 - <<'PY'
+          import re,pathlib,os
+          log=pathlib.Path(os.environ['GITHUB_WORKSPACE']+'/static-release/preview-deploy.log').read_text()
+          url=re.findall(r'https://[a-f0-9]{8}\.projectshift\.pages\.dev',log)[-1]
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('STATIC_PREVIEW_URL='+url+'\n')
+          PY
+      - run: npm install --prefix "$RUNNER_TEMP/content-tools" --no-audit --no-fund playwright@1.58.2
+      - run: '"$RUNNER_TEMP/content-tools/node_modules/.bin/playwright" install --with-deps chromium'
+      - name: Verify all reviewed pages on mobile and desktop
+        run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/content-tools/node_modules/playwright" node editorial/content-audit/static-browser-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: static-browser-proof-${{ github.sha }}
+          path: static-browser-proof/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: static-release-${{ github.sha }}
+          path: static-release/
+  publish:
+    needs: preview
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with: {name: 'static-release-${{ github.sha }}', path: static-release}
+      - uses: actions/download-artifact@v4
+        with: {name: 'static-browser-proof-${{ github.sha }}', path: static-browser-proof}
+      - name: Publish exact verified bytes and verify live copy
+        run: node editorial/content-audit/static-release.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: static-live-proof-${{ github.sha }}
+          path: static-live-proof/
