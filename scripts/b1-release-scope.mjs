@@ -1,3 +1,4 @@
+import {validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import {GROWTH_PATHS,validateGrowthSource,validateGrowthEntry} from '../release/growth-scope.mjs';
 import {FOUNDATION_CANDIDATE,FOUNDATION_PATHS,validateFoundation} from '../release/shift-ai-scope.mjs';
@@ -150,6 +151,7 @@ export function verifyScope(){
   git('merge-base','--is-ancestor',WATCH_EXPANSION_COMMIT,'HEAD');
   validateWatchExpansion((ref,path)=>git('rev-parse',ref+':'+path));
   validatePublicWording((ref,path)=>git('rev-parse',ref+':'+path));
+  validateTreatmentGuidance((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_BROADER_COMMIT,'HEAD');
   validateWatchBroader((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_SYNT101_COMMIT,'HEAD');

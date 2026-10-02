@@ -32,11 +32,18 @@ test('optional GP form script asset is same origin, no-store and supports empty 
  for(const method of ['GET','HEAD']){const r=await memberDetailsLookupRoute(new Request('https://shiftsometimber.co.uk/assets/member-experience/gp-form.mjs',{method}),{});assert.equal(r.status,200);assert.match(r.headers.get('Content-Type'),/javascript/);assert.match(r.headers.get('Cache-Control'),/no-store/);assert.equal(await r.text(),method==='HEAD'?'':gpFormRuntime);}
 });
 test('both assessment additions preserve the immutable original fields, content and submit script',()=>{
+ const eligibilityAdditions=[
+  '      <label>Do you have a diagnosed weight-related condition?<select name="weightRelatedCondition" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>\n',
+  '      <label>Do you currently take insulin?<select name="insulinUse" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>\n',
+  '      <p>If you take insulin, you cannot use SHIFT’s weight-management injection service. This applies to new and repeat orders. Speak to the clinician who manages your diabetes about suitable options. Do not stop or reduce insulin to qualify. <a href="/shift-health">Explore SHIFT Health</a> for wider health guides and practical support.</p>\n'
+ ];
  const script='<script defer src="/assets/member-experience/gp-form.mjs"></script>\n';
  for(const path of ['../../frontend/member/treatment-assessment.html','../../frontend/medicine-front-door/treatment-assessment.html']){
   const html=readFileSync(new URL(path,import.meta.url),'utf8');assert.equal(html.split(script).length,2);
-  const original=html.replace(script,'');const blob=createHash('sha1').update('blob '+Buffer.byteLength(original)+'\0').update(original).digest('hex');
-  assert.equal(blob,'0603847db45d10ae20d2924278c95a0ff47a2849','Clinical content changed outside the exact GP script addition: '+path);
+  let original=html.replace(script,'');
+  for(const addition of eligibilityAdditions){assert.equal(original.split(addition).length,2,'Expected exactly one reviewed service-criteria addition: '+path);original=original.replace(addition,'');}
+  const blob=createHash('sha1').update('blob '+Buffer.byteLength(original)+'\0').update(original).digest('hex');
+  assert.equal(blob,'0603847db45d10ae20d2924278c95a0ff47a2849','Clinical content changed outside the exact GP script and service-criteria additions: '+path);
  }
  assert(!gpFormRuntime.includes("addEventListener('submit'"));assert(!gpFormRuntime.includes('localStorage'));assert(!gpFormRuntime.includes('sessionStorage'));assert(!gpFormRuntime.includes('/v1/profile'));assert(!gpFormRuntime.includes('/v1/commerce/'));assert(!gpFormRuntime.includes('innerHTML=body'));new vm.Script(gpFormRuntime);
 });

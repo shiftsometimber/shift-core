@@ -9,11 +9,11 @@ try{for(const width of [390,1440]){const p=await browser.newPage({viewport:{widt
  await p.locator('[data-bmi-unit="metric"]').click();await p.locator('[data-bmi-cm]').fill('180');await p.locator('[data-bmi-kg]').fill('100');
  const next=p.locator('[data-op-next]').first();assert.equal(await next.isDisabled(),true);
  await p.locator('[data-insulin-use]').selectOption('yes');assert.equal(await next.isDisabled(),true);assert.equal(await p.locator('[data-insulin-excluded]').isVisible(),true);
- assert.equal(await p.locator('[data-insulin-excluded] a').getAttribute('href'),'/shift-health');
+ assert.equal(await p.locator('[data-insulin-excluded] a').getAttribute('href'),'/shift-health');assert.equal(await p.locator('[data-ready-priorities]').innerText(),'Service unavailable');
  await p.locator('[data-insulin-gate]').scrollIntoViewIfNeeded();await p.screenshot({path:`treatment-guidance-proof/${width}-insulin-stopped.png`});
  await p.locator('[data-insulin-use]').selectOption('no');assert.equal(await next.isDisabled(),false);
  await p.locator('input[name="treatment-stage"][value="continuing"]').check();await p.locator('[data-bmi-kg]').fill('65');assert.equal(await next.isDisabled(),true,'Continuing must not waive criteria');assert.equal(await p.locator('[data-alternative-route]').isVisible(),true);
- assert.equal(await p.locator('[data-alternative-route] a').first().getAttribute('href'),'/shift-health');
+ assert.equal(await p.locator('[data-alternative-route] a').first().getAttribute('href'),'/shift-health');assert.equal(await p.locator('[data-alternative-route] a').first().innerText(),'Explore SHIFT Health');
  await p.locator('[data-bmi-result]').scrollIntoViewIfNeeded();await p.screenshot({path:`treatment-guidance-proof/${width}-bmi-stopped.png`});
  assert.equal(await p.locator('.op-positive-outlook').isVisible(),false);assert.equal(await p.locator('.op-product-art').isVisible(),false);assert.equal(await p.locator('[data-op-pay]').isDisabled(),true);
  await p.locator('[data-switch-medicine="wegovy-tablets"]').click();assert.equal(await p.locator('[data-insulin-gate]').isVisible(),false);

@@ -14,6 +14,7 @@ export const discoveryDomains = [
  'mbxbio.com','arrowheadpharma.com','lexpharma.com','neurocrine.com',
  'corbuspharma.com','syntis.bio','alveustx.com',
  'abbvie.com','ascletis.com','ternspharma.com',
+ 'biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com',
 ];
 // Supply a current date when running; never leave a review month fixed.
 export function queriesForDate(date=new Date()) {
