@@ -18,7 +18,10 @@ async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{met
  await p.goto(base+'/member/check-in?view=app',{waitUntil:'domcontentloaded'});
  if(await p.locator('[data-consent="necessary"]').isVisible())await p.locator('[data-consent="necessary"]').click();
  await p.locator('[data-mood]').first().click();await p.locator('#moodNote').fill('Fictional recent check-in for panel layout');
- const saved=p.waitForResponse(r=>new URL(r.url()).pathname==='/v1/check-ins'&&r.request().method()==='POST');await p.locator('#saveMood').click();assert((await saved).ok());
+ const saved=p.waitForResponse(r=>new URL(r.url()).pathname==='/v1/check-ins'&&r.request().method()==='POST');await p.locator('#saveMood').click();
+  const healthChoice=p.getByRole('checkbox',{name:/I explicitly consent/});
+  if(await Promise.race([saved.then(()=>false),healthChoice.waitFor({state:'visible'}).then(()=>true)])){await healthChoice.check();await p.getByRole('button',{name:'Agree & continue',exact:true}).click();}
+  assert((await saved).ok());
  await p.goto(base+'/member/dashboard?view=app#today',{waitUntil:'domcontentloaded'});
  await p.locator('#sstTodayContext').waitFor();await p.locator('#appTab-grub').waitFor();
  const remembered=await p.locator('#sstTodayContext').textContent(),records=await api(ctx,'/v1/check-ins');
