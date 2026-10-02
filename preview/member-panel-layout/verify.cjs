@@ -1,13 +1,17 @@
-const fs=require('fs'),assert=require('assert/strict');
+const fs=require('fs'),assert=require('assert/strict'),{createHash}=require('crypto');
 const {chromium,webkit}=require(process.env.APP_TOOLS+'/node_modules/playwright');
 const base=process.env.PREVIEW_URL,dir='work/staging/generated/member-panel-layout-evidence';
 assert(/^https:\/\/shift-stabilisation-preview\.[a-z0-9-]+\.workers\.dev$/.test(base),'Fictional isolated preview only');
 fs.mkdirSync(dir,{recursive:true});
 const fixture=JSON.parse(fs.readFileSync('work/staging/generated/probe.json'));
-const report={source:process.env.GITHUB_SHA,cases:[],productionWrites:0};
+const legacyContextSource=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
+const report={source:process.env.GITHUB_SHA,legacyContextSourceSha256:createHash('sha256').update(legacyContextSource).digest('hex'),cases:[],productionWrites:0};
 async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{method:body?'POST':'GET',headers:{Origin:base},...(body?{data:body}:{}),timeout:45000});assert(r.ok(),path+' '+r.status());return r.json()}
 (async()=>{let index=0;try{for(const [engine,name]of [[chromium,'chromium'],[webkit,'webkit']])for(const width of [320,390,430,1440]){
- const browser=await engine.launch(),ctx=await browser.newContext({viewport:{width,height:844}}),p=await ctx.newPage();ctx.setDefaultTimeout(45000);
+ const browser=await engine.launch(),ctx=await browser.newContext({viewport:{width,height:844}});ctx.setDefaultTimeout(45000);
+ // The isolated preview omits this legacy production loader. Run its unchanged
+ // source against the fictional API so the real remembered-context path is covered.
+ await ctx.addInitScript({content:legacyContextSource});const p=await ctx.newPage();
  const row={engine:name,width,checks:[],tools:[]};report.cases.push(row);
  try{
  await api(ctx,'/v1/auth/login',{email:'probe'+fixture.browserIds[index++%fixture.browserIds.length]+'@example.invalid',password:fixture.password});
