@@ -33,6 +33,10 @@ export async function withCoaching(request,response,seed=null){
  let prepared=seed?html.replace(/<body\b([^>]*)>/, '<body$1 data-shift-coach-session>').replace(/<section\b[^>]*\bid=["']previewMember["'][^>]*>/i,tag=>tag.replace(/\shidden(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?/i,'')):html;
  const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie, Accept-Encoding');
+ // Start the same existing stylesheets with the document headers, before the
+ // browser reaches parser-blocking scripts. No scripts or tracking are moved.
+ const preloads=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1]).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).slice(0,8).map(href=>'<'+href+'>; rel=preload; as=style');
+ if(preloads.length)headers.set('Link',[headers.get('Link'),...preloads].filter(Boolean).join(', '));
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  // Compress the private dashboard at its source so the prepared action does
  // not depend on an assumed CDN compression setting. Never gzip twice.

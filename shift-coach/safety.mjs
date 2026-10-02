@@ -1,6 +1,9 @@
 // A conservative output boundary for synthetic tests, NOT medical triage.
 // The help panel is always available even if these finite checks miss a message.
 const medical=/\b(dos(?:e|age|ing)|mg|diagnos\w*|side[ -]?effects?|symptoms?|pancreati\w*|gallbladder|dehydrat\w*|pregnan\w*|contracepti\w*|vomit\w*|faint\w*|chest pain|abdominal pain|stomach pain|blood in|eligib\w*|prescrib\w*|taper\w*|restart\w*)\b/i;
+// Ordinary symptom wording also belongs outside everyday coaching. Matching
+// these examples cannot establish severity or guarantee detection of illness.
+const ordinaryIllness=/\b(?:(?:keep|keeps|kept|constantly|repeatedly|still)\s+(?:being|getting|feeling)\s+sick|(?:being|feeling)\s+sick\s+(?:again|all day|every day)|(?:can't|cannot|can not|unable to)\s+(?:keep\s+(?:(?:any|even|my)\s+)?(?:water|fluids?|liquids?|drinks?|food)\s+down|keep\s+down\s+(?:(?:any|even|my)\s+)?(?:water|fluids?|liquids?|drinks?|food))|(?:throwing|bringing)\s+up|(?:can't|cannot|struggling to|hard to)\s+(?:breathe|breath)|feel(?:ing)?\s+(?:dizzy|lightheaded)|(?:my\s+)?(?:knee|stomach|tummy|belly|chest)\s+(?:hurts|is hurting|aches|pain))\b/i;
 const crisis=/\b(suicid\w*|kill myself|end my life|hurt myself|self[ -]?harm|can't go on|cannot go on|better off dead)\b/i;
 const eating=/\b(purg\w*|make myself sick|making myself sick|barely eaten|not eaten for|haven't eaten for|starv\w*)\b/i;
 const minor=/\b(?:i(?:'m| am)\s+(?:[0-9]|1[0-7])\s*(?:years? old|yo)?|under\s*18)\b/i;
@@ -9,6 +12,6 @@ export function boundary(message){
  if(typeof message!=='string'||message.length>2000)throw Object.assign(Error('invalid_message'),{status:400});
  message=message.normalize('NFKC').replace(/[\u2018\u2019\u02bc]/g,"'").replace(/[\u2010-\u2015]/g,'-').replace(/\s+/g,' ');
  if(minor.test(message))return{kind:'adult_service',coaching:false,text:'My Timber coaching is for adults. Please speak with a parent, guardian or a healthcare professional.',help:helpPanel};
- if(crisis.test(message)||eating.test(message)||medical.test(message))return{kind:'support',coaching:false,help:helpPanel};
+ if(crisis.test(message)||eating.test(message)||medical.test(message)||ordinaryIllness.test(message))return{kind:'support',coaching:false,help:helpPanel};
  return{kind:'coaching',coaching:true};
 }
