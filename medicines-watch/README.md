@@ -19,7 +19,7 @@ Public preservation accepts only the exact marked Treatments entry. The other te
 
 ## Coverage expansion and discovery
 
-The live catalogue contains 6 detailed references plus 49 concise industry summaries in `industry.mjs`: 55 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
+The live catalogue contains 6 detailed references plus 50 concise industry summaries in `industry.mjs`: 56 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
 
 `reviews/2026-10-02-authorised-expanded-discovery.json` records the latest five owner-authorised factual additions, their exact primary URLs, registry dates, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
 
@@ -92,3 +92,10 @@ Each entry separates completed observations from plans, preserves missing regist
 `reviews/2026-10-02-authorised-international-omissions.json` closes five evidence-backed gaps found by the broader undated pass. Ecnoglutide and mazdutide are recorded as sponsor-reported China NMPA approvals, explicitly not UK authorisations, NICE/NHS England access or evidence of UK supply. Injectable ASC36 and ASC36_35FDC are separate sponsor-reported US Phase 1 initiations; ASC35 is a separate recruiting Phase 1 registry record with no posted results. Development aims, IND clearance, trial recruitment and estimated dates are not presented as authorised regimens or completed evidence.
 
 The catalogue now contains 50 entries (6 detailed and 44 wider summaries). The automated-source denominator remains 50 because these five reviewed links stay visibly outside automatic monitoring until separate supported baselines exist. Standing owner authorisation permits the factual publication; it is not clinical approval. Neither the matching counts nor this selected set establishes industry completeness.
+
+
+## 2 October UBT251 omission
+
+`reviews/2026-10-02-authorised-ubt251.json` closes an older programme gap found by the broader undated triple-agonist pass. Novo Nordisk and United Biotechnology reported Chinese Phase 2 obesity results for weekly injectable UBT251, while Novo's 21 September 2026 pipeline presentation records a separate global Phase 1b/2a obesity study as ongoing and a weight-management Phase 3 start as planned for mid-2027. The planned Phase 3 event is not treated as completed.
+
+The catalogue now contains 56 entries (6 detailed and 50 wider summaries). The automated-source denominator remains 50 because the new primary links are labelled outside automatic monitoring until a separate complete-response baseline is reviewed. Standing owner authorisation permits this bounded factual publication; it is not clinical approval. No UK authorisation, NICE/NHS England access or lawful UK retail supply is inferred.
