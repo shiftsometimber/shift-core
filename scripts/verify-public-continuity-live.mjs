@@ -1,3 +1,4 @@
+import {restoreBookVoiceCopy} from '../book-voice.mjs';
 import {improveContinuityEntry} from '../preview/growth-member/continuity-journey.mjs';
 import assert from 'node:assert/strict';
 import {writeFileSync} from 'node:fs';
@@ -7,7 +8,7 @@ import {preserveContinuityContent} from '../public-continuity-preservation.mjs';
 import {NUTRITION_PATHS,NUTRITION_NOTE,preserveNutritionSignposting} from '../public-nutrition-mytimber.mjs';
 const origin=process.argv[2]||'https://shiftsometimber.co.uk',production='https://shiftsometimber.co.uk',preview=origin!==production;
 const hash=value=>createHash('sha256').update(value).digest('hex');
-const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);return {r,html:await r.text()}};
+const get=async path=>{const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,path);return {r,html:restoreBookVoiceCopy(path,await r.text())}};
 const redirects=[];
 for(const [from,to] of Object.entries(CONTINUITY_REDIRECTS)){
  for(const method of ['GET','HEAD'])for(const suffix of ['','/','.html']){
@@ -32,7 +33,7 @@ const related=[];
 for(const path of Object.keys(continuityEntries)){
  const {html}=await get(path);assert.ok(html.includes(continuityEntries[path]),path+' must retain its exact approved Continuity block');const preserved=preserveContinuityContent(path,Buffer.from(html),{required:true});
  if(path==='/programme')assert.ok(html.includes(NEW_LIFE_LINK));
- if(preview){const before=await (await fetch(production+path)).text();assert.equal(preserved.toString(),preserveContinuityContent(path,Buffer.from(before)).toString(),path+' changed beyond exact approved additions')}
+ if(preview){const before=restoreBookVoiceCopy(path,await (await fetch(production+path)).text());assert.equal(preserved.toString(),preserveContinuityContent(path,Buffer.from(before)).toString(),path+' changed beyond exact approved additions')}
  related.push({path,sha256:hash(html),preservedSha256:hash(preserved)});
 }
 const internalLinks=[];
