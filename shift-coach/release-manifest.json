@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "f30c6ba84aa84fed34f1f0690ee021a83c3eece9",
+  "applicationCommit": "1553dda677f829c562ef6ba67801ebcad801c922",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -114,7 +114,7 @@
       "evidence": "Matt asked “can’t we deploy ?” immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "f30c6ba84aa84fed34f1f0690ee021a83c3eece9",
+      "applicationCommit": "1553dda677f829c562ef6ba67801ebcad801c922",
       "verificationEvidence": "62/62 functional phantom-member checks, 344 local regression checks, 10 compiled Worker/D1 checks and successful hosted coaching/master/route checks for the repair; timing1100.9ms explicitly accepted by Matt. The retained application bytes are unchanged; the composed source additionally binds PR #964's successful Medicines Watch, master-integration and whole-estate gates under the standing factual-publication authorisation. Current pre/post-deployment checks remain mandatory."
     }
   },
