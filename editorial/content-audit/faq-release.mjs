@@ -9,7 +9,7 @@ const git=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/g
 const project=await cf('/pages/projects/projectshift');assert.equal(project.name,'projectshift');assert.equal(project.production_branch,'main');
 const before=project.canonical_deployment;assert.equal(before.id,'2e63ae40-45cf-435b-9156-e04ce90b699b','Another public release superseded the reviewed baseline');
 assert.equal(before.deployment_trigger.metadata.commit_hash,'d2fc4a26fdd7e8da64af4e51ac2982a0d77d92b4');
-const control=JSON.parse(readFileSync('faq-release/control.json')),browser=JSON.parse(readFileSync('faq-browser-proof/receipt.json'));assert.equal(browser.sha,process.env.GITHUB_SHA);assert.equal(browser.reports.length,92);
+const control=JSON.parse(readFileSync('faq-release/control.json')),browser=JSON.parse(readFileSync('faq-browser-proof/receipt.json'));assert.equal(browser.sha,process.env.GITHUB_SHA);assert.equal(browser.reports.length,68);
 const fp=await fetch(browser.origin+'/DEPLOYMENT-FINGERPRINT.json');assert(fp.ok);assert.equal((await fp.json()).aggregate_sha256,control.source_fingerprint);
 mkdirSync('faq-live-proof',{recursive:true});writeFileSync('faq-live-proof/before.json',JSON.stringify({id:before.id,url:before.url,commit:before.deployment_trigger.metadata.commit_hash},null,2));
 const root=process.cwd(),commandDir=process.env.RUNNER_TEMP+'/faq-pages-command';mkdirSync(commandDir,{recursive:true});
@@ -27,4 +27,4 @@ if(errors.length){
  const latest=(await cf('/pages/projects/projectshift')).canonical_deployment;assert.equal(latest.id,after.id,'Newer public release exists; do not roll it back');
  await cf('/pages/projects/projectshift/deployments/'+before.id+'/rollback','POST');writeFileSync('faq-live-proof/errors.json',JSON.stringify(errors,null,2));throw Error('Post-publication copy check failed; previous Pages release restored');
 }
-writeFileSync('faq-live-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,from:before.id,to:after.id,url:after.url,fingerprint:control.source_fingerprint,checks,preservedOtherFiles:828,workerDeployed:false,customerDataChanged:false,stockOrPricesChanged:false},null,2));console.log('PASS: 44 reviewed FAQs and Health MOT corrections published, all live-copy checks passed');
+writeFileSync('faq-live-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,from:before.id,to:after.id,url:after.url,fingerprint:control.source_fingerprint,checks,preservedOtherFiles:840,workerDeployed:false,customerDataChanged:false,stockOrPricesChanged:false},null,2));console.log('PASS: 32 reviewed FAQs and Health MOT corrections published, all live-copy checks passed');

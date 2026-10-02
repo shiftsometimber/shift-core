@@ -1,0 +1,64 @@
+{
+  "redirectsPreserved": [
+    {
+      "slug": "should-men-count-calories",
+      "target": "/articles/calories-explained-men",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "what-is-weight-loss-plateau",
+      "target": "/articles/weight-loss-plateau-men",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "is-bmi-accurate-for-men",
+      "target": "/articles/bmi-men",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "healthy-waist-height-ratio",
+      "target": "/tools/waist-height",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "why-do-men-get-belly-fat",
+      "target": "/articles/men-belly-fat",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "weight-knee-pain",
+      "target": "/articles/knee-pain-weight-men",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "weight-sleep-apnoea",
+      "target": "/articles/sleep-apnoea-weight-men",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "weight-testosterone",
+      "target": "/articles/testosterone-weight-men",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "alcohol-on-glp1",
+      "target": "/articles/alcohol-on-glp1",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "exercise-on-glp1",
+      "target": "/articles/exercise-on-glp1",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "glp1-muscle-loss",
+      "target": "/articles/muscle-on-glp1",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    },
+    {
+      "slug": "what-happens-stopping-glp1",
+      "target": "/articles/stopping-glp1",
+      "disposition": "Preserve existing permanent redirect; review destination independently"
+    }
+  ]
+}

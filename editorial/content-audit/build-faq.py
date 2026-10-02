@@ -36,7 +36,7 @@ def amend_mot(p,entries,updates,out,reports):
 def build(source,out):
  p=json.loads(gzip.decompress(source.read_bytes()));assert p['source_fingerprint']==BASE,'Stale Pages source'
  base=copy.deepcopy(p);entries={e['path']:e for e in p['files']};updates={};reports=[]
- data=json.loads(pathlib.Path(__file__).with_name('faq-copy.json').read_text());assert len(data['articles'])==44
+ data=json.loads(pathlib.Path(__file__).with_name('faq-copy.json').read_text());assert len(data['articles'])==32
  for a in data['articles']:
   name='faq/'+a['slug']+'.html';old=p['overrides'][name];assert entry(name,old)==entries[name]
   assert 'The fuller answer' in old and 'What should you take from this?' in old,'FAQ template changed: '+name

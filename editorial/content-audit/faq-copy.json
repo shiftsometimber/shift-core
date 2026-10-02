@@ -74,30 +74,6 @@
       ]
     },
     {
-      "slug": "should-men-count-calories",
-      "intro": "Counting calories is optional. It can help some people understand portions, but a useful food plan does not require logging every mouthful.",
-      "sections": [
-        [
-          "Choose a method you can live with",
-          "A repeatable shopping list, regular meals and sensible portions may be easier than an app. Calorie estimates are imperfect. If tracking becomes distressing, rigid or tied to loss-of-control eating, seek appropriate support instead of tightening the target."
-        ],
-        [
-          "What you can do next",
-          "Choose one approach for an ordinary week: light-touch tracking or a few consistent meals. Judge it by usefulness and how you feel, not just how precisely you recorded it."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: the Eatwell Guide",
-          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/guides/nutrition-guide"
-      ]
-    },
-    {
       "slug": "takeaways-and-weight-loss",
       "intro": "Yes. A takeaway can fit into a weight-management plan. Frequency, portion size, drinks and extras all affect the overall meal.",
       "sections": [
@@ -366,78 +342,6 @@
       ]
     },
     {
-      "slug": "what-is-weight-loss-plateau",
-      "intro": "A plateau is a period when the weight trend changes little. A few flat readings do not establish that a plan has stopped working.",
-      "sections": [
-        [
-          "Review before reacting",
-          "Check the weighing conditions and the pattern over several weeks. Then look at meals, drinks, activity, sleep and how realistic the routine has become. If you take a medicine, keep dose and treatment changes with your prescriber."
-        ],
-        [
-          "What you can do next",
-          "Write down what has changed since the plan began. Choose one useful adjustment or take that record to a treatment review; avoid a crash-diet response."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: overweight and obesity",
-          "https://www.nhs.uk/conditions/overweight-and-obesity/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/wegovy-not-working"
-      ]
-    },
-    {
-      "slug": "is-bmi-accurate-for-men",
-      "intro": "BMI is a screening measure, not a full assessment of your health. It uses height and weight and cannot distinguish muscle from fat.",
-      "sections": [
-        [
-          "Put the number in context",
-          "Waist measurement, ethnicity, age, medical history and other findings can change its interpretation. Different BMI thresholds apply to some ethnic groups. A BMI result alone does not establish medicine eligibility or tell you whether symptoms are harmless."
-        ],
-        [
-          "What you can do next",
-          "Measure height and weight carefully. If the result concerns you, discuss it alongside other health information rather than treating the category as your identity."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: overweight and obesity",
-          "https://www.nhs.uk/conditions/overweight-and-obesity/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/bmi-men"
-      ]
-    },
-    {
-      "slug": "healthy-waist-height-ratio",
-      "intro": "For adults with BMI below 35, NHS guidance uses waist-to-height ratio as additional context and advises keeping the waist below half the height.",
-      "sections": [
-        [
-          "It is a screening check",
-          "Use the same units for waist and height, then divide waist by height. Measurement technique matters. The ratio does not diagnose diabetes, heart disease or treatment suitability, and it cannot replace assessment of symptoms."
-        ],
-        [
-          "What you can do next",
-          "Follow the measurement instructions in the tool. Take a concern or a changing trend to a healthcare professional for context."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: overweight and obesity",
-          "https://www.nhs.uk/conditions/overweight-and-obesity/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/tools/waist-height"
-      ]
-    },
-    {
       "slug": "does-belly-fat-increase-risk",
       "intro": "Carrying more fat around the waist can be associated with greater cardiometabolic risk. A waist measurement is a clue, not a diagnosis.",
       "sections": [
@@ -459,30 +363,6 @@
       "next": [
         "Explore the relevant guide or tool",
         "/health-mot"
-      ]
-    },
-    {
-      "slug": "why-do-men-get-belly-fat",
-      "intro": "Where people store fat varies. Age, inherited factors and the balance between intake and activity can contribute; there is no single explanation for every man.",
-      "sections": [
-        [
-          "Skip the instant diagnosis",
-          "A changing waist is not proof of a hormone problem. Nor can a particular exercise promise to remove fat only from the belly. It is more useful to review the routine and investigate symptoms than buy a targeted fix."
-        ],
-        [
-          "What you can do next",
-          "Choose one change you can sustain and review the trend. Speak to a GP about unexplained change or symptoms that concern you."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: overweight and obesity",
-          "https://www.nhs.uk/conditions/overweight-and-obesity/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/dad-bod-nobody-talks-about"
       ]
     },
     {
@@ -555,78 +435,6 @@
       "next": [
         "Explore the relevant guide or tool",
         "/articles/prediabetes-men"
-      ]
-    },
-    {
-      "slug": "weight-knee-pain",
-      "intro": "Greater body weight can add load to the knees, but new knee pain should not automatically be blamed on weight. Injuries and other conditions can also cause it.",
-      "sections": [
-        [
-          "Know when to get assessed",
-          "Persistent pain needs appropriate review. Seek urgent advice if you cannot bear weight, the knee is badly swollen or changed in shape, or you have a hot red knee with fever. Do not push through these symptoms to meet an exercise target."
-        ],
-        [
-          "What you can do next",
-          "Choose movement that is comfortable and get advice about persistent symptoms. Use the NHS knee-pain page for current urgent-care guidance."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: knee pain",
-          "https://www.nhs.uk/symptoms/knee-pain/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/beginner-walking-plan-men"
-      ]
-    },
-    {
-      "slug": "weight-sleep-apnoea",
-      "intro": "Excess weight is one risk factor for obstructive sleep apnoea, but people at different weights can have it. Weight loss is not a substitute for diagnosis or prescribed treatment.",
-      "sections": [
-        [
-          "Act on breathing symptoms",
-          "Breathing pauses, gasping during sleep and marked daytime sleepiness deserve GP assessment. If you have CPAP or another treatment, keep using it as advised. Do not assume it is no longer needed after losing weight."
-        ],
-        [
-          "What you can do next",
-          "Record symptoms and ask anyone who notices breathing pauses to describe them. Arrange assessment; do not drive when sleepy."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: sleep apnoea",
-          "https://www.nhs.uk/conditions/sleep-apnoea/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/health-mot"
-      ]
-    },
-    {
-      "slug": "weight-testosterone",
-      "intro": "You cannot predict or diagnose a testosterone problem from weight alone. Weight management may be part of a wider health plan, but it is not a guaranteed hormone treatment.",
-      "sections": [
-        [
-          "Get symptoms assessed",
-          "Low energy, low libido and erectile difficulties have several possible causes. The NHS describes diagnosis using symptoms and appropriate blood tests. Buying testosterone or a supplement before assessment can miss the underlying problem."
-        ],
-        [
-          "What you can do next",
-          "Explain the symptoms and their timing to your GP. Ask what needs investigation rather than assuming a hormone number will fix everything."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: symptoms and testosterone assessment",
-          "https://www.nhs.uk/conditions/male-menopause/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/heart-health-men"
       ]
     },
     {
@@ -811,118 +619,6 @@
       "next": [
         "Explore the relevant guide or tool",
         "/guides/glp1-guide"
-      ]
-    },
-    {
-      "slug": "alcohol-on-glp1",
-      "intro": "There is no blanket answer for every person on GLP-1 treatment. Ask your prescriber about alcohol in the context of your medicine and health.",
-      "sections": [
-        [
-          "Think about treatment effects and other medicines",
-          "Poor intake, nausea, vomiting and dehydration can make drinking a worse fit for the day. Diabetes treatment, other medicines and liver or pancreatic problems can change the advice. Alcohol also contributes energy."
-        ],
-        [
-          "What you can do next",
-          "Mention your usual drinking pattern at a review. If you are unwell, prioritise medical advice and hydration rather than testing what you can tolerate."
-        ]
-      ],
-      "sources": [
-        [
-          "Wegovy injection: UK prescribing information",
-          "https://www.medicines.org.uk/emc/product/13800/smpc"
-        ],
-        [
-          "Mounjaro: UK prescribing information",
-          "https://www.medicines.org.uk/emc/product/15484/smpc"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/wegovy-side-effects-timeline"
-      ]
-    },
-    {
-      "slug": "exercise-on-glp1",
-      "intro": "Many people can remain active during treatment. Choose activity that fits your current fitness, nutrition, symptoms and medical advice.",
-      "sections": [
-        [
-          "Do not force a session through illness",
-          "Vomiting, dehydration, dizziness or poor intake are reasons to pause and get appropriate advice. Strength work can support physical function, but it does not guarantee that all lean tissue will be preserved. Diabetes medicines may need additional exercise advice."
-        ],
-        [
-          "What you can do next",
-          "Start with comfortable movement and an achievable strength routine if suitable. Ask your clinician about symptoms or any treatment-related precautions."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: adult physical activity",
-          "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
-        ],
-        [
-          "Wegovy injection: UK prescribing information",
-          "https://www.medicines.org.uk/emc/product/13800/smpc"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/glp-1-and-exercise"
-      ]
-    },
-    {
-      "slug": "glp1-muscle-loss",
-      "intro": "Weight loss can include lean tissue, but lean tissue is not the same measurement as muscle alone. You cannot predict an individual loss from a trial average.",
-      "sections": [
-        [
-          "Pay attention to function and intake",
-          "Adequate nutrition and suitable strength activity can support health during weight loss. They cannot promise zero muscle loss. Very poor intake, new weakness or difficulty with ordinary activity deserve review rather than a tighter calorie target."
-        ],
-        [
-          "What you can do next",
-          "Discuss nutrition and strength with the team supervising treatment, especially if eating has become difficult. Seek dietetic advice where needed."
-        ]
-      ],
-      "sources": [
-        [
-          "NHS: adult physical activity",
-          "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
-        ],
-        [
-          "NHS: the Eatwell Guide",
-          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/glp-1-muscle-loss"
-      ]
-    },
-    {
-      "slug": "what-happens-stopping-glp1",
-      "intro": "Appetite and weight may change after stopping treatment, but the pattern varies. Plan the change with the prescriber rather than assuming a fixed outcome.",
-      "sections": [
-        [
-          "Maintenance needs a plan",
-          "Talk about why you are stopping, follow-up, food, activity and any diabetes treatment. Do not borrow medication, improvise a taper or switch to an unapproved product to avoid regain. If severe symptoms make you suspect a serious adverse effect, seek urgent medical advice and follow the leaflet."
-        ],
-        [
-          "What you can do next",
-          "Arrange a review before a planned stop. Ask what to monitor, what support is available and when to contact the care team."
-        ]
-      ],
-      "sources": [
-        [
-          "Wegovy injection: UK prescribing information",
-          "https://www.medicines.org.uk/emc/product/13800/smpc"
-        ],
-        [
-          "Mounjaro: UK prescribing information",
-          "https://www.medicines.org.uk/emc/product/15484/smpc"
-        ]
-      ],
-      "next": [
-        "Explore the relevant guide or tool",
-        "/articles/life-after-ozempic"
       ]
     },
     {

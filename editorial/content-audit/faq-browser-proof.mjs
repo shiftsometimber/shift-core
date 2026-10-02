@@ -7,17 +7,17 @@ const data=JSON.parse(readFileSync('editorial/content-audit/faq-copy.json'));
 const browser=await chromium.launch({headless:true});mkdirSync('faq-browser-proof',{recursive:true});const reports=[];
 try{for(const spec of data.articles){for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});await page.goto(origin+'/faq/'+spec.slug,{waitUntil:'networkidle',timeout:45000});
- assert(new URL(page.url()).origin===origin,'Preview unexpectedly left its own origin');
+ assert(new URL(page.url()).origin===origin,'Preview unexpectedly left its own origin');assert.equal(new URL(page.url()).pathname,'/faq/'+spec.slug,'Standalone FAQ unexpectedly redirected');
  const result=await page.evaluate(()=>({h1:document.querySelectorAll('h1').length,overflow:document.documentElement.scrollWidth>innerWidth,brokenFragments:[...document.querySelectorAll('main a[href^="#"]')].map(a=>a.getAttribute('href').slice(1)).filter(id=>!document.getElementById(id)),text:document.querySelector('main').innerText,articleText:document.querySelector('article').innerText,header:!!document.querySelector('header'),footer:!!document.querySelector('footer'),brokenImages:[...document.images].filter(i=>i.getBoundingClientRect().width>0&&!i.complete||i.complete&&i.naturalWidth===0).map(i=>i.getAttribute('src'))}));
  assert.equal(result.h1,1);assert.equal(result.overflow,false);assert.deepEqual(result.brokenFragments,[]);assert(result.header&&result.footer);
- assert(result.articleText.includes(spec.intro));for(const [heading] of spec.sections)assert(result.articleText.includes(heading));assert(result.text.includes('2 October 2026'));
+ assert(result.articleText.replace(/\s+/g,' ').includes(spec.intro),'Reviewed FAQ intro missing: '+spec.slug+'; got '+result.articleText.slice(0,220));for(const [heading] of spec.sections)assert(result.articleText.includes(heading));assert(result.text.includes('2 October 2026'));
  for(const forbidden of ['The fuller answer','What should you take from this?','Written and researched by Matt','10 April 2026'])assert(!result.text.includes(forbidden));
  assert(result.articleText.split(/\s+/).length>90,'Reading content unexpectedly short');
  await page.screenshot({path:'faq-browser-proof/'+spec.slug+'-'+width+'.jpg',fullPage:true,type:'jpeg',quality:65});
  reports.push({slug:spec.slug,width,h1:result.h1,overflow:result.overflow,brokenFragments:result.brokenFragments,header:result.header,footer:result.footer,brokenImages:result.brokenImages});await page.close();
 }}
  await checkMot(browser,origin,reports);
- writeFileSync('faq-browser-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),sha:process.env.GITHUB_SHA,origin,reports,formsSubmitted:false,customerAccountsAccessed:false,clinicalReviewClaimed:false},null,2));
+ writeFileSync('faq-browser-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),sha:process.env.GITHUB_SHA,origin,reports,syntheticLocalHealthMotFormsSubmitted:true,accountFormsSubmitted:false,customerAccountsAccessed:false,clinicalReviewClaimed:false},null,2));
 }finally{await browser.close();}
 
 async function checkMot(browser,origin,reports){
