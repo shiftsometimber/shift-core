@@ -9,7 +9,7 @@ test('only the exact approved homepage font payload changes and round-trips byte
  const unknown=html.replace('sst-home-route-css','unknown-css');assert.equal(optimiseHomeFont('/',unknown),unknown);
  assert.equal(optimiseHomeFont('/',html+fontData),html+fontData);
  assert.throws(()=>restoreHomeFont('/',after.replace('sst-home-route-css','unknown-css')),/Unknown homepage/);
- assert(fontProof.subsetBytes<fontProof.sourceBytes*.45);assert(fontProof.metricsAndOutlinesEqual);
+ assert(fontProof.subsetBytes<fontProof.sourceBytes*.2);assert(fontProof.metricsAndOutlinesEqual);assert(fontProof.losslessRoundTrip);assert.equal(fontProof.format,'WOFF2');assert.equal(Buffer.from(subsetFontData.split(',')[1],'base64').subarray(0,4).toString(),'wOF2');assert(after.includes("format('woff2')"));
 });
 test('homepage delivery preserves other response metadata and leaves other routes untouched',async()=>{
  const original=new Response('<head>'+css+'</head>',{headers:{'Content-Type':'text/html','ETag':'old',Link:'</keep>; rel=preload'}});
