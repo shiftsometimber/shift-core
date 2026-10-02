@@ -51,8 +51,8 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
     "release/app-member-live.mjs": "c640fdef76062b7afc90f0b4817ea5e9bc5dd693945ed2a1dfa2c4cdf602b96f",
-    "release/app-preflight.mjs": "5d71d3b97844abf30ef245712ea4f023d602c168bc1c9e0656a82cbbd4be3eb0",
-    "release/growth-adopt-deployment.mjs": "dcb87a5bd0691fe67bbe69ce0c00ad7bca23ef266d6f16bce59cb0dfdd37cfde",
+    "release/app-preflight.mjs": "a28b09f0e23ea032c5a090061e19def4cc2d108ef21a6c4d78f9e4eae455808d",
+    "release/growth-adopt-deployment.mjs": "0d6448e936ddcaf2554c39dd6753e34706d91f17a6bda67770f3eab4b86bd3ba",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
     "release/member-focus-scope.mjs": "759a4723660ab0d1afbb95c131879afcce1de598fb88cdc4558d9f475f384f17",
@@ -68,7 +68,7 @@
     "medicines-watch/reviews/2026-09-30-discovery-proposals.json": "fa4a023ae621de4c77bdef2675d17d121d241fb43f1588d6319c17c9b65f5098",
     "medicines-watch/reviews/2026-09-30-discovery-review.md": "9fde72a71a0dd6059846d335db83806d4e1c152a5d6772f52a8c02863de0f1e5",
     "medicines-watch/reviews/2026-09-30-reviewed-expansion.json": "a92afda9c2e64236b681ebaa954b1863f470df0fed81d12103b65d29bdc4b0ac",
-    "release/growth-scope.mjs": "8d7c1604255152f76a4c2dd5830fffbbca23bcbfc92959268fe10080e0aa476c",
+    "release/growth-scope.mjs": "8196591f6d69e1ed853b4ff81ee900e1db221871da41858f53a00ebc944f0187",
     ".github/workflows/home-banner-preview.yml": "9f254015a5077c98ee8a3976b69aa38769a79ff8987015bb9c9a40401cc51d25",
     "preview/home-banner/assets/OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
     "preview/home-banner/assets/barlow-condensed-700.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
@@ -160,7 +160,9 @@
     ".github/workflows/member-design-preview.yml": "bbdb64e9848ab894eec1e860465db3d4f85623d94aa9d1d8327ea437762785e2",
     "preview/member-design/verify.cjs": "00168cee2ddedbfa253a78f721359007226bfaa640723abd40d1fce2c0f71a53",
     "preview/member-design/member-feedback-proof.cjs": "751558811f9cd5bbd38a919093676f4068deb28ee96c904046ea72946f367d05",
-    ".github/workflows/continuity-live-acceptance.yml": "bc170d236dd7e5c19762ab10233844460bd228d9e4a282b9bc04deefbc51179f"
+    ".github/workflows/continuity-live-acceptance.yml": "bc170d236dd7e5c19762ab10233844460bd228d9e4a282b9bc04deefbc51179f",
+    "rendered-member-acceptance-support.mjs": "509134e3d06cb61d7594633ff7c42a2da529aeb24f7fd083da9021e552fda080",
+    "tests/rendered-member-acceptance-support.test.mjs": "a9547b2c1e0b40bb04104fd182266651acf89a6b14e8858ac45b1fe771092e44"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
