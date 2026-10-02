@@ -1,5 +1,5 @@
 {
-  "baselineMain": "c71060ac9129d3aea16dc824f9d6c79bb76cdcdd",
+  "baselineMain": "b547f060e4bb6249831a08b7ad72f2d1b8490cf8",
   "articles": [
     {
       "id": 5,
@@ -281,7 +281,7 @@
       "expectedTitle": "16–20 Weeks: Wegovy Side Effects Timeline, Dose Steps and Red Flags",
       "expectedUpdatedAt": "2026-09-23 05:31:02",
       "bodyPath": "editorial/content-audit/wegovy-side-effects-timeline.md",
-      "bodySha256": "dc2d867f241df3b224c6d5ab7696b160a38a23a61691c16b2e6e57e66df8d322",
+      "bodySha256": "7ed962f105bc4d81d6797a38d9ecba220908e5aecebaa1785bddc13b034b9926",
       "title": "Wegovy side effects: timing varies, warning signs matter",
       "seoTitle": "Wegovy side effects: timing varies, warning signs matter",
       "summary": "Side effects do not follow a reliable weekly timetable. Know what to record, when to seek help and who is responsible for your treatment.",

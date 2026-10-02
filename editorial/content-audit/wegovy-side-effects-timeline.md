@@ -39,7 +39,7 @@ My Timber can organise ordinary food, movement and routines around your week. It
 ## Sources and editorial note
 
 - [Wegovy injection: current UK patient leaflet](https://www.medicines.org.uk/emc/files/pil.13800.pdf).
-- [MHRA: strengthened warnings about acute pancreatitis with GLP-1 medicines](https://www.gov.uk/drug-safety-update/glp-1-receptor-agonists-and-dual-glp-1-and-gip-receptor-agonists-strengthened-warnings-on-acute-pancreatitis-including-necrotising-and-fatal-cases).
+- [MHRA: strengthened warnings about acute pancreatitis with GLP-1 medicines](https://www.gov.uk/drug-safety-update/glp-1-receptor-agonists-and-dual-glp-1-slash-gip-receptor-agonists-strengthened-warnings-on-acute-pancreatitis-including-necrotising-and-fatal-cases).
 - [NHS: dehydration](https://www.nhs.uk/conditions/dehydration/).
 
 Editorial correction: 2 October 2026. Unsupported week-specific predictions and suggested self-treatment have been removed. General information; independent clinical review is not claimed. Use the leaflet supplied with your exact product and individual advice from your healthcare professional.
