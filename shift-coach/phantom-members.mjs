@@ -6,6 +6,7 @@ import worker from './worker.mjs';
 import {createHash} from 'node:crypto';
 import {load,mutate} from './store.mjs';
 import {prepareNight} from './night-job.mjs';
+import {weeklyPlan} from './planning.mjs';
 import {fixture} from './test-fixture.mjs';
 import assert from 'node:assert/strict';
 const blockedServerRequests=[];globalThis.fetch=async input=>{const u=new URL(String(input?.url||input));if(u.hostname==='projectshift.pages.dev'){let f=u.pathname==='/member/dashboard'?root+'/member-experience/test-support/dashboard.html':root+'/frontend/member'+({'/member/grub':'/member-grub.html','/member/fit':'/member-fit.html'}[u.pathname]||u.pathname);if(!existsSync(f))f+='.html';if(existsSync(f))return new Response(readFileSync(f),{headers:{'Content-Type':f.endsWith('.html')?'text/html':f.endsWith('.css')?'text/css':'text/javascript'}});}blockedServerRequests.push(u.href);return new Response('External HTTP disabled in synthetic test',{status:503});};
@@ -25,7 +26,7 @@ const server=createServer(async(req,res)=>{try{let url=new URL(req.url,'https://
 const require=createRequire(import.meta.url);
 const {chromium}=process.env.PLAYWRIGHT_MODULE?require(process.env.PLAYWRIGHT_MODULE):await import('playwright');
 const browser=await chromium.launch({headless:true,...(process.env.COACHING_CHROMIUM?{executablePath:process.env.COACHING_CHROMIUM}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
-const report={at:new Date().toISOString(),scope:'Repository-pinned My Timber dashboard HTML/scripts and integrated coaching candidate, local Node/SQLite. Three invented authenticated adult members; no production account, email, paid model or external notification.',candidateCommit:''+(await import('node:child_process')).execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),workingCopyFiles:['shift-coach/full-page-proof.mjs','shift-coach/integration.test.mjs','shift-coach/presentation.mjs','shift-coach/ui.mjs'],checks:[],profiles:[],pageErrors:[],fixtureResponses:[],limitations:['These are scenario-driven simulated users, not human feedback. Digital-confidence findings are usability heuristics, not measured reactions.','Existing production registration, password recovery, physical iPhone/Android binaries, live clinical team response, real push, calendar/device integrations and commercial outcomes are not covered.','Grub catalogue is not seeded in this isolated fixture; its 503 responses must not be reported as live failures.','The candidate is separate from GitHub main and is not established as deployed.'],timings:[]};
+const report={at:new Date().toISOString(),scope:'Repository-pinned My Timber dashboard HTML/scripts and integrated coaching candidate, local Node/SQLite. Three invented authenticated adult members; no production account, email, paid model or external notification.',candidateCommit:''+(await import('node:child_process')).execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),sourceFiles:['shift-coach/integration.test.mjs','shift-coach/memory.mjs','shift-coach/phantom-members.mjs','shift-coach/planning.mjs','shift-coach/ui.mjs'],checks:[],profiles:[],pageErrors:[],fixtureResponses:[],limitations:['These are scenario-driven simulated users, not human feedback. Digital-confidence findings are usability heuristics, not measured reactions.','Existing production registration, password recovery, physical iPhone/Android binaries, live clinical team response, real push, calendar/device integrations and commercial outcomes are not covered.','Grub catalogue is not seeded in this isolated fixture; its 503 responses must not be reported as live failures.','This synthetic browser harness does not establish deployment or real-member outcomes.'],timings:[]};
 const profiles=[
  {id:1,name:'Dan',confidence:'Tech confident',width:1280,height:900,mode:'shift',goal:'Have enough energy to join in with the family',week:'Three late shifts and no free evenings',focus:'food',stage:'Already making changes'},
  {id:2,name:'Alan',confidence:'Low digital confidence',width:360,height:800,mode:'stopped',goal:'Feel more like myself and get out with my family',week:'I need simple instructions and meals I already know',focus:'food',stage:'Just starting'},
@@ -67,9 +68,27 @@ try{
    const direct=visible.some(x=>x.href&&/grub|fit|recipe|meal|movement/i.test(x.href))||visible.some(x=>/ingredient|open meal|start activity|save meal|add to.*list/i.test(x.text));
    const task=await host.locator('[data-coach-task]').innerText();const link=host.locator('[data-coach-task] a');if(await link.count()){const href=await link.getAttribute('href');const response=await ctx.request.get(origin+href);assert.equal(response.status(),200);assert.match(await response.text(),/Grub|Fit/i);}return{pass:direct&&task.length>50,observed:{visibleControls:visible,text,task,priorIssue:'No meal, ingredients, shopping-list entry, activity instructions or direct task link opens from the coaching action.'}};
   });
+  await check(profile.name,'A current weekly plan can be accepted and survives reload',async()=>{
+   const created=await mutate(DB,profile.id,'synthetic_weekly_plan',s=>({plan:weeklyPlan(s,'2026-10-02')}));profile.firstPlan=created.result.plan;
+   await page.reload({waitUntil:'commit'});await page.locator('[data-coach-action=outcome]').first().waitFor({state:'attached'});
+   await page.getByText('What SHIFT knows about me',{exact:true}).click();
+   await page.locator('[data-coach-plan="'+profile.firstPlan.id+'"] [data-coach-action=plan-accept]').click();await saved(page);
+   await page.reload({waitUntil:'commit'});await page.locator('#shiftCoach').waitFor();
+   const s=await state(ctx),p=s.memory.derivedPlans.find(p=>p.id===profile.firstPlan.id);
+   return{pass:p.accepted&&p.status==='current',observed:{title:p.title,status:p.status,accepted:p.accepted}};
+  });
   await check(profile.name,'Did not fit: next action is a smaller commitment',async()=>{
    const before=(await state(ctx)).action;await page.locator('#shiftCoach summary').filter({hasText:'Tell Shift AI how it went'}).click();await page.locator('[data-coach-action=outcome][data-value=didnt-fit]').click();await saved(page);const after=(await state(ctx)).action;
    return{pass:after.minutes<before.minutes&&after.title!==before.title&&after.task.steps.length<before.task.steps.length,observed:{before:before.title,beforeMinutes:before.minutes,after:after.title,afterMinutes:after.minutes}};
+  });
+  await check(profile.name,'Replaced weekly plan stays as history and cannot be accepted',async()=>{
+   const s=await state(ctx),p=s.memory.derivedPlans.find(p=>p.id===profile.firstPlan.id);
+   await page.getByText('What SHIFT knows about me',{exact:true}).click();
+   const entry=page.locator('[data-coach-plan="'+p.id+'"]');
+   assert.match(await entry.innerText(),/Earlier plan/);assert.equal(await entry.locator('[data-coach-action=plan-accept]').count(),0);
+   const r=await post(ctx,{kind:'plan-accept',id:p.id});assert.equal(r.status(),409);
+   await page.locator('#shiftCoach').screenshot({path:out+'/'+profile.name.toLowerCase()+'-weekly-plan-history.png'});
+   return{pass:p.accepted&&p.status==='superseded',observed:'Earlier accepted plan preserved; stale acceptance rejected through the original authenticated API.'};
   });
   await check(profile.name,'Did not help: different approach, rejected approach stays excluded',async()=>{const before=(await state(ctx)).action;await acceptFeedback(page,'didnt-help');const after=await state(ctx);return{pass:before.approach!==after.action.approach&&before.type!==after.action.type&&after.memory.rejections.includes(before.type),observed:{before:before.type,after:after.action.type,rejections:after.memory.rejections}};});
   await check(profile.name,'Did not try: ask whether the person still wants it',async()=>{await acceptFeedback(page,'didnt-try');const s=await state(ctx);assert(s.action.awaitingWant);await page.locator('[data-coach-action=wanted][data-yes=true]').click();await saved(page);return{observed:'Wanted confirmation appeared and saved; no automatic failure label'};});

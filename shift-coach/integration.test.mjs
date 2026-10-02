@@ -9,10 +9,108 @@ import {pendingFollowup,acknowledgeFollowup} from './followup-view.mjs';
 import {withCoaching,coachingAsset} from './presentation.mjs';
 import {readFileSync} from 'node:fs';
 import {client} from './ui.mjs';
+import {weeklyPlan} from './planning.mjs';
+import {library} from './voice.mjs';
 const env=DB=>({DB,MEMBER_EXPERIENCE_V1_ENABLED:'true'});
 async function read(DB,id=1){const r=await coachingRoutes(request('GET',null,id),env(DB));return r.json();}
 async function save(DB,input,id=1){return coachingRoutes(request('POST',{revision:(await read(DB,id)).revision,operationId:crypto.randomUUID(),...input},id),env(DB));}
 async function start(DB,id=1){const r=await save(DB,setupInput((await read(DB,id)).revision),id);assert.equal(r.status,201);return read(DB,id);}
+async function plan(DB,week='2026-10-02'){
+ const saved=await mutate(DB,1,'test_weekly_plan',s=>({plan:weeklyPlan(s,week)}));
+ return saved.result.plan;
+}
+test('a weekly plan follows changed feedback instead of reusing the earlier action',async t=>{
+ const DB=fixture(t);let data=await start(DB);const first=await plan(DB);
+ await save(DB,{kind:'accept',id:data.action.id});
+ await save(DB,{kind:'outcome',id:data.action.id,value:'didnt-help'});
+ data=await read(DB);const next=await plan(DB);
+ assert.notEqual(next.id,first.id);assert.equal(next.title,data.action.title);
+ assert.equal(next.actionId,data.action.id);
+});
+test('an earlier weekly plan cannot be accepted after the member changes approach',async t=>{
+ const DB=fixture(t);const data=await start(DB),first=await plan(DB);
+ await save(DB,{kind:'decline',id:data.action.id});
+ const before=await read(DB);
+ assert.equal((await save(DB,{kind:'plan-accept',id:first.id})).status,409);
+ assert.deepEqual((await read(DB)).memory.derivedPlans,before.memory.derivedPlans);
+});
+test('a treatment-situation change retires the old weekly plan while retaining its history',async t=>{
+ const DB=fixture(t);await start(DB);const first=await plan(DB);
+ assert.equal((await save(DB,{kind:'plan-accept',id:first.id})).status,201);
+ assert.equal((await save(DB,{kind:'mode',mode:'stopped'})).status,201);
+ const data=await read(DB),old=data.memory.derivedPlans.find(p=>p.id===first.id);
+ assert.equal(old.accepted,true);assert.equal(old.status,'superseded');
+ assert.equal((await save(DB,{kind:'plan-accept',id:first.id})).status,409);
+ const next=await plan(DB);assert.equal(next.reason,data.action.reason);
+ assert.match(next.reason,/After treatment/);
+});
+test('unchanged legacy plans remain usable, but changed legacy plans do not',async t=>{
+ const DB=fixture(t);await start(DB);const first=await plan(DB);
+ await mutate(DB,1,'test_legacy_plan',s=>{delete s.weeklyPlans[0].actionId;return {};});
+ const stored=(await load(DB,1)).state;
+ assert.equal((await read(DB)).memory.derivedPlans[0].status,'current');
+ assert.deepEqual((await load(DB,1)).state,stored,'Reading must not migrate or rewrite member records');
+ assert.equal((await save(DB,{kind:'plan-accept',id:first.id})).status,201);
+ await save(DB,{kind:'mode',mode:'stopped'});
+ assert.equal((await read(DB)).memory.derivedPlans[0].status,'superseded');
+ assert.equal((await save(DB,{kind:'plan-accept',id:first.id})).status,409);
+});
+test('weekly plans wait for wanted confirmation and do not turn an exhausted focus into a task',async t=>{
+ const DB=fixture(t);let data=await start(DB);
+ await save(DB,{kind:'accept',id:data.action.id});
+ await save(DB,{kind:'outcome',id:data.action.id,value:'didnt-try'});
+ assert.equal(await plan(DB),null);
+ await save(DB,{kind:'wanted',yes:false});
+ for(let i=0;i<library.length;i++){
+  data=await read(DB);if(data.action.type==='member-choice')break;
+  await save(DB,{kind:'decline',id:data.action.id});
+ }
+ assert.equal((await read(DB)).action.type,'member-choice');
+ assert.equal(await plan(DB),null);
+});
+test('eight scripted visits retain useful feedback and reject obsolete plans across changing weeks',async t=>{
+ const DB=fixture(t);let now=Date.parse('2026-10-02T12:00:00Z');
+ t.mock.method(Date,'now',()=>now);
+ let data=await start(DB);const goal=data.memory.facts.find(f=>f.key==='goal').value;
+ const week=n=>{now=Date.parse('2026-10-02T12:00:00Z')+(n-1)*7*86400000;};
+ const feedback=async value=>{const a=(await read(DB)).action;assert.equal((await save(DB,{kind:'accept',id:a.id})).status,201);assert.equal((await save(DB,{kind:'outcome',id:a.id,value})).status,201);return a;};
+ const plans=[];
+ await save(DB,{kind:'settings',settings:{proactive:true,followup:true,weeklyDay:5}});
+ // Week 1: retain a helpful result.
+ plans.push(await plan(DB));await feedback('helped');
+ // Week 2: shrink a step that did not fit, including its prepared plan.
+ week(2);await feedback('didnt-fit');data=await read(DB);
+ assert.equal(data.action.minutes,1);plans.push(await plan(DB,'2026-10-09'));
+ assert.equal(plans.at(-1).steps[0].minutes,1);
+ // Week 3: a real correction invalidates the old week without dropping feedback.
+ week(3);await save(DB,{kind:'fact',key:'week',value:'Two late shifts now; Wednesday morning is free'});
+ data=await read(DB);assert.match(data.action.reason,/Wednesday/);assert.equal(data.memory.outcomes.length,2);
+ // Week 4: stopping treatment retains the person and produces the current plan.
+ week(4);const before=await plan(DB,'2026-10-23');plans.push(before);
+ await save(DB,{kind:'mode',mode:'stopped'});data=await read(DB);
+ assert.equal(data.memory.facts.find(f=>f.key==='goal').value,goal);
+ assert.match(data.treatment.title,/After treatment/);
+ assert.equal((await save(DB,{kind:'plan-accept',id:before.id})).status,409);
+ assert.match((await plan(DB,'2026-10-23')).reason,/After treatment/);
+ // Week 5: unhelpful feedback changes the approach and stays saved.
+ week(5);const rejected=await feedback('didnt-help');data=await read(DB);
+ assert.notEqual(data.action.type,rejected.type);assert(data.memory.rejections.includes(rejected.type));
+ // Week 6: an untried step asks, rather than issuing a weekly plan regardless.
+ week(6);await feedback('didnt-try');assert.equal(await plan(DB,'2026-11-06'),null);
+ // Week 7: a break longer than a fortnight clears the backlog but keeps context.
+ now+=15*86400000;const run=await runCoachingNight(env(DB),now);assert.equal(run.prepared,1);
+ data=await read(DB);assert.match(data.action.tone,/Good to have you back/);
+ assert.equal((await load(DB,1)).state.queue.length,0);
+ await save(DB,{kind:'wanted',yes:true});
+ // Week 8: a professional-help concern is rejected without losing ordinary history.
+ now+=7*86400000;const beforeConcern=await read(DB);
+ assert.equal((await save(DB,{kind:'fact',key:'week',value:'I keep being sick and cannot keep water down'})).status,422);
+ data=await read(DB);assert.deepEqual(data.memory.facts,beforeConcern.memory.facts);
+ assert.equal(data.memory.outcomes.length,4);
+ assert.deepEqual(data.memory.outcomes.map(o=>o.value),['helped','didnt-fit','didnt-help','didnt-try']);
+ assert.equal((await read(DB,2)).memory,null,'Other account stays isolated');
+ assert.equal(data.modelCalls,0);
+});
 test('existing auth rejects anonymous, expired and cross-origin callers',async t=>{const DB=fixture(t);assert.equal((await coachingRoutes(new Request('https://shiftsometimber.co.uk/v1/shift-coach'),env(DB))).status,401);assert.equal((await coachingRoutes(request('POST',setupInput(0),1,{Origin:'https://evil.invalid'}),env(DB))).status,403);DB.sqlite.exec("UPDATE user_sessions SET expires_at='2020-01-01'");assert.equal((await coachingRoutes(request(),env(DB))).status,401);});
 test('no context is a general read-only starter; setup prepares a reason with two confirmed facts',async t=>{const DB=fixture(t);const blank=await read(DB);assert.equal(blank.enabled,false);assert.equal(blank.action.general,true);assert.equal((await load(DB,1)).state,null);const data=await start(DB);assert.equal(data.enabled,true);assert.match(data.action.reason,/family/);assert.match(data.action.reason,/late shifts/);assert(data.action.dataUsed.every(id=>data.memory.facts.some(f=>f.id===id&&f.confirmed)));});
 test('a second signed-in session reads the same action and feedback changes the next choice',async t=>{const DB=fixture(t);let a=await start(DB);const first=a.action.id;assert.equal((await read(DB)).action.id,first);assert.equal((await save(DB,{kind:'accept',id:first})).status,201);assert.equal((await read(DB)).action.status,'accepted');assert.equal((await save(DB,{kind:'outcome',id:first,value:'didnt-help'})).status,201);a=await read(DB);assert.notEqual(a.action.id,first);assert.notEqual(a.action.type,'food-plan');assert(a.memory.rejections.includes('food-plan'));});
