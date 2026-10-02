@@ -155,7 +155,7 @@
     "medicines-watch/reviews/2026-10-01-synt101-mad-correction.json": "8788b30c76a11c060e4ba438cdbd3d1758facd6ca7a30fba0f56ef3b89515029",
     "member-design.mjs": "257f3df142a9e1e8bd85cbbbacf747f0e3a89ba5f53d85ffb4963617007d51ce",
     "tests/member-design-release.test.mjs": "dd5b7145e207ef16f4e239491cfd075cb407f60ec59dddd12cd57fda0f9aaac2",
-    "release/member-design-scope.mjs": "182a8a662e8bf6b5d0a96b1317295420962c28aa2d7142e051b1af2d3eff803c",
+    "release/member-design-scope.mjs": "d52dc80057b235e5bb6aa072e4b00b0c1291783b4d1890d09ebf85c44f606405",
     ".github/workflows/member-design-release-proof.yml": "abf6000324eab8bf060d3c088bd3efb78619976b8bb99bc6d2dad6a8e6924afc",
     ".github/workflows/member-design-preview.yml": "bbdb64e9848ab894eec1e860465db3d4f85623d94aa9d1d8327ea437762785e2",
     "preview/member-design/verify.cjs": "e4a99ffce328fa5be1b8a78452e61c1a068c457e36c7d4f5055f93f26d64a77f",
@@ -173,7 +173,7 @@
     "medicines-watch/monitor.mjs": "ffe2f70525f2ba0d12d21412afa3ba4db388e350b860735cf97a034d7ae82d76",
     "medicines-watch/monitor.test.mjs": "1b5b794c3ed5c48a4c261821b1ffd7413d53cdbe31fcf1e5e13565d5cd4badb8",
     "medicines-watch/reviews/2026-10-02-source-monitor-repairs.json": "bb69b3c5d348c75801585cfec5108b070842c01561ca3e23d6a0816445323494",
-    "preview/member-panel-layout/verify.cjs": "3c4f2bd8d46666cafaa498c800df6b46413dbd49111a7d73cb13307349f1205d",
+    "preview/member-panel-layout/verify.cjs": "fcfb9e7ab88349ebc34d79995dc8eee930e42b68c01ce3b2dbe350e3e0f9c671",
     ".github/workflows/member-panel-layout-preview.yml": "624629a0df40d3b143f19aa60123829a4d60605d85060dd7e823494e3e284503"
   },
   "homepageRelease": {
@@ -253,8 +253,8 @@
     "embeddedChrome": "Only the containing page shows navigation and the canonical footer; direct tool pages keep both."
   },
   "memberPanelLayout": {
-    "candidate": "5bf7e5b4c2ce7e3be00652fa6bc2c0a4ceb56376",
-    "previewRun": 36982310963,
+    "candidate": "e675872f52089f0e81b9e7f99507f9763285d26f",
+    "previewRun": 36984571027,
     "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   }
