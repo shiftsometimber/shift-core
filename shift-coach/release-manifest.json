@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "e14e4d815acc22bd48392e1419a782390995c3bb",
+  "applicationCommit": "7b066f499cb0d3938a0a75a029432969fb863803",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -69,6 +69,7 @@
     "shift-coach/worker.mjs",
     "shift-coach/workerd-proof.cjs",
     "tests/app-client-proof.test.mjs",
+    "tests/b1-release-scope.test.mjs",
     "tests/book-voice-release.test.mjs",
     "tests/book-voice.test.mjs",
     "tests/shift-ai-release.test.mjs",
