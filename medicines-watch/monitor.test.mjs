@@ -129,6 +129,40 @@ test('source redirects are rejected without following or renewing successful evi
   }
 });
 
+test('official PDF sources are exact-byte monitored without treating redirects as success', async t => {
+  const env = setup(t);
+  const pdfBytes = new TextEncoder().encode(`%PDF-1.4\n${'reviewed source document '.repeat(30)}\n%%EOF`);
+  const pdfSource = {
+    id: 'test-pdf',
+    url: 'https://example.test/original-release',
+    checkUrl: 'https://cdn.example.test/original-release.pdf',
+    format: 'pdf',
+    reviewedAt: new Date(NOW - CHECK_INTERVAL_MS).toISOString(),
+    requiredTerms: ['reviewed source document']
+  };
+  pdfSource.reviewedFingerprint = (await fingerprintSource(pdfSource, pdfBytes, 'application/pdf')).fingerprint;
+  const result = await scan(env, pdfSource, {
+    fetchImpl: async (url, init) => {
+      assert.equal(url, pdfSource.checkUrl);
+      assert.equal(init.redirect, 'manual');
+      assert.equal(init.headers.Accept, 'application/pdf');
+      return new Response(pdfBytes, { headers: { 'content-type': 'application/pdf' } });
+    }
+  });
+  assert.equal(result.checked, 1);
+  assert.equal(result.failed, 0);
+  const state = await health(env, pdfSource);
+  assert.equal(state.status, 'current');
+  assert.equal(state.sources[0].reviewStatus, 'reviewed');
+});
+
+test('PDF monitoring rejects HTML challenges and invalid PDF bodies', async () => {
+  const pdfSource = { id: 'test-pdf', format: 'pdf', requiredTerms: ['release'] };
+  const bytes = new TextEncoder().encode(`%PDF-1.4\n${'release '.repeat(80)}\n%%EOF`);
+  await assert.rejects(fingerprintSource(pdfSource, bytes, 'text/html'), /unexpected_content_type/);
+  await assert.rejects(fingerprintSource(pdfSource, new Uint8Array(600), 'application/pdf'), /invalid_pdf/);
+});
+
 test('successful first fingerprint stays verification pending and never approves a source', async t => {
   const env = setup(t);
   assert.equal((await scan(env)).checked, 1);

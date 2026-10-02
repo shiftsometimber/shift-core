@@ -18,6 +18,7 @@ import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json'
 import internationalOmissions from './reviews/2026-10-02-authorised-international-omissions.json' with {type:'json'};
 import abbvAsc30TernBimagrumab from './reviews/2026-10-02-authorised-abbv-asc30-tern-bimagrumab.json' with {type:'json'};
 import registryOmissions from './reviews/2026-10-02-authorised-registry-omissions.json' with {type:'json'};
+import pfizerPdfRepair from './reviews/2026-10-02-pfizer-pdf-monitor-repair.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,60);assert.equal(sources.length,50);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,66);
@@ -56,6 +57,20 @@ test('berobenatide correction records VESPER-6 without implying access or result
  assert.equal(berobenatideReview.registryEvidence.actualStartDate,'2026-06-10');
  assert.equal(berobenatideReview.registryEvidence.lastUpdatePosted,'2026-09-28');
  assert.equal(berobenatideReview.ukPosition.nhsEnglandAccess,'Not established by either source.');
+});
+test('Pfizer monitor repair uses exact official investor-hosted PDF baselines',()=>{
+ for(const id of ['pf3944-pfizer','danuglipron-pfizer']){
+  const source=industrySources.find(item=>item.id===id);
+  const receipt=pfizerPdfRepair.sources.find(item=>item.id===id);
+  assert.equal(source.url,receipt.url);
+  assert.equal(new URL(source.url).hostname,'www.pfizer.com');
+  assert.equal(source.checkUrl,receipt.checkUrl);
+  assert.equal(new URL(source.checkUrl).hostname,'s206.q4cdn.com');
+  assert.equal(source.format,'pdf');
+  assert.equal(source.reviewedFingerprint,receipt.reviewedFingerprint);
+ }
+ assert.equal(pfizerPdfRepair.monitoring.successesSeeded,false);
+ assert.equal(pfizerPdfRepair.clinicalApproval,null);
 });
 test('EloraTZP correction replaces planned-result evidence without treating planned Phase 3 as started',()=>{
  const entry=industry.find(item=>item.id==='eloralintide');
