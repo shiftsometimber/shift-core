@@ -22,9 +22,10 @@ import enobosarmSemaglutide from './reviews/2026-10-02-authorised-enobosarm-sema
 import pfizerPdfRepair from './reviews/2026-10-02-pfizer-pdf-monitor-repair.json' with {type:'json'};
 import expandedRegistryWave from './reviews/2026-10-02-authorised-expanded-registry-wave.json' with {type:'json'};
 import semaglutideSpecialistTrials from './reviews/2026-10-02-authorised-semaglutide-specialist-trials.json' with {type:'json'};
+import glimrCopd from './reviews/2026-10-02-authorised-glimr-copd.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,69);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,75);
+ assert.equal(medicines.length,6);assert.equal(industry.length,70);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,76);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -105,7 +106,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,69);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,70);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -438,4 +439,31 @@ test('semaglutide specialist research remains distinct from authorised weight-ma
  assert.match(item.limitations,/no posted results/i);
  assert.ok(semaglutideSpecialistTrials.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
  assert.ok(semaglutideSpecialistTrials.registryEvidence.every(record=>record.hasResults===false));
+});
+
+test('GLIMR COPD remains planned specialist tirzepatide research, not a UK treatment claim',()=>{
+ assert.equal(glimrCopd.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(glimrCopd.clinicalApproval,null);
+ assert.equal(glimrCopd.industryComplete,false);
+ assert.equal(glimrCopd.automatedMonitorChanges,false);
+ assert.equal(glimrCopd.configuredSourcePass.status,'current');
+ assert.equal(glimrCopd.configuredSourcePass.currentCount,50);
+ const item=industry.find(entry=>entry.id==='glimr-copd-tirzepatide');
+ assert.ok(item);
+ assert.equal(item.group,'research');
+ assert.equal(item.clinicalApproval,null);
+ assert.equal(item.sourceIds.length,0);
+ assert.equal(item.additionalEvidence.length,1);
+ assert.match(item.stage,/not yet recruiting/i);
+ assert.match(item.summary,/30 adults with COPD/i);
+ assert.match(item.summary,/grip strength/i);
+ assert.match(item.summary,/lean mass/i);
+ assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/i);
+ assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/i);
+ assert.match(item.supply,/does not establish lawful supply/i);
+ assert.match(item.limitations,/no posted results/i);
+ assert.match(item.limitations,/registry estimates/i);
+ assert.equal(glimrCopd.registryEvidence.overallStatus,'NOT_YET_RECRUITING');
+ assert.equal(glimrCopd.registryEvidence.hasResults,false);
+ assert.equal(glimrCopd.registryEvidence.estimatedEnrollment,30);
 });
