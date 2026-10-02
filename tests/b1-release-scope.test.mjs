@@ -66,9 +66,9 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  });
 
  test('industry release binds every reviewed file and preserves the observation-only boundary',async()=>{
-  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS,WATCH_EXPANDED_COMMIT,WATCH_EXPANDED_PATHS}=await import('../scripts/b1-release-scope.mjs');
+  const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS,WATCH_EXPANDED_COMMIT,WATCH_EXPANDED_PATHS,WATCH_UBT251_COMMIT,WATCH_UBT251_PATHS}=await import('../scripts/b1-release-scope.mjs');
   assert.equal(WATCH_EXPANSION_PATHS.length,42);
-  const expectedRef=path=>WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
+  const expectedRef=path=>WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
   const reviewed=(ref,path)=>(ref==='HEAD'?expectedRef(path):ref)+':'+path;
   validateWatchExpansion(reviewed);
   for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
@@ -111,4 +111,13 @@ test('expanded discovery release binds its exact reviewed commit',async()=>{
  assert.ok(WATCH_EXPANDED_PATHS.includes('medicines-watch/reviews/2026-10-02-authorised-expanded-discovery.json'));
  validateWatchExpanded((ref,path)=>path);
  for(const changed of WATCH_EXPANDED_PATHS)assert.throws(()=>validateWatchExpanded((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
+});
+
+test('UBT251 release binds its exact reviewed commit',async()=>{
+ const {validateWatchUbt251,WATCH_UBT251_COMMIT,WATCH_UBT251_PATHS}=await import('../scripts/b1-release-scope.mjs');
+ assert.equal(WATCH_UBT251_COMMIT,'3414d2340f92275daa46948fb9f73d7fad26e36a');
+ assert.equal(WATCH_UBT251_PATHS.length,4);
+ assert.ok(WATCH_UBT251_PATHS.includes('medicines-watch/reviews/2026-10-02-authorised-ubt251.json'));
+ validateWatchUbt251((ref,path)=>path);
+ for(const changed of WATCH_UBT251_PATHS)assert.throws(()=>validateWatchUbt251((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/source drift/);
 });
