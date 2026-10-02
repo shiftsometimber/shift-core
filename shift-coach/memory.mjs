@@ -1,4 +1,5 @@
 import {uid,cancelAffected,fact} from './store.mjs';import {stages} from './voice.mjs';import {boundary} from './safety.mjs';
+import {plansView} from './planning.mjs';
 const keys=['goal','week','focus'];
 export function saveFact(state,key,value,now=Date.now(),confirmed=true){
  if(!keys.includes(key)||typeof value!=='string'||!value.trim()||value.length>240||typeof confirmed!=='boolean')throw Object.assign(Error('invalid_fact'),{status:400});
@@ -15,5 +16,5 @@ export function setup(state,input,now=Date.now()){
  for(const k of keys)saveFact(state,k,input[k],now);
  state.stage=input.stage;return{dataUsed:state.facts.filter(f=>f.confirmed).map(f=>f.id)};
 }
-export function memoryView(state){return{facts:state.facts,derivedPlans:state.weeklyPlans,preparedActions:state.actions.filter(a=>a.status!=='cancelled'),settings:state.settings,permissions:state.permissions,mode:state.mode,stage:state.stage,components:state.components,rejections:state.rejected,outcomes:state.outcomes,readings:state.readings,doses:state.doses,reviews:state.reviews,calendar:state.calendar,pendingWant:state.pendingWant,pausedTypes:state.pausedTypes,pauseRequests:state.pauseRequests||[]};}
+export function memoryView(state){return{facts:state.facts,derivedPlans:plansView(state),preparedActions:state.actions.filter(a=>a.status!=='cancelled'),settings:state.settings,permissions:state.permissions,mode:state.mode,stage:state.stage,components:state.components,rejections:state.rejected,outcomes:state.outcomes,readings:state.readings,doses:state.doses,reviews:state.reviews,calendar:state.calendar,pendingWant:state.pendingWant,pausedTypes:state.pausedTypes,pauseRequests:state.pauseRequests||[]};}
 export const chosenGoal=s=>fact(s,'goal');
