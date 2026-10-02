@@ -50,7 +50,7 @@
     "release/app-client-proof.mjs": "bb02a0d6a712536391f988ceb667761f59f5019b80ac6ae13356535389fcefa5",
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
-    "release/app-member-live.mjs": "2614393d0eb254f6dfc75f2dc707d0d9f2bcfd2c9debfb6d055c459a4418536e",
+    "release/app-member-live.mjs": "16ddb3d393d082fff7d107199d7c2e7c22353950c3d339d7eb798f2ca7447d71",
     "release/app-preflight.mjs": "0f1d12da02efe913231ad36e866ca47cf781cf88d5c18921220ee5e3038d05dc",
     "release/growth-adopt-deployment.mjs": "dcf6fa94a787bb1698ed9edd1965a4c255e1ae5e669a69dfe87e93849191d9b7",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
@@ -168,7 +168,7 @@
     ".github/workflows/rendered-member-production-acceptance.yml": "b5b04f1cad4c41ab9b6d79b8a7de6b264871fe5087c27456eee985ac9ad7a112",
     ".github/workflows/my-timber-final-production.yml": "b10f16c9e4db7191e5052b1260932e60e68fc8ff379dfe0497e012b9fb95e49a",
     "g2-014-progress-picture-premium-production.mjs": "8b05b304b7c02c299a5d7739fc82bd196cfe17ffbebbcddc6df10bc847f9ca9c",
-    "release/member-acceptance-scope.mjs": "593b1cfd956585869b445d5216f1a68ad7be7c2bdc4b6a4962056cf10de4619b",
+    "release/member-acceptance-scope.mjs": "8b9ef9f55d29fc9605b0477ab4cfbbd664bc74c87ec57fc258e54a5c6ca7d088",
     "my-timber-final-source-gate.mjs": "0e642c69787fa108ad72acf2fd00f0caae1dd10f6aeb0c46880c2bd0d14c37b1"
   },
   "homepageRelease": {
