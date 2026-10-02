@@ -23,12 +23,16 @@ targets:
       configs:
         Debug:
           PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber.dev
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+          MY_TIMBER_HEALTH_TEST_ORIGIN: ""
         Release:
           PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber
+          MY_TIMBER_HEALTH_TEST_ORIGIN: ""
     info:
       path: GeneratedInfo.plist
       properties:
         CFBundleDisplayName: My Timber
+        MyTimberHealthTestOrigin: $(MY_TIMBER_HEALTH_TEST_ORIGIN)
         UILaunchScreen:
           UIColorName: LaunchBackground
         NSCameraUsageDescription: Take a photo you choose to upload to your My Timber account.

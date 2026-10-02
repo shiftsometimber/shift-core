@@ -2,6 +2,7 @@ plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
 android {
     namespace 'uk.co.shiftsometimber.mytimber'
     compileSdk 36
+    buildFeatures { buildConfig true }
     defaultConfig {
         applicationId 'uk.co.shiftsometimber.mytimber'
         minSdk 26
@@ -17,10 +18,12 @@ android {
         debug {
             applicationIdSuffix '.dev'
             versionNameSuffix '-dev'
+            buildConfigField 'String', 'HEALTH_TEST_ORIGIN', groovy.json.JsonOutput.toJson(providers.gradleProperty('myTimberHealthTestOrigin').getOrElse(''))
         }
         release {
             debuggable false
             minifyEnabled false
+            buildConfigField 'String', 'HEALTH_TEST_ORIGIN', '""'
         }
     }
     kotlinOptions { jvmTarget = '17' }

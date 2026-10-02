@@ -11,13 +11,17 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     override var preferredStatusBarStyle:UIStatusBarStyle{.lightContent}
     override func viewDidLoad(){
         super.viewDidLoad()
+        #if DEBUG
+        NavigationPolicy.configureHealthTestOrigin(Bundle.main.object(forInfoDictionaryKey:"MyTimberHealthTestOrigin") as? String ?? "")
+        #endif
         view.backgroundColor=UIColor(red:5/255,green:5/255,blue:5/255,alpha:1)
         let config=WKWebViewConfiguration()
         config.websiteDataStore = .default() // Existing credentials, separate app session.
         config.preferences.javaScriptCanOpenWindowsAutomatically=false
         config.applicationNameForUserAgent="MyTimber/1.1.0"
         if let url=Bundle.main.url(forResource:"native-presentation",withExtension:"js"),
-           let source=try? String(contentsOf:url,encoding:.utf8){
+           var source=try? String(contentsOf:url,encoding:.utf8){
+            if NavigationPolicy.healthTestingEnabled {source=source.replacingOccurrences(of:NavigationPolicy.productionOrigin,with:NavigationPolicy.origin)}
             config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
         }
         // Deliberately no WKScriptMessageHandler, filesystem bridge or certificate bypass.
@@ -76,7 +80,12 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     }
     func webView(_ webView:WKWebView,decidePolicyFor action:WKNavigationAction,decisionHandler:@escaping(WKNavigationActionPolicy)->Void){
         guard let url=action.request.url else{decisionHandler(.cancel);return}
-        if url.scheme?.lowercased()=="mytimber-health" && url.host?.lowercased()=="sync" {decisionHandler(.cancel);healthSync.connectAndSync();return}
+        if url.scheme?.lowercased()=="mytimber-health" && url.host?.lowercased()=="sync" {
+            decisionHandler(.cancel)
+            if action.navigationType == .linkActivated,action.sourceFrame.isMainFrame,let current=webView.url,NavigationPolicy.classify(current.absoluteString) == .internalPage,
+               action.sourceFrame.securityOrigin.host.lowercased() == URL(string:NavigationPolicy.origin)?.host?.lowercased(){healthSync.connectAndSync()}
+            return
+        }
         let decision=NavigationPolicy.classify(url.absoluteString)
         // Embedded HTTPS resources/challenges get the browser's normal isolation.
         if action.targetFrame?.isMainFrame == false {
@@ -102,12 +111,12 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     }
     func webViewWebContentProcessDidTerminate(_ webView:WKWebView){showFailure("The app page stopped. Return to Today and check your account before repeating a save or payment.")}
     func webView(_ webView:WKWebView,runJavaScriptAlertPanelWithMessage message:String,initiatedByFrame frame:WKFrameInfo,completionHandler:@escaping()->Void){
-        guard frame.securityOrigin.host == "shiftsometimber.co.uk",presentedViewController == nil else{completionHandler();return}
+        guard frame.securityOrigin.host == URL(string:NavigationPolicy.origin)?.host,presentedViewController == nil else{completionHandler();return}
         let a=UIAlertController(title:"My Timber",message:message,preferredStyle:.alert)
         a.addAction(UIAlertAction(title:"OK",style:.default){_ in completionHandler()});present(a,animated:true)
     }
     func webView(_ webView:WKWebView,runJavaScriptConfirmPanelWithMessage message:String,initiatedByFrame frame:WKFrameInfo,completionHandler:@escaping(Bool)->Void){
-        guard frame.securityOrigin.host == "shiftsometimber.co.uk",presentedViewController == nil else{completionHandler(false);return}
+        guard frame.securityOrigin.host == URL(string:NavigationPolicy.origin)?.host,presentedViewController == nil else{completionHandler(false);return}
         let a=UIAlertController(title:"My Timber",message:message,preferredStyle:.alert)
         a.addAction(UIAlertAction(title:"Cancel",style:.cancel){_ in completionHandler(false)})
         a.addAction(UIAlertAction(title:"Continue",style:.default){_ in completionHandler(true)});present(a,animated:true)

@@ -8,6 +8,8 @@ on:
       - 'member-experience/entry.mjs'
       - 'member-experience/tests/device-health-sync.test.mjs'
       - 'member-experience/tests/device-health-route.integration.test.mjs'
+      - 'member-experience/tests/connected-health-feedback.test.mjs'
+      - 'my-timber-app/**'
       - 'privacy-health-erasure-route-v1.js'
       - 'worker-entry-v6.js'
       - 'migrations/021_device_health_sync.sql'
@@ -24,11 +26,12 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - name: Connected-health validation tests
-        run: node --experimental-sqlite --test member-experience/tests/device-health-sync.test.mjs member-experience/tests/device-health-route.integration.test.mjs
+        run: node --experimental-sqlite --test member-experience/tests/device-health-sync.test.mjs member-experience/tests/device-health-route.integration.test.mjs member-experience/tests/connected-health-feedback.test.mjs my-timber-app/tests/health-test-environment.test.mjs
       - name: Import and syntax checks
         run: |
           node --check member-experience/device-health-sync.mjs
           node --check member-experience/connected-health.mjs
+          node --check my-timber-app/health-test/worker.mjs
           node --check worker-entry-v6.js
       - name: Privacy and consent contract
         run: |

@@ -28,10 +28,10 @@ public final class MainActivity extends Activity {
     private final Runnable timeout = () -> showFailure("My Timber is taking longer than expected. Nothing has been confirmed as saved by this app.");
     private ValueCallback<Uri[]> fileResult;
     private boolean pageFailed;
-    private boolean healthSyncLaunched;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
+        if(BuildConfig.DEBUG)NavigationPolicy.configureHealthTestOrigin(BuildConfig.HEALTH_TEST_ORIGIN);
         if ((getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) == 0)
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         LinearLayout root = new LinearLayout(this);
@@ -64,6 +64,7 @@ public final class MainActivity extends Activity {
             byte[] block = new byte[4096]; int n;
             while ((n=stream.read(block)) != -1) bytes.write(block,0,n);
             presentation = bytes.toString(StandardCharsets.UTF_8.name());
+            if(NavigationPolicy.healthTestingEnabled)presentation=presentation.replace(NavigationPolicy.PRODUCTION_ORIGIN,NavigationPolicy.ORIGIN);
         } catch (Exception e) { showFailure("My Timber could not start securely. Please close the app and try again."); return; }
         WebView.setWebContentsDebuggingEnabled(false);
         WebSettings settings = web.getSettings();
@@ -84,8 +85,8 @@ public final class MainActivity extends Activity {
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 if ("mytimber-health".equalsIgnoreCase(request.getUrl().getScheme()) && "sync".equalsIgnoreCase(request.getUrl().getHost()) && request.isForMainFrame()) {
-                    healthSyncLaunched=true;
-                    startActivity(new Intent(MainActivity.this,HealthConnectActivity.class));
+                    if(request.hasGesture()&&NavigationPolicy.classify(view.getUrl())==NavigationPolicy.Decision.INTERNAL)
+                        startActivityForResult(new Intent(MainActivity.this,HealthConnectActivity.class),42);
                     return true;
                 }
                 NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());
@@ -180,6 +181,16 @@ public final class MainActivity extends Activity {
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);
+        if(request==42){
+            if(NavigationPolicy.classify(web.getUrl())==NavigationPolicy.Decision.INTERNAL){
+                String message=data==null?"Health setup was closed. No successful save is confirmed. You can try again.":data.getStringExtra("healthSyncMessage");
+                if(message!=null){
+                    String detail="{\"message\":"+org.json.JSONObject.quote(message)+",\"success\":"+(result==RESULT_OK)+"}";
+                    web.evaluateJavascript("window.dispatchEvent(new CustomEvent('myTimberHealthSync',{detail:"+detail+"}));",null);
+                    new AlertDialog.Builder(this).setTitle("Connected health").setMessage(message).setPositiveButton("OK",null).show();
+                }
+            }return;
+        }
         if(request!=41||fileResult==null)return;
         Uri[] values=WebChromeClient.FileChooserParams.parseResult(result,data);
         if(values!=null)for(Uri uri:values)if(uri==null||!"content".equals(uri.getScheme())){values=null;break;}
@@ -189,6 +200,6 @@ public final class MainActivity extends Activity {
         if(web!=null&&web.canGoBack())web.goBack();else super.onBackPressed();
     }
     @Override protected void onPause(){super.onPause();if(web!=null)web.onPause();CookieManager.getInstance().flush();}
-    @Override protected void onResume(){super.onResume();if(web!=null){web.onResume();if(healthSyncLaunched){healthSyncLaunched=false;web.reload();}}}
+    @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();}
     @Override protected void onDestroy(){timer.removeCallbacksAndMessages(null);if(fileResult!=null)fileResult.onReceiveValue(null);if(web!=null){web.stopLoading();web.destroy();}super.onDestroy();}
 }

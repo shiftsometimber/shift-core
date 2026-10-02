@@ -1,0 +1,13 @@
+{
+  "name": "shift-my-timber-health-test",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-02",
+  "workers_dev": true,
+  "vars": { "HEALTH_TEST_ENVIRONMENT": "isolated-health-test" },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "shift-my-timber-health-test-db",
+    "database_id": "__NEW_ISOLATED_HEALTH_TEST_DATABASE_ID__"
+  }],
+  "observability": { "enabled": false }
+}

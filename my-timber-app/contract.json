@@ -9,7 +9,15 @@
   "legalEntity": "SHIFT SOME TIMBER LTD",
   "sourceCommit": "f3a98e20dc7e26981f46e1cba7de6ab569234ef1",
   "iconUrl": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
-  "backend": "existing production service; NOT an isolated test database",
+  "backend": "release member UI uses existing production service; health uploads disabled in release and in unconfigured development builds",
+  "healthDevelopmentTesting": {
+    "isolatedOriginRequired": true,
+    "isolatedServiceProvisioned": false,
+    "productionHealthUploadsAllowed": false,
+    "testHarness": "my-timber-app/health-test/worker.mjs",
+    "androidBuildProperty": "myTimberHealthTestOrigin",
+    "iosBuildSetting": "MY_TIMBER_HEALTH_TEST_ORIGIN"
+  },
   "dunsAvailable": true,
   "nativePushReady": false,
   "storeAccountsVerified": false,

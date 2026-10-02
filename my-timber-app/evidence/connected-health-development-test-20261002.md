@@ -1,5 +1,31 @@
 # Connected-health development test — 2 October 2026
 
+## Follow-up implementation, 2 October
+
+The private development setup and sync-feedback fixes are now prepared in the
+same v1.1 draft. **34 software tests pass locally**, including five two-account
+harness tests and five rendered-state/feedback tests in addition to the original
+24. Native compilation and 53 policy/sleep checks per platform are required on
+the follow-up commit before a device-ready build is claimed.
+
+- Release health uploads are disabled. Debug requires a non-production HTTPS
+  build setting, a verified test-service marker and optional tracking consent.
+- A separate private Worker/D1 harness is prepared, with fixtures 101 and 102,
+  an access-code gate and a production-database-ID check. It is **not provisioned**.
+- Both clients refuse redirects and check for an account change before upload.
+- iOS empty results no longer claim that read access was granted. Android returns
+  explicit denied/unavailable/empty/error/saved results.
+- Sync messages persist; consent withdrawal clears rendered readings; each
+  reading shows its observation time. Old daily totals are not labelled today.
+- Sleep uses the latest actual-asleep episode, merging overlap and excluding
+  awake gaps. Pure Java/Swift calculations require the CI checks; OS/source
+  semantics and all physical-device scenarios remain unproven.
+
+See [private test setup](../health-test/README.md). The older findings below
+record the starting state; they do not imply those source defects remain open.
+Both connected Macs remain offline. No hosted database/service, real health-data
+import, production deployment or store submission was performed in the follow-up.
+
 ## Verdict
 
 Development testing can happen before either app is publicly released. The

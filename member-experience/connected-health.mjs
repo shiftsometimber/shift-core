@@ -26,20 +26,24 @@ export const connectedHealthRuntime=String.raw`(()=>{
 const panel=document.getElementById('connectedHealthPanel');if(!panel||panel.dataset.bound)return;panel.dataset.bound='true';
 const $=id=>document.getElementById(id),state=$('connectedHealthState'),actions=$('connectedHealthActions'),connect=$('connectedHealthConnect'),disconnect=$('connectedHealthDisconnect'),latest=$('connectedHealthLatest'),readings=$('connectedHealthReadings');
 const native=/\bMyTimber\/1\.1\.0\b/.test(navigator.userAgent),apple=/iPhone|iPad|iPod/.test(navigator.userAgent),platform=apple?'apple_health':'health_connect';
-const labels={weight_kg:'Weight',body_fat_pct:'Body fat',systolic_mmhg:'Blood pressure · systolic',diastolic_mmhg:'Blood pressure · diastolic',heart_rate_bpm:'Heart rate',resting_heart_rate_bpm:'Resting heart rate',oxygen_saturation_pct:'Oxygen saturation',respiratory_rate_bpm:'Respiratory rate',body_temperature_c:'Body temperature',steps:'Steps today',active_energy_kcal:'Active energy today',distance_m:'Distance today',sleep_minutes:'Sleep',exercise_minutes:'Exercise'};
+const labels={weight_kg:'Weight',body_fat_pct:'Body fat',systolic_mmhg:'Blood pressure · systolic',diastolic_mmhg:'Blood pressure · diastolic',heart_rate_bpm:'Heart rate',resting_heart_rate_bpm:'Resting heart rate',oxygen_saturation_pct:'Oxygen saturation',respiratory_rate_bpm:'Respiratory rate',body_temperature_c:'Body temperature',steps:'Steps',active_energy_kcal:'Active energy',distance_m:'Distance',sleep_minutes:'Sleep',exercise_minutes:'Exercise'};
+let nativeMessage='',busy=false,loadId=0;
 const fmt=(type,r)=>{const n=Number(r.value);if(type==='distance_m'&&n>=1000)return(n/1000).toFixed(1)+' km';if(type==='sleep_minutes')return Math.round(n/60*10)/10+' h';return(Number.isInteger(n)?n:n.toFixed(1))+' '+r.unit};
 async function api(path,method='GET',body){const r=await fetch(path,{method,credentials:'include',cache:'no-store',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(12000)});const b=await r.json().catch(()=>({}));if(!r.ok)throw Error(b.message||'Connected health could not be checked.');return b}
 function draw(status,data){
+ readings.replaceChildren();latest.hidden=true;
  const current=status.connections?.find(x=>x.platform===platform&&x.enabled);
  actions.hidden=false;connect.hidden=!native;disconnect.hidden=!current;
  if(!status.trackingEnabled){state.textContent='Optional health tracking is off. Turn it on in My Timber before connecting a health source.';connect.hidden=true;disconnect.hidden=true;return}
- if(current)state.textContent=(platform==='apple_health'?'Apple Health':'Health Connect')+' connected'+(current.lastSyncAt?' · last synced '+new Date(current.lastSyncAt).toLocaleString():'')+'.';
+ if(current)state.textContent=(platform==='apple_health'?'Apple Health':'Health Connect')+' import enabled'+(current.lastSyncAt?' · last saved '+new Date(current.lastSyncAt).toLocaleString():'')+'. Phone permissions may have changed since then.';
  else state.textContent=native?'Nothing connected on this phone yet.':'No connected source on this browser. Open the My Timber app on your phone to connect Apple Health or Health Connect.';
- const entries=Object.entries(data?.latest||{});readings.replaceChildren();latest.hidden=!entries.length;
- for(const[type,r]of entries){if(!labels[type])continue;const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=labels[type];dd.textContent=fmt(type,r);readings.append(dt,dd)}
+ const entries=Object.entries(data?.latest||{}).filter(([type])=>labels[type]);latest.hidden=!entries.length;
+ for(const[type,r]of entries){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=labels[type];dd.textContent=fmt(type,r)+' · recorded '+new Date(r.observedAt).toLocaleString();readings.append(dt,dd)}
 }
-async function load(){try{const [s,d]=await Promise.all([api('/v1/device-health/status'),api('/v1/device-health/readings')]);draw(s,d)}catch(e){state.textContent=e.message;actions.hidden=true}}
-disconnect.addEventListener('click',async()=>{if(!confirm('Disconnect this health source? Existing readings stay in your My Timber record unless you request their deletion.'))return;disconnect.disabled=true;try{await api('/v1/device-health/connection','DELETE',{platform});await load()}catch(e){state.textContent=e.message}finally{disconnect.disabled=false}});
+async function load(){const id=++loadId;try{const [s,d]=await Promise.all([api('/v1/device-health/status'),api('/v1/device-health/readings')]);if(id!==loadId)return;draw(s,d);if(nativeMessage&&s.trackingEnabled)state.textContent=nativeMessage}catch(e){if(id!==loadId)return;state.textContent=nativeMessage?nativeMessage+' '+e.message:e.message;actions.hidden=true;readings.replaceChildren();latest.hidden=true}}
+connect.addEventListener('click',e=>{if(busy){e.preventDefault();return}nativeMessage='';busy=true;connect.setAttribute('aria-disabled','true');state.textContent='Choose the health permissions you want to share on your phone…';});
+window.addEventListener('myTimberHealthSync',async e=>{busy=false;connect.removeAttribute('aria-disabled');nativeMessage=typeof e.detail?.message==='string'?e.detail.message.slice(0,500):'Health setup returned without a confirmed result. Please retry.';await load();});
+disconnect.addEventListener('click',async()=>{if(!confirm('Disconnect this health source? Existing readings stay in your My Timber record unless you request their deletion.'))return;disconnect.disabled=true;nativeMessage='';try{await api('/v1/device-health/connection','DELETE',{platform});await load()}catch(e){state.textContent=e.message}finally{disconnect.disabled=false}});
 window.addEventListener('focus',()=>setTimeout(load,350));document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});load();
 })();`;
 export function withConnectedHealth(html){

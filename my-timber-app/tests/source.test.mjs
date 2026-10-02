@@ -32,7 +32,8 @@ test('No app-specific accounts, store checkout, notification grants or automatic
  assert.ok(java.includes('dontResend.sendToTarget()'));
  assert.ok(java.includes('request.deny()'));
  assert.ok(java.includes('Intent.ACTION_OPEN_DOCUMENT'));
- assert.ok(java.includes('healthSyncLaunched')&&java.includes('web.reload()')); // explicit Connected Health return only
+ assert.ok(java.includes('request==42')&&java.includes('myTimberHealthSync')); // explicit result, without reloading away feedback
+ assert.doesNotMatch(java,/web\.reload\(/);
  assert.doesNotMatch(ui,/\bfetch\(|XMLHttpRequest|localStorage|sessionStorage|indexedDB|caches\./);
 });
 test('Final store identities are prepared but submission remains explicitly disabled',()=>{
