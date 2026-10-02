@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "7b066f499cb0d3938a0a75a029432969fb863803",
+  "applicationCommit": "73ecb47a12dfa3ec2654dd271b6141b08888dda4",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -99,32 +99,35 @@
       "approved": true,
       "decidedBy": "Independent Codex engineering release reviewer",
       "decidedAt": "2026-10-02",
-      "evidence": "Independent read-only review of everyday expansion source, all three phantom-member screenshots and final /tmp/coaching-complete-phantoms-5/phantom-report.json. 69/69 scripted browser checks, zero page errors, seven slower-device samples p95 927.6ms. Independently reran71 integration/release/B1/proof tests: all pass. Reviewed18 fixed ordinary actions, explicit difficulty, distinct approach feedback, current-context-only explanations, named saved history, active-only response projection with unchanged stored history, clinical boundary and exact preservation of six newer Watch blobs at83a17683. This is independent AI engineering acceptance, not human, clinical, legal, controller or real-member-benefit certification. Final committed guards and production delivery still require verification."
+      "evidence": "Independent read-only review of everyday expansion source, all three phantom-member screenshots and final /tmp/coaching-complete-phantoms-5/phantom-report.json. 69/69 scripted browser checks, zero page errors, seven slower-device samples p95 927.6ms. Independently reran71 integration/release/B1/proof tests: all pass. Reviewed18 fixed ordinary actions, explicit difficulty, distinct approach feedback, current-context-only explanations, named saved history, active-only response projection with unchanged stored history, clinical boundary and exact preservation of six newer Watch blobs at83a17683. This is independent AI engineering acceptance, not human, clinical, legal, controller or real-member-benefit certification. Final committed guards and production delivery still require verification. Independent reviewer accepted the combined weekly-plan continuity repair after rerunning77 tests, reading all74 functional browser results and inspecting rendered plan history; 77/77 local tests and 74/74 functional browser checks, zero page errors. Final simulated p95 1439.7ms fails the1000ms target and is slower than the earlier927.6ms expansion result. Existing explicit bounded-first-launch authority at1820ms is retained; the later1100.9ms acceptance is historical and is not represented as acceptance of1439.7ms. Exact composed source and hosted gates remain mandatory."
     },
     "productionLaunch": {
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02: request observed in this session; exact approval time not supplied",
-      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass. Matt at18:24:07BST explicitly instructed “Do that” after completing the original everyday coaching gaps was proposed. Existing guarded production authority applies to this reviewed bounded extension."
+      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let\u2019s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass. Matt at18:24:07BST explicitly instructed \u201cDo that\u201d after completing the original everyday coaching gaps was proposed. Existing guarded production authority applies to this reviewed bounded extension."
     },
     "ownerAcceptance": {
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02T17:25:14+01:00",
-      "evidence": "Matt asked “can’t we deploy ?” immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review. Historical acceptance of the earlier phantom-member repair only; the current expanded payload relies on the separately recorded independent engineering acceptance.",
+      "evidence": "Matt asked \u201ccan\u2019t we deploy ?\u201d immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review. Historical acceptance of the earlier phantom-member repair only; the current expanded payload relies on the separately recorded independent engineering acceptance.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
       "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
       "verificationEvidence": "62/62 functional phantom-member checks, 344 local regression checks, 10 compiled Worker/D1 checks and successful hosted coaching/master/route checks for the repair; timing1100.9ms explicitly accepted by Matt. Current composed-source gates and pre/post-deployment checks remain mandatory."
     }
   },
-  "note": "Everyday coaching extension: 18 fixed practical actions, confirmed difficulty, distinct strategy changes, named feedback and active-only dashboard projection. Final application bytes require exact source verification and guarded production promotion. Existing clinical, privacy, current-main and rollback boundaries remain mandatory.",
+  "note": "Everyday coaching extension: 18 fixed practical actions, confirmed difficulty, distinct strategy changes, named feedback and active-only dashboard projection. Final application bytes require exact source verification and guarded production promotion. Existing clinical, privacy, current-main and rollback boundaries remain mandatory. Includes the concurrent weekly-plan continuity repair from main05bcb41b; current and historical plans retain exact acceptance boundaries.",
   "timingAcceptance": {
     "approved": true,
     "decidedBy": "Matt",
     "decidedAt": "2026-10-02T17:17:48+01:00",
-    "evidence": "User explicitly stated “1.10 is ok” after the final local simulated p95 result was disclosed.",
+    "evidence": "User explicitly stated \u201c1.10 is ok\u201d after the final local simulated p95 result was disclosed.",
     "observedP95Ms": 1100.9,
-    "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing."
+    "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing.",
+    "currentObservedP95Ms": 1439.7,
+    "currentTargetPassed": false,
+    "currentScope": "Current composed release timing is disclosed, not a pass. Retained productionLaunch authority records the bounded first launch at1820ms; historical1100.9ms acceptance is not silently extended."
   }
 }
