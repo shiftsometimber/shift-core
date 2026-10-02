@@ -16,9 +16,10 @@ import macupatideReview from './reviews/2026-10-01-macupatide-discovery.json' wi
 import broaderReview from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
 import internationalOmissions from './reviews/2026-10-02-authorised-international-omissions.json' with {type:'json'};
+import abbvAsc30TernBimagrumab from './reviews/2026-10-02-authorised-abbv-asc30-tern-bimagrumab.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,51);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,57);
+ assert.equal(medicines.length,6);assert.equal(industry.length,56);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,62);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -85,7 +86,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,51);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,56);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -257,7 +258,7 @@ test('expanded discovery keeps trial status and UK access boundaries explicit',(
   assert.equal(item.clinicalApproval,null,id);
   assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/,id);
   assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
-  assert.match(item.supply,/does not establish lawful UK retail supply/,id);
+  assert.match(item.supply,/do(?:es)? not establish lawful UK retail supply/,id);
   assert.ok(item.additionalEvidence.length>=1,id);
  }
  assert.match(industry.find(entry=>entry.id==='mwn105').limitations,/no results/i);
@@ -294,4 +295,27 @@ test('SGB-7342 preserves the dated registry mismatch and human-evidence limits',
  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(item.supply,/do not establish lawful UK retail supply/);
  assert.equal(item.additionalEvidence.length,2);
+});
+
+test('latest wider discovery keeps formulations, plans and stopped programmes distinct',()=>{
+ assert.equal(abbvAsc30TernBimagrumab.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(abbvAsc30TernBimagrumab.clinicalApproval,null);
+ assert.equal(abbvAsc30TernBimagrumab.industryComplete,false);
+ assert.equal(abbvAsc30TernBimagrumab.automatedMonitorChanges,false);
+ for(const id of ['abbv295','asc30-oral','asc30-depot','tern601','bimagrumab-tirzepatide']){
+  const item=industry.find(entry=>entry.id===id);
+  assert.ok(item,id);
+  assert.equal(item.clinicalApproval,null,id);
+  assert.equal(item.sourceIds.length,0,id);
+  assert.ok(item.additionalEvidence.length>=2,id);
+  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/,id);
+  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
+  assert.match(item.supply,/do(?:es)? not establish lawful UK retail supply/,id);
+ }
+ assert.match(industry.find(entry=>entry.id==='abbv295').stage,/Phase 2 planned/);
+ assert.match(industry.find(entry=>entry.id==='asc30-oral').stage,/Completed Phase 2/);
+ assert.match(industry.find(entry=>entry.id==='asc30-depot').limitations,/not approved regimens/);
+ assert.equal(industry.find(entry=>entry.id==='tern601').group,'discontinued');
+ assert.match(industry.find(entry=>entry.id==='bimagrumab-tirzepatide').limitations,/do not establish improved strength/);
+ for(const domain of ['abbvie.com','ascletis.com','ternspharma.com'])assert.ok(discoveryDomains.includes(domain));
 });

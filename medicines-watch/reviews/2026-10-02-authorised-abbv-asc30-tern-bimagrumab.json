@@ -1,0 +1,203 @@
+{
+  "reviewedAt": "2026-10-02T05:48:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish five primary-source-reviewed formulation, muscle-preservation and discontinued-programme omissions through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "abbv295",
+      "name": "ABBV-295",
+      "developer": "AbbVie",
+      "group": "research",
+      "stage": "Phase 1 detailed results; Phase 2 planned",
+      "summary": "AbbVie reported detailed multiple-ascending-dose Phase 1 findings on 30 September 2026 for subcutaneous ABBV-295, an investigational long-acting amylin analogue. Sixty participants in the reported cohorts received weekly, every-other-week or monthly regimens for 12 or 13 weeks; advancement into Phase 2 was stated as a plan, not a completed start.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or any dosing regimen.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Early clinical development does not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "Small, early sponsor-reported cohorts with 88% male participants. Weight, tolerability and pharmacokinetic observations do not establish long-term efficacy or safety, superiority, a Phase 2 start or future extended-dose regimens. AbbVie states that no regulator has approved ABBV-295.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T05:48:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "AbbVie detailed ABBV-295 Phase 1 announcement",
+          "url": "https://news.abbvie.com/2026-09-30-AbbVie-Presents-Detailed-Phase-1-Data-for-ABBV-295,-a-Long-Acting-Amylin-Analog,-Demonstrating-Favorable-Tolerability-and-Pharmacokinetic-Profile-at-EASD-2026",
+          "sourcePublishedAt": "2026-09-30",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor announcement read for study design, reported cohort size, dosing intervals, findings, approval boundary and planned Phase 2 development; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06144684",
+          "url": "https://clinicaltrials.gov/study/NCT06144684",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Sponsor-linked registry record retained for the Phase 1 study identifier; exact publication and update dates were not independently verified in this run, so they remain unknown; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc30-oral",
+      "name": "ASC30 oral tablet",
+      "developer": "Ascletis Pharma",
+      "group": "research",
+      "stage": "Completed Phase 2; sponsor results reported",
+      "summary": "The sponsor-submitted registry records a completed 125-participant US Phase 2 study of once-daily oral ASC30 in adults with obesity or overweight. Ascletis later presented sponsor-reported 13-week results; the registry itself still has no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for oral ASC30.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "A completed US trial and sponsor presentation do not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "Sponsor-reported Phase 2 findings are not a UK regulatory decision or long-term evidence. The oral formulation is kept separate from the depot injection, and registry completion is not treated as approval or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T05:48:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis ADA 2026 programme announcement",
+          "url": "https://www.ascletis.com/news_detail/200/id/1368.html",
+          "sourcePublishedAt": "2026-04-30",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor announcement read for the oral Phase 2 presentation and formulation distinction; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07002905",
+          "url": "https://clinicaltrials.gov/study/NCT07002905",
+          "sourcePublishedAt": "2025-06-04",
+          "sourceUpdatedAt": "2025-12-15",
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Sponsor-submitted registry read for completed Phase 2 status, actual 3 July to 8 December 2025 dates, 125-participant enrolment, daily oral design and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc30-depot",
+      "name": "ASC30 subcutaneous depot",
+      "developer": "Ascletis Pharma",
+      "group": "research",
+      "stage": "Phase 2 sponsor results; investigational monthly and maintenance regimens",
+      "summary": "Ascletis reported a 65-participant US Phase 2 study of two subcutaneous depot formulations on 10 March 2026. Formulation A1 was given monthly three times; the sponsor described less-frequent maintenance dosing as a development possibility, not an authorised regimen.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for either ASC30 depot formulation or dosing schedule.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Sponsor-reported Phase 2 findings do not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "Sponsor topline results from a small early study. Monthly treatment and quarterly maintenance are development interpretations, not approved regimens. Formulation A2 did not achieve therapeutic exposure in the reported study and is not represented as equivalent to A1 or to oral ASC30.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T05:48:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis ASC30 depot Phase 2 announcement",
+          "url": "https://www.ascletis.com/news_detail/200/id/1352.html",
+          "sourcePublishedAt": "2026-03-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor announcement read for participant count, formulation-specific exposure, dosing, sponsor-reported results and planned maintenance interpretation; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06679959",
+          "url": "https://clinicaltrials.gov/study/NCT06679959",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Sponsor-linked registry record retained for the depot study identifier; exact registry publication and update dates were not independently verified in this run, so they remain unknown; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "tern601",
+      "name": "TERN-601",
+      "developer": "Terns Pharmaceuticals",
+      "group": "discontinued",
+      "stage": "Phase 2 completed; sponsor decided not to advance the programme",
+      "summary": "Terns reported 12-week Phase 2 FALCON findings in October 2025. Its subsequent quarterly filing states that the company would not advance TERN-601 or invest in other metabolic assets, so it is retained as a stopped programme rather than an advancing oral GLP-1 candidate.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for TERN-601.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "A completed trial does not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "The sponsor's portfolio decision is recorded separately from the Phase 2 trial observations. Completed research is not approval, and stopping internal development does not prove that every future licensing or research possibility is impossible.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T05:48:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Terns TERN-601 Phase 2 topline announcement",
+          "url": "https://ir.ternspharma.com/news-releases/news-release-details/terns-pharmaceuticals-reports-topline-12-week-data-its-phase-2/",
+          "sourcePublishedAt": "2025-10-21",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor result page identified and search-retrieved, but direct page retrieval returned HTTP 401 in this run; no automatic baseline is claimed."
+        },
+        {
+          "title": "Terns 2025 Q3 Form 10-Q",
+          "url": "https://ir.ternspharma.com/static-files/45bda27d-9478-47d8-ba7f-cf0e76cbac31",
+          "sourcePublishedAt": "2025-11-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor filing read through indexed primary text for the decision not to advance TERN-601 or invest in other metabolic assets; direct retrieval was incomplete, so the limitation remains explicit and no baseline is claimed."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06854952",
+          "url": "https://clinicaltrials.gov/study/NCT06854952",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Sponsor-submitted registry retained for the completed Phase 2 FALCON study; exact registry publication and update dates were not independently verified in this run; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "bimagrumab-tirzepatide",
+      "name": "Bimagrumab with tirzepatide",
+      "developer": "Eli Lilly",
+      "group": "research",
+      "stage": "Phase 2 active, not recruiting; study completion estimated January 2027",
+      "summary": "Lilly's sponsor page and registry record an active, not recruiting Phase 2 study of bimagrumab, tirzepatide and their combination in 252 adults with obesity or overweight without diabetes. Primary completion was 16 January 2026, while overall study completion remains estimated for January 2027.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for bimagrumab alone or with tirzepatide for weight management.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Trial activity does not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+      "limitations": "Active-not-recruiting status and completed enrolment are not results. Body-composition or lean-mass aims do not establish improved strength, function, long-term outcomes or clinical benefit. The trial must remain distinct from BELIEVE with semaglutide and from a separate discontinued type 2 diabetes study.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T05:48:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Lilly trial page J4Z-MC-GIDF",
+          "url": "https://trials.lilly.com/en-US/trial/546217",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor trial page read for completed enrolment, Phase 2 design, 252-participant target and study dates; publication and update dates are not stated and remain unknown; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06643728",
+          "url": "https://clinicaltrials.gov/study/NCT06643728",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-05-26",
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Sponsor-submitted registry read for active-not-recruiting status, actual start and primary-completion dates, 252-participant enrolment and estimated January 2027 completion; not automatically content-monitored."
+        },
+        {
+          "title": "Lilly ADA 2025 bimagrumab programme announcement",
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-announces-details-presentations-american-diabetes",
+          "sourcePublishedAt": "2025-05-29",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T05:48:00Z",
+          "checkScope": "Original sponsor announcement read for the separate BELIEVE programme and Lilly's body-composition research rationale; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "discoveryLimitations": {
+    "currentDatePass": "No new UK MHRA, NICE or NHS authorisation/access decision was found for these five entries in the current-date pass.",
+    "plannedVersusCompleted": "ABBV-295 Phase 2 is planned; ASC30 findings are sponsor-reported Phase 2 observations; TERN-601 is stopped; bimagrumab's current tirzepatide study is active, not recruiting and has no posted results.",
+    "monitoring": "No automatic monitoring source, successful baseline, review renewal or all-green claim is created by this publication.",
+    "monitorFailures": "The configured-source pass remains 47 of 50 current: Pfizer PF-3944 and danuglipron return HTTP 520, while AstraZeneca elecoglipron returns HTTP 403.",
+    "failedDiscoveryChecks": "Direct retrieval of the Terns result page returned HTTP 401 and its filing was only partly retrievable; those limitations are preserved rather than described as successful direct reads.",
+    "coverage": "The catalogue remains selected and non-exhaustive; these additions do not establish industry completeness."
+  }
+}

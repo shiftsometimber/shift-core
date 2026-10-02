@@ -13,6 +13,7 @@ export const discoveryDomains = [
  'regeneron.com','scholarrock.com','merck.com','chugai-pharm.co.jp','enveda.com',
  'mbxbio.com','arrowheadpharma.com','lexpharma.com','neurocrine.com',
  'corbuspharma.com','syntis.bio','alveustx.com',
+ 'abbvie.com','ascletis.com','ternspharma.com',
 ];
 // Supply a current date when running; never leave a review month fixed.
 export function queriesForDate(date=new Date()) {
