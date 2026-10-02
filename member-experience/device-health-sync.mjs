@@ -16,8 +16,8 @@ const PLATFORMS=new Set(['apple_health','health_connect','shift_device']);
 const pathOf=r=>new URL(r.url).pathname.replace(/\/+$/,'');
 async function digest(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 export function normaliseDeviceHealthReading(r,now=Date.now()){
- if(!r||typeof r!=='object'||Array.isArray(r)||!TYPES[r.type])return null;
- const [lo,hi,unit]=TYPES[r.type],value=Number(r.value),time=Date.parse(r.observedAt),id=String(r.sourceRecordId||'');
+ if(!r||typeof r!=='object'||Array.isArray(r)||typeof r.type!=='string'||!Object.hasOwn(TYPES,r.type)||typeof r.value!=='number'||typeof r.observedAt!=='string'||typeof r.sourceRecordId!=='string')return null;
+ const [lo,hi,unit]=TYPES[r.type],value=r.value,time=Date.parse(r.observedAt),id=r.sourceRecordId;
  if(!Number.isFinite(value)||value<lo||value>hi||!Number.isFinite(time)||time>now+300000||time<now-31*86400000||id.length<1||id.length>240)return null;
  return{type:r.type,value,unit,observedAt:new Date(time).toISOString(),sourceRecordId:id};
 }

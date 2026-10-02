@@ -13,3 +13,9 @@ test('rejects unknown, implausible, future, stale and unkeyed readings',()=>{
  assert.equal(normaliseDeviceHealthReading({type:'weight_kg',value:90,observedAt:'2026-09-29T11:00:00Z',sourceRecordId:''},now),null);
 });
 test('source IDs are bounded before server-side hashing',()=>{assert.equal(good('heart_rate_bpm',70,'x'.repeat(241)),null)});
+test('missing/coerced values and inherited type names cannot become measurements',()=>{
+ for(const value of [null,'',false,true,'120',[],{},undefined])assert.equal(good('steps',value),null);
+ for(const type of ['constructor','__proto__','toString'])assert.equal(good(type,1),null);
+ assert.equal(good('steps',0).value,0);
+ assert.equal(good('steps',1,{id:'not-a-source-id'}),null);
+});

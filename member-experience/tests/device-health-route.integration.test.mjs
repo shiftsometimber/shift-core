@@ -115,3 +115,7 @@ test('account deletion cascades to connected-health records',async t=>{
 test('health responses discourage caching and indexing',async t=>{
  const f=await fixture(t);const r=await f.route('/v1/device-health/status');assert.equal(r.headers.get('Cache-Control'),'no-store, private');assert.equal(r.headers.get('Vary'),'Cookie');assert.equal(r.headers.get('X-Robots-Tag'),'noindex, nofollow');
 });
+test('a missing measurement rejects the whole import instead of saving a false zero',async t=>{
+ const f=await fixture(t);const r=await f.sync(1,'apple_health',[f.reading(),f.reading('steps',null)]);
+ assert.equal(r.status,400);assert.equal((await r.json()).error,'invalid_reading');assert.equal(f.count(),0);
+});
