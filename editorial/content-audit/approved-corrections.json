@@ -1,0 +1,18 @@
+{
+  "baselineMain": "c71060ac9129d3aea16dc824f9d6c79bb76cdcdd",
+  "articles": [
+    {
+      "id": 5,
+      "slug": "missed-wegovy-dose",
+      "expectedBodySha256": "21aacffc00fa452809c93c76270e7d61ca2aef8faca26b804da9afe11b2afe05",
+      "expectedTitle": "Missed a Wegovy Dose? UK NHS 5 Day Rule and When to Call Prescriber",
+      "expectedUpdatedAt": "2026-09-22 05:30:18",
+      "bodyPath": "editorial/content-audit/missed-wegovy-dose.md",
+      "bodySha256": "bae1f64677ec9a6a2ed551845271c66bce172d8416d48eb065ab6ef7e0f40bb8",
+      "title": "Missed a Wegovy injection: the UK leaflet\u2019s rules",
+      "seoTitle": "Missed a Wegovy injection: UK leaflet rules and when to get help",
+      "summary": "The UK weekly-injection leaflet\u2019s five-day boundary, usual scheduled day, longer treatment gaps and when to contact your pharmacist or prescriber.",
+      "reason": "Correct sourced medication instructions and uncommissioned service claims; owner requested full content audit and repair."
+    }
+  ]
+}
