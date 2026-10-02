@@ -122,7 +122,7 @@ css('main #memberDayGuide|.app-footer-details[data-app-guide]','background:#e7e3
 css('main #memberDayGuide :is(p,h2,h3,summary,a)|.app-footer-details[data-app-guide]>summary','color:#050505;-webkit-text-fill-color:#050505')+
 scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.app-today-shortcuts){display:none!important}\n'+
 scope+'[data-app-panel="1"]{padding:0!important;background:#707762!important}\n'+
-scope+'[data-app-panel="1"] :is(#todayBrand,#appBottomNav,#sst-footer-c,#memberUtilities,#myTimberApp){display:none!important}\n'+
+scope+'[data-app-panel="1"] :is(#todayBrand,#appBottomNav,#sst-footer-c,footer,.app-footer-details,#memberUtilities,#myTimberApp){display:none!important}\n'+
 '@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:1fr 112px')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+css('main :is(.shift-progress-intro,.mp-picture-intro)','grid-template-columns:1fr')+'}\n'+
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
