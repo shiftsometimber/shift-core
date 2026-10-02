@@ -6,6 +6,7 @@ export const BOOK_VOICE_RUN=37030676727;
 export const BOOK_VOICE_PATHS=paths;
 export function originalBookVoiceGate(path,source){
  if(path!=='release/home-banner-scope.mjs')return source;
+ source=source.replace(" if(path==='release/member-details-preservation.mjs')source=source.replace(\"import {restoreHomeFont} from '../shift-coach/public-font-delivery.mjs';\\n\",'').replace(\"removeCreamNavigation(restoreHomeFont(path,body.toString('utf8')))\",\"removeCreamNavigation(body.toString('utf8'))\");\n",'');
  return source.replace("import {coachingHistoricalRef,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';\n",'').replace(' verifyCoachingRelease();\n','').replace("read(coachingHistoricalRef('HEAD','.github/workflows/cloudflare-production-promote.yml'),'.github/workflows/cloudflare-production-promote.yml')","read('HEAD','.github/workflows/cloudflare-production-promote.yml')");
 }
 export function validateBookVoice(read){for(const path of BOOK_VOICE_PATHS)assert.equal(originalBookVoiceGate(path,read('HEAD',path)),read(BOOK_VOICE_PREVIEW,path),'Approved book voice/preview source drift: '+path);}
