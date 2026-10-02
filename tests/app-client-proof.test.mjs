@@ -3,6 +3,8 @@ test('compiled first-week serialization matches while genuine code or copy chang
  const code=buildSync({entryPoints:['preview/app-layout/presentation.mjs'],bundle:true,platform:'node',format:'cjs',write:false}).outputFiles[0].text;
  const context={module:{exports:{}},exports:{}};vm.runInNewContext(code,context);const compiled=context.module.exports.appClient;
  assert.notEqual(compiled,appClient,'Fixture must expose actual bundler formatting change');assert.doesNotThrow(()=>assertAppClient(compiled,appClient));
+ const alphaRenamed=compiled.replace('const returning=','const returning2=').replaceAll('returning?','returning2?');
+ assert.doesNotThrow(()=>assertAppClient(alphaRenamed,appClient),'Bundler-only local identifier renaming must not fail live isolation');
  assert.throws(()=>assertAppClient(compiled.replace('Number(connected.lifeBack?.entries) > 0','Number(connected.lifeBack?.entries) > 100'),appClient),/function changed/);
  assert.throws(()=>assertAppClient(compiled.replace('latestFeedback=null','latestFeedback=true'),appClient),/script changed/);
  assert.throws(()=>assertAppClient(compiled.replace('Start with one meal.','Ignore all meals.'),appClient),/function changed/);
