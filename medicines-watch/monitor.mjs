@@ -146,6 +146,18 @@ function jatsDocument(xml, source) {
 
 /** Fingerprints retrieved source claims, not request time, navigation or cookies. */
 export async function fingerprintSource(source, body, contentType = '') {
+  if (source.format === 'pdf') {
+    if (!(body instanceof Uint8Array) || !body.byteLength) throw new Error('empty_response');
+    if (contentType && !/\bapplication\/pdf\b/i.test(contentType)) throw new Error('unexpected_content_type');
+    if (body.byteLength < 512 || new TextDecoder().decode(body.slice(0, 8)).slice(0, 5) !== '%PDF-') {
+      throw new Error('invalid_pdf');
+    }
+    const hash = await crypto.subtle.digest('SHA-256', body);
+    return {
+      fingerprint: Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, '0')).join(''),
+      withdrawn: false
+    };
+  }
   if (typeof body !== 'string' || !body.trim()) throw new Error('empty_response');
   let normalized, claimText, withdrawn = false;
   if (source.format === 'govuk-json') {
@@ -198,7 +210,7 @@ function validSource(source) {
   }
 }
 
-async function boundedBody(response, signal, maxBytes) {
+async function boundedBytes(response, signal, maxBytes) {
   const declared = Number(response.headers.get('content-length'));
   if (Number.isFinite(declared) && declared > maxBytes) throw new Error('response_too_large');
   if (!response.body) throw new Error('empty_response');
@@ -220,7 +232,7 @@ async function boundedBody(response, signal, maxBytes) {
   const buffer = new Uint8Array(length);
   let offset = 0;
   for (const chunk of chunks) { buffer.set(chunk, offset); offset += chunk.byteLength; }
-  return new TextDecoder('utf-8', { fatal: true }).decode(buffer);
+  return buffer;
 }
 
 async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
@@ -232,12 +244,13 @@ async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
         const response = await fetchImpl(source.checkUrl || source.url, {
           // Workers supports manual redirects; the status guard below rejects every 3xx.
           signal: controller.signal, redirect: 'manual',
-          headers: { Accept: source.format === 'govuk-json' ? 'application/json' : source.format === 'jats-xml' ? 'application/xml' : 'text/html',
+          headers: { Accept: source.format === 'govuk-json' ? 'application/json' : source.format === 'jats-xml' ? 'application/xml' : source.format === 'pdf' ? 'application/pdf' : 'text/html',
             'User-Agent': 'ShiftMedicinesWatch/1.0 (source availability and change checks)' }
         });
         httpStatus = response.status;
         if (!response.ok || response.status === 202 || response.status === 204) throw new Error(`http_${response.status}`);
-        const body = await boundedBody(response, controller.signal, maxBytes);
+        const bytes = await boundedBytes(response, controller.signal, maxBytes);
+        const body = source.format === 'pdf' ? bytes : new TextDecoder('utf-8', { fatal: true }).decode(bytes);
         const result = await fingerprintSource(source, body, response.headers.get('content-type') || '');
         return { ...result, httpStatus };
       })(),
@@ -253,7 +266,7 @@ async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
 function safeError(error) {
   // Never expose fetched bodies, credentials, stack traces or upstream messages.
   const message = String(error?.message || '');
-  return /^(?:http_\d{3}|check_timeout|response_too_large|empty_response|unexpected_content_type|invalid_json|invalid_govuk_document|invalid_source_date|invalid_html|invalid_jats_document|incomplete_html_document|missing_html_document|unsupported_content_selector|missing_content_selector|unsupported_source_format|source_identity_not_verified)$/.test(message)
+  return /^(?:http_\d{3}|check_timeout|response_too_large|empty_response|unexpected_content_type|invalid_json|invalid_govuk_document|invalid_source_date|invalid_html|invalid_jats_document|invalid_pdf|incomplete_html_document|missing_html_document|unsupported_content_selector|missing_content_selector|unsupported_source_format|source_identity_not_verified)$/.test(message)
     ? message : 'retrieval_failed';
 }
 
