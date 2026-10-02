@@ -1,0 +1,24 @@
+name: Full website content capture
+on:
+  push:
+    branches: [codex/full-website-content-20261002]
+    paths: [scripts/full-content-capture.mjs, .github/workflows/full-content-capture.yml]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: node --check scripts/full-content-capture.mjs
+      - run: node scripts/full-content-capture.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-content-capture-${{ github.sha }}
+          path: full-content-capture/
+          retention-days: 30
