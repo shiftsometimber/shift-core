@@ -1,0 +1,168 @@
+{
+  "reviewedAt": "2026-10-02T00:57:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish five primary-source-reviewed research omissions through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "aroalk7",
+      "name": "ARO-ALK7",
+      "developer": "Arrowhead Pharmaceuticals",
+      "group": "research",
+      "stage": "Recruiting Phase 1/2a",
+      "summary": "Arrowhead's current pipeline records a recruiting first-in-human study in adults with obesity. It evaluates ARO-ALK7 alone and, separately, with tirzepatide; an estimated completion date is not treated as completed research.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Recruiting status and sponsor descriptions are not results. Preclinical body-composition findings do not establish human efficacy, muscle function or future approval, and the cited pipeline's July 2026 estimated completion date is not proof that the study completed.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T00:57:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Arrowhead current pipeline: ARO-ALK7",
+          "url": "https://arrowheadpharma.com/en-us/pipeline",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Current original sponsor pipeline read for recruiting status, Phase 1/2a design, combination arm and the distinction between estimates and completed events; not automatically content-monitored."
+        },
+        {
+          "title": "Arrowhead ARO-ALK7 Phase 1/2a initiation",
+          "url": "https://arrowheadpharma.com/en-us/newsroom/arrowhead-pharmaceuticals-initiates-phase-12a-study-aro-alk7",
+          "sourcePublishedAt": "2025-06-02",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Original sponsor announcement read for first dosing and study design; preclinical claims retained as preclinical; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06937203",
+          "url": "https://clinicaltrials.gov/study/NCT06937203",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Sponsor-submitted registry linked for the study record; current sponsor-pipeline status was used because no results are posted in the reviewed evidence; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "mwn105",
+      "name": "MWN105 injection",
+      "developer": "Shanghai Minwei Biotechnology",
+      "group": "research",
+      "stage": "Completed Phase 2 registry; no results posted",
+      "summary": "The sponsor-submitted registry records a Chinese Phase 2 study of once-weekly subcutaneous MWN105 in 120 non-diabetic participants with overweight or obesity. It started on 3 September 2025 and completed on 16 April 2026.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Completed registry status does not mean results have been published or establish efficacy. No results are posted, and the registry does not establish the medicine's mechanism, authorisation or availability.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T00:57:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07804810",
+          "url": "https://clinicaltrials.gov/study/NCT07804810",
+          "sourcePublishedAt": "2026-09-04",
+          "sourceUpdatedAt": "2026-09-04",
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Sponsor-submitted registry record read for completed Phase 2 status, actual dates, 120-participant enrolment, weekly injection design and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "ibi3032",
+      "name": "IBI3032 tablets",
+      "developer": "Innovent Biologics",
+      "group": "research",
+      "stage": "Completed Phase 1 registry; no results posted",
+      "summary": "The sponsor-submitted registry records a completed Chinese Phase 1 study of oral IBI3032 tablets: single ascending doses in healthy participants and four weeks of multiple ascending doses in participants with overweight or obesity.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The 80-participant study completed on 10 August 2026, but no results are posted. Completion does not establish efficacy, a later development stage, authorisation, access or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T00:57:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07160400",
+          "url": "https://clinicaltrials.gov/study/NCT07160400",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-09-11",
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Sponsor-submitted registry record read for completed Phase 1 status, oral formulation, actual dates, 80-participant enrolment and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "hdm1005",
+      "name": "HDM1005 injection",
+      "developer": "Hangzhou Zhongmei Huadong Pharmaceutical",
+      "group": "research",
+      "stage": "Recruiting Phase 2; tirzepatide-controlled",
+      "summary": "The sponsor-submitted registry records a recruiting Chinese Phase 2 study comparing three once-weekly HDM1005 dose groups with tirzepatide in adults with obesity without diabetes. Actual study start was 31 March 2026; estimated enrolment is 372.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "A comparator arm is not evidence of superiority. Recruitment, estimated July 2027 completion and planned 52-week treatment do not establish completed results, authorisation or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T00:57:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07521631",
+          "url": "https://clinicaltrials.gov/study/NCT07521631",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-04-13",
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Sponsor-submitted registry record read for recruiting Phase 2 status, actual start, comparator design, estimated enrolment and completion, and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "npm139-semaglutide-implant",
+      "name": "NPM-139 semaglutide implant",
+      "developer": "Vivani Medical",
+      "group": "research",
+      "stage": "Phase 1 registered; not yet recruiting",
+      "summary": "The sponsor-submitted SLIM-1 registry record describes a four-week Phase 1 comparison of a subcutaneous semaglutide implant with weekly Wegovy injections in 20 participants with overweight or obesity.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The record remained not yet recruiting at its 30 June 2026 update even though the estimated start was July 2026. Planned dates and a registered comparison are not first dosing, results, UK authorisation or evidence of supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T00:57:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07430059",
+          "url": "https://clinicaltrials.gov/study/NCT07430059",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-06-30",
+          "reviewedAt": "2026-10-02T00:57:00Z",
+          "checkScope": "Sponsor-submitted registry record read for not-yet-recruiting Phase 1 status, implant formulation, planned 20-participant design, estimated dates and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "discoveryLimitations": {
+    "currentDatePass": "No new UK MHRA, NICE or NHS authorisation/access decision was found in the current-date pass for these five programmes.",
+    "plannedVersusCompleted": "MWN105 and IBI3032 are registry-completed with no posted results; HDM1005 and ARO-ALK7 are recruiting; NPM-139 remains not yet recruiting. None is described as a completed successful treatment programme.",
+    "monitoring": "No automatic monitoring source, successful baseline, review renewal or all-green claim is created by this publication.",
+    "monitorFailures": "The separate source-availability pass found two Pfizer HTTP 520 failures, one AstraZeneca HTTP 403 failure and a renewed intermittent PMC missing-document failure. These remain visible and do not alter reviewed claims.",
+    "coverage": "The catalogue remains selected and non-exhaustive; these five additions do not establish industry completeness."
+  },
+  "nextActions": [
+    "Continue topic-based discovery beyond named developers and existing entries",
+    "Recheck the not-yet-recruiting NPM-139 record and the registry-completed MWN105 and IBI3032 records for actual results",
+    "Track UK regulator and NHS evidence separately from international research stages",
+    "Replace the intermittent PMC monitor target only after a stable primary endpoint has been retrieved, read and fingerprinted"
+  ]
+}
