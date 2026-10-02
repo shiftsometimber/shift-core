@@ -212,7 +212,7 @@
     "preview/book-voice/host.mjs": "b3c00d157c03c5911fc895d09998d3641db4cac165401ffd0f6c52d7bfbbe8ef",
     "preview/book-voice/member-host.mjs": "29b2125591eb0c79bbd11dc187f04cc63097fe823c5cb00b73f434f725a3777a",
     "preview/book-voice/provision.mjs": "535b500abe6656c87df0175a29fd3ad12ecb26df1d22b527ad97f33f1cecccdd",
-    "preview/book-voice/verify.cjs": "54e570422484b9c40915aafa918f463f86c4648a990d206a77bdcada91c09bbf",
+    "preview/book-voice/verify.cjs": "4394c0dfdcfdab28d6356e968bf296b70553651d9d8b045dc17cec20e4e99193",
     "preview/book-voice/worker.mjs": "fb7f7ee465ff15d1b0124c64ec365d6b99a56a12ca89b05812dec546d08e16ff",
     "tests/book-voice.test.mjs": "a92360ef6d7422ef796b83f09c187383424e574fc42ff8b1ce7cb4b7c9d024c0"
   },

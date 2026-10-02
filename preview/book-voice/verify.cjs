@@ -8,7 +8,9 @@ const fixture=JSON.parse(fs.readFileSync('work/staging/generated/probe.json'));
 const report={source:process.env.GITHUB_SHA,productionWrites:0,approvedEdits:23,cases:[],copy:[],limits:['Fictional accounts in separate preview databases.','Chromium/WebKit at phone and desktop widths; not physical phones or native apps.']};
 async function api(ctx,path,body){const r=await ctx.request.fetch(base+path,{method:body?'POST':'GET',headers:{Origin:base},...(body?{data:body}:{}),timeout:45000});assert(r.ok(),path+' '+r.status());return r.json()}
 async function consent(page){if(await page.locator('[data-consent="necessary"]').isVisible().catch(()=>false))await page.locator('[data-consent="necessary"]').click()}
-async function layout(page,row,label){await consent(page);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),label+' horizontal overflow');
+async function layout(page,row,label){await consent(page);
+ await page.waitForFunction(()=>document.documentElement.scrollWidth<=innerWidth+1,null,{timeout:5000}).catch(async e=>{row.overflow=await page.evaluate(()=>({viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,elements:[...document.querySelectorAll('body *')].filter(el=>{const r=el.getBoundingClientRect();return el.getClientRects().length&&(r.right>innerWidth+1||r.left< -1)}).slice(0,20).map(el=>({tag:el.tagName,id:el.id,class:el.className,rect:JSON.stringify(el.getBoundingClientRect().toJSON())}))}));throw e});
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),label+' horizontal overflow');
  const clipped=await page.locator('main button,main a.btn,main [role="button"]').evaluateAll(els=>els.filter(el=>el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden'&&el.scrollWidth>el.clientWidth+2).map(el=>el.textContent.trim()));assert.deepEqual(clipped,[],label+' clipped controls');
  await page.screenshot({path:dir+'/'+row.engine+'-'+row.width+'-'+label+'.png',fullPage:true});row.checks.push(label+': no horizontal overflow or clipped controls');}
 (async()=>{let index=0;const {applyBookVoiceCopy,restoreBookVoiceCopy}=await import('../../book-voice.mjs');
