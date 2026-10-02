@@ -51,7 +51,7 @@
     "release/app-index-freshness.mjs": "5cfd71ead9f36502c9a5ae6031e1839cb11f11423da48a953885014957bc834c",
     "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
     "release/app-member-live.mjs": "16ddb3d393d082fff7d107199d7c2e7c22353950c3d339d7eb798f2ca7447d71",
-    "release/app-preflight.mjs": "3b1b5b315f8dd6f7f3dacab075f9082de1bb8c8d7ad209aa1b1368ba9e132e47",
+    "release/app-preflight.mjs": "2c1ace40e0350a6d28bbf8d7e1df7030c60f89ef392afae000c6f29852b6846b",
     "release/growth-adopt-deployment.mjs": "a109ed9f8c15d8996dcb0dda79804725a987473d4ffff678ed8f581a74987db8",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "b19dfbddb94e417a8fb5d3db4c828afbe9f3769ae8c717382342cfed0718effb",
@@ -198,7 +198,8 @@
     "frontend/medicine-front-door/orlistat.html": "3b5c1e4a65a9ed22920227a2219b90f84fef88ebf14ff3fcc5c76a7c62a884cf",
     "frontend/medicine-front-door/foundayo.html": "6794cbe082035220e2067f39922831c9b4bbb9ecf4dd1415b1e816e582d070d2",
     "release/treatment-guidance-scope.mjs": "0131e4289b1fedcabb8c50a6d61da663fd8bfcc59e63de04f564cca975c54f85",
-    "member-experience/tests/lookup-continuation.test.mjs": "b2fb48c0e10274935f1e6f61dd476d418d82fad2ee73b8ca2cdaaa022378a1eb"
+    "member-experience/tests/lookup-continuation.test.mjs": "b2fb48c0e10274935f1e6f61dd476d418d82fad2ee73b8ca2cdaaa022378a1eb",
+    "tests/checkout-recovery.test.mjs": "4f85d460fbd8d37ae8f716b57465694a379333e22540a041051435d7724cc775"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",

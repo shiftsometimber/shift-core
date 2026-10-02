@@ -76,7 +76,7 @@ async function fixture(channel){
  // Bootstrap medicine schema through a harmless catalogue read, then fixture consent.
  await medicineCommerceRoutes(memberRequest('/v1/catalogue/medicines'),env,{});
  await DB.prepare('INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at) VALUES(?,42,11,?,?)').bind(sha('fictional-verification'),'fixture-partner','2099-01-01T00:00:00Z').run();
- const input=channel==='medicine'?{variantId:11,verificationToken:'fictional-verification'}:{size:'L',quantity:1};
+ const input=channel==='medicine'?{variantId:11,verificationToken:'fictional-verification',insulinUse:'no',eligibility:{heightCm:180,weightKg:100,weightRelatedCondition:'no'}}:{size:'L',quantity:1};
  const route=channel==='medicine'?medicineCommerceRoutes:commerceStripeRoutes;
  const path=channel==='medicine'?'/v1/commerce/medicine-checkout':'/v1/commerce/checkout';
  const call=async(body=input,cookie='e2e-member-session')=>{const r=await route(memberRequest(path,{method:'POST',headers:{'content-type':'application/json',Cookie:'sst_session='+cookie},body:JSON.stringify(body)}),env,{});return {status:r.status,body:await r.json()}};
