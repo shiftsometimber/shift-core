@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {medicines,sources,REVIEWED_AT} from './data.mjs';
 import {watchMain,renderWatchDocument,medicinesWatchRoutes,withMedicinesWatchEntry,WATCH_PATH,HEALTH_PATH} from './page.mjs';
-import {TREATMENTS_ENTRY} from './preservation.mjs';
+import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_LEGACY} from './preservation.mjs';
 
 const shell='<!doctype html><html><head><title>Treatments</title><link rel="canonical" href="https://shiftsometimber.co.uk/treatment-centre"><meta name="description" content="old"><script type="application/ld+json">{}</script></head><body class="one-shift treatment-centre-v42h"><header>Original menu</header><main id="main-content"><h1>Existing treatments</h1></main><footer>Original footer</footer></body></html>';
 const health={available:true,medicines:medicines.map(m=>({id:m.id,status:'current'})),sources:sources.map(s=>({id:s.id,status:'current',lastSuccessAt:REVIEWED_AT})),lastAttemptAt:REVIEWED_AT};
@@ -56,4 +56,11 @@ test('public status and document paths are SELECT-only; POST cannot initiate a s
  assert.equal(page.status,200);assert.equal(fetched.url,'https://projectshift.pages.dev/treatment-centre');assert.deepEqual(fetched.options.headers,{Accept:'text/html'});
  const post=await medicinesWatchRoutes(new Request('https://shiftsometimber.co.uk'+HEALTH_PATH,{method:'POST'}),{DB});assert.equal(post.status,405);assert.equal(statements.length,2);
  assert.equal(await medicinesWatchRoutes(request('/member/dashboard'),{DB}),null);
+});
+
+test('existing legacy Watch promotion is upgraded without changing surrounding bytes',async()=>{
+ const previous=shell.replace('<main id="main-content">','<main id="main-content">'+TREATMENTS_ENTRY_LEGACY);
+ const result=await withMedicinesWatchEntry(new Response(previous,{headers:{'content-type':'text/html','ETag':'old'}}),new Request('https://shiftsometimber.co.uk/treatment-centre'));
+ const html=await result.text();assert.equal(html.replace(TREATMENTS_ENTRY,''),shell);assert.equal(result.headers.get('ETag'),null);
+ const child=renderWatchDocument(shell,health);assert.match(child,/Medicines &amp; Research Watch/);assert.match(child,/not products you can order from SHIFT/);assert.doesNotMatch(child,/Peptides Watch/);
 });

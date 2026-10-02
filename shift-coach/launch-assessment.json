@@ -411,5 +411,44 @@
         "resolution": "Historical hash lookups use recorded main for the exact ten modified backend paths. Every actual new byte remains separately application-commit pinned. No directory, arbitrary file or runtime exclusion added."
       }
     ]
+  },
+  "finalMainReconciliation20261002": {
+    "previousCandidate": "e09fe1170d7a65b431da7a23991ecb651a4cd943",
+    "recordedMain": "e895c0c498fae5272fb4ed36203a8f42227bd2fe",
+    "independentPublicChange": "PR944 retained exactly; not a coaching change",
+    "localBefore": {
+      "status": "PASS",
+      "checks": 388
+    },
+    "hostedBefore": {
+      "status": "PASS",
+      "runs": [
+        37005874139,
+        37005880801,
+        37005880720,
+        37005880644
+      ]
+    },
+    "hostedTimingBefore": {
+      "componentP95Ms": 433.8,
+      "actualFullPageP95Ms": 2342.8,
+      "fullPageTargetMs": 1000,
+      "fullPageTargetStatus": "FAIL"
+    },
+    "currentMainPromotion": {
+      "run": 37007862438,
+      "status": "FAIL",
+      "beforeDeployment": true,
+      "actualWorkerVersion": "4396d20d-e8df-4f83-8e82-354146b89c76",
+      "observed": "Existing source expected an older starting Worker; this candidate already pins the observed actual version."
+    },
+    "existingFitAcceptance": {
+      "run": 37003998254,
+      "status": "FAIL",
+      "observed": "Missing saved-session disclosure, while new-member notes field is visible in screenshot. Proposed verifier correction not applied or tested."
+    },
+    "finalTests": "NOT_RUN",
+    "launchDecisions": "BLOCKED: no privacy, intended-purpose or independent-review receipt supplied",
+    "productionCoachLive": false
   }
 }

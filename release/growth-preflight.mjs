@@ -1,3 +1,4 @@
+import {verifyPublicWordingProof} from './public-wording-scope.mjs';
 import {historicalFooterRef} from './footer-scope.mjs';
 import './app-preflight.mjs';
 import assert from 'node:assert/strict';
@@ -8,6 +9,7 @@ const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const repo='https://api.github.com/repos/shiftsometimber/shift-core';
 async function get(path){const r=await fetch(repo+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'GitHub verification '+r.status);return r.json()}
 validateGrowthSource();
+await verifyPublicWordingProof(get);
 const original=await get('/actions/runs/36430493215');assert.equal(original.head_sha,GROWTH_PREVIEW);assert.equal(original.conclusion,'success');
 // The fully integrated current preview supersedes the historical branch lookup.
 // Keep direct blob comparisons and ancestry; report a specific mismatch instead of swallowing it.
