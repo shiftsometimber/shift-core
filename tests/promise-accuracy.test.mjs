@@ -7,9 +7,10 @@ test('unrelated responses pass through unchanged',async()=>{const r=new Response
 test('displayed option does not claim all answers are enforced',()=>{const source='function updateSelection(){\n    const {label,price}=selection();\n}';const lead={textContent:'This option was carried across from your preference filters. You can compare it with every other treatment route below.'},title={textContent:'YOUR SELECTED FILTERS'};vm.runInNewContext(repairTreatmentOrderController(source)+';updateSelection()',{item:{fixedDose:false},selection:()=>({}),$:s=>s==='.op-lead'?lead:s==='.op-recommendation strong'?title:null});assert.match(lead.textContent,/may not match every format, access or budget/);assert.equal(title.textContent,'THIS OPTION')});
 
 import {preserveTreatmentCentreAccuracy} from '../public-promise-preservation.mjs';
+import {repairCentreGuidance,CENTRE_GUIDANCE_REPLACEMENTS,CENTRE_GUIDANCE_COUNTS} from '../public-treatment-guidance.mjs';
 test('release fingerprint permits only exact reviewed Centre corrections',()=>{
- const source=Buffer.from('<p>Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.</p><p>Use the free Health MOT to organise your current picture and identify sensible priorities.</p><a href="/shift-health/health-mot">Take the Health MOT</a><p>No stock available today · £129.00</p>');
- const changed=Buffer.from(repairTreatmentCentre(source.toString()));
+ const source=Buffer.from('<p>Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.</p><p>Use the free Health MOT to organise your current picture and identify sensible priorities.</p><a href="/shift-health/health-mot">Take the Health MOT</a><p>No stock available today · £129.00</p>'+CENTRE_GUIDANCE_REPLACEMENTS.map(([before],index)=>('<p>'+before+'</p>').repeat(CENTRE_GUIDANCE_COUNTS[index])).join(''));
+ const changed=Buffer.from(repairCentreGuidance(repairTreatmentCentre(source.toString())));
  assert.deepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',source),source);
  assert.deepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',changed,{required:true}),source);
  assert.equal(preserveTreatmentCentreAccuracy('/other',changed,{required:true}),changed);
