@@ -56,11 +56,11 @@
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "92a39fa0fd209a98d09dfee2fd1b167b2998f1834987d960a2f8db4153e284b4",
     "release/member-focus-scope.mjs": "759a4723660ab0d1afbb95c131879afcce1de598fb88cdc4558d9f475f384f17",
-    "scripts/b1-release-scope.mjs": "15bdd544146af8ea828e383c7cea910e5c4d5787ed6235e5203819898f695b1b",
+    "scripts/b1-release-scope.mjs": "d6d9f8aa9906027cd79ee27143e053b013cb9d76c44c6d0705292c424c46089b",
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
     "tests/app-layout-live.test.mjs": "d9e9e435f9f197ed06f4d38742367f8e57ac40b28d9295a1cb633389131c3be8",
-    "tests/b1-release-scope.test.mjs": "757d1dbb37f552af4f3663fb5c407e551503c84e6c469cb6071592a32be3ef30",
+    "tests/b1-release-scope.test.mjs": "319f1248e7f012889f2d4ed1abad28457e8fa549ef4fdbc2140908df4d1ff0fc",
     "tests/member-focus-release.test.mjs": "c8ec0cac8283c7f5edd8a25f727c7230e0e9db0a63964d9bd8575f53a4a2f424",
     "medicines-watch/knowledge.mjs": "c7078053267c8ec36937d6e25a8ca3b2200b476bc8cb570f2a666117abe69ac5",
     "medicines-watch/knowledge.test.mjs": "95d7d1770f23ade771af7d89733b3d3b4b575bdd39b6c024b548ebeffa0ac3c4",
@@ -169,8 +169,7 @@
     ".github/workflows/my-timber-final-production.yml": "530f2b4711d9e6599e279b27fbcddd0fc95b3cc0d56b79dd9692212e7e192a10",
     "g2-014-progress-picture-premium-production.mjs": "8b05b304b7c02c299a5d7739fc82bd196cfe17ffbebbcddc6df10bc847f9ca9c",
     "release/member-acceptance-scope.mjs": "090ab4c53b77454bfe47d91154dc96c10ea2803999208217bfbd608aa00f1c1f",
-    "my-timber-final-source-gate.mjs": "dd9753b3d6af56d17e4aa4536aa3fc750791b41cae2a55b46c2787fb820979e1",
-    "medicines-watch/reviews/2026-10-02-authorised-expanded-discovery.json": "cc75285aa5a5fda66a5ecdc01264fb60239faf85d934ef691a0c191d541720be"
+    "my-timber-final-source-gate.mjs": "dd9753b3d6af56d17e4aa4536aa3fc750791b41cae2a55b46c2787fb820979e1"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
