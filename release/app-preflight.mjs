@@ -49,13 +49,17 @@ git('merge-base','--is-ancestor',sgb7342Commit,'HEAD');
 const abbvAsc30Commit='2e7d9aecaf30ee266311102c87273cb1d9f19d82';
 const abbvAsc30Paths=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-abbv-asc30-tern-bimagrumab.json']);
 git('merge-base','--is-ancestor',abbvAsc30Commit,'HEAD');
+// Exact owner-authorised source-monitor repair in PR #933; preserve all other reviewed source.
+const sourceRepairCommit='f27a1c8b574b30c435a0eae6c367d0b32aa39fb4';
+const sourceRepairPaths=new Set(["medicines-watch/README.md","medicines-watch/industry.mjs","medicines-watch/monitor.mjs","medicines-watch/monitor.test.mjs","medicines-watch/reviews/2026-10-02-source-monitor-repairs.json"]);
+git('merge-base','--is-ancestor',sourceRepairCommit,'HEAD');
 // Exact manifest-pinned repair for the production-only missing embedded consent loader.
 // Retain exact current-main native/app-review and login work; this web release does not submit native apps.
 const retainedCurrentMain=new Set([".github/workflows/master-integration-gate.yml",".github/workflows/my-timber-app-preview.yml","frontend/member/my-timber-preview.html","my-timber-app/RELEASE-AUDIT-2026-10-01.md","my-timber-app/android/app/build.gradle","my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java","my-timber-app/contract.json","my-timber-app/ios/Sources/MyTimberViewController.swift","my-timber-app/ios/project.yml","my-timber-app/tests/apple-review-live.mjs","my-timber-app/tests/source.test.mjs","tests/member-auth-ui-v2.test.mjs"]);
 const retainedMain='b23010cfca99b3ab05377062ad5b16984711111c';
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:abbvAsc30Paths.has(p)?abbvAsc30Commit:sgb7342Paths.has(p)?sgb7342Commit:ubt251Paths.has(p)?ubt251Commit:expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:sourceRepairPaths.has(p)?sourceRepairCommit:abbvAsc30Paths.has(p)?abbvAsc30Commit:sgb7342Paths.has(p)?sgb7342Commit:ubt251Paths.has(p)?ubt251Commit:expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);

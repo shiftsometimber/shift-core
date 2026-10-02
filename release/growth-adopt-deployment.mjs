@@ -1,12 +1,12 @@
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Start from the successfully verified shared My Timber production release.
+// Start from the last fully verified Watch expansion deployment (run 36973681866).
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='f6a481f0129e100fd5a4c37219792406baff389b',VERSION='bf58e37d-3ce5-48f2-8d23-483e18a9c0b4';
-const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36967642444',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+const BASE='7a02f42a58a7992ce4728d9fd91808f2654f7cdf',VERSION='ccbd9937-d596-4b1a-ae61-8594012d9ec2';
+const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36973681866',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
