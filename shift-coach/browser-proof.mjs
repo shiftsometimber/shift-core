@@ -1,3 +1,4 @@
+import {revealSetupField} from '../release/app-member-live.mjs';
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {mkdirSync,writeFileSync,readFileSync,chmodSync} from 'node:fs';
@@ -48,5 +49,16 @@ try{
  const sorted=[...proof.timings].sort((a,b)=>a-b);proof.timing={device:'Chromium 390×844 touch, CPU 4× slowdown',network:'150ms/request latency, 1.6Mbps down, 750kbps up',origin:'local Node HTTP server and synthetic native SQLite',measure:'navigation start to rendered action and bound controls',p95:sorted[Math.ceil(.95*sorted.length)-1]};
  assert.equal(errors.length,0,JSON.stringify(errors));proof.checks.push('no page errors');
  await page.setViewportSize({width:1280,height:900});await page.screenshot({path:out+'/today-desktop.png',fullPage:true});
+ // Exercise the actual acceptance helper with both documented Fit DOM states.
+ // These are synthetic verifier fixtures, not live Fit acceptance.
+ const harnessPage=await browser.newPage();
+ for(const [state,markup]of [['fresh','<textarea id="fitPrefs"></textarea>'],['saved','<details data-app-fit-setup><summary>Adjust setup</summary><textarea id="fitPrefs"></textarea></details>'],['nested','<details data-app-fit-setup><summary>Adjust setup</summary><details><summary>Notes</summary><textarea id="fitPrefs"></textarea></details></details>']]){
+  await harnessPage.setContent('<iframe title="Synthetic Fit verifier"></iframe>');
+  await harnessPage.locator('iframe').evaluate((e,html)=>{e.srcdoc=html;},markup);
+  const field=await revealSetupField(harnessPage.frameLocator('iframe'),'#fitPrefs');
+  assert(await field.isVisible());await field.fill('Synthetic '+state+' notes');assert.equal(await field.inputValue(),'Synthetic '+state+' notes');
+  proof.checks.push('Fit verifier synthetic '+state+' state requires a visible editable field');
+ }
+ await harnessPage.close();
  writeFileSync(out+'/browser-proof.json',JSON.stringify(proof,null,2));console.log(JSON.stringify({checks:proof.checks.length,p95:proof.timing.p95,scope:proof.scope}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));DB.close();}

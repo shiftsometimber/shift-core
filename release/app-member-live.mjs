@@ -1,6 +1,6 @@
 // Called only with the existing labelled synthetic commissioning account.
 import assert from 'node:assert/strict';
-async function revealSetupField(frame,selector){
+export async function revealSetupField(frame,selector){
  const field=frame.locator(selector);await field.waitFor({state:'attached',timeout:45000});
  // New members already have a visible notes field; returning members use the saved-session disclosure.
  if(await field.isVisible())return field;
