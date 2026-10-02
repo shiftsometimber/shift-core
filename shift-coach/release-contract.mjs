@@ -14,7 +14,9 @@ export function assertCoachingChangedPath(status,path){
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
-export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json']);
+// Files outside the later registry-wave proof stay pinned to the pre-composition
+// Watch baseline. The evolving registry-wave payload is bound separately.
+export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json']);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
 export function assertCoachingConfiguration(current,previous){
