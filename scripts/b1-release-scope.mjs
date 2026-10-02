@@ -85,7 +85,7 @@ export function validateWatchRegistry(read){
 export const WATCH_PFIZER_PDF_REPAIR_COMMIT='5f1c8e6d9b4c7a8656854e4807a4aebd97b39e50';
 export const WATCH_PFIZER_PDF_REPAIR_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs','medicines-watch/reviews/2026-10-02-pfizer-pdf-monitor-repair.json'];
 export function validateWatchPfizerPdfRepair(read){
- for(const path of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.equal(read('HEAD',path),read(WATCH_PFIZER_PDF_REPAIR_COMMIT,path),'Watch Pfizer PDF monitor repair drift: '+path);
+ for(const path of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_PFIZER_PDF_REPAIR_COMMIT),path),'Watch Pfizer PDF monitor repair drift: '+path);
 }
 // Standing editorial authorisation permits the exact evidence-bounded addition merged in PR #942.
 // Bind research-stage wording without inferring results, UK authorisation, NHS access, supply or clinical approval.
