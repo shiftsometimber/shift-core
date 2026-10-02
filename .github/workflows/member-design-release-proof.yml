@@ -1,14 +1,14 @@
 name: Approved My Timber release scope proof
 on:
   push:
-    branches: [fix/member-design-shared-20261001, fix/member-acceptance-20261002]
+    branches: [fix/member-design-shared-20261001, fix/member-acceptance-20261002, fix/member-panel-layout-20261002]
 permissions:
   contents: read
   actions: read
 jobs:
   scope:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,10 +27,10 @@ jobs:
         run: |
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';
-          import {MEMBER_DESIGN_CANDIDATE,MEMBER_DESIGN_RUN} from './release/member-design-scope.mjs';
-          for(let i=0;i<66;i++){
-            const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+MEMBER_DESIGN_RUN,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
-            assert(r.ok);const run=await r.json();assert.equal(run.head_sha,MEMBER_DESIGN_CANDIDATE);assert.equal(run.path,'.github/workflows/member-design-preview.yml');
+          import {MEMBER_LAYOUT_CANDIDATE,MEMBER_LAYOUT_RUN} from './release/member-design-scope.mjs';
+          for(let i=0;i<120;i++){
+            const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+MEMBER_LAYOUT_RUN,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+            assert(r.ok);const run=await r.json();assert.equal(run.head_sha,MEMBER_LAYOUT_CANDIDATE);assert.equal(run.path,'.github/workflows/member-panel-layout-preview.yml');
             if(run.status==='completed'){assert.equal(run.conclusion,'success');process.exit(0);}
             await new Promise(resolve=>setTimeout(resolve,10000));
           }

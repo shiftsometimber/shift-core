@@ -1,12 +1,12 @@
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Start from the last fully verified Watch source-repair deployment (run 36978979410).
+// Start from the last fully verified Watch registry deployment (run 36987757546).
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
-const BASE='5de2347baf71588439eeca9bc7afe69494705ce5',VERSION='3d018d04-f65e-41f1-bd94-ad8511573d5b';
-const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36978979410',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
+const BASE='4fd1d4446a4ecc2d0b7eb26d986bfa7d19ec6e0f',VERSION='6c617383-bed3-4bef-9cb2-d8709e195833';
+const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36987757546',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
