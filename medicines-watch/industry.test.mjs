@@ -24,6 +24,7 @@ import expandedRegistryWave from './reviews/2026-10-02-authorised-expanded-regis
 import semaglutideSpecialistTrials from './reviews/2026-10-02-authorised-semaglutide-specialist-trials.json' with {type:'json'};
 import glimrCopd from './reviews/2026-10-02-authorised-glimr-copd.json' with {type:'json'};
 import specialistRegistryFollowup from './reviews/2026-10-02-authorised-specialist-registry-followup.json' with {type:'json'};
+import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
  assert.equal(medicines.length,6);assert.equal(industry.length,71);assert.equal(sources.length,50);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,77);
@@ -502,4 +503,31 @@ test('specialist registry follow-up separates active research, planned studies a
  assert.match(survodutide.limitations,/remains not yet recruiting/);
  assert.ok(survodutide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07850050'));
  assert.equal(specialistRegistryFollowup.preservedCandidates[0].status,'not_yet_recruiting_incomplete');
+});
+
+test('switching studies remain planned research and do not inflate programme counts',()=>{
+ assert.equal(switchingStudies.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(switchingStudies.clinicalApproval,null);
+ assert.equal(switchingStudies.industryComplete,false);
+ assert.equal(switchingStudies.automatedMonitorChanges,false);
+ assert.equal(switchingStudies.configuredSourcePass.status,'current');
+ assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
+ assert.equal(industry.length,71);
+ const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
+ assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
+ assert.match(zenagamtide.summary,/60 adults/);
+ assert.match(zenagamtide.limitations,/not yet recruiting/);
+ assert.match(zenagamtide.limitations,/no posted results/);
+ assert.match(zenagamtide.limitations,/recommended switching regimen/);
+ assert.ok(zenagamtide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07855133'));
+ const survodutide=industry.find(entry=>entry.id==='survodutide');
+ assert.match(survodutide.summary,/SYNCHRONIZE-START/);
+ assert.match(survodutide.summary,/350 adults/);
+ assert.match(survodutide.summary,/semaglutide or tirzepatide/);
+ assert.match(survodutide.limitations,/not yet recruiting/);
+ assert.match(survodutide.limitations,/no posted results/);
+ assert.match(survodutide.limitations,/estimated start/);
+ assert.ok(survodutide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07855900'));
+ assert.ok(switchingStudies.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
+ assert.ok(switchingStudies.registryEvidence.every(record=>record.hasResults===false));
 });
