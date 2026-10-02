@@ -86,5 +86,13 @@
       "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass."
     }
   },
-  "note": "Engineering draft. No approval or human review is inferred from a request to implement. Previous evidence is retained in launch-assessment.json."
+  "note": "Engineering draft. No approval or human review is inferred from a request to implement. Previous evidence is retained in launch-assessment.json.",
+  "timingAcceptance": {
+    "approved": true,
+    "decidedBy": "Matt",
+    "decidedAt": "2026-10-02T17:17:48+01:00",
+    "evidence": "User explicitly stated “1.10 is ok” after the final local simulated p95 result was disclosed.",
+    "observedP95Ms": 1100.9,
+    "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing."
+  }
 }
