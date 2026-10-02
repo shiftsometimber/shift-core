@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "31f78cc3c4f6c0571f7f2e95d718f1328860cc9c",
+  "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -113,7 +113,7 @@
       "evidence": "Matt asked “can’t we deploy ?” immediately after being told the remaining hold was independent acceptance of the repair. Interpreted as instruction to proceed with the tested bounded repairs under owner acceptance. The assistant disclosed this interpretation before proceeding. This records deployment authority and builder verification, not completion or approval of a new independent review.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "83a98d0e87df12ffffd4fc331a7677130a1dc226",
+      "applicationCommit": "aaf449aaa09353b9d43e7e28ec580d76344bc59a",
       "verificationEvidence": "62/62 functional phantom-member checks, 344 local regression checks, 10 compiled Worker/D1 checks and successful hosted coaching/master/route checks for the repair; timing1100.9ms explicitly accepted by Matt. Current composed-source gates and pre/post-deployment checks remain mandatory."
     }
   },
