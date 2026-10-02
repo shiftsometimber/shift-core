@@ -218,8 +218,7 @@
     "release/book-voice-scope.mjs": "52158938e143bcbf69da9f3a68bbd3033634fea4e77911f9707058581f2b6706",
     "tests/book-voice-release.test.mjs": "6c05227a1313b414a74893f7e4787db6e22699de0ee32006e8b2067d62e04266",
     "editorial/book-voice/live.cjs": "1b43c3a7dcf25aa4e3bf33024d3d5fa3bb961f280d0eaceb9dad349f089e2e9f",
-    ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2",
-    "medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json": "3f0b51a00b16d0bac6c544c8644c1ae2ed22ee473b320a938d06b9a069aeaa4d"
+    ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",

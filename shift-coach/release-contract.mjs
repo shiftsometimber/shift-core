@@ -15,7 +15,7 @@ export function assertCoachingChangedPath(status,path){
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
-// Preserve the exact newer, already-merged specialist Watch releases alongside coaching.
+// Preserve the exact newer, already-merged specialist Watch release alongside coaching.
 export const WATCH_CURRENT_BASE='43122c27a977f7b8b184837d799a12e8848746af';
 export const WATCH_COMPOSED_CHANGES=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs']);
 export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json']);
