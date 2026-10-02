@@ -4,8 +4,8 @@ const instant=value=>{if(typeof value==='string'&&/^\d{4}-\d\d-\d\d \d\d:/.test(
 export const londonDay=value=>{const n=instant(value);return n===null?null:Math.floor(Date.parse(dateFormat.format(new Date(n))+'T00:00:00Z')/86400000)};
 const unavailable=reason=>({status:'unavailable',numerator:null,denominator:null,ratePct:null,reason});
 const ratio=(n,d,status='not_yet_eligible')=>({status:d?'observed':status,numerator:n,denominator:d,ratePct:d?Math.round(10000*n/d)/100:null});
-const outcomes=new Set(['helped','not-fit','not-tried','skip']);
-const answers=new Set(['helped','not-fit','not-tried']);
+const outcomes=new Set(['helped','not-fit','not-tried','skip','didnt-help','didnt-fit','didnt-try']);
+const answers=new Set(['helped','not-fit','not-tried','didnt-help','didnt-fit','didnt-try']);
 export function summariseContinuity({exposures=[],actions=[],episodes=[],asOf=new Date().toISOString(),since='1970-01-01',activityAvailable=true,episodesAvailable=true}){
  const now=instant(asOf),today=londonDay(asOf),first=new Map();
  for(const e of exposures){const at=instant(e.at);if(at===null||at>now)continue;if(!first.has(e.userId)||at<first.get(e.userId))first.set(e.userId,at)}
@@ -24,8 +24,8 @@ export function summariseContinuity({exposures=[],actions=[],episodes=[],asOf=ne
   recruitment:unavailable('Invitation and enrolment register not supplied.'),openMemberP0s:unavailable('A reviewed issue register is required.'),
   decision:{status:'not_assessed',reason:'Success thresholds have not been set; this report cannot open the expansion gate.'},
   privacy:'Aggregate only; no identities, health measurements, free text or episode contents returned.',
-  definitions:{exposure:'First acknowledged visible Today panel, including members who never complete a check-in. Prospective capture; no registration/login backfill.',meaningfulAction:'Retained check-ins, completed Fit/Next Shift actions and feedback on saved help. Login, refresh, planning and meal selection do not count.',episodes:'Persisted help offered by check-in/Next Shift, de-duplicated by linked episode ID; latest response per episode; skipping the question is unanswered. Window is episode delivery date.',helped:'Member-reported product signal, not clinical efficacy.'},
-  limitations:['Historical first Today exposure is unavailable before this instrumentation.','Browser acknowledgement is evidence of rendering, not independent proof of attention.','Retained Fit entries are capped by the existing product; erasure or overwritten records can reduce historical evidence.','Unlabelled staff/test identities cannot be excluded reliably.']};
+  definitions:{exposure:'First acknowledged visible Today panel, including members who never complete a check-in. Prospective capture; no registration/login backfill.',meaningfulAction:'Retained check-ins, completed Fit/Next Shift actions and feedback on saved help, including the new everyday coach. Login, refresh, planning and meal selection do not count.',episodes:'Persisted help offered by check-in/Next Shift or accepted everyday coaching, de-duplicated by linked episode ID; latest response per episode; skipping the question is unanswered. Window is episode delivery date.',helped:'Member-reported product signal, not clinical efficacy.'},
+  limitations:['Historical first Today exposure is unavailable before this instrumentation.','Browser acknowledgement is evidence of rendering, not independent proof of attention.','Retained Fit entries are capped by the existing product; erasure or overwritten records can reduce historical evidence.','Historical coach actions without an acceptance timestamp use preparation time as the episode-date proxy; preparation alone does not count as return.', 'Unlabelled staff/test identities cannot be excluded reliably.']};
 }
 const parse=value=>{try{return JSON.parse(value||'{}')}catch{return {}}};
 export async function continuityScorecard(DB,options={}){
@@ -38,6 +38,12 @@ export async function continuityScorecard(DB,options={}){
  if(tables.has('check_ins'))for(const r of (await DB.prepare(`SELECT user_id,submitted_at FROM check_ins WHERE case_id IS NULL AND user_id IN (${eligible})`).all()).results)actions.push({userId:r.user_id,at:r.submitted_at});
  if(tables.has('member_state'))for(const r of (await DB.prepare(`SELECT user_id,preferences FROM member_state WHERE user_id IN (${eligible})`).all()).results){
   const p=parse(r.preferences),life=p.lifeBack?.progress||{};
+  const coach=life.shiftAI;
+  if(coach){for(const a of coach.actions||[]){if(!a.acceptedAt)continue;const reviews=(coach.outcomes||[]).filter(o=>o.actionId===a.id&&outcomes.has(o.value)).map(o=>({at:new Date(o.at).toISOString(),outcome:o.value}));episodes.push({userId:r.user_id,id:'coach:'+a.id,at:new Date(a.acceptedAt).toISOString(),reviews});for(const review of reviews)if(answers.has(review.outcome))actions.push({userId:r.user_id,at:review.at});}
+   // Legacy accepted/completed actions predate acceptedAt. Use their recorded
+   // outcome as evidence, with preparation time as a labelled historical proxy.
+   for(const a of coach.actions||[]){if(a.acceptedAt||!['accepted','completed'].includes(a.status))continue;const reviews=(coach.outcomes||[]).filter(o=>o.actionId===a.id&&outcomes.has(o.value)).map(o=>({at:new Date(o.at).toISOString(),outcome:o.value}));episodes.push({userId:r.user_id,id:'coach:'+a.id,at:new Date(a.preparedAt).toISOString(),reviews});for(const review of reviews)if(answers.has(review.outcome))actions.push({userId:r.user_id,at:review.at});}
+  }
   for(const e of life.entries||[])actions.push({userId:r.user_id,at:e.at});
   for(const e of Object.values(p.fitJourney?.entries||{}))if(e.status==='done'&&e.updatedAt)actions.push({userId:r.user_id,at:e.updatedAt});
   for(const e of [...(life.shiftHistory||[]),...(life.nextShift?[life.nextShift]:[])]){
