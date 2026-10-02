@@ -6,6 +6,24 @@ export {headerPreview};
 // Retain the exact previous live style for before/after content-preservation verification.
 const earlierHeaderMarkCss="<style id=\"sst-header-mark-20261001\">html body header.site-header[data-header-v2][data-header-style] .site-logo{position:relative}html body header.site-header[data-header-v2][data-header-style] .site-logo::after{content:\"\";position:absolute;pointer-events:none;left:8.15%;top:50%;width:13%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:#050505 url(\"/assets/apple-touch-icon.png\") center/114.5% 114.5% no-repeat;filter:none}</style>";
 export const headerMarkCss="<style id=\"sst-header-mark-20261001\">html body header.site-header[data-header-v2][data-header-style] .site-logo{position:relative}html body header.site-header[data-header-v2][data-header-style] .site-logo img{clip-path:inset(0 0 0 23%)}html body header.site-header[data-header-v2][data-header-style] .site-logo::after{content:\"\";position:absolute;pointer-events:none;left:5.7%;top:50%;width:17.95%;aspect-ratio:1;transform:translateY(-50%);clip-path:ellipse(44% 45% at 50% 50%);background:#050505 url(\"/fit-v3-images/sst-header-brand-mark-20261001.png\") center/100% 100% no-repeat;filter:none}</style>";
+
+// The opened menu has a separate image; use the same exact approved mark there.
+export const drawerMarkCss="<style id=\"sst-drawer-mark-20261002\">html body aside.site-drawer[data-header-v2] .sst-drawer-logo{display:block;position:relative;width:235px;max-width:100%;flex:0 1 auto;line-height:0}html body aside.site-drawer[data-header-v2] .sst-drawer-logo img{display:block;width:100%;height:auto;clip-path:inset(0 0 0 23%)}html body aside.site-drawer[data-header-v2] .sst-drawer-logo::after{content:\"\";position:absolute;pointer-events:none;left:5.7%;top:50%;width:17.95%;aspect-ratio:1;transform:translateY(-50%);clip-path:ellipse(44% 45% at 50% 50%);background:#050505 url(\"/fit-v3-images/sst-header-brand-mark-20261001.png\") center/100% 100% no-repeat;filter:none}</style>";
+const drawerLogoOpen='<span class="sst-drawer-logo" data-sst-drawer-logo>';
+function addDrawerMark(html){
+ if(html.includes('id="sst-drawer-mark-20261002"'))return html;
+ const pattern=/(<aside\b(?=[^>]*\bdata-header-v2\b)[^>]*>[\s\S]*?<div\b[^>]*\bclass="drawer-head"[^>]*>)(<img\b[^>]*>)/;
+ if(!pattern.test(html))return html;
+ return html.replace(pattern,(_,head,img)=>head+drawerLogoOpen+img+'</span>').replace('</body>',drawerMarkCss+'</body>');
+}
+function removeDrawerMark(html){
+ if(!html.includes('sst-drawer-mark-20261002'))return html;
+ if(html.split(drawerMarkCss).length!==2)throw Error('Menu mark differs from approved brand correction');
+ const pattern=/<span class="sst-drawer-logo" data-sst-drawer-logo>(<img\b[^>]*>)<\/span>/g;
+ const matches=[...html.matchAll(pattern)];
+ if(matches.length!==1)throw Error('Menu logo wrapper differs from approved correction');
+ return html.replace(drawerMarkCss,'').replace(pattern,(_,img)=>img);
+}
 // Start the existing responsive hero request in the head; preserve the image and layout.
 const bootstrapTag='<script src="/analytics-bootstrap-v1.js"></script>';
 export const inlineBootstrap='<script data-shift-inline-bootstrap>'+bootstrap+'</script>';
@@ -21,13 +39,14 @@ function preloadExistingHero(html){
 }
 export function addCreamNavigation(html){
  if(!/<header\b[^>]*data-header-v2/.test(html)||!html.includes('</body>'))return html;
- html=preloadExistingHero(html);
+ html=addDrawerMark(preloadExistingHero(html));
  if(!html.includes('id="sst-header-mark-20261001"'))html=html.replace('</body>',headerMarkCss+'</body>');
  if(!html.includes('id="sst-cream-header-preview"'))html=html.replace('</body>',headerPreview+'</body>');
  if(/<footer\b[^>]*class="site-footer"/.test(html)&&!html.includes('id="sst-cream-footer-preview"'))html=html.replace('</body>',footerPreview+'</body>');
  return html;
 }
 export function removeCreamNavigation(html){
+ html=removeDrawerMark(html);
  if(html.includes('sst-header-mark-20261001')){const matches=[headerMarkCss,earlierHeaderMarkCss].filter(css=>html.includes(css));if(matches.length!==1||html.split(matches[0]).length!==2)throw Error('Header mark differs from approved brand correction');html=html.replace(matches[0],'');}
  if(html.includes('data-shift-inline-bootstrap')){if(html.split(inlineBootstrap).length!==2)throw Error('Inline bootstrap differs from authoritative privacy source');html=html.replace(inlineBootstrap,bootstrapTag);}
  if(html.includes('data-shift-hero-preload')){if(html.split(heroPreload).length!==2)throw Error('Hero preload differs from verified responsive image');html=html.replace(heroPreload,'');}
