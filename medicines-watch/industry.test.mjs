@@ -23,9 +23,10 @@ import pfizerPdfRepair from './reviews/2026-10-02-pfizer-pdf-monitor-repair.json
 import expandedRegistryWave from './reviews/2026-10-02-authorised-expanded-registry-wave.json' with {type:'json'};
 import semaglutideSpecialistTrials from './reviews/2026-10-02-authorised-semaglutide-specialist-trials.json' with {type:'json'};
 import glimrCopd from './reviews/2026-10-02-authorised-glimr-copd.json' with {type:'json'};
+import specialistRegistryFollowup from './reviews/2026-10-02-authorised-specialist-registry-followup.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,70);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,76);
+ assert.equal(medicines.length,6);assert.equal(industry.length,71);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,77);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -106,7 +107,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,70);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,71);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -466,4 +467,39 @@ test('GLIMR COPD remains planned specialist tirzepatide research, not a UK treat
  assert.equal(glimrCopd.registryEvidence.overallStatus,'NOT_YET_RECRUITING');
  assert.equal(glimrCopd.registryEvidence.hasResults,false);
  assert.equal(glimrCopd.registryEvidence.estimatedEnrollment,30);
+});
+
+test('specialist registry follow-up separates active research, planned studies and UK access',()=>{
+ assert.equal(specialistRegistryFollowup.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(specialistRegistryFollowup.clinicalApproval,null);
+ assert.equal(specialistRegistryFollowup.industryComplete,false);
+ assert.equal(specialistRegistryFollowup.automatedMonitorChanges,false);
+ assert.equal(specialistRegistryFollowup.configuredSourcePass.status,'current');
+ assert.equal(specialistRegistryFollowup.configuredSourcePass.currentCount,50);
+ const oncology=industry.find(entry=>entry.id==='tirzepatide-endometrial-research');
+ assert.ok(oncology);
+ assert.equal(oncology.group,'research');
+ assert.equal(oncology.clinicalApproval,null);
+ assert.equal(oncology.sourceIds.length,0);
+ assert.equal(oncology.additionalEvidence.length,2);
+ assert.match(oncology.stage,/Early Phase 1 recruiting/);
+ assert.match(oncology.stage,/Phase 2 not yet recruiting/);
+ assert.match(oncology.summary,/actual 27 April 2026 start/);
+ assert.match(oncology.ukAuthorisation,/do not establish UK marketing authorisation/i);
+ assert.match(oncology.nhsEngland,/No NICE recommendation or NHS England access/i);
+ assert.match(oncology.supply,/does not establish lawful supply/i);
+ assert.match(oncology.limitations,/Neither record has posted results/);
+ const active=specialistRegistryFollowup.registryEvidence.find(record=>record.nctId==='NCT07065552');
+ const planned=specialistRegistryFollowup.registryEvidence.find(record=>record.nctId==='NCT07078838');
+ assert.equal(active.overallStatus,'RECRUITING');
+ assert.equal(active.actualStart,'2026-04-27');
+ assert.equal(active.hasResults,false);
+ assert.equal(planned.overallStatus,'NOT_YET_RECRUITING');
+ assert.equal(planned.hasResults,false);
+ const survodutide=industry.find(entry=>entry.id==='survodutide');
+ assert.match(survodutide.summary,/SYNCHRONIZE-HERA/);
+ assert.match(survodutide.summary,/600 women/);
+ assert.match(survodutide.limitations,/remains not yet recruiting/);
+ assert.ok(survodutide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07850050'));
+ assert.equal(specialistRegistryFollowup.preservedCandidates[0].status,'not_yet_recruiting_incomplete');
 });
