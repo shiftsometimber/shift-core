@@ -2,13 +2,21 @@
 import assert from 'node:assert/strict';
 export async function revealSetupField(frame,selector){
  const field=frame.locator(selector);await field.waitFor({state:'attached',timeout:45000});
- // New members already have a visible notes field; returning members use the saved-session disclosure.
- if(await field.isVisible())return field;
- const setup=frame.locator('[data-app-fit-setup]'),summary=setup.locator(':scope > summary');
- if(!await setup.count()){await field.waitFor({state:'visible',timeout:45000});return field;}
- await summary.waitFor({state:'visible',timeout:45000});if(!await setup.evaluate(e=>e.open))await summary.click();
- for(let attempt=0;attempt<5;attempt++){const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;let opened=false;for(let i=0;i<await closed.count();i++){const control=closed.nth(i).locator(':scope > summary');if(await control.isVisible()){await control.click();opened=true;break;}}assert(opened,'Setup note requires an ordinary visible disclosure');}
- await field.waitFor({state:'visible',timeout:45000});return field;
+ // The saved-session wrapper can arrive after the field or reuse an existing
+ // disclosure without the setup marker. Follow its actual visible controls.
+ const deadline=Date.now()+45000;
+ while(Date.now()<deadline){
+  const closed=field.locator('xpath=ancestor::details[not(@open)]');
+  let opened=false;
+  for(let i=0;i<await closed.count();i++){
+   const control=closed.nth(i).locator(':scope > summary');
+   if(await control.isVisible()){await control.click();opened=true;break;}
+  }
+  if(opened)continue;
+  try{await field.waitFor({state:'visible',timeout:Math.min(250,Math.max(1,deadline-Date.now()))});return field;}
+  catch(error){if(error.name!=='TimeoutError')throw error;}
+ }
+ await field.waitFor({state:'visible',timeout:1});return field;
 }
 export async function verifyLiveTools(page,site,dir,report){
  for(const width of [390,1440]){await page.setViewportSize({width,height:900});for(const view of ['app','web']){console.log('START live tools '+view+' '+width);
@@ -31,4 +39,3 @@ export async function verifyLiveTools(page,site,dir,report){
  console.log('PASS single consent owner '+view+' '+width);await page.locator('#appTab-today').click();report.checks.push({view,width,inlineTools:true,oneNavigationOwner:true,oneFooterOwner:true,draftsRetained:true,history:true,topNavigations:navigations});
  }}
 }
-
