@@ -1,6 +1,6 @@
 {
   "recordedMain": "e19165d1384f08b8584e1470155518780f86abf5",
-  "applicationCommit": "a3dfe4a68384e2d83a45ce91bc332cdd1c9f02b7",
+  "applicationCommit": "95c80ebf424ac3aa0372a86e51e49a9cb3736f46",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -58,10 +58,10 @@
       "evidence": "Latest request \"can you sort >?\" follows the offered launch of tested in-app coaching first. Taken as authority to prepare this bounded release; not evidence that complete v2 has passed."
     },
     "privacyAssessment": {
-      "approved": false,
-      "decidedBy": null,
-      "decidedAt": null,
-      "evidence": "Concrete proposed controller decision in privacy-purpose-review.md final addendum: existing optional health/personalisation consent and existing Cloudflare member store; no new processor/model calls. Facts/outcomes remain until member deletion/health erasure; audit records over90days pruned on next mutation, not guaranteed daily. Existing processor/transfer register, backups and dormant-account retention are not verified; explicit controller adoption or evidence is still needed. No approval inferred from launch instruction."
+      "approved": true,
+      "decidedBy": "Matt, acting for Shift Some Timber Ltd",
+      "decidedAt": "2026-10-02T16:30:46+01:00",
+      "evidence": "Matt replied \"Agreed\" to the specific controller decision presented immediately before: coaching facts and feedback retained until deleted; audit history over90days pruned on next update; existing Cloudflare processor/backup/dormant-account arrangements remain unverified. Explicit approval of stated retention and acceptance of outstanding existing-platform checks for the bounded launch. Proposed assessment link supplied at source5af35463. No contract, backup setting, transfer fact, regulatory approval or human clinical certification is invented."
     },
     "intendedPurpose": {
       "approved": true,
