@@ -1,3 +1,4 @@
+import {applyBookVoiceCopy,withBookVoice} from '../book-voice.mjs';
 import {dayGuideRuntime,dayGuideStyles} from './day-guide.mjs';
 import {sessionRuntime} from './session-state.mjs';
 import {memberClient} from './client.mjs';
@@ -36,7 +37,7 @@ for(const [name,expected] of [['day-guide',dayGuideRuntime],['session',sessionRu
  assert.equal(r.status,200,path);
  assert.match(r.headers.get('content-type')||'',/javascript/);
  const actual=await r.text();
- assert.equal(actual,expected,path+' must match the deployed source exactly');
+ assert.equal(actual,applyBookVoiceCopy(path,expected),path+' must match the deployed source exactly');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true});
 }
 for(const [name,asset] of Object.entries(lifeBackAssets)){
@@ -51,7 +52,8 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
   const request=new Request(origin+path);
   const rendered=await withPublicTicker(request,new Response(expected,{headers:{'Content-Type':asset.type}}));
   const wrapped=await withPwa(request,rendered);
-  const memberWrapped=await withGrowthPublicCopy(request,wrapped);
+  const bookWrapped=await withBookVoice(request,wrapped);
+  const memberWrapped=await withGrowthPublicCopy(request,bookWrapped);
   const footerWrapped=await withSharedFooter(request,memberWrapped);
   expected=Buffer.from(await footerWrapped.arrayBuffer());
  }

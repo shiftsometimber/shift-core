@@ -1,3 +1,4 @@
+import {withBookVoice} from './book-voice.mjs';
 import {addCreamNavigation} from './cream-navigation.mjs';
 import {addHomeBanner} from './home-route-banner.mjs';
 import {repairHomeSpeed} from './home-speed-repair.mjs';
@@ -30,8 +31,8 @@ function stabiliseOriginalPublicHtml(path,html){
 export function stabilisePublicHtml(path,html){return addCreamNavigation(stabiliseOriginalPublicHtml(path,html));}
 export async function withStartupStability(request,response){
  const path=new URL(request.url).pathname;
- if(request.method!=='GET'||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
+ if(request.method!=='GET'||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return withBookVoice(request,response);
  const before=await response.text(),after=stabilisePublicHtml(path,before),headers=new Headers(response.headers);
  if(after!==before){headers.delete('Content-Length');headers.delete('ETag');headers.delete('Content-Encoding');headers.set('X-Shift-Startup-Layout','stable-v1');}
- return new Response(after,{status:response.status,statusText:response.statusText,headers});
+ return withBookVoice(request,new Response(after,{status:response.status,statusText:response.statusText,headers}));
 }
