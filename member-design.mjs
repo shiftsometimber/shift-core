@@ -89,6 +89,8 @@ css('main .sf-exercise.mp-exercise','background:transparent;color:#050505;border
 css('main .sf-exercise details','background:#e7e3da;color:#050505;border-color:#707762')+
 css('main .sf-number','background:#707762;color:#000')+
 css('main .sf-session-head h3','font-size:25px')+
+css('main .sf-session-head>div:first-child','min-width:0;flex:1')+
+css('main .sf-session','overflow-wrap:anywhere')+
 css('main .sf-ring :is(strong,small)','color:#e7e3da;-webkit-text-fill-color:#e7e3da')+
 css('main #panel-journey','background:transparent;color:#050505;border:0;padding:0')+
 css('main .mj-hero','background:transparent;color:#050505;border:0;padding:0;margin:0 0 18px')+
