@@ -52,7 +52,7 @@
     "release/app-live-http.mjs": "37f8e152968034185bd6863406fbab20d15a588fee3d85299d68739d21457ac6",
     "release/app-member-live.mjs": "16ddb3d393d082fff7d107199d7c2e7c22353950c3d339d7eb798f2ca7447d71",
     "release/app-preflight.mjs": "db6fe0c82a87a35b276bbecb207c003ee61e2b4aa03b1e9143f95595e3b778e6",
-    "release/growth-adopt-deployment.mjs": "0c6a07a3edee4d44213ab74503949ec1ecd183b3160bc6086ab3d8accad68216",
+    "release/growth-adopt-deployment.mjs": "6252e6b991385954086035b02dfc6cb6ba6bef45150171d2efea23f94d15328d",
     "release/growth-member-live.mjs": "c3bccbe11fb3e325a4938bf383103c1d2153dd3f194db00f3fa87d630f23d6b7",
     "release/growth-preflight.mjs": "36904fed4670388e7bdcd6e7d32667004f000203d656cae47dfac7593aabe294",
     "release/member-focus-scope.mjs": "759a4723660ab0d1afbb95c131879afcce1de598fb88cdc4558d9f475f384f17",
@@ -68,7 +68,7 @@
     "medicines-watch/reviews/2026-09-30-discovery-proposals.json": "fa4a023ae621de4c77bdef2675d17d121d241fb43f1588d6319c17c9b65f5098",
     "medicines-watch/reviews/2026-09-30-discovery-review.md": "9fde72a71a0dd6059846d335db83806d4e1c152a5d6772f52a8c02863de0f1e5",
     "medicines-watch/reviews/2026-09-30-reviewed-expansion.json": "a92afda9c2e64236b681ebaa954b1863f470df0fed81d12103b65d29bdc4b0ac",
-    "release/growth-scope.mjs": "d110d5209aff5dec08fe35f7ea4e212d9e6db30b092940cba9cd15f79e3a07a3",
+    "release/growth-scope.mjs": "3600cd824674032eae9b264249a315369a857c48d74aae8c224fffdc732a17e3",
     ".github/workflows/home-banner-preview.yml": "9f254015a5077c98ee8a3976b69aa38769a79ff8987015bb9c9a40401cc51d25",
     "preview/home-banner/assets/OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
     "preview/home-banner/assets/barlow-condensed-700.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
@@ -262,7 +262,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   }
 }
