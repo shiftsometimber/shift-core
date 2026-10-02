@@ -3,8 +3,8 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const MEMBER_DESIGN_BASE='e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7';
-export const MEMBER_DESIGN_CANDIDATE='1746b0307ddcb31beb7d0cfd12cbae756799859d';
-export const MEMBER_DESIGN_RUN=36945785195;
+export const MEMBER_DESIGN_CANDIDATE='622ab0e45b164de91523d06a9e4b060c54d37453';
+export const MEMBER_DESIGN_RUN=36946742864;
 export const MEMBER_DESIGN_PATHS=['member-design.mjs','app-layout-live.mjs','tests/app-layout-live.test.mjs','preview/member-design/verify.cjs','preview/member-design/member-feedback-proof.cjs','.github/workflows/member-design-preview.yml'];
 export function validateMemberDesignPayload(read,changed){
  assert.deepEqual([...changed].sort(),[...MEMBER_DESIGN_PATHS].sort(),'Member design changed outside the reviewed presentation delta');

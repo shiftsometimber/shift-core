@@ -155,10 +155,10 @@
     "medicines-watch/reviews/2026-10-01-synt101-mad-correction.json": "8788b30c76a11c060e4ba438cdbd3d1758facd6ca7a30fba0f56ef3b89515029",
     "member-design.mjs": "5b9587b0f9f8a1fdb5f813d4104ec2e2a789d214240477db638f66b709a8a232",
     "tests/member-design-release.test.mjs": "df697570dd5d7dc0f3101fdfa063544cc431d67bc538a6ddc4865a16ce66aa97",
-    "release/member-design-scope.mjs": "099b868223219c03cd7df2acb723dd48999275b30a4e9b07895607cfa3abb427",
+    "release/member-design-scope.mjs": "c64250987adb61b9d57c6e938b41893d69b1058970866197f0115f24c0b1b08d",
     ".github/workflows/member-design-release-proof.yml": "1bb56745474ec5cddb834fa1f09e0cb0c36d16b3a54c1cc019292d843439aeea",
     ".github/workflows/member-design-preview.yml": "bbdb64e9848ab894eec1e860465db3d4f85623d94aa9d1d8327ea437762785e2",
-    "preview/member-design/verify.cjs": "7b1f342399975cef6588a5b79b3055d7b201b9aeebb76176abc53250db61ebea",
+    "preview/member-design/verify.cjs": "e4a99ffce328fa5be1b8a78452e61c1a068c457e36c7d4f5055f93f26d64a77f",
     "preview/member-design/member-feedback-proof.cjs": "751558811f9cd5bbd38a919093676f4068deb28ee96c904046ea72946f367d05",
     ".github/workflows/continuity-live-acceptance.yml": "bc170d236dd7e5c19762ab10233844460bd228d9e4a282b9bc04deefbc51179f",
     "rendered-member-acceptance-support.mjs": "509134e3d06cb61d7594633ff7c42a2da529aeb24f7fd083da9021e552fda080",
@@ -235,8 +235,8 @@
     "retainedConcurrentSource": "3e0a6ead946b4b8fddd198d2db7357b700e2ee60"
   },
   "memberDesign": {
-    "candidate": "1746b0307ddcb31beb7d0cfd12cbae756799859d",
-    "previewRun": 36945785195,
+    "candidate": "622ab0e45b164de91523d06a9e4b060c54d37453",
+    "previewRun": 36946742864,
     "approval": "1 October 2026: locked green/black design and request to complete shared My Timber; data, stock and clinical gates preserved",
     "embeddedChrome": "Only the containing page shows navigation and the canonical footer; direct tool pages keep both."
   }
