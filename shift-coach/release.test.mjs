@@ -27,11 +27,11 @@ test('composed book release accepts only exact named additions and modifications
  for(const path of ['editorial/book-voice/unreviewed.mjs','worker-entry-v6.js','frontend/member/my-timber-preview.html','unknown.mjs'])assert.throws(()=>assertCoachingChangedPath('M',path),/Unlisted/);
 });
 
-test('newer composed Watch blobs stay exact without discarding the earlier registry-wave proof',async()=>{
+test('latest registry-wave proof and exact composed Watch bytes remain mandatory',async()=>{
  const {WATCH_CURRENT_BASE,WATCH_COMPOSED_CHANGES,WATCH_COMPOSED_ADDITIONS}=await import('./release-contract.mjs');
  const {validateWatchRegistryWave,WATCH_REGISTRY_WAVE_COMMIT}=await import('../release/watch-registry-wave-scope.mjs');
  const calls=[];validateWatchRegistryWave((ref,path)=>{calls.push({ref,path});return path;});
- for(const path of WATCH_COMPOSED_CHANGES)assert(calls.some(c=>c.path===path&&c.ref===WATCH_CURRENT_BASE));
+ for(const path of WATCH_COMPOSED_CHANGES)assert(calls.some(c=>c.path===path&&c.ref===WATCH_REGISTRY_WAVE_COMMIT));
  assert(calls.some(c=>c.path==='medicines-watch/discovery.mjs'&&c.ref===WATCH_REGISTRY_WAVE_COMMIT));
  for(const path of WATCH_COMPOSED_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));}
  for(const path of WATCH_COMPOSED_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));}
