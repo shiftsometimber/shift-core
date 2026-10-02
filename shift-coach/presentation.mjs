@@ -8,11 +8,12 @@ body[data-shift-coach-session] #previewAuth{display:none!important}
 #shiftCoach :is(h2,h3,p,small,label,summary,li,strong,a){color:#050505!important;-webkit-text-fill-color:#050505!important}
 #shiftCoach h2{font:800 24px/1.2 Arial,sans-serif!important;margin:8px 0 12px}#shiftCoach h3{font:700 18px/1.3 Arial,sans-serif!important}
 #shiftCoach .coach-kicker{font-size:12px;font-weight:800;letter-spacing:.08em}#shiftCoach .coach-reason{border-left:3px solid #707762;padding-left:12px}
-#shiftCoach :is(input,select){display:block;width:100%;max-width:100%;background:#fff;color:#050505!important;font:inherit;min-height:44px;border:1px solid #707762;border-radius:8px;padding:10px;margin:5px 0 12px}
+#shiftCoach :is(input,select,textarea){display:block;width:100%;max-width:100%;background:#fff;color:#050505!important;font:inherit;min-height:44px;border:1px solid #707762;border-radius:8px;padding:10px;margin:5px 0 12px}
 #shiftCoach input[type=checkbox]{display:inline-block;width:20px;height:20px;min-height:20px;margin:0 8px 0 0;vertical-align:middle}
 #shiftCoach :is(button,.coach-button){font:700 14px/1.3 Arial,sans-serif!important;cursor:pointer;border:1px solid #050505!important;border-radius:8px;padding:12px 16px;min-height:44px;max-width:100%;background:#050505!important;color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important;text-decoration:none}
 #shiftCoach button.secondary{background:transparent!important;color:#050505!important;-webkit-text-fill-color:#050505!important}#shiftCoach button:disabled{opacity:.55;cursor:wait}
 #shiftCoach .coach-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}#shiftCoach details{padding:12px 0;border-top:1px solid #b4b7ac}#shiftCoach summary{cursor:pointer;min-height:44px;font-weight:700;padding:8px 0}
+#shiftCoach li{overflow-wrap:anywhere}#shiftCoach textarea{min-height:100px}
 #shiftCoach fieldset{border:0;padding:0;margin:12px 0}#shiftCoach label{display:block;margin:8px 0}#shiftCoach :focus-visible{outline:3px solid #707762;outline-offset:3px}
 body[data-app-tool]:not([data-app-tool="today"]) #shiftCoach{display:none!important}
 #panel-today[data-shift-coach-enabled] .mtm-next{display:none!important}

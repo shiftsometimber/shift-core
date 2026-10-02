@@ -2,7 +2,7 @@ export const sources=Object.freeze(['scale','wearable','calendar','dose','photos
 export const uid=()=>crypto.randomUUID();
 export const statePath='$.lifeBack.progress.shiftAI';
 const consentSQL="(SELECT id FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' AND granted=1 ORDER BY id DESC LIMIT 1)=(SELECT id FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)";
-export function initialState(){return {version:1,facts:[],permissions:Object.fromEntries(sources.map(s=>[s,false])),settings:{proactive:false,followup:false,quietStart:'22:00',quietEnd:'08:00',timezone:'Europe/London',weeklyDay:null},stage:'Just starting',mode:'elsewhere',components:['energy'],readings:[],doses:[],actions:[],queue:[],outcomes:[],rejected:[],pausedTypes:[],dismissedPatterns:[],nightRuns:[],calendar:[],reviews:[],touches:[],weeklyPlans:[],audit:[],lastActivity:null,pendingWant:null};}
+export function initialState(){return {version:1,facts:[],permissions:Object.fromEntries(sources.map(s=>[s,false])),settings:{proactive:false,followup:false,quietStart:'22:00',quietEnd:'08:00',timezone:'Europe/London',weeklyDay:null},stage:'Just starting',mode:'none',components:['energy'],readings:[],doses:[],actions:[],queue:[],outcomes:[],rejected:[],pausedTypes:[],dismissedPatterns:[],nightRuns:[],calendar:[],reviews:[],touches:[],weeklyPlans:[],audit:[],lastActivity:null,pendingWant:null};}
 export async function load(DB,member){
  const row=await DB.prepare("SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?").bind(statePath,member).first();
  return {revision:row?.revision||0,state:row?.body?JSON.parse(row.body):null};

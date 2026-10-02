@@ -1,6 +1,6 @@
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {reusablePublicIndex} from './app-index-freshness.mjs';
-// Start from the fully verified practical-task coaching deployment (run 37043338692).
+// Start from the fully verified coaching/proof-repair deployment (run 37043338692).
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
