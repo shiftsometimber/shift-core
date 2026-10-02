@@ -36,7 +36,7 @@ export async function withCoaching(request,response,seed=null){
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  // Compress the private dashboard at its source so the prepared action does
  // not depend on an assumed CDN compression setting. Never gzip twice.
- const gzip=(request.headers.get('Accept-Encoding')||'').split(',').some(value=>{const m=value.trim().match(/^gzip(?:\s*;\s*q=(0(?:\.\d+)?|1(?:\.0+)?))?$/i);return m&&Number(m[1]??1)>0;});
- if(gzip){headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');return new Response(new Response(changed).body.pipeThrough(new CompressionStream('gzip')),{status:response.status,headers});}
+ const gzip=(request.cf?.clientAcceptEncoding??request.headers.get('Accept-Encoding')??'').split(',').some(value=>{const m=value.trim().match(/^gzip(?:\s*;\s*q=(0(?:\.\d+)?|1(?:\.0+)?))?$/i);return m&&Number(m[1]??1)>0;});
+ if(gzip){headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');return new Response(new Response(changed).body.pipeThrough(new CompressionStream('gzip')),{status:response.status,headers,encodeBody:'manual'});}
  return new Response(changed,{status:response.status,headers});
 }
