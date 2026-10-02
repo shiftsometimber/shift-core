@@ -6,6 +6,8 @@ on:
       - .github/workflows/treatment-guidance-preview.yml
       - preview/treatment-guidance/**
       - public-treatment-guidance.mjs
+      - public-promise-preservation.mjs
+      - tests/public-treatment-guidance.test.mjs
       - medicine-commerce-v1.js
 permissions:
   contents: read
