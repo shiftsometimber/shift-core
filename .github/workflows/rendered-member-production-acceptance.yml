@@ -1,6 +1,8 @@
 name: Rendered Member Production Acceptance
 
 on:
+  push:
+    branches: [verification/member-design-20261002]
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
@@ -17,7 +19,7 @@ concurrency:
 
 jobs:
   rendered-member-production-acceptance:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
