@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {CENTRE_GUIDANCE_REPLACEMENTS} from './public-treatment-guidance.mjs';
+import {CENTRE_GUIDANCE_REPLACEMENTS,CENTRE_GUIDANCE_COUNTS} from './public-treatment-guidance.mjs';
 const replacements=[
  ['Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.','Retatrutide, CagriSema, Amycretin, MariTide and the next generation of weight-management treatments.'],
  ['Use the free Health MOT to organise your current picture and identify sensible priorities.','Explore the SHIFT Health MOT home blood test and what it covers.'],
@@ -10,7 +10,7 @@ const replacements=[
 export function preserveTreatmentCentreAccuracy(path,body,{required=false}={}){
  if(path!=='/treatment-centre')return body;
  let text=body.toString('utf8');
- for(const [before,after]of CENTRE_GUIDANCE_REPLACEMENTS){if(text.includes(after)){assert.equal(text.split(after).length,2,'Expected one exact Centre service-information correction');assert(!text.includes(before),'Mixed old and corrected service information');text=text.replace(after,before)}}
+ for(const [index,[before,after]]of CENTRE_GUIDANCE_REPLACEMENTS.entries()){if(required||text.includes(after)){assert.equal(text.split(after).length-1,CENTRE_GUIDANCE_COUNTS[index],'Expected exact Centre service-information correction count');assert(!text.includes(before),'Mixed old and corrected service information');text=text.replaceAll(after,before)}}
  if(!required&&!replacements.some(([,after])=>text.includes(after)))return Buffer.from(text);
  for(const [before,after]of replacements){
   assert.equal(text.split(after).length,2,'Expected one exact Centre accuracy correction');
