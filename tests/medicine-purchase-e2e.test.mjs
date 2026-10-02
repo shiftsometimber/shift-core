@@ -76,6 +76,7 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
       assert.equal(init.headers.authorization,'Bearer pharmacy-e2e-secret');
       assert.equal(init.body.get('memberReference'),'42');
       assert.equal(init.body.get('variantId'),'11');
+      assert.equal(init.body.get('insulinUse'),'no');
       assert.equal(init.body.get('journeyStage'),'prepay_verification');
       for(const field of ['photoId','bodyFront','bodySide'])assert.ok(init.body.get(field) instanceof File,field);
       return Response.json({reference:'PHA-E2E-0001',status:'verified',verified:true});
@@ -103,13 +104,13 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.equal(catalogue.products[1].variants[0].status,'out_of_stock');
     assert.equal(catalogue.products[1].variants[0].remaining,0);
 
-    const blocked=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11})}),env,{});
+    const blocked=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,insulinUse:'no',eligibility:{heightCm:173,weightKg:92.4,weightRelatedCondition:'no'}})}),env,{});
     assert.equal(blocked.status,409);
     assert.equal((await blocked.json()).error,'prepay_verification_required');
     assert.equal(seen.stripe,false);
 
     const clinical=new FormData();
-    for(const [key,value] of Object.entries({variantId:'11',dateOfBirth:'1981-08-03',heightCm:'173',weightKg:'92.4',conditions:'none declared',medicines:'none declared',previousTreatment:'yes',previousMedicine:'Mounjaro',previousDose:'2.5 mg',lastDoseDate:'2026-09-01',gpName:'Dr Test',gpPractice:'Test Practice',gpAddress:'1 Test Street',gpPostcode:'SK10 1AA',gpPhone:'01610000000',nhsNumber:'9999999999'}))clinical.set(key,value);
+    for(const [key,value] of Object.entries({variantId:'11',insulinUse:'no',weightRelatedCondition:'no',dateOfBirth:'1981-08-03',heightCm:'173',weightKg:'92.4',conditions:'none declared',medicines:'none declared',previousTreatment:'yes',previousMedicine:'Mounjaro',previousDose:'2.5 mg',lastDoseDate:'2026-09-01',gpName:'Dr Test',gpPractice:'Test Practice',gpAddress:'1 Test Street',gpPostcode:'SK10 1AA',gpPhone:'01610000000',nhsNumber:'9999999999'}))clinical.set(key,value);
     for(const key of ['gpContactConsent','imageConsent','answersConfirmed'])clinical.set(key,'on');
     for(const key of ['photoId','bodyFront','bodySide'])clinical.set(key,new File([new Uint8Array([0xff,0xd8,0xff,0xd9])],`${key}.jpg`,{type:'image/jpeg'}));
     const intakeResponse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:clinical}),env,{}),intake=await intakeResponse.json();
@@ -119,15 +120,19 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.ok(intake.verificationToken);
     assert.equal(seen.pharmacy,true);
 
-    const checkoutResponse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,verificationToken:intake.verificationToken})}),env,{}),checkout=await checkoutResponse.json();
+    const checkoutResponse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,insulinUse:'no',eligibility:{heightCm:173,weightKg:92.4,weightRelatedCondition:'no'},verificationToken:intake.verificationToken})}),env,{}),checkout=await checkoutResponse.json();
     assert.equal(checkoutResponse.status,201);
     assert.equal(checkout.totalPence,16900);
     assert.equal(checkout.checkoutUrl,'https://checkout.stripe.test/c/pay/shift-e2e');
     assert.equal(seen.stripe,true);
 
-    const reuse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,verificationToken:intake.verificationToken})}),env,{});
+    const reuse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,insulinUse:'no',eligibility:{heightCm:173,weightKg:92.4,weightRelatedCondition:'no'},verificationToken:intake.verificationToken})}),env,{});
     assert.equal(reuse.status,201);
     assert.equal((await reuse.json()).orderNumber,checkout.orderNumber,'retry resumes the same verified purchase');
+    for(const insulinUse of ['yes',undefined]){
+      const stopped=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,verificationToken:intake.verificationToken,insulinUse,eligibility:{heightCm:173,weightKg:92.4}})}),env,{});
+      assert.match((await stopped.json()).error,/insulin_(service_exclusion|answer_required)/,'Existing checkout session cannot waive a current answer');
+    }
     assert.equal((await DB.prepare('SELECT COUNT(*) count FROM medicine_orders').first()).count,1);
 
     const timestamp=Math.floor(Date.now()/1000),event={id:'evt_shift_e2e_paid',type:'checkout.session.completed',data:{object:{id:'cs_test_shift_e2e_1',client_reference_id:checkout.orderNumber,payment_status:'paid',payment_intent:'pi_shift_e2e',metadata:{order_type:'medicine',order_number:checkout.orderNumber}}}},payload=JSON.stringify(event),signature=createHmac('sha256',env.STRIPE_WEBHOOK_SECRET).update(`${timestamp}.${payload}`).digest('hex');
@@ -180,4 +185,32 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     globalThis.fetch=outbound;
     DB.close();
   }
+});
+
+test('SHIFT eligibility blocks insulin, missing answers and low BMI before new, repeat or resumed checkout',async()=>{
+  const DB=await setup(),outbound=globalThis.fetch;let sent=0;
+  globalThis.fetch=async()=>{sent++;throw Error('Blocked eligibility must not contact a partner or Stripe')};
+  const env={DB,STRIPE_MODE:'test',STRIPE_SECRET_KEY:'sk_test_eligibility',PHARMACY_PREPAY_VERIFICATION_URL:'https://pharmacy.example.test/verify',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_INTEGRATION_SECRET:'test'};
+  try{
+    const heightCm=173,weightKg=92.4;
+    for(const route of ['/v1/commerce/medicine-checkout','/v1/commerce/medicine-prepay-verification']){
+      for(const [answer,weight,expected]of [['yes',weightKg,'insulin_service_exclusion'],[undefined,weightKg,'insulin_answer_required'],['no',65,'bmi_service_exclusion']]){
+        const assessment={heightCm,weightKg:weight,weightRelatedCondition:'no',insulinUse:answer};
+        for(const reorderOfOrderNumber of [undefined,'OLD-FULFILLED-ORDER']){
+          const body={variantId:11,insulinUse:answer,eligibility:assessment,assessment,verificationToken:'old-verified-token',reorderOfOrderNumber};
+          const r=await medicineCommerceRoutes(memberRequest(route,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),env,{});
+          assert.equal((await r.json()).error,expected,route);
+        }
+      }
+    }
+    for(const answer of ['yes','',null]){
+      const form=new FormData();form.set('variantId','11');if(answer!==null)form.set('insulinUse',answer);
+      const r=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:form}),env,{});
+      assert.match((await r.json()).error,/insulin_(service_exclusion|answer_required)/);
+    }
+    assert.equal(sent,0);
+    assert.equal(DB.database.prepare('SELECT count(*) n FROM medicine_orders').get().n,0);
+    assert.equal(DB.database.prepare("SELECT count(*) n FROM sqlite_master WHERE name='checkout_attempts'").get().n,0,'Blocked eligibility does not even create the checkout store');
+    assert.equal(DB.database.prepare('SELECT reserved FROM medicine_inventory WHERE variant_id=11').get().reserved,0);
+  }finally{globalThis.fetch=outbound;DB.close()}
 });

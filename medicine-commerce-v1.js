@@ -205,6 +205,26 @@ function validateClinicalFile(file, label) {
   if (file.size > MAX_CLINICAL_FILE_BYTES) return `${label} must be smaller than 8 MB.`;
   return null;
 }
+// SHIFT service eligibility, not a general contraindication to GLP-1 treatment.
+// Use the authoritative product form and a current answer on every request.
+export function insulinEligibility(form, answer) {
+  if (String(form || '').trim().toLowerCase() === 'tablet' || String(form || '').trim().toLowerCase() === 'capsule') return null;
+  if (String(form || '').trim().toLowerCase() !== 'injection') return {error:'medicine_form_unconfirmed',status:409,message:'The treatment format needs confirming before this request can continue.'};
+  if (answer === 'yes') return {error:'insulin_service_exclusion',status:422,message:'If you take insulin, you cannot use SHIFT’s weight-management injection service. Speak to the clinician who manages your diabetes about suitable options. Do not stop or reduce insulin to qualify.'};
+  if (answer !== 'no') return {error:'insulin_answer_required',status:400,message:'Confirm whether you currently take insulin before continuing.'};
+  return null;
+}
+export function bmiEligibility(item, assessment = {}) {
+  const name=String(item?.name || '').toLowerCase();
+  const standard=30,conditional=name.includes('orlistat')?28:27;
+  if(!/mounjaro|wegovy|liraglutide|saxenda|foundayo|orlistat/.test(name))return {error:'eligibility_rules_unconfirmed',status:409,message:'The service criteria for this medicine need confirming before continuing.'};
+  const height=Number(assessment.heightCm),weight=Number(assessment.weightKg);
+  if(!Number.isFinite(height)||height<120||height>230||!Number.isFinite(weight)||weight<35||weight>320)return {error:'bmi_details_required',status:400,message:'Enter your current height and weight to complete SHIFT’s eligibility check.'};
+  const bmi=weight/((height/100)**2);
+  if(bmi<conditional || (bmi<standard && assessment.weightRelatedCondition==='no'))return {error:'bmi_service_exclusion',status:422,message:'Your BMI does not meet SHIFT’s criteria for this treatment. Explore wider health information at SHIFT Health or speak to your clinician about appropriate support. If you already use treatment, ask your prescriber about continuing care; do not change it yourself.'};
+  if(bmi<standard && assessment.weightRelatedCondition!=='yes')return {error:'weight_related_condition_required',status:400,message:'Confirm whether you have a diagnosed weight-related condition. A prescriber must check whether it qualifies.'};
+  return null;
+}
 async function clinicalIntake(request, env) {
   const user = await member(request, env);
   if (!user) return json({ok:false,error:"account_required"},401,cors(request));
@@ -215,10 +235,12 @@ async function clinicalIntake(request, env) {
   let form;
   try { form = await request.formData(); } catch { return json({ok:false,error:"invalid_clinical_form"},400,cors(request)); }
   const variantId = Number(form.get("variantId"));
-  const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first() : null;
+  const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id,m.form,m.name,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first() : null;
+  const eligibility = item && (insulinEligibility(item.form, form.get('insulinUse')) || bmiEligibility(item,Object.fromEntries(['heightCm','weightKg','weightRelatedCondition'].map(key=>[key,form.get(key)]))));
+  if (eligibility) return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
-  const required = ["dateOfBirth","heightCm","weightKg","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
+  const required = ["dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
   if (required.some((key) => !formText(form,key))) return json({ok:false,error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."},400,cors(request));
   const gpConsent = form.get("gpContactConsent") === "on";
   const accuracyConsent = form.get("answersConfirmed") === "on";
@@ -230,7 +252,8 @@ async function clinicalIntake(request, env) {
   }
   const partnerForm = new FormData();
   partnerForm.set("memberReference",String(user.id)); partnerForm.set("variantId",String(variantId)); partnerForm.set("journeyStage","prepay_verification");
-  for (const key of ["dateOfBirth","heightCm","weightKg","conditions","medicines","previousTreatment","previousMedicine","previousDose","lastDoseDate","gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber"]) partnerForm.set(key,formText(form,key));
+  if (item.form === 'injection') partnerForm.set('insulinUse','no');
+  for (const key of ["dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines","previousTreatment","previousMedicine","previousDose","lastDoseDate","gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber"]) partnerForm.set(key,formText(form,key));
   partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION);
   for (const [key,file] of Object.entries(files)) partnerForm.set(key,file,file.name);
   const partnerResponse = await fetch(String(env.PHARMACY_CLINICAL_INTAKE_URL),{method:"POST",headers:{authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:partnerForm});
@@ -280,7 +303,9 @@ async function prepayVerification(request, env) {
   const input=await body(request),variantId=Number(input?.variantId);
   if (!Number.isInteger(variantId)||variantId<1||!input?.assessment)
     return json({ok:false,error:"invalid_verification_request"},400,cors(request));
-  const item=await env.DB.prepare(`SELECT v.id,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();
+  const item=await env.DB.prepare(`SELECT v.id,m.form,m.name,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();
+  const eligibility = item && (insulinEligibility(item.form, input.assessment.insulinUse) || bmiEligibility(item,input.assessment));
+  if (eligibility) return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
   const partnerResponse=await fetch(String(env.PHARMACY_PREPAY_VERIFICATION_URL),{method:"POST",headers:{"content-type":"application/json",authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:JSON.stringify({memberReference:String(user.id),variantId,assessment:input.assessment})});
@@ -484,6 +509,10 @@ async function checkout(request, env) {
   await schema(env);
   const input=await body(request),variantId=Number(input?.variantId);
   if(!Number.isInteger(variantId)||variantId<1)return json({ok:false,error:'invalid_variant'},400,cors(request));
+  const eligibilityItem=await env.DB.prepare('SELECT m.form,m.name FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id WHERE v.id=?').bind(variantId).first();
+  if(!eligibilityItem)return json({ok:false,error:'invalid_variant'},400,cors(request));
+  const eligibility=insulinEligibility(eligibilityItem.form,input.insulinUse)||bmiEligibility(eligibilityItem,input.eligibility);
+  if(eligibility)return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const reorderNumber=clean(input?.reorderOfOrderNumber,80),verificationToken=clean(input?.verificationToken,160),verificationHash=verificationToken?await sha256(verificationToken):'';
   const acquired=await acquireCheckoutAttempt(env.DB,{userId:user.id,channel:'medicine',selection:{variantId,reorderNumber,verificationHash,discountCode:clean(input?.discountCode,80).toUpperCase()}});
   if(acquired.conflict)return json(checkoutProblem({error:'checkout_selection_conflict'}),409,cors(request));

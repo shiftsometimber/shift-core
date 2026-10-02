@@ -1,0 +1,41 @@
+name: Treatment service criteria and MHRA information preview
+on:
+  push:
+    branches: [preview/treatment-guidance-20261002]
+    paths:
+      - .github/workflows/treatment-guidance-preview.yml
+      - preview/treatment-guidance/**
+      - public-treatment-guidance.mjs
+      - medicine-commerce-v1.js
+permissions:
+  contents: read
+concurrency:
+  group: treatment-guidance-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Prove service exclusions and retained purchase lifecycle
+        run: node --test tests/public-treatment-guidance.test.mjs tests/promise-accuracy.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-stripe-retry-v1.test.mjs tests/medicine-front-door-v1.test.mjs
+      - name: Publish isolated read-only display preview
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: npx wrangler deploy --config preview/treatment-guidance/wrangler.jsonc
+      - name: Check phone and desktop rendering and service gates
+        run: |
+          npm install --prefix "$RUNNER_TEMP/render-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/render-tools/node_modules/.bin/playwright" install --with-deps chromium
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/render-tools/node_modules/playwright" node preview/treatment-guidance/verify.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: treatment-guidance-preview
+          path: treatment-guidance-proof/
