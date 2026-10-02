@@ -53,7 +53,7 @@ try{
  // Exercise the actual acceptance helper with both documented Fit DOM states.
  // These are synthetic verifier fixtures, not live Fit acceptance.
  const harnessPage=await browser.newPage();
- for(const [state,markup]of [['fresh','<textarea id="fitPrefs"></textarea>'],['saved','<details data-app-fit-setup><summary>Adjust setup</summary><textarea id="fitPrefs"></textarea></details>'],['nested','<details data-app-fit-setup><summary>Adjust setup</summary><details><summary>Notes</summary><textarea id="fitPrefs"></textarea></details></details>']]){
+ for(const [state,markup]of [['fresh','<textarea id="fitPrefs"></textarea>'],['saved','<details data-app-fit-setup><summary>Adjust setup</summary><textarea id="fitPrefs"></textarea></details>'],['nested','<details data-app-fit-setup><summary>Adjust setup</summary><details><summary>Notes</summary><textarea id="fitPrefs"></textarea></details></details>'],['reused-disclosure','<details class="app-screen-details"><summary>Adjust your session</summary><textarea id="fitPrefs"></textarea></details>'],['late-disclosure','<div id="pending" hidden><textarea id="fitPrefs"></textarea></div><script>setTimeout(()=>{const p=document.getElementById("pending"),d=document.createElement("details");d.innerHTML="<summary>Adjust your session</summary>";p.before(d);d.append(p);p.hidden=false},500)</script>']]){
   await harnessPage.setContent('<iframe title="Synthetic Fit verifier"></iframe>');
   await harnessPage.locator('iframe').evaluate((e,html)=>{e.srcdoc=html;},markup);
   const field=await revealSetupField(harnessPage.frameLocator('iframe'),'#fitPrefs');
