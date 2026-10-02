@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {mkdirSync,writeFileSync} from 'node:fs';
+assert.equal(process.env.GITHUB_ACTIONS,'true');
+assert.equal(process.env.GITHUB_ACTOR_ID,'315011648');
+const dir='platform-content-inventory';mkdirSync(dir,{recursive:true});
+const account=process.env.CLOUDFLARE_ACCOUNT_ID;
+const get=async path=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(25000)});const j=await r.json();assert(r.ok&&j.success,'Read-only platform inventory failed: '+path+' HTTP'+r.status);return j.result;};
+const p=await get('/pages/projects/projectshift'),d=p.canonical_deployment;
+assert.equal(p.name,'projectshift');assert.equal(p.production_branch,'main');assert(d?.id);
+const r=await fetch(d.url+'/DEPLOYMENT-FINGERPRINT.json',{signal:AbortSignal.timeout(25000)});assert(r.ok);const fingerprint=await r.json();
+writeFileSync(dir+'/pages-fingerprint.json',JSON.stringify(fingerprint,null,2));
+const provenance={at:new Date().toISOString(),project:p.name,productionBranch:p.production_branch,deployment:{id:d.id,url:d.url,createdOn:d.created_on,commit:d.deployment_trigger?.metadata?.commit_hash,branch:d.deployment_trigger?.metadata?.branch},fingerprint:fingerprint.aggregate_sha256,fileCount:fingerprint.file_count,productionWrites:0};
+writeFileSync(dir+'/pages-provenance.json',JSON.stringify(provenance,null,2));console.log(JSON.stringify(provenance));
+const databases=await get('/d1/database');
+const allowed=new Set(['shift-core-db','shift-evidence-desk-r12-nonprod-db','shift-stabilisation-preview-auth-20260917']);
+writeFileSync(dir+'/database-settings.json',JSON.stringify({at:new Date().toISOString(),readOnly:true,contractOrProcessorCertification:false,databases:databases.filter(x=>allowed.has(x.name)).map(x=>({name:x.name,uuid:x.uuid,createdAt:x.created_at,version:x.version,fileSize:x.file_size,jurisdiction:x.jurisdiction??null}))},null,2));
