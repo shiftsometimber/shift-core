@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-export const TREATMENT_GUIDANCE_PREVIEW='956599a9922a1c41bcfb47ab3169272dfe8a3ac1';
-export const TREATMENT_GUIDANCE_RUN=37013564550;
+export const TREATMENT_GUIDANCE_PREVIEW='1a7173178203b8e39497a0f6fa79c962b99922c6';
+export const TREATMENT_GUIDANCE_RUN=37016417812;
 export const TREATMENT_GUIDANCE_PATHS=["medicine-commerce-v1.js","public-treatment-guidance.mjs","public-promise-accuracy-v1.mjs","public-promise-preservation.mjs","frontend/medicine-front-door/product.html","frontend/medicine-front-door/medicine-front-door.js","frontend/medicine-front-door/treatment-assessment.html","frontend/member/treatment-assessment.html","tests/medicine-purchase-e2e.test.mjs","tests/public-treatment-guidance.test.mjs","frontend/medicine-front-door/mounjaro.html","frontend/medicine-front-door/wegovy-injection.html","frontend/medicine-front-door/wegovy-tablet.html","frontend/medicine-front-door/orlistat.html","frontend/medicine-front-door/foundayo.html"];
 export function validateTreatmentGuidance(read){for(const path of TREATMENT_GUIDANCE_PATHS)assert.equal(read('HEAD',path),read(TREATMENT_GUIDANCE_PREVIEW,path),'Treatment service criteria/source drift: '+path);}
 export async function verifyTreatmentGuidanceProof(get){const proof=await get('/actions/runs/'+TREATMENT_GUIDANCE_RUN);assert.equal(proof.head_sha,TREATMENT_GUIDANCE_PREVIEW);assert.equal(proof.path,'.github/workflows/treatment-guidance-preview.yml');assert.equal(proof.conclusion,'success','Service exclusions and phone/desktop information preview must pass');validateTreatmentGuidance((ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim());return proof;}
