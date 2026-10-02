@@ -5,7 +5,7 @@ assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.GITHUB_
 assert.equal(process.env.GITHUB_REF,'refs/heads/codex/full-website-content-20261002');
 const account=process.env.CLOUDFLARE_ACCOUNT_ID;
 const cf=async(path,method='GET')=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});const j=await r.json();assert(r.ok&&j.success,'Pages operation failed');return j.result;};
-const git=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/git/refs/heads/main',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(20000)});assert(git.ok);assert.equal((await git.json()).object.sha,'5020adc487f91be46e6bdee69a79d39411fefb8d','Main runtime source moved');
+const git=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/git/refs/heads/main',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(20000)});assert(git.ok);assert.equal((await git.json()).object.sha,'66d7c5a9393b703af349e53edad74c18b73feaea','Main runtime source moved');
 const project=await cf('/pages/projects/projectshift');assert.equal(project.name,'projectshift');assert.equal(project.production_branch,'main');
 const before=project.canonical_deployment;assert.equal(before.id,'2e63ae40-45cf-435b-9156-e04ce90b699b','Another public release superseded the reviewed baseline');
 assert.equal(before.deployment_trigger.metadata.commit_hash,'d2fc4a26fdd7e8da64af4e51ac2982a0d77d92b4');
