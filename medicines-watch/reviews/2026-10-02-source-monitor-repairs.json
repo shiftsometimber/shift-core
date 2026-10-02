@@ -1,0 +1,204 @@
+{
+  "reviewedAt": "2026-10-02T07:07:43.245Z",
+  "publicationStatus": "owner_authorised_source_monitor_repair",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-10-02",
+    "instruction": "Fix these ?",
+    "standingPublicationAuthorisation": "Needed evidence-backed informational Watch updates may merge and deploy after required checks."
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "medicineWordingChanged": false,
+  "monitoring": {
+    "sourceCountBefore": 50,
+    "sourceCountAfter": 50,
+    "thresholdsChanged": false,
+    "successesSeeded": false,
+    "expected": "All four replacements must be retrieved by the production checker. Deployment or local success alone is not green."
+  },
+  "sources": [
+    {
+      "id": "pf3944-pfizer",
+      "title": "Pfizer: VESPER development update",
+      "url": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2026-2-3-pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust-and-continued-weight-loss-with-monthly-dosing-in-phase-2b-trial",
+      "checkUrl": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2026-2-3-pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust-and-continued-weight-loss-with-monthly-dosing-in-phase-2b-trial",
+      "format": "html",
+      "sourcePublishedAt": "2026-02-03",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-02T07:07:43.245Z",
+      "requiredTerms": [
+        "VESPER-4",
+        "Pfizer"
+      ],
+      "reviewedFingerprint": "becba4ffcc18f5e16aeb37b4cf84f0c7b6ba57ee17a8571be4f25a0eddda2680",
+      "evidenceType": "Pfizer original Business Wire release, syndicated complete text; not regulatory approval",
+      "contentSelector": ".newsrpm-article"
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "title": "Pfizer: danuglipron discontinued",
+      "url": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2025-4-14-pfizer-provides-update-on-oral-glp-1-receptor-agonist-danuglipron",
+      "checkUrl": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2025-4-14-pfizer-provides-update-on-oral-glp-1-receptor-agonist-danuglipron",
+      "format": "html",
+      "sourcePublishedAt": "2025-04-14",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-02T07:07:43.245Z",
+      "requiredTerms": [
+        "danuglipron",
+        "discontinue"
+      ],
+      "reviewedFingerprint": "47aaab2d1849cab5a9be31ac63ad19bf09179fcc17c55f103686871807cde265",
+      "evidenceType": "Pfizer original Business Wire release, syndicated complete text; not regulatory approval",
+      "contentSelector": ".newsrpm-article"
+    },
+    {
+      "id": "az-elecoglipron-20260608",
+      "title": "Elecoglipron Phase IIb results and Phase III plans",
+      "url": "https://news.cision.com/se/astrazeneca/r/elecoglipron--an-oral-small-molecule-glp-1-ra--moves-to-phase-iii-programme-and-unlocks-next-chapter,c4359385",
+      "checkUrl": "https://news.cision.com/se/astrazeneca/r/elecoglipron--an-oral-small-molecule-glp-1-ra--moves-to-phase-iii-programme-and-unlocks-next-chapter,c4359385",
+      "format": "html",
+      "sourcePublishedAt": "2026-06-08",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-02T07:07:43.245Z",
+      "requiredTerms": [
+        "elecoglipron",
+        "VISTA",
+        "SOLSTICE"
+      ],
+      "reviewedFingerprint": "32fafec67ad099249f3b55a423f5f4d511228cafdb2edfaca9801305652c6eb4",
+      "evidenceType": "AstraZeneca original release distributed by Cision; not regulatory approval",
+      "contentSelector": "article"
+    },
+    {
+      "id": "apitegromab-embraze-paper",
+      "title": "Apitegromab with tirzepatide: EMBRAZE Phase 2 paper",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13375528/",
+      "checkUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13375528/fullTextXML",
+      "format": "jats-xml",
+      "sourcePublishedAt": "2026-06-08",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-02T07:07:43.245Z",
+      "requiredTerms": [
+        "apitegromab",
+        "tirzepatide",
+        "physical function"
+      ],
+      "reviewedFingerprint": "4000c8b9cf5fd13bf84d70e1e9130618c34cea730b9a8904935007f278ec3ada",
+      "evidenceType": "Original peer-reviewed trial; complete Europe PMC JATS copy",
+      "articleId": "PMC13375528",
+      "articleDoi": "10.1038/s41591-026-04440-4"
+    }
+  ],
+  "history": [
+    {
+      "id": "pf3944-pfizer",
+      "previousUrl": "https://www.businesswire.com/news/home/20260202566685/en/Pfizers-Ultra-Long-Acting-Injectable-GLP-1-RA-Shows-Robust-and-Continued-Weight-Loss-with-Monthly-Dosing-in-Phase-2b-Trial",
+      "previousCheckUrl": "https://www.businesswire.com/news/home/20260202566685/en/Pfizers-Ultra-Long-Acting-Injectable-GLP-1-RA-Shows-Robust-and-Continued-Weight-Loss-with-Monthly-Dosing-in-Phase-2b-Trial",
+      "previousReviewedAt": "2026-09-30T13:34:45.242Z",
+      "previousFingerprint": "56f6b8ba99fd364ef677b88c6c049b888e8b6fdf1cadea59f86e85a48bb1c59a",
+      "previousFailure": "HTTP 520",
+      "retrievedUrl": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2026-2-3-pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust-and-continued-weight-loss-with-monthly-dosing-in-phase-2b-trial",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "retrievedAt": "2026-10-02T07:03:07.825762+00:00",
+      "bytes": 211509,
+      "responseSha256": "93416578323772b85d602b9dddd8d039cec2b0d8970ab382b59fad2317ab5bd5",
+      "assessment": "Read the complete Pfizer release and checked it against the issuer page. It reports VESPER-4 initiation, while VESPER-5/6 were planned as of 3 February 2026. The separately reviewed later VESPER-6 source continues to support that later initiation. Weekly and monthly regimens are distinct; no licensing, NHS or supply change.",
+      "corroboratedIssuerUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust"
+    },
+    {
+      "id": "danuglipron-pfizer",
+      "previousUrl": "https://www.businesswire.com/news/home/20250413297943/en/Pfizer-Provides-Update-on-Oral-GLP-1-Receptor-Agonist-Danuglipron",
+      "previousCheckUrl": "https://www.businesswire.com/news/home/20250413297943/en/Pfizer-Provides-Update-on-Oral-GLP-1-Receptor-Agonist-Danuglipron",
+      "previousReviewedAt": "2026-09-30T13:34:45.242Z",
+      "previousFingerprint": "6d2a886633c02c46d5ced994f35d459fd7f3219de965f16abe165bdbc84bf4f9",
+      "previousFailure": "HTTP 520",
+      "retrievedUrl": "https://markets.financialcontent.com/prnews.pressre/article/bizwire-2025-4-14-pfizer-provides-update-on-oral-glp-1-receptor-agonist-danuglipron",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "retrievedAt": "2026-10-02T07:03:07.936252+00:00",
+      "bytes": 204630,
+      "responseSha256": "f8aaf9f1d88cf09b69dade593b438c7eeb6b9e1fb4f1a4865563e389fdd6ea41",
+      "assessment": "Read the complete issuer release and compared with Pfizer\u2019s own page. It records the 14 April 2025 decision to discontinue danuglipron after review of all data and regulatory input, including potential drug-induced liver injury in one participant that resolved after stopping. This supports the existing discontinued entry; no new clinical recommendation.",
+      "corroboratedIssuerUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-provides-update-oral-glp-1-receptor-agonist"
+    },
+    {
+      "id": "az-elecoglipron-20260608",
+      "previousUrl": "https://www.astrazeneca.com/media-centre/press-releases/2026/elecoglipron-an-oral-small-molecule-glp-1-ra-moves-to-phase-iii-programme.html",
+      "previousCheckUrl": "https://www.astrazeneca.com/media-centre/press-releases/2026/elecoglipron-an-oral-small-molecule-glp-1-ra-moves-to-phase-iii-programme.html",
+      "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+      "previousFingerprint": "071dd47d5921ebe15d689a5856022c3c545396d3e22869d377586f81210631d3",
+      "previousFailure": "HTTP 403",
+      "retrievedUrl": "https://news.cision.com/se/astrazeneca/r/elecoglipron--an-oral-small-molecule-glp-1-ra--moves-to-phase-iii-programme-and-unlocks-next-chapter,c4359385",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "retrievedAt": "2026-10-02T07:00:43.069775+00:00",
+      "bytes": 50595,
+      "responseSha256": "8b213288dbafd21c9090e0bc51b60873f374a4ea167a01b6df437a0224c5241f",
+      "assessment": "Read the complete issuer release including VISTA, SOLSTICE, safety, trial designs, tables and Phase III plans. Compared its claim-bearing content with AstraZeneca\u2019s own page. Completed Phase IIb results do not demonstrate completion of the future EMBOLD/ELUMINATE/outcome studies, UK authorisation, NHS access or supply."
+    },
+    {
+      "id": "apitegromab-embraze-paper",
+      "previousUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13375528/",
+      "previousCheckUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13375528/",
+      "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+      "previousFingerprint": "5d3dbfe80d50b3dc05199227622a2ad2d3c3aee00d691dcaaad907a914264fbd",
+      "previousFailure": "Intermittent HTTP 200 browser challenge / missing_html_document",
+      "retrievedUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13375528/fullTextXML",
+      "httpStatus": 200,
+      "contentType": "application/xml",
+      "retrievedAt": "2026-10-02T07:02:09.356386+00:00",
+      "bytes": 84506,
+      "responseSha256": "f71e5ca526f8d618b1445de7195f23f4aba4bba4954e17a69f5f1a8889e1983d",
+      "assessment": "Read the full article, including results, exploratory physical function, adverse events, limitations, methods, funding and competing interests. Confirmed PMCID PMC13375528, PMID 42260100 and DOI 10.1038/s41591-026-04440-4 against PMC and the publisher. Lean-mass preservation is not established functional improvement; the small predominantly female 24-week trial and 80% confidence intervals/no multiplicity adjustment remain material limitations. Existing bounded wording remains supported.",
+      "corroboratedPublisherUrl": "https://www.nature.com/articles/s41591-026-04440-4"
+    }
+  ],
+  "failedAlternatives": [
+    {
+      "key": "pf-original",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizers-ultra-long-acting-injectable-glp-1-ra-shows-robust",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "danu-original",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-provides-update-oral-glp-1-receptor-agonist",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42260100/",
+      "status": 203,
+      "type": "text/html; charset=utf-8",
+      "bytes": 5590,
+      "sha256": "a1c8e99e8e7f43b7720337e22ba9126834ead7a0397aac98be7cdfe59ed938b2",
+      "final": "https://pubmed.ncbi.nlm.nih.gov/42260100/"
+    },
+    {
+      "key": "pf-investor",
+      "url": "https://investors.pfizer.com/Investors/News/news-details/2026/Pfizers-Ultra-Long-Acting-Injectable-GLP-1-RA-Shows-Robust-and-Continued-Weight-Loss-with-Monthly-Dosing-in-Phase-2b-Trial/default.aspx",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "danu-investor",
+      "url": "https://investors.pfizer.com/Investors/News/news-details/2025/Pfizer-Provides-Update-on-Oral-GLP-1-Receptor-Agonist-Danuglipron/default.aspx",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "pmc-europe-html",
+      "url": "https://europepmc.org/articles/PMC13375528",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "limitations": "Canonical publisher/issuer links and previous failures are retained here. Only these four source-specific dates/baselines change. URL changes invalidate old observations under the existing scheduler; new live retrieval is required. No claim of clinical approval, UK authorisation, NHS access, supply or industry completeness.",
+  "localVerification": {
+    "directNodeFetch": "All four timed out because Node fetch does not use this workspace\u2019s configured outbound proxy by default. Preserved as an execution-environment failure; Python proxy-aware retrievals succeeded. Production access remains unverified until deployment.",
+    "proxyAwareChecker": {
+      "attemptedAt": "2026-10-02T07:10:27.026Z",
+      "checked": 4,
+      "failed": 0,
+      "method": "Unmodified production deadlines, response limit and fingerprintSource; in-memory isolated D1 with proxy-aware Node transport. No production writes.",
+      "productionAccessStillUnverified": true
+    }
+  }
+}
