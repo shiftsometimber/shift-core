@@ -1,3 +1,4 @@
+import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
 import {validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import {GROWTH_PATHS,validateGrowthSource,validateGrowthEntry} from '../release/growth-scope.mjs';
@@ -94,10 +95,10 @@ export function validateWatchPfizerPdfRepair(read){
 export const WATCH_ENOBOSARM_COMMIT='3c1704b23955fb4abf57e1b05bc56464d10ed08c';
 export const WATCH_ENOBOSARM_PATHS=['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json'];
 export function validateWatchEnobosarm(read){
- for(const path of WATCH_ENOBOSARM_PATHS)assert.equal(read('HEAD',path),read(WATCH_ENOBOSARM_COMMIT,path),'Watch enobosarm/semaglutide source drift: '+path);
+ for(const path of WATCH_ENOBOSARM_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_ENOBOSARM_COMMIT),path),'Watch enobosarm/semaglutide source drift: '+path);
 }
 function currentWatchRef(path,fallback){
- return PUBLIC_WORDING_PATHS.includes(path)?PUBLIC_WORDING_PREVIEW:WATCH_ENOBOSARM_PATHS.includes(path)?WATCH_ENOBOSARM_COMMIT:WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
+ return WATCH_REGISTRY_WAVE_PATHS.includes(path)?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PATHS.includes(path)?PUBLIC_WORDING_PREVIEW:WATCH_ENOBOSARM_PATHS.includes(path)?WATCH_ENOBOSARM_COMMIT:WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
 }
 export function validateNiceTimeout(read){
  for(const path of NICE_TIMEOUT_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,NICE_TIMEOUT_COMMIT),path),'NICE timeout source drift: '+path);
@@ -174,6 +175,8 @@ export function verifyScope(){
   validateWatchPfizerPdfRepair((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_ENOBOSARM_COMMIT,'HEAD');
   validateWatchEnobosarm((ref,path)=>git('rev-parse',ref+':'+path));
+  git('merge-base','--is-ancestor',WATCH_REGISTRY_WAVE_COMMIT,'HEAD');
+  validateWatchRegistryWave((ref,path)=>git('rev-parse',ref+':'+path));
   validateGrowthSource();
   verifyHeadingRepair();
   verifyHomeSpeed();
