@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {insulinEligibility,bmiEligibility} from '../medicine-commerce-v1.js';
-import {repairOrderGuidance,repairOrderControllerGuidance,repairIntegratedGuidance,repairSideEffectGuidance,repairCentreGuidance,CENTRE_GUIDANCE_REPLACEMENTS,INSULIN_GATE,HYDRATION_SECTION} from '../public-treatment-guidance.mjs';
+import {repairOrderGuidance,repairOrderControllerGuidance,repairIntegratedGuidance,repairSideEffectGuidance,repairCentreGuidance,CENTRE_GUIDANCE_REPLACEMENTS,CENTRE_GUIDANCE_COUNTS,INSULIN_GATE,HYDRATION_SECTION} from '../public-treatment-guidance.mjs';
 import {preserveTreatmentCentreAccuracy} from '../public-promise-preservation.mjs';
 test('SHIFT insulin policy is an injection service gate, with no blanket medical prohibition',()=>{
  assert.equal(insulinEligibility('injection','yes').error,'insulin_service_exclusion');
@@ -29,7 +29,7 @@ test('information-page correction is idempotent, retains prices, stock and JS ho
  const integrated=repairIntegratedGuidance('const orderingOpen=false;const x=JSON.stringify({variantId:Number(option.value),verificationToken:verification.token});');assert.equal(repairIntegratedGuidance(integrated),integrated);assert.match(integrated,/const orderingOpen=false/);assert.match(integrated,/SHIFT_SERVICE_ELIGIBILITY/);new Function(integrated);
 });
 test('Centre fingerprint removes only exact reviewed wording and exposes unrelated drift',()=>{
- const source='<p>'+CENTRE_GUIDANCE_REPLACEMENTS[0][0]+'</p><p>'+CENTRE_GUIDANCE_REPLACEMENTS[1][0]+'</p><p>'+CENTRE_GUIDANCE_REPLACEMENTS[1][0]+'</p>£169.00';
+ const source=CENTRE_GUIDANCE_REPLACEMENTS.map(([before],index)=>('<p>'+before+'</p>').repeat(CENTRE_GUIDANCE_COUNTS[index])).join('')+'£169.00';
  const changed=repairCentreGuidance(source);assert.equal(repairCentreGuidance(changed),changed);
  assert.equal(preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.from(changed)).toString(),source);
  assert.doesNotMatch(changed,new RegExp(CENTRE_GUIDANCE_REPLACEMENTS[1][0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
