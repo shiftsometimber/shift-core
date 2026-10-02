@@ -3,7 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
-import {commissioningLogin,memberReady,requireMemberPanel} from './rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,requireMemberPanel,chooseNecessaryCookies} from './rendered-member-acceptance-support.mjs';
+
+import {verifyLiveTools} from './release/app-member-live.mjs';
 
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
@@ -21,6 +23,7 @@ const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(rep
 async function register(){const r=await fetch(`${API}/v1/auth/register`,{method:'POST',headers:{Origin:SITE,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':OIDC},body:JSON.stringify({email,password,firstName:'Billy',source:'commissioning-my-timber-final'})});if(r.status!==201)throw new Error(`register ${r.status} ${await r.text()}`)}
 async function login(page){return commissioningLogin(page,{site:SITE,api:API,oidc:OIDC,email,password});}
 async function screenshot(page,name){const file=path.join(OUT,`${name}.png`);await page.screenshot({path:file,fullPage:false});report.screens.push(file)}
+async function openDetails(page){await chooseNecessaryCookies(page);const d=page.locator('.app-account-details');if(await d.count()&&!await d.evaluate(e=>e.open))await d.locator(':scope > summary').click();await page.locator('#memberDetailsForm').waitFor({state:'visible',timeout:30000});}
 async function body(page){return clean(await page.locator('body').innerText())}
 async function geometry(page){return page.evaluate(()=>{const root=document.querySelector('#todayActions'),next=document.querySelector('.mt-now'),box=root?.getBoundingClientRect(),nextBox=next?.getBoundingClientRect();return{overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,rootTop:Math.round(box?.top||0),rootWidth:Math.round(box?.width||0),nextTop:Math.round(nextBox?.top||0),nextBottom:Math.round(nextBox?.bottom||0),viewport:{width:innerWidth,height:innerHeight},decisionReady:root?.dataset.todayDecisionReady||''}})}
 
@@ -33,7 +36,7 @@ try{
   // PR790: real new fictional-account contact save on production; no customer
   // account or clinical/payment operation. Existing OIDC/registration guard stays.
   await page.goto(SITE+'/member/settings#memberDetailsPanel',{waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>{const f=document.querySelector('#memberDetailsFields');return f&&!f.disabled},null,{timeout:30000});
+  await page.waitForFunction(()=>{const f=document.querySelector('#memberDetailsFields');return f&&!f.disabled},null,{timeout:30000});await openDetails(page);
   assert.equal(await page.inputValue('#memberEmail'),email);
   assert(await page.locator('#memberEmail').getAttribute('readonly')!==null);
   const contactHeaders={Origin:SITE};
@@ -41,14 +44,14 @@ try{
   const preservedState=await priorState.json(),preservedConsents=await priorConsents.json();
   await page.fill('#memberAddress1','1 Fictional Release Road');await page.fill('#memberTown','Macclesfield');await page.fill('#memberPostcode','SK10 1AA');await page.fill('#memberPhone','07700 900123');
   await page.locator('#memberDetailsSave').click();await page.getByText('Member details saved.',{exact:true}).waitFor({timeout:30000});
-  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000});
+  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000});await openDetails(page);
   assert.equal(await page.inputValue('#memberAddress1'),'1 Fictional Release Road');assert.equal(await page.inputValue('#memberPhone'),'07700 900123');
   const liveDetails=await (await context.request.get(SITE+'/v1/member/details')).json();assert.equal(liveDetails.gpLookupConfigured,true);
   assert.equal(liveDetails.details.address1,'1 Fictional Release Road');
   assert.deepEqual(await (await context.request.get(SITE+'/v1/member-state')).json(),preservedState);assert.deepEqual(await (await context.request.get(SITE+'/v1/consents')).json(),preservedConsents);
   await screenshot(page,'00-member-details-live');
   const logout=await context.request.post(SITE+'/v1/auth/logout',{headers:contactHeaders,data:{}});assert(logout.ok());assert.equal((await context.request.get(SITE+'/v1/member/details')).status(),401);
-  await login(page);await page.goto(SITE+'/member/settings#memberDetailsPanel',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000});assert.equal(await page.inputValue('#memberAddress1'),'1 Fictional Release Road');
+  await login(page);await page.goto(SITE+'/member/settings#memberDetailsPanel',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.querySelector('#memberDetailsFields')?.disabled,null,{timeout:30000});await openDetails(page);assert.equal(await page.inputValue('#memberAddress1'),'1 Fictional Release Road');
   pass('PR790 real fictional-account details persist after reload and fresh login','Manual home address and phone saved; GP lookup configured; email protected; original preferences/consents unchanged.');
   // Leave the signed-out document before attaching strict listeners: Chromium can
   // otherwise deliver its already-buffered, expected /v1/me 401 after login.
@@ -79,69 +82,25 @@ try{
   pass('Explicit published Grub choice feeds the connected day',chosen.name);
   await memberReady(page,{site:SITE});
   await page.waitForFunction(()=>document.querySelector('#panel-today')?.classList.contains('active'),null,{timeout:10000});
-  await page.waitForSelector('#todayActions[data-today-decision-ready="true"]',{state:'visible',timeout:30000});
-  await page.waitForSelector('.mt-now-action',{state:'visible',timeout:10000});
-  const more=page.locator('#more-for-today');
-  await more.locator(':scope > summary').click();
-  await page.locator('.mt-meal').waitFor({state:'visible'});
-  const initial=await body(page),initialGeometry=await geometry(page);await screenshot(page,'01-billy-today');
-  for(const marker of ['MY TIMBER','NEXT · FOOD','LATER · MOVEMENT','Life changed?'])if(!initial.includes(marker))fail(`initial ${marker}`,'missing');
-  if(!(await page.locator('.mtm-hero').isVisible()))fail('approved My Timber home','Current illustrated home header is missing');else pass('Approved My Timber home is preserved');
-  if(initialGeometry.overflow!==0)fail('initial horizontal overflow',JSON.stringify(initialGeometry));else pass('390px Today has zero horizontal overflow');
-  if(initialGeometry.decisionReady!=='true')fail('recommendation readiness','missing');else pass('Recommended next action is visibly ready');
-  assert.equal(clean(await page.locator('.mt-meal h3').innerText()),clean(chosen.name),'Rendered Today meal differs from the saved Grub choice');
-  assert.match(await page.locator('.mt-meal').innerText(),/Kept for today/);
-  await page.locator('[data-life-changed]').click();
-  const late=page.locator('[data-adjust="working_late"]');await late.waitFor({state:'visible',timeout:10000});await late.click();
-  await page.waitForSelector('.mtm-announcement[role="status"]',{state:'visible',timeout:20000});
-  // Rebuilding Today creates a fresh collapsed disclosure. Open it through
-  // its visible control before asserting the rendered meal and movement.
-  if(await more.getAttribute('open')===null)await more.locator(':scope > summary').click();
-  await page.locator('.mt-workout').waitFor({state:'visible',timeout:10000});
-  await page.waitForFunction(()=>/10 minutes/i.test(document.querySelector('.mt-workout')?.textContent||''),null,{timeout:10000});
-  const rebuilt=await body(page);await screenshot(page,'02-working-late-rebuilt');
-  if(!/10 minutes/i.test(rebuilt))fail('working late movement','not compressed to ten minutes');else pass('Working late compresses movement to 10 minutes');
-  const announcement=clean(await page.locator('.mtm-announcement').innerText());
-  assert.match(announcement,/Your change is saved/);assert.match(announcement,/Review movement/);assert.match(announcement,/choose any different meal in Grub/);
-  pass('Working late explains movement adjustment and preserves member meal control',announcement);
-  const dailyAfter=(await account('/v1/shift/daily-plan')).daily;
-  assert.equal(dailyAfter.daily_output?.adjustment,'working_late');assert.equal(dailyAfter.daily_output?.workout?.minutes,10);
-  assert.equal(dailyAfter.connected?.meal?.recipeId,chosen.id,'Working late replaced the explicitly chosen meal');
-  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Working late changed the saved Grub workspace');
-  assert.equal(clean(await page.locator('.mt-meal h3').innerText()),clean(chosen.name));assert.match(await page.locator('.mt-meal').innerText(),/Kept for today/);
-  await screenshot(page,'03-meal-preserved-next-action');pass('Saved meal stays unchanged while the movement recommendation becomes ten minutes',chosen.name);
-  const savedFitBefore=await account('/v1/fit/activity');
-  assert.equal(savedFitBefore.plan?.minutes_per_day,30,'The original saved Fit plan must remain 30 minutes before the member chooses to replace it');
-  const workoutLink=page.locator('.mt-workout [data-fit-today-handoff]');
-  assert.equal(await workoutLink.count(),1,'The shorter movement suggestion needs a clear Fit handoff');
-  assert.match(await workoutLink.innerText(),/Review shorter session/);
-  await workoutLink.click();
-  await page.waitForURL('**/member/fit?from=today&minutes=10',{timeout:15000});
-  await page.waitForSelector('.fit-experience-v1',{state:'visible',timeout:20000});
-  await page.waitForSelector('#fitTodayHandoff[data-fit-today-minutes="10"]',{state:'visible',timeout:20000});
-  const savedSession=savedFitBefore.plan.sessions[0],savedSessionMinutes=Number(savedSession.estimated_minutes||savedSession.requested_minutes||savedFitBefore.plan.minutes_per_day);
-  assert.ok(Number.isFinite(savedSessionMinutes)&&savedSessionMinutes>0,'Saved session must have an actual duration');
-  await page.waitForFunction(minutes=>(document.querySelector('#fitTodayHandoff')?.textContent||'').includes(`Your saved ${minutes}-minute session below is unchanged.`),savedSessionMinutes,{timeout:20000});
-  assert.equal(await page.locator('#fitMinutes').inputValue(),'10');
-  assert.equal(await page.locator('#fitDays').inputValue(),'1');
-  assert.deepEqual((await account('/v1/fit/activity')).plan,savedFitBefore.plan,'Opening the shorter-session suggestion changed the saved Fit plan');
-  await page.waitForFunction(()=>{const img=document.querySelector('#fitOutput .sf-session .sf-exercise img');return img?.complete&&img.naturalWidth>0},null,{timeout:20000});
-  await screenshot(page,'04-fit-suggestion-saved-plan-preserved');
-  pass('Fit opens with the 10-minute suggestion and the actual saved session explicitly unchanged');
-  await page.locator('#fitGenerate').click();
-  await page.waitForFunction(()=>/Your plan is ready/.test(document.querySelector('#fitStatus')?.textContent||'')&&!document.querySelector('#fitGenerate')?.disabled,null,{timeout:60000});
-  const savedFitAfter=await account('/v1/fit/activity');
-  assert.equal(savedFitAfter.plan?.minutes_per_day,10,'Explicit build did not save the requested shorter plan');
-  assert.equal(savedFitAfter.plan?.sessions?.length,1);
-  assert.equal(await page.locator('#fitTodayHandoff').count(),0,'Completed suggestion should leave the normal Fit session');
-  await page.waitForFunction(()=>{const img=document.querySelector('#fitOutput .sf-session .sf-exercise img');return img?.complete&&img.naturalWidth>0},null,{timeout:20000});
-  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Building the shorter Fit session changed the chosen Grub meal');
-  await screenshot(page,'05-shorter-fit-built');pass('Member explicitly builds the 10-minute Fit session with its image and chosen meal preserved');
-  const finalGeometry=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,url:location.href}));if(finalGeometry.overflow!==0)fail('final horizontal overflow',JSON.stringify(finalGeometry));else pass('Journey finishes with zero horizontal overflow');
-  // Google Play store screenshots: real production My Timber UI, synthetic member
-  // only, no real member data. 390x693 at 2x = 780x1386 (exact 9:16);
-  // the retained PNGs can be losslessly/visually upscaled to 1080x1920 for the
-  // Play recommendation while remaining the same captured UI.
+  await page.locator('.today-layout').waitFor({state:'visible',timeout:30000});
+  await page.locator('.today-meal[data-meal-state="chosen"]').waitFor({state:'visible',timeout:30000});
+  assert.equal(clean(await page.locator('.today-meal h3').innerText()),clean(chosen.name),'Rendered Today meal must equal the explicit saved Grub choice');
+  assert.equal(await page.locator('#todayBrand .member-design-mark').count(),1);
+  assert.equal(await page.locator('#appBottomNav>*').count(),5);
+  assert.equal(await page.locator('#sst-footer-c').count(),1);
+  assert(!(await page.locator('#todayActions>.mtm-hero').isVisible()),'Retired illustrated hero must not return');
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
+  await screenshot(page,'01-billy-current-today');
+  await page.locator('.today-meal-action').click();
+  const mealFrame=page.frameLocator('#appTool-grub iframe');
+  await mealFrame.locator('#grubDiscoverResults h3').filter({hasText:chosen.name}).waitFor({state:'visible',timeout:45000});
+  assert.equal(new URL(page.url()).pathname,'/member/dashboard','Grub opens in the containing member app');
+  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Opening a meal must preserve the saved workspace');
+  pass('Approved shared Today shows the explicit saved meal and opens its real inline Grub control',chosen.name);
+  await screenshot(page,'02-billy-inline-grub');
+  await verifyLiveTools(page,SITE,OUT,report);
+  pass('App and website retain tool drafts and browser history, with one navigation, footer and cookie-choice owner','390px and 1440px; visible ordinary controls; no forced DOM or navigation');
+  await page.setViewportSize({width:390,height:844});
   const storeDir=path.join(OUT,'google-play');fs.mkdirSync(storeDir,{recursive:true});
   await page.setViewportSize({width:390,height:693});
   async function dismissCookie(){
@@ -169,4 +128,4 @@ try{
 }
 console.log(JSON.stringify(report,null,2));
 if(report.failures.length)throw new Error(`My Timber final production candidate failed ${report.failures.length} check(s)`);
-console.log('PASS My Timber final production candidate: real authenticated Billy plans, explicit published Grub choice, connected Today, working-late movement adjustment with the chosen meal preserved, real Fit handoff, 390x844 zero-overflow evidence and a genuine phone-format walkthrough video.');
+console.log('PASS My Timber final production candidate: authenticated fictional contact save and fresh-login return, explicit published Grub choice, approved shared Today and inline tools, retained drafts and history, one navigation/footer/consent owner, zero phone overflow and eight real production screenshots.');

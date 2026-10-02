@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {commissioningLogin,memberReady,requireMemberPanel} from '../rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,requireMemberPanel,chooseNecessaryCookies} from '../rendered-member-acceptance-support.mjs';
 
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
 const identity={site,api,oidc:'synthetic-oidc-test-value',email:'shiftsometimber+structured-acceptance-test@gmail.com',password:'test-only'};
@@ -18,7 +18,7 @@ function harness({sessionEmail=identity.email,sessionStatus=200,loginStatus=200,
       globalThis.document={querySelector:selector=>selector==='#previewMember'?{classList:{contains:()=>shown},hidden:!shown,getBoundingClientRect:()=>({height:shown?300:0})}:selector==='#previewAuth'?{hidden:shown}:selector.startsWith('#panel-')?{classList:{contains:()=>clicks.length>0}}:null};
       try{if(!fn(arg))throw Error('readiness timeout')}finally{globalThis.document=previous}
     },evaluate:async()=>({path:'/member/dashboard',memberReady:shown,memberHidden:!shown,authHidden:shown,panels:[]}),
-    locator:selector=>selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>({isVisible:async()=>controlVisible,click:async()=>clicks.push(selector),locator:()=>({count:async()=>0})})}};
+    locator:selector=>selector==='.cookie-banner-v3a'||selector.startsWith('script[')?{count:async()=>0}:selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>({isVisible:async()=>controlVisible,click:async()=>clicks.push(selector),locator:()=>({count:async()=>0})})}};
   return{page,requests,clicks,navigations};
 }
 
@@ -60,7 +60,7 @@ test('a utility under More opens through its visible disclosure without forcing 
   let open=false,clicked=false;
   const summary={isVisible:async()=>true,click:async()=>{open=true}};
   const candidate={isVisible:async()=>open,click:async()=>{clicked=true},locator:()=>({count:async()=>1,locator:()=>({first:()=>summary})})};
-  const page={locator:selector=>selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?{count:async()=>1,waitFor:async()=>assert.ok(clicked)}:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(clicked)};
+  const page={locator:selector=>selector==='.cookie-banner-v3a'||selector.startsWith('script[')?{count:async()=>0}:selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?{count:async()=>1,waitFor:async()=>assert.ok(clicked)}:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(clicked)};
   await requireMemberPanel(page,'plans');assert.ok(open);assert.ok(clicked);
 });
 
@@ -71,7 +71,7 @@ function sharedMoreHarness({panel='visualise',moreVisible=true,destinationVisibl
   const summary={isVisible:async()=>menuOpen,click:async()=>{disclosureOpen=true;clicks.push('Plans and records')}};
   const candidate={isVisible:async()=>menuOpen&&disclosureOpen&&destinationVisible,click:async()=>{destinationClicked=true;clicks.push(panel)},locator:()=>({count:async()=>Number(nested&&!disclosureOpen),locator:()=>({first:()=>summary})})};
   const host={count:async()=>1,waitFor:async()=>assert.ok(destinationClicked)};
-  const page={locator:selector=>selector==='#appMore'?more:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(destinationClicked),evaluate:async()=>({path:'/member/dashboard',appMore:{expanded:String(menuOpen)}})};
+  const page={locator:selector=>selector==='.cookie-banner-v3a'||selector.startsWith('script[')?{count:async()=>0}:selector==='#appMore'?more:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(destinationClicked),evaluate:async()=>({path:'/member/dashboard',appMore:{expanded:String(menuOpen)}})};
   return{page,clicks};
 }
 
@@ -94,4 +94,14 @@ test('production acceptance executes the committed harness without runtime sourc
     assert.match(source,/commissioningLogin\(p,/);assert.match(source,/memberReady\(p,/);assert.match(source,/requireMemberPanel\(p,/);
     assert.doesNotMatch(source,/classList\.contains\('member-ready'\)|addCookies|clearCookies/);
   }
+});
+
+test('normal Necessary only choice resolves the blocking dialog before member navigation',async()=>{
+  const h=sharedMoreHarness();let shown=true;const locate=h.page.locator;
+  h.page.locator=selector=>selector.startsWith('script[')?{count:async()=>0}:selector==='.cookie-banner-v3a'?{count:async()=>1,isVisible:async()=>shown,locator:()=>({count:async()=>1,isVisible:async()=>true,click:async()=>{shown=false;h.clicks.push('Necessary only')}}),waitFor:async()=>assert.equal(shown,false)}:locate(selector);
+  await requireMemberPanel(h.page,'visualise');assert.deepEqual(h.clicks,['Necessary only','More','visualise']);
+});
+test('missing Necessary only control remains a failure rather than hiding or bypassing consent',async()=>{
+  const page={locator:selector=>selector.startsWith('script[')?{count:async()=>0}:{count:async()=>1,isVisible:async()=>true,locator:()=>({count:async()=>0})}};
+  await assert.rejects(chooseNecessaryCookies(page),/visible Necessary only control/);
 });
