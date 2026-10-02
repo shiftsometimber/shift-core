@@ -132,7 +132,7 @@ css('#sstTreatmentJourney:empty','display:none')+
 scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3{min-height:0!important}\n'+
 scope+'[data-app-tool]:not([data-app-tool="today"]) :is(#sstTodayContext,#sstTreatmentJourney,#sstFiveLoops){display:none!important}\n'+
 scope+'[data-app-tool]:not([data-app-tool="today"]) #todayActions.app-today-v3>:not(.app-today-shortcuts){display:none!important}\n'+
-scope+'[data-app-panel="1"]{padding:0!important;background:#707762!important}\n'+
+scope+'[data-app-panel="1"]{padding:0!important;background:#707762!important;width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important}\n'+
 scope+'[data-app-panel="1"] main{padding:0!important;margin:0!important;min-height:0!important;max-width:none!important}\n'+
 scope+'[data-app-panel="1"] :is(#todayBrand,#appBottomNav,#sst-footer-c,footer,.app-footer-details,#memberUtilities,#myTimberApp){display:none!important}\n'+
 '@media(max-width:640px){'+css('main','padding:18px 14px 24px')+css('#todayActions.app-today-v3 .today-layout','display:flex;flex-direction:column;gap:12px')+css('#todayActions.app-today-v3 .today-layout>*','width:100%;box-sizing:border-box')+css('#todayActions.app-today-v3 .today-movement','order:-1')+css('main #journeyView>.hero','grid-template-columns:minmax(0,1fr) 112px')+css('main #journeyView .timeline-grid','grid-template-columns:minmax(0,1fr)')+css('main #journeyView .timeline-card>div','display:block;min-width:0')+css('main #journeyView .timeline-card .comparison','max-width:none')+css('main .grub-spotlight','grid-template-columns:repeat(2,minmax(0,1fr))')+css('main :is(.shift-progress-intro,.mp-picture-intro)','grid-template-columns:1fr')+'}\n'+
