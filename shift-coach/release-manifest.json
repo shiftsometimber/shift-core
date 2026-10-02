@@ -69,6 +69,7 @@
     "shift-coach/worker.mjs",
     "shift-coach/workerd-proof.cjs",
     "tests/app-client-proof.test.mjs",
+    "tests/b1-release-scope.test.mjs",
     "tests/book-voice-release.test.mjs",
     "tests/book-voice.test.mjs",
     "tests/shift-ai-release.test.mjs",
