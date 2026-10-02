@@ -29,7 +29,7 @@ export function assertCoachingConfiguration(current,previous){
 export function coachingHistoricalRef(ref,path){
  // These two metadata files compose the separately approved book-copy gate.
  // Their complete current bytes remain required by the coaching pin and app hashes.
- const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs']);
+ const composedBookGates=new Set(['release/growth-scope.mjs','release/growth-adopt-deployment.mjs','release/home-banner-scope.mjs']);
  return ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)&&!composedBookGates.has(path)?COACH_BASE:ref;
 }
 export function validateCoachingSource(read,manifest){
