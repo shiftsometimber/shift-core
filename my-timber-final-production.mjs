@@ -84,7 +84,7 @@ try{
   await page.waitForFunction(()=>document.querySelector('#panel-today')?.classList.contains('active'),null,{timeout:10000});
   await page.locator('.today-layout').waitFor({state:'visible',timeout:30000});
   await page.locator('.today-meal[data-meal-state="chosen"]').waitFor({state:'visible',timeout:30000});
-  assert.equal(clean(await page.locator('.today-meal h3').innerText()),clean(chosen.name),'Rendered Today meal must equal the explicit saved Grub choice');
+  assert.equal(await page.locator('.today-meal').getAttribute('data-recipe-id'),chosen.id,'Today must render the exact explicitly saved recipe');assert((await page.locator('.today-meal-meta').innerText()).includes(chosen.name),'The actual chosen recipe name must be visible in the meal card');
   assert.equal(await page.locator('#todayBrand .member-design-mark').count(),1);
   assert.equal(await page.locator('#appBottomNav>*').count(),5);
   assert.equal(await page.locator('#sst-footer-c').count(),1);
@@ -93,7 +93,7 @@ try{
   await screenshot(page,'01-billy-current-today');
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
-  await mealFrame.locator('#grubDiscoverResults h3').filter({hasText:chosen.name}).waitFor({state:'visible',timeout:45000});
+  await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
   assert.equal(new URL(page.url()).pathname,'/member/dashboard','Grub opens in the containing member app');
   assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Opening a meal must preserve the saved workspace');
   pass('Approved shared Today shows the explicit saved meal and opens its real inline Grub control',chosen.name);
