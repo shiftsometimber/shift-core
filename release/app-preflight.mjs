@@ -35,13 +35,16 @@ git('merge-base','--is-ancestor',synt101CorrectionCommit,'HEAD');
 const internationalOmissionsCommit='874a3b1bc3013de9442dbedbf1398c275fc13f6c';
 const internationalOmissionsPaths=new Set(['medicines-watch/README.md','medicines-watch/industry-page.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-international-omissions.json']);
 git('merge-base','--is-ancestor',internationalOmissionsCommit,'HEAD');
+const expandedDiscoveryCommit='cd65000cd120d6de8496b7edbea27e333d5042a3';
+const expandedDiscoveryPaths=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-expanded-discovery.json']);
+git('merge-base','--is-ancestor',expandedDiscoveryCommit,'HEAD');
 // Exact manifest-pinned repair for the production-only missing embedded consent loader.
 // Retain exact current-main native/app-review and login work; this web release does not submit native apps.
 const retainedCurrentMain=new Set([".github/workflows/master-integration-gate.yml",".github/workflows/my-timber-app-preview.yml","frontend/member/my-timber-preview.html","my-timber-app/RELEASE-AUDIT-2026-10-01.md","my-timber-app/android/app/build.gradle","my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java","my-timber-app/contract.json","my-timber-app/ios/Sources/MyTimberViewController.swift","my-timber-app/ios/project.yml","my-timber-app/tests/apple-review-live.mjs","my-timber-app/tests/source.test.mjs","tests/member-auth-ui-v2.test.mjs"]);
 const retainedMain='b23010cfca99b3ab05377062ad5b16984711111c';
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);
