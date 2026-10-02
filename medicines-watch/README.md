@@ -19,7 +19,7 @@ Public preservation accepts only the exact marked Treatments entry. The other te
 
 ## Coverage expansion and discovery
 
-The live catalogue contains 6 detailed references plus 50 concise industry summaries in `industry.mjs`: 56 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
+The live catalogue contains 6 detailed references plus 51 concise industry summaries in `industry.mjs`: 57 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
 
 `reviews/2026-10-02-authorised-expanded-discovery.json` records the latest five owner-authorised factual additions, their exact primary URLs, registry dates, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
 
@@ -99,3 +99,9 @@ The catalogue now contains 50 entries (6 detailed and 44 wider summaries). The a
 `reviews/2026-10-02-authorised-ubt251.json` closes an older programme gap found by the broader undated triple-agonist pass. Novo Nordisk and United Biotechnology reported Chinese Phase 2 obesity results for weekly injectable UBT251, while Novo's 21 September 2026 pipeline presentation records a separate global Phase 1b/2a obesity study as ongoing and a weight-management Phase 3 start as planned for mid-2027. The planned Phase 3 event is not treated as completed.
 
 The catalogue now contains 56 entries (6 detailed and 50 wider summaries). The automated-source denominator remains 50 because the new primary links are labelled outside automatic monitoring until a separate complete-response baseline is reviewed. Standing owner authorisation permits this bounded factual publication; it is not clinical approval. No UK authorisation, NICE/NHS England access or lawful UK retail supply is inferred.
+
+## 2 October SGB-7342 omission
+
+`reviews/2026-10-02-authorised-sgb7342.json` closes an older non-incretin and smaller-developer gap found by the undated INHBE/RNAi and muscle-preservation pass. SanegeneBio reported the first participant dosed on 13 January 2026 in a Chinese Phase 1 study of subcutaneous SGB-7342, while the ClinicalTrials.gov record was last updated four days earlier and still displayed not yet recruiting. Both dated facts remain visible rather than being silently reconciled.
+
+The catalogue now contains 57 entries (6 detailed and 51 wider summaries). The sponsor's lean-mass statements remain preclinical and are not presented as human body-composition, muscle-function or efficacy findings; no human results are posted. The two reviewed primary links remain outside automatic monitoring, and no UK authorisation, NICE/NHS England access, lawful UK retail supply or clinical approval is inferred.
