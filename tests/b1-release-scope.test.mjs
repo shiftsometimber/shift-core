@@ -158,11 +158,14 @@ test('registry omissions release binds its exact reviewed commit',async()=>{
 });
 
 test('Pfizer PDF monitor repair binds its exact reviewed commit',async()=>{
- const {validateWatchPfizerPdfRepair,WATCH_PFIZER_PDF_REPAIR_COMMIT,WATCH_PFIZER_PDF_REPAIR_PATHS}=await import('../scripts/b1-release-scope.mjs');
+ const {validateWatchPfizerPdfRepair,WATCH_PFIZER_PDF_REPAIR_COMMIT,WATCH_PFIZER_PDF_REPAIR_PATHS,WATCH_ENOBOSARM_COMMIT}=await import('../scripts/b1-release-scope.mjs');
  assert.equal(WATCH_PFIZER_PDF_REPAIR_COMMIT,'5f1c8e6d9b4c7a8656854e4807a4aebd97b39e50');
  assert.equal(WATCH_PFIZER_PDF_REPAIR_PATHS.length,6);
  assert.ok(WATCH_PFIZER_PDF_REPAIR_PATHS.includes('medicines-watch/reviews/2026-10-02-pfizer-pdf-monitor-repair.json'));
- validateWatchPfizerPdfRepair((ref,path)=>path);
+ const reads=[];
+ validateWatchPfizerPdfRepair((ref,path)=>{reads.push([ref,path]);return path});
+ assert.ok(reads.some(([ref,path])=>ref===WATCH_ENOBOSARM_COMMIT&&path==='medicines-watch/README.md'));
+ assert.ok(reads.some(([ref,path])=>ref===WATCH_PFIZER_PDF_REPAIR_COMMIT&&path==='medicines-watch/monitor.mjs'));
  for(const changed of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.throws(()=>validateWatchPfizerPdfRepair((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Pfizer PDF monitor repair drift/);
 });
 
