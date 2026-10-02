@@ -167,7 +167,7 @@ test('Pfizer PDF monitor repair binds its exact reviewed commit',async()=>{
  assert.ok(WATCH_PFIZER_PDF_REPAIR_PATHS.includes('medicines-watch/reviews/2026-10-02-pfizer-pdf-monitor-repair.json'));
  const reads=[];
  validateWatchPfizerPdfRepair((ref,path)=>{reads.push([ref,path]);return path});
- assert.ok(reads.some(([ref,path])=>ref==='99c8194b37770f42af1a2b22f917528e4760ec66'&&path==='medicines-watch/README.md'));
+ assert.ok(reads.some(([ref,path])=>ref===WATCH_REGISTRY_WAVE_COMMIT&&path==='medicines-watch/README.md'));
  assert.ok(reads.some(([ref,path])=>ref===WATCH_PFIZER_PDF_REPAIR_COMMIT&&path==='medicines-watch/monitor.mjs'));
  for(const changed of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.throws(()=>validateWatchPfizerPdfRepair((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Pfizer PDF monitor repair drift/);
 });
@@ -193,9 +193,9 @@ test('treatment release binds every browser-tested eligibility and information f
  for(const drift of TREATMENT_GUIDANCE_PATHS)assert.throws(()=>validateTreatmentGuidance((ref,path)=>ref==='HEAD'&&path===drift?'changed':read(ref,path)),/Treatment service criteria\/source drift/);
 });
 
-test('registry wave retains only exact PR950 reviewed files',async()=>{
+test('registry wave retains only exact PR955 reviewed files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'99c8194b37770f42af1a2b22f917528e4760ec66');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,5);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'46d2347af6a5de84d7d5dcf05dc21b22e4122905');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,6);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });
