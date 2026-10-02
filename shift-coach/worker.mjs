@@ -16,7 +16,7 @@ export default {
    url.pathname='/v1/shift-coach';url.search='';
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
-  return withCoaching(request,response,seed);
+  return withCoaching(request,response,seed,async url=>{const asset=await core.fetch(new Request(url,{headers:request.headers}),env,ctx);if(!asset.ok||!asset.headers.get('Content-Type')?.includes('text/css'))return null;return asset.text();});
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

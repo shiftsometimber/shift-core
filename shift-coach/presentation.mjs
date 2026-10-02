@@ -20,7 +20,7 @@ body[data-app-tool]:not([data-app-tool="today"]) #shiftCoach{display:none!import
 `;
 const markup='<section id="shiftCoach" aria-label="Shift AI coaching" hidden><p class="coach-kicker">SHIFT AI · ONE THING FOR TODAY</p><div data-coach-content></div><p data-coach-status role="status" aria-live="polite"></p></section>';
 export function coachingAsset(request){if(!['GET','HEAD'].includes(request.method)||new URL(request.url).pathname!==assetPath)return null;return new Response(request.method==='HEAD'?null:client,{headers:{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});}
-export async function withCoaching(request,response,seed=null){
+export async function withCoaching(request,response,seed=null,readStyle=null){
  if(request.method!=='GET'||!/^\/member\/dashboard(?:\.html)?$/.test(new URL(request.url).pathname)||response.status!==200||!response.headers.get('Content-Type')?.includes('text/html'))return response;
  const html=await response.clone().text();
  if(html.includes('id="shiftCoach"')||!/<(?:section|div)\b[^>]*id="todayActions"/.test(html))return response;
@@ -30,9 +30,15 @@ export async function withCoaching(request,response,seed=null){
  // The seed is fetched through the original member session and current consent.
  // Expose the authenticated shell immediately; its original session/bootstrap
  // still loads the other tools and every mutation keeps its original checks.
- const prepared=seed?html.replace(/<body\b([^>]*)>/, '<body$1 data-shift-coach-session>'):html;
+ let prepared=seed?html.replace(/<body\b([^>]*)>/, '<body$1 data-shift-coach-session>'):html;
+ // Retain the exact stylesheet bytes and order, but remove their serial
+ // network wait on this authenticated dashboard. Other routes are untouched.
+ if(seed&&readStyle){const end=prepared.indexOf('</head>'),head=prepared.slice(0,end),links=[...head.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*>/gi)];
+  const results=await Promise.allSettled(links.map(async match=>{if(/\b(?:media|disabled|integrity|crossorigin)\b/i.test(match[0]))return null;const href=match[0].match(/\bhref=["']([^"']+)["']/i)?.[1];if(!href)return null;const url=new URL(href,request.url);if(url.origin!==new URL(request.url).origin||!url.pathname.endsWith('.css'))return null;const css=await readStyle(url);const safe=typeof css==='string'&&!/<\/style|@import/i.test(css)&&[...css.matchAll(/url\(\s*(?:[\"']([^\"']+)[\"']|([^\s)]+))\s*\)/gi)].every(m=>/^(?:\/|https?:|data:|#)/i.test(m[1]||m[2]));return safe?'<style data-coach-preserved-style="'+url.pathname+'">'+css+'</style>':null;}));
+  for(let i=links.length-1;i>=0;i--){const replacement=results[i].status==='fulfilled'?results[i].value:null;if(replacement)prepared=prepared.slice(0,links[i].index)+replacement+prepared.slice(links[i].index+links[i][0].length);}
+ }
  const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
- const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie');
+ const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie, Accept-Encoding');
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  // Compress the private dashboard at its source so the prepared action does
  // not depend on an assumed CDN compression setting. Never gzip twice.
