@@ -22,14 +22,14 @@ try{for(const spec of data.articles){for(const width of [390,1440]){
 
 async function checkMot(browser,origin,reports){
  for(const width of [390,1440]){
-  const page=await browser.newPage({viewport:{width,height:900}}),writes=[];
+  const page=await browser.newPage({viewport:{width,height:900}}),writes=[],errors=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('request',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.method()))writes.push({url:r.url(),method:r.method(),body:r.postData()||''});});
   await page.goto(origin+'/health-mot',{waitUntil:'networkidle'});
   await page.locator('#age').selectOption('42');await page.locator('#heightFt').selectOption('6');await page.locator('#heightIn').selectOption('0');await page.locator('#weightSt').selectOption('16');await page.locator('#weightLb').selectOption('0');
   for(let i=0;i<7;i++)await page.locator('.mot-step.active .mot-next').click();
-  await page.getByRole('button',{name:'Create my Shift Health Report',exact:true}).click();await page.locator('#motReport.visible').waitFor();
+  await page.getByRole('button',{name:'Create my Shift Health Report',exact:true}).click();try{await page.locator('#motReport.visible').waitFor({timeout:10000});}catch(e){writeFileSync('faq-browser-proof/health-mot-error.json',JSON.stringify({width,errors,invalid:await page.locator(':invalid').evaluateAll(xs=>xs.map(x=>({id:x.id,message:x.validationMessage})))},null,2));throw e;}
   const result=await page.evaluate(()=>({score:document.getElementById('motScore').innerText,text:document.querySelector('main').innerText,overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,stored:JSON.parse(localStorage.getItem('sstHealthProfile')||'null')}));
-  assert.equal(result.h1,1);assert.equal(result.overflow,false);assert.match(result.score,/^\d+ higher priority · \d+ worth reviewing$/);assert(!result.text.includes('Your Shift MOT score'));assert(result.text.includes('this tool does not upload them'));assert.equal(result.stored.answers.age,'42');
+  assert.deepEqual(errors,[],'Health MOT browser errors');assert.equal(result.h1,1);assert.equal(result.overflow,false);assert.match(result.score,/^\d+ higher priority · \d+ worth reviewing$/);assert(!result.text.includes('Your Shift MOT score'));assert(result.text.includes('this tool does not upload them'));assert.equal(result.stored.answers.age,'42');
   assert(!writes.some(x=>/health[_-]?mot|weightSt|weightKg|heightCm|bpSystolic|sstHealthProfile/i.test(x.body)||/\/v1\/(health|progress)/.test(x.url)),'Public Health MOT sent health answers');
   await page.screenshot({path:'faq-browser-proof/health-mot-'+width+'.jpg',fullPage:true,type:'jpeg',quality:65});reports.push({slug:'health-mot',width,h1:result.h1,overflow:result.overflow,syntheticReportGenerated:true,localAnswersSaved:true,healthAnswersTransmitted:false,clinicalScoreDisplayed:false});
   await page.goto(origin+'/health-mot-methodology',{waitUntil:'networkidle'});assert((await page.locator('main').innerText()).includes('A shared browser can retain sensitive answers'));assert.equal(await page.locator('h1').count(),1);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);reports.push({slug:'health-mot-methodology',width,h1:1,overflow:false,localStorageCopyChecked:true});await page.close();

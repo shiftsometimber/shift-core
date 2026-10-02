@@ -1,0 +1,32 @@
+name: Available public source and recovery inventory
+on:
+  push:
+    branches: [codex/full-website-content-20261002]
+    paths: [release/content-closeout/available-proof.mjs, release/content-closeout/media-refs.json, .github/workflows/available-closeout-proof.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: reviewed-public-copy-refresh
+  cancel-in-progress: false
+jobs:
+  available:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - name: Verify public media, actual live bindings and source follow-through
+        run: node release/content-closeout/available-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: available-closeout-proof-${{ github.sha }}
+          path: available-closeout-proof/
+          retention-days: 90

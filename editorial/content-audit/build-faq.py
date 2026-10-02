@@ -15,6 +15,11 @@ def amend_mot(p,entries,updates,out,reports):
   'Use your saved Health MOT in the Decision Centre to explore relevant pathways.':'Use the report to prepare questions, then explore general options in the Decision Centre. Opening it does not transfer this report or establish treatment suitability.',
   'Use your saved Health MOT in the Treatment Finder.':'The Treatment Finder is a separate information tool. Opening it does not transfer this report or create a clinical assessment.'}
  for before,after in edits.items():assert new.count(before)==1;new=new.replace(before,after)
+ assert 'id="motReport"' not in new
+ marker='<section><div class="sst-reading-grid-v31 wrap"><div class="sst-reading-article-v31">\n<div class="sst-reading-lead-v31"></div><p class="eyebrow">Your Shift Health Report</p>'
+ assert new.count(marker)==1,'Report wrapper changed'
+ new=new.replace(marker,marker.replace('<section>','<section id="motReport" aria-live="polite">'),1)
+ new=new.replace('</head>','<style id="mot-report-visibility-repair">#motReport{display:none}#motReport.visible{display:block}</style></head>',1)
  updates[n]=new
  n='health-mot.js';oldjs=p['overrides'][n];assert entry(n,oldjs)==entries[n]
  newjs=once(oldjs,r" const score=Math.max\(25,Math.min\(95,88-high\*11-review\*6\)\);.*?\$\('motScoreText'\).textContent=.*?;", " $('motScore').textContent=`${high} higher priority · ${review} worth reviewing`;\n $('motScoreText').textContent='These counts summarise the report categories. They are not a validated health score, diagnosis or estimate of disease risk.';")
