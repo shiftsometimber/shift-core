@@ -34,5 +34,9 @@ export async function withCoaching(request,response,seed=null){
  const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie');
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
+ // Compress the private dashboard at its source so the prepared action does
+ // not depend on an assumed CDN compression setting. Never gzip twice.
+ const gzip=(request.headers.get('Accept-Encoding')||'').split(',').some(value=>{const m=value.trim().match(/^gzip(?:\s*;\s*q=(0(?:\.\d+)?|1(?:\.0+)?))?$/i);return m&&Number(m[1]??1)>0;});
+ if(gzip){headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');return new Response(new Response(changed).body.pipeThrough(new CompressionStream('gzip')),{status:response.status,headers});}
  return new Response(changed,{status:response.status,headers});
 }

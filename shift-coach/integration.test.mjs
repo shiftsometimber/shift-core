@@ -54,3 +54,13 @@ test('fresh prepared seed stays private and cannot inject instructions or execut
  const json=text.match(/<script type="application\/json" id="shiftCoachInitial">(.*?)<\/script>/s)[1];assert.deepEqual(JSON.parse(json),seed);assert(!json.includes('<'));assert(!text.includes('<script>window.bad'));assert.match(r.headers.get('Cache-Control'),/no-store, private/);assert.equal(r.headers.get('Vary'),'Cookie');assert.equal(r.headers.get('ETag'),null);assert(text.indexOf('data-shift-coach-styles')<text.indexOf('</head>'));assert(text.includes('<script data-shift-coach-client>'));assert(text.includes('<body data-shift-coach-session>'));assert(!text.includes('<script async src="/assets/shift-coach.mjs">'));
  const unchanged=new Response('Public',{headers:{'Content-Type':'text/html'}});assert.equal(await withCoaching(new Request('https://shiftsometimber.co.uk/programme'),unchanged,seed),unchanged);
 });
+
+// A real browser receives the same private document after decoding; q=0
+// explicitly keeps identity transport rather than silently compressing it.
+test('private dashboard compression preserves content and honours gzip refusal',async()=>{
+ const html='<html><head></head><body><div id="todayActions">Keep tools</div></body></html>';
+ const respond=encoding=>withCoaching(new Request('https://shiftsometimber.co.uk/member/dashboard',{headers:{'Accept-Encoding':encoding}}),new Response(html,{headers:{'Content-Type':'text/html'}}));
+ const plain=await respond('gzip;q=0, identity');assert.equal(plain.headers.get('Content-Encoding'),null);const expected=await plain.text();
+ const compressed=await respond('br, gzip;q=0.8');assert.equal(compressed.headers.get('Content-Encoding'),'gzip');assert.equal(compressed.headers.get('Vary'),'Cookie, Accept-Encoding');assert.match(compressed.headers.get('Cache-Control'),/no-store, private/);
+ assert.equal(await new Response(compressed.body.pipeThrough(new DecompressionStream('gzip'))).text(),expected);
+});
