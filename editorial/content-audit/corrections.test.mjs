@@ -30,3 +30,12 @@ test('Atomic SQL fence preserves status, author and original publication; concur
  const row=db.prepare('SELECT * FROM knowledge_articles').get();assert.equal(row.author,'SHIFT Team');assert.equal(row.status,'published');assert.equal(row.publish_at,'original-date');assert.equal(row.body,body);
  const sql=interpolate('SELECT ? AS value',["quote's ? stays literal"]);assert.equal(db.prepare(sql).get().value,"quote's ? stays literal");db.close();
 });
+test('Every corrective payload has one title and removes its identified unsupported claims',()=>{
+ for(const item of JSON.parse(readFileSync('editorial/content-audit/approved-corrections.json')).articles){
+  const markdown=readFileSync(item.bodyPath,'utf8');assert.equal(hash(markdown),item.bodySha256);
+  const html=articleHTML({id:item.id,slug:item.slug,title:item.title,summary:item.summary,seo_title:item.seoTitle,body:markdown,author:'SHIFT Team',publish_at:'original-date'});
+  assert.equal((html.match(/<h1\b/g)||[]).length,1,item.slug);
+  for(const text of item.expectedVisible)assert(html.includes(text),item.slug+': '+text);
+  for(const text of item.forbiddenVisible)assert(!html.includes(text),item.slug+': '+text);
+ }
+});

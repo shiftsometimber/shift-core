@@ -12,7 +12,268 @@
       "title": "Missed a Wegovy injection: the UK leaflet\u2019s rules",
       "seoTitle": "Missed a Wegovy injection: UK leaflet rules and when to get help",
       "summary": "The UK weekly-injection leaflet\u2019s five-day boundary, usual scheduled day, longer treatment gaps and when to contact your pharmacist or prescriber.",
-      "reason": "Correct sourced medication instructions and uncommissioned service claims; owner requested full content audit and repair."
+      "reason": "Correct sourced medication instructions and uncommissioned service claims; owner requested full content audit and repair.",
+      "expectedVisible": [
+        "Five days or less",
+        "usual scheduled day"
+      ],
+      "forbiddenVisible": [
+        "Get clinician-led help with a missed dose or restart",
+        "This becomes your fresh weekly anchor point"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "mounjaro-cost-uk",
+      "expectedBodySha256": "ab4018ef1dd4ed6df07be62d1d712dcc3f2c8bd990600aee5380477e27d70662",
+      "expectedTitle": "NICE List vs Private Prices: Mounjaro Cost in the UK",
+      "expectedUpdatedAt": "2026-09-21T16:25:27.795Z",
+      "bodyPath": "editorial/content-audit/mounjaro-cost-uk.md",
+      "bodySha256": "ae1a8129d0550b7b0b296dcbb97edca77f1996f952c6b44098df34ea45855ee7",
+      "title": "NICE List vs Private Prices: Mounjaro Cost in the UK",
+      "seoTitle": "NICE List vs Private Prices: Mounjaro Cost in the UK",
+      "summary": "Compare NICE list prices with real UK private costs, hidden fees and maintenance totals so you know what Mounjaro will actually cost over a treatment course.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 7,
+      "slug": "nhs-weight-loss-drugs",
+      "expectedBodySha256": "1e05069dca6611767271faa86d25329a03a3e9ea400a44a0509693edfcdf5d1e",
+      "expectedTitle": "3 NHS weight loss drugs: who qualifies, why it depends on your postcode",
+      "expectedUpdatedAt": "2026-09-24 05:30:32",
+      "bodyPath": "editorial/content-audit/nhs-weight-loss-drugs.md",
+      "bodySha256": "8c23e05d00ced3531803025cf940a2c046a2c08d205cba95791e0f6435901447",
+      "title": "3 NHS weight loss drugs: who qualifies, why it depends on your postcode",
+      "seoTitle": "3 NHS weight loss drugs: who qualifies, why it depends on your postcode",
+      "summary": "UK NHS guide to the three main weight loss drugs. Find who qualifies, why postcode rollouts affect access, and exactly what to ask your GP.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 8,
+      "slug": "glp-1-muscle-loss",
+      "expectedBodySha256": "21b1bdcd55312f35c29d9ac50ba0e297a8851a9aa093fbd8ce928006754d3c39",
+      "expectedTitle": "1.74 kg Average Lean Loss: Prevent GLP-1 Muscle Loss in UK Men",
+      "expectedUpdatedAt": "2026-09-25 06:00:22",
+      "bodyPath": "editorial/content-audit/glp-1-muscle-loss.md",
+      "bodySha256": "5af4e65e88be090d551ba8be9d71127287afab5feca09680bfcab3e01af8535d",
+      "title": "1.74 kg Average Lean Loss: Prevent GLP-1 Muscle Loss in UK Men",
+      "seoTitle": "1.74 kg Average Lean Loss: Prevent GLP-1 Muscle Loss in UK Men",
+      "summary": "Trials show 1.74 kg lean loss on GLP-1s. This UK guide covers protein targets, resistance training, and monitoring to prevent muscle loss.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 9,
+      "slug": "glp-1-and-exercise",
+      "expectedBodySha256": "77a9dcc57544e1c816d7d8db758bf23f5cd0bde78098607a16479592fb4c86bd",
+      "expectedTitle": "GLP-1 and Exercise: Preserve Strength With Two Weekly Sessions in UK",
+      "expectedUpdatedAt": "2026-09-26 06:01:09",
+      "bodyPath": "editorial/content-audit/glp-1-and-exercise.md",
+      "bodySha256": "9a9da38e510888b84b4e486cd0fb601d379c5ca3c045f9a1fe5263e5fca94c7b",
+      "title": "GLP-1 and Exercise: Preserve Strength With Two Weekly Sessions in UK",
+      "seoTitle": "GLP-1 and Exercise: Preserve Strength With Two Weekly Sessions in UK",
+      "summary": "UK guidance: pair GLP-1 with resistance training (two sessions weekly), 80\u2013100g protein and basic safety checks. Start strength in month one.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 10,
+      "slug": "wegovy-not-working",
+      "expectedBodySha256": "ca03aec928d0d03882979acc3d005954a9aa9c7281af6def7b9fccc3421bf878",
+      "expectedTitle": "Give Wegovy 16\u201320 Weeks: UK Checks and Fixes If Weight Stalls",
+      "expectedUpdatedAt": "2026-09-27 05:30:24",
+      "bodyPath": "editorial/content-audit/wegovy-not-working.md",
+      "bodySha256": "26674f062695fa135c4e3d351024ad8858c1ec5292d05daf838e75347848d733",
+      "title": "Give Wegovy 16\u201320 Weeks: UK Checks and Fixes If Weight Stalls",
+      "seoTitle": "Give Wegovy 16\u201320 Weeks: UK Checks and Fixes If Weight Stalls",
+      "summary": "UK clinical troubleshooting for Wegovy: why weight loss stalls, the 6 month/5% review, tests to request (TSH, meds) and safe fixes to discuss with your...",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 11,
+      "slug": "glp-1-binge-eating",
+      "expectedBodySha256": "17a76c010d1c63b3bbe8eb627d21593be5e5938f782648a83be8516ccd72553c",
+      "expectedTitle": "UK Patients: GLP-1 and Binge Eating, What NICE and MHRA Say",
+      "expectedUpdatedAt": "2026-09-28 08:21:02",
+      "bodyPath": "editorial/content-audit/glp-1-binge-eating.md",
+      "bodySha256": "f2d2687948368d63b96fe6bd4b4c37c0733d92da7c595576b098c2dd9dbb0ca0",
+      "title": "UK Patients: GLP-1 and Binge Eating, What NICE and MHRA Say",
+      "seoTitle": "UK Patients: GLP-1 and Binge Eating, What NICE and MHRA Say",
+      "summary": "A UK evidence-led explainer on GLP-1 and binge eating: what NICE and MHRA recommend, safety alerts, and the patient questions to ask before treatment.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 12,
+      "slug": "semaglutide-results-timeline",
+      "expectedBodySha256": "d41bf5c35f3a64a4eadef0f832ee6bfc348301fa7ffaf5b978018e1ba1a88d23",
+      "expectedTitle": "Week 68 Benchmark: Semaglutide Results Timeline for UK Men",
+      "expectedUpdatedAt": "2026-09-29 06:02:42",
+      "bodyPath": "editorial/content-audit/semaglutide-results-timeline.md",
+      "bodySha256": "5989874137c3085b99d2ed3ec5cec6aec5749a1573afc0faf2dfbd6ace739fbe",
+      "title": "Week 68 Benchmark: Semaglutide Results Timeline for UK Men",
+      "seoTitle": "Week 68 Benchmark: Semaglutide Results Timeline for UK Men",
+      "summary": "An evidence-led timeline for UK men starting semaglutide: when appetite and weight changes usually appear, the STEP 1 week 68 benchmark, MHRA/NICE checks...",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 13,
+      "slug": "glp-1-for-men",
+      "expectedBodySha256": "ce314d398690e3cb5a823d4b5fa3a59f06bf124b05a1fa04b1587c9a3690ed74",
+      "expectedTitle": "GLP-1 for UK Men: Limit the 1.74 kg Lean Mass Loss SHIFT Found",
+      "expectedUpdatedAt": "2026-09-30 05:00:51",
+      "bodyPath": "editorial/content-audit/glp-1-for-men.md",
+      "bodySha256": "c368b7de979490010a9a5f7f7de667bcbcb2fdcd8d6b7f5a7eac9bd925270402",
+      "title": "GLP-1 medicines for men: questions for your prescriber",
+      "seoTitle": "GLP-1 medicines for men: questions for your prescriber",
+      "summary": "Questions about GLP-1 treatment, safety and everyday support to discuss with your own prescriber.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
+    },
+    {
+      "id": 14,
+      "slug": "life-after-ozempic",
+      "expectedBodySha256": "20d258faa2fc064b5cc279dc4aa634b2c9cab215c99a5c91a41df7a9eb4e6e5d",
+      "expectedTitle": "60% Weight Returns in a Year: Clinical Life After Ozempic for UK Men",
+      "expectedUpdatedAt": "2026-10-01 08:13:44",
+      "bodyPath": "editorial/content-audit/life-after-ozempic.md",
+      "bodySha256": "f2e622be3e584c8ed039546457997555155148c81e86852f70181ab502705fed",
+      "title": "After stopping semaglutide: research, reviews and practical support",
+      "seoTitle": "After stopping semaglutide: research, reviews and practical support",
+      "summary": "What the STEP 1 withdrawal study can and cannot tell you, questions for your prescriber and practical support with everyday routines.",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org",
+        "60% Weight Returns",
+        "Cambridge University research",
+        "compounded tirzepatide &"
+      ]
+    },
+    {
+      "id": 15,
+      "slug": "glp-1-coaching",
+      "expectedBodySha256": "5fb370769f1e98805f469c6f2af4678b7bcc5c57666384c11213ea37885397ab",
+      "expectedTitle": "5 GLP-1 Coaching Essentials for UK Men, From Shift Some Timber",
+      "expectedUpdatedAt": "2026-10-02 06:01:00",
+      "bodyPath": "editorial/content-audit/glp-1-coaching.md",
+      "bodySha256": "01282242717a6f8793f64a7abdf10ded2785cd758d7ec43bc3bf49afd8bdc733",
+      "title": "5 GLP-1 Coaching Essentials for UK Men, From Shift Some Timber",
+      "seoTitle": "5 GLP-1 Coaching Essentials for UK Men, From Shift Some Timber",
+      "summary": "Learn the five wraparound elements of GLP-1 coaching for UK men: nutrition, strength-focused activity, monitoring, behaviour methods and realistic contact...",
+      "reason": "Remove unsupported clinical-service claims, personal attribution and patient-study claims; preserve publication history and explicitly bound editorial review.",
+      "expectedVisible": [
+        "What My Timber can help with",
+        "medicine ordering remains closed",
+        "Editorial correction"
+      ],
+      "forbiddenVisible": [
+        "\u2014 Matt",
+        "SHIFT's own programme data",
+        "Across SHIFT's programme",
+        "compounded tirzepatide",
+        "vivoclinic.org"
+      ]
     }
   ]
 }

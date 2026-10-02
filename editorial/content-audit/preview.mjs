@@ -16,7 +16,7 @@ try{
    const page=await browser.newPage({viewport:{width,height:900}});
    await page.setContent(html,{waitUntil:'networkidle'});
    const result=await page.evaluate(()=>({h1:document.querySelectorAll('h1').length,overflow:document.documentElement.scrollWidth>innerWidth,fragmentFailures:[...document.querySelectorAll('main a[href^="#"]')].filter(a=>!document.getElementById(a.getAttribute('href').slice(1))).length,text:document.querySelector('main').innerText}));
-   assert.equal(result.h1,1);assert.equal(result.overflow,false);assert.equal(result.fragmentFailures,0);assert(result.text.includes('Five days or less'));assert(result.text.includes('usual scheduled day'));assert(!result.text.includes('fresh weekly anchor'));
+   assert.equal(result.h1,1);assert.equal(result.overflow,false);assert.equal(result.fragmentFailures,0);for(const text of spec.expectedVisible)assert(result.text.includes(text),'Missing reviewed correction: '+text);for(const text of spec.forbiddenVisible)assert(!result.text.includes(text),'Unsupported claim remains: '+text);
    await page.screenshot({path:'content-correction-preview/'+spec.slug+'-'+width+'.png',fullPage:true});
    reports.push({slug:spec.slug,width,h1:result.h1,overflow:result.overflow,fragmentFailures:result.fragmentFailures});await page.close();
   }

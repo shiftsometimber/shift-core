@@ -34,7 +34,7 @@ async function main(){
  for(const {spec,body,row,plan} of prepared){
   if(!plan.done){const result=query(UPDATE,[spec.title,spec.seoTitle,spec.summary,body,new Date().toISOString(),row.id,row.slug,row.body,row.updated_at]);assert.equal(result.meta?.changes,1,'Concurrent change prevented the editorial update');}
   const after=read(spec);assert.equal(hash(after.body),spec.bodySha256);assert.equal(after.publish_at,row.publish_at,'Original publication date must be retained');assert.equal(after.author,row.author,'Author identity must be retained');assert.equal(after.status,'published');
-  const url='https://shiftsometimber.co.uk/articles/'+spec.slug,r=await fetch(url,{signal:AbortSignal.timeout(25000)});assert(r.ok);const html=await r.text();assert(html.includes(spec.title));assert(html.includes('Five days or less'));assert(html.includes('usual scheduled day'));assert(!html.includes('Get clinician-led help with a missed dose or restart'));assert(!html.includes('This becomes your fresh weekly anchor point'));
+  const url='https://shiftsometimber.co.uk/articles/'+spec.slug,r=await fetch(url,{signal:AbortSignal.timeout(25000)});assert(r.ok);const html=await r.text();assert(html.includes(spec.title));for(const text of spec.expectedVisible)assert(html.includes(text),'Missing published correction: '+text);for(const text of spec.forbiddenVisible)assert(!html.includes(text),'Unsupported claim remains: '+text);
   writeFileSync('content-correction-proof/'+spec.slug+'.html',html);
   receipts.push({...plan,url,title:after.title,afterHash:hash(after.body),workflowSha:process.env.GITHUB_SHA,at:new Date().toISOString(),runtimeDeployed:false,customerRecordsChanged:false,medicineStockPricesChanged:false,clinicalReviewClaimed:false});
  }
