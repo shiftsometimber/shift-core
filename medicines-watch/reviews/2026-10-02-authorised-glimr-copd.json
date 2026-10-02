@@ -1,0 +1,88 @@
+{
+  "reviewedAt": "2026-10-02T17:07:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish one bounded specialist-indication and muscle-restoration trial summary. This is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health?verify=20261002-1802",
+    "reviewedAt": "2026-10-02T17:07:00Z",
+    "available": true,
+    "status": "current",
+    "sourceCount": 50,
+    "currentCount": 50,
+    "lastAttemptAt": "2026-10-02T16:31:12.061Z",
+    "result": "All 50 configured sources were current. The previously timed-out danuglipron Pfizer source recovered with HTTP 200. Recovery does not renew any medical review date or approve a changed claim."
+  },
+  "entries": [
+    {
+      "id": "glimr-copd-tirzepatide",
+      "name": "Tirzepatide in COPD and sarcopenia (GLIMR COPD)",
+      "developer": "Cleveland Clinic investigator-led study",
+      "group": "research",
+      "stage": "Phase 2 registered; not yet recruiting",
+      "summary": "The Cleveland Clinic registry record describes a 52-week, open-label Phase 2 study in 30 adults with COPD and obesity or overweight. Twenty participants are planned to receive tirzepatide with standard care and ten standard care alone. The study measures lung function and muscle-related outcomes including grip strength, walking, sit-to-stand performance, lean mass and skeletal-muscle mitochondrial function.",
+      "ukAuthorisation": "Mounjaro's UK weight-management authorisation is described separately. This US registry record does not establish UK marketing authorisation for COPD, sarcopenia or muscle restoration.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established for tirzepatide for COPD, sarcopenia or muscle restoration.",
+      "supply": "UK supply for an authorised indication does not establish lawful supply or availability for these investigational specialist uses, pharmacy stock or sale by SHIFT.",
+      "limitations": "The record remains not yet recruiting and has no posted results. Its 28 August 2026 start and 15 August 2028 primary completion are registry estimates, not evidence that recruitment, dosing or outcomes occurred. Planned lung-function, lean-mass and physical-function outcomes are not evidence of benefit, and the small open-label US study does not establish comparative efficacy, safety, an authorised indication or a treatment recommendation.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T17:07:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07747805: GLIMR COPD",
+          "url": "https://clinicaltrials.gov/study/NCT07747805",
+          "sourcePublishedAt": "2026-08-05",
+          "sourceUpdatedAt": "2026-08-05",
+          "reviewedAt": "2026-10-02T17:07:00Z",
+          "checkScope": "Official ClinicalTrials.gov record read for Cleveland Clinic sponsorship, Phase 2 status, not-yet-recruiting state, estimated dates, 30-participant design, tirzepatide intervention, COPD/obesity-or-overweight/sarcopenia conditions, lung and muscle outcomes, and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registryEvidence": {
+    "nctId": "NCT07747805",
+    "briefTitle": "GLP-1 Agonists for Lung Function Improvement and Muscle Restoration in COPD (GLIMR COPD)",
+    "sponsor": "The Cleveland Clinic",
+    "responsibleParty": "Amy Attaway, Cleveland Clinic",
+    "overallStatus": "NOT_YET_RECRUITING",
+    "phase": "PHASE2",
+    "design": "Randomized, parallel, open label",
+    "intervention": "Tirzepatide",
+    "conditions": ["COPD", "Obesity and overweight", "Sarcopenia"],
+    "estimatedEnrollment": 30,
+    "estimatedStart": "2026-08-28",
+    "estimatedPrimaryCompletion": "2028-08-15",
+    "estimatedCompletion": "2029-08-15",
+    "firstSubmitted": "2026-07-31",
+    "firstPosted": "2026-08-05",
+    "lastUpdatePosted": "2026-08-05",
+    "lastVerified": "2026-07",
+    "hasResults": false,
+    "location": "Cleveland Clinic, Ohio, United States"
+  },
+  "discoveryDecision": {
+    "included": "The broader undated specialist-indication and muscle-preservation pass found a previously untracked tirzepatide study directly relevant to weight management, sarcopenia and physical function.",
+    "plannedVersusCompleted": "The record remains not yet recruiting. Estimated dates and planned outcomes are not treated as completed events or results.",
+    "ukPosition": "The established UK weight-management position for tirzepatide is not transferred to COPD, sarcopenia or muscle-restoration research.",
+    "monitoring": "No automatic source baseline, successful configured-source check or review renewal is created by this publication.",
+    "coverage": "This addition does not imply complete coverage of investigator-led, COPD or muscle-preservation research."
+  },
+  "discoveryLimitations": {
+    "currentDatePass": "No new same-day UK authorisation, NICE/NHS England access decision or sponsor result was verified for this programme.",
+    "broaderUndatedPass": "The undated specialist-indication, sarcopenia and muscle-function pass found this older registry omission.",
+    "failedOrIncompleteChecks": "Search indexing and selected domains remain incomplete evidence of the wider industry; the catalogue remains selected and non-exhaustive."
+  },
+  "nextActions": [
+    "Recheck NCT07747805 for an actual recruitment or dosing update rather than relying on the estimated start date",
+    "Track posted results and any independent publication separately from planned endpoints",
+    "Track UK regulator and NHS evidence separately from the US research stage",
+    "Continue broad topic discovery beyond named developers and existing entries"
+  ]
+}
