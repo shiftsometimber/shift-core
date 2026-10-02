@@ -19,7 +19,7 @@ Public preservation accepts only the exact marked Treatments entry. The other te
 
 ## Coverage expansion and discovery
 
-The live catalogue contains 6 detailed references plus 69 concise industry summaries in `industry.mjs`: 75 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
+The live catalogue contains 6 detailed references plus 70 concise industry summaries in `industry.mjs`: 76 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
 
 `reviews/2026-10-02-authorised-expanded-registry-wave.json` records the latest seven owner-authorised factual additions and the ecnoglutide specialist-indication update, with exact primary URLs, registry dates, response hashes, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
 
@@ -145,3 +145,9 @@ The catalogue now contains 74 entries (6 detailed and 68 wider summaries), while
 `reviews/2026-10-02-authorised-semaglutide-specialist-trials.json` records three investigator-led specialist-use studies as one bounded semaglutide research summary: chronic low-back pain, pre-operative hip or knee arthroplasty, and semaglutide with a levonorgestrel intrauterine device and structured weight loss for conservative treatment of endometrial atypical hyperplasia or grade 1 endometrial cancer.
 
 All three registry records remain not yet recruiting and have no posted results. Estimated starts are retained as plans, including the 1 October 2026 estimate on the Canadian arthroplasty record. Wegovy's established UK weight-management position is not transferred to pain, peri-operative or endometrial-treatment uses. The catalogue now contains 75 entries (6 detailed and 69 wider summaries); the automated-source denominator remains 50, and no UK specialist-indication authorisation, NICE/NHS England access, lawful supply for those uses, SHIFT sale or clinical approval is inferred.
+
+## 2 October GLIMR COPD specialist research
+
+`reviews/2026-10-02-authorised-glimr-copd.json` closes an older specialist-indication and muscle-restoration gap found by the broader undated pass. The Cleveland Clinic registry record describes a small, open-label Phase 2 study of tirzepatide in people with COPD and obesity or overweight, with sarcopenia and muscle-function outcomes including grip strength, walking, sit-to-stand performance, lean mass and skeletal-muscle mitochondrial function.
+
+The study remains not yet recruiting and has no posted results. Its August 2026 start and 2028/2029 completion dates remain estimates rather than completed events. Mounjaro's established UK weight-management position is not transferred to COPD, sarcopenia or muscle-restoration research. The catalogue now contains 76 entries (6 detailed and 70 wider summaries); the automated-source denominator remains 50, and no new UK authorisation, NICE/NHS England access, lawful supply for these uses, SHIFT sale or clinical approval is inferred.
