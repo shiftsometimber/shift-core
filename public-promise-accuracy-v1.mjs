@@ -1,5 +1,5 @@
-// Bounded accuracy repairs against the pinned Pages source. No amounts,
-// purchase gates, intended services or navigation are changed.
+import {repairCentreGuidance,repairOrderGuidance,repairOrderControllerGuidance,repairIntegratedGuidance,repairSideEffectGuidance} from './public-treatment-guidance.mjs';
+// Bounded repairs against current Pages source; amounts, stock and release closure are retained.
 export function repairTreatmentCentre(html){
  return html.replace('Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.','Retatrutide, CagriSema, Amycretin, MariTide and the next generation of weight-management treatments.')
  .replace('Use the free Health MOT to organise your current picture and identify sensible priorities.','Explore the SHIFT Health MOT home blood test and what it covers.')
@@ -25,8 +25,9 @@ export async function repairPromiseResponse(response,request){
  if(request.method!=='GET'||!response.ok)return response;
  const html=['/treatment-centre','/treatment-centre.html'].includes(path);
  const script=path==='/treatment-order-prototype-v1.js';
- if(!html&&!script)return response;
- const source=await response.text(),body=html?repairTreatmentCentre(source):repairTreatmentOrderController(source);
+ const order=['/treatment-order','/treatment-order.html'].includes(path),integrated=path==='/medicine-front-door-integrated-v1.js',sideEffects=['/articles/glp1-side-effects','/articles/glp1-side-effects.html'].includes(path);
+ if(!html&&!script&&!order&&!integrated&&!sideEffects)return response;
+ const source=await response.text(),body=html?repairCentreGuidance(repairTreatmentCentre(source)):script?repairOrderControllerGuidance(repairTreatmentOrderController(source)):order?repairOrderGuidance(source):integrated?repairIntegratedGuidance(source):repairSideEffectGuidance(source);
  const headers=new Headers(response.headers);for(const name of ['Content-Length','ETag','Last-Modified'])headers.delete(name);
  headers.set('Cache-Control','no-store');headers.set('X-Shift-Accuracy-Repair','v1');
  return new Response(body,{status:response.status,headers});

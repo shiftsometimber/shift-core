@@ -1,6 +1,7 @@
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
 import {readFileSync} from 'node:fs';
 import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES,validateNiceTimeout,NICE_TIMEOUT_PATHS} from '../scripts/b1-release-scope.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json',import.meta.url)));
@@ -183,4 +184,10 @@ test('public wording/menu release accepts only the exact browser-tested source',
  const reviewed=(ref,path)=>ref==='HEAD'?PUBLIC_WORDING_PREVIEW+':'+path:ref+':'+path;
  validatePublicWording(reviewed);
  for(const changed of PUBLIC_WORDING_PATHS)assert.throws(()=>validatePublicWording((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
+});
+
+test('treatment release binds every browser-tested eligibility and information file',()=>{
+ const read=(ref,path)=>ref==='HEAD'||ref===TREATMENT_GUIDANCE_PREVIEW?'exact:'+path:'other';
+ validateTreatmentGuidance(read);
+ for(const drift of TREATMENT_GUIDANCE_PATHS)assert.throws(()=>validateTreatmentGuidance((ref,path)=>ref==='HEAD'&&path===drift?'changed':read(ref,path)),/Treatment service criteria\/source drift/);
 });
