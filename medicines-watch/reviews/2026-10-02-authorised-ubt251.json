@@ -1,0 +1,100 @@
+{
+  "reviewedAt": "2026-10-02T03:28:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish the primary-source-reviewed UBT251 omission through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "ubt251",
+      "name": "UBT251 / NN9559",
+      "developer": "United Biotechnology / Novo Nordisk",
+      "group": "research",
+      "stage": "Chinese Phase 2 results; global Phase 1b/2a ongoing",
+      "summary": "Novo Nordisk and United Biotechnology sponsor reporting describes once-weekly injectable UBT251 as a GLP-1/GIP/glucagon triple agonist. A Chinese Phase 2 obesity study reported up to 19.7% mean weight loss after 24 weeks; Novo's later pipeline presentation records a separate global Phase 1b/2a obesity study as ongoing.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for UBT251 or this formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development, licensing rights or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The numerical findings are sponsor-reported and do not support cross-trial comparisons. Novo's September 2026 expectation to initiate weight-management Phase 3 in mid-2027 is a plan, not a completed event, result or regulatory decision.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T03:28:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Novo Nordisk and United Biotechnology: UBT251 Chinese Phase 2 topline results",
+          "url": "https://www.novonordisk.com/content/nncorp/global/en/news-and-media/news-and-ir-materials/news-details.html?id=916503",
+          "sourcePublishedAt": "2026-02-24",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T03:28:00Z",
+          "checkScope": "Original sponsor announcement read for formulation, mechanism, Chinese Phase 2 design, 24-week sponsor-reported result, partnership responsibilities and the separate global Phase 1b/2a plan; not automatically content-monitored."
+        },
+        {
+          "title": "Novo Nordisk Capital Markets Day 2026 obesity presentation",
+          "url": "https://www.novonordisk.com/content/dam/nncorp/global/en/investors/pdfs/capital-markets-day/2026/obesity-presentation-cmd-2026.pdf",
+          "sourcePublishedAt": "2026-09-21",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T03:28:00Z",
+          "checkScope": "Original sponsor pipeline presentation read for the ongoing global Phase 1b/2a obesity study, Chinese Phase 2 context and planned mid-2027 Phase 3 timing; forward-looking dates remain plans; not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07177469",
+          "url": "https://clinicaltrials.gov/study/NCT07177469",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-02T03:28:00Z",
+          "checkScope": "Sponsor-submitted registry linked for the Chinese Phase 2 obesity study and weekly injection design; sponsor results remain attributed and the registry link does not establish UK authorisation, NHS access or supply; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "discoveryPass": {
+    "checkedAt": "2026-10-02T03:28:00Z",
+    "scope": "Current-month and broader undated primary-source search across regulators, NHS/NICE, official product information, trial registries, named and additional developers; selected searches do not establish exhaustive coverage.",
+    "outcome": "UBT251 was a credible older omission absent from the 55-entry catalogue. Several unnamed or planned Novo pipeline concepts remain discovery candidates rather than publishable medicine entries until identity and clinical-stage evidence are sufficiently specific.",
+    "failedOrIncomplete": [
+      "ClinicalTrials.gov rendered only limited page text in the search interface; exact registry URL was retained and claims were bounded to readable sponsor evidence.",
+      "No new MHRA, NICE or NHS England decision for UBT251 was found in the reviewed UK pass."
+    ]
+  },
+  "monitorPass": {
+    "checkedAt": "2026-10-02T02:45:01.579Z",
+    "configuredSources": 50,
+    "currentSources": 46,
+    "delayedSources": [
+      {
+        "id": "pf3944-pfizer",
+        "error": "http_520",
+        "reviewStatus": "verification_pending"
+      },
+      {
+        "id": "danuglipron-pfizer",
+        "error": "http_520",
+        "reviewStatus": "verification_pending"
+      },
+      {
+        "id": "az-elecoglipron-20260608",
+        "error": "http_403",
+        "reviewStatus": "verification_pending"
+      },
+      {
+        "id": "hansoh-olatorepatide-20260604",
+        "error": "check_timeout",
+        "reviewStatus": "reviewed",
+        "lastSuccessAt": "2026-10-02T01:30:01.619Z"
+      }
+    ],
+    "recoveredSincePriorPass": [
+      {
+        "id": "apitegromab-embraze-paper",
+        "status": "current",
+        "lastSuccessAt": "2026-10-02T02:45:01.579Z"
+      }
+    ],
+    "interpretation": "The new Hansoh timeout follows a recent successful check and is recorded as delayed, not as withdrawal or factual evidence change. Existing blocked sources remain visible. No source baseline or medical review date is advanced by this receipt."
+  }
+}
