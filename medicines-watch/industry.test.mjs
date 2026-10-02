@@ -25,9 +25,11 @@ import semaglutideSpecialistTrials from './reviews/2026-10-02-authorised-semaglu
 import glimrCopd from './reviews/2026-10-02-authorised-glimr-copd.json' with {type:'json'};
 import specialistRegistryFollowup from './reviews/2026-10-02-authorised-specialist-registry-followup.json' with {type:'json'};
 import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.json' with {type:'json'};
+import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {type:'json'};
+import earlierEloraNa931Proposal from './reviews/2026-09-30-eloratzp-na931-discovery.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,71);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,77);
+ assert.equal(medicines.length,6);assert.equal(industry.length,72);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,78);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -108,7 +110,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,71);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,72);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -512,7 +514,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,71);
+ assert.equal(industry.length,72);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -530,4 +532,38 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.ok(survodutide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07855900'));
  assert.ok(switchingStudies.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
  assert.ok(switchingStudies.registryEvidence.every(record=>record.hasResults===false));
+});
+
+test('NA-931 preserves the sponsor and registry discrepancy without implying access or results',()=>{
+ assert.equal(na931Publication.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(na931Publication.clinicalApproval,null);
+ assert.equal(na931Publication.industryComplete,false);
+ assert.equal(na931Publication.automatedMonitorChanges,false);
+ assert.equal(na931Publication.configuredSourcePass.currentCount,50);
+ assert.equal(na931Publication.registryEvidence.nctId,'NCT06732245');
+ assert.equal(na931Publication.registryEvidence.overallStatus,'NOT_YET_RECRUITING');
+ assert.equal(na931Publication.registryEvidence.phase,'PHASE2');
+ assert.equal(na931Publication.registryEvidence.estimatedStart,'2026-08-15');
+ assert.equal(na931Publication.registryEvidence.hasResults,false);
+ assert.equal(na931Publication.priorProposal.candidateId,'na931-tirzepatide');
+ assert.equal(earlierEloraNa931Proposal.publicationStatus,'proposal_only');
+ assert.ok(earlierEloraNa931Proposal.candidates.some(item=>item.id===na931Publication.priorProposal.candidateId));
+ assert.equal(industry.filter(item=>item.id==='na931-tirzepatide').length,1);
+ const entry=industry.find(item=>item.id==='na931-tirzepatide');
+ assert.ok(entry);
+ assert.equal(entry.group,'research');
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.stage,/Phase 2 registry not yet recruiting/);
+ assert.match(entry.stage,/Phase 3 programme sponsor-reported/);
+ assert.match(entry.summary,/estimated 224 adults/);
+ assert.match(entry.limitations,/already-past 15 August 2026 estimated start/);
+ assert.match(entry.limitations,/attributed claims/);
+ assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(entry.supply,/do not establish lawful UK retail supply/);
+ assert.equal(entry.sourceIds.length,0);
+ assert.equal(entry.additionalEvidence.length,2);
+ assert.ok(entry.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT06732245'));
+ assert.ok(entry.additionalEvidence.some(source=>source.url==='https://www.biomedind.com/NA-931.html'));
+ assert.ok(discoveryDomains.includes('biomedind.com'));
 });
