@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "35e8ea75b2f74fecc58cd70005491cdf66114b3e",
+  "applicationCommit": "3c4ea1eb63957a2ec50a428e696707229c8e19d6",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -109,16 +109,16 @@
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02: request observed in this session; exact approval time not supplied",
-      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let\u2019s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass."
+      "evidence": "User repeatedly instructed \"needs to be live\" and then \"can you sort >?\". Deployment authority is retained and will not be requested again; retained launch checks still need evidence. Matt explicitly instructed \"Let’s get it live\" at 16:06 BST after disclosure of the 1.82-second result versus the 1-second target. This authorises the bounded first release at that measured timing; it does not turn the target into a pass."
     },
     "ownerAcceptance": {
       "approved": true,
       "decidedBy": "Matt",
       "decidedAt": "2026-10-02T18:41:45+01:00",
-      "evidence": "Matt instructed: \u201cFix the issues you have found, understand the gaps and implement a strategy to close the loop positively and progressively.\u201d This authorises the exact engineering repair under owner acceptance. Independent and clinical review are not represented as complete.",
+      "evidence": "Matt instructed: “Fix the issues you have found, understand the gaps and implement a strategy to close the loop positively and progressively.” This authorises the exact engineering repair under owner acceptance. Independent and clinical review are not represented as complete.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "35e8ea75b2f74fecc58cd70005491cdf66114b3e",
+      "applicationCommit": "3c4ea1eb63957a2ec50a428e696707229c8e19d6",
       "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory."
     }
   },
@@ -127,7 +127,7 @@
     "approved": true,
     "decidedBy": "Matt",
     "decidedAt": "2026-10-02T17:17:48+01:00",
-    "evidence": "User explicitly stated \u201c1.10 is ok\u201d after the final local simulated p95 result was disclosed.",
+    "evidence": "User explicitly stated “1.10 is ok” after the final local simulated p95 result was disclosed.",
     "observedP95Ms": 1100.9,
     "scope": "Accept this measured timing for the phantom-member repair release; the original 1000ms target remains unmet in the final test. This does not approve independent content acceptance or establish production timing."
   }
