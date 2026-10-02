@@ -1,3 +1,4 @@
+import {verifyMemberAcceptanceProof} from './member-acceptance-scope.mjs';
 import {MEMBER_DESIGN_PATHS,verifyMemberDesignProof} from './member-design-scope.mjs';
 import {FOOTER_PATHS,historicalFooterRef,verifyFooterProof} from './footer-scope.mjs';
 import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN,FOOTER_PREVIEW,FOOTER_RUN} from './home-banner-scope.mjs';
@@ -8,6 +9,7 @@ const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
 const sharedFooterProof=await verifyFooterProof(get);
 const memberDesignProof=await verifyMemberDesignProof(get);
+const memberAcceptanceProof=await verifyMemberAcceptanceProof(get);
 const pwaDismissApproval=await get('/actions/runs/36780636646');assert.equal(pwaDismissApproval.head_sha,PWA_DISMISS_APPROVED);assert.equal(pwaDismissApproval.conclusion,'success');
 const footerApproval=await get('/actions/runs/'+FOOTER_RUN);assert.equal(footerApproval.head_sha,FOOTER_PREVIEW);assert.equal(footerApproval.conclusion,'success');assert.equal(footerApproval.path,'.github/workflows/home-banner-preview.yml');
 const creamApproval=await get('/actions/runs/'+CREAM_RUN);assert.equal(creamApproval.head_sha,CREAM_PREVIEW);assert.equal(creamApproval.conclusion,'success');assert.equal(creamApproval.path,'.github/workflows/home-banner-preview.yml');
@@ -18,7 +20,7 @@ const integratedBanner=await get('/actions/runs/36695679627');assert.equal(integ
 const approved=await get('/actions/runs/36636511091');assert.equal(approved.head_sha,APP_APPROVED);assert.equal(approved.conclusion,'success');
 assert.equal(approved.path,'.github/workflows/app-layout-preview.yml');
 git('merge-base','--is-ancestor',APP_APPROVED,'HEAD');
-const releaseMetadata=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','.github/workflows/continuity-live-acceptance.yml','release/member-design-scope.mjs','tests/member-design-release.test.mjs','.github/workflows/member-design-release-proof.yml','release/app-manifest.json','release/app-scope.mjs','release/app-preflight.mjs','release/app-index-freshness.mjs','tests/app-index-freshness.test.mjs','release/app-live-http.mjs','release/app-member-live.mjs','release/app-client-proof.mjs','tests/app-client-proof.test.mjs','release/growth-scope.mjs','release/growth-preflight.mjs','release/member-focus-scope.mjs','tests/member-focus-release.test.mjs','release/growth-adopt-deployment.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs']);
+const releaseMetadata=new Set(['g2-014-progress-picture-premium-production.mjs',"health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/my-timber-final-production.yml",".github/workflows/rendered-member-production-acceptance.yml","release/member-acceptance-scope.mjs",'rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','.github/workflows/continuity-live-acceptance.yml','release/member-design-scope.mjs','tests/member-design-release.test.mjs','.github/workflows/member-design-release-proof.yml','release/app-manifest.json','release/app-scope.mjs','release/app-preflight.mjs','release/app-index-freshness.mjs','tests/app-index-freshness.test.mjs','release/app-live-http.mjs','release/app-member-live.mjs','release/app-client-proof.mjs','tests/app-client-proof.test.mjs','release/growth-scope.mjs','release/growth-preflight.mjs','release/member-focus-scope.mjs','tests/member-focus-release.test.mjs','release/growth-adopt-deployment.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','member-experience/public-preservation.mjs','member-experience/verify-production-member.mjs']);
 // Owner authorised PR #850 on 29 September; bind its exact reviewed delta separately from the app preview.
 const watchCommit='c5b9e804605a241ad0f1c0fefefaf14994cffba7';
 const watchPaths=new Set(["medicines-watch/data.mjs","medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json","medicines-watch/source-review.test.mjs","scripts/b1-release-scope.mjs","tests/b1-release-scope.test.mjs"]);
@@ -35,13 +37,16 @@ git('merge-base','--is-ancestor',synt101CorrectionCommit,'HEAD');
 const internationalOmissionsCommit='874a3b1bc3013de9442dbedbf1398c275fc13f6c';
 const internationalOmissionsPaths=new Set(['medicines-watch/README.md','medicines-watch/industry-page.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-international-omissions.json']);
 git('merge-base','--is-ancestor',internationalOmissionsCommit,'HEAD');
+const expandedDiscoveryCommit='cd65000cd120d6de8496b7edbea27e333d5042a3';
+const expandedDiscoveryPaths=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-expanded-discovery.json']);
+git('merge-base','--is-ancestor',expandedDiscoveryCommit,'HEAD');
 // Exact manifest-pinned repair for the production-only missing embedded consent loader.
 // Retain exact current-main native/app-review and login work; this web release does not submit native apps.
 const retainedCurrentMain=new Set([".github/workflows/master-integration-gate.yml",".github/workflows/my-timber-app-preview.yml","frontend/member/my-timber-preview.html","my-timber-app/RELEASE-AUDIT-2026-10-01.md","my-timber-app/android/app/build.gradle","my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java","my-timber-app/contract.json","my-timber-app/ios/Sources/MyTimberViewController.swift","my-timber-app/ios/project.yml","my-timber-app/tests/apple-review-live.mjs","my-timber-app/tests/source.test.mjs","tests/member-auth-ui-v2.test.mjs"]);
 const retainedMain='b23010cfca99b3ab05377062ad5b16984711111c';
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
-for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(retainedCurrentMain.has(p)?retainedMain:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
+for(const p of APP_PATHS){if(!MEMBER_DESIGN_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:retainedCurrentMain.has(p)?retainedMain:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED)+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);

@@ -25,6 +25,19 @@ export async function commissioningLogin(page,{site,api=site,oidc,email,password
   return{authenticated:true,origins};
 }
 
+export async function chooseNecessaryCookies(page){
+  // Exercise the ordinary choice. Never hide a blocking dialog or force a click.
+  const loader=page.locator('script[src*="/consent-v4a.js"]');
+  if(await loader.count())await page.waitForFunction(()=>!!window.SSTConsent,null,{timeout:15000});
+  const dialog=page.locator('.cookie-banner-v3a');
+  if(await dialog.count()&&await dialog.isVisible()){
+    const necessary=dialog.locator('button[data-consent="necessary"]');
+    if(await necessary.count()!==1||!await necessary.isVisible())throw new Error('Cookie choices require one visible Necessary only control');
+    await necessary.click();
+    await dialog.waitFor({state:'hidden',timeout:15000});
+  }
+}
+
 export async function memberReady(page,{site,panel=null}){
   const identity=identities.get(page.context());
   if(!identity||identity.site!==site)throw new Error('Member readiness requires a verified commissioning session');
@@ -38,12 +51,14 @@ export async function memberReady(page,{site,panel=null}){
     const state=await page.evaluate(()=>({path:location.pathname,title:document.title,memberPresent:!!document.querySelector('#previewMember'),memberReady:document.querySelector('#previewMember')?.classList.contains('is-ready')||false,memberHidden:document.querySelector('#previewMember')?.hidden??null,authHidden:document.querySelector('#previewAuth')?.hidden??null,panels:[...document.querySelectorAll('.mp-panel')].map(x=>x.id)})).catch(()=>({path:new URL(page.url()).pathname,documentUnavailable:true}));
     throw new Error(`Authenticated member UI did not become ready: ${JSON.stringify(state)}`);
   }
+  await chooseNecessaryCookies(page);
   if(panel)await requireMemberPanel(page,panel);
 }
 
 export async function requireMemberPanel(page,panel,{evidenceDir}={}){
   if(!/^[a-z][a-z0-9-]*$/.test(panel))throw new Error('Invalid member panel name');
   try{
+  await chooseNecessaryCookies(page);
   const host=page.locator(`#panel-${panel}`);
   if(!await host.count())throw new Error(`Missing member capability: #panel-${panel} is absent from the current dashboard`);
   const candidates=page.locator(`[data-portal-panel="${panel}"],.mp-tab[data-panel="${panel}"],a[href="/member/dashboard#${panel}"],a[href="#${panel}"]`);
