@@ -19,7 +19,7 @@ Public preservation accepts only the exact marked Treatments entry. The other te
 
 ## Coverage expansion and discovery
 
-The live catalogue contains 6 detailed references plus 68 concise industry summaries in `industry.mjs`: 74 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
+The live catalogue contains 6 detailed references plus 69 concise industry summaries in `industry.mjs`: 75 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
 
 `reviews/2026-10-02-authorised-expanded-registry-wave.json` records the latest seven owner-authorised factual additions and the ecnoglutide specialist-indication update, with exact primary URLs, registry dates, response hashes, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
 
@@ -139,3 +139,9 @@ The catalogue now contains 67 entries (6 detailed and 61 wider summaries), while
 The review preserves conflicts and incomplete evidence rather than smoothing them away. MWN109 Phase 3, MWN110 and a weight-management TQF3250 record remain not yet recruiting despite past estimated starts. BIO101's registry still carries an older July 2026 estimate, while Biophytis's later update plans first-patient enrolment for Q1 2027. TLC-6740 findings are sponsor-reported and the larger Phase 2b study remains planned. No registry-posted results, UK authorisation, NICE/NHS England access, lawful UK retail supply, SHIFT sale or clinical approval is inferred.
 
 The catalogue now contains 74 entries (6 detailed and 68 wider summaries), while the automated-source denominator remains 50. The selected discovery domains have been broadened to Biophytis, OrsoBio, NeuroBiogen, Sino Biopharmaceutical and Lepu Medical, but remain a search aid rather than an exhaustive industry universe.
+
+## 2 October semaglutide specialist-use research
+
+`reviews/2026-10-02-authorised-semaglutide-specialist-trials.json` records three investigator-led specialist-use studies as one bounded semaglutide research summary: chronic low-back pain, pre-operative hip or knee arthroplasty, and semaglutide with a levonorgestrel intrauterine device and structured weight loss for conservative treatment of endometrial atypical hyperplasia or grade 1 endometrial cancer.
+
+All three registry records remain not yet recruiting and have no posted results. Estimated starts are retained as plans, including the 1 October 2026 estimate on the Canadian arthroplasty record. Wegovy's established UK weight-management position is not transferred to pain, peri-operative or endometrial-treatment uses. The catalogue now contains 75 entries (6 detailed and 69 wider summaries); the automated-source denominator remains 50, and no UK specialist-indication authorisation, NICE/NHS England access, lawful supply for those uses, SHIFT sale or clinical approval is inferred.
