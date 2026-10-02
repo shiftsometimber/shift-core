@@ -374,6 +374,31 @@
       "status": "SUCCESS",
       "version": "4396d20d-e8df-4f83-8e82-354146b89c76",
       "coachingLive": false
+    },
+    "sourceGuardAttempt": {
+      "status": "FAIL",
+      "runs": [
+        37005279219,
+        37005284445
+      ],
+      "observed": "Historical home-banner workflow comparison rejected the named coaching additions; no production deployment attempted.",
+      "resolutionProposed": "Keep the exact original comparison against the recorded pre-coaching workflow; independently pin every new workflow and modified guard byte."
+    },
+    "finalTimingObserved": {
+      "status": "FAIL_TARGET",
+      "scope": "Local synthetic Node/SQLite, simulated gzip, CPU4x,150ms latency,1.6Mbps; seven fresh timeOrigins",
+      "medianMs": 1497.5,
+      "p95Ms": 12808.40000000596,
+      "allSamplesMs": [
+        12808.40000000596,
+        1445.6000000014901,
+        1497.5,
+        1508.5999999940395,
+        1540.3999999985099,
+        1467.3999999985099,
+        1442.2999999970198
+      ],
+      "cause": "Not established. No production/subsecond claim."
     }
   }
 }

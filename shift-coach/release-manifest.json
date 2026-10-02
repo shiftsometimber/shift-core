@@ -10,6 +10,7 @@
     "release/app-scope.mjs",
     "release/growth-adopt-deployment.mjs",
     "release/growth-scope.mjs",
+    "release/home-banner-scope.mjs",
     "release/shift-ai-scope.mjs",
     "scripts/b1-release-scope.mjs",
     "shift-coach/README.md",

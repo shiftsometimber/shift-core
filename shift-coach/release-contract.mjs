@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 export const COACH_BASE='5ce97113112f3af637c4b108ee90813b1328d7b5';
 export const COACH_ADDITIONS=new Set(["shift-coach/adapt.mjs", "shift-coach/browser-proof.mjs", "shift-coach/clock.mjs", "shift-coach/continue.mjs", "shift-coach/follow-up.mjs", "shift-coach/followup-view.mjs", "shift-coach/full-page-proof.mjs", "shift-coach/privacy-purpose-review.md", "shift-coach/integration.test.mjs", "shift-coach/life-back.mjs", "shift-coach/memory.mjs", "shift-coach/night-job.mjs", "shift-coach/permissions.mjs", "shift-coach/planning.mjs", "shift-coach/presentation.mjs", "shift-coach/privacy.mjs", "shift-coach/routes.mjs", "shift-coach/safety.mjs", "shift-coach/scope.mjs", "shift-coach/store.mjs", "shift-coach/test-fixture.mjs", "shift-coach/today.mjs", "shift-coach/ui.mjs", "shift-coach/voice.mjs", "shift-coach/worker.mjs", "shift-coach/workerd-proof.cjs", "shift-coach/README.md", "shift-coach/launch-assessment.json", "shift-coach/release-contract.mjs", "shift-coach/release-manifest.json", "shift-coach/release.test.mjs", "wrangler.coaching.jsonc", ".github/workflows/shift-coach-integration.yml"]);
-export const COACH_BACKEND_PATHS=new Set(["wrangler.jsonc", ".github/workflows/cloudflare-production-promote.yml", "release/app-scope.mjs", "release/app-preflight.mjs", "release/growth-scope.mjs", "release/growth-adopt-deployment.mjs", "release/shift-ai-scope.mjs", "scripts/b1-release-scope.mjs", "tests/shift-ai-release.test.mjs"]);
+export const COACH_BACKEND_PATHS=new Set(["wrangler.jsonc", ".github/workflows/cloudflare-production-promote.yml", "release/app-scope.mjs", "release/app-preflight.mjs", "release/growth-scope.mjs", "release/growth-adopt-deployment.mjs", "release/shift-ai-scope.mjs", "scripts/b1-release-scope.mjs", "tests/shift-ai-release.test.mjs", "release/home-banner-scope.mjs"]);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS]);
 export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json']);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
@@ -17,7 +17,7 @@ export function assertCoachingConfiguration(current,previous){
 // Historical comparisons still verify the reviewed old bytes; the exact new bytes
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
- return ref==='HEAD'&&['wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','release/growth-adopt-deployment.mjs'].includes(path)?COACH_BASE:ref;
+ return ref==='HEAD'&&['wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','release/growth-adopt-deployment.mjs','release/home-banner-scope.mjs'].includes(path)?COACH_BASE:ref;
 }
 export function validateCoachingSource(read,manifest){
  assert.equal(manifest.recordedMain,COACH_BASE);
