@@ -6,7 +6,7 @@ export default {async fetch(request){
  if(/^\/(?:api|hq|admin|member)(?:\/|$)/.test(u.pathname)||u.pathname.startsWith('/treatment-assessment')||(u.pathname.startsWith('/v1/')&&u.pathname!=='/v1/catalogue/medicines'))return new Response('Account operations disabled in preview',{status:403});
  if(u.pathname==='/__qa'){
   const width=Number(u.searchParams.get('width')),path=u.searchParams.get('path')||'/treatment-order';
-  if(![390,1440].includes(width)||!['/treatment-order','/articles/glp1-side-effects'].includes(path))return new Response('Invalid preview',{status:400});
+  if(![390,1440].includes(width)||!['/treatment-order','/treatment-centre','/articles/glp1-side-effects'].includes(path))return new Response('Invalid preview',{status:400});
   return new Response('<!doctype html><html><body style="margin:0;background:#050505"><iframe title="Responsive display preview" src="'+path+'" style="width:'+width+'px;height:1400px;border:0;display:block"></iframe></body></html>',{headers:{'Content-Type':'text/html','X-Robots-Tag':'noindex, nofollow'}});
  }
  const original=await fetch(production+u.pathname+u.search,{method:request.method,headers:{Accept:request.headers.get('Accept')||'*/*'},redirect:'manual'});
