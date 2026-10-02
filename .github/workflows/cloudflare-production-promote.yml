@@ -245,6 +245,26 @@ jobs:
           JS
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Restore only the exact runtime interrupted by run 37047576206
+        timeout-minutes: 2
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {readFileSync,copyFileSync} from 'node:fs';
+          const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8'});
+          const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
+          assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);
+          if(active.versions[0].version_id==='7204ee91-dc82-4f3f-90ce-ead305baf9ae'){
+            const receipt=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37047576206',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(receipt.ok);const run=await receipt.json();assert.equal(run.head_sha,'32a51925c6a7676887a3a59b042c15a8272ccc3c');assert.equal(run.conclusion,'cancelled');
+            execFileSync('gh',['run','download','37047576206','--repo','shiftsometimber/shift-core','--name','worker-deployment-before-37047576206','--dir','interrupted-release'],{stdio:'inherit'});
+            const before=JSON.parse(readFileSync('interrupted-release/deployment-before.json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(before.versions.length,1);assert.equal(before.versions[0].percentage,100);assert.equal(before.versions[0].version_id,'b9dbe47f-9695-4d2c-b17c-208384a86c37');
+            copyFileSync('interrupted-release/deployment-before.json','deployment-before.json');execFileSync(process.execPath,['release/member-details-rollback.mjs'],{stdio:'inherit'});
+          }else console.log('Exact interrupted version is not active; no recovery mutation. Normal adoption still verifies the live baseline.');
+          JS
+      - name: Prepare browser verification tools before deployment
+        timeout-minutes: 4
+        run: |
+          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+          "$RUNNER_TEMP/heading-tools/node_modules/.bin/playwright" install --with-deps chromium
       - name: Adopt the exact already-completed growth deployment
         id: growth_deployed
         run: node release/growth-adopt-deployment.mjs
@@ -450,6 +470,24 @@ jobs:
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main
           npx wrangler deploy --config wrangler.jsonc
+      - name: Record this attempt's successfully deployed runtime
+        if: steps.runtime_deploy.outcome == 'success'
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {readFileSync,writeFileSync} from 'node:fs';
+          const active=JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','deployments','list','--config','wrangler.jsonc','--json'],{encoding:'utf8'})).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);
+          const before=JSON.parse(readFileSync('deployment-before.json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(before.versions.length,1);assert.equal(before.versions[0].percentage,100);
+          writeFileSync('deployment-after.json',JSON.stringify({runId:process.env.GITHUB_RUN_ID,runAttempt:process.env.GITHUB_RUN_ATTEMPT,source:process.env.GITHUB_SHA,deployedVersion:active.versions[0].version_id,previousVersion:before.versions[0].version_id,deploymentSucceeded:true}));
+          JS
+      - name: Retain this attempt's exact deployment receipt
+        if: steps.runtime_deploy.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-deployment-after-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            deployment-before.json
+            deployment-after.json
+          if-no-files-found: error
       - name: Begin verification of the deployed runtime
         id: growth_live_started
         run: test -s deployment-before.json
@@ -460,8 +498,6 @@ jobs:
         run: sleep 10
       - name: Verify rendered knowledge headings and direct About link live
         run: |
-          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund playwright@1.63.0
-          "$RUNNER_TEMP/heading-tools/node_modules/.bin/playwright" install --with-deps chromium
           PREVIEW_URL=https://shiftsometimber.co.uk PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-knowledge-headings.cjs
       - uses: actions/upload-artifact@v4
         if: always()
@@ -474,7 +510,6 @@ jobs:
         run: node release/growth-public-live.cjs
       - name: Measure and retain live homepage mobile speed
         run: |
-          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund lighthouse@12.8.2
           mkdir -p home-speed-live
           node release/home-banner-live.cjs
           export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
@@ -673,7 +708,7 @@ jobs:
       - name: Verify B1 protected catalogue and stock remain identical
         run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Restore the captured runtime if a post-deployment gate failed
-        if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}
+        if: ${{ (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success')) }}
         run: node release/member-details-rollback.mjs
       - name: Retain B1 runtime-only release evidence
         if: always()
@@ -681,4 +716,56 @@ jobs:
         with:
           name: b1-runtime-release-${{ github.run_id }}
           path: b1-runtime-release/
+          if-no-files-found: error
+
+  recover_interrupted_promotion:
+    needs: promote
+    if: ${{ always() && (needs.promote.result == 'failure' || needs.promote.result == 'cancelled') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Check for this run's captured rollback record
+        id: capture
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {appendFileSync} from 'node:fs';
+          const r=await fetch('https://api.github.com/repos/'+process.env.GITHUB_REPOSITORY+'/actions/runs/'+process.env.GITHUB_RUN_ID+'/artifacts?per_page=100',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);const data=await r.json();const found=data.artifacts.some(a=>a.name==='worker-deployment-after-'+process.env.GITHUB_RUN_ID+'-'+process.env.GITHUB_RUN_ATTEMPT&&!a.expired);appendFileSync(process.env.GITHUB_OUTPUT,'available='+found+'\n');console.log(found?'Exact successful deployment receipt found.':'No successful deployment receipt for this attempt: recovery performs no runtime mutation.');
+          JS
+      - name: Download this run's captured rollback record
+        if: steps.capture.outputs.available == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: worker-deployment-after-${{ github.run_id }}-${{ github.run_attempt }}
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+      - name: Install exact recovery toolchain
+        if: steps.capture.outputs.available == 'true'
+        run: npm install --no-audit --no-fund
+      - name: Restore and verify only this attempt's exact deployed runtime
+        if: steps.capture.outputs.available == 'true'
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+          const receipt=JSON.parse(readFileSync('deployment-after.json'));assert.equal(receipt.deploymentSucceeded,true);assert.equal(receipt.runId,process.env.GITHUB_RUN_ID);assert.equal(receipt.runAttempt,process.env.GITHUB_RUN_ATTEMPT);assert.equal(receipt.source,process.env.GITHUB_SHA);
+          const before=JSON.parse(readFileSync('deployment-before.json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(before.versions.length,1);assert.equal(before.versions[0].percentage,100);assert.equal(before.versions[0].version_id,receipt.previousVersion);
+          const active=JSON.parse(execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','deployments','list','--config','wrangler.jsonc','--json'],{encoding:'utf8'})).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);
+          if(active.versions[0].version_id===receipt.previousVersion){mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/rollback.json',JSON.stringify({restoredVersion:receipt.previousVersion,restorationPerformed:false,verifiedBaselineAlreadyActive:true}));console.log('Captured baseline is already active; no recovery mutation.');}
+          else{assert.equal(active.versions[0].version_id,receipt.deployedVersion,'Unexpected active runtime: refuse recovery mutation');execFileSync(process.execPath,['release/member-details-rollback.mjs'],{stdio:'inherit'});}
+          JS
+      - name: Retain independent recovery evidence
+        if: always() && steps.capture.outputs.available == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-independent-recovery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: b1-runtime-release/rollback.json
           if-no-files-found: error

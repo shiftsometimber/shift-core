@@ -199,3 +199,23 @@ test('registry wave retains only exact PR955 reviewed files',async()=>{
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });
+
+test('independent recovery uses the exact deployment receipt and refuses unrelated runtimes',()=>{
+ const match=workflow.match(/name: Restore and verify only this attempt's exact deployed runtime[\s\S]*?node --input-type=module <<'JS'\n([\s\S]*?)\n          JS/);assert(match,'Independent recovery program required');
+ const body=match[1].replace(/^\s*import .*$/m,'');
+ const execute=(patch={},activeVersion='new',traffic=100)=>{
+  const calls=[],writes=[];const receipt={deploymentSucceeded:true,runId:'123',runAttempt:'2',source:'reviewed',previousVersion:'old',deployedVersion:'new',...patch};
+  const run=new Function('assert','execFileSync','readFileSync','writeFileSync','mkdirSync','process','console',body);
+  const exec=(command,args)=>{if(args.includes('deployments'))return JSON.stringify([{created_on:'2026-10-02',versions:[{version_id:activeVersion,percentage:traffic}]}]);if(args.includes('release/member-details-rollback.mjs')){calls.push('restore');return '';}throw Error('Unexpected execution');};
+  const read=path=>JSON.stringify(path==='deployment-after.json'?receipt:[{created_on:'2026-10-01',versions:[{version_id:'old',percentage:100}]}]);
+  return{calls,writes,run:()=>run(assert,exec,read,(p,s)=>writes.push(JSON.parse(s)),()=>{}, {execPath:'node',env:{GITHUB_RUN_ID:'123',GITHUB_RUN_ATTEMPT:'2',GITHUB_SHA:'reviewed'}},{log(){}})};
+ };
+ const exact=execute();exact.run();assert.deepEqual(exact.calls,['restore']);
+ const already=execute({},'old');already.run();assert.deepEqual(already.calls,[]);assert.equal(already.writes[0].verifiedBaselineAlreadyActive,true);
+ const unrelated=execute({},'another');assert.throws(unrelated.run,/Unexpected active runtime/);assert.deepEqual(unrelated.calls,[]);
+ for(const patch of [{runId:'other'},{runAttempt:'1'},{source:'other'},{deploymentSucceeded:false},{previousVersion:'other'}]){const wrong=execute(patch);assert.throws(wrong.run);assert.deepEqual(wrong.calls,[]);}
+ const split=execute({},'new',50);assert.throws(split.run);assert.deepEqual(split.calls,[]);
+});
+test('browser installation is bounded before deployment and timeout recovery is a separate job',()=>{
+ const prep=workflow.indexOf('name: Prepare browser verification tools before deployment'),deploy=workflow.indexOf('name: Deploy current main to production');assert(prep>0&&prep<deploy);assert.match(steps.find(s=>s.startsWith('name: Prepare browser verification tools before deployment')),/timeout-minutes: 4/);assert(!workflow.slice(deploy).includes('playwright" install --with-deps'));assert.match(workflow,/recover_interrupted_promotion:\n    needs: promote\n    if: .*always\(\).*failure.*cancelled/);
+});
