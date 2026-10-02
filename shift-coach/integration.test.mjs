@@ -213,3 +213,14 @@ test('dashboard sends only active prepared actions while stored feedback and act
  assert.equal(next.memory.preparedActions.length,1);assert.equal(next.memory.outcomes.length,4);
  const stored=(await load(DB,1)).state;assert.equal(stored.actions.filter(a=>a.status==='completed').length,4);assert.equal(stored.outcomes.length,4);
 });
+
+test('confirmed practical constraints keep feedback explanations until those constraints change',async t=>{
+ const DB=fixture(t);await start(DB);
+ await save(DB,{kind:'constraints',constraints:{kitchen:'no-cook',time:'short',budget:'tight'}});
+ let next=await read(DB);const first=next.action;
+ await save(DB,{kind:'accept',id:first.id});await save(DB,{kind:'outcome',id:first.id,value:'didnt-help'});
+ next=await read(DB);assert.notEqual(next.action.approach,first.approach);assert.match(next.action.reason,/didn’t help.*different approach/);
+ await save(DB,{kind:'constraints',constraints:{kitchen:'cook',time:'flexible',budget:'regular'}});
+ next=await read(DB);assert.doesNotMatch(next.action.reason,/didn’t help/);
+ assert.equal(next.memory.outcomes.at(-1).title,first.task.title);
+});
