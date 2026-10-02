@@ -44,6 +44,8 @@
     "shift-coach/README.md",
     "shift-coach/adapt.mjs",
     "shift-coach/browser-proof.mjs",
+    "shift-coach/cancelled-release-recovery.mjs",
+    "shift-coach/cancelled-release-recovery.test.mjs",
     "shift-coach/clock.mjs",
     "shift-coach/continue.mjs",
     "shift-coach/follow-up.mjs",
@@ -65,6 +67,7 @@
     "shift-coach/public-font-browser-proof.mjs",
     "shift-coach/public-font-delivery.mjs",
     "shift-coach/public-font-delivery.test.mjs",
+    "shift-coach/recover-cancelled-release.mjs",
     "shift-coach/release-contract.mjs",
     "shift-coach/release.test.mjs",
     "shift-coach/routes.mjs",
@@ -125,7 +128,7 @@
       "engineeringVerified": true,
       "independentReviewCompleted": false,
       "applicationCommit": "921d04bd53256eee1f7f904c6863b1a96beba396",
-      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. The release prerequisite projects the exact approved homepage font into a 34,920-byte subset from 87,120 bytes. Font outline/metrics/hinting equality and identical local browser pixels/layout at 320,390,1440px are verified; 22 focused delivery/homepage/release checks pass. Production LCP has not yet passed for this payload; unchanged live speed and rollback checks remain required."
+      "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. The release prerequisite projects the exact approved homepage font into a 34,920-byte subset from 87,120 bytes. Font outline/metrics/hinting equality and identical local browser pixels/layout at 320,390,1440px are verified; 22 focused delivery/homepage/release checks pass. Production LCP has not yet passed for this payload; unchanged live speed and rollback checks remain required. Exact recovery tests reject other versions, sources, attempts, split traffic and unverified baselines. The cancelled run37047576206 version7204ee91-dc82-4f3f-90ce-ead305baf9ae is the sole recoverable runtime. Browser installation is before deployment; strict source/clinical/privacy, 2.5-second homepage speed and rollback remain required. Matt reaffirmed the 2.5-second limit at 19:45 BST."
     }
   },
   "note": "Progressive everyday coaching repair preserving the independently reviewed earlier challenge catalogue. New constraints, progress, feedback and support changes rely on exact owner-authorised engineering acceptance; independent review of this new payload is not claimed. Source, privacy, preservation and rollback checks remain required. Narrow feedback explanation repair preserves the complete concurrent release and its recorded authority; no clinical, support queue, timing gate or data-retention change.",
