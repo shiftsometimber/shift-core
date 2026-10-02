@@ -88,7 +88,7 @@ try{
   assert.equal(await page.locator('#todayBrand .member-design-mark').count(),1);
   assert.equal(await page.locator('#appBottomNav>*').count(),5);
   assert.equal(await page.locator('#sst-footer-c').count(),1);
-  assert(!(await page.locator('#todayActions>.mtm-hero').isVisible()),'Retired illustrated hero must not return');
+  assert.equal(await page.locator('#todayActions>.mtm-hero img').filter({visible:true}).count(),0,'Today must not show the retired pub photograph');assert.equal(await page.locator('#todayActions>.mtm-hero').evaluate(e=>getComputedStyle(e).backgroundImage),'none','Today heading must have no repeated background photograph');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
   await page.locator('.today-meal-action').click();
@@ -97,6 +97,33 @@ try{
   assert.equal(new URL(page.url()).pathname,'/member/dashboard','Grub opens in the containing member app');
   assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Opening a meal must preserve the saved workspace');
   pass('Approved shared Today shows the explicit saved meal and opens its real inline Grub control',chosen.name);
+  // Existing Ask Timber handoff opens the normal adjustment sheet. The member
+  // still chooses to save the change; no hidden click or forced UI state.
+  await page.goto(SITE+'/member/dashboard?reviewChange=working_late#today',{waitUntil:'domcontentloaded'});
+  await chooseNecessaryCookies(page);
+  await page.locator('[data-adjust="working_late"]').waitFor({state:'visible',timeout:30000});
+  await page.locator('[data-adjust="working_late"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.mt-sheet-wrap'),null,{timeout:30000});
+  const dailyAfter=(await account('/v1/shift/daily-plan')).daily;
+  assert.equal(dailyAfter.daily_output?.adjustment,'working_late');
+  assert.equal(dailyAfter.daily_output?.workout?.minutes,10);
+  assert.equal(dailyAfter.connected?.meal?.recipeId,chosen.id,'An adjustment must preserve the chosen meal');
+  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'An adjustment must preserve the saved Grub workspace');
+  const savedFitBefore=await account('/v1/fit/activity');assert.equal(savedFitBefore.plan?.minutes_per_day,30,'Context must not silently replace the retained Fit plan');
+  await page.locator('#appTab-fit').click();
+  const fitFrame=page.frameLocator('#appTool-fit iframe');
+  async function revealFit(selector){const field=fitFrame.locator(selector);await field.waitFor({state:'attached',timeout:45000});for(let attempt=0;attempt<5;attempt++){const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click();opened=true;break;}}assert(opened,'Fit setup requires an ordinary visible disclosure');}assert(await field.isVisible(),'Fit control must be visible: '+selector);return field;}
+  const minutes=await revealFit('#fitMinutes'),days=await revealFit('#fitDays');
+  if(await minutes.evaluate(e=>e.tagName)==='SELECT')await minutes.selectOption('10');else await minutes.fill('10');
+  if(await days.evaluate(e=>e.tagName)==='SELECT')await days.selectOption('1');else await days.fill('1');
+  assert.equal((await account('/v1/fit/activity')).plan?.minutes_per_day,30,'Editing setup must not replace a saved plan');
+  const generate=await revealFit('#fitGenerate'),savedResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/fit/plan'&&r.request().method()==='POST',{timeout:45000});
+  await generate.click();assert((await savedResponse).ok(),'Chosen Fit replacement must save successfully');
+  const savedFitAfter=await account('/v1/fit/activity');assert.equal(savedFitAfter.plan?.minutes_per_day,10);
+  await fitFrame.getByText(savedFitAfter.plan.sessions[0].title,{exact:true}).filter({visible:true}).first().waitFor({timeout:30000});
+  assert.equal((await account('/v1/grub/workspace')).today?.recipeId,chosen.id);
+  pass('Working late preserves the chosen meal and retained plan until the member explicitly generates a ten-minute Fit replacement','Normal Ask Timber adjustment sheet and visible Fit setup controls.');
+
   await screenshot(page,'02-billy-inline-grub');
   await verifyLiveTools(page,SITE,OUT,report);
   pass('App and website retain tool drafts and browser history, with one navigation, footer and cookie-choice owner','390px and 1440px; visible ordinary controls; no forced DOM or navigation');
