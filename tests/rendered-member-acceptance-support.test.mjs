@@ -18,7 +18,7 @@ function harness({sessionEmail=identity.email,sessionStatus=200,loginStatus=200,
       globalThis.document={querySelector:selector=>selector==='#previewMember'?{classList:{contains:()=>shown},hidden:!shown,getBoundingClientRect:()=>({height:shown?300:0})}:selector==='#previewAuth'?{hidden:shown}:selector.startsWith('#panel-')?{classList:{contains:()=>clicks.length>0}}:null};
       try{if(!fn(arg))throw Error('readiness timeout')}finally{globalThis.document=previous}
     },evaluate:async()=>({path:'/member/dashboard',memberReady:shown,memberHidden:!shown,authHidden:shown,panels:[]}),
-    locator:selector=>selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>({isVisible:async()=>controlVisible,click:async()=>clicks.push(selector),locator:()=>({count:async()=>0})})}};
+    locator:selector=>selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>({isVisible:async()=>controlVisible,click:async()=>clicks.push(selector),locator:()=>({count:async()=>0})})}};
   return{page,requests,clicks,navigations};
 }
 
@@ -60,8 +60,29 @@ test('a utility under More opens through its visible disclosure without forcing 
   let open=false,clicked=false;
   const summary={isVisible:async()=>true,click:async()=>{open=true}};
   const candidate={isVisible:async()=>open,click:async()=>{clicked=true},locator:()=>({count:async()=>1,locator:()=>({first:()=>summary})})};
-  const page={locator:selector=>selector.startsWith('#panel-')?{count:async()=>1,waitFor:async()=>assert.ok(clicked)}:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(clicked)};
+  const page={locator:selector=>selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?{count:async()=>1,waitFor:async()=>assert.ok(clicked)}:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(clicked)};
   await requireMemberPanel(page,'plans');assert.ok(open);assert.ok(clicked);
+});
+
+function sharedMoreHarness({panel='visualise',moreVisible=true,destinationVisible=true,nested=false}={}){
+  let menuOpen=false,disclosureOpen=!nested,destinationClicked=false;
+  const clicks=[];
+  const more={count:async()=>1,isVisible:async()=>moreVisible,getAttribute:async()=>String(menuOpen),click:async()=>{menuOpen=true;clicks.push('More')}};
+  const summary={isVisible:async()=>menuOpen,click:async()=>{disclosureOpen=true;clicks.push('Plans and records')}};
+  const candidate={isVisible:async()=>menuOpen&&disclosureOpen&&destinationVisible,click:async()=>{destinationClicked=true;clicks.push(panel)},locator:()=>({count:async()=>Number(nested&&!disclosureOpen),locator:()=>({first:()=>summary})})};
+  const host={count:async()=>1,waitFor:async()=>assert.ok(destinationClicked)};
+  const page={locator:selector=>selector==='#appMore'?more:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>candidate},waitForFunction:async()=>assert.ok(destinationClicked),evaluate:async()=>({path:'/member/dashboard',appMore:{expanded:String(menuOpen)}})};
+  return{page,clicks};
+}
+
+test('shared More opens Progress and nested Plans through visible member controls',async()=>{
+  const progress=sharedMoreHarness();await requireMemberPanel(progress.page,'visualise');assert.deepEqual(progress.clicks,['More','visualise']);
+  const plans=sharedMoreHarness({panel:'plans',nested:true});await requireMemberPanel(plans.page,'plans');assert.deepEqual(plans.clicks,['More','Plans and records','plans']);
+});
+
+test('opening shared More cannot make hidden or missing navigation pass',async()=>{
+  const hiddenButton=sharedMoreHarness({moreVisible:false});await assert.rejects(requireMemberPanel(hiddenButton.page,'visualise'),/no visible navigation/);assert.deepEqual(hiddenButton.clicks,[]);
+  const hiddenDestination=sharedMoreHarness({destinationVisible:false});await assert.rejects(requireMemberPanel(hiddenDestination.page,'visualise'),/no visible navigation/);assert.deepEqual(hiddenDestination.clicks,['More']);
 });
 
 test('production acceptance executes the committed harness without runtime source rewrites or blanket 400 filtering',async()=>{
