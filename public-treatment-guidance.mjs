@@ -34,8 +34,8 @@ export function repairOrderControllerGuidance(source){
  if(source.includes('// SHIFT current service gate;'))return source;
  source=source.replace('  function populateOptions(){',CONTROLLER_GATE+'  function populateOptions(){');
  source=source.replace('    const item=product();\n    $(\'[data-product-name]\')','    syncInsulinGate();\n    const item=product();\n    $(\'[data-product-name]\')');
- source=source.replace("const next=$('[data-op-next]'),ready=bmiCanContinue;","const next=$('[data-op-next]'),ready=bmiCanContinue&&insulinCheckPassed();");
- source=source.replace("priorityItem.classList.add('done');priorityItem.textContent='Journey preferences happen after approval';","priorityItem.classList.toggle('done',insulinCheckPassed());"+"priorityItem.textContent=insulinCheckPassed()?'Service check complete':'Answer the insulin question';");
+ source=source.replace("const next=$('[data-op-next]'),ready=bmiCanContinue;","const alternativeLink=$('[data-alternative-route] a[href=\"/shift-health/health-mot\"]');if(alternativeLink){alternativeLink.href='/shift-health';alternativeLink.textContent='Explore SHIFT Health'}const next=$('[data-op-next]'),ready=bmiCanContinue&&insulinCheckPassed();");
+ source=source.replace("priorityItem.classList.add('done');priorityItem.textContent='Journey preferences happen after approval';","priorityItem.classList.toggle('done',insulinCheckPassed());"+"priorityItem.textContent=insulinCheckPassed()?'Service check complete':insulinField?.value==='yes'?'Service unavailable':'Answer the insulin question';");
  source=source.replace("function show(n){step=", "function show(n){if(n>0&&(!bmiCanContinue||!insulinCheckPassed()))n=0;step=");
  // Continuing-treatment selection is not a patient-controlled eligibility waiver.
  source=source.replace(/      if\(stage==='continuing'\)\{[\s\S]*?      \}else if\(bmi>=item\.bmiStandard\)\{/,"      if(bmi>=item.bmiStandard){");
