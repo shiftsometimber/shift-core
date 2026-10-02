@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {PUBLIC_HEADERS} from '../babylove/response-policy.mjs';
+import {assertArticleImagePolicy} from './article-image-policy.mjs';
 const production='https://shiftsometimber.co.uk',origin=process.argv[2]||production;
 const paths=['/articles/wegovy-cost-uk','/articles/oral-semaglutide-for-weight-loss','/articles/mounjaro-cost-uk','/medicine-news/bolt-pharmacy-ads-banned-asa'];
 const report={checked_at:new Date().toISOString(),origin,source_sha:process.env.GITHUB_SHA||null,checks:[]};
@@ -16,7 +17,8 @@ try{
   assert.equal((html.match(/rel=["']canonical["']/gi)||[]).length,1,path+' canonical count');
   assert(html.includes('href="'+production+path+'"'),path+' self canonical');
   for(const key of ['og:title','og:description','og:url','og:image','twitter:card','twitter:title','twitter:description','twitter:image'])assert(meta(html,key),path+' '+key);
-  const data=schema(html);assert(data?.datePublished,path+' genuine date');assert(data.image,path+' representative image');assert(data.publisher?.logo,path+' publisher logo');
+  const data=schema(html);assert(data?.datePublished,path+' genuine date');assert(data.publisher?.logo,path+' publisher logo');
+  const imagePolicy=assertArticleImagePolicy({html,path,schema:data,sharingImage:meta(html,'og:image'),production});
   if(path.startsWith('/articles/'))for(const script of ['analytics-bootstrap-v1.js','consent-v4a.js','analytics-events-v31b.js'])assert.equal(html.split(script).length-1,1,path+' '+script);
   const head=await fetch(origin+path,{method:'HEAD',signal:AbortSignal.timeout(25000)});assert.equal(head.status,200);
   for(const [name,value] of Object.entries(PUBLIC_HEADERS))assert.equal(head.headers.get(name),value,path+' HEAD '+name);
@@ -36,7 +38,7 @@ try{
    await ir.body?.cancel();await new Promise(resolve=>setTimeout(resolve,2000));
   }
   assert.equal(ir.status,200,path+' sharing image attempts '+imageAttempts.join(','));assert.match(ir.headers.get('content-type'),/^image\//);await ir.arrayBuffer();
-  report.checks.push({path,status:'pass',main_content_preserved:origin!==production,datePublished:data.datePublished,sharing_image:image.pathname,image_attempt_statuses:imageAttempts,server_timing:response.headers.get('server-timing')});
+  report.checks.push({path,status:'pass',main_content_preserved:origin!==production,datePublished:data.datePublished,image_policy:imagePolicy,sharing_image:image.pathname,image_attempt_statuses:imageAttempts,server_timing:response.headers.get('server-timing')});
  }
 }catch(error){report.error=error.message;process.exitCode=1;console.error(error)}
 mkdirSync('article-quality-proof',{recursive:true});writeFileSync('article-quality-proof/quality.json',JSON.stringify(report,null,2));
