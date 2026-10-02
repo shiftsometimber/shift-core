@@ -1,6 +1,6 @@
 {
   "recordedMain": "afa730029198f39b60f6ea82d6469e5681d93575",
-  "applicationCommit": "5d90f2699fb65c7cb6c49b4b2a1df9557deca509",
+  "applicationCommit": "2e145cb7ed196d5d24cfc6fce2b5ba0914c8d4d7",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection. Exact homepage font delivery subset only; approved wording, layout, styles, image and original font source retained.",
   "pinnedPaths": [
@@ -127,7 +127,7 @@
       "evidence": "Matt instructed: “Fix the issues you have found, understand the gaps and implement a strategy to close the loop positively and progressively.” This authorises the exact engineering repair under owner acceptance. Independent and clinical review are not represented as complete. Matt’s retained instruction to fix found issues also covers the narrowly reproduced constraint-ID feedback validation regression.",
       "engineeringVerified": true,
       "independentReviewCompleted": false,
-      "applicationCommit": "5d90f2699fb65c7cb6c49b4b2a1df9557deca509",
+      "applicationCommit": "2e145cb7ed196d5d24cfc6fce2b5ba0914c8d4d7",
       "verificationEvidence": "59 saved-state integration and measurement checks, 307 preserved member/authentication/Journey/layout/footer checks, 8 release-contract tests, 15 compiled Worker/D1 checks and all 87 phantom-browser checks pass after preserving concurrent challenge-driven coaching. Zero browser errors; p95 921.6 ms, inside the owner-accepted 1.10-second bound. Final hosted source and production checks remain mandatory. The release prerequisite projects the exact approved homepage font into a 34,920-byte subset from 87,120 bytes. Font outline/metrics/hinting equality and identical local browser pixels/layout at 320,390,1440px are verified; 22 focused delivery/homepage/release checks pass. Production LCP has not yet passed for this payload; unchanged live speed and rollback checks remain required. Exact recovery tests reject other versions, sources, attempts, split traffic and unverified baselines. The cancelled run37047576206 version7204ee91-dc82-4f3f-90ce-ead305baf9ae is the sole recoverable runtime. Browser installation is before deployment; strict source/clinical/privacy, 2.5-second homepage speed and rollback remain required. Matt reaffirmed the 2.5-second limit at 19:45 BST."
     }
   },
