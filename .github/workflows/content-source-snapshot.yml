@@ -1,0 +1,31 @@
+name: Published content source snapshot
+on:
+  push:
+    branches: [codex/full-website-content-20261002]
+    paths: [.github/workflows/content-source-snapshot.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version-file: .nvmrc}
+      - run: npm ci --no-audit --no-fund
+      - name: Read only published articles and aggregate catalogue disposition
+        run: |
+          mkdir -p published-content-source
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,title,slug,category,author,status,summary,body,seo_title,publish_at,updated_at FROM knowledge_articles WHERE status='published' AND publish_at IS NOT NULL ORDER BY id;" > published-content-source/articles.json
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT content_type,status,COUNT(*) AS count FROM structured_content WHERE content_type IN ('recipe','exercise') GROUP BY content_type,status ORDER BY content_type,status;" > published-content-source/catalogue-counts.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: published-content-source-${{ github.sha }}
+          path: published-content-source/
+          retention-days: 30
