@@ -18,6 +18,8 @@ jobs:
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
       - run: node shift-coach/scope.mjs
+        env:
+          SHIFT_COACH_SOURCE: ${{ github.event.pull_request.head.sha || github.sha }}
       - run: node --test shift-coach/integration.test.mjs
       - run: node --test member-experience/tests/*.test.mjs tests/member-auth-regression.test.mjs tests/my-journey-v1.test.mjs tests/promise-accuracy.test.mjs tests/app-layout-live.test.mjs tests/shared-footer.test.mjs
       - run: npx wrangler deploy --dry-run --config wrangler.coaching.jsonc --outdir "$RUNNER_TEMP/coaching-bundle"
