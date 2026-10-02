@@ -10,7 +10,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: treatment-guidance-preview
+  group: treatment-guidance-preview-a9c990
   cancel-in-progress: true
 jobs:
   preview:
