@@ -1,4 +1,5 @@
 import core from '../worker-entry-v6.js';
+import {withPublicFontDelivery} from './public-font-delivery.mjs';
 export * from '../worker-entry-v6.js';
 import {coachingRoutes} from './routes.mjs';
 import {coachingAsset,withCoaching} from './presentation.mjs';
@@ -10,7 +11,7 @@ export default {
  async fetch(request,env,ctx){
   const asset=coachingAsset(request);if(asset)return asset;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
-  const response=await core.fetch(request,env,ctx);
+  const response=await withPublicFontDelivery(request,await core.fetch(request,env,ctx));
   let seed=null;const url=new URL(request.url);
   if(request.method==='GET'&&/^\/member\/dashboard(?:\.html)?$/.test(url.pathname)&&response.status===200&&response.headers.get('Content-Type')?.includes('text/html')){
    url.pathname='/v1/shift-coach';url.search='';
