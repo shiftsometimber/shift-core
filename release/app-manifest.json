@@ -218,7 +218,10 @@
     "release/book-voice-scope.mjs": "52158938e143bcbf69da9f3a68bbd3033634fea4e77911f9707058581f2b6706",
     "tests/book-voice-release.test.mjs": "6c05227a1313b414a74893f7e4787db6e22699de0ee32006e8b2067d62e04266",
     "editorial/book-voice/live.cjs": "1b43c3a7dcf25aa4e3bf33024d3d5fa3bb961f280d0eaceb9dad349f089e2e9f",
-    ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2"
+    ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2",
+    "scripts/article-image-policy.mjs": "6b4b6161495d83e7f2b1d2d4ac0e22f5a78ad5d38d14f3f95dc8e1397f038fa0",
+    "scripts/verify-article-quality.mjs": "d5d3c38f73360e4e4917f3818586d8f020dccb0f31abe07b1921c8f9c0b9bb04",
+    "tests/article-image-policy.test.mjs": "b2c4b8797524fecc99f45398926e8cabfb50db453426891a63fd5012220bdc5b"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -299,7 +302,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   }
 }
