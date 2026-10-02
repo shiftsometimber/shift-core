@@ -17,9 +17,10 @@ import broaderReview from './reviews/2026-10-01-authorised-broader-discovery.jso
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
 import internationalOmissions from './reviews/2026-10-02-authorised-international-omissions.json' with {type:'json'};
 import abbvAsc30TernBimagrumab from './reviews/2026-10-02-authorised-abbv-asc30-tern-bimagrumab.json' with {type:'json'};
+import registryOmissions from './reviews/2026-10-02-authorised-registry-omissions.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,56);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,62);
+ assert.equal(medicines.length,6);assert.equal(industry.length,60);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,66);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -86,7 +87,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,56);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,60);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -318,4 +319,28 @@ test('latest wider discovery keeps formulations, plans and stopped programmes di
  assert.equal(industry.find(entry=>entry.id==='tern601').group,'discontinued');
  assert.match(industry.find(entry=>entry.id==='bimagrumab-tirzepatide').limitations,/do not establish improved strength/);
  for(const domain of ['abbvie.com','ascletis.com','ternspharma.com'])assert.ok(discoveryDomains.includes(domain));
+});
+
+test('international registry omissions preserve live, completed and delayed status boundaries',()=>{
+ assert.equal(registryOmissions.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(registryOmissions.clinicalApproval,null);
+ assert.equal(registryOmissions.industryComplete,false);
+ assert.equal(registryOmissions.automatedMonitorChanges,false);
+ for(const id of ['da302168s','nnc06620419','dr10624','cmsd008']){
+  const item=industry.find(entry=>entry.id===id);
+  assert.ok(item,id);
+  assert.equal(item.clinicalApproval,null,id);
+  assert.equal(item.sourceIds.length,0,id);
+  assert.equal(item.additionalEvidence.length,1,id);
+  assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/,id);
+  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
+  assert.match(item.supply,/does not establish lawful UK retail supply/,id);
+ }
+ assert.match(industry.find(entry=>entry.id==='da302168s').stage,/Recruiting Chinese Phase 3/);
+ assert.match(industry.find(entry=>entry.id==='da302168s').limitations,/No results are posted/);
+ assert.match(industry.find(entry=>entry.id==='nnc06620419').stage,/Completed Phase 1/);
+ assert.match(industry.find(entry=>entry.id==='nnc06620419').limitations,/does not state a mechanism/);
+ assert.match(industry.find(entry=>entry.id==='dr10624').summary,/GLP-1, glucagon and FGF21/);
+ assert.match(industry.find(entry=>entry.id==='cmsd008').stage,/not yet recruiting/i);
+ assert.match(industry.find(entry=>entry.id==='cmsd008').limitations,/estimated start was 2 April 2026/);
 });
