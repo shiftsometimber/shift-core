@@ -5,6 +5,7 @@ on:
     branches: [main, verification/member-design-20261002, verification/member-finish-20261002]
     paths:
       - 'my-timber-final-production.mjs'
+      - 'release/app-member-live.mjs'
       - 'rendered-member-acceptance-support.mjs'
       - 'health-passport/production-browser.mjs'
       - 'my-timber-google-play-screenshots.mjs'
@@ -44,7 +45,7 @@ jobs:
           node --input-type=module - <<'NODE'
           import assert from 'node:assert/strict';
           import {execFileSync} from 'node:child_process';
-          const baseline='dc02728aaa6637e1e2570f66af83d594a4176f54',allowed=new Set(["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/rendered-member-production-acceptance.yml",".github/workflows/my-timber-final-production.yml","g2-014-progress-picture-premium-production.mjs","my-timber-final-source-gate.mjs"]);
+          const baseline='dc02728aaa6637e1e2570f66af83d594a4176f54',allowed=new Set(["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/rendered-member-production-acceptance.yml",".github/workflows/my-timber-final-production.yml","g2-014-progress-picture-premium-production.mjs","my-timber-final-source-gate.mjs","release/app-member-live.mjs"]);
           const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
           assert(changed.every(p=>allowed.has(p)),'Verification branch changes serving application source');
           const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36947732832',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
