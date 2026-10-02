@@ -17,8 +17,8 @@ import broaderReview from './reviews/2026-10-01-authorised-broader-discovery.jso
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
 import internationalOmissions from './reviews/2026-10-02-authorised-international-omissions.json' with {type:'json'};
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,50);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,56);
+ assert.equal(medicines.length,6);assert.equal(industry.length,51);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,57);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -85,7 +85,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,50);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,51);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -278,4 +278,20 @@ test('UBT251 keeps completed Chinese evidence separate from global plans and UK 
  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(item.supply,/does not establish lawful UK retail supply/);
  assert.ok(item.additionalEvidence.length>=3);
+});
+
+test('SGB-7342 preserves the dated registry mismatch and human-evidence limits',()=>{
+ const item=industry.find(entry=>entry.id==='sgb7342');
+ assert.ok(item);
+ assert.equal(item.clinicalApproval,null);
+ assert.match(item.stage,/Phase 1 first participant dosed/i);
+ assert.match(item.stage,/registry status predates sponsor update/i);
+ assert.match(item.summary,/single-ascending-dose safety/i);
+ assert.match(item.limitations,/not yet recruiting/i);
+ assert.match(item.limitations,/preclinical/i);
+ assert.match(item.limitations,/No human study results/i);
+ assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(item.supply,/do not establish lawful UK retail supply/);
+ assert.equal(item.additionalEvidence.length,2);
 });
