@@ -1,0 +1,133 @@
+{
+  "reviewedAt": "2026-10-02T08:30:52Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish four primary-source-reviewed international registry omissions through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "da302168s",
+      "name": "DA-302168S tablets",
+      "developer": "Chendu DIAO Pharmaceutical Group",
+      "group": "research",
+      "stage": "Recruiting Chinese Phase 3",
+      "summary": "The sponsor-submitted registry records a recruiting Chinese Phase 3 placebo-controlled study of once-daily oral DA-302168S, described there as a small-molecule GLP-1 receptor agonist, in adults with overweight or obesity. Actual study start was 19 June 2026; estimated enrolment is 840.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Recruitment, estimated October 2027 completion and planned outcomes are not completed results. No results are posted, and the record does not establish efficacy, superiority, authorisation or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T08:30:52Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07629544",
+          "url": "https://clinicaltrials.gov/study/NCT07629544",
+          "sourcePublishedAt": "2026-06-05",
+          "sourceUpdatedAt": "2026-08-06",
+          "reviewedAt": "2026-10-02T08:30:52Z",
+          "checkScope": "Sponsor-submitted registry record and API response read for recruiting Phase 3 status, oral formulation, mechanism description, actual start, estimated enrolment and completion, Chinese location and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "nnc06620419",
+      "name": "NNC0662-0419 injection",
+      "developer": "Novo Nordisk",
+      "group": "research",
+      "stage": "Completed Phase 1 registry; no results posted",
+      "summary": "The sponsor-submitted registry records a completed first-in-human Phase 1 study of once-weekly subcutaneous NNC0662-0419 in 100 participants with overweight or obesity. It used single- and multiple-ascending-dose cohorts and completed on 26 July 2025.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Completed registry status does not mean results have been published or establish efficacy. No results are posted, and the registry does not state a mechanism or establish a later development stage, authorisation, access or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T08:30:52Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06737536",
+          "url": "https://clinicaltrials.gov/study/NCT06737536",
+          "sourcePublishedAt": "2024-12-17",
+          "sourceUpdatedAt": "2025-09-19",
+          "reviewedAt": "2026-10-02T08:30:52Z",
+          "checkScope": "Sponsor-submitted registry record and API response read for completed Phase 1 status, once-weekly subcutaneous formulation, actual dates, 100-participant enrolment and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "dr10624",
+      "name": "DR10624 injection",
+      "developer": "Zhejiang Doer Biologics",
+      "group": "research",
+      "stage": "Completed Phase 1 registry; no results posted",
+      "summary": "The sponsor-submitted registry describes DR10624 as a subcutaneous Fc-fusion tri-agonist targeting GLP-1, glucagon and FGF21 receptors. Its 153-participant first-in-human Phase 1 study completed on 31 January 2025.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Completed registry status does not establish efficacy or continued development. No results are posted, and the record does not establish a later trial, authorisation, access or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T08:30:52Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT05378893",
+          "url": "https://clinicaltrials.gov/study/NCT05378893",
+          "sourcePublishedAt": "2022-05-18",
+          "sourceUpdatedAt": "2025-02-04",
+          "reviewedAt": "2026-10-02T08:30:52Z",
+          "checkScope": "Sponsor-submitted registry record and API response read for completed Phase 1 status, stated tri-agonist mechanism, subcutaneous formulation, actual dates, 153-participant enrolment and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "cmsd008",
+      "name": "CMS-D008 injection",
+      "developer": "Shenzhen Kangzhe Biotechnology",
+      "group": "research",
+      "stage": "Phase 1 registered; not yet recruiting",
+      "summary": "The sponsor-submitted registry describes a Chinese first-in-human Phase 1 study of subcutaneous CMS-D008 with single-dose, multiple-dose and expansion cohorts in healthy adults and adults with overweight or obesity.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for this programme or formulation.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Clinical development or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "The record remained not yet recruiting at its 8 April 2026 update, with no listed location, although its estimated start was 2 April 2026. Estimated dates and a registered design are not first dosing, results, authorisation, access or supply; the reviewed record does not state a mechanism.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-02T08:30:52Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07518589",
+          "url": "https://clinicaltrials.gov/study/NCT07518589",
+          "sourcePublishedAt": "2026-04-08",
+          "sourceUpdatedAt": "2026-04-08",
+          "reviewedAt": "2026-10-02T08:30:52Z",
+          "checkScope": "Sponsor-submitted registry record and API response read for not-yet-recruiting Phase 1 status, subcutaneous formulation, planned cohorts, estimated dates, missing locations and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "evidenceContinuity": {
+    "nct07629544ApiSha256": "3af581eaa7b4465be773465e14b1270972d899149f49191e4f53e44d43b194be",
+    "nct06737536ApiSha256": "31233d76f41a3d5d4ba2bb62036adf2abb3f4efccccb367ee2a90a321921e074",
+    "nct05378893ApiSha256": "06149275a3eeb14f1da7c473597684c20800326ae5aa2d415979f31a60cf80e5",
+    "nct07518589ApiSha256": "ecc794c28234ea02fdd67ceea25ef5a5fae507a64718154a4912c6e5ebfddae9"
+  },
+  "discoveryLimitations": {
+    "configuredSourcePass": "The live SELECT-only endpoint remained available and current for all 50 configured sources after the earlier four-route repair; a successful retrieval does not renew unrelated medical reviews.",
+    "currentDatePass": "No new UK MHRA, NICE or NHS authorisation or access decision was found for these four programmes. The same-day SYNCHRONIZE-2 result was already present in the live catalogue and was not duplicated.",
+    "broaderUndatedPass": "The undated registry and mechanism pass found these four older omissions among smaller and international developers. Registry publication lag means this remains a selected, non-exhaustive catalogue.",
+    "plannedVersusCompleted": "DA-302168S is recruiting; NNC0662-0419 and DR10624 are registry-completed without posted results; CMS-D008 remains not yet recruiting. None is described as a completed successful treatment programme.",
+    "monitoring": "No automatic monitoring source, successful baseline, review renewal or all-green claim is created by this publication."
+  },
+  "nextActions": [
+    "Recheck completed NNC0662-0419 and DR10624 records for posted results or sponsor continuation decisions",
+    "Recheck CMS-D008 for an actual start, locations or a changed recruitment status",
+    "Track UK regulator and NHS evidence separately from international research stages",
+    "Continue topic-based discovery beyond named developers and existing entries"
+  ]
+}
