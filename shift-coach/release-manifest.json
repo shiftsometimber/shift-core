@@ -1,6 +1,6 @@
 {
-  "recordedMain": "e19165d1384f08b8584e1470155518780f86abf5",
-  "applicationCommit": "95c80ebf424ac3aa0372a86e51e49a9cb3736f46",
+  "recordedMain": "81e55475665e7384c3db89b8951680bba2459933",
+  "applicationCommit": "0be7e48794f03275d9c450c4b10926c3dee923db",
   "completeV2": false,
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection.",
   "pinnedPaths": [
@@ -15,6 +15,7 @@
     "release/home-banner-scope.mjs",
     "release/member-acceptance-scope.mjs",
     "release/shift-ai-scope.mjs",
+    "release/watch-registry-wave-scope.mjs",
     "scripts/b1-release-scope.mjs",
     "shift-coach/README.md",
     "shift-coach/adapt.mjs",
