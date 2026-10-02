@@ -16,6 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          ref: 9bdcc2f7f69dc7950b90011f47e83a34fd5a64a1
+          path: pages-authority
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with: {node-version: '24'}
       - run: npm ci --no-audit --no-fund
