@@ -104,6 +104,46 @@ function canonicalNotice(value) {
   return value;
 }
 
+// Europe PMC exposes the same open-access article as complete JATS XML without
+// the browser challenge on the HTML page. Reject truncated/non-article input;
+// never resolve DTDs or external entities. This is intentionally JATS-only.
+function jatsDocument(xml, source) {
+  const clean = xml.replace(/<\?[\s\S]*?\?>/g, '').replace(/<!--[\s\S]*?-->/g, '').trim();
+  if (/<!|<\?/.test(clean) || /&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-f]+);)/i.test(clean)) throw new Error('invalid_jats_document');
+  const tokens = /<\/?[A-Za-z][\w:.-]*(?:\s+[\w:.-]+\s*=\s*(?:"[^"<]*"|'[^'<]*'))*\s*\/?>/g;
+  const stack = []; let end = 0, roots = 0, match;
+  while ((match = tokens.exec(clean))) {
+    const between = clean.slice(end, match.index);
+    if (between.includes('<') || (!stack.length && between.trim())) throw new Error('invalid_jats_document');
+    const token = match[0], tag = token.match(/^<\/?([\w:.-]+)/)[1];
+    if (token.startsWith('</')) {
+      if (!/^<\/[\w:.-]+\s*>$/.test(token) || stack.pop() !== tag) throw new Error('invalid_jats_document');
+    } else {
+      if (!stack.length && (tag !== 'article' || ++roots !== 1)) throw new Error('invalid_jats_document');
+      if (!token.endsWith('/>')) stack.push(tag);
+    }
+    end = tokens.lastIndex;
+  }
+  if (roots !== 1 || stack.length || clean.slice(end).trim()) throw new Error('invalid_jats_document');
+  const article = clean.match(/^<article\b([^>]*)>([\s\S]*)<\/article>$/);
+  const front = article && elementContent(article[2], tag => tag === 'front');
+  const body = article && elementContent(article[2], tag => tag === 'body');
+  const title = front && elementContent(front, tag => tag === 'article-title');
+  const ids = {};
+  for (const id of (front || '').matchAll(/<article-id\s+pub-id-type=["'](pmcid|doi)["']\s*>([^<]+)<\/article-id>/g)) {
+    if (ids[id[1]]) throw new Error('invalid_jats_document');
+    ids[id[1]] = plainText(id[2]);
+  }
+  if (!title || !body || (article[2].match(/<front\b/g) || []).length !== 1 ||
+      (article[2].match(/<body\b/g) || []).length !== 1 || plainText(body).length < 1000 ||
+      !ids.pmcid || !ids.doi) throw new Error('invalid_jats_document');
+  if (ids.pmcid !== source.articleId || ids.doi !== source.articleDoi) throw new Error('source_identity_not_verified');
+  const articleType = article[1].match(/\barticle-type=["']([^"']+)["']/)?.[1] || '';
+  const withdrawn = /retract|withdraw/i.test(articleType) || /\b(?:this article (?:has been|is) retracted|retraction notice)\b/i.test(plainText(front + body));
+  return { title: plainText(title), article_ids: ids, article_type: articleType,
+    front: plainText(front), body: plainText(body), withdrawn_notice: withdrawn };
+}
+
 /** Fingerprints retrieved source claims, not request time, navigation or cookies. */
 export async function fingerprintSource(source, body, contentType = '') {
   if (typeof body !== 'string' || !body.trim()) throw new Error('empty_response');
@@ -134,6 +174,11 @@ export async function fingerprintSource(source, body, contentType = '') {
       || /\bclass\s*=\s*["'][^"']*\b(?:withdrawn-notice|withdrawal-notice)\b/i.test(body);
     normalized = { title, body: text, withdrawn_notice: withdrawn };
     claimText = `${title} ${text}`;
+  } else if (source.format === 'jats-xml') {
+    if (contentType && !/\bxml\b/i.test(contentType)) throw new Error('unexpected_content_type');
+    normalized = jatsDocument(body, source);
+    withdrawn = normalized.withdrawn_notice;
+    claimText = `${normalized.title} ${normalized.front} ${normalized.body}`;
   } else throw new Error('unsupported_source_format');
   if (!Array.isArray(source.requiredTerms) || !source.requiredTerms.length ||
       !source.requiredTerms.every(term => typeof term === 'string' && term.trim() && plainText(claimText).toLowerCase().includes(plainText(term).toLowerCase()))) {
@@ -187,7 +232,7 @@ async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
         const response = await fetchImpl(source.checkUrl || source.url, {
           // Workers supports manual redirects; the status guard below rejects every 3xx.
           signal: controller.signal, redirect: 'manual',
-          headers: { Accept: source.format === 'govuk-json' ? 'application/json' : 'text/html',
+          headers: { Accept: source.format === 'govuk-json' ? 'application/json' : source.format === 'jats-xml' ? 'application/xml' : 'text/html',
             'User-Agent': 'ShiftMedicinesWatch/1.0 (source availability and change checks)' }
         });
         httpStatus = response.status;
@@ -208,7 +253,7 @@ async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
 function safeError(error) {
   // Never expose fetched bodies, credentials, stack traces or upstream messages.
   const message = String(error?.message || '');
-  return /^(?:http_\d{3}|check_timeout|response_too_large|empty_response|unexpected_content_type|invalid_json|invalid_govuk_document|invalid_source_date|invalid_html|incomplete_html_document|missing_html_document|unsupported_content_selector|missing_content_selector|unsupported_source_format|source_identity_not_verified)$/.test(message)
+  return /^(?:http_\d{3}|check_timeout|response_too_large|empty_response|unexpected_content_type|invalid_json|invalid_govuk_document|invalid_source_date|invalid_html|invalid_jats_document|incomplete_html_document|missing_html_document|unsupported_content_selector|missing_content_selector|unsupported_source_format|source_identity_not_verified)$/.test(message)
     ? message : 'retrieval_failed';
 }
 

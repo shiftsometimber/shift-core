@@ -111,6 +111,9 @@ css('main .sf-current-step :is(h3,p,summary)','color:#050505;-webkit-text-fill-c
 css('main #journeyView>.hero','display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:14px;padding:0 0 18px;align-items:center')+
 css('main #journeyView .hero-copy','text-align:left')+
 css('main :is(#scoreCaption,#comparison)','color:#050505;-webkit-text-fill-color:#050505;background:#e7e3da;border-radius:8px;padding:8px;font-size:14px')+
+css('main #journeyView .section-heading','gap:10px;flex-wrap:wrap;align-items:center')+
+css('main #journeyView .section-heading h2','font-size:16px;line-height:1.35;letter-spacing:.06em;min-width:0')+
+css('main #journeyView .section-heading .text-button','white-space:normal;text-align:left;max-width:100%;box-sizing:border-box')+
 css('main #journeyView .score-block','min-width:0')+
 css('main #journeyView .score-ring','background:#050505;color:#e7e3da;width:100%;max-width:130px;height:auto;aspect-ratio:1')+
 css('main #journeyView .timeline-grid','grid-template-columns:repeat(3,minmax(0,1fr))')+
