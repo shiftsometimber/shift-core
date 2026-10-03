@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {recovery,recoveryDecision,verifiedOwnedRuntime} from './cancelled-release-recovery.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {recovery,recoveryDecision,verifiedOwnedRuntime,verifiedStartingPoint} from './cancelled-release-recovery.mjs';
 const active=id=>({versions:[{version_id:id,percentage:100}]}),failed={id:recovery.run,head_sha:recovery.source,run_attempt:1,conclusion:'cancelled'},verified={id:recovery.verifiedRun,head_sha:recovery.verifiedSource,conclusion:'success'};
 test('recovery only restores the exact evidenced cancelled runtime to the verified source',()=>{
  assert.deepEqual({verified:recovery.verified,verifiedRun:recovery.verifiedRun,verifiedSource:recovery.verifiedSource},{verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
@@ -15,4 +15,17 @@ test('a later runtime is retained only against its exact successful production j
  for(const changes of [{source:'b'.repeat(40)},{run:'124'},{versionId:recovery.unverified},{kind:'unowned_runtime'}])assert.equal(verifiedOwnedRuntime(active(version),run,job,{...receipt,...changes}),false);
  assert.equal(verifiedOwnedRuntime(active(version),run,{...job,run_id:124},receipt),false);
  assert.equal(verifiedOwnedRuntime({versions:[{version_id:version,percentage:50}]},run,job,receipt),false);
+});
+
+test('promotion carries the exact verified later runtime forward and rejects moved or mismatched receipts',()=>{
+ const version='11111111-1111-4111-8111-111111111111';
+ const record={decision:'retain',run:recovery.run,from:version,to:version,verifiedRun:123,ownedProof:{run:123,source:'a'.repeat(40),version},dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(record,active(version)),{source:'a'.repeat(40),version,run:123});
+ for(const patch of [{decision:'restore'},{from:recovery.verified},{verifiedRun:124},{dataChanged:true},{ownedProof:{...record.ownedProof,version:recovery.verified}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},active(version)));
+ assert.throws(()=>verifiedStartingPoint(record,active(recovery.verified)));
+ assert.throws(()=>verifiedStartingPoint(record,{versions:[{version_id:version,percentage:50}]}));
+ assert.throws(()=>verifiedStartingPoint({...record,ownedProof:null},active(version)));
+ const old={decision:'retain',run:recovery.run,from:recovery.verified,to:recovery.verified,verifiedRun:recovery.verifiedRun,ownedProof:null,dataChanged:false};
+ assert.equal(verifiedStartingPoint(old,active(recovery.verified)).version,recovery.verified);
+ assert.equal(verifiedStartingPoint({...old,decision:'restore',from:recovery.unverified},active(recovery.verified)).version,recovery.verified);
 });
