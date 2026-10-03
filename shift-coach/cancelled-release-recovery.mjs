@@ -45,3 +45,16 @@ export function verifiedStartingPoint(record,active){
  assert.equal(record.from,record.decision==='restore'?recovery.unverified:recovery.verified);
  return{source:recovery.verifiedSource,version:recovery.verified,run:recovery.verifiedRun};
 }
+
+// Busy repositories can have more than 100 unrelated successful runs between
+// promotions. Search bounded history; ownership still requires the exact receipt.
+export async function recentSuccessfulPromotions(get){
+ const matches=[];
+ for(let page=1;page<=10&&matches.length<5;page++){
+  const result=await get('/actions/runs?branch=main&event=push&status=success&per_page=100&page='+page);
+  const runs=result.workflow_runs||[];
+  matches.push(...runs.filter(run=>run.path==='.github/workflows/cloudflare-production-promote.yml'));
+  if(runs.length<100)break;
+ }
+ return matches.slice(0,5);
+}
