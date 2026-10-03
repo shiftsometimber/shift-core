@@ -20,7 +20,7 @@ jobs:
       - run: node shift-coach/scope.mjs
         env:
           SHIFT_COACH_SOURCE: ${{ github.event.pull_request.head.sha || github.sha }}
-      - run: node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs
+      - run: node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/tablet-routine.test.mjs
       - name: Verify exact original and coaching release sources
         run: |
           node --input-type=module -e "import {validateGrowthSource} from './release/growth-scope.mjs'; validateGrowthSource()"
@@ -41,6 +41,7 @@ jobs:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/coaching-qa/node_modules/playwright
           COACHING_PROOF_DIR: ${{ runner.temp }}/coaching-proof
         run: |
+          node tests/tablet-routine-browser.mjs
           node shift-coach/browser-proof.mjs
           node shift-coach/full-page-proof.mjs
           node shift-coach/public-font-browser-proof.mjs
