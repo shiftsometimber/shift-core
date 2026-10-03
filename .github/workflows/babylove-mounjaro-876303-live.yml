@@ -1,5 +1,8 @@
 name: BabyLove Mounjaro 876303 live closeout
 on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/babylove-mounjaro-876303-live.yml"]
   workflow_run:
     workflows: ["Cloudflare Production Promote"]
     types: [completed]
@@ -7,7 +10,7 @@ permissions:
   contents: read
 jobs:
   closeout:
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    if: github.event_name == 'push' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     timeout-minutes: 12
     env:
@@ -21,8 +24,39 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: npm ci --no-audit --no-fund
-      - name: Promote only the verified 876303 receipt and apply source corrections
-        run: node babylove/repair-mounjaro-876303.mjs
+      - name: Verify the current reviewed 876303 article without writes
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {createHash} from 'node:crypto';
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          // The one-time September repair is superseded by the reviewed October
+          // editorial correction. Check its exact bytes; never replay old writes.
+          const REVIEWED='25160f8881142de641db7a4dc44075cdb31a74e3f9428be8ef86ff7fb84cbce4';
+          function first(sql){
+            assert(/^SELECT\b/i.test(sql),'Only read-only evidence queries are permitted');
+            const out=execFileSync('npx',['wrangler','d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',sql],{encoding:'utf8',maxBuffer:1024*1024,timeout:60000});
+            const result=JSON.parse(out);
+            assert(Array.isArray(result)&&result.length&&result.every(r=>r.success!==false));
+            return result[0].results?.[0];
+          }
+          const receipt=first("SELECT source_id,slug FROM babylove_receipts WHERE source_id='876303' AND slug='mounjaro-cost-uk'");
+          assert.equal(receipt?.source_id,'876303','Trusted receipt missing');
+          assert.equal(receipt?.slug,'mounjaro-cost-uk');
+          const article=first("SELECT id,title,slug,status,body,publish_at FROM knowledge_articles WHERE id=4 AND slug='mounjaro-cost-uk'");
+          assert.equal(Number(article?.id),4);
+          assert.equal(article?.slug,'mounjaro-cost-uk');
+          assert.equal(article?.title,'Mounjaro cost in the UK: compare the whole quote');
+          assert.equal(article?.status,'published');
+          assert.equal(article?.publish_at,'2026-09-21T16:25:27.795Z','Original publication date changed');
+          const bodySha256=createHash('sha256').update(article.body).digest('hex');
+          assert.equal(bodySha256,REVIEWED,'Reviewed article changed; retain it and request fresh review, never overwrite');
+          const proof={ok:true,sourceId:'876303',articleId:4,slug:article.slug,title:article.title,status:article.status,publishAt:article.publish_at,bodySha256,workflowSha:process.env.GITHUB_SHA,productionWrites:0};
+          mkdirSync('babylove-proof',{recursive:true});
+          writeFileSync('babylove-proof/mounjaro-876303-live.json',JSON.stringify(proof,null,2)+'\n');
+          console.log(JSON.stringify(proof));
+          NODE
       - name: Verify public page, Knowledge discovery and sitemap
         run: |
           set -euo pipefail
@@ -30,7 +64,7 @@ jobs:
           ok=0
           for i in $(seq 1 12); do
             code=$(curl -sS -o /tmp/article.html -w "%{http_code}" "$URL" || true)
-            if [ "$code" = "200" ] && grep -q "NICE List vs Private Prices: Mounjaro Cost in the UK" /tmp/article.html && grep -q "primary-care rollout" /tmp/article.html; then ok=1; break; fi
+            if [ "$code" = "200" ] && grep -q "Mounjaro cost in the UK: compare the whole quote" /tmp/article.html && grep -q "https://www.nice.org.uk/guidance/ta1026" /tmp/article.html; then ok=1; break; fi
             sleep 5
           done
           test "$ok" = "1"
