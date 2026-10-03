@@ -6,6 +6,7 @@ export const BOOK_VOICE_RUN=37030676727;
 export const BOOK_VOICE_PATHS=paths;
 export function originalBookVoiceGate(path,source){
  if(path==='member-experience/public-preservation.mjs'){
+  source=source.replace("import {restoreTrustCentre} from '../shift-coach/public-trust-repair.mjs';\n",'').replace("restoreBookVoiceCopy(path,restoreTrustCentre(path,body.toString('utf8'),{required:Boolean(before)}))","restoreBookVoiceCopy(path,body.toString('utf8'))");
   const contrastAddition=`import {contrastSafetyClient,contrastSafetyVersion} from '../public-navigation-policy.mjs';
 import {pathToFileURL} from 'node:url';
 

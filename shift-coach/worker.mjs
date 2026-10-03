@@ -1,4 +1,5 @@
 import {tabletRoutineRoutes} from '../member-experience/tablet-routine.mjs';
+import {trustRoute,withTrustRepair,pages,withContactReference} from './public-trust-repair.mjs';
 import core from '../worker-entry-v6.js';
 import {withPublicFontDelivery} from './public-font-delivery.mjs';
 export * from '../worker-entry-v6.js';
@@ -12,10 +13,14 @@ export default {
  ...core,
  async fetch(request,env,ctx){
   const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
+  request=await withContactReference(request);
+  const trust=trustRoute(request);if(trust)return trust;
+  const pagePath=new URL(request.url).pathname.replace(/\.html$/,'').replace(/\/+$/,'');
+  if(pages[pagePath]&&['GET','HEAD'].includes(request.method)){const u=new URL(request.url);u.pathname='/terms';u.search='';return withTrustRepair(request,await core.fetch(new Request(u,{method:'GET',headers:request.headers}),env,ctx));}
   const asset=coachingAsset(request);if(asset)return asset;
   const team=await supportTeamRoutes(request,env);if(team)return team;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
-  const response=await withSupportTeamLink(request,await withPublicFontDelivery(request,await core.fetch(request,env,ctx)));
+  const response=await withSupportTeamLink(request,await withPublicFontDelivery(request,await withTrustRepair(request,await core.fetch(request,env,ctx))));
   let seed=null;const url=new URL(request.url);
   if(request.method==='GET'&&/^\/member\/dashboard(?:\.html)?$/.test(url.pathname)&&response.status===200&&response.headers.get('Content-Type')?.includes('text/html')){
    url.pathname='/v1/shift-coach';url.search='';
