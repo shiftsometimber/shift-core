@@ -460,7 +460,7 @@ jobs:
         run: |
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main
-          npx wrangler deploy --config wrangler.jsonc
+          node release/member-runtime-deploy.mjs
       - name: Begin verification of the deployed runtime
         id: growth_live_started
         run: test -s deployment-before.json

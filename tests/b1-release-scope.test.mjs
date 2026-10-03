@@ -23,10 +23,14 @@ test('every legacy publication, seed and migration step is unreachable for runti
  assert.ok(source.indexOf("if(process.env.PASSPORT_SCHEMA_READ_ONLY==='true')assertSchema(existing,source)")<source.indexOf("if(!existing.length)cli("));
 });
 test('gates, fresh source check, rollback capture and exactly one deploy remain ordered',()=>{
- const scope=workflow.indexOf('id: scope'),deploy=workflow.indexOf('npx wrangler deploy --config wrangler.jsonc');
- assert.equal(workflow.match(/npx wrangler deploy --config wrangler.jsonc/g)?.length,1);
+ const scope=workflow.indexOf('id: scope'),deploy=workflow.indexOf('node release/member-runtime-deploy.mjs');
+ assert.equal(workflow.match(/node release\/member-runtime-deploy.mjs/g)?.length,1);
+ const deployWrapper=readFileSync(new URL('../release/member-runtime-deploy.mjs',import.meta.url),'utf8');
+ assert.equal(deployWrapper.match(/cli\('deploy'\)/g)?.length,1);
+ assert.ok(deployWrapper.indexOf("assert.equal(active.id,before.id")<deployWrapper.indexOf("cli('deploy')"));
+ assert.ok(deployWrapper.indexOf("cli('deploy')")<deployWrapper.indexOf("owned-runtime-deployment.json"));
  for(const gate of ['Verify exact current main before production mutations','Verify security-check timeouts and retry before promotion','Capture current Worker deployment for rollback','Capture protected catalogue and stock without customer records']){const index=workflow.indexOf('name: '+gate);assert.ok(index>scope&&index<deploy,gate)}
- assert.match(workflow,/node scripts\/b1-release-scope.mjs\n          node scripts\/catalogue-publication-client.mjs --verify-main\n          npx wrangler deploy/);
+ assert.match(workflow,/node scripts\/b1-release-scope.mjs\n          node scripts\/catalogue-publication-client.mjs --verify-main\n          node release\/member-runtime-deploy.mjs/);
  assert.ok(workflow.indexOf('Verify B1 protected catalogue and stock remain identical')>deploy);
  for(const step of steps.filter(s=>/name: (Verify|Prove|Block) /.test(s)))assert.ok(!step.includes("runtime_only != 'true'"),'Verification must not be skipped: '+step.split('\n')[0]);
 });
@@ -193,9 +197,9 @@ test('treatment release binds every browser-tested eligibility and information f
  for(const drift of TREATMENT_GUIDANCE_PATHS)assert.throws(()=>validateTreatmentGuidance((ref,path)=>ref==='HEAD'&&path===drift?'changed':read(ref,path)),/Treatment service criteria\/source drift/);
 });
 
-test('registry wave retains only exact PR979 reviewed files',async()=>{
+test('registry wave retains only exact PR987 reviewed files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'63578a142eda466e4703eae19aca3314b3944dfb');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,9);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'5470bee6d9519923efc3a88dee9291b0d4c8aca9');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,10);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });

@@ -55,7 +55,7 @@ test('new event permission is limited to the five existing names',async t=>{
   for(const eventName of ['my_timber_symptom_details','my_timber_arbitrary','my_timber_today_viewed_extra'])await assert.rejects(recordProductEvent(env,{eventName,properties:privateProperties}),/unsupported event/);
   assert.equal(sqlite.prepare("SELECT count(*) count FROM sqlite_master WHERE name='product_events'").get().count,0,'rejected events do not create or write analytics tables');
 });
-test('existing event sanitisation stays unchanged',async t=>{
+test('bounded existing usage fields remain useful without arbitrary values',async t=>{
   const{sqlite,env}=fixture(t);
   const event=await recordProductEvent(env,{eventName:'today_viewed',properties:{page:'today',count:2,enabled:true,email:'PRIVATE_EMAIL',note:{nested:'PRIVATE_NESTED'}}});
   assert.deepEqual(JSON.parse(sqlite.prepare('SELECT properties_json FROM product_events WHERE id=?').get(event.id).properties_json),{page:'today',count:2,enabled:true});
