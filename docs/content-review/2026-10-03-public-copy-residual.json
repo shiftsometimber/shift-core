@@ -1,0 +1,474 @@
+{
+  "baseline_production": "66f4580d-540c-426b-bba3-dad15a821c5c",
+  "baseline_fingerprint": "182c5ffb5d8a75f8b0c73dc4cdd8d76a07e0fe69f40003c69af33cc7460b77aa",
+  "candidate_fingerprint": "172c36896e7c86f183187ce98584449a0290214bc455a0d0aaef57b1bf28f538",
+  "changed": [
+    "articles/air-fryer-meals-men.html",
+    "articles/alcohol-and-weight-men.html",
+    "articles/asking-for-help-men.html",
+    "articles/beginner-walking-plan-men.html",
+    "articles/bmi-men.html",
+    "articles/calories-explained-men.html",
+    "articles/cholesterol-men.html",
+    "articles/confidence-and-weight-men.html",
+    "articles/dad-bod-nobody-talks-about.html",
+    "articles/eating-out-weight-management-men.html",
+    "articles/football-fitness-after-40.html",
+    "articles/glp1-myths.html",
+    "articles/health-isnt-about-six-packs.html",
+    "articles/healthy-bbq-men.html",
+    "articles/healthy-habits-that-last-men.html",
+    "articles/healthy-takeaways-men.html",
+    "articles/heart-health-men.html",
+    "articles/helping-ordinary-blokes-feel-like-themselves-again.html",
+    "articles/home-strength-men.html",
+    "articles/meal-prep-busy-men.html",
+    "articles/men-weight-loss-after-40.html",
+    "articles/motivation-vs-routine-men.html",
+    "articles/prediabetes-men.html",
+    "articles/protein-for-men-weight-management.html",
+    "articles/sleep-and-weight-men.html",
+    "articles/stress-and-weight-men.html",
+    "articles/waist-size-men.html",
+    "articles/walking-for-weight-management-men.html",
+    "articles/weight-and-blood-pressure-men.html",
+    "articles/why-blokes-put-everyone-else-first.html",
+    "articles/why-we-built-shift-some-timber.html",
+    "decision-centre.html",
+    "decision-centre.js",
+    "decision-readiness.js",
+    "guides/blood-pressure-guide.html",
+    "guides/mens-health-mot-guide.html",
+    "guides/nutrition-guide.html",
+    "guides/walking-guide.html",
+    "tools.html",
+    "treatment-centre.html",
+    "treatment-finder-engine.js",
+    "treatment-finder-methodology.html",
+    "treatment-finder.html"
+  ],
+  "preserved_files": 833,
+  "exact_edits": [
+    {
+      "path": "articles/eating-out-weight-management-men.html",
+      "old": "The takeaway page owns cuisine-by-cuisine decisions; the BBQ page owns grills, sides and drinks. They support this owner rather than competing with the broader eating-out intent.",
+      "new": "For more meal ideas, explore the takeaway and BBQ guides. Choose the advice that fits the meal you are planning.",
+      "occurrences": 1
+    },
+    {
+      "path": "articles/protein-for-men-weight-management.html",
+      "old": "The tool provides selectable planning levels. It must name the multiplier, show that the result is an estimate and refuse to call it a treatment target.",
+      "new": "The calculator shows the planning multiplier and an estimated result. It is not an individual treatment target.",
+      "occurrences": 1
+    },
+    {
+      "path": "articles/waist-size-men.html",
+      "old": "The calculator must say that beside the number.",
+      "new": "Read the limitations beside the result before using it to plan a next step.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-centre.html",
+      "old": "Use Health MOT and Progress Centre data to explore lifestyle, NHS, medication and surgery routes, model scenarios and build a printable GP discussion report.",
+      "new": "Explore lifestyle, NHS, medicine and surgery routes. Some calculations need an existing locally saved profile; the Health MOT link now opens a separate information guide.",
+      "occurrences": 3
+    },
+    {
+      "path": "decision-centre.html",
+      "old": "Decision support for UK weight-management pathways using locally stored Health MOT and progress data.",
+      "new": "General route information and decision tools. Some calculations require an existing locally saved questionnaire profile.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-centre.html",
+      "old": "Use your Health MOT and Progress Centre data to explore lifestyle, NHS, medication and surgery routes, model weight-loss scenarios and build a printable GP discussion report.",
+      "new": "Explore weight-management routes and questions for a clinician. Profile-dependent calculations require existing locally saved information.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-centre.html",
+      "old": "Explore which routes may be worth discussing — lifestyle, NHS support, medication or surgery — based on the information saved in your Health MOT and Progress Centre.",
+      "new": "Explore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a previously saved browser profile; this page does not assess clinical suitability.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-centre.html",
+      "old": "<strong>Start with the Health MOT</strong><p>The Decision Centre needs your BMI, health conditions and goals before it can give useful pathway context.</p><a class=\"btn btn-primary\" href=\"/health-mot\">Take the Health MOT</a>",
+      "new": "<strong>No saved questionnaire profile</strong><p>Some calculations on this page require information previously saved in this browser. The Health MOT link now opens a separate proposed blood-test guide and does not create that profile.</p><a class=\"btn btn-primary\" href=\"/guides/nhs-weight-loss-medication-pathways\">Explore NHS route information</a>",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder.html",
+      "old": "Adaptive UK weight-management treatment finder using locally stored Health MOT and progress data plus a structured questionnaire.",
+      "new": "General weight-management route finder. Existing browser information may be reused; results do not establish medical suitability.",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder.html",
+      "old": "<strong>No Health MOT found yet.</strong><p>Complete your Health MOT for stronger, more personalised recommendations. <a href=\"/health-mot\">Take it first →</a></p>",
+      "new": "<strong>No saved questionnaire profile</strong><p>You can continue with the finder, but missing health information limits the context. The current Health MOT guide does not create a questionnaire profile. <a href=\"/treatment-finder-methodology\">Read the limitations →</a></p>",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder-methodology.html",
+      "old": "The finder can reuse locally stored Health MOT information such as BMI, waist-to-height ratio and reported weight-related health conditions. It then adds questionnaire answers about history, appetite, regain, previous treatment, preferences, willingness to wait and existing knowledge.",
+      "new": "The finder can reuse information previously saved by the legacy browser questionnaire, if it exists on this device. The current Health MOT link opens a separate proposed blood-test guide and does not create that profile. Finder answers add context about history, preferences and previous treatment; they do not establish clinical suitability.",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder-methodology.html",
+      "old": "reuses information already collected in the Health MOT rather than asking for BMI and comorbidities again. Future releases can make the questionnaire even more dynamically conditional, but this release already removes duplication and stores results as structured local data.",
+      "new": "The finder may reuse an existing local questionnaire profile. If none exists, some health context is missing. Treat the output as general information, check the stated limitations and discuss clinical questions with an appropriate professional.",
+      "occurrences": 1
+    },
+    {
+      "path": "tools.html",
+      "old": "Shift Health MOT rebuilt",
+      "new": "About the Health MOT",
+      "occurrences": 1
+    },
+    {
+      "path": "tools.html",
+      "old": "Stop looking at one number in isolation.",
+      "new": "Understand which Health MOT is being described.",
+      "occurrences": 1
+    },
+    {
+      "path": "tools.html",
+      "old": "Review weight, waist, blood pressure, sleep, nutrition, mobility, stress and treatment context, then receive a personal priority report.",
+      "new": "The current Health MOT link opens information about a proposed blood-test route. It does not start the older browser questionnaire, create a personal report or book a test.",
+      "occurrences": 1
+    },
+    {
+      "path": "tools.html",
+      "old": "Take the new Health MOT",
+      "new": "Read the Health MOT guide",
+      "occurrences": 1
+    },
+    {
+      "path": "tools.html",
+      "old": "The Decision Centre connects your Health MOT and dashboard to NHS, medication, surgery and lifestyle pathways.",
+      "new": "Explore general NHS, medicine, surgery and lifestyle routes. Some Decision Centre calculations require an existing browser profile; a Health MOT guide does not create one.",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-centre.html",
+      "old": "Use the free Health MOT to organise your current picture and identify sensible priorities.",
+      "new": "The Health MOT guide explains a proposed blood-test route and how it differs from the older browser questionnaire. No test or clinical review is booked by reading it.",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-centre.html",
+      "old": "Take the Health MOT",
+      "new": "Read the Health MOT guide",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-centre.html",
+      "old": "Use your Health MOT to see which treatment routes are most worth understanding.",
+      "new": "Explore general route information and questions to discuss with a clinician. Some Decision Centre calculations require previously saved browser information.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-centre.js",
+      "old": "Complete the Health MOT to generate drivers.",
+      "new": "No saved questionnaire profile is available. Use the general route guides; the Health MOT information page does not create a profile.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-centre.js",
+      "old": "Complete the Health MOT first.",
+      "new": "This calculation needs a previously saved browser profile. The current Health MOT guide does not collect questionnaire answers.",
+      "occurrences": 2
+    },
+    {
+      "path": "decision-centre.js",
+      "old": "No Health MOT profile saved.",
+      "new": "No legacy questionnaire profile is saved in this browser.",
+      "occurrences": 1
+    },
+    {
+      "path": "decision-readiness.js",
+      "old": "Complete the Health MOT.",
+      "new": "Check missing health information with an appropriate professional; the Health MOT guide does not create a questionnaire profile.",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder-engine.js",
+      "old": "a Health MOT baseline",
+      "new": "a saved health baseline",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder-engine.js",
+      "old": "<strong>Health MOT found.</strong>",
+      "new": "<strong>Saved browser profile found.</strong>",
+      "occurrences": 1
+    },
+    {
+      "path": "treatment-finder-engine.js",
+      "old": "<strong>No Health MOT found yet.</strong><p>You can still complete the finder, but results will be stronger after the Health MOT. <a href=\"/health-mot\">Take it first →</a></p>",
+      "new": "<strong>No saved questionnaire profile</strong><p>You can continue, but missing health information limits the context. The current Health MOT guide does not create this profile. <a href=\"/treatment-finder-methodology\">Read the limitations →</a></p>",
+      "occurrences": 1
+    },
+    {
+      "path": "articles/dad-bod-nobody-talks-about.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">The joke about a dad bod can miss what is going on underneath: time pressure, changing routines, discomfort or worry. You can take those things seriously without treating your body as a punchline.</p></div>",
+      "new": "",
+      "text": "The joke about a dad bod can miss what is going on underneath: time pressure, changing routines, discomfort or worry. You can take those things seriously without treating your body as a punchline.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/why-we-built-shift-some-timber.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">SHIFT began with Matt&#x27;s experience of weight, pain, grief and getting help. The purpose is practical: somewhere to keep the thread when the first burst of enthusiasm has passed.</p></div>",
+      "new": "",
+      "text": "SHIFT began with Matt's experience of weight, pain, grief and getting help. The purpose is practical: somewhere to keep the thread when the first burst of enthusiasm has passed.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/home-strength-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Home strength work can start with simple movements and a safe space. The first job is finding an exercise you can do comfortably, not proving how much you used to lift.</p></div>",
+      "new": "",
+      "text": "Home strength work can start with simple movements and a safe space. The first job is finding an exercise you can do comfortably, not proving how much you used to lift.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/calories-explained-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Calories describe energy. They can help you understand portions and patterns, but a calculator cannot tell you exactly what your body will need every day.</p></div>",
+      "new": "",
+      "text": "Calories describe energy. They can help you understand portions and patterns, but a calculator cannot tell you exactly what your body will need every day.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/helping-ordinary-blokes-feel-like-themselves-again.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Feeling like yourself again can mean being able to join in, enjoy an evening or trust the next step. SHIFT&#x27;s job is to help make that step usable in the life you have.</p></div>",
+      "new": "",
+      "text": "Feeling like yourself again can mean being able to join in, enjoy an evening or trust the next step. SHIFT's job is to help make that step usable in the life you have.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/men-weight-loss-after-40.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Forty is not a switch that makes weight management impossible. Start with what has changed in your actual week, then build food, movement and support around the life you have now.</p></div>",
+      "new": "",
+      "text": "Forty is not a switch that makes weight management impossible. Start with what has changed in your actual week, then build food, movement and support around the life you have now.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/prediabetes-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Being told you are at increased risk of type 2 diabetes is a reason to make a plan, not a verdict about your character. Find out which test was done, what the result means and what support is available.</p></div>",
+      "new": "",
+      "text": "Being told you are at increased risk of type 2 diabetes is a reason to make a plan, not a verdict about your character. Find out which test was done, what the result means and what support is available.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/glp1-myths.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Weight-management medicines attract confident claims from people who have never seen your medical history. Separate the question of suitability from the noise around it.</p></div>",
+      "new": "",
+      "text": "Weight-management medicines attract confident claims from people who have never seen your medical history. Separate the question of suitability from the noise around it.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/meal-prep-busy-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Meal prep is useful if it saves you time when you need it. You do not need identical tubs for seven days. Start by making two awkward meals easier.</p></div>",
+      "new": "",
+      "text": "Meal prep is useful if it saves you time when you need it. You do not need identical tubs for seven days. Start by making two awkward meals easier.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/alcohol-and-weight-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Look at the whole drinking occasion: what is in the glass, what you eat with it and what happens the following day. A smaller, repeatable change beats pretending the weekend does not count.</p></div>",
+      "new": "",
+      "text": "Look at the whole drinking occasion: what is in the glass, what you eat with it and what happens the following day. A smaller, repeatable change beats pretending the weekend does not count.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/why-blokes-put-everyone-else-first.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Looking after other people can fill every spare corner of the week. Your own needs still count, even when there is no neat gap waiting for them.</p></div>",
+      "new": "",
+      "text": "Looking after other people can fill every spare corner of the week. Your own needs still count, even when there is no neat gap waiting for them.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/air-fryer-meals-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">An air fryer earns its place when it makes a decent dinner easier. These are meal combinations to work from, rather than promises that a particular appliance will make you lose weight.</p></div>",
+      "new": "",
+      "text": "An air fryer earns its place when it makes a decent dinner easier. These are meal combinations to work from, rather than promises that a particular appliance will make you lose weight.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/walking-for-weight-management-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Walking is useful because you can fit it around ordinary life. Start with a route you can repeat comfortably, build gradually and judge progress by more than a step counter.</p></div>",
+      "new": "",
+      "text": "Walking is useful because you can fit it around ordinary life. Start with a route you can repeat comfortably, build gradually and judge progress by more than a step counter.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/football-fitness-after-40.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">You can enjoy football without treating the first game back as a trial for your old team. Start with the version you can return to next week.</p></div>",
+      "new": "",
+      "text": "You can enjoy football without treating the first game back as a trial for your old team. Start with the version you can return to next week.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/weight-and-blood-pressure-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Weight can affect blood pressure, but it is not the only factor and losing weight is not a reason to stop prescribed tablets yourself. Start with a reliable measurement and an agreed follow-up.</p></div>",
+      "new": "",
+      "text": "Weight can affect blood pressure, but it is not the only factor and losing weight is not a reason to stop prescribed tablets yourself. Start with a reliable measurement and an agreed follow-up.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/healthy-habits-that-last-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Build a habit around a real moment in your day, give it a smaller version for difficult weeks and review whether it helped. You do not need to rebuild your entire life by Monday.</p></div>",
+      "new": "",
+      "text": "Build a habit around a real moment in your day, give it a smaller version for difficult weeks and review whether it helped. You do not need to rebuild your entire life by Monday.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/beginner-walking-plan-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Start from the amount of walking you can comfortably manage now. The plan below is a flexible example, not a prescription or a challenge you have to complete on schedule.</p></div>",
+      "new": "",
+      "text": "Start from the amount of walking you can comfortably manage now. The plan below is a flexible example, not a prescription or a challenge you have to complete on schedule.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/cholesterol-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">High cholesterol usually does not announce itself with a symptom. A blood test and a conversation about your overall risk are more useful than guessing from how you feel.</p></div>",
+      "new": "",
+      "text": "High cholesterol usually does not announce itself with a symptom. A blood test and a conversation about your overall risk are more useful than guessing from how you feel.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/bmi-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">BMI is your weight in kilograms divided by your height in metres squared. It can help identify health risk, but it cannot tell you your fitness, your worth or the whole story of your health.</p></div>",
+      "new": "",
+      "text": "BMI is your weight in kilograms divided by your height in metres squared. It can help identify health risk, but it cannot tell you your fitness, your worth or the whole story of your health.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/healthy-takeaways-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Sometimes somebody else cooking is exactly what the evening needs. Make a takeaway choice that suits your appetite, budget and plans without writing off the week.</p></div>",
+      "new": "",
+      "text": "Sometimes somebody else cooking is exactly what the evening needs. Make a takeaway choice that suits your appetite, budget and plans without writing off the week.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/heart-health-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Looking after your heart starts with a few checks and changes you can keep doing. You do not need to become an athlete before asking about your blood pressure, cholesterol or family history.</p></div>",
+      "new": "",
+      "text": "Looking after your heart starts with a few checks and changes you can keep doing. You do not need to become an athlete before asking about your blood pressure, cholesterol or family history.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/motivation-vs-routine-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Motivation can get you started. A useful routine gives you something to do on the day you do not feel particularly motivated. Keep it flexible enough to survive ordinary life.</p></div>",
+      "new": "",
+      "text": "Motivation can get you started. A useful routine gives you something to do on the day you do not feel particularly motivated. Keep it flexible enough to survive ordinary life.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/stress-and-weight-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Find the moment stress changes your eating or drinking, then make that moment easier. Food planning can help with the day; persistent distress deserves support of its own.</p></div>",
+      "new": "",
+      "text": "Find the moment stress changes your eating or drinking, then make that moment easier. Food planning can help with the day; persistent distress deserves support of its own.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/sleep-and-weight-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">A difficult night can make the next day&#x27;s food and movement plans harder. Work on the routine you can change, and get persistent sleep problems or breathing pauses assessed properly.</p></div>",
+      "new": "",
+      "text": "A difficult night can make the next day's food and movement plans harder. Work on the routine you can change, and get persistent sleep problems or breathing pauses assessed properly.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/health-isnt-about-six-packs.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Looking a certain way is a personal preference. It is not a complete health check and it is not the price of joining in with your own life.</p></div>",
+      "new": "",
+      "text": "Looking a certain way is a personal preference. It is not a complete health check and it is not the price of joining in with your own life.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/confidence-and-weight-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Weight and confidence can become tangled together. A change on the scales may matter to you, but you do not have to put the rest of your life on hold until it happens.</p></div>",
+      "new": "",
+      "text": "Weight and confidence can become tangled together. A change on the scales may matter to you, but you do not have to put the rest of your life on hold until it happens.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/asking-for-help-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">You do not need a polished explanation before asking for help. Start with the person or service most likely to help with the problem you actually have.</p></div>",
+      "new": "",
+      "text": "You do not need a polished explanation before asking for help. Start with the person or service most likely to help with the problem you actually have.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "articles/healthy-bbq-men.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">A barbecue can stay a barbecue. Put a few useful choices on the table, decide what you actually fancy and keep the food safe.</p></div>",
+      "new": "",
+      "text": "A barbecue can stay a barbecue. Put a few useful choices on the table, decide what you actually fancy and keep the food safe.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "guides/blood-pressure-guide.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">A blood pressure reading is useful when you know how it was taken, what the two numbers mean and who will review it. Use this guide to prepare for that conversation, rather than trying to diagnose or treat yourself from one reading.</p></div>",
+      "new": "",
+      "text": "A blood pressure reading is useful when you know how it was taken, what the two numbers mean and who will review it. Use this guide to prepare for that conversation, rather than trying to diagnose or treat yourself from one reading.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "guides/mens-health-mot-guide.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">SHIFT Health MOT now names a home blood-test information route. An older browser questionnaire also used the name. They are separate from each other and from the NHS Health Check. Start by checking which service or tool you mean, and what is actually available.</p></div>",
+      "new": "",
+      "text": "SHIFT Health MOT now names a home blood-test information route. An older browser questionnaire also used the name. They are separate from each other and from the NHS Health Check. Start by checking which service or tool you mean, and what is actually available.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "guides/nutrition-guide.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">Eating well starts with meals you can afford, prepare and repeat. Use the overall pattern of your week to improve variety and balance, then make one change to the shopping or cooking that keeps getting in the way. You do not need a perfect menu or an expensive supplement routine.</p></div>",
+      "new": "",
+      "text": "Eating well starts with meals you can afford, prepare and repeat. Use the overall pattern of your week to improve variety and balance, then make one change to the shopping or cooking that keeps getting in the way. You do not need a perfect menu or an expensive supplement routine.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    },
+    {
+      "path": "guides/walking-guide.html",
+      "old": "<div class=\"sst-reading-lead-v31\"><p class=\"standfirst\">A useful walking plan starts from what you can comfortably do now. Make the route, timing and pace repeatable before chasing a step total. Walking can support fitness and wellbeing; the scales are not the only way to tell whether the routine is helping.</p></div>",
+      "new": "",
+      "text": "A useful walking plan starts from what you can comfortably do now. Make the route, timing and pace repeatable before chasing a step total. Walking can support fitness and wellbeing; the scales are not the only way to tell whether the routine is helping.",
+      "occurrences": 1,
+      "reason": "Exact duplicate of retained opening paragraph; metadata retained"
+    }
+  ],
+  "duplicate_intros_removed": 32,
+  "ai_modified": false,
+  "worker_modified": false
+}
