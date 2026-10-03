@@ -43,3 +43,13 @@ test('regulated routes remain gated rather than inferred from symptoms',()=>{
   assert.ok(source.includes("if(card.gate==='clinical')return 'Clinical route — partner gated'"));
   assert.ok(source.includes('do not jump straight to testosterone'));
 });
+
+test('explicit SHIFT Health interests join the plan without becoming diagnoses',()=>{
+  assert.ok(source.includes('Saved from SHIFT Health'));
+  assert.ok(source.includes("loaded.preferences?.myJourney?.healthInterests||[]"));
+  for(const slug of ['health-mot','testosterone-energy','blood-pressure-monitor','erectile-dysfunction','sleep-apnoea'])assert.ok(source.includes("'"+slug+"'"));
+  assert.ok(source.includes('You chose to save these routes.'));
+  assert.ok(source.includes('Saving one does not mean SHIFT thinks you have the condition, need treatment or should buy anything.'));
+  assert.ok(source.includes("document.addEventListener('sst:health-interest-saved'"));
+  assert.ok(source.includes('data-health-bring'));
+});
