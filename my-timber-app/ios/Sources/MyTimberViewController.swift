@@ -6,6 +6,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     private let errorBox=UIStackView()
     private var timer:Timer?
     private var failed=false
+    private var healthBridge:HealthBridge!
     private let cream=UIColor(red:231/255,green:227/255,blue:218/255,alpha:1)
     override var preferredStatusBarStyle:UIStatusBarStyle{.lightContent}
     override func viewDidLoad(){
@@ -19,8 +20,13 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
            let source=try? String(contentsOf:url,encoding:.utf8){
             config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
         }
-        // Deliberately no WKScriptMessageHandler, filesystem bridge or certificate bypass.
+        healthBridge=HealthBridge(owner:self)
+        config.userContentController.add(healthBridge,name:"sstHealth")
+        if let url=Bundle.main.url(forResource:"native-health",withExtension:"js"),let source=try? String(contentsOf:url,encoding:.utf8){
+            config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
+        }
         web=WKWebView(frame:.zero,configuration:config)
+        healthBridge.attach(web)
         web.isOpaque=false;web.backgroundColor=view.backgroundColor
         web.navigationDelegate=self;web.uiDelegate=self;web.allowsBackForwardNavigationGestures=true
         web.translatesAutoresizingMaskIntoConstraints=false
@@ -88,6 +94,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     }
     func webView(_ webView:WKWebView,createWebViewWith configuration:WKWebViewConfiguration,for action:WKNavigationAction,windowFeatures:WKWindowFeatures)->WKWebView?{nil}
     func webView(_ webView:WKWebView,didStartProvisionalNavigation navigation:WKNavigation!){
+        healthBridge.cancel()
         failed=false;errorBox.isHidden=true;timer?.invalidate()
         timer=Timer.scheduledTimer(withTimeInterval:30,repeats:false){[weak self] _ in
             self?.showFailure("A connection is needed. Nothing has been confirmed as saved by this app. Check your account before repeating any save or payment.")

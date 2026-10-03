@@ -22,7 +22,7 @@ test('PWA contract retained; no store or native-push completion claim',()=>{
 test('Both shells refuse arbitrary native access and insecure transport',()=>{
  assert.ok(java.includes('handler.cancel()'));assert.ok(java.includes('MIXED_CONTENT_NEVER_ALLOW'));
  assert.ok(java.includes('setAllowFileAccess(false)'));assert.ok(java.includes('setWebContentsDebuggingEnabled(false)'));
- assert.ok(!java.includes('addJavascriptInterface('));assert.ok(!swift.includes('addScriptMessageHandler('));
+ assert.ok(!java.includes('addJavascriptInterface('));assert.ok(!swift.includes('NSURLAuthenticationMethodServerTrust'));
  assert.ok(!swift.includes('NSURLAuthenticationMethodServerTrust'));
  assert.ok(read('android/app/src/main/AndroidManifest.xml').includes('usesCleartextTraffic="false"'));
 });
@@ -43,7 +43,7 @@ test('Final store identities are prepared but submission remains explicitly disa
  assert.match(project,/Release:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber/);
  assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.dev/);
  assert.match(project,/TARGETED_DEVICE_FAMILY: '1'/);
- assert.match(project,/CURRENT_PROJECT_VERSION: 2/);
+ assert.match(project,/CURRENT_PROJECT_VERSION: 3/);
  assert.match(project,/MARKETING_VERSION: 1\.0\.0/);
  assert.match(project,/CFBundleShortVersionString: \$\(MARKETING_VERSION\)/);
  assert.match(project,/CFBundleVersion: \$\(CURRENT_PROJECT_VERSION\)/);

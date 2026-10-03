@@ -1,0 +1,16 @@
+name: Native health bridge — account and privacy proof
+on:
+  pull_request:
+    paths: ['my-timber-app/**','member-experience/**','member-state-fast-v1.js','privacy-health-erasure-route-v1.js','.github/workflows/native-health-bridge-proof.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  account-privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node --test member-experience/tests/device-health.test.mjs my-timber-app/tests/source.test.mjs my-timber-app/tests/health-bridge.test.mjs
