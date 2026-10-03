@@ -32,6 +32,7 @@ import azd1043Publication from './reviews/2026-10-03-authorised-azd1043.json' wi
 import seleneCorrection from './reviews/2026-10-03-authorised-azd6234-selene.json' with {type:'json'};
 import wve007Publication from './reviews/2026-10-03-authorised-wve007.json' with {type:'json'};
 import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-registry-wave.json' with {type:'json'};
+import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
  const e=industry.find(e=>e.id==='wve007');
@@ -84,6 +85,31 @@ test('specialist registry wave adds one programme and updates existing indicatio
  assert.ok(specialistRegistryWave.registryEvidence.every(record=>record.hasResults===false));
  assert.ok(specialistRegistryWave.registryEvidence.every(record=>/^[a-f0-9]{64}$/.test(record.responseSha256)));
  assert.equal(specialistRegistryWave.discoveryPass.failedChecks.length,2);
+});
+test('lean-mass and energy follow-up separates planned outcomes from demonstrated benefit',()=>{
+ assert.equal(leanMassEnergyFollowup.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(leanMassEnergyFollowup.clinicalApproval,null);
+ assert.equal(leanMassEnergyFollowup.industryComplete,false);
+ assert.equal(leanMassEnergyFollowup.automatedMonitorChanges,false);
+ assert.equal(leanMassEnergyFollowup.configuredSourcePass.configuredSources,50);
+ const leanPro=industry.find(e=>e.id==='lean-pro-glp1-protein');
+ assert.equal(leanPro.group,'research');
+ assert.match(leanPro.stage,/Recruiting randomised dietary-support study/);
+ assert.match(leanPro.summary,/130-participant Greek study/);
+ assert.match(leanPro.summary,/grip strength/);
+ assert.match(leanPro.limitations,/does not establish that higher protein preserves muscle/);
+ assert.match(leanPro.limitations,/not dietary advice/);
+ assert.equal(leanPro.sourceIds.length,0);
+ assert.equal(leanPro.clinicalApproval,null);
+ assert.equal(leanPro.reviewedAt,leanMassEnergyFollowup.reviewedAt);
+ const zenagamtide=industry.find(e=>e.id==='zenagamtide');
+ assert.match(zenagamtide.summary,/NNC0487-0111\/amycretin/);
+ assert.match(zenagamtide.summary,/sleeping and 24-hour energy expenditure/);
+ assert.match(zenagamtide.limitations,/do not demonstrate preserved muscle/);
+ assert.match(zenagamtide.limitations,/does not advance the oral formulation/);
+ assert.ok(zenagamtide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07757087'));
+ assert.ok(leanMassEnergyFollowup.registryEvidence.every(record=>record.hasResults===false));
+ assert.ok(leanMassEnergyFollowup.registryEvidence.every(record=>/^[a-f0-9]{64}$/.test(record.responseSha256)));
 });
 test('AZD1043 remains bounded Phase 1 research with site and access distinctions',()=>{
  const entry=industry.find(e=>e.id==='azd1043');
@@ -138,8 +164,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,77);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,83);
+ assert.equal(medicines.length,6);assert.equal(industry.length,78);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,84);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -646,7 +672,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,77);
+ assert.equal(industry.length,78);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
