@@ -1,3 +1,4 @@
+import {DEVICE_HEALTH_PATHS,historicalDeviceHealthRef,validateDeviceHealthSource,verifyDeviceHealthProof} from './device-health-scope.mjs';
 import {verifyBookVoiceProof} from './book-voice-scope.mjs';
 import {verifyTreatmentGuidanceProof} from './treatment-guidance-scope.mjs';
 import {verifyPublicWordingProof} from './public-wording-scope.mjs';
@@ -21,7 +22,7 @@ const candidate=await get('/actions/runs/36677998472');
 assert.equal(candidate.head_sha,'e7051fe6e9b4b8b059528e2eee63fb380935d6ba');
 assert.equal(candidate.path,'.github/workflows/app-layout-preview.yml');assert.equal(candidate.conclusion,'success');
 git('merge-base','--is-ancestor',candidate.head_sha,'HEAD');
-for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/continuity-journey.mjs','preview/growth-member/public-copy.mjs','growth-member-public.mjs','worker-entry-v6.js','member-experience/entry.mjs','member-experience/member-details.mjs','member-experience/member-email-client.mjs'])assert.equal(git('rev-parse',candidate.head_sha+':'+path),git('rev-parse',historicalFooterRef('HEAD',path)+':'+path),'Integrated preview changed: '+path);
+for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/continuity-journey.mjs','preview/growth-member/public-copy.mjs','growth-member-public.mjs','worker-entry-v6.js','member-experience/entry.mjs','member-experience/member-details.mjs','member-experience/member-email-client.mjs'])assert.equal(git('rev-parse',candidate.head_sha+':'+path),git('rev-parse',historicalDeviceHealthRef(historicalFooterRef('HEAD',path),path)+':'+path),'Integrated preview changed: '+path);
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const name of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===name&&c.conclusion==='success'),'Required candidate check: '+name);
 for(const check of checks)assert(check.status==='completed'&&['success','skipped','neutral'].includes(check.conclusion),'Candidate check not passed: '+check.name+' '+check.status+'/'+check.conclusion);

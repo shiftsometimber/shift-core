@@ -32,12 +32,13 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
     statements.push(env.DB.prepare("DELETE FROM product_events WHERE user_id=? AND event_name IN ('pen_day_done','pen_day_rough','pen_day_status_saved','pen_day_door_click')").bind(userId));
     deleted.push({table:'product_events',scopes:['pen_day']});
   }
-  statements.push(env.DB.prepare("UPDATE member_state SET preferences=json_remove(preferences,'$.myJourney','$.lifeBack','$.fitJourney'),updated_at=? WHERE user_id=?").bind(new Date().toISOString(),userId));
-  deleted.push({table:'member_state',scopes:['myJourney','lifeBack','fitJourney']});
+  statements.push(env.DB.prepare("UPDATE member_state SET preferences=json_remove(preferences,'$.myJourney','$.lifeBack','$.fitJourney','$.deviceHealth'),updated_at=? WHERE user_id=?").bind(new Date().toISOString(),userId));
+  deleted.push({table:'member_state',scopes:['myJourney','lifeBack','fitJourney','deviceHealth']});
 
   // Record withdrawal as a new immutable consent event. Keep consent/audit
   // history so Shift can evidence that withdrawal and erasure were honoured.
   const now=new Date().toISOString();
+  for(const platform of ['apple_health','health_connect'])statements.push(env.DB.prepare('INSERT INTO consents(user_id,consent_type,consent_version,granted,withdrawn_at,created_at) VALUES(?,?,?,0,?,?)').bind(userId,'native_health_import_'+platform,'native-health-import/2026-10-03',now,now));
   statements.push(env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at,withdrawn_at,created_at) VALUES(?,?,?,?,?,?,?)`)
     .bind(userId,TRACKING_CONSENT,'2026-08-18-v1',0,null,now,now));
 

@@ -1,3 +1,5 @@
+> Current build 3 health-integration candidate: see [HEALTH-INTEGRATION.md](HEALTH-INTEGRATION.md). The earlier build 2 was uploaded on 1 October; store approval and exact physical acceptance are separate gates. The historical foundation notes below do not describe HealthKit/Health Connect as complete.
+
 # My Timber — isolated native app candidate
 
 **Name:** My Timber. **Product specification:** the existing My Timber PWA.
@@ -88,7 +90,7 @@ icon; low-resolution source artwork remains a store-quality gate.
 Top-level native navigation trusts only the exact owned HTTPS origin. Other
 secure web/phone/email links require confirmation and open in the system app.
 Untrusted URL schemes, credentials in URLs and insecure connections are denied.
-There is no remote-content-to-native privileged bridge. Existing same-origin
+A bounded read-only health preview bridge now exists only for the owned origin, main frame and Settings route; it exposes no arbitrary native methods. Existing same-origin
 forms/cookies use the website unchanged, without copying or rewriting auth.
 Offline failures never claim a save and never automatically replay a POST.
 Returning to Today is an explicit, confirmed GET navigation.

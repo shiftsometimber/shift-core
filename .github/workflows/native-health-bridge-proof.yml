@@ -1,0 +1,27 @@
+name: Native health bridge — account and privacy proof
+on:
+  pull_request:
+    paths: ['my-timber-app/**','member-experience/**','member-state-fast-v1.js','privacy-health-erasure-route-v1.js','.github/workflows/native-health-bridge-proof.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  account-privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node --test member-experience/tests/device-health.test.mjs my-timber-app/tests/source.test.mjs my-timber-app/tests/health-bridge.test.mjs
+      - run: npm install --prefix /tmp/shift-health-proof --no-package-lock playwright@1.55.1
+      - run: /tmp/shift-health-proof/node_modules/.bin/playwright install --with-deps chromium webkit
+      - run: node my-timber-app/tests/health-browser-proof.mjs
+        env:
+          NODE_PATH: /tmp/shift-health-proof/node_modules
+          HEALTH_PROOF_OUT: /tmp/shift-health-browser-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-health-browser-${{ github.sha }}
+          path: /tmp/shift-health-browser-proof

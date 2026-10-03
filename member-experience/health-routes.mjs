@@ -1,4 +1,5 @@
 import {unitSettingsRoute} from './unit-settings.mjs';
+import {deviceHealthRoutes,readDeviceHealth} from './device-health.mjs';
 import {saveCheckinWithAction,latestCheckinAction,reviewCheckinAction} from './checkin-followup.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {saveHealthInterest,HEALTH_INTERESTS,normaliseHealthInterest} from './health-interest-store.mjs';
@@ -12,6 +13,7 @@ export async function appendHealthExport(request,env,response){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/privacy/export'||request.method!=='POST'||!response.ok)return response;
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
  const payload=await response.json();
+ payload.deviceHealth=await readDeviceHealth(env.DB,auth.userId);
  for(const [key,table]of [['journeyWeeklyCheckIns','my_journey_weekly_checkins'],['savedPlans','shift_plans'],['dailyCheckinActions','daily_checkin_actions']]){
   const exists=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").bind(table).first();
   payload[key]=exists?(await env.DB.prepare(`SELECT * FROM ${table} WHERE user_id=? ORDER BY id`).bind(auth.userId).all()).results:[];
@@ -40,6 +42,7 @@ export async function persistFitReplacement(request,env,response,input){
 }
 export async function memberHealthRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
+ const device=await deviceHealthRoutes(request,env);if(device)return device;
  const units=await unitSettingsRoute(request,env);if(units)return units;
  const path=new URL(request.url).pathname.replace(/\/+$/,''),method=request.method;
  const owned=['/v1/check-ins','/v1/check-ins/follow-up','/v1/fit/activity','/v1/health-passport/interest'].includes(path);

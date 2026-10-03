@@ -19,11 +19,13 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 
-/** Native client for the existing hosted My Timber service. No privileged JS bridge. */
-public final class MainActivity extends Activity {
+/** Native client for the existing hosted My Timber service. Bounded origin-scoped health reads only. */
+public final class MainActivity extends androidx.activity.ComponentActivity {
     private WebView web;
     private LinearLayout failure;
     private String presentation;
+    private String healthPresentation;
+    private HealthBridge healthBridge;
     private final Handler timer = new Handler(Looper.getMainLooper());
     private final Runnable timeout = () -> showFailure("My Timber is taking longer than expected. Nothing has been confirmed as saved by this app.");
     private ValueCallback<Uri[]> fileResult;
@@ -64,6 +66,12 @@ public final class MainActivity extends Activity {
             while ((n=stream.read(block)) != -1) bytes.write(block,0,n);
             presentation = bytes.toString(StandardCharsets.UTF_8.name());
         } catch (Exception e) { showFailure("My Timber could not start securely. Please close the app and try again."); return; }
+        try (InputStream stream=getAssets().open("native-health.js")) {
+            ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] block=new byte[4096];int n;
+            while((n=stream.read(block))!=-1)bytes.write(block,0,n);
+            healthPresentation=bytes.toString(StandardCharsets.UTF_8.name());
+        } catch (Exception e) { showFailure("Health controls could not load securely."); return; }
+        healthBridge=new HealthBridge(this,web);healthBridge.attach();
         WebView.setWebContentsDebuggingEnabled(false);
         WebSettings settings = web.getSettings();
         settings.setJavaScriptEnabled(true); // Required by the existing PWA.
@@ -101,6 +109,7 @@ public final class MainActivity extends Activity {
                 return true;
             }
             @Override public void onPageStarted(WebView view, String url, android.graphics.Bitmap icon) {
+                healthBridge.cancel();
                 // Also guard navigations (including forms) not passed to the URL override.
                 if (NavigationPolicy.classify(url) != NavigationPolicy.Decision.INTERNAL) {
                     timer.removeCallbacks(timeout);
@@ -115,6 +124,7 @@ public final class MainActivity extends Activity {
                 timer.removeCallbacks(timeout);
                 if (!pageFailed && NavigationPolicy.classify(url)==NavigationPolicy.Decision.INTERNAL) {
                     view.evaluateJavascript(presentation,null);
+                    view.evaluateJavascript(healthPresentation,null);
                     CookieManager.getInstance().flush();
                 }
             }
@@ -191,5 +201,5 @@ public final class MainActivity extends Activity {
     }
     @Override protected void onPause(){super.onPause();if(web!=null)web.onPause();CookieManager.getInstance().flush();}
     @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();}
-    @Override protected void onDestroy(){timer.removeCallbacksAndMessages(null);if(fileResult!=null)fileResult.onReceiveValue(null);if(web!=null){web.stopLoading();web.destroy();}super.onDestroy();}
+    @Override protected void onDestroy(){timer.removeCallbacksAndMessages(null);if(healthBridge!=null)healthBridge.close();if(fileResult!=null)fileResult.onReceiveValue(null);if(web!=null){web.stopLoading();web.destroy();}super.onDestroy();}
 }

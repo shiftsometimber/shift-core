@@ -6,7 +6,7 @@ settings:
   base:
     SWIFT_VERSION: '5.0'
     TARGETED_DEVICE_FAMILY: '1'
-    CURRENT_PROJECT_VERSION: 2
+    CURRENT_PROJECT_VERSION: 3
     MARKETING_VERSION: 1.0.0
     ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 targets:
@@ -20,7 +20,8 @@ targets:
       base:
         CODE_SIGN_STYLE: Automatic
         TARGETED_DEVICE_FAMILY: '1'
-        CURRENT_PROJECT_VERSION: 2
+        CURRENT_PROJECT_VERSION: 3
+        CODE_SIGN_ENTITLEMENTS: HealthKit.entitlements
         MARKETING_VERSION: 1.0.0
       configs:
         Debug:
@@ -37,6 +38,7 @@ targets:
         UILaunchScreen:
           UIColorName: LaunchBackground
         NSCameraUsageDescription: Take a photo you choose to upload to your My Timber account.
+        NSHealthShareUsageDescription: Preview your heart rate, blood pressure and weight, then choose the readings to save to your private My Timber account. This is optional and is not clinical monitoring.
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
         UISupportedInterfaceOrientations:

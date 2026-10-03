@@ -1,3 +1,5 @@
+> Historical baseline gates from 23 September. For the build 3 Apple Health/Health Connect candidate and current acceptance requirements, see [HEALTH-INTEGRATION.md](HEALTH-INTEGRATION.md). Build 2 upload success does not establish build 3 permission/sync acceptance.
+
 # My Timber — store release gates (all OPEN unless evidenced)
 
 This candidate is not yet submitted or store-approved. Final v1 store identifiers are prepared and unsigned Release configurations are compiled in CI; store signing/upload remains account-gated.
@@ -32,6 +34,5 @@ Owner confirmed an existing D-U-N-S number on 23 September 2026. The number itse
 
 The existing app is server-rendered. This preview deliberately uses native
 WKWebView/Android WebView clients rather than pretending Capacitor's development
-server.url setting is a production-ready frontend migration. No privileged
-native JavaScript bridge is attached to remote content. This is an implementation
+server.url setting is a production-ready frontend migration. The build 3 health bridge permits only user-confirmed, read-only previews from the owned origin, main frame and Settings path. This is an implementation
 choice for the candidate, not a claim that App Store review is already satisfied.
