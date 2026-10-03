@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,verifiedStartingPoint} from './cancelled-release-recovery.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,verifiedStartingPoint,successfulOwnedPromotionCandidates} from './cancelled-release-recovery.mjs';
 const active=id=>({versions:[{version_id:id,percentage:100}]}),failed={id:recovery.run,head_sha:recovery.source,run_attempt:1,conclusion:'cancelled'},verified={id:recovery.verifiedRun,head_sha:recovery.verifiedSource,conclusion:'success'};
 test('recovery only restores the exact evidenced cancelled runtime to the verified source',()=>{
  assert.deepEqual({verified:recovery.verified,verifiedRun:recovery.verifiedRun,verifiedSource:recovery.verifiedSource},{verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
@@ -37,4 +37,17 @@ test('promotion carries the exact verified later runtime forward and rejects mov
  const old={decision:'retain',run:recovery.run,from:recovery.verified,to:recovery.verified,verifiedRun:recovery.verifiedRun,ownedProof:null,dataChanged:false};
  assert.equal(verifiedStartingPoint(old,active(recovery.verified)).version,recovery.verified);
  assert.equal(verifiedStartingPoint({...old,decision:'restore',from:recovery.unverified},active(recovery.verified)).version,recovery.verified);
+});
+
+test('busy estate history cannot hide the exact owned promotion; discovery never authorises unknown runtime',async()=>{
+ const version='11111111-1111-4111-8111-111111111111',run={id:123,status:'completed',conclusion:'success',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml',head_sha:'a'.repeat(40)};
+ const noise=Array.from({length:100},(_,id)=>({...run,id,path:'.github/workflows/unrelated-check.yml'}));
+ const calls=[],get=async path=>{calls.push(path);return{workflow_runs:path.startsWith('/actions/workflows/cloudflare-production-promote.yml/')?[...noise,run]:noise};};
+ const candidates=await successfulOwnedPromotionCandidates(get);assert.deepEqual(candidates,[run]);assert.equal(calls.length,1);
+ const job={name:'promote',conclusion:'success',run_id:123},receipt={kind:'owned_runtime_deployment',source:run.head_sha,run:'123',versionId:version,deploymentId:'22222222-2222-4222-8222-222222222222'};
+ assert.equal(verifiedOwnedRuntime(active(version),candidates[0],job,receipt),true);
+ assert.equal(verifiedOwnedRuntime(active(recovery.unverified),candidates[0],job,receipt),false);
+ assert.equal(verifiedOwnedRuntime(active(version),{...candidates[0],conclusion:'failure'},job,receipt),false);
+ await assert.rejects(successfulOwnedPromotionCandidates(async()=>({})),/history unavailable/);
+ await assert.rejects(successfulOwnedPromotionCandidates(async()=>{throw Error('history denied')}),/history denied/);
 });

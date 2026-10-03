@@ -11,6 +11,15 @@ export function recoveryDecision(active,failed,verified){
  return 'restore';
 }
 
+// Query the promotion workflow directly: unrelated successful estate checks can
+// fill the general Actions page and hide the actual verified runtime receipt.
+// Discovery still grants no authority; every job/receipt is checked below.
+export async function successfulOwnedPromotionCandidates(get){
+ const runs=await get('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&status=success&per_page=100');
+ assert(Array.isArray(runs?.workflow_runs),'Successful production run history unavailable');
+ return runs.workflow_runs.filter(r=>r?.path==='.github/workflows/cloudflare-production-promote.yml').slice(0,5);
+}
+
 // A later successful release can be retained using its exact owned-deployment
 // receipt. This never grants restoration authority for an unknown runtime.
 export function verifiedOwnedRuntime(active,run,job,receipt){
