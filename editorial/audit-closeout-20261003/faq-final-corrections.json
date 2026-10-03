@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-03",
+  "baseline": "6827c165d2d8a8e29687b65878c18669bbc741df040db4c1749e60613a30df68",
+  "candidate": "e54133661ab9ffb8961adbd0a1e8e8a3687b3fb17a014856c2daf5b74485791a",
+  "changes": [
+    "11 reviewed FAQs: remove conflicting generic August evidence label while preserving dated checks",
+    "2 Wegovy FAQs: add MHRA 11 June 2026 tablet authorisation source",
+    "Founding Shifter FAQ: distinguish free account and separate stock-email consent; correct destinations"
+  ],
+  "preservedFiles": 864,
+  "fullFaqPagesRead": 32,
+  "limitations": "Editorial reading, not qualified clinical sign-off or complete medical source revalidation. Full public estate remains open.",
+  "verificationScript": "import {chromium} from '/tmp/shift-audit-tools/node_modules/playwright/index.mjs';import {readFileSync,writeFileSync} from 'node:fs';import assert from 'node:assert/strict';\nconst dir='/private/tmp/shift-faq-final-closeout-20261003',origin=process.env.PROOF_ORIGIN||'https://af939f24.projectshift.pages.dev',build=JSON.parse(readFileSync(dir+'/build.json'));const fp=await fetch(origin+'/DEPLOYMENT-FINGERPRINT.json').then(r=>r.json());assert.equal(fp.aggregate_sha256,build.candidate);const b=await chromium.launch(),rows=[];\nfor(const width of [390,1440])for(const file of build.changed.filter(x=>x.endsWith('.html'))){const path='/'+file.replace(/\\.html$/,''),p=await b.newPage({viewport:{width,height:900}});const r=await p.goto(origin+path,{waitUntil:'load'});assert.equal(r.status(),200);const main=await p.locator('main').innerText();assert(!main.includes('Evidence reviewed August 2026'));\nif(path.includes('wegovy'))assert.equal(await p.locator('.source-list a[href=\"'+build.mhra+'\"]').count(),1);\nif(path.endsWith('what-is-founding-shifter')){assert(main.includes('early-supporter label'));assert(main.includes('separate stock-update form'));assert.equal(await p.locator('main a[href=\"/waiting-list-journey\"]').count(),1);assert.equal(await p.locator('main a[href=\"/member/dashboard\"]').count(),1);assert.equal(await p.locator('main a[href=\"/founding-members\"]').count(),0)}\nconst overflow=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth);assert(overflow<=1);rows.push({path,width,status:200,overflow});await p.close()}await b.close();writeFileSync(dir+'/proof.json',JSON.stringify({at:new Date().toISOString(),origin,fingerprint:fp.aggregate_sha256,rows},null,2));console.log(JSON.stringify({checks:rows.length,passed:true}));\n"
+}
