@@ -1,9 +1,14 @@
 import {boundary} from './safety.mjs';
-export async function supportView(DB,userId){
+export function waitingRequest(ticket,now=Date.now()){
+ const at=Date.parse(ticket.updated_at||ticket.created_at||'');
+ const hours=Number.isFinite(at)&&at<=now?Math.floor((now-at)/3600000):null;
+ return {...ticket,waitingHours:ticket.status==='closed'?null:hours,needsUpdate:ticket.status!=='closed'&&hours!==null&&hours>=48};
+}
+export async function supportView(DB,userId,now=Date.now()){
  const present=await DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='support_tickets'").first();
  if(!present)return{available:false,tickets:[],responsePromise:null};
- const tickets=(await DB.prepare("SELECT reference,status,created_at,updated_at,closed_at,CASE WHEN assigned_hq_user_id IS NULL THEN 0 ELSE 1 END assigned FROM support_tickets WHERE user_id=? AND reference LIKE 'COACH-%' ORDER BY created_at DESC LIMIT 5").bind(userId).all()).results||[];
- return{available:true,tickets,responsePromise:null,channel:'Existing SHIFT HQ support queue',clinical:false};
+ const tickets=(await DB.prepare("SELECT reference,status,created_at,updated_at,closed_at,CASE WHEN assigned_hq_user_id IS NULL THEN 0 ELSE 1 END assigned FROM support_tickets WHERE user_id=? AND reference LIKE 'COACH-%' ORDER BY CASE WHEN status='closed' THEN 1 ELSE 0 END,created_at DESC LIMIT 5").bind(userId).all()).results||[];
+ return{available:true,tickets:tickets.map(t=>waitingRequest(t,now)),responsePromise:null,channel:'Existing SHIFT HQ support queue',clinical:false};
 }
 export async function requestSupport(DB,userId,input,consentId,now=Date.now()){
  if(typeof input.message!=='string'||!input.message.trim()||input.message.length>1000||input.share!==true)throw Object.assign(Error('support_message_and_permission_required'),{status:400});

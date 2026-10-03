@@ -48,3 +48,30 @@ test('new coach feedback counts toward week-four return and helped rate, without
  let r=await continuityScorecard(DB,{now:'2026-09-29',days:90});assert.equal(r.week4.numerator,1);assert.equal(r.week4.denominator,1);assert.equal(r.helped.numerator,1);assert.equal(r.helped.denominator,2);assert.equal(r.helped.ratePct,50);assert(!JSON.stringify(r).includes('PRIVATE MEMBER WORDS'));
  db.prepare('UPDATE member_state SET preferences=? WHERE user_id=1').run(JSON.stringify({lifeBack:{progress:{shiftAI:{actions:[coach.actions[2]],outcomes:[]}}}}));r=await continuityScorecard(DB,{now:'2026-09-29',days:90});assert.equal(r.week4.numerator,0);assert.equal(r.helped.denominator,0);
 });
+
+test('first-week usefulness retains unfinished starters, counts each member once and needs the complete London week',()=>{
+ const ep=(userId,id,reviews)=>({userId,id,at:'2026-09-01T11:00:00Z',reviews});
+ const input={exposures:[exposure,{userId:2,at:exposure.at},{userId:3,at:exposure.at}],episodes:[ep(1,'a',[{at:'2026-09-02',outcome:'helped'}]),ep(1,'b',[{at:'2026-09-03',outcome:'helped'}]),ep(2,'c',[{at:'2026-09-02',outcome:'not-fit'}])]};
+ assert.equal(summariseContinuity({...input,asOf:'2026-09-07T22:59:59Z'}).firstWeekUsefulStep.status,'not_yet_eligible');
+ const r=summariseContinuity({...input,asOf:'2026-09-07T23:00:00Z'}).firstWeekUsefulStep;
+ assert.equal(r.numerator,1);assert.equal(r.denominator,3);assert.equal(r.answeredMembers,2);assert.equal(r.unansweredMembers,1);assert.equal(r.ratePct,33.33);
+});
+test('first-week usefulness rejects old, late and future evidence, and retains in-window corrections',()=>{
+ const ep=(id,at,reviews)=>({userId:1,id,at,reviews});
+ const r=summariseContinuity({exposures:[exposure],asOf:'2026-09-09',episodes:[
+ ep('old','2026-09-01T09:00:00Z',[{at:'2026-09-02',outcome:'helped'}]),
+ ep('late','2026-09-02',[{at:'2026-09-08',outcome:'helped'}]),
+ ep('future','2026-09-02',[{at:'2027-09-02',outcome:'helped'}]),
+ ep('corrected','2026-09-02',[{at:'2026-09-03',outcome:'helped'},{at:'2026-09-04',outcome:'didnt-help'}])
+ ]}).firstWeekUsefulStep;
+ assert.equal(r.numerator,0);assert.equal(r.denominator,1);assert.equal(r.answeredMembers,1);
+ assert.equal(summariseContinuity({episodesAvailable:false}).firstWeekUsefulStep.status,'unavailable');
+});
+test('support follow-through includes old unassigned work and excludes staff/tests, private text and future requests',async t=>{
+ const db=new DatabaseSync(':memory:');t.after(()=>db.close());db.exec(`CREATE TABLE users(id INTEGER,email TEXT);CREATE TABLE hq_users(email TEXT);CREATE TABLE audit_log(user_id INTEGER,action TEXT);CREATE TABLE product_events(user_id INTEGER,event_name TEXT,source TEXT,occurred_at TEXT);CREATE TABLE support_tickets(reference TEXT,user_id INTEGER,status TEXT,assigned_hq_user_id INTEGER,created_at TEXT,updated_at TEXT,body TEXT);INSERT INTO users VALUES(1,'member@real.example'),(2,'test@example.invalid'),(3,'staff@real.example');INSERT INTO hq_users VALUES('staff@real.example');
+ INSERT INTO support_tickets VALUES('COACH-old',1,'open',NULL,'2026-07-01','2026-09-20','PRIVATE WORDS'),('COACH-new',1,'waiting',9,'2026-09-28','2026-09-28','SECRET'),('COACH-closed',1,'closed',9,'2026-09-01','2026-09-28','SECRET'),('COACH-test',2,'open',NULL,'2026-09-01','2026-09-01','SECRET'),('COACH-staff',3,'open',NULL,'2026-09-01','2026-09-01','SECRET'),('SUP-unrelated',1,'open',NULL,'2026-09-01','2026-09-01','SECRET'),('COACH-future',1,'open',NULL,'2027-01-01','2027-01-01','SECRET'),('COACH-clock',1,'open',NULL,'2026-09-01','2027-01-01','SECRET');`);
+ const DB={prepare(sql){let args=[];return{bind(...a){args=a;return this},async all(){return{results:db.prepare(sql).all(...args)}}}}};
+ const r=await continuityScorecard(DB,{now:'2026-09-29',days:7});const q=r.supportFollowThrough;
+ assert.equal(q.openRequests,3);assert.equal(q.unassignedRequests,2);assert.equal(q.withoutUpdate48Hours,1);assert.equal(q.unknownUpdateTime,1);assert.equal(q.teamMarkedClosed,1);assert.equal(q.memberConfirmedResolution.status,'unavailable');assert.equal(q.responsePromise,null);assert(!JSON.stringify(r).includes('PRIVATE'));assert(!JSON.stringify(r).includes('real.example'));
+ db.exec('DROP TABLE support_tickets');assert.equal((await continuityScorecard(DB,{now:'2026-09-29'})).supportFollowThrough.status,'unavailable');
+});

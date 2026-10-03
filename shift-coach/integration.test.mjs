@@ -224,3 +224,14 @@ test('confirmed practical constraints keep feedback explanations until those con
  next=await read(DB);assert.doesNotMatch(next.action.reason,/didn’t help/);
  assert.equal(next.memory.outcomes.at(-1).title,first.task.title);
 });
+
+test('an old open help request stays visible ahead of newer closed history and offers an honest chase route',async t=>{
+ const DB=fixture(t);await start(DB);
+ await save(DB,{kind:'support-request',message:'Help me choose an everyday step',share:true});
+ const reference=(await read(DB)).support.tickets[0].reference;
+ DB.sqlite.prepare("UPDATE support_tickets SET created_at='2026-01-01',updated_at='2026-01-01' WHERE reference=?").run(reference);
+ for(let i=0;i<6;i++)DB.sqlite.prepare("INSERT INTO support_tickets(reference,user_id,subject,status,created_at,updated_at) VALUES(?,1,'Closed history','closed','2026-02-01','2026-02-01')").run('COACH-1-closed-'+i);
+ const support=(await read(DB)).support;
+ assert.equal(support.tickets[0].reference,reference);assert.equal(support.tickets[0].needsUpdate,true);assert.equal(support.tickets.length,5);assert.equal(support.responsePromise,null);assert(!JSON.stringify(support).includes('Help me choose'));
+ assert.equal((await read(DB,2)).support.tickets.length,0);
+});
