@@ -13,7 +13,7 @@ for(const file of manifest.files){const bytes=readFileSync('everyday-release/sit
 const account=process.env.CLOUDFLARE_ACCOUNT_ID;
 const cf=async(path,method='GET')=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)}),j=await r.json();assert(r.ok&&j.success);return j.result;};
 const project=await cf('/pages/projects/projectshift');assert.equal(project.production_branch,'main');
-const before=project.canonical_deployment;assert.equal(before.id,'e9908e6b-5afb-427f-a8c1-f8389509aa7e','Public source changed; review the new baseline');
+const before=project.canonical_deployment;assert.equal(before.id,'967a0680-e962-47f3-b663-6081364c668e','Public source changed; review the new baseline');
 async function fingerprint(origin){const r=await fetch(origin+'/DEPLOYMENT-FINGERPRINT.json',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert(r.ok);return(await r.json()).aggregate_sha256;}
 assert.equal(await fingerprint(before.url),control.expected_live_fingerprint);assert.equal(await fingerprint(browser.origin),control.source_fingerprint);
 mkdirSync('everyday-live-proof',{recursive:true});writeFileSync('everyday-live-proof/before.json',JSON.stringify({id:before.id,url:before.url,fingerprint:control.expected_live_fingerprint}));

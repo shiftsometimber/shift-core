@@ -1,6 +1,6 @@
 """Replace only the reviewed reading copy in the exact current Pages master."""
 import argparse, copy, gzip, hashlib, html, json, pathlib, re
-BASE='8a25f3587b15a8df80ac8a5973fa78926cba9937110d8c5454636d5588d01e99'
+BASE='9609c0f3ff51fc4cef0acbbe11ead76c4d50d3ce69641477a53f80efbdb88b85'
 def digest(b):return hashlib.sha256(b).hexdigest()
 def entry(n,s):
  b=s.encode();return dict(path=n,sha256=digest(b),bytes=len(b))
@@ -13,7 +13,7 @@ def build(source,out):
  data=json.loads(pathlib.Path(__file__).with_name('everyday-articles.json').read_text());assert len(data['articles'])==7
  for a in data['articles']:
   name='articles/'+a['slug']+'.html';old=p['overrides'][name];assert entry(name,old)==entries[name]
-  assert 'wet Wednesday' in old,'Generic-copy anchor changed: '+name
+  assert 'Reading copy and listed sources checked 3 October 2026.' in old,'Reviewed baseline changed: '+name
   escape=lambda s:html.escape(s,quote=True)
   body='<div class="sst-reading-lead-v31"><p class="standfirst">'+escape(a['intro'])+'</p></div>'
   for i,(heading,text) in enumerate(a['sections'],1):
