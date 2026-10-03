@@ -7,7 +7,7 @@ assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.GITHUB_
 const dir='available-closeout-proof';mkdirSync(dir,{recursive:true});
 const origin='https://shiftsometimber.co.uk',account='9e5386dcf455be34c582d93f8bfc79e6',db='88f40aed-cb23-4372-8c94-8a73f48bc847';
 const save=(name,obj)=>writeFileSync(dir+'/'+name,JSON.stringify(obj,null,2));
-const cf=async(path,method='GET',body)=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(30000)});const j=await r.json();assert(r.ok&&j.success,'Cloudflare operation failed: HTTP '+r.status);return j.result;};
+const cf=async(path,method='GET',body)=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(30000)});const j=await r.json();assert(r.ok&&j.success,'Cloudflare operation failed: HTTP '+r.status+' codes '+JSON.stringify((j.errors||[]).map(e=>e.code)));return j.result;};
 // Deliberately whitelist metadata. Never serialise secret values or full settings.
 const settings=await cf('/workers/scripts/shift-core/settings');
 save('live-binding-inventory.json',{at:new Date().toISOString(),readOnly:true,bindings:(settings.bindings||[]).map(b=>({name:b.name,type:b.type,databaseId:b.id??b.database_id??null,bucketName:b.bucket_name??null,className:b.class_name??null,namespaceId:b.namespace_id??null})),contractOrProcessorCertification:false});
