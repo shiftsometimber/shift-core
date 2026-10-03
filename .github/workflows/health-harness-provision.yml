@@ -1,0 +1,36 @@
+name: Provision isolated My Timber health acceptance harness
+on:
+  push:
+    branches: [codex/health-harness-provision-20261003]
+permissions:
+  contents: read
+concurrency:
+  group: isolated-my-timber-health-harness
+  cancel-in-progress: false
+jobs:
+  provision:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false, fetch-depth: 2}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - name: Verify exact native candidate source and isolated fixtures
+        run: |
+          test "$(git rev-parse HEAD^)" = df392f22d3167b51d9401b011d0ed24411ccff0b
+          node --test member-experience/tests/device-health-sync.test.mjs member-experience/tests/device-health-route.integration.test.mjs member-experience/tests/connected-health-feedback.test.mjs my-timber-app/tests/health-test-environment.test.mjs
+      - name: Create only the new separate Worker and database; verify and clear synthetic data
+        run: node my-timber-app/health-test/provision-online.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-harness-proof-${{ github.sha }}
+          path: health-harness-proof/
+          retention-days: 7
