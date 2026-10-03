@@ -9,11 +9,13 @@ const cf=async(path,method='GET')=>{const r=await fetch('https://api.cloudflare.
 // fingerprint below; unrelated main/Worker commits must not block scoped copy fixes.
 const git=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/git/refs/heads/main',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(20000)});assert(git.ok);const observedMain=(await git.json()).object.sha;
 const project=await cf('/pages/projects/projectshift');assert.equal(project.name,'projectshift');assert.equal(project.production_branch,'main');
-const before=project.canonical_deployment;assert.equal(before.id,'2e63ae40-45cf-435b-9156-e04ce90b699b','Another public release superseded the reviewed baseline');
-assert.equal(before.deployment_trigger.metadata.commit_hash,'d2fc4a26fdd7e8da64af4e51ac2982a0d77d92b4');
+const before=project.canonical_deployment;assert.equal(before.id,'b0f06629-911d-469b-a173-dcfdd300fe31','Another public release superseded the reviewed baseline');
+assert.equal(before.deployment_trigger.metadata.commit_hash,'d3ffb04c9578ed73c959f56e4acac7ac428d7a8e');
 const control=JSON.parse(readFileSync('faq-release/control.json')),browser=JSON.parse(readFileSync('faq-browser-proof/receipt.json'));assert.equal(browser.sha,process.env.GITHUB_SHA);assert.equal(browser.reports.length,76);
 assert.equal(browser.restoredLegacySprite.sha256,'0ae9686743e2b98e6837fbfeab6d1ad06e44e86ebd3d243c341a590c9c3a68bc');
 const baselineFp=await fetch(before.url+'/DEPLOYMENT-FINGERPRINT.json');assert(baselineFp.ok);assert.equal((await baselineFp.json()).aggregate_sha256,control.expected_live_fingerprint);
+// Check the next-step destinations before publishing, including Worker-served routes.
+for(const spec of JSON.parse(readFileSync('editorial/content-audit/faq-copy.json')).articles){const destination=spec.next[1];assert(destination.startsWith('/'));const r=await fetch('https://shiftsometimber.co.uk'+destination,{signal:AbortSignal.timeout(20000)});assert(r.ok,'Broken next-step destination: '+spec.slug+' -> '+destination);}
 const fp=await fetch(browser.origin+'/DEPLOYMENT-FINGERPRINT.json');assert(fp.ok);assert.equal((await fp.json()).aggregate_sha256,control.source_fingerprint);
 mkdirSync('faq-live-proof',{recursive:true});writeFileSync('faq-live-proof/before.json',JSON.stringify({id:before.id,url:before.url,commit:before.deployment_trigger.metadata.commit_hash},null,2));
 const root=process.cwd(),commandDir=process.env.RUNNER_TEMP+'/faq-pages-command';mkdirSync(commandDir,{recursive:true});

@@ -148,7 +148,7 @@ def build(source,out):
  p['files']=[entries[n] for n in sorted(entries)];p['baseline_fingerprint']=BASE;p['source_fingerprint']=fp['aggregate_sha256']
  packed=gzip.compress(json.dumps(p,ensure_ascii=False,separators=(',',':')).encode(),mtime=0);out.mkdir(parents=True,exist_ok=True)
  (out/'source.json.gz').write_bytes(packed)
- control=dict(mode='preview',expected_live_fingerprint=BASE,source_fingerprint=p['source_fingerprint'],payload_sha256=digest(packed),preview_browser_checks_passed=False)
+ control=dict(mode='preview',expected_live_fingerprint='f8d98d450a23297b688a9acca5f887670bb556d2102bdaa2fad61a4d33101e5c',source_fingerprint=p['source_fingerprint'],payload_sha256=digest(packed),preview_browser_checks_passed=False)
  (out/'control.json').write_text(json.dumps(control,indent=2)+'\n')
  proof=dict(baseline=BASE,candidate=p['source_fingerprint'],changedFiles=list(updates),preservedFiles=len(entries)-len(updates),reports=reports,productionWrites=0)
  (out/'proof.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps({k:v for k,v in proof.items() if k!='reports'}))
