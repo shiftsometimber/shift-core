@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-03",
+  "scope": "Substantive editorial reading of captured full page text, not a clinical certification, full-site audit or new live verification of unchanged pages.",
+  "capture": "/private/tmp/shift-audit-20261003/full-content-capture/pages.json",
+  "pages": [
+    {
+      "path": "/",
+      "assessment": "No individual outcomes promised; clear free My Timber entry. No new copy defect identified."
+    },
+    {
+      "path": "/about",
+      "assessment": "Personal experience qualified; no claim weight loss cured every condition; clinical responsibility and unmonitored record limits stated."
+    },
+    {
+      "path": "/advertise-with-us",
+      "assessment": "Commercial disclosure and editorial independence clear; repair enquiry form routing."
+    },
+    {
+      "path": "/editorial-standards",
+      "assessment": "AI-assisted drafting disclosed and editorial approval distinguished from independent clinical review. Actual estate source-review coverage remains an operational obligation."
+    },
+    {
+      "path": "/privacy-centre",
+      "assessment": "Request receipt distinguished from completed deletion; browser-local and account-backed data distinguished."
+    },
+    {
+      "path": "/privacy",
+      "assessment": "Coaching memory and separate support records explained. Processor arrangements, dormant-account policy and current-scope assessment evidence remain operational follow-ups."
+    },
+    {
+      "path": "/shift-promise",
+      "assessment": "Commitments framed as standards, not guaranteed clinical outcomes."
+    },
+    {
+      "path": "/clinical-governance",
+      "assessment": "Responsibilities and non-validated scores correctly bounded. Actual partner agreements are not established by this page."
+    },
+    {
+      "path": "/commercial-principles",
+      "assessment": "Commercial interests and clinical responsibility separated; implementation compliance needs continuing audit."
+    },
+    {
+      "path": "/community",
+      "assessment": "Defect: GET email form to Programme, with generic-update promise inconsistent with stock consent. Replace with stock-update link and social-channel guidance."
+    },
+    {
+      "path": "/expert-contributors",
+      "assessment": "Contributor criteria stated without invented named clinical reviewers."
+    },
+    {
+      "path": "/trusted-partners",
+      "assessment": "Page explicitly says agreed relationships will be added; no invented partner logos or clinical accountability."
+    },
+    {
+      "path": "/dpia-summary",
+      "assessment": "Describes intended controls; current operational and expanded-scope assessment evidence still required. Not clinical/privacy certification."
+    },
+    {
+      "path": "/data-governance",
+      "assessment": "Control map separates request receipt and erasure. Backup and processor evidence still needs reconciliation."
+    },
+    {
+      "path": "/help",
+      "assessment": "Separates account support, automated guidance and treating clinician. Regional emergency-source revalidation is not claimed in this editorial pass."
+    },
+    {
+      "path": "/complaints",
+      "assessment": "No fixed response-time promise; human acknowledgement, investigation and ownership still need operating evidence."
+    },
+    {
+      "path": "/before-you-decide",
+      "assessment": "Balanced preparation checklist. Medicine and surgery content still requires source/qualified review; not marked clinically accepted."
+    },
+    {
+      "path": "/contact",
+      "assessment": "Secure form explains data minimisation and existing-order route. No message submitted during review."
+    },
+    {
+      "path": "/cookies",
+      "assessment": "Consent choices and marketing-off position stated. Existing browser analytics proof retained; no new vendor retention fact inferred."
+    },
+    {
+      "path": "/corporate-wellbeing",
+      "assessment": "Future-service language and occupational-health boundary retained; repair enquiry form routing."
+    },
+    {
+      "path": "/decision-readiness-methodology",
+      "assessment": "Score explicitly not probability of success or prescribing suitability. Local-storage description requires separate implementation reconciliation."
+    },
+    {
+      "path": "/decision-trees-explained",
+      "assessment": "Clinical decisions and NHS access distinguished. General treatment relevance assertions need primary-source/qualified review."
+    },
+    {
+      "path": "/downloads-resources",
+      "assessment": "Resources framed as preparation tools, not clinical questionnaires. Download contents not covered by this page-only review."
+    },
+    {
+      "path": "/family-discussion-guide",
+      "assessment": "Practical support and boundaries useful; treatment-specific content still needs primary-source/qualified review."
+    },
+    {
+      "path": "/media-centre",
+      "assessment": "Clear navigation to press and downloadable resources; no new unsupported treatment claims."
+    },
+    {
+      "path": "/partner-with-us",
+      "assessment": "Partner selection clearly in progress; no invented operational clinical provision."
+    },
+    {
+      "path": "/press-centre",
+      "assessment": "Time-sensitive claims directed back to original sources; platform feature statements need ongoing implementation verification."
+    },
+    {
+      "path": "/waiting-list-journey",
+      "assessment": "Stock consent specific, no order/reservation/availability guarantee. No subscription submitted."
+    },
+    {
+      "path": "/work-with-us",
+      "assessment": "Clear partnership categories and editorial independence; future workplace resources remain labelled."
+    }
+  ],
+  "separateFormReview": {
+    "path": "/product-reviews",
+    "finding": "Email-client-dependent commercial form; route to existing secure contact page."
+  },
+  "remainingEstateReview": true
+}
