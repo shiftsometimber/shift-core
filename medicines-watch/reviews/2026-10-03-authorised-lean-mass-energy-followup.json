@@ -1,0 +1,109 @@
+{
+  "reviewedAt": "2026-10-03T13:01:59Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Publish one bounded older muscle-preservation research omission and append one newly updated energy-expenditure study to the existing zenagamtide programme. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [{
+    "id": "lean-pro-glp1-protein",
+    "name": "LEAN-PRO GLP-1 dietary-protein study",
+    "developer": "Hellenic Mediterranean University / University General Hospital of Heraklion",
+    "group": "research",
+    "stage": "Recruiting randomised dietary-support study; no posted results",
+    "summary": "The investigator-submitted NCT07495904 record describes a 130-participant Greek study comparing standard Mediterranean-diet counselling with individualised higher-protein guidance during GLP-1 receptor-agonist treatment. It measures muscle mass through 24 weeks, with body composition, grip strength, sarcopenia risk and later weight maintenance among secondary outcomes.",
+    "ukAuthorisation": "This behavioural-support research does not establish a new UK medicine authorisation or an authorised higher-protein regimen.",
+    "nhsEngland": "The reviewed Greek research record does not establish a NICE recommendation or NHS England access pathway for this intervention.",
+    "supply": "A recruiting study is not evidence that a specific diet service, medicine or supplement is supplied by Shift Some Timber or available through UK pharmacies.",
+    "limitations": "First posted 27 March 2026 and last updated 2 April 2026: this closes an older coverage omission, not a new October study. Recruitment status does not confirm that the estimated 30 March 2026 start occurred. The record does not name a single GLP-1 medicine, posts no results and does not establish that higher protein preserves muscle, improves strength or prevents regain. Individual protein needs and safety can differ, particularly with kidney or other medical conditions; this listing is not dietary advice.",
+    "sourceIds": [],
+    "reviewedAt": "2026-10-03T13:01:59Z",
+    "clinicalApproval": null,
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07495904: LEAN-PRO GLP-1",
+      "url": "https://clinicaltrials.gov/study/NCT07495904",
+      "sourcePublishedAt": "2026-03-27",
+      "sourceUpdatedAt": "2026-04-02",
+      "reviewedAt": "2026-10-03T13:01:59Z",
+      "checkScope": "Complete investigator-submitted API record read for recruitment status, estimated dates, randomised dietary comparison, enrolment, muscle/body-composition and function outcomes, and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "changes": [{
+    "id": "zenagamtide",
+    "fields": {
+      "summaryToAppend": "A separate sponsor-submitted Phase 1 record, updated 1 October 2026, studies once-weekly subcutaneous NNC0487-0111/amycretin against placebo or a low-energy diet after weight loss, focusing on sleeping and 24-hour energy expenditure in 120 estimated participants.",
+      "limitationsToAppend": "NCT07757087 is recruiting after an actual 3 August 2026 start but has no posted results and estimated September 2028 completion. Metabolic-rate endpoints do not demonstrate preserved muscle, better maintenance, efficacy or superiority. It concerns subcutaneous amycretin and does not advance the oral formulation or the separate Phase 3 programme."
+    },
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07757087: subcutaneous amycretin and energy expenditure",
+      "url": "https://clinicaltrials.gov/study/NCT07757087",
+      "sourcePublishedAt": "2026-08-11",
+      "sourceUpdatedAt": "2026-10-01",
+      "reviewedAt": "2026-10-03T13:01:59Z",
+      "checkScope": "Complete sponsor-submitted API record read for Phase 1 design, actual start, recruiting status, estimated enrolment/completion, energy-expenditure outcomes and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "registryEvidence": [{
+    "nctId": "NCT07495904",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07495904",
+    "responseSha256": "3e64bc50c11be36503719aca3ed7d454e758ca8f76d22366fc225ca22e181b8c",
+    "sponsor": "Hellenic Mediterranean University",
+    "overallStatus": "RECRUITING",
+    "phase": "NA",
+    "startDate": "2026-03-30",
+    "startDateType": "ESTIMATED",
+    "enrolment": 130,
+    "enrolmentType": "ESTIMATED",
+    "hasResults": false
+  }, {
+    "nctId": "NCT07757087",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07757087",
+    "responseSha256": "be6ce24afa35ffde596d0191a773d30969a990f1af71713953c4b1e1aaa8c264",
+    "sponsor": "Novo Nordisk A/S",
+    "overallStatus": "RECRUITING",
+    "phase": "PHASE1",
+    "startDate": "2026-08-03",
+    "startDateType": "ACTUAL",
+    "enrolment": 120,
+    "enrolmentType": "ESTIMATED",
+    "hasResults": false
+  }],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-03T12:15:17.813Z",
+    "available": true,
+    "status": "current",
+    "configuredSources": 50,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A SELECT-only health observation of configured checks, not a new medical review or industry-completeness claim. Unmonitored evidence remains outside this denominator. POST returned 405 with Allow: GET, HEAD."
+  },
+  "discovery": {
+    "method": "A separate current-date pass searched MHRA, NICE/NHS, sponsor announcements and newly updated ClinicalTrials.gov records. A broader undated topic pass covered oral and injectable medicines, peptides, combinations, lean-mass and muscle-preservation approaches, specialist indications, early and late stages, and stopped programmes across named and additional developers.",
+    "existingWork": "PR #851 and the later Watch expansions through merged PR #1008 were inspected before publication. Open PRs #815 and #874 remain review-only retatrutide work and are not bypassed. Existing survodutide, COURAGE, EloraTZP, emugrobart, WVE-007, ASC36, BIO101, enobosarm and specialist-registry coverage was not duplicated.",
+    "retrievalLimitations": "Search results were uneven and included irrelevant or stale records; candidate registry records were read directly before inclusion. The configured source pass says nothing about unconfigured sources. No exhaustive developer-universe claim is made. The MHRA advertising-enforcement notice published 2 October was identified but is a service-advertising compliance matter, not a medicine-stage entry, so it is not added to this catalogue receipt.",
+    "heldCandidates": [{
+      "name": "ALN-CIDEB in MASLD",
+      "url": "https://clinicaltrials.gov/study/NCT07854782",
+      "sourcePublishedAt": "2026-10-02",
+      "sourceUpdatedAt": "2026-10-02",
+      "reviewedAt": "2026-10-03T13:01:59Z",
+      "reason": "New Phase 3 MASLD record without a weight-management treatment aim in the reviewed listing; retained for related-indication follow-up rather than presented as an obesity medicine programme."
+    }],
+    "industryComplete": false,
+    "clinicalDecisions": "No individual protein target, suitability, dosing, comparative benefit or safety decision is made. Unsupported clinical conclusions remain awaiting qualified review."
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 77,
+    "widerAfter": 78,
+    "totalBefore": 83,
+    "totalAfter": 84,
+    "configuredSources": 50
+  }
+}
